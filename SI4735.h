@@ -4,7 +4,10 @@
  *      Si47XX PROGRAMMING GUIDE AN332
  *      AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE
  *  
- * Ricardo Lima Caratti, Oct 2019   
+ * Ricardo Lima Caratti, Oct 2019  
+ *  
+ * Code Under construction
+ * 
  */
 
 #define POWER_UP 0x01           // Power up device and mode selection.
@@ -40,6 +43,10 @@ class SI4735
     private:
 
     public:
+
+    void getFrequency(void);
+    void setFrequency(unsifned);
+
 
 
 
