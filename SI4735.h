@@ -10,6 +10,10 @@
  * 
  */
 
+#include <Arduino.h>
+#include <Wire.h>
+
+
 #define POWER_UP 0x01           // Power up device and mode selection.
 #define GET_REV 0x10            // Returns revision information on the device.
 #define POWER_DOWN 0x11         // Power down device.
@@ -31,23 +35,33 @@
 #define TX_TUNE_FREQ 0x30   // CMD
 #define SET_PROPERTY 0x12   // CMD
 
+volatile static bool data_from_si4735;
 
-
-
-// Table 4. FM / RDS Transmitter Command Summary
-
+static void interrupt_hundler()
+{
+    data_from_si4735 = true;
+};
 
 class SI4735
 {
 
     private:
+        byte  resetPin;
+        byte  interruptPin; 
 
-    public:
-
-    void getFrequency(void);
-    void setFrequency(unsifned);
-
+        void reset(void);
+        void waitInterrupr(void);
+        void waitToSend(void);
 
 
+    public : 
+    
+        void setup(unsigned int, unsigned int, byte);
+        void setBand(byte new_band);
+        void getFrequency(void);
+        void setFrequency(unsigned);
+        void getFirmware(void);
+        
+        void analogPowerUp(void);
 
-}
+};
