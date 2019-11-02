@@ -51,6 +51,15 @@ void resetDevice()
   delay(500);
 }
 
+
+
+void wait() {
+  do {
+    delayMicroseconds(2000);
+    Wire.requestFrom(SI473X_ADDR, 0x01);    
+  } while ( !(Wire.read() & B10000000) );
+}
+
 /*
    Power Up command
    See Si47XX PROGRAMMING GUIDE; AN332;  page 259
@@ -100,6 +109,7 @@ void seekStart(byte up_or_down, byte wrap) {
 }
 
 
+
 unsigned getFrequency() {
 
   union {
@@ -111,6 +121,8 @@ unsigned getFrequency() {
     byte raw;
   } status;
 
+  wait();
+
   status.arg.INTACK = 0;
   status.arg.CANCEL = 0;
 
@@ -119,10 +131,7 @@ unsigned getFrequency() {
   Wire.write(status.raw);
   Wire.endTransmission();
 
-  do {
-    delayMicroseconds(2000);
-    Wire.requestFrom(SI473X_ADDR, 0x01);    
-  } while ( !(Wire.read() & B10000000) );
+  wait();
 
   Wire.requestFrom(SI473X_ADDR, 0x4); 
   byte aux_status = Wire.read();
@@ -154,7 +163,6 @@ unsigned getFrequency() {
 */
 void setVolume(byte volume)
 {
-
   Wire.beginTransmission(SI473X_ADDR);
   Wire.write(0x00);
   Wire.write(0x40); // CMD1
@@ -187,6 +195,9 @@ void setup()
   powerUp(&pw);
   delay(200);
   help();
+
+  displayFrequency();
+  
 }
 
 void help() {
@@ -196,6 +207,15 @@ void help() {
   Serial.println("+ ou - to Volume Control.");
   Serial.println("+------------------------");
 }
+
+
+void displayFrequency() {
+   Serial.print("Current Frequency: ");
+   Serial.print(getFrequency());
+   Serial.println(" MHz");
+}
+
+
 
 void loop()
 {
@@ -220,10 +240,8 @@ void loop()
       case 's':
       case 'S':
         seekStart(1, 1);
-        delay(100);
-        Serial.print("Current Frequency: ");
-        Serial.print(getFrequency());
-        Serial.println(" MHz");
+        delay(500);
+        displayFrequency();
         break;
       default:
         break;
