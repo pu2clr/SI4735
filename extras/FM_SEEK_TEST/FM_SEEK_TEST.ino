@@ -1,19 +1,24 @@
 /*
-   Minimal FM radio
+   The purpose of this code is to assist you in setting up the hardware (radio).
+   It can help you to check if the Si473X wiring is correct during you bulding.
+
    By Ricardo Lima Caratti, Nov 2019
 */
 
 #include <Wire.h>
 
-#define RESET 12            // Connect Arduino Pin 12 or change it to another digital pin
-#define SI473X_ADDR   0x11  // SI473X I2C buss address
-#define POWER_UP_CMD  0x01  // Power Up command
+#define RESET 12          // Connect Arduino Pin 12 or change it to another digital pin
+#define SI473X_ADDR 0x11  // SI473X I2C buss address
+#define POWER_UP_CMD 0x01 // Power Up command
 
 // See Si47XX PROGRAMMING GUIDE; AN332; page 65.
-#define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
+#define SI473X_ANALOG_AUDIO   B00000101  // Analog Audio Inputs
+#define SI473X_DIGITAL_AUDIO  B00001011  // Digital audio inputs (DIN/DFS/DCLK)
 
 // See Si47XX PROGRAMMING GUIDE; AN332; page 55
-#define AM_TUNE_FREQ 0x40
+#define FM_TUNE_FREQ    0x20
+#define FM_SEEK_START   0x21
+#define FM_TUNE_STATUS  0x22
 
 // First argument of Power Up command
 // See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65
@@ -68,34 +73,81 @@ void powerUp(si473x_powerup *powerup_args)
   delayMicroseconds(550);
 }
 
-/*
-   Set the frequency
-   BAND = FM_TUNE_FREQ = 0X20
-*/
-void setFrequency(byte band, unsigned freq)
-{
+
+void seekStart(byte up_or_down, byte wrap) {
+
   union {
     struct {
-      byte FREQL;     // Tune Frequency High Byte.
-      byte FREQH;     // Tune Frequency Low Byte.
-    } raw;
-    unsigned freq;
-  } tune;
+      byte  RESERVED1: 2;
+      byte  WRAP: 1;        // Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
+      byte  SEEKUP: 1;      // Determines the direction of the search, either UP = 1, or DOWN = 0.
+      byte  RESERVED2: 4;
+    } arg;
+    byte raw;
+  } fm_seek;
 
-  tune.freq = freq;
+
+  fm_seek.arg.SEEKUP = up_or_down;
+  fm_seek.arg.WRAP = wrap;
 
   Wire.beginTransmission(SI473X_ADDR);
-  Wire.write(band);
-  Wire.write(0x00);
-  Wire.write(tune.raw.FREQH);
-  Wire.write(tune.raw.FREQL);
-  Wire.write(0x00);
-  Wire.write(0x00);  
+  Wire.write(FM_SEEK_START);
+  Wire.write(fm_seek.raw);
   Wire.endTransmission();
 
   delayMicroseconds(550);
 
 }
+
+
+unsigned getFrequency() {
+
+  union {
+    struct {
+      byte  INTACK: 1;        // If set, clears the seek/tune complete interrupt status indicator.
+      byte  CANCEL: 1;        // If set, aborts a seek currently in progress.     
+      byte  RESERVED2: 6;
+    } arg;
+    byte raw;
+  } status;
+
+  status.arg.INTACK = 0;
+  status.arg.CANCEL = 0;
+
+  Wire.beginTransmission(SI473X_ADDR);
+  Wire.write(FM_TUNE_STATUS);
+  Wire.write(status.raw);
+  Wire.endTransmission();
+
+  do {
+    delayMicroseconds(2000);
+    Wire.requestFrom(SI473X_ADDR, 0x01);    
+  } while ( !(Wire.read() & B10000000) );
+
+  Wire.requestFrom(SI473X_ADDR, 0x4); 
+  byte aux_status = Wire.read();
+  byte resp1 = Wire.read();
+  byte readFreqH = Wire.read();
+  byte readFreqL = Wire.read();
+
+  union {
+     struct {
+          byte freqL;
+          byte freqH;
+     } raw;
+
+     unsigned currentFreq; 
+     
+  } freq;
+
+  freq.raw.freqL = readFreqL;
+  freq.raw.freqH = readFreqH;
+
+  return freq.currentFreq;
+  
+}
+
+
 
 /*
    Volume contrtol
@@ -130,16 +182,21 @@ void setup()
   pw.arg.GPO2OEN = 1;   // 1 -> GPO2 Output Enable;
   pw.arg.PATCH = 0;     // 0 -> Boot normally;
   pw.arg.XOSCEN = 1;    // 1 -> Use external crystal oscillator;
-  pw.arg.FUNC = 1;      // 0 = FM Receive.
+  pw.arg.FUNC = 0;      // 0 = FM Receive.
   pw.arg.OPMODE = SI473X_ANALOG_AUDIO; // 0x5 = 00000101 = Analog audio outputs (LOUT/ROUT).
-
   powerUp(&pw);
-  delay(1000);
+  delay(200);
+  help();
+}
 
-  Serial.println("Try keys 1 to 3 to select a station.");
+void help() {
+  Serial.println("+------------------------");
+  Serial.println("Type ");
+  Serial.println("S to scan station.");
+  Serial.println("+ ou - to Volume Control.");
+  Serial.println("+------------------------");
+}
 
- }
- 
 void loop()
 {
   if (Serial.available() > 0)
@@ -147,32 +204,27 @@ void loop()
     char key = Serial.read();
     switch (key)
     {
-      case '1':
-        Serial.println("Trying 810 KHz ");
-        setFrequency(AM_TUNE_FREQ, 810); // 810 KHz
-        break;
-      case '2':
-        Serial.println("Trying 620 MHz ");
-        setFrequency(AM_TUNE_FREQ, 620); // 620 KHz
-        break;
-      case '3':
-        Serial.println("Trying 11.940 KHz ");
-        setFrequency(AM_TUNE_FREQ, 11940); // 11.940 Khz
-        break;
-      case '4':
-        Serial.println("Trying 7300 MHz ");
-        setFrequency(AM_TUNE_FREQ, 7300); // 7.300 KHz
-        break;
       case '+':
-        setVolume(40);
+        setVolume(20);
         break;
       case '-':
-        setVolume(10);
+        setVolume(4);
+        break;
       case '=':
-        setVolume(20);
+        setVolume(10);
+        break;
       case 'p':
+        Serial.println("Power Up");
         powerUp(&pw);
-        break;  
+        break;
+      case 's':
+      case 'S':
+        seekStart(1, 1);
+        delay(100);
+        Serial.print("Current Frequency: ");
+        Serial.print(getFrequency());
+        Serial.println(" MHz");
+        break;
       default:
         break;
     }
