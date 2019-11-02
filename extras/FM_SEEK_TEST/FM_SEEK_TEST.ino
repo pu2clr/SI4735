@@ -51,8 +51,10 @@ void resetDevice()
   delay(500);
 }
 
-
-
+/*
+ * Wait for Clear to Send status.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 73.
+ */
 void wait() {
   do {
     delayMicroseconds(2000);
@@ -82,8 +84,10 @@ void powerUp(si473x_powerup *powerup_args)
   delayMicroseconds(550);
 }
 
-
-void seekStart(byte up_or_down, byte wrap) {
+/*
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 72
+ */
+void seekStation(byte up_or_down, byte wrap) {
 
   union {
     struct {
@@ -109,7 +113,10 @@ void seekStart(byte up_or_down, byte wrap) {
 }
 
 
-
+/*
+ *  Get the current Frequency
+ * 
+ */
 unsigned getFrequency() {
 
   union {
@@ -157,7 +164,6 @@ unsigned getFrequency() {
 }
 
 
-
 /*
    Volume contrtol
 */
@@ -200,6 +206,9 @@ void setup()
   
 }
 
+/*
+ * Show help
+ */
 void help() {
   Serial.println("+------------------------");
   Serial.println("Type ");
@@ -209,6 +218,9 @@ void help() {
 }
 
 
+/* 
+ *  Show the current frequency
+ */
 void displayFrequency() {
    Serial.print("Current Frequency: ");
    Serial.print(getFrequency());
@@ -239,7 +251,7 @@ void loop()
         break;
       case 's':
       case 'S':
-        seekStart(1, 1);
+        seekStation(1, 1);
         delay(500);
         displayFrequency();
         break;
