@@ -1,6 +1,5 @@
 /*
- *
- *  Under construction.... Do not use it for while
+ * 
  */ 
 
 #include <SI4735.h>
