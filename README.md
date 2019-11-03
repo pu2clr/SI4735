@@ -12,7 +12,7 @@ __Attention: Code and Documentation  Under construction.__
 ## Summary
 
 1. [Your support is important]()
-2. [About the SI4735 Architecture]()
+2. [About the SI4735]()
 3. [Terminology]()
 4. [Labrary Features]()
 5. [Library Installation]()
@@ -34,15 +34,41 @@ __Attention: Code and Documentation  Under construction.__
 If you would like to support this library development, consider joining this project via Github. Alternatively, make suggestions on features you would like available in this library. Thank you!
 
 
-## About the SI4735 Architecture 
+## About the SI4735  
 
-The Si4735 is an .....
+The Si4735-D60 is DSP radio receiver IC from Silcon Labs. It has great performance on AM (LW/MW/SW) and local FM station. The SI4735  is programmed using commands and responses. You can contron it via a microcontroller like Arduino. To make the SI4735 perform an action, the microccontroller have to send a set of bytes (command and arguments) tha the device interpret it and executes the given command.
+
+
+### The main Si4735-D60 features
+
+* Great Programming Guide and additional documentation to deal with the device
+* FM band support (64–108 MHz)
+* AM (MW) band support (520–1710 kHz)
+* SW band support (2.3–26.1 MHz)
+* LW band support (153–279 kHz)
+* Allows firmware upgrade. Including the possibility of adjustments to demodulate SSB.
+* Advanced AM/FM seek tuning
+* Automatic frequency control (AFC)
+* Automatic gain control (AGC)
+* Digital FM stereo decoder
+* AM/FM/SW/LW digital tuning
+* RDS/RBDS processor
+* Digital audio out
+* I2C and SPI interface 
 
 
 ## SI4735 Terminology
 
+
 | Term | Description |
 | ---- | ----- |
+|Arduino Libraries|Libraries are files written in C or C++ (.c, .cpp) which provide your sketches with extra functionality. The SI4735 Library provides extra functionalities to make easier the Arduino deal with Si4735 device| 
+|IDE   |Integrated Development Environment|      
+|Sketch|Name that Arduino environment uses for a program|
+|interrupt|In this context, it is a Arduino Resource. Allows important tasks to be performed regardless of the flow of your program|
+|C++| A object-oriented programming (OOP) language. It is a superset of the C language with an additional concept of "classes." |
+|programming guide| In this context it refers to [Si48XX ATDD PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN610.pdf)|
+|POC| Proof of Concept|
 | SEN | Serial enable pin, active low; used as device select in 3-wire and SPI operation and address selection in 2-wire operation| 
 | SDIO | Serial data in/data out pin|
 | SCLK | Serial clock pin|
@@ -60,7 +86,13 @@ The Si4735 is an .....
 | RESPONSEn | Response register (16-bit) in 3-Wire mode (n = 1 to 8)| 
 
 
-## Library Features
+## SI4735 Arduino Library Features
+
+1. Open Source 
+2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
+3. C++ Lenguage and Object-oriented programming
+4. Available on Arduino IDE (Manage Libraries)
+5. Simplifies projects based on SI4735
 
 
 ## Library Installation
