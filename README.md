@@ -11,11 +11,11 @@ __Attention: Code and Documentation  Under construction.__
 
 ## Summary
 
-1. [Your support is important]()
-2. [About the SI4735]()
-3. [Terminology]()
-4. [Labrary Features]()
-5. [Library Installation]()
+1. [Your support is important](https://github.com/pu2clr/SI4735#your-support-is-important)
+2. [About the SI4735](https://github.com/pu2clr/SI4735#about-the-si4735)
+3. [Terminology](https://github.com/pu2clr/SI4735#si4735-terminology)
+4. [Labrary Features](https://github.com/pu2clr/SI4735#si4735-arduino-library-features)
+5. [Library Installation](https://github.com/pu2clr/SI4735#library-installation)
 6. [Hardware Requirements and Setup]()
    1. [Schematic]()
    2. [Component Parts]()
@@ -102,7 +102,16 @@ The Si4735-D60 is DSP radio receiver IC from Silcon Labs. It has great performan
 ## Arduino 5V and Si4844
 
 
-## Schematic
+## Hardware Requirements and Setup
+
+This library has been written for the Arduino platform and has been successfully tested on Pro Mini. I beleave it will work on any other Arduino with I2C support.
+
+
+### Arduino 5V and Si4844
+
+The SI4735 device  works with  3.3V only. If you are not using a 3.3V version of Arduino, you have to use a kind of converter. 
+
+### Schematic
 
 The image bellow shows a version of Slicon Labs SSOP Typical Application Schematic. The basic difference are the pull-up resitors on I2C bus. 
 
@@ -117,6 +126,7 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
 
 ### Parts
+
 
 
 ## Photos 
