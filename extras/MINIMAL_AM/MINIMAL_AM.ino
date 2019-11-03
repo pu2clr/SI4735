@@ -156,12 +156,16 @@ void loop()
         setFrequency(AM_TUNE_FREQ, 620); // 620 KHz
         break;
       case '3':
-        Serial.println("Trying 11.940 KHz ");
-        setFrequency(AM_TUNE_FREQ, 11940); // 11.940 Khz
+        Serial.println("Trying 1300 KHz ");
+        setFrequency(AM_TUNE_FREQ, 1300); // 11.940 Khz
         break;
       case '4':
-        Serial.println("Trying 7300 MHz ");
-        setFrequency(AM_TUNE_FREQ, 7300); // 7.300 KHz
+        Serial.println("Trying 1200 KHz ");
+        setFrequency(AM_TUNE_FREQ, 1200); // 11.940 Khz
+        break;        
+      case '5':
+        Serial.println("Trying 1010 MHz ");
+        setFrequency(AM_TUNE_FREQ, 1010); // 7.300 KHz
         break;
       case '+':
         setVolume(40);
