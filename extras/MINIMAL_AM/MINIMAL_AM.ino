@@ -1,7 +1,11 @@
 /*
-   Minimal FM radio
-   By Ricardo Lima Caratti, Nov 2019
-*/
+ * The purpose of this code is to assist you in setting up the hardware (radio). 
+ * It can help you to check if the Si473X wiring is correct during you bulding.
+ * 
+ * For a real radio, use the Si4735 Arduino Library instead this code. 
+ *  
+ * By Ricardo Lima Caratti, Nov 2019
+ */
 
 #include <Wire.h>
 
