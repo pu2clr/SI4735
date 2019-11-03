@@ -1,0 +1,54 @@
+##################################################################
+# Syntax Coloring Map 
+##################################################################
+
+# Datatypes (KEYWORD1)
+S4735   KEYWORD1
+
+# Methods (KEYWORD2)
+setup   KEYWORD2
+reset   KEYWORD2
+powerDown   KEYWORD2
+setBand KEYWORD2
+setCustomBand   KEYWORD2
+changeVolume    KEYWORD2
+setVolume   KEYWORD2
+setAudioMode    KEYWORD2
+setAudioMute    KEYWORD2
+getStatus   KEYWORD2
+getFirmware KEYWORD2
+getFrequency    KEYWORD2
+hasStatusChanged    KEYWORD2
+resetStatus KEYWORD2
+getBandMode KEYWORD2
+getStereoIndicator  KEYWORD2
+getStatusBCFG0  KEYWORD2
+getStatusBCFG1  KEYWORD2
+getStatusStereo KEYWORD2
+getStatusStationIndicator   KEYWORD2
+getStatusInformationReady   KEYWORD2
+getStatusHostPowerUp    KEYWORD2
+getStatusHostReset  KEYWORD2
+getStatusBandMode   KEYWORD2
+getStatusBandIndex  KEYWORD2
+getStatusCTS    KEYWORD2
+getFirmwareErr  KEYWORD2
+getFirmwareCTS  KEYWORD2
+getFirmwarePartNumber   KEYWORD2
+getFirmwareMajorRevision    KEYWORD2
+getFirmwareMinorRevision    KEYWORD2
+getFirmwareComponentMajorRevision   KEYWORD2
+getFirmwareComponentMinorRevision   KEYWORD2
+getFirmwareChipRevision KEYWORD2
+
+#Literals
+
+ATDD_POWER_DOWN	LITERAL1
+ATDD_POWER_UP	LITERAL1
+SI5351_DEFAULT_CLK	LITERAL1
+GET_REV	LITERAL1
+ATDD_XOSCEN	LITERAL1
+ATDD_XOWAIT	LITERAL1
+ATDD_GET_STATUS	LITERAL1
+SET_PROPERTY	LITERAL1
+RX_VOLUME	LITERAL1
