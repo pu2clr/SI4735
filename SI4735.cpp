@@ -1,10 +1,14 @@
 /*
+ * This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
+ * Arduino development environment.  
+ * This library is intended to provide an easier interface for controlling the SI4435.
  * 
- */ 
+ * See documentation on https://github.com/pu2clr/SI4735
+ * 
+ * By Ricardo Lima Caratti, Nov 2019.
+ */
 
 #include <SI4735.h>
-
-
 
 /*
 * 
@@ -14,7 +18,6 @@ void SI4735::waitInterrupr(void)
 {
     while (!data_from_si4735) ;
 }
-
 
 
 /*
