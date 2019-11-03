@@ -141,6 +141,14 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
 ![SI4735 on adapter 03](https://github.com/pu2clr/SI4735/blob/master/extras/images/si4735_on_adapter_03.png)
 
+
+![SI4735 on adapter 04](https://github.com/pu2clr/SI4735/blob/master/extras/images/adapter_01.png)
+
+
+![SI4735 on adapter 05](https://github.com/pu2clr/SI4735/blob/master/extras/images/adapter_02.png)
+
+
+
 #### Protoboard
 
 ![Protoboard 00](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_00.png)
