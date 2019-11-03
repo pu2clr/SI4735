@@ -1,6 +1,0 @@
-{
-    "board": "arduino:avr:pro",
-    "configuration": "cpu=8MHzatmega328",
-    "programmer": "AVRISP mkII",
-    "sketch": "extras/FIRST_TESTS/FIRST_TESTS.ino"
-}
