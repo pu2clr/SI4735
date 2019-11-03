@@ -144,8 +144,10 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 #### Protoboard
 
 
+
 ## API Documentation
 
+API documentation under construction... 
 
 
 ## References
