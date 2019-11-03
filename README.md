@@ -72,6 +72,15 @@ The Si4735 is an .....
 
 ## Schematic
 
+The image bellow shows a version of Slicon Labs SSOP Typical Application Schematic. The basic difference are the pull-up resitors on I2C bus. 
+
+![Basic Schematic](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic.png)
+
+
+The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
+
+
+![Silicon Labs Schematic](https://github.com/pu2clr/SI4735/blob/master/extras/images/silicon_labs_schematic_pag_19.png)
 
 
 
