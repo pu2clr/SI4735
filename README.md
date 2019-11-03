@@ -67,7 +67,7 @@ The Si4735-D60 is DSP radio receiver IC from Silcon Labs. It has great performan
 |Sketch|Name that Arduino environment uses for a program|
 |interrupt|In this context, it is a Arduino Resource. Allows important tasks to be performed regardless of the flow of your program|
 |C++| A object-oriented programming (OOP) language. It is a superset of the C language with an additional concept of "classes." |
-|programming guide| In this context it refers to [Si48XX ATDD PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN610.pdf)|
+|programming guide| In this context it refers to [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)|
 |POC| Proof of Concept|
 | SEN | Serial enable pin, active low; used as device select in 3-wire and SPI operation and address selection in 2-wire operation| 
 | SDIO | Serial data in/data out pin|
