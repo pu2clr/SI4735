@@ -167,7 +167,7 @@ void SI4735::setFrequency(unsigned freq) {
 
 /*
  * Look for a station 
- * See Si47XX PROGRAMMING GUIDE; AN332; page 72
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 55, 72, 125 and 137
  * 
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
  * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
@@ -176,6 +176,7 @@ void SI4735::seekStation(byte SEEKUP, byte WRAP)
 {
     si47x_seek seek;
 
+    // Check which FUNCTION (AM or FM) is working now
     byte seek_start = (currentTune == FM_TUNE_FREQ)? FM_SEEK_START : AM_SEEK_START;
 
     seek.arg.SEEKUP = SEEKUP;
@@ -184,8 +185,15 @@ void SI4735::seekStation(byte SEEKUP, byte WRAP)
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(seek_start); 
     Wire.write(seek.raw);
-    Wire.endTransmission();
 
+    if (seek_start == AM_SEEK_START) {
+        Wire.write(0x00); // Always 0
+        Wire.write(0x00); // Always 0  
+        Wire.write(0x00); // Tuning Capacitor: The tuning capacitor value
+        Wire.write(0x00); //                   will be selected automatically.
+    }
+
+    Wire.endTransmission();
     delayMicroseconds(550);
 }
 
