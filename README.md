@@ -350,7 +350,7 @@ void SI4735::seekStation(byte SEEKUP, byte WRAP)
 
 ```cpp
 /*
- * Set the radio to AM function
+ * Set the radio to AM function. It means: LW, MW and SW.
  */ 
 void SI4735::setAM()
 ```
@@ -373,3 +373,4 @@ void SI4735::setFM()
 
 
 ## Videos
+

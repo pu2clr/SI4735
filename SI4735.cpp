@@ -48,13 +48,10 @@ void SI4735::waitToSend() {
  * Powerup in Analog Mode
  */
 void SI4735::analogPowerUp(void) {
-
     reset();
-
     // Initiate the I2C bus
     // Wire.begin();
     delayMicroseconds(1000);
-
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(POWER_UP);
     Wire.write(powerUp.raw[0]);     // Content of ARG1
@@ -62,7 +59,6 @@ void SI4735::analogPowerUp(void) {
     Wire.endTransmission();
     // page 12 - Delay at least 500 ms between powerup command and first tune command.
     delayMicroseconds(550);
-
 }
 
 
@@ -157,18 +153,14 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
  * @param unsigned freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
  */
 void SI4735::setFrequency(unsigned freq) {
-
     waitToSend(); // Wait for the si473x is ready. 
-
     currentFrequency.value = freq;
-
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(currentTune);
     Wire.write(0x00);
     Wire.write(currentFrequency.raw.FREQH);
     Wire.write(currentFrequency.raw.FREQL);
     Wire.write(0x00);
-
     Wire.endTransmission();
     delayMicroseconds(550);
 }
@@ -199,7 +191,7 @@ void SI4735::seekStation(byte SEEKUP, byte WRAP)
 
 
 /*
- * Set the radio to AM function
+ * Set the radio to AM function. It means: LW MW and SW.
  */ 
 void SI4735::setAM() {
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
