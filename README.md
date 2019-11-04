@@ -140,6 +140,15 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
 ### Parts
 
+|Part	| Description |
+|-------| ------------ |
+| C1    | 22nF|
+| C2    | 100pF|
+| C3    | 470nF| 
+| R3    | 2.2K |
+| R4 e R5 | 10K |
+| L1 | Ferrite loop stick (about 500 μH) |
+| X1    | 32.768 kHz crystal |
 
 
 
