@@ -162,7 +162,138 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
 ## API Documentation
 
-API documentation under construction... 
+
+
+### setup
+
+```cpp
+/* 
+ * Starts the Si473X device. 
+ * 
+ * @param byte resetPin Digital Arduino Pin used to RESET command 
+ * @param byte interruptPin interrupt Arduino Pin (see your Arduino pinout). 
+ * @param byte defaultFunction
+ */ 
+void SI4735::setup(byte resetPin, byte interruptPin, byte defaultFunction)
+```
+
+#### Example of using setup
+
+```cpp
+
+#include <SI4735.h>
+
+#define INTERRUPT_PIN 2
+#define RESET_PIN 12
+
+SI4735 si4735;
+
+void setup()
+{
+    si4735.setup(RESET_PIN, INTERRUPT_PIN, FM_FUNCTION);
+}
+```
+
+
+### setPowerUp
+
+```cpp
+/*
+ * Set the Power Up parameters for si473X. 
+ * Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()
+ * See See Si47XX PROGRAMMING GUIDE; AN332; pages 65 and 129
+ * 
+ * @param byte CTSIEN sets Interrupt anabled or disabled (1 = anabled and 0 = disabled )
+ * @param byte GPO2OEN sets GP02 Si473X pin enabled (1 = anabled and 0 = disabled )
+ * @param byte PATCH  Used for firmware patch updates. Use it always 0 here. 
+ * @param byte XOSCEN byte XOSCEN set external Crystal enabled or disabled 
+ * @param byte FUNC sets the receiver function have to be used (0 = FM Receive; 1 = AM (LW/MW/SW) Receiver)
+ * @param byte OPMODE set the kind of audio mode you want to use.
+ */
+void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE)
+```
+
+### analogPowerUp
+
+
+```cpp
+/*
+ * Powerup in Analog Mode
+ * You have to call setPowerUp before call analogPowerUp 
+ */
+void SI4735::analogPowerUp(void) 
+```
+
+#### Example of using analogPowerUp
+
+```cpp 
+    // Set the initial SI473X behavior
+    // CTSIEN   1 -> Interrupt anabled;
+    // GPO2OEN  1 -> GPO2 Output Enable;
+    // PATCH    0 -> Boot normally;
+    // XOSCEN   1 -> Use external crystal oscillator;
+    // FUNC     defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
+    // OPMODE   SI473X_ANALOG_AUDIO = 00000101 = Analog audio outputs (LOUT/ROUT).
+
+    setPowerUp(1, 1, 0, 1, defaultFunction, SI473X_ANALOG_AUDIO);
+    analogPowerUp();
+```    
+
+### setFrequency
+
+```cpp
+/*
+ * Set the frequency to the corrent function of the Si4735 (AM or FM)
+ * You have to call setup or setPowerUp before call setFrequency.
+ * 
+ * @param unsigned freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
+ */
+void SI4735::setFrequency(unsigned freq) 
+```
+
+#### Example of using setFrequency
+
+```cpp
+    si4735.setFM(); 
+    si4735.setFrequency(fm_freq); 
+    showStatus(fm_freq,"MHz");
+```    
+
+### seekStation
+```cpp
+/*
+ * Look for a station 
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 72
+ * 
+ * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
+ * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
+ */
+void SI4735::seekStation(byte SEEKUP, byte WRAP)
+```
+
+#### Example of using seekStation
+
+```cpp
+    si4735.seekStation(1,1);
+```
+
+### setAM
+
+```cpp
+/*
+ * Set the radio to AM function
+ */ 
+void SI4735::setAM()
+```
+
+### setFM
+
+```cpp
+/*
+ * Set the radio to FM function
+ */
+void SI4735::setFM()
+```
 
 
 ## References

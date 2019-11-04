@@ -150,6 +150,12 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
     currentTune = (FUNC == 0)? FM_TUNE_FREQ : AM_TUNE_FREQ;
 }
 
+/*
+ * Set the frequency to the corrent function of the Si4735 (AM or FM)
+ * You have to call setup or setPowerUp before call setFrequency.
+ * 
+ * @param unsigned freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
+ */
 void SI4735::setFrequency(unsigned freq) {
 
     waitToSend(); // Wait for the si473x is ready. 
@@ -191,11 +197,18 @@ void SI4735::seekStation(byte SEEKUP, byte WRAP)
     delayMicroseconds(550);
 }
 
+
+/*
+ * Set the radio to AM function
+ */ 
 void SI4735::setAM() {
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
     analogPowerUp();
 }
 
+/*
+ * Set the radio to FM function
+ */
 void SI4735::setFM() {
     setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
     analogPowerUp();
