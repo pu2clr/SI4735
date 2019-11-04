@@ -170,9 +170,13 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 ## API Documentation
 
 
+
 ### Defined Data Types and Structures
 
+
 To make the SI4735 device easier to deal, some defined data types were built to handle byte and bits responses.
+
+
 
 
 ```cpp
