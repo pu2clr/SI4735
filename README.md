@@ -143,7 +143,6 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
 
 
-
 ## Photos 
 
 It was a bit hard to solder the kind of CI on adapter. However, by using a electronic magnifier it was possible.
