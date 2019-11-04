@@ -24,6 +24,13 @@ __Attention: Code and Documentation  Under construction.__
 7. [API Documentation](h)
    1. [Defined Data Types and Structures]()
    2. [Public Methods]()
+   3. [setup](https://github.com/pu2clr/SI4735#setup)
+   4. [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
+   5. [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
+   6. [setFrequency](https://github.com/pu2clr/SI4735#setfrequency)
+   7. [seekStation](https://github.com/pu2clr/SI4735#seekstation)
+   8. [setAM](https://github.com/pu2clr/SI4735#setam)
+   9. [setFM](https://github.com/pu2clr/SI4735#setfm)
 8. [References]()
 9.  [Examples]()
 10. [Videos]() 
@@ -161,6 +168,62 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
 
 ## API Documentation
+
+
+### Defined Data Types and Structures
+
+To make the SI4735 device easier to deal, some defined data types were built to handle byte and bits responses.
+
+
+```cpp
+/*
+ * Power Up arguments data type 
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65
+ */ 
+typedef union {
+    struct
+    {
+        // ARG1
+        byte FUNC       : 4;  // Function (0 = FM Receive; 1–14 = Reserved; 15 = Query Library ID)
+        byte XOSCEN     : 1;  // Crystal Oscillator Enable (0 = crystal oscillator disabled; 1 = Use crystal oscillator and and OPMODE=ANALOG AUDIO) .
+        byte PATCH      : 1;  // Patch Enable (0 = Boot normally; 1 = Copy non-volatile memory to RAM).
+        byte GPO2OEN    : 1;  // GPO2 Output Enable (0 = GPO2 output disabled; 1 = GPO2 output enabled).
+        byte CTSIEN     : 1;  // CTS Interrupt Enable (0 = CTS interrupt disabled; 1 = CTS interrupt enabled).
+        // ARG2
+        byte OPMODE; // Application Setting. See page 65
+    } arg;
+    byte raw[2]; // same arg memory position, so same content.
+} si473x_powerup;
+
+/*
+ * Represents how the frequency is stored in the si4735.
+ * It helps to convert frequency in unsigned int to two bytes (FREQL and FREQH)  
+ */
+typedef union {
+    struct
+    {
+        byte FREQL; // Tune Frequency High Byte.
+        byte FREQH; // Tune Frequency Low Byte.
+    } raw;
+    unsigned value;
+} si47x_frequency;
+
+/* 
+ *  Represents searching for a valid frequency data type.
+ */
+typedef union {
+    struct
+    {
+        byte RESERVED1 : 2;
+        byte WRAP : 1;   // Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
+        byte SEEKUP : 1; // Determines the direction of the search, either UP = 1, or DOWN = 0.
+        byte RESERVED2 : 4;
+    } arg;
+    byte raw;
+} si47x_seek;
+
+```
+
 
 
 

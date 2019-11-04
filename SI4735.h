@@ -65,7 +65,7 @@ typedef union {
 } si473x_powerup;
 
 /*
- * Represents how frequency is stored in the si4735.
+ * Represents how the  frequency is stored in the si4735.
  * It helps to convert frequency in unsigned int to two bytes (FREQL and FREQH)  
  */
 typedef union {
