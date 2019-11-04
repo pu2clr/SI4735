@@ -22,6 +22,7 @@
 
 #define FM_TUNE_FREQ  0x20
 #define FM_SEEK_START 0x21      // Begins searching for a valid FM frequency.
+#define FM_TUNE_STATUS 0x22
 
 #define AM_TUNE_FREQ 0x40       // Tunes to a given AM frequency.
 #define AM_SEEK_START 0x41      // Begins searching for a valid AM frequency.
@@ -91,6 +92,22 @@ typedef union {
     byte raw;
 } si47x_seek;
 
+/*
+ * Status of FM_TUNE_FREQ or FM_SEEK_START commands or 
+ * Status of AM_TUNE_FREQ or AM_SEEK_START commands.
+ * 
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 and 139
+ */
+typedef union {
+    struct
+    {
+        byte INTACK : 1; // If set, clears the seek/tune complete interrupt status indicator.
+        byte CANCEL : 1; // If set, aborts a seek currently in progress.
+        byte RESERVED2 : 6;
+    } arg;
+    byte raw;
+} si47x_tune_status;
+
 volatile static bool data_from_si4735;
 
 static void interrupt_hundler()
@@ -121,7 +138,7 @@ class SI4735
         void analogPowerUp(void);
         
         void setBand(byte new_band);
-        void getFrequency(void);
+        unsigned getFrequency(void);
         void setFrequency(unsigned);
         void setAM(); 
         void setFM();

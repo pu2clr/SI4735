@@ -148,8 +148,7 @@ void loop()
     case 's':
       // Look for the next station (AM or FM, depending on current function)
       si4735.seekStation(1, 1);
-      Serial.print("Current Frequency: "); 
-      Serial.println(si4735.getFrequency());
+      si4735.getFrequency();
       break;
     default:
       break;

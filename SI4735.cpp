@@ -166,50 +166,84 @@ void SI4735::setFrequency(unsigned freq) {
 }
 
 /*
+ * get the current frequency of the Si4735 (AM or FM)
+ *
+ */
+unsigned SI4735::getFrequency()
+{
+    si47x_tune_status status;
+    si47x_frequency freq;
+    byte cmd = (currentTune == FM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
+
+    waitToSend();
+
+    status.arg.INTACK = 0;
+    status.arg.CANCEL = 0;
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(cmd);
+    Wire.write(status.raw);
+    Wire.endTransmission();
+
+    waitToSend();
+
+    Wire.requestFrom(SI473X_ADDR, 0x4);
+
+    byte aux_status = Wire.read();
+    byte resp1 = Wire.read();
+    freq.raw.FREQL = Wire.read();
+    freq.raw.FREQH = Wire.read();
+
+    return freq.value;
+}
+
+    /*
  * Look for a station 
  * See Si47XX PROGRAMMING GUIDE; AN332; page 55, 72, 125 and 137
  * 
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
  * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
-void SI4735::seekStation(byte SEEKUP, byte WRAP)
-{
-    si47x_seek seek;
+    void SI4735::seekStation(byte SEEKUP, byte WRAP)
+    {
+        si47x_seek seek;
 
-    // Check which FUNCTION (AM or FM) is working now
-    byte seek_start = (currentTune == FM_TUNE_FREQ)? FM_SEEK_START : AM_SEEK_START;
+        // Check which FUNCTION (AM or FM) is working now
+        byte seek_start = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
 
-    seek.arg.SEEKUP = SEEKUP;
-    seek.arg.WRAP = WRAP;
+        seek.arg.SEEKUP = SEEKUP;
+        seek.arg.WRAP = WRAP;
 
-    Wire.beginTransmission(SI473X_ADDR);
-    Wire.write(seek_start); 
-    Wire.write(seek.raw);
+        Wire.beginTransmission(SI473X_ADDR);
+        Wire.write(seek_start);
+        Wire.write(seek.raw);
 
-    if (seek_start == AM_SEEK_START) {
-        Wire.write(0x00); // Always 0
-        Wire.write(0x00); // Always 0  
-        Wire.write(0x00); // Tuning Capacitor: The tuning capacitor value
-        Wire.write(0x00); //                   will be selected automatically.
+        if (seek_start == AM_SEEK_START)
+        {
+            Wire.write(0x00); // Always 0
+            Wire.write(0x00); // Always 0
+            Wire.write(0x00); // Tuning Capacitor: The tuning capacitor value
+            Wire.write(0x00); //                   will be selected automatically.
+        }
+
+        Wire.endTransmission();
+        delayMicroseconds(550);
     }
 
-    Wire.endTransmission();
-    delayMicroseconds(550);
-}
-
-
-/*
+    /*
  * Set the radio to AM function. It means: LW MW and SW.
- */ 
-void SI4735::setAM() {
-    setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
-    analogPowerUp();
-}
+ */
+    void SI4735::setAM()
+    {
+        setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
+        analogPowerUp();
+    }
 
-/*
+    /*
  * Set the radio to FM function
  */
-void SI4735::setFM() {
-    setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
-    analogPowerUp();
-}
+    void SI4735::setFM()
+    {
+        setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
+        analogPowerUp();
+    }

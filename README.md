@@ -6,7 +6,7 @@ __The SI4835 is a 3.3V part. If you are not using a 3.3V version of Arduino, you
 
 By Ricardo Lima Caratti, Oct, 2019. 
 
-__Attention: Code and Documentation  Under construction.__ 
+__Attention: Documentation  Under construction.__ 
 
 
 ## Summary
