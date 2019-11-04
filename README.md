@@ -41,7 +41,6 @@ __Attention: Code and Documentation  Under construction.__
 I would like to thank Mr. Francisco Scaramella  for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library.
 
 
-
 ## Your support is important.
 
 If you would like to support this library development, consider joining this project via Github. Alternatively, make suggestions on features you would like available in this library. Thank you!
