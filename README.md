@@ -21,8 +21,8 @@ __Attention: Code and Documentation  Under construction.__
    2. [Component Parts]()
    3. [Playing with Arduino UNO or Pro Mini 5v and SI4844]()
    4. [Photos]()
-7. [API Documentation](h)
-   1. [Defined Data Types and Structures]()
+7. [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
+   1. [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
    2. [Public Methods]()
    3. [setup](https://github.com/pu2clr/SI4735#setup)
    4. [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
@@ -228,6 +228,8 @@ typedef union {
 
 ```
 
+
+## Public Methods
 
 
 
