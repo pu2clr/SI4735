@@ -36,6 +36,11 @@ __Attention: Code and Documentation  Under construction.__
 10. [Videos]() 
 
 
+## Thanks
+
+I would like to thank Mr. Francisco Scaramella  for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library.
+
+
 
 ## Your support is important.
 
