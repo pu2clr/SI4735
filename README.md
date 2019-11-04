@@ -6,22 +6,23 @@ __The SI4835 is a 3.3V part. If you are not using a 3.3V version of Arduino, you
 
 By Ricardo Lima Caratti, Oct, 2019. 
 
-__Attention: Documentation  Under construction.__ 
+__Attention: Documentation  under construction.__ 
 
 
 ## Summary
 
-1. [Your support is important](https://github.com/pu2clr/SI4735#your-support-is-important)
-2. [About the SI4735](https://github.com/pu2clr/SI4735#about-the-si4735)
-3. [Terminology](https://github.com/pu2clr/SI4735#si4735-terminology)
-4. [Labrary Features](https://github.com/pu2clr/SI4735#si4735-arduino-library-features)
-5. [Library Installation](https://github.com/pu2clr/SI4735#library-installation)
-6. [Hardware Requirements and Setup]()
+1. [Thanks](https://github.com/pu2clr/SI4735#thanks)
+2. [Your support is important](https://github.com/pu2clr/SI4735#your-support-is-important)
+3. [About the SI4735](https://github.com/pu2clr/SI4735#about-the-si4735)
+4. [Terminology](https://github.com/pu2clr/SI4735#si4735-terminology)
+5. [Labrary Features](https://github.com/pu2clr/SI4735#si4735-arduino-library-features)
+6. [Library Installation](https://github.com/pu2clr/SI4735#library-installation)
+7. [Hardware Requirements and Setup]()
    1. [Schematic]()
    2. [Component Parts]()
    3. [Playing with Arduino UNO or Pro Mini 5v and SI4844]()
    4. [Photos]()
-7. [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
+8. [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
    1. [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
    2. [Public Methods](https://github.com/pu2clr/SI4735#public-methods)
    3. [setup](https://github.com/pu2clr/SI4735#setup)
@@ -31,9 +32,9 @@ __Attention: Documentation  Under construction.__
    7. [seekStation](https://github.com/pu2clr/SI4735#seekstation)
    8. [setAM](https://github.com/pu2clr/SI4735#setam)
    9. [setFM](https://github.com/pu2clr/SI4735#setfm)
-8. [References]()
-9.  [Examples]()
-10. [Videos]() 
+9. [References]()
+10. [Examples]()
+11. [Videos]() 
 
 
 ## Thanks
@@ -374,7 +375,8 @@ void SI4735::setFM()
 ## References
 
 1. [Silicon Labs Si4737 WB/AM/FM Stereo/RDS single-chip receiver HAL library for Arduino ](https://github.com/rickeywang/Si4737_i2c)
-2. 
+2. [BROADCAST AM/FM/SW/LW RADIO RECEIVER](https://www.silabs.com/documents/public/data-sheets/Si4730-31-34-35-D60.pdf)
+3. [SI47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
 
 
 ## Videos
