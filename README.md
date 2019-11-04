@@ -143,10 +143,10 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
 |Part	| Description |
 |-------| ------------ |
-| C1    | 22nF|
+| C1    | 22nF (Place C1 close to VA pin)|
 | C2    | 100pF|
 | C3    | 470nF| 
-| C4    | 100nF|
+| C4    | 100nF (close to VD pin)|
 | C5 and C6 | 22pF (Crystal load capacitors) | 
 | R3    | 2.2K |
 | R4 and R5 | 10K (pull-up resistors) |
