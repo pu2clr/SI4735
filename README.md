@@ -145,8 +145,9 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 | C1    | 22nF|
 | C2    | 100pF|
 | C3    | 470nF| 
+| C5 and C6 | 22pF (Crystal load capacitors) | 
 | R3    | 2.2K |
-| R4 e R5 | 10K |
+| R4 and R5 | 10K (pull-up resistors) |
 | L1 | Ferrite loop stick (about 500 μH) |
 | X1    | 32.768 kHz crystal |
 
