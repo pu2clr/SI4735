@@ -32,7 +32,7 @@ __Attention: Documentation  under construction.__
    7. [seekStation](https://github.com/pu2clr/SI4735#seekstation)
    8. [setAM](https://github.com/pu2clr/SI4735#setam)
    9. [setFM](https://github.com/pu2clr/SI4735#setfm)
-9. [References]()
+9. [References](https://github.com/pu2clr/SI4735#references)
 10. [Examples]()
 11. [Videos]() 
 
