@@ -23,7 +23,7 @@ __Attention: Code and Documentation  Under construction.__
    4. [Photos]()
 7. [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
    1. [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
-   2. [Public Methods]()
+   2. [Public Methods](https://github.com/pu2clr/SI4735#public-methods)
    3. [setup](https://github.com/pu2clr/SI4735#setup)
    4. [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
    5. [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
