@@ -22,6 +22,8 @@ const unsigned min_fm = 8400;
 const unsigned max_fm = 10900;
 unsigned fm_freq = 10390; // Change it for a local FM station of your place
 
+unsigned currentFrequency;
+
 SI4735 si4735;
 
 void setup()
@@ -37,6 +39,7 @@ void setup()
   Serial.println("==================================================");
   Serial.println("Type F to FM; A to AM");
   Serial.println("Type I to increase and D to decrease the frequency");
+  Serial.println("Type S to seek station");
   Serial.println("==================================================");
 
   band = FM_FUNCTION;
@@ -148,8 +151,15 @@ void loop()
     case 's':
       // Look for the next station (AM or FM, depending on current function)
       si4735.seekStation(1, 1);
-      Serial.print("Current Frequency: "); 
-      Serial.println(si4735.getFrequency());
+      Serial.println("Station found");
+      currentFrequency = si4735.getFrequency();
+      if (band == FM_FUNCTION) {
+          fm_freq = currentFrequency;
+          showStatus(fm_freq, "MHz");
+      } else {
+         am_freq = currentFrequency;
+         showStatus(am_freq, "KHz");
+      }
       break;
     default:
       break;
