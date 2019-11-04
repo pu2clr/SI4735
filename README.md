@@ -140,11 +140,13 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
 ### Parts
 
+
 |Part	| Description |
 |-------| ------------ |
 | C1    | 22nF|
 | C2    | 100pF|
 | C3    | 470nF| 
+| C4    | 100nF|
 | C5 and C6 | 22pF (Crystal load capacitors) | 
 | R3    | 2.2K |
 | R4 and R5 | 10K (pull-up resistors) |
@@ -152,6 +154,17 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 | X1    | 32.768 kHz crystal |
 
 
+The 
+
+Notes:
+Place C1 close to VA and C4 close to VD pin.
+All grounds connect directly to GND plane on PCB.
+Pins 6 and 7 are no connects, leave floating.
+Pins 10 and 11 are unused. Tie these pins to GND.
+To ensure proper operation and receiver performance, follow the guidelines in “AN383: Si47xx Antenna, Schematic,
+Layout, and Design Guidelines.” Silicon Laboratories will evaluate schematics and layouts for qualified customers.
+6. Pin 8 connects to the FM antenna interface, and pin 12 connects to the AM antenna interface.
+7. Place Si473x-D60 as close as possible to antenna and keep the FMI and AMI traces as short as possible.
 
 ## Photos 
 
