@@ -190,5 +190,6 @@ public:
     void setFunction(byte FUNC);
     void seekStation(byte SEEKUP, byte WRAP);
 
+    // Used to debug purpose
     void SI4735::debugStatus();
 };
