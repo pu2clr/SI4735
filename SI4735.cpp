@@ -235,7 +235,9 @@ void *SI4735::getStatus()
         currentStatus.raw[i] = Wire.read();
     }
 
+    #if defined(DEBUG)
     debugStatus();
+    #endif
 }
 
 /*
@@ -288,7 +290,7 @@ void SI4735::setVolume(byte volume)
     Wire.write(0x40);   // RX_VOLUME 0x4000 -> 0x40 
     Wire.write(0x00);   // RX_VOLUME 0x4000 -> 0x00
     Wire.write(0x00);   // ARG1
-    Wire.write(volume); // ARG2 (level 0 to 63)
+    Wire.write(volume); // ARG2 (level: 0 to 63)
     Wire.endTransmission();
     delayMicroseconds(550);
 }
@@ -322,6 +324,7 @@ void SI4735::setAM()
 {
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
     analogPowerUp();
+    setVolume(volume); // Set to previus configured volume
 }
 
 /*
@@ -331,9 +334,11 @@ void SI4735::setFM()
 {
     setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
     analogPowerUp();
+    setVolume(volume); // Set to previus configured volume
+    // teste
 }
 
-
+#if defined(DEBUG)
 void SI4735::debugStatus()
 {
     Serial.print("Tune complete has been triggered (STCINT): ");
@@ -376,6 +381,8 @@ void SI4735::debugStatus()
     freq.raw.FREQL = currentStatus.resp.READFREQL;
     freq.raw.FREQH = currentStatus.resp.READFREQH;
 
-    Serial.print("Human frequency..........................: ");
+    Serial.print("Palatable frequency......................: ");
     Serial.println(freq.value);
 }
+#endif
+
