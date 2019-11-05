@@ -16,9 +16,9 @@
 */
 void SI4735::waitInterrupr(void)
 {
-    while (!data_from_si4735) ;
+    while (!data_from_si4735)
+        ;
 }
-
 
 /*
  * Reset the SI473X   
@@ -37,8 +37,10 @@ void SI4735::reset()
 /*
  * Wait for the si473x is ready (Clear to Send status bit have to be 1).  
  */
-void SI4735::waitToSend() {
-    do{
+void SI4735::waitToSend()
+{
+    do
+    {
         delayMicroseconds(2000);
         Wire.requestFrom(SI473X_ADDR, 0x01);
     } while (!(Wire.read() & B10000000));
@@ -47,37 +49,36 @@ void SI4735::waitToSend() {
 /*
  * Powerup in Analog Mode
  */
-void SI4735::analogPowerUp(void) {
+void SI4735::analogPowerUp(void)
+{
     reset();
     // Initiate the I2C bus
     // Wire.begin();
     delayMicroseconds(1000);
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(POWER_UP);
-    Wire.write(powerUp.raw[0]);     // Content of ARG1
-    Wire.write(powerUp.raw[1]);     // COntent of ARG2
+    Wire.write(powerUp.raw[0]); // Content of ARG1
+    Wire.write(powerUp.raw[1]); // COntent of ARG2
     Wire.endTransmission();
     // page 12 - Delay at least 500 ms between powerup command and first tune command.
     delayMicroseconds(550);
 }
-
 
 /*
  * Set the radio to a new band. 
  */
 void SI4735::setBand(byte new_band)
 {
-  // TO DO
+    // TO DO
 }
-
 
 /*
  * Gets firmware information 
  */
-void SI4735::getFirmware( void) {
+void SI4735::getFirmware(void)
+{
     //TO DO
 }
-
 
 /* 
  * Starts the Si473X device. 
@@ -85,7 +86,7 @@ void SI4735::getFirmware( void) {
  * @param byte resetPin Digital Arduino Pin used to RESET command 
  * @param byte interruptPin interrupt Arduino Pin (see your Arduino pinout)
  * @param byte defaultFunction
- */ 
+ */
 void SI4735::setup(byte resetPin, byte interruptPin, byte defaultFunction)
 {
     Wire.begin();
@@ -112,16 +113,18 @@ void SI4735::setup(byte resetPin, byte interruptPin, byte defaultFunction)
 
     // Serial.print("defaultFunction: ");
     // Serial.print(defaultFunction);
-        
+
     setPowerUp(1, 1, 0, 1, defaultFunction, SI473X_ANALOG_AUDIO);
     // Do Power Up
     analogPowerUp();
+
+    setVolume(20); // Default volume level.
 }
 
 /*
  * Set the Power Up parameters for si473X. 
  * Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()
- * See See Si47XX PROGRAMMING GUIDE; AN332; pages 65 and 129
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 65 and 129
  * 
  * @param byte CTSIEN sets Interrupt anabled or disabled (1 = anabled and 0 = disabled )
  * @param byte GPO2OEN sets GP02 Si473X pin enabled (1 = anabled and 0 = disabled )
@@ -132,18 +135,17 @@ void SI4735::setup(byte resetPin, byte interruptPin, byte defaultFunction)
  */
 void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE)
 {
-    powerUp.arg.CTSIEN = CTSIEN;              // 1 -> Interrupt anabled;
-    powerUp.arg.GPO2OEN = GPO2OEN;            // 1 -> GPO2 Output Enable;
-    powerUp.arg.PATCH = PATCH;                // 0 -> Boot normally;
-    powerUp.arg.XOSCEN = XOSCEN;              // 1 -> Use external crystal oscillator;
-    powerUp.arg.FUNC = FUNC;                  // 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
-    powerUp.arg.OPMODE = OPMODE;              // 0x5 = 00000101 = Analog audio outputs (LOUT/ROUT).
+    powerUp.arg.CTSIEN = CTSIEN;   // 1 -> Interrupt anabled;
+    powerUp.arg.GPO2OEN = GPO2OEN; // 1 -> GPO2 Output Enable;
+    powerUp.arg.PATCH = PATCH;     // 0 -> Boot normally;
+    powerUp.arg.XOSCEN = XOSCEN;   // 1 -> Use external crystal oscillator;
+    powerUp.arg.FUNC = FUNC;       // 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
+    powerUp.arg.OPMODE = OPMODE;   // 0x5 = 00000101 = Analog audio outputs (LOUT/ROUT).
 
     // Set the current tuning frequancy mode 0X20 = FM and 0x40 = AM (LW/MW/SW)
     // See See Si47XX PROGRAMMING GUIDE; AN332; pages 55 and 124
 
- 
-    currentTune = (FUNC == 0)? FM_TUNE_FREQ : AM_TUNE_FREQ;
+    currentTune = (FUNC == 0) ? FM_TUNE_FREQ : AM_TUNE_FREQ;
 }
 
 /*
@@ -152,8 +154,9 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
  * 
  * @param unsigned freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
  */
-void SI4735::setFrequency(unsigned freq) {
-    waitToSend(); // Wait for the si473x is ready. 
+void SI4735::setFrequency(unsigned freq)
+{
+    waitToSend(); // Wait for the si473x is ready.
     currentFrequency.value = freq;
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(currentTune);
@@ -166,7 +169,9 @@ void SI4735::setFrequency(unsigned freq) {
 }
 
 /*
- * get the current frequency of the Si4735 (AM or FM)
+ * Gets the current frequency of the Si4735 (AM or FM)
+ * 
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 73 (FM) and 139 (AM)
  *
  */
 unsigned SI4735::getFrequency()
@@ -178,7 +183,7 @@ unsigned SI4735::getFrequency()
     waitToSend();
 
     status.arg.INTACK = 0;
-    status.arg.CANCEL = 0;
+    status.arg.CANCEL = 1;
 
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(cmd);
@@ -191,59 +196,105 @@ unsigned SI4735::getFrequency()
 
     byte aux_status = Wire.read();
     byte resp1 = Wire.read();
-    freq.raw.FREQL = Wire.read();
     freq.raw.FREQH = Wire.read();
+    freq.raw.FREQL = Wire.read();
 
     return freq.value;
 }
 
-    /*
+/*
  * Look for a station 
  * See Si47XX PROGRAMMING GUIDE; AN332; page 55, 72, 125 and 137
  * 
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
  * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
-    void SI4735::seekStation(byte SEEKUP, byte WRAP)
+void SI4735::seekStation(byte SEEKUP, byte WRAP)
+{
+    si47x_seek seek;
+
+    // Check which FUNCTION (AM or FM) is working now
+    byte seek_start = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
+
+    waitToSend();
+
+    seek.arg.SEEKUP = SEEKUP;
+    seek.arg.WRAP = WRAP;
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(seek_start);
+    Wire.write(seek.raw);
+
+    if (seek_start == AM_SEEK_START)
     {
-        si47x_seek seek;
-
-        // Check which FUNCTION (AM or FM) is working now
-        byte seek_start = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
-
-        seek.arg.SEEKUP = SEEKUP;
-        seek.arg.WRAP = WRAP;
-
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(seek_start);
-        Wire.write(seek.raw);
-
-        if (seek_start == AM_SEEK_START)
-        {
-            Wire.write(0x00); // Always 0
-            Wire.write(0x00); // Always 0
-            Wire.write(0x00); // Tuning Capacitor: The tuning capacitor value
-            Wire.write(0x00); //                   will be selected automatically.
-        }
-
-        Wire.endTransmission();
-        delayMicroseconds(550);
+        Wire.write(0x00); // Always 0
+        Wire.write(0x00); // Always 0
+        Wire.write(0x00); // Tuning Capacitor: The tuning capacitor value
+        Wire.write(0x00); //                   will be selected automatically.
     }
 
-    /*
+    Wire.endTransmission();
+    // delayMicroseconds(1000000);
+    delay(100);
+}
+
+/* 
+ * Set volume
+ */
+void SI4735::setVolume(byte volume)
+{
+
+    waitToSend();
+
+    this->volume = volume;
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);
+    Wire.write(0x40);   // CMD1
+    Wire.write(0x00);   // CMD2
+    Wire.write(0x00);   // ARG1
+    Wire.write(volume); // ARG2
+    Wire.endTransmission();
+    delayMicroseconds(550);
+}
+
+/*
+ *  Set sound volume level Up   
+ *  
+ */
+void SI4735::volumeUp()
+{
+    if (volume < 63 )
+        volume += 5;
+    setVolume(volume);
+}
+
+/*
+ *  Set sound volume level Down   
+ *  
+ */
+void SI4735::volumeDown()
+{
+    if (volume > 10)
+        volume -= 5;
+    setVolume(volume);
+}
+
+/*
  * Set the radio to AM function. It means: LW MW and SW.
  */
-    void SI4735::setAM()
-    {
-        setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
-        analogPowerUp();
-    }
+void SI4735::setAM()
+{
+    setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
+    analogPowerUp();
+}
 
-    /*
+/*
  * Set the radio to FM function
  */
-    void SI4735::setFM()
-    {
-        setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
-        analogPowerUp();
-    }
+void SI4735::setFM()
+{
+    setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
+    analogPowerUp();
+}

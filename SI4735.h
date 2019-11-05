@@ -35,8 +35,7 @@
 
 #define TX_TUNE_FREQ 0x30   // CMD
 #define SET_PROPERTY 0x12   // CMD
-
-
+#define RX_VOLUME    0x4000
 
 #define SI473X_ANALOG_AUDIO B00000101 // Analog Audio Inputs
 #define SI473X_DIGITAL_AUDIO B00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
@@ -127,6 +126,8 @@ class SI4735
         si47x_frequency currentFrequency;
         si473x_powerup  powerUp;
 
+        byte volume = 32;
+
         void reset(void);
         void waitInterrupr(void);
         void waitToSend(void);
@@ -140,7 +141,10 @@ class SI4735
         void setBand(byte new_band);
         unsigned getFrequency(void);
         void setFrequency(unsigned);
-        void setAM(); 
+        void setVolume(byte volume);
+        void volumeDown();
+        void volumeUp();
+        void setAM();
         void setFM();
 
 

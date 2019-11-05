@@ -40,18 +40,31 @@ void setup()
   Serial.println("Type F to FM; A to AM");
   Serial.println("Type I to increase and D to decrease the frequency");
   Serial.println("Type S to seek station");
+  Serial.println("Type + or - to volume Up or Down");  
   Serial.println("==================================================");
 
+ 
   band = FM_FUNCTION;
   si4735.setFrequency(fm_freq);
   showStatus(fm_freq, "MHz");
+  si4735.setVolume(45);
 }
 
 // Show current frequency
 void showStatus(unsigned freq, String unit)
 {
+  byte d; 
+  float f; 
+  if (band == FM_FUNCTION) {
+    f = freq/100.0;
+    d = 2;
+  } else {
+    f = freq/1.0;
+    d = 0;    
+  }
+   
   Serial.print("Current Frequency: ");
-  Serial.print(freq);
+  Serial.print(String(f,d));
   Serial.println(unit);
 }
 
@@ -96,6 +109,7 @@ void prevFreq()
       fm_freq -= 10;
       si4735.setFrequency(fm_freq);
       showStatus(fm_freq, "MHz");
+      currentFrequency = fm_freq;
     }
     else
     {
@@ -109,6 +123,7 @@ void prevFreq()
       am_freq -= 10;
       si4735.setFrequency(am_freq);
       showStatus(am_freq, "kHz");
+      currentFrequency = am_freq;
     }
     else
     {
@@ -125,6 +140,12 @@ void loop()
     char key = Serial.read();
     switch (key)
     {
+    case '+':
+        si4735.volumeUp();
+        break;
+    case '-': 
+        si4735.volumeDown();
+        break;
     case 'a':
     case 'A':
       band = AM_FUNCTION;
