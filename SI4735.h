@@ -12,7 +12,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-#define DEBUG 1  // Should be commented when released. Uncomment it if you want to debug
+// #define DEBUG 1  // Should be commented when released. Uncomment it if you want to debug
 
 #define SI473X_ADDR 0x11    // SI473X I2C buss address
 #define POWER_UP 0x01       // Power up device and mode selection.
