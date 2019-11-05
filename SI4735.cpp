@@ -171,29 +171,15 @@ void SI4735::setFrequency(unsigned freq)
 /*
  * Gets the current frequency of the Si4735 (AM or FM)
  * The method status do it an more. See getStatus below. 
- * 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
- *
  */
 unsigned SI4735::getFrequency()
 {
-    si47x_tune_status status;
     si47x_frequency freq;
-    byte cmd = (currentTune == FM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
-    waitToSend();
-    status.arg.INTACK = 0; // If set, clears the seek/tune complete interrupt status indicator.
-    status.arg.CANCEL = 1; // Cancel seek.
-    Wire.beginTransmission(SI473X_ADDR);
-    Wire.write(cmd);
-    Wire.write(status.raw);
-    Wire.endTransmission();
-    waitToSend();
-    Wire.requestFrom(SI473X_ADDR, 0x4);
-    byte aux_status = Wire.read();
-    byte resp1 = Wire.read();
-    freq.raw.FREQH = Wire.read();
-    freq.raw.FREQL = Wire.read();
-    return freq.value;
+    getStatus(0, 1);
+    freq.raw.FREQL = currentStatus.resp.READFREQL;
+    freq.raw.FREQH = currentStatus.resp.READFREQH;
+    return freq.value; 
 }
 
 /*
@@ -243,6 +229,8 @@ void SI4735::getStatus(byte INTACK, byte CANCEL) {
     #if defined(DEBUG)
     debugStatus();
     #endif
+    
+    delayMicroseconds(550);
 }
 
     /*
