@@ -183,6 +183,7 @@ void loop()
       }
       break;
     case '?': 
+        // Show Status information
         si4735.getStatus(); 
         break;  
     default:
