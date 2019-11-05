@@ -41,6 +41,7 @@ void setup()
   Serial.println("Type I to increase and D to decrease the frequency");
   Serial.println("Type S to seek station");
   Serial.println("Type + or - to volume Up or Down");  
+  Serial.println("Type ? to debug. See SI4735.h to anable or disable it");  
   Serial.println("==================================================");
 
  
