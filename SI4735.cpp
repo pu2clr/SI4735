@@ -180,26 +180,19 @@ unsigned SI4735::getFrequency()
     si47x_tune_status status;
     si47x_frequency freq;
     byte cmd = (currentTune == FM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
-
     waitToSend();
-
-    status.arg.INTACK = 0;
-    status.arg.CANCEL = 1;
-
+    status.arg.INTACK = 0; // If set, clears the seek/tune complete interrupt status indicator.
+    status.arg.CANCEL = 1; // Cancel seek.
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(cmd);
     Wire.write(status.raw);
     Wire.endTransmission();
-
     waitToSend();
-
     Wire.requestFrom(SI473X_ADDR, 0x4);
-
     byte aux_status = Wire.read();
     byte resp1 = Wire.read();
     freq.raw.FREQH = Wire.read();
     freq.raw.FREQL = Wire.read();
-
     return freq.value;
 }
 
@@ -209,16 +202,28 @@ unsigned SI4735::getFrequency()
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  *
  */
-void *SI4735::getStatus()
+void SI4735::getStatus()
 {
+    getStatus(0,1);
+}
+
+/*
+ * Gets the current status  of the Si4735 (AM or FM)
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
+ * 
+ * @param byte INTACK Seek/Tune Interrupt Clear. If set, clears the seek/tune complete interrupt status indicator;
+ * @param byte CANCEL Cancel seek. If set, aborts a seek currently in progress;
+ * 
+ */
+void SI4735::getStatus(byte INTACK, byte CANCEL) {
     si47x_tune_status status;
     si47x_frequency freq;
     byte cmd = (currentTune == FM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
 
     waitToSend();
 
-    status.arg.INTACK = 0;
-    status.arg.CANCEL = 1;
+    status.arg.INTACK = INTACK;
+    status.arg.CANCEL = CANCEL;
 
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(cmd);
@@ -240,14 +245,14 @@ void *SI4735::getStatus()
     #endif
 }
 
-/*
+    /*
  * Look for a station 
  * See Si47XX PROGRAMMING GUIDE; AN332; page 55, 72, 125 and 137
  * 
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
  * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
-void SI4735::seekStation(byte SEEKUP, byte WRAP)
+    void SI4735::seekStation(byte SEEKUP, byte WRAP)
 {
     si47x_seek seek;
 

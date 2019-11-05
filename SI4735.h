@@ -180,7 +180,8 @@ public:
     void setBand(byte new_band);
     unsigned getFrequency(void);
     void setFrequency(unsigned);
-    void *getStatus();
+    void getStatus();
+    void getStatus(byte, byte);
     void setVolume(byte volume);
     void volumeDown();
     void volumeUp();
