@@ -170,8 +170,9 @@ void SI4735::setFrequency(unsigned freq)
 
 /*
  * Gets the current frequency of the Si4735 (AM or FM)
+ * The method status do it an more. See getStatus below. 
  * 
- * See Si47XX PROGRAMMING GUIDE; AN332; page 73 (FM) and 139 (AM)
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  *
  */
 unsigned SI4735::getFrequency()
@@ -200,6 +201,41 @@ unsigned SI4735::getFrequency()
     freq.raw.FREQL = Wire.read();
 
     return freq.value;
+}
+
+/*
+ * Gets the current status  of the Si4735 (AM or FM)
+ * 
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
+ *
+ */
+void *SI4735::getStatus()
+{
+    si47x_tune_status status;
+    si47x_frequency freq;
+    byte cmd = (currentTune == FM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
+
+    waitToSend();
+
+    status.arg.INTACK = 0;
+    status.arg.CANCEL = 1;
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(cmd);
+    Wire.write(status.raw);
+    Wire.endTransmission();
+
+    waitToSend();
+
+    Wire.requestFrom(SI473X_ADDR, 0x7);
+
+    // Gets response information
+    for (byte i = 0; i < 0x7; i++)
+    {
+        currentStatus.raw[i] = Wire.read();
+    }
+
+    debugStatus();
 }
 
 /*
@@ -265,7 +301,7 @@ void SI4735::setVolume(byte volume)
  */
 void SI4735::volumeUp()
 {
-    if (volume < 63 )
+    if (volume < 63)
         volume += 5;
     setVolume(volume);
 }
@@ -297,4 +333,51 @@ void SI4735::setFM()
 {
     setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
     analogPowerUp();
+}
+
+
+void SI4735::debugStatus()
+{
+    Serial.print("Tune complete has been triggered (STCINT): ");
+    Serial.println(currentStatus.resp.STCINT); // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
+    Serial.print("Radio Data System (RDS) Interrupt(RDSINT): ");
+    Serial.println(currentStatus.resp.RDSINT); // Radio Data System (RDS) Interrup; 0 = interrupt has not been triggered.
+    Serial.print("Received Signal Quality Interrupt(RSQINT): ");
+    Serial.println(currentStatus.resp.RSQINT); // Received Signal Quality Interrupt; 0 = interrupt has not been triggered.
+    Serial.print("ERR......................................: ");
+    Serial.println(currentStatus.resp.ERR); // Error. 0 = No error 1 = Error
+    Serial.print("CTS......................................: ");
+    Serial.println(currentStatus.resp.CTS); // Clear to Send.
+    // RESP1
+    Serial.print("Valid Channel............................: ");
+    Serial.println(currentStatus.resp.VALID); // Valid Channel
+    Serial.print("AFC Rail Indicator.......................: ");
+    Serial.println(currentStatus.resp.AFCRL); // AFC Rail Indicator
+    Serial.print("Reports if a seek hit the band limit.....: ");
+    Serial.println(currentStatus.resp.BLTF); // Reports if a seek hit the band limit
+    // RESP2
+    Serial.print("Read Frequency High Byte.................: ");
+    Serial.println(currentStatus.resp.READFREQH); // Read Frequency High Byte.
+    // RESP3
+    Serial.print("Read Frequency Low Byte..................: ");
+    Serial.println(currentStatus.resp.READFREQL); // Read Frequency Low Byte.
+    // RESP4
+    Serial.print("Received Signal Strength Indicator (dBμV): ");
+    Serial.println(currentStatus.resp.RSSI); // Received Signal Strength Indicator (dBμV)
+    // RESP5
+    Serial.print("SNR metric when tune is complete (dB)....: ");
+    Serial.println(currentStatus.resp.SNR); // This Serial.println(currentStatus.resp.contains the SNR metric when tune is complete (dB).
+    // RESP6
+    Serial.print("multipath metric when tune is complete...: ");
+    Serial.println(currentStatus.resp.MULT); // Contains the multipath metric when tune is complete
+    // RESP7
+    Serial.print("current antenna tuning capacitor.........: ");
+    Serial.println(currentStatus.resp.READANTCAP); // Contains the current antenna tuning capacitor value
+
+    si47x_frequency freq;
+    freq.raw.FREQL = currentStatus.resp.READFREQL;
+    freq.raw.FREQH = currentStatus.resp.READFREQH;
+
+    Serial.print("Human frequency..........................: ");
+    Serial.println(freq.value);
 }

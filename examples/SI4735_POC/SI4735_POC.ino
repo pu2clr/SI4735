@@ -57,7 +57,7 @@ void showStatus(unsigned freq, String unit)
   float f; 
   if (band == FM_FUNCTION) {
     f = freq/100.0;
-    d = 2;
+    d = 1;
   } else {
     f = freq/1.0;
     d = 0;    
@@ -182,6 +182,9 @@ void loop()
          showStatus(am_freq, "KHz");
       }
       break;
+    case '?': 
+        si4735.getStatus(); 
+        break;  
     default:
       break;
     }
