@@ -275,22 +275,20 @@ void SI4735::seekStation(byte SEEKUP, byte WRAP)
 }
 
 /* 
- * Set volume
+ * Set volume level
+ * @param byte volume (domain: 0 - 63) 
  */
 void SI4735::setVolume(byte volume)
 {
-
     waitToSend();
-
     this->volume = volume;
-
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(SET_PROPERTY);
-    Wire.write(0x00);
-    Wire.write(0x40);   // CMD1
-    Wire.write(0x00);   // CMD2
+    Wire.write(0x00);   // Always 0x00
+    Wire.write(0x40);   // RX_VOLUME 0x4000 -> 0x40 
+    Wire.write(0x00);   // RX_VOLUME 0x4000 -> 0x00
     Wire.write(0x00);   // ARG1
-    Wire.write(volume); // ARG2
+    Wire.write(volume); // ARG2 (level 0 to 63)
     Wire.endTransmission();
     delayMicroseconds(550);
 }
@@ -302,7 +300,7 @@ void SI4735::setVolume(byte volume)
 void SI4735::volumeUp()
 {
     if (volume < 63)
-        volume += 5;
+        volume++;
     setVolume(volume);
 }
 
@@ -312,8 +310,8 @@ void SI4735::volumeUp()
  */
 void SI4735::volumeDown()
 {
-    if (volume > 10)
-        volume -= 5;
+    if (volume > 5)
+        volume--;
     setVolume(volume);
 }
 
