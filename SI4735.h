@@ -12,7 +12,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-#define DEBUG 1  // Should be commented when released. Uncomment it if you want to debug
+// #define DEBUG 1  // Should be commented when released. Uncomment it if you want to debug
 
 #define SI473X_ADDR 0x11    // SI473X I2C buss address
 #define POWER_UP 0x01       // Power up device and mode selection.
@@ -178,11 +178,14 @@ public:
     void analogPowerUp(void);
 
     void setBand(byte new_band);
-    unsigned getFrequency(void);
     void setFrequency(unsigned);
+
+    // getStatus
     void getStatus();
     void getStatus(byte, byte);
 
+    // Status response
+    unsigned getFrequency(void);
     inline bool getSignalQualityInterrup();
     inline bool getRadioDataSystemInterrupt();
     inline bool getTuneCompleteTriggered();
