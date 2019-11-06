@@ -16,11 +16,11 @@ byte band = FM_FUNCTION;
 
 const unsigned min_am = 570;
 const unsigned max_am = 1710;
-unsigned am_freq = min_am; // Change it for a local AM station of your place
+unsigned am_freq = min_am; // Change it to your local AM station 
 
 const unsigned min_fm = 8400;
 const unsigned max_fm = 10900;
-unsigned fm_freq = 10390; // Change it for a local FM station of your place
+unsigned fm_freq = 10390; // Change it to your local FM station 
 
 unsigned currentFrequency;
 
