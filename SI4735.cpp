@@ -183,12 +183,122 @@ unsigned SI4735::getFrequency()
 }
 
 /*
+ * Tune complete has been triggered (STCINT)
+ */
+inline bool SI4735::getTuneCompleteTriggered()
+{
+    return currentStatus.resp.STCINT; // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
+}
+
+/* 
+ * Gets Received Signal Quality Interrupt(RSQINT)
+ * 
+ */
+inline bool SI4735::getSignalQualityInterrup()
+{
+    return currentStatus.resp.RSQINT; 
+}
+
+/* 
+ * Gets Radio Data System (RDS) Interrupt
+ */
+inline bool SI4735::getRadioDataSystemInterrupt()
+{
+    return currentStatus.resp.RDSINT;
+}
+
+/*
+ * Return the Error flag (true or false) of status of the least Tune or Seek 
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 63
+ * @return true or false
+ */
+inline bool SI4735::getStatusError() {
+    return currentStatus.resp.ERR;
+}
+
+/*
+ * Gets the Error flag of status response 
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 63
+ */
+inline bool SI4735::getStatusCTS()
+{
+    return currentStatus.resp.CTS;
+}
+
+/* 
+ * Returns true if the AFC rails (AFC Rail Indicator). 
+ */
+inline bool SI4735::getACFIndicator()
+{
+    return currentStatus.resp.AFCRL;
+}
+
+/* 
+ * Returns true if a seek hit the band limit (WRAP = 0 in FM_START_SEEK) or 
+ * wrapped to the original frequency (WRAP = 1).
+ */
+inline bool SI4735::getBandLimit()
+{
+    return currentStatus.resp.BLTF;
+}
+
+/*
+ * Received Signal Strength Indicator.
+ * This byte contains the receive signal strength when tune is complete (dBμV).
+ */
+inline byte SI4735::getReceivedSignalStrengthIndicator()
+{
+    return currentStatus.resp.RSSI;
+}
+
+/*
+ * SNR.
+ * This byte contains the SNR metric when tune is complete (dB).
+ */
+inline byte SI4735::getStatusSNR()
+{
+    return currentStatus.resp.SNR;
+}
+
+/* 
+ * Multipath.
+ * This byte contains the multipath metric when tune is complete. 
+ * Multipath indi- cator is available only for Si474x, Si4706-C30 and later and 
+ * Si4704/05/30/31/34/35/84/85-D50 and later.
+ */
+inline byte SI4735::getStatusMULT()
+{
+    return currentStatus.resp.MULT;
+}
+
+/* 
+ * Read Antenna Tuning Capacitor (Si4704/05/06/2x only). 
+ * Returns a byte that contains the current antenna tuning capacitor value.
+ */
+inline byte SI4735::getAntennaTuningCapacitor()
+{
+    return currentStatus.resp.READANTCAP;
+}
+
+
+
+/*
+ * Returns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108) 
+ * and would have been found during a Seek.
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 63
+ */
+inline bool SI4735::getStatusValid()
+{
+    return currentStatus.resp.VALID;
+}
+
+/*
  * Gets the current status  of the Si4735 (AM or FM)
  * 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  *
  */
-void SI4735::getStatus()
+    void SI4735::getStatus()
 {
     getStatus(0,1);
 }

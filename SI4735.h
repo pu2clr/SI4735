@@ -182,6 +182,20 @@ public:
     void setFrequency(unsigned);
     void getStatus();
     void getStatus(byte, byte);
+
+    inline bool getSignalQualityInterrup();
+    inline bool getRadioDataSystemInterrupt();
+    inline bool getTuneCompleteTriggered();
+    inline bool getStatusError();
+    inline bool getStatusCTS();
+    inline bool getACFIndicator();
+    inline bool getBandLimit();
+    inline bool getStatusValid();
+    inline byte getReceivedSignalStrengthIndicator();
+    inline byte getStatusSNR();
+    inline byte getStatusMULT();
+    inline byte getAntennaTuningCapacitor();
+
     void setVolume(byte volume);
     void volumeDown();
     void volumeUp();
