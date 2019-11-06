@@ -194,7 +194,7 @@ inline bool SI4735::getTuneCompleteTriggered()
  * Gets Received Signal Quality Interrupt(RSQINT)
  * 
  */
-inline bool SI4735::getSignalQualityInterrup()
+inline bool SI4735::getSignalQualityInterrupt()
 {
     return currentStatus.resp.RSQINT; 
 }

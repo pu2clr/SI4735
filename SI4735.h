@@ -186,7 +186,7 @@ public:
 
     // Status response
     unsigned getFrequency(void);
-    inline bool getSignalQualityInterrup();
+    inline bool getSignalQualityInterrupt();
     inline bool getRadioDataSystemInterrupt();
     inline bool getTuneCompleteTriggered();
     inline bool getStatusError();
