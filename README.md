@@ -427,6 +427,25 @@ void SI4735::setFM()
 ```
 
 
+#### Example of using setAM() and setFM()
+
+```cpp
+    switch (key)
+    {
+    case 'A':
+      si4735.setAM();
+      si4735.setFrequency(am_freq);
+      break;
+    case 'F':
+      si4735.setFM();
+      si4735.setFrequency(fm_freq);
+      break;
+      .
+      .
+      .
+```
+
+
 ### setVolume
 
 ```cpp
@@ -437,6 +456,11 @@ void SI4735::setFM()
 void SI4735::setVolume(byte volume)
 ```
 
+#### Example of using setVolume()
+
+```cpp
+  si4735.setVolume(45);
+```
 
 ### volumeUp
 
@@ -456,6 +480,21 @@ void SI4735::volumeUp()
 void SI4735::volumeDown()
 ```
 
+#### Example of using volumeUp() and volumeDown()
+
+```cpp
+    switch (key)
+    {
+    case '+':
+        si4735.volumeUp();
+        break;
+    case '-': 
+        si4735.volumeDown();
+        break;
+    .
+    .
+    .    
+```
 
 ### getStatus
 
