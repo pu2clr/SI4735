@@ -2,49 +2,29 @@
 
 This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER,  IC from Silicon Labs for the Arduino development environment.  This library is intended to provide an easier interface for controlling the SI4435.
 
-__The SI4835 is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V converter.__
+License Copyright: MIT 
 
 By Ricardo Lima Caratti, Oct, 2019. 
 
+__Attention__: 
 
-MIT License
-
-Copyright (c) [2019] [Ricardo Lima Caratti]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-__Attention: Documentation  under construction.__ 
-
+* __Documentation  under construction__. 
+* __The SI4835 is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V converter__.
 
 ## Summary
 
-1. [Thanks](https://github.com/pu2clr/SI4735#thanks)
-2. [Your support is important](https://github.com/pu2clr/SI4735#your-support-is-important)
-3. [About the SI4735](https://github.com/pu2clr/SI4735#about-the-si4735)
-4. [Terminology](https://github.com/pu2clr/SI4735#si4735-terminology)
-5. [Labrary Features](https://github.com/pu2clr/SI4735#si4735-arduino-library-features)
-6. [Library Installation](https://github.com/pu2clr/SI4735#library-installation)
-7. [Hardware Requirements and Setup](https://github.com/pu2clr/SI4735#hardware-requirements-and-setup)
+1. [License of using of this library]()
+2. [Thanks](https://github.com/pu2clr/SI4735#thanks)
+3. [Your support is important](https://github.com/pu2clr/SI4735#your-support-is-important)
+4. [About the SI4735](https://github.com/pu2clr/SI4735#about-the-si4735)
+5. [Terminology](https://github.com/pu2clr/SI4735#si4735-terminology)
+6. [Labrary Features](https://github.com/pu2clr/SI4735#si4735-arduino-library-features)
+7. [Library Installation](https://github.com/pu2clr/SI4735#library-installation)
+8. [Hardware Requirements and Setup](https://github.com/pu2clr/SI4735#hardware-requirements-and-setup)
    * [Schematic](https://github.com/pu2clr/SI4735#schematic)
    * [Component Parts](https://github.com/pu2clr/SI4735#parts)
    * [Photos](https://github.com/pu2clr/SI4735#photos)
-8. [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
+9. [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
    * [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
    * [__Public Methods__](https://github.com/pu2clr/SI4735#public-methods)
      * [__Usual methods__](https://github.com/pu2clr/SI4735#public-methods)
@@ -81,10 +61,20 @@ __Attention: Documentation  under construction.__
        * [getFirmwareCMPMAJOR](https://github.com/pu2clr/SI4735#getfirmwarecmpmajor)
        * [getFirmwareCMPMINOR](https://github.com/pu2clr/SI4735#getfirmwarecmpminor)
        * [getFirmwareCHIPREV](https://github.com/pu2clr/SI4735#getfirmwarechiprev)
-9. [References](https://github.com/pu2clr/SI4735#references)
-10. [Examples]()
-11. [Videos]() 
+10. [References](https://github.com/pu2clr/SI4735#references)
+11. [Examples]()
+12. [Videos]() 
 
+
+## MIT Licence 
+
+Copyright (c) [2019] [Ricardo Lima Caratti]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Thanks
 
