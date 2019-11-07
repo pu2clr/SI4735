@@ -158,13 +158,13 @@ The SI4735 device  works with  3.3V only. If you are not using a 3.3V version of
 
 The image bellow shows a version of Slicon Labs SSOP Typical Application Schematic. The basic difference are the pull-up resitors on I2C bus. 
 
-![Basic Schematic](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic.png)
+![Basic Schematic](./extras/images/basic_schematic.png)
 
 
 The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
 
-![Silicon Labs Schematic](https://github.com/pu2clr/SI4735/blob/master/extras/images/silicon_labs_schematic_pag_19.png)
+![Silicon Labs Schematic](./extras/images/silicon_labs_schematic_pag_19.png)
 
 
 
@@ -203,29 +203,29 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 
 ### SI4735 soldered on adapter
 
-![SI4735 on adapter 01](https://github.com/pu2clr/SI4735/blob/master/extras/images/si4735_on_adapter_00.png)
+![SI4735 on adapter 01](./extras/images/si4735_on_adapter_01.png)
 
 
-![SI4735 on adapter 01](https://github.com/pu2clr/SI4735/blob/master/extras/images/si4735_on_adapter_01.png)
+![SI4735 on adapter 01](./extras/images/si4735_on_adapter_01.png)
 
 
-![SI4735 on adapter 03](https://github.com/pu2clr/SI4735/blob/master/extras/images/si4735_on_adapter_03.png)
+![SI4735 on adapter 03](./extras/images/si4735_on_adapter_03.png)
 
 
 ![SI4735 on adapter 04](https://github.com/pu2clr/SI4735/blob/master/extras/images/adapter_01.png)
 
 
-![SI4735 on adapter 05](https://github.com/pu2clr/SI4735/blob/master/extras/images/adapter_02.png)
+![SI4735 on adapter 05](./extras/images/adapter_02.png)
 
 
 
 #### Protoboard
 
-![Protoboard 00](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_00.png)
+![Protoboard 00](./extras/images/protoboard_00.png)
 
 
 
-![Protoboard 01](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_01.png)
+![Protoboard 01](./extras/images/protoboard_01.png)
 
 
 
