@@ -325,6 +325,9 @@ void setup()
 }
 ```
 
+[See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
+
+
 
 ### setPowerUp
 
@@ -370,6 +373,7 @@ void SI4735::analogPowerUp(void)
     analogPowerUp();
 ```    
 
+
 ### setFrequency
 
 ```cpp
@@ -390,6 +394,10 @@ void SI4735::setFrequency(unsigned freq)
     showStatus(fm_freq,"MHz");
 ```    
 
+[See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
+
+
+
 ### seekStation
 ```cpp
 /*
@@ -407,6 +415,10 @@ void SI4735::seekStation(byte SEEKUP, byte WRAP)
 ```cpp
     si4735.seekStation(1,1);
 ```
+
+[See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
+
+
 
 ### setAM
 
@@ -445,6 +457,8 @@ void SI4735::setFM()
       .
 ```
 
+[See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
+
 
 ### setVolume
 
@@ -461,6 +475,10 @@ void SI4735::setVolume(byte volume)
 ```cpp
   si4735.setVolume(45);
 ```
+
+[See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
+
+
 
 ### volumeUp
 
@@ -495,6 +513,10 @@ void SI4735::volumeDown()
     .
     .    
 ```
+
+[See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
+
+
 
 ### getStatus
 
