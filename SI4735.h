@@ -129,13 +129,38 @@ typedef union {
     byte raw[7];
 } si47x_response_status;
 
+
+typedef union {
+    struct {
+        // status
+        byte STCINT:1;
+        byte DUMMY1:1;
+        byte RDSINT:1;
+        byte RSQINT:1;
+        byte DUMMY2:2;
+        byte ERR:1;
+        byte CTS:1;
+        byte PN; //  RESP1 - Final 2 digits of Part Number (HEX).
+        byte FWMAJOR; // RESP2 - Firmware Major Revision (ASCII).
+        byte FWMINOR; // RESP3 - Firmware Minor Revision (ASCII).
+        byte PATCHH;  // RESP4 - Patch ID High Byte (HEX).
+        byte PATCHL;  // RESP5 - Patch ID Low Byte (HEX).
+        byte CMPMAJOR; // RESP6 - Component Major Revision (ASCII).
+        byte CMPMINOR; // RESP7 - Component Minor Revision (ASCII).
+        byte CHIPREV;  // RESP8 - Chip Revision (ASCII).
+        // RESP9 to RESP15 not used  
+    } arg;
+    byte raw[9];
+} si47x_firmware_information;
+
+
 /*
  * Status of FM_TUNE_FREQ or FM_SEEK_START commands or 
  * Status of AM_TUNE_FREQ or AM_SEEK_START commands.
  * 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 and 139
  */
-typedef union {
+    typedef union {
     struct
     {
         byte INTACK : 1; // If set, clears the seek/tune complete interrupt status indicator.
@@ -163,8 +188,9 @@ private:
 
     si47x_frequency currentFrequency;
     si47x_response_status currentStatus;
+    si47x_firmware_information firmwareInfo;
 
-    si473x_powerup powerUp;
+        si473x_powerup powerUp;
 
     byte volume = 32;
 
@@ -198,6 +224,16 @@ public:
     inline byte getStatusSNR();
     inline byte getStatusMULT();
     inline byte getAntennaTuningCapacitor();
+
+    // Firmware Information 
+    inline byte getFirmwarePN();        // RESP1 - Final 2 digits of Part Number (HEX).
+    inline byte getFirmwareFWMAJOR();   // RESP2 - Firmware Major Revision (ASCII).
+    inline byte getFirmwareFWMINOR();   // RESP3 - Firmware Minor Revision (ASCII).
+    inline byte getFirmwarePATCHH();    // RESP4 - Patch ID High Byte (HEX).
+    inline byte getFirmwarePATCHL();    // RESP5 - Patch ID Low Byte (HEX).
+    inline byte getFirmwareCMPMAJOR();  // RESP6 - Component Major Revision (ASCII).
+    inline byte getFirmwareCMPMINOR();  // RESP7 - Component Minor Revision (ASCII).
+    inline byte getFirmwareCHIPREV();   // RESP8 - Chip Revision (ASCII).
 
     void setVolume(byte volume);
     void volumeDown();

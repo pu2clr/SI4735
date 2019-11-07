@@ -77,8 +77,29 @@ void SI4735::setBand(byte new_band)
  */
 void SI4735::getFirmware(void)
 {
-    //TO DO
+    waitToSend();
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(GET_REV);
+    Wire.endTransmission();
+
+    // Request for 9 bytes response
+    Wire.requestFrom(SI473X_ADDR, 0x09);
+
+    for (int i = 0; i < 9; i++)
+        firmwareInfo.raw[i] = Wire.read();
+
+    delayMicroseconds(550);
 }
+
+inline byte SI4735::getFirmwarePN(){return firmwareInfo.arg.PN;};   //  RESP1 - Final 2 digits of Part Number (HEX).
+inline byte SI4735::getFirmwareFWMAJOR(){return firmwareInfo.arg.FWMAJOR;}; // RESP2 - Firmware Major Revision (ASCII).
+inline byte SI4735::getFirmwareFWMINOR(){return firmwareInfo.arg.FWMINOR;}; // RESP3 - Firmware Minor Revision (ASCII).
+inline byte SI4735::getFirmwarePATCHH(){return firmwareInfo.arg.PATCHH;};   // RESP4 - Patch ID High Byte (HEX).
+inline byte SI4735::getFirmwarePATCHL(){return firmwareInfo.arg.PATCHL;};   // RESP5 - Patch ID Low Byte (HEX).
+inline byte SI4735::getFirmwareCMPMAJOR(){return firmwareInfo.arg.CMPMAJOR;}; // RESP6 - Component Major Revision (ASCII).
+inline byte SI4735::getFirmwareCMPMINOR(){return firmwareInfo.arg.CMPMINOR;}; // RESP7 - Component Minor Revision (ASCII).
+inline byte SI4735::getFirmwareCHIPREV(){return firmwareInfo.arg.CHIPREV;};   // RESP8 - Chip Revision (ASCII).
 
 /* 
  * Starts the Si473X device. 
@@ -119,6 +140,8 @@ void SI4735::setup(byte resetPin, byte interruptPin, byte defaultFunction)
     analogPowerUp();
 
     setVolume(20); // Default volume level.
+
+    getFirmware();
 }
 
 /*
