@@ -424,6 +424,36 @@ void SI4735::setFM()
 ```
 
 
+### setVolume
+
+```cpp
+/* 
+ * Set the volume level
+ * @param byte volume (domain: 0 - 63) 
+ */
+void SI4735::setVolume(byte volume)
+```
+
+
+### volumeUp
+
+```cpp
+/*
+ *  Set sound volume level Up   
+ */
+void SI4735::volumeUp()
+```
+
+
+### volumeDown
+```cpp
+/*
+ *  Set sound volume level Down   
+ */
+void SI4735::volumeDown()
+```
+
+
 ### getStatus
 
 ```cpp
