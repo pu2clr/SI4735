@@ -184,7 +184,7 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 | X1    | 32.768 kHz crystal |
 
 
-  [ˆ1] R4 and R5 are pull-up resistor included byte the author of this project. They are not present on original Silicon Labs schematic. 
+  [ˆ1]: R4 and R5 are pull-up resistor included byte the author of this project. They are not present on original Silicon Labs schematic. 
 
 __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver (page 12)__:
 * Place C1 close to VA and C4 close to VD pin.
