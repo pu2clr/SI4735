@@ -570,6 +570,7 @@ inline byte SI4735::getAntennaTuningCapacitor()
 inline bool SI4735::getStatusValid()
 ```
 
+
 #### getFirmwarePN
 
 ```cpp
@@ -577,7 +578,7 @@ inline bool SI4735::getStatusValid()
  * Returns the final 2 digits of Part Number (HEX)
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwarePN(){return firmwareInfo.arg.PN;};   //  RESP1 .
+inline byte SI4735::getFirmwarePN()
 ```
 
 
@@ -588,49 +589,70 @@ inline byte SI4735::getFirmwarePN(){return firmwareInfo.arg.PN;};   //  RESP1 .
  * Returns the Firmware Major Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareFWMAJOR(){return firmwareInfo.arg.FWMAJOR;}; // RESP2
+inline byte SI4735::getFirmwareFWMAJOR()
 ```
 
+
+#### getFirmwareFWMINOR
+
+```cpp
 /*
  * Returns the Firmware Minor Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareFWMINOR(){return firmwareInfo.arg.FWMINOR;}; // RESP3
+inline byte SI4735::getFirmwareFWMINOR()
+```
 
+
+#### getFirmwarePATCHH
+
+```cpp
 /*
  * Returns the Patch ID High Byte (HEX).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwarePATCHH(){return firmwareInfo.arg.PATCHH;};   // RESP4
+inline byte SI4735::getFirmwarePATCHH()
+```
 
+#### getFirmwarePATCHL
+
+```cpp
 /*
  * Returns the Patch ID Low Byte (HEX).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwarePATCHL(){return firmwareInfo.arg.PATCHL;};   // RESP5
+inline byte SI4735::getFirmwarePATCHL()
+```
 
+#### getFirmwareCMPMAJOR
+
+```cpp
 /*
  * Returns the Component Major Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareCMPMAJOR(){return firmwareInfo.arg.CMPMAJOR;}; // RESP6
+inline byte SI4735::getFirmwareCMPMAJOR()
+```
 
+#### getFirmwareCMPMINOR
+
+```cpp
 /*
  * Returns the Component Minor Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareCMPMINOR(){return firmwareInfo.arg.CMPMINOR;}; // RESP7
+inline byte SI4735::getFirmwareCMPMINOR()
+```
 
+### getFirmwareCHIPREV
 
+```cpp
 /*
  * Returns the Chip Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareCHIPREV(){return firmwareInfo.arg.CHIPREV;};   // RESP8
-
-
-
-
+inline byte SI4735::getFirmwareCHIPREV()
+```
 
 
 ## References
