@@ -24,7 +24,7 @@ __Attention: Documentation  under construction.__
 8. [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
    * [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
    * [__Public Methods__](https://github.com/pu2clr/SI4735#public-methods)
-     * [Usual methods](https://github.com/pu2clr/SI4735#public-methods)
+     * [__Usual methods__](https://github.com/pu2clr/SI4735#public-methods)
      * [setup](https://github.com/pu2clr/SI4735#setup)
      * [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
      * [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
