@@ -24,26 +24,26 @@ __Attention: Documentation  under construction.__
 8. [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
    * [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
    * [Public Methods](https://github.com/pu2clr/SI4735#public-methods)
-   * [setup](https://github.com/pu2clr/SI4735#setup)
-   * [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
-   * [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
-   * [setFrequency](https://github.com/pu2clr/SI4735#setfrequency)
-   * [seekStation](https://github.com/pu2clr/SI4735#seekstation)
-   * [setAM](https://github.com/pu2clr/SI4735#setam)
-   * [setFM](https://github.com/pu2clr/SI4735#setfm)
-   * [getStatus](https://github.com/pu2clr/SI4735#getstatus)
-   * [getTuneCompleteTriggered](https://github.com/pu2clr/SI4735#gettunecompletetriggered)
-   * [getSignalQualityInterrupt](https://github.com/pu2clr/SI4735#getsignalqualityinterrupt)
-   * [getRadioDataSystemInterrupt](getRadioDataSystemInterrupt)
-   * [getStatusError](https://github.com/pu2clr/SI4735#getstatuserror)
-   * [getStatusCTS](https://github.com/pu2clr/SI4735#getstatuscts)
-   * [getACFIndicator](https://github.com/pu2clr/SI4735#getacfindicator)
-   * [getBandLimit](https://github.com/pu2clr/SI4735#getbandlimit)
-   * [getReceivedSignalStrengthIndicator](https://github.com/pu2clr/SI4735#getreceivedsignalstrengthindicator)
-   * [getStatusSNR](https://github.com/pu2clr/SI4735#getstatussnr)
-   * [getStatusMULT](https://github.com/pu2clr/SI4735#getstatusmult)
-   * [getAntennaTuningCapacitor](https://github.com/pu2clr/SI4735#getantennatuningcapacitor)
-   * [getStatusValid](https://github.com/pu2clr/SI4735#getstatusvalid)
+     * [setup](https://github.com/pu2clr/SI4735#setup)
+     * [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
+     * [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
+     * [setFrequency](https://github.com/pu2clr/SI4735#setfrequency)
+     * [seekStation](https://github.com/pu2clr/SI4735#seekstation)
+     * [setAM](https://github.com/pu2clr/SI4735#setam)
+     * [setFM](https://github.com/pu2clr/SI4735#setfm)
+     * [getStatus](https://github.com/pu2clr/SI4735#getstatus)
+     * [getTuneCompleteTriggered](https://github.com/pu2clr/SI4735#gettunecompletetriggered)
+     * [getSignalQualityInterrupt](https://github.com/pu2clr/SI4735#getsignalqualityinterrupt)
+     * [getRadioDataSystemInterrupt](getRadioDataSystemInterrupt)
+     * [getStatusError](https://github.com/pu2clr/SI4735#getstatuserror)
+     * [getStatusCTS](https://github.com/pu2clr/SI4735#getstatuscts)
+     * [getACFIndicator](https://github.com/pu2clr/SI4735#getacfindicator)
+     * [getBandLimit](https://github.com/pu2clr/SI4735#getbandlimit)
+     * [getReceivedSignalStrengthIndicator](https://github.com/pu2clr/SI4735#getreceivedsignalstrengthindicator)
+     * [getStatusSNR](https://github.com/pu2clr/SI4735#getstatussnr)
+     * [getStatusMULT](https://github.com/pu2clr/SI4735#getstatusmult)
+     * [getAntennaTuningCapacitor](https://github.com/pu2clr/SI4735#getantennatuningcapacitor)
+     * [getStatusValid](https://github.com/pu2clr/SI4735#getstatusvalid)
 9. [References](https://github.com/pu2clr/SI4735#references)
 10. [Examples]()
 11. [Videos]() 
@@ -279,7 +279,6 @@ typedef union {
 
 
 ## Public Methods
-
 
 
 ### setup
@@ -559,7 +558,7 @@ inline byte SI4735::getAntennaTuningCapacitor()
 ```
 
 
-#### getStatusValid
+### getStatusValid
 
 ```cpp
 /*
@@ -571,7 +570,7 @@ inline bool SI4735::getStatusValid()
 ```
 
 
-#### getFirmwarePN
+### getFirmwarePN
 
 ```cpp
 /*
@@ -582,7 +581,7 @@ inline byte SI4735::getFirmwarePN()
 ```
 
 
-#### getFirmwareFWMAJOR
+### getFirmwareFWMAJOR
 
 ```cpp
 /*
@@ -593,7 +592,7 @@ inline byte SI4735::getFirmwareFWMAJOR()
 ```
 
 
-#### getFirmwareFWMINOR
+### getFirmwareFWMINOR
 
 ```cpp
 /*
@@ -604,7 +603,7 @@ inline byte SI4735::getFirmwareFWMINOR()
 ```
 
 
-#### getFirmwarePATCHH
+### getFirmwarePATCHH
 
 ```cpp
 /*
@@ -614,7 +613,7 @@ inline byte SI4735::getFirmwareFWMINOR()
 inline byte SI4735::getFirmwarePATCHH()
 ```
 
-#### getFirmwarePATCHL
+### getFirmwarePATCHL
 
 ```cpp
 /*
@@ -624,7 +623,7 @@ inline byte SI4735::getFirmwarePATCHH()
 inline byte SI4735::getFirmwarePATCHL()
 ```
 
-#### getFirmwareCMPMAJOR
+### getFirmwareCMPMAJOR
 
 ```cpp
 /*
@@ -634,7 +633,7 @@ inline byte SI4735::getFirmwarePATCHL()
 inline byte SI4735::getFirmwareCMPMAJOR()
 ```
 
-#### getFirmwareCMPMINOR
+### getFirmwareCMPMINOR
 
 ```cpp
 /*
