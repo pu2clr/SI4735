@@ -570,6 +570,65 @@ inline byte SI4735::getAntennaTuningCapacitor()
 inline bool SI4735::getStatusValid()
 ```
 
+#### getFirmwarePN
+
+```cpp
+/*
+ * Returns the final 2 digits of Part Number (HEX)
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwarePN(){return firmwareInfo.arg.PN;};   //  RESP1 .
+```
+
+
+#### getFirmwareFWMAJOR
+
+```cpp
+/*
+ * Returns the Firmware Major Revision (ASCII).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwareFWMAJOR(){return firmwareInfo.arg.FWMAJOR;}; // RESP2
+```
+
+/*
+ * Returns the Firmware Minor Revision (ASCII).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwareFWMINOR(){return firmwareInfo.arg.FWMINOR;}; // RESP3
+
+/*
+ * Returns the Patch ID High Byte (HEX).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwarePATCHH(){return firmwareInfo.arg.PATCHH;};   // RESP4
+
+/*
+ * Returns the Patch ID Low Byte (HEX).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwarePATCHL(){return firmwareInfo.arg.PATCHL;};   // RESP5
+
+/*
+ * Returns the Component Major Revision (ASCII).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwareCMPMAJOR(){return firmwareInfo.arg.CMPMAJOR;}; // RESP6
+
+/*
+ * Returns the Component Minor Revision (ASCII).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwareCMPMINOR(){return firmwareInfo.arg.CMPMINOR;}; // RESP7
+
+
+/*
+ * Returns the Chip Revision (ASCII).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwareCHIPREV(){return firmwareInfo.arg.CHIPREV;};   // RESP8
+
+
 
 
 

@@ -92,14 +92,57 @@ void SI4735::getFirmware(void)
     delayMicroseconds(550);
 }
 
-inline byte SI4735::getFirmwarePN(){return firmwareInfo.arg.PN;};   //  RESP1 - Final 2 digits of Part Number (HEX).
-inline byte SI4735::getFirmwareFWMAJOR(){return firmwareInfo.arg.FWMAJOR;}; // RESP2 - Firmware Major Revision (ASCII).
-inline byte SI4735::getFirmwareFWMINOR(){return firmwareInfo.arg.FWMINOR;}; // RESP3 - Firmware Minor Revision (ASCII).
-inline byte SI4735::getFirmwarePATCHH(){return firmwareInfo.arg.PATCHH;};   // RESP4 - Patch ID High Byte (HEX).
-inline byte SI4735::getFirmwarePATCHL(){return firmwareInfo.arg.PATCHL;};   // RESP5 - Patch ID Low Byte (HEX).
-inline byte SI4735::getFirmwareCMPMAJOR(){return firmwareInfo.arg.CMPMAJOR;}; // RESP6 - Component Major Revision (ASCII).
-inline byte SI4735::getFirmwareCMPMINOR(){return firmwareInfo.arg.CMPMINOR;}; // RESP7 - Component Minor Revision (ASCII).
-inline byte SI4735::getFirmwareCHIPREV(){return firmwareInfo.arg.CHIPREV;};   // RESP8 - Chip Revision (ASCII).
+/*
+ * Returns the final 2 digits of Part Number (HEX)
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwarePN(){return firmwareInfo.arg.PN;};   //  RESP1 .
+
+
+/*
+ * Returns the Firmware Major Revision (ASCII).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwareFWMAJOR(){return firmwareInfo.arg.FWMAJOR;}; // RESP2
+
+/*
+ * Returns the Firmware Minor Revision (ASCII).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwareFWMINOR(){return firmwareInfo.arg.FWMINOR;}; // RESP3
+
+/*
+ * Returns the Patch ID High Byte (HEX).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwarePATCHH(){return firmwareInfo.arg.PATCHH;};   // RESP4
+
+/*
+ * Returns the Patch ID Low Byte (HEX).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwarePATCHL(){return firmwareInfo.arg.PATCHL;};   // RESP5
+
+/*
+ * Returns the Component Major Revision (ASCII).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwareCMPMAJOR(){return firmwareInfo.arg.CMPMAJOR;}; // RESP6
+
+/*
+ * Returns the Component Minor Revision (ASCII).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwareCMPMINOR(){return firmwareInfo.arg.CMPMINOR;}; // RESP7
+
+
+/*
+ * Returns the Chip Revision (ASCII).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ */
+inline byte SI4735::getFirmwareCHIPREV(){return firmwareInfo.arg.CHIPREV;};   // RESP8
+
+
 
 /* 
  * Starts the Si473X device. 
