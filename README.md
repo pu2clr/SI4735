@@ -13,7 +13,7 @@ __Attention__:
 
 ## Summary
 
-1. [License of using of this library]()
+1. [License Copyright]()
 2. [Thanks](https://github.com/pu2clr/SI4735#thanks)
 3. [Your support is important](https://github.com/pu2clr/SI4735#your-support-is-important)
 4. [About the SI4735](https://github.com/pu2clr/SI4735#about-the-si4735)
