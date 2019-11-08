@@ -520,7 +520,8 @@ void getRDSStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
     rds.arg.INTACK = INTACK;
     rds.arg.MTFIFO = MTFIFO;
     rds.arg.STATUSONLY = STATUSONLY;
-    
+
+    // check..
 
 
 }

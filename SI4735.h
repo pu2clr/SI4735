@@ -131,6 +131,9 @@ typedef union {
     byte raw[7];
 } si47x_response_status;
 
+/*
+ * Firmware Information
+ */  
 typedef union {
     struct
     {
