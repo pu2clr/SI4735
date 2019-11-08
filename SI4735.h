@@ -133,7 +133,7 @@ typedef union {
 
 /*
  * Firmware Information
- */  
+ */
 typedef union {
     struct
     {
@@ -251,15 +251,15 @@ typedef union {
         byte RDSRECV : 1;      // RDS Received; 1 = FIFO filled to minimum number of groups set by RDSFIFOCNT.
         byte RDSSYNCLOST : 1;  // RDS Sync Lost; 1 = Lost RDS synchronization.
         byte RDSSYNCFOUND : 1; // RDS Sync Found; 1 = Found RDS synchronization.
-        byte DUMMY3:1;
+        byte DUMMY3 : 1;
         byte RDSNEWBLOCKA : 1; // RDS New Block A; 1 = Valid Block A data has been received.
         byte RDSNEWBLOCKB : 1; // RDS New Block B; 1 = Valid Block B data has been received.
-        byte DUMMY4:2;
+        byte DUMMY4 : 2;
         // RESP2
         byte RDSSYNC : 1; // RDS Sync; 1 = RDS currently synchronized.
-        byte DUMMY5:1;
+        byte DUMMY5 : 1;
         byte GRPLOST : 1; // Group Lost; 1 = One or more RDS groups discarded due to FIFO overrun.
-        byte DUMMY6:5;
+        byte DUMMY6 : 5;
         // RESP3 to RESP11
         byte RDSFIFOUSED; // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
         byte BLOCKAH;     // RESP4 - RDS Block A; HIGH byte
@@ -275,10 +275,10 @@ typedef union {
         // 1 = 1–2 bit errors detected and corrected;
         // 2 = 3–5 bit errors detected and corrected.
         // 3 = Uncorrectable.
-        byte BLED:2;    
-        byte BLEC:2;
-        byte BLEB:2;
-        byte BLEA:2;
+        byte BLED : 2;
+        byte BLEC : 2;
+        byte BLEB : 2;
+        byte BLEA : 2;
     } resp;
     byte raw[13];
 } si47x_rds_status;
@@ -363,6 +363,7 @@ public:
 
     void setFunction(byte FUNC);
     void seekStation(byte SEEKUP, byte WRAP);
+    void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY);
 
 #if defined(DEBUG)
     // Used to debug purpose
