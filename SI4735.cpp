@@ -96,52 +96,51 @@ void SI4735::getFirmware(void)
  * Returns the final 2 digits of Part Number (HEX)
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwarePN(){return firmwareInfo.arg.PN;};   //  RESP1 .
+inline byte SI4735::getFirmwarePN(){return firmwareInfo.resp.PN;};   //  RESP1 .
 
 
 /*
  * Returns the Firmware Major Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareFWMAJOR(){return firmwareInfo.arg.FWMAJOR;}; // RESP2
+inline byte SI4735::getFirmwareFWMAJOR(){return firmwareInfo.resp.FWMAJOR;}; // RESP2
 
 /*
  * Returns the Firmware Minor Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareFWMINOR(){return firmwareInfo.arg.FWMINOR;}; // RESP3
+inline byte SI4735::getFirmwareFWMINOR(){return firmwareInfo.resp.FWMINOR;}; // RESP3
 
 /*
  * Returns the Patch ID High Byte (HEX).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwarePATCHH(){return firmwareInfo.arg.PATCHH;};   // RESP4
+inline byte SI4735::getFirmwarePATCHH(){return firmwareInfo.resp.PATCHH;};   // RESP4
 
 /*
  * Returns the Patch ID Low Byte (HEX).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwarePATCHL(){return firmwareInfo.arg.PATCHL;};   // RESP5
+inline byte SI4735::getFirmwarePATCHL(){return firmwareInfo.resp.PATCHL;};   // RESP5
 
 /*
  * Returns the Component Major Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareCMPMAJOR(){return firmwareInfo.arg.CMPMAJOR;}; // RESP6
+inline byte SI4735::getFirmwareCMPMAJOR(){return firmwareInfo.resp.CMPMAJOR;}; // RESP6
 
 /*
  * Returns the Component Minor Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareCMPMINOR(){return firmwareInfo.arg.CMPMINOR;}; // RESP7
+inline byte SI4735::getFirmwareCMPMINOR(){return firmwareInfo.resp.CMPMINOR;}; // RESP7
 
 
 /*
  * Returns the Chip Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareCHIPREV(){return firmwareInfo.arg.CHIPREV;};   // RESP8
-
+inline byte SI4735::getFirmwareCHIPREV(){return firmwareInfo.resp.CHIPREV;};   // RESP8
 
 
 /* 
@@ -506,6 +505,26 @@ void SI4735::setFM()
     setVolume(volume); // Set to previus configured volume
     // teste
 }
+
+/*
+ * RDS COMMAND
+ * 
+ * @param INTACK Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT.
+ * @param MTFIFO 0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO.
+ * @param STATUSONLY Determines if data should be removed from the RDS FIFO.
+ */
+void getRDSStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
+{
+    si47x_rds_command  rds;
+
+    rds.arg.INTACK = INTACK;
+    rds.arg.MTFIFO = MTFIFO;
+    rds.arg.STATUSONLY = STATUSONLY;
+    
+
+
+}
+
 
 #if defined(DEBUG)
 void SI4735::debugStatus()

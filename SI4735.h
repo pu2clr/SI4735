@@ -12,7 +12,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-#define DEBUG 1  // Should be commented when released. Uncomment it if you want to debug
+// #define DEBUG 1 // Should be commented when released. Uncomment it if you want to debug
 
 #define SI473X_ADDR 0x11    // SI473X I2C buss address
 #define POWER_UP 0x01       // Power up device and mode selection.
@@ -25,6 +25,8 @@
 #define FM_TUNE_FREQ 0x20
 #define FM_SEEK_START 0x21 // Begins searching for a valid FM frequency.
 #define FM_TUNE_STATUS 0x22
+#define FM_RSQ_STATUS 0x23
+#define FM_RDS_STATUS 0x24 // Returns RDS information for current channel and reads an entry from the RDS FIFO.
 
 #define AM_TUNE_FREQ 0x40    // Tunes to a given AM frequency.
 #define AM_SEEK_START 0x41   // Begins searching for a valid AM frequency.
@@ -129,30 +131,29 @@ typedef union {
     byte raw[7];
 } si47x_response_status;
 
-
 typedef union {
-    struct {
-        // status
-        byte STCINT:1;
-        byte DUMMY1:1;
-        byte RDSINT:1;
-        byte RSQINT:1;
-        byte DUMMY2:2;
-        byte ERR:1;
-        byte CTS:1;
-        byte PN; //  RESP1 - Final 2 digits of Part Number (HEX).
-        byte FWMAJOR; // RESP2 - Firmware Major Revision (ASCII).
-        byte FWMINOR; // RESP3 - Firmware Minor Revision (ASCII).
-        byte PATCHH;  // RESP4 - Patch ID High Byte (HEX).
-        byte PATCHL;  // RESP5 - Patch ID Low Byte (HEX).
+    struct
+    {
+        // status ("RESP0")
+        byte STCINT : 1;
+        byte DUMMY1 : 1;
+        byte RDSINT : 1;
+        byte RSQINT : 1;
+        byte DUMMY2 : 2;
+        byte ERR : 1;
+        byte CTS : 1;
+        byte PN;       //  RESP1 - Final 2 digits of Part Number (HEX).
+        byte FWMAJOR;  // RESP2 - Firmware Major Revision (ASCII).
+        byte FWMINOR;  // RESP3 - Firmware Minor Revision (ASCII).
+        byte PATCHH;   // RESP4 - Patch ID High Byte (HEX).
+        byte PATCHL;   // RESP5 - Patch ID Low Byte (HEX).
         byte CMPMAJOR; // RESP6 - Component Major Revision (ASCII).
         byte CMPMINOR; // RESP7 - Component Minor Revision (ASCII).
         byte CHIPREV;  // RESP8 - Chip Revision (ASCII).
-        // RESP9 to RESP15 not used  
-    } arg;
+        // RESP9 to RESP15 not used
+    } resp;
     byte raw[9];
 } si47x_firmware_information;
-
 
 /*
  * Status of FM_TUNE_FREQ or FM_SEEK_START commands or 
@@ -160,7 +161,7 @@ typedef union {
  * 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 and 139
  */
-    typedef union {
+typedef union {
     struct
     {
         byte INTACK : 1; // If set, clears the seek/tune complete interrupt status indicator.
@@ -170,12 +171,125 @@ typedef union {
     byte raw;
 } si47x_tune_status;
 
+/* 
+ * Data type for status information about the received signal quality
+ * FM_RSQ_STATUS and AM_RSQ_STATUS
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 
+ */
+typedef union {
+    struct
+    {
+        // status ("RESP0")
+        byte STCINT : 1;
+        byte DUMMY1 : 1;
+        byte RDSINT : 1;
+        byte RSQINT : 1;
+        byte DUMMY2 : 2;
+        byte ERR : 1;
+        byte CTS : 1;
+        // RESP1
+        byte RSSIILINT : 1; // RSSI Detect Low.
+        byte RSSIHINT : 1;  // RSSI Detect High.
+        byte SNRLINT : 1;   // SNR Detect Low.
+        byte SNRHINT : 1;   // SNR Detect High.
+        byte MULTLINT : 1;  // Multipath Detect Low
+        byte MULTHINT : 1;  // Multipath Detect High
+        byte DUMMY3 : 1;
+        byte BLENDINT : 1; // Blend Detect Interrupt.
+        // RESP2
+        byte VALID : 1; // Valid Channel.
+        byte AFCRL : 1; // AFC Rail Indicator.
+        byte DUMMY4 : 1;
+        byte SMUTE : 1; // Soft Mute Indicator. Indicates soft mute is engaged.
+        byte DUMMY5 : 4;
+        // RESP3
+        byte STBLEND : 7; // Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono).
+        byte PILOT : 1;   // Indicates stereo pilot presence.
+        // RESP4 to RESP7
+        byte RSSI;    // RESP4 - Contains the current receive signal strength (0–127 dBμV).
+        byte SNR;     // RESP5 - Contains the current SNR metric (0–127 dB).
+        byte MULT;    // RESP6 - Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
+        byte FREQOFF; // RESP7 - Signed frequency offset (kHz).
+    } resp;
+    byte raw[8];
+} si47x_rqs_status;
+
+/*
+ * FM_RDS_STATUS (0x24) command
+ * Data type for command and response information 
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
+ */
+
+// Command data type
+typedef union {
+    struct
+    {
+        byte INTACK : 1;     // Interrupt Acknowledge; 0 = RDSINT status preserved; 1 = Clears RDSINT.
+        byte MTFIFO : 1;     // Empty FIFO; 0 = If FIFO not empty; 1 = Clear RDS Receive FIFO.
+        byte STATUSONLY : 1; // Determines if data should be removed from the RDS FIFO.
+        byte dummy : 5;
+    } arg;
+    byte raw;
+} si47x_rds_command;
+
+// Response data type for current channel and reads an entry from the RDS FIFO.
+typedef union {
+    struct
+    {
+        // status ("RESP0")
+        byte STCINT : 1;
+        byte DUMMY1 : 1;
+        byte RDSINT : 1;
+        byte RSQINT : 1;
+        byte DUMMY2 : 2;
+        byte ERR : 1;
+        byte CTS : 1;
+        // RESP1
+        byte RDSRECV : 1;      // RDS Received; 1 = FIFO filled to minimum number of groups set by RDSFIFOCNT.
+        byte RDSSYNCLOST : 1;  // RDS Sync Lost; 1 = Lost RDS synchronization.
+        byte RDSSYNCFOUND : 1; // RDS Sync Found; 1 = Found RDS synchronization.
+        byte DUMMY3:1;
+        byte RDSNEWBLOCKA : 1; // RDS New Block A; 1 = Valid Block A data has been received.
+        byte RDSNEWBLOCKB : 1; // RDS New Block B; 1 = Valid Block B data has been received.
+        byte DUMMY4:2;
+        // RESP2
+        byte RDSSYNC : 1; // RDS Sync; 1 = RDS currently synchronized.
+        byte DUMMY5:1;
+        byte GRPLOST : 1; // Group Lost; 1 = One or more RDS groups discarded due to FIFO overrun.
+        byte DUMMY6:5;
+        // RESP3 to RESP11
+        byte RDSFIFOUSED; // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
+        byte BLOCKAH;     // RESP4 - RDS Block A; HIGH byte
+        byte BLOCKAL;     // RESP5 - RDS Block A; LOW byte
+        byte BLOCKBH;     // RESP6 - RDS Block B; HIGH byte
+        byte BLOCKBL;     // RESP7 - RDS Block B; LOW byte
+        byte BLOCKCH;     // RESP8 - RDS Block C; HIGH byte
+        byte BLOCKCL;     // RESP9 - RDS Block C; LOW byte
+        byte BLOCKDH;     // RESP10 - RDS Block D; HIGH byte
+        byte BLOCKDL;     // RESP11 - RDS Block D; LOW byte
+        // RESP12 - Blocks A to D Corrected Errors.
+        // 0 = No errors;
+        // 1 = 1–2 bit errors detected and corrected;
+        // 2 = 3–5 bit errors detected and corrected.
+        // 3 = Uncorrectable.
+        byte BLED:2;    
+        byte BLEC:2;
+        byte BLEB:2;
+        byte BLEA:2;
+    } resp;
+    byte raw[13];
+} si47x_rds_status;
+
+/************************ Deal with Interrupt  *************************/
+
 volatile static bool data_from_si4735;
 
 static void interrupt_hundler()
 {
     data_from_si4735 = true;
 };
+
+/************************* SI4735 Class definition ********************/
 
 class SI4735
 {
@@ -190,7 +304,7 @@ private:
     si47x_response_status currentStatus;
     si47x_firmware_information firmwareInfo;
 
-        si473x_powerup powerUp;
+    si473x_powerup powerUp;
 
     byte volume = 32;
 
@@ -225,15 +339,15 @@ public:
     inline byte getStatusMULT();
     inline byte getAntennaTuningCapacitor();
 
-    // Firmware Information 
-    inline byte getFirmwarePN();        // RESP1 - Final 2 digits of Part Number (HEX).
-    inline byte getFirmwareFWMAJOR();   // RESP2 - Firmware Major Revision (ASCII).
-    inline byte getFirmwareFWMINOR();   // RESP3 - Firmware Minor Revision (ASCII).
-    inline byte getFirmwarePATCHH();    // RESP4 - Patch ID High Byte (HEX).
-    inline byte getFirmwarePATCHL();    // RESP5 - Patch ID Low Byte (HEX).
-    inline byte getFirmwareCMPMAJOR();  // RESP6 - Component Major Revision (ASCII).
-    inline byte getFirmwareCMPMINOR();  // RESP7 - Component Minor Revision (ASCII).
-    inline byte getFirmwareCHIPREV();   // RESP8 - Chip Revision (ASCII).
+    // Firmware Information
+    inline byte getFirmwarePN();       // RESP1 - Final 2 digits of Part Number (HEX).
+    inline byte getFirmwareFWMAJOR();  // RESP2 - Firmware Major Revision (ASCII).
+    inline byte getFirmwareFWMINOR();  // RESP3 - Firmware Minor Revision (ASCII).
+    inline byte getFirmwarePATCHH();   // RESP4 - Patch ID High Byte (HEX).
+    inline byte getFirmwarePATCHL();   // RESP5 - Patch ID Low Byte (HEX).
+    inline byte getFirmwareCMPMAJOR(); // RESP6 - Component Major Revision (ASCII).
+    inline byte getFirmwareCMPMINOR(); // RESP7 - Component Minor Revision (ASCII).
+    inline byte getFirmwareCHIPREV();  // RESP8 - Chip Revision (ASCII).
 
     void setVolume(byte volume);
     void volumeDown();
@@ -246,8 +360,8 @@ public:
     void setFunction(byte FUNC);
     void seekStation(byte SEEKUP, byte WRAP);
 
-    #if defined(DEBUG)
+#if defined(DEBUG)
     // Used to debug purpose
     void SI4735::debugStatus();
-    #endif
+#endif
 };
