@@ -42,7 +42,7 @@ void SI4735::waitToSend()
     do
     {
         delayMicroseconds(2000);
-        Wire.requestFrom(SI473X_ADDR, 0x01);
+        Wire.requestFrom(SI473X_ADDR, 1);
     } while (!(Wire.read() & B10000000));
 };
 
@@ -96,52 +96,49 @@ void SI4735::getFirmware(void)
  * Returns the final 2 digits of Part Number (HEX)
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwarePN(){return firmwareInfo.resp.PN;};   //  RESP1 .
-
+inline byte SI4735::getFirmwarePN() { return firmwareInfo.resp.PN; }; //  RESP1 .
 
 /*
  * Returns the Firmware Major Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareFWMAJOR(){return firmwareInfo.resp.FWMAJOR;}; // RESP2
+inline byte SI4735::getFirmwareFWMAJOR() { return firmwareInfo.resp.FWMAJOR; }; // RESP2
 
 /*
  * Returns the Firmware Minor Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareFWMINOR(){return firmwareInfo.resp.FWMINOR;}; // RESP3
+inline byte SI4735::getFirmwareFWMINOR() { return firmwareInfo.resp.FWMINOR; }; // RESP3
 
 /*
  * Returns the Patch ID High Byte (HEX).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwarePATCHH(){return firmwareInfo.resp.PATCHH;};   // RESP4
+inline byte SI4735::getFirmwarePATCHH() { return firmwareInfo.resp.PATCHH; }; // RESP4
 
 /*
  * Returns the Patch ID Low Byte (HEX).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwarePATCHL(){return firmwareInfo.resp.PATCHL;};   // RESP5
+inline byte SI4735::getFirmwarePATCHL() { return firmwareInfo.resp.PATCHL; }; // RESP5
 
 /*
  * Returns the Component Major Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareCMPMAJOR(){return firmwareInfo.resp.CMPMAJOR;}; // RESP6
+inline byte SI4735::getFirmwareCMPMAJOR() { return firmwareInfo.resp.CMPMAJOR; }; // RESP6
 
 /*
  * Returns the Component Minor Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareCMPMINOR(){return firmwareInfo.resp.CMPMINOR;}; // RESP7
-
+inline byte SI4735::getFirmwareCMPMINOR() { return firmwareInfo.resp.CMPMINOR; }; // RESP7
 
 /*
  * Returns the Chip Revision (ASCII).
  * See Si47XX PROGRAMMING GUIDE; AN332; page 66
  */
-inline byte SI4735::getFirmwareCHIPREV(){return firmwareInfo.resp.CHIPREV;};   // RESP8
-
+inline byte SI4735::getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; }; // RESP8
 
 /* 
  * Starts the Si473X device. 
@@ -244,7 +241,7 @@ unsigned SI4735::getFrequency()
     getStatus(0, 1);
     freq.raw.FREQL = currentStatus.resp.READFREQL;
     freq.raw.FREQH = currentStatus.resp.READFREQH;
-    return freq.value; 
+    return freq.value;
 }
 
 /*
@@ -261,7 +258,7 @@ inline bool SI4735::getTuneCompleteTriggered()
  */
 inline bool SI4735::getSignalQualityInterrupt()
 {
-    return currentStatus.resp.RSQINT; 
+    return currentStatus.resp.RSQINT;
 }
 
 /* 
@@ -277,7 +274,8 @@ inline bool SI4735::getRadioDataSystemInterrupt()
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 63
  * @return true or false
  */
-inline bool SI4735::getStatusError() {
+inline bool SI4735::getStatusError()
+{
     return currentStatus.resp.ERR;
 }
 
@@ -345,8 +343,6 @@ inline byte SI4735::getAntennaTuningCapacitor()
     return currentStatus.resp.READANTCAP;
 }
 
-
-
 /*
  * Returns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108) 
  * and would have been found during a Seek.
@@ -363,9 +359,9 @@ inline bool SI4735::getStatusValid()
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  *
  */
-    void SI4735::getStatus()
+void SI4735::getStatus()
 {
-    getStatus(0,1);
+    getStatus(0, 1);
 }
 
 /*
@@ -376,7 +372,8 @@ inline bool SI4735::getStatusValid()
  * @param byte CANCEL Cancel seek. If set, aborts a seek currently in progress;
  * 
  */
-void SI4735::getStatus(byte INTACK, byte CANCEL) {
+void SI4735::getStatus(byte INTACK, byte CANCEL)
+{
     si47x_tune_status status;
     si47x_frequency freq;
     byte cmd = (currentTune == FM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
@@ -393,29 +390,29 @@ void SI4735::getStatus(byte INTACK, byte CANCEL) {
 
     waitToSend();
 
-    Wire.requestFrom(SI473X_ADDR, 0x7);
+    Wire.requestFrom(SI473X_ADDR, 7);
 
     // Gets response information
-    for (byte i = 0; i < 0x7; i++)
+    for (byte i = 0; i < 7; i++)
     {
         currentStatus.raw[i] = Wire.read();
     }
 
-    #if defined(DEBUG)
+#if defined(DEBUG)
     debugStatus();
-    #endif
-    
+#endif
+
     delayMicroseconds(550);
 }
 
-    /*
+/*
  * Look for a station 
  * See Si47XX PROGRAMMING GUIDE; AN332; page 55, 72, 125 and 137
  * 
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
  * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
-    void SI4735::seekStation(byte SEEKUP, byte WRAP)
+void SI4735::seekStation(byte SEEKUP, byte WRAP)
 {
     si47x_seek seek;
 
@@ -455,7 +452,7 @@ void SI4735::setVolume(byte volume)
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(SET_PROPERTY);
     Wire.write(0x00);   // Always 0x00
-    Wire.write(0x40);   // RX_VOLUME 0x4000 -> 0x40 
+    Wire.write(0x40);   // RX_VOLUME 0x4000 -> 0x40
     Wire.write(0x00);   // RX_VOLUME 0x4000 -> 0x00
     Wire.write(0x00);   // ARG1
     Wire.write(volume); // ARG2 (level: 0 to 63)
@@ -507,25 +504,44 @@ void SI4735::setFM()
 }
 
 /*
- * RDS COMMAND
- * 
+ * RDS COMMAND FM_RDS_STATUS
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
  * @param INTACK Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT.
  * @param MTFIFO 0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO.
  * @param STATUSONLY Determines if data should be removed from the RDS FIFO.
  */
-void getRDSStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
+void SI4735::getRDSStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
 {
-    si47x_rds_command  rds;
+    si47x_rds_command rds_cmd;
+    // checking current FUNC (Am or FM)
+    if (currentTune != FM_TUNE_FREQ)
+        return;
 
-    rds.arg.INTACK = INTACK;
-    rds.arg.MTFIFO = MTFIFO;
-    rds.arg.STATUSONLY = STATUSONLY;
+    waitToSend();
 
-    // check..
+    rds_cmd.arg.INTACK = INTACK;
+    rds_cmd.arg.MTFIFO = MTFIFO;
+    rds_cmd.arg.STATUSONLY = STATUSONLY;
 
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(FM_RDS_STATUS);
+    Wire.write(rds_cmd.raw);
+    Wire.endTransmission();
 
+    waitToSend();
+
+    // Get response
+    Wire.requestFrom(SI473X_ADDR, 13);
+
+    // Gets response information
+    // currentRdsStatus will have the RDS information
+    for (byte i = 0; i < 13; i++)
+    {
+        currentRdsStatus.raw[i] = Wire.read();
+    }
+
+    delayMicroseconds(550);
 }
-
 
 #if defined(DEBUG)
 void SI4735::debugStatus()
@@ -568,4 +584,3 @@ void SI4735::debugStatus()
     Serial.println(freq.value);
 }
 #endif
-

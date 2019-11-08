@@ -306,6 +306,7 @@ private:
     si47x_frequency currentFrequency;
     si47x_response_status currentStatus;
     si47x_firmware_information firmwareInfo;
+    si47x_rds_status currentRdsStatus;
 
     si473x_powerup powerUp;
 
