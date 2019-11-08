@@ -5,7 +5,7 @@ This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER,  IC from Si
 [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence)  
 
 By Ricardo Lima Caratti, Oct, 2019. 
-
+Contact pu2clr@gmail.com
 
 __Attention__: 
 
