@@ -47,6 +47,7 @@
  * These data types will be usefull to deal with SI473X 
  *****************************************************************/
 
+
 /*
  * Power Up arguments data type 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65

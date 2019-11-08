@@ -7,7 +7,6 @@
  * 
  * By Ricardo Lima Caratti, Nov 2019.
  */
-
 #include <SI4735.h>
 
 /*
@@ -538,4 +537,3 @@ void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
 
     delayMicroseconds(550);
 }
-
