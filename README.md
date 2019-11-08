@@ -2,6 +2,7 @@
 
 This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER,  IC from Silicon Labs for the Arduino development environment.  This library is intended to provide an easier interface for controlling the SI4435.
 
+Copyright (c) [2019] [Ricardo Lima Caratti] 
 [License Copyright: MIT](https://github.com/pu2clr/SI4735#mit-licence) 
 
 By Ricardo Lima Caratti, Oct, 2019. 
