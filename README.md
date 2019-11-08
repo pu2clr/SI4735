@@ -198,10 +198,9 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 | C4    | 100nF (close to VD pin)|
 | C5 and C6 | 22pF (Crystal load capacitors) | 
 | R3    | 2.2K |
-| R4 and R5[ˆ1] | 10K (pull-up resistors) |
+| (R4 and R5)[ˆ1] | 10K (pull-up resistors) |
 | L1 | Ferrite loop stick (about 500 μH) |
 | X1    | 32.768 kHz crystal |
-
 
   [ˆ1]: R4 and R5 are pull-up resistor included byte the author of this project. They are not present on original Silicon Labs schematic. 
 
