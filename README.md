@@ -70,7 +70,7 @@ __Attention__:
 
 
 
-## MIT Licence 
+## MIT License 
 
 Copyright (c) [2019] [Ricardo Lima Caratti]
 
