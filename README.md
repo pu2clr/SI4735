@@ -150,9 +150,9 @@ The Si4735-D60 is DSP radio receiver IC from Silcon Labs. It has great performan
 | RESPONSEn | Response register (16-bit) in 3-Wire mode (n = 1 to 8)| 
 
 
-
-
 ## SI4735 Arduino Library Features
+
+This library uses the I2C communication protocol and implements most of the functions offered by Si4735 (BROADCAST AM / FM / SW / LW RADIO RECEIVER). 
 
 1. Open Source 
 2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
