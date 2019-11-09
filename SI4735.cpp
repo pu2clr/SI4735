@@ -380,3 +380,14 @@ void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
 
     delayMicroseconds(550);
 }
+
+/*
+ * Gets RDS Statu.
+ * Call getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY) if you want other behaviour
+ */
+void SI4735::getRdsStatus() {
+    getRdsStatus(0,0,0);
+}
+
+
+

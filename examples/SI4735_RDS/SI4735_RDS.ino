@@ -43,6 +43,7 @@ void showCurrenteStatus()
 
 void showRdsText() {
     // TO DO
+    si4735.getRdsStatus();
 }
 
 void loop() {

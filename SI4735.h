@@ -371,10 +371,16 @@ public:
 
     void setFunction(byte FUNC);
     void seekStation(byte SEEKUP, byte WRAP);
-    void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY);
 
-#if defined(DEBUG)
-    // Used to debug purpose
-    void SI4735::debugStatus();
-#endif
+    void getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY);
+    void getRdsStatus();
+    inline bool getRdsReceived() { return currentRdsStatus.resp.RDSRECV; };   // 1 = FIFO filled to minimum number of groups
+    inline bool getRdsSyncLost() { return currentRdsStatus.resp.RDSSYNCLOST; }; // 1 = Lost RDS synchronization
+    inline bool getRdsSyncFound() { return currentRdsStatus.resp.RDSSYNCFOUND; }; // 1 = Found RDS synchronization
+    inline bool getRdsNewBlockA() { return currentRdsStatus.resp.RDSNEWBLOCKA; }; // 1 = Valid Block A data has been received.
+    inline bool getRdsNewBlockB() { return currentRdsStatus.resp.RDSNEWBLOCKB; }; // 1 = Valid Block B data has been received.
+    inline bool getRdsSync() { return currentRdsStatus.resp.RDSSYNC; };           // 1 = RDS currently synchronized.
+    inline bool getGroupLost() { return currentRdsStatus.resp.GRPLOST; };         // 1 = One or more RDS groups discarded due to FIFO overrun.
+    inline byte getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
+    
 };
