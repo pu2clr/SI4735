@@ -99,12 +99,12 @@ If you would like to support this library development, consider joining this pro
 
 ## About the SI4735  
 
-The Si4735-D60 is DSP radio receiver IC from Silcon Labs. It has great performance on AM (LW/MW/SW) and local FM station. The SI4735  is programmed using commands and responses. You can contron it via a microcontroller like Arduino. To make the SI4735 perform an action, the microccontroller have to send a set of bytes (command and arguments) tha the device interpret it and executes the given command.
+The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance on AM (LW/MW/SW) and local FM station. The SI4735  is programmed using commands and responses. You can contron it via a microcontroller like Arduino. To make the SI4735 perform an action, the microccontroller have to send a set of bytes (command and arguments) tha the device interpret it and executes the given command.
 
 
 
 
-### The main Si4735-D60 features
+### The main Si4735 features
 
 * Great Programming Guide and additional documentation to deal with the device
 * FM band support (64–108 MHz)
