@@ -164,8 +164,29 @@ This library uses the I2C communication protocol and implements most of the func
 
 ## Library Installation
 
- TO DO....
+You can install this library on your Arduino environment using different methods. The best ways to do that are described below.  
 
+### Installing via Arduino IDE
+
+This is the easiest method to install this library.
+
+TO DO....
+
+### Installing via this repository 
+
+First, you have to download this library in zip format. [Click here](https://github.com/pu2clr/SI4735/archive/master.zip) to download.
+
+Unzip the SI4735.zip file in your Arduino Library folder. 
+
+On __Windows__: "My Documents\Arduino\libraries"
+On __MAC OS__: ˜/Documents/Arduino/libraries
+
+
+
+
+
+
+### 
 
 
 ## Arduino 5V and Si4844
