@@ -4,14 +4,12 @@ This is an Arduino library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER IC 
 
 This library can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence)  
 
-
 Contact: pu2clr@gmail.com
 
 __Attention__: 
 
 * __Documentation  under construction__. 
 * __The SI4835 is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V converter__.
-
 
 
 ## Summary
