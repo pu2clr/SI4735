@@ -52,8 +52,10 @@ void setup()
 }
 
 void showInfo() {
+  // Check if the RDS event was trigged 
   Serial.print("Monitoring RDS: ");
   Serial.println(si4735.getRadioDataSystemInterrupt());
+  // Add more status information that you want to monitor here
 } 
 
 
