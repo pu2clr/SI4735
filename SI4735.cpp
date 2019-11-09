@@ -15,9 +15,9 @@
 */
 void SI4735::waitInterrupr(void)
 {
-    while (!data_from_si4735)
-        ;
+    while (!data_from_si4735);
 }
+
 
 /*
  * Reset the SI473X   
