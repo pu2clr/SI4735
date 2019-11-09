@@ -330,7 +330,7 @@ public:
     // Status response
     unsigned getFrequency(void);
     inline bool getSignalQualityInterrupt();
-    inline bool getRadioDataSystemInterrupt();
+    inline bool getRadioDataSystemInterrupt(); // RDS
     inline bool getTuneCompleteTriggered();
     inline bool getStatusError();
     inline bool getStatusCTS();

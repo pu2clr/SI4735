@@ -51,6 +51,12 @@ void setup()
   si4735.setVolume(45);
 }
 
+void showInfo() {
+  Serial.print("(RDS): ");
+  Serial.println(si4735.getRadioDataSystemInterrupt());
+} 
+
+
 // Show current frequency
 void showStatus(unsigned freq, String unit)
 {
