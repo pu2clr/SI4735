@@ -33,18 +33,18 @@ void setup()
 
 void showCurrenteStatus()
 {
-    Serial.println("=======================================================");
+    Serial.println("==========================================================");
     Serial.print("You are tuned on ");
     Serial.print(fm_freq);
     Serial.println(" MHz");
     Serial.print("Wait for a RDS message or type S to seek another FM station.");
-    Serial.println("=======================================================");
+    Serial.println("==========================================================");
 }
 
 void showRdsText() {
     // TO DO
     si4735.getRdsStatus();
-    
+
 }
 
 void loop() {
