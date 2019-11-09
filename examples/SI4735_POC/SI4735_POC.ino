@@ -52,8 +52,8 @@ void setup()
 }
 
 void showInfo() {
-  Serial.print("(RDS): ");
-  Serial.println((int) si4735.getRadioDataSystemInterrupt());
+  Serial.print("Monitoring RDS: ");
+  Serial.println(si4735.getRadioDataSystemInterrupt());
 } 
 
 

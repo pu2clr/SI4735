@@ -47,7 +47,6 @@
  * These data types will be usefull to deal with SI473X 
  *****************************************************************/
 
-
 /*
  * Power Up arguments data type 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65
@@ -329,28 +328,37 @@ public:
 
     // Status response
     unsigned getFrequency(void);
-    inline bool getSignalQualityInterrupt();
-    inline bool getRadioDataSystemInterrupt(); // RDS.
-    inline bool getTuneCompleteTriggered();
-    inline bool getStatusError();
-    inline bool getStatusCTS();
-    inline bool getACFIndicator();
-    inline bool getBandLimit();
-    inline bool getStatusValid();
-    inline byte getReceivedSignalStrengthIndicator();
-    inline byte getStatusSNR();
-    inline byte getStatusMULT();
-    inline byte getAntennaTuningCapacitor();
 
-    // Firmware Information
-    inline byte getFirmwarePN();       // RESP1 - Final 2 digits of Part Number (HEX).
-    inline byte getFirmwareFWMAJOR();  // RESP2 - Firmware Major Revision (ASCII).
-    inline byte getFirmwareFWMINOR();  // RESP3 - Firmware Minor Revision (ASCII).
-    inline byte getFirmwarePATCHH();   // RESP4 - Patch ID High Byte (HEX).
-    inline byte getFirmwarePATCHL();   // RESP5 - Patch ID Low Byte (HEX).
-    inline byte getFirmwareCMPMAJOR(); // RESP6 - Component Major Revision (ASCII).
-    inline byte getFirmwareCMPMINOR(); // RESP7 - Component Minor Revision (ASCII).
-    inline byte getFirmwareCHIPREV();  // RESP8 - Chip Revision (ASCII).
+    /* STATUS RESPONSE
+     * Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation
+     * See Si47XX PROGRAMMING GUIDE; AN332; pages 63
+     */
+    inline bool getSignalQualityInterrupt() { return currentStatus.resp.RSQINT; }; // Gets Received Signal Quality Interrupt(RSQINT)
+    inline bool getRadioDataSystemInterrupt() {return currentStatus.resp.RDSINT;}; // Gets Radio Data System (RDS) Interrupt
+    inline bool getTuneCompleteTriggered(){return currentStatus.resp.STCINT;}; // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
+    inline bool getStatusError() { return currentStatus.resp.ERR; };   // Return the Error flag (true or false) of status of the least Tune or Seek
+    inline bool getStatusCTS() { return currentStatus.resp.CTS; };    // Gets the Error flag of status response
+    inline bool getACFIndicator() { return currentStatus.resp.AFCRL; }; // Returns true if the AFC rails (AFC Rail Indicator).
+    inline bool getBandLimit() { return currentStatus.resp.BLTF; };     // Returns true if a seek hit the band limit (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
+    inline bool getStatusValid() { return currentStatus.resp.VALID; }; // eturns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)
+    inline byte getReceivedSignalStrengthIndicator() { return currentStatus.resp.RSSI; }; // Returns integer Received Signal Strength Indicator (dBμV).
+    inline byte getStatusSNR() { return currentStatus.resp.SNR; }; // returns integer containing the SNR metric when tune is complete (dB).
+    inline byte getStatusMULT() { return currentStatus.resp.MULT; }; // Returns integer containing the multipath metric when tune is complete.
+    inline byte getAntennaTuningCapacitor() { return currentStatus.resp.READANTCAP; }; // Returns integer containing the current antenna tuning capacitor value.
+
+    /*
+     * FIRMWARE RESPONSE
+     * 
+     * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+     */
+    inline byte getFirmwarePN() { return firmwareInfo.resp.PN; }; //  RESP1 - Part Number (HEX)
+    inline byte getFirmwareFWMAJOR() { return firmwareInfo.resp.FWMAJOR; }; // RESP2 - Returns the Firmware Major Revision (ASCII).
+    inline byte getFirmwareFWMINOR() { return firmwareInfo.resp.FWMINOR; }; // RESP3 - Returns the Firmware Minor Revision (ASCII).
+    inline byte getFirmwarePATCHH() { return firmwareInfo.resp.PATCHH; }; // RESP4 -  Returns the Patch ID High Byte (HEX).
+    inline byte getFirmwarePATCHL() { return firmwareInfo.resp.PATCHL; }; // RESP5 - Returns the Patch ID Low Byte (HEX).
+    inline byte getFirmwareCMPMAJOR() { return firmwareInfo.resp.CMPMAJOR; }; // RESP6 -  Returns the Component Major Revision (ASCII).
+    inline byte getFirmwareCMPMINOR() { return firmwareInfo.resp.CMPMINOR; }; // RESP7 - Returns the Component Minor Revision (ASCII).
+    inline byte getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; }; // RESP8 -  Returns the Chip Revision (ASCII).
 
     void setVolume(byte volume);
     void volumeDown();

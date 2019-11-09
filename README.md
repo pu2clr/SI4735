@@ -631,7 +631,7 @@ inline bool SI4735::getRadioDataSystemInterrupt()
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 63
  * @return true or false
  */
-inline bool SI4735::getStatusError() {
+inline bool SI4735::getStatusError()
 ```
 
 
