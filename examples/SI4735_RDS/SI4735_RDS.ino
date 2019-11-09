@@ -41,10 +41,12 @@ void showCurrenteStatus()
     Serial.println("==========================================================");
 }
 
+
 void showRdsText() {
     si4735.getRdsStatus();
     // TO DO
 }
+
 
 void loop() {
 
