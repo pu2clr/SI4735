@@ -24,11 +24,13 @@ __Attention__:
 5. [Terminology](https://github.com/pu2clr/SI4735#si4735-terminology)
 6. [Labrary Features](https://github.com/pu2clr/SI4735#si4735-arduino-library-features)
 7. [Library Installation](https://github.com/pu2clr/SI4735#library-installation)
+   * [Installing via Arduino IDE](https://github.com/pu2clr/SI4735#installing-via-arduino-ide)
+   * [Installing via this repository](https://github.com/pu2clr/SI4735#installing-via-this-repository) 
 8. [Hardware Requirements and Setup](https://github.com/pu2clr/SI4735#hardware-requirements-and-setup)
    * [Schematic](https://github.com/pu2clr/SI4735#schematic)
    * [Component Parts](https://github.com/pu2clr/SI4735#parts)
    * [Photos](https://github.com/pu2clr/SI4735#photos)
-9. [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
+9.  [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
    * [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
    * [__Public Methods__](https://github.com/pu2clr/SI4735#public-methods)
      * [__Usual methods__](https://github.com/pu2clr/SI4735#public-methods)
@@ -65,9 +67,9 @@ __Attention__:
        * [getFirmwareCMPMAJOR](https://github.com/pu2clr/SI4735#getfirmwarecmpmajor)
        * [getFirmwareCMPMINOR](https://github.com/pu2clr/SI4735#getfirmwarecmpminor)
        * [getFirmwareCHIPREV](https://github.com/pu2clr/SI4735#getfirmwarechiprev)
-10. [References](https://github.com/pu2clr/SI4735#references)
-11. [Examples]()
-12. [Videos]() 
+11. [References](https://github.com/pu2clr/SI4735#references)
+12. [Examples]()
+13. [Videos]() 
 
 
 
