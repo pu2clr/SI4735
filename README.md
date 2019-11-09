@@ -99,14 +99,13 @@ If you would like to support this library development, consider joining this pro
 
 ## About the SI4735  
 
-The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance on AM (LW/MW/SW) and local FM station. The SI4735  is programmed using commands and responses. You can contron it via a microcontroller like Arduino. To make the SI4735 perform an action, the microccontroller have to send a set of bytes (command and arguments) tha the device interpret it and executes the given command.
+The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance on AM (LW/MW/SW) and local FM station. The SI4735 can be programmed by using commands and responses. You can contron it via a microcontroller like Arduino. To make the SI4735 perform an action, the microccontroller have to send a set of bytes (command and arguments) tha the device interpret it and executes the given command.
 
 
 
 
 ### The main Si4735 features
 
-* Great Programming Guide and additional documentation to deal with the device
 * FM band support (64–108 MHz)
 * AM (MW) band support (520–1710 kHz)
 * SW band support (2.3–26.1 MHz)
@@ -120,6 +119,7 @@ The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance o
 * RDS/RBDS processor
 * Digital audio out
 * I2C and SPI interface 
+* Great Programming Guide and additional documentation to deal with the device
 
 
 
@@ -161,6 +161,7 @@ This library uses the I2C communication protocol and implements most of the func
 3. C++ Lenguage and Object-oriented programming
 4. Available on Arduino IDE (Manage Libraries)
 5. Simplifies projects based on SI4735
+6. I2C communication
 
 
 
