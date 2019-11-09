@@ -53,7 +53,7 @@ void setup()
 
 void showInfo() {
   Serial.print("(RDS): ");
-  Serial.println(si4735.getRadioDataSystemInterrupt());
+  Serial.println((int) si4735.getRadioDataSystemInterrupt());
 } 
 
 
@@ -192,6 +192,7 @@ void loop()
     case '?': 
         // Show Status information
         si4735.getStatus(); 
+        showInfo();
         break;  
     default:
       break;
