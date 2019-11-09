@@ -6,7 +6,7 @@ This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER,  IC from Si
 
 By Ricardo Lima Caratti, Oct, 2019.
  
-Contact pu2clr@gmail.com
+Contact: pu2clr@gmail.com
 
 __Attention__: 
 
