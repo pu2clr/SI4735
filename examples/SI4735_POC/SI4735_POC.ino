@@ -36,20 +36,25 @@ void setup()
   si4735.setup(RESET_PIN, INTERRUPT_PIN, FM_FUNCTION);
   delay(500);
 
-  Serial.println("==================================================");
-  Serial.println("Type F to FM; A to AM");
-  Serial.println("Type I to increase and D to decrease the frequency");
-  Serial.println("Type S to seek station");
-  Serial.println("Type + or - to volume Up or Down");  
-  Serial.println("Type ? to debug. See SI4735.h to anable or disable it");  
-  Serial.println("==================================================");
-
- 
+  showHelp();
+  
   band = FM_FUNCTION;
   si4735.setFrequency(fm_freq);
   showStatus(fm_freq, "MHz");
   si4735.setVolume(45);
 }
+
+
+void showHelp() {
+  Serial.println("==================================================");
+  Serial.println("Type F to FM; A to AM");
+  Serial.println("Type I to increase and D to decrease the frequency");
+  Serial.println("Type S to seek station");
+  Serial.println("Type + or - to volume Up or Down");  
+  Serial.println("Type ? to this help.");  
+  Serial.println("==================================================");
+}
+
 
 void showInfo() {
   // Check if the RDS event was trigged 
@@ -192,12 +197,11 @@ void loop()
       }
       break;
     case '?': 
-        // Show Status information
-        si4735.getStatus(); 
-        showInfo();
+        showHelp();
         break;  
     default:
       break;
     }
   }
+  delay(10);
 }

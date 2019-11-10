@@ -1,6 +1,6 @@
 /*
  * RDS test
- */ 
+ */
 
 #include <SI4735.h>
 
@@ -24,45 +24,68 @@ void setup()
     delay(500);
 
     si4735.setup(RESET_PIN, INTERRUPT_PIN, FM_FUNCTION);
-    si4735.setFrequency(fm_freq);
     si4735.setVolume(45);
+    delay(500);
+    si4735.setFrequency(fm_freq);
 
     showCurrenteStatus();
 
+    si4735.setRdsConfig(1, 2, 2, 2, 2);
 }
 
 void showCurrenteStatus()
 {
     Serial.println("==========================================================");
     Serial.print("You are tuned on ");
-    Serial.print(fm_freq);
+    Serial.print( String(fm_freq/100.0,2));
     Serial.println(" MHz");
-    Serial.print("Wait for a RDS message or type S to seek another FM station.");
+    Serial.println("Wait for a RDS message or type S to seek another FM station.");
     Serial.println("==========================================================");
 }
 
-
-void showRdsText() {
+void showRdsText()
+{
     si4735.getRdsStatus();
     // TO DO
 }
 
-
-void loop() {
-
+void loop()
+{
     if (Serial.available() > 0)
     {
         char key = Serial.read();
-        if ( key == 'S' || key == 's') {
+        if (key == 'S' || key == 's')
+        {
             si4735.seekStation(1, 1); // // Look for the next station FM
             fm_freq = si4735.getFrequency();
             showCurrenteStatus();
-        }
+        } else if ( key == '+' ) {
+            si4735.volumeUp();
+        } else if ( key == '-' ) {
+            si4735.volumeDown();
+        }   
     }
-
-    // check the RDS status 
-    if ( si4735.getRadioDataSystemInterrupt() ) {
-       // TO DO 
-    } 
+    si4735.getRdsStatus();
+    if (si4735.getRdsReceived())
+    {   
+        /*
+        Serial.println("RDS is alive!");
+        if (si4735.getRdsNewBlockA() ) {
+          // Serial.print("Valid Block A: ");
+          // Serial.print(si4735.currentRdsStatus.resp.BLOCKAH);
+          // Serial.print(" ");
+          // Serial.println(char(si4735.currentRdsStatus.resp.BLOCKAL));
+        }
+        if (si4735.getRdsNewBlockB() ) { 
+          Serial.print("Valid Block B: ");
+          Serial.print(si4735.currentRdsStatus.resp.BLOCKBH);
+          Serial.print(" ");
+          Serial.println(char(si4735.currentRdsStatus.resp.BLOCKBL));
+        } */
+          Serial.print(char(si4735.currentRdsStatus.resp.BLOCKDH));
+          Serial.print(char(si4735.currentRdsStatus.resp.BLOCKDL));
+        // if (si4735.getRdsSync() ) Serial.println("RDS currently synchronized");
+        delay(400);
+    }
     delay(10);
 }

@@ -12,6 +12,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 
+// SI473X commands
 #define SI473X_ADDR 0x11    // SI473X I2C buss address
 #define POWER_UP 0x01       // Power up device and mode selection.
 #define GET_REV 0x10        // Returns revision information on the device.
@@ -36,9 +37,17 @@
 #define GPIO_SET 0x81        // Sets GPO1, 2, and 3 output level (low or high).
 
 #define TX_TUNE_FREQ 0x30 // CMD
-#define SET_PROPERTY 0x12 // CMD
+
+// SI473X Properties
 #define RX_VOLUME 0x4000
 
+#define FM_RDS_INT_SOURCE 0x1500
+#define FM_RDS_INT_FIFO_COUNT 0x1501
+#define FM_RDS_CONFIG 0x1502
+#define FM_RDS_CONFIDENCE 0x1503
+
+
+// Parameters
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
 #define SI473X_DIGITAL_AUDIO B00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
 
@@ -281,6 +290,43 @@ typedef union {
     byte raw[13];
 } si47x_rds_status;
 
+/*
+ * Property Data type to deal with SET_PROPERTY command on si473X
+ */
+typedef union {
+    struct
+    {
+        byte byteLow;
+        byte byteHigh;
+    } raw;
+    unsigned value;
+} si47x_property;
+
+/*
+ * Data type for FM_RDS_CONFIG Property
+ * 
+ * IMPORTANT: all block errors must be less than or equal the associated block error threshold for the group 
+ * to be stored in the RDS FIFO. 
+ * 0 = No errors. 1 = 1–2 bit errors detected and corrected. 2 = 3–5 bit errors detected and corrected. 3 = Uncorrectable.
+ * Recommended Block Error Threshold options:
+ *  2,2,2,2 = No group stored if any errors are uncorrected.
+ *  3,3,3,3 = Group stored regardless of errors.
+ *  0,0,0,0 = No group stored containing corrected or uncorrected errors.
+ *  3,2,3,3 = Group stored with corrected errors on B, regardless of errors on A, C, or D.
+ */
+typedef union {
+    struct
+    {
+        byte RDSEN : 1; // 1 = RDS Processing Enable.
+        byte DUMMY1 : 7;
+        byte BLETHD : 2; // Block Error Threshold BLOCKD
+        byte BLETHC : 2; // Block Error Threshold BLOCKC.
+        byte BLETHB : 2; // Block Error Threshold BLOCKB.
+        byte BLETHA : 2; // Block Error Threshold BLOCKA.
+    } arg;
+    byte raw[2];
+} si47x_rds_config;
+
 /************************ Deal with Interrupt  *************************/
 
 volatile static bool data_from_si4735;
@@ -289,7 +335,6 @@ static void interrupt_hundler()
 {
     data_from_si4735 = true;
 };
-
 
 /************************* SI4735 Class definition ********************/
 
@@ -305,7 +350,7 @@ private:
     si47x_frequency currentFrequency;
     si47x_response_status currentStatus;
     si47x_firmware_information firmwareInfo;
-    si47x_rds_status currentRdsStatus;
+    // si47x_rds_status currentRdsStatus;
 
     si473x_powerup powerUp;
 
@@ -316,6 +361,9 @@ private:
     void waitToSend(void);
 
 public:
+
+    si47x_rds_status currentRdsStatus;
+
     void setup(byte resetPin, byte interruptPin, byte defaultFunction);
     void setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE);
     void analogPowerUp(void);
@@ -334,32 +382,32 @@ public:
      * Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation
      * See Si47XX PROGRAMMING GUIDE; AN332; pages 63
      */
-    inline bool getSignalQualityInterrupt() { return currentStatus.resp.RSQINT; }; // Gets Received Signal Quality Interrupt(RSQINT)
-    inline bool getRadioDataSystemInterrupt() {return currentStatus.resp.RDSINT;}; // Gets Radio Data System (RDS) Interrupt
-    inline bool getTuneCompleteTriggered(){return currentStatus.resp.STCINT;}; // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
-    inline bool getStatusError() { return currentStatus.resp.ERR; };   // Return the Error flag (true or false) of status of the least Tune or Seek
-    inline bool getStatusCTS() { return currentStatus.resp.CTS; };    // Gets the Error flag of status response
-    inline bool getACFIndicator() { return currentStatus.resp.AFCRL; }; // Returns true if the AFC rails (AFC Rail Indicator).
-    inline bool getBandLimit() { return currentStatus.resp.BLTF; };     // Returns true if a seek hit the band limit (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
-    inline bool getStatusValid() { return currentStatus.resp.VALID; }; // eturns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)
+    inline bool getSignalQualityInterrupt() { return currentStatus.resp.RSQINT; };        // Gets Received Signal Quality Interrupt(RSQINT)
+    inline bool getRadioDataSystemInterrupt() { return currentStatus.resp.RDSINT; };      // Gets Radio Data System (RDS) Interrupt
+    inline bool getTuneCompleteTriggered() { return currentStatus.resp.STCINT; };         // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
+    inline bool getStatusError() { return currentStatus.resp.ERR; };                      // Return the Error flag (true or false) of status of the least Tune or Seek
+    inline bool getStatusCTS() { return currentStatus.resp.CTS; };                        // Gets the Error flag of status response
+    inline bool getACFIndicator() { return currentStatus.resp.AFCRL; };                   // Returns true if the AFC rails (AFC Rail Indicator).
+    inline bool getBandLimit() { return currentStatus.resp.BLTF; };                       // Returns true if a seek hit the band limit (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
+    inline bool getStatusValid() { return currentStatus.resp.VALID; };                    // eturns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)
     inline byte getReceivedSignalStrengthIndicator() { return currentStatus.resp.RSSI; }; // Returns integer Received Signal Strength Indicator (dBμV).
-    inline byte getStatusSNR() { return currentStatus.resp.SNR; }; // returns integer containing the SNR metric when tune is complete (dB).
-    inline byte getStatusMULT() { return currentStatus.resp.MULT; }; // Returns integer containing the multipath metric when tune is complete.
-    inline byte getAntennaTuningCapacitor() { return currentStatus.resp.READANTCAP; }; // Returns integer containing the current antenna tuning capacitor value.
+    inline byte getStatusSNR() { return currentStatus.resp.SNR; };                        // returns integer containing the SNR metric when tune is complete (dB).
+    inline byte getStatusMULT() { return currentStatus.resp.MULT; };                      // Returns integer containing the multipath metric when tune is complete.
+    inline byte getAntennaTuningCapacitor() { return currentStatus.resp.READANTCAP; };    // Returns integer containing the current antenna tuning capacitor value.
 
     /*
      * FIRMWARE RESPONSE
      * 
      * See Si47XX PROGRAMMING GUIDE; AN332; page 66
      */
-    inline byte getFirmwarePN() { return firmwareInfo.resp.PN; }; //  RESP1 - Part Number (HEX)
-    inline byte getFirmwareFWMAJOR() { return firmwareInfo.resp.FWMAJOR; }; // RESP2 - Returns the Firmware Major Revision (ASCII).
-    inline byte getFirmwareFWMINOR() { return firmwareInfo.resp.FWMINOR; }; // RESP3 - Returns the Firmware Minor Revision (ASCII).
-    inline byte getFirmwarePATCHH() { return firmwareInfo.resp.PATCHH; }; // RESP4 -  Returns the Patch ID High Byte (HEX).
-    inline byte getFirmwarePATCHL() { return firmwareInfo.resp.PATCHL; }; // RESP5 - Returns the Patch ID Low Byte (HEX).
+    inline byte getFirmwarePN() { return firmwareInfo.resp.PN; };             //  RESP1 - Part Number (HEX)
+    inline byte getFirmwareFWMAJOR() { return firmwareInfo.resp.FWMAJOR; };   // RESP2 - Returns the Firmware Major Revision (ASCII).
+    inline byte getFirmwareFWMINOR() { return firmwareInfo.resp.FWMINOR; };   // RESP3 - Returns the Firmware Minor Revision (ASCII).
+    inline byte getFirmwarePATCHH() { return firmwareInfo.resp.PATCHH; };     // RESP4 -  Returns the Patch ID High Byte (HEX).
+    inline byte getFirmwarePATCHL() { return firmwareInfo.resp.PATCHL; };     // RESP5 - Returns the Patch ID Low Byte (HEX).
     inline byte getFirmwareCMPMAJOR() { return firmwareInfo.resp.CMPMAJOR; }; // RESP6 -  Returns the Component Major Revision (ASCII).
     inline byte getFirmwareCMPMINOR() { return firmwareInfo.resp.CMPMINOR; }; // RESP7 - Returns the Component Minor Revision (ASCII).
-    inline byte getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; }; // RESP8 -  Returns the Chip Revision (ASCII).
+    inline byte getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; };   // RESP8 -  Returns the Chip Revision (ASCII).
 
     void setVolume(byte volume);
     void volumeDown();
@@ -374,13 +422,14 @@ public:
 
     void getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY);
     void getRdsStatus();
-    inline bool getRdsReceived() { return currentRdsStatus.resp.RDSRECV; };   // 1 = FIFO filled to minimum number of groups
-    inline bool getRdsSyncLost() { return currentRdsStatus.resp.RDSSYNCLOST; }; // 1 = Lost RDS synchronization
-    inline bool getRdsSyncFound() { return currentRdsStatus.resp.RDSSYNCFOUND; }; // 1 = Found RDS synchronization
-    inline bool getRdsNewBlockA() { return currentRdsStatus.resp.RDSNEWBLOCKA; }; // 1 = Valid Block A data has been received.
-    inline bool getRdsNewBlockB() { return currentRdsStatus.resp.RDSNEWBLOCKB; }; // 1 = Valid Block B data has been received.
-    inline bool getRdsSync() { return currentRdsStatus.resp.RDSSYNC; };           // 1 = RDS currently synchronized.
-    inline bool getGroupLost() { return currentRdsStatus.resp.GRPLOST; };         // 1 = One or more RDS groups discarded due to FIFO overrun.
+    inline bool getRdsReceived() { return currentRdsStatus.resp.RDSRECV; };        // 1 = FIFO filled to minimum number of groups
+    inline bool getRdsSyncLost() { return currentRdsStatus.resp.RDSSYNCLOST; };    // 1 = Lost RDS synchronization
+    inline bool getRdsSyncFound() { return currentRdsStatus.resp.RDSSYNCFOUND; };  // 1 = Found RDS synchronization
+    inline bool getRdsNewBlockA() { return currentRdsStatus.resp.RDSNEWBLOCKA; };  // 1 = Valid Block A data has been received.
+    inline bool getRdsNewBlockB() { return currentRdsStatus.resp.RDSNEWBLOCKB; };  // 1 = Valid Block B data has been received.
+    inline bool getRdsSync() { return currentRdsStatus.resp.RDSSYNC; };            // 1 = RDS currently synchronized.
+    inline bool getGroupLost() { return currentRdsStatus.resp.GRPLOST; };          // 1 = One or more RDS groups discarded due to FIFO overrun.
     inline byte getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
-    
+
+    void setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD);
 };

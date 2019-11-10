@@ -389,5 +389,54 @@ void SI4735::getRdsStatus() {
     getRdsStatus(0,0,0);
 }
 
+/*
+ * Set RDS property 
+ * 
+ * @param byte RDSEN RDS Processing Enable; 1 = RDS processing enabled.
+ * @param byte BLETHA Block Error Threshold BLOCKA.   
+ * @param byte BLETHB Block Error Threshold BLOCKB.  
+ * @param byte BLETHC Block Error Threshold BLOCKC.  
+ * @param byte BLETHD Block Error Threshold BLOCKD. 
+ *  
+ * IMPORTANT: 
+ * All block errors must be less than or equal the associated block error threshold 
+ * for the group to be stored in the RDS FIFO. 
+ * 0 = No errors.
+ * 1 = 1–2 bit errors detected and corrected. 
+ * 2 = 3–5 bit errors detected and corrected. 
+ * 3 = Uncorrectable.
+ * Recommended Block Error Threshold options:
+ *  2,2,2,2 = No group stored if any errors are uncorrected.
+ *  3,3,3,3 = Group stored regardless of errors.
+ *  0,0,0,0 = No group stored containing corrected or uncorrected errors.
+ *  3,2,3,3 = Group stored with corrected errors on B, regardless of errors on A, C, or D.
+ */
+void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD)
+{
+    si47x_property property;
+    si47x_rds_config config;
+
+    waitToSend();
+
+    // Set property value
+    property.value = FM_RDS_CONFIG;
+
+    // Arguments
+    config.arg.RDSEN = RDSEN;
+    config.arg.BLETHA = BLETHA;
+    config.arg.BLETHB = BLETHB;
+    config.arg.BLETHC = BLETHC;
+    config.arg.BLETHD = BLETHD;
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);   // Always 0x00 (I need to check it)
+    Wire.write(property.raw.byteHigh); // Send property - High Byte - most significant first
+    Wire.write(property.raw.byteLow); // Low Byte
+    Wire.write(config.raw[1]);        // Send the argments. Most significant first
+    Wire.write(config.raw[0]);
+    Wire.endTransmission();
+    delayMicroseconds(550);
+}
 
 

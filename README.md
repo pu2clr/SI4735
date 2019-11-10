@@ -814,6 +814,8 @@ inline byte SI4735::getFirmwareCHIPREV()
 2. [BROADCAST AM/FM/SW/LW RADIO RECEIVER](https://www.silabs.com/documents/public/data-sheets/Si4730-31-34-35-D60.pdf)
 3. [SI47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
 4. [Installing Additional Arduino Libraries](https://www.arduino.cc/en/Guide/Libraries#toc3)
+5. [Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
+6. [RDS Encoder](https://haddadi.github.io/papers/RDSencoderHaddadi.pdf)
 
 
 ## Videos
