@@ -362,7 +362,7 @@ private:
 
 public:
 
-    si47x_rds_status currentRdsStatus;
+    si47x_rds_status currentRdsStatus; // Will back to private
 
     void setup(byte resetPin, byte interruptPin, byte defaultFunction);
     void setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE);
