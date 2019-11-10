@@ -816,6 +816,8 @@ inline byte SI4735::getFirmwareCHIPREV()
 4. [Installing Additional Arduino Libraries](https://www.arduino.cc/en/Guide/Libraries#toc3)
 5. [Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
 6. [RDS Encoder](https://haddadi.github.io/papers/RDSencoderHaddadi.pdf)
+7. [RDS in Europe, RBDS in the USA –What are the differences and how canreceivers cope with both systems?](https://sigidwiki.com/images/a/ad/RDS_in_Europe,_RBDS_in_the_USA.pdf)
+8. [RBDS & RDS PTY Codes and Program Types](https://www.fmsystems-inc.com/rbds-rds-pty-codes-program-types/)
 
 
 ## Videos
