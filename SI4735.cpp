@@ -451,9 +451,12 @@ byte SI4735::getRdsProgramType(void) {
     
     if (getRdsReceived() && getRdsNewBlockA())
     {
-        blockA.raw.byteHigh = currentRdsStatus.resp.BLOCKAH;
+        blockA.raw.byteHigh = 0; //currentRdsStatus.resp.BLOCKAH;
         blockA.raw.byteLow = currentRdsStatus.resp.BLOCKAL;
-        return blockA.value;
+        return (blockA.value > 31) ? 0 : blockA.value;
     }
     return 0;
 }
+
+
+

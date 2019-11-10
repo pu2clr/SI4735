@@ -818,6 +818,7 @@ inline byte SI4735::getFirmwareCHIPREV()
 6. [RDS Encoder](https://haddadi.github.io/papers/RDSencoderHaddadi.pdf)
 7. [RDS in Europe, RBDS in the USA –What are the differences and how canreceivers cope with both systems?](https://sigidwiki.com/images/a/ad/RDS_in_Europe,_RBDS_in_the_USA.pdf)
 8. [RBDS & RDS PTY Codes and Program Types](https://www.fmsystems-inc.com/rbds-rds-pty-codes-program-types/)
+9. [Using RDS/RBDS with the Si4701/03](https://www.silabs.com/documents/public/application-notes/AN243.pdf)
 
 
 ## Videos
