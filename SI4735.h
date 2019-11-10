@@ -303,6 +303,18 @@ typedef union {
 } si47x_property;
 
 /*
+ * Property Data type to deal with SET_PROPERTY command on si473X
+ */
+typedef union {
+    struct
+    {
+        byte byteLow;
+        byte byteHigh;
+    } raw;
+    unsigned value;
+} si47x_rds_block;
+
+/*
  * Data type for FM_RDS_CONFIG Property
  * 
  * IMPORTANT: all block errors must be less than or equal the associated block error threshold for the group 
@@ -350,7 +362,7 @@ private:
     si47x_frequency currentFrequency;
     si47x_response_status currentStatus;
     si47x_firmware_information firmwareInfo;
-    // si47x_rds_status currentRdsStatus;
+    si47x_rds_status currentRdsStatus;
 
     si473x_powerup powerUp;
 
@@ -361,8 +373,6 @@ private:
     void waitToSend(void);
 
 public:
-
-    si47x_rds_status currentRdsStatus; // Will back to private
 
     void setup(byte resetPin, byte interruptPin, byte defaultFunction);
     void setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE);
@@ -432,4 +442,6 @@ public:
     inline byte getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
 
     void setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD);
+    byte getRdsProgramType(void);
+
 };

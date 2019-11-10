@@ -68,23 +68,9 @@ void loop()
     si4735.getRdsStatus();
     if (si4735.getRdsReceived())
     {   
-        /*
-        Serial.println("RDS is alive!");
-        if (si4735.getRdsNewBlockA() ) {
-          // Serial.print("Valid Block A: ");
-          // Serial.print(si4735.currentRdsStatus.resp.BLOCKAH);
-          // Serial.print(" ");
-          // Serial.println(char(si4735.currentRdsStatus.resp.BLOCKAL));
-        }
-        if (si4735.getRdsNewBlockB() ) { 
-          Serial.print("Valid Block B: ");
-          Serial.print(si4735.currentRdsStatus.resp.BLOCKBH);
-          Serial.print(" ");
-          Serial.println(char(si4735.currentRdsStatus.resp.BLOCKBL));
-        } */
-          Serial.print(char(si4735.currentRdsStatus.resp.BLOCKDH));
-          Serial.print(char(si4735.currentRdsStatus.resp.BLOCKDL));
-        // if (si4735.getRdsSync() ) Serial.println("RDS currently synchronized");
+        Serial.print("Program Type: ");
+        Serial.print(si4735.getRdsProgramType());
+        Serial.println("\n==========================================================");
         delay(400);
     }
     delay(10);
