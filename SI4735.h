@@ -370,7 +370,6 @@ typedef union {
 
 
 
-
 /************************ Deal with Interrupt  *************************/
 
 volatile static bool data_from_si4735;
