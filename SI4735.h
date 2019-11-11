@@ -301,7 +301,6 @@ typedef union {
     unsigned value;
 } si47x_property;
 
-
 /*
  * Data type for FM_RDS_CONFIG Property
  * 
@@ -326,6 +325,51 @@ typedef union {
     } arg;
     byte raw[2];
 } si47x_rds_config;
+
+
+/*
+ * Block A data type
+ */ 
+typedef union {
+    struct
+    {
+        byte contryCode : 4; // Country code. Cannot be 0.
+        byte coverageAreaCode : 4; // Coverage area code.
+        byte programType; //  Assigned ID code.Cannot be 0.
+    } refined;
+    struct
+    {
+        byte lowValue;
+        byte highValue;
+    } raw;
+} si47x_rds_blocka;
+
+/*
+ * Block B data type
+ * Group Type Contents
+ *  0A/B    Basic information
+ *  1A      Additional information
+ *  2A/B    Radio Text
+ *  3A      Setup open data application 4A Date and time
+ *  10A     Program Type Name 15B Basic information
+ */
+typedef union {
+    struct
+    {
+        byte groupType : 4;          // Group Type code.
+        byte versionCode : 1;        // 0=A; 1=B
+        byte trafficProgramCode : 1; // 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
+        byte programType : 5;        // PTY (Program Type) code
+        byte content : 5;            // Depends on Group Type and Version codes.
+    } refined;
+    struct {
+        byte lowValue;
+        byte highValue;
+    } raw;
+} si47x_rds_blockb;
+
+
+
 
 /************************ Deal with Interrupt  *************************/
 
