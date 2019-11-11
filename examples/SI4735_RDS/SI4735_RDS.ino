@@ -56,7 +56,7 @@ void setup()
 }
 
 void showHelp() {
-    Serial.println("==========================================================");
+    Serial.println("=============================================");
     Serial.println("Type: S  to seek the next FM station.");
     Serial.println("      s  to seek the previous FM station.");    
     Serial.println("      >  to increase the frequency");
@@ -64,18 +64,16 @@ void showHelp() {
     Serial.println("      +  to volume up");
     Serial.println("      +  to volume down");
     Serial.println("      ?  to show this help");
-    Serial.println("==========================================================");  
+    Serial.println("=============================================");  
 }
 
 void showCurrenteStatus()
 {
-    delay(100);
-    Serial.println("==========================================================");
+    Serial.println("================================");
     Serial.print("You are tuned on ");
     Serial.print( String(fm_freq/100.0,2));
     Serial.println(" MHz");
-    // Serial.println("Wait for a RDS message or type S to seek another FM station.");
-    // Serial.println("==========================================================");
+    Serial.println("================================");
 }
 
 void showRdsText()
