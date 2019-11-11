@@ -46,7 +46,6 @@
 #define FM_RDS_CONFIG 0x1502
 #define FM_RDS_CONFIDENCE 0x1503
 
-
 // Parameters
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
 #define SI473X_DIGITAL_AUDIO B00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
@@ -302,17 +301,6 @@ typedef union {
     unsigned value;
 } si47x_property;
 
-/*
- * Property Data type to deal with SET_PROPERTY command on si473X
- */
-typedef union {
-    struct
-    {
-        byte byteLow;
-        byte byteHigh;
-    } raw;
-    unsigned value;
-} si47x_rds_block;
 
 /*
  * Data type for FM_RDS_CONFIG Property
@@ -373,7 +361,6 @@ private:
     void waitToSend(void);
 
 public:
-
     void setup(byte resetPin, byte interruptPin, byte defaultFunction);
     void setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE);
     void analogPowerUp(void);
@@ -442,6 +429,5 @@ public:
     inline byte getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
 
     void setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD);
-    byte getRdsProgramType(void);
-
+    unsigned getRdsProgramType(void);
 };

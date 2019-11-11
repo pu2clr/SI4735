@@ -91,7 +91,7 @@ void loop()
         Serial.print(i);
         // Serial.print("- UE:");
         // Serial.print(tabProgramTypeUE[i]);
-        Serial.print("- EUA:");
+        Serial.print("- EUA: ");
         Serial.print(tabProgramTypeEUA[i]);
         Serial.println("\n==========================================================");
         delay(400);

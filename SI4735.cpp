@@ -445,15 +445,11 @@ void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byt
  * Returns the programa type. 
  * Read the Block A content
  */  
-byte SI4735::getRdsProgramType(void) {
+unsigned SI4735::getRdsProgramType(void) {
 
-    si47x_rds_block blockA;
-    
     if (getRdsReceived() && getRdsNewBlockA())
     {
-        blockA.raw.byteHigh = 0; //currentRdsStatus.resp.BLOCKAH;
-        blockA.raw.byteLow = currentRdsStatus.resp.BLOCKAL;
-        return (blockA.value > 31) ? 0 : blockA.value;
+        return (currentRdsStatus.resp.BLOCKAL > 31) ? 0 : currentRdsStatus.resp.BLOCKAL;
     }
     return 0;
 }
