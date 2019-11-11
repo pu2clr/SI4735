@@ -339,8 +339,8 @@ typedef union {
     } refined;
     struct
     {
-        byte lowValue;
         byte highValue;
+        byte lowValue;
     } raw;
 } si47x_rds_blocka;
 
@@ -459,6 +459,8 @@ public:
 
     void setFunction(byte FUNC);
     void seekStation(byte SEEKUP, byte WRAP);
+    void seekStationUp();
+    void seekStationDown();
 
     void getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY);
     void getRdsStatus();
@@ -473,4 +475,7 @@ public:
 
     void setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD);
     unsigned getRdsProgramType(void);
+    unsigned getRdsGroupType(void);
+    unsigned getRdsProgramTypeB(void);
+    String getRdsText(void);
 };

@@ -47,20 +47,35 @@ void setup()
     si4735.setVolume(45);
     delay(500);
     si4735.setFrequency(fm_freq);
+    delay(100);
+    showHelp();
  
     showCurrenteStatus();
 
     si4735.setRdsConfig(1, 2, 2, 2, 2);
 }
 
+void showHelp() {
+    Serial.println("==========================================================");
+    Serial.println("Type: S  to seek the next FM station.");
+    Serial.println("      s  to seek the previous FM station.");    
+    Serial.println("      >  to increase the frequency");
+    Serial.println("      <  to decreasee the frequency");
+    Serial.println("      +  to volume up");
+    Serial.println("      +  to volume down");
+    Serial.println("      ?  to show this help");
+    Serial.println("==========================================================");  
+}
+
 void showCurrenteStatus()
 {
+    delay(100);
     Serial.println("==========================================================");
     Serial.print("You are tuned on ");
     Serial.print( String(fm_freq/100.0,2));
     Serial.println(" MHz");
-    Serial.println("Wait for a RDS message or type S to seek another FM station.");
-    Serial.println("==========================================================");
+    // Serial.println("Wait for a RDS message or type S to seek another FM station.");
+    // Serial.println("==========================================================");
 }
 
 void showRdsText()
@@ -73,30 +88,58 @@ void loop()
 {
     if (Serial.available() > 0)
     {
+          
         char key = Serial.read();
-        if (key == 'S' || key == 's')
+        if (key == 'S')
         {
-            si4735.seekStation(1, 1); // // Look for the next station FM
+            si4735.seekStationUp(); // Look for the next station FM
             fm_freq = si4735.getFrequency();
             showCurrenteStatus();
+        } else if (key == 's') {
+            si4735.seekStationDown(); //Look for the previous station FM
+            fm_freq = si4735.getFrequency();
+            showCurrenteStatus();               
         } else if ( key == '+' ) {
             si4735.volumeUp();
         } else if ( key == '-' ) {
-            si4735.volumeDown();
-        }   
+            si4735.volumeDown(); 
+        } else if ( key == '>' || key == '.' ) {
+          fm_freq += 10;
+          si4735.setFrequency(fm_freq);
+          showCurrenteStatus();
+        } else if ( key == '<' || key == ',' ) {
+          fm_freq -= 10;   
+          si4735.setFrequency(fm_freq);  
+          showCurrenteStatus();     
+        } else if ( key == '?')  {
+          showHelp();
+        } 
     }
+    
     si4735.getRdsStatus();
     if (si4735.getRdsReceived())
     {   
-        int i = si4735.getRdsProgramType();
-        Serial.print("Program Type: ");
+         int i = si4735.getRdsProgramType();
+
+        Serial.print("->RDS Group Type: "); 
+        Serial.print(si4735.getRdsGroupType(),HEX);
+
+        Serial.print(" - RDS Program Type B: "); 
+        Serial.print(si4735.getRdsProgramTypeB());
+
+        Serial.print(" - Program Type: ");
         Serial.print(i);
-        // Serial.print("- UE:");
-        // Serial.print(tabProgramTypeUE[i]);
-        Serial.print("- EUA: ");
-        Serial.print(tabProgramTypeEUA[i]);
+        // Serial.print("- EUA: ");
+        // if ( i < 32 ) { 
+        //   Serial.print(tabProgramTypeEUA[i]);
+        // } 
+        // else {
+        //   Serial.print("**** -> ");
+        // }
+        Serial.print(" - ");
+        Serial.print(si4735.getRdsText()); 
         Serial.println("\n==========================================================");
-        delay(400);
-    }
-    delay(10);
+        delay(600);
+    } 
+    delay(100);
 }

@@ -279,6 +279,23 @@ void SI4735::seekStation(byte SEEKUP, byte WRAP)
     delay(100);
 }
 
+/*
+ * Search for the next station 
+ */
+void SI4735::seekStationUp() {
+    seekStation(1, 1);
+}
+
+/*
+ * Search the previous station
+ */
+void SI4735::seekStationDown()
+{
+    seekStation(0, 1);
+}
+
+
+
 /* 
  * Set volume level
  * @param byte volume (domain: 0 - 63) 
@@ -449,10 +466,43 @@ unsigned SI4735::getRdsProgramType(void) {
 
     if (getRdsReceived() && getRdsNewBlockA())
     {
-        return (currentRdsStatus.resp.BLOCKAL > 31) ? 0 : currentRdsStatus.resp.BLOCKAL;
+        return currentRdsStatus.resp.BLOCKAL;
     }
     return 0;
 }
 
 
+unsigned SI4735::getRdsGroupType(void) {
 
+    si47x_rds_blockb blkb;
+
+    blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+    blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+
+    return blkb.refined.groupType;
+}
+
+unsigned SI4735::getRdsProgramTypeB(void)
+{
+
+    si47x_rds_blockb blkb;
+
+    blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+    blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+
+    return blkb.refined.programType;
+}
+
+String SI4735::getRdsText(void)
+{
+
+    char s[2];
+
+    // s = currentRdsStatus.resp.BLOCKCL;
+    // s= currentRdsStatus.resp.BLOCKCH;
+
+    s[0] = currentRdsStatus.resp.BLOCKDL;
+    s[1] = currentRdsStatus.resp.BLOCKDH;
+
+    return String(s);
+}
