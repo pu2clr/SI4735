@@ -30,7 +30,6 @@ String tabProgramTypeEUA[] = {
   "Jazz", "Classical", "Rhythm & Blues Music", "Soft Rhythm & Blues Music", "Language", "Religious Music","Religious Talk",
   "Personality", "Public", "College", "Not assigned", "Not assigned", "Not assigned", "Not assigned",
   "Not assigned", "Weather", "Emergency Test", "Emergency" };  
-  
 
 
 SI4735 si4735;
@@ -52,7 +51,7 @@ void setup()
  
     showCurrenteStatus();
 
-    si4735.setRdsConfig(1, 2, 2, 2, 2);
+    si4735.setRdsConfig(1, 1, 1, 2, 2);
 }
 
 void showHelp() {
@@ -127,13 +126,13 @@ void loop()
 
         Serial.print(" - Program Type: ");
         Serial.print(i);
-        // Serial.print("- EUA: ");
-        // if ( i < 32 ) { 
-        //   Serial.print(tabProgramTypeEUA[i]);
-        // } 
-        // else {
-        //   Serial.print("**** -> ");
-        // }
+        Serial.print("- EUA: ");
+        if ( i < 32 ) { 
+           Serial.print(tabProgramTypeEUA[i]);
+         } 
+        else {
+          Serial.print("**** -> ");
+        }
         Serial.print(" - ");
         Serial.print(si4735.getRdsText()); 
         Serial.println("\n==========================================================");

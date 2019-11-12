@@ -496,13 +496,13 @@ unsigned SI4735::getRdsProgramTypeB(void)
 String SI4735::getRdsText(void)
 {
 
-    char s[2];
+    char s[4];
 
-    // s = currentRdsStatus.resp.BLOCKCL;
-    // s= currentRdsStatus.resp.BLOCKCH;
+    s[1] = currentRdsStatus.resp.BLOCKCL;
+    s[0]= currentRdsStatus.resp.BLOCKCH;
 
-    s[0] = currentRdsStatus.resp.BLOCKDL;
-    s[1] = currentRdsStatus.resp.BLOCKDH;
+    s[3] = currentRdsStatus.resp.BLOCKDL;
+    s[2] = currentRdsStatus.resp.BLOCKDH;
 
     return String(s);
 }
