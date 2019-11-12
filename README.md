@@ -6,8 +6,8 @@ This library can be freely distributed using the MIT Free Software model. [Copyr
 
 Contact: pu2clr@gmail.com
 
-__Attention__: 
 
+__Attention__: 
 * __Documentation  under construction__. 
 * __The SI4835 is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V converter__.
 
@@ -91,6 +91,7 @@ I would like to thank Mr. Francisco Scaramella  for the suggestions and contribu
 ## Your support is important.
 
 If you would like to support this library development, consider joining this project via Github. Alternatively, make suggestions on features you would like available in this library. Thank you!
+
 
 
 
@@ -803,13 +804,15 @@ inline byte SI4735::getFirmwareCMPMAJOR()
 
 ### getFirmwareCMPMINOR
 
+
 ```cpp
 /*
  * Returns the Component Minor Revision (ASCII).
- * See Si47XX PROGRAMMING GUIDE; AN332; page 66
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 66.
  */
 inline byte SI4735::getFirmwareCMPMINOR()
 ```
+
 
 ### getFirmwareCHIPREV
 
