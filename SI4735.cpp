@@ -513,14 +513,35 @@ unsigned SI4735::getRdsProgramTypeB(void)
 
 String SI4735::getRdsText(void)
 {
-
     char s[4];
 
-    s[1] = currentRdsStatus.resp.BLOCKCL;
-    s[0]= currentRdsStatus.resp.BLOCKCH;
+    s[0] = currentRdsStatus.resp.BLOCKCL;
+    s[1]= currentRdsStatus.resp.BLOCKCH;
 
-    s[3] = currentRdsStatus.resp.BLOCKDL;
-    s[2] = currentRdsStatus.resp.BLOCKDH;
+    s[2] = currentRdsStatus.resp.BLOCKDL;
+    s[3] = currentRdsStatus.resp.BLOCKDH;
 
     return String(s);
+}
+
+String SI4735::getRdsTime() {
+    si47x_rds_date_time dt;
+
+    String s;
+    unsigned y, m, d;
+
+    dt.raw[3] = currentRdsStatus.resp.BLOCKCL;
+    dt.raw[2] = currentRdsStatus.resp.BLOCKCH;
+
+    dt.raw[1] = currentRdsStatus.resp.BLOCKDL;
+    dt.raw[0] = currentRdsStatus.resp.BLOCKDH;
+
+    y = (unsigned) (dt.refined.mjd - 15078.2) / 365.25;
+    m = (unsigned)(dt.refined.mjd - 14956.1) - (unsigned)(y * 365.25 / 30.6001);
+    d = (unsigned)(dt.refined.mjd - 14956) - (unsigned)(y * 365.25) - (m * 30.6001);
+
+    s = String(dt.refined.hour) + ":" + String(dt.refined.minute) + " - " + String(d) + "/" + String(m) +
+        "/" + String(y) + "-" + String(dt.refined.offset);
+
+    return s; 
 }

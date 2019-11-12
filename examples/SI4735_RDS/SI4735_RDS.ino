@@ -17,34 +17,34 @@ unsigned fm_freq = 10390; // 103.9 MHz - Change it to your local FM station with
 
 
 /*
-// ORININAL UE
-String tabProgramType[] = {
+  // ORININAL UE
+  String tabProgramType[] = {
   "No program definition type", "News", "Current affairs", "Information", "Sport", "Education", "Drama",
   "Culture", "Science", "Variable", "Popular Music (Pop)", "Rock Music", "Easy Listening", "Light Classical",
   "Serious Classical", "Other Music", "Weather", "Finance", "Children’s Programs", "Social Affairs","Religion",
   "Phone-in Talk", "Travel", "Leisure", "Jazz Music", "Country Music", "National Music", "Oldies Music",
-  "Folk Music", "Documentary", "Alarm Test", "Alarm" 
- };
+  "Folk Music", "Documentary", "Alarm Test", "Alarm"
+  };
 */
 
 // UE
 String tabProgramType[] = {
   "No prog. def.", "News", "Cur. affairs", "Inf.", "Sport", "Educ.", "Drama",
   "Culture", "Science", "Variable", "Pop", "Rock", "Easy List.", "L.Classical",
-  "S.Classical", "Other Music", "Weather", "Finance", "Children’s Prog.", "Social Affairs","Religion",
+  "S.Classical", "Other Music", "Weather", "Finance", "Children’s Prog.", "Social Affairs", "Religion",
   "Talk", "Travel", "Leisure", "Jazz", "Country Music", "National Music", "Oldies Music",
-  "Folk", "Documentary", "Alarm Test", "Alarm" 
- };
+  "Folk", "Documentary", "Alarm Test", "Alarm"
+};
 
 /*
-// EUA
-String tabProgramType[] = {
+  // EUA
+  String tabProgramType[] = {
   "No program definition type", "News", "Information", "Sport", "Talk", "Rock", "Classic Rock",
   "Adult Hits", "Soft Rock", "Top 40", "Country Music", "Oldies Music", "Soft Music", "Nostalgia",
   "Jazz", "Classical", "Rhythm & Blues Music", "Soft Rhythm & Blues Music", "Language", "Religious Music", "Religious Talk",
   "Personality", "Public", "College", "Not assigned", "Not assigned", "Not assigned", "Not assigned",
   "Not assigned", "Weather", "Emergency Test", "Emergency"
-};
+  };
 */
 
 SI4735 si4735;
@@ -132,7 +132,7 @@ void loop()
   if (si4735.getRdsReceived())
   {
     unsigned gt = si4735.getRdsGroupType();
-    if ( (gt <=4 || gt == 10) && si4735.getRdsVersionCode() ) {
+    if ( gt != 2 && (gt <= 4 || gt == 10) && si4735.getRdsVersionCode() ) {
       int i = si4735.getRdsProgramTypeB();
 
       Serial.print("RDS GT: ");
@@ -153,8 +153,14 @@ void loop()
       else {
         Serial.print("****");
       }
-      Serial.print(" - ");
-      Serial.print(si4735.getRdsText());
+      if ( gt == 4 )  {
+        Serial.print(" - ");
+        Serial.print(si4735.getRdsTime());
+      } else {
+        Serial.print(" - ");
+        Serial.print(si4735.getRdsText());
+      }
+
       Serial.println("\n===================================================");
       delay(600);
     }

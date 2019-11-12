@@ -372,10 +372,20 @@ typedef union {
 } si47x_rds_blockb;
 
 
+typedef union {
+    struct {
+        byte offset : 5;
+        byte offset_sense : 1; //
+        byte minute : 6;       //
+        byte hour : 4; // 
+        unsigned mjd;
+    } refined;
+    byte raw[4];
+} si47x_rds_date_time;
 
-/************************ Deal with Interrupt  *************************/
+    /************************ Deal with Interrupt  *************************/
 
-volatile static bool data_from_si4735;
+    volatile static bool data_from_si4735;
 
 static void interrupt_hundler()
 {
@@ -482,4 +492,5 @@ public:
     unsigned getRdsVersionCode(void);
     unsigned getRdsProgramTypeB(void);
     String getRdsText(void);
+    String getRdsTime(void);
 };
