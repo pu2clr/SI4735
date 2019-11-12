@@ -132,19 +132,19 @@ void loop()
   if (si4735.getRdsReceived())
   {
     unsigned gt = si4735.getRdsGroupType();
-    if ( gt ==  1 || gt ==  2 || gt == 10 ) {
+    if ( (gt <=4 || gt == 10) && si4735.getRdsVersionCode() ) {
       int i = si4735.getRdsProgramTypeB();
 
-      Serial.print("RDS Group Type: ");
+      Serial.print("RDS GT: ");
       Serial.print(si4735.getRdsGroupType());
 
-      // Serial.print(" - RDS Version: ");
+      // Serial.print("-RDS V: ");
       // Serial.print(si4735.getRdsVersionCode());
 
       // Serial.print("-Prog.Type B: ");
       // Serial.print(si4735.getRdsProgramTypeB());
 
-      Serial.print("-Prog.Type: ");
+      Serial.print("-PTy: ");
       Serial.print(i);
       Serial.print("-");
       if ( i < 32 ) {
