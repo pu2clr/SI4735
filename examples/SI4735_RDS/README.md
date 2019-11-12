@@ -1,6 +1,27 @@
 # SI473X RDS  
 
 
+
+## RDS Terminology
+
+| Term | Description |
+| ---- | ----- |
+| RDS  | Radio Data System | 
+| AF   | alternative frequencies list |
+| CT   | clock time and date |
+| EON  | enhanced other networks information |
+| PI   | programme identification |
+| PS   | programme service name |
+| PTY  | programme type | 
+| REG  | regional |
+| RT   | radio text |
+| RT+  | radio text plus |
+| TA, TP | traffic announcement, traffic programme |
+| TMC  | (traffic message channel) |
+
+
+
+
 ## RDS Overview
 
 The RDS is communication protocol used to send small messages to regular FM radio receivers.  It is capable to send to your receiver messages about the program type, traffic information, local time, alternative frequencies and text. 
