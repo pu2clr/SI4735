@@ -119,7 +119,7 @@ void loop()
          int i = si4735.getRdsProgramType();
 
         Serial.print("->RDS Group Type: "); 
-        Serial.print(si4735.getRdsGroupType(),HEX);
+        Serial.print(si4735.getRdsGroupType());
 
         Serial.print(" - RDS Program Type B: "); 
         Serial.print(si4735.getRdsProgramTypeB());
