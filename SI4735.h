@@ -339,19 +339,14 @@ typedef union {
     } refined;
     struct
     {
-        byte highValue;
+        byte highValue;    // Most Significant byte first 
         byte lowValue;
     } raw;
 } si47x_rds_blocka;
 
 /*
  * Block B data type
- * Group Type Contents
- *  0A/B    Basic information
- *  1A      Additional information
- *  2A/B    Radio Text
- *  3A      Setup open data application 4A Date and time
- *  10A     Program Type Name 15B Basic information
+ * For Group Type Contents see: 
  */
 typedef union {
     struct
@@ -363,8 +358,8 @@ typedef union {
         byte content : 5;            // Depends on Group Type and Version codes.
     } refined;
     struct {
+        byte highValue;              // Most Significant Byte first
         byte lowValue;
-        byte highValue;
     } raw;
 } si47x_rds_blockb;
 
