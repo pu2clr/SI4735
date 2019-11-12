@@ -482,6 +482,10 @@ unsigned SI4735::getRdsGroupType(void) {
     return blkb.refined.groupType;
 }
 
+/*
+ * Gets the version code 
+ * Returns  0=A or 1=B
+ */
 unsigned SI4735::getRdsVersionCode(void)
 {
 
