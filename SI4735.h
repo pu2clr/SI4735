@@ -301,17 +301,23 @@ typedef union {
     unsigned value;
 } si47x_property;
 
+
+/*
+ ********************** RDS Data types *******************************
+ */
+
 /*
  * Data type for FM_RDS_CONFIG Property
  * 
  * IMPORTANT: all block errors must be less than or equal the associated block error threshold for the group 
  * to be stored in the RDS FIFO. 
- * 0 = No errors. 1 = 1–2 bit errors detected and corrected. 2 = 3–5 bit errors detected and corrected. 3 = Uncorrectable.
+ * 0 = No errors; 1 = 1–2 bit errors detected and corrected; 2 = 3–5 bit errors detected and corrected; 3 = Uncorrectable.
  * Recommended Block Error Threshold options:
  *  2,2,2,2 = No group stored if any errors are uncorrected.
  *  3,3,3,3 = Group stored regardless of errors.
  *  0,0,0,0 = No group stored containing corrected or uncorrected errors.
  *  3,2,3,3 = Group stored with corrected errors on B, regardless of errors on A, C, or D.
+ *  
  */
 typedef union {
     struct
@@ -344,9 +350,11 @@ typedef union {
     } raw;
 } si47x_rds_blocka;
 
+
 /*
  * Block B data type
- * For Group Type Contents see: 
+ * More about Group Type Contents see: https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_RDS
+ * See also Si47XX PROGRAMMING GUIDE; AN332; pages 78 and 79
  */
 typedef union {
     struct
