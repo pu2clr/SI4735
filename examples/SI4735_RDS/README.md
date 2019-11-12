@@ -42,3 +42,16 @@ The Bloco B has the data structure shown below.
 | content | 5 | Depends on Group Type and Version codes |
 
 
+|               | Block 1  	                    | Block 2 |    |    |     |     |
+|-------------- | ----------------------------- | ------- | -- | -- | --- | --- |
+| Block Meaning |	Program Identification Code |	GTYPE |	B0 | TP | PTY | ????|
+| bit notation per block | b15 ----> b0  |	b15 -> b12 | 	b11 |	b10 |	b9 -> b5 |	b4 -> b0 |
+| Fixed Meaning Per Group? | Yes |	Yes  |	Yes |	Yes | Yes |	No |
+Source: [Wikipedia, Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
+
+
+
+## References
+
+1. [Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
+2. 
