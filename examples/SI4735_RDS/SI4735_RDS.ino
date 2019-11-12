@@ -121,6 +121,9 @@ void loop()
         Serial.print("->RDS Group Type: "); 
         Serial.print(si4735.getRdsGroupType());
 
+        Serial.print(" - RDS Version: "); 
+        Serial.print(si4735.getRdsVersionCode());
+
         Serial.print(" - RDS Program Type B: "); 
         Serial.print(si4735.getRdsProgramTypeB());
 

@@ -366,8 +366,8 @@ typedef union {
         byte content : 5;            // Depends on Group Type and Version codes.
     } refined;
     struct {
-        byte highValue;              // Most Significant Byte first
         byte lowValue;
+        byte highValue;              // Most Significant Byte first
     } raw;
 } si47x_rds_blockb;
 
@@ -479,6 +479,7 @@ public:
     void setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD);
     unsigned getRdsProgramType(void);
     unsigned getRdsGroupType(void);
+    unsigned getRdsVersionCode(void);
     unsigned getRdsProgramTypeB(void);
     String getRdsText(void);
 };

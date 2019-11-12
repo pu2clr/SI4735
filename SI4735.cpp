@@ -482,6 +482,17 @@ unsigned SI4735::getRdsGroupType(void) {
     return blkb.refined.groupType;
 }
 
+unsigned SI4735::getRdsVersionCode(void)
+{
+
+    si47x_rds_blockb blkb;
+
+    blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+    blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+
+    return blkb.refined.versionCode;
+}
+
 unsigned SI4735::getRdsProgramTypeB(void)
 {
 
