@@ -5,9 +5,9 @@
 
 The RDS is communication protocol used to send small messages to regular FM radio receivers.  It is capable to send to your receiver messages about the program type, traffic information, local time, alternative frequencies and text. 
 
-RDS runs at 1187.5 bps. It is based on 26-bit information where 16 bits are the information data and 10 bits are used to error detection. Each four data blocks has 104 bits that are sent continuously. The group type and the version (A or B) can be known  block (block B)
+RDS runs at 1187.5 bps. It is based on 26-bit information where 16 bits are the information data and 10 bits are used to error detection. Each four data blocks has 104 bits that are sent continuously. 
 
-That grblocks can be identified by the transmitted data. You can receive 16 group types of information where each group has two versions, A or B. The group type can be read from Block B. The table below shows each group type with its respective version and meaning.  
+That blocks can be identified by the transmitted data. You can receive 16 group types of information where each group has two versions, A or B. The group type and the version (A or B) can be known by reading block B. The table below shows each group type with its respective version and meaning.  
 
 
 | RDS group type | A Version | B Version| 
