@@ -359,11 +359,11 @@ typedef union {
 typedef union {
     struct
     {
-        byte groupType : 4;          // Group Type code.
-        byte versionCode : 1;        // 0=A; 1=B
-        byte trafficProgramCode : 1; // 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
-        byte programType : 5;        // PTY (Program Type) code
         byte content : 5;            // Depends on Group Type and Version codes.
+        byte programType : 5;        // PTY (Program Type) code
+        byte trafficProgramCode : 1; // 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
+        byte versionCode : 1;        // 0=A; 1=B
+        byte groupType : 4;          // Group Type code.
     } refined;
     struct {
         byte lowValue;

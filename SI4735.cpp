@@ -530,11 +530,11 @@ String SI4735::getRdsTime() {
     String s;
     unsigned y, m, d;
 
-    dt.raw[3] = currentRdsStatus.resp.BLOCKCL;
-    dt.raw[2] = currentRdsStatus.resp.BLOCKCH;
+    dt.raw[2] = currentRdsStatus.resp.BLOCKCL;
+    dt.raw[3] = currentRdsStatus.resp.BLOCKCH;
 
-    dt.raw[1] = currentRdsStatus.resp.BLOCKDL;
-    dt.raw[0] = currentRdsStatus.resp.BLOCKDH;
+    dt.raw[0] = currentRdsStatus.resp.BLOCKDL;
+    dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
 
     y = (unsigned) (dt.refined.mjd - 15078.2) / 365.25;
     m = (unsigned)(dt.refined.mjd - 14956.1) - (unsigned)(y * 365.25 / 30.6001);
