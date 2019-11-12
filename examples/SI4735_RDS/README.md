@@ -5,7 +5,7 @@
 
 The RDS is communication protocol used to send small messages to regular FM radio receivers.  It is capable to send to your receiver messages about the program type, traffic information, local time, alternative frequencies and text. 
 
-RDS runs at 1187.5 bps. It is based on 26-bit information where 16 bits are the information data and 10 bits are used to error detection. Each four data blocks has 104 bits that are sent continuously. 
+RDS runs at 1187.5 bps. It is based on 26-bit information where 16 bits are the information data and 10 bits are used to error detection. Each four data blocks has 104 bits that are sent continuously. The group type and the version (A or B) can be known  block (block B)
 
 That grblocks can be identified by the transmitted data. You can receive 16 group types of information where each group has two versions, A or B. The group type can be read from Block B. The table below shows each group type with its respective version and meaning.  
 
@@ -33,20 +33,12 @@ __Source: http://www.g.laroche.free.fr/english/rds/groupes/listeGroupesRDS.htm__
 
 The Bloco B has the data structure shown below.  
 
-```cpp
-typedef union {
-    struct
-    {
-        byte groupType : 4;          // Group Type code.
-        byte versionCode : 1;        // 0=A; 1=B
-        byte trafficProgramCode : 1; // 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
-        byte programType : 5;        // PTY (Program Type) code
-        byte content : 5;            // Depends on Group Type and Version codes.
-    } refined;
-    struct {
-        byte highValue;              // Most Significant Byte first
-        byte lowValue;
-    } raw;
-} si47x_rds_blockb;
-```
+| Information | Bits | Description |
+| ----------- | ---- | ----------- |
+| groupType   |  4   | Group Type code |
+| versionCode |  1   | 0=A; 1=B |
+| trafficProgramCode | 1 | |  0 = No Traffic Alerts; 1 = Station gives Traffic Alerts |
+| programType  | 5   | PTY (Program Type) code |
+| content | 5 | Depends on Group Type and Version codes |
+
 
