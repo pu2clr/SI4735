@@ -6,7 +6,6 @@
 
 #include <SI4735.h>
 
-#define INTERRUPT_PIN 2
 #define RESET_PIN 12
 
 #define AM_FUNCTION 1
@@ -29,7 +28,7 @@ void setup()
 
   delay(500);
 
-  si4735.setup(RESET_PIN, INTERRUPT_PIN, FM_FUNCTION);
+  si4735.setup(RESET_PIN, FM_FUNCTION);
   
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
   si4735.setFM(8400, 10800,  10390, 10);
