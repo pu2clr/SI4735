@@ -363,7 +363,7 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
         currentStatus.raw[i] = Wire.read();
     }
 
-    delayMicroseconds(550);
+    delayMicroseconds(2500);
 }
 
 /*
