@@ -86,6 +86,9 @@ void loop()
       case 'F':
         si4735.setFM(8600, 10800,  10390, 10);
         break;
+      case '1': 
+           si4735.setFM(7200, 7500,  7300, 5); 
+           break;
       case 'U':
       case 'u':
         si4735.frequencyUp();
