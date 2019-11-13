@@ -303,14 +303,15 @@ bool SI4735::isCurrentTuneFM() {
  */
 unsigned SI4735::getFrequency()
 {
+
+    delayMicroseconds(2500);
+
     si47x_frequency freq;
     getStatus(0, 1);
     freq.raw.FREQL = currentStatus.resp.READFREQL;
     freq.raw.FREQH = currentStatus.resp.READFREQH;
 
     currentWorkFrequency =  freq.value;
-
-    delayMicroseconds(2500);
 
     return freq.value;
 }
