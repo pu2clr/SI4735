@@ -405,7 +405,7 @@ private:
     unsigned currentMinimumFrequency; 
     unsigned currentMaximumFrequency;
     unsigned currentWorkFrequency;
-    
+
     byte currentStep;
 
     si47x_frequency currentFrequency;
@@ -478,7 +478,6 @@ public:
     void frequencyUp();
     void frequencyDown();
     unsigned isCurrentTuneFM(); 
-
     void getFirmware(void);
 
     void setFunction(byte FUNC);

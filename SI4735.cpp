@@ -135,6 +135,7 @@ void SI4735::setup(byte resetPin, byte interruptPin, byte defaultFunction)
     getFirmware();
 }
 
+
 /*
  * Set the Power Up parameters for si473X. 
  * Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()
@@ -161,6 +162,7 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
 
     currentTune = (FUNC == 0) ? FM_TUNE_FREQ : AM_TUNE_FREQ;
 }
+
 
 /*
  * Set the frequency to the corrent function of the Si4735 (AM or FM)
@@ -219,8 +221,6 @@ void SI4735::frequencyDown() {
 
     setFrequency(currentWorkFrequency);  
 }
-
-
 
 
 /*
