@@ -35,8 +35,9 @@ __Attention__:
        * [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
        * [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
        * [setFrequency](https://github.com/pu2clr/SI4735#setfrequency)
-       * [frequencyUp]()
-       * [frequencyDown]()
+       * [frequencyUp](https://github.com/pu2clr/SI4735#frequencyup)
+       * [frequencyDown](https://github.com/pu2clr/SI4735#frequencydown)
+       * [isCurrentTuneFM](https://github.com/pu2clr/SI4735#iscurrenttunefm)
        * [seekStation](https://github.com/pu2clr/SI4735#seekstation)
        * [setAM](https://github.com/pu2clr/SI4735#setam)
        * [setFM](https://github.com/pu2clr/SI4735#setfm)
@@ -463,7 +464,7 @@ void SI4735::setFrequency(unsigned freq)
 [See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
 
 
-#### frequencyUp
+### frequencyUp
 ```cpp
 /*
  *  Increments the current frequency on current band/function by using the current step.
@@ -473,7 +474,7 @@ void SI4735::frequencyUp()
 ```
 
 
-#### frequencyDown
+### frequencyDown
 ```cpp
 /*
  *  Decrements the current frequency on current band/function by using the current step.
