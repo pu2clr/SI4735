@@ -476,7 +476,7 @@ public:
     void setFrequencyStep(byte step); 
     void frequencyUp();
     void frequencyDown();
-    unsigned isCurrentTuneFM(); 
+    bool isCurrentTuneFM(); 
     void getFirmware(void);
 
     void setFunction(byte FUNC);
