@@ -132,7 +132,7 @@ void loop()
   if (si4735.getRdsReceived())
   {
     unsigned gt = si4735.getRdsGroupType();
-    // if ( gt != 2 && (gt <= 4 || gt == 10) && si4735.getRdsVersionCode() ) {
+     if ( gt == 2 || gt == 4 ) {
       int i = si4735.getRdsProgramType();
 
       Serial.print("RDS GT: ");
@@ -160,7 +160,7 @@ void loop()
 
       Serial.println("\n===================================================");
       delay(600);
-    // }
+    }
   }
   delay(100);
 }

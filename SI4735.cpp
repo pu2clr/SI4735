@@ -529,7 +529,7 @@ String SI4735::getRdsText(void)
     si47x_rds_blockb blkb;
     byte offset;
 
-    char s[17];
+    char s[25];
 
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
@@ -569,7 +569,30 @@ String SI4735::getRdsText(void)
 
     getNext4Block(&s[12]);
 
-    s[16] = 0;
+    offset = blkb.refined.content;
+    while (blkb.refined.content == offset)
+    {
+        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+        delay(10);
+        getRdsStatus();
+    }
+
+    getNext4Block(&s[16]);
+
+
+    offset = blkb.refined.content;
+    while (blkb.refined.content == offset)
+    {
+        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+        delay(10);
+        getRdsStatus();
+    }
+
+    getNext4Block(&s[20]);
+
+    s[24] = 0;
 
     return String(s);
 }
@@ -587,8 +610,13 @@ String SI4735::getRdsTime() {
     dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
 
     y = (unsigned) (dt.refined.mjd - 15078.2) / 365.25;
-    m = (unsigned)(dt.refined.mjd - 14956.1) - (unsigned)(y * 365.25 / 30.6001);
+    m = ((unsigned)(dt.refined.mjd - 14956.1) - (unsigned)(y * 365.25 )) / 30.6001;
     d = (unsigned)(dt.refined.mjd - 14956) - (unsigned)(y * 365.25) - (m * 30.6001);
+
+    if ( m > 13 )
+        y++;
+
+    y = y % 100;    
 
     s = String(dt.refined.hour) + ":" + String(dt.refined.minute) + " - " + String(d) + "/" + String(m) +
         "/" + String(y) + "-" + String(dt.refined.offset);
