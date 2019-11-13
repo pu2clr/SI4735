@@ -89,11 +89,12 @@ void SI4735::getFirmware(void)
  * Starts the Si473X device. 
  * 
  * @param byte resetPin Digital Arduino Pin used to RESET command 
- * @param byte interruptPin interrupt Arduino Pin (see your Arduino pinout)
+ * @param byte interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled
  * @param byte defaultFunction
  */
 void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
 {
+    byte interruptEnable = 0;
     Wire.begin();
 
     this->resetPin = resetPin;
@@ -103,6 +104,7 @@ void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
     if ( interruptPin >= 0 ) {
         pinMode(interruptPin, INPUT);
         attachInterrupt(digitalPinToInterrupt(interruptPin), interrupt_hundler, RISING);
+        interruptEnable = 1;
     }
 
     pinMode(resetPin, OUTPUT);
@@ -121,7 +123,7 @@ void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
     // Serial.print("defaultFunction: ");
     // Serial.print(defaultFunction);
 
-    setPowerUp(1, 1, 0, 1, defaultFunction, SI473X_ANALOG_AUDIO);
+    setPowerUp(interruptEnable, 1, 0, 1, defaultFunction, SI473X_ANALOG_AUDIO);
     // Do Power Up
     analogPowerUp();
 
