@@ -87,7 +87,7 @@ void loop()
         si4735.setFM(8600, 10800,  10390, 10);
         break;
       case '1': 
-           si4735.setFM(7200, 7500,  7300, 5); 
+           si4735.setAM(9400, 9990,  9600, 5); 
            break;
       case 'U':
       case 'u':
@@ -110,13 +110,11 @@ void loop()
         break;
     }
   }
-
+  delay(100);
   currentFrequency = si4735.getFrequency();
   if ( currentFrequency != previousFrequency ) {
     previousFrequency = currentFrequency;
     showStatus();
     delay(300);
   }
-
-  delay(10);
 }
