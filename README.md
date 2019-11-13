@@ -581,7 +581,7 @@ void SI4735::setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byt
 /*
  * Returns true if the radio is running FM (FM_TUNE_FREQ).
  */ 
-unsigned SI4735::isCurrentTuneFM()
+bool SI4735::isCurrentTuneFM()
 ```
 
 
