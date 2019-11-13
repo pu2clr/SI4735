@@ -184,10 +184,9 @@ First, you have to download this library in zip format. [Click here](https://git
 
 Unzip the SI4735.zip file in your Arduino Library folder. 
 
-On __Windows__: "My Documents\Arduino\libraries"
-On __MAC OS__: ˜/Documents/Arduino/libraries
-On __Linux__: ˜/Documents/Arduino/libraries
-
+* On __Windows__: "My Documents\Arduino\libraries"
+* On __MAC OS__: ˜/Documents/Arduino/libraries
+* On __Linux__: ˜/Documents/Arduino/libraries
 
 
 
