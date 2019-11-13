@@ -426,7 +426,6 @@ public:
     void setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE);
     void analogPowerUp(void);
 
-    void setBand(byte new_band);
     void setFrequency(unsigned);
 
     // getStatus

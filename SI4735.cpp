@@ -64,13 +64,6 @@ void SI4735::analogPowerUp(void)
     delayMicroseconds(2500);
 }
 
-/*
- * Set the radio to a new band. 
- */
-void SI4735::setBand(byte new_band)
-{
-    // TO DO
-}
 
 /*
  * Gets firmware information 
