@@ -40,7 +40,7 @@ void SI4735::waitToSend()
 {
     do
     {
-        delayMicroseconds(2000);
+        delayMicroseconds(2500);
         Wire.requestFrom(SI473X_ADDR, 1);
     } while (!(Wire.read() & B10000000));
 };
@@ -54,13 +54,14 @@ void SI4735::analogPowerUp(void)
     // Initiate the I2C bus
     // Wire.begin();
     delayMicroseconds(1000);
+    waitToSend();
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(POWER_UP);
     Wire.write(powerUp.raw[0]); // Content of ARG1
     Wire.write(powerUp.raw[1]); // COntent of ARG2
     Wire.endTransmission();
     // page 12 - Delay at least 500 ms between powerup command and first tune command.
-    delayMicroseconds(550);
+    delayMicroseconds(2500);
 }
 
 /*
@@ -179,7 +180,128 @@ void SI4735::setFrequency(unsigned freq)
     Wire.write(0x00);
     Wire.endTransmission();
     delayMicroseconds(550);
+    currentWorkFrequency = freq;
 }
+
+/* 
+ * Set the current step value. 
+ * @param step if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz
+ *             For AM, 1 (1KHz) to 10 (10KHz) are valid values.
+ *             For FM 5 (50KHz) and 10 (100KHz) are valid values.  
+ */ 
+void SI4735::setFrequencyStep(byte step) {
+    currentStep = step;
+} 
+
+/*
+ *  Increments the current frequency on current band/function by using the current step.
+ *  See setFrequencyStep
+ */ 
+void SI4735::frequencyUp() {
+    if (currentWorkFrequency >= currentMaximumFrequency ) 
+        currentWorkFrequency = currentMinimumFrequency;
+    else 
+        currentWorkFrequency +=  currentStep;   
+
+    setFrequency(currentWorkFrequency);         
+}
+
+/*
+ *  Decrements the current frequency on current band/function by using the current step.
+ *  See setFrequencyStep
+ */ 
+void SI4735::frequencyDown() {
+
+    if (currentWorkFrequency <=  currentMinimumFrequency ) 
+        currentWorkFrequency = currentMaximumFrequency;
+    else 
+        currentWorkFrequency -=  currentStep;   
+
+    setFrequency(currentWorkFrequency);  
+}
+
+
+
+
+/*
+ * Set the radio to AM function. It means: LW MW and SW.
+ */
+void SI4735::setAM()
+{
+    setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
+    analogPowerUp();
+    setVolume(volume); // Set to previus configured volume
+}
+
+/*
+ * Set the radio to FM function
+ */
+void SI4735::setFM()
+{
+    setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
+    analogPowerUp();
+    setVolume(volume); // Set to previus configured volume
+}
+
+/*
+ * Set the radio to AM (LW/MW/SW) function. 
+ * 
+ * @param fromFreq minimum frequency for the band
+ * @param toFreq maximum frequency for the band
+ * @param initialFreq initial frequency 
+ * @param step step used to go to the next channel   
+ */
+void SI4735::setAM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step) {
+
+    currentMinimumFrequency =  fromFreq; 
+    currentMaximumFrequency = toFreq;
+    currentStep = step;
+
+    if (initialFreq < fromFreq || initialFreq > toFreq ) 
+        initialFreq = fromFreq;
+
+    setAM();  
+
+    currentWorkFrequency = initialFreq;
+
+    setFrequency(currentWorkFrequency);   
+
+}
+
+/*
+ * Set the radio to FM function. 
+ * 
+ * @param fromFreq minimum frequency for the band
+ * @param toFreq maximum frequency for the band
+ * @param initialFreq initial frequency (default frequency)
+ * @param step step used to go to the next channel   
+ */
+void SI4735::setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step) {
+
+    currentMinimumFrequency =  fromFreq; 
+    currentMaximumFrequency = toFreq;
+    currentStep = step;
+
+    if (initialFreq < fromFreq || initialFreq > toFreq ) 
+        initialFreq = fromFreq;
+
+    setFM();
+
+    currentWorkFrequency = initialFreq;
+
+    setFrequency(currentWorkFrequency); 
+
+}
+
+
+/*
+ * Returns true (1) if the current function is FM (FM_TUNE_FREQ).
+ */ 
+unsigned SI4735::isCurrentTuneFM() {
+    return (currentTune == FM_TUNE_FREQ);
+} 
+
+
 
 /*
  * Gets the current frequency of the Si4735 (AM or FM)
@@ -192,8 +314,12 @@ unsigned SI4735::getFrequency()
     getStatus(0, 1);
     freq.raw.FREQL = currentStatus.resp.READFREQL;
     freq.raw.FREQH = currentStatus.resp.READFREQH;
+
+    currentWorkFrequency =  freq.value;
+
     return freq.value;
 }
+
 
 /*
  * Gets the current status  of the Si4735 (AM or FM)
@@ -217,7 +343,6 @@ void SI4735::getStatus()
 void SI4735::getStatus(byte INTACK, byte CANCEL)
 {
     si47x_tune_status status;
-    si47x_frequency freq;
     byte cmd = (currentTune == FM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
 
     waitToSend();
@@ -337,26 +462,7 @@ void SI4735::volumeDown()
     setVolume(volume);
 }
 
-/*
- * Set the radio to AM function. It means: LW MW and SW.
- */
-void SI4735::setAM()
-{
-    setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
-    analogPowerUp();
-    setVolume(volume); // Set to previus configured volume
-}
 
-/*
- * Set the radio to FM function
- */
-void SI4735::setFM()
-{
-    setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
-    analogPowerUp();
-    setVolume(volume); // Set to previus configured volume
-    // teste
-}
 
 /*
  * RDS COMMAND FM_RDS_STATUS
@@ -515,11 +621,11 @@ unsigned SI4735::getRdsProgramType(void)
 
 char * SI4735::getNext4Block(char * c ) {
 
-    c[1] = (currentRdsStatus.resp.BLOCKCL < 32 || currentRdsStatus.resp.BLOCKCL > 127) ? ' ' : currentRdsStatus.resp.BLOCKCL;
-    c[0] = (currentRdsStatus.resp.BLOCKCH < 32 || currentRdsStatus.resp.BLOCKCH > 127) ? ' ' : currentRdsStatus.resp.BLOCKCH;
+    c[1] = (currentRdsStatus.resp.BLOCKCL < 32 || currentRdsStatus.resp.BLOCKCL > 127) ? '.' : currentRdsStatus.resp.BLOCKCL;
+    c[0] = (currentRdsStatus.resp.BLOCKCH < 32 || currentRdsStatus.resp.BLOCKCH > 127) ? '.' : currentRdsStatus.resp.BLOCKCH;
 
-    c[3] = (currentRdsStatus.resp.BLOCKDL < 32 || currentRdsStatus.resp.BLOCKDL > 127) ? ' ' : currentRdsStatus.resp.BLOCKDL;
-    c[2] = (currentRdsStatus.resp.BLOCKDH < 32 || currentRdsStatus.resp.BLOCKDH > 127) ? ' ' : currentRdsStatus.resp.BLOCKDH;
+    c[3] = (currentRdsStatus.resp.BLOCKDL < 32 || currentRdsStatus.resp.BLOCKDL > 127) ? '.' : currentRdsStatus.resp.BLOCKDL;
+    c[2] = (currentRdsStatus.resp.BLOCKDH < 32 || currentRdsStatus.resp.BLOCKDH > 127) ? '.' : currentRdsStatus.resp.BLOCKDH;
 
 } 
 
@@ -529,70 +635,23 @@ String SI4735::getRdsText(void)
     si47x_rds_blockb blkb;
     byte offset;
 
-    char s[25];
+    char s[29];
 
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
 
-    getNext4Block((char *)&s[0]);
-
-    offset = blkb.refined.content;
-
-    while (blkb.refined.content == offset) {
-        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-        delay(10);
-        getRdsStatus();
+    for (int i = 0; i < 29; i+=4) {
+        getNext4Block(&s[i]);
+        offset = blkb.refined.content;
+        while (blkb.refined.content == offset) {
+            blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+            blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+            delay(50);
+            getRdsStatus();
+        }
     }
 
-    getNext4Block(&s[4]);
-
-    offset = blkb.refined.content;
-    while (blkb.refined.content == offset)
-    {
-        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-        delay(10);
-        getRdsStatus();
-    }
-
-    getNext4Block(&s[8]);
-
-    offset = blkb.refined.content;
-    while (blkb.refined.content == offset)
-    {
-        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-        delay(10);
-        getRdsStatus();
-    }
-
-    getNext4Block(&s[12]);
-
-    offset = blkb.refined.content;
-    while (blkb.refined.content == offset)
-    {
-        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-        delay(10);
-        getRdsStatus();
-    }
-
-    getNext4Block(&s[16]);
-
-
-    offset = blkb.refined.content;
-    while (blkb.refined.content == offset)
-    {
-        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-        delay(10);
-        getRdsStatus();
-    }
-
-    getNext4Block(&s[20]);
-
-    s[24] = 0;
+    s[28] = 0;
 
     return String(s);
 }

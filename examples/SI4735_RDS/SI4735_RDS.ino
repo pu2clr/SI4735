@@ -154,7 +154,7 @@ void loop()
         Serial.print(" - ");
         Serial.print(si4735.getRdsTime());
       } else {
-        Serial.print(" - ");
+        Serial.print("-");
         Serial.print(si4735.getRdsText());
       }
 

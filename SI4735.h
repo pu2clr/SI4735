@@ -402,6 +402,12 @@ private:
 
     byte currentTune;
 
+    unsigned currentMinimumFrequency; 
+    unsigned currentMaximumFrequency;
+    unsigned currentWorkFrequency;
+    
+    byte currentStep;
+
     si47x_frequency currentFrequency;
     si47x_response_status currentStatus;
     si47x_firmware_information firmwareInfo;
@@ -466,6 +472,12 @@ public:
     void volumeUp();
     void setAM();
     void setFM();
+    void setAM(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
+    void setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step);
+    void setFrequencyStep(byte step); 
+    void frequencyUp();
+    void frequencyDown();
+    unsigned isCurrentTuneFM(); 
 
     void getFirmware(void);
 

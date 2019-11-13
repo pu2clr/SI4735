@@ -1,8 +1,8 @@
 /*
- * Test and validation of the SI4735 Arduino Library.
- * 
- * By Ricardo Lima Caratti, Nov 2019.
- */
+   Test and validation of the SI4735 Arduino Library.
+
+   By Ricardo Lima Caratti, Nov 2019.
+*/
 
 #include <SI4735.h>
 
@@ -12,17 +12,10 @@
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
 
-byte band = FM_FUNCTION;
 
-const unsigned min_am = 570;
-const unsigned max_am = 1710;
-unsigned am_freq = min_am; // Change it to your local AM station 
-
-const unsigned min_fm = 8400;
-const unsigned max_fm = 10900;
-unsigned fm_freq = 10390; // Change it to your local FM station 
 
 unsigned currentFrequency;
+unsigned previousFrequency;
 
 SI4735 si4735;
 
@@ -32,117 +25,40 @@ void setup()
   Serial.println("Test and validation of the SI4735 Arduino Library.");
   Serial.println("AM and FM station tuning test.");
 
-  delay(500);
-  si4735.setup(RESET_PIN, INTERRUPT_PIN, FM_FUNCTION);
+  showHelp();
+
   delay(500);
 
-  showHelp();
-  
-  band = FM_FUNCTION;
-  si4735.setFrequency(fm_freq);
-  showStatus(fm_freq, "MHz");
+  si4735.setup(RESET_PIN, INTERRUPT_PIN, FM_FUNCTION);
+
+  // Starts defaul radio function and band (FM, 103,9MHz, step 100KHz)
+  si4735.setFM(8400, 10800,  10390, 10);
+  currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
+  showStatus();
 }
 
 
 void showHelp() {
+  Serial.println("Type F to FM; A to MW; L to LW; and 1 to SW");
+  Serial.println("Type U to increase and D to decrease the frequency");
+  Serial.println("Type S or s to seek station Up or Down");
+  Serial.println("Type + or - to volume Up or Down");
+  Serial.println("Type ? to this help.");
   Serial.println("==================================================");
-  Serial.println("Type F to FM; A to AM");
-  Serial.println("Type I to increase and D to decrease the frequency");
-  Serial.println("Type S to seek station");
-  Serial.println("Type + or - to volume Up or Down");  
-  Serial.println("Type ? to this help.");  
-  Serial.println("==================================================");
+  delay(1000);
 }
-
-
-void showInfo() {
-  // Check if the RDS event was trigged 
-  Serial.print("Monitoring RDS: ");
-  Serial.println(si4735.getRadioDataSystemInterrupt());
-  // Add more status information that you want to monitor here
-} 
-
 
 // Show current frequency
-void showStatus(unsigned freq, String unit)
+void showStatus()
 {
-  byte d; 
-  float f; 
-  if (band == FM_FUNCTION) {
-    f = freq/100.0;
-    d = 1;
+  Serial.print("You are tuned on ");
+  if (si4735.isCurrentTuneFM() ) {
+    Serial.print(String(currentFrequency / 100.0, 2));
+    Serial.println(" MHz");
   } else {
-    f = freq/1.0;
-    d = 0;    
-  }
-   
-  Serial.print("Current Frequency: ");
-  Serial.print(String(f,d));
-  Serial.println(unit);
-}
-
-// Increase the frequency
-void nextFreq()
-{
-  if (band == FM_FUNCTION)
-  {
-    if (fm_freq < max_fm)
-    {
-      fm_freq += 10;
-      si4735.setFrequency(fm_freq);
-      showStatus(fm_freq, "MHz");
-    }
-    else
-    {
-      Serial.print("You have reached the maximum FM frequency for this band.");
-    }
-  }
-  else
-  {
-    if (am_freq < max_am)
-    {
-      am_freq += 10;
-      si4735.setFrequency(am_freq);
-      showStatus(am_freq, "KHz");
-    }
-    else
-    {
-      Serial.print("You have reached the maximum AM frequency for this band.");
-    }
-  }
-}
-
-// Decrease the frequency
-void prevFreq()
-{
-  if (band == FM_FUNCTION)
-  {
-    if (fm_freq > min_fm)
-    {
-      fm_freq -= 10;
-      si4735.setFrequency(fm_freq);
-      showStatus(fm_freq, "MHz");
-      currentFrequency = fm_freq;
-    }
-    else
-    {
-      Serial.print("You have reached the minimum FM frequency for this band.");
-    }
-  }
-  else
-  {
-    if (am_freq > min_am)
-    {
-      am_freq -= 10;
-      si4735.setFrequency(am_freq);
-      showStatus(am_freq, "kHz");
-      currentFrequency = am_freq;
-    }
-    else
-    {
-      Serial.print("You have reached the maximum AM frequency for this band.");
-    }
+    Serial.print(currentFrequency);
+    Serial.println(" KHz");
   }
 }
 
@@ -154,54 +70,48 @@ void loop()
     char key = Serial.read();
     switch (key)
     {
-    case '+':
+      case '+':
         si4735.volumeUp();
         break;
-    case '-': 
+      case '-':
         si4735.volumeDown();
         break;
-    case 'a':
-    case 'A':
-      band = AM_FUNCTION;
-      si4735.setAM();
-      si4735.setFrequency(am_freq);
-      showStatus(am_freq, "KHz");
-      break;
-    case 'f':
-    case 'F':
-      band = FM_FUNCTION;
-      si4735.setFM();
-      si4735.setFrequency(fm_freq);
-      showStatus(fm_freq, "MHz");
-      break;
-    case 'I':
-    case 'i':
-      nextFreq();
-      break;
-    case 'D':
-    case 'd':
-      prevFreq();
-      break;
-    case 'S':
-    case 's':
-      // Look for the next station (AM or FM, depending on current function)
-      si4735.seekStation(1, 1);
-      Serial.println("Station found");
-      currentFrequency = si4735.getFrequency();
-      if (band == FM_FUNCTION) {
-          fm_freq = currentFrequency;
-          showStatus(fm_freq, "MHz");
-      } else {
-         am_freq = currentFrequency;
-         showStatus(am_freq, "KHz");
-      }
-      break;
-    case '?': 
+      case 'a':
+      case 'A':
+        si4735.setAM(570, 1710,  810, 10);
+        break;
+      case 'f':
+      case 'F':
+        si4735.setFM(8600, 10800,  10390, 10);
+        break;
+      case 'U':
+      case 'u':
+        si4735.frequencyUp();
+        break;
+      case 'D':
+      case 'd':
+        si4735.frequencyDown();
+        break;
+      case 'S':
+        si4735.seekStationUp();
+        break;
+      case 's':
+        si4735.seekStationDown();
+        break;
+      case '?':
         showHelp();
-        break;  
-    default:
-      break;
+        break;
+      default:
+        break;
     }
   }
+
+  currentFrequency = si4735.getFrequency();
+  if ( currentFrequency != previousFrequency ) {
+    previousFrequency = currentFrequency;
+    showStatus();
+    delay(300);
+  }
+
   delay(10);
 }
