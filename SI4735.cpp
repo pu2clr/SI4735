@@ -310,6 +310,8 @@ unsigned SI4735::getFrequency()
 
     currentWorkFrequency =  freq.value;
 
+    delayMicroseconds(2500);
+
     return freq.value;
 }
 
