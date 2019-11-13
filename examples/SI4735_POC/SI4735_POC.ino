@@ -35,7 +35,6 @@ void setup()
   si4735.setFM(8400, 10800,  10390, 10);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
-  delay(500);
   showStatus();
 }
 
