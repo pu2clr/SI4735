@@ -170,15 +170,24 @@ This library uses the I2C communication protocol and implements most of the func
 
 You can install this library on your Arduino environment using different methods. The best ways to do that are described below.  
 
-
 ### Installing via Arduino IDE
 
 This is the easiest method to install this library.
 
-TO DO....
+![Installing from Arduino IDE 01](extras/images/lib_install_01.png)
+
+
+![Installing from Arduino IDE 02](extras/images/lib_install_02.png)
+
 
 
 ### Installing via this repository 
+
+![Installing from this repository](extras/images/install_lib_from_git_01.png)
+
+
+![Installing from this repository](extras/images/install_lib_from_git_02.png)
+
 
 First, you have to download this library in zip format. [Click here](https://github.com/pu2clr/SI4735/archive/master.zip) to download.
 
