@@ -119,16 +119,10 @@ void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
     // XOSCEN   1 -> Use external crystal oscillator;
     // FUNC     defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
     // OPMODE   SI473X_ANALOG_AUDIO = 00000101 = Analog audio outputs (LOUT/ROUT).
-
-    // Serial.print("defaultFunction: ");
-    // Serial.print(defaultFunction);
-
     setPowerUp(interruptEnable, 1, 0, 1, defaultFunction, SI473X_ANALOG_AUDIO);
-    // Do Power Up
+    
     analogPowerUp();
-
     setVolume(20); // Default volume level.
-
     getFirmware();
 }
 
