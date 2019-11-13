@@ -33,9 +33,11 @@ void setup()
   
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
   si4735.setFM(8400, 10800,  10390, 10);
-  // delay(500);
+  
+  delay(500);
+  
   currentFrequency = previousFrequency = si4735.getFrequency();
-  // si4735.setVolume(45);
+  si4735.setVolume(45);
   showStatus();
 }
 

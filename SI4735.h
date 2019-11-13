@@ -422,7 +422,8 @@ private:
     void waitToSend(void);
 
 public:
-    void setup(byte resetPin, byte interruptPin, byte defaultFunction);
+    void setup(byte resetPin, byte defaultFunction);
+    void setup(byte resetPin, int interruptPin, byte defaultFunction);
     void setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE);
     void analogPowerUp(void);
 

@@ -92,7 +92,7 @@ void SI4735::getFirmware(void)
  * @param byte interruptPin interrupt Arduino Pin (see your Arduino pinout)
  * @param byte defaultFunction
  */
-void SI4735::setup(byte resetPin, byte interruptPin, byte defaultFunction)
+void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
 {
     Wire.begin();
 
@@ -100,8 +100,10 @@ void SI4735::setup(byte resetPin, byte interruptPin, byte defaultFunction)
     this->interruptPin = interruptPin;
 
     // Arduino interrupt setup (you have to know which Arduino Pins can deal with interrupt).
-    pinMode(interruptPin, INPUT);
-    attachInterrupt(digitalPinToInterrupt(interruptPin), interrupt_hundler, RISING);
+    if ( interruptPin >= 0 ) {
+        pinMode(interruptPin, INPUT);
+        attachInterrupt(digitalPinToInterrupt(interruptPin), interrupt_hundler, RISING);
+    }
 
     pinMode(resetPin, OUTPUT);
     digitalWrite(resetPin, HIGH);
@@ -127,6 +129,20 @@ void SI4735::setup(byte resetPin, byte interruptPin, byte defaultFunction)
 
     getFirmware();
 }
+
+
+/* 
+ * Starts the Si473X device.  
+ * Use this setup if you are not using interrupt resource
+ * 
+ * @param byte resetPin Digital Arduino Pin used to RESET command 
+ * @param byte defaultFunction
+ */
+void SI4735::setup(byte resetPin, byte defaultFunction)
+{
+    setup(resetPin, -1, defaultFunction);
+}
+
 
 
 /*
