@@ -35,6 +35,8 @@ __Attention__:
        * [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
        * [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
        * [setFrequency](https://github.com/pu2clr/SI4735#setfrequency)
+       * [frequencyUp]()
+       * [frequencyDown]()
        * [seekStation](https://github.com/pu2clr/SI4735#seekstation)
        * [setAM](https://github.com/pu2clr/SI4735#setam)
        * [setFM](https://github.com/pu2clr/SI4735#setfm)
