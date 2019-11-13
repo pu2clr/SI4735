@@ -462,7 +462,7 @@ void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byt
  * Returns the programa type. 
  * Read the Block A content
  */  
-unsigned SI4735::getRdsProgramType(void) {
+unsigned SI4735::getRdsPI(void) {
 
     if (getRdsReceived() && getRdsNewBlockA())
     {
@@ -500,7 +500,7 @@ unsigned SI4735::getRdsVersionCode(void)
     return blkb.refined.versionCode;
 }
 
-unsigned SI4735::getRdsProgramTypeB(void)
+unsigned SI4735::getRdsProgramType(void)
 {
 
     si47x_rds_blockb blkb;
@@ -511,15 +511,65 @@ unsigned SI4735::getRdsProgramTypeB(void)
     return blkb.refined.programType;
 }
 
+// Just a test
+
+char * SI4735::getNext4Block(char * c ) {
+
+    c[1] = (currentRdsStatus.resp.BLOCKCL < 32 || currentRdsStatus.resp.BLOCKCL > 127) ? ' ' : currentRdsStatus.resp.BLOCKCL;
+    c[0] = (currentRdsStatus.resp.BLOCKCH < 32 || currentRdsStatus.resp.BLOCKCH > 127) ? ' ' : currentRdsStatus.resp.BLOCKCH;
+
+    c[3] = (currentRdsStatus.resp.BLOCKDL < 32 || currentRdsStatus.resp.BLOCKDL > 127) ? ' ' : currentRdsStatus.resp.BLOCKDL;
+    c[2] = (currentRdsStatus.resp.BLOCKDH < 32 || currentRdsStatus.resp.BLOCKDH > 127) ? ' ' : currentRdsStatus.resp.BLOCKDH;
+
+} 
+
+// Test
 String SI4735::getRdsText(void)
 {
-    char s[4];
+    si47x_rds_blockb blkb;
+    byte offset;
 
-    s[0] = currentRdsStatus.resp.BLOCKCL;
-    s[1]= currentRdsStatus.resp.BLOCKCH;
+    char s[17];
 
-    s[2] = currentRdsStatus.resp.BLOCKDL;
-    s[3] = currentRdsStatus.resp.BLOCKDH;
+    blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+    blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+
+    getNext4Block((char *)&s[0]);
+
+    offset = blkb.refined.content;
+
+    while (blkb.refined.content == offset) {
+        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+        delay(10);
+        getRdsStatus();
+    }
+
+    getNext4Block(&s[4]);
+
+    offset = blkb.refined.content;
+    while (blkb.refined.content == offset)
+    {
+        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+        delay(10);
+        getRdsStatus();
+    }
+
+    getNext4Block(&s[8]);
+
+    offset = blkb.refined.content;
+    while (blkb.refined.content == offset)
+    {
+        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+        delay(10);
+        getRdsStatus();
+    }
+
+    getNext4Block(&s[12]);
+
+    s[16] = 0;
 
     return String(s);
 }

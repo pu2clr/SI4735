@@ -66,7 +66,7 @@ void setup()
 
   showCurrenteStatus();
 
-  si4735.setRdsConfig(1, 1, 1, 2, 2);
+  si4735.setRdsConfig(1, 2, 2, 2, 2);
 }
 
 void showHelp() {
@@ -132,17 +132,14 @@ void loop()
   if (si4735.getRdsReceived())
   {
     unsigned gt = si4735.getRdsGroupType();
-    if ( gt != 2 && (gt <= 4 || gt == 10) && si4735.getRdsVersionCode() ) {
-      int i = si4735.getRdsProgramTypeB();
+    // if ( gt != 2 && (gt <= 4 || gt == 10) && si4735.getRdsVersionCode() ) {
+      int i = si4735.getRdsProgramType();
 
       Serial.print("RDS GT: ");
       Serial.print(si4735.getRdsGroupType());
 
-      // Serial.print("-RDS V: ");
-      // Serial.print(si4735.getRdsVersionCode());
-
-      // Serial.print("-Prog.Type B: ");
-      // Serial.print(si4735.getRdsProgramTypeB());
+      Serial.print("-RDS V: ");
+      Serial.print(si4735.getRdsVersionCode());
 
       Serial.print("-PTy: ");
       Serial.print(i);
@@ -163,7 +160,7 @@ void loop()
 
       Serial.println("\n===================================================");
       delay(600);
-    }
+    // }
   }
   delay(100);
 }

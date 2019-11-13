@@ -339,14 +339,12 @@ typedef union {
 typedef union {
     struct
     {
-        byte contryCode : 4; // Country code. Cannot be 0.
-        byte coverageAreaCode : 4; // Coverage area code.
-        byte programType; //  Assigned ID code.Cannot be 0.
+       unsigned pi; 
     } refined;
     struct
     {
-        byte highValue;    // Most Significant byte first 
         byte lowValue;
+        byte highValue; // Most Significant byte first
     } raw;
 } si47x_rds_blocka;
 
@@ -362,8 +360,9 @@ typedef union {
         byte content : 5;            // Depends on Group Type and Version codes.
         byte programType : 5;        // PTY (Program Type) code
         byte trafficProgramCode : 1; // 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
-        byte versionCode : 1;        // 0=A; 1=B
-        byte groupType : 4;          // Group Type code.
+        byte versionCode : 1; // 0=A; 1=B
+        byte groupType : 4;   // Group Type code.
+
     } refined;
     struct {
         byte lowValue;
@@ -383,9 +382,9 @@ typedef union {
     byte raw[4];
 } si47x_rds_date_time;
 
-    /************************ Deal with Interrupt  *************************/
 
-    volatile static bool data_from_si4735;
+/************************ Deal with Interrupt  *************************/
+volatile static bool data_from_si4735;
 
 static void interrupt_hundler()
 {
@@ -487,10 +486,13 @@ public:
     inline byte getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
 
     void setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD);
-    unsigned getRdsProgramType(void);
+    unsigned getRdsPI(void);
     unsigned getRdsGroupType(void);
     unsigned getRdsVersionCode(void);
-    unsigned getRdsProgramTypeB(void);
+    unsigned getRdsProgramType(void);
     String getRdsText(void);
     String getRdsTime(void);
+
+    // Test
+    char *SI4735::getNext4Block(char *);
 };
