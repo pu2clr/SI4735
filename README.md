@@ -447,6 +447,27 @@ void SI4735::setFrequency(unsigned freq)
 [See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
 
 
+#### frequencyUp
+```cpp
+/*
+ *  Increments the current frequency on current band/function by using the current step.
+ *  See setFrequencyStep
+ */ 
+void SI4735::frequencyUp()
+```
+
+
+#### frequencyDown
+```cpp
+/*
+ *  Decrements the current frequency on current band/function by using the current step.
+ *  See setFrequencyStep
+ */ 
+void SI4735::frequencyDown()
+```
+
+
+
 
 ### seekStation
 ```cpp
@@ -493,6 +514,21 @@ void SI4735::seekStationDown()
 void SI4735::setAM()
 ```
 
+##### You can also use __setAM__ with parameters as shown below
+
+```cpp
+/*
+ * Set the radio to AM (LW/MW/SW) function. 
+ * 
+ * @param fromFreq minimum frequency for the band
+ * @param toFreq maximum frequency for the band
+ * @param initialFreq initial frequency 
+ * @param step step used to go to the next channel   
+ */
+void SI4735::setAM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step)
+```
+
+
 ### setFM
 
 ```cpp
@@ -502,6 +538,19 @@ void SI4735::setAM()
 void SI4735::setFM()
 ```
 
+##### You can also use __setFM__ with parameters as shown below
+
+```cpp
+/*
+ * Set the radio to FM function. 
+ * 
+ * @param fromFreq minimum frequency for the band
+ * @param toFreq maximum frequency for the band
+ * @param initialFreq initial frequency (default frequency)
+ * @param step step used to go to the next channel   
+ */
+void SI4735::setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step)
+```
 
 
 
@@ -524,6 +573,17 @@ void SI4735::setFM()
 ```
 
 [See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
+
+
+#### isCurrentTuneFM
+
+```cpp 
+/*
+ * Returns true if the radio is running FM (FM_TUNE_FREQ).
+ */ 
+unsigned SI4735::isCurrentTuneFM()
+```
+
 
 
 ### setVolume
