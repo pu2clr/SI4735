@@ -520,7 +520,7 @@ void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
 }
 
 /*
- * Gets RDS Statu.
+ * Gets RDS Status.
  * Call getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY) if you want other behaviour
  */
 void SI4735::getRdsStatus() {
