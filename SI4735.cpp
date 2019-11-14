@@ -644,9 +644,12 @@ char * SI4735::getNext4Block(char * c ) {
 
 } 
 
-// Test
+/*
+ * Gets the RDS Text when the message is of the Group Type 2 version A
+ */  
 String SI4735::getRdsText(void)
 {
+    // Under construction... 
 
     si47x_rds_blockb blkb;
     byte offset = blkb.refined.content;
@@ -665,6 +668,9 @@ String SI4735::getRdsText(void)
     return String(rds_buffer);
 }
 
+/* 
+ * Gets the RDS time and date when the Group type is 4 
+ */  
 String SI4735::getRdsTime() {
     si47x_rds_date_time dt;
 
