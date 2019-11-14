@@ -68,7 +68,7 @@ __Attention__:
        * [getFirmwareCMPMINOR](https://github.com/pu2clr/SI4735#getfirmwarecmpminor)
        * [getFirmwareCHIPREV](https://github.com/pu2clr/SI4735#getfirmwarechiprev)
      * [__RDS__](https://github.com/pu2clr/SI4735#rds)
-       * [setRdsIntSource]()
+       * [setRdsIntSource](https://github.com/pu2clr/SI4735#setrdsintsource)
        * [setRdsConfig](https://github.com/pu2clr/SI4735#setrdsconfig)
        * [getRdsStatus](https://github.com/pu2clr/SI4735#getrdsstatus)
        * [getRdsReceived](https://github.com/pu2clr/SI4735#getrdsreceived)
