@@ -9,6 +9,11 @@
  */
 #include <SI4735.h>
 
+
+SI4735::SI4735() {
+    for (int i = 0; i < 65; i++) rds_buffer[i] = ' ';
+}
+
 /*
 * 
 * This function is called whenever the Si4735 changes. 
@@ -642,28 +647,22 @@ char * SI4735::getNext4Block(char * c ) {
 // Test
 String SI4735::getRdsText(void)
 {
-    si47x_rds_blockb blkb;
-    byte offset;
 
-    char s[29];
+    si47x_rds_blockb blkb;
+    byte offset = blkb.refined.content;
+
+    if ( offset > 15 ) return;
 
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
 
-    for (int i = 0; i < 29; i+=4) {
-        getNext4Block(&s[i]);
-        offset = blkb.refined.content;
-        while (blkb.refined.content == offset) {
-            blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-            blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-            delay(50);
-            getRdsStatus();
-        }
-    }
+    getNext4Block(&rds_buffer[offset * 4]);
 
-    s[28] = 0;
+    getRdsStatus();
 
-    return String(s);
+    rds_buffer[64] = 0;
+
+    return String(rds_buffer);
 }
 
 String SI4735::getRdsTime() {

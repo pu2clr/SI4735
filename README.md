@@ -918,11 +918,12 @@ inline byte SI4735::getFirmwareCHIPREV()
 2. [BROADCAST AM/FM/SW/LW RADIO RECEIVER](https://www.silabs.com/documents/public/data-sheets/Si4730-31-34-35-D60.pdf)
 3. [SI47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
 4. [Installing Additional Arduino Libraries](https://www.arduino.cc/en/Guide/Libraries#toc3)
-5. [Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
-6. [RDS Encoder](https://haddadi.github.io/papers/RDSencoderHaddadi.pdf)
-7. [RDS in Europe, RBDS in the USA –What are the differences and how canreceivers cope with both systems?](https://sigidwiki.com/images/a/ad/RDS_in_Europe,_RBDS_in_the_USA.pdf)
-8. [RBDS & RDS PTY Codes and Program Types](https://www.fmsystems-inc.com/rbds-rds-pty-codes-program-types/)
-9. [Using RDS/RBDS with the Si4701/03](https://www.silabs.com/documents/public/application-notes/AN243.pdf)
+5. [Specification of the radio data system (RDS) for VHF/FM sound broadcasting in the frequency range from 87,5 to 108,0 MHz](http://www.interactive-radio-system.com/docs/EN50067_RDS_Standard.pdf)
+6. [Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
+7. [RDS Encoder](https://haddadi.github.io/papers/RDSencoderHaddadi.pdf)
+8. [RDS in Europe, RBDS in the USA –What are the differences and how canreceivers cope with both systems?](https://sigidwiki.com/images/a/ad/RDS_in_Europe,_RBDS_in_the_USA.pdf)
+9. [RBDS & RDS PTY Codes and Program Types](https://www.fmsystems-inc.com/rbds-rds-pty-codes-program-types/)
+10. [Using RDS/RBDS with the Si4701/03](https://www.silabs.com/documents/public/application-notes/AN243.pdf)
 
 
 

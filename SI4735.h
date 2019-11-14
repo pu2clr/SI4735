@@ -397,6 +397,8 @@ class SI4735
 {
 
 private:
+
+    char rds_buffer[65];
     byte resetPin;
     byte interruptPin;
 
@@ -422,6 +424,7 @@ private:
     void waitToSend(void);
 
 public:
+    SI4735();
     void setup(byte resetPin, byte defaultFunction);
     void setup(byte resetPin, int interruptPin, byte defaultFunction);
     void setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE);
