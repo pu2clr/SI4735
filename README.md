@@ -84,6 +84,7 @@ __Attention__:
        * [getRdsProgramType](https://github.com/pu2clr/SI4735#getrdsprogramtype)
        * [getRdsText](https://github.com/pu2clr/SI4735#getrdstext)
        * [getRdsTime](https://github.com/pu2clr/SI4735#getrdstime)
+     * [Single Side Band (SSB) Support]()
 11. [References](https://github.com/pu2clr/SI4735#references)
 12. [Examples]()
 13. [Videos]() 
@@ -1128,6 +1129,12 @@ String SI4735::getRdsText(void)
  */  
 String SI4735::getRdsTime()
 ```
+
+
+## Single Side Band (SSB) Support
+
+Under construction ....
+
 
 
 
