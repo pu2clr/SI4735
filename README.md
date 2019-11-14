@@ -70,6 +70,7 @@ __Attention__:
      * [RDS]()
        * [getRdsStatus]()
        * [setRdsConfig]()
+       * []()
        * [getRdsPI]()
        * [getRdsGroupType]()
        * [getRdsVersionCode]()

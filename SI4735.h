@@ -488,6 +488,7 @@ public:
     void seekStationUp();
     void seekStationDown();
 
+    // RDS implementation
     void getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY);
     void getRdsStatus();
     inline bool getRdsReceived() { return currentRdsStatus.resp.RDSRECV; };        // 1 = FIFO filled to minimum number of groups
@@ -498,6 +499,7 @@ public:
     inline bool getRdsSync() { return currentRdsStatus.resp.RDSSYNC; };            // 1 = RDS currently synchronized.
     inline bool getGroupLost() { return currentRdsStatus.resp.GRPLOST; };          // 1 = One or more RDS groups discarded due to FIFO overrun.
     inline byte getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
+
 
     void setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD);
     unsigned getRdsPI(void);
