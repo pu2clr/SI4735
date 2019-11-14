@@ -1082,22 +1082,52 @@ inline byte getNumRdsFifoUsed()
 unsigned SI4735::getRdsPI(void) 
 ```
 
-
-
-
 ### getRdsGroupType
 
+```cpp
+/*
+ * Returns the Group Type (extracted from the Block B) 
+ */ 
+unsigned SI4735::getRdsGroupType(void)
+```
 
 ### getRdsVersionCode
 
+```cpp
+/*
+ * Gets the version code (extracted from the Block B)
+ * Returns  0=A or 1=B
+ */
+unsigned SI4735::getRdsVersionCode(void)
+```
 
 ### getRdsProgramType
+
+```cpp
+/* 
+ * Returns the Program Type (extracted from the Block B)
+ */ 
+unsigned SI4735::getRdsProgramType(void)
+```
 
 
 ### getRdsText
 
+```cpp
+/*
+ * Gets the RDS Text when the message is of the Group Type 2 version A
+ */  
+String SI4735::getRdsText(void)
+```
 
 ### getRdsTime
+
+```cpp
+/* 
+ * Gets the RDS time and date when the Group type is 4 
+ */  
+String SI4735::getRdsTime()
+```
 
 
 
