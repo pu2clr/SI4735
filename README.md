@@ -68,6 +68,7 @@ __Attention__:
        * [getFirmwareCMPMINOR](https://github.com/pu2clr/SI4735#getfirmwarecmpminor)
        * [getFirmwareCHIPREV](https://github.com/pu2clr/SI4735#getfirmwarechiprev)
      * [__RDS__](https://github.com/pu2clr/SI4735#rds)
+       * [setRdsIntSource]()
        * [setRdsConfig](https://github.com/pu2clr/SI4735#setrdsconfig)
        * [getRdsStatus](https://github.com/pu2clr/SI4735#getrdsstatus)
        * [getRdsReceived](https://github.com/pu2clr/SI4735#getrdsreceived)
@@ -934,6 +935,23 @@ inline byte SI4735::getFirmwareCHIPREV()
 
     This library implements some RDS features of the SI4735.
 
+
+### setRdsIntSource
+
+```cpp
+/* 
+ * Configures interrupt related to RDS
+ * Use this method if want to use interrupt
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 103
+ * 
+ * @param RDSRECV If set, generate RDSINT when RDS FIFO has at least FM_RDS_INT_FIFO_COUNT entries.
+ * @param RDSSYNCLOST If set, generate RDSINT when RDS loses synchronization.
+ * @param RDSSYNCFOUND set, generate RDSINT when RDS gains synchronization.
+ * @param RDSNEWBLOCKA If set, generate an interrupt when Block A data is found or subsequently changed
+ * @param RDSNEWBLOCKB If set, generate an interrupt when Block B data is found or subsequently changed
+ */
+void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCFOUND, byte RDSSYNCLOST, byte RDSRECV)
+```
 
 ### setRdsConfig
 
