@@ -593,9 +593,8 @@ unsigned SI4735::getRdsPI(void) {
 }
 
 /*
- *
+ * Returns the Group Type (extracted from the Block B) 
  */ 
-
 unsigned SI4735::getRdsGroupType(void) {
 
     si47x_rds_blockb blkb;
