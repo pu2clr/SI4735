@@ -606,7 +606,7 @@ unsigned SI4735::getRdsGroupType(void) {
 }
 
 /*
- * Gets the version code 
+ * Gets the version code (extracted from the Block B)
  * Returns  0=A or 1=B
  */
 unsigned SI4735::getRdsVersionCode(void)
@@ -620,6 +620,9 @@ unsigned SI4735::getRdsVersionCode(void)
     return blkb.refined.versionCode;
 }
 
+/* 
+ * Returns the Program Type (extracted from the Block B)
+ */ 
 unsigned SI4735::getRdsProgramType(void)
 {
 
@@ -631,7 +634,7 @@ unsigned SI4735::getRdsProgramType(void)
     return blkb.refined.programType;
 }
 
-// Just a test
+
 
 char * SI4735::getNext4Block(char * c ) {
 
