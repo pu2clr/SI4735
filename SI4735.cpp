@@ -506,6 +506,8 @@ void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCF
     rds_int_source.refined.RDSSYNCFOUND = RDSSYNCFOUND;
     rds_int_source.refined.RDSSYNCLOST = RDSSYNCLOST;
     rds_int_source.refined.RDSRECV = RDSRECV;
+    rds_int_source.refined.DUMMY1 = 0;
+    rds_int_source.refined.DUMMY2 = 0;
 
     property.value = FM_RDS_INT_SOURCE;
 
@@ -571,7 +573,7 @@ void SI4735::getRdsStatus() {
 }
 
 /*
- * Set RDS property 
+ * Set RDS property  FM_RDS_CONFIG
  * 
  * @param byte RDSEN RDS Processing Enable; 1 = RDS processing enabled.
  * @param byte BLETHA Block Error Threshold BLOCKA.   
@@ -608,6 +610,7 @@ void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byt
     config.arg.BLETHB = BLETHB;
     config.arg.BLETHC = BLETHC;
     config.arg.BLETHD = BLETHD;
+    config.arg.DUMMY1 = 0;
 
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(SET_PROPERTY);

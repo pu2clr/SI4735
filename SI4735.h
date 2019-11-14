@@ -180,6 +180,22 @@ typedef union {
     byte raw;
 } si47x_tune_status;
 
+/*
+ * Property Data type (help to deal with SET_PROPERTY command on si473X)
+ */
+typedef union {
+    struct
+    {
+        byte byteLow;
+        byte byteHigh;
+    } raw;
+    unsigned value;
+} si47x_property;
+
+/*
+ ********************** RDS Data types *******************************
+ */
+
 /* 
  * Data type for status information about the received signal quality
  * FM_RSQ_STATUS and AM_RSQ_STATUS
@@ -289,8 +305,9 @@ typedef union {
     byte raw[13];
 } si47x_rds_status;
 
+
 /*
- * FM_RDS_INT_SOURCE command data type
+ * FM_RDS_INT_SOURCE property data type
  * See Si47XX PROGRAMMING GUIDE; AN332; page 103
  */
 typedef union {
@@ -306,23 +323,6 @@ typedef union {
     } refined;
     byte raw[2];
 } si47x_rds_int_source;
-
-
-/*
- * Property Data type to deal with SET_PROPERTY command on si473X
- */
-    typedef union {
-    struct
-    {
-        byte byteLow;
-        byte byteHigh;
-    } raw;
-    unsigned value;
-} si47x_property;
-
-/*
- ********************** RDS Data types *******************************
- */
 
 /*
  * Data type for FM_RDS_CONFIG Property
