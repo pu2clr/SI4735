@@ -682,7 +682,11 @@ unsigned SI4735::getRdsProgramType(void)
     return blkb.refined.programType;
 }
 
-
+char *SI4735::getNext2Block(char *c)
+{
+    c[1] = (currentRdsStatus.resp.BLOCKDL < 32 || currentRdsStatus.resp.BLOCKDL > 127) ? '.' : currentRdsStatus.resp.BLOCKDL;
+    c[0] = (currentRdsStatus.resp.BLOCKDH < 32 || currentRdsStatus.resp.BLOCKDH > 127) ? '.' : currentRdsStatus.resp.BLOCKDH;
+}
 
 char * SI4735::getNext4Block(char * c ) {
 
@@ -708,9 +712,7 @@ String SI4735::getRdsText(void)
 
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-
     getNext4Block(&rds_buffer[offset * 4]);
-
     getRdsStatus();
 
     rds_buffer[64] = 0;

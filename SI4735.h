@@ -525,5 +525,6 @@ public:
     String getRdsTime(void);
 
     // Test
+    char *SI4735::getNext2Block(char *c);
     char *SI4735::getNext4Block(char *);
 };
