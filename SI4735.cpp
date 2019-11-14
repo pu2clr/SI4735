@@ -385,7 +385,7 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
 
 /*
  * Look for a station 
- * See Si47XX PROGRAMMING GUIDE; AN332; page 55, 72, 125 and 137
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 55, 72, 125 and 137
  * 
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
  * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
@@ -478,6 +478,49 @@ void SI4735::volumeDown()
 }
 
 
+/* 
+ * RDS implementation 
+ */
+
+/* 
+ * Configures interrupt related to RDS
+ * Use this method if want to use interrupt
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 103
+ * 
+ * @param RDSRECV If set, generate RDSINT when RDS FIFO has at least FM_RDS_INT_FIFO_COUNT entries.
+ * @param RDSSYNCLOST If set, generate RDSINT when RDS loses synchronization.
+ * @param RDSSYNCFOUND set, generate RDSINT when RDS gains synchronization.
+ * @param RDSNEWBLOCKA If set, generate an interrupt when Block A data is found or subsequently changed
+ * @param RDSNEWBLOCKB If set, generate an interrupt when Block B data is found or subsequently changed
+ */
+void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCFOUND, byte RDSSYNCLOST, byte RDSRECV)
+{
+    si47x_property property;
+    si47x_rds_int_source rds_int_source;
+
+    if (currentTune != FM_TUNE_FREQ)
+        return;
+
+    rds_int_source.refined.RDSNEWBLOCKB = RDSNEWBLOCKB;
+    rds_int_source.refined.RDSNEWBLOCKA = RDSNEWBLOCKA;
+    rds_int_source.refined.RDSSYNCFOUND = RDSSYNCFOUND;
+    rds_int_source.refined.RDSSYNCLOST = RDSSYNCLOST;
+    rds_int_source.refined.RDSRECV = RDSRECV;
+
+    property.value = FM_RDS_INT_SOURCE;
+
+    waitToSend();
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                  // Always 0x00 (I need to check it)
+    Wire.write(property.raw.byteHigh); // Send property - High Byte - most significant first
+    Wire.write(property.raw.byteLow);  // Low Byte
+    Wire.write(rds_int_source.raw[1]); // Send the argments. Most significant first
+    Wire.write(rds_int_source.raw[0]);
+    Wire.endTransmission();
+    delayMicroseconds(550);
+}
 
 /*
  * RDS COMMAND FM_RDS_STATUS
@@ -486,7 +529,7 @@ void SI4735::volumeDown()
  * @param MTFIFO 0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO.
  * @param STATUSONLY Determines if data should be removed from the RDS FIFO.
  */
-void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
+    void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
 {
     si47x_rds_command rds_cmd;
     // checking current FUNC (Am or FM)
@@ -576,6 +619,8 @@ void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byt
     Wire.endTransmission();
     delayMicroseconds(550);
 }
+
+
 
 // TO DO
 

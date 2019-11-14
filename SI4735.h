@@ -290,9 +290,28 @@ typedef union {
 } si47x_rds_status;
 
 /*
- * Property Data type to deal with SET_PROPERTY command on si473X
+ * FM_RDS_INT_SOURCE command data type
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 103
  */
 typedef union {
+    struct
+    {
+        byte RDSRECV : 1;      // If set, generate RDSINT when RDS FIFO has at least FM_RDS_INT_FIFO_COUNT entries.
+        byte RDSSYNCLOST : 1;  // If set, generate RDSINT when RDS loses synchronization.
+        byte RDSSYNCFOUND : 1; // f set, generate RDSINT when RDS gains synchronization.
+        byte DUMMY1 : 1;       // Always write to 0.
+        byte RDSNEWBLOCKA : 1; // If set, generate an interrupt when Block A data is found or subsequently changed
+        byte RDSNEWBLOCKB : 1; // If set, generate an interrupt when Block B data is found or subsequently changed
+        byte DUMMY2 : 10;      // Reserved - Always write to 0.
+    } refined;
+    byte raw[2];
+} si47x_rds_int_source;
+
+
+/*
+ * Property Data type to deal with SET_PROPERTY command on si473X
+ */
+    typedef union {
     struct
     {
         byte byteLow;
@@ -300,7 +319,6 @@ typedef union {
     } raw;
     unsigned value;
 } si47x_property;
-
 
 /*
  ********************** RDS Data types *******************************
@@ -332,14 +350,13 @@ typedef union {
     byte raw[2];
 } si47x_rds_config;
 
-
 /*
  * Block A data type
- */ 
+ */
 typedef union {
     struct
     {
-       unsigned pi; 
+        unsigned pi;
     } refined;
     struct
     {
@@ -347,7 +364,6 @@ typedef union {
         byte highValue; // Most Significant byte first
     } raw;
 } si47x_rds_blocka;
-
 
 /*
  * Block B data type
@@ -360,28 +376,28 @@ typedef union {
         byte content : 5;            // Depends on Group Type and Version codes.
         byte programType : 5;        // PTY (Program Type) code
         byte trafficProgramCode : 1; // 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
-        byte versionCode : 1; // 0=A; 1=B
-        byte groupType : 4;   // Group Type code.
+        byte versionCode : 1;        // 0=A; 1=B
+        byte groupType : 4;          // Group Type code.
 
     } refined;
-    struct {
+    struct
+    {
         byte lowValue;
         byte highValue; // Most Significant Byte first
     } raw;
 } si47x_rds_blockb;
 
-
 typedef union {
-    struct {
+    struct
+    {
         byte offset : 5;
         byte offset_sense : 1; //
         byte minute : 6;       //
-        byte hour : 4; // 
+        byte hour : 4;         //
         unsigned mjd;
     } refined;
     byte raw[4];
 } si47x_rds_date_time;
-
 
 /************************ Deal with Interrupt  *************************/
 volatile static bool data_from_si4735;
@@ -397,14 +413,13 @@ class SI4735
 {
 
 private:
-
     char rds_buffer[65];
     byte resetPin;
     byte interruptPin;
 
     byte currentTune;
 
-    unsigned currentMinimumFrequency; 
+    unsigned currentMinimumFrequency;
     unsigned currentMaximumFrequency;
     unsigned currentWorkFrequency;
 
@@ -477,10 +492,10 @@ public:
     void setFM();
     void setAM(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
     void setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step);
-    void setFrequencyStep(byte step); 
+    void setFrequencyStep(byte step);
     void frequencyUp();
     void frequencyDown();
-    bool isCurrentTuneFM(); 
+    bool isCurrentTuneFM();
     void getFirmware(void);
 
     void setFunction(byte FUNC);
@@ -489,6 +504,7 @@ public:
     void seekStationDown();
 
     // RDS implementation
+    void setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCFOUND, byte RDSSYNCLOST, byte RDSRECV);
     void getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY);
     void getRdsStatus();
     inline bool getRdsReceived() { return currentRdsStatus.resp.RDSRECV; };        // 1 = FIFO filled to minimum number of groups
