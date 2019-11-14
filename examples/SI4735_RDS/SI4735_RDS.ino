@@ -96,6 +96,17 @@ void showRdsText()
   // TO DO
 }
 
+
+void showMessage() {
+  Serial.println(">");
+  for (int i = 0; i < 64; i++ ) {
+    
+    if ( si4735.rds_buffer[i] > 31 && si4735.rds_buffer[i] < 127 )
+      Serial.print(si4735.rds_buffer[i]);
+  }
+  Serial.println("<");
+}
+
 void loop()
 {
   if (Serial.available() > 0)
@@ -156,6 +167,7 @@ void loop()
       } else {
         Serial.print("-");
         Serial.print(si4735.getRdsText());
+        showMessage();
       }
 
       Serial.println("\n===================================================");
