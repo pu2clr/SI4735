@@ -933,38 +933,156 @@ inline byte SI4735::getFirmwareCHIPREV()
 
     This library implements some RDS features of the SI4735.
 
-### getRdsStatus
-
-
 
 ### setRdsConfig
+
+```cpp
+/*
+ * Set RDS property 
+ * 
+ * @param byte RDSEN RDS Processing Enable; 1 = RDS processing enabled.
+ * @param byte BLETHA Block Error Threshold BLOCKA.   
+ * @param byte BLETHB Block Error Threshold BLOCKB.  
+ * @param byte BLETHC Block Error Threshold BLOCKC.  
+ * @param byte BLETHD Block Error Threshold BLOCKD. 
+ *  
+ * IMPORTANT: 
+ * All block errors must be less than or equal the associated block error threshold 
+ * for the group to be stored in the RDS FIFO. 
+ * 0 = No errors.
+ * 1 = 1–2 bit errors detected and corrected. 
+ * 2 = 3–5 bit errors detected and corrected. 
+ * 3 = Uncorrectable.
+ * Recommended Block Error Threshold options:
+ *  2,2,2,2 = No group stored if any errors are uncorrected.
+ *  3,3,3,3 = Group stored regardless of errors.
+ *  0,0,0,0 = No group stored containing corrected or uncorrected errors.
+ *  3,2,3,3 = Group stored with corrected errors on B, regardless of errors on A, C, or D.
+ */
+void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD)
+```
+
+
+### getRdsStatus
+
+```cpp
+/*
+ * RDS COMMAND FM_RDS_STATUS
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
+ * @param INTACK Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT.
+ * @param MTFIFO 0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO.
+ * @param STATUSONLY Determines if data should be removed from the RDS FIFO.
+ */
+void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
+```
+
+##### You can also use __getRdsStatus__ with no parameters as shown below
+
+```cpp
+/*
+ * Gets RDS Status.
+ * Call getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY) if you want other behaviour
+ * same getRdsStatus(0,0,0)
+ */
+void SI4735::getRdsStatus() 
+```
 
 
 ### getRdsReceived
 
+```cpp
+/*
+ * Returns true if the number of the groups is filled.
+ * (1 = FIFO filled to minimum number of groups)
+ * You have to call getRdsStatus before. 
+ */ 
+inline bool getRdsReceived()       
+```
+
 
 ### getRdsSyncLost
 
+```cpp
+/* 
+ * Returns true if when the RDS synchronization status is lost (1 = Lost RDS synchronization)
+ * You have to call getRdsStatus before. 
+ */ 
+inline bool getRdsSyncLost()  
+```
 
 ### getRdsSyncFound
 
+```cpp
+/* 
+ * Returns true when RDS synchronization status is found (Found RDS synchronization)
+ * You have to call getRdsStatus before. 
+ */ 
+inline bool getRdsSyncFound() 
+```
 
 ### getRdsNewBlockA
 
+```cpp
+/* 
+ * Returns true when a valid Block A data has been received.
+ * You have to call getRdsStatus before. 
+ */ 
+inline bool getRdsNewBlockA() 
+```
 
 ### getRdsNewBlockB
 
+```cpp
+/* 
+ * Returns true when a valid Block B data has been received.
+ * You have to call getRdsStatus before. 
+ */ 
+inline bool getRdsNewBlockB() 
+```
 
 ### getRdsSync
+
+```cpp
+/* 
+ * Returns true when RDS currently synchronized.
+ * You have to call getRdsStatus before. 
+ */ 
+inline bool getRdsSync() 
+```
 
 
 ### getGroupLost
 
+```cpp
+/*
+ * Returns true when One or more RDS groups discarded due to FIFO overrun.
+ * You have to call getRdsStatus before. 
+ */ 
+ inline bool getGroupLost()          
+ ```
+
 
 ### getNumRdsFifoUsed
 
+```cpp
+/*
+ * Returns the number of groups remaining in the RDS FIFO (0 if empty).
+ * You have to call getRdsStatus before.   
+ */
+inline byte getNumRdsFifoUsed() 
+```
 
 ### getRdsPI
+
+```cpp
+/* 
+ * Returns the programa type. 
+ * Read the Block A content
+ */  
+unsigned SI4735::getRdsPI(void) 
+```
+
+
 
 
 ### getRdsGroupType
