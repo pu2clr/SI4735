@@ -167,7 +167,7 @@ void loop()
       } else {
         Serial.print("-");
         Serial.print(si4735.getRdsText());
-        showMessage();
+        // showMessage();
       }
 
       Serial.println("\n===================================================");

@@ -57,11 +57,19 @@ void showStatus()
   Serial.print("You are tuned on ");
   if (si4735.isCurrentTuneFM() ) {
     Serial.print(String(currentFrequency / 100.0, 2));
-    Serial.println(" MHz");
+    Serial.print(" MHz");
   } else {
     Serial.print(currentFrequency);
-    Serial.println(" KHz");
+    Serial.print(" KHz");
   }
+  Serial.print("-SNR: " );
+  Serial.print(si4735.getStatusSNR());
+  Serial.print(" dB");
+    
+  Serial.print("-Signal: " );
+  Serial.print(si4735.getReceivedSignalStrengthIndicator());
+  Serial.println(" dBuV");
+  
 }
 
 // Main
@@ -103,6 +111,9 @@ void loop()
       case 's':
         si4735.seekStationDown();
         break;
+      case '0':
+        showStatus();
+        break;  
       case '?':
         showHelp();
         break;
