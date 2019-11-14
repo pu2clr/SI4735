@@ -929,6 +929,60 @@ inline byte SI4735::getFirmwareCHIPREV()
 ```
 
 
+### RDS
+
+    This library implements some RDS features of the SI4735.
+
+### getRdsStatus
+
+
+
+### setRdsConfig
+
+
+### getRdsReceived
+
+
+### getRdsSyncLost
+
+
+### getRdsSyncFound
+
+
+### getRdsNewBlockA
+
+
+### getRdsNewBlockB
+
+
+### getRdsSync
+
+
+### getGroupLost
+
+
+### getNumRdsFifoUsed
+
+
+### getRdsPI
+
+
+### getRdsGroupType
+
+
+### getRdsVersionCode
+
+
+### getRdsProgramType
+
+
+### getRdsText
+
+
+### getRdsTime
+
+
+
 ## References
 
 1. [Silicon Labs Si4737 WB/AM/FM Stereo/RDS single-chip receiver HAL library for Arduino ](https://github.com/rickeywang/Si4737_i2c)
