@@ -55,8 +55,6 @@ void showHelp() {
 // Show current frequency
 void showStatus()
 {
-  // Query the current Receive Signal Quality
-  si4735.getCurrentReceivedSignalQuality(0);
   
   Serial.print("You are tuned on ");
   if (si4735.isCurrentTuneFM() ) {
