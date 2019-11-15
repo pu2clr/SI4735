@@ -396,6 +396,10 @@ typedef union {
 
 ## Public Methods
 
+To use the methods below you have to declare the class SI4735 in your sketch. The folder __examples__ has some examples that show how to use these methods. For example: see [Proof of Concept for SI4735 Arduino Library](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino) 
+
+<BR>
+
 
 ### setup
 
@@ -1056,7 +1060,7 @@ inline bool SI4735::getCurrentBlendDetectInterrupt()
 
 ### SI4735 Firmware Information
 
-Allow to query the part number, chip revision, firmware revision, patch revision and component revision numbers.
+Allows to query the part number, chip revision, firmware revision, patch revision and component revision numbers.
 
 <BR>
 
