@@ -896,7 +896,7 @@ See  Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
 
 ```cpp
 /*  
- * Query Current Received Signal Quality
+ * Queries the status of the Received Signal Quality (RSQ) of the current channel.
  * 
  * @param INTACK Interrupt Acknowledge; 0 = Interrupt status preserved; 1 = Clears RSQINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT
  */
