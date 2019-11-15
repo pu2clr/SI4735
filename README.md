@@ -261,12 +261,17 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 ![Basic Schematic](./extras/images/basic_schematic.png)
 
 
-The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
+<BR>
+<BR>
+
+#### The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
 
 ![Silicon Labs Schematic](./extras/images/silicon_labs_schematic_pag_19.png)
 
 
+<BR>
+<BR>
 
 ### Parts
 
@@ -284,8 +289,8 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 | L1 | Ferrite loop stick (about 500 μH) |
 | X1    | 32.768 kHz crystal |
 
-  [ˆ1]: C7 and C8 are ceramic capacitors included by the author of this project. They are not present on original Silicon Labs schematic. 
-  [ˆ2]: R4 and R5 are pull-up resistor included by the author of this project. They are not present on original Silicon Labs schematic. 
+  * [ˆ1]: C7 and C8 are ceramic capacitors included by the author of this project. They are not present on original Silicon Labs schematic. 
+  * [ˆ2]: R4 and R5 are pull-up resistor included by the author of this project. They are not present on original Silicon Labs schematic. 
 
 __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (page 12)__:
 * Place C1 close to VA and C4 close to VD pin.
