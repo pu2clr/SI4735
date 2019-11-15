@@ -332,6 +332,8 @@ unsigned SI4735::getFrequency()
 
     currentWorkFrequency =  freq.value;
 
+    getCurrentReceivedSignalQuality(0);
+
     return freq.value;
 }
 
