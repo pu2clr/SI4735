@@ -887,8 +887,6 @@ inline bool SI4735::getStatusValid()
 ## SI4735 Received Signal Quality
 
 You have a set o methods that allowto get some information about Received Signal Quality.
-__The first method you have to call to get any information is getCurrentReceivedSignalQuality__.
-
 See  Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
 
 
@@ -896,7 +894,10 @@ See  Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
 
 ```cpp
 /*  
- * Queries the status of the Received Signal Quality (RSQ) of the current channel.
+ * Queries the status of the Received Signal Quality (RSQ) of the current channel. The methods getCurrentRSSI(), getCurrentSNR() etc,
+ * depend on this method. So, it have to be called first. However, this method is called internally by getFrequency(). In this case,
+ * you do not need to use getCurrentReceivedSignalQuality if you are using getFrequency.
+ * In other words, you can call getCurrentRSSI(), getCurrentSNR() etc, after call getFrequency().
  * 
  * @param INTACK Interrupt Acknowledge; 0 = Interrupt status preserved; 1 = Clears RSQINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT
  */
