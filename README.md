@@ -75,7 +75,7 @@ __Attention__:
        * [getCurrentSignedFrequencyOffset](https://github.com/pu2clr/SI4735#getcurrentsignedfrequencyoffset)
        * [getCurrentMultipathDetectLow](https://github.com/pu2clr/SI4735#getcurrentmultipathdetectlow)
        * [getCurrentMultipathDetectHigh](https://github.com/pu2clr/SI4735#getcurrentmultipathdetecthigh)
-       * [getCurrentBlendDetectInterrupt]()
+       * [getCurrentBlendDetectInterrupt](https://github.com/pu2clr/SI4735#getcurrentblenddetectinterrupt)
      * [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735#si4735-firmware-information)
        * [getFirmwarePN](https://github.com/pu2clr/SI4735#getfirmwarepn)
        * [getFirmwareFWMAJOR](https://github.com/pu2clr/SI4735#getfirmwarefwmajor)
@@ -863,6 +863,10 @@ inline bool SI4735::getStatusValid()
 ```
 
 
+
+
+
+
 ### SI4735 Received Signal Quality
 
 You have a set o methods that allowto get some information about Received Signal Quality.
@@ -1030,6 +1034,10 @@ inline bool SI4735::getCurrentMultipathDetectHigh()
  */ 
 inline bool SI4735::getCurrentBlendDetectInterrupt()  
 ```
+
+
+
+
 
 ### SI4735 Firmware Information
 
