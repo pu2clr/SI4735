@@ -623,7 +623,6 @@ void SI4735::setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byt
 ```
 
 
-
 #### Example of using setAM() and setFM()
 
 ```cpp
@@ -717,7 +716,7 @@ void SI4735::volumeDown()
 <BR>
 <BR>
 
-### SI4735 Current Status
+## SI4735 Current Status
 
 Allows to query the current frequency, RSSI, SNR, multipath, and the antenna tuning capacitance value (0-191). 
 You have to call getStatus before any method to get the information about SI4735 status
@@ -885,7 +884,7 @@ inline bool SI4735::getStatusValid()
 <BR>
 <BR>
 
-### SI4735 Received Signal Quality
+## SI4735 Received Signal Quality
 
 You have a set o methods that allowto get some information about Received Signal Quality.
 __The first method you have to call to get any information is getCurrentReceivedSignalQuality__.
@@ -1058,7 +1057,7 @@ inline bool SI4735::getCurrentBlendDetectInterrupt()
 <BR>
 <BR>
 
-### SI4735 Firmware Information
+## SI4735 Firmware Information
 
 Allows to query the part number, chip revision, firmware revision, patch revision and component revision numbers.
 
@@ -1156,7 +1155,7 @@ inline byte SI4735::getFirmwareCHIPREV()
 <BR>
 
 
-### RDS
+## RDS
 
     This library implements some RDS features of the SI4735.
 
