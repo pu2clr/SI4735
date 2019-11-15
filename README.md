@@ -44,7 +44,7 @@ __Attention__:
        * [setVolume](https://github.com/pu2clr/SI4735#setvolume)
        * [volumeUp](https://github.com/pu2clr/SI4735#volumeup)
        * [volumeDown](https://github.com/pu2clr/SI4735#volumedown)
-     * [__Si4735 current status__](https://github.com/pu2clr/SI4735#getstatus)
+     * [__Si4735 current status__](https://github.com/pu2clr/SI4735#si4735-current-status)
        * [getStatus](https://github.com/pu2clr/SI4735#getstatus)
        * [getTuneCompleteTriggered](https://github.com/pu2clr/SI4735#gettunecompletetriggered)
        * [getSignalQualityInterrupt](https://github.com/pu2clr/SI4735#getsignalqualityinterrupt)
