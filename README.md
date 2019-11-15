@@ -273,11 +273,12 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
 |Part	| Description |
 |-------| ------------ |
-| C1    | 22nF (Place C1 close to VA pin)|
-| C2    | 100pF|
-| C3    | 470nF| 
-| C4    | 100nF (close to VD pin)|
+| C1    | 22nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VA pin)|
+| C2    | 100pF Monolithic Multilayer Chip Ceramic non polarized capacitor |
+| C3    | 470nF Monolithic Multilayer Chip Ceramic non polarized capacitor| 
+| C4    | 100nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VD pin)|
 | C5 and C6 | 22pF (Crystal load capacitors) | 
+| C7 and C8 | 4.7uF Monolithic Multilayer Chip Ceramic non polarized capacitor | 
 | R3    | 2.2K |
 | (R4 and R5)[ˆ1] | 10K (pull-up resistors) |
 | L1 | Ferrite loop stick (about 500 μH) |
