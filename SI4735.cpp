@@ -736,7 +736,6 @@ char * SI4735::getNext4Block(char * c ) {
 
     c[1] = (currentRdsStatus.resp.BLOCKCL < 32 || currentRdsStatus.resp.BLOCKCL > 127) ? '.' : currentRdsStatus.resp.BLOCKCL;
     c[0] = (currentRdsStatus.resp.BLOCKCH < 32 || currentRdsStatus.resp.BLOCKCH > 127) ? '.' : currentRdsStatus.resp.BLOCKCH;
-
     c[3] = (currentRdsStatus.resp.BLOCKDL < 32 || currentRdsStatus.resp.BLOCKDL > 127) ? '.' : currentRdsStatus.resp.BLOCKDL;
     c[2] = (currentRdsStatus.resp.BLOCKDH < 32 || currentRdsStatus.resp.BLOCKDH > 127) ? '.' : currentRdsStatus.resp.BLOCKDH;
 
