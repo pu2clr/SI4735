@@ -568,6 +568,7 @@ void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCF
     delayMicroseconds(550);
 }
 
+
 /*
  * RDS COMMAND FM_RDS_STATUS
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
