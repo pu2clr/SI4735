@@ -1373,13 +1373,21 @@ String SI4735::getRdsText(void)
 String SI4735::getRdsTime()
 ```
 
+<BR>
+<BR>
+<BR>
 
 ## Single Side Band (SSB) Support
 
-Under construction ....
+This feature will work only on SI4735-D60. 
+To use this feature, you have to aplya a specific AM SSB patch.
+ 
+ Feature and documentation under construction....
 
 
-
+<BR>
+<BR>
+<BR>
 
 ## References
 
