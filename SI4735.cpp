@@ -52,6 +52,7 @@ void SI4735::waitToSend()
 
 /*
  * Powerup in Analog Mode
+ * You have to call setPowerUp method before. 
  */
 void SI4735::analogPowerUp(void)
 {
@@ -164,7 +165,7 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
     powerUp.arg.GPO2OEN = GPO2OEN; // 1 -> GPO2 Output Enable;
     powerUp.arg.PATCH = PATCH;     // 0 -> Boot normally;
     powerUp.arg.XOSCEN = XOSCEN;   // 1 -> Use external crystal oscillator;
-    powerUp.arg.FUNC = FUNC;       // 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
+    powerUp.arg.FUNC = FUNC;       // 0 = FM Receive; 1 = AM/SSB (LW/MW/SW) Receiver.
     powerUp.arg.OPMODE = OPMODE;   // 0x5 = 00000101 = Analog audio outputs (LOUT/ROUT).
 
     // Set the current tuning frequancy mode 0X20 = FM and 0x40 = AM (LW/MW/SW)

@@ -34,7 +34,7 @@
 #define FM_RDS_CONFIG 0x1502
 #define FM_RDS_CONFIDENCE 0x1503
 
-// AM and SSB
+// AM and SSB command
 #define AM_TUNE_FREQ 0x40    // Tunes to a given AM frequency.
 #define AM_SEEK_START 0x41   // Begins searching for a valid AM frequency.
 #define AM_TUNE_STATUS 0x42  // Queries the status of the already issued AM_TUNE_FREQ or AM_SEEK_START command.
@@ -45,13 +45,30 @@
 #define GPIO_SET 0x81        // Sets GPO1, 2, and 3 output level (low or high).
 
 
-// SPECIFIC SSB
+// SPECIFIC SSB properties
+// See AN332 REV 0.8 Universal Programming Guide (Amendment for SI4735-D60 SSN and NBFM Patches)
 
+#define GPO_IEN 0x0001                       // Enable interrupt source
+#define SSB_BFO 0x0100                       // Sets the Beat Frequency Offset (BFO) under SSB mode.
+#define SSB_MODE 0x0101                      // Sets number of properties of the SSB mode. 
+#define SSB_RSQ_INTERRUPTS 0x3200            // COnfigure Interrupts related to RSQ 
+#define SSB_RSQ_SNR_HI_THRESHOLD 0x3201      // Sets high threshold for SNR interrupt
+#define SSB_RSQ_SNR_LO_THRESHOLD 0x3202      // Sets low threshold for SNR interrupt
+#define SSB_RSQ_RSSI_HI_THRESHOLD 0x3203     // Sets high threshold for RSSI interrupt
+#define SSB_RSQ_RSSI_LO_THRESHOLD 0x3204     // Sets low threshold for RSSI interrupt
+#define SSB_SOFT_MUTE_RATE 0x3300            // Sets the attack and decay rates when entering or leaving soft mute
+#define SSB_SOFT_MUTE_MAX_ATTENUATION 0x3302 // Sets the maximum attenuation during soft mute (db); 0dB to disable soft mute; defaul 8dB;
+#define SSB_SOFT_MUTE_SNR_THRESHOLD 0x3303   // Sets SNR threshould to engage soft mute. Defaul 8dB 
+#define SSB_RF_AGC_ATTACK_RATE 0x3700        // Sets the number of milliseconds the high RF peak detector must be exceeded before decreasing the gain. Defaul 4.
+#define SSB_RF_AGC_RELEASE_RATE 0x3701       // Sets the number of milliseconds the low RF peak detector must be exceeded before increasing the gain. Defaul 24.
+#define SSB_RF_IF_AGC_ATTACK_RATE 0x3702     // Sets the number of milliseconds the high IF peak detector must be exceeded before decreasing gain. Defaul 4.
+#define SSB_RF_IF_AGC_RELEASE_RATE 0x3703    // Sets the number of milliseconds the low IF peak detector must be exceeded before increasing the gain. Defaul 140.
 
 
 
 // SI473X Properties
 #define RX_VOLUME 0x4000
+#define RX_HARD_MUTE 0x4001
 
 
 
@@ -441,7 +458,7 @@ private:
     si47x_rds_status currentRdsStatus;
 
 
-        si473x_powerup powerUp;
+    si473x_powerup powerUp;
 
     byte volume = 32;
 
