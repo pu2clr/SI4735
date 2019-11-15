@@ -865,6 +865,7 @@ inline bool SI4735::getStatusValid()
 <BR>
 <BR>
 <BR>
+
 ### SI4735 Received Signal Quality
 
 You have a set o methods that allowto get some information about Received Signal Quality.
@@ -1034,8 +1035,9 @@ inline bool SI4735::getCurrentBlendDetectInterrupt()
 ```
 
 
-
-
+<BR>
+<BR>
+<BR>
 
 ### SI4735 Firmware Information
 
