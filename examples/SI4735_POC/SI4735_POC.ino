@@ -46,6 +46,7 @@ void showHelp() {
   Serial.println("Type U to increase and D to decrease the frequency");
   Serial.println("Type S or s to seek station Up or Down");
   Serial.println("Type + or - to volume Up or Down");
+  Serial.println("Type 0 to show current status");  
   Serial.println("Type ? to this help.");
   Serial.println("==================================================");
   delay(1000);
@@ -54,21 +55,25 @@ void showHelp() {
 // Show current frequency
 void showStatus()
 {
+  // Query the current Receive Signal Quality
+  si4735.getCurrentReceivedSignalQuality(0);
+  
   Serial.print("You are tuned on ");
   if (si4735.isCurrentTuneFM() ) {
     Serial.print(String(currentFrequency / 100.0, 2));
-    Serial.print(" MHz");
+    Serial.print("MHz ");
+    Serial.print((si4735.getCurrentPilot())?"STEREO":"MONO");
   } else {
     Serial.print(currentFrequency);
-    Serial.print(" KHz");
+    Serial.print("KHz");
   }
-  Serial.print("-SNR: " );
-  Serial.print(si4735.getStatusSNR());
-  Serial.print(" dB");
+  Serial.print(" [SNR:" );
+  Serial.print(si4735.getCurrentSNR());
+  Serial.print("dB");
     
-  Serial.print("-Signal: " );
-  Serial.print(si4735.getReceivedSignalStrengthIndicator());
-  Serial.println(" dBuV");
+  Serial.print(" Signal:" );
+  Serial.print(si4735.getCurrentRSSI());
+  Serial.println("dBuV]");
   
 }
 
