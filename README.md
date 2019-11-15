@@ -862,12 +862,9 @@ inline byte SI4735::getAntennaTuningCapacitor()
 inline bool SI4735::getStatusValid()
 ```
 
-
-
-
-
-
+### 
 ### SI4735 Received Signal Quality
+### 
 
 You have a set o methods that allowto get some information about Received Signal Quality.
 __The first method you have to call to get any information is getCurrentReceivedSignalQuality__.
