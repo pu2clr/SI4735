@@ -58,7 +58,24 @@ __Attention__:
        * [getStatusMULT](https://github.com/pu2clr/SI4735#getstatusmult)
        * [getAntennaTuningCapacitor](https://github.com/pu2clr/SI4735#getantennatuningcapacitor)
        * [getStatusValid](https://github.com/pu2clr/SI4735#getstatusvalid)
-     * [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735#getfirmwarepn)
+     * [__SI4735 Received Signal Quality__]()
+       * [getCurrentRSSI]()
+       * [getCurrentSNR]()
+       * [getCurrentRssiDetectLow]()
+       * [getCurrentRssiDetectHigh]()
+       * [getCurrentSnrDetectLow]()
+       * [getCurrentSnrDetectHigh]()
+       * [getCurrentValidChannel]()
+       * [getCurrentAfcRailIndicator]()
+       * [getCurrentSoftMuteIndicator]()
+       * [getCurrentStereoBlend]()
+       * [getCurrentPilot]()
+       * [getCurrentMultipath]()
+       * [getCurrentSignedFrequencyOffset]()
+       * [getCurrentMultipathDetectLow]()
+       * [getCurrentMultipathDetectHigh]()
+       * [getCurrentBlendDetectInterrupt]()
+     * [__SI4735 Firmware Information__]()
        * [getFirmwarePN](https://github.com/pu2clr/SI4735#getfirmwarepn)
        * [getFirmwareFWMAJOR](https://github.com/pu2clr/SI4735#getfirmwarefwmajor)
        * [getFirmwareFWMINOR](https://github.com/pu2clr/SI4735#getfirmwarefwminor)
@@ -86,9 +103,9 @@ __Attention__:
        * [getRdsText](https://github.com/pu2clr/SI4735#getrdstext)
        * [getRdsTime](https://github.com/pu2clr/SI4735#getrdstime)
      * [__Single Side Band (SSB) Support__](https://github.com/pu2clr/SI4735#single-side-band-ssb-support)
-11. [References](https://github.com/pu2clr/SI4735#references)
-12. [Examples]()
-13. [Videos]() 
+10. [References](https://github.com/pu2clr/SI4735#references)
+11. [Examples]()
+12. [Videos]() 
 
 
 
@@ -844,6 +861,174 @@ inline byte SI4735::getAntennaTuningCapacitor()
 inline bool SI4735::getStatusValid()
 ```
 
+
+### SI4735 Received Signal Quality
+
+You have a set o methods that allowto get some information about Received Signal Quality.
+__The first method you have to call to get any information is getCurrentReceivedSignalQuality__.
+
+See  Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
+
+
+### getCurrentReceivedSignalQuality
+
+```cpp
+/*  
+ * Query Current Received Signal Quality
+ * 
+ * @param INTACK Interrupt Acknowledge; 0 = Interrupt status preserved; 1 = Clears RSQINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT
+ */
+void getCurrentReceivedSignalQuality(byte INTACK)
+```
+
+### getCurrentRSSI
+
+```cpp
+/* 
+ * Gets current receive signal strength (0–127 dBμV).
+ * AM and FM
+ */
+inline byte SI4735::getCurrentRSSI() 
+```
+
+### getCurrentSNR
+
+```cpp
+/*
+ * Gets current SNR metric (0–127 dB).
+ * AM and FM
+ */
+inline byte SI4735::getCurrentSNR() 
+```
+
+### getCurrentRssiDetectLow
+
+```cpp
+/* 
+ * Returns true if RSSI Detect Low.
+ * AM and FM
+ */ 
+inline bool SI4735::getCurrentRssiDetectLow() 
+```  
+
+
+### getCurrentRssiDetectHigh
+
+```cpp
+/* 
+ * Return true if RSSI Detect High
+ * AM and FM
+ */ 
+inline bool SI4735::getCurrentRssiDetectHigh() 
+```
+
+### getCurrentSnrDetectLow
+
+```cpp
+/* 
+ * Returns true if SNR Detect Low.
+ */ 
+inline bool SI4735::getCurrentSnrDetectLow() 
+```  
+
+### getCurrentSnrDetectHigh
+
+```cpp
+/* 
+ * Returns true if SNR Detect High
+ */ 
+inline bool SI4735::getCurrentSnrDetectHigh() 
+```    
+
+### getCurrentValidChannel
+
+```cpp
+/*
+ *  Returns true if Valid Channel.
+ */ 
+inline bool SI4735::getCurrentValidChannel() 
+```  
+
+### getCurrentAfcRailIndicator
+
+```cpp
+/*
+ *  Returns true AFC Rail Indicator.
+ */ 
+inline bool SI4735::getCurrentAfcRailIndicator() 
+```    
+
+### getCurrentSoftMuteIndicator
+
+```cpp
+/*
+ * Returns true if soft mute is engaged.
+ */
+inline bool SI4735::getCurrentSoftMuteIndicator() 
+```    
+
+### getCurrentStereoBlend
+
+```cpp
+/* 
+ *  Returns the amount of stereo blend in% (100 = full stereo, 0 = full mono).
+ */ 
+inline byte SI4735::getCurrentStereoBlend()
+```    
+
+### getCurrentPilot
+
+```cpp
+/*
+ * Returns true if stereo pilot presence.
+ */ 
+inline bool SI4735::getCurrentPilot() 
+```    
+
+### getCurrentMultipath
+
+```cpp
+/* 
+ * Returns the current multipath metric. (0 = no multipath; 100 = full multipath)
+ */ 
+inline byte SI4735::getCurrentMultipath() 
+``` 
+
+### getCurrentSignedFrequencyOffset
+
+```cpp
+/* 
+ * Returns Signed frequency offset (kHz).
+ */ 
+inline byte SI4735::getCurrentSignedFrequencyOffset() 
+```  
+
+### getCurrentMultipathDetectLow
+
+```cpp
+/* 
+ * Returns true if Multipath Detect Low.
+ */ 
+inline bool SI4735::getCurrentMultipathDetectLow()  
+```   
+
+### getCurrentMultipathDetectHigh
+
+```cpp
+/*
+ * Returns true if Multipath Detect High
+ */ 
+inline bool SI4735::getCurrentMultipathDetectHigh()   
+```
+
+```cpp
+/*
+ * Returns true if Blend Detect Interrupt
+ */ 
+inline bool SI4735::getCurrentBlendDetectInterrupt()  
+```
+
+### SI4735 Firmware Information
 
 ### getFirmwarePN
 
