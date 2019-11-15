@@ -248,13 +248,15 @@ This library has been written for the Arduino platform and has been successfully
 
 
 
-### Arduino 5V and Si4844
+### Arduino 5V and Si4735
 
 The SI4735 device  works with  3.3V only. If you are not using a 3.3V version of Arduino, you have to use a kind of converter. 
 
 
 
 ### Schematic
+
+The main porpuse of this prototype is to test de Si4735 Arduino Library. It does not intend to be a real radio for exigent listener. However, it is possible to start with it and after include some devices to improve, for example,  its sensibility,  beyond other desired features.
 
 The image bellow shows a version of Slicon Labs SSOP Typical Application Schematic. The basic difference are the pull-up resitors on I2C bus. 
 
@@ -274,6 +276,8 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 <BR>
 
 ### Parts
+
+The table below shown the component parts used to build the radio prototype based on Si4735. Some parts were included by the author of this project. 
 
 
 |Part	| Description |
