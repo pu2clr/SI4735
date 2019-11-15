@@ -70,7 +70,6 @@ void setup()
 }
 
 void showHelp() {
-  Serial.println("=============================================");
   Serial.println("Type: S  to seek the next FM station.");
   Serial.println("      s  to seek the previous FM station.");
   Serial.println("      >  to increase the frequency");
@@ -83,10 +82,17 @@ void showHelp() {
 
 void showCurrenteStatus()
 {
-  Serial.println("================================");
+  fm_freq = si4735.getFrequency();
+  delay(100);
   Serial.print("You are tuned on ");
   Serial.print( String(fm_freq / 100.0, 2));
-  Serial.println(" MHz");
+  Serial.print(" MHz"); 
+  Serial.print(" [SNR:" );
+  Serial.print(si4735.getCurrentSNR());
+  Serial.print("dB");
+  Serial.print(" Signal:" );
+  Serial.print(si4735.getCurrentRSSI());
+  Serial.println("dBuV]");  
   Serial.println("================================");
 }
 
@@ -111,16 +117,13 @@ void loop()
 {
   if (Serial.available() > 0)
   {
-
     char key = Serial.read();
     if (key == 'S')
     {
       si4735.seekStationUp(); // Look for the next station FM
-      fm_freq = si4735.getFrequency();
       showCurrenteStatus();
     } else if (key == 's') {
       si4735.seekStationDown(); //Look for the previous station FM
-      fm_freq = si4735.getFrequency();
       showCurrenteStatus();
     } else if ( key == '+' ) {
       si4735.volumeUp();
