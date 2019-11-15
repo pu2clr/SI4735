@@ -276,7 +276,7 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 
 ### Parts
 
-The table below shown the component parts used to build the radio prototype based on Si4735. Some parts were included by the author of this project. 
+The table below shows the component parts used to build the radio prototype based on Si4735. Some parts were included by the author of this project. 
 
 
 |Part	| Description |
