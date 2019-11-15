@@ -16,29 +16,19 @@ const unsigned max_fm = 10900;
 unsigned fm_freq = 10390; // 103.9 MHz - Change it to your local FM station with SDR service
 
 
-/*
-  // ORININAL UE
-  String tabProgramType[] = {
+// ORININAL UE
+char * tabProgramType[] = {
   "No program definition type", "News", "Current affairs", "Information", "Sport", "Education", "Drama",
   "Culture", "Science", "Variable", "Popular Music (Pop)", "Rock Music", "Easy Listening", "Light Classical",
   "Serious Classical", "Other Music", "Weather", "Finance", "Children’s Programs", "Social Affairs","Religion",
   "Phone-in Talk", "Travel", "Leisure", "Jazz Music", "Country Music", "National Music", "Oldies Music",
-  "Folk Music", "Documentary", "Alarm Test", "Alarm"
-  };
-*/
+  "Folk Music", "Documentary", "Alarm Test", "Alarm"};
 
-// UE
-String tabProgramType[] = {
-  "No prog. def.", "News", "Cur. affairs", "Inf.", "Sport", "Educ.", "Drama",
-  "Culture", "Science", "Variable", "Pop", "Rock", "Easy List.", "L.Classical",
-  "S.Classical", "Other Music", "Weather", "Finance", "Children’s Prog.", "Social Affairs", "Religion",
-  "Talk", "Travel", "Leisure", "Jazz", "Country Music", "National Music", "Oldies Music",
-  "Folk", "Documentary", "Alarm Test", "Alarm"
-};
 
+ 
+// USA - comment above and uncomment below if you are using USA 
 /*
-  // EUA
-  String tabProgramType[] = {
+char * tabProgramType[] = {
   "No program definition type", "News", "Information", "Sport", "Talk", "Rock", "Classic Rock",
   "Adult Hits", "Soft Rock", "Top 40", "Country Music", "Oldies Music", "Soft Music", "Nostalgia",
   "Jazz", "Classical", "Rhythm & Blues Music", "Soft Rhythm & Blues Music", "Language", "Religious Music", "Religious Talk",
@@ -83,13 +73,12 @@ void showHelp() {
 void showCurrenteStatus()
 {
   fm_freq = si4735.getFrequency();
-  delay(100);
   Serial.print("You are tuned on ");
   Serial.print( String(fm_freq / 100.0, 2));
   Serial.print(" MHz"); 
   Serial.print(" [SNR:" );
   Serial.print(si4735.getCurrentSNR());
-  Serial.print("dB");
+  Serial.print("dB"); 
   Serial.print(" Signal:" );
   Serial.print(si4735.getCurrentRSSI());
   Serial.println("dBuV]");  
@@ -102,16 +91,6 @@ void showRdsText()
   // TO DO
 }
 
-
-void showMessage() {
-  Serial.println(">");
-  for (int i = 0; i < 64; i++ ) {
-    
-    if ( si4735.rds_buffer[i] > 31 && si4735.rds_buffer[i] < 127 )
-      Serial.print(si4735.rds_buffer[i]);
-  }
-  Serial.println("<");
-}
 
 void loop()
 {
@@ -159,7 +138,7 @@ void loop()
       Serial.print(i);
       Serial.print("-");
       if ( i < 32 ) {
-        Serial.print(tabProgramType[i]);
+        Serial.print(String(tabProgramType[i]));
       }
       else {
         Serial.print("****");
@@ -170,10 +149,8 @@ void loop()
       } else {
         Serial.print("-");
         Serial.print(si4735.getRdsText());
-        // showMessage();
       }
-
-      Serial.println("\n===================================================");
+      Serial.println(">");
       delay(600);
     }
   }

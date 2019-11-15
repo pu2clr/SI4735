@@ -749,17 +749,21 @@ String SI4735::getRdsText(void)
     // Under construction... 
 
     si47x_rds_blockb blkb;
-    byte offset = blkb.refined.content;
+    byte offset;
     byte newB;
 
-    if ( offset > 15 ) return;
-
-    newB = currentRdsStatus.resp.RDSNEWBLOCKB;
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-    getNext4Block(&rds_buffer[offset * 4]);
-    getRdsStatus();
+
     offset = blkb.refined.content;
+    getNext4Block(&rds_buffer[offset * 4]);
+    do { 
+        getRdsStatus();
+        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;        
+    } while ( offset ==  blkb.refined.content );
+    offset = blkb.refined.content;
+    getNext4Block(&rds_buffer[offset * 4]);
 
     rds_buffer[64] = 0;
 
