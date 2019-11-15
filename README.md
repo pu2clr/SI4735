@@ -286,9 +286,8 @@ The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
   [ˆ1]: C7 and C8 are ceramic capacitors included by the author of this project. They are not present on original Silicon Labs schematic. 
   [ˆ2]: R4 and R5 are pull-up resistor included by the author of this project. They are not present on original Silicon Labs schematic. 
-  []
 
-__Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver (page 12)__:
+__Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (page 12)__:
 * Place C1 close to VA and C4 close to VD pin.
 * All grounds connect directly to GND plane on PCB.
 * Pins 6 and 7 are no connects, leave floating.
