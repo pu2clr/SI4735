@@ -426,11 +426,13 @@ private:
     byte currentStep;
 
     si47x_frequency currentFrequency;
+    si47x_rqs_status currentRqsStatus;
     si47x_response_status currentStatus;
     si47x_firmware_information firmwareInfo;
     si47x_rds_status currentRdsStatus;
 
-    si473x_powerup powerUp;
+
+        si473x_powerup powerUp;
 
     byte volume = 32;
 
@@ -473,12 +475,42 @@ public:
     inline byte getStatusMULT() { return currentStatus.resp.MULT; };                      // Returns integer containing the multipath metric when tune is complete.
     inline byte getAntennaTuningCapacitor() { return currentStatus.resp.READANTCAP; };    // Returns integer containing the current antenna tuning capacitor value.
 
+
+    /* RQS STATUS RESPONSE 
+     * 
+     */
+    void getCurrentReceivedSignalQuality(byte INTACK);
+    // AM and FM
+    inline byte getCurrentRSSI() { return currentRqsStatus.resp.RSSI; }; // current receive signal strength (0–127 dBμV).
+    inline byte getCurrentSNR() { return currentRqsStatus.resp.SNR; }; // current SNR metric (0–127 dB).
+    inline bool getCurrentRssiDetectLow() { return currentRqsStatus.resp.RSSIILINT; }; // RSSI Detect Low.
+    inline bool getCurrentRssiDetectHigh() { return currentRqsStatus.resp.RSSIHINT; }; // RSSI Detect High
+    inline bool getCurrentSnrDetectLow() { return currentRqsStatus.resp.SNRLINT; };     // SNR Detect Low.
+    inline bool getCurrentSnrDetectHigh() { return currentRqsStatus.resp.SNRHINT; };    // SNR Detect High
+    inline bool getCurrentValidChannel() { return currentRqsStatus.resp.VALID; };     // Valid Channel.
+    inline bool getCurrentAfcRailIndicator() { return currentRqsStatus.resp.AFCRL; };    // AFC Rail Indicator.
+    inline bool getCurrentSoftMuteIndicator() { return currentRqsStatus.resp.SMUTE; };    // Soft Mute Indicator. Indicates soft mute is engaged.
+    // Just FM
+    inline bool getCurrentStereoBlend() { return currentRqsStatus.resp.STBLEND; }; // Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono).
+    inline bool getCurrentPilot() { return currentRqsStatus.resp.PILOT; }; // Indicates stereo pilot presence.
+    inline byte getCurrentMultipath() { return currentRqsStatus.resp.MULT; }; // Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
+    inline byte getCurrentSignedFrequencyOffset() { return currentRqsStatus.resp.FREQOFF; }; // Signed frequency offset (kHz).
+    inline bool getCurrentMultipathDetectLow() { return currentRqsStatus.resp.MULTLINT; };     // Multipath Detect Low.
+    inline bool getCurrentMultipathDetectHigh() { return currentRqsStatus.resp.MULTHINT; };    // Multipath Detect High
+    inline bool getCurrentBlendDetectInterrupt() { return currentRqsStatus.resp.BLENDINT; };    // Blend Detect Interrupt
+
+
+
     /*
      * FIRMWARE RESPONSE
      * 
      * See Si47XX PROGRAMMING GUIDE; AN332; page 66
      */
-    inline byte getFirmwarePN() { return firmwareInfo.resp.PN; };             //  RESP1 - Part Number (HEX)
+    inline byte
+    getFirmwarePN()
+    {
+        return firmwareInfo.resp.PN;
+    };                                                                        //  RESP1 - Part Number (HEX)
     inline byte getFirmwareFWMAJOR() { return firmwareInfo.resp.FWMAJOR; };   // RESP2 - Returns the Firmware Major Revision (ASCII).
     inline byte getFirmwareFWMINOR() { return firmwareInfo.resp.FWMINOR; };   // RESP3 - Returns the Firmware Minor Revision (ASCII).
     inline byte getFirmwarePATCHH() { return firmwareInfo.resp.PATCHH; };     // RESP4 -  Returns the Patch ID High Byte (HEX).

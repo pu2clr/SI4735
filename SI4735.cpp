@@ -384,13 +384,55 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
 }
 
 /*
+ * Queries the status of the Received Signal Quality (RSQ) of the current channel
+ * Command FM_RSQ_STATUS
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
+ * 
+ * @param INTACK Interrupt Acknowledge. 
+ *        0 = Interrupt status preserved; 
+ *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
+ */
+void SI4735::getCurrentReceivedSignalQuality(byte INTACK) {
+
+    byte arg; 
+    byte cmd;
+    int bytesResponse; 
+
+    if (currentTune == FM_TUNE_FREQ) {  // FM TUNE
+        cmd = FM_RSQ_STATUS;
+        bytesResponse = 7;
+    } else {    // AM TUNE
+        cmd =  AM_RSQ_STATUS;
+        bytesResponse = 5;
+    }
+
+    waitToSend();
+
+    arg = INTACK;
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(cmd);
+    Wire.write(arg); // send B00000001
+    Wire.endTransmission();
+
+    waitToSend();
+
+    Wire.requestFrom(SI473X_ADDR, bytesResponse);
+    // Gets response information
+    for (byte i = 0; i < bytesResponse; i++)
+    {
+        currentRqsStatus.raw[i] = Wire.read();
+    }
+    delayMicroseconds(2500);
+}
+
+    /*
  * Look for a station 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 55, 72, 125 and 137
  * 
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
  * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
-void SI4735::seekStation(byte SEEKUP, byte WRAP)
+    void SI4735::seekStation(byte SEEKUP, byte WRAP)
 {
     si47x_seek seek;
 
