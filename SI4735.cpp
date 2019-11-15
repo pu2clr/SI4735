@@ -746,11 +746,13 @@ char * SI4735::getNext4Block(char * c ) {
  */  
 String SI4735::getRdsText(void)
 {
-    // Under construction... 
+    // Under Test and construction... 
 
     si47x_rds_blockb blkb;
     byte offset;
     byte newB;
+
+    for (int i = 0; i < 64; i++) rds_buffer[i] = ' ';
 
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
@@ -777,6 +779,24 @@ String SI4735::getRdsText(void)
     if (offset < 16 )
         getNext4Block(&rds_buffer[offset * 4]);
 
+    do { 
+        getRdsStatus();
+        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;        
+    } while ( offset ==  blkb.refined.content );
+    offset = blkb.refined.content;
+    if (offset < 16 )
+        getNext4Block(&rds_buffer[offset * 4]);
+
+    do { 
+        getRdsStatus();
+        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;        
+    } while ( offset ==  blkb.refined.content );
+    offset = blkb.refined.content;
+    if (offset < 16 )
+        getNext4Block(&rds_buffer[offset * 4]);
+
     rds_buffer[64] = 0;
 
     return String(rds_buffer);
@@ -786,6 +806,9 @@ String SI4735::getRdsText(void)
  * Gets the RDS time and date when the Group type is 4 
  */  
 String SI4735::getRdsTime() {
+
+    // Under Test and construction
+
     si47x_rds_date_time dt;
 
     String s;
