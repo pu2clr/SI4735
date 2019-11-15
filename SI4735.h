@@ -12,7 +12,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-// SI473X commands
+// SI473X commands (general)
 #define SI473X_ADDR 0x11    // SI473X I2C buss address
 #define POWER_UP 0x01       // Power up device and mode selection.
 #define GET_REV 0x10        // Returns revision information on the device.
@@ -21,12 +21,20 @@
 #define GET_PROPERTY 0x13   // Retrieves a property’s value.
 #define GET_INT_STATUS 0x14 // Read interrupt status bits.
 
+// FM
 #define FM_TUNE_FREQ 0x20
 #define FM_SEEK_START 0x21 // Begins searching for a valid FM frequency.
 #define FM_TUNE_STATUS 0x22
 #define FM_RSQ_STATUS 0x23
 #define FM_RDS_STATUS 0x24 // Returns RDS information for current channel and reads an entry from the RDS FIFO.
 
+// FM RDS properties 
+#define FM_RDS_INT_SOURCE 0x1500
+#define FM_RDS_INT_FIFO_COUNT 0x1501
+#define FM_RDS_CONFIG 0x1502
+#define FM_RDS_CONFIDENCE 0x1503
+
+// AM and SSB
 #define AM_TUNE_FREQ 0x40    // Tunes to a given AM frequency.
 #define AM_SEEK_START 0x41   // Begins searching for a valid AM frequency.
 #define AM_TUNE_STATUS 0x42  // Queries the status of the already issued AM_TUNE_FREQ or AM_SEEK_START command.
@@ -36,30 +44,31 @@
 #define GPIO_CTL 0x80        // Configures GPO1, 2, and 3 as output or Hi-Z.
 #define GPIO_SET 0x81        // Sets GPO1, 2, and 3 output level (low or high).
 
-#define TX_TUNE_FREQ 0x30 // CMD
+
+// SPECIFIC SSB
+
+
+
 
 // SI473X Properties
 #define RX_VOLUME 0x4000
 
-#define FM_RDS_INT_SOURCE 0x1500
-#define FM_RDS_INT_FIFO_COUNT 0x1501
-#define FM_RDS_CONFIG 0x1502
-#define FM_RDS_CONFIDENCE 0x1503
+
 
 // Parameters
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
 #define SI473X_DIGITAL_AUDIO B00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
 
-/*****************************************************************
+    /*****************************************************************
  * SI473X data types 
  * These data types will be usefull to deal with SI473X 
  *****************************************************************/
 
-/*
+    /*
  * Power Up arguments data type 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65
  */
-typedef union {
+    typedef union {
     struct
     {
         // ARG1
