@@ -235,11 +235,10 @@ Unzip the SI4735.zip file in your Arduino Library folder.
 * On __Linux__: ˜/Documents/Arduino/libraries
 
 
-
-## Arduino 5V and Si4844
-
-TO DO ...
-
+<BR>
+<BR>
+<BR>
+<BR>
 
 
 ## Hardware Requirements and Setup
