@@ -575,7 +575,7 @@ void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCF
  * @param MTFIFO 0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO.
  * @param STATUSONLY Determines if data should be removed from the RDS FIFO.
  */
-    void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
+void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
 {
     si47x_rds_command rds_cmd;
     // checking current FUNC (Am or FM)
