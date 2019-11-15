@@ -145,8 +145,6 @@ void SI4735::setup(byte resetPin, byte defaultFunction)
     setup(resetPin, -1, defaultFunction);
 }
 
-
-
 /*
  * Set the Power Up parameters for si473X. 
  * Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()
@@ -156,7 +154,7 @@ void SI4735::setup(byte resetPin, byte defaultFunction)
  * @param byte GPO2OEN sets GP02 Si473X pin enabled (1 = anabled and 0 = disabled )
  * @param byte PATCH  Used for firmware patch updates. Use it always 0 here. 
  * @param byte XOSCEN byte XOSCEN set external Crystal enabled or disabled 
- * @param byte FUNC sets the receiver function have to be used (0 = FM Receive; 1 = AM (LW/MW/SW) Receiver)
+ * @param byte FUNC sets the receiver function have to be used (0 = FM Receive; 1 = AM and SSB (if SSB patch apllied)(LW/MW/SW) Receiver)
  * @param byte OPMODE set the kind of audio mode you want to use.
  */
 void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE)

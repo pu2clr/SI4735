@@ -474,7 +474,7 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
 /*
  * Powerup in Analog Mode
  * You have to call setPowerUp before call analogPowerUp. 
- * Use setPowerUp to select FM, AM or SSB mode.
+ * Use setPowerUp to select FM, AM or SSB (if SSB patch apllied) mode.
  */
 void SI4735::analogPowerUp(void) 
 ```
