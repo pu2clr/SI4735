@@ -149,7 +149,6 @@ void SI4735::setup(byte resetPin, byte defaultFunction)
  * Set the Power Up parameters for si473X. 
  * Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 65 and 129
- * 
  * @param byte CTSIEN sets Interrupt anabled or disabled (1 = anabled and 0 = disabled )
  * @param byte GPO2OEN sets GP02 Si473X pin enabled (1 = anabled and 0 = disabled )
  * @param byte PATCH  Used for firmware patch updates. Use it always 0 here. 
