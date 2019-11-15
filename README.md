@@ -715,6 +715,11 @@ void SI4735::volumeDown()
 
 ### SI4735 Current Status
 
+Allows to query the current frequency, RSSI, SNR, multipath, and the antenna tuning capacitance value (0-191). 
+You have to call getStatus before any method to get the information about SI4735 status
+
+<BR>
+
 
 ### getStatus
 
@@ -1050,6 +1055,11 @@ inline bool SI4735::getCurrentBlendDetectInterrupt()
 <BR>
 
 ### SI4735 Firmware Information
+
+Allow to query the part number, chip revision, firmware revision, patch revision and component revision numbers.
+
+<BR>
+
 
 ### getFirmwarePN
 
