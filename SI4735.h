@@ -546,8 +546,8 @@ public:
     void setVolume(byte volume);
     void volumeDown();
     void volumeUp();
-    inline byte getCurrentVolume() {return volume;}; // Returns the current volume level
-    
+    inline byte getCurrentVolume() {return volume;}; // Returns the current volume level.
+
     void setAM();
     void setFM();
     void setAM(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
