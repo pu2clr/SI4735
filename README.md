@@ -723,6 +723,7 @@ void SI4735::volumeDown()
 [See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
 
 
+### getCurrentVolume
 
 ```cpp 
 /*
