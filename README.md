@@ -44,6 +44,7 @@ __Attention__:
        * [setVolume](https://github.com/pu2clr/SI4735#setvolume)
        * [volumeUp](https://github.com/pu2clr/SI4735#volumeup)
        * [volumeDown](https://github.com/pu2clr/SI4735#volumedown)
+       * [getCurrentVolume]()
      * [__Si4735 current status__](https://github.com/pu2clr/SI4735#si4735-current-status)
        * [getStatus](https://github.com/pu2clr/SI4735#getstatus)
        * [getTuneCompleteTriggered](https://github.com/pu2clr/SI4735#gettunecompletetriggered)
@@ -720,6 +721,15 @@ void SI4735::volumeDown()
 ```
 
 [See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
+
+
+
+```cpp 
+/*
+ * Returns the current volume level
+ */ 
+inline byte getCurrentVolume() 
+```
 
 
 <BR>
