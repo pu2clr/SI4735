@@ -5,29 +5,61 @@
 */
 
 #include <SI4735.h>
-
 #include <LiquidCrystal_I2C.h>
-
-#define RESET_PIN 12
+#include "Rotary.h"
 
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
 
+#define RESET_PIN 12
+
+// Enconder PINs
+#define ENCODER_PIN_A 2
+#define ENCODER_PIN_B 3
+
+// Buttons controllers
+#define BAND_UP 5   // Next Band
+#define BAND_DOWN 6 // Previous Band
+#define VOL_UP 7    // Volume Volume Up
+#define VOL_DOWN 8  // Volume Down
+#define SEEK 9    // Seek Function 
+
+#define MIN_ELAPSED_TIME 100
+
+long elapsedButton = millis();
 
 
+// Encoder control variables
+volatile int encoderCount = 0;
+
+// Some variables to check the SI4735 status
 unsigned currentFrequency;
 unsigned previousFrequency;
 byte rssi = 0;
+byte stereo = 1;
+byte volume = 0;
 
-SI4735 si4735;
+// Devices class declarations
+Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 LiquidCrystal_I2C lcd(0x27, 20, 4);  // please check the address of you I2C device
+SI4735 si4735;
 
 void setup()
 {
 
+  // Encoder pins
+  pinMode(ENCODER_PIN_A, INPUT);
+  pinMode(ENCODER_PIN_B, INPUT);
+
+  pinMode(BAND_UP, INPUT);
+  pinMode(BAND_DOWN, INPUT);
+  pinMode(VOL_UP, INPUT);
+  pinMode(VOL_DOWN, INPUT);  
+  pinMode(SEEK, INPUT);  
+
   Serial.begin(9600);
 
-  
+
   lcd.init();
 
   lcd.backlight();
@@ -43,6 +75,13 @@ void setup()
   lcd.print("FM and AM (MW & SW)");
   lcd.setCursor(4, 2);
   lcd.print("Tuning Test");
+
+  lcd.clear();
+
+  
+  // Encoder interrupt
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   showHelp();
 
@@ -60,15 +99,32 @@ void setup()
   showStatus();
 }
 
+// Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
+void rotaryEncoder()
+{ // rotary encoder events
+  uint8_t encoderStatus = encoder.process();
+  if (encoderStatus) {
+    if ( encoderStatus == DIR_CW ) {
+      encoderCount = 1;
+    }
+    else {
+      encoderCount = -1;
+    }
+  }
+}
 
 void showHelp() {
 
   delay(1000);
 }
 
+
 // Show current frequency
 void showStatus() {
-  lcd.clear();
+  // Clear just the frequency information space.
+  lcd.setCursor(7,0); 
+  lcd.print("        ");
+  
   lcd.setCursor(0, 0);
   if (si4735.isCurrentTuneFM() ) {
     lcd.print("FM ");
@@ -76,37 +132,79 @@ void showStatus() {
     lcd.print(String(currentFrequency / 100.0, 2));
     lcd.setCursor(17, 0);
     lcd.print("MHz ");
-    lcd.setCursor(0,3);
-    lcd.print((si4735.getCurrentPilot())?"STEREO":"MONO");
+    showStereo();
   } else {
     lcd.print("AM ");
-    lcd.setCursor(8, 0);    
+    lcd.setCursor(8, 0);
     lcd.print(currentFrequency);
     lcd.setCursor(17, 0);
     lcd.print("KHz");
+    lcd.setCursor(0, 3);
+    lcd.print("       ");
   }
-  // lcd.setCursor(10,3);
-  // lcd.print("S:");
-  // lcd.setCursor(13,3);
-  // lcd.print(si4735.getCurrentRSSI());
-  lcd.setCursor(16,3);
-  lcd.print("dBuV");
-  delay(300);
-
 }
 
 
 void showRSSI() {
-  lcd.setCursor(10,3);
+  int blk;
+  lcd.setCursor(8, 3);
   lcd.print("S:");
-  lcd.setCursor(13,3);
-  lcd.print(si4735.getCurrentRSSI());
-  delay(300);
+
+  blk = rssi / 10 + 1;
+
+  for (int i = 0; i < 10; i++ ) {
+    lcd.setCursor(10 + i, 3);
+    lcd.print( (i < blk ) ? ">" : " ");
+  }
+}
+
+void showStereo() {
+
+  lcd.setCursor(0, 3);
+  lcd.print((si4735.getCurrentPilot()) ? "STEREO" : "MONO  ");
+
+}
+
+
+void showVolume() {
+  lcd.setCursor(8,2);
+  lcd.print("VOLUME    ");
+  lcd.setCursor(15,2);
+  lcd.print(volume);
 }
 
 // Main
 void loop()
 {
+
+  // Check if the encoder has moved.
+  if (encoderCount != 0  ) {
+
+    if (encoderCount == 1 )
+      si4735.frequencyUp();
+    else
+      si4735.frequencyDown();
+
+    encoderCount = 0;
+  }
+
+
+  if (digitalRead(BAND_UP) | digitalRead(BAND_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) | !digitalRead(SEEK))
+  {
+    // check if some button is pressed
+    if (digitalRead(BAND_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+       si4735.setFM(8600, 10800,  10390, 10);
+    else if (digitalRead(BAND_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+       si4735.setAM(570, 1710,  810, 10);
+    else if (digitalRead(VOL_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+      si4735.volumeUp();
+    else if (digitalRead(VOL_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+      si4735.volumeDown();
+    else if (digitalRead(SEEK) == LOW && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+      si4735.seekStationUp();      
+    elapsedButton = millis();
+  }
+
   if (Serial.available() > 0)
   {
     char key = Serial.read();
@@ -153,16 +251,34 @@ void loop()
         break;
     }
   }
-  delay(50);
+
+
+  // Show the current frequency only it has changed
   currentFrequency = si4735.getFrequency();
   if ( currentFrequency != previousFrequency ) {
     previousFrequency = currentFrequency;
     showStatus();
   }
-  
+
+  // Show RSSI status only if this condition has changed
   if ( rssi != si4735.getCurrentRSSI() ) {
     rssi = si4735.getCurrentRSSI();
-    showRSSI();   
+    showRSSI();
+  }
+
+  if (si4735.isCurrentTuneFM() ) {
+    // Show stereo status only if this condition has changed
+    if ( stereo != si4735.getCurrentPilot() ) {
+      stereo = si4735.getCurrentPilot();
+      showStereo();
+    }
+  }
+
+
+  if ( si4735.getCurrentVolume() != volume ) {
+    volume = si4735.getCurrentVolume(); 
+    showVolume();
   }
   
+  delay(5);
 }
