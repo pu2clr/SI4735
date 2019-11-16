@@ -1,7 +1,8 @@
 /*
-   Test and validation of the SI4735 Arduino Library.
+  SS4735 Arduino Library example with LCD 20x4 I2C.
+  
 
-   By Ricardo Lima Caratti, Nov 2019.
+  By Ricardo Lima Caratti, Nov 2019.
 */
 
 #include <SI4735.h>
@@ -18,8 +19,8 @@
 #define ENCODER_PIN_B 3
 
 // Buttons controllers
-#define BAND_UP 5   // Next Band
-#define BAND_DOWN 6 // Previous Band
+#define AM_FM_BUTTON 5   // Next Band
+#define SEEK_BUTTON 6 // Previous Band
 #define VOL_UP 7    // Volume Volume Up
 #define VOL_DOWN 8  // Volume Down
 #define SEEK 9    // Seek Function 
@@ -39,6 +40,7 @@ byte rssi = 0;
 byte stereo = 1;
 byte volume = 0;
 
+
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 LiquidCrystal_I2C lcd(0x27, 20, 4);  // please check the address of you I2C device
@@ -51,14 +53,10 @@ void setup()
   pinMode(ENCODER_PIN_A, INPUT);
   pinMode(ENCODER_PIN_B, INPUT);
 
-  pinMode(BAND_UP, INPUT);
-  pinMode(BAND_DOWN, INPUT);
+  pinMode(AM_FM_BUTTON, INPUT);
+  pinMode(SEEK_BUTTON, INPUT);
   pinMode(VOL_UP, INPUT);
   pinMode(VOL_DOWN, INPUT);  
-  pinMode(SEEK, INPUT);  
-
-  Serial.begin(9600);
-
 
   lcd.init();
 
@@ -82,8 +80,6 @@ void setup()
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
-
-  showHelp();
 
   delay(500);
 
@@ -113,12 +109,6 @@ void rotaryEncoder()
   }
 }
 
-void showHelp() {
-
-  delay(1000);
-}
-
-
 // Show current frequency
 void showStatus() {
   // Clear just the frequency information space.
@@ -145,6 +135,9 @@ void showStatus() {
 }
 
 
+/* *******************************
+ * Shows RSSI status
+ */
 void showRSSI() {
   int blk;
   lcd.setCursor(8, 3);
@@ -158,6 +151,10 @@ void showRSSI() {
   }
 }
 
+
+/* *****************************
+ * Shows Stereo or Mono status
+ */
 void showStereo() {
 
   lcd.setCursor(0, 3);
@@ -165,7 +162,9 @@ void showStereo() {
 
 }
 
-
+/* ***************************
+ * Shows the volume level on LCD
+ */
 void showVolume() {
   lcd.setCursor(8,2);
   lcd.print("VOLUME    ");
@@ -173,7 +172,10 @@ void showVolume() {
   lcd.print(volume);
 }
 
-// Main
+
+/*
+ * Main
+ */
 void loop()
 {
 
@@ -188,72 +190,28 @@ void loop()
     encoderCount = 0;
   }
 
-
-  if (digitalRead(BAND_UP) | digitalRead(BAND_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) | !digitalRead(SEEK))
+  // Check button commands
+  if (digitalRead(AM_FM_BUTTON) | digitalRead(SEEK_BUTTON) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) )
   {
     // check if some button is pressed
-    if (digitalRead(BAND_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    if (digitalRead(AM_FM_BUTTON) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
+       // Switch AM to FM and vice-versa  
+       if  (si4735.isCurrentTuneFM() ) 
+          si4735.setAM(570, 1710,  810, 10);
+       else   
        si4735.setFM(8600, 10800,  10390, 10);
-    else if (digitalRead(BAND_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
-       si4735.setAM(570, 1710,  810, 10);
+    }
+    else if (digitalRead(SEEK_BUTTON) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+       si4735.seekStationUp();   
     else if (digitalRead(VOL_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
       si4735.volumeUp();
     else if (digitalRead(VOL_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
       si4735.volumeDown();
-    else if (digitalRead(SEEK) == LOW && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
-      si4735.seekStationUp();      
+  
     elapsedButton = millis();
   }
 
-  if (Serial.available() > 0)
-  {
-    char key = Serial.read();
-    switch (key)
-    {
-      case '+':
-        si4735.volumeUp();
-        break;
-      case '-':
-        si4735.volumeDown();
-        break;
-      case 'a':
-      case 'A':
-        si4735.setAM(570, 1710,  810, 10);
-        break;
-      case 'f':
-      case 'F':
-        si4735.setFM(8600, 10800,  10390, 10);
-        break;
-      case '1':
-        si4735.setAM(9400, 9990,  9600, 5);
-        break;
-      case 'U':
-      case 'u':
-        si4735.frequencyUp();
-        break;
-      case 'D':
-      case 'd':
-        si4735.frequencyDown();
-        break;
-      case 'S':
-        si4735.seekStationUp();
-        break;
-      case 's':
-        si4735.seekStationDown();
-        break;
-      case '0':
-        showStatus();
-        break;
-      case '?':
-        showHelp();
-        break;
-      default:
-        break;
-    }
-  }
-
-
-  // Show the current frequency only it has changed
+  // Show the current frequency only if it has changed
   currentFrequency = si4735.getFrequency();
   if ( currentFrequency != previousFrequency ) {
     previousFrequency = currentFrequency;
@@ -266,6 +224,7 @@ void loop()
     showRSSI();
   }
 
+  // Show stereo status only if this condition has changed
   if (si4735.isCurrentTuneFM() ) {
     // Show stereo status only if this condition has changed
     if ( stereo != si4735.getCurrentPilot() ) {
@@ -274,7 +233,7 @@ void loop()
     }
   }
 
-
+  // Show volume level only if this condition has changed
   if ( si4735.getCurrentVolume() != volume ) {
     volume = si4735.getCurrentVolume(); 
     showVolume();
