@@ -1,6 +1,8 @@
 /*
   SS4735 Arduino Library example with LCD 20x4 I2C.
-  
+  Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
+  LCD 20x4 I2C..: This sketch uses the LiquidCrystal I2C Library by Frank de Brabander. Look for LiquidCrystal I2C on Manager Libraries.     
+
 
   By Ricardo Lima Caratti, Nov 2019.
 */
@@ -19,11 +21,11 @@
 #define ENCODER_PIN_B 3
 
 // Buttons controllers
-#define AM_FM_BUTTON 5   // Next Band
-#define SEEK_BUTTON 6 // Previous Band
-#define VOL_UP 7    // Volume Volume Up
-#define VOL_DOWN 8  // Volume Down
-#define SEEK 9    // Seek Function 
+#define AM_FM_BUTTON 5    // Next Band
+#define SEEK_BUTTON 6     // Previous Band
+#define VOL_UP 7          // Volume Volume Up
+#define VOL_DOWN 8        // Volume Down
+#define SEEK 9            // Seek Function 
 
 #define MIN_ELAPSED_TIME 100
 
