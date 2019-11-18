@@ -77,7 +77,7 @@ __Attention__:
        * [getCurrentMultipathDetectLow](https://github.com/pu2clr/SI4735#getcurrentmultipathdetectlow)
        * [getCurrentMultipathDetectHigh](https://github.com/pu2clr/SI4735#getcurrentmultipathdetecthigh)
        * [getCurrentBlendDetectInterrupt](https://github.com/pu2clr/SI4735#getcurrentblenddetectinterrupt)
-     * [Current AGC Status]()
+     * [__Current AGC Status__]()
        * [getAutomaticGainControl]()
        * [isAgcEnabled]()
        * [getAgcGainIndex]()
@@ -1078,7 +1078,7 @@ inline bool SI4735::getCurrentMultipathDetectHigh()
 inline bool SI4735::getCurrentBlendDetectInterrupt()  
 ```
 
-## Current AGC Status
+## __Current AGC Status__
 
 
 ### getAutomaticGainControl
