@@ -149,7 +149,13 @@ void showStatus()
 
   
   // Show AGC Enabled or Disabled
+  si4735.getAutomaticGainControl();
+  
   display.set1X();
+  
+  display.setCursor(5,4);
+  display.print(si4735.getAgcGainIndex());
+  
   display.setCursor(5,5);
   display.print((si4735.isAgcEnabled())?"AGC ON" : "AGC OFF" );
 

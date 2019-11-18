@@ -1074,6 +1074,21 @@ inline bool SI4735::getCurrentMultipathDetectHigh()
 inline bool SI4735::getCurrentBlendDetectInterrupt()  
 ```
 
+## Current AGC Status
+
+
+### getAutomaticGainControl
+
+```cpp
+/*
+ * Queries AGC STATUS
+ * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 80; for AM page 142.
+ * See AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
+ * After call this method, you can call isAgcEnabled to know the AGC status and getAgcGainIndex to know the gain index value.
+ */
+void SI4735::getAutomaticGainControl()
+```
+
 
 <BR>
 <BR>
