@@ -44,7 +44,7 @@ This example shows how can you use SW features of the Si4735 Arduino Library. Li
 
 The schematic below is the same shown at the main page of this project and shows how you can setup you SI4735 device.
 
-![Silicon Labs Schematic](../extras/images/silicon_labs_schematic_pag_19.png)
+![Silicon Labs Schematic](../extras/images/basic_schematic.png)
 
 
 
