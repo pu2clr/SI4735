@@ -19,7 +19,10 @@ This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The so
 
 ## Schematic for I2C display device
 
-![]()
+The schematic below is a sugestion to connect a I2C Display (OLED or LCD 20x4 or another device), buntons and encoder as well. 
+
+![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_i2c.png)
+
 
 
 ## Proof of Concept
