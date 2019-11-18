@@ -74,29 +74,26 @@ void setup()
   display.begin(&Adafruit128x64, I2C_ADDRESS);
   display.setFont(Adafruit5x7);
   delay(500);
-  display.set2X();
-  display.clear();
-  display.print("\n PU2CLR");
+
+  // Splash - Change it for your introduction text.
+  display.set1X();
+  display.setCursor(0,0);
+  display.print("Si4735 Arduino Library");
+  delay(500);
+  display.setCursor(30,3);
+  display.print("By PU2CLR");
   delay(3000);
   display.clear();
-  delay(1000);
-
+  // end Splash
 
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  delay(500);
-
   si4735.setup(RESET_PIN, FM_FUNCTION);
 
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
-
-
   si4735.setFM(8400, 10800,  lastFmFrequency, 10);
-
-  delay(500);
-
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
   showStatus();
@@ -150,6 +147,11 @@ void showStatus()
   display.setCursor(26, 1);
   display.print(freqDisplay);
 
+  
+  // Show AGC Enabled or Disabled
+  display.set1X();
+  display.setCursor(5,5);
+  display.print((si4735.isAgcEnabled())?"AGC ON" : "AGC OFF" );
 
 
 }
