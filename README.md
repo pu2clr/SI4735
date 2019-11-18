@@ -77,10 +77,10 @@ __Attention__:
        * [getCurrentMultipathDetectLow](https://github.com/pu2clr/SI4735#getcurrentmultipathdetectlow)
        * [getCurrentMultipathDetectHigh](https://github.com/pu2clr/SI4735#getcurrentmultipathdetecthigh)
        * [getCurrentBlendDetectInterrupt](https://github.com/pu2clr/SI4735#getcurrentblenddetectinterrupt)
-     * [__Current AGC Status__]()
-       * [getAutomaticGainControl]()
-       * [isAgcEnabled]()
-       * [getAgcGainIndex]()
+     * [__Current AGC Status__](https://github.com/pu2clr/SI4735#current-agc-status)
+       * [getAutomaticGainControl](https://github.com/pu2clr/SI4735#getautomaticgaincontrol)
+       * [isAgcEnabled](https://github.com/pu2clr/SI4735#isagcenabled)
+       * [getAgcGainIndex](https://github.com/pu2clr/SI4735#getagcgainindex)
      * [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735#si4735-firmware-information)
        * [getFirmwarePN](https://github.com/pu2clr/SI4735#getfirmwarepn)
        * [getFirmwareFWMAJOR](https://github.com/pu2clr/SI4735#getfirmwarefwmajor)
@@ -1078,7 +1078,13 @@ inline bool SI4735::getCurrentMultipathDetectHigh()
 inline bool SI4735::getCurrentBlendDetectInterrupt()  
 ```
 
+<BR>
+<BR>
+<BR>
+
 ## __Current AGC Status__
+
+ Methods to query AGC status.  Returns whether the AGC is enabled or disabled and it returns the gain index. You have to call __getAutomaticGainControl__ before isAgcEnabled and getAgcGainIndex.
 
 
 ### getAutomaticGainControl
