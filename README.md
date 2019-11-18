@@ -1089,6 +1089,25 @@ inline bool SI4735::getCurrentBlendDetectInterrupt()
 void SI4735::getAutomaticGainControl()
 ```
 
+### isAgcEnabled
+
+```cpp
+/* 
+ *  Returns true if the AGC is enabled
+ */ 
+inline bool isAgcEnabled()
+```
+
+
+### getAgcGainIndex
+
+```cpp
+/* 
+ *  Returns the current AGC gain index.
+ */ 
+inline byte getAgcGainIndex() 
+```
+
 
 <BR>
 <BR>
