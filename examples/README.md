@@ -17,7 +17,7 @@ This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The so
 This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the SSD1306Ascii Arduino Library by Bill Greiman. You can install SSD1306Ascii via Manage Libraries on your Arduino IDE. 
 
 
-## Schematic for I2C display device
+## Schematic for I2C display device, button and encoder
 
 The schematic below is a sugestion to connect a I2C Display (OLED or LCD 20x4 or another device), buntons and encoder as well. 
 
