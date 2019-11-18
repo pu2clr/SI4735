@@ -242,6 +242,17 @@ void SI4735::setAM()
 }
 
 /*
+ * Set the radio to AM function. It means: LW MW and SW.
+ */
+void SI4735::setSSB()
+{
+    // It starts with the same AM parameters. 
+    setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
+    analogPowerUp();
+    setVolume(volume); // Set to previus configured volume
+}
+
+/*
  * Set the radio to FM function
  */
 void SI4735::setFM()
@@ -276,6 +287,33 @@ void SI4735::setAM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byt
     
     delayMicroseconds(1000);
 
+}
+
+/*
+ * Set the radio to SSB (LW/MW/SW) function. 
+ * 
+ * @param fromFreq minimum frequency for the band
+ * @param toFreq maximum frequency for the band
+ * @param initialFreq initial frequency 
+ * @param step step used to go to the next channel   
+ */
+void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step)
+{
+
+    currentMinimumFrequency = fromFreq;
+    currentMaximumFrequency = toFreq;
+    currentStep = step;
+
+    if (initialFreq < fromFreq || initialFreq > toFreq)
+        initialFreq = fromFreq;
+
+    setSSB();
+
+    currentWorkFrequency = initialFreq;
+
+    setFrequency(currentWorkFrequency);
+
+    delayMicroseconds(1000);
 }
 
 /*
@@ -382,6 +420,44 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
 
     delayMicroseconds(2500);
 }
+
+/*
+ * Queries AGC STATUS
+ * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 80; for AM page 142.
+ * See AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
+ * After call this method, you can call isAgcEnabled to know the AGC status and getAgcGainIndex to know the gain index value.
+ */
+void SI4735::getAutomaticGainControl()
+{
+    byte cmd;
+
+    if (currentTune == FM_TUNE_FREQ)
+    { // FM TUNE
+        cmd = FM_AGC_STATUS;
+    }
+    else 
+    { // AM TUNE - SAME COMMAND used on SSB mode
+        cmd = AM_AGC_STATUS;
+    }
+
+    waitToSend();
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(cmd);
+    Wire.endTransmission();
+
+    waitToSend();
+
+    Wire.requestFrom(SI473X_ADDR, 3);
+    currentAgcStatus.raw[0] = Wire.read();  // STATUS response
+    currentAgcStatus.raw[1] = Wire.read();  // RESP 1
+    currentAgcStatus.raw[2] = Wire.read();  // RESP 2
+
+    delayMicroseconds(2500);
+}
+
+
+
 
 /*
  * Queries the status of the Received Signal Quality (RSQ) of the current channel

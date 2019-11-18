@@ -25,6 +25,7 @@
 #define FM_TUNE_FREQ 0x20
 #define FM_SEEK_START 0x21 // Begins searching for a valid FM frequency.
 #define FM_TUNE_STATUS 0x22
+#define FM_AGC_STATUS 0x27 
 #define FM_RSQ_STATUS 0x23
 #define FM_RDS_STATUS 0x24 // Returns RDS information for current channel and reads an entry from the RDS FIFO.
 
@@ -425,8 +426,35 @@ typedef union {
     byte raw[4];
 } si47x_rds_date_time;
 
+/* AGC data types
+ * FM / AM and SSB structure to AGC
+ * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 80; for AM page 142
+ * See AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
+ */
+typedef union {
+    struct {
+        // status ("RESP0")
+        byte STCINT : 1;
+        byte DUMMY1 : 1;
+        byte RDSINT : 1;   // Not used for AM/SSB
+        byte RSQINT : 1;
+        byte DUMMY2 : 2;
+        byte ERR : 1;
+        byte CTS : 1;
+        // RESP1
+        byte AGCDIS : 1; // This bit indicates if the AGC is enabled or disabled. 0 = AGC enabled; 1 = AGC disabled.
+        byte DUMMY:7;
+        // RESP2
+        byte AGCDX; // For FM (5 bits - READ_LNA_GAIN_INDEX - 0 = Minimum attenuation (max gain)). For AM (8 bits). This byte reports the current AGC gain index.
+    } refined;
+    byte raw[3];
+} si47x_agc_status;
+
+
+
+
 /************************ Deal with Interrupt  *************************/
-volatile static bool data_from_si4735;
+    volatile static bool data_from_si4735;
 
 static void interrupt_hundler()
 {
@@ -456,9 +484,9 @@ private:
     si47x_response_status currentStatus;
     si47x_firmware_information firmwareInfo;
     si47x_rds_status currentRdsStatus;
+    si47x_agc_status currentAgcStatus;
 
-
-    si473x_powerup powerUp;
+        si473x_powerup powerUp;
 
     byte volume = 32;
 
@@ -499,11 +527,16 @@ public:
     inline byte getStatusMULT() { return currentStatus.resp.MULT; };                      // Returns integer containing the multipath metric when tune is complete.
     inline byte getAntennaTuningCapacitor() { return currentStatus.resp.READANTCAP; };    // Returns integer containing the current antenna tuning capacitor value.
 
+    void getAutomaticGainControl();
+
+    inline bool isAgcEnabled() { return !currentAgcStatus.refined.AGCDIS; };  // Returns true if the AGC is enabled
+    inline byte getAgcGainIndex() { return currentAgcStatus.refined.AGCDX; }; // Returns the current AGC gain index.
 
     /* RQS STATUS RESPONSE 
      * 
      */
-    void getCurrentReceivedSignalQuality(byte INTACK);
+    void
+    getCurrentReceivedSignalQuality(byte INTACK);
     // AM and FM
     inline byte getCurrentRSSI() { return currentRqsStatus.resp.RSSI; }; // current receive signal strength (0–127 dBμV).
     inline byte getCurrentSNR() { return currentRqsStatus.resp.SNR; }; // current SNR metric (0–127 dB).
@@ -550,8 +583,11 @@ public:
 
     void setAM();
     void setFM();
+    void setSSB(); 
     void setAM(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
     void setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step);
+    void setSSB(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
+
     void setFrequencyStep(byte step);
     void frequencyUp();
     void frequencyDown();
