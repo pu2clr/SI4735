@@ -44,6 +44,8 @@ volatile int encoderCount = 0;
 // Some variables to check the SI4735 status
 unsigned currentFrequency;
 unsigned previousFrequency;
+unsigned lastAmFrequency = 810;     // Starts AM on 810KHz;
+unsigned lastFmFrequency = 10390;   // Starts FM on 103,9MHz
 byte rssi = 0;
 byte stereo = 1;
 byte volume = 0;
@@ -89,7 +91,9 @@ void setup()
   si4735.setup(RESET_PIN, FM_FUNCTION);
 
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
-  si4735.setFM(8400, 10800,  10390, 10);
+
+
+  si4735.setFM(8400, 10800,  lastFmFrequency, 10);
 
   delay(500);
 
@@ -212,10 +216,14 @@ void loop()
     // check if some button is pressed
     if (digitalRead(AM_FM_BUTTON) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
       // Switch AM to FM and vice-versa
-      if  (si4735.isCurrentTuneFM() )
-        si4735.setAM(570, 1710,  810, 10);
-      else
-        si4735.setFM(8600, 10800,  10390, 10);
+      if  (si4735.isCurrentTuneFM() ) {
+        lastFmFrequency = currentFrequency;
+        si4735.setAM(570, 1710,  lastAmFrequency, 10);
+      }
+      else {
+        lastAmFrequency = currentFrequency;
+        si4735.setFM(8600, 10800,  lastFmFrequency, 10);
+      }
     }
     else if (digitalRead(SEEK_BUTTON_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
       si4735.seekStationUp();
