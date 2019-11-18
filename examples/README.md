@@ -8,7 +8,7 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 2. [SS4735 Arduino Library example with I2C OLED](examples#SI4735_OLED_I2C)
 3. [Schematic for I2C display device, buttons and encoder]()
 4. [Prof of Concept](examples#proof-of-concept)
-5. [Proof of COncept with SW]()
+5. [Proof of Concept with SW](examples#proof-of-concept-with-sw)
 
 
 ## SS4735 Arduino Library example with LCD 20x4 I2C
