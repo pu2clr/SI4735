@@ -4,11 +4,11 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 
 ## Summary
 
-1. [SS4735 Arduino Library example with LCD 20x4 I2C](./examples#SI4735_LCD_20x4_I2C)
-2. [SS4735 Arduino Library example with I2C OLED](./examples#SI4735_OLED_I2C)
-3. [Schematic for I2C display device, buttons and encoder](./examples#schematic-for-i2c-display-device-buttons-and-encoder)
-4. [Prof of Concept](./examples#proof-of-concept)
-5. [Proof of Concept with SW](./examples#proof-of-concept-with-sw)
+1. [SS4735 Arduino Library example with LCD 20x4 I2C](https://github.com/pu2clr/SI4735/tree/master/examples#ss4735-arduino-library-example-with-lcd-20x4-i2c)
+2. [SS4735 Arduino Library example with I2C OLED](https://github.com/pu2clr/SI4735/tree/master/examples#ss4735-arduino-library-example-with-i2c-oled)
+3. [Schematic for I2C display device, buttons and encoder](https://github.com/pu2clr/SI4735/tree/master/examples#schematic-for-i2c-display-device-buttons-and-encoder)
+4. [Prof of Concept](https://github.com/pu2clr/SI4735/tree/master/examples#proof-of-concept-with-sw)
+5. [Proof of Concept with SW](https://github.com/pu2clr/SI4735/tree/master/examples#schematic-for-proof-of-concept)
 
 
 ## SS4735 Arduino Library example with LCD 20x4 I2C
