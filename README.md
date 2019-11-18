@@ -1001,7 +1001,7 @@ inline bool SI4735::getCurrentValidChannel()
 
 ```cpp
 /*
- *  Returns true AFC Rail Indicator.
+ *  Returns true AFC (Automatic Frequency Control) Rail Indicator.
  */ 
 inline bool SI4735::getCurrentAfcRailIndicator() 
 ```    
