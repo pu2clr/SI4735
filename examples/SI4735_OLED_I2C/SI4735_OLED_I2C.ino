@@ -96,6 +96,11 @@ void setup()
   si4735.setFM(8400, 10800,  lastFmFrequency, 10);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
+
+  // Set AGC
+  // Disable AGC ans set to the minimum attenuation 
+  si4735.setAutomaticGainControl(1,0);
+  
   showStatus();
 }
 

@@ -483,8 +483,8 @@ void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
 
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(cmd);
-    Wire.write(agc.raw[1]);
     Wire.write(agc.raw[0]);
+    Wire.write(agc.raw[1]);
     Wire.endTransmission();
 
     delayMicroseconds(2500);
