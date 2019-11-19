@@ -54,7 +54,36 @@
 #define REFCLK_PRESCALE 0x0202            // Sets the prescaler value for RCLK input.
 #define AM_DEEMPHASIS 0x3100              // Sets deemphasis time constant. Can be set to 50 μs. Deemphasis is disabled by default.
 #define AM_CHANNEL_FILTER 0x3102          // Selects the bandwidth of the channel filter for AM reception. The choices are 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). The default bandwidth is 2 kHz.
+#define AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN 0x3103 // Sets the maximum gain for automatic volume control.
+#define AM_MODE_AFC_SW_PULL_IN_RANGE 0x3104   // Sets the SW AFC pull-in range.
+#define AM_MODE_AFC_SW_LOCK_IN_RANGE 0x3105   // Sets the SW AFC lock-in.
+#define AM_RSQ_INTERRUPTS 0x3200              // Same SSB - Configures interrupt related to Received Signal Quality metrics. All interrupts are disabled by default.
+#define AM_RSQ_SNR_HIGH_THRESHOLD 0x3201      //Sets high threshold for SNR interrupt.
+#define AM_RSQ_SNR_LOW_THRESHOLD 0x3202       // Sets low threshold for SNR interrupt.
+#define AM_RSQ_RSSI_HIGH_THRESHOLD 0x3203     // Sets high threshold for RSSI interrupt.
+#define AM_RSQ_RSSI_LOW_THRESHOLD 0x3204      // Sets low threshold for RSSI interrupt.
+#define AM_SOFT_MUTE_RATE 0x3300              // Sets the attack and decay rates when entering or leaving soft mute. The default is 278 dB/s.
+#define AM_SOFT_MUTE_SLOPE 0x3301             // Sets the AM soft mute slope. Default value is a slope of 1.
+#define AM_SOFT_MUTE_MAX_ATTENUATION 0x3302   // Sets maximum attenuation during soft mute (dB). Set to 0 to disable soft mute. Default is 8 dB.
+#define AM_SOFT_MUTE_SNR_THRESHOLD 0x3303     // Sets SNR threshold to engage soft mute. Default is 8 dB.
+#define AM_SOFT_MUTE_RELEASE_RATE 0x3304      // Sets softmute release rate. Smaller values provide slower release, and larger values provide faster release.
+#define AM_SOFT_MUTE_ATTACK_RATE 0x3305       // Sets software attack rate. Smaller values provide slower attack, and larger values provide faster attack.
+#define AM_SEEK_BAND_BOTTOM 0x3400            // Sets the bottom of the AM band for seek. Default is 520.
+#define AM_SEEK_BAND_TOP 0x3401               // Sets the top of the AM band for seek. Default is 1710.
+#define AM_SEEK_FREQ_SPACING 0x3402           // Selects frequency spacing for AM seek. Default is 10 kHz spacing.
+#define AM_SEEK_SNR_THRESHOLD 0x3403          // Sets the SNR threshold for a valid AM Seek/Tune.
+#define AM_SEEK_RSSI_THRESHOLD 0x3404         // Sets the RSSI threshold for a valid AM Seek/Tune.
+#define AM_AGC_ATTACK_RATE 0x3702             // Sets the number of milliseconds the high peak detector must be exceeded before decreasing gain.
+#define AM_AGC_RELEASE_RATE 0x3703            // Sets the number of milliseconds the low peak detector must not be exceeded before increasing the gain.
+#define AM_FRONTEND_AGC_CONTROL 0x3705        // Adjusts AM AGC for frontend (external) attenuator and LNA.
+#define AM_NB_DETECT_THRESHOLD 0x3900         // Sets the threshold for detecting impulses in dB above the noise floor
+#define AM_NB_INTERVAL 0x3901                 // Interval in micro-seconds that original samples are replaced by interpolated clean samples
+#define AM_NB_RATE 0x3902                     // Noise blanking rate in 100 Hz units. Default value is 64.
+#define AM_NB_IIR_FILTER 0x3903               // Sets the bandwidth of the noise floor estimator. Default value is 300.
+#define AM_NB_DELAY 0x3904                    // Delay in micro-seconds before applying impulse blanking to the original samples
 
+#define RX_VOLUME 0x4000
+#define RX_HARD_MUTE 0x4001
 
 // SSB properties
 // See AN332 REV 0.8 Universal Programming Guide (Amendment for SI4735-D60 SSN and NBFM Patches)
@@ -62,7 +91,7 @@
 #define GPO_IEN 0x0001                       // AM and SSB - Enable interrupt source
 #define SSB_BFO 0x0100                       // Sets the Beat Frequency Offset (BFO) under SSB mode.
 #define SSB_MODE 0x0101                      // Sets number of properties of the SSB mode. 
-#define SSB_RSQ_INTERRUPTS 0x3200            // COnfigure Interrupts related to RSQ 
+#define SSB_RSQ_INTERRUPTS 0x3200            // Configure Interrupts related to RSQ 
 #define SSB_RSQ_SNR_HI_THRESHOLD 0x3201      // Sets high threshold for SNR interrupt
 #define SSB_RSQ_SNR_LO_THRESHOLD 0x3202      // Sets low threshold for SNR interrupt
 #define SSB_RSQ_RSSI_HI_THRESHOLD 0x3203     // Sets high threshold for RSSI interrupt
@@ -77,11 +106,6 @@
 #define SSB_RF_IF_AGC_ATTACK_RATE 0x3702     // Sets the number of milliseconds the high IF peak detector must be exceeded before decreasing gain. Defaul 4.
 #define SSB_RF_IF_AGC_RELEASE_RATE 0x3703    // Sets the number of milliseconds the low IF peak detector must be exceeded before increasing the gain. Defaul 140.
 
-
-
-// SI473X Properties
-#define RX_VOLUME 0x4000
-#define RX_HARD_MUTE 0x4001
 
 
 
