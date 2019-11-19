@@ -9,9 +9,10 @@
  */
 #include <SI4735.h>
 
-
-SI4735::SI4735() {
-    for (int i = 0; i < 65; i++) rds_buffer[i] = ' ';
+SI4735::SI4735()
+{
+    for (int i = 0; i < 65; i++)
+        rds_buffer[i] = ' ';
 }
 
 /*
@@ -20,9 +21,9 @@ SI4735::SI4735() {
 */
 void SI4735::waitInterrupr(void)
 {
-    while (!data_from_si4735);
+    while (!data_from_si4735)
+        ;
 }
-
 
 /*
  * Reset the SI473X   
@@ -70,7 +71,6 @@ void SI4735::analogPowerUp(void)
     delayMicroseconds(2500);
 }
 
-
 /*
  * Gets firmware information 
  */
@@ -107,7 +107,8 @@ void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
     this->interruptPin = interruptPin;
 
     // Arduino interrupt setup (you have to know which Arduino Pins can deal with interrupt).
-    if ( interruptPin >= 0 ) {
+    if (interruptPin >= 0)
+    {
         pinMode(interruptPin, INPUT);
         attachInterrupt(digitalPinToInterrupt(interruptPin), interrupt_hundler, RISING);
         interruptEnable = 1;
@@ -126,12 +127,11 @@ void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
     // FUNC     defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
     // OPMODE   SI473X_ANALOG_AUDIO = 00000101 = Analog audio outputs (LOUT/ROUT).
     setPowerUp(interruptEnable, 1, 0, 1, defaultFunction, SI473X_ANALOG_AUDIO);
-    
+
     analogPowerUp();
     setVolume(20); // Default volume level.
     getFirmware();
 }
-
 
 /* 
  * Starts the Si473X device.  
@@ -171,7 +171,6 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
     currentTune = (FUNC == 0) ? FM_TUNE_FREQ : AM_TUNE_FREQ;
 }
 
-
 /*
  * Set the frequency to the corrent function of the Si4735 (AM or FM)
  * You have to call setup or setPowerUp before call setFrequency.
@@ -198,38 +197,40 @@ void SI4735::setFrequency(unsigned freq)
  * @param step if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz
  *             For AM, 1 (1KHz) to 10 (10KHz) are valid values.
  *             For FM 5 (50KHz) and 10 (100KHz) are valid values.  
- */ 
-void SI4735::setFrequencyStep(byte step) {
+ */
+void SI4735::setFrequencyStep(byte step)
+{
     currentStep = step;
-} 
+}
 
 /*
  *  Increments the current frequency on current band/function by using the current step.
  *  See setFrequencyStep
- */ 
-void SI4735::frequencyUp() {
-    if (currentWorkFrequency >= currentMaximumFrequency ) 
+ */
+void SI4735::frequencyUp()
+{
+    if (currentWorkFrequency >= currentMaximumFrequency)
         currentWorkFrequency = currentMinimumFrequency;
-    else 
-        currentWorkFrequency +=  currentStep;   
+    else
+        currentWorkFrequency += currentStep;
 
-    setFrequency(currentWorkFrequency);         
+    setFrequency(currentWorkFrequency);
 }
 
 /*
  *  Decrements the current frequency on current band/function by using the current step.
  *  See setFrequencyStep
- */ 
-void SI4735::frequencyDown() {
+ */
+void SI4735::frequencyDown()
+{
 
-    if (currentWorkFrequency <=  currentMinimumFrequency ) 
+    if (currentWorkFrequency <= currentMinimumFrequency)
         currentWorkFrequency = currentMaximumFrequency;
-    else 
-        currentWorkFrequency -=  currentStep;   
+    else
+        currentWorkFrequency -= currentStep;
 
-    setFrequency(currentWorkFrequency);  
+    setFrequency(currentWorkFrequency);
 }
-
 
 /*
  * Set the radio to AM function. It means: LW MW and SW.
@@ -246,7 +247,7 @@ void SI4735::setAM()
  */
 void SI4735::setSSB()
 {
-    // It starts with the same AM parameters. 
+    // It starts with the same AM parameters.
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
     analogPowerUp();
     setVolume(volume); // Set to previus configured volume
@@ -270,23 +271,23 @@ void SI4735::setFM()
  * @param initialFreq initial frequency 
  * @param step step used to go to the next channel   
  */
-void SI4735::setAM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step) {
+void SI4735::setAM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step)
+{
 
-    currentMinimumFrequency =  fromFreq; 
+    currentMinimumFrequency = fromFreq;
     currentMaximumFrequency = toFreq;
     currentStep = step;
 
-    if (initialFreq < fromFreq || initialFreq > toFreq ) 
+    if (initialFreq < fromFreq || initialFreq > toFreq)
         initialFreq = fromFreq;
 
-    setAM();  
+    setAM();
 
     currentWorkFrequency = initialFreq;
 
-    setFrequency(currentWorkFrequency);   
-    
-    delayMicroseconds(1000);
+    setFrequency(currentWorkFrequency);
 
+    delayMicroseconds(1000);
 }
 
 /*
@@ -324,34 +325,75 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
  * @param initialFreq initial frequency (default frequency)
  * @param step step used to go to the next channel   
  */
-void SI4735::setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step) {
+void SI4735::setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step)
+{
 
-    currentMinimumFrequency =  fromFreq; 
+    currentMinimumFrequency = fromFreq;
     currentMaximumFrequency = toFreq;
     currentStep = step;
 
-    if (initialFreq < fromFreq || initialFreq > toFreq ) 
+    if (initialFreq < fromFreq || initialFreq > toFreq)
         initialFreq = fromFreq;
 
     setFM();
 
     currentWorkFrequency = initialFreq;
 
-    setFrequency(currentWorkFrequency); 
+    setFrequency(currentWorkFrequency);
 
     delayMicroseconds(1000);
-
 }
 
+/*
+ * Selects the bandwidth of the channel filter for AM reception. The choices are 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). 
+ * The default bandwidth is 2 kHz.
+ * Works only in AM / SSB (LW/MW/SW) 
+ * @param AMCHFLT the choices are:   0 = 6 kHz Bandwidth                    
+ *                                   1 = 4 kHz Bandwidth
+ *                                   2 = 3 kHz Bandwidth
+ *                                   3 = 2 kHz Bandwidth
+ *                                   4 = 1 kHz Bandwidth
+ *                                   5 = 1.8 kHz Bandwidth
+ *                                   6 = 2.5 kHz Bandwidth, gradual roll off
+ *                                   7–15 = Reserved (Do not use).
+ * @param AMPLFLT Enables the AM Power Line Noise Rejection Filter.
+ */
+void SI4735::setBandwidth(byte AMCHFLT, byte AMPLFLT)
+{
+    si47x_bandwidth_config filter;
+    si47x_property property;
+
+    if (currentTune == FM_TUNE_FREQ) // Only for AM/SSB mode
+        return;
+
+    if (AMCHFLT > 6)
+        return;
+
+    property.value = AM_CHANNEL_FILTER;
+
+    filter.param.AMCHFLT = AMCHFLT;
+    filter.param.AMPLFLT = AMPLFLT;
+
+    waitToSend();
+    this->volume = volume;
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                  // Always 0x00
+    Wire.write(property.raw.byteHigh); // High byte first
+    Wire.write(property.raw.byteLow);  // Low byte after
+    Wire.write(filter.raw[1]);         // Raw data for AMCHFLT and
+    Wire.write(filter.raw[0]);         // AMPLFLT
+    Wire.endTransmission();
+    delayMicroseconds(550);
+}
 
 /*
  * Returns true (1) if the current function is FM (FM_TUNE_FREQ).
- */ 
-bool SI4735::isCurrentTuneFM() {
+ */
+bool SI4735::isCurrentTuneFM()
+{
     return (currentTune == FM_TUNE_FREQ);
-} 
-
-
+}
 
 /*
  * Gets the current frequency of the Si4735 (AM or FM)
@@ -366,13 +408,12 @@ unsigned SI4735::getFrequency()
     freq.raw.FREQL = currentStatus.resp.READFREQL;
     freq.raw.FREQH = currentStatus.resp.READFREQH;
 
-    currentWorkFrequency =  freq.value;
+    currentWorkFrequency = freq.value;
 
     getCurrentReceivedSignalQuality(0);
 
     return freq.value;
 }
-
 
 /*
  * Gets the current status  of the Si4735 (AM or FM)
@@ -435,7 +476,7 @@ void SI4735::getAutomaticGainControl()
     { // FM TUNE
         cmd = FM_AGC_STATUS;
     }
-    else 
+    else
     { // AM TUNE - SAME COMMAND used on SSB mode
         cmd = AM_AGC_STATUS;
     }
@@ -449,9 +490,9 @@ void SI4735::getAutomaticGainControl()
     waitToSend();
 
     Wire.requestFrom(SI473X_ADDR, 3);
-    currentAgcStatus.raw[0] = Wire.read();  // STATUS response
-    currentAgcStatus.raw[1] = Wire.read();  // RESP 1
-    currentAgcStatus.raw[2] = Wire.read();  // RESP 2
+    currentAgcStatus.raw[0] = Wire.read(); // STATUS response
+    currentAgcStatus.raw[1] = Wire.read(); // RESP 1
+    currentAgcStatus.raw[2] = Wire.read(); // RESP 2
 
     delayMicroseconds(2500);
 }
@@ -490,9 +531,7 @@ void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
     delayMicroseconds(2500);
 }
 
-
-
- /*
+/*
  * Queries the status of the Received Signal Quality (RSQ) of the current channel
  * Command FM_RSQ_STATUS
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
@@ -501,18 +540,21 @@ void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
  *        0 = Interrupt status preserved; 
  *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
  */
-    void SI4735::getCurrentReceivedSignalQuality(byte INTACK)
+void SI4735::getCurrentReceivedSignalQuality(byte INTACK)
 {
 
-    byte arg; 
+    byte arg;
     byte cmd;
-    int bytesResponse; 
+    int bytesResponse;
 
-    if (currentTune == FM_TUNE_FREQ) {  // FM TUNE
+    if (currentTune == FM_TUNE_FREQ)
+    { // FM TUNE
         cmd = FM_RSQ_STATUS;
         bytesResponse = 7;
-    } else {    // AM TUNE
-        cmd =  AM_RSQ_STATUS;
+    }
+    else
+    { // AM TUNE
+        cmd = AM_RSQ_STATUS;
         bytesResponse = 5;
     }
 
@@ -535,7 +577,6 @@ void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
     delayMicroseconds(2500);
 }
 
-
 /*
  * Look for a station 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 55, 72, 125 and 137
@@ -543,7 +584,7 @@ void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
  * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
-    void SI4735::seekStation(byte SEEKUP, byte WRAP)
+void SI4735::seekStation(byte SEEKUP, byte WRAP)
 {
     si47x_seek seek;
 
@@ -575,7 +616,8 @@ void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
 /*
  * Search for the next station 
  */
-void SI4735::seekStationUp() {
+void SI4735::seekStationUp()
+{
     seekStation(1, 1);
 }
 
@@ -586,8 +628,6 @@ void SI4735::seekStationDown()
 {
     seekStation(0, 1);
 }
-
-
 
 /* 
  * Set volume level
@@ -629,7 +669,6 @@ void SI4735::volumeDown()
         volume--;
     setVolume(volume);
 }
-
 
 /* 
  * RDS implementation 
@@ -677,7 +716,6 @@ void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCF
     delayMicroseconds(550);
 }
 
-
 /*
  * RDS COMMAND FM_RDS_STATUS
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
@@ -722,8 +760,9 @@ void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
  * Gets RDS Status.
  * Call getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY) if you want other behaviour
  */
-void SI4735::getRdsStatus() {
-    getRdsStatus(0,0,0);
+void SI4735::getRdsStatus()
+{
+    getRdsStatus(0, 0, 0);
 }
 
 /*
@@ -768,24 +807,23 @@ void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byt
 
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(SET_PROPERTY);
-    Wire.write(0x00);   // Always 0x00 (I need to check it)
+    Wire.write(0x00);                  // Always 0x00 (I need to check it)
     Wire.write(property.raw.byteHigh); // Send property - High Byte - most significant first
-    Wire.write(property.raw.byteLow); // Low Byte
-    Wire.write(config.raw[1]);        // Send the argments. Most significant first
+    Wire.write(property.raw.byteLow);  // Low Byte
+    Wire.write(config.raw[1]);         // Send the argments. Most significant first
     Wire.write(config.raw[0]);
     Wire.endTransmission();
     delayMicroseconds(550);
 }
-
-
 
 // TO DO
 
 /* 
  * Returns the programa type. 
  * Read the Block A content
- */  
-unsigned SI4735::getRdsPI(void) {
+ */
+unsigned SI4735::getRdsPI(void)
+{
 
     if (getRdsReceived() && getRdsNewBlockA())
     {
@@ -796,8 +834,9 @@ unsigned SI4735::getRdsPI(void) {
 
 /*
  * Returns the Group Type (extracted from the Block B) 
- */ 
-unsigned SI4735::getRdsGroupType(void) {
+ */
+unsigned SI4735::getRdsGroupType(void)
+{
 
     si47x_rds_blockb blkb;
 
@@ -824,7 +863,7 @@ unsigned SI4735::getRdsVersionCode(void)
 
 /* 
  * Returns the Program Type (extracted from the Block B)
- */ 
+ */
 unsigned SI4735::getRdsProgramType(void)
 {
 
@@ -842,69 +881,73 @@ char *SI4735::getNext2Block(char *c)
     c[0] = (currentRdsStatus.resp.BLOCKDH < 32 || currentRdsStatus.resp.BLOCKDH > 127) ? '.' : currentRdsStatus.resp.BLOCKDH;
 }
 
-char * SI4735::getNext4Block(char * c ) {
+char *SI4735::getNext4Block(char *c)
+{
 
     c[1] = (currentRdsStatus.resp.BLOCKCL < 32 || currentRdsStatus.resp.BLOCKCL > 127) ? '.' : currentRdsStatus.resp.BLOCKCL;
     c[0] = (currentRdsStatus.resp.BLOCKCH < 32 || currentRdsStatus.resp.BLOCKCH > 127) ? '.' : currentRdsStatus.resp.BLOCKCH;
     c[3] = (currentRdsStatus.resp.BLOCKDL < 32 || currentRdsStatus.resp.BLOCKDL > 127) ? '.' : currentRdsStatus.resp.BLOCKDL;
     c[2] = (currentRdsStatus.resp.BLOCKDH < 32 || currentRdsStatus.resp.BLOCKDH > 127) ? '.' : currentRdsStatus.resp.BLOCKDH;
-
-} 
+}
 
 /*
  * Gets the RDS Text when the message is of the Group Type 2 version A
- */  
+ */
 String SI4735::getRdsText(void)
 {
-    // Under Test and construction... 
+    // Under Test and construction...
 
     si47x_rds_blockb blkb;
     byte offset;
     byte newB;
 
-    for (int i = 0; i < 64; i++) rds_buffer[i] = ' ';
+    for (int i = 0; i < 64; i++)
+        rds_buffer[i] = ' ';
 
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
 
     offset = blkb.refined.content;
-    if (offset < 16 )
+    if (offset < 16)
         getNext4Block(&rds_buffer[offset * 4]);
-    do { 
+    do
+    {
         getRdsStatus();
         blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;        
-    } while ( offset ==  blkb.refined.content );
+        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+    } while (offset == blkb.refined.content);
     offset = blkb.refined.content;
-    if (offset < 16 )
+    if (offset < 16)
         getNext4Block(&rds_buffer[offset * 4]);
 
-
-    do { 
+    do
+    {
         getRdsStatus();
         blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;        
-    } while ( offset ==  blkb.refined.content );
+        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+    } while (offset == blkb.refined.content);
     offset = blkb.refined.content;
-    if (offset < 16 )
+    if (offset < 16)
         getNext4Block(&rds_buffer[offset * 4]);
 
-    do { 
+    do
+    {
         getRdsStatus();
         blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;        
-    } while ( offset ==  blkb.refined.content );
+        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+    } while (offset == blkb.refined.content);
     offset = blkb.refined.content;
-    if (offset < 16 )
+    if (offset < 16)
         getNext4Block(&rds_buffer[offset * 4]);
 
-    do { 
+    do
+    {
         getRdsStatus();
         blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;        
-    } while ( offset ==  blkb.refined.content );
+        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+    } while (offset == blkb.refined.content);
     offset = blkb.refined.content;
-    if (offset < 16 )
+    if (offset < 16)
         getNext4Block(&rds_buffer[offset * 4]);
 
     rds_buffer[64] = 0;
@@ -914,8 +957,9 @@ String SI4735::getRdsText(void)
 
 /* 
  * Gets the RDS time and date when the Group type is 4 
- */  
-String SI4735::getRdsTime() {
+ */
+String SI4735::getRdsTime()
+{
 
     // Under Test and construction
 
@@ -930,17 +974,17 @@ String SI4735::getRdsTime() {
     dt.raw[0] = currentRdsStatus.resp.BLOCKDL;
     dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
 
-    y = (unsigned) (dt.refined.mjd - 15078.2) / 365.25;
-    m = ((unsigned)(dt.refined.mjd - 14956.1) - (unsigned)(y * 365.25 )) / 30.6001;
+    y = (unsigned)(dt.refined.mjd - 15078.2) / 365.25;
+    m = ((unsigned)(dt.refined.mjd - 14956.1) - (unsigned)(y * 365.25)) / 30.6001;
     d = (unsigned)(dt.refined.mjd - 14956) - (unsigned)(y * 365.25) - (m * 30.6001);
 
-    if ( m > 13 )
+    if (m > 13)
         y++;
 
-    y = y % 100;    
+    y = y % 100;
 
     s = String(dt.refined.hour) + ":" + String(dt.refined.minute) + " - " + String(d) + "/" + String(m) +
         "/" + String(y) + "-" + String(dt.refined.offset);
 
-    return s; 
+    return s;
 }

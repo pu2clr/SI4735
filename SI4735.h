@@ -46,11 +46,20 @@
 #define GPIO_CTL 0x80        // Configures GPO1, 2, and 3 as output or Hi-Z.
 #define GPIO_SET 0x81        // Sets GPO1, 2, and 3 output level (low or high).
 
+// AM/SW/LW Receiver Property Summary
+// See  Si47XX PROGRAMMING GUIDE AN332; page 125
+#define DIGITAL_OUTPUT_FORMAT 0x0102      // Configure digital audio outputs.
+#define DIGITAL_OUTPUT_SAMPLE_RATE 0x0104 // Configure digital audio output sample rate
+#define REFCLK_FREQ 0x0201                //Sets frequency of reference clock in Hz. The range is 31130 to 34406 Hz, or 0 to disable the AFC. Default is 32768 Hz.
+#define REFCLK_PRESCALE 0x0202            // Sets the prescaler value for RCLK input.
+#define AM_DEEMPHASIS 0x3100              // Sets deemphasis time constant. Can be set to 50 μs. Deemphasis is disabled by default.
+#define AM_CHANNEL_FILTER 0x3102          // Selects the bandwidth of the channel filter for AM reception. The choices are 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). The default bandwidth is 2 kHz.
 
-// SPECIFIC SSB properties
+
+// SSB properties
 // See AN332 REV 0.8 Universal Programming Guide (Amendment for SI4735-D60 SSN and NBFM Patches)
 
-#define GPO_IEN 0x0001                       // Enable interrupt source
+#define GPO_IEN 0x0001                       // AM and SSB - Enable interrupt source
 #define SSB_BFO 0x0100                       // Sets the Beat Frequency Offset (BFO) under SSB mode.
 #define SSB_MODE 0x0101                      // Sets number of properties of the SSB mode. 
 #define SSB_RSQ_INTERRUPTS 0x3200            // COnfigure Interrupts related to RSQ 
@@ -63,6 +72,8 @@
 #define SSB_SOFT_MUTE_SNR_THRESHOLD 0x3303   // Sets SNR threshould to engage soft mute. Defaul 8dB 
 #define SSB_RF_AGC_ATTACK_RATE 0x3700        // Sets the number of milliseconds the high RF peak detector must be exceeded before decreasing the gain. Defaul 4.
 #define SSB_RF_AGC_RELEASE_RATE 0x3701       // Sets the number of milliseconds the low RF peak detector must be exceeded before increasing the gain. Defaul 24.
+
+// SSB
 #define SSB_RF_IF_AGC_ATTACK_RATE 0x3702     // Sets the number of milliseconds the high IF peak detector must be exceeded before decreasing gain. Defaul 4.
 #define SSB_RF_IF_AGC_RELEASE_RATE 0x3703    // Sets the number of milliseconds the low IF peak detector must be exceeded before increasing the gain. Defaul 140.
 
@@ -468,6 +479,28 @@ typedef union {
     byte raw[2];
 } si47x_agc_overrride;
 
+/* 
+ * The bandwidth of the AM channel filter data type
+ * AMCHFLT values: 0 = 6 kHz Bandwidth                    
+ *                 1 = 4 kHz Bandwidth
+ *                 2 = 3 kHz Bandwidth
+ *                 3 = 2 kHz Bandwidth
+ *                 4 = 1 kHz Bandwidth
+ *                 5 = 1.8 kHz Bandwidth
+ *                 6 = 2.5 kHz Bandwidth, gradual roll off
+ *                 7–15 = Reserved (Do not use)
+ */
+typedef union {
+    struct {
+        byte AMCHFLT : 4; // Selects the bandwidth of the AM channel filter. 
+        byte DUMMY1 : 4;
+        byte AMPLFLT : 1; // Enables the AM Power Line Noise Rejection Filter.
+        byte DUMMY2 : 7;
+    } param;
+    byte raw[2];
+} si47x_bandwidth_config; // AM_CHANNEL_FILTER
+
+
 
 /************************ Deal with Interrupt  *************************/
     volatile static bool data_from_si4735;
@@ -603,6 +636,8 @@ public:
     void setAM(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
     void setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step);
     void setSSB(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
+
+    void setBandwidth(byte AMCHFLT, byte AMPLFLT);
 
     void setFrequencyStep(byte step);
     void frequencyUp();
