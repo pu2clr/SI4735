@@ -1545,8 +1545,7 @@ Si4735 filters configuration
  *                                   3 = 2 kHz Bandwidth
  *                                   4 = 1 kHz Bandwidth
  *                                   5 = 1.8 kHz Bandwidth
- *                                   6 = 2.5 kHz Bandwidth, gradual roll off
- *                                   7–15 = Reserved (Do not use).
+ *                                   6 = 2.5 kHz Bandwidth 
  * @param AMPLFLT Enables the AM Power Line Noise Rejection Filter.
  */
 void setBandwidth(byte AMCHFLT, byte AMPLFLT)
