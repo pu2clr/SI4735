@@ -335,7 +335,7 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 
 #### Protoboard
 
-The basic circuit built on protoboard is based on the “SSOP Typical Application Schematic”, suggested by the Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19). Two pull-up 10K resistors were added on I2C bus. Also, it is recomended to add two 4.7uF capacitors between the CI audio output  and audio amplifier. The photos below do not show these capacitors. See  [C7 and C8 on schematic](https://github.com/pu2clr/SI4735#schematic).
+The basic circuit built on protoboard is based on the “__SSOP Typical Application Schematic__”, suggested by the Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19). Two pull-up 10K resistors were added on I2C bus. Also, it is recomended to add two 4.7uF capacitors between the CI audio output  and audio amplifier. The photos below do not show these capacitors. See  [C7 and C8 on schematic](https://github.com/pu2clr/SI4735#schematic).
 
 
 ![Protoboard 00](./extras/images/protoboard_00.png)
