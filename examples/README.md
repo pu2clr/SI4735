@@ -15,9 +15,13 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 
 This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the LiquidCrystal I2C Library by Frank de Brabander. You can install LiquidCrystal I2C via Manage Libraries on your Arduino IDE. 
 
+__Click [here](https://youtu.be/vzunuxam_Lg) to see a video about this example__.
+
 ## SS4735 Arduino Library example with I2C OLED
 
 This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the SSD1306Ascii Arduino Library by Bill Greiman. You can install SSD1306Ascii via Manage Libraries on your Arduino IDE. 
+
+__Click [here](https://youtu.be/7Sg4z8tDSA8) to see a video about this example__.
 
 
 ## Schematic for I2C display device, buttons and encoder

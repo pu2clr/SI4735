@@ -97,10 +97,6 @@ void setup()
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
 
-  // Set AGC
-  // Disable AGC ans set to the minimum attenuation 
-  si4735.setAutomaticGainControl(1,0);
-  
   showStatus();
 }
 
@@ -153,17 +149,15 @@ void showStatus()
   display.print(freqDisplay);
 
   
-  // Show AGC Enabled or Disabled
+  // Show AGC Information
   si4735.getAutomaticGainControl();
-  
   display.set1X();
-  
   display.setCursor(5,4);
-  display.print(si4735.getAgcGainIndex());
-  
-  display.setCursor(5,5);
   display.print((si4735.isAgcEnabled())?"AGC ON" : "AGC OFF" );
-
+  display.setCursor(5,5);
+  display.print("G.:");
+  display.setCursor( 27,5);
+  display.print(si4735.getAgcGainIndex());
 
 }
 
@@ -237,6 +231,8 @@ void loop()
         lastAmFrequency = currentFrequency;
         si4735.setFM(8600, 10800,  lastFmFrequency, 10);
       }
+      // Uncoment the line below if you want to disable AGC
+      // si4735.setAutomaticGainControl(1,0);      
     }
     else if (digitalRead(SEEK_BUTTON_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
       si4735.seekStationUp();
