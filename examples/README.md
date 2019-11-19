@@ -19,7 +19,11 @@ __Click [here](https://youtu.be/vzunuxam_Lg) to see a video about this example__
 
 ## SS4735 Arduino Library example with I2C OLED
 
-This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the SSD1306Ascii Arduino Library by Bill Greiman. You can install SSD1306Ascii via Manage Libraries on your Arduino IDE. 
+This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the SSD1306Ascii Arduino Library by Bill Greiman. You can install SSD1306Ascii via Manage Libraries on your Arduino IDE. The photo below show this example on a protoboard. 
+
+
+![Silicon Labs Schematic](../extras/images/prot_oled_01.png)
+
 
 __Click [here](https://youtu.be/7Sg4z8tDSA8) to see a video about this example__.
 
