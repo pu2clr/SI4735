@@ -81,6 +81,7 @@ __Attention__:
        * [getAutomaticGainControl](https://github.com/pu2clr/SI4735#getautomaticgaincontrol)
        * [isAgcEnabled](https://github.com/pu2clr/SI4735#isagcenabled)
        * [getAgcGainIndex](https://github.com/pu2clr/SI4735#getagcgainindex)
+       * [setAutomaticGainControl]()
      * [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735#si4735-firmware-information)
        * [getFirmwarePN](https://github.com/pu2clr/SI4735#getfirmwarepn)
        * [getFirmwareFWMAJOR](https://github.com/pu2clr/SI4735#getfirmwarefwmajor)
@@ -1116,6 +1117,24 @@ inline bool isAgcEnabled()
  *  Returns the current AGC gain index.
  */ 
 inline byte getAgcGainIndex() 
+```
+
+### setAutomaticGainControl
+
+```cpp
+/* 
+ * If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 
+ * (minimum attenuation) and 26 (maximum attenuation);
+ * If AM/SSB, Overrides the AM AGC setting by disabling the AGC and forcing the gain index that ranges between 0 
+ * (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation);
+ * 
+ * @param byte AGCDIS This param selects whether the AGC is enabled or disabled (0 = AGC enabled; 1 = AGC disabled);
+ * @param byte AGCDX AGC Index (0 = Minimum attenuation (max gain); 1 – 36 = Intermediate attenuation); 
+ *             > 37 - Maximum attenuation (min gain) ).
+ * 
+ * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 
+ */
+void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
 ```
 
 
