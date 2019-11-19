@@ -82,6 +82,8 @@ __Attention__:
        * [isAgcEnabled](https://github.com/pu2clr/SI4735#isagcenabled)
        * [getAgcGainIndex](https://github.com/pu2clr/SI4735#getagcgainindex)
        * [setAutomaticGainControl](https://github.com/pu2clr/SI4735#setautomaticgaincontrol)
+     * [Filters]()
+       * [setBandwidth]() 
      * [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735#si4735-firmware-information)
        * [getFirmwarePN](https://github.com/pu2clr/SI4735#getfirmwarepn)
        * [getFirmwareFWMAJOR](https://github.com/pu2clr/SI4735#getfirmwarefwmajor)
@@ -1518,6 +1520,36 @@ inline byte getAgcGainIndex()
  * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 
  */
 void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
+```
+
+
+<BR>
+<BR>
+<BR>
+
+## Filters
+
+Si4735 filters configuration
+
+
+### setBandwidth
+
+```cpp
+/*
+ * Selects the bandwidth of the channel filter for AM reception. The choices are 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). 
+ * The default bandwidth is 2 kHz.
+ * Works only in AM / SSB (LW/MW/SW) 
+ * @param AMCHFLT the choices are:   0 = 6 kHz Bandwidth                    
+ *                                   1 = 4 kHz Bandwidth
+ *                                   2 = 3 kHz Bandwidth
+ *                                   3 = 2 kHz Bandwidth
+ *                                   4 = 1 kHz Bandwidth
+ *                                   5 = 1.8 kHz Bandwidth
+ *                                   6 = 2.5 kHz Bandwidth, gradual roll off
+ *                                   7–15 = Reserved (Do not use).
+ * @param AMPLFLT Enables the AM Power Line Noise Rejection Filter.
+ */
+void setBandwidth(byte AMCHFLT, byte AMPLFLT)
 ```
 
 
