@@ -25,7 +25,8 @@
 #define FM_TUNE_FREQ 0x20
 #define FM_SEEK_START 0x21 // Begins searching for a valid FM frequency.
 #define FM_TUNE_STATUS 0x22
-#define FM_AGC_STATUS 0x27 
+#define FM_AGC_STATUS 0x27
+#define FM_AGC_OVERRIDE 0x28
 #define FM_RSQ_STATUS 0x23
 #define FM_RDS_STATUS 0x24 // Returns RDS information for current channel and reads an entry from the RDS FIFO.
 
@@ -450,7 +451,22 @@ typedef union {
     byte raw[3];
 } si47x_agc_status;
 
-
+/* 
+ * If FM, Overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 
+ * (minimum attenuation) and 26 (maximum attenuation).
+ * If AM, overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0
+ * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143
+ */
+typedef union {
+    struct {
+        // ARG1
+        byte AGCDIS : 1; // if set to 1 indicates if the AGC is disabled. 0 = AGC enabled; 1 = AGC disabled.
+        byte DUMMY : 7;
+        // ARG2
+        byte AGCDX; // AGC Index; If AMAGCDIS = 1, this byte forces the AGC gain index; 0 = Minimum attenuation (max gain)
+    } arg;
+    byte raw[2];
+} si47x_agc_overrride;
 
 
 /************************ Deal with Interrupt  *************************/
@@ -531,12 +547,12 @@ public:
 
     inline bool isAgcEnabled() { return !currentAgcStatus.refined.AGCDIS; };  // Returns true if the AGC is enabled
     inline byte getAgcGainIndex() { return currentAgcStatus.refined.AGCDX; }; // Returns the current AGC gain index.
+    void setAutomaticGainControl(byte AGCDIS, byte AGCDX);                    // Overrides the AGC setting
 
     /* RQS STATUS RESPONSE 
      * 
      */
-    void
-    getCurrentReceivedSignalQuality(byte INTACK);
+    void getCurrentReceivedSignalQuality(byte INTACK);
     // AM and FM
     inline byte getCurrentRSSI() { return currentRqsStatus.resp.RSSI; }; // current receive signal strength (0–127 dBμV).
     inline byte getCurrentSNR() { return currentRqsStatus.resp.SNR; }; // current SNR metric (0–127 dB).

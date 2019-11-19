@@ -456,10 +456,43 @@ void SI4735::getAutomaticGainControl()
     delayMicroseconds(2500);
 }
 
+/* 
+ * If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 
+ * (minimum attenuation) and 26 (maximum attenuation);
+ * If AM/SSB, Overrides the AM AGC setting by disabling the AGC and forcing the gain index that ranges between 0 
+ * (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation);
+ * 
+ * @param byte AGCDIS This param selects whether the AGC is enabled or disabled (0 = AGC enabled; 1 = AGC disabled);
+ * @param byte AGCDX AGC Index (0 = Minimum attenuation (max gain); 1 – 36 = Intermediate attenuation); 
+ *             > 37 - Maximum attenuation (min gain) ).
+ * 
+ * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 
+ */
+void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
+{
+    si47x_agc_overrride agc;
+
+    byte cmd;
+
+    cmd = (currentTune == FM_TUNE_FREQ) ? FM_AGC_OVERRIDE : AM_AGC_OVERRIDE;
+
+    agc.arg.AGCDIS = AGCDIS;
+    agc.arg.AGCDX = AGCDX;
+
+    waitToSend();
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(cmd);
+    Wire.write(agc.raw[1]);
+    Wire.write(agc.raw[0]);
+    Wire.endTransmission();
+
+    delayMicroseconds(2500);
+}
 
 
 
-/*
+ /*
  * Queries the status of the Received Signal Quality (RSQ) of the current channel
  * Command FM_RSQ_STATUS
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
@@ -468,7 +501,8 @@ void SI4735::getAutomaticGainControl()
  *        0 = Interrupt status preserved; 
  *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
  */
-void SI4735::getCurrentReceivedSignalQuality(byte INTACK) {
+    void SI4735::getCurrentReceivedSignalQuality(byte INTACK)
+{
 
     byte arg; 
     byte cmd;
@@ -501,7 +535,8 @@ void SI4735::getCurrentReceivedSignalQuality(byte INTACK) {
     delayMicroseconds(2500);
 }
 
-    /*
+
+/*
  * Look for a station 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 55, 72, 125 and 137
  * 
