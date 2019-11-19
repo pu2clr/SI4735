@@ -81,7 +81,7 @@ __Attention__:
        * [getAutomaticGainControl](https://github.com/pu2clr/SI4735#getautomaticgaincontrol)
        * [isAgcEnabled](https://github.com/pu2clr/SI4735#isagcenabled)
        * [getAgcGainIndex](https://github.com/pu2clr/SI4735#getagcgainindex)
-       * [setAutomaticGainControl]()
+       * [setAutomaticGainControl](https://github.com/pu2clr/SI4735#setautomaticgaincontrol)
      * [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735#si4735-firmware-information)
        * [getFirmwarePN](https://github.com/pu2clr/SI4735#getfirmwarepn)
        * [getFirmwareFWMAJOR](https://github.com/pu2clr/SI4735#getfirmwarefwmajor)
