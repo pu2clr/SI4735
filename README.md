@@ -9,7 +9,7 @@ Contact: pu2clr@gmail.com
 
 __Attention__: 
 * __Documentation  under construction__. 
-* __The SI4835 is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V converter__.
+* __The SI4735 is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V converter__.
 
 
 ## Summary
@@ -255,7 +255,8 @@ This library has been written for the Arduino platform and has been successfully
 
 ### Arduino 5V and Si4735
 
-The SI4735 device  works with  3.3V only. If you are not using a 3.3V version of Arduino, you have to use a kind of converter. 
+__The SI4735 device  works with  3.3V only. If you are not using a 3.3V version of Arduino, you have to use a kind of converter__. 
+This includes the Arduino operating pins.  
 
 
 
@@ -267,6 +268,8 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 
 ![Basic Schematic](./extras/images/basic_schematic.png)
 
+
+__THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO, YOU HAVE TO USE A KIND OF 5V TO 3.3V CONVERTER.__
 
 <BR>
 <BR>
