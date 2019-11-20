@@ -45,7 +45,7 @@ unsigned previousFrequency;
 byte bandwidthIdx = 0;
 char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
-unsigned lastSwFrequency = 7200; // Starts SW on 7200KHz;
+unsigned lastSwFrequency = 7200; // Starts SW on 810 KHz;
 
 byte rssi = 0;
 byte stereo = 1;
@@ -92,8 +92,7 @@ void setup()
 
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
-  si4735.setAM(7000, 10800, lastSwFrequency, 10);
+  si4735.setAM(7100, 7500, lastSwFrequency, 5);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
 
@@ -211,11 +210,9 @@ void loop()
     if (digitalRead(BANDWIDTH_BUTTON) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
     {
       bandwidthIdx++;
-      if (bandwidthIdx > 6)
-      {
-        bandwidthIdx = 0;
-      }
-      si4735.setBandwidth(bandwidthIdx, 1);
+      if (bandwidthIdx > 6)  bandwidthIdx = 0;
+
+      si4735.setBandwidth(bandwidthIdx, 0);
       showStatus();
     }
     else if (digitalRead(SEEK_BUTTON_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
