@@ -43,7 +43,6 @@ void setup()
   // Starts bandwidth with 6Khz
   si4735.setBandwidth(bandwidthIdx, 1);
   showStatus();  
-
   
 }
 
