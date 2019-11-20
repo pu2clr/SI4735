@@ -7,9 +7,8 @@
 
 #include <SI4735.h>
 
-#define RESET_PIN 12
-
-#define AM_FUNCTION 1
+#define RESET_PIN   12
+#define AM_FUNCTION  1
 
 
 unsigned currentFrequency;
