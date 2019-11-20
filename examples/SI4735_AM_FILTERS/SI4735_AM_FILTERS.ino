@@ -24,7 +24,7 @@ void setup()
 {
   Serial.begin(9600);
   Serial.println("Test and validation of the SI4735 Arduino Library.");
-  Serial.println("AM bandwidth of the channel filter for AM reception");
+  Serial.println("AM bandwidth of the channel filter for SW reception");
 
   showHelp();
 
@@ -45,7 +45,6 @@ void setup()
   showStatus();  
   
 }
-
 
 void showHelp() {
   Serial.println("Type U to increase and D to decrease the frequency");
@@ -101,12 +100,6 @@ void loop()
         showStatus();
         break;
       case 'S':
-        si4735.seekStationUp();
-        break;
-      case 's':
-        si4735.seekStationDown();
-        break;
-      case '0':
         showStatus();
         break;
       case '?':
