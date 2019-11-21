@@ -1027,7 +1027,6 @@ void SI4735::setSsbBfo(int offset) {
 
 }
 
-
 /*
  * Set the SSB receiver mode details:
  * 1) Enable or disable AFC track to carrier function for receiving normal AM signals;
@@ -1035,9 +1034,47 @@ void SI4735::setSsbBfo(int offset) {
  * 3) Set the side band cutoff filter;
  * 4) Set soft-mute based on RSSI or SNR;
  * 5) Enable or disbable automatic volume control (AVC) function. 
- */ 
-void SI4735::setSsbMode() {
+ * 
+ * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
+ * 
+ * @param AUDIOBW SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz.
+ * @param SBCUTFLT SSB side band cutoff filter for band passand low pass filter
+ *                 if 0, the band pass filter to cutoff both the unwanted side band and high frequency 
+ *                  component > 2KHz of the wanted side band (default).
+ * @param AVC_DIVIDER set 0 for SSB mode; set 3 for SYNC mode.
+ * @param AVCEN SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
+ * @param SMUTESEL SSB Soft-mute Based on RSSI or SNR.
+ * @param DSP_AFCDIS DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
+ */
+void SI4735::setSsbMode(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
+{
     si47x_ssb_mode ssb;
+    si47x_property property;
+
+    if (currentTune == FM_TUNE_FREQ) // Only AM/SSB mode
+        return;
+
+    waitToSend();
+
+    property.value = SSB_MODE;
+
+    ssb.param.AUDIOBW = AUDIOBW;
+    ssb.param.SBCUTFLT = SBCUTFLT;
+    ssb.param.AVC_DIVIDER = AVC_DIVIDER;
+    ssb.param.AVCEN = AVCEN;
+    ssb.param.SMUTESEL = SMUTESEL;
+    ssb.param.DSP_AFCDIS = DSP_AFCDIS;
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                  // Always 0x00
+    Wire.write(property.raw.byteHigh); // High byte first
+    Wire.write(property.raw.byteLow);  // Low byte after
+    Wire.write(ssb.raw[1]);  // SSB MODE params; freq. high byte first
+    Wire.write(ssb.raw[0]);  // SSB MODE params; freq. low byte after
+
+    Wire.endTransmission();
+    delayMicroseconds(550);
 }
 
 

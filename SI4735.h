@@ -534,7 +534,7 @@ typedef union {
 
 /* 
  * SSB - datatype for SSB_MODE (property 0x0101)
- * 
+ * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  */
 typedef union {
     struct
@@ -543,15 +543,16 @@ typedef union {
         byte SBCUTFLT : 4;    // SSB side band cutoff filter for band passand low pass filter
         byte AVC_DIVIDER : 4; // set 0 for SSB mode; set 3 for SYNC mode;
         byte AVCEN : 1;       // SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default);
-        byte SMUTESEL : 1;     // SSB Soft-mute Based on RSSI
+        byte SMUTESEL : 1;     // SSB Soft-mute Based on RSSI or SNR
         byte DUMMY1:1;  // Always write 0;
         byte DSP_AFCDIS: 1;  // 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
     } param;
     byte raw[2];
-} si47x_ssb_mode
+} si47x_ssb_mode;
 
-    /************************ Deal with Interrupt  *************************/
-    volatile static bool data_from_si4735;
+
+/************************ Deal with Interrupt  *************************/
+volatile static bool data_from_si4735;
 
 static void interrupt_hundler()
 {
@@ -722,5 +723,5 @@ public:
     char *getNext4Block(char *);
 
     void setSsbBfo(int offset);
-    void setSsbMode();
+    void setSsbMode(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS);      
 };
