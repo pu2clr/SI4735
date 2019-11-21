@@ -988,3 +988,49 @@ String SI4735::getRdsTime()
 
     return s;
 }
+
+/*
+ * SSB Comand and properties implementation 
+ * 
+ * First consideration: I will write here about the Patches released by SIlicon Labs for some customers....
+ * 
+ */
+
+
+/* 
+ * Sets the SSB Beat Frequency Offset (BFO). 
+ * @param offset 16-bit signed value (unit in Hz). The valid range is -16383 to +16383 Hz. 
+ */ 
+void SI4735::setSsbBfo(int offset) {
+
+    si47x_property property;
+    si47x_frequency bfo_offset;
+
+    if (currentTune == FM_TUNE_FREQ) // Only for AM/SSB mode
+        return;
+
+    waitToSend();
+
+    property.value = SSB_BFO;
+    bfo_offset.value = offset;
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                  // Always 0x00
+    Wire.write(property.raw.byteHigh); // High byte first
+    Wire.write(property.raw.byteLow);  // Low byte after
+    Wire.write(bfo_offset.FREQH);      // Offset freq. high byte first
+    Wire.write(bfo_offset.FREQL);      // Offset freq. low byte first
+
+    Wire.endTransmission();
+    delayMicroseconds(550);
+
+}
+
+
+void SI4735::setSsbMode() {
+
+
+}
+
+

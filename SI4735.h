@@ -36,7 +36,7 @@
 #define FM_RDS_CONFIG 0x1502
 #define FM_RDS_CONFIDENCE 0x1503
 
-// AM and SSB command
+// AM command
 #define AM_TUNE_FREQ 0x40    // Tunes to a given AM frequency.
 #define AM_SEEK_START 0x41   // Begins searching for a valid AM frequency.
 #define AM_TUNE_STATUS 0x42  // Queries the status of the already issued AM_TUNE_FREQ or AM_SEEK_START command.
@@ -45,6 +45,16 @@
 #define AM_AGC_OVERRIDE 0x48 // Overrides AGC settings by disabling and forcing it to a fixed value.
 #define GPIO_CTL 0x80        // Configures GPO1, 2, and 3 as output or Hi-Z.
 #define GPIO_SET 0x81        // Sets GPO1, 2, and 3 output level (low or high).
+
+//SSB command (SAME AM CMD VALUES)
+// See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 4 and 5
+#define SSB_TUNE_FREQ 0x40    // Tunes to a given SSB frequency.
+#define SSB_TUNE_STATUS 0x42  // Queries the status of the already issued SSB_TUNE_FREQ or AM_SEEK_START command.
+#define SSB_RSQ_STATUS 0x43   // Queries the status of the Received Signal Quality (RSQ) for the current channel.
+#define SSB_AGC_STATUS 0x47   // Queries the current AGC settings.
+#define SSB_AGC_OVERRIDE 0x48 // Overrides AGC settings by disabling and forcing it to a fixed value.
+#define SSB_BFO 0x100         // Sets the Beat Frequency Offset (BFO) under SSB. Not available when AFC is anabled for AM signal. 
+
 
 // AM/SW/LW Receiver Property Summary
 // See  Si47XX PROGRAMMING GUIDE AN332; page 125
