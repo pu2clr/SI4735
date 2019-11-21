@@ -1037,8 +1037,7 @@ void SI4735::setSsbBfo(int offset) {
  * 5) Enable or disbable automatic volume control (AVC) function. 
  */ 
 void SI4735::setSsbMode() {
-
-
+    si47x_ssb_mode ssb;
 }
 
 

@@ -546,7 +546,6 @@ typedef union {
         byte SMUTESEL : 1;     // SSB Soft-mute Based on RSSI
         byte DUMMY1:1;  // Always write 0;
         byte DSP_AFCDIS: 1;  // 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
-
     } param;
     byte raw[2];
 } si47x_ssb_mode
