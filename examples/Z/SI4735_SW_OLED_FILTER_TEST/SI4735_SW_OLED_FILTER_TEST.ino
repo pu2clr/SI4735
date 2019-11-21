@@ -175,11 +175,11 @@ void showStatus()
   display.print(si4735.getAgcGainIndex());
 
   display.setCursor(0, 7);
-  display.print("        ");
+  display.print("            ");
   display.setCursor(0, 7);
   display.print("BW: ");
   display.print(String(bandwitdth[bandwidthIdx]));
-  display.print("KHz");
+  display.print(" KHz");
 }
 
 /* *******************************
