@@ -112,6 +112,8 @@ __Attention__:
        * [getRdsText](https://github.com/pu2clr/SI4735#getrdstext)
        * [getRdsTime](https://github.com/pu2clr/SI4735#getrdstime)
      * [__Single Side Band (SSB) Support__](https://github.com/pu2clr/SI4735#single-side-band-ssb-support)
+       * [setSsbBfo]()
+       * [setSsbMode]()
 10. [References](https://github.com/pu2clr/SI4735#references)
 11. [Examples]()
 12. [Videos]() 
@@ -1881,6 +1883,44 @@ This feature will work only on SI4735-D60.
 To use this feature, you have to aplya a specific AM SSB patch.
  
  Feature and documentation under construction....
+
+
+### setSsbBfo
+
+```cpp
+/* 
+ * Sets the SSB Beat Frequency Offset (BFO). 
+ * @param offset 16-bit signed value (unit in Hz). The valid range is -16383 to +16383 Hz. 
+ */ 
+void SI4735::setSsbBfo(int offset)
+```
+
+
+### setSsbMode
+
+```cpp
+/*
+ * Set the SSB receiver mode details:
+ * 1) Enable or disable AFC track to carrier function for receiving normal AM signals;
+ * 2) Set the audio bandwidth;
+ * 3) Set the side band cutoff filter;
+ * 4) Set soft-mute based on RSSI or SNR;
+ * 5) Enable or disbable automatic volume control (AVC) function. 
+ * 
+ * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
+ * 
+ * @param AUDIOBW SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz.
+ * @param SBCUTFLT SSB side band cutoff filter for band passand low pass filter
+ *                 if 0, the band pass filter to cutoff both the unwanted side band and high frequency 
+ *                  component > 2KHz of the wanted side band (default).
+ * @param AVC_DIVIDER set 0 for SSB mode; set 3 for SYNC mode.
+ * @param AVCEN SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
+ * @param SMUTESEL SSB Soft-mute Based on RSSI or SNR.
+ * @param DSP_AFCDIS DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
+ */
+void SI4735::setSsbMode(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
+```
+
 
 
 <BR>
