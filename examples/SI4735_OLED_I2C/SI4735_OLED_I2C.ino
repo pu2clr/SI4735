@@ -166,13 +166,24 @@ void showStatus()
    Shows RSSI status
 */
 void showRSSI() {
-  int blk;
+  int blk = rssi / 10;
+
+  
 
   display.set1X();
   display.setCursor(70, 6);
   display.print("S:");
   display.print(rssi);
   display.print(" dBuV");
+  
+  display.setCursor(70, 7);
+  for (byte i = 0; i < 10; i++)  {
+    if ( i < blk ) 
+      display.print("#");
+    else
+       display.print(" ");    
+  }
+
 }
 
 
@@ -182,7 +193,7 @@ void showRSSI() {
 void showStereo() {
 
   display.set1X();
-  display.setCursor(5, 6);
+  display.setCursor(5, 7);
   display.print((si4735.getCurrentPilot()) ? "STEREO" : "MONO  ");
 }
 
@@ -232,7 +243,8 @@ void loop()
         si4735.setFM(8600, 10800,  lastFmFrequency, 10);
       }
       // Uncoment the line below if you want to disable AGC
-      // si4735.setAutomaticGainControl(1,0);      
+      // si4735.setAutomaticGainControl(1,0);   
+      display.clear();   
     }
     else if (digitalRead(SEEK_BUTTON_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
       si4735.seekStationUp();

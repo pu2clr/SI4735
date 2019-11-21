@@ -25,10 +25,10 @@
 
 // Buttons controllers
 #define BANDWIDTH_BUTTON 5 // Next Band
-#define SEEK_BUTTON_UP 8   // Seek Up
-#define SEEK_BUTTON_DOWN 9 // Seek Down
-#define VOL_UP 7           // Volume Volume Up
-#define VOL_DOWN 6         // Volume Down
+#define BAND_BUTTON_UP 8   // Seek Up
+#define BAND_BUTTON_DOWN 9 // Seek Down
+#define VOL_UP 6           // Volume Volume Up
+#define VOL_DOWN 7         // Volume Down
 // Seek Function
 
 #define MIN_ELAPSED_TIME 100
@@ -44,8 +44,33 @@ unsigned previousFrequency;
 
 byte bandwidthIdx = 0;
 char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
-
 unsigned lastSwFrequency = 9500; // Starts SW on 810 KHz;
+
+
+
+typedef struct {
+  unsigned   minimumFreq;
+  unsigned   maximumFreq;
+  unsigned   currentFreq;
+  unsigned   currentStep;
+} Band;
+
+
+Band band[] = {{4600, 5200, 4700, 5},
+  {5700, 6200, 6000, 5},
+  {7000, 7500, 7200, 5},
+  {9300, 10000, 9600, 5},
+  {11400, 12200, 11940, 5},
+  {13500, 13900, 13600, 5},
+  {15000, 15800, 15400, 5},
+  {17400, 17900, 17600, 5},
+  {21400, 21800, 21500, 5},
+  {27000, 27500, 27220, 1}
+};
+
+const int lastBand = (sizeof band / sizeof(Band)) - 1;
+int  currentFreqIdx = 2; // 41M
+
 
 byte rssi = 0;
 byte stereo = 1;
@@ -66,8 +91,8 @@ void setup()
   pinMode(ENCODER_PIN_B, INPUT);
 
   pinMode(BANDWIDTH_BUTTON, INPUT);
-  pinMode(SEEK_BUTTON_UP, INPUT);
-  pinMode(SEEK_BUTTON_DOWN, INPUT);
+  pinMode(BAND_BUTTON_UP, INPUT);
+  pinMode(BAND_BUTTON_DOWN, INPUT);
   pinMode(VOL_UP, INPUT);
   pinMode(VOL_DOWN, INPUT);
 
@@ -92,7 +117,7 @@ void setup()
 
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
-  si4735.setAM(9400, 10000, lastSwFrequency, 5);
+  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
 
@@ -140,7 +165,7 @@ void showStatus()
   display.print(freqDisplay);
 
   si4735.getAutomaticGainControl();
-  
+
   // Show AGC Information
   display.set1X();
   display.setCursor(0, 4);
@@ -153,8 +178,8 @@ void showStatus()
   display.print("        ");
   display.setCursor(0, 7);
   display.print("BW: ");
-  display.print(String(bandwitdth[bandwidthIdx])); 
-  display.print("KHz"); 
+  display.print(String(bandwitdth[bandwidthIdx]));
+  display.print("KHz");
 }
 
 /* *******************************
@@ -184,6 +209,32 @@ void showVolume()
   display.print(volume);
 }
 
+
+void bandUp() {
+  
+  // save the current frequency for the band
+  band[currentFreqIdx].currentFreq = currentFrequency;
+  if ( currentFreqIdx < lastBand ) {
+    currentFreqIdx++;
+  } else {
+    currentFreqIdx = 0;
+  }
+  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+
+
+}
+
+void bandDown() {
+  // save the current frequency for the band
+  band[currentFreqIdx].currentFreq = currentFrequency;
+  if ( currentFreqIdx > 0 ) {
+    currentFreqIdx--;
+  } else {
+    currentFreqIdx = lastBand;
+  }
+  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+}
+
 /*
    Main
 */
@@ -203,7 +254,7 @@ void loop()
   }
 
   // Check button commands
-  if (digitalRead(BANDWIDTH_BUTTON) | digitalRead(SEEK_BUTTON_UP) | digitalRead(SEEK_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN))
+  if (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN))
   {
 
     // check if some button is pressed
@@ -215,10 +266,10 @@ void loop()
       si4735.setBandwidth(bandwidthIdx, 0);
       showStatus();
     }
-    else if (digitalRead(SEEK_BUTTON_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
-      si4735.seekStationUp();
-    else if (digitalRead(SEEK_BUTTON_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
-      si4735.seekStationDown();
+    else if (digitalRead(BAND_BUTTON_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+      bandUp();
+    else if (digitalRead(BAND_BUTTON_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+      bandDown();
     else if (digitalRead(VOL_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
       si4735.volumeUp();
     else if (digitalRead(VOL_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)

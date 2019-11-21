@@ -1019,8 +1019,8 @@ void SI4735::setSsbBfo(int offset) {
     Wire.write(0x00);                  // Always 0x00
     Wire.write(property.raw.byteHigh); // High byte first
     Wire.write(property.raw.byteLow);  // Low byte after
-    Wire.write(bfo_offset.FREQH);      // Offset freq. high byte first
-    Wire.write(bfo_offset.FREQL);      // Offset freq. low byte first
+    Wire.write(bfo_offset.raw.FREQH);      // Offset freq. high byte first
+    Wire.write(bfo_offset.raw.FREQL);      // Offset freq. low byte first
 
     Wire.endTransmission();
     delayMicroseconds(550);
@@ -1028,6 +1028,14 @@ void SI4735::setSsbBfo(int offset) {
 }
 
 
+/*
+ * Set the SSB receiver mode details:
+ * 1) Enable or disable AFC track to carrier function for receiving normal AM signals;
+ * 2) Set the audio bandwidth;
+ * 3) Set the side band cutoff filter;
+ * 4) Set soft-mute based on RSSI or SNR;
+ * 5) Enable or disbable automatic volume control (AVC) function. 
+ */ 
 void SI4735::setSsbMode() {
 
 

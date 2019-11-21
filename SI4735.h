@@ -30,7 +30,7 @@
 #define FM_RSQ_STATUS 0x23
 #define FM_RDS_STATUS 0x24 // Returns RDS information for current channel and reads an entry from the RDS FIFO.
 
-// FM RDS properties 
+// FM RDS properties
 #define FM_RDS_INT_SOURCE 0x1500
 #define FM_RDS_INT_FIFO_COUNT 0x1501
 #define FM_RDS_CONFIG 0x1502
@@ -53,44 +53,43 @@
 #define SSB_RSQ_STATUS 0x43   // Queries the status of the Received Signal Quality (RSQ) for the current channel.
 #define SSB_AGC_STATUS 0x47   // Queries the current AGC settings.
 #define SSB_AGC_OVERRIDE 0x48 // Overrides AGC settings by disabling and forcing it to a fixed value.
-#define SSB_BFO 0x100         // Sets the Beat Frequency Offset (BFO) under SSB. Not available when AFC is anabled for AM signal. 
-
+#define SSB_BFO 0x100         // Sets the Beat Frequency Offset (BFO) under SSB. Not available when AFC is anabled for AM signal.
 
 // AM/SW/LW Receiver Property Summary
 // See  Si47XX PROGRAMMING GUIDE AN332; page 125
-#define DIGITAL_OUTPUT_FORMAT 0x0102      // Configure digital audio outputs.
-#define DIGITAL_OUTPUT_SAMPLE_RATE 0x0104 // Configure digital audio output sample rate
-#define REFCLK_FREQ 0x0201                //Sets frequency of reference clock in Hz. The range is 31130 to 34406 Hz, or 0 to disable the AFC. Default is 32768 Hz.
-#define REFCLK_PRESCALE 0x0202            // Sets the prescaler value for RCLK input.
-#define AM_DEEMPHASIS 0x3100              // Sets deemphasis time constant. Can be set to 50 μs. Deemphasis is disabled by default.
-#define AM_CHANNEL_FILTER 0x3102          // Selects the bandwidth of the channel filter for AM reception. The choices are 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). The default bandwidth is 2 kHz.
+#define DIGITAL_OUTPUT_FORMAT 0x0102                // Configure digital audio outputs.
+#define DIGITAL_OUTPUT_SAMPLE_RATE 0x0104           // Configure digital audio output sample rate
+#define REFCLK_FREQ 0x0201                          //Sets frequency of reference clock in Hz. The range is 31130 to 34406 Hz, or 0 to disable the AFC. Default is 32768 Hz.
+#define REFCLK_PRESCALE 0x0202                      // Sets the prescaler value for RCLK input.
+#define AM_DEEMPHASIS 0x3100                        // Sets deemphasis time constant. Can be set to 50 μs. Deemphasis is disabled by default.
+#define AM_CHANNEL_FILTER 0x3102                    // Selects the bandwidth of the channel filter for AM reception. The choices are 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). The default bandwidth is 2 kHz.
 #define AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN 0x3103 // Sets the maximum gain for automatic volume control.
-#define AM_MODE_AFC_SW_PULL_IN_RANGE 0x3104   // Sets the SW AFC pull-in range.
-#define AM_MODE_AFC_SW_LOCK_IN_RANGE 0x3105   // Sets the SW AFC lock-in.
-#define AM_RSQ_INTERRUPTS 0x3200              // Same SSB - Configures interrupt related to Received Signal Quality metrics. All interrupts are disabled by default.
-#define AM_RSQ_SNR_HIGH_THRESHOLD 0x3201      //Sets high threshold for SNR interrupt.
-#define AM_RSQ_SNR_LOW_THRESHOLD 0x3202       // Sets low threshold for SNR interrupt.
-#define AM_RSQ_RSSI_HIGH_THRESHOLD 0x3203     // Sets high threshold for RSSI interrupt.
-#define AM_RSQ_RSSI_LOW_THRESHOLD 0x3204      // Sets low threshold for RSSI interrupt.
-#define AM_SOFT_MUTE_RATE 0x3300              // Sets the attack and decay rates when entering or leaving soft mute. The default is 278 dB/s.
-#define AM_SOFT_MUTE_SLOPE 0x3301             // Sets the AM soft mute slope. Default value is a slope of 1.
-#define AM_SOFT_MUTE_MAX_ATTENUATION 0x3302   // Sets maximum attenuation during soft mute (dB). Set to 0 to disable soft mute. Default is 8 dB.
-#define AM_SOFT_MUTE_SNR_THRESHOLD 0x3303     // Sets SNR threshold to engage soft mute. Default is 8 dB.
-#define AM_SOFT_MUTE_RELEASE_RATE 0x3304      // Sets softmute release rate. Smaller values provide slower release, and larger values provide faster release.
-#define AM_SOFT_MUTE_ATTACK_RATE 0x3305       // Sets software attack rate. Smaller values provide slower attack, and larger values provide faster attack.
-#define AM_SEEK_BAND_BOTTOM 0x3400            // Sets the bottom of the AM band for seek. Default is 520.
-#define AM_SEEK_BAND_TOP 0x3401               // Sets the top of the AM band for seek. Default is 1710.
-#define AM_SEEK_FREQ_SPACING 0x3402           // Selects frequency spacing for AM seek. Default is 10 kHz spacing.
-#define AM_SEEK_SNR_THRESHOLD 0x3403          // Sets the SNR threshold for a valid AM Seek/Tune.
-#define AM_SEEK_RSSI_THRESHOLD 0x3404         // Sets the RSSI threshold for a valid AM Seek/Tune.
-#define AM_AGC_ATTACK_RATE 0x3702             // Sets the number of milliseconds the high peak detector must be exceeded before decreasing gain.
-#define AM_AGC_RELEASE_RATE 0x3703            // Sets the number of milliseconds the low peak detector must not be exceeded before increasing the gain.
-#define AM_FRONTEND_AGC_CONTROL 0x3705        // Adjusts AM AGC for frontend (external) attenuator and LNA.
-#define AM_NB_DETECT_THRESHOLD 0x3900         // Sets the threshold for detecting impulses in dB above the noise floor
-#define AM_NB_INTERVAL 0x3901                 // Interval in micro-seconds that original samples are replaced by interpolated clean samples
-#define AM_NB_RATE 0x3902                     // Noise blanking rate in 100 Hz units. Default value is 64.
-#define AM_NB_IIR_FILTER 0x3903               // Sets the bandwidth of the noise floor estimator. Default value is 300.
-#define AM_NB_DELAY 0x3904                    // Delay in micro-seconds before applying impulse blanking to the original samples
+#define AM_MODE_AFC_SW_PULL_IN_RANGE 0x3104         // Sets the SW AFC pull-in range.
+#define AM_MODE_AFC_SW_LOCK_IN_RANGE 0x3105         // Sets the SW AFC lock-in.
+#define AM_RSQ_INTERRUPTS 0x3200                    // Same SSB - Configures interrupt related to Received Signal Quality metrics. All interrupts are disabled by default.
+#define AM_RSQ_SNR_HIGH_THRESHOLD 0x3201            //Sets high threshold for SNR interrupt.
+#define AM_RSQ_SNR_LOW_THRESHOLD 0x3202             // Sets low threshold for SNR interrupt.
+#define AM_RSQ_RSSI_HIGH_THRESHOLD 0x3203           // Sets high threshold for RSSI interrupt.
+#define AM_RSQ_RSSI_LOW_THRESHOLD 0x3204            // Sets low threshold for RSSI interrupt.
+#define AM_SOFT_MUTE_RATE 0x3300                    // Sets the attack and decay rates when entering or leaving soft mute. The default is 278 dB/s.
+#define AM_SOFT_MUTE_SLOPE 0x3301                   // Sets the AM soft mute slope. Default value is a slope of 1.
+#define AM_SOFT_MUTE_MAX_ATTENUATION 0x3302         // Sets maximum attenuation during soft mute (dB). Set to 0 to disable soft mute. Default is 8 dB.
+#define AM_SOFT_MUTE_SNR_THRESHOLD 0x3303           // Sets SNR threshold to engage soft mute. Default is 8 dB.
+#define AM_SOFT_MUTE_RELEASE_RATE 0x3304            // Sets softmute release rate. Smaller values provide slower release, and larger values provide faster release.
+#define AM_SOFT_MUTE_ATTACK_RATE 0x3305             // Sets software attack rate. Smaller values provide slower attack, and larger values provide faster attack.
+#define AM_SEEK_BAND_BOTTOM 0x3400                  // Sets the bottom of the AM band for seek. Default is 520.
+#define AM_SEEK_BAND_TOP 0x3401                     // Sets the top of the AM band for seek. Default is 1710.
+#define AM_SEEK_FREQ_SPACING 0x3402                 // Selects frequency spacing for AM seek. Default is 10 kHz spacing.
+#define AM_SEEK_SNR_THRESHOLD 0x3403                // Sets the SNR threshold for a valid AM Seek/Tune.
+#define AM_SEEK_RSSI_THRESHOLD 0x3404               // Sets the RSSI threshold for a valid AM Seek/Tune.
+#define AM_AGC_ATTACK_RATE 0x3702                   // Sets the number of milliseconds the high peak detector must be exceeded before decreasing gain.
+#define AM_AGC_RELEASE_RATE 0x3703                  // Sets the number of milliseconds the low peak detector must not be exceeded before increasing the gain.
+#define AM_FRONTEND_AGC_CONTROL 0x3705              // Adjusts AM AGC for frontend (external) attenuator and LNA.
+#define AM_NB_DETECT_THRESHOLD 0x3900               // Sets the threshold for detecting impulses in dB above the noise floor
+#define AM_NB_INTERVAL 0x3901                       // Interval in micro-seconds that original samples are replaced by interpolated clean samples
+#define AM_NB_RATE 0x3902                           // Noise blanking rate in 100 Hz units. Default value is 64.
+#define AM_NB_IIR_FILTER 0x3903                     // Sets the bandwidth of the noise floor estimator. Default value is 300.
+#define AM_NB_DELAY 0x3904                          // Delay in micro-seconds before applying impulse blanking to the original samples
 
 #define RX_VOLUME 0x4000
 #define RX_HARD_MUTE 0x4001
@@ -100,24 +99,21 @@
 
 #define GPO_IEN 0x0001                       // AM and SSB - Enable interrupt source
 #define SSB_BFO 0x0100                       // Sets the Beat Frequency Offset (BFO) under SSB mode.
-#define SSB_MODE 0x0101                      // Sets number of properties of the SSB mode. 
-#define SSB_RSQ_INTERRUPTS 0x3200            // Configure Interrupts related to RSQ 
+#define SSB_MODE 0x0101                      // Sets number of properties of the SSB mode.
+#define SSB_RSQ_INTERRUPTS 0x3200            // Configure Interrupts related to RSQ
 #define SSB_RSQ_SNR_HI_THRESHOLD 0x3201      // Sets high threshold for SNR interrupt
 #define SSB_RSQ_SNR_LO_THRESHOLD 0x3202      // Sets low threshold for SNR interrupt
 #define SSB_RSQ_RSSI_HI_THRESHOLD 0x3203     // Sets high threshold for RSSI interrupt
 #define SSB_RSQ_RSSI_LO_THRESHOLD 0x3204     // Sets low threshold for RSSI interrupt
 #define SSB_SOFT_MUTE_RATE 0x3300            // Sets the attack and decay rates when entering or leaving soft mute
 #define SSB_SOFT_MUTE_MAX_ATTENUATION 0x3302 // Sets the maximum attenuation during soft mute (db); 0dB to disable soft mute; defaul 8dB;
-#define SSB_SOFT_MUTE_SNR_THRESHOLD 0x3303   // Sets SNR threshould to engage soft mute. Defaul 8dB 
+#define SSB_SOFT_MUTE_SNR_THRESHOLD 0x3303   // Sets SNR threshould to engage soft mute. Defaul 8dB
 #define SSB_RF_AGC_ATTACK_RATE 0x3700        // Sets the number of milliseconds the high RF peak detector must be exceeded before decreasing the gain. Defaul 4.
 #define SSB_RF_AGC_RELEASE_RATE 0x3701       // Sets the number of milliseconds the low RF peak detector must be exceeded before increasing the gain. Defaul 24.
 
 // SSB
-#define SSB_RF_IF_AGC_ATTACK_RATE 0x3702     // Sets the number of milliseconds the high IF peak detector must be exceeded before decreasing gain. Defaul 4.
-#define SSB_RF_IF_AGC_RELEASE_RATE 0x3703    // Sets the number of milliseconds the low IF peak detector must be exceeded before increasing the gain. Defaul 140.
-
-
-
+#define SSB_RF_IF_AGC_ATTACK_RATE 0x3702  // Sets the number of milliseconds the high IF peak detector must be exceeded before decreasing gain. Defaul 4.
+#define SSB_RF_IF_AGC_RELEASE_RATE 0x3703 // Sets the number of milliseconds the low IF peak detector must be exceeded before increasing the gain. Defaul 140.
 
 // Parameters
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
@@ -132,7 +128,7 @@
  * Power Up arguments data type 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65
  */
-    typedef union {
+typedef union {
     struct
     {
         // ARG1
@@ -378,7 +374,6 @@ typedef union {
     byte raw[13];
 } si47x_rds_status;
 
-
 /*
  * FM_RDS_INT_SOURCE property data type
  * See Si47XX PROGRAMMING GUIDE; AN332; page 103
@@ -478,18 +473,19 @@ typedef union {
  * See AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
  */
 typedef union {
-    struct {
+    struct
+    {
         // status ("RESP0")
         byte STCINT : 1;
         byte DUMMY1 : 1;
-        byte RDSINT : 1;   // Not used for AM/SSB
+        byte RDSINT : 1; // Not used for AM/SSB
         byte RSQINT : 1;
         byte DUMMY2 : 2;
         byte ERR : 1;
         byte CTS : 1;
         // RESP1
         byte AGCDIS : 1; // This bit indicates if the AGC is enabled or disabled. 0 = AGC enabled; 1 = AGC disabled.
-        byte DUMMY:7;
+        byte DUMMY : 7;
         // RESP2
         byte AGCDX; // For FM (5 bits - READ_LNA_GAIN_INDEX - 0 = Minimum attenuation (max gain)). For AM (8 bits). This byte reports the current AGC gain index.
     } refined;
@@ -503,7 +499,8 @@ typedef union {
  * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143
  */
 typedef union {
-    struct {
+    struct
+    {
         // ARG1
         byte AGCDIS : 1; // if set to 1 indicates if the AGC is disabled. 0 = AGC enabled; 1 = AGC disabled.
         byte DUMMY : 7;
@@ -525,8 +522,9 @@ typedef union {
  *                 7–15 = Reserved (Do not use)
  */
 typedef union {
-    struct {
-        byte AMCHFLT : 4; // Selects the bandwidth of the AM channel filter. 
+    struct
+    {
+        byte AMCHFLT : 4; // Selects the bandwidth of the AM channel filter.
         byte DUMMY1 : 4;
         byte AMPLFLT : 1; // Enables the AM Power Line Noise Rejection Filter.
         byte DUMMY2 : 7;
@@ -534,9 +532,26 @@ typedef union {
     byte raw[2];
 } si47x_bandwidth_config; // AM_CHANNEL_FILTER
 
+/* 
+ * SSB - datatype for SSB_MODE (property 0x0101)
+ * 
+ */
+typedef union {
+    struct
+    {
+        byte AUDIOBW : 4;     // 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz
+        byte SBCUTFLT : 4;    // SSB side band cutoff filter for band passand low pass filter
+        byte AVC_DIVIDER : 4; // set 0 for SSB mode; set 3 for SYNC mode;
+        byte AVCEN : 1;       // SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default);
+        byte SMUTESEL : 1;     // SSB Soft-mute Based on RSSI
+        byte DUMMY1:1;  // Always write 0;
+        byte DSP_AFCDIS: 1;  // 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
 
+    } param;
+    byte raw[2];
+} si47x_ssb_mode
 
-/************************ Deal with Interrupt  *************************/
+    /************************ Deal with Interrupt  *************************/
     volatile static bool data_from_si4735;
 
 static void interrupt_hundler()
@@ -569,7 +584,7 @@ private:
     si47x_rds_status currentRdsStatus;
     si47x_agc_status currentAgcStatus;
 
-        si473x_powerup powerUp;
+    si473x_powerup powerUp;
 
     byte volume = 32;
 
@@ -621,25 +636,23 @@ public:
      */
     void getCurrentReceivedSignalQuality(byte INTACK);
     // AM and FM
-    inline byte getCurrentRSSI() { return currentRqsStatus.resp.RSSI; }; // current receive signal strength (0–127 dBμV).
-    inline byte getCurrentSNR() { return currentRqsStatus.resp.SNR; }; // current SNR metric (0–127 dB).
+    inline byte getCurrentRSSI() { return currentRqsStatus.resp.RSSI; };               // current receive signal strength (0–127 dBμV).
+    inline byte getCurrentSNR() { return currentRqsStatus.resp.SNR; };                 // current SNR metric (0–127 dB).
     inline bool getCurrentRssiDetectLow() { return currentRqsStatus.resp.RSSIILINT; }; // RSSI Detect Low.
     inline bool getCurrentRssiDetectHigh() { return currentRqsStatus.resp.RSSIHINT; }; // RSSI Detect High
-    inline bool getCurrentSnrDetectLow() { return currentRqsStatus.resp.SNRLINT; };     // SNR Detect Low.
-    inline bool getCurrentSnrDetectHigh() { return currentRqsStatus.resp.SNRHINT; };    // SNR Detect High
-    inline bool getCurrentValidChannel() { return currentRqsStatus.resp.VALID; };     // Valid Channel.
-    inline bool getCurrentAfcRailIndicator() { return currentRqsStatus.resp.AFCRL; };    // AFC Rail Indicator.
-    inline bool getCurrentSoftMuteIndicator() { return currentRqsStatus.resp.SMUTE; };    // Soft Mute Indicator. Indicates soft mute is engaged.
+    inline bool getCurrentSnrDetectLow() { return currentRqsStatus.resp.SNRLINT; };    // SNR Detect Low.
+    inline bool getCurrentSnrDetectHigh() { return currentRqsStatus.resp.SNRHINT; };   // SNR Detect High
+    inline bool getCurrentValidChannel() { return currentRqsStatus.resp.VALID; };      // Valid Channel.
+    inline bool getCurrentAfcRailIndicator() { return currentRqsStatus.resp.AFCRL; };  // AFC Rail Indicator.
+    inline bool getCurrentSoftMuteIndicator() { return currentRqsStatus.resp.SMUTE; }; // Soft Mute Indicator. Indicates soft mute is engaged.
     // Just FM
-    inline bool getCurrentStereoBlend() { return currentRqsStatus.resp.STBLEND; }; // Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono).
-    inline bool getCurrentPilot() { return currentRqsStatus.resp.PILOT; }; // Indicates stereo pilot presence.
-    inline byte getCurrentMultipath() { return currentRqsStatus.resp.MULT; }; // Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
+    inline bool getCurrentStereoBlend() { return currentRqsStatus.resp.STBLEND; };           // Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono).
+    inline bool getCurrentPilot() { return currentRqsStatus.resp.PILOT; };                   // Indicates stereo pilot presence.
+    inline byte getCurrentMultipath() { return currentRqsStatus.resp.MULT; };                // Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
     inline byte getCurrentSignedFrequencyOffset() { return currentRqsStatus.resp.FREQOFF; }; // Signed frequency offset (kHz).
-    inline bool getCurrentMultipathDetectLow() { return currentRqsStatus.resp.MULTLINT; };     // Multipath Detect Low.
-    inline bool getCurrentMultipathDetectHigh() { return currentRqsStatus.resp.MULTHINT; };    // Multipath Detect High
-    inline bool getCurrentBlendDetectInterrupt() { return currentRqsStatus.resp.BLENDINT; };    // Blend Detect Interrupt
-
-
+    inline bool getCurrentMultipathDetectLow() { return currentRqsStatus.resp.MULTLINT; };   // Multipath Detect Low.
+    inline bool getCurrentMultipathDetectHigh() { return currentRqsStatus.resp.MULTHINT; };  // Multipath Detect High
+    inline bool getCurrentBlendDetectInterrupt() { return currentRqsStatus.resp.BLENDINT; }; // Blend Detect Interrupt
 
     /*
      * FIRMWARE RESPONSE
@@ -662,11 +675,11 @@ public:
     void setVolume(byte volume);
     void volumeDown();
     void volumeUp();
-    inline byte getCurrentVolume() {return volume;}; // Returns the current volume level.
+    inline byte getCurrentVolume() { return volume; }; // Returns the current volume level.
 
     void setAM();
     void setFM();
-    void setSSB(); 
+    void setSSB();
     void setAM(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
     void setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step);
     void setSSB(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
@@ -706,6 +719,9 @@ public:
     String getRdsTime(void);
 
     // Test
-    char *SI4735::getNext2Block(char *c);
-    char *SI4735::getNext4Block(char *);
+    char *getNext2Block(char *c);
+    char *getNext4Block(char *);
+
+    void setSsbBfo(int offset);
+    void setSsbMode();
 };
