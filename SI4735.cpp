@@ -240,7 +240,7 @@ void SI4735::setFrequency(unsigned freq)
 
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(currentTune);
-    Wire.write(currentFrequencyParams.raw[0]); // Send byte with FAST; FREEZE (if FM) and 0;
+    Wire.write(currentFrequencyParams.raw[0]); // Send byte with FAST and  FREEZE information; if not FM must be 0;
     Wire.write(currentFrequencyParams.arg.FREQH);
     Wire.write(currentFrequencyParams.arg.FREQL);
     Wire.write(currentFrequencyParams.arg.ANTCAPH);
@@ -249,6 +249,7 @@ void SI4735::setFrequency(unsigned freq)
         Wire.write(currentFrequencyParams.arg.ANTCAPL);
     Wire.endTransmission();
     delayMicroseconds(550);
+    
     currentWorkFrequency = freq;
 }
 
