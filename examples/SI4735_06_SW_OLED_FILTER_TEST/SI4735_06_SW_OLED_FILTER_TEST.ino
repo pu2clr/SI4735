@@ -222,6 +222,7 @@ void bandUp() {
   } else {
     currentFreqIdx = 0;
   }
+   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
 
 
@@ -235,6 +236,7 @@ void bandDown() {
   } else {
     currentFreqIdx = lastBand;
   }
+   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
 }
 
