@@ -168,10 +168,13 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
     // Set the current tuning frequancy mode 0X20 = FM and 0x40 = AM (LW/MW/SW)
     // See See Si47XX PROGRAMMING GUIDE; AN332; pages 55 and 124
 
-    if (FUNC == 0) {
+    if (FUNC == 0)
+    {
         currentTune = FM_TUNE_FREQ;
         currentFrequencyParams.arg.FREEZE = 1;
-    } else {
+    }
+    else
+    {
         currentTune = AM_TUNE_FREQ;
         currentFrequencyParams.arg.FREEZE = 0;
     }
@@ -196,7 +199,8 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
  *                  FM - the valid range is 0 to 191.    
  *                  According to Silicon Labs, automatic capacitor tuning is recommended (value 0). 
  */
-void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor) {
+void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor)
+{
 
     si47x_antenna_capacitor cap;
 
@@ -204,12 +208,15 @@ void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor) {
 
     currentFrequencyParams.arg.DUMMY1 = 0;
 
-        if (currentTune == FM_TUNE_FREQ)
+    if (currentTune == FM_TUNE_FREQ)
     {
         // For FM, the capacitor value has just one byte
-        currentFrequencyParams.arg.ANTCAPH = (capacitor <= 191) ? cap.raw.ANTCAPL : 0; 
-    } else {
-        if (capacitor <= 6143) {
+        currentFrequencyParams.arg.ANTCAPH = (capacitor <= 191) ? cap.raw.ANTCAPL : 0;
+    }
+    else
+    {
+        if (capacitor <= 6143)
+        {
             currentFrequencyParams.arg.FREEZE = 0; // This parameter is not used for AM
             currentFrequencyParams.arg.ANTCAPH = cap.raw.ANTCAPH;
             currentFrequencyParams.arg.ANTCAPL = cap.raw.ANTCAPL;
@@ -217,14 +224,13 @@ void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor) {
     }
 }
 
-    /*
+/*
  * Set the frequency to the corrent function of the Si4735 (AM or FM)
  * You have to call setup or setPowerUp before call setFrequency.
  * 
  * @param unsigned freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
  */
-    void
-    SI4735::setFrequency(unsigned freq)
+void SI4735::setFrequency(unsigned freq)
 {
 
     waitToSend(); // Wait for the si473x is ready.
@@ -244,7 +250,7 @@ void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor) {
     Wire.endTransmission();
     delayMicroseconds(550);
     currentWorkFrequency = freq;
-} 
+}
 
 /* 
  * Set the current step value. 
@@ -1050,12 +1056,12 @@ String SI4735::getRdsTime()
  * 
  */
 
-
 /* 
  * Sets the SSB Beat Frequency Offset (BFO). 
  * @param offset 16-bit signed value (unit in Hz). The valid range is -16383 to +16383 Hz. 
- */ 
-void SI4735::setSsbBfo(int offset) {
+ */
+void SI4735::setSsbBfo(int offset)
+{
 
     si47x_property property;
     si47x_frequency bfo_offset;
@@ -1073,12 +1079,11 @@ void SI4735::setSsbBfo(int offset) {
     Wire.write(0x00);                  // Always 0x00
     Wire.write(property.raw.byteHigh); // High byte first
     Wire.write(property.raw.byteLow);  // Low byte after
-    Wire.write(bfo_offset.raw.FREQH);      // Offset freq. high byte first
-    Wire.write(bfo_offset.raw.FREQL);      // Offset freq. low byte first
+    Wire.write(bfo_offset.raw.FREQH);  // Offset freq. high byte first
+    Wire.write(bfo_offset.raw.FREQL);  // Offset freq. low byte first
 
     Wire.endTransmission();
     delayMicroseconds(550);
-
 }
 
 /*
@@ -1124,11 +1129,9 @@ void SI4735::setSsbMode(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCE
     Wire.write(0x00);                  // Always 0x00
     Wire.write(property.raw.byteHigh); // High byte first
     Wire.write(property.raw.byteLow);  // Low byte after
-    Wire.write(ssb.raw[1]);  // SSB MODE params; freq. high byte first
-    Wire.write(ssb.raw[0]);  // SSB MODE params; freq. low byte after
+    Wire.write(ssb.raw[1]);            // SSB MODE params; freq. high byte first
+    Wire.write(ssb.raw[0]);            // SSB MODE params; freq. low byte after
 
     Wire.endTransmission();
     delayMicroseconds(550);
 }
-
-
