@@ -9,6 +9,7 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 3. [Schematic for I2C display device, buttons and encoder](https://github.com/pu2clr/SI4735/tree/master/examples#schematic-for-i2c-display-device-buttons-and-encoder)
 4. [Prof of Concept](https://github.com/pu2clr/SI4735/tree/master/examples#proof-of-concept-with-sw)
 5. [Proof of Concept with SW](https://github.com/pu2clr/SI4735/tree/master/examples#schematic-for-proof-of-concept)
+6. [Bandwidth test]()
 
 
 ## SS4735 Arduino Library example with LCD 20x4 I2C
@@ -53,6 +54,16 @@ This example shows how can you use SW features of the Si4735 Arduino Library. Li
 The schematic below is the same shown at the main page of this project and shows how you can setup you SI4735 device.
 
 ![Silicon Labs Schematic](../extras/images/basic_schematic.png)
+
+
+## Bandwidth test
+
+This example is a 9 band SW receiver based on SI4735.  It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). With this resource, you can separate  two stations in adjacent channels.
+
+__Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__.
+
+
+
 
 
 
