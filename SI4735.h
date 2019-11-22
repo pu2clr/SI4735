@@ -156,6 +156,24 @@ typedef union {
     unsigned value;
 } si47x_frequency;
 
+/*
+ * AM_TUNE_FREQ data type command
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 135
+ */
+typedef union {
+    struct
+    {
+        byte FAST : 1;   // ARG1 - FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate.
+        byte FREEZE : 1; // Valid onlu for FM (Must be 0 to AM)
+        byte DUMMY1 : 6; // Always set 0
+        byte FREQH;   // ARG2 - Tune Frequency High Byte.
+        byte FREQL;   // ARG3 - Tune Frequency Low Byte.
+        byte ANTCAPH; // ARG4 - Antenna Tuning Capacitor High Byte. 
+        byte ANTCAPL; // ARG5 - Antenna Tuning Capacitor Low Byte. Note used for FM.
+    } arg;
+    byte raw[5];
+} si47x_set_frequency;
+
 /* 
  *  Represents searching for a valid frequency data type.
  */
@@ -543,13 +561,12 @@ typedef union {
         byte SBCUTFLT : 4;    // SSB side band cutoff filter for band passand low pass filter
         byte AVC_DIVIDER : 4; // set 0 for SSB mode; set 3 for SYNC mode;
         byte AVCEN : 1;       // SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default);
-        byte SMUTESEL : 1;     // SSB Soft-mute Based on RSSI or SNR
-        byte DUMMY1:1;  // Always write 0;
-        byte DSP_AFCDIS: 1;  // 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
+        byte SMUTESEL : 1;    // SSB Soft-mute Based on RSSI or SNR
+        byte DUMMY1 : 1;      // Always write 0;
+        byte DSP_AFCDIS : 1;  // 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
     } param;
     byte raw[2];
 } si47x_ssb_mode;
-
 
 /************************ Deal with Interrupt  *************************/
 volatile static bool data_from_si4735;
@@ -578,6 +595,7 @@ private:
     byte currentStep;
 
     si47x_frequency currentFrequency;
+    si47x_set_frequency currentFrequencyParams;
     si47x_rqs_status currentRqsStatus;
     si47x_response_status currentStatus;
     si47x_firmware_information firmwareInfo;
@@ -687,6 +705,11 @@ public:
     void setBandwidth(byte AMCHFLT, byte AMPLFLT);
 
     void setFrequencyStep(byte step);
+
+    void setTuneFrequencyFast(byte FAST);
+    void setTuneFrequencyFreeze(byte FREEZE);
+    void setTuneFrequencyAntennaCapacitor(unsigned capacitor);
+
     void frequencyUp();
     void frequencyDown();
     bool isCurrentTuneFM();
@@ -723,5 +746,5 @@ public:
     char *getNext4Block(char *);
 
     void setSsbBfo(int offset);
-    void setSsbMode(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS);      
+    void setSsbMode(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS);
 };

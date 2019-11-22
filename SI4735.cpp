@@ -168,29 +168,51 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
     // Set the current tuning frequancy mode 0X20 = FM and 0x40 = AM (LW/MW/SW)
     // See See Si47XX PROGRAMMING GUIDE; AN332; pages 55 and 124
 
-    currentTune = (FUNC == 0) ? FM_TUNE_FREQ : AM_TUNE_FREQ;
+    if (FUNC == 0) {
+        currentTune = FM_TUNE_FREQ;
+        currentFrequencyParams.arg.FREEZE = 1;
+    } else {
+        currentTune = AM_TUNE_FREQ;
+        currentFrequencyParams.arg.FREEZE = 0;
+    }
+    currentFrequencyParams.arg.FAST = 0;
+    currentFrequencyParams.arg.DUMMY1 = 0;
+    currentFrequencyParams.arg.ANTCAPH = 0;
+    currentFrequencyParams.arg.ANTCAPL = 0;
 }
 
-/*
+void SI4735::setTuneFrequencyFast(byte FAST) {}
+void SI4735::setTuneFrequencyFreeze(byte FREEZE){}
+void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor) {}
+
+    /*
  * Set the frequency to the corrent function of the Si4735 (AM or FM)
  * You have to call setup or setPowerUp before call setFrequency.
  * 
  * @param unsigned freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
  */
-void SI4735::setFrequency(unsigned freq)
+    void
+    SI4735::setFrequency(unsigned freq)
 {
+
     waitToSend(); // Wait for the si473x is ready.
     currentFrequency.value = freq;
+    currentFrequencyParams.arg.FREQH = currentFrequency.raw.FREQH;
+    currentFrequencyParams.arg.FREQL = currentFrequency.raw.FREQL;
+
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(currentTune);
-    Wire.write(0x00);
-    Wire.write(currentFrequency.raw.FREQH);
-    Wire.write(currentFrequency.raw.FREQL);
-    Wire.write(0x00);
+    Wire.write(currentFrequencyParams.raw[0]); // Send byte with FAST; FREEZE (if FM) and 0;
+    Wire.write(currentFrequencyParams.arg.FREQH);
+    Wire.write(currentFrequencyParams.arg.FREQL);
+    Wire.write(currentFrequencyParams.arg.ANTCAPH);
+    // If current tune is not FM sent one more byte
+    if (currentTune != FM_TUNE_FREQ)
+        Wire.write(currentFrequencyParams.arg.ANTCAPL);
     Wire.endTransmission();
     delayMicroseconds(550);
     currentWorkFrequency = freq;
-}
+} 
 
 /* 
  * Set the current step value. 
