@@ -117,7 +117,10 @@ void setup()
 
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
+  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
+  
   si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+  
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
 

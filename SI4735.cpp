@@ -202,7 +202,9 @@ void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor) {
 
     cap.value = capacitor;
 
-    if (currentTune == FM_TUNE_FREQ)
+    currentFrequencyParams.arg.DUMMY1 = 0;
+
+        if (currentTune == FM_TUNE_FREQ)
     {
         // For FM, the capacitor value has just one byte
         currentFrequencyParams.arg.ANTCAPH = (capacitor <= 191) ? cap.raw.ANTCAPL : 0; 
