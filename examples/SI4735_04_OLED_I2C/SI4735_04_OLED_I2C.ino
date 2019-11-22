@@ -238,7 +238,7 @@ void loop()
         lastFmFrequency = currentFrequency;
         si4735.setAM(570, 1710,  lastAmFrequency, 10);
       }
-      else {
+      else {       
         lastAmFrequency = currentFrequency;
         si4735.setFM(8600, 10800,  lastFmFrequency, 10);
       }
