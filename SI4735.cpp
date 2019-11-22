@@ -181,9 +181,39 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
     currentFrequencyParams.arg.ANTCAPL = 0;
 }
 
-void SI4735::setTuneFrequencyFast(byte FAST) {}
-void SI4735::setTuneFrequencyFreeze(byte FREEZE){}
-void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor) {}
+/*
+ * Selects the tuning capacitor value.
+ * 
+ * For FM, Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the antenna input.
+ * 
+ * 
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 71 and 136
+ * 
+ * 
+ * @param capacitor If zero, the tuning capacitor value is selected automatically. 
+ *                  If the value is set to anything other than 0:
+ *                  AM - the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. ANTCAP manual range is 1–6143;
+ *                  FM - the valid range is 0 to 191.    
+ *                  According to Silicon Labs, automatic capacitor tuning is recommended (value 0). 
+ */
+void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor) {
+
+    si47x_antenna_capacitor cap;
+
+    cap.value = capacitor;
+
+    if (currentTune == FM_TUNE_FREQ)
+    {
+        // For FM, the capacitor value has just one byte
+        currentFrequencyParams.arg.ANTCAPH = (capacitor <= 191) ? cap.raw.ANTCAPL : 0; 
+    } else {
+        if (capacitor <= 6143) {
+            currentFrequencyParams.arg.FREEZE = 0; // This parameter is not used for AM
+            currentFrequencyParams.arg.ANTCAPH = cap.raw.ANTCAPH;
+            currentFrequencyParams.arg.ANTCAPL = cap.raw.ANTCAPL;
+        }
+    }
+}
 
     /*
  * Set the frequency to the corrent function of the Si4735 (AM or FM)

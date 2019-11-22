@@ -157,10 +157,21 @@ typedef union {
 } si47x_frequency;
 
 /*
+ * 
+ */
+typedef union {
+    struct {
+        byte ANTCAPL; // Antenna Tuning Capacitor High Byte 
+        byte ANTCAPH; // Antenna Tuning Capacitor Low Byte 
+    } raw;
+    unsigned value;
+} si47x_antenna_capacitor;
+
+ /*
  * AM_TUNE_FREQ data type command
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 135
  */
-typedef union {
+    typedef union {
     struct
     {
         byte FAST : 1;   // ARG1 - FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate.
@@ -173,6 +184,8 @@ typedef union {
     } arg;
     byte raw[5];
 } si47x_set_frequency;
+
+
 
 /* 
  *  Represents searching for a valid frequency data type.
@@ -706,8 +719,8 @@ public:
 
     void setFrequencyStep(byte step);
 
-    void setTuneFrequencyFast(byte FAST);
-    void setTuneFrequencyFreeze(byte FREEZE);
+    inline void setTuneFrequencyFast(byte FAST) { currentFrequencyParams.arg.FAST = FAST; }; // FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate
+    inline void setTuneFrequencyFreeze(byte FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; // Onlye FM. Freeze Metrics During Alternate Frequency Jump.
     void setTuneFrequencyAntennaCapacitor(unsigned capacitor);
 
     void frequencyUp();
