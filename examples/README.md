@@ -18,7 +18,9 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 
 ## Example 01 - Proof of Concept
 
-The main advantage of using this Proof of Concept is: you do not need to connect any display device to make your radio works. The Arduino IDE is all you need to control the radio.  So, I strongly recommend starting with this sketch. This example is a proof of concept of SI4735 Arduino Library. The [SI4735_POC.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_POC) sketch uses just the __Serial Monitor__ and works only on your __Arduino IDE__. However, you can easily replace the Serial Monitor functions to the device functions that you want to use. The [SS4735 Arduino Library example with LCD 20x4 I2C](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_LCD_20x4_I2C) and [SS4735 Arduino Library example with I2C OLED](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_OLED_I2C) are good examples that show this approach.
+The main advantage of using this Proof of Concept is: you do not need to connect any display device to make your radio works. The Arduino IDE is all you need to control the radio.  So, I strongly recommend starting with this sketch. This example is a proof of concept of SI4735 Arduino Library. The [SI4735_POC.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_POC) sketch uses just the __Serial Monitor__ and works only on your __Arduino IDE__. However, you can easily replace the Serial Monitor functions to the device functions that you want to use. 
+
+Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_01_POC/SI4735_01_POC.ino) to see this example.
 
 
 <BR>
@@ -28,6 +30,7 @@ The main advantage of using this Proof of Concept is: you do not need to connect
 
 This example shows how can you use SW features of the Si4735 Arduino Library. Like the previous exemple (Proof of Concept), the [SI4735_POC_SW.ino](examples/SI4735_POC_SW/SI4735_POC_SW.ino) sketch __works only on Arduino IDE__. It uses the Serial Monitor to get the commands and show the information. 
 
+Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_02_POC_SW/SI4735_02_POC_SW.ino) to see this example.
 
 <BR>
 
@@ -44,6 +47,9 @@ The schematic below is the same shown at the main page of this project and shows
 
 This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the LiquidCrystal I2C Library by Frank de Brabander. You can install LiquidCrystal I2C via Manage Libraries on your Arduino IDE. 
 
+Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_03_LCD_20x4_I2C/SI4735_03_LCD_20x4_I2C.ino) to see this example.
+
+
 __Click [here](https://youtu.be/vzunuxam_Lg) to see a video about this example__.
 
 <BR>
@@ -53,6 +59,7 @@ __Click [here](https://youtu.be/vzunuxam_Lg) to see a video about this example__
 
 This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the SSD1306Ascii Arduino Library by Bill Greiman. You can install SSD1306Ascii via Manage Libraries on your Arduino IDE. The photo below show this example on a protoboard. 
 
+Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_04_OLED_I2C/SI4735_04_OLED_I2C.ino) to see this example.
 
 ![Silicon Labs Schematic](../extras/images/prot_oled_01.png)
 
@@ -78,6 +85,9 @@ __Pay attention to the your I2C device voltage. The system can become unstable i
 
 ## Example 05 - Bandwidth filter on MW (AM)
 
+Bandwidth of the channel filter for AM reception.  This sketch tests the bandwidth configuration on Si4735 device. It uses the Serial Monitor (Arduino IDE). The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz).
+ 
+Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_05_AM_FILTERS/SI4735_05_AM_FILTERS.ino) to see this example.
 
 
 <BR>
@@ -86,14 +96,10 @@ __Pay attention to the your I2C device voltage. The system can become unstable i
 
 ## Example 06 - Bandwidth filter test (9 band SW Receiver with OLED)
 
-This example is a 9 band SW receiver based on SI4735.  It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). With this resource, you can separate  two stations in adjacent channels.
+This example is a 9 band SW receiver based on SI4735.  It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). With this resource, you can separate  two stations in adjacent channels. __You can use the same schematic shown for the examples 03 and 04__. 
+
+Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_06_SW_OLED_FILTER_TEST/SI4735_06_SW_OLED_FILTER_TEST.ino) to see this example.
 
 __Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__.
-
-
-
-
-
-
 
 
