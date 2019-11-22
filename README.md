@@ -920,6 +920,7 @@ void SI4735::setFrequency(unsigned freq)
 [See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
 
 
+
 ### frequencyUp
 ```cpp
 /*
@@ -940,6 +941,42 @@ void SI4735::frequencyDown()
 ```
 
 
+### setTuneFrequencyAntennaCapacitor
+
+```cpp
+/*
+ * Selects the tuning capacitor value.
+ * For FM, Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the antenna input.
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 71 and 136
+ * 
+ * @param capacitor If zero, the tuning capacitor value is selected automatically. 
+ *                  If the value is set to anything other than 0:
+ *                  AM - the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. ANTCAP manual range is 1–6143;
+ *                  FM - the valid range is 0 to 191.    
+ *                  According to Silicon Labs, automatic capacitor tuning is recommended (value 0). 
+ */
+void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor)
+```
+
+
+### setTuneFrequencyFast
+
+```cpp
+/*
+ * If set, executes fast and invalidated tune. The tune status will not be accurate
+ * @param FAST if 1 executes fast and invalidated tune. Defult value is 0.
+ */
+inline void setTuneFrequencyFast(byte FAST) 
+```
+
+### setTuneFrequencyFreeze
+
+```cpp
+/*
+ * Freeze Metrics During Alternate Frequency Jump. Only used on FM. 
+ */ 
+inline void setTuneFrequencyFreeze(byte FREEZE) 
+```
 
 
 ### seekStation
