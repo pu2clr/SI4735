@@ -1,8 +1,8 @@
 /*
   SS4735 SSB Test.
   Arduino Library example with LCD 20x4 I2C.
-  Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
-
+  Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton.
+  The source code is included together with this sketch.
 
   By Ricardo Lima Caratti, Nov 2019.
 */
@@ -26,10 +26,10 @@
 
 // Buttons controllers
 #define BANDWIDTH_BUTTON 5 // Next Band
-#define BAND_BUTTON_UP 8   // Seek Up
-#define BAND_BUTTON_DOWN 9 // Seek Down
-#define VOL_UP 6           // Volume Volume Up
-#define VOL_DOWN 7         // Volume Down
+#define BAND_BUTTON_UP 8   // Band Up
+#define BAND_BUTTON_DOWN 9 // Band Down
+#define BFO_UP 6           // BFO Up
+#define BFO_DOWN 7         // BFO Down
 // Seek Function
 
 #define MIN_ELAPSED_TIME 100
@@ -54,27 +54,23 @@ typedef struct {
   unsigned   currentStep;
 } Band;
 
-
-Band band[] = {{4600, 5200, 4700, 5},
-  {5700, 6200, 6000, 5},
-  {7000, 7500, 7200, 5},
-  {9300, 10000, 9600, 5},
-  {11400, 12200, 11940, 5},
-  {13500, 13900, 13600, 5},
-  {15000, 15800, 15400, 5},
-  {17400, 17900, 17600, 5},
-  {21400, 21800, 21500, 5},
-  {27000, 27500, 27220, 1},
-  {28000, 28500, 28400, 1}
-};
+Band band[] = {
+    {3500, 4000, 3750, 1},
+    {7000, 7300, 7100, 1},
+    {1400, 14400, 14200, 1},
+    {18000, 19000, 18100, 1},
+    {2100, 21400, 21200, 1},
+    {27000, 27500, 27220, 1},
+    {28000, 28500, 28400, 1}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int  currentFreqIdx = 2; // 41M
-
+int  currentFreqIdx = 1; // 40M
 
 byte rssi = 0;
 byte stereo = 1;
 byte volume = 0;
+
+int bfo_offset = 0;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
@@ -93,8 +89,8 @@ void setup()
   pinMode(BANDWIDTH_BUTTON, INPUT);
   pinMode(BAND_BUTTON_UP, INPUT);
   pinMode(BAND_BUTTON_DOWN, INPUT);
-  pinMode(VOL_UP, INPUT);
-  pinMode(VOL_DOWN, INPUT);
+  pinMode(BFO_UP, INPUT);
+  pinMode(BFO_DOWN, INPUT);
 
   display.begin(&Adafruit128x64, I2C_ADDRESS);
   display.setFont(Adafruit5x7);
@@ -106,6 +102,8 @@ void setup()
   display.print("Si4735 Arduino Library");
   delay(500);
   display.setCursor(30, 3);
+  display.print("SSB TEST");
+  display.setCursor(20, 6);
   display.print("By PU2CLR");
   delay(3000);
   display.clear();
@@ -123,6 +121,8 @@ void setup()
 
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(60);
+
+  si4735.setSsbMode(1, 0, 0, 1, 0, 1);
 
   showStatus();
 }
@@ -167,15 +167,14 @@ void showStatus()
   display.setCursor(26, 1);
   display.print(freqDisplay);
 
-  si4735.getAutomaticGainControl();
-
-  // Show AGC Information
+   // Show AGC Information
   display.set1X();
-  display.setCursor(0, 4);
-  display.print((si4735.isAgcEnabled()) ? "AGC ON" : "AGC OFF");
   display.setCursor(0, 5);
-  display.print("G.:");
-  display.print(si4735.getAgcGainIndex());
+  display.print("              ");
+  display.setCursor(0, 5);
+  display.print("BFO: ");
+  display.print(bfo_offset);
+  display.print(" Hz");
 
   display.setCursor(0, 7);
   display.print("            ");
@@ -260,7 +259,7 @@ void loop()
   }
 
   // Check button commands
-  if (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN))
+  if (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(BFO_UP) | digitalRead(BFO_DOWN))
   {
 
     // check if some button is pressed
@@ -276,11 +275,14 @@ void loop()
       bandUp();
     else if (digitalRead(BAND_BUTTON_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
       bandDown();
-    else if (digitalRead(VOL_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
-      si4735.volumeUp();
-    else if (digitalRead(VOL_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
-      si4735.volumeDown();
-
+    else if (digitalRead(BFO_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
+      bfo_offset += 100;
+      si4735.setSsbBfo(bfo_offset);
+    }
+    else if (digitalRead(BFO_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
+      bfo_offset -= 100;
+      si4735.setSsbBfo(bfo_offset);
+    }
     elapsedButton = millis();
   }
 
