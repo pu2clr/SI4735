@@ -58,8 +58,6 @@ void SI4735::waitToSend()
 void SI4735::analogPowerUp(void)
 {
     reset();
-    // Initiate the I2C bus
-    // Wire.begin();
     delayMicroseconds(1000);
     waitToSend();
     Wire.beginTransmission(SI473X_ADDR);
@@ -68,6 +66,19 @@ void SI4735::analogPowerUp(void)
     Wire.write(powerUp.raw[1]); // COntent of ARG2
     Wire.endTransmission();
     // page 12 - Delay at least 500 ms between powerup command and first tune command.
+    delayMicroseconds(2500);
+}
+
+/* 
+ * Moves the device from powerup to powerdown mode.
+ * After Power Down command, only the Power Up command is accepted.
+ */
+void powerDown(void) {
+    delayMicroseconds(1000);
+    waitToSend();
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(POWER_DOWN);
+    Wire.endTransmission();
     delayMicroseconds(2500);
 }
 
