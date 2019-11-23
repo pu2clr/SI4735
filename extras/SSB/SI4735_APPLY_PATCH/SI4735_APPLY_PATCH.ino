@@ -52,24 +52,24 @@ void showFirmwareInformation() {
     si4735_patch.getFirmware();
     
     Serial.println("Firmware Information.");
-    Serial.print("Part Number (HEX)............: ");
+    Serial.print("Part Number (HEX)........: ");
     Serial.println(si4735_patch.getFirmwarePN(), HEX);
-    Serial.print("Firmware Major Revision......: ");
+    Serial.print("Firmware Major Revision..: ");
     Serial.println(si4735_patch.getFirmwareFWMAJOR());
-    Serial.print("Firmware Major Revision......: ");
+    Serial.print("Firmware Major Revision..: ");
     Serial.println(si4735_patch.getFirmwareFWMAJOR());
-    Serial.print("Firmware Minor Revision......: ");
+    Serial.print("Firmware Minor Revision..: ");
     Serial.println(si4735_patch.getFirmwareFWMINOR());
-    Serial.print("Firmware Minor Revision......: ");
+    Serial.print("Firmware Minor Revision..: ");
     Serial.println(si4735_patch.getFirmwareFWMINOR());
-    Serial.print("Patch ID High Byte...........: ");
+    Serial.print("Patch ID High ...........: ");
     Serial.print(si4735_patch.getFirmwarePATCHH(),HEX);
     Serial.println(si4735_patch.getFirmwarePATCHL(),HEX);
-    Serial.print("Component Major Revision.....: ");
+    Serial.print("Component Major Revision.: ");
     Serial.println(si4735_patch.getFirmwareCMPMAJOR());
-    Serial.print("Component Minor Revision.....: ");
+    Serial.print("Component Minor Revision.: ");
     Serial.println(si4735_patch.getFirmwareCMPMINOR());
-    Serial.print("Chip Revision................: ");
+    Serial.print("Chip Revision............: ");
     Serial.println(si4735_patch.getFirmwareCHIPREV());
 }
 
