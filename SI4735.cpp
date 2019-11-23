@@ -82,6 +82,8 @@ void SI4735::getFirmware(void)
     Wire.write(GET_REV);
     Wire.endTransmission();
 
+    waitToSend();
+
     // Request for 9 bytes response
     Wire.requestFrom(SI473X_ADDR, 9);
 

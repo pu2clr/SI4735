@@ -251,7 +251,7 @@ typedef union {
         byte DUMMY2 : 2;
         byte ERR : 1;
         byte CTS : 1;
-        byte PN;       //  RESP1 - Final 2 digits of Part Number (HEX).
+        byte PN;       // RESP1 - Final 2 digits of Part Number (HEX).
         byte FWMAJOR;  // RESP2 - Firmware Major Revision (ASCII).
         byte FWMINOR;  // RESP3 - Firmware Minor Revision (ASCII).
         byte PATCHH;   // RESP4 - Patch ID High Byte (HEX).
