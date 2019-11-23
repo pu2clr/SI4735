@@ -624,7 +624,7 @@ private:
 
 public:
     SI4735();
-    void waitToSend(void);
+    void waitToSend(void);  // Wait for Si4735 device ready to receive command
     void setup(byte resetPin, byte defaultFunction);
     void setup(byte resetPin, int interruptPin, byte defaultFunction);
     void setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE);
