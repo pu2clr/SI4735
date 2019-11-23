@@ -26,8 +26,8 @@ void setup() {
     delay(1000);
 
     si4735_patch.setup(RESET_PIN, AM_FUNCTION);
+    delay(1000);      
     showFirmwareInformation();  
-    delay(4000);  
   }
 
 
@@ -56,13 +56,9 @@ void showFirmwareInformation() {
     Serial.println(si4735_patch.getFirmwarePN(), HEX);
     Serial.print("Firmware Major Revision..: ");
     Serial.println(si4735_patch.getFirmwareFWMAJOR());
-    Serial.print("Firmware Major Revision..: ");
-    Serial.println(si4735_patch.getFirmwareFWMAJOR());
     Serial.print("Firmware Minor Revision..: ");
     Serial.println(si4735_patch.getFirmwareFWMINOR());
-    Serial.print("Firmware Minor Revision..: ");
-    Serial.println(si4735_patch.getFirmwareFWMINOR());
-    Serial.print("Patch ID High ...........: ");
+    Serial.print("Patch ID ................: ");
     Serial.print(si4735_patch.getFirmwarePATCHH(),HEX);
     Serial.println(si4735_patch.getFirmwarePATCHL(),HEX);
     Serial.print("Component Major Revision.: ");
