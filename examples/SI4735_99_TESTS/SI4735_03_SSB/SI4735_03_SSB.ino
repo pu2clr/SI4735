@@ -1,5 +1,6 @@
 /*
-  SS4735 Arduino Library example with OLED I2C.
+  SS4735 SSB Test.
+  Arduino Library example with LCD 20x4 I2C.
   Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
 
 
@@ -117,7 +118,7 @@ void setup()
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  
+
   si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
 
   currentFrequency = previousFrequency = si4735.getFrequency();
@@ -213,7 +214,7 @@ void showVolume()
 
 
 void bandUp() {
-  
+
   // save the current frequency for the band
   band[currentFreqIdx].currentFreq = currentFrequency;
   if ( currentFreqIdx < lastBand ) {
