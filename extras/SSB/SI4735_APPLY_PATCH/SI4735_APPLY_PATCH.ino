@@ -111,7 +111,6 @@ void prepereSi4735ToPatch() {
 
 }
 
-
 void applyPatch() {
 
   int offset = 0;
@@ -126,16 +125,15 @@ void applyPatch() {
 
   delay(5000);
   for (offset; offset < size_content_initialization; offset += 8 ) {
-
-    Serial.println("Sending..");
     for (i = 0; i< 8; i++) {
-      content = pgm_read_byte_near(ssb_patch_content_initialization + (i + offset));
-        Serial.print(content, HEX);
-        Serial.print(" ");
+      content = pgm_read_byte_near(ssb_patch_content_initialization + (i + offset);
+      Wire.beginTransmission(SI473X_ADDR);
+      Wire.write(content);
     }
-    Serial.println("Waiting...");
-    delay(50);    
+    waitToSend();
+    delayMicroseconds(600);
   }
+  si4735_patch.powerDown(); 
   delay(5000);
 
   Serial.println("Patch applyed!");
