@@ -83,7 +83,7 @@ void SI4735::getFirmware(void)
     Wire.endTransmission();
 
     // Request for 9 bytes response
-    Wire.requestFrom(SI473X_ADDR, 0x09);
+    Wire.requestFrom(SI473X_ADDR, 9);
 
     for (int i = 0; i < 9; i++)
         firmwareInfo.raw[i] = Wire.read();
