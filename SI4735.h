@@ -621,10 +621,10 @@ private:
 
     void reset(void);
     void waitInterrupr(void);
-    void waitToSend(void);
 
 public:
     SI4735();
+    void waitToSend(void);
     void setup(byte resetPin, byte defaultFunction);
     void setup(byte resetPin, int interruptPin, byte defaultFunction);
     void setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE);

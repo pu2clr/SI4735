@@ -115,6 +115,7 @@ void prepereSi4735ToPatch() {
 void applyPatch() {
 
   int offset = 0;
+  int i = 0;
   byte content;
 
   Serial.println("Applying the patch...");
@@ -124,16 +125,18 @@ void applyPatch() {
   Serial.println(" bytes to the CI...");
 
   delay(5000);
-  for (offset; offset < size_content_initialization; offset++ ) {
-    content = pgm_read_byte_near(ssb_patch_content_initialization + offset);
-    Serial.print(content, HEX);
-    Serial.print(" ");
-    if ((offset % 80) == 0 )Serial.println(" ");
+  for (offset; offset < size_content_initialization; offset += 8 ) {
+
+    Serial.println("Sending..");
+    for (i = 0; i< 8; i++) {
+      content = pgm_read_byte_near(ssb_patch_content_initialization + (i + offset));
+        Serial.print(content, HEX);
+        Serial.print(" ");
+    }
+    Serial.println("Waiting...");
+    delay(50);    
   }
-
   delay(5000);
-
-
 
   Serial.println("Patch applyed!");
   PATCH_FINISIHED = true;
