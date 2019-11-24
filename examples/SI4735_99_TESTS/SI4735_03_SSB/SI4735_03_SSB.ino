@@ -218,7 +218,7 @@ void bandUp() {
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSsbMode);
 
-
+  currentBFO = 0;
 
 }
 
@@ -232,7 +232,7 @@ void bandDown() {
   }
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSsbMode);
-
+  currentBFO = 0;
 }
 
 /*
@@ -271,11 +271,11 @@ void loop()
     else if (digitalRead(BAND_BUTTON_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
       bandDown();
     else if (digitalRead(BFO_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
-      currentBFO += 10;
+      currentBFO += 100;
       si4735.setSsbBfo(currentBFO);
     }
     else if (digitalRead(BFO_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
-      currentBFO -= 10;
+      currentBFO -= 100;
       si4735.setSsbBfo(currentBFO);
     }
     elapsedButton = millis();

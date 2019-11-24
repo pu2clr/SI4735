@@ -6,3 +6,9 @@ This sketch works with the I2C communication protocol and is designed to apply a
 Once again, the author disclaims any liability for any damage this procedure may cause to your CI SI4735 or other devices that you are using.
 If you are sure about it and still want to apply the patch, set the variable "APPLY_PATCH to true" in SI4735_APPLY_PATCH.ino and upload this sketch.
 
+
+
+
+## Found at Internet
+
+[SI4735 Patch](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0)

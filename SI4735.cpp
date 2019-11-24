@@ -67,7 +67,6 @@ void SI4735::analogPowerUp(void)
     Wire.write(powerUp.raw[0]); // Content of ARG1
     Wire.write(powerUp.raw[1]); // COntent of ARG2
     Wire.endTransmission();
-    // page 12 - Delay at least 500 ms between powerup command and first tune command.
     delayMicroseconds(2500);
 }
 
