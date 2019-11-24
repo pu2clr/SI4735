@@ -164,9 +164,10 @@ void applyPatch()
 
   si4735_patch.setup(RESET_PIN, AM_FUNCTION);
   delay(2000);
-  si4735_patch.setAM(7000, 7200,  7100, 1);
-  si4735_patch.setSsbMode(1, 0, 0, 1, 0, 1);
-  si4735_patch.setSsbBfo(4000);
+  si4735_patch.setSsbConfig(1, 0, 0, 1, 0, 1);
+  si4735_patch.setSSB(7000, 7200,  7100, 1,2);
+
+  si4735_patch.setSsbBfo(400);
   
   PATCH_FINISIHED = true;
 }
