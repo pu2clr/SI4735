@@ -73,7 +73,8 @@ void SI4735::analogPowerUp(void)
  * Moves the device from powerup to powerdown mode.
  * After Power Down command, only the Power Up command is accepted.
  */
-void powerDown(void) {
+void SI4735::powerDown(void)
+{
     delayMicroseconds(1000);
     waitToSend();
     Wire.beginTransmission(SI473X_ADDR);

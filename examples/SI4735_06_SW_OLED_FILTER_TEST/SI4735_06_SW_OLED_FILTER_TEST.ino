@@ -42,9 +42,9 @@ volatile int encoderCount = 0;
 unsigned currentFrequency;
 unsigned previousFrequency;
 
-byte bandwidthIdx = 0;
+byte bandwidthIdx = 1;
 char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
-unsigned lastSwFrequency = 9500; // Starts SW on 810 KHz;
+
 
 typedef struct {
   unsigned   minimumFreq;

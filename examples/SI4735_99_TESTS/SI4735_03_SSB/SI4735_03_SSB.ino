@@ -45,7 +45,6 @@ unsigned previousFrequency;
 
 byte bandwidthIdx = 0;
 char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
-unsigned lastSwFrequency = 9500; // Starts SW on 810 KHz;
 
 typedef struct {
   unsigned   minimumFreq;
@@ -57,7 +56,7 @@ typedef struct {
 Band band[] = {
     {3500, 4000, 3750, 1},
     {7000, 7300, 7100, 1},
-    {1400, 14400, 14200, 1},
+    {14000, 14400, 14200, 1},
     {18000, 19000, 18100, 1},
     {2100, 21400, 21200, 1},
     {27000, 27500, 27220, 1},
@@ -118,11 +117,12 @@ void setup()
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
 
   si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+  si4735.setSsbMode(1, 0, 0, 1, 0, 1);
 
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(60);
 
-  si4735.setSsbMode(1, 0, 0, 1, 0, 1);
+
 
   showStatus();
 }
@@ -198,20 +198,6 @@ void showRSSI()
   display.print(" dBuV");
 }
 
-/* ***************************
-   Shows the volume level on LCD
-*/
-void showVolume()
-{
-  display.set1X();
-  display.setCursor(70, 5);
-  display.print("          ");
-  display.setCursor(70, 5);
-  display.print("V:");
-  display.print(volume);
-}
-
-
 void bandUp() {
 
   // save the current frequency for the band
@@ -276,11 +262,11 @@ void loop()
     else if (digitalRead(BAND_BUTTON_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
       bandDown();
     else if (digitalRead(BFO_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
-      bfo_offset += 100;
+      bfo_offset += 1000;
       si4735.setSsbBfo(bfo_offset);
     }
     else if (digitalRead(BFO_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
-      bfo_offset -= 100;
+      bfo_offset -= 1000;
       si4735.setSsbBfo(bfo_offset);
     }
     elapsedButton = millis();
@@ -300,13 +286,6 @@ void loop()
   {
     rssi = si4735.getCurrentRSSI();
     showRSSI();
-  }
-
-  // Show volume level only if this condition has changed
-  if (si4735.getCurrentVolume() != volume)
-  {
-    volume = si4735.getCurrentVolume();
-    showVolume();
   }
 
   delay(5);
