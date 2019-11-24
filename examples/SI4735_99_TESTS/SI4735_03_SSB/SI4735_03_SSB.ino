@@ -51,16 +51,17 @@ typedef struct {
   unsigned   maximumFreq;
   unsigned   currentFreq;
   unsigned   currentStep;
+  byte       currentSsbMode; 
 } Band;
 
 Band band[] = {
-    {3500, 4000, 3750, 1},
-    {7000, 7300, 7100, 1},
-    {14000, 14400, 14200, 1},
-    {18000, 19000, 18100, 1},
-    {2100, 21400, 21200, 1},
-    {27000, 27500, 27220, 1},
-    {28000, 28500, 28400, 1}};
+    {3500, 4000, 3750, 1, LSB_MODE},
+    {7000, 7300, 7100, 1, LSB_MODE},
+    {14000, 14400, 14200, 1, USB_MODE},
+    {18000, 19000, 18100, 1, USB_MODE},
+    {2100, 21400, 21200, 1, USB_MODE},
+    {27000, 27500, 27220, 1, USB_MODE},
+    {28000, 28500, 28400, 1, USB_MODE}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int  currentFreqIdx = 1; // 40M
@@ -116,8 +117,9 @@ void setup()
 
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
 
-  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
   si4735.setSsbMode(1, 0, 0, 1, 0, 1);
+  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSsbMode);
+
 
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(60);

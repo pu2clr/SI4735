@@ -1094,7 +1094,7 @@ void SI4735::setSsbBfo(int offset)
  * @param SMUTESEL SSB Soft-mute Based on RSSI or SNR.
  * @param DSP_AFCDIS DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
  */
-void SI4735::setSsbMode(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
+void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
 {
     si47x_ssb_mode ssb;
     si47x_property property;
