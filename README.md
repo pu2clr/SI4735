@@ -116,7 +116,7 @@ __Attention__:
        * [getRdsTime](https://github.com/pu2clr/SI4735#getrdstime)
      * [__Single Side Band (SSB) Support__](https://github.com/pu2clr/SI4735#single-side-band-ssb-support)
        * [setSsbBfo](https://github.com/pu2clr/SI4735#setssbbfo)
-       * [setSsbMode](https://github.com/pu2clr/SI4735#setssbmode)
+       * [setSsbConfig](https://github.com/pu2clr/SI4735#setssbconfig)
 10. [References](https://github.com/pu2clr/SI4735#references)
 11. [Examples]()
 12. [Videos]() 
@@ -1936,7 +1936,7 @@ void SI4735::setSsbBfo(int offset)
 ```
 
 
-### setSsbMode
+### setSsbConfig
 
 ```cpp
 /*
@@ -1958,7 +1958,7 @@ void SI4735::setSsbBfo(int offset)
  * @param SMUTESEL SSB Soft-mute Based on RSSI or SNR.
  * @param DSP_AFCDIS DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
  */
-void SI4735::setSsbMode(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
+void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
 ```
 
 
