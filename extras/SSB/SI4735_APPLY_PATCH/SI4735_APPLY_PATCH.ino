@@ -32,14 +32,8 @@ void setup()
 
 void showWarning()
 {
-  /*
-  Serial.println("The author of this program does not guarantee that this procedure will work in your development environment.");
-  Serial.println("Given this, it is at your own risk to continue with the procedures suggested here.");
-  Serial.println("This sketch works with the I2C communication protocol and is designed to apply a SSB extension PATCH to CI SI4735-D60.");
-  Serial.println("Once again the author disclaims any liability for any damage this procedure may cause to your CI SI4735 or other devices that you are using.");
-  Serial.println("If you are sure about it, set the variable APPLY_PATCH to true and upload this sketch again!");
-  delay(20000);
-  */
+  Serial.println("Read before the files attention.txt, reademe.txt or leiame.txt.");
+  
 }
 
 void showFirmwareInformation()
@@ -100,14 +94,23 @@ void prepereSi4735ToPatch()
 {
 
   Wire.begin();
-  // Set the initial SI473X behavior
-  // CTSIEN   0 -> Interrupt anabled;
+
+  si4735_patch.powerDown();
+
+  delay(1000);
+
+
+  si4735_patch.waitToSend();
+        
+  // Set the initial SI4735-D60 to patch mode
+  
+  // CTSIEN   1 -> Interrupt anabled; 
   // GPO2OEN  1 -> GPO2 Output Enable;
   // PATCH    1 -> Boot patch mode;
   // XOSCEN   1 -> Use external crystal oscillator;
   // FUNC     defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
   // OPMODE   SI473X_ANALOG_AUDIO = 00000101 = Analog audio outputs (LOUT/ROUT).
-  si4735_patch.setPowerUp(0, 1, 1, 1, 1, SI473X_ANALOG_AUDIO);
+  si4735_patch.setPowerUp(1, 1, 1, 1, 1, SI473X_ANALOG_AUDIO);
   // Powerup with the parameters above.
   si4735_patch.analogPowerUp();
   delay(1000);

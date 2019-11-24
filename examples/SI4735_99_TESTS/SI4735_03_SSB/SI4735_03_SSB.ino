@@ -70,7 +70,8 @@ byte rssi = 0;
 byte stereo = 1;
 byte volume = 0;
 
-int bfo_offset = 0;
+int currentBFO = 0;
+int previousBFO = 0;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
@@ -169,15 +170,7 @@ void showStatus()
   display.setCursor(26, 1);
   display.print(freqDisplay);
 
-   // Show AGC Information
   display.set1X();
-  display.setCursor(0, 5);
-  display.print("              ");
-  display.setCursor(0, 5);
-  display.print("BFO: ");
-  display.print(bfo_offset);
-  display.print(" Hz");
-
   display.setCursor(0, 7);
   display.print("            ");
   display.setCursor(0, 7);
@@ -198,6 +191,18 @@ void showRSSI()
   display.print("S:");
   display.print(rssi);
   display.print(" dBuV");
+}
+
+void showBFO()
+{
+  display.set1X();
+  display.setCursor(0, 5);
+  display.print("              ");
+  display.setCursor(0, 5);
+  display.print("BFO: ");
+  display.print(currentBFO);
+  display.print(" Hz");
+
 }
 
 void bandUp() {
@@ -266,12 +271,12 @@ void loop()
     else if (digitalRead(BAND_BUTTON_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
       bandDown();
     else if (digitalRead(BFO_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
-      bfo_offset += 1000;
-      si4735.setSsbBfo(bfo_offset);
+      currentBFO += 10;
+      si4735.setSsbBfo(currentBFO);
     }
     else if (digitalRead(BFO_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
-      bfo_offset -= 1000;
-      si4735.setSsbBfo(bfo_offset);
+      currentBFO -= 10;
+      si4735.setSsbBfo(currentBFO);
     }
     elapsedButton = millis();
   }
@@ -290,6 +295,11 @@ void loop()
   {
     rssi = si4735.getCurrentRSSI();
     showRSSI();
+  }
+
+  if ( currentBFO != previousBFO ) {
+      previousBFO = currentBFO;
+      showBFO();  
   }
 
   delay(5);

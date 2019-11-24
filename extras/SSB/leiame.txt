@@ -1,0 +1,7 @@
+O autor deste programa (sketch) não garante que os procedimentos de atualização do firmware do SI4735 irão funcionar em seu ambiente de desenvolvimento. 
+Dito isso, fica por sus conta e risco continuar com as ações sugeridas aqui.
+Este programa utiliza o protocolo de comunicação I2C e é projetado para aplicar patches de extensão SSB para o SI4735-D60.
+Mais uma vez, o autor não se responsabiliza por qualquer dano que as orientações apresentadas aqui possam causar em seu dispositivo Si4735 ou outro que você estiver usando. 
+Se ainda assim, você realmente quiser executar este programa, atribua “true” para a variável APPLY_PATCH que está declarada no sketch SI4735_APPLY_PATCH.ino e faça “upload” para o Arduino. 
+Ao fazer isso, você concorda com os termos descritos aqui.
+
