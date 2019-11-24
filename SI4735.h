@@ -115,6 +115,11 @@
 #define SSB_RF_IF_AGC_ATTACK_RATE 0x3702  // Sets the number of milliseconds the high IF peak detector must be exceeded before decreasing gain. Defaul 4.
 #define SSB_RF_IF_AGC_RELEASE_RATE 0x3703 // Sets the number of milliseconds the low IF peak detector must be exceeded before increasing the gain. Defaul 140.
 
+// See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 12 and 13
+#define LSB_MODE 1  // 01
+#define USB_MODE 2  // 10
+
+
 // Parameters
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
 #define SI473X_DIGITAL_AUDIO B00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
@@ -176,7 +181,8 @@ typedef union {
     {
         byte FAST : 1;   // ARG1 - FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate.
         byte FREEZE : 1; // Valid onlu for FM (Must be 0 to AM)
-        byte DUMMY1 : 6; // Always set 0
+        byte DUMMY1 : 4; // Always set 0
+        byte USBLSB : 2; // SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected.
         byte FREQH;   // ARG2 - Tune Frequency High Byte.
         byte FREQL;   // ARG3 - Tune Frequency Low Byte.
         byte ANTCAPH; // ARG4 - Antenna Tuning Capacitor High Byte. 
@@ -619,6 +625,9 @@ private:
 
     byte volume = 32;
 
+    byte currentSsbStatus;
+
+
     void reset(void);
     void waitInterrupr(void);
 
@@ -711,10 +720,8 @@ public:
 
     void setAM();
     void setFM();
-    void setSSB();
     void setAM(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
     void setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step);
-    void setSSB(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
 
     void setBandwidth(byte AMCHFLT, byte AMPLFLT);
 
@@ -759,6 +766,12 @@ public:
     char *getNext2Block(char *c);
     char *getNext4Block(char *);
 
+
+    /*
+     * SSB 
+     */   
     void setSsbBfo(int offset);
     void setSsbMode(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS);
+    void setSSB(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step, byte usblsb);
+    void setSSB(byte usblsb);
 };

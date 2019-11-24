@@ -124,6 +124,7 @@ void applyPatch()
   delay(5000);
   prepereSi4735ToPatch();
   delay(1000);
+  si4735_patch.waitToSend();
   Wire.beginTransmission(SI473X_ADDR);
   for (offset = 0; offset < size_content_initialization; offset += 8)
   {
@@ -136,13 +137,14 @@ void applyPatch()
     delayMicroseconds(600);
   }
   
-  // Wire.endTransmission();
-  //si4735_patch.powerDown();
+  Wire.endTransmission();
+  si4735_patch.powerDown();
   delay(5000);
 
-  // prepereSi4735ToPatch();
-  // delay(1000);
-  // Wire.beginTransmission(SI473X_ADDR);
+  prepereSi4735ToPatch();
+  delay(1000);
+  si4735_patch.waitToSend();
+  Wire.beginTransmission(SI473X_ADDR);
   for (offset = 0; offset < size_content_full; offset += 8)
   {
     for (i = 0; i < 8; i++)

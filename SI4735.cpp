@@ -13,6 +13,8 @@ SI4735::SI4735()
 {
     for (int i = 0; i < 65; i++)
         rds_buffer[i] = ' ';
+
+    currentSsbStatus = 0; 
 }
 
 /*
@@ -146,6 +148,7 @@ void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
     analogPowerUp();
     setVolume(20); // Default volume level.
     getFirmware();
+
 }
 
 /* 
@@ -253,7 +256,11 @@ void SI4735::setFrequency(unsigned freq)
     currentFrequencyParams.arg.FREQH = currentFrequency.raw.FREQH;
     currentFrequencyParams.arg.FREQL = currentFrequency.raw.FREQL;
 
-    Wire.beginTransmission(SI473X_ADDR);
+    if (currentSsbStatus != 0) {
+        currentFrequencyParams.arg.USBLSB = currentSsbStatus; // Set to LSB or USB
+    }
+
+        Wire.beginTransmission(SI473X_ADDR);
     Wire.write(currentTune);
     Wire.write(currentFrequencyParams.raw[0]); // Send byte with FAST and  FREEZE information; if not FM must be 0;
     Wire.write(currentFrequencyParams.arg.FREQH);
@@ -267,6 +274,7 @@ void SI4735::setFrequency(unsigned freq)
     
     currentWorkFrequency = freq;
 }
+
 
 /* 
  * Set the current step value. 
@@ -316,18 +324,9 @@ void SI4735::setAM()
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
     analogPowerUp();
     setVolume(volume); // Set to previus configured volume
+    currentSsbStatus = 0;
 }
 
-/*
- * Set the radio to AM function. It means: LW MW and SW.
- */
-void SI4735::setSSB()
-{
-    // It starts with the same AM parameters.
-    setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
-    analogPowerUp();
-    setVolume(volume); // Set to previus configured volume
-}
 
 /*
  * Set the radio to FM function
@@ -337,6 +336,7 @@ void SI4735::setFM()
     setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
     analogPowerUp();
     setVolume(volume); // Set to previus configured volume
+    currentSsbStatus = 0;
 }
 
 /*
@@ -358,33 +358,6 @@ void SI4735::setAM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byt
         initialFreq = fromFreq;
 
     setAM();
-
-    currentWorkFrequency = initialFreq;
-
-    setFrequency(currentWorkFrequency);
-
-    delayMicroseconds(1000);
-}
-
-/*
- * Set the radio to SSB (LW/MW/SW) function. 
- * 
- * @param fromFreq minimum frequency for the band
- * @param toFreq maximum frequency for the band
- * @param initialFreq initial frequency 
- * @param step step used to go to the next channel   
- */
-void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step)
-{
-
-    currentMinimumFrequency = fromFreq;
-    currentMaximumFrequency = toFreq;
-    currentStep = step;
-
-    if (initialFreq < fromFreq || initialFreq > toFreq)
-        initialFreq = fromFreq;
-
-    setSSB();
 
     currentWorkFrequency = initialFreq;
 
@@ -1150,4 +1123,48 @@ void SI4735::setSsbMode(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCE
 
     Wire.endTransmission();
     delayMicroseconds(550);
+}
+
+/*
+ * Set the radio to AM function. It means: LW MW and SW.
+ */
+void SI4735::setSSB(byte usblsb)
+{
+    // It starts with the same AM parameters.
+    setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
+    analogPowerUp();
+    setVolume(volume); // Set to previus configured volume
+    currentSsbStatus = usblsb;
+}
+
+/*
+ * Set the radio to SSB (LW/MW/SW) function. 
+ * 
+ * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14
+ * 
+ * @param fromFreq minimum frequency for the band
+ * @param toFreq maximum frequency for the band
+ * @param initialFreq initial frequency 
+ * @param step step used to go to the next channel  
+ * @param usblsb SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection; 
+ *               value 2 (banary 10) = USB; 
+ *               value 1 (banary 01) = LSB.   
+ */
+void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step, byte usblsb)
+{
+
+    currentMinimumFrequency = fromFreq;
+    currentMaximumFrequency = toFreq;
+    currentStep = step;
+
+    if (initialFreq < fromFreq || initialFreq > toFreq)
+        initialFreq = fromFreq;
+
+    setSSB(usblsb);
+
+    currentWorkFrequency = initialFreq;
+
+    setFrequency(currentWorkFrequency);
+
+    delayMicroseconds(1000);
 }
