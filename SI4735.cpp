@@ -14,7 +14,7 @@ SI4735::SI4735()
     for (int i = 0; i < 65; i++)
         rds_buffer[i] = ' ';
 
-    currentSsbStatus = 0; 
+    currentSsbStatus = 0;
 }
 
 /*
@@ -96,10 +96,9 @@ void SI4735::getFirmware(void)
     Wire.endTransmission();
 
     waitToSend();
-    delayMicroseconds(5000);
 
-        // Request for 9 bytes response
-        Wire.requestFrom(SI473X_ADDR, 9);
+    // Request for 9 bytes response
+    Wire.requestFrom(SI473X_ADDR, 9);
 
     for (int i = 0; i < 9; i++)
         firmwareInfo.raw[i] = Wire.read();
@@ -147,7 +146,6 @@ void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
     analogPowerUp();
     setVolume(20); // Default volume level.
     getFirmware();
-
 }
 
 /* 
@@ -255,11 +253,12 @@ void SI4735::setFrequency(unsigned freq)
     currentFrequencyParams.arg.FREQH = currentFrequency.raw.FREQH;
     currentFrequencyParams.arg.FREQL = currentFrequency.raw.FREQL;
 
-    if (currentSsbStatus != 0) {
+    if (currentSsbStatus != 0)
+    {
         currentFrequencyParams.arg.USBLSB = currentSsbStatus; // Set to LSB or USB
     }
 
-        Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(SI473X_ADDR);
     Wire.write(currentTune);
     Wire.write(currentFrequencyParams.raw[0]); // Send byte with FAST and  FREEZE information; if not FM must be 0;
     Wire.write(currentFrequencyParams.arg.FREQH);
@@ -270,10 +269,9 @@ void SI4735::setFrequency(unsigned freq)
         Wire.write(currentFrequencyParams.arg.ANTCAPL);
     Wire.endTransmission();
     delayMicroseconds(550);
-    
+
     currentWorkFrequency = freq;
 }
-
 
 /* 
  * Set the current step value. 
@@ -325,7 +323,6 @@ void SI4735::setAM()
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
 }
-
 
 /*
  * Set the radio to FM function
