@@ -117,6 +117,26 @@ void applyPatch()
   Serial.println("Applying.");
   delay(500);
   prepereSi4735ToPatch();
+  // Send patch for whole SSBRX full download
+  for (offset = 0; offset < size_content_full; offset += 8)
+  {
+    Wire.beginTransmission(SI473X_ADDR);
+    for (i = 0; i < 8; i++)
+    {
+      content = pgm_read_byte_near(ssb_patch_content_full + (i + offset));
+      Wire.write(content);
+    }
+    Wire.endTransmission();
+    // if ( offset > 80 and (offset % 80) == 0 ) Serial.println(offset);
+    si4735.waitToSend();
+    // delayMicroseconds(600);
+  }
+
+  si4735.setPowerUp(0, 0, 0, 1, 0, SI473X_ANALOG_AUDIO);
+  prepereSi4735ToPatch();
+  
+  delay(250);
+
 
   // Send patch for whole SSBRX initialization string
   for (offset = 0; offset < size_content_initialization; offset += 8)
@@ -128,28 +148,11 @@ void applyPatch()
       Wire.write(content);
     }
     Wire.endTransmission();
-    if ( offset > 80 and (offset % 80) == 0 )  Serial.println(offset);
+    // if ( offset > 80 and (offset % 80) == 0 )  Serial.println(offset);
     si4735.waitToSend();
-    delayMicroseconds(600);
+    // delayMicroseconds(600);
   }
 
-  // Send patch for whole SSBRX full download
-  for (offset = 0; offset < size_content_full; offset += 8)
-  {
-    Wire.beginTransmission(SI473X_ADDR);
-    for (i = 0; i < 8; i++)
-    {
-      content = pgm_read_byte_near(ssb_patch_content_full + (i + offset));
-      Wire.write(content);
-    }
-    Wire.endTransmission();
-    if ( offset > 80 and (offset % 80) == 0 ) Serial.println(offset);
-    si4735.waitToSend();
-    delayMicroseconds(600);
-  }
-
-
-  delay(250);
 
   delay(1000);
   si4735.setPowerUp(0, 0, 0, 1, 0, SI473X_ANALOG_AUDIO);
@@ -160,15 +163,16 @@ void applyPatch()
   si4735.setPowerUp(0, 0, 0, 1, 1, SI473X_ANALOG_AUDIO);
   si4735.analogPowerUp();
   si4735.setSsbConfig(1, 0, 0, 1, 0, 1);
-  si4735.setSSB(700, 7200,  7100, 1,1);
+  si4735.setSSB(28350, 28450,  28400, 1,2);
   si4735.setVolume(62);
   si4735.frequencyUp();
   si4735.frequencyDown();
 
   while (1) {
-    si4735.setSsbBfo(350);
-    delay(500);
-    si4735.setSsbBfo(-350);
+    si4735.setSsbBfo(25500);
+    delay(5000);
+    si4735.setSsbBfo(-25500);
+    delay(5000);    
   }
   
   PATCH_FINISIHED = true;
