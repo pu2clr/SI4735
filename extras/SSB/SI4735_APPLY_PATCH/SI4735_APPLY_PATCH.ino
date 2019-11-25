@@ -1,6 +1,6 @@
 #include <SI4735.h>
 #include <avr/pgmspace.h>
-#include "patch_content.h"
+#include "patch_content2.h"
 
 #define RESET_PIN 12
 #define AM_FUNCTION 1
