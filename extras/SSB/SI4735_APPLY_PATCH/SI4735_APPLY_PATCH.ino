@@ -40,13 +40,11 @@ void showFirmwareInformation()
 {
 
   si4735.getFirmware();
-
-  Serial.println("Firmware");
-  Serial.print("Part Number.: ");
+  Serial.print("PN.: ");
   Serial.println(si4735.getFirmwarePN(), HEX);
-  Serial.print("Firmware Major Rev..: ");
+  Serial.print("Firm. Major Rev..: ");
   Serial.println(si4735.getFirmwareFWMAJOR());
-  Serial.print("Firmware Minor Rev: ");
+  Serial.print("Firm. Minor Rev: ");
   Serial.println(si4735.getFirmwareFWMINOR());
   Serial.print("Patch ID ..: ");
   Serial.print(si4735.getFirmwarePATCHH(), HEX);
