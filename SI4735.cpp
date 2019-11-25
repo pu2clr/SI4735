@@ -59,7 +59,7 @@ void SI4735::waitToSend()
  */
 void SI4735::analogPowerUp(void)
 {
-    reset();
+    // reset();
     delayMicroseconds(1000);
     waitToSend();
     Wire.beginTransmission(SI473X_ADDR);
@@ -143,6 +143,7 @@ void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
     // OPMODE   SI473X_ANALOG_AUDIO = 00000101 = Analog audio outputs (LOUT/ROUT).
     setPowerUp(interruptEnable, 0, 0, 1, defaultFunction, SI473X_ANALOG_AUDIO);
 
+    reset();
     analogPowerUp();
     setVolume(20); // Default volume level.
     getFirmware();
@@ -318,6 +319,7 @@ void SI4735::frequencyDown()
  */
 void SI4735::setAM()
 {
+    powerDown();
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
     analogPowerUp();
     setVolume(volume); // Set to previus configured volume
@@ -329,6 +331,7 @@ void SI4735::setAM()
  */
 void SI4735::setFM()
 {
+    powerDown();
     setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
     analogPowerUp();
     setVolume(volume); // Set to previus configured volume
@@ -1126,6 +1129,7 @@ void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AV
  */
 void SI4735::setSSB(byte usblsb)
 {
+    powerDown();
     // It starts with the same AM parameters.
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
     analogPowerUp();

@@ -8,7 +8,7 @@ void setup() {
   Serial.println("Type S to seek up or s to seek down");
 
   // 12 -> RESET PIN
-  //  0 -  AM FUNCTION
+  //  0 -  FM FUNCTION
   si4735.setup(12, 0);
 
   // Start working on FM at 103,9MHz
