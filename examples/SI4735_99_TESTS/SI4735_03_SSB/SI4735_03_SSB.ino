@@ -9,8 +9,8 @@
 
 #include <SI4735.h>
 #include "patch_content.h"
-// #include <SSD1306Ascii.h>
-// #include <SSD1306AsciiAvrI2c.h>
+#include <SSD1306Ascii.h>
+#include <SSD1306AsciiAvrI2c.h>
 #include "Rotary.h"
 
 #define AM_FUNCTION 1
@@ -76,7 +76,7 @@ int previousBFO = 0;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
-// SSD1306AsciiAvrI2c display;
+SSD1306AsciiAvrI2c display;
 
 SI4735 si4735;
 
@@ -94,24 +94,24 @@ void setup()
   pinMode(BFO_UP, INPUT);
   pinMode(BFO_DOWN, INPUT);
 
-  /* 
-  // display.begin(&Adafruit128x64, I2C_ADDRESS);
-  // display.setFont(Adafruit5x7);
+
+  display.begin(&Adafruit128x64, I2C_ADDRESS);
+  display.setFont(Adafruit5x7);
   delay(500);
 
   // Splash - Change it for your introduction text.
-  // display.set1X();
-  // display.setCursor(0, 0);
-  // display.print("Si4735 Arduino Library");
+  display.set1X();
+  display.setCursor(0, 0);
+  display.print("Si4735 Arduino Library");
   delay(500);
-  // display.setCursor(30, 3);
-  // display.print("SSB TEST");
-  // display.setCursor(20, 6);
-  // display.print("By PU2CLR");
+  display.setCursor(30, 3);
+  display.print("SSB TEST");
+  display.setCursor(20, 6);
+  display.print("By PU2CLR");
   delay(3000);
-  // display.clear();
+  display.clear();
   // end Splash
-  */ 
+
 
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
@@ -125,6 +125,7 @@ void setup()
   si4735.setup(RESET_PIN, 0 );
 
   delay(500);
+  display.clear();
 
   si4735.setup(RESET_PIN, 1 );
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
@@ -168,26 +169,26 @@ void showStatus()
   freqDisplay = String(currentFrequency);
 
 
-  // display.set1X();
-  // display.setCursor(0, 0);
-  // display.print(String(bandMode));
+  display.set1X();
+  display.setCursor(0, 0);
+  display.print(String(bandMode));
 
-  // display.setCursor(98, 0);
-  // display.print(unit);
+  display.setCursor(98, 0);
+  display.print(unit);
 
-  // display.set2X();
-  // display.setCursor(26, 1);
-  // display.print("        ");
-  // display.setCursor(26, 1);
-  // display.print(freqDisplay);
+  display.set2X();
+  display.setCursor(26, 1);
+  display.print("        ");
+  display.setCursor(26, 1);
+  display.print(freqDisplay);
 
-  // display.set1X();
-  // display.setCursor(0, 7);
-  // display.print("            ");
-  // display.setCursor(0, 7);
-  // display.print("BW: ");
-  // display.print(String(bandwitdth[bandwidthIdx]));
-  // display.print(" KHz");
+  display.set1X();
+  display.setCursor(0, 7);
+  display.print("            ");
+  display.setCursor(0, 7);
+  display.print("BW: ");
+  display.print(String(bandwitdth[bandwidthIdx]));
+  display.print(" KHz");
 }
 
 /* *******************************
@@ -197,22 +198,22 @@ void showRSSI()
 {
   int blk;
 
-  // display.set1X();
-  // display.setCursor(70, 7);
-  // display.print("S:");
-  // display.print(rssi);
-  // display.print(" dBuV");
+  display.set1X();
+  display.setCursor(70, 7);
+  display.print("S:");
+  display.print(rssi);
+  display.print(" dBuV");
 }
 
 void showBFO()
 {
-  // display.set1X();
-  // display.setCursor(0, 5);
-  // display.print("              ");
-  // display.setCursor(0, 5);
-  // display.print("BFO: ");
-  // display.print(currentBFO);
-  // display.print(" Hz");
+  display.set1X();
+  display.setCursor(0, 5);
+  display.print("              ");
+  display.setCursor(0, 5);
+  display.print("BFO: ");
+  display.print(currentBFO);
+  display.print(" Hz");
 
 }
 
@@ -269,8 +270,11 @@ void applyPatch()
   int i = 0;
   byte content;
 
-  // Serial.println("Applying the patch in 5s...");
-  delay(5000);
+  display.set1X();
+  display.setCursor(0, 5);
+  display.print("Applying Patch...");
+
+  delay(500);
   prepereSi4735ToPatch();
   /*
   // Send patch for whole SSBRX initialization string
@@ -301,6 +305,10 @@ void applyPatch()
     delayMicroseconds(600);
   }
   delay(250);
+  display.set1X();
+  display.setCursor(0, 5);
+  display.print("Patch Applayed...");
+  
 }
 
 /*
