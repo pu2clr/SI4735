@@ -1112,8 +1112,6 @@ const PROGMEM byte ssb_patch_content_initialization[] =
 
 const int size_content_initialization = sizeof ssb_patch_content_initialization;
 
-
-/*
 const PROGMEM byte ssb_patch_content_full[] =
 { // PATCH FULL CONTENT - Copy and paste the SSB patch for whole SSBRX full download
   0x15,0x00,0x0F,0xE0,0xF2,0x73,0x76,0x2F,
@@ -3099,4 +3097,3 @@ const PROGMEM byte ssb_patch_content_full[] =
 
 
 const int size_content_full = sizeof ssb_patch_content_full;
-*/

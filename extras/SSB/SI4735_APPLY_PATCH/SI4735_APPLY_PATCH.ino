@@ -9,7 +9,7 @@
 bool APPLY_PATCH = true;
 bool PATCH_FINISIHED = false;
 
-SI4735 si4735_patch;
+SI4735 si4735;
 
 void setup()
 {
@@ -24,7 +24,7 @@ void setup()
   {
     delay(1000);
 
-    si4735_patch.setup(RESET_PIN, AM_FUNCTION);
+    si4735.setup(RESET_PIN, 15);
     delay(1000);
     showFirmwareInformation();
   }
@@ -32,31 +32,31 @@ void setup()
 
 void showWarning()
 {
-  Serial.println("Read before the files attention.txt, reademe.txt or leiame.txt.");
+  // Serial.println("Read before the files attention.txt, reademe.txt or leiame.txt.");
   
 }
 
 void showFirmwareInformation()
 {
 
-  si4735_patch.getFirmware();
+  si4735.getFirmware();
 
   Serial.println("Firmware Information.");
   Serial.print("Part Number (HEX)........: ");
-  Serial.println(si4735_patch.getFirmwarePN(), HEX);
+  Serial.println(si4735.getFirmwarePN(), HEX);
   Serial.print("Firmware Major Revision..: ");
-  Serial.println(si4735_patch.getFirmwareFWMAJOR());
+  Serial.println(si4735.getFirmwareFWMAJOR());
   Serial.print("Firmware Minor Revision..: ");
-  Serial.println(si4735_patch.getFirmwareFWMINOR());
+  Serial.println(si4735.getFirmwareFWMINOR());
   Serial.print("Patch ID ................: ");
-  Serial.print(si4735_patch.getFirmwarePATCHH(), HEX);
-  Serial.println(si4735_patch.getFirmwarePATCHL(), HEX);
+  Serial.print(si4735.getFirmwarePATCHH(), HEX);
+  Serial.println(si4735.getFirmwarePATCHL(), HEX);
   Serial.print("Component Major Revision.: ");
-  Serial.println(si4735_patch.getFirmwareCMPMAJOR());
+  Serial.println(si4735.getFirmwareCMPMAJOR());
   Serial.print("Component Minor Revision.: ");
-  Serial.println(si4735_patch.getFirmwareCMPMINOR());
+  Serial.println(si4735.getFirmwareCMPMINOR());
   Serial.print("Chip Revision............: ");
-  Serial.println(si4735_patch.getFirmwareCHIPREV());
+  Serial.println(si4735.getFirmwareCHIPREV());
 }
 
 void confirmationYouAreSureAndApply()
@@ -78,61 +78,35 @@ void confirmationYouAreSureAndApply()
       }
       else
       {
-        Serial.println("Type Y if you agree with the terms or ? to see the terms!");
+        // Serial.println("Type Y if you agree with the terms or ? to see the terms!");
         delay(5000);
       }
     }
   }
   else
   {
-    Serial.println("PATCH applyed. Upload a clean or new sketch to this Arduino and Shutdown it!");
+    // Serial.println("PATCH applyed. Upload a clean or new sketch to this Arduino and Shutdown it!");
     delay(5000);
   }
 }
 
 
-/*
+
+
+/* 
+ * Power Up with patch configuration
+ * See Si47XX PROGRAMMING GUIDE; page 219 and 220
+ */
 void prepereSi4735ToPatch()
 {
-
-  Wire.begin();
-
-  si4735_patch.powerDown();
-
-  delay(1000);
-
-
-  si4735_patch.waitToSend();
-        
-  // Set the initial SI4735-D60 to patch mode
-  
-  // CTSIEN   0 -> Interrupt anabled; 
-  // GPO2OEN  0 -> GPO2 Output Enable;
-  // PATCH    1 -> Boot patch mode;
-  // XOSCEN   1 -> Use external crystal oscillator;
-  // FUNC     defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
-  // OPMODE   SI473X_ANALOG_AUDIO = 00000101 = Analog audio outputs (LOUT/ROUT).
-  si4735_patch.setPowerUp(0, 0, 1, 1, 1, SI473X_ANALOG_AUDIO);
-  // Powerup with the parameters above.
-  si4735_patch.analogPowerUp();
-  delay(1000);
-}
-*/
-
-void prepereSi4735ToPatch()
-{
-
-  si4735_patch.waitToSend();
-
+  si4735.waitToSend();
   Wire.beginTransmission(SI473X_ADDR);
   Wire.write(POWER_UP);
   Wire.write(0xE2); // Set to FM Transmit, set patch enable, enable interrupts.
   Wire.write(0x50); // Set to Analog Line Input.
   Wire.endTransmission();
   delayMicroseconds(2500);
-
-  si4735_patch.waitToSend();
-
+  si4735.waitToSend();
 }
 
 void applyPatch()
@@ -142,65 +116,57 @@ void applyPatch()
   int i = 0;
   byte content;
 
-  Serial.println("Applying the patch in 5s...");
-  delay(5000);
+  Serial.println("Applying.");
+  delay(500);
   prepereSi4735ToPatch();
-
-  
-  Serial.println("INIT ******* ");
-  Serial.println(">");
-  delay(1000);
-  Wire.beginTransmission(SI473X_ADDR);
+  /*
+  // Send patch for whole SSBRX initialization string
   for (offset = 0; offset < size_content_initialization; offset += 8)
   {
+    Wire.beginTransmission(SI473X_ADDR);
     for (i = 0; i < 8; i++)
     {
       content = pgm_read_byte_near(ssb_patch_content_initialization + (i + offset));
       Wire.write(content);
-      Serial.print(content,HEX);
-      Serial.print(" ");
-      
     }
-    Serial.println("<");
-    si4735_patch.waitToSend();
+    Wire.endTransmission();
+    if ( offset > 80 and (offset % 80) == 0 )  Serial.println(offset);
+    si4735.waitToSend();
     delayMicroseconds(600);
-    
   }
-  
-  // Wire.endTransmission();
-  // si4735_patch.powerDown();
-  // delay(5000);
-  
-  // prepereSi4735ToPatch();
-
-  // Wire.beginTransmission(SI473X_ADDR);
-  Serial.println("FULL ******* ");
-  Serial.println(">");
+  */
+  Serial.println("2");
+  // Send patch for whole SSBRX full download
   for (offset = 0; offset < size_content_full; offset += 8)
   {
+    Wire.beginTransmission(SI473X_ADDR);
     for (i = 0; i < 8; i++)
     {
       content = pgm_read_byte_near(ssb_patch_content_full + (i + offset));
       Wire.write(content);
-      Serial.print(content,HEX);
-      Serial.print(" ");      
     }
-    Serial.println("<");
-    si4735_patch.waitToSend();
+    Wire.endTransmission();
+    if ( offset > 80 and (offset % 80) == 0 ) Serial.println(offset);
+    si4735.waitToSend();
     delayMicroseconds(600);
   }
-  Wire.endTransmission();
-  // si4735_patch.powerDown();
-  delay(5000);
- 
-  Serial.println("Patch applyed!");
-  delay(1000);
-  si4735_patch.setup(RESET_PIN, AM_FUNCTION);
-  delay(2000);
-  si4735_patch.setSsbConfig(1, 0, 0, 1, 0, 1);
-  si4735_patch.setSSB(28100, 28500,  28400, 1,2);
 
-  si4735_patch.setSsbBfo(400);
+  delay(250);
+
+  Serial.println("Applyed!");
+  delay(1000);
+  si4735.setup(RESET_PIN, AM_FUNCTION);
+  si4735.setSsbConfig(1, 0, 0, 1, 0, 1);
+  si4735.setSSB(700, 7200,  7100, 1,1);
+  si4735.setVolume(62);
+  si4735.frequencyUp();
+  si4735.frequencyDown();
+
+  while (1) {
+    si4735.setSsbBfo(1000);
+    delay(500);
+    si4735.setSsbBfo(-1000);
+  }
   
   PATCH_FINISIHED = true;
 }
