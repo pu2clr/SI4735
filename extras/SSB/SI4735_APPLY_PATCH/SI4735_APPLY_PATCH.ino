@@ -132,7 +132,7 @@ void applyPatch()
     si4735.waitToSend();
     delayMicroseconds(600);
   }
-
+  /*
   // Send patch for whole SSBRX full download
   for (offset = 0; offset < size_content_full; offset += 8)
   {
@@ -147,6 +147,7 @@ void applyPatch()
     si4735.waitToSend();
     delayMicroseconds(600);
   }
+  */
 
   delay(250);
 
