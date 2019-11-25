@@ -133,7 +133,6 @@ void applyPatch()
     delayMicroseconds(600);
   }
 
-  Serial.println("2");
   // Send patch for whole SSBRX full download
   for (offset = 0; offset < size_content_full; offset += 8)
   {
@@ -151,9 +150,12 @@ void applyPatch()
 
   delay(250);
 
-  Serial.println("Applyed!");
   delay(1000);
-  si4735.setup(RESET_PIN, AM_FUNCTION);
+  si4735.setPowerUp(0, 0, 0, 1, 0, SI473X_ANALOG_AUDIO);
+  si4735.powerDown();
+  delay(1000);
+  Serial.println("Applyed!");  
+  si4735.setPowerUp(0, 0, 0, 1, 1, SI473X_ANALOG_AUDIO);
   si4735.setSsbConfig(1, 0, 0, 1, 0, 1);
   si4735.setSSB(700, 7200,  7100, 1,1);
   si4735.setVolume(62);
