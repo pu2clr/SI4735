@@ -8,12 +8,12 @@
 */
 
 #include <SI4735.h>
-#include "SSD1306Ascii.h"
-#include "SSD1306AsciiAvrI2c.h"
+#include "patch_content.h"
+#include <SSD1306Ascii.h>
+#include <SSD1306AsciiAvrI2c.h>
 #include "Rotary.h"
 
 #define AM_FUNCTION 1
-
 // OLED Diaplay constants
 #define I2C_ADDRESS 0x3C
 #define RST_PIN -1 // Define proper RST_PIN if required.
@@ -117,6 +117,9 @@ void setup()
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
+
+
+  applyPatch(); 
 
   si4735.setSsbConfig(1, 0, 0, 1, 0, 1);
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSsbMode);
@@ -235,6 +238,64 @@ void bandDown() {
   currentBFO = 0;
 }
 
+/* 
+ * Power Up with patch configuration
+ * See Si47XX PROGRAMMING GUIDE; page 219 and 220
+ */
+void prepereSi4735ToPatch()
+{
+  si4735.waitToSend();
+  Wire.beginTransmission(SI473X_ADDR);
+  Wire.write(POWER_UP);
+  Wire.write(0xE2); // Set to FM Transmit, set patch enable, enable interrupts.
+  Wire.write(0x50); // Set to Analog Line Input.
+  Wire.endTransmission();
+  delayMicroseconds(2500);
+  si4735.waitToSend();
+}
+
+void applyPatch()
+{
+
+  int offset = 0;
+  int i = 0;
+  byte content;
+
+  Serial.println("Applying the patch in 5s...");
+  delay(5000);
+  prepereSi4735ToPatch();
+  // Send patch for whole SSBRX initialization string
+  Wire.beginTransmission(SI473X_ADDR);
+
+  for (offset = 0; offset < size_content_initialization; offset += 8)
+  {
+    for (i = 0; i < 8; i++)
+    {
+      content = pgm_read_byte_near(ssb_patch_content_initialization + (i + offset));
+      Wire.write(content);
+    }
+    si4735.waitToSend();
+    delayMicroseconds(600);
+  }
+
+  // Send patch for whole SSBRX full download
+  /*
+  for (offset = 0; offset < size_content_full; offset += 8)
+  {
+    for (i = 0; i < 8; i++)
+    {
+      content = pgm_read_byte_near(ssb_patch_content_full + (i + offset));
+      Wire.write(content);
+      Serial.print(content, HEX);
+    }
+    si4735.waitToSend();
+    delayMicroseconds(600);
+  }
+  */
+  Wire.endTransmission();
+  delay(250);
+}
+
 /*
    Main
 */
@@ -301,6 +362,5 @@ void loop()
       previousBFO = currentBFO;
       showBFO();  
   }
-
   delay(5);
 }
