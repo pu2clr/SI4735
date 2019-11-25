@@ -7,10 +7,10 @@
   By Ricardo Lima Caratti, Nov 2019.
 */
 
+
+#include <LiquidCrystal_I2C.h>
 #include <SI4735.h>
 #include "patch_content2.h"
-#include <SSD1306Ascii.h>
-#include <SSD1306AsciiAvrI2c.h>
 #include "Rotary.h"
 
 #define AM_FUNCTION 1
@@ -51,17 +51,18 @@ typedef struct {
   unsigned   maximumFreq;
   unsigned   currentFreq;
   unsigned   currentStep;
-  byte       currentSsbMode; 
+  byte       currentSsbMode;
 } Band;
 
 Band band[] = {
-    {3500, 4000, 3750, 1, LSB_MODE},
-    {7000, 7300, 7100, 1, LSB_MODE},
-    {14000, 14400, 14200, 1, USB_MODE},
-    {18000, 19000, 18100, 1, USB_MODE},
-    {2100, 21400, 21200, 1, USB_MODE},
-    {27000, 27500, 27220, 1, USB_MODE},
-    {28000, 28500, 28400, 1, USB_MODE}};
+  {3500, 4000, 3750, 1, LSB_MODE},
+  {7000, 7300, 7100, 1, LSB_MODE},
+  {14000, 14400, 14200, 1, USB_MODE},
+  {18000, 19000, 18100, 1, USB_MODE},
+  {2100, 21400, 21200, 1, USB_MODE},
+  {27000, 27500, 27220, 1, USB_MODE},
+  {28000, 28500, 28400, 1, USB_MODE}
+};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int  currentFreqIdx = 1; // 40M
@@ -76,7 +77,7 @@ int previousBFO = 0;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
-SSD1306AsciiAvrI2c display;
+LiquidCrystal_I2C display(0x27, 20, 4); // please check the address of your I2C device
 
 SI4735 si4735;
 
@@ -94,24 +95,24 @@ void setup()
   pinMode(BFO_UP, INPUT);
   pinMode(BFO_DOWN, INPUT);
 
+  display.init();
 
-  display.begin(&Adafruit128x64, I2C_ADDRESS);
-  display.setFont(Adafruit5x7);
+
   delay(500);
 
   // Splash - Change it for your introduction text.
-  display.set1X();
-  display.setCursor(0, 0);
-  display.print("Si4735 Arduino Library");
+  display.setCursor(6, 0);
+  display.print("Si4735");
+  display.setCursor(2, 1);
+  display.print("Arduino Library");
   delay(500);
-  display.setCursor(30, 3);
-  display.print("SSB TEST");
-  display.setCursor(20, 6);
+  display.setCursor(4, 3);
+  display.print("SSB Test");
+  display.setCursor(4, 4);
   display.print("By PU2CLR");
   delay(3000);
   display.clear();
   // end Splash
-
 
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
@@ -119,24 +120,21 @@ void setup()
 
   si4735.setup(RESET_PIN, 15);
 
-  applyPatch(); 
+  applyPatch();
 
   delay(500);
-  si4735.setup(RESET_PIN, 0 );
+  si4735.setup(RESET_PIN, 0);
 
   delay(500);
   display.clear();
 
-  si4735.setup(RESET_PIN, 1 );
+  si4735.setup(RESET_PIN, 1);
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSsbConfig(1, 0, 0, 1, 0, 1);
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSsbMode);
 
-
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(60);
-
-
 
   showStatus();
 }
@@ -169,23 +167,20 @@ void showStatus()
   freqDisplay = String(currentFrequency);
 
 
-  display.set1X();
   display.setCursor(0, 0);
   display.print(String(bandMode));
 
-  display.setCursor(98, 0);
+  display.setCursor(16, 0);
   display.print(unit);
 
-  display.set2X();
-  display.setCursor(30, 1);
+  display.setCursor(5, 0);
   display.print("        ");
-  display.setCursor(30, 1);
+  display.setCursor(5, 0);
   display.print(freqDisplay);
 
-  display.set1X();
-  display.setCursor(0, 7);
+  display.setCursor(0, 2);
   display.print("            ");
-  display.setCursor(0, 7);
+  display.setCursor(0, 2);
   display.print("BW: ");
   display.print(String(bandwitdth[bandwidthIdx]));
   display.print(" KHz");
@@ -198,8 +193,7 @@ void showRSSI()
 {
   int blk;
 
-  display.set1X();
-  display.setCursor(70, 7);
+  display.setCursor(12, 4);
   display.print("S:");
   display.print(rssi);
   display.print(" dBuV");
@@ -207,13 +201,12 @@ void showRSSI()
 
 void showBFO()
 {
-  display.set1X();
-  display.setCursor(0, 5);
-  display.print("              ");
-  display.setCursor(0, 5);
+  display.setCursor(0, 4);
+  display.print("          ");
+  display.setCursor(0, 4);
   display.print("BFO: ");
   display.print(currentBFO);
-  display.print(" Hz");
+  display.print("Hz");
 
 }
 
@@ -247,10 +240,10 @@ void bandDown() {
   currentBFO = 0;
 }
 
-/* 
- * Power Up with patch configuration
- * See Si47XX PROGRAMMING GUIDE; page 219 and 220
- */
+/*
+   Power Up with patch configuration
+   See Si47XX PROGRAMMING GUIDE; page 219 and 220
+*/
 void prepereSi4735ToPatch()
 {
   si4735.waitToSend();
@@ -270,14 +263,12 @@ void applyPatch()
   int i = 0;
   byte content;
 
-  display.set1X();
-  display.setCursor(0, 5);
-  display.print("Applying Patch...");
+  display.setCursor(1, 2);
+  display.print("Applying Patch..");
 
   delay(500);
   prepereSi4735ToPatch();
 
-  /*
   // Send patch for whole SSBRX initialization string
   for (offset = 0; offset < size_content_initialization; offset += 8)
   {
@@ -291,7 +282,7 @@ void applyPatch()
     si4735.waitToSend();
     delayMicroseconds(600);
   }
-  */
+
   // Send patch for whole SSBRX full download
   for (offset = 0; offset < size_content_full; offset += 8)
   {
@@ -304,12 +295,11 @@ void applyPatch()
     Wire.endTransmission();
     si4735.waitToSend();
     delayMicroseconds(600);
-  } 
+  }
   delay(250);
-  display.set1X();
-  display.setCursor(0, 5);
-  display.print("Patch Applayed...");
-  
+  display.setCursor(2, 2);
+  display.print("Patch Applayed.");
+
 }
 
 /*
@@ -375,8 +365,8 @@ void loop()
   }
 
   if ( currentBFO != previousBFO ) {
-      previousBFO = currentBFO;
-      showBFO();  
+    previousBFO = currentBFO;
+    showBFO();
   }
   delay(5);
 }

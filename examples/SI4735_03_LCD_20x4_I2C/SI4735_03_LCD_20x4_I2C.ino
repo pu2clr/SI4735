@@ -45,7 +45,7 @@ byte volume = 0;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
-LiquidCrystal_I2C lcd(0x27, 20, 4);  // please check the address of you I2C device
+LiquidCrystal_I2C lcd(0x27, 20, 4);  // please check the address of your I2C device
 SI4735 si4735;
 
 void setup()
