@@ -257,6 +257,8 @@ void SI4735::setFrequency(unsigned freq)
     if (currentSsbStatus != 0)
     {
         currentFrequencyParams.arg.USBLSB = currentSsbStatus; // Set to LSB or USB
+        currentFrequencyParams.arg.FAST = 0; // Used just on AM and FM
+        currentFrequencyParams.arg.FREEZE = 0; // Used just on FM
     }
 
     Wire.beginTransmission(SI473X_ADDR);

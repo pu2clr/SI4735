@@ -33,7 +33,7 @@ void setup()
 void showWarning()
 {
   // Serial.println("Read before the files attention.txt, reademe.txt or leiame.txt.");
-  
+
 }
 
 void showFirmwareInformation()
@@ -91,10 +91,10 @@ void confirmationYouAreSureAndApply()
 
 
 
-/* 
- * Power Up with patch configuration
- * See Si47XX PROGRAMMING GUIDE; page 219 and 220
- */
+/*
+   Power Up with patch configuration
+   See Si47XX PROGRAMMING GUIDE; page 219 and 220
+*/
 void prepereSi4735ToPatch()
 {
   si4735.waitToSend();
@@ -132,12 +132,9 @@ void applyPatch()
     // delayMicroseconds(600);
   }
 
-  si4735.setPowerUp(0, 0, 0, 1, 0, SI473X_ANALOG_AUDIO);
-  prepereSi4735ToPatch();
-  
-  delay(250);
-
-
+  delay(500);
+  si4735.waitToSend();
+      
   // Send patch for whole SSBRX initialization string
   for (offset = 0; offset < size_content_initialization; offset += 8)
   {
@@ -159,23 +156,24 @@ void applyPatch()
   si4735.analogPowerUp();
   si4735.powerDown();
   delay(1000);
-  Serial.println("Applyed!");  
+  Serial.println("Applyed!");
   si4735.setPowerUp(0, 0, 0, 1, 1, SI473X_ANALOG_AUDIO);
   si4735.analogPowerUp();
-  si4735.setSsbConfig(1, 0, 0, 1, 0, 1);
-  si4735.setSSB(28350, 28450,  28400, 1,2);
+  si4735.setSsbConfig(1, 1, 0, 0, 0, 1);
+  si4735.setSSB(28350, 28450,  28400, 1, 2);
   si4735.setVolume(62);
   si4735.frequencyUp();
   si4735.frequencyDown();
 
-  while (1) {
-    si4735.setSsbBfo(25500);
-    delay(5000);
-    si4735.setSsbBfo(-25500);
-    delay(5000);    
-  }
-  
-  PATCH_FINISIHED = true;
+  si4735.setSsbBfo(-900);
+  delay(10000);
+  si4735.setSsbBfo(0);
+  delay(10000);
+  si4735.setSsbBfo(500);
+  delay(10000);
+  si4735.setSsbBfo(900);
+
+PATCH_FINISIHED = true;
 }
 
 void loop()
