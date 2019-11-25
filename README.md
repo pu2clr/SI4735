@@ -34,6 +34,7 @@ __Attention__:
        * [setup](https://github.com/pu2clr/SI4735#setup)
        * [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
        * [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
+       * [powerDown]()
        * [setFrequency](https://github.com/pu2clr/SI4735#setfrequency)
        * [frequencyUp](https://github.com/pu2clr/SI4735#frequencyup)
        * [frequencyDown](https://github.com/pu2clr/SI4735#frequencydown)
@@ -898,6 +899,16 @@ void SI4735::analogPowerUp(void)
     setPowerUp(1, 1, 0, 1, defaultFunction, SI473X_ANALOG_AUDIO);
     analogPowerUp();
 ```    
+
+### powerDown
+
+```cpp
+/* 
+ * Moves the device from powerup to powerdown mode.
+ * After Power Down command, only the Power Up command is accepted.
+ */
+void SI4735::powerDown(void)
+```
 
 
 ### setFrequency
