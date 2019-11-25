@@ -41,21 +41,21 @@ void showFirmwareInformation()
 
   si4735.getFirmware();
 
-  Serial.println("Firmware Information.");
-  Serial.print("Part Number (HEX)........: ");
+  Serial.println("Firmware");
+  Serial.print("Part Number.: ");
   Serial.println(si4735.getFirmwarePN(), HEX);
-  Serial.print("Firmware Major Revision..: ");
+  Serial.print("Firmware Major Rev..: ");
   Serial.println(si4735.getFirmwareFWMAJOR());
-  Serial.print("Firmware Minor Revision..: ");
+  Serial.print("Firmware Minor Rev: ");
   Serial.println(si4735.getFirmwareFWMINOR());
-  Serial.print("Patch ID ................: ");
+  Serial.print("Patch ID ..: ");
   Serial.print(si4735.getFirmwarePATCHH(), HEX);
   Serial.println(si4735.getFirmwarePATCHL(), HEX);
-  Serial.print("Component Major Revision.: ");
+  Serial.print("Comp. Major Rev.: ");
   Serial.println(si4735.getFirmwareCMPMAJOR());
-  Serial.print("Component Minor Revision.: ");
+  Serial.print("Comp. Minor Rev.: ");
   Serial.println(si4735.getFirmwareCMPMINOR());
-  Serial.print("Chip Revision............: ");
+  Serial.print("Chip Rev.: ");
   Serial.println(si4735.getFirmwareCHIPREV());
 }
 
@@ -119,7 +119,7 @@ void applyPatch()
   Serial.println("Applying.");
   delay(500);
   prepereSi4735ToPatch();
-  /*
+
   // Send patch for whole SSBRX initialization string
   for (offset = 0; offset < size_content_initialization; offset += 8)
   {
@@ -134,7 +134,7 @@ void applyPatch()
     si4735.waitToSend();
     delayMicroseconds(600);
   }
-  */
+
   Serial.println("2");
   // Send patch for whole SSBRX full download
   for (offset = 0; offset < size_content_full; offset += 8)
@@ -163,9 +163,9 @@ void applyPatch()
   si4735.frequencyDown();
 
   while (1) {
-    si4735.setSsbBfo(1000);
+    si4735.setSsbBfo(350);
     delay(500);
-    si4735.setSsbBfo(-1000);
+    si4735.setSsbBfo(-350);
   }
   
   PATCH_FINISIHED = true;
