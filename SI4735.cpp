@@ -5,8 +5,13 @@
  * 
  * See documentation on https://github.com/pu2clr/SI4735
  * 
+ * See also: 
+ *  Si47XX PROGRAMMING GUIDE; AN332
+ *  AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
+ * 
  * By Ricardo Lima Caratti, Nov 2019.
  */
+
 #include <SI4735.h>
 
 SI4735::SI4735()
