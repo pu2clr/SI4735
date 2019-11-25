@@ -8,7 +8,7 @@
 */
 
 #include <SI4735.h>
-#include "patch_content.h"
+#include "patch_content2.h"
 #include <SSD1306Ascii.h>
 #include <SSD1306AsciiAvrI2c.h>
 #include "Rotary.h"
@@ -164,7 +164,7 @@ void showStatus()
   String unit, freqDisplay;
   String bandMode;
 
-  bandMode = String("AM");
+  bandMode = String("SSB");
   unit = "KHz";
   freqDisplay = String(currentFrequency);
 
@@ -177,9 +177,9 @@ void showStatus()
   display.print(unit);
 
   display.set2X();
-  display.setCursor(26, 1);
+  display.setCursor(30, 1);
   display.print("        ");
-  display.setCursor(26, 1);
+  display.setCursor(30, 1);
   display.print(freqDisplay);
 
   display.set1X();
@@ -276,6 +276,7 @@ void applyPatch()
 
   delay(500);
   prepereSi4735ToPatch();
+
   /*
   // Send patch for whole SSBRX initialization string
   for (offset = 0; offset < size_content_initialization; offset += 8)
@@ -303,7 +304,7 @@ void applyPatch()
     Wire.endTransmission();
     si4735.waitToSend();
     delayMicroseconds(600);
-  }
+  } 
   delay(250);
   display.set1X();
   display.setCursor(0, 5);
