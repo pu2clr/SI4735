@@ -735,7 +735,6 @@ void SI4735::volumeDown()
  */
 void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCFOUND, byte RDSSYNCLOST, byte RDSRECV)
 {
-    /*
     si47x_property property;
     si47x_rds_int_source rds_int_source;
 
@@ -762,7 +761,7 @@ void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCF
     Wire.write(rds_int_source.raw[1]); // Send the argments. Most significant first
     Wire.write(rds_int_source.raw[0]);
     Wire.endTransmission();
-    delayMicroseconds(550); */
+    delayMicroseconds(550); 
 }
 
 /*
@@ -774,7 +773,6 @@ void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCF
  */
 void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
 {
-    /*
     si47x_rds_command rds_cmd;
     // checking current FUNC (Am or FM)
     if (currentTune != FM_TUNE_FREQ)
@@ -803,7 +801,7 @@ void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
         currentRdsStatus.raw[i] = Wire.read();
     }
 
-    delayMicroseconds(550); */
+    delayMicroseconds(550); 
 }
 
 /*
@@ -839,7 +837,6 @@ void SI4735::getRdsStatus()
  */
 void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD)
 {
-    /*
     si47x_property property;
     si47x_rds_config config;
 
@@ -864,7 +861,7 @@ void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byt
     Wire.write(config.raw[1]);         // Send the argments. Most significant first
     Wire.write(config.raw[0]);
     Wire.endTransmission();
-    delayMicroseconds(550); */
+    delayMicroseconds(550); 
 }
 
 // TO DO
@@ -875,12 +872,11 @@ void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byt
  */
 unsigned SI4735::getRdsPI(void)
 {
-    /*
     if (getRdsReceived() && getRdsNewBlockA())
     {
         return currentRdsStatus.resp.BLOCKAL;
     }
-    return 0; */
+    return 0; 
 }
 
 /*
@@ -888,13 +884,12 @@ unsigned SI4735::getRdsPI(void)
  */
 unsigned SI4735::getRdsGroupType(void)
 {
-    /*
     si47x_rds_blockb blkb;
 
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
 
-    return blkb.refined.groupType; */
+    return blkb.refined.groupType;
 }
 
 /*
@@ -903,13 +898,12 @@ unsigned SI4735::getRdsGroupType(void)
  */
 unsigned SI4735::getRdsVersionCode(void)
 {
-    /*
     si47x_rds_blockb blkb;
 
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
 
-    return blkb.refined.versionCode; */
+    return blkb.refined.versionCode; 
 }
 
 /* 
@@ -917,13 +911,12 @@ unsigned SI4735::getRdsVersionCode(void)
  */
 unsigned SI4735::getRdsProgramType(void)
 {
-    /*
     si47x_rds_blockb blkb;
 
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
 
-    return blkb.refined.programType; */
+    return blkb.refined.programType; 
 }
 
 char *SI4735::getNext2Block(char *c)
