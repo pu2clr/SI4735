@@ -156,7 +156,7 @@ void applyPatch()
   si4735.analogPowerUp();
   si4735.powerDown();
   delay(1000);
-  Serial.println("Applyed!");
+  Serial.println("Applied!");
   si4735.setPowerUp(0, 0, 0, 1, 1, SI473X_ANALOG_AUDIO);
   si4735.analogPowerUp();
   si4735.setSsbConfig(1, 1, 0, 0, 0, 1);
