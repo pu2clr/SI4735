@@ -1138,6 +1138,7 @@ void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AV
  */
 void SI4735::setSSB(byte usblsb)
 {
+    // Is it needed to load patch when switch to SSB?  
     // powerDown();
     // It starts with the same AM parameters.
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
