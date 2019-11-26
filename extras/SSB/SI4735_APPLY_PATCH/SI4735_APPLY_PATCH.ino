@@ -19,15 +19,12 @@ void setup()
   if (!APPLY_PATCH)
   {
     showWarning();
+  } else {
+    si4735.setup(RESET_PIN, 1);
+    Serial.println("Type Y");
+       
   }
-  else
-  {
-    delay(1000);
-
-    si4735.setup(RESET_PIN, 15);
-    delay(1000);
-    showFirmwareInformation();
-  }
+  
 }
 
 void showWarning()
@@ -36,26 +33,6 @@ void showWarning()
 
 }
 
-void showFirmwareInformation()
-{
-
-  si4735.getFirmware();
-  Serial.print("PN.: ");
-  Serial.println(si4735.getFirmwarePN(), HEX);
-  Serial.print("Firm. Major Rev..: ");
-  Serial.println(si4735.getFirmwareFWMAJOR());
-  Serial.print("Firm. Minor Rev: ");
-  Serial.println(si4735.getFirmwareFWMINOR());
-  Serial.print("Patch ID ..: ");
-  Serial.print(si4735.getFirmwarePATCHH(), HEX);
-  Serial.println(si4735.getFirmwarePATCHL(), HEX);
-  Serial.print("Comp. Major Rev.: ");
-  Serial.println(si4735.getFirmwareCMPMAJOR());
-  Serial.print("Comp. Minor Rev.: ");
-  Serial.println(si4735.getFirmwareCMPMINOR());
-  Serial.print("Chip Rev.: ");
-  Serial.println(si4735.getFirmwareCHIPREV());
-}
 
 void confirmationYouAreSureAndApply()
 {
@@ -97,14 +74,33 @@ void confirmationYouAreSureAndApply()
 */
 void prepereSi4735ToPatch()
 {
+
+  // POWER_UP to get Firmware Information
+  Wire.beginTransmission(SI473X_ADDR);
+  Wire.write(POWER_UP);
+  Wire.write(0xCF); // Set to Read Library ID, Enable Interrupts.
+  Wire.write(0x50); // Set to Analog Line Input.
+  Wire.endTransmission();
+  delayMicroseconds(2500);
+  Wire.requestFrom(SI473X_ADDR, 8);
+  
+  Serial.println("Firmware Inf.:");
+  for (int i = 0; i < 8; i++ ) {
+    Serial.println(Wire.read(),HEX);
+  }
+
   si4735.waitToSend();
+
+  // POWER_UP to start patch mode
   Wire.beginTransmission(SI473X_ADDR);
   Wire.write(POWER_UP);
   Wire.write(0xE2); // Set to FM Transmit, set patch enable, enable interrupts.
   Wire.write(0x50); // Set to Analog Line Input.
   Wire.endTransmission();
   delayMicroseconds(2500);
+  
   si4735.waitToSend();
+
 }
 
 void applyPatch()
@@ -114,25 +110,12 @@ void applyPatch()
   int i = 0;
   byte content;
 
+
   Serial.println("Applying.");
   delay(500);
+  
   prepereSi4735ToPatch();
-  // Send patch for whole SSBRX full download
-  for (offset = 0; offset < size_content_full; offset += 8)
-  {
-    Wire.beginTransmission(SI473X_ADDR);
-    for (i = 0; i < 8; i++)
-    {
-      content = pgm_read_byte_near(ssb_patch_content_full + (i + offset));
-      Wire.write(content);
-    }
-    Wire.endTransmission();
-    // if ( offset > 80 and (offset % 80) == 0 ) Serial.println(offset);
-    si4735.waitToSend();
-    // delayMicroseconds(600);
-  }
-
-  delay(500);
+  
   si4735.waitToSend();
       
   // Send patch for whole SSBRX initialization string
@@ -146,21 +129,42 @@ void applyPatch()
     }
     Wire.endTransmission();
     // if ( offset > 80 and (offset % 80) == 0 )  Serial.println(offset);
+    Wire.requestFrom(SI473X_ADDR, 1);
+    Serial.println(Wire.read(),HEX);
     si4735.waitToSend();
     // delayMicroseconds(600);
   }
 
 
-  delay(1000);
-  si4735.setPowerUp(0, 0, 0, 1, 0, SI473X_ANALOG_AUDIO);
-  si4735.analogPowerUp();
-  si4735.powerDown();
+  delay(500);
+  
+  // Send patch for whole SSBRX full download
+  for (offset = 0; offset < size_content_full; offset += 8)
+  {
+    Wire.beginTransmission(SI473X_ADDR);
+    for (i = 0; i < 8; i++)
+    {
+      content = pgm_read_byte_near(ssb_patch_content_full + (i + offset));
+      Wire.write(content);
+    }
+    Wire.endTransmission();
+    // if ( offset > 80 and (offset % 80) == 0 ) Serial.println(offset);
+    Wire.requestFrom(SI473X_ADDR, 1);
+    Serial.println(Wire.read(), HEX);
+    si4735.waitToSend();
+    delayMicroseconds(600);
+  }
+
+  
+  // si4735.setPowerUp(0, 0, 0, 1, 0, SI473X_ANALOG_AUDIO);
+  // si4735.analogPowerUp();
+  // si4735.powerDown();
   delay(1000);
   Serial.println("Applied!");
   si4735.setPowerUp(0, 0, 0, 1, 1, SI473X_ANALOG_AUDIO);
   si4735.analogPowerUp();
   si4735.setSsbConfig(1, 1, 0, 0, 0, 1);
-  si4735.setSSB(28350, 28450,  28400, 1, 2);
+  si4735.setSSB(7000, 7200,  7100, 1, 1);
   si4735.setVolume(62);
   si4735.frequencyUp();
   si4735.frequencyDown();
