@@ -64,7 +64,6 @@ void SI4735::waitToSend()
  */
 void SI4735::analogPowerUp(void)
 {
-    // reset();
     delayMicroseconds(1000);
     waitToSend();
     Wire.beginTransmission(SI473X_ADDR);
@@ -82,11 +81,13 @@ void SI4735::analogPowerUp(void)
 void SI4735::powerDown(void)
 {
     delayMicroseconds(1000);
-    waitToSend();
+    // waitToSend();
+
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(POWER_DOWN);
     Wire.endTransmission();
     delayMicroseconds(2500);
+
 }
 
 /*
@@ -1137,7 +1138,7 @@ void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AV
  */
 void SI4735::setSSB(byte usblsb)
 {
-    powerDown();
+    // powerDown();
     // It starts with the same AM parameters.
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
     analogPowerUp();
@@ -1175,4 +1176,5 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
     setFrequency(currentWorkFrequency);
 
     delayMicroseconds(1000);
+
 }

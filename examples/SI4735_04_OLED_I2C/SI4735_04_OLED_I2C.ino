@@ -29,8 +29,8 @@
 #define AM_FM_BUTTON 5      // Next Band
 #define SEEK_BUTTON_UP 8    // Seek Up
 #define SEEK_BUTTON_DOWN 9  // Seek Down
-#define VOL_UP 7            // Volume Volume Up
-#define VOL_DOWN 6          // Volume Down
+#define VOL_UP 6            // Volume Volume Up
+#define VOL_DOWN 7          // Volume Down
 // Seek Function
 
 #define MIN_ELAPSED_TIME 100
