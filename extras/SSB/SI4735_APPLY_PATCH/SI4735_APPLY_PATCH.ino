@@ -19,20 +19,18 @@ void setup()
   if (!APPLY_PATCH)
   {
     showWarning();
-  } else {
+  }
+  else
+  {
     si4735.setup(RESET_PIN, 1);
     Serial.println("Type Y");
-       
   }
-  
 }
 
 void showWarning()
 {
   // Serial.println("Read before the files attention.txt, reademe.txt or leiame.txt.");
-
 }
-
 
 void confirmationYouAreSureAndApply()
 {
@@ -65,9 +63,6 @@ void confirmationYouAreSureAndApply()
   }
 }
 
-
-
-
 /*
    Power Up with patch configuration
    See Si47XX PROGRAMMING GUIDE; page 219 and 220
@@ -83,10 +78,11 @@ void prepereSi4735ToPatch()
   Wire.endTransmission();
   delayMicroseconds(2500);
   Wire.requestFrom(SI473X_ADDR, 8);
-  
+
   Serial.println("Firmware Inf.:");
-  for (int i = 0; i < 8; i++ ) {
-    Serial.println(Wire.read(),HEX);
+  for (int i = 0; i < 8; i++)
+  {
+    Serial.println(Wire.read(), HEX);
   }
 
   si4735.waitToSend();
@@ -98,9 +94,8 @@ void prepereSi4735ToPatch()
   Wire.write(0x50); // Set to Analog Line Input.
   Wire.endTransmission();
   delayMicroseconds(2500);
-  
-  si4735.waitToSend();
 
+  si4735.waitToSend();
 }
 
 void applyPatch()
@@ -109,15 +104,15 @@ void applyPatch()
   int offset = 0;
   int i = 0;
   byte content;
-
+  byte cmd_status;
 
   Serial.println("Applying.");
   delay(500);
-  
+
   prepereSi4735ToPatch();
-  
+
   si4735.waitToSend();
-      
+
   // Send patch for whole SSBRX initialization string
   for (offset = 0; offset < size_content_initialization; offset += 8)
   {
@@ -128,16 +123,17 @@ void applyPatch()
       Wire.write(content);
     }
     Wire.endTransmission();
+    delayMicroseconds(600);
     // if ( offset > 80 and (offset % 80) == 0 )  Serial.println(offset);
     Wire.requestFrom(SI473X_ADDR, 1);
-    Serial.println(Wire.read(),HEX);
+    cmd_status = Wire.read();
+    if (cmd_status != 0x80) Serial.println(cmd_status, BIN);
     si4735.waitToSend();
-    // delayMicroseconds(600);
+
   }
 
-
   delay(500);
-  
+
   // Send patch for whole SSBRX full download
   for (offset = 0; offset < size_content_full; offset += 8)
   {
@@ -149,13 +145,14 @@ void applyPatch()
     }
     Wire.endTransmission();
     // if ( offset > 80 and (offset % 80) == 0 ) Serial.println(offset);
-    Wire.requestFrom(SI473X_ADDR, 1);
-    Serial.println(Wire.read(), HEX);
-    si4735.waitToSend();
     delayMicroseconds(600);
+    Wire.requestFrom(SI473X_ADDR, 1);
+    cmd_status = Wire.read();
+    if (cmd_status != 0x80) Serial.println(cmd_status, BIN);
+    si4735.waitToSend();
+
   }
 
-  
   // si4735.setPowerUp(0, 0, 0, 1, 0, SI473X_ANALOG_AUDIO);
   // si4735.analogPowerUp();
   // si4735.powerDown();
@@ -164,7 +161,7 @@ void applyPatch()
   si4735.setPowerUp(0, 0, 0, 1, 1, SI473X_ANALOG_AUDIO);
   si4735.analogPowerUp();
   si4735.setSsbConfig(1, 1, 0, 0, 0, 1);
-  si4735.setSSB(7000, 7200,  7100, 1, 1);
+  si4735.setSSB(7000, 7200, 7100, 1, 1);
   si4735.setVolume(62);
   si4735.frequencyUp();
   si4735.frequencyDown();
@@ -177,7 +174,7 @@ void applyPatch()
   delay(10000);
   si4735.setSsbBfo(900);
 
-PATCH_FINISIHED = true;
+  PATCH_FINISIHED = true;
 }
 
 void loop()
@@ -186,5 +183,4 @@ void loop()
   {
     confirmationYouAreSureAndApply();
   }
-
 }
