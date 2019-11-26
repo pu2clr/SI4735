@@ -1939,12 +1939,14 @@ String SI4735::getRdsTime()
 
 __This library module is still under development__.
 
-This feature will work only on SI4735-D60. To use this feature, you have to aplya a specific SSB patch. 
+This feature will work only on SI4735-D60. To use this feature, you have to apply  a specific SSB patch. 
 Importantly, Silicon Labs only provides support and documentation on this content to some customers. Also it is important to say that the functions available here have not been tested yet.
 
 To date, I can't apply SSB patches following the very little information I have found on the internet. Due to the lack of more accurate information, my work has been using the trial and error approach. This may take some time.
 
 If you have more information about how to apply patches on Si4735, please, let me know. 
+
+If you use a Si4735 with these patches applied, good luck.
 
 
 ### setSsbBfo
