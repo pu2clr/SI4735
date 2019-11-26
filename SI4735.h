@@ -12,6 +12,11 @@
 #include <Arduino.h>
 #include <Wire.h>
 
+#define POWER_UP_FM  0         // FM
+#define POWER_UP_AM  1         // AM and SSB (if patch applyed)
+#define POWER_UP_WB  3         // Weather Band Receiver
+#define POWER_PATCH 15         //
+
 // SI473X commands (general)
 #define SI473X_ADDR 0x11    // SI473X I2C buss address
 #define POWER_UP 0x01       // Power up device and mode selection.
