@@ -178,13 +178,12 @@ O SI4735 é um rádio DSP encapsulado em um CI. Possui ótimo desempenho em AM (
 
 | Term | Description |
 | ---- | ----- |
-|Arduino Libraries|Libraries are files written in C or C++ (.c, .cpp) which provide your sketches with extra functionality. The SI4735 Library provides extra functionalities to make easier the Arduino deal with Si4735 device| 
-|IDE   |Integrated Development Environment|      
-|Sketch|Name that Arduino environment uses for a program|
-|interrupt|In this context, it is a Arduino Resource. Allows important tasks to be performed regardless of the flow of your program|
-|C++| A object-oriented programming (OOP) language. It is a superset of the C language with an additional concept of "classes." |
-|programming guide| In this context it refers to [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)|
-|POC| Proof of Concept|
+|Arduino Libraries|Neste contexto, "Libraries" (bibliotecas) são arquivos escritos em C or C++ (.c, .cpp) que podem ser utilizados em programas (sketches) Arduino. A biblioteca SI4735 para Arduino oferece facilidade de programação do SI4735 no ambiente Arduino | 
+|IDE   |Integrated Development Environment (Ambiente Integrado de Desenvolvimento)|      
+|Sketch| Nome comumente usado para referenciar um programa para Arduino|
+|interrupt| Neste contexto, é um recurso de programação utilizado para tratar eventos disparados pelo micro controlador. 
+|C++| É uma linguagem de programação orientada a objetos. Pode ser entendida como uma extensão da linguagem C que permite o desenvolvimento de programas e bibliotecas usando a abordagem Orientada a Objetos. |
+|POC| Proof of Concept (Prova de Conceito) |
 | SEN | Serial enable pin, active low; used as device select in 3-wire and SPI operation and address selection in 2-wire operation| 
 | SDIO | Serial data in/data out pin|
 | SCLK | Serial clock pin|

@@ -1937,10 +1937,12 @@ String SI4735::getRdsTime()
 
 ## Single Side Band (SSB) Support
 
-This feature will work only on SI4735-D60. 
-To use this feature, you have to aplya a specific AM SSB patch.
- 
- Feature and documentation under construction....
+__This library module is still under development__.
+
+This feature will work only on SI4735-D60. To use this feature, you have to aplya a specific SSB patch. 
+Importantly, Silicon Labs only provides support and documentation on this content to some customers. Also it is important to say that the functions available here have not been tested yet.
+
+To date, I can't apply SSB patches following the very little information I have found on the internet. Due to the lack of more accurate information, my work has been using the trial and error approach. This may take some time.
 
 
 ### setSsbBfo
