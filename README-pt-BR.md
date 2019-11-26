@@ -1,20 +1,19 @@
 # Si4735 Library for Arduino
 
-[Leia este documento em Português](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md)
+Esta é uma biblioteca para o ambiente de desenvolvimento Arduino que implementa as funções do CI SI4735, BROADCAST AM / FM / SW RADIO RECEPTOR da Silicon Labs. Esta biblioteca tem o propósito de fornecer uma interface de programação mais amigável aos projetistas de rádios baseados no SI4735. __A comunicação usada por esta biblioteca é I2C__.
 
-This is an Arduino library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER IC from Silicon Labs.  This library is intended to provide an easier interface for controlling the SI4435 by using Arduino platform. __The communication used by this library is I2C__. 
+Esta biblioteca pode ser livrimente copiada e distribuída. O modelo de licença utilizado é o do MIT, cujos termos podem ser lidos no documento [__license.txt__](./license.txt). 
+[Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence)  
 
-This library can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence)  
-
-Contact: pu2clr@gmail.com
-
-
-__Attention__: 
-* __Documentation  under construction__. 
-* __The SI4735 is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V converter__.
+Contato: pu2clr@gmail.com
 
 
-## Summary
+__Atenção__: 
+* __Esta documentação ainda está em construção__. 
+* __O SI4735 é um componente que opera com 3.3V. Se você não estiver usando uma versão do Arduino que opera com esta tensão, você deve usar algum estratégia de conversão de tensão (incluindo os pinos digitais e analógicos) para trabalar corretamente com o SI4735__. 
+
+
+## Sumário
 
 1. [License Copyright](https://github.com/pu2clr/SI4735#mit-licence)
 2. [Thanks](https://github.com/pu2clr/SI4735#thanks)
