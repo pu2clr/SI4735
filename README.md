@@ -1944,6 +1944,8 @@ Importantly, Silicon Labs only provides support and documentation on this conten
 
 To date, I can't apply SSB patches following the very little information I have found on the internet. Due to the lack of more accurate information, my work has been using the trial and error approach. This may take some time.
 
+If you have more information about how to apply patches on Si4735, please, let me know. 
+
 
 ### setSsbBfo
 
