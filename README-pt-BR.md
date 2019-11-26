@@ -15,15 +15,13 @@ __Atenção__:
 
 ## Sumário
 
-1. [Licença MIT e Direito Autorais](https://github.com/pu2clr/SI4735#mit-licence)
+1. [Licença MIT e Direito Autorais](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#licen%C3%A7a-e-direito-autorais)
 2. [Agradecimentos](https://github.com/pu2clr/SI4735#thanks)
 3. [Sua participação é importante](https://github.com/pu2clr/SI4735#your-support-is-important)
 4. [Sobre o SI4735](https://github.com/pu2clr/SI4735#about-the-si4735)
 5. [Terminologia](https://github.com/pu2clr/SI4735#si4735-terminology)
 6. [Características desta Biblioteca](https://github.com/pu2clr/SI4735#si4735-arduino-library-features)
 7. [Como instalar esta biblioteca](https://github.com/pu2clr/SI4735#library-installation)
-   * [Instalação via Arduino IDE](https://github.com/pu2clr/SI4735#installing-via-arduino-ide)
-   * [Instalação via este site](https://github.com/pu2clr/SI4735#installing-via-this-repository) 
 8. [Requisitos de hardware e configuração](https://github.com/pu2clr/SI4735#hardware-requirements-and-setup)
    * [Esquema básico](https://github.com/pu2clr/SI4735#schematic)
    * [Lista de componentes](https://github.com/pu2clr/SI4735#parts)
@@ -119,9 +117,9 @@ __Atenção__:
      * [__Single Side Band (SSB) Support__](https://github.com/pu2clr/SI4735#single-side-band-ssb-support)
        * [setSsbBfo](https://github.com/pu2clr/SI4735#setssbbfo)
        * [setSsbConfig](https://github.com/pu2clr/SI4735#setssbconfig)
-10. [References](https://github.com/pu2clr/SI4735#references)
-11. [Examples]()
-12. [Videos]() 
+10. [Referências](https://github.com/pu2clr/SI4735#references)
+11. [Exemplos]()
+12. [Vídeos]() 
 
 
 
@@ -129,55 +127,54 @@ __Atenção__:
 
 Copyright (c) 2019 Ricardo Lima Caratti
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Esta biblioteca pode ser utilizada seguindo a licença de Software Livre do MIT, cujo texto traduzido de forma livre pode ser conferido a seguir:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+A permissão é concedida, gratuitamente, a qualquer pessoa que obtenha uma cópia deste software e dos arquivos, incluindo a documentação, associados à esta biblioteca. É permitido usar, modificar, distribuir, juntar com outro software, publicar, fazer sublicença e negociar, sob as seguintes condições:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Os Direitos Autorais e as permissões supracitadas devem ser incluídos em todas as cópias ou partes copiadas desta biblioteca.
 
+IMPORTANTE:
 
-
-## Thanks
-
-I would like to thank Mr. Francisco Scaramella  for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library.
+ESTA BIBLIOTECA É FORNECIDA "TAL COMO ESTÁ", SEM QUALQUER TIPO DE GARANTIA, EXPRESSA OU IMPLÍCITA. EM NENHUM CASO O AUTOR OU TITULAR DOS DIREITOS AUTORAIS SERÁ RESPONSÁVEL POR QUALQUER REIVINDICAÇÃO, DANOS OU OUTRA RESPONSABILIDADE.
 
 
 
-## Your support is important.
+## Agradecimentos
 
-If you would like to support this library development, consider joining this project via Github. Alternatively, make suggestions on features you would like available in this library. Thank you!
-
-
-
-
-## About the SI4735  
-
-The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance on AM (LW/MW/SW) and local FM station. The SI4735 can be programmed by using commands and responses. You can contron it via a microcontroller like Arduino. To make the SI4735 perform an action, the microccontroller have to send a set of bytes (command and arguments) tha the device interpret it and executes the given command.
+Gostaria de agradecer ao Sr. Francisco Scaramella pelas sugestões e contribuições no campo da eletrônica bem como nos testes elaborados com esta biblioteca. 
 
 
 
+## Sua participação é importante
 
-### The main Si4735 features
+Se você tem interesse em fornecer suporte de desenvolvimento a esta biblioteca, junte-se a este projeto via Github. Se preferir, faça sugestões sobre funcionalidades que você gostaria que estivesse disponível nesta biblioteca.
 
-* FM band support (64–108 MHz)
-* AM (MW) band support (520–1710 kHz)
-* SW band support (2.3–26.1 MHz)
-* LW band support (153–279 kHz)
-* Allows firmware upgrade. Including the possibility of adjustments to demodulate SSB.
+
+
+## Sobre o SI4735 
+
+O SI4735 é um rádio DSP encapsulado em um CI. Possui ótimo desempenho em AM (LW / MW / SW) e FM. O SI4735 pode ser programado usando envio de comandos e tratamento de respostas. Você pode controlá-lo por meio de um micro controlador como o Arduino. Para fazer o SI4735 executar uma ação, o micro controlador precisa enviar um conjunto de bytes (comando e argumentos) que o dispositivo interpreta,  executando o comando solicitado. Uma vez executado o comando, o Si4735 é capaz de fornecer uma sequência de bytes (respostas) que podem ser tratados pelo micro controlador.  
+
+
+
+### Principais características do Si4735
+
+* FM - 64–108 MHz
+* AM(MW) - 520–1710 kHz
+* SW - A faixa de Frequência descrita no manual da Silicon Labs é 2.3–26.1 MHz. Na realidade, este CI vai mais longe que isso segundo testes realizados durante o desenvolvimento desta biblioteca. Contudo, é importante ressaltar que algumas características de recepção não foram avaliadas em frequências superiores à especificada pelo fabricante. Por exemplo, sensibilidade.   
+* LW - 153–279 kHz
+* Possibilita atualização de Firmware. Isso inclui a possibilidade de ajustes no CI para recepção em SSB.
 * Advanced AM/FM seek tuning
-* Automatic frequency control (AFC)
-* Automatic gain control (AGC)
-* Digital FM stereo decoder
+* Controle Automático de Frequência (Automatic frequency control - AFC)
+* Controle Automático de Ganho (Automatic gain control - AGC)
 * AM/FM/SW/LW digital tuning
-* RDS/RBDS processor
-* Digital audio out
-* I2C and SPI interface 
-* Great Programming Guide and additional documentation to deal with the device
+* RDS/RBDS
+* Comunicação I2C e SPI. __Esta biblioteca faz uso somente do protocolo I2C__. 
+* Excelente guia de programação provido pela Silicon Labs.
 
 
 
-
-## SI4735 Terminology
+## Terminologia
 
 | Term | Description |
 | ---- | ----- |
@@ -205,26 +202,27 @@ The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance o
 | RESPONSEn | Response register (16-bit) in 3-Wire mode (n = 1 to 8)| 
 
 
-## SI4735 Arduino Library Features
+## Características desta Biblioteca
 
-This library uses the I2C communication protocol and implements most of the functions offered by Si4735 (BROADCAST AM / FM / SW / LW RADIO RECEIVER). 
+Esta biblioteca usa o protocolo de comunicação I2C e implementa a maioria das funções oferecidas pelo Si4735 (BROADCAST AM / FM / SW / LW RADIO RECEPTOR).
 
 1. Open Source 
-2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
-3. C++ Lenguage and Object-oriented programming
-4. Available on Arduino IDE (Manage Libraries)
-5. Simplifies projects based on SI4735
-6. I2C communication
+2. Totalmente baseada no [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
+3. Programação Orientada a Objetos usando C++
+4. Disponível no Ambiente de Desenvolvimento do Arduino
+5. Simplifica projetos de rádios baseados no SI4735
+6. Utiliza o protocolo de comunicação I2C
 
 
 
-## Library Installation
+## Como instalar esta biblioteca
 
-You can install this library on your Arduino environment using different methods. The best ways to do that are described below.  
+É possível instalar esta biblioteca usando diferentes abordagens. Recomendo as descritas a seguir.
 
-### Installing via Arduino IDE
 
-This is the easiest method to install this library.
+### Instalação via Arduino IDE
+
+Este é o método mais fácil.
 
 ![Installing from Arduino IDE 01](extras/images/lib_install_01.png)
 
@@ -233,7 +231,7 @@ This is the easiest method to install this library.
 
 
 
-### Installing via this repository 
+### Instalação baixando os arquivos deste repositório
 
 ![Installing from this repository](extras/images/install_lib_from_git_01.png)
 
@@ -241,9 +239,9 @@ This is the easiest method to install this library.
 ![Installing from this repository](extras/images/install_lib_from_git_02.png)
 
 
-First, you have to download this library in zip format. [Click here](https://github.com/pu2clr/SI4735/archive/master.zip) to download.
+Primeiro, você deve baixar esta biblioteca no formato zip. [CLique aqui para download](https://github.com/pu2clr/SI4735/archive/master.zip) to download.
 
-Unzip the SI4735.zip file in your Arduino Library folder. 
+Descompacte o arquivo SI4735.zip dentro da pasta Arduino Library. 
 
 * On __Windows__: "My Documents\Arduino\libraries"
 * On __MAC OS__: ˜/Documents/Arduino/libraries
@@ -256,7 +254,7 @@ Unzip the SI4735.zip file in your Arduino Library folder.
 <BR>
 
 
-## Hardware Requirements and Setup
+## Requisitos de hardware e configuração
 
 This library has been written for the Arduino platform and has been successfully tested on Pro Mini. I beleave it will work on any other Arduino with I2C support.
 
@@ -269,7 +267,7 @@ This includes the Arduino operating pins.
 
 
 
-### Schematic
+### Esquema básico
 
 The main porpuse of this prototype is to test de Si4735 Arduino Library. It does not intend to be a real radio for exigent listener. However, it is possible to start with it and after include some devices to improve, for example,  its sensibility,  beyond other desired features.
 
@@ -292,7 +290,7 @@ __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO, YOU
 <BR>
 <BR>
 
-### Parts
+### Lista de componentes
 
 The table below shows the component parts used to build the radio prototype based on Si4735 and used the Slicon Labs SSOP Typical Application Schematic as main source. However, some parts were included by the author of this project. 
 
@@ -325,13 +323,13 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 
 
 
-## Photos 
+## Fotos
 
 It was a bit hard to solder the kind of CI on adapter. However, by using a electronic magnifier it was possible.
 
 
 
-### SI4735 soldered on adapter
+### Soldagem do Si4735 no adaptador
 
 |Si4735 on Adapter|Si4735 on Adapter| 
 |---------------|---------------|  
@@ -357,12 +355,12 @@ The basic circuit built on protoboard is based on the “__SSOP Typical Applicat
 
 
 
-## API Documentation
+## Documentação das funções da Biblioteca
 
 
 
 
-### Defined Data Types and Structures
+### Estrutura e Tipos de dados definidos
 
 
 To make the SI4735 device easier to deal, some defined data types were built to handle byte and bits responses.
@@ -802,7 +800,7 @@ typedef union {
 <BR>
 
 
-## Public Methods
+## Métodos Públicos
 
 To use the methods below you have to declare the class SI4735 in your sketch. The folder __examples__ has some examples that show how to use these methods. For example: see [Proof of Concept for SI4735 Arduino Library](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino) 
 
