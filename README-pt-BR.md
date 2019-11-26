@@ -15,23 +15,23 @@ __Atenção__:
 
 ## Sumário
 
-1. [License Copyright](https://github.com/pu2clr/SI4735#mit-licence)
-2. [Thanks](https://github.com/pu2clr/SI4735#thanks)
-3. [Your support is important](https://github.com/pu2clr/SI4735#your-support-is-important)
-4. [About the SI4735](https://github.com/pu2clr/SI4735#about-the-si4735)
-5. [Terminology](https://github.com/pu2clr/SI4735#si4735-terminology)
-6. [Labrary Features](https://github.com/pu2clr/SI4735#si4735-arduino-library-features)
-7. [Library Installation](https://github.com/pu2clr/SI4735#library-installation)
-   * [Installing via Arduino IDE](https://github.com/pu2clr/SI4735#installing-via-arduino-ide)
-   * [Installing via this repository](https://github.com/pu2clr/SI4735#installing-via-this-repository) 
-8. [Hardware Requirements and Setup](https://github.com/pu2clr/SI4735#hardware-requirements-and-setup)
-   * [Schematic](https://github.com/pu2clr/SI4735#schematic)
-   * [Component Parts](https://github.com/pu2clr/SI4735#parts)
-   * [Photos](https://github.com/pu2clr/SI4735#photos)
-9.  [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
-   * [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
-   * [__Public Methods__](https://github.com/pu2clr/SI4735#public-methods)
-     * [__Usual methods__](https://github.com/pu2clr/SI4735#public-methods)
+1. [Licença MIT e Direito Autorais](https://github.com/pu2clr/SI4735#mit-licence)
+2. [Agradecimentos](https://github.com/pu2clr/SI4735#thanks)
+3. [Sua participação é importante](https://github.com/pu2clr/SI4735#your-support-is-important)
+4. [Sobre o SI4735](https://github.com/pu2clr/SI4735#about-the-si4735)
+5. [Terminologia](https://github.com/pu2clr/SI4735#si4735-terminology)
+6. [Características desta Biblioteca](https://github.com/pu2clr/SI4735#si4735-arduino-library-features)
+7. [Como instalar esta biblioteca](https://github.com/pu2clr/SI4735#library-installation)
+   * [Instalação via Arduino IDE](https://github.com/pu2clr/SI4735#installing-via-arduino-ide)
+   * [Instalação via este site](https://github.com/pu2clr/SI4735#installing-via-this-repository) 
+8. [Requisitos de hardware e configuração](https://github.com/pu2clr/SI4735#hardware-requirements-and-setup)
+   * [Esquema básico](https://github.com/pu2clr/SI4735#schematic)
+   * [Lista de componentes](https://github.com/pu2clr/SI4735#parts)
+   * [Fotos](https://github.com/pu2clr/SI4735#photos)
+9.  [Documentação das funções da Biblioteca](https://github.com/pu2clr/SI4735#api-documentation)
+   * [Estrutura e Tipos de dados definidos](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
+   * [__Métodos Públicos__](https://github.com/pu2clr/SI4735#public-methods)
+     * [__Métodos comumente utilizados__](https://github.com/pu2clr/SI4735#public-methods)
        * [setup](https://github.com/pu2clr/SI4735#setup)
        * [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
        * [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
@@ -125,7 +125,7 @@ __Atenção__:
 
 
 
-## MIT License 
+## Licença e Direito Autorais
 
 Copyright (c) 2019 Ricardo Lima Caratti
 
