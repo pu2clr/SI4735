@@ -119,7 +119,7 @@ __Atenção__:
        * [setSsbConfig](https://github.com/pu2clr/SI4735#setssbconfig)
 10. [Referências](https://github.com/pu2clr/SI4735#references)
 11. [Exemplos]()
-12. [Vídeos]() 
+12. [Vídeos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#videos) 
 
 
 
@@ -1994,5 +1994,6 @@ void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AV
 
 ## Videos
 
-![SI4735 and Arduino - First Steps](https://i9.ytimg.com/vi/i77U8WHXc18/mq3.jpg?sqp=CI3Yiu4F&rs=AOn4CLAjP37P9lB0h9XXbmP_8T-pGBvWVw)
-[CLick here](https://youtu.be/i77U8WHXc18)
+* [Si4735 Arduino Library example. OLED Application.](https://youtu.be/7Sg4z8tDSA8)
+* [SI4735 Arduino Library and a simple FM and AM radio implementation](https://youtu.be/vzunuxam_Lg) 
+* [SI4735 ARDUINO LIBRARY BANDWIDTH TEST](https://youtu.be/dN1s3RoXGos)   
