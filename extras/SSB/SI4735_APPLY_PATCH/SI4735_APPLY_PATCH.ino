@@ -150,20 +150,20 @@ void applyPatch()
     cmd_status = Wire.read();
     if (cmd_status != 0x80) Serial.println(cmd_status, BIN);
     si4735.waitToSend();
-
   }
 
-  // si4735.setPowerUp(0, 0, 0, 1, 0, SI473X_ANALOG_AUDIO);
-  // si4735.analogPowerUp();
-  // si4735.powerDown();
-  delay(1000);
+  delay(500);
   Serial.println("Applied!");
   si4735.setPowerUp(0, 0, 0, 1, 1, SI473X_ANALOG_AUDIO);
+  delay(500);
   si4735.analogPowerUp();
+  delau(500);
   si4735.setSsbConfig(1, 1, 0, 0, 0, 1);
-  si4735.setSSB(7000, 7200, 7100, 1, 1);
+  delay(500);
+  si4735.setSSB(28350, 28550, 28400, 1, 2);
   si4735.setVolume(62);
   si4735.frequencyUp();
+  delay(500)
   si4735.frequencyDown();
 
   si4735.setSsbBfo(-900);
