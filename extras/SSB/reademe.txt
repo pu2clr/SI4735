@@ -3,3 +3,10 @@ Given this, it is at your own risk to continue with the procedures suggested her
 This sketch works with the I2C communication protocol and is designed to apply a SSB extension PATCH to CI SI4735-D60.
 Once again, the author disclaims any liability for any damage this procedure may cause to your CI SI4735 or other devices that you are using.
 If you are sure about it and still want to apply the patch, set the variable "APPLY_PATCH to true" in SI4735_APPLY_PATCH.ino and upload this sketch.
+
+
+In this context, a patch is a piece of software used to change the behavior of the SI4735 device. 
+A patch is performed internally (run by internal MCU) of the device. Usually, patches are  used to fixes bugs or add improvements and  new features of the firmware installed in the internal ROM of the device.
+Patch is distributed in binary form and has to be transferred to the internal RAM of the device chip by the host MCU (in this case Arduino).
+Since the RAM is volatile memory, the the patch stored into the device gets lost when you turn off the system.
+Consequently, the content of the firmware patch has to be transferred again to the device each time after performing a power on reset.
