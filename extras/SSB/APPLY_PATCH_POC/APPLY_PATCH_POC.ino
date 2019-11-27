@@ -29,8 +29,11 @@
 #include <Wire.h>
 #include "patch_content.h"
 
-#define SI473X_ADDR 0x11    // SI473X I2C buss address
-#define POWER_UP 0x01       // Power up device and mode selection.
+#define SI473X_ADDR   0x11    // SI473X I2C buss address
+#define POWER_UP      0x01    // Power up device and mode selection.
+#define POWER_DOWN    0x11    // Power down device.
+#define SET_PROPERTY  0x12    // Sets the value of a property.
+#define SSB_TUNE_FREQ 0x40    // Tunes the SSB receiver to a frequency between 520 and 30 MHz in 1 kHz steps.
 
 #define RESET_PIN 12
 
@@ -41,6 +44,34 @@ bool FIRMWARE_OK = false;
 
 const int size_content_initialization = sizeof ssb_patch_content_initialization;
 const int size_content_full = sizeof ssb_patch_content_full;
+
+byte firmwareInfo[8];
+
+typedef union {
+  struct {
+      byte lowByte;
+      byte highByte;
+  } raw;
+  unsigned value;
+} unsigned_2_bytes;
+
+
+ /*
+ * SSB_TUNE_FREQ data type command
+ * AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; 
+ */
+    typedef union {
+    struct
+    {
+        byte DUMMY1 : 6; // Always set 0
+        byte USBLSB : 2; // SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected.
+        byte FREQH;   // ARG2 - Tune Frequency High Byte.
+        byte FREQL;   // ARG3 - Tune Frequency Low Byte.
+        byte ANTCAPH; // ARG4 - Antenna Tuning Capacitor High Byte. 
+        byte ANTCAPL; // ARG5 - Antenna Tuning Capacitor Low Byte. Note used for FM.
+    } arg;
+    byte raw[5];
+} si47x_set_frequency;
 
 
 void setup() {
@@ -53,16 +84,19 @@ void setup() {
     while (1);
   } else {
     firmwarePowerUp();
+    showFirmwareInformation();
     if ( !FIRMWARE_OK ) {
       Serial.println("Check if your firmware is compatible! If so, set FIRMWARE_OK to true and uplaod this sketch again.");
       while (1);
     }
-
     // Aplay the patch
     patchPowerUp();
     downloadPatch();
-  
+    // Is SSB alive?  
+    ssbPowerUp()
+    setSSB();
 
+    
   }
 
 }
@@ -81,6 +115,23 @@ void reset() {
 
 
 /*
+ * Show firmware information
+ */
+void showFirmwareInformation() {
+  Serial.println("Firmware Information"); 
+  Serial.print("Final 2 digits of Part Number (HEX).: ");
+  Serial.println(firmwareInfo[1],HEX);
+  Serial.print("Firmware Major Revision (ASCII).....: ");
+  Serial.println((char)firmwareInfo[2]);  
+  Serial.print("Firmware Minor Revision (ASCII).....: ");
+  Serial.println((char)firmwareInfo[3]);  
+  Serial.print("Chip Revision (ASCII)...............: ");
+  Serial.println((char)firmwareInfo[6]);  
+  Serial.print("Library Revision (HEX)..............: ");
+  Serial.println(firmwareInfo[7],HEX);    
+}
+
+/*
    Wait for the si473x gets ready (Clear to Send status bit have to be 1).
 */
 inline void waitCTS() {
@@ -91,9 +142,16 @@ inline void waitCTS() {
   } while (!(Wire.read() & B10000000));
 }
 
+void powerDown() {
+  waitCTS();
+  Wire.beginTransmission(SI473X_ADDR);
+  Wire.write(POWER_DOWN);
+  Wire.endTransmission();
+}
+
 /*
- * Normal Start Up the SI4735 (AM FUNCTION)
- * See Si47XX PROGRAMMING GUIDE; AN332; page 129
+   Normal Start Up the SI4735 (AM FUNCTION)
+   See Si47XX PROGRAMMING GUIDE; AN332; page 129
 */
 void ssbPowerUp() {
   Wire.beginTransmission(SI473X_ADDR);
@@ -105,30 +163,32 @@ void ssbPowerUp() {
 }
 
 /*
- * The first command that is sent to the device is the POWER_UP command to confirm that
- * the patch is compatible with the internal device library revision.
- * See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
+   The first command that is sent to the device is the POWER_UP command to confirm that
+   the patch is compatible with the internal device library revision.
+   See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
 */
 void firmwarePowerUp() {
+
+  waitCTS();
+
   Wire.beginTransmission(SI473X_ADDR);
   Wire.write(POWER_UP);
   Wire.write(0b00011111); // Set to Read Library ID, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
   Wire.write(0b00000101); // Set to Analog Line Input.
   Wire.endTransmission();
-  waitCTS();
 
+  waitCTS();
+  // Shows firmware information
   Wire.requestFrom(SI473X_ADDR, 8);
-  Serial.println("Firmware Information.:");
   for (int i = 0; i < 8; i++)
-  {
-    Serial.println(Wire.read(), HEX);
-  }
+      firmwareInfo[i] = Wire.read(); 
 }
 
 /*
- * Start Up with patch enabled
- * See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
- */
+   Powerup the device by issuing the POWER_UP command with FUNC = 1 (AM/SW/LW Receive) together with the specific SSB patch.
+   See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
+   AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
+*/
 void patchPowerUp() {
   Wire.beginTransmission(SI473X_ADDR);
   Wire.write(POWER_UP);
@@ -139,8 +199,8 @@ void patchPowerUp() {
 }
 
 /*
- * Transfer the content of the patch (ssb_patch_content_full) to the SI4735
- */
+   Transfer the content of the patch (ssb_patch_content_full) to the SI4735
+*/
 void downloadPatch() {
   byte content, cmd_status;
   int i, line, offset;
@@ -172,25 +232,93 @@ void downloadPatch() {
   Serial.println("Patch applied!");
 }
 
-/* 
- *  Sets the SI4735 to work on SSB
- */
+/*
+    Sets the SI4735 to work on SSB
+*/
 void setSSB() {
-  // TO DO
+
+    unsigned_2_bytes ssb_mode, property;
+
+    waitCTS();
+
+    // Set SSB MODE
+    // AUDIOBW      = 2 - 3.0 kHz low-pass filter (4 bits).
+    // SBCUTFLT     = 1 - Low pass filter to cutoff the unwanted side band (4 bits)
+    // AVC divider  = 0 - for SSB mode, set divider = 0 (4 bits)
+    // AVCEN        = 1 - Enable AVC (default) (1 bit)
+    // SMUTESEL     = 0 - Soft-mute based on RSSI (default) (1 bit) 
+    // Reserved     = 0 - Always 0 (1 bit)
+    // DSP AFCDIS   = 1 - SSB mode, AFC disable (1 bit)
+    ssb_mode.value = 0b1001000000010010;
+    property.value = 0x0101; // SSB_MODE (page 24 of the AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES;
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                  // Always 0x00
+    Wire.write(property.raw.highByte); // High byte first
+    Wire.write(property.raw.lowByte);  // Low byte after
+    Wire.write(ssb_mode.raw.highByte); // high byte first
+    Wire.write(ssb_mode.raw.lowByte);  // low byte after
+
+    Wire.endTransmission();
+    delayMicroseconds(550);
+
 }
 
 /*
- * Sets the frequency of the receiver
- */
-void setFrequency(unsigned frequency) {
-  // TO DO 
+   Sets the frequency of the receiver
+*/
+void setFrequency(unsigned frequency, byte usblsb) {
+
+     unsigned_2_bytes ssb_frequency;
+     si47x_set_frequency set_freq; 
+
+     ssb_frequency.value = frequency;
+
+    set_freq.arg.DUMMY1 = 0;
+    set_freq.arg.USBLSB = usblsb; // 1 = LSB and 2 = USB
+    set_freq.arg.FREQH = ssb_frequency.raw.highByte;
+    set_freq.arg.FREQL = ssb_frequency.raw.lowByte;
+    set_freq.arg.ANTCAPH = 0;
+    set_freq.arg.ANTCAPL = 1; 
+
+    waitCTS();
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SSB_TUNE_FREQ);
+    Wire.write(set_freq.raw[0]); // Send byte with USBLSB (1 = LSB and 2 = USB)
+    Wire.write(set_freq.arg.FREQH);
+    Wire.write(set_freq.arg.FREQL);
+    Wire.write(set_freq.arg.ANTCAPH);    
+    Wire.write(set_freq.arg.ANTCAPL);
+    Wire.endTransmission();
+    delayMicroseconds(550);       
+
+
 }
 
 /*
  * Sets the BFO offset
- */
-void setBFO() {
-  // TO DO
+ * AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 24.
+*/
+void setBFO(unsigned offset) {
+
+    unsigned_2_bytes bfo_offset, property;
+
+    property.value = 0x0100; 
+    bfo_offset.value = offset;
+    
+    waitCTS();
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                    // Always 0x00
+    Wire.write(property.raw.highByte);   // High byte first
+    Wire.write(property.raw.lowByte);    // Low byte after
+    Wire.write(bfo_offset.raw.highByte); // High byte first
+    Wire.write(bfo_offset.raw.lowByte);  // Low byte after    
+    Wire.endTransmission();
+    delayMicroseconds(550);
 }
 
 
