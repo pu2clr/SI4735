@@ -40,8 +40,8 @@
 
 
 // Set the variable below to true if you want to apply the patch.
-bool APPLY_PATCH = true;
-bool FIRMWARE_OK = true;
+bool APPLY_PATCH = false;
+bool FIRMWARE_OK = false;
 
 const int size_content_initialization = sizeof ssb_patch_content_initialization;
 const int size_content_full = sizeof ssb_patch_content_full;
