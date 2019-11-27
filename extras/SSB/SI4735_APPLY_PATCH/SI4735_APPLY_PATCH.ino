@@ -69,30 +69,30 @@ void confirmationYouAreSureAndApply()
 */
 void prepereSi4735ToPatch()
 {
-
-  /*  
-  si4735.powerDown();
-
+  /*
   // reset
   pinMode(RESET_PIN, OUTPUT);
   delay(250);
   digitalWrite(RESET_PIN, LOW);
   delay(250);
   digitalWrite(RESET_PIN, HIGH);
-
   delay(500);
+
+  si4735.waitToSend();
   
   // POWER_UP to get Firmware Information
   Wire.beginTransmission(SI473X_ADDR);
   Wire.write(POWER_UP);
-  Wire.write(0xCF); // Set to Read Library ID, Enable Interrupts.
+  Wire.write(0b00011111); // Set to Read Library ID, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
   Wire.write(0x50); // Set to Analog Line Input.
   Wire.endTransmission();
   delayMicroseconds(2500);
   */
+  si4735.waitToSend();
+   
   Wire.requestFrom(SI473X_ADDR, 8);
 
-  Serial.println("Firmware Inf.:");
+  // Serial.println("Firmware Inf.:");
   for (int i = 0; i < 8; i++)
   {
     Serial.println(Wire.read(), HEX);
@@ -118,6 +118,7 @@ void applyPatch()
   int i = 0;
   byte content;
   byte cmd_status;
+  int line = 0;
 
   Serial.println("Applying.");
   delay(500);
@@ -125,7 +126,6 @@ void applyPatch()
   prepereSi4735ToPatch();
 
   si4735.waitToSend();
-
   /*
   // Send patch for whole SSBRX initialization string
   for (offset = 0; offset < size_content_initialization; offset += 8)
@@ -146,10 +146,11 @@ void applyPatch()
   } 
   */
   delay(500);
-  
+
   // Send patch for whole SSBRX full download
   for (offset = 0; offset < size_content_full; offset += 8)
   {
+    line++;
     Wire.beginTransmission(SI473X_ADDR);
     for (i = 0; i < 8; i++)
     {
@@ -158,24 +159,45 @@ void applyPatch()
     }
     Wire.endTransmission();
     // if ( offset > 80 and (offset % 80) == 0 ) Serial.println(offset);
-    delayMicroseconds(600);
     Wire.requestFrom(SI473X_ADDR, 1);
     cmd_status = Wire.read();
-    if (cmd_status != 0x80) Serial.println(cmd_status, BIN);
+    if (cmd_status != 0x80) { 
+      Serial.print("Status: ");
+      Serial.print(cmd_status, BIN);
+      Serial.print("; linha: ");
+      Serial.print(line);   
+      Serial.print("; offset: ");         
+      Serial.println(offset + i);
+    }
     si4735.waitToSend();
-  }
-  
+  } 
+
+  /*
+  Serial.print("Last Status: ");
+  Wire.requestFrom(SI473X_ADDR, 1);
+  Serial.println(Wire.read(), BIN);
+  */
   delay(500);
   Serial.println("Applied!");
 
+  Wire.beginTransmission(SI473X_ADDR);
+  Wire.write(POWER_UP);
+  Wire.write(0b00010000); // FM, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
+  Wire.write(0x50); // Set to Analog Line Input.
+  Wire.endTransmission();
+  delayMicroseconds(2500);
+  // Serial.println("Power Up Normal");
   delay(500);
   si4735.setPowerUp(0, 0, 0, 1, 1, SI473X_ANALOG_AUDIO);
   delay(500);
   si4735.analogPowerUp();
+  // Serial.println("Power Up AM via Library");
   delay(500);
   si4735.setSsbConfig(1, 1, 0, 0, 0, 1);
+  // Serial.println("SSB Config");
   delay(500);
   si4735.setSSB(7000, 7200, 7100, 1, 1);
+  Serial.println("SSB Band");
   si4735.setVolume(62);
   si4735.frequencyUp();
   delay(500);
