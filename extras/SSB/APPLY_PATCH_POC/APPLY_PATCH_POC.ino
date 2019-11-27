@@ -22,6 +22,7 @@
    SI4735 or other devices that you are using. If you are sure about it and still want to apply the patch,
    set the variable "APPLY_PATCH to true".
 
+
    By Ricardo Lima Caratti, Nov 2019
 
 */
