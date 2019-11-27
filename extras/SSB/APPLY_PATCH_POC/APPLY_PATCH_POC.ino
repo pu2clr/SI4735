@@ -39,8 +39,8 @@
 
 
 // Set the variable below to true if you want to apply the patch.
-bool APPLY_PATCH = false;
-bool FIRMWARE_OK = false;
+bool APPLY_PATCH = true;
+bool FIRMWARE_OK = true;
 
 const int size_content_initialization = sizeof ssb_patch_content_initialization;
 const int size_content_full = sizeof ssb_patch_content_full;
@@ -49,29 +49,34 @@ byte firmwareInfo[8];
 
 typedef union {
   struct {
-      byte lowByte;
-      byte highByte;
+    byte lowByte;
+    byte highByte;
   } raw;
   unsigned value;
 } unsigned_2_bytes;
 
 
- /*
- * SSB_TUNE_FREQ data type command
- * AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; 
- */
-    typedef union {
-    struct
-    {
-        byte DUMMY1 : 6; // Always set 0
-        byte USBLSB : 2; // SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected.
-        byte FREQH;   // ARG2 - Tune Frequency High Byte.
-        byte FREQL;   // ARG3 - Tune Frequency Low Byte.
-        byte ANTCAPH; // ARG4 - Antenna Tuning Capacitor High Byte. 
-        byte ANTCAPL; // ARG5 - Antenna Tuning Capacitor Low Byte. Note used for FM.
-    } arg;
-    byte raw[5];
+/*
+  SSB_TUNE_FREQ data type command
+  AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES;
+*/
+typedef union {
+  struct
+  {
+    byte DUMMY1 : 6; // Always set 0
+    byte USBLSB : 2; // SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected.
+    byte FREQH;   // ARG2 - Tune Frequency High Byte.
+    byte FREQL;   // ARG3 - Tune Frequency Low Byte.
+    byte ANTCAPH; // ARG4 - Antenna Tuning Capacitor High Byte.
+    byte ANTCAPL; // ARG5 - Antenna Tuning Capacitor Low Byte. Note used for FM.
+  } arg;
+  byte raw[5];
 } si47x_set_frequency;
+
+
+unsigned previousFrequency = 0, currentFrequency = 28400;
+int      previousBFO = 0, currentBFO = 0;
+byte     previousVolume = 0,  currentVolume = 30;
 
 
 void setup() {
@@ -83,6 +88,8 @@ void setup() {
     Serial.println("Set the APPLY_PATCH variable to true if you really want to run this sketch and upload it again!");
     while (1);
   } else {
+    reset();
+    delay(100);
     firmwarePowerUp();
     showFirmwareInformation();
     if ( !FIRMWARE_OK ) {
@@ -92,11 +99,12 @@ void setup() {
     // Aplay the patch
     patchPowerUp();
     downloadPatch();
-    // Is SSB alive?  
-    ssbPowerUp()
-    setSSB();
 
-    
+    Serial.println("Is SSB alive?");
+    ssbPowerUp();
+    setSSB();
+    setFrequency(currentFrequency, 2);
+    setVolume(currentVolume);
   }
 
 }
@@ -115,20 +123,20 @@ void reset() {
 
 
 /*
- * Show firmware information
- */
+   Show firmware information
+*/
 void showFirmwareInformation() {
-  Serial.println("Firmware Information"); 
+  Serial.println("Firmware Information");
   Serial.print("Final 2 digits of Part Number (HEX).: ");
-  Serial.println(firmwareInfo[1],HEX);
+  Serial.println(firmwareInfo[1], HEX);
   Serial.print("Firmware Major Revision (ASCII).....: ");
-  Serial.println((char)firmwareInfo[2]);  
+  Serial.println((char)firmwareInfo[2]);
   Serial.print("Firmware Minor Revision (ASCII).....: ");
-  Serial.println((char)firmwareInfo[3]);  
+  Serial.println((char)firmwareInfo[3]);
   Serial.print("Chip Revision (ASCII)...............: ");
-  Serial.println((char)firmwareInfo[6]);  
+  Serial.println((char)firmwareInfo[6]);
   Serial.print("Library Revision (HEX)..............: ");
-  Serial.println(firmwareInfo[7],HEX);    
+  Serial.println(firmwareInfo[7], HEX);
 }
 
 /*
@@ -181,7 +189,7 @@ void firmwarePowerUp() {
   // Shows firmware information
   Wire.requestFrom(SI473X_ADDR, 8);
   for (int i = 0; i < 8; i++)
-      firmwareInfo[i] = Wire.read(); 
+    firmwareInfo[i] = Wire.read();
 }
 
 /*
@@ -237,31 +245,31 @@ void downloadPatch() {
 */
 void setSSB() {
 
-    unsigned_2_bytes ssb_mode, property;
+  unsigned_2_bytes ssb_mode, property;
 
-    waitCTS();
+  waitCTS();
 
-    // Set SSB MODE
-    // AUDIOBW      = 2 - 3.0 kHz low-pass filter (4 bits).
-    // SBCUTFLT     = 1 - Low pass filter to cutoff the unwanted side band (4 bits)
-    // AVC divider  = 0 - for SSB mode, set divider = 0 (4 bits)
-    // AVCEN        = 1 - Enable AVC (default) (1 bit)
-    // SMUTESEL     = 0 - Soft-mute based on RSSI (default) (1 bit) 
-    // Reserved     = 0 - Always 0 (1 bit)
-    // DSP AFCDIS   = 1 - SSB mode, AFC disable (1 bit)
-    ssb_mode.value = 0b1001000000010010;
-    property.value = 0x0101; // SSB_MODE (page 24 of the AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES;
+  // Set SSB MODE
+  // AUDIOBW      = 2 - 3.0 kHz low-pass filter (4 bits).
+  // SBCUTFLT     = 1 - Low pass filter to cutoff the unwanted side band (4 bits)
+  // AVC divider  = 0 - for SSB mode, set divider = 0 (4 bits)
+  // AVCEN        = 1 - Enable AVC (default) (1 bit)
+  // SMUTESEL     = 0 - Soft-mute based on RSSI (default) (1 bit)
+  // Reserved     = 0 - Always 0 (1 bit)
+  // DSP AFCDIS   = 1 - SSB mode, AFC disable (1 bit)
+  ssb_mode.value = 0b1001000000010010;
+  property.value = 0x0101; // SSB_MODE (page 24 of the AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES;
 
-    Wire.beginTransmission(SI473X_ADDR);
-    Wire.write(SET_PROPERTY);
-    Wire.write(0x00);                  // Always 0x00
-    Wire.write(property.raw.highByte); // High byte first
-    Wire.write(property.raw.lowByte);  // Low byte after
-    Wire.write(ssb_mode.raw.highByte); // high byte first
-    Wire.write(ssb_mode.raw.lowByte);  // low byte after
+  Wire.beginTransmission(SI473X_ADDR);
+  Wire.write(SET_PROPERTY);
+  Wire.write(0x00);                  // Always 0x00
+  Wire.write(property.raw.highByte); // High byte first
+  Wire.write(property.raw.lowByte);  // Low byte after
+  Wire.write(ssb_mode.raw.highByte); // high byte first
+  Wire.write(ssb_mode.raw.lowByte);  // low byte after
 
-    Wire.endTransmission();
-    delayMicroseconds(550);
+  Wire.endTransmission();
+  delayMicroseconds(550);
 
 }
 
@@ -270,59 +278,128 @@ void setSSB() {
 */
 void setFrequency(unsigned frequency, byte usblsb) {
 
-     unsigned_2_bytes ssb_frequency;
-     si47x_set_frequency set_freq; 
+  unsigned_2_bytes ssb_frequency;
+  si47x_set_frequency set_freq;
 
-     ssb_frequency.value = frequency;
+  ssb_frequency.value = frequency;
 
-    set_freq.arg.DUMMY1 = 0;
-    set_freq.arg.USBLSB = usblsb; // 1 = LSB and 2 = USB
-    set_freq.arg.FREQH = ssb_frequency.raw.highByte;
-    set_freq.arg.FREQL = ssb_frequency.raw.lowByte;
-    set_freq.arg.ANTCAPH = 0;
-    set_freq.arg.ANTCAPL = 1; 
+  set_freq.arg.DUMMY1 = 0;
+  set_freq.arg.USBLSB = usblsb; // 1 = LSB and 2 = USB
+  set_freq.arg.FREQH = ssb_frequency.raw.highByte;
+  set_freq.arg.FREQL = ssb_frequency.raw.lowByte;
+  set_freq.arg.ANTCAPH = 0;
+  set_freq.arg.ANTCAPL = 1;
 
-    waitCTS();
+  waitCTS();
 
-    Wire.beginTransmission(SI473X_ADDR);
-    Wire.write(SSB_TUNE_FREQ);
-    Wire.write(set_freq.raw[0]); // Send byte with USBLSB (1 = LSB and 2 = USB)
-    Wire.write(set_freq.arg.FREQH);
-    Wire.write(set_freq.arg.FREQL);
-    Wire.write(set_freq.arg.ANTCAPH);    
-    Wire.write(set_freq.arg.ANTCAPL);
-    Wire.endTransmission();
-    delayMicroseconds(550);       
+  Wire.beginTransmission(SI473X_ADDR);
+  Wire.write(SSB_TUNE_FREQ);
+  Wire.write(set_freq.raw[0]); // Send byte with USBLSB (1 = LSB and 2 = USB)
+  Wire.write(set_freq.arg.FREQH);
+  Wire.write(set_freq.arg.FREQL);
+  Wire.write(set_freq.arg.ANTCAPH);
+  Wire.write(set_freq.arg.ANTCAPL);
+  Wire.endTransmission();
+  delayMicroseconds(550);
 
 
 }
 
 /*
- * Sets the BFO offset
- * AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 24.
+   Sets the BFO offset
+   AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 24.
 */
 void setBFO(unsigned offset) {
 
-    unsigned_2_bytes bfo_offset, property;
+  unsigned_2_bytes bfo_offset, property;
 
-    property.value = 0x0100; 
-    bfo_offset.value = offset;
-    
-    waitCTS();
+  property.value = 0x0100;
+  bfo_offset.value = offset;
 
-    Wire.beginTransmission(SI473X_ADDR);
-    Wire.write(SET_PROPERTY);
-    Wire.write(0x00);                    // Always 0x00
-    Wire.write(property.raw.highByte);   // High byte first
-    Wire.write(property.raw.lowByte);    // Low byte after
-    Wire.write(bfo_offset.raw.highByte); // High byte first
-    Wire.write(bfo_offset.raw.lowByte);  // Low byte after    
-    Wire.endTransmission();
-    delayMicroseconds(550);
+  waitCTS();
+
+  Wire.beginTransmission(SI473X_ADDR);
+  Wire.write(SET_PROPERTY);
+  Wire.write(0x00);                    // Always 0x00
+  Wire.write(property.raw.highByte);   // High byte first
+  Wire.write(property.raw.lowByte);    // Low byte after
+  Wire.write(bfo_offset.raw.highByte); // High byte first
+  Wire.write(bfo_offset.raw.lowByte);  // Low byte after
+  Wire.endTransmission();
+  delayMicroseconds(550);
 }
 
 
+void setVolume(byte volume) {
+  waitCTS();
+  Wire.beginTransmission(SI473X_ADDR);
+  Wire.write(SET_PROPERTY);
+  Wire.write(0x00);   // Always 0x00
+  Wire.write(0x40);   // RX_VOLUME 0x4000 -> 0x40
+  Wire.write(0x00);   // RX_VOLUME 0x4000 -> 0x00
+  Wire.write(0x00);   // ARG1
+  Wire.write(volume); // ARG2 (level: 0 to 63)
+  Wire.endTransmission();
+  delayMicroseconds(550);
+}
+
+
+void showStatus() {
+
+  Serial.println("**** SSB Current Status ****");
+  Serial.print("Frequency: ");
+  Serial.print(currentFrequency);
+  Serial.println(" KHz");
+  Serial.print("BFO......: ");
+  Serial.print(currentBFO);
+  Serial.println(" KHz");
+  Serial.print("Volume...: ");
+  Serial.println(currentVolume); 
+  
+}
+
 void loop() {
 
+  if (Serial.available() > 0)
+  {
+    char key = Serial.read();
+    switch (key)
+    {
+      case '+':
+        currentBFO += 100;
+        setBFO(currentBFO);
+        break;
+      case '-':
+        currentBFO -= 100;
+        setBFO(currentBFO);
+        break;
+      case '<':
+        currentFrequency--;
+        setFrequency(currentFrequency, 2);
+        break;
+      case '>':
+        currentFrequency++;
+        setFrequency(currentFrequency, 2);
+        break;
+      case 'V':
+        currentVolume++;
+        setVolume(currentVolume);
+        break;
+      case 'v':
+        currentVolume--;
+        setVolume(currentVolume);
+        break;
+      default:
+        break;
+    }
 
+    if ( previousVolume != currentVolume || previousFrequency != currentFrequency || previousBFO != currentBFO ) {
+        previousVolume = currentVolume;
+        previousFrequency = currentFrequency;
+        previousBFO = currentBFO;
+        showStatus();
+    }
+    
+    delay(50);
+  }
 }
