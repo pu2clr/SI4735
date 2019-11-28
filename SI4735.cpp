@@ -46,6 +46,7 @@ void SI4735::reset()
     delay(250);
 }
 
+
 /*
  * Wait for the si473x is ready (Clear to Send status bit have to be 1).  
  */
