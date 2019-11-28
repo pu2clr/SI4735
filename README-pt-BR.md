@@ -1999,3 +1999,4 @@ void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AV
 * [Si4735 Arduino Library example. OLED Application.](https://youtu.be/7Sg4z8tDSA8)
 * [SI4735 Arduino Library and a simple FM and AM radio implementation](https://youtu.be/vzunuxam_Lg) 
 * [SI4735 ARDUINO LIBRARY BANDWIDTH TEST](https://youtu.be/dN1s3RoXGos)   
+* [Biblioteca Arduino para o SI4735 com suporte SSBRX](https://youtu.be/04H5pZ_7fcc)
