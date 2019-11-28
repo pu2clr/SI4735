@@ -1932,6 +1932,94 @@ String SI4735::getRdsText(void)
 String SI4735::getRdsTime()
 ```
 
+
+
+<BR>
+<BR>
+<BR>
+
+## SI4735 Patch Support for Single Side Band 
+
+In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
+
+There is little information available about patching the SI4735. The following information is the understanding of the author of this project and it is not necessarily correct.
+
+A patch is executed internally (run by internal MCU) of the device. Usually, patches are  used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device. Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system. Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
+
+__ATTENTION__:
+The author of this project does not guarantee that procedures shown here will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here. __This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60__. Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using. 
+
+
+### queryLibraryId
+
+```cpp
+/*
+   Call it first if you are applying a patch on SI4735. 
+   Used to confirm if the patch is compatible with the internal device library revision.
+   See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
+*/
+si47x_firmware_query_library SI4735::queryLibraryId()
+```
+
+### patchPowerUp
+
+```cpp
+/*
+ *  This method can be used to prepare the device to apply SSBRX patch
+ *  Call queryLibraryId before call this method. 
+ *  Powerup the device by issuing the POWER_UP command with FUNC = 1 (AM/SW/LW Receive) 
+ *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
+ *  AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
+ * 
+ *  @return a struct si47x_firmware_query_library (see it in SI4735.h)
+ */
+void SI4735::patchPowerUp()
+```
+
+
+### downloadPatch
+
+```cpp
+/*
+ *  Transfers the content of a patch stored in a array of bytes to the SI4735 device. 
+ *  You must mount an array as shown below and know the size of that array as well.
+ *  
+ *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.  
+ * 
+ *  It is importante to say  that patches to the SI4735 are distributed in binary form and 
+ *  have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino).
+ *  Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off 
+ *  the system. Consequently, the content of the patch has to be transferred again to the device 
+ *  each time after turn on the system or reset the device.
+ * 
+ *  The disadvantage of this approach is the amount of memory used by the patch content. 
+ *  This may limit the use of other radio functions you want implemented in Arduino.
+ * 
+ *  Example of content:
+ *  const PROGMEM byte ssb_patch_content_full[] =
+ *   { // SSB patch for whole SSBRX full download
+ *       0x15, 0x00, 0x0F, 0xE0, 0xF2, 0x73, 0x76, 0x2F,
+ *       0x16, 0x6F, 0x26, 0x1E, 0x00, 0x4B, 0x2C, 0x58,
+ *       0x16, 0xA3, 0x74, 0x0F, 0xE0, 0x4C, 0x36, 0xE4,
+ *          .
+ *          .
+ *          .
+ *       0x16, 0x3B, 0x1D, 0x4A, 0xEC, 0x36, 0x28, 0xB7,
+ *       0x16, 0x00, 0x3A, 0x47, 0x37, 0x00, 0x00, 0x00,
+ *       0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x9D, 0x29};   
+ * 
+ *  const int size_content_full = sizeof ssb_patch_content_full;
+ * 
+ *  @param ssb_patch_content point to array of bytes content patch.
+ *  @param ssb_patch_content_size array size (number of bytes). The maximum size allowed for a patch is 15856 bytes
+ * 
+ *  @return false if an error is found.
+ */
+bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_size)
+```
+
+
+
 <BR>
 <BR>
 <BR>

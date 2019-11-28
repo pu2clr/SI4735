@@ -4,7 +4,7 @@
    In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
 
    There is little information available about patching the SI4735. The following information is the understanding
-   of the author of this sketch and is not necessarily correct.
+   of the author of this sketch and it is not necessarily correct.
 
    A patch is executed internally (run by internal MCU) of the device. Usually, patches are  used to fixes bugs
    or add improvements and  new features of the firmware installed in the internal ROM of the device.

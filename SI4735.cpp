@@ -1189,12 +1189,12 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
  */
 
 /*
-   This method can be used to prepare the device to apply SSBRX patch
-   Call queryLibraryId before call this method. 
-   Powerup the device by issuing the POWER_UP command with FUNC = 1 (AM/SW/LW Receive) 
-   See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
-   AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
-*/
+ *  This method can be used to prepare the device to apply SSBRX patch
+ *  Call queryLibraryId before call this method. 
+ *  Powerup the device by issuing the POWER_UP command with FUNC = 1 (AM/SW/LW Receive) 
+ *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
+ *  AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
+ */
 void SI4735::patchPowerUp()
 {
     waitToSend();
@@ -1207,8 +1207,10 @@ void SI4735::patchPowerUp()
 
 /*
    Call it first if you are applying a patch on SI4735. 
-   Used to confirm it the patch is compatible with the internal device library revision.
+   Used to confirm if the patch is compatible with the internal device library revision.
    See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
+
+   @return a struct si47x_firmware_query_library (see it in SI4735.h)
 */
 si47x_firmware_query_library SI4735::queryLibraryId()
 {
@@ -1231,7 +1233,7 @@ si47x_firmware_query_library SI4735::queryLibraryId()
 
 /*
  *  Transfers the content of a patch stored in a array of bytes to the SI4735 device. 
- *  You must mount an array as shown below and know the size of this array as well.
+ *  You must mount an array as shown below and know the size of that array as well.
  *  
  *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.  
  * 
