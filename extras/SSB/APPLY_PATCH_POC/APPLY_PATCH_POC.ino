@@ -43,7 +43,6 @@
 bool APPLY_PATCH = false;
 bool FIRMWARE_OK = false;
 
-const int size_content_initialization = sizeof ssb_patch_content_initialization;
 const int size_content_full = sizeof ssb_patch_content_full;
 
 byte firmwareInfo[8];
