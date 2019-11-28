@@ -808,7 +808,7 @@ public:
 
     /*
      * SSB PATCH
-     */ 
-    void patchPowerUp(); // Used to apply SSB patch on SI4735
+     */
     si47x_firmware_query_library queryLibraryId();
+    void patchPowerUp(); // Used to apply SSB patch on SI4735
 };
