@@ -74,8 +74,8 @@ typedef union {
 } si47x_set_frequency;
 
 
-unsigned previousFrequency = 0, currentFrequency = 7100;
-const    byte usblsb = 1; // 1 = LSB; 2 = USB
+unsigned previousFrequency = 0, currentFrequency = 27200;
+const    byte usblsb = 2; // 1 = LSB; 2 = USB
 int      previousBFO = 0, currentBFO = 0;
 byte     previousVolume = 0,  currentVolume = 30;
 

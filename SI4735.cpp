@@ -43,7 +43,7 @@ void SI4735::reset()
     digitalWrite(resetPin, LOW);
     delay(100);
     digitalWrite(resetPin, HIGH);
-    delay(500);
+    delay(250);
 }
 
 /*
@@ -54,7 +54,7 @@ void SI4735::waitToSend()
     do
     {
         // delayMicroseconds(2500);
-        delayMicroseconds(600);
+        delayMicroseconds(250);
         Wire.requestFrom(SI473X_ADDR, 1);
     } while (!(Wire.read() & B10000000));
 };
@@ -1268,7 +1268,7 @@ bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_s
     byte content, cmd_status;
     int i, line, offset;
     // Send patch for whole SSBRX full download
-    for (offset = 0; offset < size_content_full; offset += 8)
+    for (offset = 0; offset < ssb_patch_content_size; offset += 8)
     {
         line++;
         Wire.beginTransmission(SI473X_ADDR);
