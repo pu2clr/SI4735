@@ -1300,6 +1300,6 @@ bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_s
  * @return false if an error is found.
  */
 bool SI4735::downloadPatch(byte eeprom_i2c_address) {
-
+// TO DO
 
 }
