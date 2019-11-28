@@ -74,7 +74,8 @@ typedef union {
 } si47x_set_frequency;
 
 
-unsigned previousFrequency = 0, currentFrequency = 27200;
+unsigned previousFrequency = 0, currentFrequency = 21100;
+const    byte usblsb = 2; // 1 = LSB; 2 = USB
 int      previousBFO = 0, currentBFO = 0;
 byte     previousVolume = 0,  currentVolume = 30;
 
@@ -112,6 +113,8 @@ void setup() {
     Serial.println("Type + to increment and - to drecrement the bfo offset.");
     Serial.println("Type V to up and v to down the volume.");
     Serial.println("*******************************************************");
+
+    showStatus();
   }
 
 }
@@ -121,11 +124,11 @@ void setup() {
 */
 void reset() {
   pinMode(RESET_PIN, OUTPUT);
-  delayMicroseconds(500);
+  delayMicroseconds(100);
   digitalWrite(RESET_PIN, LOW);
-  delay(500);
+  delay(100);
   digitalWrite(RESET_PIN, HIGH);
-  delay(500);
+  delay(250);
 }
 
 
@@ -152,7 +155,7 @@ void showFirmwareInformation() {
 inline void waitCTS() {
   do
   {
-    delayMicroseconds(600);
+    delayMicroseconds(250);
     Wire.requestFrom(SI473X_ADDR, 1);
   } while (!(Wire.read() & B10000000));
 }
@@ -236,16 +239,14 @@ void downloadPatch() {
     cmd_status = Wire.read();
     // The SI4735 issues a status after each 8 - byte transfer.
     // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
-    if (cmd_status != 0x80)
-      if (cmd_status != 0x80) {
-        Serial.print("Status/Error: ");
-        Serial.print(cmd_status, BIN);
-        Serial.print("; linha: ");
-        Serial.print(line);
-        Serial.print("; offset: ");
-        Serial.println(offset + i);
-      }
-    waitCTS();
+    if (cmd_status != 0x80) {
+      Serial.print("Status/Error: ");
+      Serial.print(cmd_status, BIN);
+      Serial.print("; linha: ");
+      Serial.print(line);
+      Serial.print("; offset: ");
+      Serial.println(offset + i);
+    }
   }
   Serial.println("Patch applied!");
 }
@@ -387,12 +388,20 @@ void loop() {
       case '<':
       case ',':
         currentFrequency--;
-        setFrequency(currentFrequency, 2);
+        setFrequency(currentFrequency, usblsb);
         break;
       case '>':
       case '.':
         currentFrequency++;
-        setFrequency(currentFrequency, 2);
+        setFrequency(currentFrequency, usblsb);
+        break;
+      case '1':
+        currentFrequency -= 50;
+        setFrequency(currentFrequency, usblsb);
+        break;
+      case '2':
+        currentFrequency += 50;
+        setFrequency(currentFrequency, usblsb);
         break;
       case 'V':
         currentVolume++;
