@@ -197,25 +197,26 @@ The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance o
 |programming guide| In this context it refers to [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)|
 |POC| Proof of Concept|
 | SEN | Serial enable pin, active low; used as device select in 3-wire and SPI operation and address selection in 2-wire operation| 
-| SDIO | Serial data in/data out pin|
-| SCLK | Serial clock pin|
-| RST  | Also RSTb—Reset pin, active low |
-| RCLK | External reference clock |
-| GPO | General purpose output |
+| ARGn | Argument byte (n = 1 to 7) | 
 | CTS | Clear to send |
 | STC | Seek/Tune Complete |
 | NVM | Non-volatile internal device memory |
 | CMD | Command byte |
 | COMMANDn | Command register (16-bit) in 3-Wire mode (n = 1 to 4) |
-| ARGn | Argument byte (n = 1 to 7) | 
-| STATUS | Status byte |
+| GPO | General purpose output |
 | RESP | Response byte (n = 1 to 15) |
 | RESPONSEn | Response register (16-bit) in 3-Wire mode (n = 1 to 8)| 
+| RST  | Also RSTb—Reset pin, active low |
+| RCLK | External reference clock |
+| SSB | [Single Side Band](https://en.wikipedia.org/wiki/Single-sideband_modulation) | 
+| SDIO | Serial data in/data out pin|
+| SCLK | Serial clock pin |
+| I2C | [I²C - Inter-Integrated Circuit](https://pt.wikipedia.org/wiki/I²C)|
 
 
 ## SI4735 Arduino Library Features
 
-This library uses the I2C communication protocol and implements most of the functions offered by Si4735 (BROADCAST AM / FM / SW / LW RADIO RECEIVER). 
+This library uses the I2C communication protocol and implements most of the functions offered by Si4735 (BROADCAST AM / FM / SW / LW RADIO RECEIVER). The main features of this library are listed below.
 
 1. Open Source 
 2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
@@ -224,8 +225,8 @@ This library uses the I2C communication protocol and implements most of the func
 5. Simplifies projects based on SI4735
 6. I2C communication
 7. More than 60 SI4735 [functions implemented](https://github.com/pu2clr/SI4735#api-documentation)
-8. [RDS support](https://github.com/pu2clr/SI4735#rds)
-9. [SSB (Single Side Band) patch support](https://github.com/pu2clr/SI4735#single-side-band-ssb-support)  
+8. [RDS support](https://github.com/pu2clr/SI4735#rds)(__under construction...__)
+9. [SSB (Single Side Band) patch support](https://github.com/pu2clr/SI4735#single-side-band-ssb-support) (__under construction...__) 
 
 
 

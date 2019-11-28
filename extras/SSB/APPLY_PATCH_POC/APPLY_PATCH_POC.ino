@@ -64,7 +64,7 @@ typedef union {
   struct
   {
     byte DUMMY1 : 6; // Always set 0
-    byte USBLSB : 2; // SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected.
+    byte USBLSB : 2; // SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 (binary) (2) = USB is selected; 01 (binary) = LSB is selected.
     byte FREQH;   // ARG2 - Tune Frequency High Byte.
     byte FREQL;   // ARG3 - Tune Frequency Low Byte.
     byte ANTCAPH; // ARG4 - Antenna Tuning Capacitor High Byte.
@@ -74,8 +74,8 @@ typedef union {
 } si47x_set_frequency;
 
 
-unsigned previousFrequency = 0, currentFrequency = 21100;
-const    byte usblsb = 2; // 1 = LSB; 2 = USB
+unsigned previousFrequency = 0, currentFrequency = 7100;
+const    byte usblsb = 1; // 1 = LSB; 2 = USB
 int      previousBFO = 0, currentBFO = 0;
 byte     previousVolume = 0,  currentVolume = 30;
 
