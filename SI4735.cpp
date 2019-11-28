@@ -1227,3 +1227,73 @@ si47x_firmware_query_library SI4735::queryLibraryId()
 
     return libraryID;
 }
+
+/*
+ *  Transfers the content of a patch stored in a array of bytes to the SI4735 device. 
+ *  You must mount an array as shown below and know the size of this array as well.
+ *  
+ *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.  
+ * 
+ *  It is importante to say  that patches to the SI4735 are distributed in binary form and 
+ *  have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino).
+ *  Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off 
+ *  the system. Consequently, the content of the patch has to be transferred again to the device 
+ *  each time after turn on the system or reset the device.
+ * 
+ *  The disadvantage of this approach is the amount of memory used by the patch content. 
+ *  This may limit the use of other radio functions you want implemented in Arduino.
+ * 
+ *  Example of content:
+ *  const PROGMEM byte ssb_patch_content_full[] =
+ *   { // SSB patch for whole SSBRX full download
+ *       0x15, 0x00, 0x0F, 0xE0, 0xF2, 0x73, 0x76, 0x2F,
+ *       0x16, 0x6F, 0x26, 0x1E, 0x00, 0x4B, 0x2C, 0x58,
+ *       0x16, 0xA3, 0x74, 0x0F, 0xE0, 0x4C, 0x36, 0xE4,
+ *          .
+ *          .
+ *          .
+ *       0x16, 0x3B, 0x1D, 0x4A, 0xEC, 0x36, 0x28, 0xB7,
+ *       0x16, 0x00, 0x3A, 0x47, 0x37, 0x00, 0x00, 0x00,
+ *       0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x9D, 0x29};   
+ * 
+ *  const int size_content_full = sizeof ssb_patch_content_full;
+ * 
+ *  @param ssb_patch_content point to array of bytes content patch.
+ *  @param ssb_patch_content_size array size (number of bytes)
+ */
+bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_size)
+{
+    byte content, cmd_status;
+    int i, line, offset;
+    // Send patch for whole SSBRX full download
+    for (offset = 0; offset < size_content_full; offset += 8)
+    {
+        line++;
+        Wire.beginTransmission(SI473X_ADDR);
+        for (i = 0; i < 8; i++)
+        {
+            content = pgm_read_byte_near(ssb_patch_content + (i + offset));
+            Wire.write(content);
+        }
+        Wire.endTransmission();
+        waitToSend();
+        Wire.requestFrom(SI473X_ADDR, 1);
+        cmd_status = Wire.read();
+        if (cmd_status != 0x80)
+        {
+            return false;
+        }
+        waitToSend();
+    }
+    return true;
+}
+
+/*
+ * Transfers the content of a patch stored in a eeprom to the SI4735 device.
+ * 
+ * @param eeprom_i2c_address 
+ */
+bool SI4735::downloadPatch(byte eeprom_i2c_address) {
+
+
+}
