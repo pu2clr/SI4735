@@ -248,7 +248,7 @@ typedef union {
 } si47x_response_status;
 
 /*
- * Firmware Information
+ * Firmware Information (GET_ENV)
  */
 typedef union {
     struct
@@ -273,6 +273,33 @@ typedef union {
     } resp;
     byte raw[9];
 } si47x_firmware_information;
+
+/*
+ * Firmware Query Library ID response. 
+ * Used to represent the response of a power up command with FUNC = 15
+ */
+typedef union {
+    struct
+    {
+        // status ("RESP0")
+        byte STCINT : 1;
+        byte DUMMY1 : 1;
+        byte RDSINT : 1;
+        byte RSQINT : 1;
+        byte DUMMY2 : 2;
+        byte ERR : 1;
+        byte CTS : 1;
+        byte PN;        // RESP1 - Final 2 digits of Part Number (HEX).
+        byte FWMAJOR;   // RESP2 - Firmware Major Revision (ASCII).
+        byte FWMINOR;   // RESP3 - Firmware Minor Revision (ASCII).
+        byte RESERVED1; // RESP4 - Reserved, various values.
+        byte RESERVED2; // RESP5 - Reserved, various values.
+        byte CHIPREV;   // RESP6 - Chip Revision (ASCII).
+        byte LIBRARYID; // RESP7 - Library Revision (HEX).
+        // RESP9 to RESP15 not used
+    } resp;
+    byte raw[8];
+} si47x_firmware_query_library;
 
 /*
  * Status of FM_TUNE_FREQ or FM_SEEK_START commands or 
@@ -771,7 +798,6 @@ public:
     char *getNext2Block(char *c);
     char *getNext4Block(char *);
 
-
     /*
      * SSB 
      */   
@@ -779,4 +805,10 @@ public:
     void setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS);
     void setSSB(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step, byte usblsb);
     void setSSB(byte usblsb);
+
+    /*
+     * SSB PATCH
+     */ 
+    void patchPowerUp(); // Used to apply SSB patch on SI4735
+    si47x_firmware_query_library queryLibraryId();
 };

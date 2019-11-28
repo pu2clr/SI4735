@@ -53,7 +53,8 @@ void SI4735::waitToSend()
 {
     do
     {
-        delayMicroseconds(2500);
+        // delayMicroseconds(2500);
+        delayMicroseconds(600);
         Wire.requestFrom(SI473X_ADDR, 1);
     } while (!(Wire.read() & B10000000));
 };
@@ -1178,4 +1179,51 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 
     delayMicroseconds(1000);
 
+}
+
+
+/*
+ * ****************
+ * PATCH RESOURCES
+ */
+
+/*
+   This method can be used to prepare the device to apply SSBRX patch
+   Call queryLibraryId before call this method. 
+   Powerup the device by issuing the POWER_UP command with FUNC = 1 (AM/SW/LW Receive) 
+   See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
+   AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
+*/
+void SI4735::patchPowerUp()
+{
+    waitToSend();
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(POWER_UP);
+    Wire.write(0b00110001);          // Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
+    Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Output
+    Wire.endTransmission();
+}
+
+/*
+   Call it first if you are applying a patch on SI4735. 
+   Used to confirm it the patch is compatible with the internal device library revision.
+   See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
+*/
+si47x_firmware_query_library SI4735::queryLibraryId()
+{
+    si47x_firmware_query_library libraryID;
+
+    waitToSend();
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(POWER_UP);
+    Wire.write(0b00011111);          // Set to Read Library ID, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
+    Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Line Input.
+    Wire.endTransmission();
+
+    waitToSend();
+    Wire.requestFrom(SI473X_ADDR, 8);
+    for (int i = 0; i < 8; i++)
+        libraryID.raw[i] = Wire.read();
+
+    return libraryID;
 }
