@@ -2019,7 +2019,6 @@ bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_s
 ```
 
 
-
 <BR>
 <BR>
 <BR>
