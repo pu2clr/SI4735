@@ -197,13 +197,8 @@ The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance o
 |programming guide| In this context it refers to [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)|
 |POC| Proof of Concept|
 | SEN | Serial enable pin, active low; used as device select in 3-wire and SPI operation and address selection in 2-wire operation| 
-| ARGn | Argument byte (n = 1 to 7) | 
 | CTS | Clear to send |
 | STC | Seek/Tune Complete |
-| NVM | Non-volatile internal device memory |
-| CMD | Command byte |
-| COMMANDn | Command register (16-bit) in 3-Wire mode (n = 1 to 4) |
-| GPO | General purpose output |
 | RESP | Response byte (n = 1 to 15) |
 | RESPONSEn | Response register (16-bit) in 3-Wire mode (n = 1 to 8)| 
 | RST  | Also RSTb—Reset pin, active low |
