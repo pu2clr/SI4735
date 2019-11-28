@@ -74,7 +74,7 @@ typedef union {
 } si47x_set_frequency;
 
 
-unsigned previousFrequency = 0, currentFrequency = 7100;
+unsigned previousFrequency = 0, currentFrequency = 27200;
 int      previousBFO = 0, currentBFO = 0;
 byte     previousVolume = 0,  currentVolume = 30;
 
@@ -384,12 +384,12 @@ void loop() {
       case '<':
       case ',':
         currentFrequency--;
-        setFrequency(currentFrequency, 1);
+        setFrequency(currentFrequency, 2);
         break;
       case '>':
       case '.': 
         currentFrequency++;
-        setFrequency(currentFrequency, 1);
+        setFrequency(currentFrequency, 2);
         break;
       case 'V':
         currentVolume++;
