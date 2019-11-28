@@ -74,7 +74,7 @@ typedef union {
 } si47x_set_frequency;
 
 
-unsigned previousFrequency = 0, currentFrequency = 27200;
+unsigned previousFrequency = 0, currentFrequency = 21100;
 const    byte usblsb = 2; // 1 = LSB; 2 = USB
 int      previousBFO = 0, currentBFO = 0;
 byte     previousVolume = 0,  currentVolume = 30;
@@ -363,7 +363,7 @@ void showStatus() {
   Serial.println(" KHz");
   Serial.print("BFO......: ");
   Serial.print(currentBFO);
-  Serial.println(" KHz");
+  Serial.println(" Hz");
   Serial.print("Volume...: ");
   Serial.println(currentVolume);
 
