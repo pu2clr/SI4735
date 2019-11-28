@@ -39,9 +39,9 @@ void SI4735::waitInterrupr(void)
 void SI4735::reset()
 {
     pinMode(resetPin, OUTPUT);
-    delay(250);
+    delay(100);
     digitalWrite(resetPin, LOW);
-    delay(250);
+    delay(100);
     digitalWrite(resetPin, HIGH);
     delay(500);
 }
@@ -1260,6 +1260,8 @@ si47x_firmware_query_library SI4735::queryLibraryId()
  * 
  *  @param ssb_patch_content point to array of bytes content patch.
  *  @param ssb_patch_content_size array size (number of bytes)
+ * 
+ *  @return false if an error is found.
  */
 bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_size)
 {
@@ -1292,6 +1294,8 @@ bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_s
  * Transfers the content of a patch stored in a eeprom to the SI4735 device.
  * 
  * @param eeprom_i2c_address 
+ * 
+ * @return false if an error is found.
  */
 bool SI4735::downloadPatch(byte eeprom_i2c_address) {
 
