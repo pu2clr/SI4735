@@ -111,7 +111,7 @@ void setup() {
     Serial.println("Type > to increment and < to drecrement the frequency.");
     Serial.println("Type + to increment and - to drecrement the bfo offset.");
     Serial.println("Type V to up and v to down the volume.");
-    Serial.println("*******************************************************");    
+    Serial.println("*******************************************************");
   }
 
 }
@@ -234,14 +234,17 @@ void downloadPatch() {
     waitCTS();
     Wire.requestFrom(SI473X_ADDR, 1);
     cmd_status = Wire.read();
-    if (cmd_status != 0x80) {
-      Serial.print("Status/Error: ");
-      Serial.print(cmd_status, BIN);
-      Serial.print("; linha: ");
-      Serial.print(line);
-      Serial.print("; offset: ");
-      Serial.println(offset + i);
-    }
+    // The SI4735 issues a status after each 8 - byte transfer.
+    // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
+    if (cmd_status != 0x80)
+      if (cmd_status != 0x80) {
+        Serial.print("Status/Error: ");
+        Serial.print(cmd_status, BIN);
+        Serial.print("; linha: ");
+        Serial.print(line);
+        Serial.print("; offset: ");
+        Serial.println(offset + i);
+      }
     waitCTS();
   }
   Serial.println("Patch applied!");
@@ -361,8 +364,8 @@ void showStatus() {
   Serial.print(currentBFO);
   Serial.println(" KHz");
   Serial.print("Volume...: ");
-  Serial.println(currentVolume); 
-  
+  Serial.println(currentVolume);
+
 }
 
 void loop() {
@@ -387,7 +390,7 @@ void loop() {
         setFrequency(currentFrequency, 2);
         break;
       case '>':
-      case '.': 
+      case '.':
         currentFrequency++;
         setFrequency(currentFrequency, 2);
         break;
@@ -404,12 +407,12 @@ void loop() {
     }
 
     if ( previousVolume != currentVolume || previousFrequency != currentFrequency || previousBFO != currentBFO ) {
-        previousVolume = currentVolume;
-        previousFrequency = currentFrequency;
-        previousBFO = currentBFO;
-        showStatus();
+      previousVolume = currentVolume;
+      previousFrequency = currentFrequency;
+      previousBFO = currentBFO;
+      showStatus();
     }
-    
+
     delay(50);
   }
 }

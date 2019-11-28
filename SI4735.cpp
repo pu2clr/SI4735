@@ -1259,7 +1259,7 @@ si47x_firmware_query_library SI4735::queryLibraryId()
  *  const int size_content_full = sizeof ssb_patch_content_full;
  * 
  *  @param ssb_patch_content point to array of bytes content patch.
- *  @param ssb_patch_content_size array size (number of bytes)
+ *  @param ssb_patch_content_size array size (number of bytes). The maximum size allowed for a patch is 15856 bytes
  * 
  *  @return false if an error is found.
  */
@@ -1281,11 +1281,10 @@ bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_s
         waitToSend();
         Wire.requestFrom(SI473X_ADDR, 1);
         cmd_status = Wire.read();
+        // The SI4735 issues a status after each 8 - byte transfer.
+        // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
         if (cmd_status != 0x80)
-        {
-            return false;
-        }
-        waitToSend();
+             return false;
     }
     return true;
 }
