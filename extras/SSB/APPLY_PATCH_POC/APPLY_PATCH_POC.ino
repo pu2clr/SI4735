@@ -106,6 +106,11 @@ void setup() {
     setSSB();
     setFrequency(currentFrequency, 2);
     setVolume(currentVolume);
+
+    Serial.println("Type > to increment and < to drecrement the frequency.");
+    Serial.println("Type + to increment and - to drecrement the bfo offset.");
+    Serial.println("Type V to up and v to down the volume.");
+    Serial.println("*******************************************************");    
   }
 
 }
