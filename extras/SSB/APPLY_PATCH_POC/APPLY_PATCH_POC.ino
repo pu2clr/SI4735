@@ -40,8 +40,8 @@
 
 
 // Set the variable below to true if you want to apply the patch.
-bool APPLY_PATCH = false;
-bool FIRMWARE_OK = false;
+bool APPLY_PATCH = true;
+bool FIRMWARE_OK = true;
 
 const int size_content_full = sizeof ssb_patch_content_full;
 
@@ -74,7 +74,7 @@ typedef union {
 } si47x_set_frequency;
 
 
-unsigned previousFrequency = 0, currentFrequency = 28400;
+unsigned previousFrequency = 0, currentFrequency = 14100;
 int      previousBFO = 0, currentBFO = 0;
 byte     previousVolume = 0,  currentVolume = 30;
 
@@ -89,8 +89,9 @@ void setup() {
     while (1);
   } else {
     reset();
-    delay(100);
+    delay(500);
     firmwarePowerUp();
+    delay(500);
     showFirmwareInformation();
     if ( !FIRMWARE_OK ) {
       Serial.println("Check if your firmware is compatible! If so, set FIRMWARE_OK to true and uplaod this sketch again.");
@@ -98,8 +99,9 @@ void setup() {
     }
     // Aplay the patch
     patchPowerUp();
+    delay(500);
     downloadPatch();
-
+    delay(500);
     Serial.println("Is SSB alive?");
     ssbPowerUp();
     setSSB();
@@ -371,18 +373,21 @@ void loop() {
     switch (key)
     {
       case '+':
-        currentBFO += 100;
+      case '=':
+        currentBFO += 50;
         setBFO(currentBFO);
         break;
       case '-':
-        currentBFO -= 100;
+        currentBFO -= 50;
         setBFO(currentBFO);
         break;
       case '<':
+      case ',':
         currentFrequency--;
         setFrequency(currentFrequency, 2);
         break;
       case '>':
+      case '.': 
         currentFrequency++;
         setFrequency(currentFrequency, 2);
         break;
