@@ -255,27 +255,24 @@ Descompacte o arquivo SI4735.zip dentro da pasta Arduino Library.
 
 ## Requisitos de hardware e configuração
 
-This library has been written for the Arduino platform and has been successfully tested on Pro Mini. I beleave it will work on any other Arduino with I2C support.
-
+Esta biblioteca foi escrita para a plataforma Arduino é foi testada com sucesso no Arduino Pro Mini (3.3V).
 
 
 ### Arduino 5V and Si4735
 
-__The SI4735 device  works with  3.3V only. If you are not using a 3.3V version of Arduino, you have to use a kind of converter__. 
-This includes the Arduino operating pins.  
-
+__Se você usar uma versão 5V do Arduino, UNO por exemplo, utilize alguma estarégia de conversão para conectaá-lo ao Si4735__. 
 
 
 ### Esquema básico
 
-The main porpuse of this prototype is to test de Si4735 Arduino Library. It does not intend to be a real radio for exigent listener. However, it is possible to start with it and after include some devices to improve, for example,  its sensibility,  beyond other desired features.
+O propósito do protótipo a seguir é testar a Biblioteca Arduino para o SI4735 (objeto deste projeto). Por tanto, não se trata de um rádio com o propósito de atender as demandas de usuários exigentes. É possível, no entanto, adicionar novos componentes ao circuito com o objetivo de melhorar a sensibilidade de recepção bem como a sua saída de áudio. 
 
-The image bellow shows a version of Slicon Labs SSOP Typical Application Schematic. The basic difference are the pull-up resitors on I2C bus. 
+A imagem a seguir apresenta o esquema proposto pela Silicon Labs (denominado Application Schematic). Foi adicionado ao circuito, dois resistores “pull-up” ao barramento I2C e dois capacitores na saída de áudio. Esses adendos estão descritos com mais detalhes a seguir.  
 
 ![Basic Schematic](./extras/images/basic_schematic.png)
 
 
-__THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO, YOU HAVE TO USE A KIND OF 5V TO 3.3V CONVERTER.__
+__MAIS UMA VEZ É IMPORTANTE RESSALTAR QUE O SI4735 OPERA COM TENSÕES INFERIORES A 5V. PORTANTO, NÃO O UTILIZE CONECTADO A UM ARDUINO DE 5V SEM UMA ESTRATÉGIA DE CONVERSÃO DE TENSÃO.__
 
 <BR>
 <BR>
@@ -291,7 +288,7 @@ __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO, YOU
 
 ### Lista de componentes
 
-The table below shows the component parts used to build the radio prototype based on Si4735 and used the Slicon Labs SSOP Typical Application Schematic as main source. However, some parts were included by the author of this project. 
+A tabela a seguir apresenta a lista de componentes utilizados para construir o protótipo do rádio baseado no SI4735. Observe os componentes adicionados ao circuito original proposto pela Silicon Labs. 
 
 
 |Part	| Description |
@@ -301,16 +298,17 @@ The table below shows the component parts used to build the radio prototype base
 | C3    | 470nF Monolithic Multilayer Chip Ceramic non polarized capacitor| 
 | C4    | 100nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VD pin)|
 | C5 and C6 | 22pF (Crystal load capacitors) | 
-| C7 and C8[ˆ1] | 4.7uF Monolithic Multilayer Chip Ceramic non polarized capacitor | 
+| __C7 and C8[ˆ1]__ | 4.7uF Monolithic Multilayer Chip Ceramic non polarized capacitor | 
 | R3    | 2.2K |
-| (R4 and R5)[ˆ2] | 10K (pull-up resistors) |
+| __(R4 and R5)[ˆ2]__ | 10K (pull-up resistors) |
 | L1 | Ferrite loop stick (about 500 μH) |
 | X1    | 32.768 kHz crystal |
 
-  * [ˆ1]: C7 and C8 are ceramic capacitors included by the author of this project. They are not present on original Silicon Labs schematic. 
-  * [ˆ2]: R4 and R5 are pull-up resistor included by the author of this project. They are not present on original Silicon Labs schematic. 
+  * [ˆ1]: C7 and C8 são capacitores de cerâmica incluídos pelo autor deste projeto. O objetivo deles é retirar a componente de tensão continua na entrada do amplificador de áudio.  
+  * [ˆ2]: R4 and R5 são resistores pull-up também incluídos pelo autor deste projeto. O objetivo deste resistores é atender aos requisitos recomendados pela especificação I2C.
 
-__Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (page 12)__:
+__Recomendações da Silicon Labs para serem consideradas durante a montagem do rádio__ 
+__Veja "Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver Documentation":
 * Place C1 close to VA and C4 close to VD pin.
 * All grounds connect directly to GND plane on PCB.
 * Pins 6 and 7 are no connects, leave floating.
@@ -324,8 +322,7 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 
 ## Fotos
 
-It was a bit hard to solder the kind of CI on adapter. However, by using a electronic magnifier it was possible.
-
+As fotos a seguir ilustram a soldagem do SI4735 em um adaptador para ser usado em uma protoboard. 
 
 
 ### Soldagem do Si4735 no adaptador
@@ -334,6 +331,9 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 |---------------|---------------|  
 |![SI4735 on adapter 01](./extras/images/si4735_on_adapter_01.png)|![SI4735 on adapter 03](./extras/images/si4735_on_adapter_03.png)|
 
+<BR> 
+<BR>
+
 |Si4735 on Adapter|Si4735 on Adapter| 
 |---------------|---------------|   
 |![SI4735 on adapter 04](./extras/images/adapter_01.png)|![SI4735 on adapter 05](./extras/images/adapter_02.png)|
@@ -341,13 +341,16 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 
 #### Protoboard
 
-The basic circuit built on protoboard is based on the “__SSOP Typical Application Schematic__”, suggested by the Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19). Two pull-up 10K resistors were added on I2C bus. Also, it is recomended to add two 4.7uF capacitors between the CI audio output  and audio amplifier. The photos below do not show these capacitors. See  [C7 and C8 on schematic](https://github.com/pu2clr/SI4735#schematic).
+A montagem a seguir é baseada no circuito proposto pela Silicon Labs (__SSOP Typical Application Schematic__). 
+Recomendo a leitura do manual "__Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19)__". Dois resistores pull-up de 10K foram adicionados ao barramento I2C. Note também que dois capacitores cerâmicos de 4.7uF foram adicionados à saída de audio do SI4735.  
+
+Veja [C7 e C8 no esquema](https://github.com/pu2clr/SI4735#schematic).
 
 
 ![Protoboard 00](./extras/images/protoboard_00.png)
 
-
-
+<BR>
+<BR>
 
 ![Protoboard 01](./extras/images/protoboard_01.png)
 
