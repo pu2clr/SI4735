@@ -1125,7 +1125,7 @@ void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AV
 
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(SET_PROPERTY);
-    // Wire.write(0x00);                  // Always 0x00
+    Wire.write(0x00);                  // Always 0x00
     Wire.write(property.raw.byteHigh); // High byte first
     Wire.write(property.raw.byteLow);  // Low byte after
     Wire.write(ssb.raw[1]);            // SSB MODE params; freq. high byte first

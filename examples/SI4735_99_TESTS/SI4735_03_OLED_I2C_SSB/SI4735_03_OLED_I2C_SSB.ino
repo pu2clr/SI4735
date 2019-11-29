@@ -50,6 +50,7 @@
 #define SSB_SWITCH_BUTTON 9      // Switch AM/SSB
 #define LSB_SSB_SWITCH_BUTTON 10 // Switch LSB/USB
 #define FM_SWITCH_BUTTON 11      // Switch FM / (AM/SSB)
+#define BFO_BUTTON 13            // Switch encoder to BFO
 
 #define MIN_ELAPSED_TIME 100
 
@@ -112,16 +113,20 @@ SI4735 si4735;
 
 void setup()
 {
-
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT);
   pinMode(ENCODER_PIN_B, INPUT);
 
   pinMode(BANDWIDTH_BUTTON, INPUT);
-  pinMode(BAND_BUTTON_UP, INPUT);
-  pinMode(BAND_BUTTON_DOWN, INPUT);
   pinMode(VOL_UP, INPUT);
   pinMode(VOL_DOWN, INPUT);
+  pinMode(BAND_BUTTON_UP, INPUT);
+  pinMode(BAND_BUTTON_DOWN, INPUT);
+  pinMode(SSB_SWITCH_BUTTON, INPUT);
+  pinMode(LSB_SSB_SWITCH_BUTTON, INPUT);
+  pinMode(BAND_BUTTON_DOWN, INPUT);
+  pinMode(FM_SWITCH_BUTTON, INPUT);
+  pinMode(BFO_BUTTON, INPUT);
 
   display.begin(&Adafruit128x64, I2C_ADDRESS);
   display.setFont(Adafruit5x7);
@@ -323,7 +328,8 @@ void loop()
       else if (digitalRead(SSB_SWITCH_BUTTON) == HIGH)
       {
         loadSSB();
-        si4735.setSSB(band[currentFreqIdx].currentMode);
+        si4735.setSsbConfig(2, 1, 0, 1, 0, byte 1);
+        si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentMode);
       }
       else if (digitalRead(LSB_SSB_SWITCH_BUTTON) == HIGH)
       {
