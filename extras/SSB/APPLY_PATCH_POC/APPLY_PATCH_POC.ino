@@ -28,14 +28,13 @@
 #include <Wire.h>
 #include "patch_content.h"
 
-#define SI473X_ADDR   0x11    // SI473X I2C buss address
-#define POWER_UP      0x01    // Power up device and mode selection.
-#define POWER_DOWN    0x11    // Power down device.
-#define SET_PROPERTY  0x12    // Sets the value of a property.
-#define SSB_TUNE_FREQ 0x40    // Tunes the SSB receiver to a frequency between 520 and 30 MHz in 1 kHz steps.
+#define SI473X_ADDR 0x11   // SI473X I2C buss address
+#define POWER_UP 0x01      // Power up device and mode selection.
+#define POWER_DOWN 0x11    // Power down device.
+#define SET_PROPERTY 0x12  // Sets the value of a property.
+#define SSB_TUNE_FREQ 0x40 // Tunes the SSB receiver to a frequency between 520 and 30 MHz in 1 kHz steps.
 
 #define RESET_PIN 12
-
 
 // Set the variable below to true if you want to apply the patch.
 bool APPLY_PATCH = true;
@@ -46,13 +45,13 @@ const int size_content_full = sizeof ssb_patch_content_full;
 byte firmwareInfo[8];
 
 typedef union {
-  struct {
+  struct
+  {
     byte lowByte;
     byte highByte;
   } raw;
   unsigned value;
 } unsigned_2_bytes;
-
 
 /*
   SSB_TUNE_FREQ data type command
@@ -63,38 +62,44 @@ typedef union {
   {
     byte DUMMY1 : 6; // Always set 0
     byte USBLSB : 2; // SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 (binary) (2) = USB is selected; 01 (binary) = LSB is selected.
-    byte FREQH;   // ARG2 - Tune Frequency High Byte.
-    byte FREQL;   // ARG3 - Tune Frequency Low Byte.
-    byte ANTCAPH; // ARG4 - Antenna Tuning Capacitor High Byte.
-    byte ANTCAPL; // ARG5 - Antenna Tuning Capacitor Low Byte. Note used for FM.
+    byte FREQH;      // ARG2 - Tune Frequency High Byte.
+    byte FREQL;      // ARG3 - Tune Frequency Low Byte.
+    byte ANTCAPH;    // ARG4 - Antenna Tuning Capacitor High Byte.
+    byte ANTCAPL;    // ARG5 - Antenna Tuning Capacitor Low Byte. Note used for FM.
   } arg;
   byte raw[5];
 } si47x_set_frequency;
 
-
 unsigned previousFrequency = 0, currentFrequency = 7100;
-const    byte usblsb = 1; // 1 = LSB; 2 = USB
-int      previousBFO = 0, currentBFO = 0;
-byte     previousVolume = 0,  currentVolume = 30;
+const byte usblsb = 1; // 1 = LSB; 2 = USB
+int previousBFO = 0, currentBFO = 0;
+byte previousVolume = 0, currentVolume = 30;
 
-
-void setup() {
+void setup()
+{
 
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
-  if ( !APPLY_PATCH ) {
+  if (!APPLY_PATCH)
+  {
     Serial.println("Set the APPLY_PATCH variable to true if you really want to run this sketch and upload it again!");
-    while (1);
-  } else {
+    while (1)
+      ;
+  }
+  else
+  {
     reset();
     delay(500);
     firmwarePowerUp();
     delay(500);
     showFirmwareInformation();
-    if ( !FIRMWARE_OK ) {
+    if (!FIRMWARE_OK)
+    {
       Serial.println("Check if your firmware is compatible! If so, set FIRMWARE_OK to true and uplaod this sketch again.");
-      while (1);
+      while (1)
+        ;
     }
     // Aplay the patch
     patchPowerUp();
@@ -114,13 +119,13 @@ void setup() {
 
     showStatus();
   }
-
 }
 
 /*
    Reset the device
 */
-void reset() {
+void reset()
+{
   pinMode(RESET_PIN, OUTPUT);
   delayMicroseconds(100);
   digitalWrite(RESET_PIN, LOW);
@@ -129,11 +134,11 @@ void reset() {
   delay(250);
 }
 
-
 /*
    Show firmware information
 */
-void showFirmwareInformation() {
+void showFirmwareInformation()
+{
   Serial.println("Firmware Information");
   Serial.print("Final 2 digits of Part Number (HEX).: ");
   Serial.println(firmwareInfo[1], HEX);
@@ -150,7 +155,8 @@ void showFirmwareInformation() {
 /*
    Wait for the si473x gets ready (Clear to Send status bit have to be 1).
 */
-inline void waitCTS() {
+inline void waitCTS()
+{
   do
   {
     delayMicroseconds(250);
@@ -158,7 +164,8 @@ inline void waitCTS() {
   } while (!(Wire.read() & B10000000));
 }
 
-void powerDown() {
+void powerDown()
+{
   waitCTS();
   Wire.beginTransmission(SI473X_ADDR);
   Wire.write(POWER_DOWN);
@@ -169,7 +176,8 @@ void powerDown() {
    Normal Start Up the SI4735 (AM FUNCTION)
    See Si47XX PROGRAMMING GUIDE; AN332; page 129
 */
-void ssbPowerUp() {
+void ssbPowerUp()
+{
   Wire.beginTransmission(SI473X_ADDR);
   Wire.write(POWER_UP);
   Wire.write(0b00010001); // Set to AM/SSB, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
@@ -183,7 +191,8 @@ void ssbPowerUp() {
    the patch is compatible with the internal device library revision.
    See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
 */
-void firmwarePowerUp() {
+void firmwarePowerUp()
+{
 
   waitCTS();
 
@@ -205,7 +214,8 @@ void firmwarePowerUp() {
    See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
    AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
 */
-void patchPowerUp() {
+void patchPowerUp()
+{
   Wire.beginTransmission(SI473X_ADDR);
   Wire.write(POWER_UP);
   Wire.write(0b00110001); // Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
@@ -217,7 +227,8 @@ void patchPowerUp() {
 /*
    Transfer the content of the patch (ssb_patch_content_full) to the SI4735
 */
-void downloadPatch() {
+void downloadPatch()
+{
   byte content, cmd_status;
   int i, line, offset;
   Serial.println("Applying patch...");
@@ -237,7 +248,8 @@ void downloadPatch() {
     cmd_status = Wire.read();
     // The SI4735 issues a status after each 8 - byte transfer.
     // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
-    if (cmd_status != 0x80) {
+    if (cmd_status != 0x80)
+    {
       Serial.print("Status/Error: ");
       Serial.print(cmd_status, BIN);
       Serial.print("; linha: ");
@@ -252,7 +264,8 @@ void downloadPatch() {
 /*
     Sets the SI4735 to work on SSB
 */
-void setSSB() {
+void setSSB()
+{
 
   unsigned_2_bytes ssb_mode, property;
 
@@ -279,13 +292,13 @@ void setSSB() {
 
   Wire.endTransmission();
   delayMicroseconds(550);
-
 }
 
 /*
    Sets the frequency of the receiver
 */
-void setFrequency(unsigned frequency, byte usblsb) {
+void setFrequency(unsigned frequency, byte usblsb)
+{
 
   unsigned_2_bytes ssb_frequency;
   si47x_set_frequency set_freq;
@@ -310,15 +323,14 @@ void setFrequency(unsigned frequency, byte usblsb) {
   Wire.write(set_freq.arg.ANTCAPL);
   Wire.endTransmission();
   delayMicroseconds(550);
-
-
 }
 
 /*
    Sets the BFO offset
    AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 24.
 */
-void setBFO(unsigned offset) {
+void setBFO(unsigned offset)
+{
 
   unsigned_2_bytes bfo_offset, property;
 
@@ -338,8 +350,8 @@ void setBFO(unsigned offset) {
   delayMicroseconds(550);
 }
 
-
-void setVolume(byte volume) {
+void setVolume(byte volume)
+{
   waitCTS();
   Wire.beginTransmission(SI473X_ADDR);
   Wire.write(SET_PROPERTY);
@@ -352,8 +364,8 @@ void setVolume(byte volume) {
   delayMicroseconds(550);
 }
 
-
-void showStatus() {
+void showStatus()
+{
 
   Serial.println("**** SSB Current Status ****");
   Serial.print("Frequency: ");
@@ -364,62 +376,62 @@ void showStatus() {
   Serial.println(" Hz");
   Serial.print("Volume...: ");
   Serial.println(currentVolume);
-
 }
 
-void loop() {
+void loop()
+{
 
   if (Serial.available() > 0)
   {
     char key = Serial.read();
     switch (key)
     {
-      case '+':
-      case '=':
-        currentBFO += 50;
-        setBFO(currentBFO);
-        break;
-      case '-':
-        currentBFO -= 50;
-        setBFO(currentBFO);
-        break;
-      case '<':
-      case ',':
-        currentFrequency--;
-        setFrequency(currentFrequency, usblsb);
-        break;
-      case '>':
-      case '.':
-        currentFrequency++;
-        setFrequency(currentFrequency, usblsb);
-        break;
-      case '1':
-        currentFrequency -= 50;
-        setFrequency(currentFrequency, usblsb);
-        break;
-      case '2':
-        currentFrequency += 50;
-        setFrequency(currentFrequency, usblsb);
-        break;
-      case 'V':
-        currentVolume++;
-        setVolume(currentVolume);
-        break;
-      case 'v':
-        currentVolume--;
-        setVolume(currentVolume);
-        break;
-      default:
-        break;
+    case '+':
+    case '=':
+      currentBFO += 50;
+      setBFO(currentBFO);
+      break;
+    case '-':
+      currentBFO -= 50;
+      setBFO(currentBFO);
+      break;
+    case '<':
+    case ',':
+      currentFrequency--;
+      setFrequency(currentFrequency, usblsb);
+      break;
+    case '>':
+    case '.':
+      currentFrequency++;
+      setFrequency(currentFrequency, usblsb);
+      break;
+    case '1':
+      currentFrequency -= 50;
+      setFrequency(currentFrequency, usblsb);
+      break;
+    case '2':
+      currentFrequency += 50;
+      setFrequency(currentFrequency, usblsb);
+      break;
+    case 'V':
+      currentVolume++;
+      setVolume(currentVolume);
+      break;
+    case 'v':
+      currentVolume--;
+      setVolume(currentVolume);
+      break;
+    default:
+      break;
     }
 
-    if ( previousVolume != currentVolume || previousFrequency != currentFrequency || previousBFO != currentBFO ) {
+    if (previousVolume != currentVolume || previousFrequency != currentFrequency || previousBFO != currentBFO)
+    {
       previousVolume = currentVolume;
       previousFrequency = currentFrequency;
       previousBFO = currentBFO;
       showStatus();
     }
-
     delay(50);
   }
 }
