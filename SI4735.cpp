@@ -1189,23 +1189,6 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
  */
 
 /*
- *  This method can be used to prepare the device to apply SSBRX patch
- *  Call queryLibraryId before call this method. 
- *  Powerup the device by issuing the POWER_UP command with FUNC = 1 (AM/SW/LW Receive) 
- *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
- *  AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
- */
-void SI4735::patchPowerUp()
-{
-    waitToSend();
-    Wire.beginTransmission(SI473X_ADDR);
-    Wire.write(POWER_UP);
-    Wire.write(0b00110001);          // Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
-    Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Output
-    Wire.endTransmission();
-}
-
-/*
    Call it first if you are applying a patch on SI4735. 
    Used to confirm if the patch is compatible with the internal device library revision.
    See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
@@ -1229,6 +1212,25 @@ si47x_firmware_query_library SI4735::queryLibraryId()
         libraryID.raw[i] = Wire.read();
 
     return libraryID;
+}
+
+/*
+ *  This method can be used to prepare the device to apply SSBRX patch
+ *  Call queryLibraryId before call this method. 
+ *  Powerup the device by issuing the POWER_UP command with FUNC = 1 (AM/SW/LW Receive) 
+ *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
+ *  AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
+ */
+void SI4735::patchPowerUp()
+{
+    waitToSend();
+    powerDown();    // Or reset()?
+    waitToSend();   // Is it necessary? 
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(POWER_UP);
+    Wire.write(0b00110001);          // Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
+    Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Output
+    Wire.endTransmission();
 }
 
 /*
