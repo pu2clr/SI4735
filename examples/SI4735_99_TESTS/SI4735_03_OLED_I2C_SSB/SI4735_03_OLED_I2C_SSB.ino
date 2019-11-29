@@ -77,7 +77,7 @@ typedef struct {
   unsigned maximumFreq; // Maximum frequency to the band
   unsigned currentFreq; // Used to store the current band before you switch to another band 
   unsigned currentStep; // Used to store the corrent step 
-  unsigned defaultMode; // 
+  unsigned defaultMode; // MODE_AM, MODE_LSB e MODE_USB
 } Band;
 
 // SW band table
