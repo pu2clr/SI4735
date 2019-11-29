@@ -328,7 +328,7 @@ void loop()
       else if (digitalRead(SSB_SWITCH_BUTTON) == HIGH)
       {
         loadSSB();
-        si4735.setSsbConfig(2, 1, 0, 1, 0, byte 1);
+        si4735.setSsbConfig(2, 1, 0, 1, 0, 1);
         si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentMode);
       }
       else if (digitalRead(LSB_SSB_SWITCH_BUTTON) == HIGH)
