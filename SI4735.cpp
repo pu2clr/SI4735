@@ -1236,7 +1236,6 @@ void SI4735::patchPowerUp()
 /*
  *  Transfers the content of a patch stored in a array of bytes to the SI4735 device. 
  *  You must mount an array as shown below and know the size of that array as well.
- *  
  *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.  
  * 
  *  It is importante to say  that patches to the SI4735 are distributed in binary form and 
