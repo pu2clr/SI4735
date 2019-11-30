@@ -1186,7 +1186,7 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 
     setFrequency(currentWorkFrequency);
 
-    delayMicroseconds(1000);
+    delayMicroseconds(550);
 
 }
 
@@ -1223,6 +1223,8 @@ si47x_firmware_query_library SI4735::queryLibraryId()
     for (int i = 0; i < 8; i++)
         libraryID.raw[i] = Wire.read();
 
+    delayMicroseconds(2500);
+
     return libraryID;
 }
 
@@ -1241,6 +1243,7 @@ void SI4735::patchPowerUp()
     Wire.write(0b00110001);          // Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
     Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Output
     Wire.endTransmission();
+    delayMicroseconds(2500);
 }
 
 /*
@@ -1300,6 +1303,7 @@ bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_s
         if (cmd_status != 0x80)
              return false;
     }
+    delayMicroseconds(2500);
     return true;
 }
 
