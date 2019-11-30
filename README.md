@@ -369,10 +369,8 @@ The basic circuit built on protoboard is based on the “__SSOP Typical Applicat
 
 
 ![Protoboard 00](./extras/images/protoboard_00.png)
-
-
-
-
+<BR>
+<BR>
 ![Protoboard 01](./extras/images/protoboard_01.png)
 
 
