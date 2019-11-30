@@ -31,13 +31,14 @@
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
 #define BFO_SWITCH 10      // Switch Enconder to control BFO and vice-versa.
-#define STEP_SWITCH 11     // Change the current step (1, 5 or 10); 
+#define STEP_SWITCH 11     // Change the current step (1, 5, 10 or 50); 
 
 #define MIN_ELAPSED_TIME 100
 
 #define AM_MODE 0
 #define LSB_MODE 1
 #define USB_MODE 2
+#define BFO_STEP 10
 
 const int size_content_full = sizeof ssb_patch_content_full;
 
@@ -53,16 +54,22 @@ unsigned previousFrequency;
 byte bandwidthIdx = 0;
 char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
+/* 
+ *  Band information structure
+ */
 typedef struct
 {
-  unsigned minimumFreq;
-  unsigned maximumFreq;
-  unsigned currentFreq;
-  unsigned currentStep;
-  byte currentMode;
-  int currentBFO;
+  unsigned minimumFreq;  // Minimum frequency for the band 
+  unsigned maximumFreq;  // Maximum frequency for the band
+  unsigned currentFreq;  // Used to store the last frequency selected before switch to another band 
+  unsigned currentStep;  // Used to store the last step selected before switch to another band 
+  byte currentMode;      // Used to store the last MODE (AM/LSB/USB) selected before switch to another band  
+  int currentBFO;        // Used to store the last BFO offset selected before switch to another band
 } Band;
 
+/*
+ * Band table - You can remove or add bands in the table below
+ */
 Band band[] = {
     {  570,  1700,   810, 10, AM_MODE,  0},
     { 3500,  4000,  3750,  1, LSB_MODE, 0},
@@ -79,28 +86,26 @@ Band band[] = {
     {28000, 30000, 28400,  1, USB_MODE, 0}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int currentFreqIdx = 3; // Starts working on 40 meters 
+int currentFreqIdx = 0; // MW
 
 byte rssi = 0;
 byte volume = 0;
 
 int currentBFO = 0;
 int previousBFO = 0;
-byte currentStep = 1;
+byte currentStep = 10;
 bool bfoOn = false;
 
 byte currentMode = AM_MODE; // AM, LSB or USB
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
-
 LiquidCrystal_I2C display(0x27, 20, 4); // please check the address of your I2C device
-
 SI4735 si4735;
+
 
 void setup()
 {
-
   Serial.begin(9600);
   // Encoder pins
   pinMode(LSB_USB_AM_SWITCH, INPUT);
@@ -145,9 +150,8 @@ void setup()
   display.clear();
 
   si4735.setup(RESET_PIN, 1);
-  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setSsbConfig(1, 0, 0, 1, 0, 1);
-  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentMode);
+  si4735.setTuneFrequencyAntennaCapacitor(0); // Set antenna tuning capacitor for SW.
+  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
 
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(60);
@@ -290,6 +294,8 @@ void bandUp()
     currentBFO = band[currentFreqIdx].currentBFO;
     si4735.setSsbBfo(currentBFO);
   }
+  currentStep = band[currentFreqIdx].currentFreq;
+  si4735.setFrequencyStep(currentStep);  
 }
 
 /* *******************************
@@ -319,6 +325,8 @@ void bandDown()
     currentBFO = band[currentFreqIdx].currentBFO;
     si4735.setSsbBfo(currentBFO);
   }
+  currentStep = band[currentFreqIdx].currentFreq;
+  si4735.setFrequencyStep(currentStep);
 }
 
 /*
@@ -342,13 +350,12 @@ void loadSSB()
 */
 void loop()
 {
-
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
     if (bfoOn)
     {
-      currentBFO = (encoderCount == 1) ? (currentBFO + 10) : (currentBFO - 10);
+      currentBFO = (encoderCount == 1) ? (currentBFO + BFO_STEP) : (currentBFO - BFO_STEP);
       si4735.setSsbBfo(currentBFO);
     }
     else
@@ -414,12 +421,13 @@ void loop()
            currentStep = 5;
         else if (currentStep == 5)
            currentStep = 10;
-        else 
+        else if (currentStep == 10) 
+           currentStep = 50;
+        else           
            currentStep = 1;
 
         band[currentFreqIdx].currentStep = currentStep; // Stores the new current step to the current band. 
         si4735.setFrequencyStep(currentStep);           // Changes the current step behaviour  
-           
       }
 
       elapsedButton = millis();
