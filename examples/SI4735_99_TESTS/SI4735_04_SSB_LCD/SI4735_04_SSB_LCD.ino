@@ -25,12 +25,12 @@
 
 // Buttons controllers
 #define LSB_USB_AM_SWITCH 4
-#define BANDWIDTH_BUTTON 5 // Next Band
-#define BAND_BUTTON_UP 8   // Band Up
-#define BAND_BUTTON_DOWN 9 // Band Down
+#define BANDWIDTH_BUTTON 5 // BW Filter 
+#define BAND_BUTTON_UP 8   // Next band 
+#define BAND_BUTTON_DOWN 9 // Preveous 
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
-#define BFO_SWITCH 10      // Switch Enconder to control BFO
+#define BFO_SWITCH 10      // Switch Enconder to control BFO and vice-versa.
 #define STEP_SWITCH 11     // Change the current step (1, 5 or 10); 
 
 #define MIN_ELAPSED_TIME 100
@@ -82,7 +82,6 @@ const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int currentFreqIdx = 3; // Starts working on 40 meters 
 
 byte rssi = 0;
-byte stereo = 1;
 byte volume = 0;
 
 int currentBFO = 0;
@@ -196,17 +195,27 @@ void showStatus()
   display.setCursor(16, 0);
   display.print(unit);
 
+  // Shows the current frequency
   display.setCursor(5, 0);
   display.print("        ");
   display.setCursor(5, 0);
   display.print(freqDisplay);
 
+  // Shows teh Bandwidth
   display.setCursor(0, 2);
   display.print("            ");
   display.setCursor(0, 2);
   display.print("BW: ");
   display.print(String(bandwitdth[bandwidthIdx]));
-  display.print(" KHz");
+  display.print("KHz");
+
+  // Shows step
+  display.setCursor(0, 12);
+  display.print("        ");
+  display.setCursor(0, 12);
+  display.print("ST:");
+  display.print(currentStep);
+  display.print("KHz");
 }
 
 /* *******************************
