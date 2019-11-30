@@ -76,8 +76,8 @@ Band band[] = {
     {15000, 15900, 15400, 10, AM_MODE,  0},     
     {18000, 19000, 18100,  1, USB_MODE, 0},
     {21000, 21900, 21200,  1, USB_MODE, 0},
-    {27000, 27500, 27220,  1, USB_MODE, 0},
-    {28000, 28500, 28400,  1, USB_MODE, 0}};
+    {27000, 27900, 27220,  1, USB_MODE, 0},
+    {28000, 30000, 28400,  1, USB_MODE, 0}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int currentFreqIdx = 3; // Starts working on 40 meters 
