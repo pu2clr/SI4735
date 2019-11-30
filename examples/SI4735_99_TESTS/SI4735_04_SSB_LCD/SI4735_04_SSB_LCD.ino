@@ -33,7 +33,6 @@
 #define BFO_SWITCH 10      // Switch Enconder to control BFO
 #define STEP_SWITCH 11     // Change the current step (1, 5 or 10); 
 
-
 #define MIN_ELAPSED_TIME 100
 
 #define AM_MODE 0
