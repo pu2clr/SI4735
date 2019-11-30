@@ -1141,6 +1141,14 @@ void SI4735::setVolume(byte volume)
 [See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
 
 
+### getVolume
+
+```cpp
+/*
+ * Gets the current volume level.
+ */
+void SI4735::getVolume()
+```
 
 ### volumeUp
 
