@@ -174,7 +174,7 @@ The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance o
 The image below shows the SI473X-D60 block diagram. It was extracted from Silicon Labs Si4730/31/34/35-D60 / BROADCAST AM/FM/SW/LW RADIO RECEIVER (page 21). __Note that the author of this project highlights in red the pin operating voltages can be connected to the Arduino__. Be aware of the operating voltage of the Arduino pins you will use in your project. Preferably use an Arduino with 3.3V operating voltage. If you are not using a 3.3V version of Arduino, you must use a kind of 5V to 3.3V converter on RST, SCLK, SDIO and SEN (depending on your project). 
 
 
-[SI473x Block Diagram](extras/images/block_diagram.png)
+![SI473x Block Diagram](extras/images/block_diagram.png)
 
 
 
