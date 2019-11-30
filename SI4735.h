@@ -745,12 +745,14 @@ public:
     inline byte getFirmwareCMPMINOR() { return firmwareInfo.resp.CMPMINOR; }; // RESP7 - Returns the Component Minor Revision (ASCII).
     inline byte getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; };   // RESP8 -  Returns the Chip Revision (ASCII).
 
-    void setVolume(byte volume);
-    byte getVolume();
+    // Volume control
+    void setVolume(byte volume); 
+    byte getVolume(); 
     void volumeDown();
     void volumeUp();
     inline byte getCurrentVolume() { return volume; }; // Returns the current volume level.
 
+    // 
     void setAM();
     void setFM();
     void setAM(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);

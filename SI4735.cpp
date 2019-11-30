@@ -706,9 +706,8 @@ void SI4735::setVolume(byte volume)
     delayMicroseconds(550);
 }
 
-
 /*
- * Gets the current volume level
+ * Gets the current volume level.
  */
 void SI4735::getVolume() {
     return this->volume;
