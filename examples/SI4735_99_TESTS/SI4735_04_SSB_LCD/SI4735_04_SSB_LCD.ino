@@ -31,6 +31,8 @@
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
 #define BFO_SWITCH 10      // Switch Enconder to control BFO
+#define STEP_SWITCH 11     // Change the current step (1, 5 or 10); 
+
 
 #define MIN_ELAPSED_TIME 100
 
@@ -63,16 +65,22 @@ typedef struct
 } Band;
 
 Band band[] = {
-    {3500, 4000, 3750, 1, LSB_MODE, 0},
-    {7000, 7300, 7100, 1, LSB_MODE, 0},
-    {14000, 14400, 14200, 1, USB_MODE, 0},
-    {18000, 19000, 18100, 1, USB_MODE, 0},
-    {2100, 21400, 21200, 1, USB_MODE, 0},
-    {27000, 27500, 27220, 1, USB_MODE, 0},
-    {28000, 28500, 28400, 1, USB_MODE, 0}};
+    {  570,  1700,   810, 10, AM_MODE,  0},
+    { 3500,  4000,  3750,  1, LSB_MODE, 0},
+    { 4500,  5200,  4850, 10, AM_MODE,  0},
+    { 7000,  7500,  7100,  1, LSB_MODE, 0},
+    { 9200, 10000,  9750, 10, AM_MODE,  0},
+    {11400, 12200, 11940, 10, AM_MODE,  0},    
+    {13400, 12200, 13900, 10, AM_MODE,  0},        
+    {14000, 14400, 14200,  1, USB_MODE, 0},
+    {15000, 15900, 15400, 10, AM_MODE,  0},     
+    {18000, 19000, 18100,  1, USB_MODE, 0},
+    {21000, 21900, 21200,  1, USB_MODE, 0},
+    {27000, 27500, 27220,  1, USB_MODE, 0},
+    {28000, 28500, 28400,  1, USB_MODE, 0}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int currentFreqIdx = 1; // 40M
+int currentFreqIdx = 3; // Starts working on 40 meters 
 
 byte rssi = 0;
 byte stereo = 1;
@@ -80,6 +88,7 @@ byte volume = 0;
 
 int currentBFO = 0;
 int previousBFO = 0;
+byte currentStep = 1;
 bool bfoOn = false;
 
 byte currentMode = AM_MODE; // AM, LSB or USB
@@ -105,6 +114,7 @@ void setup()
   pinMode(VOL_UP, INPUT);
   pinMode(VOL_DOWN, INPUT);
   pinMode(BFO_SWITCH, INPUT);
+  pinMode(STEP_SWITCH, INPUT);
 
   display.init();
 
@@ -219,12 +229,18 @@ void showRSSI()
  */
 void showBFO()
 {
+  if ( bfoOn ) {
   display.setCursor(0, 3);
   display.print("          ");
   display.setCursor(0, 3);
   display.print("BFO: ");
   display.print(currentBFO);
   display.print("Hz");
+  } else {
+    display.setCursor(0, 3);
+    display.print("          ");
+  }
+  
 }
 
 /* *******************************
@@ -337,7 +353,8 @@ void loop()
     }
   }
   // Check button commands
-  if (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) | digitalRead(LSB_USB_AM_SWITCH) | digitalRead(BFO_SWITCH))
+  if (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) | 
+      digitalRead(LSB_USB_AM_SWITCH) | digitalRead(BFO_SWITCH) | digitalRead(STEP_SWITCH) )
   {
     if ((millis() - elapsedButton) > MIN_ELAPSED_TIME)
     {
@@ -379,16 +396,28 @@ void loop()
           currentMode = band[currentFreqIdx].currentMode = AM_MODE;
           si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
         }
+        previousBFO = 0; // Force to refresh BFO information
       }
       else if (digitalRead(BFO_SWITCH) == HIGH)
       {
         bfoOn = !bfoOn;
+      } else if ( digitalRead(STEP_SWITCH) == HIGH) {
+        if ( currentStep == 1 ) 
+           currentStep = 5;
+        else if (currentStep == 5)
+           currentStep = 10;
+        else 
+           currentStep = 1;
+
+        band[currentFreqIdx].currentStep = currentStep; // Stores the new current step to the current band. 
+        si4735.setFrequencyStep(currentStep);           // Changes the current step behaviour  
+           
       }
 
       elapsedButton = millis();
     }
 
-    // Show the current frequency only if it has changed
+    // Shows the current frequency only if it has changed
     currentFrequency = si4735.getFrequency();
     if (currentFrequency != previousFrequency)
     {
@@ -403,6 +432,7 @@ void loop()
       showRSSI();
     }
 
+    // Shows the current BFO information if ithas  changed 
     if (currentBFO != previousBFO)
     {
       previousBFO = currentBFO;
