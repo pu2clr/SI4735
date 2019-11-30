@@ -1155,6 +1155,7 @@ void SI4735::setSSB(byte usblsb)
     analogPowerUp();
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = usblsb;
+    // Not tested.
 }
 
 /*
