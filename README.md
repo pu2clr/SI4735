@@ -175,8 +175,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 
 ![SI473x Block Diagram](extras/images/block_diagram.png)
 
-
-
+<BR>
 
 ### The main Si4735 features
 
@@ -248,15 +247,17 @@ This is the easiest method to install this library.
 
 ![Installing from Arduino IDE 01](extras/images/lib_install_01.png)
 
+<BR>
 
 ![Installing from Arduino IDE 02](extras/images/lib_install_02.png)
 
-
+<BR>
 
 ### Installing via this repository 
 
 ![Installing from this repository](extras/images/install_lib_from_git_01.png)
 
+<BR>
 
 ![Installing from this repository](extras/images/install_lib_from_git_02.png)
 
