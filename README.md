@@ -195,6 +195,10 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 * Great Programming Guide and additional documentation to deal with the device
 
 
+<BR>
+<BR>
+<BR>
+<BR>
 
 
 ## SI4735 Terminology
@@ -220,6 +224,11 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 | SCLK | Serial clock pin |
 | I2C | [I²C - Inter-Integrated Circuit](https://pt.wikipedia.org/wiki/I²C)|
 
+
+<BR>
+<BR>
+<BR>
+<BR>
 
 ## SI4735 Arduino Library Features
 
