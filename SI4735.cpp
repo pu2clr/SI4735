@@ -709,7 +709,7 @@ void SI4735::setVolume(byte volume)
 /*
  * Gets the current volume level.
  */
-void SI4735::getVolume() {
+byte SI4735::getVolume() {
     return this->volume;
 }
 

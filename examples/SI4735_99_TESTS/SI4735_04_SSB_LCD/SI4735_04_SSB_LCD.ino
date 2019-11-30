@@ -212,6 +212,9 @@ void showRSSI()
   display.print(" dBuV");
 }
 
+/* *******************************
+ *  Shows current BFO offset
+ */
 void showBFO()
 {
   display.setCursor(0, 3);
@@ -227,7 +230,7 @@ void showVolume() {
   display.print("      ");
   display.setCursor(0, 4);
   display.print("V:");
-  display.print(currentBFO);
+  display.print(si4735.getVolume());
   display.print("Hz");
 }
 
