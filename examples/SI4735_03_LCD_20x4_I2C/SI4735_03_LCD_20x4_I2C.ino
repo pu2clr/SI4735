@@ -17,8 +17,8 @@
 #define RESET_PIN 12
 
 // Enconder PINs
-#define ENCODER_PIN_A 2
-#define ENCODER_PIN_B 3
+#define ENCODER_PIN_A 3
+#define ENCODER_PIN_B 2
 
 // Buttons controllers
 #define AM_FM_BUTTON 5    // Next Band
