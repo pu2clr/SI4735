@@ -1207,7 +1207,8 @@ si47x_firmware_query_library SI4735::queryLibraryId()
 {
     si47x_firmware_query_library libraryID;
 
-    reset();
+    reset(); // Is it necessary
+
     delay(500);
 
     waitToSend();
