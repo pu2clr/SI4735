@@ -48,6 +48,7 @@ __Attention__:
        * [setAM](https://github.com/pu2clr/SI4735#setam)
        * [setFM](https://github.com/pu2clr/SI4735#setfm)
        * [setVolume](https://github.com/pu2clr/SI4735#setvolume)
+       * [getVolume](https://github.com/pu2clr/SI4735#getvolume)
        * [volumeUp](https://github.com/pu2clr/SI4735#volumeup)
        * [volumeDown](https://github.com/pu2clr/SI4735#volumedown)
        * [getCurrentVolume](https://github.com/pu2clr/SI4735#getcurrentvolume)
@@ -1147,7 +1148,7 @@ void SI4735::setVolume(byte volume)
 /*
  * Gets the current volume level.
  */
-void SI4735::getVolume()
+byte SI4735::getVolume()
 ```
 
 ### volumeUp
