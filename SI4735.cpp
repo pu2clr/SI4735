@@ -1207,7 +1207,7 @@ si47x_firmware_query_library SI4735::queryLibraryId()
 {
     si47x_firmware_query_library libraryID;
 
-    reset(); // Is it necessary
+    powerDown(); // Is it necessary
 
     delay(500);
 
