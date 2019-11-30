@@ -10,6 +10,8 @@
 #include "SSD1306Ascii.h"
 #include "SSD1306AsciiAvrI2c.h"
 #include "Rotary.h"
+#include "patch_content.h"
+
 
 #define AM_FUNCTION 1
 
@@ -33,6 +35,8 @@
 
 #define MIN_ELAPSED_TIME 100
 
+const int size_content_full = sizeof ssb_patch_content_full;
+
 long elapsedButton = millis();
 
 // Encoder control variables
@@ -54,15 +58,10 @@ typedef struct {
 } Band;
 
 
-Band band[] = {{4600, 5200, 4850, 5},
-  {5700, 6200, 6000, 5},
-  {7000, 7500, 7200, 5},
-  {9300, 10000, 9600, 5},
-  {11400, 12200, 11940, 5},
-  {13500, 13900, 13600, 5},
-  {15000, 15800, 15400, 5},
-  {17400, 17900, 17600, 5},
-  {21400, 21800, 21500, 5},
+Band band[] = {
+  {7000, 7500, 7100, 1},
+  {14000, 14300, 14100, 1},
+  {210000, 21400, 21100, 1},
   {27000, 27500, 27220, 1},
   {28000, 28500, 28400, 1}
 };
@@ -116,13 +115,14 @@ void setup()
 
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
+  loadSSB();
+
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   
-  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
-
+  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep,2);
+  delay(500);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(60);
-
   showStatus();
 }
 
@@ -223,8 +223,7 @@ void bandUp() {
   }
 
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
-
+  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep,1);
 
 }
 
@@ -237,7 +236,18 @@ void bandDown() {
     currentFreqIdx = lastBand;
   }
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep,2);
+}
+
+
+void loadSSB()
+{
+  si4735.queryLibraryId(); // Is it really necessary here? I will check it.
+  si4735.patchPowerUp();
+  si4735.downloadPatch(ssb_patch_content_full, size_content_full);
+  si4735.setSsbConfig(2, 1, 0, 1, 0, 1);
+  // si4735.setSSB( band[currentFreqIdx].currentMode);
+  showStatus();
 }
 
 /*
