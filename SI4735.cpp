@@ -1207,6 +1207,9 @@ si47x_firmware_query_library SI4735::queryLibraryId()
 {
     si47x_firmware_query_library libraryID;
 
+    reset();
+    delay(500);
+
     waitToSend();
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(POWER_UP);
@@ -1232,8 +1235,6 @@ si47x_firmware_query_library SI4735::queryLibraryId()
 void SI4735::patchPowerUp()
 {
     waitToSend();
-    powerDown(); // reset();    // Or reset()?
-    waitToSend();   // Is it necessary? 
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(POWER_UP);
     Wire.write(0b00110001);          // Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
