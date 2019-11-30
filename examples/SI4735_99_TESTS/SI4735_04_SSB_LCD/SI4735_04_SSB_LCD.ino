@@ -164,7 +164,9 @@ void rotaryEncoder()
   }
 }
 
-// Show current frequency
+/* *******************************
+ * Shows the current frequency, band mode and currend bandwidth filter 
+ */
 void showStatus()
 {
   String unit, freqDisplay;
@@ -225,6 +227,9 @@ void showBFO()
   display.print("Hz");
 }
 
+/* *******************************
+ *  Shows current volume level
+ */
 void showVolume() {
   display.setCursor(0, 4);
   display.print("      ");
@@ -234,9 +239,11 @@ void showVolume() {
   display.print("Hz");
 }
 
+/* *******************************
+ * Goes to the next band 
+ */
 void bandUp()
 {
-
   // save the current frequency for the band
   band[currentFreqIdx].currentFreq = currentFrequency;
   if (currentFreqIdx < lastBand)
@@ -261,6 +268,9 @@ void bandUp()
   }
 }
 
+/* *******************************
+ * Goes to the previous band 
+ */
 void bandDown()
 {
   // save the current frequency for the band
