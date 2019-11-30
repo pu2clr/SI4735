@@ -688,7 +688,7 @@ void SI4735::seekStationDown()
 }
 
 /* 
- * Set volume level
+ * Sets volume level
  * @param byte volume (domain: 0 - 63) 
  */
 void SI4735::setVolume(byte volume)
@@ -706,11 +706,20 @@ void SI4735::setVolume(byte volume)
     delayMicroseconds(550);
 }
 
+
+/*
+ * Gets the current volume level
+ */
+void SI4735::getVolume() {
+    return this->volume;
+}
+
+
 /*
  *  Set sound volume level Up   
  *  
  */
-void SI4735::volumeUp()
+    void SI4735::volumeUp()
 {
     if (volume < 63)
         volume++;
@@ -1224,7 +1233,7 @@ si47x_firmware_query_library SI4735::queryLibraryId()
 void SI4735::patchPowerUp()
 {
     waitToSend();
-    powerDown();    // Or reset()?
+    powerDown(); // reset();    // Or reset()?
     waitToSend();   // Is it necessary? 
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(POWER_UP);

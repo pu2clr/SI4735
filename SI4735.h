@@ -746,6 +746,7 @@ public:
     inline byte getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; };   // RESP8 -  Returns the Chip Revision (ASCII).
 
     void setVolume(byte volume);
+    byte getVolume();
     void volumeDown();
     void volumeUp();
     inline byte getCurrentVolume() { return volume; }; // Returns the current volume level.

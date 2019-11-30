@@ -45,18 +45,20 @@
 #define BANDWIDTH_BUTTON 4       // Next Band
 #define VOL_UP 5                 // Volume Volume Up
 #define VOL_DOWN 6               // Volume Down
-#define BAND_BUTTON_UP 7         // Band Up
-#define BAND_BUTTON_DOWN 8       // Band Down
-#define SSB_SWITCH_BUTTON 9      // Switch AM/SSB
+#define BAND_BUTTON_UP 8         // Band Up
+#define BAND_BUTTON_DOWN 9       // Band Down
 #define LSB_SSB_SWITCH_BUTTON 10 // Switch LSB/USB
-#define FM_SWITCH_BUTTON 11      // Switch FM / (AM/SSB)
-#define BFO_BUTTON 13            // Switch encoder to BFO
+#define SWITCH_SSB 11
+#define SWITCH_MODE_BUTTON 13    // Switch encoder to BFO
 
 #define MIN_ELAPSED_TIME 100
 
-#define MODE_AM 0
-#define MODE_LSB 1
-#define MODE_USB 2
+#define MODE_FM 0
+#define MODE_AM 1
+#define MODE_SSB 2
+
+#define SSB_LSB 1
+#define SSB_USB 2
 
 const int size_content_full = sizeof ssb_patch_content_full;
 
@@ -68,9 +70,14 @@ volatile int encoderCount = 0;
 // Some variables to check the SI4735 status
 unsigned currentFrequency;
 unsigned previousFrequency;
+unsigned lastSWBand;
 
 byte bandwidthIdx = 1;
 char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+
+char *mode[] = {"FM ", "AM ", "SSB"};
+byte modeIdx = 0;
+byte currentMode = 0;
 
 typedef struct
 {
@@ -79,30 +86,37 @@ typedef struct
   unsigned currentFreq; // Used to store the current band before you switch to another band
   byte currentStep;     // Used to store the corrent step
   byte currentMode;     // MODE_AM, MODE_LSB e MODE_USB
+  byte currentSSBMode;  // if SSB, LSB or USB
 } Band;
 
 // SW band table
 Band band[] = {
-    {3500, 4000, 3700, 1, MODE_LSB},
-    {4600, 5200, 4850, 5, MODE_AM},
-    {5700, 6200, 6000, 5, MODE_AM},
-    {7000, 7300, 7100, 5, MODE_AM},
-    {9300, 10000, 9600, 5, MODE_AM},
-    {11400, 12200, 11940, 5, MODE_AM},
-    {13500, 13900, 13600, 5, MODE_AM},
-    {14000, 14400, 14100, 1, MODE_USB},
-    {15000, 15800, 15400, 5, MODE_AM},
-    {17400, 19900, 17600, 5, MODE_AM},
-    {21000, 21800, 21100, 1, MODE_USB},
-    {27000, 27500, 27700, 1, MODE_USB},
-    {28000, 28500, 28400, 1, MODE_USB}};
+  {8400, 10700, 10390, 10, MODE_FM, 0}, // FM
+  {570, 1700, 810, 10, MODE_AM, 0},
+  {3500, 4000, 3700, 1, MODE_SSB, SSB_LSB},
+  {4600, 5200, 4850, 5, MODE_AM, 0},
+  {5700, 6200, 6000, 5, MODE_AM, 0},
+  {7000, 7500, 7100, 1, MODE_SSB, SSB_LSB},
+  {9300, 10000, 9600, 5, MODE_AM, 0},
+  {11400, 12200, 11940, 5, MODE_AM, 0},
+  {13500, 13900, 13600, 5, MODE_AM, 0},
+  {14000, 14400, 14100, 1, MODE_SSB, SSB_USB},
+  {15000, 15800, 15400, 5, MODE_AM, 0},
+  {17400, 19900, 17600, 5, MODE_AM, 0},
+  {21000, 21800, 21100, 1, MODE_SSB, SSB_USB},
+  {27000, 27500, 27700, 1, MODE_SSB, SSB_USB},
+  {28000, 28500, 28400, 1, MODE_SSB, SSB_USB}
+};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int currentFreqIdx = 2; // 41M
+int currentFreqIdx = 1; // MW
+
+
 
 byte rssi = 0;
 byte stereo = 1;
 byte volume = 0;
+
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
@@ -122,11 +136,10 @@ void setup()
   pinMode(VOL_DOWN, INPUT);
   pinMode(BAND_BUTTON_UP, INPUT);
   pinMode(BAND_BUTTON_DOWN, INPUT);
-  pinMode(SSB_SWITCH_BUTTON, INPUT);
   pinMode(LSB_SSB_SWITCH_BUTTON, INPUT);
   pinMode(BAND_BUTTON_DOWN, INPUT);
-  pinMode(FM_SWITCH_BUTTON, INPUT);
-  pinMode(BFO_BUTTON, INPUT);
+  pinMode(SWITCH_MODE_BUTTON, INPUT);
+  pinMode(SWITCH_SSB, INPUT);
 
   display.begin(&Adafruit128x64, I2C_ADDRESS);
   display.setFont(Adafruit5x7);
@@ -152,12 +165,10 @@ void setup()
 
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
-  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-
-  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+  si4735.setFM(band[0].minimumFreq, band[0].maximumFreq, band[0].currentFreq, band[0].currentStep);
 
   currentFrequency = previousFrequency = si4735.getFrequency();
-  si4735.setVolume(60);
+  si4735.setVolume(45);
 
   showStatus();
 }
@@ -184,9 +195,28 @@ void showStatus()
 {
   String unit, freqDisplay;
   String bandMode;
+  if (si4735.isCurrentTuneFM())
+  {
+    bandMode = String("FM ");
+    unit = "MHz";
+  }
+  else
+  {
+    unit = "KHz";
+    if (band[currentFreqIdx].currentMode == MODE_AM)
+    {
+      bandMode = String("AM ");
+    }
+    else if (band[currentFreqIdx].currentSSBMode == SSB_LSB)
+    {
+      bandMode = String("LSB");
+    }
+    else
+    {
+      bandMode = String("USB");
+    }
+  }
 
-  bandMode = String("AM");
-  unit = "KHz";
   freqDisplay = String(currentFrequency);
 
   display.set1X();
@@ -250,6 +280,9 @@ void showVolume()
 void bandUp()
 {
 
+  if (currentMode == MODE_FM)
+    return;
+
   // save the current frequency for the band
   band[currentFreqIdx].currentFreq = currentFrequency;
   if (currentFreqIdx < lastBand)
@@ -258,18 +291,29 @@ void bandUp()
   }
   else
   {
-    currentFreqIdx = 0;
+    currentFreqIdx = 1;
   }
 
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+
+  if ( currentMode == MODE_SSB ) {
+    loadSSB();
+    si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSBMode);
+  }
+  else {
+    si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+  }
+
 }
 
 void bandDown()
 {
+  if (currentMode == MODE_FM)
+    return;
+
   // save the current frequency for the band
   band[currentFreqIdx].currentFreq = currentFrequency;
-  if (currentFreqIdx > 0)
+  if (currentFreqIdx > 1)
   {
     currentFreqIdx--;
   }
@@ -277,8 +321,15 @@ void bandDown()
   {
     currentFreqIdx = lastBand;
   }
+
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+  if ( currentMode == MODE_SSB ) {
+    loadSSB();
+    si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSBMode);
+  }
+  else {
+    si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+  }
 }
 
 /*
@@ -289,9 +340,17 @@ void bandDown()
 */
 void loadSSB()
 {
+  display.set2X();
+  display.setCursor(26, 1);
+  display.print("########");
+  delay(250);
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
   si4735.patchPowerUp();
   si4735.downloadPatch(ssb_patch_content_full, size_content_full);
+  si4735.setSsbConfig(2, 1, 0, 1, 0, 1);
+  // si4735.setSSB( band[currentFreqIdx].currentSSBMode);
+
+  showStatus();
 }
 
 /*
@@ -299,7 +358,6 @@ void loadSSB()
 */
 void loop()
 {
-
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
@@ -313,47 +371,69 @@ void loop()
 
   // Check button commands
   if (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(VOL_UP) |
-      digitalRead(VOL_DOWN) | digitalRead(SSB_SWITCH_BUTTON) | digitalRead(FM_SWITCH_BUTTON))
+      digitalRead(VOL_DOWN) | digitalRead(SWITCH_MODE_BUTTON) | digitalRead(SWITCH_SSB) )
   {
     // check if which button was pressed
     if ((millis() - elapsedButton) > MIN_ELAPSED_TIME)
     {
-      if (digitalRead(FM_SWITCH_BUTTON) == HIGH)
+      if (digitalRead(SWITCH_MODE_BUTTON) == HIGH)
       {
-        if (si4735.isCurrentTuneFM())
-          si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
-        else
-          si4735.setFM();
-      }
-      else if (digitalRead(SSB_SWITCH_BUTTON) == HIGH)
-      {
-        loadSSB();
-        si4735.setSsbConfig(2, 1, 0, 1, 0, 1);
-        si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentMode);
-      }
-      else if (digitalRead(LSB_SSB_SWITCH_BUTTON) == HIGH)
-      {
-        band[currentFreqIdx].currentMode = (band[currentFreqIdx].currentMode == MODE_LSB) ? MODE_USB : MODE_LSB;
-      }
-      else if (digitalRead(BANDWIDTH_BUTTON) == HIGH)
-      {
-        bandwidthIdx++;
-        if (bandwidthIdx > 6)
-          bandwidthIdx = 0;
-        si4735.setBandwidth(bandwidthIdx, 0);
-        showStatus();
-      }
-      else if (digitalRead(BAND_BUTTON_UP) == HIGH)
-        bandUp();
-      else if (digitalRead(BAND_BUTTON_DOWN) == HIGH)
-        bandDown();
-      else if (digitalRead(VOL_UP) == HIGH)
-        si4735.volumeUp();
-      else if (digitalRead(VOL_DOWN) == HIGH)
-        si4735.volumeDown();
+        if (currentMode == MODE_FM)
+        {
+          band[0].currentFreq = currentFrequency; // save FM Current Frequency
+        }
 
-      elapsedButton = millis();
+        currentMode = (currentMode < 2) ? (currentMode + 1) : 0;
+        if (currentMode == MODE_SSB)
+        {
+          // loadSSB();
+          // si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSBMode);
+        }
+        else if (currentMode == MODE_AM)
+        {
+          currentFreqIdx = 1;
+          si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+        }
+        else
+        {
+          currentFrequency = band[0].currentFreq;
+          si4735.setFM(band[0].minimumFreq, band[0].maximumFreq, band[0].currentFreq, band[0].currentStep);
+        }
+      }
     }
+    else if ( digitalRead(SWITCH_SSB) ==  HIGH ) {
+      loadSSB();
+      currentMode = MODE_SSB;
+      currentFreqIdx = 2;
+      currentFrequency = band[currentFreqIdx].currentFreq;
+      si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSBMode);
+    }
+    else if (digitalRead(LSB_SSB_SWITCH_BUTTON) == HIGH)
+    {
+      if (currentMode == MODE_SSB)
+      {
+        band[currentFreqIdx].currentSSBMode = (band[currentFreqIdx].currentSSBMode == SSB_LSB) ? SSB_USB : SSB_LSB;
+        previousFrequency = 0; // Force to show status
+      }
+    }
+    else if (digitalRead(BANDWIDTH_BUTTON) == HIGH)
+    {
+      bandwidthIdx++;
+      if (bandwidthIdx > 6)
+        bandwidthIdx = 0;
+      si4735.setBandwidth(bandwidthIdx, 0);
+      showStatus();
+    }
+    else if (digitalRead(BAND_BUTTON_UP) == HIGH)
+      bandUp();
+    else if (digitalRead(BAND_BUTTON_DOWN) == HIGH)
+      bandDown();
+    else if (digitalRead(VOL_UP) == HIGH)
+      si4735.volumeUp();
+    else if (digitalRead(VOL_DOWN) == HIGH)
+      si4735.volumeDown();
+
+    elapsedButton = millis();
   }
 
   // Show the current frequency only if it has changed
