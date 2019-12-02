@@ -63,16 +63,16 @@ typedef struct {
   unsigned   maximumFreq;
   unsigned   currentFreq;
   unsigned   currentStep;
-  byte       currentSSB; 
+  byte       currentSSB;
 } Band;
 
 
 Band band[] = {
-  {3500, 4000, 3700, 1,LSB},
-  {7000, 7500, 7100, 1,LSB},
-  {14000, 14300, 14200, 1,USB},
-  {210000, 21400, 21200, 1,USB},
-  {27000, 27500, 27220, 1,USB},
+  {3500, 4000, 3700, 1, LSB},
+  {7000, 7500, 7100, 1, LSB},
+  {14000, 14300, 14200, 1, USB},
+  {210000, 21400, 21200, 1, USB},
+  {27000, 27500, 27220, 1, USB},
   {28000, 28500, 28400, 1, USB}
 };
 
@@ -115,6 +115,9 @@ void setup()
   display.print("Si4735 Arduino Library");
   delay(500);
   display.setCursor(30, 3);
+  display.print("SSB TEST");
+  delay(500);
+  display.setCursor(30, 6);
   display.print("By PU2CLR");
   delay(3000);
   display.clear();
@@ -177,16 +180,18 @@ void showStatus()
   display.setCursor(26, 1);
   display.print(freqDisplay);
 
-  si4735.getAutomaticGainControl();
 
   // Show AGC Information
+  /*
+    si4735.getAutomaticGainControl();
+    display.set1X();
+    display.setCursor(0, 4);
+    display.print((si4735.isAgcEnabled()) ? "AGC ON" : "AGC OFF");
+    display.setCursor(0, 5);
+    display.print("G.:");
+    display.print(si4735.getAgcGainIndex());
+  */
   display.set1X();
-  display.setCursor(0, 4);
-  display.print((si4735.isAgcEnabled()) ? "AGC ON" : "AGC OFF");
-  display.setCursor(0, 5);
-  display.print("G.:");
-  display.print(si4735.getAgcGainIndex());
-
   display.setCursor(0, 7);
   display.print("           ");
   display.setCursor(0, 7);
@@ -230,7 +235,7 @@ void showBFO() {
   display.setCursor(70, 4);
   display.print("BFO: ");
   display.print(currentBFO);
-  
+
 }
 
 void bandUp() {
@@ -316,9 +321,9 @@ void loop()
       si4735.volumeUp();
     else if (digitalRead(VOL_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
       si4735.volumeDown();
-      else if (digitalRead(BFO_SWITCH) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
-        bfoOn = !bfoOn;
-      }
+    else if (digitalRead(BFO_SWITCH) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
+      bfoOn = !bfoOn;
+    }
     elapsedButton = millis();
   }
 
@@ -350,7 +355,7 @@ void loop()
     si4735.setSsbBfo(currentBFO);
     showBFO();
   }
-  
+
 
   delay(50);
 }
