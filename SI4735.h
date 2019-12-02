@@ -12,10 +12,10 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-#define POWER_UP_FM  0         // FM
-#define POWER_UP_AM  1         // AM and SSB (if patch applyed)
-#define POWER_UP_WB  3         // Weather Band Receiver
-#define POWER_PATCH 15         //
+#define POWER_UP_FM 0  // FM
+#define POWER_UP_AM 1  // AM and SSB (if patch applyed)
+#define POWER_UP_WB 3  // Weather Band Receiver
+#define POWER_PATCH 15 //
 
 // SI473X commands (general)
 #define SI473X_ADDR 0x11    // SI473X I2C buss address
@@ -120,9 +120,8 @@
 #define SSB_RF_IF_AGC_RELEASE_RATE 0x3703 // Sets the number of milliseconds the low IF peak detector must be exceeded before increasing the gain. Defaul 140.
 
 // See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 12 and 13
-#define LSB_MODE 1  // 01
-#define USB_MODE 2  // 10
-
+#define LSB_MODE 1 // 01
+#define USB_MODE 2 // 10
 
 // Parameters
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
@@ -169,33 +168,32 @@ typedef union {
  * 
  */
 typedef union {
-    struct {
-        byte ANTCAPL; // Antenna Tuning Capacitor High Byte 
-        byte ANTCAPH; // Antenna Tuning Capacitor Low Byte 
+    struct
+    {
+        byte ANTCAPL; // Antenna Tuning Capacitor High Byte
+        byte ANTCAPH; // Antenna Tuning Capacitor Low Byte
     } raw;
     unsigned value;
 } si47x_antenna_capacitor;
 
- /*
+/*
  * AM_TUNE_FREQ data type command
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 135
  */
-    typedef union {
+typedef union {
     struct
     {
         byte FAST : 1;   // ARG1 - FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate.
         byte FREEZE : 1; // Valid onlu for FM (Must be 0 to AM)
         byte DUMMY1 : 4; // Always set 0
         byte USBLSB : 2; // SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected.
-        byte FREQH;   // ARG2 - Tune Frequency High Byte.
-        byte FREQL;   // ARG3 - Tune Frequency Low Byte.
-        byte ANTCAPH; // ARG4 - Antenna Tuning Capacitor High Byte. 
-        byte ANTCAPL; // ARG5 - Antenna Tuning Capacitor Low Byte. Note used for FM.
+        byte FREQH;      // ARG2 - Tune Frequency High Byte.
+        byte FREQL;      // ARG3 - Tune Frequency Low Byte.
+        byte ANTCAPH;    // ARG4 - Antenna Tuning Capacitor High Byte.
+        byte ANTCAPL;    // ARG5 - Antenna Tuning Capacitor Low Byte. Note used for FM.
     } arg;
     byte raw[5];
 } si47x_set_frequency;
-
-
 
 /* 
  *  Represents searching for a valid frequency data type.
@@ -455,8 +453,8 @@ typedef union {
         byte DUMMY1 : 1;       // Always write to 0.
         byte RDSNEWBLOCKA : 1; // If set, generate an interrupt when Block A data is found or subsequently changed
         byte RDSNEWBLOCKB : 1; // If set, generate an interrupt when Block B data is found or subsequently changed
-        byte DUMMY2 : 5;      // Reserved - Always write to 0.
-        byte DUMMY3 : 5;      // Reserved - Always write to 0.
+        byte DUMMY2 : 5;       // Reserved - Always write to 0.
+        byte DUMMY3 : 5;       // Reserved - Always write to 0.
     } refined;
     byte raw[2];
 } si47x_rds_int_source;
@@ -660,13 +658,13 @@ private:
 
     byte currentSsbStatus;
 
-
     void reset(void);
     void waitInterrupr(void);
+    void sendSSBModeProperty(); // Sends SSB_MODE property to the device.
 
 public:
     SI4735();
-    void waitToSend(void);  // Wait for Si4735 device ready to receive command
+    void waitToSend(void); // Wait for Si4735 device ready to receive command
     void setup(byte resetPin, byte defaultFunction);
     void setup(byte resetPin, int interruptPin, byte defaultFunction);
     void setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE);
@@ -747,13 +745,13 @@ public:
     inline byte getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; };   // RESP8 -  Returns the Chip Revision (ASCII).
 
     // Volume control
-    void setVolume(byte volume); 
-    byte getVolume(); 
+    void setVolume(byte volume);
+    byte getVolume();
     void volumeDown();
     void volumeUp();
     inline byte getCurrentVolume() { return volume; }; // Returns the current volume level.
 
-    // 
+    //
     void setAM();
     void setFM();
     void setAM(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
@@ -763,7 +761,7 @@ public:
 
     void setFrequencyStep(byte step);
 
-    inline void setTuneFrequencyFast(byte FAST) { currentFrequencyParams.arg.FAST = FAST; }; // FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate
+    inline void setTuneFrequencyFast(byte FAST) { currentFrequencyParams.arg.FAST = FAST; };         // FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate
     inline void setTuneFrequencyFreeze(byte FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; // Onlye FM. Freeze Metrics During Alternate Frequency Jump.
     void setTuneFrequencyAntennaCapacitor(unsigned capacitor);
 
@@ -804,13 +802,17 @@ public:
 
     /*
      * SSB 
-     */   
-    void setSsbBfo(int offset);
-    void setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS);
+     */
+    void setSSBBfo(int offset);
+    void setSSBConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS);
     void setSSB(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step, byte usblsb);
     void setSSB(byte usblsb);
     void setSSBAudioBandwidth(byte AUDIOBW);
     void setSSBAutomaticVolumeControl(byte AVCEN);
+    void setSBBSidebandCutoffFilter(byte SBCUTFLT);
+    void setSSBAvcDivider(byte AVC_DIVIDER);
+    void setSSBDspAfc(byte DSP_AFCDIS);
+    void setSSBSoftMute(byte SMUTESEL);
 
         /*
      * SSB PATCH

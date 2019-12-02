@@ -46,7 +46,6 @@ void SI4735::reset()
     delay(250);
 }
 
-
 /*
  * Wait for the si473x is ready (Clear to Send status bit have to be 1).  
  */
@@ -89,7 +88,6 @@ void SI4735::powerDown(void)
     Wire.write(POWER_DOWN);
     Wire.endTransmission();
     delayMicroseconds(2500);
-
 }
 
 /*
@@ -265,8 +263,8 @@ void SI4735::setFrequency(unsigned freq)
     if (currentSsbStatus != 0)
     {
         currentFrequencyParams.arg.USBLSB = currentSsbStatus; // Set to LSB or USB
-        currentFrequencyParams.arg.FAST = 0; // Used just on AM and FM
-        currentFrequencyParams.arg.FREEZE = 0; // Used just on FM
+        currentFrequencyParams.arg.FAST = 0;                  // Used just on AM and FM
+        currentFrequencyParams.arg.FREEZE = 0;                // Used just on FM
     }
 
     Wire.beginTransmission(SI473X_ADDR);
@@ -709,16 +707,16 @@ void SI4735::setVolume(byte volume)
 /*
  * Gets the current volume level.
  */
-byte SI4735::getVolume() {
+byte SI4735::getVolume()
+{
     return this->volume;
 }
-
 
 /*
  *  Set sound volume level Up   
  *  
  */
-    void SI4735::volumeUp()
+void SI4735::volumeUp()
 {
     if (volume < 63)
         volume++;
@@ -779,7 +777,7 @@ void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCF
     Wire.write(rds_int_source.raw[1]); // Send the argments. Most significant first
     Wire.write(rds_int_source.raw[0]);
     Wire.endTransmission();
-    delayMicroseconds(550); 
+    delayMicroseconds(550);
 }
 
 /*
@@ -819,7 +817,7 @@ void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
         currentRdsStatus.raw[i] = Wire.read();
     }
 
-    delayMicroseconds(550); 
+    delayMicroseconds(550);
 }
 
 /*
@@ -879,7 +877,7 @@ void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byt
     Wire.write(config.raw[1]);         // Send the argments. Most significant first
     Wire.write(config.raw[0]);
     Wire.endTransmission();
-    delayMicroseconds(550); 
+    delayMicroseconds(550);
 }
 
 // TO DO
@@ -894,7 +892,7 @@ unsigned SI4735::getRdsPI(void)
     {
         return currentRdsStatus.resp.BLOCKAL;
     }
-    return 0; 
+    return 0;
 }
 
 /*
@@ -921,7 +919,7 @@ unsigned SI4735::getRdsVersionCode(void)
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
 
-    return blkb.refined.versionCode; 
+    return blkb.refined.versionCode;
 }
 
 /* 
@@ -934,7 +932,7 @@ unsigned SI4735::getRdsProgramType(void)
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
 
-    return blkb.refined.programType; 
+    return blkb.refined.programType;
 }
 
 char *SI4735::getNext2Block(char *c)
@@ -1067,7 +1065,7 @@ String SI4735::getRdsTime()
  * Sets the SSB Beat Frequency Offset (BFO). 
  * @param offset 16-bit signed value (unit in Hz). The valid range is -16383 to +16383 Hz. 
  */
-void SI4735::setSsbBfo(int offset)
+void SI4735::setSSBBfo(int offset)
 {
 
     si47x_property property;
@@ -1112,14 +1110,12 @@ void SI4735::setSsbBfo(int offset)
  * @param SMUTESEL SSB Soft-mute Based on RSSI or SNR.
  * @param DSP_AFCDIS DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
  */
-void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
+void SI4735::setSSBConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
 {
     si47x_property property;
 
     if (currentTune == FM_TUNE_FREQ) // Only AM/SSB mode
         return;
-
-    waitToSend();
 
     property.value = SSB_MODE;
 
@@ -1130,24 +1126,101 @@ void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AV
     currentSSBMode.param.SMUTESEL = SMUTESEL;
     currentSSBMode.param.DSP_AFCDIS = DSP_AFCDIS;
 
-    Wire.beginTransmission(SI473X_ADDR);
-    Wire.write(SET_PROPERTY);
-    Wire.write(0x00);                  // Always 0x00
-    Wire.write(property.raw.byteHigh); // High byte first
-    Wire.write(property.raw.byteLow);  // Low byte after
-    Wire.write(currentSSBMode.raw[1]); // SSB MODE params; freq. high byte first
-    Wire.write(currentSSBMode.raw[0]); // SSB MODE params; freq. low byte after
-
-    Wire.endTransmission();
-    delayMicroseconds(550);
+    sendSSBModeProperty();
 }
+
+/* 
+ * Sets DSP AFC disable or enable
+ * 0 = SYNC mode, AFC enable
+ * 1 = SSB mode, AFC disable
+ */
+void SI4735::setSSBDspAfc(byte DSP_AFCDIS)
+{
+    currentSSBMode.param.DSP_AFCDIS;
+    sendSSBModeProperty();
+}
+
+/* 
+ * Sets SSB Soft-mute Based on RSSI or SNR Selection:
+ * 0 = Soft-mute based on RSSI (default).
+ * 1 = Soft-mute based on SNR.
+ */
+void SI4735::setSSBSoftMute(byte SMUTESEL)
+{
+    currentSSBMode.param.SMUTESEL;
+    sendSSBModeProperty();
+}
+
+/*
+ * Sets SSB Automatic Volume Control (AVC) for SSB mode
+ * 0 = Disable AVC.
+ * 1 = Enable AVC (default).
+ */
+void SI4735::setSSBAutomaticVolumeControl(byte AVCEN)
+{
+    currentSSBMode.param.AVCEN = AVCEN;
+    sendSSBModeProperty();
+}
+
+/*
+ * Sets AVC Divider
+ * for SSB mode, set divider = 0
+ * for SYNC mode, set divider = 3 Other values = not allowed.
+ */
+void SI4735::setSSBAvcDivider(byte AVC_DIVIDER)
+{
+    currentSSBMode.param.AVC_DIVIDER;
+    sendSSBModeProperty();
+}
+
+/* 
+ * Sets SBB Sideband Cutoff Filter for band pass and low pass filters:
+ * 0 = Band pass filter to cutoff both the unwanted side band and high frequency components > 2.0 kHz of the wanted side band. (default)
+ * 1 = Low pass filter to cutoff the unwanted side band. 
+ * Other values = not allowed.
+ */
+void SI4735::setSBBSidebandCutoffFilter(byte SBCUTFLT)
+{
+    currentSSBMode.param.SBCUTFLT;
+    sendSSBModeProperty();
+}
+
+/*
+ * SSB Audio Bandwidth for SSB mode
+ * 
+ * 0 = 1.2 kHz low-pass filter* . (default)
+ * 1 = 2.2 kHz low-pass filter* .
+ * 2 = 3.0 kHz low-pass filter.
+ * 3 = 4.0 kHz low-pass filter.
+ * 4 = 500 Hz band-pass filter for receiving CW signal, i.e. [250 Hz, 750 Hz]
+ *     with center frequency at 500 Hz when USB is selected or [-250 Hz, -750 1Hz] with center 
+ *     frequency at -500Hz when LSB is selected* .
+ * 5 = 1 kHz band-pass filter for receiving CW signal, i.e. [500 Hz, 1500 Hz] with center 
+ *     frequency at 1 kHz when USB is selected or [-500 Hz, -1500 1 Hz] with center frequency 
+ *     at -1kHz when LSB is selected* .
+ * Other values = reserved.
+ * Note:
+ *   If audio bandwidth selected is about 2 kHz or below, it is recommended to set SBCUTFLT[3:0] to 0 
+ *   to enable the band pass filter for better high- cut performance on the wanted side band. 
+ *   Otherwise, set it to 1.
+ * 
+ * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
+ */
+void SI4735::setSSBAudioBandwidth(byte AUDIOBW)
+{
+    // Sets the audio filter property parameter
+    currentSSBMode.param.AUDIOBW = AUDIOBW;
+    sendSSBModeProperty();
+}
+
+
 
 /*
  * Set the radio to AM function. It means: LW MW and SW.
  */
 void SI4735::setSSB(byte usblsb)
 {
-    // Is it needed to load patch when switch to SSB?  
+    // Is it needed to load patch when switch to SSB?
     // powerDown();
     // It starts with the same AM parameters.
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
@@ -1187,71 +1260,17 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
     setFrequency(currentWorkFrequency);
 
     delayMicroseconds(550);
-
 }
 
-/*
- * SSB Audio Bandwidth
- * 
- * 0 = 1.2 kHz low-pass filter* . (default)
- * 1 = 2.2 kHz low-pass filter* .
- * 2 = 3.0 kHz low-pass filter.
- * 3 = 4.0 kHz low-pass filter.
- * 4 = 500 Hz band-pass filter for receiving CW signal, i.e. [250 Hz, 750 Hz]
- *     with center frequency at 500 Hz when USB is selected or [-250 Hz, -750 1Hz] with center 
- *     frequency at -500Hz when LSB is selected* .
- * 5 = 1 kHz band-pass filter for receiving CW signal, i.e. [500 Hz, 1500 Hz] with center 
- *     frequency at 1 kHz when USB is selected or [-500 Hz, -1500 1 Hz] with center frequency 
- *     at -1kHz when LSB is selected* .
- * Other values = reserved.
- * Note:
- *   If audio bandwidth selected is about 2 kHz or below, it is recommended to set SBCUTFLT[3:0] to 0 
- *   to enable the band pass filter for better high- cut performance on the wanted side band. 
- *   Otherwise, set it to 1.
- */
-void SI4735::setSSBAudioBandwidth(byte AUDIOBW)
+/* 
+ * Just send the property SSB_MOD to the device. 
+ * Internal use (privete method). 
+ */ 
+void SI4735::sendSSBModeProperty()
 {
     si47x_property property;
-
     property.value = SSB_MODE;
-    currentSSBMode.param.AUDIOBW = AUDIOBW;
-
     waitToSend();
-
-    property.value = SSB_MODE;
-
-    currentSSBMode.param.AUDIOBW = AUDIOBW;
-
-    Wire.beginTransmission(SI473X_ADDR);
-    Wire.write(SET_PROPERTY);
-    Wire.write(0x00);                  // Always 0x00
-    Wire.write(property.raw.byteHigh); // High byte first
-    Wire.write(property.raw.byteLow);  // Low byte after
-    Wire.write(currentSSBMode.raw[1]); // SSB MODE params; freq. high byte first
-    Wire.write(currentSSBMode.raw[0]); // SSB MODE params; freq. low byte after
-
-    Wire.endTransmission();
-    delayMicroseconds(550);
-}
-
-/*
- * set SSB Automatic Volume Control (AVC)
- * 0 = Disable AVC.
- * 1 = Enable AVC (default).
- */
-void SI4735::setSSBAutomaticVolumeControl(byte AVCEN)
-{
-    si47x_property property;
-
-    property.value = SSB_MODE;
-    currentSSBMode.param.AVCEN = AVCEN;
-
-    waitToSend();
-
-    property.value = SSB_MODE;
-
-    currentSSBMode.param.AUDIOBW = AVCEN;
-
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(SET_PROPERTY);
     Wire.write(0x00);                  // Always 0x00
@@ -1270,15 +1289,15 @@ void SI4735::setSSBAutomaticVolumeControl(byte AVCEN)
  * PATCH RESOURCES
  */
 
-/*
+    /*
    Call it first if you are applying a patch on SI4735. 
    Used to confirm if the patch is compatible with the internal device library revision.
    See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
 
    @return a struct si47x_firmware_query_library (see it in SI4735.h)
 */
-si47x_firmware_query_library
-SI4735::queryLibraryId()
+    si47x_firmware_query_library
+    SI4735::queryLibraryId()
 {
     si47x_firmware_query_library libraryID;
 
@@ -1376,7 +1395,7 @@ bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_s
         // The SI4735 issues a status after each 8 - byte transfer.
         // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
         if (cmd_status != 0x80)
-             return false;
+            return false;
     }
     delayMicroseconds(2500);
     return true;
@@ -1389,7 +1408,7 @@ bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_s
  * 
  * @return false if an error is found.
  */
-bool SI4735::downloadPatch(byte eeprom_i2c_address) {
-// TO DO
-
+bool SI4735::downloadPatch(byte eeprom_i2c_address)
+{
+    // TO DO
 }

@@ -275,7 +275,7 @@ void loadSSB()
   si4735.downloadPatch(ssb_patch_content_full, size_content_full);
   delay(500);
   // Check the parameters on documentation.
-  si4735.setSsbConfig(bandwidthIdx, 1, 0, 1, 0, 1);
+  si4735.setSSBConfig(bandwidthIdx, 1, 0, 1, 0, 1);
   showStatus();
 }
 
@@ -352,7 +352,7 @@ void loop()
 
   if (currentBFO != previousBFO ) {
     previousBFO = currentBFO;
-    si4735.setSsbBfo(currentBFO);
+    si4735.setSSBBfo(currentBFO);
     showBFO();
   }
 
