@@ -1,6 +1,6 @@
-# Si4735 Library for Arduino
+# Biblioteca Arduino para o Si4735
 
-Esta é uma biblioteca para o ambiente de desenvolvimento Arduino que implementa as funções do CI SI4735, BROADCAST AM / FM / SW RADIO RECEPTOR da Silicon Labs. Esta biblioteca tem o propósito de fornecer uma interface de programação mais amigável aos projetistas de rádios baseados no SI4735. __A comunicação usada por esta biblioteca é I2C__.
+Esta é uma biblioteca para o ambiente de desenvolvimento Arduino que implementa as funções do CI SI4735, BROADCAST AM / FM / SW RADIO RECEPTOR da Silicon Labs. Esta biblioteca tem o propósito de fornecer uma interface de programação mais amigável aos projetistas de rádios baseados no SI4735. __A comunicação usada por esta biblioteca é I2C__. Consulte as [Características desta Biblioteca](https://github.com/pu2clr/SI4735/blob/master/) para mais detalhes. 
 
 Esta biblioteca pode ser livrimente copiada e distribuída. O modelo de licença utilizado é o do MIT, cujos termos podem ser lidos no documento [__license.txt__](./license.txt). 
 [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence)  
@@ -211,6 +211,8 @@ Esta biblioteca usa o protocolo de comunicação I2C e implementa a maioria das 
 4. Disponível no Ambiente de Desenvolvimento do Arduino
 5. Simplifica projetos de rádios baseados no SI4735
 6. Utiliza o protocolo de comunicação I2C
+7. Suporte à SSB. 
+8. Suporte à RDS.
 
 
 
@@ -1612,7 +1614,7 @@ void setBandwidth(byte AMCHFLT, byte AMPLFLT)
 
 ## SI4735 Firmware Information
 
-Allows to query the part number, chip revision, firmware revision, patch revision and component revision numbers.
+Permite consultar as informações sobre o Firmware armazenadas no SI4735.
 
 <BR>
 
@@ -1710,7 +1712,7 @@ inline byte SI4735::getFirmwareCHIPREV()
 
 ## RDS
 
-    This library implements some RDS features of the SI4735.
+    Discorrer sobre RDS e esta biblioteca.
 
 
 ### setRdsIntSource
@@ -1934,14 +1936,14 @@ String SI4735::getRdsTime()
 
 __This library module is still under development__.
 
-This feature will work only on SI4735-D60. To use this feature, you have to apply  a specific SSB patch. 
-Importantly, Silicon Labs only provides support and documentation on this content to some customers. Also it is important to say that the functions available here have not been tested yet.
+Esta função só foi testada somente no SI4735-D60. Para usar SSB com o SI4735, você deve carregar uma atualização (patch) no CI. No entanto, é importante salientar que a Silicon Labs só provê suporte a esse recurso para alguns clientes.  Até a presente data, há pouca documentação disponível na Internet sobre como aplicar os patches para SI4735. 
 
-To date, I can't apply SSB patches following the very little information I have found on the internet. Due to the lack of more accurate information, my work has been using the trial and error approach. This may take some time.
+O autor desta biblioteca não garante que os procedimentos sugeridos aqui funcionarão em seu ambiente de desenvolvimento. Dito isso, fica por sua conta e risco a execução dos procedimentos de aplicação da atualização (patch) do SI4735 bem como do uso das funções para SSB desenvolvidas aqui. Em outras palavras, o autor desta biblioteca não se responsabilizará por qualquer dano em seu dispositivo SI4735 ou qualquer outro dispositivo que você utilize com esta biblioteca. 
 
-If you have more information about how to apply patches on Si4735, please, let me know. 
+Conforme dito anteriormente, há pouca documentação disponível na Internet sobre a aplicação de patch para o SI4735. O conteúdo deste tópico expõe o entendimento do autor desta biblioteca. Dito disso, algumas informações colocadas aqui podem não ser precisas. 
 
-If you use a Si4735 with these patches applied, good luck.
+É importante saber que o patch aplicado para o SI4735, fica armazenado na RAM interna do SI4735. Como a RAM é uma memória volátil, essa atualização deve ser carregada sempre que você retornar o sistema para o modo SSB. Isto é, se você mudar o modo de SSB para FM ou AM e depois retornar para o modo SSB, essa ação exigirá que você recarregue o patch novamente antes começar a operar com SSB. O mesmo vale para os comandos reset ou power down. 
+
 
 
 ### setSSBBfo
