@@ -269,6 +269,7 @@ void loadSSB()
   delay(500);
   si4735.downloadPatch(ssb_patch_content_full, size_content_full);
   delay(500);
+  // Check the parameters on documentation.
   si4735.setSsbConfig(bandwidthIdx, 1, 0, 1, 0, 1);
   showStatus();
 }
