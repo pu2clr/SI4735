@@ -124,8 +124,8 @@ __Attention__:
          * [patchPowerUp](https://github.com/pu2clr/SI4735#patchpowerup)
          * [downloadPatch](https://github.com/pu2clr/SI4735#downloadpatch)
        * [Single Side Band (SSB) Support](https://github.com/pu2clr/SI4735#single-side-band-ssb-support) 
-         * [setSsbBfo](https://github.com/pu2clr/SI4735#setssbbfo)
-         * [setSsbConfig](https://github.com/pu2clr/SI4735#setssbconfig)
+         * [setSSBBfo](https://github.com/pu2clr/SI4735#setssbbfo)
+         * [setSSBConfig](https://github.com/pu2clr/SI4735#setssbconfig)
 10. [References](https://github.com/pu2clr/SI4735#references)
 11. [Examples](https://github.com/pu2clr/SI4735/tree/master/examples)
 12. [Videos](https://github.com/pu2clr/SI4735#videos) 
@@ -2078,18 +2078,18 @@ If you have more information about how to apply patches on Si4735, please, let m
 If you use a Si4735 with these patches applied, good luck.
 
 
-### setSsbBfo
+### setSSBBfo
 
 ```cpp
 /* 
  * Sets the SSB Beat Frequency Offset (BFO). 
  * @param offset 16-bit signed value (unit in Hz). The valid range is -16383 to +16383 Hz. 
  */ 
-void SI4735::setSsbBfo(int offset)
+void SI4735::setSSBBfo(int offset)
 ```
 
 
-### setSsbConfig
+### setSSBConfig
 
 ```cpp
 /*
@@ -2111,9 +2111,116 @@ void SI4735::setSsbBfo(int offset)
  * @param SMUTESEL SSB Soft-mute Based on RSSI or SNR.
  * @param DSP_AFCDIS DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
  */
-void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
+void SI4735::setSSBConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
 ```
 
+
+### setSSBDspAfc
+
+```cpp
+/* 
+ * Sets DSP AFC disable or enable
+ * 0 = SYNC mode, AFC enable
+ * 1 = SSB mode, AFC disable
+ */
+void SI4735::setSSBDspAfc(byte DSP_AFCDIS)
+```
+
+
+### setSSBSoftMute
+
+```cpp
+/* 
+ * Sets SSB Soft-mute Based on RSSI or SNR Selection:
+ * 0 = Soft-mute based on RSSI (default).
+ * 1 = Soft-mute based on SNR.
+ */
+void SI4735::setSSBSoftMute(byte SMUTESEL)
+```
+
+### setSSBAutomaticVolumeControl
+
+```cpp
+/*
+ * Sets SSB Automatic Volume Control (AVC) for SSB mode
+ * 0 = Disable AVC.
+ * 1 = Enable AVC (default).
+ */
+void SI4735::setSSBAutomaticVolumeControl(byte AVCEN)
+```
+
+### setSSBAvcDivider
+
+```cpp
+/*
+ * Sets AVC Divider
+ * for SSB mode, set divider = 0
+ * for SYNC mode, set divider = 3 Other values = not allowed.
+ */
+void SI4735::setSSBAvcDivider(byte AVC_DIVIDER)
+```
+
+### setSBBSidebandCutoffFilter
+
+```cpp
+/* 
+ * Sets SBB Sideband Cutoff Filter for band pass and low pass filters:
+ * 0 = Band pass filter to cutoff both the unwanted side band and high frequency components > 2.0 kHz of the wanted side band. (default)
+ * 1 = Low pass filter to cutoff the unwanted side band. 
+ * Other values = not allowed.
+ */
+void SI4735::setSBBSidebandCutoffFilter(byte SBCUTFLT)
+```
+
+
+### setSSBAudioBandwidth
+
+
+```cpp
+/*
+ * SSB Audio Bandwidth for SSB mode
+ * 
+ * 0 = 1.2 kHz low-pass filter* . (default)
+ * 1 = 2.2 kHz low-pass filter* .
+ * 2 = 3.0 kHz low-pass filter.
+ * 3 = 4.0 kHz low-pass filter.
+ * 4 = 500 Hz band-pass filter for receiving CW signal, i.e. [250 Hz, 750 Hz]
+ *     with center frequency at 500 Hz when USB is selected or [-250 Hz, -750 1Hz] with center 
+ *     frequency at -500Hz when LSB is selected* .
+ * 5 = 1 kHz band-pass filter for receiving CW signal, i.e. [500 Hz, 1500 Hz] with center 
+ *     frequency at 1 kHz when USB is selected or [-500 Hz, -1500 1 Hz] with center frequency 
+ *     at -1kHz when LSB is selected* .
+ * Other values = reserved.
+ * Note:
+ *   If audio bandwidth selected is about 2 kHz or below, it is recommended to set SBCUTFLT[3:0] to 0 
+ *   to enable the band pass filter for better high- cut performance on the wanted side band. 
+ *   Otherwise, set it to 1.
+ * 
+ * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
+ */
+void SI4735::setSSBAudioBandwidth(byte AUDIOBW)
+```
+
+
+
+### setSSB
+
+```cpp
+/*
+ * Set the radio to SSB (LW/MW/SW) function. 
+ * 
+ * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14
+ * 
+ * @param fromFreq minimum frequency for the band
+ * @param toFreq maximum frequency for the band
+ * @param initialFreq initial frequency 
+ * @param step step used to go to the next channel  
+ * @param usblsb SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection; 
+ *               value 2 (banary 10) = USB; 
+ *               value 1 (banary 01) = LSB.   
+ */
+void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step, byte usblsb)
+```
 
 
 <BR>
