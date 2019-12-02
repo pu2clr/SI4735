@@ -55,7 +55,7 @@ unsigned currentFrequency;
 unsigned previousFrequency;
 
 byte bandwidthIdx = 1;
-char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 
 typedef struct {
@@ -188,11 +188,11 @@ void showStatus()
   display.print(si4735.getAgcGainIndex());
 
   display.setCursor(0, 7);
-  display.print("            ");
+  display.print("           ");
   display.setCursor(0, 7);
-  display.print("BW: ");
+  display.print("BW:");
   display.print(String(bandwitdth[bandwidthIdx]));
-  display.print(" KHz");
+  display.print("KHz");
 }
 
 /* *******************************
@@ -269,7 +269,7 @@ void loadSSB()
   delay(500);
   si4735.downloadPatch(ssb_patch_content_full, size_content_full);
   delay(500);
-  si4735.setSsbConfig(3, 1, 0, 1, 0, 1);
+  si4735.setSsbConfig(bandwidthIdx, 1, 0, 1, 0, 1);
   showStatus();
 }
 
@@ -302,9 +302,9 @@ void loop()
     if (digitalRead(BANDWIDTH_BUTTON) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
     {
       bandwidthIdx++;
-      if (bandwidthIdx > 6)  bandwidthIdx = 0;
+      if (bandwidthIdx > 5)  bandwidthIdx = 0;
 
-      si4735.setBandwidth(bandwidthIdx, 0);
+      si4735.setSSBAudioBandwidth(bandwidthIdx);
       showStatus();
     }
     else if (digitalRead(BAND_BUTTON_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)

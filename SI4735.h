@@ -652,6 +652,7 @@ private:
     si47x_firmware_information firmwareInfo;
     si47x_rds_status currentRdsStatus;
     si47x_agc_status currentAgcStatus;
+    si47x_ssb_mode currentSSBMode;
 
     si473x_powerup powerUp;
 
@@ -808,11 +809,13 @@ public:
     void setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS);
     void setSSB(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step, byte usblsb);
     void setSSB(byte usblsb);
+    void setSSBAudioBandwidth(byte AUDIOBW);
+    void setSSBAutomaticVolumeControl(byte AVCEN);
 
-    /*
+        /*
      * SSB PATCH
      */
-    si47x_firmware_query_library queryLibraryId();
+        si47x_firmware_query_library queryLibraryId();
     void patchPowerUp(); // Used to apply SSB patch on SI4735
     bool downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_size);
     bool downloadPatch(byte eeprom_i2c_address);

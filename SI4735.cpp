@@ -1114,7 +1114,6 @@ void SI4735::setSsbBfo(int offset)
  */
 void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
 {
-    si47x_ssb_mode ssb;
     si47x_property property;
 
     if (currentTune == FM_TUNE_FREQ) // Only AM/SSB mode
@@ -1124,20 +1123,20 @@ void SI4735::setSsbConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AV
 
     property.value = SSB_MODE;
 
-    ssb.param.AUDIOBW = AUDIOBW;
-    ssb.param.SBCUTFLT = SBCUTFLT;
-    ssb.param.AVC_DIVIDER = AVC_DIVIDER;
-    ssb.param.AVCEN = AVCEN;
-    ssb.param.SMUTESEL = SMUTESEL;
-    ssb.param.DSP_AFCDIS = DSP_AFCDIS;
+    currentSSBMode.param.AUDIOBW = AUDIOBW;
+    currentSSBMode.param.SBCUTFLT = SBCUTFLT;
+    currentSSBMode.param.AVC_DIVIDER = AVC_DIVIDER;
+    currentSSBMode.param.AVCEN = AVCEN;
+    currentSSBMode.param.SMUTESEL = SMUTESEL;
+    currentSSBMode.param.DSP_AFCDIS = DSP_AFCDIS;
 
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(SET_PROPERTY);
     Wire.write(0x00);                  // Always 0x00
     Wire.write(property.raw.byteHigh); // High byte first
     Wire.write(property.raw.byteLow);  // Low byte after
-    Wire.write(ssb.raw[1]);            // SSB MODE params; freq. high byte first
-    Wire.write(ssb.raw[0]);            // SSB MODE params; freq. low byte after
+    Wire.write(currentSSBMode.raw[1]); // SSB MODE params; freq. high byte first
+    Wire.write(currentSSBMode.raw[0]); // SSB MODE params; freq. low byte after
 
     Wire.endTransmission();
     delayMicroseconds(550);
@@ -1191,6 +1190,80 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 
 }
 
+/*
+ * SSB Audio Bandwidth
+ * 
+ * 0 = 1.2 kHz low-pass filter* . (default)
+ * 1 = 2.2 kHz low-pass filter* .
+ * 2 = 3.0 kHz low-pass filter.
+ * 3 = 4.0 kHz low-pass filter.
+ * 4 = 500 Hz band-pass filter for receiving CW signal, i.e. [250 Hz, 750 Hz]
+ *     with center frequency at 500 Hz when USB is selected or [-250 Hz, -750 1Hz] with center 
+ *     frequency at -500Hz when LSB is selected* .
+ * 5 = 1 kHz band-pass filter for receiving CW signal, i.e. [500 Hz, 1500 Hz] with center 
+ *     frequency at 1 kHz when USB is selected or [-500 Hz, -1500 1 Hz] with center frequency 
+ *     at -1kHz when LSB is selected* .
+ * Other values = reserved.
+ * Note:
+ *   If audio bandwidth selected is about 2 kHz or below, it is recommended to set SBCUTFLT[3:0] to 0 
+ *   to enable the band pass filter for better high- cut performance on the wanted side band. 
+ *   Otherwise, set it to 1.
+ */
+void SI4735::setSSBAudioBandwidth(byte AUDIOBW)
+{
+    si47x_property property;
+
+    property.value = SSB_MODE;
+    currentSSBMode.param.AUDIOBW = AUDIOBW;
+
+    waitToSend();
+
+    property.value = SSB_MODE;
+
+    currentSSBMode.param.AUDIOBW = AUDIOBW;
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                  // Always 0x00
+    Wire.write(property.raw.byteHigh); // High byte first
+    Wire.write(property.raw.byteLow);  // Low byte after
+    Wire.write(currentSSBMode.raw[1]); // SSB MODE params; freq. high byte first
+    Wire.write(currentSSBMode.raw[0]); // SSB MODE params; freq. low byte after
+
+    Wire.endTransmission();
+    delayMicroseconds(550);
+}
+
+/*
+ * set SSB Automatic Volume Control (AVC)
+ * 0 = Disable AVC.
+ * 1 = Enable AVC (default).
+ */
+void SI4735::setSSBAutomaticVolumeControl(byte AVCEN)
+{
+    si47x_property property;
+
+    property.value = SSB_MODE;
+    currentSSBMode.param.AVCEN = AVCEN;
+
+    waitToSend();
+
+    property.value = SSB_MODE;
+
+    currentSSBMode.param.AUDIOBW = AVCEN;
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                  // Always 0x00
+    Wire.write(property.raw.byteHigh); // High byte first
+    Wire.write(property.raw.byteLow);  // Low byte after
+    Wire.write(currentSSBMode.raw[1]); // SSB MODE params; freq. high byte first
+    Wire.write(currentSSBMode.raw[0]); // SSB MODE params; freq. low byte after
+
+    Wire.endTransmission();
+    delayMicroseconds(550);
+}
+
 
 /*
  * ****************
@@ -1204,7 +1277,8 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 
    @return a struct si47x_firmware_query_library (see it in SI4735.h)
 */
-si47x_firmware_query_library SI4735::queryLibraryId()
+si47x_firmware_query_library
+SI4735::queryLibraryId()
 {
     si47x_firmware_query_library libraryID;
 
