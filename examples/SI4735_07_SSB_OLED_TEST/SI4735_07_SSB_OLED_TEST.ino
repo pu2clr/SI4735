@@ -47,6 +47,8 @@
 #define BAND_BUTTON_DOWN 9 // Seek Down
 #define VOL_UP 6           // Volume Volume Up
 #define VOL_DOWN 7         // Volume Down
+#define AGC_SWITCH 11      // AGC ON/OF 
+#define STEP_SWITCH 10     // 1, 5 or 10 KHz.
 #define BFO_SWITCH  13
 // Seek Function
 
@@ -55,6 +57,7 @@
 #define USB 2
 
 bool bfoOn = false;
+bool disableAgc = true;
 
 int currentBFO = 0;
 int previousBFO = 0;
@@ -69,6 +72,7 @@ volatile int encoderCount = 0;
 // Some variables to check the SI4735 status
 unsigned currentFrequency;
 unsigned previousFrequency;
+byte currentStep = 1;
 
 byte bandwidthIdx = 1;
 char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
@@ -86,7 +90,9 @@ typedef struct {
 Band band[] = {
   {3500, 4000, 3700, 1, LSB},
   {7000, 7500, 7100, 1, LSB},
+  {10000,10500,10050,1, USB}, 
   {14000, 14300, 14200, 1, USB},
+  {18000, 18300, 18100,1,USB},
   {210000, 21400, 21200, 1, USB},
   {27000, 27500, 27220, 1, USB},
   {28000, 28500, 28400, 1, USB}
@@ -120,6 +126,8 @@ void setup()
   pinMode(VOL_UP, INPUT);
   pinMode(VOL_DOWN, INPUT);
   pinMode(BFO_SWITCH, INPUT);
+  pinMode(AGC_SWITCH, INPUT);
+  pinMode(STEP_SWITCH,INPUT);
 
   display.begin(&Adafruit128x64, I2C_ADDRESS);
   display.setFont(Adafruit5x7);
@@ -153,6 +161,8 @@ void setup()
   delay(500);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(40);
+  si4735.setAutomaticGainControl(disableAgc,0);   
+  showBFO();
   showStatus();
 }
 
@@ -198,15 +208,20 @@ void showStatus()
 
 
   // Show AGC Information
-  /*
-    si4735.getAutomaticGainControl();
-    display.set1X();
-    display.setCursor(0, 4);
-    display.print((si4735.isAgcEnabled()) ? "AGC ON" : "AGC OFF");
-    display.setCursor(0, 5);
-    display.print("G.:");
-    display.print(si4735.getAgcGainIndex());
-  */
+  si4735.getAutomaticGainControl();
+  display.set1X();
+  display.setCursor(0, 4);
+  display.print((si4735.isAgcEnabled()) ? "AGC ON " : "AGC OFF");
+
+  display.setCursor(0, 5);
+  display.print("          ");
+  display.setCursor(0, 5);
+  display.print("Step:");
+  display.print(currentStep);
+  display.print("KHz");
+  
+  
+    
   display.set1X();
   display.setCursor(0, 7);
   display.print("           ");
@@ -266,7 +281,7 @@ void bandUp() {
 
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
-
+  currentStep = band[currentFreqIdx].currentStep;
 }
 
 void bandDown() {
@@ -279,6 +294,7 @@ void bandDown() {
   }
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep,  band[currentFreqIdx].currentSSB);
+  currentStep = band[currentFreqIdx].currentStep;
 }
 
 
@@ -317,7 +333,8 @@ void loop()
   }
 
   // Check button commands
-  if (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) | digitalRead(BFO_SWITCH))
+  if (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) | 
+      digitalRead(BFO_SWITCH) | digitalRead(AGC_SWITCH)  | digitalRead(STEP_SWITCH ) )
   {
 
     // check if some button is pressed
@@ -339,6 +356,23 @@ void loop()
       si4735.volumeDown();
     else if (digitalRead(BFO_SWITCH) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
       bfoOn = !bfoOn;
+    } else if ( digitalRead(AGC_SWITCH) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
+       disableAgc = !disableAgc; 
+       // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
+       si4735.setAutomaticGainControl(disableAgc,1);     
+       showStatus(); 
+    } else if ( digitalRead(STEP_SWITCH) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
+       if (currentStep == 1) 
+          currentStep = 5;
+       else if ( currentStep == 5) 
+          currentStep = 10;
+       else 
+          currentStep = 1;  
+
+       si4735.setFrequencyStep(currentStep);
+       band[currentFreqIdx].currentStep = currentStep;
+       
+       showStatus();       
     }
     elapsedButton = millis();
   }

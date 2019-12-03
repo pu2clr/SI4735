@@ -369,6 +369,7 @@ void SI4735::setAM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byt
     currentWorkFrequency = initialFreq;
 
     setFrequency(currentWorkFrequency);
+    setFrequencyStep(step);
 
     delayMicroseconds(1000);
 }
@@ -396,6 +397,7 @@ void SI4735::setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byt
     currentWorkFrequency = initialFreq;
 
     setFrequency(currentWorkFrequency);
+    setFrequencyStep(step);
 
     delayMicroseconds(1000);
 }
@@ -1258,6 +1260,7 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
     currentWorkFrequency = initialFreq;
 
     setFrequency(currentWorkFrequency);
+    setFrequencyStep(step);
 
     delayMicroseconds(550);
 }
