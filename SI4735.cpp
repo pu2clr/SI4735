@@ -1248,7 +1248,7 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
     currentMinimumFrequency = fromFreq;
     currentMaximumFrequency = toFreq;
     currentStep = step;
-
+    
     if (initialFreq < fromFreq || initialFreq > toFreq)
         initialFreq = fromFreq;
 

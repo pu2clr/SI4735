@@ -18,6 +18,20 @@
   This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60. 
   Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.  
 
+  Features of this sketch: 
+
+  1) Only SSB (LSB and USB);
+  2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+  3) Eight ham radio bands pre configured;
+  4) BFO Control; and
+  5) Frequency step switch (1, 5 and 10KHz);
+
+  Main Parts: 
+  Encoder with push button; 
+  Seven bush buttons;
+  OLED Display with I2C protocol;
+  Arduino Pro mini 3.3V;  
+
 
   By Ricardo Lima Caratti, Nov 2019.
 */
@@ -344,7 +358,13 @@ void loop()
       if (bandwidthIdx > 5)  bandwidthIdx = 0;
 
       si4735.setSSBAudioBandwidth(bandwidthIdx);
-      showStatus();
+      // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+      if (bandwidthIdx == 0 || bandwidthIdx == 4 || bandwidthIdx == 5)
+        si4735.setSBBSidebandCutoffFilter(0); 
+      else
+        si4735.setSBBSidebandCutoffFilter(1);
+
+        showStatus();
     }
     else if (digitalRead(BAND_BUTTON_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
       bandUp();
