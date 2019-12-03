@@ -15,8 +15,8 @@ __Atenção__:
 
 ## Sumário
 
-1. [Licença MIT e Direito Autorais](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#licen%C3%A7a-e-direito-autorais)
-2. [Agradecimentos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#agradecimentos)
+1. [Licença MIT e Direito Autorais](https://github.com/pu2clr/SI4735/README-pt-BR.md#licen%C3%A7a-e-direito-autorais)
+2. [Agradecimentos](https://github.com/pu2clr/SI4735/README-pt-BR.md#agradecimentos)
 3. [Sua participação é importante](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#sua-participa%C3%A7%C3%A3o-%C3%A9-importante)
 4. [Sobre o SI4735](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#sobre-o-si4735)
 5. [Terminologia](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#terminologia)
