@@ -1,1 +1,3 @@
-Discorrer sobre RDS e esta biblioteca.
+Neste contexto, métodos podem ser entendidos como as funções implementadas para classe SI4735. Métodos Públicos são as funções que podem ser utilizadas ou chamadas de dentro de um sketch Arduino.
+
+Atualmente esta biblioteca possui mais de 70 funções que podem ser utilizadas para controlar ou alterar o comportamento do SI4735. É muito importante para o desenvolvedor conhecer previamente os métodos implementados nesta biblioteca para tirar o máximo proveito possível das função do rádio que será construído. A pasta [examples]((https://github.com/pu2clr/SI4735/blob/master/examples/) possui vários exemplos que podem orientar o desenvolvedor na utilização desta biblioteca.

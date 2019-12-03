@@ -115,8 +115,18 @@ __Atenção__:
        * [getRdsText](https://github.com/pu2clr/SI4735#getrdstext)
        * [getRdsTime](https://github.com/pu2clr/SI4735#getrdstime)
      * [__Single Side Band (SSB) Support__](https://github.com/pu2clr/SI4735#single-side-band-ssb-support)
-       * [setSsbBfo](https://github.com/pu2clr/SI4735#setssbbfo)
-       * [setSsbConfig](https://github.com/pu2clr/SI4735#setssbconfig)
+         * [setSSBBfo](https://github.com/pu2clr/SI4735#setssbbfo)
+         * [setSSBConfig](https://github.com/pu2clr/SI4735#setssbconfig)
+         * [setSSB](https://github.com/pu2clr/SI4735#setssb)
+         * [setSSBAudioBandwidth](https://github.com/pu2clr/SI4735#setssbaudiobandwidth)
+         * [setSBBSidebandCutoffFilter](https://github.com/pu2clr/SI4735#setsbbsidebandcutofffilter)
+         * [setSSBAvcDivider](https://github.com/pu2clr/SI4735#setssbavcdivider)
+         * [setSSBAvcDivider](https://github.com/pu2clr/SI4735#setssbavcdivider)
+         * [setSSBAutomaticVolumeControl](https://github.com/pu2clr/SI4735#setssbautomaticvolumecontrol)
+         * [setSSBSoftMute](https://github.com/pu2clr/SI4735#setssbsoftmute)
+         * [setSSBDspAfc](https://github.com/pu2clr/SI4735#setssbdspafc)
+         * [setSSBConfig](https://github.com/pu2clr/SI4735#setssbconfig)
+         * [setSSBBfo](https://github.com/pu2clr/SI4735#setssbbfo)
 10. [Referências](https://github.com/pu2clr/SI4735#references)
 11. [Exemplos]()
 12. [Vídeos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#videos) 
@@ -806,7 +816,12 @@ typedef union {
 
 ## Métodos Públicos
 
-To use the methods below you have to declare the class SI4735 in your sketch. The folder __examples__ has some examples that show how to use these methods. For example: see [Proof of Concept for SI4735 Arduino Library](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino) 
+Neste contexto, métodos podem ser entendidos como as funções implementadas para classe SI4735. Métodos Públicos são as funções que podem ser utilizadas ou chamadas de dentro de um sketch Arduino.
+
+Atualmente esta biblioteca possui mais de 70 funções que podem ser utilizadas para controlar ou alterar o comportamento do SI4735. É muito importante para o desenvolvedor conhecer previamente os métodos implementados nesta biblioteca para tirar o máximo proveito possível das funções do rádio que será construído. A pasta [examples]((https://github.com/pu2clr/SI4735/blob/master/examples/) possui vários exemplos que podem orientar o desenvolvedor na utilização desta biblioteca. 
+
+
+
 
 <BR>
 
