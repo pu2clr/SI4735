@@ -19,6 +19,7 @@ SI4735::SI4735()
     for (int i = 0; i < 65; i++)
         rds_buffer[i] = ' ';
 
+    // 1 = LSB and 2 = USB; 0 = AM, FM or WB
     currentSsbStatus = 0;
 }
 
