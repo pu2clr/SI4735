@@ -9,7 +9,8 @@ Contato: pu2clr@gmail.com
 
 
 __Atenção__: 
-* __Esta documentação ainda está em construção__. 
+* __Esta Biblioteca ainda está em desevolvimento. Portanto, algumas funções e comportamentos podem ser alterados ao longo do desenvolvimento__.
+* __Esta documentação ainda está em construção e sujeita a alteração__. 
 * __O SI4735 é um componente que opera com 3.3V. Se você não estiver usando uma versão do Arduino que opera com esta tensão, você deve usar alguma estratégia de conversão de tensão (incluindo os pinos digitais e analógicos) para trabalar corretamente com o SI4735__. 
 
 
@@ -128,7 +129,7 @@ __Atenção__:
          * [setSSBConfig](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssbconfig)
          * [setSSBBfo](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssbbfo)
 10. [Referências](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#references)
-11. [Exemplos]()
+11. [Exemplos](https://github.com/pu2clr/SI4735/tree/master/examples)
 12. [Vídeos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#videos) 
 
 
@@ -1948,8 +1949,6 @@ String SI4735::getRdsTime()
 
 
 ## Single Side Band (SSB) Support
-
-__This library module is still under development__.
 
 Esta função só foi testada somente no SI4735-D60. Para usar SSB com o SI4735, você deve carregar uma atualização (patch) no CI. No entanto, é importante salientar que a Silicon Labs só provê suporte a esse recurso para alguns clientes.  Até a presente data, há pouca documentação disponível na Internet sobre como aplicar os patches para SI4735. 
 
