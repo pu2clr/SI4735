@@ -243,6 +243,8 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 | SDIO | Serial data in/data out pin|
 | SCLK | Serial clock pin |
 | I2C | [I²C - Inter-Integrated Circuit](https://pt.wikipedia.org/wiki/I²C)|
+| Soft Mute | Resource used to attenuate the audiooutputs and minimize audible noise in very weak signalconditions | 
+| Firmware Upgrades | The Si473x-D60 contains on-chip program  RAM to accommodate minor changes to the firmware | 
 
 
 <BR>

@@ -40,8 +40,12 @@
 #include "SSD1306Ascii.h"
 #include "SSD1306AsciiAvrI2c.h"
 #include "Rotary.h"
-#include "patch_content.h"
 
+// Test it with patch_init.h or patch_full.h. Do not try load both.
+#include "patch_init.h"       // SSB patch for whole SSBRX initialization string
+// #include "patch_full.h"    // SSB patch for whole SSBRX full download
+
+const int size_content = sizeof ssb_patch_content;  // see ssb_patch_content in patch_full.h or patch_init.h
 
 #define AM_FUNCTION 1
 
@@ -75,8 +79,6 @@ bool disableAgc = true;
 
 int currentBFO = 0;
 int previousBFO = 0;
-
-const int size_content_full = sizeof ssb_patch_content_full;
 
 long elapsedButton = millis();
 
@@ -205,7 +207,7 @@ void showStatus()
 
   bandMode = String("SSB");
   unit = "KHz";
-  freqDisplay = String(currentFrequency);
+  freqDisplay = String((float) currentFrequency/1000,3);
 
   display.set1X();
   display.setCursor(0, 0);
@@ -275,11 +277,19 @@ void showVolume()
 
 void showBFO() {
 
+  String bfo;
+
+  if ( currentBFO > 0 ) 
+      bfo = "+" + String(currentBFO);
+  else 
+      bfo = String(currentBFO);
+       
+ 
   display.setCursor(70, 4);
   display.print("         ");
   display.setCursor(70, 4);
-  display.print("BFO: ");
-  display.print(currentBFO);
+  display.print("BFO:");
+  display.print(bfo);
 
 }
 
@@ -318,10 +328,16 @@ void loadSSB()
   delay(500);
   si4735.patchPowerUp();
   delay(500);
-  si4735.downloadPatch(ssb_patch_content_full, size_content_full);
+  si4735.downloadPatch(ssb_patch_content, size_content);
   delay(500);
-  // Check the parameters on documentation.
-  si4735.setSSBConfig(bandwidthIdx, 1, 0, 1, 0, 1);
+  // Parameters  
+  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+  // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
+  // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
+  // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
+  // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
+  // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
+  si4735.setSSBConfig(bandwidthIdx, 0, 1, 1, 1, 0);
   showStatus();
 }
 

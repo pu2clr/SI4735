@@ -210,7 +210,11 @@ O SI4735 é um rádio DSP encapsulado em um CI. Possui ótimo desempenho em AM (
 | STATUS | Status byte |
 | RESP | Response byte (n = 1 to 15) |
 | RESPONSEn | Response register (16-bit) in 3-Wire mode (n = 1 to 8)| 
+| Soft Mute | É um recurso utilizado para atenuar os ruídos na saída de áudio quando a estação captada for muito fraca |
+| Firmware Upgrades | O CI Si473x-D60 permite acomadar pequenos ajustes em seu firmware em sua memória RAM interna |
 
+<BR>
+<BR>
 
 ## Características desta Biblioteca
 
@@ -224,7 +228,6 @@ Esta biblioteca usa o protocolo de comunicação I2C e implementa a maioria das 
 6. Utiliza o protocolo de comunicação I2C
 7. Suporte à SSB. 
 8. Suporte à RDS.
-
 
 
 ## Como instalar esta biblioteca
