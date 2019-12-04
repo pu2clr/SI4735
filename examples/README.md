@@ -142,16 +142,14 @@ Pay attention on the push buttons added on this example. The table below shows t
 
 | Defined constant | Arduino Pin | Description |
 | ---------------- | ----------- | ----------- | 
-| BANDWIDTH_BUTTON | 5           | Switch the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz |
-| BAND_BUTTON_UP   | 8           | Next band |
-| BAND_BUTTON_DOWN | 9           | Previous band | 
+| BANDWIDTH_BUTTON | 5           | Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz |
 | VOL_UP           | 6           | Volume Up |
 | VOL_DOWN 7       | 7           | Volume Down |
-| AGC_SWITCH       | 11          | AGC ON/OF | 
-| STEP_SWITCH      | 10          | 1, 5 or 10 KHz |
-| BFO_SWITCH       | 13          | Switch the enconder control (BFO or VFO) |
-
-
+| BAND_BUTTON_UP   | 8           | Next band |
+| BAND_BUTTON_DOWN | 9           | Previous band | 
+| AGC_SWITCH       | 11          | Switch AGC ON/OF | 
+| STEP_SWITCH      | 10          | Used to select the increment or decrement frequency step (1, 5 or 10 KHz) |
+| BFO_SWITCH       | 13          | Used to select the enconder control (BFO or VFO) |
 
 
 __Click [here](https://youtu.be/W2Ssjb9P_f4) to see a video about this example__.
