@@ -12,6 +12,7 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 6. [Schematic for I2C display device, buttons and encoder (Examples 03 and 04)](https://github.com/pu2clr/SI4735/tree/master/examples#schematic-for-i2c-display-device-buttons-and-encoder-examples-03-and-04)
 7. [Example 05 - Bandwidth filter on MW (AM)](https://github.com/pu2clr/SI4735/tree/master/examples#example-05---bandwidth-filter-on-mw-am)
 8. [Example 06 - Bandwidth filter test (9 band SW Receiver with OLED)](https://github.com/pu2clr/SI4735/tree/master/examples#example-06---bandwidth-filter-test-9-band-sw-receiver-with-oled)
+9. [Example 07 - Si4735 SSB firmware update support]()
 
 <BR>
 <BR>
@@ -101,6 +102,46 @@ This example is a 9 band SW receiver based on SI4735.  It shows the selection of
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_06_SW_OLED_FILTER_TEST/SI4735_06_SW_OLED_FILTER_TEST.ino) to see this example.
 
 __Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__.
+
+
+## Example 07 - Si4735 SSB firmware update support
+
+  This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
+
+  This sketch will download a SSB patch to your SI4735 device (patch_content.h). I will take about 15KB of the Arduino memory.
+    
+  In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
+  There is little information available about patching the SI4735. The following information is the understanding of the author of 
+  this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device. 
+  Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device. 
+  Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by 
+  the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
+  Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
+
+  ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment. 
+  Given this, it is at your own risk to continue with the procedures suggested here. 
+  This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60. 
+  Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.  
+
+  Features of this sketch: 
+
+  1) Only SSB (LSB and USB);
+  2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+  3) Eight ham radio bands pre configured;
+  4) BFO Control; and
+  5) Frequency step switch (1, 5 and 10KHz);
+
+  Main Parts: 
+  Encoder with push button; 
+  Seven bush buttons;
+  OLED Display with I2C protocol;
+  Arduino Pro mini 3.3V;  
+
+
+Pay attention on the push buttons added on this example. 
+
+
+__Click [here](https://youtu.be/W2Ssjb9P_f4) to see a video about this example__.
 
 
 ## SSB Support Examples
