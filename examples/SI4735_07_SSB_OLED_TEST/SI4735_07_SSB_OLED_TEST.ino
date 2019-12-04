@@ -109,7 +109,7 @@ Band band[] = {
   {10000,10500,10050,1, USB}, 
   {14000, 14300, 14200, 1, USB},
   {18000, 18300, 18100,1,USB},
-  {210000, 21400, 21200, 1, USB},
+  {21000, 21400, 21200, 1, USB},
   {27000, 27500, 27220, 1, USB},
   {28000, 28500, 28400, 1, USB}
 };
@@ -337,7 +337,7 @@ void loadSSB()
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
-  si4735.setSSBConfig(bandwidthIdx, 0, 1, 1, 1, 0);
+  si4735.setSSBConfig(bandwidthIdx, 0, 1, 1, 0, 1);
   showStatus();
 }
 
