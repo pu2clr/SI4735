@@ -138,7 +138,20 @@ __Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__
   Arduino Pro mini 3.3V;  
 
 
-Pay attention on the push buttons added on this example. 
+Pay attention on the push buttons added on this example. The table below shows the commands used by this sketch.
+
+| Defined constant | Arduino Pin | Description |
+| ---------------- | ----------- | ----------- | 
+| BANDWIDTH_BUTTON | 5           | Switch the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz |
+| BAND_BUTTON_UP   | 8           | Next band |
+| BAND_BUTTON_DOWN | 9           | Previous band | 
+| VOL_UP           | 6           | Volume Up |
+| VOL_DOWN 7       | 7           | Volume Down |
+| AGC_SWITCH       | 11          | AGC ON/OF | 
+| STEP_SWITCH      | 10          | 1, 5 or 10 KHz |
+| BFO_SWITCH       | 13          | Switch the enconder control (BFO or VFO) |
+
+
 
 
 __Click [here](https://youtu.be/W2Ssjb9P_f4) to see a video about this example__.

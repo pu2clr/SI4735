@@ -60,14 +60,14 @@ const int size_content = sizeof ssb_patch_content;  // see ssb_patch_content in 
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
-#define BANDWIDTH_BUTTON 5 // Next Band
-#define BAND_BUTTON_UP 8   // Seek Up
-#define BAND_BUTTON_DOWN 9 // Seek Down
-#define VOL_UP 6           // Volume Volume Up
+#define BANDWIDTH_BUTTON 5 // Switch the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
+#define BAND_BUTTON_UP 8   // Next band
+#define BAND_BUTTON_DOWN 9 // Previous band
+#define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
-#define AGC_SWITCH 11      // AGC ON/OF 
-#define STEP_SWITCH 10     // 1, 5 or 10 KHz.
-#define BFO_SWITCH  13
+#define AGC_SWITCH 11      // AGC ON/OF
+#define STEP_SWITCH 10     // 1, 5 or 10 KHz
+#define BFO_SWITCH 13      // Switch the enconder control (BFO or VFO)
 // Seek Function
 
 #define MIN_ELAPSED_TIME 100
