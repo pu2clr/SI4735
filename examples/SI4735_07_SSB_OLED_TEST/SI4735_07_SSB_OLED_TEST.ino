@@ -60,6 +60,7 @@ const int size_content = sizeof ssb_patch_content;  // see ssb_patch_content in 
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
+#define AVC_SWITCH 4       // Switch SSB Automatic Volume Control ON/OFF 
 #define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
@@ -70,12 +71,13 @@ const int size_content = sizeof ssb_patch_content;  // see ssb_patch_content in 
 #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
 // Seek Function
 
-#define MIN_ELAPSED_TIME 100
+#define MIN_ELAPSED_TIME 200
 #define LSB 1
 #define USB 2
 
 bool bfoOn = false;
 bool disableAgc = true;
+bool avc_en = true;
 
 int currentBFO = 0;
 int previousBFO = 0;
@@ -104,6 +106,7 @@ typedef struct {
 
 
 Band band[] = {
+  {1800, 2000, 1900, 1, LSB}, 
   {3500, 4000, 3700, 1, LSB},
   {7000, 7500, 7100, 1, LSB},
   {10000,10500,10050,1, USB}, 
@@ -115,7 +118,7 @@ Band band[] = {
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int  currentFreqIdx = 1;
+int  currentFreqIdx = 2;
 
 
 byte rssi = 0;
@@ -144,6 +147,7 @@ void setup()
   pinMode(BFO_SWITCH, INPUT);
   pinMode(AGC_SWITCH, INPUT);
   pinMode(STEP_SWITCH,INPUT);
+  pinMode(AVC_SWITCH, INPUT);
 
   display.begin(&Adafruit128x64, I2C_ADDRESS);
   display.setFont(Adafruit5x7);
@@ -337,7 +341,7 @@ void loadSSB()
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
-  si4735.setSSBConfig(bandwidthIdx, 0, 1, 1, 0, 1);
+  si4735.setSSBConfig(bandwidthIdx, 1, 0, 1, 0, 1);
   showStatus();
 }
 
@@ -363,52 +367,51 @@ void loop()
   }
 
   // Check button commands
-  if (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) | 
-      digitalRead(BFO_SWITCH) | digitalRead(AGC_SWITCH)  | digitalRead(STEP_SWITCH ) )
+  if ( (( millis() - elapsedButton) > MIN_ELAPSED_TIME)  && (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) | 
+      digitalRead(BFO_SWITCH) | digitalRead(AGC_SWITCH)  | digitalRead(STEP_SWITCH ) | digitalRead(AVC_SWITCH) ) )
   {
 
     // check if some button is pressed
-    if (digitalRead(BANDWIDTH_BUTTON) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    if (digitalRead(BANDWIDTH_BUTTON) == HIGH)
     {
       bandwidthIdx++;
       if (bandwidthIdx > 5)  bandwidthIdx = 0;
-
       si4735.setSSBAudioBandwidth(bandwidthIdx);
       // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
       if (bandwidthIdx == 0 || bandwidthIdx == 4 || bandwidthIdx == 5)
         si4735.setSBBSidebandCutoffFilter(0); 
       else
         si4735.setSBBSidebandCutoffFilter(1);
-
         showStatus();
     }
-    else if (digitalRead(BAND_BUTTON_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    else if (digitalRead(BAND_BUTTON_UP) == HIGH)
       bandUp();
-    else if (digitalRead(BAND_BUTTON_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    else if (digitalRead(BAND_BUTTON_DOWN) == HIGH)
       bandDown();
-    else if (digitalRead(VOL_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    else if (digitalRead(VOL_UP) == HIGH)
       si4735.volumeUp();
-    else if (digitalRead(VOL_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    else if (digitalRead(VOL_DOWN) == HIGH)
       si4735.volumeDown();
-    else if (digitalRead(BFO_SWITCH) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
+    else if (digitalRead(BFO_SWITCH) == HIGH) {
       bfoOn = !bfoOn;
-    } else if ( digitalRead(AGC_SWITCH) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
+    } else if ( digitalRead(AGC_SWITCH) == HIGH) {
        disableAgc = !disableAgc; 
        // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
        si4735.setAutomaticGainControl(disableAgc,1);     
        showStatus(); 
-    } else if ( digitalRead(STEP_SWITCH) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
+    } else if ( digitalRead(STEP_SWITCH) == HIGH) {
        if (currentStep == 1) 
           currentStep = 5;
        else if ( currentStep == 5) 
           currentStep = 10;
        else 
           currentStep = 1;  
-
        si4735.setFrequencyStep(currentStep);
        band[currentFreqIdx].currentStep = currentStep;
-       
        showStatus();       
+    } else if ( digitalRead(AVC_SWITCH) == HIGH ) {
+      avc_en = !avc_en;
+      si4735.setSSBAutomaticVolumeControl(avc_en);   
     }
     elapsedButton = millis();
   }
