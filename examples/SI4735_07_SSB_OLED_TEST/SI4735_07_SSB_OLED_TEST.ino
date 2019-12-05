@@ -239,9 +239,7 @@ void showStatus()
   display.print("Step:");
   display.print(currentStep);
   display.print("KHz");
-  
-  
-    
+      
   display.set1X();
   display.setCursor(0, 7);
   display.print("           ");
