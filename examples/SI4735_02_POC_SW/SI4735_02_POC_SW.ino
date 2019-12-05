@@ -1,5 +1,6 @@
 /*
    Test and validation of the SI4735 Arduino Library.
+   This example shows how can setup the radio on SW by using the Si4735 Arduino Library.
 
    By Ricardo Lima Caratti, Nov 2019.
 */

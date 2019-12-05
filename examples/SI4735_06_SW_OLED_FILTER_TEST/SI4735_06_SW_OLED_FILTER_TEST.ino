@@ -1,6 +1,12 @@
 /*
   SS4735 Arduino Library example with OLED I2C.
-  Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
+  Bandwidth filter test (9 band SW Receiver with OLED)
+  This example is a 9 band SW receiver based on SI4735.  
+  It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). 
+  The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz).
+  
+  Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. 
+  The source code is included together with this sketch.
 
 
   By Ricardo Lima Caratti, Nov 2019.

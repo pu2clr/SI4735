@@ -19,7 +19,13 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 
 ## Example 01 - Proof of Concept
 
-The main advantage of using this Proof of Concept is: you do not need to connect any display device to make your radio works. The Arduino IDE is all you need to control the radio.  So, I strongly recommend starting with this sketch. This example is a proof of concept of SI4735 Arduino Library. The [SI4735_POC.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_POC) sketch uses just the __Serial Monitor__ and works only on your __Arduino IDE__. However, you can easily replace the Serial Monitor functions to the device functions that you want to use. 
+Test and validation of the SI4735 Arduino Library. The main advantages of using this sketch are: 
+* It is a easy way to check if your circuit is working;
+* You do not need to connect any display device to make your radio works;
+* You do not need connect any push buttons or encoders to change volume and frequency;
+* The Arduino IDE is all you need to control the radio.  
+
+So, I strongly recommend starting with this sketch. This example is a proof of concept of SI4735 Arduino Library. The [SI4735_POC.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_POC) sketch uses just the __Serial Monitor__ and works only on your __Arduino IDE__. However, you can easily replace the Serial Monitor functions to the device functions that you want to use. 
 
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_01_POC/SI4735_01_POC.ino) to see this example.
 
@@ -46,6 +52,7 @@ The schematic below is the same shown at the main page of this project and shows
 
 ## Example 03 - SS4735 Arduino Library example with LCD 20x4 I2C
 
+It is a example that shows how to set up a LCD and SI4735 on the same I2C bus. 
 This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the LiquidCrystal I2C Library by Frank de Brabander. You can install LiquidCrystal I2C via Manage Libraries on your Arduino IDE. 
 
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_03_LCD_20x4_I2C/SI4735_03_LCD_20x4_I2C.ino) to see this example.

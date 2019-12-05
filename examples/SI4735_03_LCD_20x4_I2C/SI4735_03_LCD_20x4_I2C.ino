@@ -1,8 +1,9 @@
 /*
   SS4735 Arduino Library example with LCD 20x4 I2C.
-  Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
-  LCD 20x4 I2C..: This sketch uses the LiquidCrystal I2C Library by Frank de Brabander. Look for LiquidCrystal I2C on Manager Libraries.     
-
+  It is a example that shows how to set up a LCD and SI4735 on the same I2C bus. 
+  This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included 
+  together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander. 
+  Look for LiquidCrystal I2C on Manager Libraries.     
 
   By Ricardo Lima Caratti, Nov 2019.
 */

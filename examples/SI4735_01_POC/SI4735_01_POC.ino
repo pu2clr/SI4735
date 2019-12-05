@@ -1,5 +1,11 @@
 /*
    Test and validation of the SI4735 Arduino Library.
+   The main advantages of using this sketch are: 
+   It is a easy way to check if your circuit is working;
+   You do not need to connect any display device to make your radio works;
+   You do not need connect any push buttons or encoders to change volume and frequency;
+   The Arduino IDE is all you need to control the radio.  
+   So, I strongly recommend starting with this sketch.
 
    By Ricardo Lima Caratti, Nov 2019.
 */
