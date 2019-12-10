@@ -7,6 +7,10 @@ Esta biblioteca pode ser livrimente copiada e distribuída. O modelo de licença
 
 Contato: pu2clr@gmail.com
 
+Há grupo de discussão no facebook denominado [__Si47XX para radioescutas__](https://www.facebook.com/groups/1121785218031286/) onde o propósito é trocar experiências com projetos baseados na família de CI SI47XX da Silicon Labs. Você será bem-vindo ao grupo [Si47XX para radioescuta](https://www.facebook.com/groups/1121785218031286/). 
+
+
+
 
 __Atenção__: 
 * __Esta Biblioteca ainda está em desevolvimento. Portanto, algumas funções e comportamentos podem ser alterados ao longo do desenvolvimento__.
