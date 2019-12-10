@@ -373,6 +373,9 @@ Veja [C7 e C8 no esquema](https://github.com/pu2clr/SI4735/blob/master/README-pt
 
 
 
+É importante destacar que o circuito montando em protoboard, sobretudo em soluções envolvendo RF,  pode não responder exatamente da forma esperada. Alguns ajustes podem ser necessários para deixar a montagem adequada às suas exigências. A circuito apresentado acima, inicialmente  respondeu bem em LW/MW, SW e FM. No entanto, nos experimentos com SSB, uma pequena interferência foi detectada.  O Sr. Francisco Scaramella, um colaborador deste projeto, inseriu alguns componentes no circuito e obteve excelentes resultados também em SSB em sua montagem com placa matricial e componentes soldados. A abordagem do Sr. Fracisco será inserida neste documento quando oportuno. 
+
+
 
 ## Documentação das funções da Biblioteca
 
