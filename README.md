@@ -8,6 +8,8 @@ This library can be freely distributed using the MIT Free Software model. [Copyr
 
 Contact: pu2clr@gmail.com
 
+There is a facebook group called [__Si47XX for radio listeners__] (https://www.facebook.com/groups/532613604253401/) where the purpose is to exchange experiences with projects based on Silicon Labs CI SI47XX family. You will be welcome to the [Si47XX Radio Listening] group (https://www.facebook.com/groups/532613604253401/).
+
 
 __Attention__: 
 * __Documentation  under construction__. 
