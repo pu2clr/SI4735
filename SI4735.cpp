@@ -1422,7 +1422,6 @@ void SI4735::ssbPowerUp() {
  * Transfers the content of a patch stored in a eeprom to the SI4735 device.
  * 
  * @param eeprom_i2c_address 
- * 
  * @return false if an error is found.
  */
 bool SI4735::downloadPatch(byte eeprom_i2c_address)

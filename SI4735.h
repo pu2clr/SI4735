@@ -814,7 +814,7 @@ public:
     void setSSBDspAfc(byte DSP_AFCDIS);
     void setSSBSoftMute(byte SMUTESEL);
 
-        /*
+    /*
      * SSB PATCH
      */
         si47x_firmware_query_library queryLibraryId();
@@ -823,9 +823,11 @@ public:
     bool downloadPatch(byte eeprom_i2c_address);
     void ssbPowerUp();
 
-    // This functions below modify the clock frequency for I2C communication. 
-    // 100KHz is usually the baseline.
-    // Use one of these funcition if you have problem on you default configuration. 
+    /* 
+     * This functions below modify the clock frequency for I2C communication. 
+     * 100KHz  is usually the baseline.
+     * Use one of these funcition if you have problem on you default configuration. 
+     */ 
     inline void setI2CLowSpeedMode(void) { Wire.setClock(10000); };
     inline void setI2CStandardMode(void) { Wire.setClock(100000); };
     inline void setI2CFastMode(void) { Wire.setClock(400000); };
