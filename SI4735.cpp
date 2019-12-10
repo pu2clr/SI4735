@@ -204,7 +204,7 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
     currentFrequencyParams.arg.FAST = 0;
     currentFrequencyParams.arg.DUMMY1 = 0;
     currentFrequencyParams.arg.ANTCAPH = 0;
-    currentFrequencyParams.arg.ANTCAPL = 0;
+    currentFrequencyParams.arg.ANTCAPL = 1;
 }
 
 /*
@@ -263,6 +263,7 @@ void SI4735::setFrequency(unsigned freq)
 
     if (currentSsbStatus != 0)
     {
+        currentFrequencyParams.arg.DUMMY1 = 0;
         currentFrequencyParams.arg.USBLSB = currentSsbStatus; // Set to LSB or USB
         currentFrequencyParams.arg.FAST = 0;                  // Used just on AM and FM
         currentFrequencyParams.arg.FREEZE = 0;                // Used just on FM
@@ -1124,6 +1125,7 @@ void SI4735::setSSBConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AV
     currentSSBMode.param.AVC_DIVIDER = AVC_DIVIDER;
     currentSSBMode.param.AVCEN = AVCEN;
     currentSSBMode.param.SMUTESEL = SMUTESEL;
+    currentSSBMode.param.DUMMY1 = 0;
     currentSSBMode.param.DSP_AFCDIS = DSP_AFCDIS;
 
     sendSSBModeProperty();
@@ -1213,8 +1215,6 @@ void SI4735::setSSBAudioBandwidth(byte AUDIOBW)
     sendSSBModeProperty();
 }
 
-
-
 /*
  * Set the radio to AM function. It means: LW MW and SW.
  */
@@ -1225,9 +1225,9 @@ void SI4735::setSSB(byte usblsb)
     // It starts with the same AM parameters.
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
     analogPowerUp();
+    // ssbPowerUp(); // Not used for regular operation
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = usblsb;
-    // Not tested.
 }
 
 /*
@@ -1249,7 +1249,7 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
     currentMinimumFrequency = fromFreq;
     currentMaximumFrequency = toFreq;
     currentStep = step;
-    
+
     if (initialFreq < fromFreq || initialFreq > toFreq)
         initialFreq = fromFreq;
 
@@ -1265,7 +1265,7 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 /* 
  * Just send the property SSB_MOD to the device. 
  * Internal use (privete method). 
- */ 
+ */
 void SI4735::sendSSBModeProperty()
 {
     si47x_property property;
@@ -1283,21 +1283,20 @@ void SI4735::sendSSBModeProperty()
     delayMicroseconds(550);
 }
 
-
 /*
  * ****************
  * PATCH RESOURCES
  */
 
-    /*
+/*
    Call it first if you are applying a patch on SI4735. 
    Used to confirm if the patch is compatible with the internal device library revision.
    See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
 
    @return a struct si47x_firmware_query_library (see it in SI4735.h)
 */
-    si47x_firmware_query_library
-    SI4735::queryLibraryId()
+si47x_firmware_query_library
+SI4735::queryLibraryId()
 {
     si47x_firmware_query_library libraryID;
 
@@ -1340,7 +1339,25 @@ void SI4735::patchPowerUp()
     delayMicroseconds(2500);
 }
 
-/*
+// Used for test
+void SI4735::ssbPowerUp() {
+    waitToSend();
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(POWER_UP);
+    Wire.write(0b00010001); // Set to AM/SSB, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
+    Wire.write(0b00000101); // Set to Analog Line Input.
+    Wire.endTransmission();
+    delayMicroseconds(2500);
+
+    powerUp.arg.CTSIEN = 0;   // 1 -> Interrupt anabled;
+    powerUp.arg.GPO2OEN = 0; // 1 -> GPO2 Output Enable;
+    powerUp.arg.PATCH = 0;     // 0 -> Boot normally;
+    powerUp.arg.XOSCEN = 1;   // 1 -> Use external crystal oscillator;
+    powerUp.arg.FUNC = 1;       // 0 = FM Receive; 1 = AM/SSB (LW/MW/SW) Receiver.
+    powerUp.arg.OPMODE = 0b00000101; // 0x5 = 00000101 = Analog audio outputs (LOUT/ROUT).
+}
+
+    /*
  *  Transfers the content of a patch stored in a array of bytes to the SI4735 device. 
  *  You must mount an array as shown below and know the size of that array as well.
  *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.  
@@ -1374,7 +1391,7 @@ void SI4735::patchPowerUp()
  * 
  *  @return false if an error is found.
  */
-bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_size)
+    bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_size)
 {
     byte content, cmd_status;
     int i, line, offset;

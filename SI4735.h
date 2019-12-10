@@ -184,7 +184,7 @@ typedef union {
     struct
     {
         byte FAST : 1;   // ARG1 - FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate.
-        byte FREEZE : 1; // Valid onlu for FM (Must be 0 to AM)
+        byte FREEZE : 1; // Valid only for FM (Must be 0 to AM)
         byte DUMMY1 : 4; // Always set 0
         byte USBLSB : 2; // SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected.
         byte FREQH;      // ARG2 - Tune Frequency High Byte.
@@ -821,4 +821,13 @@ public:
     void patchPowerUp(); // Used to apply SSB patch on SI4735
     bool downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_size);
     bool downloadPatch(byte eeprom_i2c_address);
+    void ssbPowerUp();
+
+    // This functions below modify the clock frequency for I2C communication. 
+    // 100KHz is usually the baseline.
+    // Use one of these funcition if you have problem on you default configuration. 
+    inline void setI2CLowSpeedMode(void) { Wire.setClock(10000); };
+    inline void setI2CStandardMode(void) { Wire.setClock(100000); };
+    inline void setI2CFastMode(void) { Wire.setClock(400000); };
+    inline void setI2CHighSpeedMode(void) { Wire.setClock(3400000); };
 };

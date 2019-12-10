@@ -26,6 +26,8 @@
 */
 
 #include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include "Rotary.h"
 #include "patch_content.h"
 
 #define SI473X_ADDR 0x11   // SI473X I2C buss address
@@ -35,6 +37,26 @@
 #define SSB_TUNE_FREQ 0x40 // Tunes the SSB receiver to a frequency between 520 and 30 MHz in 1 kHz steps.
 
 #define RESET_PIN 12
+
+#define MIN_ELAPSED_TIME 200
+#define LSB 1
+#define USB 2
+
+// Enconder PINs
+#define ENCODER_PIN_A 3
+#define ENCODER_PIN_B 2
+
+// Buttons controllers
+#define SSB_MODE_TEST 4    // Switch SSB Automatic Volume Control ON/OFF
+#define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
+#define VOL_UP 6           // Volume Up
+#define VOL_DOWN 7         // Volume Down
+#define BAND_BUTTON_UP 8   // Next band
+#define BAND_BUTTON_DOWN 9 // Previous band
+#define AGC_SWITCH 11      // Switch AGC ON/OF
+#define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
+#define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
+// Seek Function
 
 // Set the variable below to true if you want to apply the patch.
 bool APPLY_PATCH = true;
@@ -52,6 +74,29 @@ typedef union {
   } raw;
   unsigned value;
 } unsigned_2_bytes;
+
+typedef struct
+{
+  unsigned minimumFreq;
+  unsigned maximumFreq;
+  unsigned currentFreq;
+  unsigned currentStep;
+  byte currentSSB;
+} Band;
+
+Band band[] = {
+    {1800, 2000, 1900, 1, LSB},
+    {3500, 4000, 3700, 1, LSB},
+    {7000, 7500, 7100, 1, LSB},
+    {10000, 10500, 10050, 1, USB},
+    {14000, 14300, 14200, 1, USB},
+    {18000, 18300, 18100, 1, USB},
+    {21000, 21400, 21200, 1, USB},
+    {27000, 27500, 27220, 1, USB},
+    {28000, 28500, 28400, 1, USB}};
+
+char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+byte bandwidthIdx = 2;
 
 /*
   SSB_TUNE_FREQ data type command
@@ -74,6 +119,10 @@ unsigned previousFrequency = 0, currentFrequency = 7100;
 const byte usblsb = 1; // 1 = LSB; 2 = USB
 int previousBFO = 0, currentBFO = 0;
 byte previousVolume = 0, currentVolume = 55;
+
+// Devices class declarations
+Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
+
 
 void setup()
 {

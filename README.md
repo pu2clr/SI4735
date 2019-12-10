@@ -2196,8 +2196,8 @@ void SI4735::setSBBSidebandCutoffFilter(byte SBCUTFLT)
 /*
  * SSB Audio Bandwidth for SSB mode
  * 
- * 0 = 1.2 kHz low-pass filter* . (default)
- * 1 = 2.2 kHz low-pass filter* .
+ * 0 = 1.2 kHz low-pass filter (default)
+ * 1 = 2.2 kHz low-pass filter .
  * 2 = 3.0 kHz low-pass filter.
  * 3 = 4.0 kHz low-pass filter.
  * 4 = 500 Hz band-pass filter for receiving CW signal, i.e. [250 Hz, 750 Hz]

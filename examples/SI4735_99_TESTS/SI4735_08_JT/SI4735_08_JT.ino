@@ -60,7 +60,7 @@ const int size_content = sizeof ssb_patch_content;  // see ssb_patch_content in 
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
-#define AVC_SWITCH 4       // Switch SSB Automatic Volume Control ON/OFF 
+#define SSB_MODE_TEST 4       // Switch SSB Automatic Volume Control ON/OFF 
 #define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
@@ -77,7 +77,7 @@ const int size_content = sizeof ssb_patch_content;  // see ssb_patch_content in 
 
 bool bfoOn = false;
 bool disableAgc = true;
-bool avc_en = true;
+bool ssb_mode_test = true;
 
 int currentBFO = 0;
 int previousBFO = 0;
@@ -106,15 +106,11 @@ typedef struct {
 
 
 Band band[] = {
-  {1800, 2000, 1900, 1, LSB}, 
-  {3500, 4000, 3700, 1, LSB},
-  {7000, 7500, 7100, 1, LSB},
-  {10000,10500,10050,1, USB}, 
-  {14000, 14300, 14200, 1, USB},
-  {18000, 18300, 18100,1,USB},
-  {21000, 21400, 21200, 1, USB},
-  {27000, 27500, 27220, 1, USB},
-  {28000, 28500, 28400, 1, USB}
+  {3570, 3580, 3573, 1, USB},
+  {7070, 7080, 7076, 1, USB},
+  {14070, 14080, 14076, 1, USB},
+  {21070, 21080, 21076, 1, USB},
+  {28070, 28080, 28076, 1, USB}
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
@@ -147,7 +143,7 @@ void setup()
   pinMode(BFO_SWITCH, INPUT);
   pinMode(AGC_SWITCH, INPUT);
   pinMode(STEP_SWITCH,INPUT);
-  pinMode(AVC_SWITCH, INPUT);
+  pinMode(SSB_MODE_TEST, INPUT);
 
   display.begin(&Adafruit128x64, I2C_ADDRESS);
   display.setFont(Adafruit5x7);
@@ -173,13 +169,6 @@ void setup()
 
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
-  // Testing I2C clock speed and SSB behaviour
-  si4735.setI2CLowSpeedMode();      // 10000
-  // si4735.setI2CStandardMode();   // 100000
-  // si4735.setI2CFastMode();       // 400000
-  // si4735.setI2CHighSpeedMode();  // 3400000
-  
-  
   delay(500);
   
   loadSSB();
@@ -217,7 +206,7 @@ void showStatus()
   String unit, freqDisplay;
   String bandMode;
 
-  bandMode = String("SSB");
+  bandMode = String("JT65");
   unit = "KHz";
   freqDisplay = String((float) currentFrequency/1000,3);
 
@@ -376,7 +365,7 @@ void loop()
 
   // Check button commands
   if ( (( millis() - elapsedButton) > MIN_ELAPSED_TIME)  && (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) | 
-      digitalRead(BFO_SWITCH) | digitalRead(AGC_SWITCH)  | digitalRead(STEP_SWITCH ) | digitalRead(AVC_SWITCH) ) )
+      digitalRead(BFO_SWITCH) | digitalRead(AGC_SWITCH)  | digitalRead(STEP_SWITCH ) | digitalRead(SSB_MODE_TEST) ) )
   {
 
     // check if some button is pressed
@@ -417,9 +406,12 @@ void loop()
        si4735.setFrequencyStep(currentStep);
        band[currentFreqIdx].currentStep = currentStep;
        showStatus();       
-    } else if ( digitalRead(AVC_SWITCH) == HIGH ) {
-      avc_en = !avc_en;
-      si4735.setSSBAutomaticVolumeControl(avc_en);   
+    } else if ( digitalRead(SSB_MODE_TEST) == HIGH ) {
+      ssb_mode_test = !ssb_mode_test;
+      //si4735.setSSBDspAfc(ssb_mode_test); // TEST AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
+      // si4735.setSSBAvcDivider((ssb_mode_test == 0) ? 3 : 0); // AVC_DIVIDER set 0 for SSB mode; set 3 for SYNC mode.
+      // si4735.setSSBSoftMute(ssb_mode_test); // SSB Soft-mute Based on RSSI or SNR.
+      si4735.setSSBAutomaticVolumeControl(ssb_mode_test); // AUDIOBW SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz.
     }
     elapsedButton = millis();
   }
