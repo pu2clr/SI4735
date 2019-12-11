@@ -831,5 +831,4 @@ public:
     inline void setI2CLowSpeedMode(void) { Wire.setClock(10000); };
     inline void setI2CStandardMode(void) { Wire.setClock(100000); };
     inline void setI2CFastMode(void) { Wire.setClock(400000); };
-    inline void setI2CHighSpeedMode(void) { Wire.setClock(3400000); };
 };

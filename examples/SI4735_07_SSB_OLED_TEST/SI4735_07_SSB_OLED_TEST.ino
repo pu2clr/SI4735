@@ -174,9 +174,9 @@ void setup()
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
   // Testing I2C clock speed and SSB behaviour
-  si4735.setI2CLowSpeedMode();      // 10000
+  // si4735.setI2CLowSpeedMode();      // 10000
   // si4735.setI2CStandardMode();   // 100000
-  // si4735.setI2CFastMode();       // 400000
+  si4735.setI2CFastMode();       // 400000
   // si4735.setI2CHighSpeedMode();  // 3400000
   
   
