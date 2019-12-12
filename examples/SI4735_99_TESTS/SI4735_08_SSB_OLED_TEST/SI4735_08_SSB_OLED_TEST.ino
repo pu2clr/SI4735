@@ -91,7 +91,6 @@ volatile int encoderCount = 0;
 unsigned currentFrequency;
 unsigned previousFrequency;
 byte currentStep = 1;
-byte currentBFOStep = 50;
 
 byte bandwidthIdx = 2;
 char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
@@ -140,15 +139,15 @@ void setup()
   pinMode(ENCODER_PIN_A, INPUT);
   pinMode(ENCODER_PIN_B, INPUT);
 
-  pinMode(BANDWIDTH_BUTTON, INPUT);
-  pinMode(BAND_BUTTON_UP, INPUT);
-  pinMode(BAND_BUTTON_DOWN, INPUT);
-  pinMode(VOL_UP, INPUT);
-  pinMode(VOL_DOWN, INPUT);
-  pinMode(BFO_SWITCH, INPUT);
-  pinMode(AGC_SWITCH, INPUT);
-  pinMode(STEP_SWITCH,INPUT);
-  pinMode(AVC_SWITCH, INPUT);
+  pinMode(BANDWIDTH_BUTTON, INPUT_PULLUP);
+  pinMode(BAND_BUTTON_UP, INPUT_PULLUP);
+  pinMode(BAND_BUTTON_DOWN, INPUT_PULLUP);
+  pinMode(VOL_UP, INPUT_PULLUP);
+  pinMode(VOL_DOWN, INPUT_PULLUP);
+  pinMode(BFO_SWITCH, INPUT_PULLUP);
+  pinMode(AGC_SWITCH, INPUT_PULLUP);
+  pinMode(STEP_SWITCH,INPUT_PULLUP);
+  pinMode(AVC_SWITCH, INPUT_PULLUP);
 
   display.begin(&Adafruit128x64, I2C_ADDRESS);
   display.setFont(Adafruit5x7);
@@ -295,13 +294,6 @@ void showBFO() {
   else 
       bfo = String(currentBFO);
        
-
-  display.setCursor(0, 5);
-  display.print("          ");
-  display.setCursor(0, 5);
-  display.print("Step:");
-  display.print(currentBFOStep);
-  display.print("Hz ");
  
   display.setCursor(70, 4);
   display.print("         ");
@@ -372,7 +364,7 @@ void loop()
   {
 
     if (bfoOn) {
-      currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
+      currentBFO = (encoderCount == 1) ?  (currentBFO + 50) : (currentBFO - 50);
     } else {
       if (encoderCount == 1)
         si4735.frequencyUp();
@@ -383,12 +375,11 @@ void loop()
   }
 
   // Check button commands
-  if ( (( millis() - elapsedButton) > MIN_ELAPSED_TIME)  && (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) | 
-      digitalRead(BFO_SWITCH) | digitalRead(AGC_SWITCH)  | digitalRead(STEP_SWITCH ) | digitalRead(AVC_SWITCH) ) )
+  if ( ( millis() - elapsedButton) > MIN_ELAPSED_TIME ) 
   {
 
     // check if some button is pressed
-    if (digitalRead(BANDWIDTH_BUTTON) == HIGH)
+    if (digitalRead(BANDWIDTH_BUTTON)  == LOW)
     {
       bandwidthIdx++;
       if (bandwidthIdx > 5)  bandwidthIdx = 0;
@@ -400,30 +391,22 @@ void loop()
         si4735.setSBBSidebandCutoffFilter(1);
         showStatus();
     }
-    else if (digitalRead(BAND_BUTTON_UP) == HIGH)
+    else if (digitalRead(BAND_BUTTON_UP)  == LOW)
       bandUp();
-    else if (digitalRead(BAND_BUTTON_DOWN) == HIGH)
+    else if (digitalRead(BAND_BUTTON_DOWN)  == LOW)
       bandDown();
-    else if (digitalRead(VOL_UP) == HIGH)
+    else if (digitalRead(VOL_UP)  == LOW)
       si4735.volumeUp();
-    else if (digitalRead(VOL_DOWN) == HIGH)
+    else if (digitalRead(VOL_DOWN)  == LOW)
       si4735.volumeDown();
-    else if (digitalRead(BFO_SWITCH) == HIGH) {
+    else if (digitalRead(BFO_SWITCH)  == LOW) {
       bfoOn = !bfoOn;
-      if ( bfoOn ) 
-         showBFO();
-      else 
-         showStatus();    
-    } else if ( digitalRead(AGC_SWITCH) == HIGH) {
+    } else if ( digitalRead(AGC_SWITCH)  == LOW) {
        disableAgc = !disableAgc; 
        // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
        si4735.setAutomaticGainControl(disableAgc,1);     
        showStatus(); 
-    } else if ( digitalRead(STEP_SWITCH) == HIGH) {
-      if ( bfoOn ) {
-        currentBFOStep = (currentBFOStep == 50 )? 10:50;
-        showBFO();
-      }else {
+    } else if ( digitalRead(STEP_SWITCH)  == LOW) {
        if (currentStep == 1) 
           currentStep = 5;
        else if ( currentStep == 5) 
@@ -432,9 +415,8 @@ void loop()
           currentStep = 1;  
        si4735.setFrequencyStep(currentStep);
        band[currentFreqIdx].currentStep = currentStep;
-       showStatus();  
-      }    
-    } else if ( digitalRead(AVC_SWITCH) == HIGH ) {
+       showStatus();       
+    } else if ( digitalRead(AVC_SWITCH)  == LOW ) {
       avc_en = !avc_en;
       si4735.setSSBAutomaticVolumeControl(avc_en);   
     }
