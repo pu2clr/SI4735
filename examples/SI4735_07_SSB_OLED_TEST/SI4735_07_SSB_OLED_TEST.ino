@@ -164,7 +164,7 @@ void setup()
   delay(500);
   display.setCursor(30, 6);
   display.print("By PU2CLR");
-  delay(3000);
+  delay(2000);
   display.clear();
   // end Splash
 
@@ -175,17 +175,12 @@ void setup()
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
   // Testing I2C clock speed and SSB behaviour
-  // si4735.setI2CLowSpeedMode();      // 10000
-  // si4735.setI2CStandardMode();   // 100000
-  si4735.setI2CFastMode();       // 400000
-  // si4735.setI2CHighSpeedMode();  // 3400000
-  
-  
-  delay(500);
-  
+  // si4735.setI2CLowSpeedMode();     //  10000 (10KHz)
+  // si4735.setI2CStandardMode();     // 100000 (100KHz)
+  si4735.setI2CFastMode();            // 400000 (400KHz)
+  delay(100);
   loadSSB();
-
-  delay(1500);
+  delay(250);
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
   delay(500);
@@ -342,13 +337,13 @@ void bandDown() {
 
 void loadSSB()
 {
-  delay(500);
+  delay(100);
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
-  delay(500);
+  delay(100);
   si4735.patchPowerUp();
-  delay(500);
+  delay(100);
   si4735.downloadPatch(ssb_patch_content, size_content);
-  delay(500);
+  delay(100);
   // Parameters  
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
@@ -357,7 +352,7 @@ void loadSSB()
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
   si4735.setSSBConfig(bandwidthIdx, 1, 0, 1, 0, 1);
-  delay(500);
+  delay(100);
   showStatus();
 }
 
