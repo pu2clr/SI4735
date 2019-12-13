@@ -91,6 +91,7 @@ volatile int encoderCount = 0;
 unsigned currentFrequency;
 unsigned previousFrequency;
 byte currentStep = 1;
+byte currentBFOStep = 50;
 
 byte bandwidthIdx = 2;
 char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
@@ -136,8 +137,8 @@ void setup()
 {
 
   // Encoder pins
-  pinMode(ENCODER_PIN_A, INPUT);
-  pinMode(ENCODER_PIN_B, INPUT);
+  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
   pinMode(BANDWIDTH_BUTTON, INPUT_PULLUP);
   pinMode(BAND_BUTTON_UP, INPUT_PULLUP);
@@ -163,7 +164,7 @@ void setup()
   delay(500);
   display.setCursor(30, 6);
   display.print("By PU2CLR");
-  delay(3000);
+  delay(2000);
   display.clear();
   // end Splash
 
@@ -174,17 +175,12 @@ void setup()
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
   // Testing I2C clock speed and SSB behaviour
-  // si4735.setI2CLowSpeedMode();      // 10000
-  // si4735.setI2CStandardMode();   // 100000
-  si4735.setI2CFastMode();       // 400000
-  // si4735.setI2CHighSpeedMode();  // 3400000
-  
-  
-  delay(500);
-  
+  // si4735.setI2CLowSpeedMode();     //  10000 (10KHz)
+  // si4735.setI2CStandardMode();     // 100000 (100KHz)
+  si4735.setI2CFastMode();            // 400000 (400KHz)
+  delay(100);
   loadSSB();
-
-  delay(1500);
+  delay(250);
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
   delay(500);
@@ -294,6 +290,13 @@ void showBFO() {
   else 
       bfo = String(currentBFO);
        
+
+  display.setCursor(0, 5);
+  display.print("          ");
+  display.setCursor(0, 5);
+  display.print("Step:");
+  display.print(currentBFOStep);
+  display.print("Hz ");
  
   display.setCursor(70, 4);
   display.print("         ");
@@ -334,13 +337,13 @@ void bandDown() {
 
 void loadSSB()
 {
-  delay(500);
+  delay(100);
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
-  delay(500);
+  delay(100);
   si4735.patchPowerUp();
-  delay(500);
+  delay(100);
   si4735.downloadPatch(ssb_patch_content, size_content);
-  delay(500);
+  delay(100);
   // Parameters  
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
@@ -349,7 +352,7 @@ void loadSSB()
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
   si4735.setSSBConfig(bandwidthIdx, 1, 0, 1, 0, 1);
-  delay(500);
+  delay(100);
   showStatus();
 }
 
@@ -364,7 +367,7 @@ void loop()
   {
 
     if (bfoOn) {
-      currentBFO = (encoderCount == 1) ?  (currentBFO + 50) : (currentBFO - 50);
+      currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
     } else {
       if (encoderCount == 1)
         si4735.frequencyUp();
@@ -375,11 +378,11 @@ void loop()
   }
 
   // Check button commands
-  if ( ( millis() - elapsedButton) > MIN_ELAPSED_TIME ) 
+  // Check button commands
+  if ((millis() - elapsedButton) > MIN_ELAPSED_TIME)
   {
-
     // check if some button is pressed
-    if (digitalRead(BANDWIDTH_BUTTON)  == LOW)
+    if (digitalRead(BANDWIDTH_BUTTON) == LOW)
     {
       bandwidthIdx++;
       if (bandwidthIdx > 5)  bandwidthIdx = 0;
@@ -391,22 +394,30 @@ void loop()
         si4735.setSBBSidebandCutoffFilter(1);
         showStatus();
     }
-    else if (digitalRead(BAND_BUTTON_UP)  == LOW)
+    else if (digitalRead(BAND_BUTTON_UP) == LOW)
       bandUp();
-    else if (digitalRead(BAND_BUTTON_DOWN)  == LOW)
+    else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
       bandDown();
-    else if (digitalRead(VOL_UP)  == LOW)
+    else if (digitalRead(VOL_UP) == LOW)
       si4735.volumeUp();
-    else if (digitalRead(VOL_DOWN)  == LOW)
+    else if (digitalRead(VOL_DOWN) == LOW)
       si4735.volumeDown();
-    else if (digitalRead(BFO_SWITCH)  == LOW) {
+    else if (digitalRead(BFO_SWITCH) == LOW) {
       bfoOn = !bfoOn;
-    } else if ( digitalRead(AGC_SWITCH)  == LOW) {
+      if ( bfoOn ) 
+         showBFO();
+      else 
+         showStatus();    
+    } else if ( digitalRead(AGC_SWITCH) == LOW) {
        disableAgc = !disableAgc; 
        // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
        si4735.setAutomaticGainControl(disableAgc,1);     
        showStatus(); 
-    } else if ( digitalRead(STEP_SWITCH)  == LOW) {
+    } else if ( digitalRead(STEP_SWITCH) == LOW) {
+      if ( bfoOn ) {
+        currentBFOStep = (currentBFOStep == 50 )? 10:50;
+        showBFO();
+      }else {
        if (currentStep == 1) 
           currentStep = 5;
        else if ( currentStep == 5) 
@@ -415,8 +426,9 @@ void loop()
           currentStep = 1;  
        si4735.setFrequencyStep(currentStep);
        band[currentFreqIdx].currentStep = currentStep;
-       showStatus();       
-    } else if ( digitalRead(AVC_SWITCH)  == LOW ) {
+       showStatus();  
+      }    
+    } else if ( digitalRead(AVC_SWITCH) == LOW ) {
       avc_en = !avc_en;
       si4735.setSSBAutomaticVolumeControl(avc_en);   
     }

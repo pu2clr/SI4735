@@ -156,8 +156,9 @@ ESTA BIBLIOTECA É FORNECIDA "TAL COMO ESTÁ", SEM QUALQUER TIPO DE GARANTIA, EX
 
 ## Agradecimentos
 
-Gostaria de agradecer ao Sr. Francisco Scaramella pelas sugestões e contribuições no campo da eletrônica bem como nos testes elaborados com esta biblioteca. 
+* Gostaria de agradecer ao Sr. Francisco Scaramella pelas sugestões e contribuições no campo da eletrônica bem como nos testes elaborados com esta biblioteca. 
 
+* Gostaria de agradecer ao [Sr. Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) por deixar disponível em seu [repositório de projetos](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0) os arquivos de aplicação da atualização SSBRX para o Si4735. 
 
 
 ## Sua participação é importante
