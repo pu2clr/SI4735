@@ -121,7 +121,6 @@ Band band[] = {
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int  currentFreqIdx = 2;
 
-
 byte rssi = 0;
 byte stereo = 1;
 byte volume = 0;
@@ -218,9 +217,7 @@ void showFrequency() {
   display.setCursor(26, 1);
   display.print(freqDisplay);
   display.set1X();
-
 }
-
 
 
 void showStatus()
@@ -267,8 +264,6 @@ void showStatus()
 */
 void showRSSI()
 {
-  int blk;
-
   display.set1X();
   display.setCursor(70, 7);
   display.print("S:");
@@ -291,15 +286,12 @@ void showVolume()
 
 
 void showBFO() {
-
   String bfo;
-
   if ( currentBFO > 0 ) 
       bfo = "+" + String(currentBFO);
   else 
       bfo = String(currentBFO);
        
-
   display.setCursor(0, 5);
   display.print("          ");
   display.setCursor(0, 5);
@@ -312,11 +304,9 @@ void showBFO() {
   display.setCursor(70, 4);
   display.print("BFO:");
   display.print(bfo);
-
 }
 
 void bandUp() {
-
   // save the current frequency for the band
   band[currentFreqIdx].currentFreq = currentFrequency;
   if ( currentFreqIdx < lastBand ) {
@@ -324,7 +314,6 @@ void bandUp() {
   } else {
     currentFreqIdx = 0;
   }
-
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
   currentStep = band[currentFreqIdx].currentStep;
@@ -377,7 +366,6 @@ void loop()
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
-
     if (bfoOn) {
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
     } else {
@@ -386,7 +374,6 @@ void loop()
       else
         si4735.frequencyDown();
 
-      // Show the current frequency only if it has changed
       currentFrequency = si4735.getCurrentFrequency();        
     }
     encoderCount = 0;
@@ -449,6 +436,7 @@ void loop()
     elapsedButton = millis();
   }
 
+  // Show the current frequency only if it has changed
   if (currentFrequency != previousFrequency)
   {
     previousFrequency = currentFrequency;
