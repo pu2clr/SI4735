@@ -475,6 +475,7 @@ unsigned SI4735::getFrequency()
  * Gets the current frequency saved in memory. 
  * Unlike getFrequency, this method gets the current frequency recorded after the last setFrequency command. 
  * This method avoids bus traffic and CI processing.
+ * However, you can not get others status information like RSSI.
  */
 unsigned SI4735::getCurrentFrequency() {
     return currentWorkFrequency;

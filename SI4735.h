@@ -679,7 +679,7 @@ public:
 
     // Status response
     unsigned getFrequency(void);
-    unsigned getCurrentFrequency();
+    unsigned getCurrentFrequency(); // See documentation 
 
     /* STATUS RESPONSE
      * Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation
