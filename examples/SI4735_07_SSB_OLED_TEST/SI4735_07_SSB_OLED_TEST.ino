@@ -208,8 +208,6 @@ void rotaryEncoder()
 }
 
 
-
-
 // Show current frequency
 void showFrequency() {
   String freqDisplay;
