@@ -459,7 +459,6 @@ bool SI4735::isCurrentTuneFM()
  */
 unsigned SI4735::getFrequency()
 {
-
     si47x_frequency freq;
     getStatus(0, 1);
     freq.raw.FREQL = currentStatus.resp.READFREQL;
@@ -473,12 +472,21 @@ unsigned SI4735::getFrequency()
 }
 
 /*
+ * Gets the current frequency saved in memory. 
+ * Unlike getFrequency, this method gets the current frequency recorded after the last setFrequency command. 
+ * This method avoids bus traffic and CI processing.
+ */
+unsigned SI4735::getCurrentFrequency() {
+    return currentWorkFrequency;
+}
+
+ /*
  * Gets the current status  of the Si4735 (AM or FM)
  * 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  *
  */
-void SI4735::getStatus()
+    void SI4735::getStatus()
 {
     getStatus(0, 1);
 }

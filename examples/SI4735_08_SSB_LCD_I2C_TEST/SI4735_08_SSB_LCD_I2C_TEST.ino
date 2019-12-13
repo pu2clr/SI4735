@@ -37,8 +37,7 @@
 */
 
 #include <SI4735.h>
-#include "SSD1306Ascii.h"
-#include "SSD1306AsciiAvrI2c.h"
+#include <LiquidCrystal_I2C.h>
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.
@@ -71,7 +70,7 @@ const int size_content = sizeof ssb_patch_content;  // see ssb_patch_content in 
 #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
 // Seek Function
 
-#define MIN_ELAPSED_TIME 200
+#define MIN_ELAPSED_TIME 100
 #define LSB 1
 #define USB 2
 
@@ -121,16 +120,13 @@ Band band[] = {
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int  currentFreqIdx = 2;
 
-
 byte rssi = 0;
 byte stereo = 1;
 byte volume = 0;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
-
-SSD1306AsciiAvrI2c display;
-
+LiquidCrystal_I2C display(0x27, 20, 4); // please check the address of your I2C device
 SI4735 si4735;
 
 void setup()
@@ -150,19 +146,19 @@ void setup()
   pinMode(STEP_SWITCH,INPUT_PULLUP);
   pinMode(AVC_SWITCH, INPUT_PULLUP);
 
-  display.begin(&Adafruit128x64, I2C_ADDRESS);
-  display.setFont(Adafruit5x7);
+  display.init();
+
   delay(500);
 
   // Splash - Change it for your introduction text.
-  display.set1X();
+  display.backlight();
   display.setCursor(0, 0);
-  display.print("Si4735 Arduino Library");
+  display.print("SI4735 Arduino Lib.");
   delay(500);
-  display.setCursor(30, 3);
+  display.setCursor(5, 1);
   display.print("SSB TEST");
   delay(500);
-  display.setCursor(30, 6);
+  display.setCursor(5, 2);
   display.print("By PU2CLR");
   delay(2000);
   display.clear();
@@ -177,7 +173,7 @@ void setup()
   // Testing I2C clock speed and SSB behaviour
   // si4735.setI2CLowSpeedMode();     //  10000 (10KHz)
   // si4735.setI2CStandardMode();     // 100000 (100KHz)
-  si4735.setI2CFastMode();            // 400000 (400KHz)
+  // si4735.setI2CFastMode();            // 400000 (400KHz)
   delay(100);
   loadSSB();
   delay(250);
@@ -217,37 +213,32 @@ void showStatus()
   unit = "KHz";
   freqDisplay = String((float) currentFrequency/1000,3);
 
-  display.set1X();
   display.setCursor(0, 0);
   display.print(String(bandMode));
 
-  display.setCursor(98, 0);
+  display.setCursor(16, 0);
   display.print(unit);
 
-  display.set2X();
-  display.setCursor(26, 1);
+  display.setCursor(7, 0);
   display.print("        ");
-  display.setCursor(26, 1);
+  display.setCursor(7, 0);
   display.print(freqDisplay);
-
 
   // Show AGC Information
   si4735.getAutomaticGainControl();
-  display.set1X();
-  display.setCursor(0, 4);
+  display.setCursor(0, 1);
   display.print((si4735.isAgcEnabled()) ? "AGC ON " : "AGC OFF");
 
-  display.setCursor(0, 5);
+  display.setCursor(12, 1);
   display.print("          ");
-  display.setCursor(0, 5);
-  display.print("Step:");
+  display.setCursor(12, 1);
+  display.print("St: ");
   display.print(currentStep);
   display.print("KHz");
       
-  display.set1X();
-  display.setCursor(0, 7);
+  display.setCursor(0, 3);
   display.print("           ");
-  display.setCursor(0, 7);
+  display.setCursor(0, 3);
   display.print("BW:");
   display.print(String(bandwitdth[bandwidthIdx]));
   display.print("KHz");
@@ -258,13 +249,14 @@ void showStatus()
 */
 void showRSSI()
 {
-  int blk;
-
-  display.set1X();
-  display.setCursor(70, 7);
+  int bars = ((rssi / 10.0) / 2.0) + 1;
+  
+  
+  display.setCursor(12, 3);
+  display.print("        ");
+  display.setCursor(12, 3);
   display.print("S:");
-  display.print(rssi);
-  display.print(" dBuV");
+  for (int i = 0; i < bars; i++ ) display.print(">"); 
 }
 
 /* ***************************
@@ -272,12 +264,13 @@ void showRSSI()
 */
 void showVolume()
 {
-  display.set1X();
-  display.setCursor(70, 5);
+  /*
+  display.setCursor(10, 2);
   display.print("          ");
-  display.setCursor(70, 5);
+  display.setCursor(10, 2);
   display.print("V:");
   display.print(volume);
+  */
 }
 
 
@@ -289,21 +282,19 @@ void showBFO() {
       bfo = "+" + String(currentBFO);
   else 
       bfo = String(currentBFO);
-       
 
-  display.setCursor(0, 5);
-  display.print("          ");
-  display.setCursor(0, 5);
-  display.print("Step:");
-  display.print(currentBFOStep);
-  display.print("Hz ");
- 
-  display.setCursor(70, 4);
+  display.setCursor(0, 2);
   display.print("         ");
-  display.setCursor(70, 4);
+  display.setCursor(0, 2);
   display.print("BFO:");
   display.print(bfo);
+  display.print("Hz ");
 
+  display.setCursor(12, 2);
+  display.print("        ");
+  display.setCursor(12, 2);
+  display.print("St:");
+  display.print(currentBFOStep); 
 }
 
 void bandUp() {
@@ -319,6 +310,10 @@ void bandUp() {
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
   currentStep = band[currentFreqIdx].currentStep;
+
+  delay(250);
+  // Show the current frequency only if it has changed
+  currentFrequency = si4735.getFrequency();
 }
 
 void bandDown() {
@@ -332,6 +327,10 @@ void bandDown() {
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep,  band[currentFreqIdx].currentSSB);
   currentStep = band[currentFreqIdx].currentStep;
+
+  // Show the current frequency only if it has changed
+  delay(250);
+  currentFrequency = si4735.getFrequency();
 }
 
 
@@ -373,6 +372,10 @@ void loop()
         si4735.frequencyUp();
       else
         si4735.frequencyDown();
+
+      // Show the current frequency only if it has changed
+      currentFrequency = si4735.getFrequency();
+        
     }
     encoderCount = 0;
   }
@@ -435,9 +438,6 @@ void loop()
     elapsedButton = millis();
   }
 
-
-  // Show the current frequency only if it has changed
-  currentFrequency = si4735.getFrequency();
   if (currentFrequency != previousFrequency)
   {
     previousFrequency = currentFrequency;
@@ -464,5 +464,5 @@ void loop()
     showBFO();
   }
 
-  delay(50);
+  delay(150);
 }

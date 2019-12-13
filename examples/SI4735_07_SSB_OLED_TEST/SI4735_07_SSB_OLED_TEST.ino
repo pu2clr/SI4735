@@ -71,7 +71,7 @@ const int size_content = sizeof ssb_patch_content;  // see ssb_patch_content in 
 #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
 // Seek Function
 
-#define MIN_ELAPSED_TIME 200
+#define MIN_ELAPSED_TIME 100
 #define LSB 1
 #define USB 2
 
@@ -207,15 +207,31 @@ void rotaryEncoder()
   }
 }
 
+
+
+
 // Show current frequency
+void showFrequency() {
+  String freqDisplay;
+  freqDisplay = String((float)currentFrequency / 1000, 3);
+  display.set2X();
+  display.setCursor(26, 1);
+  display.print("        ");
+  display.setCursor(26, 1);
+  display.print(freqDisplay);
+  display.set1X();
+
+}
+
+
+
 void showStatus()
 {
-  String unit, freqDisplay;
+  String unit;
   String bandMode;
 
   bandMode = String("SSB");
   unit = "KHz";
-  freqDisplay = String((float) currentFrequency/1000,3);
 
   display.set1X();
   display.setCursor(0, 0);
@@ -223,13 +239,6 @@ void showStatus()
 
   display.setCursor(98, 0);
   display.print(unit);
-
-  display.set2X();
-  display.setCursor(26, 1);
-  display.print("        ");
-  display.setCursor(26, 1);
-  display.print(freqDisplay);
-
 
   // Show AGC Information
   si4735.getAutomaticGainControl();
@@ -251,6 +260,8 @@ void showStatus()
   display.print("BW:");
   display.print(String(bandwitdth[bandwidthIdx]));
   display.print("KHz");
+
+  showFrequency();
 }
 
 /* *******************************
@@ -319,6 +330,8 @@ void bandUp() {
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
   currentStep = band[currentFreqIdx].currentStep;
+  delay(250);
+  currentFrequency = si4735.getCurrentFrequency();    
 }
 
 void bandDown() {
@@ -332,6 +345,8 @@ void bandDown() {
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep,  band[currentFreqIdx].currentSSB);
   currentStep = band[currentFreqIdx].currentStep;
+  delay(250);
+  currentFrequency = si4735.getCurrentFrequency();    
 }
 
 
@@ -361,7 +376,6 @@ void loadSSB()
 */
 void loop()
 {
-
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
@@ -373,15 +387,16 @@ void loop()
         si4735.frequencyUp();
       else
         si4735.frequencyDown();
+
+      // Show the current frequency only if it has changed
+      currentFrequency = si4735.getCurrentFrequency();        
     }
     encoderCount = 0;
   }
 
   // Check button commands
-  if ( (( millis() - elapsedButton) > MIN_ELAPSED_TIME)  && (digitalRead(BANDWIDTH_BUTTON) | digitalRead(BAND_BUTTON_UP) | digitalRead(BAND_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) | 
-      digitalRead(BFO_SWITCH) | digitalRead(AGC_SWITCH)  | digitalRead(STEP_SWITCH ) | digitalRead(AVC_SWITCH) ) )
+  if ( ( millis() - elapsedButton) > MIN_ELAPSED_TIME )   
   {
-
     // check if some button is pressed
     if (digitalRead(BANDWIDTH_BUTTON) == HIGH)
     {
@@ -436,13 +451,10 @@ void loop()
     elapsedButton = millis();
   }
 
-
-  // Show the current frequency only if it has changed
-  currentFrequency = si4735.getFrequency();
   if (currentFrequency != previousFrequency)
   {
     previousFrequency = currentFrequency;
-    showStatus();
+    showFrequency();
   }
 
   // Show RSSI status only if this condition has changed
@@ -465,5 +477,5 @@ void loop()
     showBFO();
   }
 
-  delay(50);
+  delay(150);
 }
