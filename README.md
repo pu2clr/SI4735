@@ -55,6 +55,8 @@ __Attention__:
        * [volumeDown](https://github.com/pu2clr/SI4735#volumedown)
        * [getCurrentVolume](https://github.com/pu2clr/SI4735#getcurrentvolume)
      * [__Si4735 current status__](https://github.com/pu2clr/SI4735#si4735-current-status)
+       * [getFrequency]()
+       * [getCurrentFrequency]() 
        * [getStatus](https://github.com/pu2clr/SI4735#getstatus)
        * [getTuneCompleteTriggered](https://github.com/pu2clr/SI4735#gettunecompletetriggered)
        * [getSignalQualityInterrupt](https://github.com/pu2clr/SI4735#getsignalqualityinterrupt)
@@ -1246,6 +1248,31 @@ Allows to query the current frequency, RSSI, SNR, multipath, and the antenna tun
 You have to call getStatus before any method to get the information about SI4735 status
 
 <BR>
+
+
+### getFrequency
+
+```cpp
+/*
+ * Gets the current frequency of the Si4735 (AM/SSB or FM)
+ * The method status do it an more. See getStatus below. 
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
+ */
+unsigned SI4735::getFrequency()
+```
+
+
+### getCurrentFrequency
+
+```cpp
+/*
+ * Gets the current frequency saved in memory. 
+ * Unlike getFrequency, this method gets the current frequency recorded after the last setFrequency command. 
+ * This method avoids bus traffic and CI processing.
+ * However, you can not get others status information like RSSI.
+ */
+unsigned SI4735::getCurrentFrequency() 
+```
 
 
 ### getStatus
