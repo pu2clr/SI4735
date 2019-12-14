@@ -41,6 +41,7 @@ This example shows how can you use SW features of the Si4735 Arduino Library. Li
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_02_POC_SW/SI4735_02_POC_SW.ino) to see this example.
 
 <BR>
+<BR>
 
 ## Schematic for Proof of Concept (Examples 01 and 02)
 
@@ -111,6 +112,8 @@ Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_06_SW_
 
 __Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__.
 
+<BR>
+<BR>
 
 ## Example 07 - Si4735 SSB firmware update support
 
@@ -162,6 +165,8 @@ Pay attention on the push buttons added on this example. The table below shows t
 
 __Click [here](https://youtu.be/W2Ssjb9P_f4) to see a video about this example__.
 
+<BR>
+<BR>
 
 ### Example 08 - Si4735 SSB firmware update support - LCD/I2C Support
 
