@@ -127,7 +127,7 @@ __Attention__:
          * [queryLibraryId](https://github.com/pu2clr/SI4735#querylibraryid)
          * [patchPowerUp](https://github.com/pu2clr/SI4735#patchpowerup)
          * [downloadPatch](https://github.com/pu2clr/SI4735#downloadpatch)
-       * [Single Side Band (SSB) Support](https://github.com/pu2clr/SI4735#single-side-band-ssb-support) 
+       * [Single Side Band (SSB) Methods](https://github.com/pu2clr/SI4735#single-side-band-ssb-support) 
          * [setSSBBfo](https://github.com/pu2clr/SI4735#setssbbfo)
          * [setSSBConfig](https://github.com/pu2clr/SI4735#setssbconfig)
          * [setSSB](https://github.com/pu2clr/SI4735#setssb)
@@ -2110,13 +2110,10 @@ bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_s
 <BR>
 <BR>
 
-## Single Side Band (SSB) Support
-
-__This library module is still under development__.
+## Single Side Band (SSB) Methods
 
 This feature will work only on SI4735-D60. To use this feature, you have to apply  a specific SSB patch. 
-Importantly, Silicon Labs only provides support and documentation on this content to some customers. Also it is important to say that the functions available here have not been tested yet.
-
+Importantly, Silicon Labs only provides support and documentation on this content to some customers.
 
 
 
