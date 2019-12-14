@@ -12,7 +12,8 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
    * [Schematic for I2C display device, buttons and encoder (Examples 03 and 04)](https://github.com/pu2clr/SI4735/tree/master/examples#schematic-for-i2c-display-device-buttons-and-encoder-examples-03-and-04)
 5. [Example 05 - Bandwidth filter on MW (AM)](https://github.com/pu2clr/SI4735/tree/master/examples#example-05---bandwidth-filter-on-mw-am)
 6. [Example 06 - Bandwidth filter test (9 band SW Receiver with OLED)](https://github.com/pu2clr/SI4735/tree/master/examples#example-06---bandwidth-filter-test-9-band-sw-receiver-with-oled)
-7. [Example 07 - Si4735 SSB firmware update support](https://github.com/pu2clr/SI4735/tree/master/examples#example-07---si4735-ssb-firmware-update-support)
+7. [Example 07 - Si4735 SSB firmware update support - OLED/I2C Suport)](https://github.com/pu2clr/SI4735/tree/master/examples#example-07---si4735-ssb-firmware-update-support)
+8. [Example 08 - Si4735 SSB firmware update support - LCD/I2C Support]()
 
 <BR>
 <BR>
@@ -162,7 +163,8 @@ Pay attention on the push buttons added on this example. The table below shows t
 __Click [here](https://youtu.be/W2Ssjb9P_f4) to see a video about this example__.
 
 
-## SSB Support Examples
+### Example 08 - Si4735 SSB firmware update support - LCD/I2C Support
 
-Under construction... 
+Follow the schematic below to use this sketch. 
 
+![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png)
