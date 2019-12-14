@@ -168,8 +168,6 @@ void showStatus()
 void showRSSI() {
   int blk = rssi / 10;
 
-  
-
   display.set1X();
   display.setCursor(70, 6);
   display.print("S:");
@@ -229,10 +227,10 @@ void loop()
   }
 
   // Check button commands
-  if (digitalRead(AM_FM_BUTTON) | digitalRead(SEEK_BUTTON_UP) |  digitalRead(SEEK_BUTTON_DOWN) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) )
+  if ((millis() - elapsedButton) > MIN_ELAPSED_TIME )
   {
     // check if some button is pressed
-    if (digitalRead(AM_FM_BUTTON) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
+    if (digitalRead(AM_FM_BUTTON) == HIGH ) {
       // Switch AM to FM and vice-versa
       if  (si4735.isCurrentTuneFM() ) {
         lastFmFrequency = currentFrequency;
@@ -246,13 +244,13 @@ void loop()
       // si4735.setAutomaticGainControl(1,0);   
       display.clear();   
     }
-    else if (digitalRead(SEEK_BUTTON_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    else if (digitalRead(SEEK_BUTTON_UP) == HIGH )
       si4735.seekStationUp();
-    else if (digitalRead(SEEK_BUTTON_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    else if (digitalRead(SEEK_BUTTON_DOWN) == HIGH )
       si4735.seekStationDown();
-    else if (digitalRead(VOL_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    else if (digitalRead(VOL_UP) == HIGH )
       si4735.volumeUp();
-    else if (digitalRead(VOL_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    else if (digitalRead(VOL_DOWN) == HIGH )
       si4735.volumeDown();
 
     elapsedButton = millis();

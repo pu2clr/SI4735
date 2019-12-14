@@ -193,21 +193,21 @@ void loop()
   }
 
   // Check button commands
-  if (digitalRead(AM_FM_BUTTON) | digitalRead(SEEK_BUTTON) | digitalRead(VOL_UP) | digitalRead(VOL_DOWN) )
+  if ((millis() - elapsedButton) > MIN_ELAPSED_TIME )
   {
     // check if some button is pressed
-    if (digitalRead(AM_FM_BUTTON) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME) {
+    if (digitalRead(AM_FM_BUTTON) == HIGH ) {
        // Switch AM to FM and vice-versa  
        if  (si4735.isCurrentTuneFM() ) 
           si4735.setAM(570, 1710,  810, 10);
        else   
        si4735.setFM(8600, 10800,  10390, 10);
     }
-    else if (digitalRead(SEEK_BUTTON) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    else if (digitalRead(SEEK_BUTTON) == HIGH )
        si4735.seekStationUp();   
-    else if (digitalRead(VOL_UP) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    else if (digitalRead(VOL_UP) == HIGH )
       si4735.volumeUp();
-    else if (digitalRead(VOL_DOWN) == HIGH && (millis() - elapsedButton) > MIN_ELAPSED_TIME)
+    else if (digitalRead(VOL_DOWN) == HIGH )
       si4735.volumeDown();
   
     elapsedButton = millis();
@@ -241,5 +241,5 @@ void loop()
     showVolume();
   }
   
-  delay(5);
+  delay(100);
 }

@@ -62,7 +62,7 @@ void showHelp()
 // Show current frequency
 void showStatus()
 {
-
+  si4735.getStatus();
   Serial.print("You are tuned on ");
   if (si4735.isCurrentTuneFM())
   {
@@ -151,7 +151,7 @@ void loop()
     }
   }
   delay(100);
-  currentFrequency = si4735.getFrequency();
+  currentFrequency = si4735.getCurrentFrequency();
   if (currentFrequency != previousFrequency)
   {
     previousFrequency = currentFrequency;
