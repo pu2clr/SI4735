@@ -165,6 +165,36 @@ __Click [here](https://youtu.be/W2Ssjb9P_f4) to see a video about this example__
 
 ### Example 08 - Si4735 SSB firmware update support - LCD/I2C Support
 
+
+This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
+This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.
+
+Features of this sketch: 
+
+1) __Internal Arduino pull-up (no external resistors for buttons and encoder)__;
+2) Only SSB (LSB and USB);
+3) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+4) Volume control;
+5) Eight ham radio bands pre configured;
+6) BFO Control; 
+7) Frequency step switch (1, 5 and 10KHz);  and
+8) BFO step (10 and 50 Hz)
+   
+
 Follow the schematic below to use this sketch. 
 
 ![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png)
+
+
+Pay attention on the push buttons added on this example. The table below shows the commands used by this sketch.
+
+| Defined constant | Arduino Pin | Description |
+| ---------------- | ----------- | ----------- | 
+| BANDWIDTH_BUTTON | 5           | Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz |
+| VOL_UP           | 6           | Volume Up |
+| VOL_DOWN 7       | 7           | Volume Down |
+| BAND_BUTTON_UP   | 8           | Next band |
+| BAND_BUTTON_DOWN | 9           | Previous band | 
+| AGC_SWITCH       | 11          | Switch AGC ON/OF | 
+| STEP_SWITCH      | 10          | Used to select the increment or decrement frequency step (1, 5 or 10 KHz) |
+| BFO_SWITCH       | 13          | Used to select the enconder control (BFO or VFO) |
