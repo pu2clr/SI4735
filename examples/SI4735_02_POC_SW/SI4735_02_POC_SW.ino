@@ -161,11 +161,11 @@ void loop()
         break;
     }
   }
-  delay(100);
   band[currentFreqIdx].currentFreq = currentFrequency = si4735.getFrequency();
   if ( currentFrequency != previousFrequency ) {
     previousFrequency = currentFrequency;
     showStatus();
     delay(300);
   }
+  delay(100);
 }
