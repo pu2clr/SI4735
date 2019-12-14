@@ -284,7 +284,6 @@ void showVolume()
   display.print(volume);
 }
 
-
 void showBFO() {
   String bfo;
   if ( currentBFO > 0 ) 
