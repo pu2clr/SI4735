@@ -73,7 +73,9 @@ void SI4735::analogPowerUp(void)
     Wire.write(powerUp.raw[0]); // Content of ARG1
     Wire.write(powerUp.raw[1]); // COntent of ARG2
     Wire.endTransmission();
-    delayMicroseconds(2500);
+    // Delay at least 500 ms between powerup command and first tune command to wait for 
+    // the oscillator to stabilize if XOSCEN is set and crystal is used as the RCLK.
+    delay(550);
 }
 
 /* 

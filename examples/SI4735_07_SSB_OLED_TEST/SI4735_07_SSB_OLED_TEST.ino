@@ -182,7 +182,7 @@ void setup()
   delay(250);
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
-  delay(500);
+  delay(100);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(40);
   showBFO();
@@ -317,7 +317,7 @@ void bandUp() {
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
   currentStep = band[currentFreqIdx].currentStep;
-  delay(250);
+  delay(100);
   currentFrequency = si4735.getCurrentFrequency();    
 }
 
@@ -332,7 +332,7 @@ void bandDown() {
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep,  band[currentFreqIdx].currentSSB);
   currentStep = band[currentFreqIdx].currentStep;
-  delay(250);
+  delay(100);
   currentFrequency = si4735.getCurrentFrequency();    
 }
 
