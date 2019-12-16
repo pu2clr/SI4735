@@ -30,8 +30,8 @@ So, I strongly recommend starting with this sketch. This example is a proof of c
 
 ### Controls used by example 01
 
-| Keyboard command | Description |
-| ---------------- | ----------- | ----------- | 
+| Keyboard command | Description |           
+| ---------------- | ----------- |
 | A or a | Select MW(AM) |
 | F  or f| Select FN |
 | U or u | Frequency Up | 
