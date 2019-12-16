@@ -406,13 +406,15 @@ The basic circuit built on protoboard is based on the “__SSOP Typical Applicat
 <BR>
 
 ![Protoboard 01](./extras/images/protoboard_01.png)
+
 The figure above shows the very basic shematic implementation (no Button or Encoder).  This protoboard is used by some test  implemented in this project. [See folder examples for more details](./examples) 
 
 <BR>
 <BR>
 
 ![Protoboard 00](./extras/images/protoboard_00.png)
-The figure above shows a schematic implementation using buttons and Encoder. This protoboard will be used in some examples (sketches) writen in this project ( see [the Folder examples for more details](./examples) ). 
+
+The figure above shows a schematic implementation using buttons and Encoder. This protoboard will be used in some examples (sketches) writen in this project.  [See folder examples for more details](./examples). 
 
 <BR>
 <BR>
