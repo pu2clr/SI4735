@@ -323,12 +323,14 @@ A tabela a seguir apresenta a lista de componentes utilizados para construir o p
 | C5 and C6 | 22pF (Crystal load capacitors) | 
 | __C7 and C8[ˆ1]__ | 4.7uF Monolithic Multilayer Chip Ceramic non polarized capacitor | 
 | R3    | 2.2K |
-| __(R4 and R5)[ˆ2]__ | 10K (pull-up resistors) |
+| __(R4 and R5)[ˆ2]__ | Entre 2K e 10K (pull-up resistors)  |
 | L1 | Ferrite loop stick (about 500 μH) |
 | X1    | 32.768 kHz crystal |
 
   * [ˆ1]: C7 and C8 são capacitores de cerâmica incluídos pelo autor deste projeto. O objetivo deles é retirar a componente de tensão continua na entrada do amplificador de áudio.  
-  * [ˆ2]: R4 and R5 são resistores pull-up também incluídos pelo autor deste projeto. O objetivo deste resistores é atender aos requisitos recomendados pela especificação I2C.
+  * [ˆ2]: R4 and R5 são resistores pull-up também incluídos pelo autor deste projeto. O objetivo deste resistores é atender aos requisitos recomendados pela especificação I2C. Procure usar um valor o mais baixo possível. Os valores para os resistores pull-up sugeridos aqui funcionam. Porém, poderá ser mais apropriado para o tipo de aplicação, resistências menores (por exemplo, 2K). Isso pode depender também de outros dispositivos conectados ao barramento I2C.
+
+
 
 __Recomendações da Silicon Labs para serem consideradas durante a montagem do rádio__ 
 __Veja "Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver Documentation":

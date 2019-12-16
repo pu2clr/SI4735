@@ -361,12 +361,12 @@ The table below shows the component parts used to build the radio prototype base
 | C5 and C6 | 22pF (Crystal load capacitors) | 
 | C7 and C8[ˆ1] | 4.7uF Monolithic Multilayer Chip Ceramic non polarized capacitor | 
 | R3    | 2.2K |
-| (R4 and R5)[ˆ2] | 10K (pull-up resistors) |
+| (R4 and R5)[ˆ2] | 2K to 10K (pull-up resistors) |
 | L1 | Ferrite loop stick (about 500 μH) |
 | X1    | 32.768 kHz crystal |
 
   * [ˆ1]: C7 and C8 are ceramic capacitors included by the author of this project. They are not present on original Silicon Labs schematic. 
-  * [ˆ2]: R4 and R5 are pull-up resistor included by the author of this project. They are not present on original Silicon Labs schematic. 
+  * [ˆ2]: R4 and R5 are pull-up resistor included by the author of this project. They are not present on original Silicon Labs schematic.  This will also depend on other devices connected to the same I2C bus.  __Always try to use the lowest possible value__.
 
 __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (page 12)__:
 * Place C1 close to VA and C4 close to VD pin.
