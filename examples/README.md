@@ -28,6 +28,20 @@ Test and validation of the SI4735 Arduino Library. The main advantages of using 
 
 So, I strongly recommend starting with this sketch. This example is a proof of concept of SI4735 Arduino Library. The [SI4735_POC.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_POC) sketch uses just the __Serial Monitor__ and works only on your __Arduino IDE__. However, you can easily replace the Serial Monitor functions to the device functions that you want to use. 
 
+### Controls used by example 01
+
+| Keyboard command | Description |
+| ---------------- | ----------- | ----------- | 
+| A or a | Select MW(AM) |
+| F  or f| Select FN |
+| U or u | Frequency Up | 
+| D or d | Frequency Down |
+| S | Seek - Goes to next station |
+| s | Seek - Goes to previous station |
+| + | Volume Up |
+| - | Volume Down |
+| 0 | Show current status | 
+
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_01_POC/SI4735_01_POC.ino) to see this example.
 
 
@@ -37,6 +51,38 @@ Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_01_POC
 ## Example 02 - Proof of Concept with SW
 
 This example shows how can you use SW features of the Si4735 Arduino Library. Like the previous exemple (Proof of Concept), the [SI4735_POC_SW.ino](examples/SI4735_POC_SW/SI4735_POC_SW.ino) sketch __works only on Arduino IDE__. It uses the Serial Monitor to get the commands and show the information. 
+
+
+### SW Bands used by the example 02
+| Band | From (KHz) | To (KHz) | Default (KHz)|
+| ---- | ---------- | -------- | ------------ | 
+| 60m | 4600| 5200| 4700|
+| 49m | 5700| 6200| 6000|
+| 40-41m | 7000 | 7500 | 7200|
+| 31m | 9300 | 10000 | 9600 |
+| 25m | 11400 | 12200 | 1800|
+| 22m | 13500 | 13900 | 13600|
+| 19m | 15000 | 15800 | 15200|
+| 16m | 17400 | 17900 | 17600|
+| 21m | 21400 | 21800 | 21500|
+| 11m | 27000 | 27500 | 27220|
+
+
+### Controls used by the example 02
+
+| Keyboard command | Description |
+| ---------------- | ----------- | ----------- | 
+| A or a | Select MW(AM) |
+| F or f | Select FN |
+| U or u | Frequency Up | 
+| D or d | Frequency Down |
+| S | Seek - Goes to next station |
+| s | Seek - Goes to previous station |
+| + | Volume Up |
+| - | Volume Down |
+| 1 | Previous SW band | 
+| 2 | Next SW band | 
+| 0 | Show current status | 
 
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_02_POC_SW/SI4735_02_POC_SW.ino) to see this example.
 
