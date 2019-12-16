@@ -2286,6 +2286,7 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
     * [I2C Manual; Application Note; AN10216-01] (https://www.nxp.com/docs/en/application-note/AN10216.pdf)
     * IMPROVING NOISE IMMUNITY FOR SERIAL INTERFACE; A Lattice Semiconductor White Paper; July 2014
     * [Bus Buffers Simplify Design of Large, Noisy I2C Systems](https://www.analog.com/en/technical-articles/bus-buffers-simplify-design-of-large-noisy-i2c-systems.html#)
+    * [Common Problems In Systems](https://www.i2c-bus.org/i2c-primer/common-problems/)
     * __Forums__
       * [How to reduce I2C bus noise](https://www.microchip.com/forums/m456630.aspx)
       * [Radio interferes with I2C bus communication](https://www.microchip.com/forums/m456630.aspx)
