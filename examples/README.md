@@ -71,7 +71,7 @@ This example shows how can you use SW features of the Si4735 Arduino Library. Li
 ### Controls used by the example 02
 
 | Keyboard command | Description |
-| ---------------- | ----------- | ----------- | 
+| ---------------- | ----------- | 
 | A or a | Select MW(AM) |
 | F or f | Select FN |
 | U or u | Frequency Up | 
