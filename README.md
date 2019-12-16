@@ -2280,6 +2280,19 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 10. [RBDS & RDS PTY Codes and Program Types](https://www.fmsystems-inc.com/rbds-rds-pty-codes-program-types/)
 11. [Using RDS/RBDS with the Si4701/03](https://www.silabs.com/documents/public/application-notes/AN243.pdf)
 12. [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
+13. __I2C__ 
+    * [Taking The Leap Off Board: An Introduction To I2C Over Long Wires](https://hackaday.com/2017/02/08/taking-the-leap-off-board-an-introduction-to-i2c-over-long-wires/)
+    * [Issues with the I²C (Inter-IC) Bus and How to Solve Them](https://www.digikey.com/en/articles/techzone/2018/aug/issues-with-the-i2c-bus-and-how-to-solve-them)
+    * [I2C Manual; Application Note; AN10216-01] (https://www.nxp.com/docs/en/application-note/AN10216.pdf)
+    * IMPROVING NOISE IMMUNITY FOR SERIAL INTERFACE; A Lattice Semiconductor White Paper; July 2014
+    * [Bus Buffers Simplify Design of Large, Noisy I2C Systems](https://www.analog.com/en/technical-articles/bus-buffers-simplify-design-of-large-noisy-i2c-systems.html#)
+    * __Forums__
+      * [How to reduce I2C bus noise](https://www.microchip.com/forums/m456630.aspx)
+      * [Radio interferes with I2C bus communication](https://www.microchip.com/forums/m456630.aspx)
+      * [Reducing Noise on an I2C bus line](http://e2e.ti.com/support/interface/f/138/t/552072)
+      * [Noise on I2C bus](https://forum.allaboutcircuits.com/threads/noise-on-i2c-bus.41916/)
+      * [Noises on the I2C BUS](https://electronics.stackexchange.com/questions/292032/noises-on-the-i2c-bus)
+
 
 
 
