@@ -92,14 +92,14 @@ void setup()
 {
 
   // Encoder pins
-  pinMode(ENCODER_PIN_A, INPUT);
-  pinMode(ENCODER_PIN_B, INPUT);
+  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
-  pinMode(BANDWIDTH_BUTTON, INPUT);
-  pinMode(BAND_BUTTON_UP, INPUT);
-  pinMode(BAND_BUTTON_DOWN, INPUT);
-  pinMode(VOL_UP, INPUT);
-  pinMode(VOL_DOWN, INPUT);
+  pinMode(BANDWIDTH_BUTTON, INPUT_PULLUP);
+  pinMode(BAND_BUTTON_UP, INPUT_PULLUP);
+  pinMode(BAND_BUTTON_DOWN, INPUT_PULLUP);
+  pinMode(VOL_UP, INPUT_PULLUP);
+  pinMode(VOL_DOWN, INPUT_PULLUP);
 
   display.begin(&Adafruit128x64, I2C_ADDRESS);
   display.setFont(Adafruit5x7);
@@ -269,7 +269,7 @@ void loop()
   {
 
     // check if some button is pressed
-    if (digitalRead(BANDWIDTH_BUTTON) == HIGH )
+    if (digitalRead(BANDWIDTH_BUTTON) == LOW )
     {
       bandwidthIdx++;
       if (bandwidthIdx > 6)  bandwidthIdx = 0;
@@ -277,13 +277,13 @@ void loop()
       si4735.setBandwidth(bandwidthIdx, 0);
       showStatus();
     }
-    else if (digitalRead(BAND_BUTTON_UP) == HIGH )
+    else if (digitalRead(BAND_BUTTON_UP) == LOW )
       bandUp();
-    else if (digitalRead(BAND_BUTTON_DOWN) == HIGH )
+    else if (digitalRead(BAND_BUTTON_DOWN) == LOW )
       bandDown();
-    else if (digitalRead(VOL_UP) == HIGH )
+    else if (digitalRead(VOL_UP) == LOW )
       si4735.volumeUp();
-    else if (digitalRead(VOL_DOWN) == HIGH )
+    else if (digitalRead(VOL_DOWN) == LOW )
       si4735.volumeDown();
 
     elapsedButton = millis();
@@ -312,5 +312,5 @@ void loop()
     showVolume();
   }
 
-  delay(100);
+  delay(30);
 }

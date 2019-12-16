@@ -26,11 +26,11 @@
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
-#define AM_FM_BUTTON 5      // Next Band
-#define SEEK_BUTTON_UP 8    // Seek Up
-#define SEEK_BUTTON_DOWN 9  // Seek Down
-#define VOL_UP 6            // Volume Volume Up
-#define VOL_DOWN 7          // Volume Down
+#define AM_FM_BUTTON 4      // Next Band
+#define SEEK_BUTTON_UP 5    // Seek Up
+#define SEEK_BUTTON_DOWN 6  // Seek Down
+#define VOL_UP 8            // Volume Volume Up
+#define VOL_DOWN 9          // Volume Down
 // Seek Function
 
 #define MIN_ELAPSED_TIME 100
@@ -62,14 +62,14 @@ void setup()
 {
 
   // Encoder pins
-  pinMode(ENCODER_PIN_A, INPUT);
-  pinMode(ENCODER_PIN_B, INPUT);
+  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
-  pinMode(AM_FM_BUTTON, INPUT);
-  pinMode(SEEK_BUTTON_UP, INPUT);
-  pinMode(SEEK_BUTTON_DOWN, INPUT);
-  pinMode(VOL_UP, INPUT);
-  pinMode(VOL_DOWN, INPUT);
+  pinMode(AM_FM_BUTTON, INPUT_PULLUP);
+  pinMode(SEEK_BUTTON_UP, INPUT_PULLUP);
+  pinMode(SEEK_BUTTON_DOWN, INPUT_PULLUP);
+  pinMode(VOL_UP, INPUT_PULLUP);
+  pinMode(VOL_DOWN, INPUT_PULLUP);
 
   display.begin(&Adafruit128x64, I2C_ADDRESS);
   display.setFont(Adafruit5x7);
@@ -114,39 +114,43 @@ void rotaryEncoder()
   }
 }
 
+
 // Show current frequency
-void showStatus()
-{
-  String unit, freqDisplay;
-  String bandMode;
+void showFrequency() {
+
+  String freqDisplay;
 
   if ( si4735.isCurrentTuneFM())
   {
-    bandMode = String("FM");
-    unit = "MHz";
     // Formatting the frequency to show on display
     freqDisplay = String((currentFrequency / 100.0), 1);
     freqDisplay.replace(".", ",");
   }
   else
   {
-    bandMode = String("AM");
-    unit = "KHz";
-    freqDisplay = String(currentFrequency);
-  }
+     freqDisplay = String(currentFrequency);
+  }  
 
-  display.set1X();
-  display.setCursor(0, 0);
-  display.print(String(bandMode));
-
-  display.setCursor(98,0);
-  display.print(unit);
 
   display.set2X();
   display.setCursor(26, 1);
   display.print("        ");  
   display.setCursor(26, 1);
   display.print(freqDisplay);
+  display.set1X();
+  
+}
+
+
+void showStatus()
+{
+
+  display.set1X();
+  display.setCursor(0, 0);
+  display.print( (si4735.isCurrentTuneFM())? "FM" : "AM" );
+
+  display.setCursor(98,0);
+  display.print((si4735.isCurrentTuneFM())? "MHz" : "KHz");
 
   
   // Show AGC Information
@@ -158,6 +162,11 @@ void showStatus()
   display.print("G.:");
   display.setCursor( 27,5);
   display.print(si4735.getAgcGainIndex());
+
+  showFrequency();
+  showRSSI();
+  showStereo();
+  showVolume();
 
 }
 
@@ -230,7 +239,7 @@ void loop()
   if ((millis() - elapsedButton) > MIN_ELAPSED_TIME )
   {
     // check if some button is pressed
-    if (digitalRead(AM_FM_BUTTON) == HIGH ) {
+    if (digitalRead(AM_FM_BUTTON) == LOW ) {
       // Switch AM to FM and vice-versa
       if  (si4735.isCurrentTuneFM() ) {
         lastFmFrequency = currentFrequency;
@@ -242,15 +251,16 @@ void loop()
       }
       // Uncoment the line below if you want to disable AGC
       // si4735.setAutomaticGainControl(1,0);   
-      display.clear();   
+      display.clear();
+      showStatus();   
     }
-    else if (digitalRead(SEEK_BUTTON_UP) == HIGH )
+    else if (digitalRead(SEEK_BUTTON_UP) == LOW )
       si4735.seekStationUp();
-    else if (digitalRead(SEEK_BUTTON_DOWN) == HIGH )
+    else if (digitalRead(SEEK_BUTTON_DOWN) == LOW )
       si4735.seekStationDown();
-    else if (digitalRead(VOL_UP) == HIGH )
+    else if (digitalRead(VOL_UP) == LOW )
       si4735.volumeUp();
-    else if (digitalRead(VOL_DOWN) == HIGH )
+    else if (digitalRead(VOL_DOWN) == LOW )
       si4735.volumeDown();
 
     elapsedButton = millis();
@@ -260,7 +270,7 @@ void loop()
   currentFrequency = si4735.getFrequency();
   if ( currentFrequency != previousFrequency ) {
     previousFrequency = currentFrequency;
-    showStatus();
+    showFrequency();
   }
 
   // Show RSSI status only if this condition has changed

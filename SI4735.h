@@ -679,146 +679,148 @@ public:
 
     // Status response
     unsigned getFrequency(void);
-    unsigned getCurrentFrequency(); // See documentation 
+    unsigned getCurrentFrequency(); // See documentation
 
     /* STATUS RESPONSE
      * Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation
      * See Si47XX PROGRAMMING GUIDE; AN332; pages 63
      */
-        inline bool getSignalQualityInterrupt() { return currentStatus.resp.RSQINT; };        // Gets Received Signal Quality Interrupt(RSQINT)
-        inline bool getRadioDataSystemInterrupt() { return currentStatus.resp.RDSINT; };      // Gets Radio Data System (RDS) Interrupt
-        inline bool getTuneCompleteTriggered() { return currentStatus.resp.STCINT; };         // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
-        inline bool getStatusError() { return currentStatus.resp.ERR; };                      // Return the Error flag (true or false) of status of the least Tune or Seek
-        inline bool getStatusCTS() { return currentStatus.resp.CTS; };                        // Gets the Error flag of status response
-        inline bool getACFIndicator() { return currentStatus.resp.AFCRL; };                   // Returns true if the AFC rails (AFC Rail Indicator).
-        inline bool getBandLimit() { return currentStatus.resp.BLTF; };                       // Returns true if a seek hit the band limit (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
-        inline bool getStatusValid() { return currentStatus.resp.VALID; };                    // eturns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)
-        inline byte getReceivedSignalStrengthIndicator() { return currentStatus.resp.RSSI; }; // Returns integer Received Signal Strength Indicator (dBμV).
-        inline byte getStatusSNR() { return currentStatus.resp.SNR; };                        // returns integer containing the SNR metric when tune is complete (dB).
-        inline byte getStatusMULT() { return currentStatus.resp.MULT; };                      // Returns integer containing the multipath metric when tune is complete.
-        inline byte getAntennaTuningCapacitor() { return currentStatus.resp.READANTCAP; };    // Returns integer containing the current antenna tuning capacitor value.
+    inline bool getSignalQualityInterrupt() { return currentStatus.resp.RSQINT; };        // Gets Received Signal Quality Interrupt(RSQINT)
+    inline bool getRadioDataSystemInterrupt() { return currentStatus.resp.RDSINT; };      // Gets Radio Data System (RDS) Interrupt
+    inline bool getTuneCompleteTriggered() { return currentStatus.resp.STCINT; };         // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
+    inline bool getStatusError() { return currentStatus.resp.ERR; };                      // Return the Error flag (true or false) of status of the least Tune or Seek
+    inline bool getStatusCTS() { return currentStatus.resp.CTS; };                        // Gets the Error flag of status response
+    inline bool getACFIndicator() { return currentStatus.resp.AFCRL; };                   // Returns true if the AFC rails (AFC Rail Indicator).
+    inline bool getBandLimit() { return currentStatus.resp.BLTF; };                       // Returns true if a seek hit the band limit (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
+    inline bool getStatusValid() { return currentStatus.resp.VALID; };                    // eturns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)
+    inline byte getReceivedSignalStrengthIndicator() { return currentStatus.resp.RSSI; }; // Returns integer Received Signal Strength Indicator (dBμV).
+    inline byte getStatusSNR() { return currentStatus.resp.SNR; };                        // returns integer containing the SNR metric when tune is complete (dB).
+    inline byte getStatusMULT() { return currentStatus.resp.MULT; };                      // Returns integer containing the multipath metric when tune is complete.
+    inline byte getAntennaTuningCapacitor() { return currentStatus.resp.READANTCAP; };    // Returns integer containing the current antenna tuning capacitor value.
 
-        void getAutomaticGainControl();
+    void getAutomaticGainControl();
 
-        inline bool isAgcEnabled() { return !currentAgcStatus.refined.AGCDIS; };  // Returns true if the AGC is enabled
-        inline byte getAgcGainIndex() { return currentAgcStatus.refined.AGCDX; }; // Returns the current AGC gain index.
-        void setAutomaticGainControl(byte AGCDIS, byte AGCDX);                    // Overrides the AGC setting
+    inline bool isAgcEnabled() { return !currentAgcStatus.refined.AGCDIS; };  // Returns true if the AGC is enabled
+    inline byte getAgcGainIndex() { return currentAgcStatus.refined.AGCDX; }; // Returns the current AGC gain index.
+    void setAutomaticGainControl(byte AGCDIS, byte AGCDX);                    // Overrides the AGC setting
 
-        /* RQS STATUS RESPONSE 
+    /* RQS STATUS RESPONSE 
      * 
      */
-        void getCurrentReceivedSignalQuality(byte INTACK);
-        // AM and FM
-        inline byte getCurrentRSSI() { return currentRqsStatus.resp.RSSI; };               // current receive signal strength (0–127 dBμV).
-        inline byte getCurrentSNR() { return currentRqsStatus.resp.SNR; };                 // current SNR metric (0–127 dB).
-        inline bool getCurrentRssiDetectLow() { return currentRqsStatus.resp.RSSIILINT; }; // RSSI Detect Low.
-        inline bool getCurrentRssiDetectHigh() { return currentRqsStatus.resp.RSSIHINT; }; // RSSI Detect High
-        inline bool getCurrentSnrDetectLow() { return currentRqsStatus.resp.SNRLINT; };    // SNR Detect Low.
-        inline bool getCurrentSnrDetectHigh() { return currentRqsStatus.resp.SNRHINT; };   // SNR Detect High
-        inline bool getCurrentValidChannel() { return currentRqsStatus.resp.VALID; };      // Valid Channel.
-        inline bool getCurrentAfcRailIndicator() { return currentRqsStatus.resp.AFCRL; };  // AFC Rail Indicator.
-        inline bool getCurrentSoftMuteIndicator() { return currentRqsStatus.resp.SMUTE; }; // Soft Mute Indicator. Indicates soft mute is engaged.
-        // Just FM
-        inline bool getCurrentStereoBlend() { return currentRqsStatus.resp.STBLEND; };           // Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono).
-        inline bool getCurrentPilot() { return currentRqsStatus.resp.PILOT; };                   // Indicates stereo pilot presence.
-        inline byte getCurrentMultipath() { return currentRqsStatus.resp.MULT; };                // Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
-        inline byte getCurrentSignedFrequencyOffset() { return currentRqsStatus.resp.FREQOFF; }; // Signed frequency offset (kHz).
-        inline bool getCurrentMultipathDetectLow() { return currentRqsStatus.resp.MULTLINT; };   // Multipath Detect Low.
-        inline bool getCurrentMultipathDetectHigh() { return currentRqsStatus.resp.MULTHINT; };  // Multipath Detect High
-        inline bool getCurrentBlendDetectInterrupt() { return currentRqsStatus.resp.BLENDINT; }; // Blend Detect Interrupt
+    void getCurrentReceivedSignalQuality(byte INTACK);
+    void getCurrentReceivedSignalQuality(void);
+    
+    // AM and FM
+    inline byte getCurrentRSSI() { return currentRqsStatus.resp.RSSI; };               // current receive signal strength (0–127 dBμV).
+    inline byte getCurrentSNR() { return currentRqsStatus.resp.SNR; };                 // current SNR metric (0–127 dB).
+    inline bool getCurrentRssiDetectLow() { return currentRqsStatus.resp.RSSIILINT; }; // RSSI Detect Low.
+    inline bool getCurrentRssiDetectHigh() { return currentRqsStatus.resp.RSSIHINT; }; // RSSI Detect High
+    inline bool getCurrentSnrDetectLow() { return currentRqsStatus.resp.SNRLINT; };    // SNR Detect Low.
+    inline bool getCurrentSnrDetectHigh() { return currentRqsStatus.resp.SNRHINT; };   // SNR Detect High
+    inline bool getCurrentValidChannel() { return currentRqsStatus.resp.VALID; };      // Valid Channel.
+    inline bool getCurrentAfcRailIndicator() { return currentRqsStatus.resp.AFCRL; };  // AFC Rail Indicator.
+    inline bool getCurrentSoftMuteIndicator() { return currentRqsStatus.resp.SMUTE; }; // Soft Mute Indicator. Indicates soft mute is engaged.
+    // Just FM
+    inline bool getCurrentStereoBlend() { return currentRqsStatus.resp.STBLEND; };           // Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono).
+    inline bool getCurrentPilot() { return currentRqsStatus.resp.PILOT; };                   // Indicates stereo pilot presence.
+    inline byte getCurrentMultipath() { return currentRqsStatus.resp.MULT; };                // Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
+    inline byte getCurrentSignedFrequencyOffset() { return currentRqsStatus.resp.FREQOFF; }; // Signed frequency offset (kHz).
+    inline bool getCurrentMultipathDetectLow() { return currentRqsStatus.resp.MULTLINT; };   // Multipath Detect Low.
+    inline bool getCurrentMultipathDetectHigh() { return currentRqsStatus.resp.MULTHINT; };  // Multipath Detect High
+    inline bool getCurrentBlendDetectInterrupt() { return currentRqsStatus.resp.BLENDINT; }; // Blend Detect Interrupt
 
-        /*
+    /*
      * FIRMWARE RESPONSE
      * 
      * See Si47XX PROGRAMMING GUIDE; AN332; page 66
      */
-        inline byte
-        getFirmwarePN()
-        {
-            return firmwareInfo.resp.PN;
-        };                                                                        //  RESP1 - Part Number (HEX)
-        inline byte getFirmwareFWMAJOR() { return firmwareInfo.resp.FWMAJOR; };   // RESP2 - Returns the Firmware Major Revision (ASCII).
-        inline byte getFirmwareFWMINOR() { return firmwareInfo.resp.FWMINOR; };   // RESP3 - Returns the Firmware Minor Revision (ASCII).
-        inline byte getFirmwarePATCHH() { return firmwareInfo.resp.PATCHH; };     // RESP4 -  Returns the Patch ID High Byte (HEX).
-        inline byte getFirmwarePATCHL() { return firmwareInfo.resp.PATCHL; };     // RESP5 - Returns the Patch ID Low Byte (HEX).
-        inline byte getFirmwareCMPMAJOR() { return firmwareInfo.resp.CMPMAJOR; }; // RESP6 -  Returns the Component Major Revision (ASCII).
-        inline byte getFirmwareCMPMINOR() { return firmwareInfo.resp.CMPMINOR; }; // RESP7 - Returns the Component Minor Revision (ASCII).
-        inline byte getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; };   // RESP8 -  Returns the Chip Revision (ASCII).
+    inline byte
+    getFirmwarePN()
+    {
+        return firmwareInfo.resp.PN;
+    };                                                                        //  RESP1 - Part Number (HEX)
+    inline byte getFirmwareFWMAJOR() { return firmwareInfo.resp.FWMAJOR; };   // RESP2 - Returns the Firmware Major Revision (ASCII).
+    inline byte getFirmwareFWMINOR() { return firmwareInfo.resp.FWMINOR; };   // RESP3 - Returns the Firmware Minor Revision (ASCII).
+    inline byte getFirmwarePATCHH() { return firmwareInfo.resp.PATCHH; };     // RESP4 -  Returns the Patch ID High Byte (HEX).
+    inline byte getFirmwarePATCHL() { return firmwareInfo.resp.PATCHL; };     // RESP5 - Returns the Patch ID Low Byte (HEX).
+    inline byte getFirmwareCMPMAJOR() { return firmwareInfo.resp.CMPMAJOR; }; // RESP6 -  Returns the Component Major Revision (ASCII).
+    inline byte getFirmwareCMPMINOR() { return firmwareInfo.resp.CMPMINOR; }; // RESP7 - Returns the Component Minor Revision (ASCII).
+    inline byte getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; };   // RESP8 -  Returns the Chip Revision (ASCII).
 
-        // Volume control
-        void setVolume(byte volume);
-        byte getVolume();
-        void volumeDown();
-        void volumeUp();
-        inline byte getCurrentVolume() { return volume; }; // Returns the current volume level.
+    // Volume control
+    void setVolume(byte volume);
+    byte getVolume();
+    void volumeDown();
+    void volumeUp();
+    inline byte getCurrentVolume() { return volume; }; // Returns the current volume level.
 
-        //
-        void setAM();
-        void setFM();
-        void setAM(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
-        void setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step);
+    //
+    void setAM();
+    void setFM();
+    void setAM(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
+    void setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step);
 
-        void setBandwidth(byte AMCHFLT, byte AMPLFLT);
+    void setBandwidth(byte AMCHFLT, byte AMPLFLT);
 
-        void setFrequencyStep(byte step);
+    void setFrequencyStep(byte step);
 
-        inline void setTuneFrequencyFast(byte FAST) { currentFrequencyParams.arg.FAST = FAST; };         // FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate
-        inline void setTuneFrequencyFreeze(byte FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; // Onlye FM. Freeze Metrics During Alternate Frequency Jump.
-        void setTuneFrequencyAntennaCapacitor(unsigned capacitor);
+    inline void setTuneFrequencyFast(byte FAST) { currentFrequencyParams.arg.FAST = FAST; };         // FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate
+    inline void setTuneFrequencyFreeze(byte FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; // Onlye FM. Freeze Metrics During Alternate Frequency Jump.
+    void setTuneFrequencyAntennaCapacitor(unsigned capacitor);
 
-        void frequencyUp();
-        void frequencyDown();
-        bool isCurrentTuneFM();
-        void getFirmware(void);
+    void frequencyUp();
+    void frequencyDown();
+    bool isCurrentTuneFM();
+    void getFirmware(void);
 
-        void setFunction(byte FUNC);
-        void seekStation(byte SEEKUP, byte WRAP);
-        void seekStationUp();
-        void seekStationDown();
+    void setFunction(byte FUNC);
+    void seekStation(byte SEEKUP, byte WRAP);
+    void seekStationUp();
+    void seekStationDown();
 
-        // RDS implementation
-        void setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCFOUND, byte RDSSYNCLOST, byte RDSRECV);
-        void getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY);
-        void getRdsStatus();
-        inline bool getRdsReceived() { return currentRdsStatus.resp.RDSRECV; };        // 1 = FIFO filled to minimum number of groups
-        inline bool getRdsSyncLost() { return currentRdsStatus.resp.RDSSYNCLOST; };    // 1 = Lost RDS synchronization
-        inline bool getRdsSyncFound() { return currentRdsStatus.resp.RDSSYNCFOUND; };  // 1 = Found RDS synchronization
-        inline bool getRdsNewBlockA() { return currentRdsStatus.resp.RDSNEWBLOCKA; };  // 1 = Valid Block A data has been received.
-        inline bool getRdsNewBlockB() { return currentRdsStatus.resp.RDSNEWBLOCKB; };  // 1 = Valid Block B data has been received.
-        inline bool getRdsSync() { return currentRdsStatus.resp.RDSSYNC; };            // 1 = RDS currently synchronized.
-        inline bool getGroupLost() { return currentRdsStatus.resp.GRPLOST; };          // 1 = One or more RDS groups discarded due to FIFO overrun.
-        inline byte getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
+    // RDS implementation
+    void setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCFOUND, byte RDSSYNCLOST, byte RDSRECV);
+    void getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY);
+    void getRdsStatus();
+    inline bool getRdsReceived() { return currentRdsStatus.resp.RDSRECV; };        // 1 = FIFO filled to minimum number of groups
+    inline bool getRdsSyncLost() { return currentRdsStatus.resp.RDSSYNCLOST; };    // 1 = Lost RDS synchronization
+    inline bool getRdsSyncFound() { return currentRdsStatus.resp.RDSSYNCFOUND; };  // 1 = Found RDS synchronization
+    inline bool getRdsNewBlockA() { return currentRdsStatus.resp.RDSNEWBLOCKA; };  // 1 = Valid Block A data has been received.
+    inline bool getRdsNewBlockB() { return currentRdsStatus.resp.RDSNEWBLOCKB; };  // 1 = Valid Block B data has been received.
+    inline bool getRdsSync() { return currentRdsStatus.resp.RDSSYNC; };            // 1 = RDS currently synchronized.
+    inline bool getGroupLost() { return currentRdsStatus.resp.GRPLOST; };          // 1 = One or more RDS groups discarded due to FIFO overrun.
+    inline byte getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
 
-        void setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD);
-        unsigned getRdsPI(void);
-        unsigned getRdsGroupType(void);
-        unsigned getRdsVersionCode(void);
-        unsigned getRdsProgramType(void);
-        String getRdsText(void);
-        String getRdsTime(void);
+    void setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD);
+    unsigned getRdsPI(void);
+    unsigned getRdsGroupType(void);
+    unsigned getRdsVersionCode(void);
+    unsigned getRdsProgramType(void);
+    String getRdsText(void);
+    String getRdsTime(void);
 
-        // Test
-        char *getNext2Block(char *c);
-        char *getNext4Block(char *);
+    // Test
+    char *getNext2Block(char *c);
+    char *getNext4Block(char *);
 
-        /*
+    /*
      * SSB 
      */
-        void setSSBBfo(int offset);
-        void setSSBConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS);
-        void setSSB(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step, byte usblsb);
-        void setSSB(byte usblsb);
-        void setSSBAudioBandwidth(byte AUDIOBW);
-        void setSSBAutomaticVolumeControl(byte AVCEN);
-        void setSBBSidebandCutoffFilter(byte SBCUTFLT);
-        void setSSBAvcDivider(byte AVC_DIVIDER);
-        void setSSBDspAfc(byte DSP_AFCDIS);
-        void setSSBSoftMute(byte SMUTESEL);
+    void setSSBBfo(int offset);
+    void setSSBConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS);
+    void setSSB(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step, byte usblsb);
+    void setSSB(byte usblsb);
+    void setSSBAudioBandwidth(byte AUDIOBW);
+    void setSSBAutomaticVolumeControl(byte AVCEN);
+    void setSBBSidebandCutoffFilter(byte SBCUTFLT);
+    void setSSBAvcDivider(byte AVC_DIVIDER);
+    void setSSBDspAfc(byte DSP_AFCDIS);
+    void setSSBSoftMute(byte SMUTESEL);
 
-        /*
+    /*
      * SSB PATCH
      */
-        si47x_firmware_query_library queryLibraryId();
+    si47x_firmware_query_library queryLibraryId();
     void patchPowerUp(); // Used to apply SSB patch on SI4735
     bool downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_size);
     bool downloadPatch(byte eeprom_i2c_address);
@@ -828,7 +830,7 @@ public:
      * This functions below modify the clock frequency for I2C communication. 
      * 100KHz  is usually the baseline.
      * Use one of these funcition if you have problem on you default configuration. 
-     */ 
+     */
     inline void setI2CLowSpeedMode(void) { Wire.setClock(10000); };
     inline void setI2CStandardMode(void) { Wire.setClock(100000); };
     inline void setI2CFastMode(void) { Wire.setClock(400000); };

@@ -1,24 +1,24 @@
 /*
   SS4735 SSB Support example with OLED-I2C and Encoder.
-  
+
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
 
   This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.
-    
+
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
-  There is little information available about patching the SI4735. The following information is the understanding of the author of 
-  this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device. 
-  Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device. 
-  Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by 
+  There is little information available about patching the SI4735. The following information is the understanding of the author of
+  this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
+  Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device.
+  Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by
   the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
   Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
 
-  ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment. 
-  Given this, it is at your own risk to continue with the procedures suggested here. 
-  This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60. 
-  Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.  
+  ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment.
+  Given this, it is at your own risk to continue with the procedures suggested here.
+  This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
+  Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
 
-  Features of this sketch: 
+  Features of this sketch:
 
   1) Only SSB (LSB and USB);
   2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
@@ -26,11 +26,11 @@
   4) BFO Control; and
   5) Frequency step switch (1, 5 and 10KHz);
 
-  Main Parts: 
-  Encoder with push button; 
+  Main Parts:
+  Encoder with push button;
   Seven bush buttons;
   OLED Display with I2C protocol;
-  Arduino Pro mini 3.3V;  
+  Arduino Pro mini 3.3V;
 
 
   By Ricardo Lima Caratti, Nov 2019.
@@ -70,7 +70,8 @@ const int size_content = sizeof ssb_patch_content;  // see ssb_patch_content in 
 #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
 // Seek Function
 
-#define MIN_ELAPSED_TIME 100
+#define MIN_ELAPSED_TIME 80
+#define MIN_ELAPSED_RSSI_TIME 500
 #define LSB 1
 #define USB 2
 
@@ -81,7 +82,9 @@ bool avc_en = true;
 int currentBFO = 0;
 int previousBFO = 0;
 
+long elapsedRSSI = millis();
 long elapsedButton = millis();
+long elapsedFrequency = millis();
 
 // Encoder control variables
 volatile int encoderCount = 0;
@@ -106,19 +109,19 @@ typedef struct {
 
 
 Band band[] = {
-  {1800, 2000, 1900, 1, LSB}, 
+  {1800, 2000, 1900, 1, LSB},
   {3500, 4000, 3700, 1, LSB},
   {7000, 7500, 7100, 1, LSB},
-  {10000,10500,10050,1, USB}, 
+  {10000, 10500, 10050, 1, USB},
   {14000, 14300, 14200, 1, USB},
-  {18000, 18300, 18100,1,USB},
+  {18000, 18300, 18100, 1, USB},
   {21000, 21400, 21200, 1, USB},
   {27000, 27500, 27220, 1, USB},
   {28000, 28500, 28400, 1, USB}
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int  currentFreqIdx = 2;
+int  currentFreqIdx = 8;
 
 byte rssi = 0;
 byte stereo = 1;
@@ -143,7 +146,7 @@ void setup()
   pinMode(VOL_DOWN, INPUT_PULLUP);
   pinMode(BFO_SWITCH, INPUT_PULLUP);
   pinMode(AGC_SWITCH, INPUT_PULLUP);
-  pinMode(STEP_SWITCH,INPUT_PULLUP);
+  pinMode(STEP_SWITCH, INPUT_PULLUP);
   pinMode(AVC_SWITCH, INPUT_PULLUP);
 
   display.init();
@@ -152,16 +155,17 @@ void setup()
 
   // Splash - Change it for your introduction text.
   display.backlight();
-  display.setCursor(0, 0);
-  display.print("SI4735 Arduino Lib.");
+  display.setCursor(7, 0);
+  display.print("SI4735");
+  display.setCursor(2, 1);
+  display.print("Arduino Library");
   delay(500);
-  display.setCursor(5, 1);
+  display.setCursor(6, 2);
   display.print("SSB TEST");
   delay(500);
-  display.setCursor(5, 2);
+  display.setCursor(6, 3);
   display.print("By PU2CLR");
   delay(2000);
-  display.clear();
   // end Splash
 
   // Encoder interrupt
@@ -179,17 +183,20 @@ void setup()
   delay(250);
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
-  delay(500);
+  delay(250);
   currentFrequency = previousFrequency = si4735.getFrequency();
-  si4735.setVolume(40);
-  showBFO();
+  si4735.setVolume(45);
+  display.clear();
   showStatus();
 }
 
 // Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
 void rotaryEncoder()
 { // rotary encoder events
+
+
   uint8_t encoderStatus = encoder.process();
+
   if (encoderStatus)
   {
     if (encoderStatus == DIR_CW)
@@ -201,17 +208,30 @@ void rotaryEncoder()
       encoderCount = -1;
     }
   }
+
 }
 
 // Show current frequency
+
+void showFrequency() {
+
+  String freqDisplay;
+  freqDisplay = String((float) currentFrequency / 1000, 3);
+
+  display.setCursor(7, 0);
+  display.print("        ");
+  display.setCursor(7, 0);
+  display.print(freqDisplay);
+
+}
+
 void showStatus()
 {
-  String unit, freqDisplay;
+  String unit;
   String bandMode;
 
   bandMode = String("SSB");
   unit = "KHz";
-  freqDisplay = String((float) currentFrequency/1000,3);
 
   display.setCursor(0, 0);
   display.print(String(bandMode));
@@ -219,10 +239,7 @@ void showStatus()
   display.setCursor(16, 0);
   display.print(unit);
 
-  display.setCursor(7, 0);
-  display.print("        ");
-  display.setCursor(7, 0);
-  display.print(freqDisplay);
+  showFrequency();
 
   // Show AGC Information
   si4735.getAutomaticGainControl();
@@ -235,13 +252,18 @@ void showStatus()
   display.print("St: ");
   display.print(currentStep);
   display.print("KHz");
-      
+
   display.setCursor(0, 3);
   display.print("           ");
   display.setCursor(0, 3);
   display.print("BW:");
   display.print(String(bandwitdth[bandwidthIdx]));
   display.print("KHz");
+
+  showBFO();
+  showRSSI();
+
+
 }
 
 /* *******************************
@@ -250,13 +272,13 @@ void showStatus()
 void showRSSI()
 {
   int bars = ((rssi / 10.0) / 2.0) + 1;
-  
-  
+
+
   display.setCursor(12, 3);
   display.print("        ");
   display.setCursor(12, 3);
   display.print("S:");
-  for (int i = 0; i < bars; i++ ) display.print(">"); 
+  for (int i = 0; i < bars; i++ ) display.print(">");
 }
 
 /* ***************************
@@ -265,11 +287,11 @@ void showRSSI()
 void showVolume()
 {
   /*
-  display.setCursor(10, 2);
-  display.print("          ");
-  display.setCursor(10, 2);
-  display.print("V:");
-  display.print(volume);
+    display.setCursor(10, 2);
+    display.print("          ");
+    display.setCursor(10, 2);
+    display.print("V:");
+    display.print(volume);
   */
 }
 
@@ -278,10 +300,10 @@ void showBFO() {
 
   String bfo;
 
-  if ( currentBFO > 0 ) 
-      bfo = "+" + String(currentBFO);
-  else 
-      bfo = String(currentBFO);
+  if ( currentBFO > 0 )
+    bfo = "+" + String(currentBFO);
+  else
+    bfo = String(currentBFO);
 
   display.setCursor(0, 2);
   display.print("         ");
@@ -294,11 +316,11 @@ void showBFO() {
   display.print("        ");
   display.setCursor(12, 2);
   display.print("St:");
-  display.print(currentBFOStep); 
+  display.print(currentBFOStep);
 }
 
 void bandUp() {
-
+  display.clear();
   // save the current frequency for the band
   band[currentFreqIdx].currentFreq = currentFrequency;
   if ( currentFreqIdx < lastBand ) {
@@ -310,13 +332,14 @@ void bandUp() {
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
   currentStep = band[currentFreqIdx].currentStep;
-
-  delay(250);
   // Show the current frequency only if it has changed
+  delay(250);
   currentFrequency = si4735.getFrequency();
+  showStatus();
 }
 
 void bandDown() {
+  display.clear();
   // save the current frequency for the band
   band[currentFreqIdx].currentFreq = currentFrequency;
   if ( currentFreqIdx > 0 ) {
@@ -327,10 +350,10 @@ void bandDown() {
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep,  band[currentFreqIdx].currentSSB);
   currentStep = band[currentFreqIdx].currentStep;
-
-  // Show the current frequency only if it has changed
   delay(250);
+  // Show the current frequency only if it has changed
   currentFrequency = si4735.getFrequency();
+  showStatus();
 }
 
 
@@ -343,13 +366,13 @@ void loadSSB()
   delay(100);
   si4735.downloadPatch(ssb_patch_content, size_content);
   delay(100);
-  // Parameters  
+  // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
   // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
-  // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
+  // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
   si4735.setSSBConfig(bandwidthIdx, 1, 0, 1, 0, 1);
   delay(100);
   showStatus();
@@ -375,14 +398,14 @@ void loop()
 
       // Show the current frequency only if it has changed
       currentFrequency = si4735.getFrequency();
-        
+      showFrequency();
+
     }
     encoderCount = 0;
   }
 
   // Check button commands
-  // Check button commands
-  if ((millis() - elapsedButton) > MIN_ELAPSED_TIME)
+  if ( (millis() - elapsedButton) > MIN_ELAPSED_TIME)
   {
     // check if some button is pressed
     if (digitalRead(BANDWIDTH_BUTTON) == LOW)
@@ -392,10 +415,10 @@ void loop()
       si4735.setSSBAudioBandwidth(bandwidthIdx);
       // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
       if (bandwidthIdx == 0 || bandwidthIdx == 4 || bandwidthIdx == 5)
-        si4735.setSBBSidebandCutoffFilter(0); 
+        si4735.setSBBSidebandCutoffFilter(0);
       else
         si4735.setSBBSidebandCutoffFilter(1);
-        showStatus();
+      showStatus();
     }
     else if (digitalRead(BAND_BUTTON_UP) == LOW)
       bandUp();
@@ -407,48 +430,58 @@ void loop()
       si4735.volumeDown();
     else if (digitalRead(BFO_SWITCH) == LOW) {
       bfoOn = !bfoOn;
-      if ( bfoOn ) 
-         showBFO();
-      else 
-         showStatus();    
+      if ( bfoOn )
+        showBFO();
+      else
+        showStatus();
     } else if ( digitalRead(AGC_SWITCH) == LOW) {
-       disableAgc = !disableAgc; 
-       // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
-       si4735.setAutomaticGainControl(disableAgc,1);     
-       showStatus(); 
+      disableAgc = !disableAgc;
+      // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
+      si4735.setAutomaticGainControl(disableAgc, 1);
+      showStatus();
     } else if ( digitalRead(STEP_SWITCH) == LOW) {
       if ( bfoOn ) {
-        currentBFOStep = (currentBFOStep == 50 )? 10:50;
+        currentBFOStep = (currentBFOStep == 50 ) ? 10 : 50;
         showBFO();
-      }else {
-       if (currentStep == 1) 
+      } else {
+        if (currentStep == 1)
           currentStep = 5;
-       else if ( currentStep == 5) 
+        else if ( currentStep == 5)
           currentStep = 10;
-       else 
-          currentStep = 1;  
-       si4735.setFrequencyStep(currentStep);
-       band[currentFreqIdx].currentStep = currentStep;
-       showStatus();  
-      }    
+        else
+          currentStep = 1;
+        si4735.setFrequencyStep(currentStep);
+        band[currentFreqIdx].currentStep = currentStep;
+        showStatus();
+      }
     } else if ( digitalRead(AVC_SWITCH) == LOW ) {
       avc_en = !avc_en;
-      si4735.setSSBAutomaticVolumeControl(avc_en);   
+      si4735.setSSBAutomaticVolumeControl(avc_en);
     }
     elapsedButton = millis();
   }
 
-  if (currentFrequency != previousFrequency)
-  {
-    previousFrequency = currentFrequency;
-    showStatus();
+  // Show the current frequency only if it has changed
+  if ( (millis() - elapsedFrequency) > MIN_ELAPSED_RSSI_TIME * 5) {
+    currentFrequency = si4735.getFrequency();
+    if (currentFrequency != previousFrequency)
+    {
+      previousFrequency = currentFrequency;
+      showFrequency();
+    }
+    elapsedFrequency = millis();
   }
 
+
   // Show RSSI status only if this condition has changed
-  if (rssi != si4735.getCurrentRSSI())
-  {
-    rssi = si4735.getCurrentRSSI();
-    showRSSI();
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME ) {
+    si4735.getCurrentReceivedSignalQuality();
+    if (rssi != si4735.getCurrentRSSI())
+    {
+      rssi = si4735.getCurrentRSSI();
+      showRSSI();
+    }
+    elapsedRSSI = millis();
   }
 
   // Show volume level only if this condition has changed
@@ -459,10 +492,10 @@ void loop()
   }
 
   if (currentBFO != previousBFO ) {
-    previousBFO = currentBFO;
-    si4735.setSSBBfo(currentBFO);
+  previousBFO = currentBFO;
+  si4735.setSSBBfo(currentBFO);
     showBFO();
   }
 
-  delay(150);
+  delay(100);
 }

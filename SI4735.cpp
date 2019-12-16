@@ -44,7 +44,7 @@ void SI4735::reset()
     digitalWrite(resetPin, LOW);
     delay(100);
     digitalWrite(resetPin, HIGH);
-    delay(250);
+    delay(100);
 }
 
 /*
@@ -75,7 +75,8 @@ void SI4735::analogPowerUp(void)
     Wire.endTransmission();
     // Delay at least 500 ms between powerup command and first tune command to wait for 
     // the oscillator to stabilize if XOSCEN is set and crystal is used as the RCLK.
-    delay(550);
+    delay(500);
+    waitToSend();
 }
 
 /* 
@@ -154,7 +155,7 @@ void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
 
     reset();
     analogPowerUp();
-    setVolume(20); // Default volume level.
+    setVolume(30); // Default volume level.
     getFirmware();
 }
 
@@ -282,7 +283,6 @@ void SI4735::setFrequency(unsigned freq)
         Wire.write(currentFrequencyParams.arg.ANTCAPL);
     Wire.endTransmission();
     delayMicroseconds(550);
-
     currentWorkFrequency = freq;
 }
 
@@ -468,7 +468,7 @@ unsigned SI4735::getFrequency()
 
     currentWorkFrequency = freq.value;
 
-    getCurrentReceivedSignalQuality(0);
+    // getCurrentReceivedSignalQuality(0);
 
     return freq.value;
 }
@@ -646,13 +646,27 @@ void SI4735::getCurrentReceivedSignalQuality(byte INTACK)
 }
 
 /*
+ * Queries the status of the Received Signal Quality (RSQ) of the current channel
+ * Command FM_RSQ_STATUS
+ * See Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
+ * 
+ * @param INTACK Interrupt Acknowledge. 
+ *        0 = Interrupt status preserved; 
+ *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
+ */
+void SI4735::getCurrentReceivedSignalQuality(void) {
+    getCurrentReceivedSignalQuality(0);
+}
+
+
+    /*
  * Look for a station 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 55, 72, 125 and 137
  * 
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
  * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
-void SI4735::seekStation(byte SEEKUP, byte WRAP)
+    void SI4735::seekStation(byte SEEKUP, byte WRAP)
 {
     si47x_seek seek;
 
@@ -1239,6 +1253,7 @@ void SI4735::setSSB(byte usblsb)
     // ssbPowerUp(); // Not used for regular operation
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = usblsb;
+
 }
 
 /*

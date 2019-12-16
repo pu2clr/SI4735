@@ -52,13 +52,13 @@ SI4735 si4735;
 void setup()
 {
   // Encoder pins
-  pinMode(ENCODER_PIN_A, INPUT);
-  pinMode(ENCODER_PIN_B, INPUT);
+  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
-  pinMode(AM_FM_BUTTON, INPUT);
-  pinMode(SEEK_BUTTON, INPUT);
-  pinMode(VOL_UP, INPUT);
-  pinMode(VOL_DOWN, INPUT);  
+  pinMode(AM_FM_BUTTON, INPUT_PULLUP);
+  pinMode(SEEK_BUTTON, INPUT_PULLUP);
+  pinMode(VOL_UP, INPUT_PULLUP);
+  pinMode(VOL_DOWN, INPUT_PULLUP);  
 
   lcd.init();
 
@@ -196,18 +196,18 @@ void loop()
   if ((millis() - elapsedButton) > MIN_ELAPSED_TIME )
   {
     // check if some button is pressed
-    if (digitalRead(AM_FM_BUTTON) == HIGH ) {
+    if (digitalRead(AM_FM_BUTTON) == LOW ) {
        // Switch AM to FM and vice-versa  
        if  (si4735.isCurrentTuneFM() ) 
           si4735.setAM(570, 1710,  810, 10);
        else   
        si4735.setFM(8600, 10800,  10390, 10);
     }
-    else if (digitalRead(SEEK_BUTTON) == HIGH )
+    else if (digitalRead(SEEK_BUTTON) == LOW )
        si4735.seekStationUp();   
-    else if (digitalRead(VOL_UP) == HIGH )
+    else if (digitalRead(VOL_UP) == LOW )
       si4735.volumeUp();
-    else if (digitalRead(VOL_DOWN) == HIGH )
+    else if (digitalRead(VOL_DOWN) == LOW )
       si4735.volumeDown();
   
     elapsedButton = millis();
@@ -221,6 +221,7 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
+  si4735.getCurrentReceivedSignalQuality();
   if ( rssi != si4735.getCurrentRSSI() ) {
     rssi = si4735.getCurrentRSSI();
     showRSSI();
