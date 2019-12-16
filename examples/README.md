@@ -136,11 +136,12 @@ __Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__
 
   Features of this sketch: 
 
-  1) Only SSB (LSB and USB);
-  2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
-  3) Eight ham radio bands pre configured;
-  4) BFO Control; and
-  5) Frequency step switch (1, 5 and 10KHz);
+  1) Internal Arduino pull-up (no external resistors on schematic for buttons and encoder);
+  2) Only SSB (LSB and USB);
+  3) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+  4) Eight ham radio bands pre configured;
+  5) BFO Control; and
+  6) Frequency step switch (1, 5 and 10KHz);
 
   Main Parts: 
   Encoder with push button; 
@@ -176,7 +177,7 @@ This sketch will download a SSB patch to your SI4735 device (patch_content.h). I
 
 Features of this sketch: 
 
-1) __Internal Arduino pull-up (no external resistors for buttons and encoder)__;
+1) __Internal Arduino pull-up (no external resistors on schematic for buttons and encoder)__;
 2) Only SSB (LSB and USB);
 3) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
 4) Volume control;
