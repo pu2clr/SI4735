@@ -30,11 +30,12 @@
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
-#define BANDWIDTH_BUTTON 5 // Next Band
-#define BAND_BUTTON_UP 8   // Seek Up
-#define BAND_BUTTON_DOWN 9 // Seek Down
+#define BANDWIDTH_BUTTON 5 // Bandwith 
 #define VOL_UP 6           // Volume Volume Up
 #define VOL_DOWN 7         // Volume Down
+#define BAND_BUTTON_UP 8   // Next Band (See band table)
+#define BAND_BUTTON_DOWN 9 // Previous Band (See band table)
+
 // Seek Function
 
 #define MIN_ELAPSED_TIME 100
