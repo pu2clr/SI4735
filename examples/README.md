@@ -254,7 +254,10 @@ Pay attention on the push buttons added on this example. The table below shows t
 | BFO_SWITCH       | 13          | Used to select the enconder control (BFO or VFO) |
 
 
-### Example 09 - Si4735 AM/FM radio 
+### Example 09 - Si4735 AM/FM radio with OLED S-Meter
+
+
+![Protoboard with OLED as a S Meter](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_AM_FM_SMETER.png)
 
 
 ### Example 10 - Si4735 SW Receiver with OLED S-Meter 
