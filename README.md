@@ -380,11 +380,39 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 
 
 
-## Photos 
+## Photos (Tools and Accessories) 
+
+This item describes some tools and accessories you might need one o similar to build your radio based on SI4735.
+
+
+|Arduino Pro Mini|Arduino Pro Mini| 
+|---------------|---------------|  
+|![Arduino Pro Mini 01](./extras/images/tools_arduino_02_A.png)|![Arduino Pro Mini 02](./extras/images/tools_arduino_02_B.png)|
+
+<BR> 
+
+| FT232 USB Adapter |FT232 USB Adapter| 
+|---------------|---------------|   
+|![FT232 USB A](./extras/images/tools_FT232_usb_a.png)|![SI4735 on adapter 05](./extras/images/tools_FT232_usb_b.png)|
+
+<BR>
+
+|Magnifier|Solder| 
+|---------------|---------------|   
+|![Magnifier](./extras/images/tools_lente_01.png)|![Solder](./extras/images/tools_soldador_01.png)|
+
+
+<BR>
+
+|Adapter for SI4735|Solder| 
+|---------------|---------------|   
+|![Adatper for Si4735](./extras/images/tools_adaptador.png)|![Soldering Accessories](./extras/images/tools_soldas_e_suporte.png)|
+
+
+
+
 
 It was a bit hard to solder the kind of CI on adapter. However, by using a electronic magnifier it was possible.
-
-
 
 ### SI4735 soldered on adapter
 
