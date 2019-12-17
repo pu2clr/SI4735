@@ -143,12 +143,13 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   si4735.setup(RESET_PIN, AM_FUNCTION);
-
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
   delay(100);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
+  // Enable AGC and set it for Minimum attenuation
+  si4735.setAutomaticGainControl(0, 0);
 
   showStatus();
 }
@@ -352,7 +353,7 @@ void loop()
     else if ( digitalRead(AGC_SWITCH) == LOW) {
       disableAgc = !disableAgc;
       // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
-      si4735.setAutomaticGainControl(disableAgc, 1);
+      si4735.setAutomaticGainControl(disableAgc, 0 /* Minimum attenuation */);
       delay(100);
       showStatus();
     } else if ( digitalRead(STEP_SWITCH) == LOW) {

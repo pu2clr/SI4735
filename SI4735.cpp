@@ -555,8 +555,6 @@ void SI4735::getAutomaticGainControl()
     currentAgcStatus.raw[0] = Wire.read(); // STATUS response
     currentAgcStatus.raw[1] = Wire.read(); // RESP 1
     currentAgcStatus.raw[2] = Wire.read(); // RESP 2
-
-    delayMicroseconds(2500);
 }
 
 /* 
