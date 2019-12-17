@@ -238,6 +238,9 @@ Follow the schematic below to use this sketch.
 ![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png)
 
 
+![Protoboard with OLED as a S Meter](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_SW_SMETER.png)
+
+
 Pay attention on the push buttons added on this example. The table below shows the commands used by this sketch.
 
 | Defined constant | Arduino Pin | Description |
