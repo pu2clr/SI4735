@@ -254,7 +254,6 @@ void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor)
  */
 void SI4735::setFrequency(unsigned freq)
 {
-
     waitToSend(); // Wait for the si473x is ready.
     currentFrequency.value = freq;
     currentFrequencyParams.arg.FREQH = currentFrequency.raw.FREQH;
@@ -278,10 +277,8 @@ void SI4735::setFrequency(unsigned freq)
     if (currentTune != FM_TUNE_FREQ)
         Wire.write(currentFrequencyParams.arg.ANTCAPL);
     Wire.endTransmission();
-
-    delayMicroseconds(550);
-
-    currentWorkFrequency = freq; // check it 
+    currentWorkFrequency = freq; // check it
+    waitToSend();                // Wait for the si473x is ready.
 }
 
 /* 
@@ -372,7 +369,6 @@ void SI4735::setAM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byt
 
     setFrequency(currentWorkFrequency);
 
-    delayMicroseconds(1000);
 }
 
 /*
@@ -397,8 +393,6 @@ void SI4735::setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byt
 
     currentWorkFrequency = initialFreq;
     setFrequency(currentWorkFrequency);
-
-    delayMicroseconds(1000);
 }
 
 /*
@@ -441,7 +435,7 @@ void SI4735::setBandwidth(byte AMCHFLT, byte AMPLFLT)
     Wire.write(filter.raw[1]);         // Raw data for AMCHFLT and
     Wire.write(filter.raw[0]);         // AMPLFLT
     Wire.endTransmission();
-    delayMicroseconds(550);
+    waitToSend();
 }
 
 /*
@@ -594,7 +588,7 @@ void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
     Wire.write(agc.raw[1]);
     Wire.endTransmission();
 
-    delayMicroseconds(2500);
+    waitToSend();
 }
 
 /*
@@ -640,7 +634,7 @@ void SI4735::getCurrentReceivedSignalQuality(byte INTACK)
     {
         currentRqsStatus.raw[i] = Wire.read();
     }
-    delayMicroseconds(2500);
+    waitToSend();
 }
 
 /*
@@ -689,7 +683,6 @@ void SI4735::getCurrentReceivedSignalQuality(void) {
     }
 
     Wire.endTransmission();
-    // delayMicroseconds(1000000);
     delay(100);
 }
 
@@ -801,7 +794,7 @@ void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCF
     Wire.write(rds_int_source.raw[1]); // Send the argments. Most significant first
     Wire.write(rds_int_source.raw[0]);
     Wire.endTransmission();
-    delayMicroseconds(550);
+    waitToSend();
 }
 
 /*
