@@ -95,6 +95,7 @@ O SI4735 é um rádio DSP encapsulado em um CI. Possui ótimo desempenho em AM (
 
 | Term | Description |
 | ---- | ----- |
+| API  | Application Programming Interface. Neste contexto, é um conjunto de rotinas e padrões estabelecidos por esta Biblioteca para simplificar a programação de programas para Arduino. Neste caso, a programação do SI4735| 
 |Arduino Libraries|Neste contexto, "Libraries" (bibliotecas) são arquivos escritos em C or C++ (.c, .cpp) que podem ser utilizados em programas (sketches) Arduino. A biblioteca SI4735 para Arduino oferece facilidade de programação do SI4735 no ambiente Arduino | 
 |IDE   |Integrated Development Environment (Ambiente Integrado de Desenvolvimento)|      
 |Sketch| Nome comumente usado para referenciar um programa para Arduino|
