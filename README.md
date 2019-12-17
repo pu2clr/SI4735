@@ -382,12 +382,14 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 
 ## Photos (Tools and Accessories) 
 
-This item describes some tools and accessories you might need one o similar to build your radio based on SI4735.
+This item describes some tools and accessories you might need to build your radio based on SI4735.
 
 
 |Arduino Pro Mini|Arduino Pro Mini| 
 |---------------|---------------|  
 |![Arduino Pro Mini 01](./extras/images/tools_arduino_02_A.png)|![Arduino Pro Mini 02](./extras/images/tools_arduino_02_B.png)|
+
+* Pro Mini 3.3V 8M /5V 16M Atmega328 Replace ATmega128 Arduino Compatible Nano
 
 <BR> 
 
@@ -395,18 +397,26 @@ This item describes some tools and accessories you might need one o similar to b
 |---------------|---------------|   
 |![FT232 USB A](./extras/images/tools_FT232_usb_a.png)|![SI4735 on adapter 05](./extras/images/tools_FT232_usb_b.png)|
 
+* FT232RL 3.3V 5.5V FTDI USB to TTL Serial Adapter Module for Arduino Mini Port 
+
+
 <BR>
 
 |Magnifier|Solder| 
 |---------------|---------------|   
 |![Magnifier](./extras/images/tools_lente_01.png)|![Solder](./extras/images/tools_soldador_01.png)|
 
+* 50-1000X Magnifier Wireless WiFi Electric Microscope 2.0MP 8LED Endoscope Camera
+* Soldering Iron Station with Temperature Control 
 
 <BR>
 
-|Adapter for SI4735|Solder| 
+|Adapter for SI4735|Soldering Accessories| 
 |---------------|---------------|   
 |![Adatper for Si4735](./extras/images/tools_adaptador.png)|![Soldering Accessories](./extras/images/tools_soldas_e_suporte.png)|
+
+* SO SOP SOIC SSOP TSSOP 24 Pin to DIP 24 Adapter PCB Board Converter
+* 50g Soldering Paste Solder Flux Paste Cream for PCB PGA SMD BGA
 
 <BR>
 
