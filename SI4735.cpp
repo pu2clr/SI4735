@@ -277,6 +277,7 @@ void SI4735::setFrequency(unsigned freq)
     if (currentTune != FM_TUNE_FREQ)
         Wire.write(currentFrequencyParams.arg.ANTCAPL);
     Wire.endTransmission();
+    delayMicroseconds(2000);
     currentWorkFrequency = freq; // check it
     waitToSend();                // Wait for the si473x is ready.
 }
@@ -304,6 +305,7 @@ void SI4735::frequencyUp()
         currentWorkFrequency += currentStep;
 
     setFrequency(currentWorkFrequency);
+
 }
 
 /*
