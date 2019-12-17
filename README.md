@@ -119,7 +119,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 
 | Term | Description |
 | ---- | ----- |
-| API  | Application Programming Interface (API). In this context, it is an interface that you can use to simplify the implementation and maintenance of software (sketch) | 
+| API  | Application Programming Interface (API). In this context, it is an interface that you can use to simplify the implementation and maintenance of your software (Arduino sketch) | 
 |Arduino Libraries|Libraries are files written in C or C++ (.c, .cpp) which provide your sketches with extra functionality. The SI4735 Library provides extra functionalities to make easier the Arduino deal with Si4735 device| 
 |IDE   |Integrated Development Environment|      
 |Sketch|Name that Arduino environment uses for a program|
