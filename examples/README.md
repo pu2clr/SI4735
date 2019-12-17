@@ -256,11 +256,19 @@ Pay attention on the push buttons added on this example. The table below shows t
 
 ### Example 09 - Si4735 AM/FM radio with OLED S-Meter
 
+This example uses two display I2C devices and the Si4735 connected on the same I2C bus. 
+It is an simple AM and FM radio. The schematic is the same used on Example 10. See below.
+
+<BR>
 
 ![Protoboard with OLED as a S Meter](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_AM_FM_SMETER.png)
 
+<BR>
 
 ### Example 10 - Si4735 SW Receiver with OLED S-Meter 
+
+Like the Example 09, this example uses two display and the SI4735 connect on the same I2C bus.
+This radio has 11 bands.
 
 <BR>
 
