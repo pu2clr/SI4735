@@ -417,6 +417,8 @@ This item describes some tools and accessories you might need to build your radi
 
 * SO SOP SOIC SSOP TSSOP 24 Pin to DIP 24 Adapter PCB Board Converter
 * 50g Soldering Paste Solder Flux Paste Cream for PCB PGA SMD BGA
+* BGA SMD Soldering Paste Flux
+  
 
 <BR>
 
