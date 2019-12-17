@@ -299,6 +299,7 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
+  si4735.getCurrentReceivedSignalQuality();
   if (rssi != si4735.getCurrentRSSI())
   {
     rssi = si4735.getCurrentRSSI();

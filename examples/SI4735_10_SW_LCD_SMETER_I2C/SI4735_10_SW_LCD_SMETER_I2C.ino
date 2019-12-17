@@ -26,7 +26,7 @@
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
-#define AVC_SWITCH 4       // Switch SSB Automatic Volume Control ON/OFF 
+#define AVC_SWITCH 4       // 
 #define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
@@ -43,7 +43,7 @@
 #define USB 2
 
 bool disableAgc = true;
-bool avc_en = true;
+bool agc_en = true;
 
 
 long elapsedRSSI = millis();
@@ -66,7 +66,6 @@ typedef struct {
   unsigned   maximumFreq;
   unsigned   currentFreq;
   unsigned   currentStep;
-  byte       currentSSB;
 } Band;
 
 
@@ -357,8 +356,8 @@ void loop()
       band[currentFreqIdx].currentStep = currentStep;
       showStatus();
     } else if ( digitalRead(AVC_SWITCH) == LOW ) {
-      avc_en = !avc_en;
-      si4735.setSSBAutomaticVolumeControl(avc_en);
+      agc_en = !agc_en;
+      si4735.setAutomaticGainControl(!agc_en,0);
     }
     elapsedButton = millis();
   }
