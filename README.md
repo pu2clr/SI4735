@@ -8,7 +8,7 @@ This library can be freely distributed using the MIT Free Software model. [Copyr
 
 Contact: pu2clr@gmail.com
 
-There is a facebook group called [__Si47XX for radio listeners__](https://www.facebook.com/groups/532613604253401/) where the purpose is to exchange experiences with projects based on Silicon Labs  SI47XX IC family. You will be welcome to the group [Si47XX Radio Listening](https://www.facebook.com/groups/532613604253401/).
+There is a facebook group called [__Si47XX for radio listeners__](https://www.facebook.com/groups/532613604253401/) where the purpose is exchanging experiences with projects based on Silicon Labs  SI47XX IC family. You will be welcome to the group [Si47XX Radio Listening](https://www.facebook.com/groups/532613604253401/).
 
 
 __Attention__: 
@@ -218,7 +218,7 @@ This includes the Arduino operating pins.
 
 ### Schematic
 
-The main porpuse of this prototype is to test de Si4735 Arduino Library. It does not intend to be a real radio for exigent listener. However, it is possible to start with it and after include some devices to improve, for example,  its sensibility,  beyond other desired features.
+The main porpuse of this prototype is testing de Si4735 Arduino Library. It does not intend to be a real radio for exigent listener. However, it is possible to start with it and after include some devices to improve, for example,  its sensibility beyond other desired features.
 
 The image bellow shows a version of Slicon Labs SSOP Typical Application Schematic. The basic difference are the pull-up resitors on I2C bus. 
 
@@ -353,7 +353,9 @@ The figure above shows a schematic implementation using buttons and Encoder. Thi
 
 ## API Documentation
 
-### Index for API Dpcumentation 
+This item shows the SI4735 Arduino Library implemantation. Here you can find the set of functions and methods that you can use to build your radio. 
+
+### API Index 
 
 * [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
 * [__Public Methods__](https://github.com/pu2clr/SI4735#public-methods)
