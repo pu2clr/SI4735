@@ -431,7 +431,7 @@ Este item apresenta a lista de funções, métodos e estruturas de dados que pod
   * [getRdsProgramType](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdsprogramtype)
   * [getRdsText](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdstext)
   * [getRdsTime](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdstime)
-* [__SI4735 Patch Support for Single Side Band__](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#si4735-patch-support-for-single-side-band)
+* [__SI4735 e suporte à SSB (Single Side Band)__](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#single-side-band-ssb-support)
   * [SI4735 patch](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#si4735-patch-support-for-single-side-band)
   * [queryLibraryId](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#querylibraryid)
   * [patchPowerUp](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#patchpowerup)
@@ -895,7 +895,7 @@ typedef union {
 
 ## Métodos Públicos
 
-Neste contexto, métodos podem ser entendidos como as funções implementadas para classe SI4735. Métodos Públicos são as funções que podem ser utilizadas ou chamadas de dentro de um sketch Arduino.
+Neste contexto, métodos podem ser entendidos como as funções implementadas para a classe SI4735. Métodos Públicos são as funções que podem ser utilizadas ou chamadas de dentro de um sketch Arduino.
 
 Atualmente esta biblioteca possui mais de 70 funções que podem ser utilizadas para controlar ou alterar o comportamento do SI4735. É muito importante para o desenvolvedor conhecer previamente os métodos implementados nesta biblioteca para tirar o máximo proveito possível das funções do rádio que será construído. A pasta [examples]((https://github.com/pu2clr/SI4735/blob/master/examples/) possui vários exemplos que podem orientar o desenvolvedor na utilização desta biblioteca. 
 
