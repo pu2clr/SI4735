@@ -274,7 +274,7 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 
 ## Photos (Tools and Accessories) 
 
-This item describes some tools and accessories you might need to build your radio based on SI4735.
+This item describes some tools and accessories you might need to build your radio based on SI4735. Most of the accessories used in this project you will find on eBay and AliExpress.
 
 
 |Arduino Pro Mini|Arduino Pro Mini| 
