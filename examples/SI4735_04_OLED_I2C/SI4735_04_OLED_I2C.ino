@@ -1,8 +1,8 @@
 /*
-  SS4735 Arduino Library example with LCD 20x4 I2C.
+  SI4735 Arduino Library example with OLED  I2C.
+  It is AM and FM radio.
   Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
  
-
   By Ricardo Lima Caratti, Nov 2019.
 */
 

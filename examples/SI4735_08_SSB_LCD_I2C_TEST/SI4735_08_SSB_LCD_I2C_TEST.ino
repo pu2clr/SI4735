@@ -70,8 +70,8 @@ const int size_content = sizeof ssb_patch_content;  // see ssb_patch_content in 
 #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
 // Seek Function
 
-#define MIN_ELAPSED_TIME 80
-#define MIN_ELAPSED_RSSI_TIME 500
+#define MIN_ELAPSED_TIME 100
+#define MIN_ELAPSED_RSSI_TIME 150
 #define LSB 1
 #define USB 2
 
@@ -462,7 +462,7 @@ void loop()
   }
 
   // Show the current frequency only if it has changed
-  if ( (millis() - elapsedFrequency) > MIN_ELAPSED_RSSI_TIME * 5) {
+  if ( (millis() - elapsedFrequency) > MIN_ELAPSED_RSSI_TIME * 3) {
     currentFrequency = si4735.getFrequency();
     if (currentFrequency != previousFrequency)
     {
@@ -497,5 +497,5 @@ void loop()
     showBFO();
   }
 
-  delay(100);
+  delay(50);
 }

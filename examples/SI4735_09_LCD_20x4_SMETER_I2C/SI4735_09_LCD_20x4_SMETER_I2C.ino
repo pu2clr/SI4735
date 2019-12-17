@@ -15,7 +15,7 @@
 #include "Rotary.h"
 #include "smeter.h"
 
-#define OLED_RESET 4
+#define OLED_RESET 4  // Check it
 
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
@@ -185,36 +185,34 @@ void showStereo()
 */
 void showVolume()
 {
-  lcd.setCursor(8, 2);
-  lcd.print("VOLUME    ");
-  lcd.setCursor(15, 2);
+  lcd.setCursor(14, 3);
+  lcd.print("V:     ");
+  lcd.setCursor(17, 3);
   lcd.print(volume);
 }
 
-  
+/*
+ * OLED Analog S-Meter 
+ * Draws the s meter and displays the value.
+ */
 void showSmeter(unsigned signalLevel)
 {
-  static unsigned long startMillis = millis(); // start of signalLevel window
-  static unsigned int PeaktoPeak = 0;          // peak-to-peak level
   static unsigned int maxSignal = 0;
   static unsigned int minSignal = 2014;
-  static int hMeter = 65; // horizontal center for needle animation
-  static int vMeter = 85; // vertical center for needle animation (outside of dislay limits)
-  static int rMeter = 80;
-  const int sampleWindow = 50; // sample window width in mS (50 mS = 20Hz)
+  const int hMeter = 65; // horizontal center for needle animation
+  const int vMeter = 85; // vertical center for needle animation (outside of dislay limits)
+  const int rMeter = 80;
+  const int factor =  10; // Need to calibrate this value
 
-  // PeaktoPeak = maxSignal - minSignal;         // max - min = peak-peak amplitude
-  PeaktoPeak = signalLevel;
-  float MeterValue = PeaktoPeak * 330 / 1024; // convert volts to arrow information
+  float smeterValue = (signalLevel * factor) * 330 / 1024; // convert the signal value to arrow information
 
-  MeterValue = MeterValue - 34;                            // shifts needle to zero position
-  display.clearDisplay();                                  // refresh display for next step
-  display.drawBitmap(0, 0, S_Meter, 128, 64, WHITE);       // draws background
-  int a1 = (hMeter + (sin(MeterValue / 57.296) * rMeter)); // meter needle horizontal coordinate
-  int a2 = (vMeter - (cos(MeterValue / 57.296) * rMeter)); // meter needle vertical coordinate
-  display.drawLine(a1, a2, hMeter, vMeter, WHITE);         // draws needle
+  smeterValue = smeterValue - 34;                           // shifts needle to zero position
+  display.clearDisplay();                                   // refresh display for next step
+  display.drawBitmap(0, 0, S_Meter, 128, 64, WHITE);        // draws background
+  int a1 = (hMeter + (sin(smeterValue / 57.296) * rMeter)); // meter needle horizontal coordinate
+  int a2 = (vMeter - (cos(smeterValue / 57.296) * rMeter)); // meter needle vertical coordinate
+  display.drawLine(a1, a2, hMeter, vMeter, WHITE);          // draws needle
   display.display();
-  delay(10);
 }
 
 
@@ -223,11 +221,9 @@ void showSmeter(unsigned signalLevel)
 */
 void loop()
 {
-
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
-
     if (encoderCount == 1)
       si4735.frequencyUp();
     else
@@ -236,7 +232,6 @@ void loop()
     encoderCount = 0;
     showSmeter(0);
   }
-
   // Check button commands
   if ((millis() - elapsedButton) > MIN_ELAPSED_TIME)
   {
@@ -274,7 +269,7 @@ void loop()
     {
       rssi = si4735.getCurrentRSSI();
       // showRSSI();
-      showSmeter(rssi * 10);
+      showSmeter(rssi);
     }
     elapsedRSSI = millis();
   }

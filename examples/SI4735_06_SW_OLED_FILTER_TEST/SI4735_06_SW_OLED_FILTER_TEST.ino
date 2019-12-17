@@ -1,7 +1,7 @@
 /*
   SS4735 Arduino Library example with OLED I2C.
-  Bandwidth filter test (9 band SW Receiver with OLED)
-  This example is a 9 band SW receiver based on SI4735.  
+  Bandwidth filter test (11 bands SW Receiver with OLED)
+  This example is a 11 bands SW receiver based on SI4735.  
   It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). 
   The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz).
   
@@ -312,5 +312,5 @@ void loop()
     showVolume();
   }
 
-  delay(30);
+  delay(50);
 }

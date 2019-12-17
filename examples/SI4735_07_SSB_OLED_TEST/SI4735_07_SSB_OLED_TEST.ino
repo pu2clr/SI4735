@@ -32,7 +32,6 @@
   OLED Display with I2C protocol;
   Arduino Pro mini 3.3V;
 
-
   By Ricardo Lima Caratti, Nov 2019.
 */
 
@@ -450,7 +449,7 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
-  if ( ( millis() - elapsedRSSI) > (MIN_ELAPSED_TIME * 6) ) {
+  if ( ( millis() - elapsedRSSI) > (MIN_ELAPSED_TIME * 4) ) {
     if (rssi != si4735.getCurrentRSSI())
     {
       rssi = si4735.getCurrentRSSI();
@@ -472,5 +471,5 @@ void loop()
     showBFO();
   }
 
-  delay(30);
+  delay(50);
 }
