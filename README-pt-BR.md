@@ -31,107 +31,7 @@ __Atenção__:
    * [Esquema básico](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#esquema-b%C3%A1sico)
    * [Lista de componentes](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#lista-de-componentes)
    * [Fotos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#fotos)
-9.  [Documentação das funções da Biblioteca](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#documenta%C3%A7%C3%A3o-das-fun%C3%A7%C3%B5es-da-biblioteca)
-   * [Estrutura e Tipos de dados definidos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#defined-data-types-and-structures)
-   * [__Métodos Públicos__](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#public-methods)
-     * [__Métodos comumente utilizados__](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#public-methods)
-       * [setup](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setup)
-       * [setPowerUp](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setpowerup)
-       * [analogPowerUp](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#analogpowerup)
-       * [powerDown]()
-       * [setFrequency](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setfrequency)
-       * [frequencyUp](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#frequencyup)
-       * [frequencyDown](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#frequencydown)
-       * [setTuneFrequencyAntennaCapacitor](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#settunefrequencyantennacapacitor)
-       * [setTuneFrequencyFast](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#settunefrequencyfast)
-       * [setTuneFrequencyFreeze](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#settunefrequencyfreeze)
-       * [isCurrentTuneFM](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#iscurrenttunefm)
-       * [seekStation](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#seekstation)
-       * [setAM](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setam)
-       * [setFM](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setfm)
-       * [setVolume](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setvolume)
-       * [volumeUp](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#volumeup)
-       * [volumeDown](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#volumedown)
-       * [getCurrentVolume](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentvolume)
-     * [__Si4735 current status__](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#si4735-current-status)
-       * [getStatus](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getstatus)
-       * [getTuneCompleteTriggered](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#gettunecompletetriggered)
-       * [getSignalQualityInterrupt](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getsignalqualityinterrupt)
-       * [getRadioDataSystemInterrupt](getRadioDataSystemInterrupt)
-       * [getStatusError](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getstatuserror)
-       * [getStatusCTS](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getstatuscts)
-       * [getACFIndicator](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getacfindicator)
-       * [getBandLimit](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getbandlimit)
-       * [getReceivedSignalStrengthIndicator](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getreceivedsignalstrengthindicator)
-       * [getStatusSNR](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getstatussnr)
-       * [getStatusMULT](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getstatusmult)
-       * [getAntennaTuningCapacitor](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getantennatuningcapacitor)
-       * [getStatusValid](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getstatusvalid)
-     * [__SI4735 Received Signal Quality__](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#si4735-received-signal-quality)
-       * [getCurrentReceivedSignalQuality](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentreceivedsignalquality)
-       * [getCurrentRSSI](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentrssi)
-       * [getCurrentSNR](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentsnr)
-       * [getCurrentRssiDetectLow](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentrssidetectlow)
-       * [getCurrentRssiDetectHigh](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentrssidetecthigh)
-       * [getCurrentSnrDetectLow](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentsnrdetectlow)
-       * [getCurrentSnrDetectHigh](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentsnrdetecthigh)
-       * [getCurrentValidChannel](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentvalidchannel)
-       * [getCurrentAfcRailIndicator](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentafcrailindicator)
-       * [getCurrentSoftMuteIndicator](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentsoftmuteindicator)
-       * [getCurrentStereoBlend](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentstereoblend)
-       * [getCurrentPilot](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentpilot)
-       * [getCurrentMultipath](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentmultipath)
-       * [getCurrentSignedFrequencyOffset](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentsignedfrequencyoffset)
-       * [getCurrentMultipathDetectLow](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentmultipathdetectlow)
-       * [getCurrentMultipathDetectHigh](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentmultipathdetecthigh)
-       * [getCurrentBlendDetectInterrupt](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentblenddetectinterrupt)
-     * [__Current AGC Status__](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#current-agc-status)
-       * [getAutomaticGainControl](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getautomaticgaincontrol)
-       * [isAgcEnabled](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#isagcenabled)
-       * [getAgcGainIndex](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getagcgainindex)
-       * [setAutomaticGainControl](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setautomaticgaincontrol)
-     * [__Filters__](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#filters)
-       * [setBandwidth](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setbandwidth) 
-     * [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#si4735-firmware-information)
-       * [getFirmwarePN](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getfirmwarepn)
-       * [getFirmwareFWMAJOR](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getfirmwarefwmajor)
-       * [getFirmwareFWMINOR](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getfirmwarefwminor)
-       * [getFirmwarePATCHH](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getfirmwarepatchh)
-       * [getFirmwarePATCHL](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getfirmwarepatchl)
-       * [getFirmwareCMPMAJOR](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getfirmwarecmpmajor)
-       * [getFirmwareCMPMINOR](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getfirmwarecmpminor)
-       * [getFirmwareCHIPREV](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getfirmwarechiprev)
-     * [__RDS__](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#rds)
-       * [setRdsIntSource](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setrdsintsource)
-       * [setRdsConfig](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setrdsconfig)
-       * [getRdsStatus](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdsstatus)
-       * [getRdsReceived](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdsreceived)
-       * [getRdsSyncLost](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdssynclost)
-       * [getRdsSyncFound](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdssyncfound)
-       * [getRdsNewBlockA](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdsnewblocka)
-       * [getRdsNewBlockB](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdsnewblockb)
-       * [getRdsSync](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdssync)
-       * [getGroupLost](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getgrouplost)
-       * [getNumRdsFifoUsed](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getnumrdsfifoused)
-       * [getRdsPI](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdspi)
-       * [getRdsGroupType](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdsgrouptype)
-       * [getRdsVersionCode](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdsversioncode)
-       * [getRdsProgramType](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdsprogramtype)
-       * [getRdsText](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdstext)
-       * [getRdsTime](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getrdstime)
-     * [__Single Side Band (SSB) Support__](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#single-side-band-ssb-support)
-         * [setSSBBfo](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssbbfo)
-         * [setSSBConfig](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssbconfig)
-         * [setSSB](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssb)
-         * [setSSBAudioBandwidth](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssbaudiobandwidth)
-         * [setSBBSidebandCutoffFilter](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setsbbsidebandcutofffilter)
-         * [setSSBAvcDivider](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssbavcdivider)
-         * [setSSBAvcDivider](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssbavcdivider)
-         * [setSSBAutomaticVolumeControl](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssbautomaticvolumecontrol)
-         * [setSSBSoftMute](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssbsoftmute)
-         * [setSSBDspAfc](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssbdspafc)
-         * [setSSBConfig](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssbconfig)
-         * [setSSBBfo](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#setssbbfo)
+9.  [Documentação das funções da Biblioteca](https://github.com/pu2clr/SI4735/blob/master/bfo)
 10. [Referências](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#references)
 11. [Exemplos](https://github.com/pu2clr/SI4735/tree/master/examples)
 12. [Vídeos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#videos) 
@@ -345,10 +245,60 @@ __Veja "Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver Documentation":
 
 
 
-## Fotos
+## Fotos (Ferramentas e Acessórios) 
 
-As fotos a seguir ilustram a soldagem do SI4735 em um adaptador para ser usado em uma protoboard. 
 
+Este item apresenta algumas ferraentas e acessórios podem ser úteis em sua montagem do rádio baseado no SI4735.  
+
+
+|Arduino Pro Mini|Arduino Pro Mini| 
+|---------------|---------------|  
+|![Arduino Pro Mini 01](./extras/images/tools_arduino_02_A.png)|![Arduino Pro Mini 02](./extras/images/tools_arduino_02_B.png)|
+
+* Pro Mini 3.3V 8M /5V 16M Atmega328 Replace ATmega128 Arduino Compatible Nano
+
+<BR> 
+
+| FT232 USB Adapter |FT232 USB Adapter| 
+|---------------|---------------|   
+|![FT232 USB A](./extras/images/tools_FT232_usb_a.png)|![SI4735 on adapter 05](./extras/images/tools_FT232_usb_b.png)|
+
+* FT232RL 3.3V 5.5V FTDI USB to TTL Serial Adapter Module for Arduino Mini Port 
+
+
+<BR>
+
+|Magnifier|Solder| 
+|---------------|---------------|   
+|![Magnifier](./extras/images/tools_lente_01.png)|![Solder](./extras/images/tools_soldador_01.png)|
+
+* 50-1000X Magnifier Wireless WiFi Electric Microscope 2.0MP 8LED Endoscope Camera
+* Soldering Iron Station with Temperature Control 
+
+<BR>
+
+|Adapter for SI4735|Soldering Accessories| 
+|---------------|---------------|   
+|![Adatper for Si4735](./extras/images/tools_adaptador.png)|![Soldering Accessories](./extras/images/tools_soldas_e_suporte.png)|
+
+* SO SOP SOIC SSOP TSSOP 24 Pin to DIP 24 Adapter PCB Board Converter
+* 50g Soldering Paste Solder Flux Paste Cream for PCB PGA SMD BGA
+* BGA SMD Soldering Paste Flux
+  
+
+<BR>
+
+It was a bit hard to solder the kind of CI on adapter. However, by using a electronic magnifier it was possible.
+
+### SI4735 soldered on adapter
+
+|Si4735 on Adapter|Si4735 on Adapter| 
+|---------------|---------------|  
+|![SI4735 on adapter 01](./extras/images/si4735_on_adapter_01.png)|![SI4735 on adapter 03](./extras/images/si4735_on_adapter_03.png)|
+
+|Si4735 on Adapter|Si4735 on Adapter| 
+|---------------|---------------|   
+|![SI4735 on adapter 04](./extras/images/adapter_01.png)|![SI4735 on adapter 05](./extras/images/adapter_02.png)|
 
 ### Soldagem do Si4735 no adaptador
 
@@ -386,6 +336,120 @@ Veja [C7 e C8 no esquema](https://github.com/pu2clr/SI4735/blob/master/README-pt
 
 
 ## Documentação das funções da Biblioteca
+
+Este item apresenta a lista de funções, métodos e estruturas de dados que podem ser úteis para a construção de seu programa (sketch) Arduino. 
+
+
+### Índice de funções e métodos  
+
+* [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
+* [__Public Methods__](https://github.com/pu2clr/SI4735#public-methods)
+  * [__Usual methods__](https://github.com/pu2clr/SI4735#public-methods)
+  * [setup](https://github.com/pu2clr/SI4735#setup)
+  * [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
+  * [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
+  * [powerDown]()
+  * [setFrequency](https://github.com/pu2clr/SI4735#setfrequency)
+  * [frequencyUp](https://github.com/pu2clr/SI4735#frequencyup)
+  * [frequencyDown](https://github.com/pu2clr/SI4735#frequencydown)
+  * [setTuneFrequencyAntennaCapacitor](https://github.com/pu2clr/SI4735#settunefrequencyantennacapacitor)
+  * [setTuneFrequencyFast](https://github.com/pu2clr/SI4735#settunefrequencyfast)
+  * [setTuneFrequencyFreeze](https://github.com/pu2clr/SI4735#settunefrequencyfreeze)
+  * [isCurrentTuneFM](https://github.com/pu2clr/SI4735#iscurrenttunefm)
+  * [seekStation](https://github.com/pu2clr/SI4735#seekstation)
+  * [setAM](https://github.com/pu2clr/SI4735#setam)
+  * [setFM](https://github.com/pu2clr/SI4735#setfm)
+  * [setVolume](https://github.com/pu2clr/SI4735#setvolume)
+  * [getVolume](https://github.com/pu2clr/SI4735#getvolume)
+  * [volumeUp](https://github.com/pu2clr/SI4735#volumeup)
+  * [volumeDown](https://github.com/pu2clr/SI4735#volumedown)
+  * [getCurrentVolume](https://github.com/pu2clr/SI4735#getcurrentvolume)
+* [__Si4735 current status__](https://github.com/pu2clr/SI4735#si4735-current-status)
+  * [getFrequency](https://github.com/pu2clr/SI4735#getfrequency)
+  * [getCurrentFrequency](https://github.com/pu2clr/SI4735#getcurrentfrequency) 
+  * [getStatus](https://github.com/pu2clr/SI4735#getstatus)
+  * [getTuneCompleteTriggered](https://github.com/pu2clr/SI4735#gettunecompletetriggered)
+  * [getSignalQualityInterrupt](https://github.com/pu2clr/SI4735#getsignalqualityinterrupt)
+  * [getRadioDataSystemInterrupt](getRadioDataSystemInterrupt)
+  * [getStatusError](https://github.com/pu2clr/SI4735#getstatuserror)
+  * [getStatusCTS](https://github.com/pu2clr/SI4735#getstatuscts)
+  * [getACFIndicator](https://github.com/pu2clr/SI4735#getacfindicator)
+  * [getBandLimit](https://github.com/pu2clr/SI4735#getbandlimit)
+  * [getReceivedSignalStrengthIndicator](https://github.com/pu2clr/SI4735#getreceivedsignalstrengthindicator)
+  * [getStatusSNR](https://github.com/pu2clr/SI4735#getstatussnr)
+  * [getStatusMULT](https://github.com/pu2clr/SI4735#getstatusmult)
+  * [getAntennaTuningCapacitor](https://github.com/pu2clr/SI4735#getantennatuningcapacitor)
+  * [getStatusValid](https://github.com/pu2clr/SI4735#getstatusvalid)
+* [__SI4735 Received Signal Quality__](https://github.com/pu2clr/SI4735#si4735-received-signal-quality)
+  * [getCurrentReceivedSignalQuality](https://github.com/pu2clr/SI4735#getcurrentreceivedsignalquality)
+  * [getCurrentRSSI](https://github.com/pu2clr/SI4735#getcurrentrssi)
+  * [getCurrentSNR](https://github.com/pu2clr/SI4735#getcurrentsnr)
+  * [getCurrentRssiDetectLow](https://github.com/pu2clr/SI4735#getcurrentrssidetectlow)
+  * [getCurrentRssiDetectHigh](https://github.com/pu2clr/SI4735#getcurrentrssidetecthigh)
+  * [getCurrentSnrDetectLow](https://github.com/pu2clr/SI4735#getcurrentsnrdetectlow)
+  * [getCurrentSnrDetectHigh](https://github.com/pu2clr/SI4735#getcurrentsnrdetecthigh)
+  * [getCurrentValidChannel](https://github.com/pu2clr/SI4735#getcurrentvalidchannel)
+  * [getCurrentAfcRailIndicator](https://github.com/pu2clr/SI4735#getcurrentafcrailindicator)
+  * [getCurrentSoftMuteIndicator](https://github.com/pu2clr/SI4735#getcurrentsoftmuteindicator)
+  * [getCurrentStereoBlend](https://github.com/pu2clr/SI4735#getcurrentstereoblend)
+  * [getCurrentPilot](https://github.com/pu2clr/SI4735#getcurrentpilot)
+  * [getCurrentMultipath](https://github.com/pu2clr/SI4735#getcurrentmultipath)
+  * [getCurrentSignedFrequencyOffset](https://github.com/pu2clr/SI4735#getcurrentsignedfrequencyoffset)
+  * [getCurrentMultipathDetectLow](https://github.com/pu2clr/SI4735#getcurrentmultipathdetectlow)
+  * [getCurrentMultipathDetectHigh](https://github.com/pu2clr/SI4735#getcurrentmultipathdetecthigh)
+  * [getCurrentBlendDetectInterrupt](https://github.com/pu2clr/SI4735#getcurrentblenddetectinterrupt)
+* [__Current AGC Status__](https://github.com/pu2clr/SI4735#current-agc-status)
+  * [getAutomaticGainControl](https://github.com/pu2clr/SI4735#getautomaticgaincontrol)
+  * [isAgcEnabled](https://github.com/pu2clr/SI4735#isagcenabled)
+  * [getAgcGainIndex](https://github.com/pu2clr/SI4735#getagcgainindex)
+  * [setAutomaticGainControl](https://github.com/pu2clr/SI4735#setautomaticgaincontrol)
+* [__Filters__](https://github.com/pu2clr/SI4735#filters)
+  * [setBandwidth](https://github.com/pu2clr/SI4735#setbandwidth) 
+* [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735#si4735-firmware-information)
+  * [getFirmwarePN](https://github.com/pu2clr/SI4735#getfirmwarepn)
+  * [getFirmwareFWMAJOR](https://github.com/pu2clr/SI4735#getfirmwarefwmajor)
+  * [getFirmwareFWMINOR](https://github.com/pu2clr/SI4735#getfirmwarefwminor)
+  * [getFirmwarePATCHH](https://github.com/pu2clr/SI4735#getfirmwarepatchh)
+  * [getFirmwarePATCHL](https://github.com/pu2clr/SI4735#getfirmwarepatchl)
+  * [getFirmwareCMPMAJOR](https://github.com/pu2clr/SI4735#getfirmwarecmpmajor)
+  * [getFirmwareCMPMINOR](https://github.com/pu2clr/SI4735#getfirmwarecmpminor)
+  * [getFirmwareCHIPREV](https://github.com/pu2clr/SI4735#getfirmwarechiprev)
+* [__RDS__](https://github.com/pu2clr/SI4735#rds)
+  * [setRdsIntSource](https://github.com/pu2clr/SI4735#setrdsintsource)
+  * [setRdsConfig](https://github.com/pu2clr/SI4735#setrdsconfig)
+  * [getRdsStatus](https://github.com/pu2clr/SI4735#getrdsstatus)
+  * [getRdsReceived](https://github.com/pu2clr/SI4735#getrdsreceived)
+  * [getRdsSyncLost](https://github.com/pu2clr/SI4735#getrdssynclost)
+  * [getRdsSyncFound](https://github.com/pu2clr/SI4735#getrdssyncfound)
+  * [getRdsNewBlockA](https://github.com/pu2clr/SI4735#getrdsnewblocka)
+  * [getRdsNewBlockB](https://github.com/pu2clr/SI4735#getrdsnewblockb)
+  * [getRdsSync](https://github.com/pu2clr/SI4735#getrdssync)
+  * [getGroupLost](https://github.com/pu2clr/SI4735#getgrouplost)
+  * [getNumRdsFifoUsed](https://github.com/pu2clr/SI4735#getnumrdsfifoused)
+  * [getRdsPI](https://github.com/pu2clr/SI4735#getrdspi)
+  * [getRdsGroupType](https://github.com/pu2clr/SI4735#getrdsgrouptype)
+  * [getRdsVersionCode](https://github.com/pu2clr/SI4735#getrdsversioncode)
+  * [getRdsProgramType](https://github.com/pu2clr/SI4735#getrdsprogramtype)
+  * [getRdsText](https://github.com/pu2clr/SI4735#getrdstext)
+  * [getRdsTime](https://github.com/pu2clr/SI4735#getrdstime)
+* [__SI4735 Patch Support for Single Side Band__](https://github.com/pu2clr/SI4735#si4735-patch-support-for-single-side-band)
+  * [SI4735 patch](https://github.com/pu2clr/SI4735#si4735-patch-support-for-single-side-band)
+  * [queryLibraryId](https://github.com/pu2clr/SI4735#querylibraryid)
+  * [patchPowerUp](https://github.com/pu2clr/SI4735#patchpowerup)
+  * [downloadPatch](https://github.com/pu2clr/SI4735#downloadpatch)
+  * [Single Side Band (SSB) Methods](https://github.com/pu2clr/SI4735#single-side-band-ssb-methods) 
+  * [setSSBBfo](https://github.com/pu2clr/SI4735#setssbbfo)
+  * [setSSBConfig](https://github.com/pu2clr/SI4735#setssbconfig)
+  * [setSSB](https://github.com/pu2clr/SI4735#setssb)
+  * [setSSBAudioBandwidth](https://github.com/pu2clr/SI4735#setssbaudiobandwidth)
+  * [setSBBSidebandCutoffFilter](https://github.com/pu2clr/SI4735#setsbbsidebandcutofffilter)
+  * [setSSBAvcDivider](https://github.com/pu2clr/SI4735#setssbavcdivider)
+  * [setSSBAvcDivider](https://github.com/pu2clr/SI4735#setssbavcdivider)
+  * [setSSBAutomaticVolumeControl](https://github.com/pu2clr/SI4735#setssbautomaticvolumecontrol)
+  * [setSSBSoftMute](https://github.com/pu2clr/SI4735#setssbsoftmute)
+  * [setSSBDspAfc](https://github.com/pu2clr/SI4735#setssbdspafc)
+  * [setSSBConfig](https://github.com/pu2clr/SI4735#setssbconfig)
+  * [setSSBBfo](https://github.com/pu2clr/SI4735#setssbbfo)
 
 
 
