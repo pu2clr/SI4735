@@ -89,7 +89,7 @@ O SI4735 é um rádio DSP encapsulado em um CI. Possui ótimo desempenho em AM (
 * Comunicação I2C e SPI. __Esta biblioteca faz uso somente do protocolo I2C__. 
 * Excelente guia de programação provido pela Silicon Labs.
 
-
+<BR>
 
 ## Terminologia
 
@@ -122,7 +122,6 @@ O SI4735 é um rádio DSP encapsulado em um CI. Possui ótimo desempenho em AM (
 
 <BR>
 <BR>
-<BR>
 
 ## Características desta Biblioteca
 
@@ -149,18 +148,23 @@ Este é o método mais fácil.
 
 ![Installing from Arduino IDE 01](extras/images/lib_install_01.png)
 
+<BR>
+<BR>
 
 ![Installing from Arduino IDE 02](extras/images/lib_install_02.png)
 
-
+<BR>
 
 ### Instalação baixando os arquivos deste repositório
 
 ![Installing from this repository](extras/images/install_lib_from_git_01.png)
 
+<BR>
+<BR>
 
 ![Installing from this repository](extras/images/install_lib_from_git_02.png)
 
+<BR>
 
 Primeiro, você deve baixar esta biblioteca no formato zip. [CLique aqui para download](https://github.com/pu2clr/SI4735/archive/master.zip) to download.
 
@@ -171,8 +175,6 @@ Descompacte o arquivo SI4735.zip dentro da pasta Arduino Library.
 * On __Linux__: ˜/Documents/Arduino/libraries
 
 
-<BR>
-<BR>
 <BR>
 <BR>
 
