@@ -408,9 +408,7 @@ This item describes some tools and accessories you might need one o similar to b
 |---------------|---------------|   
 |![Adatper for Si4735](./extras/images/tools_adaptador.png)|![Soldering Accessories](./extras/images/tools_soldas_e_suporte.png)|
 
-
-
-
+<BR>
 
 It was a bit hard to solder the kind of CI on adapter. However, by using a electronic magnifier it was possible.
 
