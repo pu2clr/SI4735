@@ -38,11 +38,7 @@ __Attention__:
      * [Si4735 Arduino Library example. OLED Application.](https://youtu.be/7Sg4z8tDSA8)
      * [SI4735 Arduino Library and a simple FM and AM radio implementation](https://youtu.be/vzunuxam_Lg) 
      * [SI4735 ARDUINO LIBRARY BANDWIDTH TEST](https://youtu.be/dN1s3RoXGos)   
-  
 
-
-<BR>
-<BR>
 <BR>
 
 ## MIT License 
@@ -111,8 +107,6 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 
 <BR>
 <BR>
-<BR>
-<BR>
 
 
 ## SI4735 Terminology
@@ -160,7 +154,6 @@ This library uses the I2C communication protocol and implements most of the func
 8. [RDS support](https://github.com/pu2clr/SI4735#rds)(__under construction...__)
 9. [SSB (Single Side Band) patch support](https://github.com/pu2clr/SI4735#single-side-band-ssb-support) (__under construction...__) 
 
-<BR>
 <BR>
 <BR>
 
