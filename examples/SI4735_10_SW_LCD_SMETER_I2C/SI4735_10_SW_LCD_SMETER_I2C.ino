@@ -26,7 +26,7 @@
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
-#define AVC_SWITCH 4       // 
+#define AGC_SWITCH 4       // 
 #define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
@@ -110,7 +110,7 @@ void setup()
   pinMode(VOL_DOWN, INPUT_PULLUP);
   pinMode(AGC_SWITCH, INPUT_PULLUP);
   pinMode(STEP_SWITCH, INPUT_PULLUP);
-  pinMode(AVC_SWITCH, INPUT_PULLUP);
+  pinMode(AGC_SWITCH, INPUT_PULLUP);
 
 
   display.begin(SH1106_SWITCHCAPVCC, 0x3C);                // needed for SH1106 display
@@ -145,11 +145,10 @@ void setup()
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-
   si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
-
+  delay(100);
   currentFrequency = previousFrequency = si4735.getFrequency();
-  si4735.setVolume(60);
+  si4735.setVolume(45);
 
   showStatus();
 }
@@ -279,13 +278,21 @@ void bandDown()
 */
 void showSmeter(unsigned signalLevel)
 {
+  static unsigned sample = 0;
+  static byte idx = 0;
   static unsigned int maxSignal = 0;
   static unsigned int minSignal = 2014;
   const int hMeter = 65; // horizontal center for needle animation
   const int vMeter = 85; // vertical center for needle animation (outside of dislay limits)
   const int rMeter = 80;
 
-  signalLevel = map(signalLevel,0,127,0,1023);
+  // try to make the needle smoother
+  if ( idx <= 4 ) { 
+     sample += signalLevel;
+     idx++; 
+     return;
+  }
+  signalLevel = map((sample / 5) ,0,127,0,1023);
   float smeterValue = (signalLevel) * 330 / 1024; // convert the signal value to arrow information
 
   smeterValue = smeterValue - 34;                           // shifts needle to zero position
@@ -295,6 +302,8 @@ void showSmeter(unsigned signalLevel)
   int a2 = (vMeter - (cos(smeterValue / 57.296) * rMeter)); // meter needle vertical coordinate
   display.drawLine(a1, a2, hMeter, vMeter, WHITE);          // draws needle
   display.display();
+  idx = 0;
+  sample = 0; 
 }
 
 
@@ -356,7 +365,7 @@ void loop()
       si4735.setFrequencyStep(currentStep);
       band[currentFreqIdx].currentStep = currentStep;
       showStatus();
-    } else if ( digitalRead(AVC_SWITCH) == LOW ) {
+    } else if ( digitalRead(AGC_SWITCH) == LOW ) {
       agc_en = !agc_en;
       si4735.setAutomaticGainControl(!agc_en,0);
     }
