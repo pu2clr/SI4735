@@ -240,11 +240,6 @@ Follow the schematic below to use this sketch.
 <BR>
 <BR>
 
-![Protoboard with OLED as a S Meter](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_SW_SMETER.png)
-
-<BR>
-<BR>
-
 Pay attention on the push buttons added on this example. The table below shows the commands used by this sketch.
 
 | Defined constant | Arduino Pin | Description |
@@ -257,3 +252,20 @@ Pay attention on the push buttons added on this example. The table below shows t
 | AGC_SWITCH       | 11          | Switch AGC ON/OF | 
 | STEP_SWITCH      | 10          | Used to select the increment or decrement frequency step (1, 5 or 10 KHz) |
 | BFO_SWITCH       | 13          | Used to select the enconder control (BFO or VFO) |
+
+
+### Example 09 - Si4735 AM/FM radio 
+
+
+### Example 10 - Si4735 SW Receiver with OLED S-Meter 
+
+<BR>
+
+![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png)
+
+<BR>
+
+![Protoboard with OLED as a S Meter](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_SW_SMETER.png)
+
+<BR>
+<BR>
