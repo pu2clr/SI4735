@@ -284,9 +284,9 @@ void showSmeter(unsigned signalLevel)
   const int hMeter = 65; // horizontal center for needle animation
   const int vMeter = 85; // vertical center for needle animation (outside of dislay limits)
   const int rMeter = 80;
-  const int factor =  10; // Need to calibrate this value
 
-  float smeterValue = (signalLevel * factor) * 330 / 1024; // convert the signal value to arrow information
+  signalLevel = map(signalLevel,0,127,0,1023);
+  float smeterValue = (signalLevel) * 330 / 1024; // convert the signal value to arrow information
 
   smeterValue = smeterValue - 34;                           // shifts needle to zero position
   display.clearDisplay();                                   // refresh display for next step

@@ -54,11 +54,10 @@ void SI4735::waitToSend()
 {
     do
     {
-        // delayMicroseconds(2500);
-        delayMicroseconds(250);
+        delayMicroseconds(500);
         Wire.requestFrom(SI473X_ADDR, 1);
     } while (!(Wire.read() & B10000000));
-};
+}
 
 /*
  * Powerup in Analog Mode
@@ -66,7 +65,7 @@ void SI4735::waitToSend()
  */
 void SI4735::analogPowerUp(void)
 {
-    delayMicroseconds(1000);
+    // delayMicroseconds(1000);
     waitToSend();
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(POWER_UP);
@@ -75,8 +74,8 @@ void SI4735::analogPowerUp(void)
     Wire.endTransmission();
     // Delay at least 500 ms between powerup command and first tune command to wait for 
     // the oscillator to stabilize if XOSCEN is set and crystal is used as the RCLK.
-    delay(500);
     waitToSend();
+    delay(550);
 }
 
 /* 
@@ -85,9 +84,7 @@ void SI4735::analogPowerUp(void)
  */
 void SI4735::powerDown(void)
 {
-    delayMicroseconds(1000);
-    // waitToSend();
-
+    waitToSend();
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(POWER_DOWN);
     Wire.endTransmission();
@@ -113,7 +110,6 @@ void SI4735::getFirmware(void)
     for (int i = 0; i < 9; i++)
         firmwareInfo.raw[i] = Wire.read();
 
-    delayMicroseconds(550);
 }
 
 /* 
@@ -757,7 +753,7 @@ void SI4735::volumeUp()
  */
 void SI4735::volumeDown()
 {
-    if (volume > 5)
+    if (volume > 0)
         volume--;
     setVolume(volume);
 }
