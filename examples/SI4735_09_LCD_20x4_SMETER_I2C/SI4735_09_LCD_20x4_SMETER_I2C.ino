@@ -1,9 +1,10 @@
 /*
-  SS4735 Arduino Library example with LCD 20x4 I2C.
-  It is a example that shows how to set up a LCD and SI4735 on the same I2C bus.
+  SS4735 Arduino Library example with LCD 20x4 and OLED sharing the same I2C bus with SI4735 device.
+  It is an AM and FM radio. 
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
   together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander.
   Look for LiquidCrystal I2C on Manager Libraries.
+  You also need to install Adafruit_GFX and  Adafruit_SH1106.
 
   By Ricardo Lima Caratti, Nov 2019.
 */

@@ -4,7 +4,9 @@
   It is a example that shows how to set up a LCD and SI4735 on the same I2C bus. 
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included 
   together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander. 
-  Look for LiquidCrystal I2C on Manager Libraries.     
+  Look for LiquidCrystal I2C on Manager Libraries.    
+
+  Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png
 
   By Ricardo Lima Caratti, Nov 2019.
 */
