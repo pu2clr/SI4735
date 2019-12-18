@@ -149,10 +149,10 @@ This library uses the I2C communication protocol and implements most of the func
 3. C++ Lenguage and Object-oriented programming
 4. Available on Arduino IDE (Manage Libraries)
 5. Simplifies projects based on SI4735
-6. I2C communication
+6. __I2C communication__
 7. More than 60 SI4735 [functions implemented](https://github.com/pu2clr/SI4735#api-documentation)
 8. [RDS support](https://github.com/pu2clr/SI4735#rds)(__under construction...__)
-9. [SSB (Single Side Band) patch support](https://github.com/pu2clr/SI4735#single-side-band-ssb-support) (__under construction...__) 
+9. [SSB (Single Side Band) patch support](https://github.com/pu2clr/SI4735#single-side-band-ssb-support) 
 
 <BR>
 <BR>
