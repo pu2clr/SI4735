@@ -111,13 +111,13 @@ void SI4735::getFirmware(void)
     Wire.write(GET_REV);
     Wire.endTransmission();
 
+    do {
     waitToSend();
-
     // Request for 9 bytes response
     Wire.requestFrom(SI473X_ADDR, 9);
-
     for (int i = 0; i < 9; i++)
         firmwareInfo.raw[i] = Wire.read();
+    } while (firmwareInfo.resp.ERR); 
 }
 
 /* 
@@ -524,9 +524,7 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
         Wire.requestFrom(SI473X_ADDR, 7);
         // Gets response information
         for (byte i = 0; i < 7; i++)
-        {
             currentStatus.raw[i] = Wire.read();
-        }
     } while (currentStatus.resp.ERR); // If error, try it again
 }
 
@@ -536,34 +534,36 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
  * See AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
  * After call this method, you can call isAgcEnabled to know the AGC status and getAgcGainIndex to know the gain index value.
  */
-    void SI4735::getAutomaticGainControl()
+void SI4735::getAutomaticGainControl()
+{
+    byte cmd;
+
+    if (currentTune == FM_TUNE_FREQ)
+    { // FM TUNE
+        cmd = FM_AGC_STATUS;
+    }
+    else
+    { // AM TUNE - SAME COMMAND used on SSB mode
+        cmd = AM_AGC_STATUS;
+    }
+
+    waitToSend();
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(cmd);
+    Wire.endTransmission();
+
+    do
     {
-        byte cmd;
-
-        if (currentTune == FM_TUNE_FREQ)
-        { // FM TUNE
-            cmd = FM_AGC_STATUS;
-        }
-        else
-        { // AM TUNE - SAME COMMAND used on SSB mode
-            cmd = AM_AGC_STATUS;
-        }
-
         waitToSend();
-
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(cmd);
-        Wire.endTransmission();
-
-        waitToSend();
-
         Wire.requestFrom(SI473X_ADDR, 3);
         currentAgcStatus.raw[0] = Wire.read(); // STATUS response
         currentAgcStatus.raw[1] = Wire.read(); // RESP 1
         currentAgcStatus.raw[2] = Wire.read(); // RESP 2
-    }
+    } while (currentAgcStatus.refined.ERR);    // If error, try get AGC status again.
+}
 
-    /* 
+/* 
  * If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 
  * (minimum attenuation) and 26 (maximum attenuation);
  * If AM/SSB, Overrides the AM AGC setting by disabling the AGC and forcing the gain index that ranges between 0 
@@ -575,29 +575,29 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
  * 
  * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 
  */
-    void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
-    {
-        si47x_agc_overrride agc;
+void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
+{
+    si47x_agc_overrride agc;
 
-        byte cmd;
+    byte cmd;
 
-        cmd = (currentTune == FM_TUNE_FREQ) ? FM_AGC_OVERRIDE : AM_AGC_OVERRIDE;
+    cmd = (currentTune == FM_TUNE_FREQ) ? FM_AGC_OVERRIDE : AM_AGC_OVERRIDE;
 
-        agc.arg.AGCDIS = AGCDIS;
-        agc.arg.AGCDX = AGCDX;
+    agc.arg.AGCDIS = AGCDIS;
+    agc.arg.AGCDX = AGCDX;
 
-        waitToSend();
+    waitToSend();
 
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(cmd);
-        Wire.write(agc.raw[0]);
-        Wire.write(agc.raw[1]);
-        Wire.endTransmission();
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(cmd);
+    Wire.write(agc.raw[0]);
+    Wire.write(agc.raw[1]);
+    Wire.endTransmission();
 
-        waitToSend();
-    }
+    waitToSend();
+}
 
-    /*
+/*
  * Queries the status of the Received Signal Quality (RSQ) of the current channel
  * Command FM_RSQ_STATUS
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
@@ -606,44 +606,43 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
  *        0 = Interrupt status preserved; 
  *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
  */
-    void SI4735::getCurrentReceivedSignalQuality(byte INTACK)
+void SI4735::getCurrentReceivedSignalQuality(byte INTACK)
+{
+
+    byte arg;
+    byte cmd;
+    int bytesResponse;
+
+    if (currentTune == FM_TUNE_FREQ)
+    { // FM TUNE
+        cmd = FM_RSQ_STATUS;
+        bytesResponse = 7;
+    }
+    else
+    { // AM TUNE
+        cmd = AM_RSQ_STATUS;
+        bytesResponse = 5;
+    }
+
+    waitToSend();
+
+    arg = INTACK;
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(cmd);
+    Wire.write(arg); // send B00000001
+    Wire.endTransmission();
+
+    do
     {
-
-        byte arg;
-        byte cmd;
-        int bytesResponse;
-
-        if (currentTune == FM_TUNE_FREQ)
-        { // FM TUNE
-            cmd = FM_RSQ_STATUS;
-            bytesResponse = 7;
-        }
-        else
-        { // AM TUNE
-            cmd = AM_RSQ_STATUS;
-            bytesResponse = 5;
-        }
-
         waitToSend();
-
-        arg = INTACK;
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(cmd);
-        Wire.write(arg); // send B00000001
-        Wire.endTransmission();
-
-        waitToSend();
-
         Wire.requestFrom(SI473X_ADDR, bytesResponse);
         // Gets response information
         for (byte i = 0; i < bytesResponse; i++)
-        {
             currentRqsStatus.raw[i] = Wire.read();
-        }
-        waitToSend();
-    }
+    } while (currentRqsStatus.resp.ERR); // Try again if error found
+}
 
-    /*
+/*
  * Queries the status of the Received Signal Quality (RSQ) of the current channel
  * Command FM_RSQ_STATUS
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
@@ -652,116 +651,116 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
  *        0 = Interrupt status preserved; 
  *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
  */
-    void SI4735::getCurrentReceivedSignalQuality(void)
-    {
-        getCurrentReceivedSignalQuality(0);
-    }
+void SI4735::getCurrentReceivedSignalQuality(void)
+{
+    getCurrentReceivedSignalQuality(0);
+}
 
-    /*
+/*
  * Look for a station 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 55, 72, 125 and 137
  * 
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
  * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
-    void SI4735::seekStation(byte SEEKUP, byte WRAP)
+void SI4735::seekStation(byte SEEKUP, byte WRAP)
+{
+    si47x_seek seek;
+
+    // Check which FUNCTION (AM or FM) is working now
+    byte seek_start = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
+
+    waitToSend();
+
+    seek.arg.SEEKUP = SEEKUP;
+    seek.arg.WRAP = WRAP;
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(seek_start);
+    Wire.write(seek.raw);
+
+    if (seek_start == AM_SEEK_START)
     {
-        si47x_seek seek;
-
-        // Check which FUNCTION (AM or FM) is working now
-        byte seek_start = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
-
-        waitToSend();
-
-        seek.arg.SEEKUP = SEEKUP;
-        seek.arg.WRAP = WRAP;
-
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(seek_start);
-        Wire.write(seek.raw);
-
-        if (seek_start == AM_SEEK_START)
-        {
-            Wire.write(0x00); // Always 0
-            Wire.write(0x00); // Always 0
-            Wire.write(0x00); // Tuning Capacitor: The tuning capacitor value
-            Wire.write(0x00); //                   will be selected automatically.
-        }
-
-        Wire.endTransmission();
-        delay(100);
+        Wire.write(0x00); // Always 0
+        Wire.write(0x00); // Always 0
+        Wire.write(0x00); // Tuning Capacitor: The tuning capacitor value
+        Wire.write(0x00); //                   will be selected automatically.
     }
 
-    /*
+    Wire.endTransmission();
+    delay(100);
+}
+
+/*
  * Search for the next station 
  */
-    void SI4735::seekStationUp()
-    {
-        seekStation(1, 1);
-    }
+void SI4735::seekStationUp()
+{
+    seekStation(1, 1);
+}
 
-    /*
+/*
  * Search the previous station
  */
-    void SI4735::seekStationDown()
-    {
-        seekStation(0, 1);
-    }
+void SI4735::seekStationDown()
+{
+    seekStation(0, 1);
+}
 
-    /* 
+/* 
  * Sets volume level
  * @param byte volume (domain: 0 - 63) 
  */
-    void SI4735::setVolume(byte volume)
-    {
-        waitToSend();
-        this->volume = volume;
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(SET_PROPERTY);
-        Wire.write(0x00);   // Always 0x00
-        Wire.write(0x40);   // RX_VOLUME 0x4000 -> 0x40
-        Wire.write(0x00);   // RX_VOLUME 0x4000 -> 0x00
-        Wire.write(0x00);   // ARG1
-        Wire.write(volume); // ARG2 (level: 0 to 63)
-        Wire.endTransmission();
-        delayMicroseconds(550);
-    }
+void SI4735::setVolume(byte volume)
+{
+    waitToSend();
+    this->volume = volume;
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);   // Always 0x00
+    Wire.write(0x40);   // RX_VOLUME 0x4000 -> 0x40
+    Wire.write(0x00);   // RX_VOLUME 0x4000 -> 0x00
+    Wire.write(0x00);   // ARG1
+    Wire.write(volume); // ARG2 (level: 0 to 63)
+    Wire.endTransmission();
+    delayMicroseconds(550);
+}
 
-    /*
+/*
  * Gets the current volume level.
  */
-    byte SI4735::getVolume()
-    {
-        return this->volume;
-    }
+byte SI4735::getVolume()
+{
+    return this->volume;
+}
 
-    /*
+/*
  *  Set sound volume level Up   
  *  
  */
-    void SI4735::volumeUp()
-    {
-        if (volume < 63)
-            volume++;
-        setVolume(volume);
-    }
+void SI4735::volumeUp()
+{
+    if (volume < 63)
+        volume++;
+    setVolume(volume);
+}
 
-    /*
+/*
  *  Set sound volume level Down   
  *  
  */
-    void SI4735::volumeDown()
-    {
-        if (volume > 0)
-            volume--;
-        setVolume(volume);
-    }
+void SI4735::volumeDown()
+{
+    if (volume > 0)
+        volume--;
+    setVolume(volume);
+}
 
-    /* 
+/* 
  * RDS implementation 
  */
 
-    /* 
+/* 
  * Configures interrupt related to RDS
  * Use this method if want to use interrupt
  * See Si47XX PROGRAMMING GUIDE; AN332; page 103
@@ -772,87 +771,82 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
  * @param RDSNEWBLOCKA If set, generate an interrupt when Block A data is found or subsequently changed
  * @param RDSNEWBLOCKB If set, generate an interrupt when Block B data is found or subsequently changed
  */
-    void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCFOUND, byte RDSSYNCLOST, byte RDSRECV)
-    {
-        si47x_property property;
-        si47x_rds_int_source rds_int_source;
+void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCFOUND, byte RDSSYNCLOST, byte RDSRECV)
+{
+    si47x_property property;
+    si47x_rds_int_source rds_int_source;
 
-        if (currentTune != FM_TUNE_FREQ)
-            return;
+    if (currentTune != FM_TUNE_FREQ)
+        return;
 
-        rds_int_source.refined.RDSNEWBLOCKB = RDSNEWBLOCKB;
-        rds_int_source.refined.RDSNEWBLOCKA = RDSNEWBLOCKA;
-        rds_int_source.refined.RDSSYNCFOUND = RDSSYNCFOUND;
-        rds_int_source.refined.RDSSYNCLOST = RDSSYNCLOST;
-        rds_int_source.refined.RDSRECV = RDSRECV;
-        rds_int_source.refined.DUMMY1 = 0;
-        rds_int_source.refined.DUMMY2 = 0;
+    rds_int_source.refined.RDSNEWBLOCKB = RDSNEWBLOCKB;
+    rds_int_source.refined.RDSNEWBLOCKA = RDSNEWBLOCKA;
+    rds_int_source.refined.RDSSYNCFOUND = RDSSYNCFOUND;
+    rds_int_source.refined.RDSSYNCLOST = RDSSYNCLOST;
+    rds_int_source.refined.RDSRECV = RDSRECV;
+    rds_int_source.refined.DUMMY1 = 0;
+    rds_int_source.refined.DUMMY2 = 0;
 
-        property.value = FM_RDS_INT_SOURCE;
+    property.value = FM_RDS_INT_SOURCE;
 
-        waitToSend();
+    waitToSend();
 
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(SET_PROPERTY);
-        Wire.write(0x00);                  // Always 0x00 (I need to check it)
-        Wire.write(property.raw.byteHigh); // Send property - High Byte - most significant first
-        Wire.write(property.raw.byteLow);  // Low Byte
-        Wire.write(rds_int_source.raw[1]); // Send the argments. Most significant first
-        Wire.write(rds_int_source.raw[0]);
-        Wire.endTransmission();
-        waitToSend();
-    }
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                  // Always 0x00 (I need to check it)
+    Wire.write(property.raw.byteHigh); // Send property - High Byte - most significant first
+    Wire.write(property.raw.byteLow);  // Low Byte
+    Wire.write(rds_int_source.raw[1]); // Send the argments. Most significant first
+    Wire.write(rds_int_source.raw[0]);
+    Wire.endTransmission();
+    waitToSend();
+}
 
-    /*
+/*
  * RDS COMMAND FM_RDS_STATUS
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
  * @param INTACK Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT.
  * @param MTFIFO 0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO.
  * @param STATUSONLY Determines if data should be removed from the RDS FIFO.
  */
-    void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
+void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
+{
+    si47x_rds_command rds_cmd;
+    // checking current FUNC (Am or FM)
+    if (currentTune != FM_TUNE_FREQ)
+        return;
+
+    waitToSend();
+
+    rds_cmd.arg.INTACK = INTACK;
+    rds_cmd.arg.MTFIFO = MTFIFO;
+    rds_cmd.arg.STATUSONLY = STATUSONLY;
+
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(FM_RDS_STATUS);
+    Wire.write(rds_cmd.raw);
+    Wire.endTransmission();
+
+    do
     {
-        si47x_rds_command rds_cmd;
-        // checking current FUNC (Am or FM)
-        if (currentTune != FM_TUNE_FREQ)
-            return;
-
         waitToSend();
-
-        rds_cmd.arg.INTACK = INTACK;
-        rds_cmd.arg.MTFIFO = MTFIFO;
-        rds_cmd.arg.STATUSONLY = STATUSONLY;
-
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(FM_RDS_STATUS);
-        Wire.write(rds_cmd.raw);
-        Wire.endTransmission();
-
-        waitToSend();
-
-        // Get response
-        Wire.requestFrom(SI473X_ADDR, 13);
-
         // Gets response information
-        // currentRdsStatus will have the RDS information
+        Wire.requestFrom(SI473X_ADDR, 13);
         for (byte i = 0; i < 13; i++)
-        {
             currentRdsStatus.raw[i] = Wire.read();
-        }
+    } while (currentRdsStatus.resp.ERR);
+}
 
-        delayMicroseconds(550);
-    }
-
-    /*
+/*
  * Gets RDS Status.
  * Call getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY) if you want other behaviour
  */
-    void SI4735::getRdsStatus()
-    {
-        getRdsStatus(0, 0, 0);
-    }
+void SI4735::getRdsStatus()
+{
+    getRdsStatus(0, 0, 0);
+}
 
-    /*
+/*
  * Set RDS property  FM_RDS_CONFIG
  * 
  * @param byte RDSEN RDS Processing Enable; 1 = RDS processing enabled.
@@ -874,114 +868,114 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
  *  0,0,0,0 = No group stored containing corrected or uncorrected errors.
  *  3,2,3,3 = Group stored with corrected errors on B, regardless of errors on A, C, or D.
  */
-    void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD)
-    {
-        si47x_property property;
-        si47x_rds_config config;
+void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD)
+{
+    si47x_property property;
+    si47x_rds_config config;
 
-        waitToSend();
+    waitToSend();
 
-        // Set property value
-        property.value = FM_RDS_CONFIG;
+    // Set property value
+    property.value = FM_RDS_CONFIG;
 
-        // Arguments
-        config.arg.RDSEN = RDSEN;
-        config.arg.BLETHA = BLETHA;
-        config.arg.BLETHB = BLETHB;
-        config.arg.BLETHC = BLETHC;
-        config.arg.BLETHD = BLETHD;
-        config.arg.DUMMY1 = 0;
+    // Arguments
+    config.arg.RDSEN = RDSEN;
+    config.arg.BLETHA = BLETHA;
+    config.arg.BLETHB = BLETHB;
+    config.arg.BLETHC = BLETHC;
+    config.arg.BLETHD = BLETHD;
+    config.arg.DUMMY1 = 0;
 
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(SET_PROPERTY);
-        Wire.write(0x00);                  // Always 0x00 (I need to check it)
-        Wire.write(property.raw.byteHigh); // Send property - High Byte - most significant first
-        Wire.write(property.raw.byteLow);  // Low Byte
-        Wire.write(config.raw[1]);         // Send the argments. Most significant first
-        Wire.write(config.raw[0]);
-        Wire.endTransmission();
-        delayMicroseconds(550);
-    }
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                  // Always 0x00 (I need to check it)
+    Wire.write(property.raw.byteHigh); // Send property - High Byte - most significant first
+    Wire.write(property.raw.byteLow);  // Low Byte
+    Wire.write(config.raw[1]);         // Send the argments. Most significant first
+    Wire.write(config.raw[0]);
+    Wire.endTransmission();
+    delayMicroseconds(550);
+}
 
-    // TO DO
+// TO DO
 
-    /* 
+/* 
  * Returns the programa type. 
  * Read the Block A content
  */
-    unsigned SI4735::getRdsPI(void)
+unsigned SI4735::getRdsPI(void)
+{
+    if (getRdsReceived() && getRdsNewBlockA())
     {
-        if (getRdsReceived() && getRdsNewBlockA())
-        {
-            return currentRdsStatus.resp.BLOCKAL;
-        }
-        return 0;
+        return currentRdsStatus.resp.BLOCKAL;
     }
+    return 0;
+}
 
-    /*
+/*
  * Returns the Group Type (extracted from the Block B) 
  */
-    unsigned SI4735::getRdsGroupType(void)
-    {
-        si47x_rds_blockb blkb;
+unsigned SI4735::getRdsGroupType(void)
+{
+    si47x_rds_blockb blkb;
 
-        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+    blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+    blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
 
-        return blkb.refined.groupType;
-    }
+    return blkb.refined.groupType;
+}
 
-    /*
+/*
  * Gets the version code (extracted from the Block B)
  * Returns  0=A or 1=B
  */
-    unsigned SI4735::getRdsVersionCode(void)
-    {
-        si47x_rds_blockb blkb;
+unsigned SI4735::getRdsVersionCode(void)
+{
+    si47x_rds_blockb blkb;
 
-        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+    blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+    blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
 
-        return blkb.refined.versionCode;
-    }
+    return blkb.refined.versionCode;
+}
 
-    /* 
+/* 
  * Returns the Program Type (extracted from the Block B)
  */
-    unsigned SI4735::getRdsProgramType(void)
-    {
-        si47x_rds_blockb blkb;
+unsigned SI4735::getRdsProgramType(void)
+{
+    si47x_rds_blockb blkb;
 
-        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+    blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+    blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
 
-        return blkb.refined.programType;
-    }
+    return blkb.refined.programType;
+}
 
-    char *SI4735::getNext2Block(char *c)
-    {
-        /*
+char *SI4735::getNext2Block(char *c)
+{
+    /*
     c[1] = (currentRdsStatus.resp.BLOCKDL < 32 || currentRdsStatus.resp.BLOCKDL > 127) ? '.' : currentRdsStatus.resp.BLOCKDL;
     c[0] = (currentRdsStatus.resp.BLOCKDH < 32 || currentRdsStatus.resp.BLOCKDH > 127) ? '.' : currentRdsStatus.resp.BLOCKDH;
     */
-    }
+}
 
-    char *SI4735::getNext4Block(char *c)
-    {
-        /*
+char *SI4735::getNext4Block(char *c)
+{
+    /*
     c[1] = (currentRdsStatus.resp.BLOCKCL < 32 || currentRdsStatus.resp.BLOCKCL > 127) ? '.' : currentRdsStatus.resp.BLOCKCL;
     c[0] = (currentRdsStatus.resp.BLOCKCH < 32 || currentRdsStatus.resp.BLOCKCH > 127) ? '.' : currentRdsStatus.resp.BLOCKCH;
     c[3] = (currentRdsStatus.resp.BLOCKDL < 32 || currentRdsStatus.resp.BLOCKDL > 127) ? '.' : currentRdsStatus.resp.BLOCKDL;
     c[2] = (currentRdsStatus.resp.BLOCKDH < 32 || currentRdsStatus.resp.BLOCKDH > 127) ? '.' : currentRdsStatus.resp.BLOCKDH;
     */
-    }
+}
 
-    /*
+/*
  * Gets the RDS Text when the message is of the Group Type 2 version A
  */
-    String SI4735::getRdsText(void)
-    {
-        /*
+String SI4735::getRdsText(void)
+{
+    /*
     // Under Test and construction...
 
     si47x_rds_blockb blkb;
@@ -1041,14 +1035,14 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
 
     return String(rds_buffer);
     */
-    }
+}
 
-    /* 
+/* 
  * Gets the RDS time and date when the Group type is 4 
  */
-    String SI4735::getRdsTime()
-    {
-        /*
+String SI4735::getRdsTime()
+{
+    /*
     // Under Test and construction
 
     si47x_rds_date_time dt;
@@ -1075,46 +1069,46 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
         "/" + String(y) + "-" + String(dt.refined.offset);
 
     return s; */
-    }
+}
 
-    /*
+/*
  * SSB Comand and properties implementation 
  * 
  * First consideration: I will write here about the Patches released by SIlicon Labs for some customers....
  * 
  */
 
-    /* 
+/* 
  * Sets the SSB Beat Frequency Offset (BFO). 
  * @param offset 16-bit signed value (unit in Hz). The valid range is -16383 to +16383 Hz. 
  */
-    void SI4735::setSSBBfo(int offset)
-    {
+void SI4735::setSSBBfo(int offset)
+{
 
-        si47x_property property;
-        si47x_frequency bfo_offset;
+    si47x_property property;
+    si47x_frequency bfo_offset;
 
-        if (currentTune == FM_TUNE_FREQ) // Only for AM/SSB mode
-            return;
+    if (currentTune == FM_TUNE_FREQ) // Only for AM/SSB mode
+        return;
 
-        waitToSend();
+    waitToSend();
 
-        property.value = SSB_BFO;
-        bfo_offset.value = offset;
+    property.value = SSB_BFO;
+    bfo_offset.value = offset;
 
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(SET_PROPERTY);
-        Wire.write(0x00);                  // Always 0x00
-        Wire.write(property.raw.byteHigh); // High byte first
-        Wire.write(property.raw.byteLow);  // Low byte after
-        Wire.write(bfo_offset.raw.FREQH);  // Offset freq. high byte first
-        Wire.write(bfo_offset.raw.FREQL);  // Offset freq. low byte first
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                  // Always 0x00
+    Wire.write(property.raw.byteHigh); // High byte first
+    Wire.write(property.raw.byteLow);  // Low byte after
+    Wire.write(bfo_offset.raw.FREQH);  // Offset freq. high byte first
+    Wire.write(bfo_offset.raw.FREQL);  // Offset freq. low byte first
 
-        Wire.endTransmission();
-        delayMicroseconds(550);
-    }
+    Wire.endTransmission();
+    delayMicroseconds(550);
+}
 
-    /*
+/*
  * Set the SSB receiver mode details:
  * 1) Enable or disable AFC track to carrier function for receiving normal AM signals;
  * 2) Set the audio bandwidth;
@@ -1133,83 +1127,83 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
  * @param SMUTESEL SSB Soft-mute Based on RSSI or SNR.
  * @param DSP_AFCDIS DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
  */
-    void SI4735::setSSBConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
-    {
-        si47x_property property;
+void SI4735::setSSBConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
+{
+    si47x_property property;
 
-        if (currentTune == FM_TUNE_FREQ) // Only AM/SSB mode
-            return;
+    if (currentTune == FM_TUNE_FREQ) // Only AM/SSB mode
+        return;
 
-        property.value = SSB_MODE;
+    property.value = SSB_MODE;
 
-        currentSSBMode.param.AUDIOBW = AUDIOBW;
-        currentSSBMode.param.SBCUTFLT = SBCUTFLT;
-        currentSSBMode.param.AVC_DIVIDER = AVC_DIVIDER;
-        currentSSBMode.param.AVCEN = AVCEN;
-        currentSSBMode.param.SMUTESEL = SMUTESEL;
-        currentSSBMode.param.DUMMY1 = 0;
-        currentSSBMode.param.DSP_AFCDIS = DSP_AFCDIS;
+    currentSSBMode.param.AUDIOBW = AUDIOBW;
+    currentSSBMode.param.SBCUTFLT = SBCUTFLT;
+    currentSSBMode.param.AVC_DIVIDER = AVC_DIVIDER;
+    currentSSBMode.param.AVCEN = AVCEN;
+    currentSSBMode.param.SMUTESEL = SMUTESEL;
+    currentSSBMode.param.DUMMY1 = 0;
+    currentSSBMode.param.DSP_AFCDIS = DSP_AFCDIS;
 
-        sendSSBModeProperty();
-    }
+    sendSSBModeProperty();
+}
 
-    /* 
+/* 
  * Sets DSP AFC disable or enable
  * 0 = SYNC mode, AFC enable
  * 1 = SSB mode, AFC disable
  */
-    void SI4735::setSSBDspAfc(byte DSP_AFCDIS)
-    {
-        currentSSBMode.param.DSP_AFCDIS;
-        sendSSBModeProperty();
-    }
+void SI4735::setSSBDspAfc(byte DSP_AFCDIS)
+{
+    currentSSBMode.param.DSP_AFCDIS;
+    sendSSBModeProperty();
+}
 
-    /* 
+/* 
  * Sets SSB Soft-mute Based on RSSI or SNR Selection:
  * 0 = Soft-mute based on RSSI (default).
  * 1 = Soft-mute based on SNR.
  */
-    void SI4735::setSSBSoftMute(byte SMUTESEL)
-    {
-        currentSSBMode.param.SMUTESEL;
-        sendSSBModeProperty();
-    }
+void SI4735::setSSBSoftMute(byte SMUTESEL)
+{
+    currentSSBMode.param.SMUTESEL;
+    sendSSBModeProperty();
+}
 
-    /*
+/*
  * Sets SSB Automatic Volume Control (AVC) for SSB mode
  * 0 = Disable AVC.
  * 1 = Enable AVC (default).
  */
-    void SI4735::setSSBAutomaticVolumeControl(byte AVCEN)
-    {
-        currentSSBMode.param.AVCEN = AVCEN;
-        sendSSBModeProperty();
-    }
+void SI4735::setSSBAutomaticVolumeControl(byte AVCEN)
+{
+    currentSSBMode.param.AVCEN = AVCEN;
+    sendSSBModeProperty();
+}
 
-    /*
+/*
  * Sets AVC Divider
  * for SSB mode, set divider = 0
  * for SYNC mode, set divider = 3 Other values = not allowed.
  */
-    void SI4735::setSSBAvcDivider(byte AVC_DIVIDER)
-    {
-        currentSSBMode.param.AVC_DIVIDER;
-        sendSSBModeProperty();
-    }
+void SI4735::setSSBAvcDivider(byte AVC_DIVIDER)
+{
+    currentSSBMode.param.AVC_DIVIDER;
+    sendSSBModeProperty();
+}
 
-    /* 
+/* 
  * Sets SBB Sideband Cutoff Filter for band pass and low pass filters:
  * 0 = Band pass filter to cutoff both the unwanted side band and high frequency components > 2.0 kHz of the wanted side band. (default)
  * 1 = Low pass filter to cutoff the unwanted side band. 
  * Other values = not allowed.
  */
-    void SI4735::setSBBSidebandCutoffFilter(byte SBCUTFLT)
-    {
-        currentSSBMode.param.SBCUTFLT;
-        sendSSBModeProperty();
-    }
+void SI4735::setSBBSidebandCutoffFilter(byte SBCUTFLT)
+{
+    currentSSBMode.param.SBCUTFLT;
+    sendSSBModeProperty();
+}
 
-    /*
+/*
  * SSB Audio Bandwidth for SSB mode
  * 
  * 0 = 1.2 kHz low-pass filter* . (default)
@@ -1230,29 +1224,29 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
  * 
  * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  */
-    void SI4735::setSSBAudioBandwidth(byte AUDIOBW)
-    {
-        // Sets the audio filter property parameter
-        currentSSBMode.param.AUDIOBW = AUDIOBW;
-        sendSSBModeProperty();
-    }
+void SI4735::setSSBAudioBandwidth(byte AUDIOBW)
+{
+    // Sets the audio filter property parameter
+    currentSSBMode.param.AUDIOBW = AUDIOBW;
+    sendSSBModeProperty();
+}
 
-    /*
+/*
  * Set the radio to AM function. It means: LW MW and SW.
  */
-    void SI4735::setSSB(byte usblsb)
-    {
-        // Is it needed to load patch when switch to SSB?
-        // powerDown();
-        // It starts with the same AM parameters.
-        setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
-        analogPowerUp();
-        // ssbPowerUp(); // Not used for regular operation
-        setVolume(volume); // Set to previus configured volume
-        currentSsbStatus = usblsb;
-    }
+void SI4735::setSSB(byte usblsb)
+{
+    // Is it needed to load patch when switch to SSB?
+    // powerDown();
+    // It starts with the same AM parameters.
+    setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
+    analogPowerUp();
+    // ssbPowerUp(); // Not used for regular operation
+    setVolume(volume); // Set to previus configured volume
+    currentSsbStatus = usblsb;
+}
 
-    /*
+/*
  * Set the radio to SSB (LW/MW/SW) function. 
  * 
  * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14
@@ -1265,122 +1259,125 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
  *               value 2 (banary 10) = USB; 
  *               value 1 (banary 01) = LSB.   
  */
-    void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step, byte usblsb)
-    {
+void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step, byte usblsb)
+{
 
-        currentMinimumFrequency = fromFreq;
-        currentMaximumFrequency = toFreq;
-        currentStep = step;
+    currentMinimumFrequency = fromFreq;
+    currentMaximumFrequency = toFreq;
+    currentStep = step;
 
-        if (initialFreq < fromFreq || initialFreq > toFreq)
-            initialFreq = fromFreq;
+    if (initialFreq < fromFreq || initialFreq > toFreq)
+        initialFreq = fromFreq;
 
-        setSSB(usblsb);
+    setSSB(usblsb);
 
-        currentWorkFrequency = initialFreq;
+    currentWorkFrequency = initialFreq;
 
-        setFrequency(currentWorkFrequency);
+    setFrequency(currentWorkFrequency);
 
-        delayMicroseconds(550);
-    }
+    delayMicroseconds(550);
+}
 
-    /* 
+/* 
  * Just send the property SSB_MOD to the device. 
  * Internal use (privete method). 
  */
-    void SI4735::sendSSBModeProperty()
-    {
-        si47x_property property;
-        property.value = SSB_MODE;
-        waitToSend();
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(SET_PROPERTY);
-        Wire.write(0x00);                  // Always 0x00
-        Wire.write(property.raw.byteHigh); // High byte first
-        Wire.write(property.raw.byteLow);  // Low byte after
-        Wire.write(currentSSBMode.raw[1]); // SSB MODE params; freq. high byte first
-        Wire.write(currentSSBMode.raw[0]); // SSB MODE params; freq. low byte after
+void SI4735::sendSSBModeProperty()
+{
+    si47x_property property;
+    property.value = SSB_MODE;
+    waitToSend();
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                  // Always 0x00
+    Wire.write(property.raw.byteHigh); // High byte first
+    Wire.write(property.raw.byteLow);  // Low byte after
+    Wire.write(currentSSBMode.raw[1]); // SSB MODE params; freq. high byte first
+    Wire.write(currentSSBMode.raw[0]); // SSB MODE params; freq. low byte after
 
-        Wire.endTransmission();
-        delayMicroseconds(550);
-    }
+    Wire.endTransmission();
+    delayMicroseconds(550);
+}
 
-    /*
+/*
  * ****************
  * PATCH RESOURCES
  */
 
-    /*
+/*
    Call it first if you are applying a patch on SI4735. 
    Used to confirm if the patch is compatible with the internal device library revision.
    See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
 
    @return a struct si47x_firmware_query_library (see it in SI4735.h)
 */
-    si47x_firmware_query_library
-    SI4735::queryLibraryId()
+si47x_firmware_query_library
+SI4735::queryLibraryId()
+{
+    si47x_firmware_query_library libraryID;
+
+    powerDown(); // Is it necessary
+
+    delay(500);
+
+    waitToSend();
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(POWER_UP);
+    Wire.write(0b00011111);          // Set to Read Library ID, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
+    Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Line Input.
+    Wire.endTransmission();
+
+    do
     {
-        si47x_firmware_query_library libraryID;
-
-        powerDown(); // Is it necessary
-
-        delay(500);
-
-        waitToSend();
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(POWER_UP);
-        Wire.write(0b00011111);          // Set to Read Library ID, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
-        Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Line Input.
-        Wire.endTransmission();
-
         waitToSend();
         Wire.requestFrom(SI473X_ADDR, 8);
         for (int i = 0; i < 8; i++)
             libraryID.raw[i] = Wire.read();
+    } while (libraryID.resp.ERR); // If error found, try it again.
 
-        delayMicroseconds(2500);
+    delayMicroseconds(2500);
 
-        return libraryID;
-    }
+    return libraryID;
+}
 
-    /*
+/*
  *  This method can be used to prepare the device to apply SSBRX patch
  *  Call queryLibraryId before call this method. 
  *  Powerup the device by issuing the POWER_UP command with FUNC = 1 (AM/SW/LW Receive) 
  *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
  *  AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
  */
-    void SI4735::patchPowerUp()
-    {
-        waitToSend();
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(POWER_UP);
-        Wire.write(0b00110001);          // Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
-        Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Output
-        Wire.endTransmission();
-        delayMicroseconds(2500);
-    }
+void SI4735::patchPowerUp()
+{
+    waitToSend();
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(POWER_UP);
+    Wire.write(0b00110001);          // Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
+    Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Output
+    Wire.endTransmission();
+    delayMicroseconds(2500);
+}
 
-    // Used for test
-    void SI4735::ssbPowerUp()
-    {
-        waitToSend();
-        Wire.beginTransmission(SI473X_ADDR);
-        Wire.write(POWER_UP);
-        Wire.write(0b00010001); // Set to AM/SSB, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
-        Wire.write(0b00000101); // Set to Analog Line Input.
-        Wire.endTransmission();
-        delayMicroseconds(2500);
+// Used for test
+void SI4735::ssbPowerUp()
+{
+    waitToSend();
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(POWER_UP);
+    Wire.write(0b00010001); // Set to AM/SSB, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
+    Wire.write(0b00000101); // Set to Analog Line Input.
+    Wire.endTransmission();
+    delayMicroseconds(2500);
 
-        powerUp.arg.CTSIEN = 0;          // 1 -> Interrupt anabled;
-        powerUp.arg.GPO2OEN = 0;         // 1 -> GPO2 Output Enable;
-        powerUp.arg.PATCH = 0;           // 0 -> Boot normally;
-        powerUp.arg.XOSCEN = 1;          // 1 -> Use external crystal oscillator;
-        powerUp.arg.FUNC = 1;            // 0 = FM Receive; 1 = AM/SSB (LW/MW/SW) Receiver.
-        powerUp.arg.OPMODE = 0b00000101; // 0x5 = 00000101 = Analog audio outputs (LOUT/ROUT).
-    }
+    powerUp.arg.CTSIEN = 0;          // 1 -> Interrupt anabled;
+    powerUp.arg.GPO2OEN = 0;         // 1 -> GPO2 Output Enable;
+    powerUp.arg.PATCH = 0;           // 0 -> Boot normally;
+    powerUp.arg.XOSCEN = 1;          // 1 -> Use external crystal oscillator;
+    powerUp.arg.FUNC = 1;            // 0 = FM Receive; 1 = AM/SSB (LW/MW/SW) Receiver.
+    powerUp.arg.OPMODE = 0b00000101; // 0x5 = 00000101 = Analog audio outputs (LOUT/ROUT).
+}
 
-    /*
+/*
  *  Transfers the content of a patch stored in a array of bytes to the SI4735 device. 
  *  You must mount an array as shown below and know the size of that array as well.
  *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.  
@@ -1414,40 +1411,40 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
  * 
  *  @return false if an error is found.
  */
-    bool SI4735::downloadPatch(byte * ssb_patch_content, unsigned ssb_patch_content_size)
+bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_size)
+{
+    byte content, cmd_status;
+    int i, line, offset;
+    // Send patch for whole SSBRX full download
+    for (offset = 0; offset < ssb_patch_content_size; offset += 8)
     {
-        byte content, cmd_status;
-        int i, line, offset;
-        // Send patch for whole SSBRX full download
-        for (offset = 0; offset < ssb_patch_content_size; offset += 8)
+        line++;
+        Wire.beginTransmission(SI473X_ADDR);
+        for (i = 0; i < 8; i++)
         {
-            line++;
-            Wire.beginTransmission(SI473X_ADDR);
-            for (i = 0; i < 8; i++)
-            {
-                content = pgm_read_byte_near(ssb_patch_content + (i + offset));
-                Wire.write(content);
-            }
-            Wire.endTransmission();
-            waitToSend();
-            Wire.requestFrom(SI473X_ADDR, 1);
-            cmd_status = Wire.read();
-            // The SI4735 issues a status after each 8 - byte transfer.
-            // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
-            if (cmd_status != 0x80)
-                return false;
+            content = pgm_read_byte_near(ssb_patch_content + (i + offset));
+            Wire.write(content);
         }
-        delayMicroseconds(2500);
-        return true;
+        Wire.endTransmission();
+        waitToSend();
+        Wire.requestFrom(SI473X_ADDR, 1);
+        cmd_status = Wire.read();
+        // The SI4735 issues a status after each 8 - byte transfer.
+        // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
+        if (cmd_status != 0x80)
+            return false;
     }
+    delayMicroseconds(2500);
+    return true;
+}
 
-    /*
+/*
  * Transfers the content of a patch stored in a eeprom to the SI4735 device.
  * 
  * @param eeprom_i2c_address 
  * @return false if an error is found.
  */
-    bool SI4735::downloadPatch(byte eeprom_i2c_address)
-    {
-        // TO DO
-    }
+bool SI4735::downloadPatch(byte eeprom_i2c_address)
+{
+    // TO DO
+}
