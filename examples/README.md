@@ -6,10 +6,8 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 
 1. [Example 01 - Proof of Concept](https://github.com/pu2clr/SI4735/tree/master/examples#example-01---proof-of-concept)
 2. [Example 02 - Proof of Concept with SW](https://github.com/pu2clr/SI4735/tree/master/examples#example-02---proof-of-concept-with-sw)
-   * [Schematic for Proof of Concept (Examples 01 and 02)](https://github.com/pu2clr/SI4735/tree/master/examples#schematic-for-proof-of-concept-examples-01-and-02)
 3. [Example 03 - SS4735 Arduino Library example with LCD 20x4 I2C](https://github.com/pu2clr/SI4735/tree/master/examples#example-03---ss4735-arduino-library-example-with-lcd-20x4-i2c)
 4. [Example 04 - SS4735 Arduino Library example with I2C OLED](https://github.com/pu2clr/SI4735/tree/master/examples#example-04---ss4735-arduino-library-example-with-i2c-oled)
-   * [Schematic for I2C display device, buttons and encoder (Examples 03 and 04)](https://github.com/pu2clr/SI4735/tree/master/examples#schematic-for-i2c-display-device-buttons-and-encoder-examples-03-and-04)
 5. [Example 05 - Bandwidth filter on MW (AM)](https://github.com/pu2clr/SI4735/tree/master/examples#example-05---bandwidth-filter-on-mw-am)
 6. [Example 06 - Bandwidth filter test (9 band SW Receiver with OLED)](https://github.com/pu2clr/SI4735/tree/master/examples#example-06---bandwidth-filter-test-9-band-sw-receiver-with-oled)
 7. [Example 07 - Si4735 SSB firmware update support - OLED/I2C Suport)](https://github.com/pu2clr/SI4735/tree/master/examples#example-07---si4735-ssb-firmware-update-support)
