@@ -193,8 +193,6 @@ Unzip the SI4735.zip file in your Arduino Library folder.
 
 <BR>
 <BR>
-<BR>
-<BR>
 
 
 ## Hardware Requirements and Setup
@@ -218,8 +216,9 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 
 ![Basic Schematic](./extras/images/basic_schematic.png)
 
+* __See some Shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
 
-__THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO, YOU HAVE TO USE A KIND OF 5V TO 3.3V CONVERTER.__
+* __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO, YOU HAVE TO USE A KIND OF 5V TO 3.3V CONVERTER.__
 
 <BR>
 <BR>
