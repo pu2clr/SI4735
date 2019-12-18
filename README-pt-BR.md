@@ -81,7 +81,7 @@ A figura a seguir apresenta o diagrama de bloco do SI473X-D60. É importante obs
 
 ![SI473x Block Diagram](extras/images/block_diagram.png)
 
-* Fonte: Silicon Labs Si4730/31/34/35-D60 / BROADCAST AM/FM/SW/LW RADIO RECEIVER (page 21)
+* Fonte: Silicon Labs Si4730/31/34/35-D60 / BROADCAST AM/FM/SW/LW RADIO RECEIVER (página 21)
 
 <BR>
 <BR>
