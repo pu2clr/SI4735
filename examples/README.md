@@ -14,8 +14,9 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 6. [Example 06 - Bandwidth filter test (9 band SW Receiver with OLED)](https://github.com/pu2clr/SI4735/tree/master/examples#example-06---bandwidth-filter-test-9-band-sw-receiver-with-oled)
 7. [Example 07 - Si4735 SSB firmware update support - OLED/I2C Suport)](https://github.com/pu2clr/SI4735/tree/master/examples#example-07---si4735-ssb-firmware-update-support)
 8. [Example 08 - Si4735 SSB firmware update support - LCD/I2C Support]()
+9. [Example 09 - Si4735 AM/FM radio with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-09---si4735-amfm-radio-with-oled-s-meter)
+10. [Example 10 - Si4735 SW Receiver with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-10---si4735-sw-receiver-with-oled-s-meter)
 
-<BR>
 <BR>
 
 ## Example 01 - Proof of Concept
@@ -45,7 +46,6 @@ So, I strongly recommend starting with this sketch. This example is a proof of c
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_01_POC/SI4735_01_POC.ino) to see this example.
 
 
-<BR>
 <BR>
 
 ## Example 02 - Proof of Concept with SW
@@ -87,7 +87,6 @@ This example shows how can you use SW features of the Si4735 Arduino Library. Li
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_02_POC_SW/SI4735_02_POC_SW.ino) to see this example.
 
 <BR>
-<BR>
 
 ## Schematic for Proof of Concept (Examples 01 and 02)
 
@@ -98,7 +97,6 @@ The schematic below is the same shown at the main page of this project and shows
 __See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
 
 
-<BR>
 <BR>
 
 ## Example 03 - SS4735 Arduino Library example with LCD 20x4 I2C
@@ -111,7 +109,6 @@ Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_03_LCD
 
 __Click [here](https://youtu.be/vzunuxam_Lg) to see a video about this example__.
 
-<BR>
 <BR>
 
 ## Example 04 - SS4735 Arduino Library example with I2C OLED
@@ -127,7 +124,6 @@ __Click [here](https://youtu.be/7Sg4z8tDSA8) to see a video about this example__
 
 
 <BR>
-<BR>
 
 ## Schematic for I2C display device, buttons and encoder (Examples 03 and 04)
 
@@ -139,7 +135,6 @@ __Pay attention to the your I2C device voltage. The system can become unstable i
 
 
 <BR>
-<BR>
 
 
 ## Example 05 - Bandwidth filter on MW (AM)
@@ -149,7 +144,6 @@ Bandwidth of the channel filter for AM reception.  This sketch tests the bandwid
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_05_AM_FILTERS/SI4735_05_AM_FILTERS.ino) to see this example.
 
 
-<BR>
 <BR>
 
 
@@ -161,7 +155,6 @@ Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_06_SW_
 
 __Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__.
 
-<BR>
 <BR>
 
 ## Example 07 - Si4735 SSB firmware update support
@@ -216,7 +209,6 @@ Pay attention on the push buttons added on this example. The table below shows t
 __Click [here](https://youtu.be/W2Ssjb9P_f4) to see a video about this example__.
 
 <BR>
-<BR>
 
 ### Example 08 - Si4735 SSB firmware update support - LCD/I2C Support
 
@@ -242,7 +234,6 @@ Follow the schematic below to use this sketch.
 
 __See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
 
-<BR>
 <BR>
 
 Pay attention on the push buttons added on this example. The table below shows the commands used by this sketch.
@@ -285,5 +276,3 @@ __See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAY
 
 ![Protoboard with OLED as a S Meter](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_SW_SMETER.png)
 
-<BR>
-<BR>
