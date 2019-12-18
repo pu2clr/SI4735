@@ -1,7 +1,9 @@
 /*
   SS4735 SSB Support example with OLED-I2C and Encoder.
 
-  This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
+  This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included 
+  together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C). 
+  Look for LiquidCrystal I2C on Manager Libraries.   
 
   This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.
 
@@ -31,7 +33,6 @@
   Seven bush buttons;
   OLED Display with I2C protocol;
   Arduino Pro mini 3.3V;
-
 
   By Ricardo Lima Caratti, Nov 2019.
 */

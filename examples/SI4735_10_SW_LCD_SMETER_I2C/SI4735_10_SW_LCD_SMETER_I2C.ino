@@ -2,7 +2,12 @@
   This example tests two display (a OLED and a LCD 20x4) sharing the same I2C bus with SI4735 device.
   It is a 12 bands SW radio. 
 
-  You need to install Adafruit_GFX, Adafruit_SH1106 and LiquidCrystal_I2C libraries.   
+  This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included 
+  together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C). 
+  Look for LiquidCrystal I2C on Manager Libraries.   
+  You also need to install Adafruit_GFX  (https://github.com/adafruit/Adafruit-GFX-Library) and
+  Adafruit_SH1106 (https://github.com/wonho-maker/Adafruit_SH1106).
+
 
   Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png
 
