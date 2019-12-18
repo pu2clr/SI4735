@@ -57,6 +57,47 @@ getRdsVersionCode KEYWORD2
 getRdsProgramType KEYWORD2
 getRdsText KEYWORD2
 getNumRdsFifoUsed KEYWORD2
+setI2CFastMode KEYWORD2
+setI2CStandardMode KEYWORD2
+setI2CLowSpeedMode KEYWORD2
+ssbPowerUp KEYWORD2
+downloadPatch KEYWORD2
+patchPowerUp KEYWORD2
+setSSBSoftMute KEYWORD2
+setSSBDspAfc KEYWORD2
+setSSBAvcDivider KEYWORD2
+setSBBSidebandCutoffFilter KEYWORD2
+setSSBAutomaticVolumeControl KEYWORD2
+setSSBAudioBandwidth KEYWORD2
+setSSB KEYWORD2
+setSSBConfig KEYWORD2
+setSSBBfo KEYWORD2
+getCurrentFrequency KEYWORD2
+waitToSend KEYWORD2
+isAgcEnabled KEYWORD2
+getAgcGainIndex KEYWORD2
+setAutomaticGainControl KEYWORD2
+getCurrentReceivedSignalQuality KEYWORD2
+getCurrentRSSI KEYWORD2
+getCurrentSNR KEYWORD2
+getCurrentRssiDetectLow KEYWORD2
+getCurrentSnrDetectLow KEYWORD2
+getCurrentSnrDetectHigh KEYWORD2
+getCurrentValidChannel KEYWORD2
+getCurrentAfcRailIndicator KEYWORD2
+getCurrentSoftMuteIndicator KEYWORD2
+getCurrentStereoBlend KEYWORD2
+getCurrentPilot KEYWORD2
+getCurrentMultipath KEYWORD2
+getCurrentSignedFrequencyOffset KEYWORD2
+getCurrentMultipathDetectLow KEYWORD2
+getCurrentMultipathDetectHigh KEYWORD2
+getCurrentBlendDetectInterrupt KEYWORD2
+setBandwidth KEYWORD2
+setFrequencyStep KEYWORD2 
+setTuneFrequencyFast KEYWORD2
+setTuneFrequencyFreeze KEYWORD2
+setTuneFrequencyAntennaCapacitor KEYWORD2
 
 #Literals
 
