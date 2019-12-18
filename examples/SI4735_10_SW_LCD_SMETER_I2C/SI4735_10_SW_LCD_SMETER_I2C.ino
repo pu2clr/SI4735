@@ -261,7 +261,8 @@ void bandUp()
 
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
-  delay(100);
+  si4735.setAutomaticGainControl(disableAgc, 0 /* Minimum attenuation */);
+  showStatus();
 }
 
 void bandDown()
@@ -278,7 +279,8 @@ void bandDown()
   }
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
-  delay(100);
+  si4735.setAutomaticGainControl(disableAgc, 0 /* Minimum attenuation */);
+  showStatus();
 }
 
 
@@ -376,7 +378,7 @@ void loop()
       disableAgc = !disableAgc;
       // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
       si4735.setAutomaticGainControl(disableAgc, 0 /* Minimum attenuation */);
-      delay(200);
+      // delay(200);
       showStatus();
     } else if ( digitalRead(STEP_SWITCH) == LOW) {
       if (currentStep == 1)
