@@ -79,7 +79,7 @@ O SI4735 é um rádio DSP encapsulado em um CI. Possui ótimo desempenho em AM (
 A figura a seguir apresenta o diagrama de bloco do SI473X-D60. É importante observar o destaque em vermelhor inserido pelo autor desta biblioteca observando as tensões de trabalho da interface do SI4735. 
 
 
-![SI473x Block Diagram](extras/images/block_diagram.png)
+![SI473X Block Diagram](extras/images/block_diagram.png)
 
 * Fonte: Silicon Labs Si4730/31/34/35-D60 / BROADCAST AM/FM/SW/LW RADIO RECEIVER (página 21)
 
