@@ -17,7 +17,7 @@
 #include "Rotary.h"
 #include "smeter.h"
 
-#define OLED_RESET 4  // Check it
+#define OLED_RESET -1  // Check it
 
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
@@ -138,8 +138,8 @@ void showStatus()
     lcd.print("FM ");
     lcd.setCursor(7, 0);
     lcd.print(String(currentFrequency / 100.0, 2));
-    lcd.setCursor(17, 0);
-    lcd.print("MHz ");
+    lcd.setCursor(16, 0);
+    lcd.print("MHz");
     showStereo();
   }
   else
@@ -150,7 +150,7 @@ void showStatus()
     lcd.setCursor(17, 0);
     lcd.print("KHz");
     lcd.setCursor(0, 3);
-    lcd.print("       ");
+    lcd.print("    ");
   }
 }
 
@@ -193,20 +193,36 @@ void showVolume()
   lcd.print(volume);
 }
 
-/*
- * OLED Analog S-Meter 
- * Draws the s meter and displays the value.
- */
+
+
 void showSmeter(unsigned signalLevel)
 {
+  static byte buffer[20]; 
+  static unsigned sample; 
+  static byte idx = 0;
+  static bool isFull = false;
   static unsigned int maxSignal = 0;
   static unsigned int minSignal = 2014;
   const int hMeter = 65; // horizontal center for needle animation
   const int vMeter = 85; // vertical center for needle animation (outside of dislay limits)
   const int rMeter = 80;
-  const int factor =  10; // Need to calibrate this value
 
-  float smeterValue = (signalLevel * factor) * 330 / 1024; // convert the signal value to arrow information
+  // makes needle movement smoother
+  if ( idx < 20 && !isFull ) {
+    buffer[idx] = signalLevel;
+    idx++;
+    isFull = true;
+    return;
+  }
+  if ( idx >= 20 ) idx = 0;
+  buffer[idx] = signalLevel;
+  // always get the average of the last 20 readings
+  for (int i = sample = 0; i < 20; i++)
+    sample += buffer[idx];
+
+  // Draw the S Meter with the average value
+  signalLevel = map((sample / 20), 0, 127, 0, 1023);
+  float smeterValue = (signalLevel) * 330 / 1024; // convert the signal value to arrow information
 
   smeterValue = smeterValue - 34;                           // shifts needle to zero position
   display.clearDisplay();                                   // refresh display for next step
@@ -215,6 +231,8 @@ void showSmeter(unsigned signalLevel)
   int a2 = (vMeter - (cos(smeterValue / 57.296) * rMeter)); // meter needle vertical coordinate
   display.drawLine(a1, a2, hMeter, vMeter, WHITE);          // draws needle
   display.display();
+  idx = 0;
+  sample = 0; 
 }
 
 
@@ -270,7 +288,6 @@ void loop()
     if (rssi != si4735.getCurrentRSSI())
     {
       rssi = si4735.getCurrentRSSI();
-      // showRSSI();
       showSmeter(rssi);
     }
     elapsedRSSI = millis();

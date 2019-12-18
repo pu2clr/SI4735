@@ -162,6 +162,7 @@ void setup()
   si4735.setAutomaticGainControl(0, 0);
 
   showStatus();
+  showSmeter(rssi);
 }
 
 // Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
@@ -289,21 +290,31 @@ void bandDown()
 */
 void showSmeter(unsigned signalLevel)
 {
-  static unsigned sample = 0;
+  static byte buffer[20]; 
+  static unsigned sample; 
   static byte idx = 0;
+  static bool isFull = false;
   static unsigned int maxSignal = 0;
   static unsigned int minSignal = 2014;
   const int hMeter = 65; // horizontal center for needle animation
   const int vMeter = 85; // vertical center for needle animation (outside of dislay limits)
   const int rMeter = 80;
 
-  // try to make the needle smoother
-  if ( idx <= 4 ) { 
-     sample += signalLevel;
-     idx++; 
-     return;
+  // makes needle movement smoother
+  if ( idx < 20 && !isFull ) {
+    buffer[idx] = signalLevel;
+    idx++;
+    isFull = true;
+    return;
   }
-  signalLevel = map((sample / 5) ,0,127,0,1023);
+  if ( idx >= 20 ) idx = 0;
+  buffer[idx] = signalLevel;
+  // always get the average of the last 20 readings
+  for (int i = sample = 0; i < 20; i++)
+    sample += buffer[idx];
+
+  // Draw the S Meter with the average value
+  signalLevel = map((sample / 20), 0, 127, 0, 1023);
   float smeterValue = (signalLevel) * 330 / 1024; // convert the signal value to arrow information
 
   smeterValue = smeterValue - 34;                           // shifts needle to zero position
@@ -316,6 +327,7 @@ void showSmeter(unsigned signalLevel)
   idx = 0;
   sample = 0; 
 }
+
 
 
 
