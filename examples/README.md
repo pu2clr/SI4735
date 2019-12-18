@@ -95,6 +95,9 @@ The schematic below is the same shown at the main page of this project and shows
 
 ![Silicon Labs Schematic](../extras/images/basic_schematic.png)
 
+__See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
+
+
 <BR>
 <BR>
 
@@ -237,6 +240,8 @@ Follow the schematic below to use this sketch.
 
 ![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png)
 
+__See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
+
 <BR>
 <BR>
 
@@ -273,6 +278,8 @@ This radio has 11 bands.
 <BR>
 
 ![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png)
+
+__See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
 
 <BR>
 
