@@ -374,7 +374,7 @@ void loop()
       else
         si4735.frequencyDown();
 
-      currentFrequency = si4735.getCurrentFrequency();
+      currentFrequency = si4735.getFrequency();
     }
     encoderCount = 0;
   }
