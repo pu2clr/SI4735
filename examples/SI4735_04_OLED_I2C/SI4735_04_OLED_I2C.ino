@@ -29,7 +29,7 @@
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
-#define AM_FM_BUTTON 4      // Next Band
+#define AM_FM_BUTTON 4      // AM/FM SWITCH
 #define SEEK_BUTTON_UP 5    // Seek Up
 #define SEEK_BUTTON_DOWN 6  // Seek Down
 #define VOL_UP 8            // Volume Volume Up
@@ -277,6 +277,7 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
+  si4735.getCurrentReceivedSignalQuality();
   if ( rssi != si4735.getCurrentRSSI() ) {
     rssi = si4735.getCurrentRSSI();
     showRSSI();

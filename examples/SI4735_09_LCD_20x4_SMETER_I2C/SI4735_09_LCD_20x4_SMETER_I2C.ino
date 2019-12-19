@@ -147,10 +147,10 @@ void showStatus()
     lcd.print("AM ");
     lcd.setCursor(8, 0);
     lcd.print(currentFrequency);
-    lcd.setCursor(17, 0);
+    lcd.setCursor(16, 0);
     lcd.print("KHz");
     lcd.setCursor(0, 3);
-    lcd.print("    ");
+    lcd.print("      ");
   }
 }
 

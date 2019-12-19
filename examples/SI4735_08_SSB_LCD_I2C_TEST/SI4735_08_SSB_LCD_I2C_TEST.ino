@@ -462,7 +462,7 @@ void loop()
   }
 
   // Show the current frequency only if it has changed
-  if ( (millis() - elapsedFrequency) > MIN_ELAPSED_RSSI_TIME * 3) {
+  if ( (millis() - elapsedFrequency) > MIN_ELAPSED_RSSI_TIME * 4) {
     currentFrequency = si4735.getFrequency();
     if (currentFrequency != previousFrequency)
     {
@@ -474,7 +474,7 @@ void loop()
 
 
   // Show RSSI status only if this condition has changed
-  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME ) {
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6 ) {
     si4735.getCurrentReceivedSignalQuality();
     if (rssi != si4735.getCurrentRSSI())
     {

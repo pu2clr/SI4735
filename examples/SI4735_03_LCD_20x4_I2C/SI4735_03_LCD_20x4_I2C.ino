@@ -25,11 +25,11 @@
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
-#define AM_FM_BUTTON 5    // Next Band
-#define SEEK_BUTTON 6     // Previous Band
-#define VOL_UP 7          // Volume Volume Up
-#define VOL_DOWN 8        // Volume Down
-#define SEEK 9            // Seek Function 
+#define AM_FM_BUTTON 4      // AM/FM SWITCH
+#define SEEK_BUTTON_UP 5    // Next Station
+#define SEEK_BUTTON_DOWN 6 // Previous Station
+#define VOL_UP 7           // Volume Volume Up
+#define VOL_DOWN 8         // Volume Down
 
 #define MIN_ELAPSED_TIME 100
 
@@ -59,7 +59,8 @@ void setup()
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
   pinMode(AM_FM_BUTTON, INPUT_PULLUP);
-  pinMode(SEEK_BUTTON, INPUT_PULLUP);
+  pinMode(SEEK_BUTTON_UP, INPUT_PULLUP);
+  pinMode(SEEK_BUTTON_DOWN, INPUT_PULLUP);
   pinMode(VOL_UP, INPUT_PULLUP);
   pinMode(VOL_DOWN, INPUT_PULLUP);  
 
@@ -206,8 +207,10 @@ void loop()
        else   
        si4735.setFM(8600, 10800,  10390, 10);
     }
-    else if (digitalRead(SEEK_BUTTON) == LOW )
+    else if (digitalRead(SEEK_BUTTON_UP) == LOW )
        si4735.seekStationUp();   
+    else if (digitalRead(SEEK_BUTTON_DOWN) == LOW )
+       si4735.seekStationDown();   
     else if (digitalRead(VOL_UP) == LOW )
       si4735.volumeUp();
     else if (digitalRead(VOL_DOWN) == LOW )

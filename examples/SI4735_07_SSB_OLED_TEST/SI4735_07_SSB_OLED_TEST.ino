@@ -412,7 +412,7 @@ void loop()
     } else if ( digitalRead(AGC_SWITCH) == LOW) {
       disableAgc = !disableAgc;
       // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
-      si4735.setAutomaticGainControl(disableAgc, 1);
+      si4735.setAutomaticGainControl(disableAgc, 0);
       showStatus();
     } else if ( digitalRead(STEP_SWITCH) == LOW) {
       if ( bfoOn ) {
@@ -437,7 +437,7 @@ void loop()
   }
 
   // Show the current frequency only if it has changed
-  if ( ( millis() - elapsedFrequency) > (MIN_ELAPSED_TIME * 3) ) {
+  if ( ( millis() - elapsedFrequency) > (MIN_ELAPSED_TIME * 4) ) {
     currentFrequency = si4735.getFrequency();
     if (currentFrequency != previousFrequency)
     {
@@ -448,7 +448,8 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
-  if ( ( millis() - elapsedRSSI) > (MIN_ELAPSED_TIME * 4) ) {
+  if ( ( millis() - elapsedRSSI) > (MIN_ELAPSED_TIME * 6) ) {
+    si4735.getCurrentReceivedSignalQuality();
     if (rssi != si4735.getCurrentRSSI())
     {
       rssi = si4735.getCurrentRSSI();
