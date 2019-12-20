@@ -871,7 +871,7 @@ typedef union {
         byte AGCDIS : 1; // This bit indicates if the AGC is enabled or disabled. 0 = AGC enabled; 1 = AGC disabled.
         byte DUMMY:7;
         // RESP2
-        byte AGCDX; // For FM (5 bits - READ_LNA_GAIN_INDEX - 0 = Minimum attenuation (max gain)). For AM (8 bits). This byte reports the current AGC gain index.
+        byte AGCIDX; // For FM (5 bits - READ_LNA_GAIN_INDEX - 0 = Minimum attenuation (max gain)). For AM (8 bits). This byte reports the current AGC gain index.
     } refined;
     byte raw[3];
 } si47x_agc_status;
@@ -891,7 +891,7 @@ typedef union {
         byte AGCDIS : 1; // if set to 1 indicates if the AGC is disabled. 0 = AGC enabled; 1 = AGC disabled.
         byte DUMMY : 7;
         // ARG2
-        byte AGCDX; // AGC Index; If AMAGCDIS = 1, this byte forces the AGC gain index; 0 = Minimum attenuation (max gain)
+        byte AGCIDX; // AGC Index; If AMAGCDIS = 1, this byte forces the AGC gain index; 0 = Minimum attenuation (max gain)
     } arg;
     byte raw[2];
 } si47x_agc_overrride;
@@ -1702,12 +1702,12 @@ inline byte getAgcGainIndex()
  * (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation);
  * 
  * @param byte AGCDIS This param selects whether the AGC is enabled or disabled (0 = AGC enabled; 1 = AGC disabled);
- * @param byte AGCDX AGC Index (0 = Minimum attenuation (max gain); 1 – 36 = Intermediate attenuation); 
+ * @param byte AGCIDX AGC Index (0 = Minimum attenuation (max gain); 1 – 36 = Intermediate attenuation); 
  *             > 37 - Maximum attenuation (min gain) ).
  * 
  * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 
  */
-void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
+void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCIDX)
 ```
 
 

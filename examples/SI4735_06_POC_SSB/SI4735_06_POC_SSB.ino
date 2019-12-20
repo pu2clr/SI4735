@@ -353,7 +353,7 @@ void loop()
         currentAGCAtt = 26;
       else
         currentAGCAtt = 0;
-      si4735.setAutomaticGainControl(0 /*disableAgc*/, currentAGCAtt);
+      si4735.setAutomaticGainControl(1 /*disableAgc*/, currentAGCAtt);
       showStatus();
     }
     else if (key == 's') // switches the BFO increment and decrement step
