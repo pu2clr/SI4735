@@ -1,5 +1,6 @@
 /*
  * SI4735 ARDUINO LIBRARY  
+ * Const, Data type and Methods definitions
  * References: 
  *      Si47XX PROGRAMMING GUIDE AN332
  *      AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE

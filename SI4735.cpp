@@ -14,9 +14,7 @@
  * each data byte by driving SDIO low for one cycle on the next falling edge of SCLK. 
  * The system controller may write up to 8 data bytes in a single 2-wire transaction. 
  * The first byte is a command, and the next seven bytes are arguments. Writing more than 8 bytes results 
- * in unpredictable device behavior".  
- * 
- * If you are extending this library, consider the restriction presented earlier.
+ * in unpredictable device behavior". So, If you are extending this library, consider that restriction presented earlier.
  * 
  * By Ricardo Lima Caratti, Nov 2019.
  */
