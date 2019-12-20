@@ -176,8 +176,8 @@ void setup()
 
   // Testing I2C clock speed and SSB behaviour
   // si4735.setI2CLowSpeedMode();     //  10000 (10KHz)
-  // si4735.setI2CStandardMode();     // 100000 (100KHz)
-  si4735.setI2CFastMode();            // 400000 (400KHz)
+  si4735.setI2CStandardMode();     // 100000 (100KHz)
+  // si4735.setI2CFastMode();            // 400000 (400KHz)
   delay(100);
   loadSSB();
   delay(250);
