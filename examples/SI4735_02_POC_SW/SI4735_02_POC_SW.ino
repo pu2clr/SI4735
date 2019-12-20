@@ -70,7 +70,7 @@ void setup()
   showStatus();
 }
 
-
+// Instructions
 void showHelp() {
   Serial.println("Type F to FM; A to MW; L to LW; and 1 to SW");
   Serial.println("Type U to increase and D to decrease the frequency");
@@ -84,7 +84,7 @@ void showHelp() {
   delay(1000);
 }
 
-// Show current frequency
+// Show current frequency and status
 void showStatus()
 {
 
