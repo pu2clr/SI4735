@@ -123,13 +123,13 @@ void SI4735::getFirmware(void)
 /* 
  * Starts the Si473X device. 
  * 
- * @param byte resetPin Digital Arduino Pin used to RESET command 
- * @param byte interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled
- * @param byte defaultFunction
+ * @param uint8_t resetPin Digital Arduino Pin used to RESET command 
+ * @param uint8_t interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled
+ * @param uint8_t defaultFunction
  */
-void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
+void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction)
 {
-    byte interruptEnable = 0;
+    uint8_t interruptEnable = 0;
     Wire.begin();
 
     this->resetPin = resetPin;
@@ -167,10 +167,10 @@ void SI4735::setup(byte resetPin, int interruptPin, byte defaultFunction)
  * Starts the Si473X device.  
  * Use this setup if you are not using interrupt resource
  * 
- * @param byte resetPin Digital Arduino Pin used to RESET command 
- * @param byte defaultFunction
+ * @param uint8_t resetPin Digital Arduino Pin used to RESET command 
+ * @param uint8_t defaultFunction
  */
-void SI4735::setup(byte resetPin, byte defaultFunction)
+void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
 {
     setup(resetPin, -1, defaultFunction);
 }
@@ -179,14 +179,14 @@ void SI4735::setup(byte resetPin, byte defaultFunction)
  * Set the Power Up parameters for si473X. 
  * Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 65 and 129
- * @param byte CTSIEN sets Interrupt anabled or disabled (1 = anabled and 0 = disabled )
- * @param byte GPO2OEN sets GP02 Si473X pin enabled (1 = anabled and 0 = disabled )
- * @param byte PATCH  Used for firmware patch updates. Use it always 0 here. 
- * @param byte XOSCEN byte XOSCEN set external Crystal enabled or disabled 
- * @param byte FUNC sets the receiver function have to be used [0 = FM Receive; 1 = AM (LW/MW/SW) and SSB (if SSB patch apllied)]
- * @param byte OPMODE set the kind of audio mode you want to use.
+ * @param uint8_t CTSIEN sets Interrupt anabled or disabled (1 = anabled and 0 = disabled )
+ * @param uint8_t GPO2OEN sets GP02 Si473X pin enabled (1 = anabled and 0 = disabled )
+ * @param uint8_t PATCH  Used for firmware patch updates. Use it always 0 here. 
+ * @param uint8_t XOSCEN sets external Crystal enabled or disabled 
+ * @param uint8_t FUNC sets the receiver function have to be used [0 = FM Receive; 1 = AM (LW/MW/SW) and SSB (if SSB patch apllied)]
+ * @param uint8_t OPMODE set the kind of audio mode you want to use.
  */
-void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE)
+void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE)
 {
     powerUp.arg.CTSIEN = CTSIEN;   // 1 -> Interrupt anabled;
     powerUp.arg.GPO2OEN = GPO2OEN; // 1 -> GPO2 Output Enable;
@@ -229,7 +229,7 @@ void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte
  *                  FM - the valid range is 0 to 191.    
  *                  According to Silicon Labs, automatic capacitor tuning is recommended (value 0). 
  */
-void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor)
+void SI4735::setTuneFrequencyAntennaCapacitor(uint16_t  capacitor)
 {
 
     si47x_antenna_capacitor cap;
@@ -258,9 +258,9 @@ void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor)
  * Set the frequency to the corrent function of the Si4735 (AM or FM)
  * You have to call setup or setPowerUp before call setFrequency.
  * 
- * @param unsigned freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
+ * @param uint16_t  freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
  */
-void SI4735::setFrequency(unsigned freq)
+void SI4735::setFrequency(uint16_t  freq)
 {
     waitToSend(); // Wait for the si473x is ready.
     currentFrequency.value = freq;
@@ -277,7 +277,7 @@ void SI4735::setFrequency(unsigned freq)
 
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(currentTune);
-    Wire.write(currentFrequencyParams.raw[0]); // Send byte with FAST and  FREEZE information; if not FM must be 0;
+    Wire.write(currentFrequencyParams.raw[0]); // Send a byte with FAST and  FREEZE information; if not FM must be 0;
     Wire.write(currentFrequencyParams.arg.FREQH);
     Wire.write(currentFrequencyParams.arg.FREQL);
     Wire.write(currentFrequencyParams.arg.ANTCAPH);
@@ -296,7 +296,7 @@ void SI4735::setFrequency(unsigned freq)
  *             For AM, 1 (1KHz) to 10 (10KHz) are valid values.
  *             For FM 5 (50KHz) and 10 (100KHz) are valid values.  
  */
-void SI4735::setFrequencyStep(byte step)
+void SI4735::setFrequencyStep(uint8_t step)
 {
     currentStep = step;
 }
@@ -362,7 +362,7 @@ void SI4735::setFM()
  * @param initialFreq initial frequency 
  * @param step step used to go to the next channel   
  */
-void SI4735::setAM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step)
+void SI4735::setAM(uint16_t  fromFreq, uint16_t  toFreq, uint16_t  initialFreq, uint8_t step)
 {
 
     currentMinimumFrequency = fromFreq;
@@ -387,7 +387,7 @@ void SI4735::setAM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byt
  * @param initialFreq initial frequency (default frequency)
  * @param step step used to go to the next channel   
  */
-void SI4735::setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step)
+void SI4735::setFM(uint16_t  fromFreq, uint16_t  toFreq, uint16_t  initialFreq, uint8_t step)
 {
 
     currentMinimumFrequency = fromFreq;
@@ -417,7 +417,7 @@ void SI4735::setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byt
  *                                   7–15 = Reserved (Do not use).
  * @param AMPLFLT Enables the AM Power Line Noise Rejection Filter.
  */
-void SI4735::setBandwidth(byte AMCHFLT, byte AMPLFLT)
+void SI4735::setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT)
 {
     si47x_bandwidth_config filter;
     si47x_property property;
@@ -459,7 +459,7 @@ bool SI4735::isCurrentTuneFM()
  * The method status do it an more. See getStatus below. 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  */
-unsigned SI4735::getFrequency()
+uint16_t  SI4735::getFrequency()
 {
     si47x_frequency freq;
     getStatus(0, 1);
@@ -479,7 +479,7 @@ unsigned SI4735::getFrequency()
  * This method avoids bus traffic and CI processing.
  * However, you can not get others status information like RSSI.
  */
-unsigned SI4735::getCurrentFrequency()
+uint16_t  SI4735::getCurrentFrequency()
 {
     return currentWorkFrequency;
 }
@@ -499,14 +499,14 @@ void SI4735::getStatus()
  * Gets the current status  of the Si4735 (AM or FM)
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  * 
- * @param byte INTACK Seek/Tune Interrupt Clear. If set, clears the seek/tune complete interrupt status indicator;
- * @param byte CANCEL Cancel seek. If set, aborts a seek currently in progress;
+ * @param uint8_t INTACK Seek/Tune Interrupt Clear. If set, clears the seek/tune complete interrupt status indicator;
+ * @param uint8_t CANCEL Cancel seek. If set, aborts a seek currently in progress;
  * 
  */
-void SI4735::getStatus(byte INTACK, byte CANCEL)
+void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
 {
     si47x_tune_status status;
-    byte cmd = (currentTune == FM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
+    uint8_t cmd = (currentTune == FM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
 
     waitToSend();
 
@@ -523,7 +523,7 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
         waitToSend();
         Wire.requestFrom(SI473X_ADDR, 7);
         // Gets response information
-        for (byte i = 0; i < 7; i++)
+        for (uint8_t i = 0; i < 7; i++)
             currentStatus.raw[i] = Wire.read();
     } while (currentStatus.resp.ERR); // If error, try it again
 }
@@ -536,7 +536,7 @@ void SI4735::getStatus(byte INTACK, byte CANCEL)
  */
 void SI4735::getAutomaticGainControl()
 {
-    byte cmd;
+    uint8_t cmd;
 
     if (currentTune == FM_TUNE_FREQ)
     { // FM TUNE
@@ -569,17 +569,17 @@ void SI4735::getAutomaticGainControl()
  * If AM/SSB, Overrides the AM AGC setting by disabling the AGC and forcing the gain index that ranges between 0 
  * (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation);
  * 
- * @param byte AGCDIS This param selects whether the AGC is enabled or disabled (0 = AGC enabled; 1 = AGC disabled);
- * @param byte AGCDX AGC Index (0 = Minimum attenuation (max gain); 1 – 36 = Intermediate attenuation); 
+ * @param uint8_t AGCDIS This param selects whether the AGC is enabled or disabled (0 = AGC enabled; 1 = AGC disabled);
+ * @param uint8_t AGCDX AGC Index (0 = Minimum attenuation (max gain); 1 – 36 = Intermediate attenuation); 
  *             > 37 - Maximum attenuation (min gain) ).
  * 
  * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 
  */
-void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
+void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCDX)
 {
     si47x_agc_overrride agc;
 
-    byte cmd;
+    uint8_t cmd;
 
     cmd = (currentTune == FM_TUNE_FREQ) ? FM_AGC_OVERRIDE : AM_AGC_OVERRIDE;
 
@@ -606,22 +606,22 @@ void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCDX)
  *        0 = Interrupt status preserved; 
  *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
  */
-void SI4735::getCurrentReceivedSignalQuality(byte INTACK)
+void SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
 {
 
-    byte arg;
-    byte cmd;
-    int bytesResponse;
+    uint8_t arg;
+    uint8_t cmd;
+    int sizeResponse;
 
     if (currentTune == FM_TUNE_FREQ)
     { // FM TUNE
         cmd = FM_RSQ_STATUS;
-        bytesResponse = 7;
+        sizeResponse = 7;
     }
     else
     { // AM TUNE
         cmd = AM_RSQ_STATUS;
-        bytesResponse = 5;
+        sizeResponse = 5;
     }
 
     waitToSend();
@@ -635,9 +635,9 @@ void SI4735::getCurrentReceivedSignalQuality(byte INTACK)
     do
     {
         waitToSend();
-        Wire.requestFrom(SI473X_ADDR, bytesResponse);
+        Wire.requestFrom(SI473X_ADDR, sizeResponse);
         // Gets response information
-        for (byte i = 0; i < bytesResponse; i++)
+        for (uint8_t i = 0; i < sizeResponse; i++)
             currentRqsStatus.raw[i] = Wire.read();
     } while (currentRqsStatus.resp.ERR); // Try again if error found
 }
@@ -663,12 +663,12 @@ void SI4735::getCurrentReceivedSignalQuality(void)
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
  * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
-void SI4735::seekStation(byte SEEKUP, byte WRAP)
+void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
 {
     si47x_seek seek;
 
     // Check which FUNCTION (AM or FM) is working now
-    byte seek_start = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
+    uint8_t seek_start = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
 
     waitToSend();
 
@@ -709,9 +709,9 @@ void SI4735::seekStationDown()
 
 /* 
  * Sets volume level
- * @param byte volume (domain: 0 - 63) 
+ * @param uint8_t volume (domain: 0 - 63) 
  */
-void SI4735::setVolume(byte volume)
+void SI4735::setVolume(uint8_t volume)
 {
     waitToSend();
     this->volume = volume;
@@ -729,7 +729,7 @@ void SI4735::setVolume(byte volume)
 /*
  * Gets the current volume level.
  */
-byte SI4735::getVolume()
+uint8_t SI4735::getVolume()
 {
     return this->volume;
 }
@@ -771,7 +771,7 @@ void SI4735::volumeDown()
  * @param RDSNEWBLOCKA If set, generate an interrupt when Block A data is found or subsequently changed
  * @param RDSNEWBLOCKB If set, generate an interrupt when Block B data is found or subsequently changed
  */
-void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCFOUND, byte RDSSYNCLOST, byte RDSRECV)
+void SI4735::setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t RDSSYNCFOUND, uint8_t RDSSYNCLOST, uint8_t RDSRECV)
 {
     si47x_property property;
     si47x_rds_int_source rds_int_source;
@@ -794,8 +794,8 @@ void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCF
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(SET_PROPERTY);
     Wire.write(0x00);                  // Always 0x00 (I need to check it)
-    Wire.write(property.raw.byteHigh); // Send property - High Byte - most significant first
-    Wire.write(property.raw.byteLow);  // Low Byte
+    Wire.write(property.raw.byteHigh); // Send property - High byte - most significant first
+    Wire.write(property.raw.byteLow);  // Low byte
     Wire.write(rds_int_source.raw[1]); // Send the argments. Most significant first
     Wire.write(rds_int_source.raw[0]);
     Wire.endTransmission();
@@ -809,7 +809,7 @@ void SI4735::setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCF
  * @param MTFIFO 0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO.
  * @param STATUSONLY Determines if data should be removed from the RDS FIFO.
  */
-void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
+void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
 {
     si47x_rds_command rds_cmd;
     // checking current FUNC (Am or FM)
@@ -832,14 +832,14 @@ void SI4735::getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY)
         waitToSend();
         // Gets response information
         Wire.requestFrom(SI473X_ADDR, 13);
-        for (byte i = 0; i < 13; i++)
+        for (uint8_t i = 0; i < 13; i++)
             currentRdsStatus.raw[i] = Wire.read();
     } while (currentRdsStatus.resp.ERR);
 }
 
 /*
  * Gets RDS Status.
- * Call getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY) if you want other behaviour
+ * Call getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY) if you want other behaviour
  */
 void SI4735::getRdsStatus()
 {
@@ -849,11 +849,11 @@ void SI4735::getRdsStatus()
 /*
  * Set RDS property  FM_RDS_CONFIG
  * 
- * @param byte RDSEN RDS Processing Enable; 1 = RDS processing enabled.
- * @param byte BLETHA Block Error Threshold BLOCKA.   
- * @param byte BLETHB Block Error Threshold BLOCKB.  
- * @param byte BLETHC Block Error Threshold BLOCKC.  
- * @param byte BLETHD Block Error Threshold BLOCKD. 
+ * @param uint8_t RDSEN RDS Processing Enable; 1 = RDS processing enabled.
+ * @param uint8_t BLETHA Block Error Threshold BLOCKA.   
+ * @param uint8_t BLETHB Block Error Threshold BLOCKB.  
+ * @param uint8_t BLETHC Block Error Threshold BLOCKC.  
+ * @param uint8_t BLETHD Block Error Threshold BLOCKD. 
  *  
  * IMPORTANT: 
  * All block errors must be less than or equal the associated block error threshold 
@@ -868,7 +868,7 @@ void SI4735::getRdsStatus()
  *  0,0,0,0 = No group stored containing corrected or uncorrected errors.
  *  3,2,3,3 = Group stored with corrected errors on B, regardless of errors on A, C, or D.
  */
-void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD)
+void SI4735::setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t BLETHC, uint8_t BLETHD)
 {
     si47x_property property;
     si47x_rds_config config;
@@ -889,8 +889,8 @@ void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byt
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(SET_PROPERTY);
     Wire.write(0x00);                  // Always 0x00 (I need to check it)
-    Wire.write(property.raw.byteHigh); // Send property - High Byte - most significant first
-    Wire.write(property.raw.byteLow);  // Low Byte
+    Wire.write(property.raw.byteHigh); // Send property - High byte - most significant first
+    Wire.write(property.raw.byteLow);  // Low byte
     Wire.write(config.raw[1]);         // Send the argments. Most significant first
     Wire.write(config.raw[0]);
     Wire.endTransmission();
@@ -903,7 +903,7 @@ void SI4735::setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byt
  * Returns the programa type. 
  * Read the Block A content
  */
-unsigned SI4735::getRdsPI(void)
+uint16_t  SI4735::getRdsPI(void)
 {
     if (getRdsReceived() && getRdsNewBlockA())
     {
@@ -915,7 +915,7 @@ unsigned SI4735::getRdsPI(void)
 /*
  * Returns the Group Type (extracted from the Block B) 
  */
-unsigned SI4735::getRdsGroupType(void)
+uint16_t  SI4735::getRdsGroupType(void)
 {
     si47x_rds_blockb blkb;
 
@@ -929,7 +929,7 @@ unsigned SI4735::getRdsGroupType(void)
  * Gets the version code (extracted from the Block B)
  * Returns  0=A or 1=B
  */
-unsigned SI4735::getRdsVersionCode(void)
+uint16_t  SI4735::getRdsVersionCode(void)
 {
     si47x_rds_blockb blkb;
 
@@ -942,7 +942,7 @@ unsigned SI4735::getRdsVersionCode(void)
 /* 
  * Returns the Program Type (extracted from the Block B)
  */
-unsigned SI4735::getRdsProgramType(void)
+uint16_t  SI4735::getRdsProgramType(void)
 {
     si47x_rds_blockb blkb;
 
@@ -979,8 +979,8 @@ String SI4735::getRdsText(void)
     // Under Test and construction...
 
     si47x_rds_blockb blkb;
-    byte offset;
-    byte newB;
+    uint8_t offset;
+    uint8_t newB;
 
     for (int i = 0; i < 64; i++)
         rds_buffer[i] = ' ';
@@ -1048,7 +1048,7 @@ String SI4735::getRdsTime()
     si47x_rds_date_time dt;
 
     String s;
-    unsigned y, m, d;
+    uint16_t  y, m, d;
 
     dt.raw[2] = currentRdsStatus.resp.BLOCKCL;
     dt.raw[3] = currentRdsStatus.resp.BLOCKCH;
@@ -1127,7 +1127,7 @@ void SI4735::setSSBBfo(int offset)
  * @param SMUTESEL SSB Soft-mute Based on RSSI or SNR.
  * @param DSP_AFCDIS DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. 
  */
-void SI4735::setSSBConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS)
+void SI4735::setSSBConfig(uint8_t AUDIOBW, uint8_t SBCUTFLT, uint8_t AVC_DIVIDER, uint8_t AVCEN, uint8_t SMUTESEL, uint8_t DSP_AFCDIS)
 {
     si47x_property property;
 
@@ -1152,7 +1152,7 @@ void SI4735::setSSBConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AV
  * 0 = SYNC mode, AFC enable
  * 1 = SSB mode, AFC disable
  */
-void SI4735::setSSBDspAfc(byte DSP_AFCDIS)
+void SI4735::setSSBDspAfc(uint8_t DSP_AFCDIS)
 {
     currentSSBMode.param.DSP_AFCDIS;
     sendSSBModeProperty();
@@ -1163,7 +1163,7 @@ void SI4735::setSSBDspAfc(byte DSP_AFCDIS)
  * 0 = Soft-mute based on RSSI (default).
  * 1 = Soft-mute based on SNR.
  */
-void SI4735::setSSBSoftMute(byte SMUTESEL)
+void SI4735::setSSBSoftMute(uint8_t SMUTESEL)
 {
     currentSSBMode.param.SMUTESEL;
     sendSSBModeProperty();
@@ -1174,7 +1174,7 @@ void SI4735::setSSBSoftMute(byte SMUTESEL)
  * 0 = Disable AVC.
  * 1 = Enable AVC (default).
  */
-void SI4735::setSSBAutomaticVolumeControl(byte AVCEN)
+void SI4735::setSSBAutomaticVolumeControl(uint8_t AVCEN)
 {
     currentSSBMode.param.AVCEN = AVCEN;
     sendSSBModeProperty();
@@ -1185,7 +1185,7 @@ void SI4735::setSSBAutomaticVolumeControl(byte AVCEN)
  * for SSB mode, set divider = 0
  * for SYNC mode, set divider = 3 Other values = not allowed.
  */
-void SI4735::setSSBAvcDivider(byte AVC_DIVIDER)
+void SI4735::setSSBAvcDivider(uint8_t AVC_DIVIDER)
 {
     currentSSBMode.param.AVC_DIVIDER;
     sendSSBModeProperty();
@@ -1197,7 +1197,7 @@ void SI4735::setSSBAvcDivider(byte AVC_DIVIDER)
  * 1 = Low pass filter to cutoff the unwanted side band. 
  * Other values = not allowed.
  */
-void SI4735::setSBBSidebandCutoffFilter(byte SBCUTFLT)
+void SI4735::setSBBSidebandCutoffFilter(uint8_t SBCUTFLT)
 {
     currentSSBMode.param.SBCUTFLT;
     sendSSBModeProperty();
@@ -1224,7 +1224,7 @@ void SI4735::setSBBSidebandCutoffFilter(byte SBCUTFLT)
  * 
  * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  */
-void SI4735::setSSBAudioBandwidth(byte AUDIOBW)
+void SI4735::setSSBAudioBandwidth(uint8_t AUDIOBW)
 {
     // Sets the audio filter property parameter
     currentSSBMode.param.AUDIOBW = AUDIOBW;
@@ -1234,7 +1234,7 @@ void SI4735::setSSBAudioBandwidth(byte AUDIOBW)
 /*
  * Set the radio to AM function. It means: LW MW and SW.
  */
-void SI4735::setSSB(byte usblsb)
+void SI4735::setSSB(uint8_t usblsb)
 {
     // Is it needed to load patch when switch to SSB?
     // powerDown();
@@ -1259,7 +1259,7 @@ void SI4735::setSSB(byte usblsb)
  *               value 2 (banary 10) = USB; 
  *               value 1 (banary 01) = LSB.   
  */
-void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step, byte usblsb)
+void SI4735::setSSB(uint16_t  fromFreq, uint16_t  toFreq, uint16_t  initialFreq, uint8_t step, uint8_t usblsb)
 {
 
     currentMinimumFrequency = fromFreq;
@@ -1392,7 +1392,7 @@ void SI4735::ssbPowerUp()
  *  This may limit the use of other radio functions you want implemented in Arduino.
  * 
  *  Example of content:
- *  const PROGMEM byte ssb_patch_content_full[] =
+ *  const PROGMEM uint8_t ssb_patch_content_full[] =
  *   { // SSB patch for whole SSBRX full download
  *       0x15, 0x00, 0x0F, 0xE0, 0xF2, 0x73, 0x76, 0x2F,
  *       0x16, 0x6F, 0x26, 0x1E, 0x00, 0x4B, 0x2C, 0x58,
@@ -1411,9 +1411,9 @@ void SI4735::ssbPowerUp()
  * 
  *  @return false if an error is found.
  */
-bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_size)
+bool SI4735::downloadPatch(uint8_t *ssb_patch_content, uint16_t  ssb_patch_content_size)
 {
-    byte content, cmd_status;
+    uint8_t content, cmd_status;
     int i, line, offset;
     // Send patch for whole SSBRX full download
     for (offset = 0; offset < ssb_patch_content_size; offset += 8)
@@ -1429,7 +1429,7 @@ bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_s
         waitToSend();
         Wire.requestFrom(SI473X_ADDR, 1);
         cmd_status = Wire.read();
-        // The SI4735 issues a status after each 8 - byte transfer.
+        // The SI4735 issues a status after each 8 byte transfered.
         // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
         if (cmd_status != 0x80)
             return false;
@@ -1444,7 +1444,7 @@ bool SI4735::downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_s
  * @param eeprom_i2c_address 
  * @return false if an error is found.
  */
-bool SI4735::downloadPatch(byte eeprom_i2c_address)
+bool SI4735::downloadPatch(uint8_t eeprom_i2c_address)
 {
     // TO DO
 }

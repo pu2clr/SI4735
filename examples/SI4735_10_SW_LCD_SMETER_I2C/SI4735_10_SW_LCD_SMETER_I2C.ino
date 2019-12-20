@@ -64,18 +64,18 @@ long elapsedFrequency = millis();
 volatile int encoderCount = 0;
 
 // Some variables to check the SI4735 status
-unsigned currentFrequency;
-unsigned previousFrequency;
-byte currentStep = 5;
+uint16_t currentFrequency;
+uint16_t previousFrequency;
+uint8_t currentStep = 5;
 
-byte bandwidthIdx = 2;
+uint8_t bandwidthIdx = 2;
 char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 typedef struct {
-  unsigned   minimumFreq;
-  unsigned   maximumFreq;
-  unsigned   currentFreq;
-  unsigned   currentStep;
+  uint16_t   minimumFreq;
+  uint16_t   maximumFreq;
+  uint16_t   currentFreq;
+  uint8_t    currentStep;
 } Band;
 
 
@@ -96,9 +96,9 @@ Band band[] = {{4600, 5200, 4850, 5},
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int  currentFreqIdx = 2;
 
-byte rssi = 0;
-byte stereo = 1;
-byte volume = 0;
+uint8_t rssi = 0;
+uint8_t stereo = 1;
+uint8_t volume = 0;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
@@ -290,14 +290,12 @@ void bandDown()
    OLED Analog S-Meter
    Draws the s meter and displays the value.
 */
-void showSmeter(unsigned signalLevel)
+void showSmeter(uint16_t signalLevel)
 {
-  static byte buffer[20]; 
-  static unsigned sample; 
-  static byte idx = 0;
+  static uint8_t buffer[20]; 
+  static uint16_t sample; 
+  static uint8_t idx = 0;
   static bool isFull = false;
-  static unsigned int maxSignal = 0;
-  static unsigned int minSignal = 2014;
   const int hMeter = 65; // horizontal center for needle animation
   const int vMeter = 85; // vertical center for needle animation (outside of dislay limits)
   const int rMeter = 80;

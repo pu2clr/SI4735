@@ -40,11 +40,11 @@ long elapsedButton = millis();
 volatile int encoderCount = 0;
 
 // Some variables to check the SI4735 status
-unsigned currentFrequency;
-unsigned previousFrequency;
-byte rssi = 0;
-byte stereo = 1;
-byte volume = 0;
+uint16_t currentFrequency;
+uint16_t previousFrequency;
+uint8_t rssi = 0;
+uint8_t stereo = 1;
+uint8_t volume = 0;
 
 
 // Devices class declarations

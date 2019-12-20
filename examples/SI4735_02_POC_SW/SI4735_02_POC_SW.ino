@@ -22,10 +22,10 @@
 
 
 typedef struct {
-    unsigned   minimumFreq;
-    unsigned   maximumFreq;
-    unsigned   currentFreq;
-    unsigned   currentStep;    
+    uint16_t   minimumFreq;
+    uint16_t   maximumFreq;
+    uint16_t   currentFreq;
+    uint16_t   currentStep;    
 } Band;
 
 
@@ -45,8 +45,8 @@ int  currentFreqIdx = 2; // 41M
 
 
 
-unsigned currentFrequency;
-unsigned previousFrequency;
+uint16_t currentFrequency;
+uint16_t previousFrequency;
 
 SI4735 si4735;
 

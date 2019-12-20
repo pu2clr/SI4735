@@ -138,28 +138,28 @@ typedef union {
     struct
     {
         // ARG1
-        byte FUNC : 4;    // Function (0 = FM Receive; 1–14 = Reserved; 15 = Query Library ID)
-        byte XOSCEN : 1;  // Crystal Oscillator Enable (0 = crystal oscillator disabled; 1 = Use crystal oscillator and and OPMODE=ANALOG AUDIO) .
-        byte PATCH : 1;   // Patch Enable (0 = Boot normally; 1 = Copy non-volatile memory to RAM).
-        byte GPO2OEN : 1; // GPO2 Output Enable (0 = GPO2 output disabled; 1 = GPO2 output enabled).
-        byte CTSIEN : 1;  // CTS Interrupt Enable (0 = CTS interrupt disabled; 1 = CTS interrupt enabled).
+        uint8_t FUNC : 4;    // Function (0 = FM Receive; 1–14 = Reserved; 15 = Query Library ID)
+        uint8_t XOSCEN : 1;  // Crystal Oscillator Enable (0 = crystal oscillator disabled; 1 = Use crystal oscillator and and OPMODE=ANALOG AUDIO) .
+        uint8_t PATCH : 1;   // Patch Enable (0 = Boot normally; 1 = Copy non-volatile memory to RAM).
+        uint8_t GPO2OEN : 1; // GPO2 Output Enable (0 = GPO2 output disabled; 1 = GPO2 output enabled).
+        uint8_t CTSIEN : 1;  // CTS Interrupt Enable (0 = CTS interrupt disabled; 1 = CTS interrupt enabled).
         // ARG2
-        byte OPMODE; // Application Setting. See page 65
+        uint8_t OPMODE; // Application Setting. See page 65
     } arg;
-    byte raw[2]; // same arg memory position, so same content.
+    uint8_t raw[2]; // same arg memory position, so same content.
 } si473x_powerup;
 
 /*
  * Represents how the  frequency is stored in the si4735.
- * It helps to convert frequency in unsigned int to two bytes (FREQL and FREQH)  
+ * It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH)  
  */
 typedef union {
     struct
     {
-        byte FREQL; // Tune Frequency High Byte.
-        byte FREQH; // Tune Frequency Low Byte.
+        uint8_t FREQL; // Tune Frequency High byte.
+        uint8_t FREQH; // Tune Frequency Low byte.
     } raw;
-    unsigned value;
+    uint16_t value;
 } si47x_frequency;
 
 /*
@@ -168,10 +168,10 @@ typedef union {
 typedef union {
     struct
     {
-        byte ANTCAPL; // Antenna Tuning Capacitor High Byte
-        byte ANTCAPH; // Antenna Tuning Capacitor Low Byte
+        uint8_t ANTCAPL; // Antenna Tuning Capacitor High byte
+        uint8_t ANTCAPH; // Antenna Tuning Capacitor Low byte
     } raw;
-    unsigned value;
+    uint16_t value;
 } si47x_antenna_capacitor;
 
 /*
@@ -181,16 +181,16 @@ typedef union {
 typedef union {
     struct
     {
-        byte FAST : 1;   // ARG1 - FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate.
-        byte FREEZE : 1; // Valid only for FM (Must be 0 to AM)
-        byte DUMMY1 : 4; // Always set 0
-        byte USBLSB : 2; // SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected.
-        byte FREQH;      // ARG2 - Tune Frequency High Byte.
-        byte FREQL;      // ARG3 - Tune Frequency Low Byte.
-        byte ANTCAPH;    // ARG4 - Antenna Tuning Capacitor High Byte.
-        byte ANTCAPL;    // ARG5 - Antenna Tuning Capacitor Low Byte. Note used for FM.
+        uint8_t FAST : 1;   // ARG1 - FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate.
+        uint8_t FREEZE : 1; // Valid only for FM (Must be 0 to AM)
+        uint8_t DUMMY1 : 4; // Always set 0
+        uint8_t USBLSB : 2; // SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected.
+        uint8_t FREQH;      // ARG2 - Tune Frequency High byte.
+        uint8_t FREQL;      // ARG3 - Tune Frequency Low byte.
+        uint8_t ANTCAPH;    // ARG4 - Antenna Tuning Capacitor High byte.
+        uint8_t ANTCAPL;    // ARG5 - Antenna Tuning Capacitor Low byte. Note used for FM.
     } arg;
-    byte raw[5];
+    uint8_t raw[5];
 } si47x_set_frequency;
 
 /* 
@@ -199,12 +199,12 @@ typedef union {
 typedef union {
     struct
     {
-        byte RESERVED1 : 2;
-        byte WRAP : 1;   // Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
-        byte SEEKUP : 1; // Determines the direction of the search, either UP = 1, or DOWN = 0.
-        byte RESERVED2 : 4;
+        uint8_t RESERVED1 : 2;
+        uint8_t WRAP : 1;   // Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
+        uint8_t SEEKUP : 1; // Determines the direction of the search, either UP = 1, or DOWN = 0.
+        uint8_t RESERVED2 : 4;
     } arg;
-    byte raw;
+    uint8_t raw;
 } si47x_seek;
 
 /*  
@@ -215,32 +215,32 @@ typedef union {
     struct
     {
         // Status
-        byte STCINT : 1; // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
-        byte DUMMY1 : 1;
-        byte RDSINT : 1; // Radio Data System (RDS) Interrup; 0 = interrupt has not been triggered.
-        byte RSQINT : 1; // Received Signal Quality Interrupt; 0 = interrupt has not been triggered.
-        byte DUMMY2 : 2;
-        byte ERR : 1; // Error. 0 = No error 1 = Error
-        byte CTS : 1; // Clear to Send.
+        uint8_t STCINT : 1; // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
+        uint8_t DUMMY1 : 1;
+        uint8_t RDSINT : 1; // Radio Data System (RDS) Interrup; 0 = interrupt has not been triggered.
+        uint8_t RSQINT : 1; // Received Signal Quality Interrupt; 0 = interrupt has not been triggered.
+        uint8_t DUMMY2 : 2;
+        uint8_t ERR : 1; // Error. 0 = No error 1 = Error
+        uint8_t CTS : 1; // Clear to Send.
         // RESP1
-        byte VALID : 1; // Valid Channel
-        byte AFCRL : 1; // AFC Rail Indicator
-        byte DUMMY3 : 5;
-        byte BLTF : 1; // Reports if a seek hit the band limit
+        uint8_t VALID : 1; // Valid Channel
+        uint8_t AFCRL : 1; // AFC Rail Indicator
+        uint8_t DUMMY3 : 5;
+        uint8_t BLTF : 1; // Reports if a seek hit the band limit
         // RESP2
-        byte READFREQH; // Read Frequency High Byte.
+        uint8_t READFREQH; // Read Frequency High byte.
         // RESP3
-        byte READFREQL; // Read Frequency Low Byte.
+        uint8_t READFREQL; // Read Frequency Low byte.
         // RESP4
-        byte RSSI; // Received Signal Strength Indicator (dBμV)
+        uint8_t RSSI; // Received Signal Strength Indicator (dBμV)
         // RESP5
-        byte SNR; // This byte contains the SNR metric when tune is complete (dB).
+        uint8_t SNR; // This byte contains the SNR metric when tune is complete (dB).
         // RESP6
-        byte MULT; // Contains the multipath metric when tune is complete
+        uint8_t MULT; // Contains the multipath metric when tune is complete
         // RESP7
-        byte READANTCAP; // Contains the current antenna tuning capacitor value
+        uint8_t READANTCAP; // Contains the current antenna tuning capacitor value
     } resp;
-    byte raw[7];
+    uint8_t raw[7];
 } si47x_response_status;
 
 /*
@@ -250,24 +250,24 @@ typedef union {
     struct
     {
         // status ("RESP0")
-        byte STCINT : 1;
-        byte DUMMY1 : 1;
-        byte RDSINT : 1;
-        byte RSQINT : 1;
-        byte DUMMY2 : 2;
-        byte ERR : 1;
-        byte CTS : 1;
-        byte PN;       // RESP1 - Final 2 digits of Part Number (HEX).
-        byte FWMAJOR;  // RESP2 - Firmware Major Revision (ASCII).
-        byte FWMINOR;  // RESP3 - Firmware Minor Revision (ASCII).
-        byte PATCHH;   // RESP4 - Patch ID High Byte (HEX).
-        byte PATCHL;   // RESP5 - Patch ID Low Byte (HEX).
-        byte CMPMAJOR; // RESP6 - Component Major Revision (ASCII).
-        byte CMPMINOR; // RESP7 - Component Minor Revision (ASCII).
-        byte CHIPREV;  // RESP8 - Chip Revision (ASCII).
+        uint8_t STCINT : 1;
+        uint8_t DUMMY1 : 1;
+        uint8_t RDSINT : 1;
+        uint8_t RSQINT : 1;
+        uint8_t DUMMY2 : 2;
+        uint8_t ERR : 1;
+        uint8_t CTS : 1;
+        uint8_t PN;       // RESP1 - Final 2 digits of Part Number (HEX).
+        uint8_t FWMAJOR;  // RESP2 - Firmware Major Revision (ASCII).
+        uint8_t FWMINOR;  // RESP3 - Firmware Minor Revision (ASCII).
+        uint8_t PATCHH;   // RESP4 - Patch ID High byte (HEX).
+        uint8_t PATCHL;   // RESP5 - Patch ID Low byte (HEX).
+        uint8_t CMPMAJOR; // RESP6 - Component Major Revision (ASCII).
+        uint8_t CMPMINOR; // RESP7 - Component Minor Revision (ASCII).
+        uint8_t CHIPREV;  // RESP8 - Chip Revision (ASCII).
         // RESP9 to RESP15 not used
     } resp;
-    byte raw[9];
+    uint8_t raw[9];
 } si47x_firmware_information;
 
 /*
@@ -278,23 +278,23 @@ typedef union {
     struct
     {
         // status ("RESP0")
-        byte STCINT : 1;
-        byte DUMMY1 : 1;
-        byte RDSINT : 1;
-        byte RSQINT : 1;
-        byte DUMMY2 : 2;
-        byte ERR : 1;
-        byte CTS : 1;
-        byte PN;        // RESP1 - Final 2 digits of Part Number (HEX).
-        byte FWMAJOR;   // RESP2 - Firmware Major Revision (ASCII).
-        byte FWMINOR;   // RESP3 - Firmware Minor Revision (ASCII).
-        byte RESERVED1; // RESP4 - Reserved, various values.
-        byte RESERVED2; // RESP5 - Reserved, various values.
-        byte CHIPREV;   // RESP6 - Chip Revision (ASCII).
-        byte LIBRARYID; // RESP7 - Library Revision (HEX).
+        uint8_t STCINT : 1;
+        uint8_t DUMMY1 : 1;
+        uint8_t RDSINT : 1;
+        uint8_t RSQINT : 1;
+        uint8_t DUMMY2 : 2;
+        uint8_t ERR : 1;
+        uint8_t CTS : 1;
+        uint8_t PN;        // RESP1 - Final 2 digits of Part Number (HEX).
+        uint8_t FWMAJOR;   // RESP2 - Firmware Major Revision (ASCII).
+        uint8_t FWMINOR;   // RESP3 - Firmware Minor Revision (ASCII).
+        uint8_t RESERVED1; // RESP4 - Reserved, various values.
+        uint8_t RESERVED2; // RESP5 - Reserved, various values.
+        uint8_t CHIPREV;   // RESP6 - Chip Revision (ASCII).
+        uint8_t LIBRARYID; // RESP7 - Library Revision (HEX).
         // RESP9 to RESP15 not used
     } resp;
-    byte raw[8];
+    uint8_t raw[8];
 } si47x_firmware_query_library;
 
 /*
@@ -306,11 +306,11 @@ typedef union {
 typedef union {
     struct
     {
-        byte INTACK : 1; // If set, clears the seek/tune complete interrupt status indicator.
-        byte CANCEL : 1; // If set, aborts a seek currently in progress.
-        byte RESERVED2 : 6;
+        uint8_t INTACK : 1; // If set, clears the seek/tune complete interrupt status indicator.
+        uint8_t CANCEL : 1; // If set, aborts a seek currently in progress.
+        uint8_t RESERVED2 : 6;
     } arg;
-    byte raw;
+    uint8_t raw;
 } si47x_tune_status;
 
 /*
@@ -319,10 +319,10 @@ typedef union {
 typedef union {
     struct
     {
-        byte byteLow;
-        byte byteHigh;
+        uint8_t byteLow;
+        uint8_t byteHigh;
     } raw;
-    unsigned value;
+    uint16_t value;
 } si47x_property;
 
 /*
@@ -338,38 +338,38 @@ typedef union {
     struct
     {
         // status ("RESP0")
-        byte STCINT : 1;
-        byte DUMMY1 : 1;
-        byte RDSINT : 1;
-        byte RSQINT : 1;
-        byte DUMMY2 : 2;
-        byte ERR : 1;
-        byte CTS : 1;
+        uint8_t STCINT : 1;
+        uint8_t DUMMY1 : 1;
+        uint8_t RDSINT : 1;
+        uint8_t RSQINT : 1;
+        uint8_t DUMMY2 : 2;
+        uint8_t ERR : 1;
+        uint8_t CTS : 1;
         // RESP1
-        byte RSSIILINT : 1; // RSSI Detect Low.
-        byte RSSIHINT : 1;  // RSSI Detect High.
-        byte SNRLINT : 1;   // SNR Detect Low.
-        byte SNRHINT : 1;   // SNR Detect High.
-        byte MULTLINT : 1;  // Multipath Detect Low
-        byte MULTHINT : 1;  // Multipath Detect High
-        byte DUMMY3 : 1;
-        byte BLENDINT : 1; // Blend Detect Interrupt.
+        uint8_t RSSIILINT : 1; // RSSI Detect Low.
+        uint8_t RSSIHINT : 1;  // RSSI Detect High.
+        uint8_t SNRLINT : 1;   // SNR Detect Low.
+        uint8_t SNRHINT : 1;   // SNR Detect High.
+        uint8_t MULTLINT : 1;  // Multipath Detect Low
+        uint8_t MULTHINT : 1;  // Multipath Detect High
+        uint8_t DUMMY3 : 1;
+        uint8_t BLENDINT : 1; // Blend Detect Interrupt.
         // RESP2
-        byte VALID : 1; // Valid Channel.
-        byte AFCRL : 1; // AFC Rail Indicator.
-        byte DUMMY4 : 1;
-        byte SMUTE : 1; // Soft Mute Indicator. Indicates soft mute is engaged.
-        byte DUMMY5 : 4;
+        uint8_t VALID : 1; // Valid Channel.
+        uint8_t AFCRL : 1; // AFC Rail Indicator.
+        uint8_t DUMMY4 : 1;
+        uint8_t SMUTE : 1; // Soft Mute Indicator. Indicates soft mute is engaged.
+        uint8_t DUMMY5 : 4;
         // RESP3
-        byte STBLEND : 7; // Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono).
-        byte PILOT : 1;   // Indicates stereo pilot presence.
+        uint8_t STBLEND : 7; // Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono).
+        uint8_t PILOT : 1;   // Indicates stereo pilot presence.
         // RESP4 to RESP7
-        byte RSSI;    // RESP4 - Contains the current receive signal strength (0–127 dBμV).
-        byte SNR;     // RESP5 - Contains the current SNR metric (0–127 dB).
-        byte MULT;    // RESP6 - Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
-        byte FREQOFF; // RESP7 - Signed frequency offset (kHz).
+        uint8_t RSSI;    // RESP4 - Contains the current receive signal strength (0–127 dBμV).
+        uint8_t SNR;     // RESP5 - Contains the current SNR metric (0–127 dB).
+        uint8_t MULT;    // RESP6 - Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
+        uint8_t FREQOFF; // RESP7 - Signed frequency offset (kHz).
     } resp;
-    byte raw[8];
+    uint8_t raw[8];
 } si47x_rqs_status;
 
 /*
@@ -382,12 +382,12 @@ typedef union {
 typedef union {
     struct
     {
-        byte INTACK : 1;     // Interrupt Acknowledge; 0 = RDSINT status preserved; 1 = Clears RDSINT.
-        byte MTFIFO : 1;     // Empty FIFO; 0 = If FIFO not empty; 1 = Clear RDS Receive FIFO.
-        byte STATUSONLY : 1; // Determines if data should be removed from the RDS FIFO.
-        byte dummy : 5;
+        uint8_t INTACK : 1;     // Interrupt Acknowledge; 0 = RDSINT status preserved; 1 = Clears RDSINT.
+        uint8_t MTFIFO : 1;     // Empty FIFO; 0 = If FIFO not empty; 1 = Clear RDS Receive FIFO.
+        uint8_t STATUSONLY : 1; // Determines if data should be removed from the RDS FIFO.
+        uint8_t dummy : 5;
     } arg;
-    byte raw;
+    uint8_t raw;
 } si47x_rds_command;
 
 // Response data type for current channel and reads an entry from the RDS FIFO.
@@ -395,47 +395,47 @@ typedef union {
     struct
     {
         // status ("RESP0")
-        byte STCINT : 1;
-        byte DUMMY1 : 1;
-        byte RDSINT : 1;
-        byte RSQINT : 1;
-        byte DUMMY2 : 2;
-        byte ERR : 1;
-        byte CTS : 1;
+        uint8_t STCINT : 1;
+        uint8_t DUMMY1 : 1;
+        uint8_t RDSINT : 1;
+        uint8_t RSQINT : 1;
+        uint8_t DUMMY2 : 2;
+        uint8_t ERR : 1;
+        uint8_t CTS : 1;
         // RESP1
-        byte RDSRECV : 1;      // RDS Received; 1 = FIFO filled to minimum number of groups set by RDSFIFOCNT.
-        byte RDSSYNCLOST : 1;  // RDS Sync Lost; 1 = Lost RDS synchronization.
-        byte RDSSYNCFOUND : 1; // RDS Sync Found; 1 = Found RDS synchronization.
-        byte DUMMY3 : 1;
-        byte RDSNEWBLOCKA : 1; // RDS New Block A; 1 = Valid Block A data has been received.
-        byte RDSNEWBLOCKB : 1; // RDS New Block B; 1 = Valid Block B data has been received.
-        byte DUMMY4 : 2;
+        uint8_t RDSRECV : 1;      // RDS Received; 1 = FIFO filled to minimum number of groups set by RDSFIFOCNT.
+        uint8_t RDSSYNCLOST : 1;  // RDS Sync Lost; 1 = Lost RDS synchronization.
+        uint8_t RDSSYNCFOUND : 1; // RDS Sync Found; 1 = Found RDS synchronization.
+        uint8_t DUMMY3 : 1;
+        uint8_t RDSNEWBLOCKA : 1; // RDS New Block A; 1 = Valid Block A data has been received.
+        uint8_t RDSNEWBLOCKB : 1; // RDS New Block B; 1 = Valid Block B data has been received.
+        uint8_t DUMMY4 : 2;
         // RESP2
-        byte RDSSYNC : 1; // RDS Sync; 1 = RDS currently synchronized.
-        byte DUMMY5 : 1;
-        byte GRPLOST : 1; // Group Lost; 1 = One or more RDS groups discarded due to FIFO overrun.
-        byte DUMMY6 : 5;
+        uint8_t RDSSYNC : 1; // RDS Sync; 1 = RDS currently synchronized.
+        uint8_t DUMMY5 : 1;
+        uint8_t GRPLOST : 1; // Group Lost; 1 = One or more RDS groups discarded due to FIFO overrun.
+        uint8_t DUMMY6 : 5;
         // RESP3 to RESP11
-        byte RDSFIFOUSED; // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
-        byte BLOCKAH;     // RESP4 - RDS Block A; HIGH byte
-        byte BLOCKAL;     // RESP5 - RDS Block A; LOW byte
-        byte BLOCKBH;     // RESP6 - RDS Block B; HIGH byte
-        byte BLOCKBL;     // RESP7 - RDS Block B; LOW byte
-        byte BLOCKCH;     // RESP8 - RDS Block C; HIGH byte
-        byte BLOCKCL;     // RESP9 - RDS Block C; LOW byte
-        byte BLOCKDH;     // RESP10 - RDS Block D; HIGH byte
-        byte BLOCKDL;     // RESP11 - RDS Block D; LOW byte
+        uint8_t RDSFIFOUSED; // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
+        uint8_t BLOCKAH;     // RESP4 - RDS Block A; HIGH byte
+        uint8_t BLOCKAL;     // RESP5 - RDS Block A; LOW byte
+        uint8_t BLOCKBH;     // RESP6 - RDS Block B; HIGH byte
+        uint8_t BLOCKBL;     // RESP7 - RDS Block B; LOW byte
+        uint8_t BLOCKCH;     // RESP8 - RDS Block C; HIGH byte
+        uint8_t BLOCKCL;     // RESP9 - RDS Block C; LOW byte
+        uint8_t BLOCKDH;     // RESP10 - RDS Block D; HIGH byte
+        uint8_t BLOCKDL;     // RESP11 - RDS Block D; LOW byte
         // RESP12 - Blocks A to D Corrected Errors.
         // 0 = No errors;
         // 1 = 1–2 bit errors detected and corrected;
         // 2 = 3–5 bit errors detected and corrected.
         // 3 = Uncorrectable.
-        byte BLED : 2;
-        byte BLEC : 2;
-        byte BLEB : 2;
-        byte BLEA : 2;
+        uint8_t BLED : 2;
+        uint8_t BLEC : 2;
+        uint8_t BLEB : 2;
+        uint8_t BLEA : 2;
     } resp;
-    byte raw[13];
+    uint8_t raw[13];
 } si47x_rds_status;
 
 /*
@@ -445,16 +445,16 @@ typedef union {
 typedef union {
     struct
     {
-        byte RDSRECV : 1;      // If set, generate RDSINT when RDS FIFO has at least FM_RDS_INT_FIFO_COUNT entries.
-        byte RDSSYNCLOST : 1;  // If set, generate RDSINT when RDS loses synchronization.
-        byte RDSSYNCFOUND : 1; // f set, generate RDSINT when RDS gains synchronization.
-        byte DUMMY1 : 1;       // Always write to 0.
-        byte RDSNEWBLOCKA : 1; // If set, generate an interrupt when Block A data is found or subsequently changed
-        byte RDSNEWBLOCKB : 1; // If set, generate an interrupt when Block B data is found or subsequently changed
-        byte DUMMY2 : 5;       // Reserved - Always write to 0.
-        byte DUMMY3 : 5;       // Reserved - Always write to 0.
+        uint8_t RDSRECV : 1;      // If set, generate RDSINT when RDS FIFO has at least FM_RDS_INT_FIFO_COUNT entries.
+        uint8_t RDSSYNCLOST : 1;  // If set, generate RDSINT when RDS loses synchronization.
+        uint8_t RDSSYNCFOUND : 1; // f set, generate RDSINT when RDS gains synchronization.
+        uint8_t DUMMY1 : 1;       // Always write to 0.
+        uint8_t RDSNEWBLOCKA : 1; // If set, generate an interrupt when Block A data is found or subsequently changed
+        uint8_t RDSNEWBLOCKB : 1; // If set, generate an interrupt when Block B data is found or subsequently changed
+        uint8_t DUMMY2 : 5;       // Reserved - Always write to 0.
+        uint8_t DUMMY3 : 5;       // Reserved - Always write to 0.
     } refined;
-    byte raw[2];
+    uint8_t raw[2];
 } si47x_rds_int_source;
 
 /*
@@ -473,14 +473,14 @@ typedef union {
 typedef union {
     struct
     {
-        byte RDSEN : 1; // 1 = RDS Processing Enable.
-        byte DUMMY1 : 7;
-        byte BLETHD : 2; // Block Error Threshold BLOCKD
-        byte BLETHC : 2; // Block Error Threshold BLOCKC.
-        byte BLETHB : 2; // Block Error Threshold BLOCKB.
-        byte BLETHA : 2; // Block Error Threshold BLOCKA.
+        uint8_t RDSEN : 1; // 1 = RDS Processing Enable.
+        uint8_t DUMMY1 : 7;
+        uint8_t BLETHD : 2; // Block Error Threshold BLOCKD
+        uint8_t BLETHC : 2; // Block Error Threshold BLOCKC.
+        uint8_t BLETHB : 2; // Block Error Threshold BLOCKB.
+        uint8_t BLETHA : 2; // Block Error Threshold BLOCKA.
     } arg;
-    byte raw[2];
+    uint8_t raw[2];
 } si47x_rds_config;
 
 /*
@@ -489,12 +489,12 @@ typedef union {
 typedef union {
     struct
     {
-        unsigned pi;
+        uint16_t pi;
     } refined;
     struct
     {
-        byte lowValue;
-        byte highValue; // Most Significant byte first
+        uint8_t lowValue;
+        uint8_t highValue; // Most Significant uint8_t first
     } raw;
 } si47x_rds_blocka;
 
@@ -506,30 +506,30 @@ typedef union {
 typedef union {
     struct
     {
-        byte content : 5;            // Depends on Group Type and Version codes.
-        byte programType : 5;        // PTY (Program Type) code
-        byte trafficProgramCode : 1; // 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
-        byte versionCode : 1;        // 0=A; 1=B
-        byte groupType : 4;          // Group Type code.
+        uint8_t content : 5;            // Depends on Group Type and Version codes.
+        uint8_t programType : 5;        // PTY (Program Type) code
+        uint8_t trafficProgramCode : 1; // 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
+        uint8_t versionCode : 1;        // 0=A; 1=B
+        uint8_t groupType : 4;          // Group Type code.
 
     } refined;
     struct
     {
-        byte lowValue;
-        byte highValue; // Most Significant Byte first
+        uint8_t lowValue;
+        uint8_t highValue; // Most Significant byte first
     } raw;
 } si47x_rds_blockb;
 
 typedef union {
     struct
     {
-        byte offset : 5;
-        byte offset_sense : 1; //
-        byte minute : 6;       //
-        byte hour : 4;         //
-        unsigned mjd;
+        uint8_t offset : 5;
+        uint8_t offset_sense : 1; //
+        uint8_t minute : 6;       //
+        uint8_t hour : 4;         //
+        uint16_t mjd;
     } refined;
-    byte raw[4];
+    uint8_t raw[4];
 } si47x_rds_date_time;
 
 /* AGC data types
@@ -541,20 +541,20 @@ typedef union {
     struct
     {
         // status ("RESP0")
-        byte STCINT : 1;
-        byte DUMMY1 : 1;
-        byte RDSINT : 1; // Not used for AM/SSB
-        byte RSQINT : 1;
-        byte DUMMY2 : 2;
-        byte ERR : 1;
-        byte CTS : 1;
+        uint8_t STCINT : 1;
+        uint8_t DUMMY1 : 1;
+        uint8_t RDSINT : 1; // Not used for AM/SSB
+        uint8_t RSQINT : 1;
+        uint8_t DUMMY2 : 2;
+        uint8_t ERR : 1;
+        uint8_t CTS : 1;
         // RESP1
-        byte AGCDIS : 1; // This bit indicates if the AGC is enabled or disabled. 0 = AGC enabled; 1 = AGC disabled.
-        byte DUMMY : 7;
+        uint8_t AGCDIS : 1; // This bit indicates if the AGC is enabled or disabled. 0 = AGC enabled; 1 = AGC disabled.
+        uint8_t DUMMY : 7;
         // RESP2
-        byte AGCDX; // For FM (5 bits - READ_LNA_GAIN_INDEX - 0 = Minimum attenuation (max gain)). For AM (8 bits). This byte reports the current AGC gain index.
+        uint8_t AGCDX; // For FM (5 bits - READ_LNA_GAIN_INDEX - 0 = Minimum attenuation (max gain)). For AM (8 bits). This byte reports the current AGC gain index.
     } refined;
-    byte raw[3];
+    uint8_t raw[3];
 } si47x_agc_status;
 
 /* 
@@ -567,12 +567,12 @@ typedef union {
     struct
     {
         // ARG1
-        byte AGCDIS : 1; // if set to 1 indicates if the AGC is disabled. 0 = AGC enabled; 1 = AGC disabled.
-        byte DUMMY : 7;
+        uint8_t AGCDIS : 1; // if set to 1 indicates if the AGC is disabled. 0 = AGC enabled; 1 = AGC disabled.
+        uint8_t DUMMY : 7;
         // ARG2
-        byte AGCDX; // AGC Index; If AMAGCDIS = 1, this byte forces the AGC gain index; 0 = Minimum attenuation (max gain)
+        uint8_t AGCDX; // AGC Index; If AMAGCDIS = 1, this byte forces the AGC gain index; 0 = Minimum attenuation (max gain)
     } arg;
-    byte raw[2];
+    uint8_t raw[2];
 } si47x_agc_overrride;
 
 /* 
@@ -589,12 +589,12 @@ typedef union {
 typedef union {
     struct
     {
-        byte AMCHFLT : 4; // Selects the bandwidth of the AM channel filter.
-        byte DUMMY1 : 4;
-        byte AMPLFLT : 1; // Enables the AM Power Line Noise Rejection Filter.
-        byte DUMMY2 : 7;
+        uint8_t AMCHFLT : 4; // Selects the bandwidth of the AM channel filter.
+        uint8_t DUMMY1 : 4;
+        uint8_t AMPLFLT : 1; // Enables the AM Power Line Noise Rejection Filter.
+        uint8_t DUMMY2 : 7;
     } param;
-    byte raw[2];
+    uint8_t raw[2];
 } si47x_bandwidth_config; // AM_CHANNEL_FILTER
 
 /* 
@@ -604,15 +604,15 @@ typedef union {
 typedef union {
     struct
     {
-        byte AUDIOBW : 4;     // 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz
-        byte SBCUTFLT : 4;    // SSB side band cutoff filter for band passand low pass filter
-        byte AVC_DIVIDER : 4; // set 0 for SSB mode; set 3 for SYNC mode;
-        byte AVCEN : 1;       // SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default);
-        byte SMUTESEL : 1;    // SSB Soft-mute Based on RSSI or SNR
-        byte DUMMY1 : 1;      // Always write 0;
-        byte DSP_AFCDIS : 1;  // 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
+        uint8_t AUDIOBW : 4;     // 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz
+        uint8_t SBCUTFLT : 4;    // SSB side band cutoff filter for band passand low pass filter
+        uint8_t AVC_DIVIDER : 4; // set 0 for SSB mode; set 3 for SYNC mode;
+        uint8_t AVCEN : 1;       // SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default);
+        uint8_t SMUTESEL : 1;    // SSB Soft-mute Based on RSSI or SNR
+        uint8_t DUMMY1 : 1;      // Always write 0;
+        uint8_t DSP_AFCDIS : 1;  // 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
     } param;
-    byte raw[2];
+    uint8_t raw[2];
 } si47x_ssb_mode;
 
 /************************ Deal with Interrupt  *************************/
@@ -630,16 +630,16 @@ class SI4735
 
 private:
     char rds_buffer[65];
-    byte resetPin;
-    byte interruptPin;
+    uint8_t resetPin;
+    uint8_t interruptPin;
 
-    byte currentTune;
+    uint8_t currentTune;
 
-    unsigned currentMinimumFrequency;
-    unsigned currentMaximumFrequency;
-    unsigned currentWorkFrequency;
+    uint16_t currentMinimumFrequency;
+    uint16_t currentMaximumFrequency;
+    uint16_t currentWorkFrequency;
 
-    byte currentStep;
+    uint8_t currentStep;
 
     si47x_frequency currentFrequency;
     si47x_set_frequency currentFrequencyParams;
@@ -652,9 +652,9 @@ private:
 
     si473x_powerup powerUp;
 
-    byte volume = 32;
+    uint8_t volume = 32;
 
-    byte currentSsbStatus;
+    uint8_t currentSsbStatus;
 
     void reset(void);
     void waitInterrupr(void);
@@ -663,21 +663,21 @@ private:
 public:
     SI4735();
     void waitToSend(void); // Wait for Si4735 device ready to receive command
-    void setup(byte resetPin, byte defaultFunction);
-    void setup(byte resetPin, int interruptPin, byte defaultFunction);
-    void setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE);
+    void setup(uint8_t resetPin, uint8_t defaultFunction);
+    void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction);
+    void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE);
     void analogPowerUp(void);
     void powerDown(void);
 
-    void setFrequency(unsigned);
+    void setFrequency(uint16_t);
 
     // getStatus
     void getStatus();
-    void getStatus(byte, byte);
+    void getStatus(uint8_t, uint8_t);
 
     // Status response
-    unsigned getFrequency(void);
-    unsigned getCurrentFrequency(); // See documentation
+    uint16_t getFrequency(void);
+    uint16_t getCurrentFrequency(); // See documentation
 
     /* STATUS RESPONSE
      * Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation
@@ -691,26 +691,26 @@ public:
     inline bool getACFIndicator() { return currentStatus.resp.AFCRL; };                   // Returns true if the AFC rails (AFC Rail Indicator).
     inline bool getBandLimit() { return currentStatus.resp.BLTF; };                       // Returns true if a seek hit the band limit (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
     inline bool getStatusValid() { return currentStatus.resp.VALID; };                    // eturns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)
-    inline byte getReceivedSignalStrengthIndicator() { return currentStatus.resp.RSSI; }; // Returns integer Received Signal Strength Indicator (dBμV).
-    inline byte getStatusSNR() { return currentStatus.resp.SNR; };                        // returns integer containing the SNR metric when tune is complete (dB).
-    inline byte getStatusMULT() { return currentStatus.resp.MULT; };                      // Returns integer containing the multipath metric when tune is complete.
-    inline byte getAntennaTuningCapacitor() { return currentStatus.resp.READANTCAP; };    // Returns integer containing the current antenna tuning capacitor value.
+    inline uint8_t getReceivedSignalStrengthIndicator() { return currentStatus.resp.RSSI; }; // Returns integer Received Signal Strength Indicator (dBμV).
+    inline uint8_t getStatusSNR() { return currentStatus.resp.SNR; };                        // returns integer containing the SNR metric when tune is complete (dB).
+    inline uint8_t getStatusMULT() { return currentStatus.resp.MULT; };                      // Returns integer containing the multipath metric when tune is complete.
+    inline uint8_t getAntennaTuningCapacitor() { return currentStatus.resp.READANTCAP; };    // Returns integer containing the current antenna tuning capacitor value.
 
     void getAutomaticGainControl();
 
     inline bool isAgcEnabled() { return !currentAgcStatus.refined.AGCDIS; };  // Returns true if the AGC is enabled
-    inline byte getAgcGainIndex() { return currentAgcStatus.refined.AGCDX; }; // Returns the current AGC gain index.
-    void setAutomaticGainControl(byte AGCDIS, byte AGCDX);                    // Overrides the AGC setting
+    inline uint8_t getAgcGainIndex() { return currentAgcStatus.refined.AGCDX; }; // Returns the current AGC gain index.
+    void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCDX);                    // Overrides the AGC setting
 
     /* RQS STATUS RESPONSE 
      * 
      */
-    void getCurrentReceivedSignalQuality(byte INTACK);
+    void getCurrentReceivedSignalQuality(uint8_t INTACK);
     void getCurrentReceivedSignalQuality(void);
     
     // AM and FM
-    inline byte getCurrentRSSI() { return currentRqsStatus.resp.RSSI; };               // current receive signal strength (0–127 dBμV).
-    inline byte getCurrentSNR() { return currentRqsStatus.resp.SNR; };                 // current SNR metric (0–127 dB).
+    inline uint8_t getCurrentRSSI() { return currentRqsStatus.resp.RSSI; };               // current receive signal strength (0–127 dBμV).
+    inline uint8_t getCurrentSNR() { return currentRqsStatus.resp.SNR; };                 // current SNR metric (0–127 dB).
     inline bool getCurrentRssiDetectLow() { return currentRqsStatus.resp.RSSIILINT; }; // RSSI Detect Low.
     inline bool getCurrentRssiDetectHigh() { return currentRqsStatus.resp.RSSIHINT; }; // RSSI Detect High
     inline bool getCurrentSnrDetectLow() { return currentRqsStatus.resp.SNRLINT; };    // SNR Detect Low.
@@ -721,8 +721,8 @@ public:
     // Just FM
     inline bool getCurrentStereoBlend() { return currentRqsStatus.resp.STBLEND; };           // Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono).
     inline bool getCurrentPilot() { return currentRqsStatus.resp.PILOT; };                   // Indicates stereo pilot presence.
-    inline byte getCurrentMultipath() { return currentRqsStatus.resp.MULT; };                // Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
-    inline byte getCurrentSignedFrequencyOffset() { return currentRqsStatus.resp.FREQOFF; }; // Signed frequency offset (kHz).
+    inline uint8_t getCurrentMultipath() { return currentRqsStatus.resp.MULT; };                // Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
+    inline uint8_t getCurrentSignedFrequencyOffset() { return currentRqsStatus.resp.FREQOFF; }; // Signed frequency offset (kHz).
     inline bool getCurrentMultipathDetectLow() { return currentRqsStatus.resp.MULTLINT; };   // Multipath Detect Low.
     inline bool getCurrentMultipathDetectHigh() { return currentRqsStatus.resp.MULTHINT; };  // Multipath Detect High
     inline bool getCurrentBlendDetectInterrupt() { return currentRqsStatus.resp.BLENDINT; }; // Blend Detect Interrupt
@@ -732,53 +732,53 @@ public:
      * 
      * See Si47XX PROGRAMMING GUIDE; AN332; page 66
      */
-    inline byte
+    inline uint8_t
     getFirmwarePN()
     {
         return firmwareInfo.resp.PN;
     };                                                                        //  RESP1 - Part Number (HEX)
-    inline byte getFirmwareFWMAJOR() { return firmwareInfo.resp.FWMAJOR; };   // RESP2 - Returns the Firmware Major Revision (ASCII).
-    inline byte getFirmwareFWMINOR() { return firmwareInfo.resp.FWMINOR; };   // RESP3 - Returns the Firmware Minor Revision (ASCII).
-    inline byte getFirmwarePATCHH() { return firmwareInfo.resp.PATCHH; };     // RESP4 -  Returns the Patch ID High Byte (HEX).
-    inline byte getFirmwarePATCHL() { return firmwareInfo.resp.PATCHL; };     // RESP5 - Returns the Patch ID Low Byte (HEX).
-    inline byte getFirmwareCMPMAJOR() { return firmwareInfo.resp.CMPMAJOR; }; // RESP6 -  Returns the Component Major Revision (ASCII).
-    inline byte getFirmwareCMPMINOR() { return firmwareInfo.resp.CMPMINOR; }; // RESP7 - Returns the Component Minor Revision (ASCII).
-    inline byte getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; };   // RESP8 -  Returns the Chip Revision (ASCII).
+    inline uint8_t getFirmwareFWMAJOR() { return firmwareInfo.resp.FWMAJOR; };   // RESP2 - Returns the Firmware Major Revision (ASCII).
+    inline uint8_t getFirmwareFWMINOR() { return firmwareInfo.resp.FWMINOR; };   // RESP3 - Returns the Firmware Minor Revision (ASCII).
+    inline uint8_t getFirmwarePATCHH() { return firmwareInfo.resp.PATCHH; };     // RESP4 -  Returns the Patch ID High byte (HEX).
+    inline uint8_t getFirmwarePATCHL() { return firmwareInfo.resp.PATCHL; };     // RESP5 - Returns the Patch ID Low byte (HEX).
+    inline uint8_t getFirmwareCMPMAJOR() { return firmwareInfo.resp.CMPMAJOR; }; // RESP6 -  Returns the Component Major Revision (ASCII).
+    inline uint8_t getFirmwareCMPMINOR() { return firmwareInfo.resp.CMPMINOR; }; // RESP7 - Returns the Component Minor Revision (ASCII).
+    inline uint8_t getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; };   // RESP8 -  Returns the Chip Revision (ASCII).
 
     // Volume control
-    void setVolume(byte volume);
-    byte getVolume();
+    void setVolume(uint8_t volume);
+    uint8_t getVolume();
     void volumeDown();
     void volumeUp();
-    inline byte getCurrentVolume() { return volume; }; // Returns the current volume level.
+    inline uint8_t getCurrentVolume() { return volume; }; // Returns the current volume level.
 
     //
     void setAM();
     void setFM();
-    void setAM(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step);
-    void setFM(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, byte step);
+    void setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint8_t step);
+    void setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint8_t step);
 
-    void setBandwidth(byte AMCHFLT, byte AMPLFLT);
+    void setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT);
 
-    void setFrequencyStep(byte step);
+    void setFrequencyStep(uint8_t step);
 
-    inline void setTuneFrequencyFast(byte FAST) { currentFrequencyParams.arg.FAST = FAST; };         // FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate
-    inline void setTuneFrequencyFreeze(byte FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; // Onlye FM. Freeze Metrics During Alternate Frequency Jump.
-    void setTuneFrequencyAntennaCapacitor(unsigned capacitor);
+    inline void setTuneFrequencyFast(uint8_t FAST) { currentFrequencyParams.arg.FAST = FAST; };         // FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate
+    inline void setTuneFrequencyFreeze(uint8_t FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; // Onlye FM. Freeze Metrics During Alternate Frequency Jump.
+    void setTuneFrequencyAntennaCapacitor(uint16_t capacitor);
 
     void frequencyUp();
     void frequencyDown();
     bool isCurrentTuneFM();
     void getFirmware(void);
 
-    void setFunction(byte FUNC);
-    void seekStation(byte SEEKUP, byte WRAP);
+    void setFunction(uint8_t FUNC);
+    void seekStation(uint8_t SEEKUP, uint8_t WRAP);
     void seekStationUp();
     void seekStationDown();
 
     // RDS implementation
-    void setRdsIntSource(byte RDSNEWBLOCKB, byte RDSNEWBLOCKA, byte RDSSYNCFOUND, byte RDSSYNCLOST, byte RDSRECV);
-    void getRdsStatus(byte INTACK, byte MTFIFO, byte STATUSONLY);
+    void setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t RDSSYNCFOUND, uint8_t RDSSYNCLOST, uint8_t RDSRECV);
+    void getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY);
     void getRdsStatus();
     inline bool getRdsReceived() { return currentRdsStatus.resp.RDSRECV; };        // 1 = FIFO filled to minimum number of groups
     inline bool getRdsSyncLost() { return currentRdsStatus.resp.RDSSYNCLOST; };    // 1 = Lost RDS synchronization
@@ -787,13 +787,13 @@ public:
     inline bool getRdsNewBlockB() { return currentRdsStatus.resp.RDSNEWBLOCKB; };  // 1 = Valid Block B data has been received.
     inline bool getRdsSync() { return currentRdsStatus.resp.RDSSYNC; };            // 1 = RDS currently synchronized.
     inline bool getGroupLost() { return currentRdsStatus.resp.GRPLOST; };          // 1 = One or more RDS groups discarded due to FIFO overrun.
-    inline byte getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
+    inline uint8_t getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
 
-    void setRdsConfig(byte RDSEN, byte BLETHA, byte BLETHB, byte BLETHC, byte BLETHD);
-    unsigned getRdsPI(void);
-    unsigned getRdsGroupType(void);
-    unsigned getRdsVersionCode(void);
-    unsigned getRdsProgramType(void);
+    void setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t BLETHC, uint8_t BLETHD);
+    uint16_t getRdsPI(void);
+    uint16_t getRdsGroupType(void);
+    uint16_t getRdsVersionCode(void);
+    uint16_t getRdsProgramType(void);
     String getRdsText(void);
     String getRdsTime(void);
 
@@ -805,23 +805,23 @@ public:
      * SSB 
      */
     void setSSBBfo(int offset);
-    void setSSBConfig(byte AUDIOBW, byte SBCUTFLT, byte AVC_DIVIDER, byte AVCEN, byte SMUTESEL, byte DSP_AFCDIS);
-    void setSSB(unsigned fromFreq, unsigned toFreq, unsigned intialFreq, byte step, byte usblsb);
-    void setSSB(byte usblsb);
-    void setSSBAudioBandwidth(byte AUDIOBW);
-    void setSSBAutomaticVolumeControl(byte AVCEN);
-    void setSBBSidebandCutoffFilter(byte SBCUTFLT);
-    void setSSBAvcDivider(byte AVC_DIVIDER);
-    void setSSBDspAfc(byte DSP_AFCDIS);
-    void setSSBSoftMute(byte SMUTESEL);
+    void setSSBConfig(uint8_t AUDIOBW, uint8_t SBCUTFLT, uint8_t AVC_DIVIDER, uint8_t AVCEN, uint8_t SMUTESEL, uint8_t DSP_AFCDIS);
+    void setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint8_t step, uint8_t usblsb);
+    void setSSB(uint8_t usblsb);
+    void setSSBAudioBandwidth(uint8_t AUDIOBW);
+    void setSSBAutomaticVolumeControl(uint8_t AVCEN);
+    void setSBBSidebandCutoffFilter(uint8_t SBCUTFLT);
+    void setSSBAvcDivider(uint8_t AVC_DIVIDER);
+    void setSSBDspAfc(uint8_t DSP_AFCDIS);
+    void setSSBSoftMute(uint8_t SMUTESEL);
 
     /*
      * SSB PATCH
      */
     si47x_firmware_query_library queryLibraryId();
     void patchPowerUp(); // Used to apply SSB patch on SI4735
-    bool downloadPatch(byte *ssb_patch_content, unsigned ssb_patch_content_size);
-    bool downloadPatch(byte eeprom_i2c_address);
+    bool downloadPatch(uint8_t *ssb_patch_content, uint16_t ssb_patch_content_size);
+    bool downloadPatch(uint8_t eeprom_i2c_address);
     void ssbPowerUp();
 
     /* 

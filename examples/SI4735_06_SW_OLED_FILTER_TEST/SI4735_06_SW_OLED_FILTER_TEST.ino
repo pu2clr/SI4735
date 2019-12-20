@@ -48,18 +48,18 @@ long elapsedButton = millis();
 volatile int encoderCount = 0;
 
 // Some variables to check the SI4735 status
-unsigned currentFrequency;
-unsigned previousFrequency;
+uint16_t currentFrequency;
+uint16_t previousFrequency;
 
-byte bandwidthIdx = 1;
+uint8_t bandwidthIdx = 1;
 char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 
 typedef struct {
-  unsigned   minimumFreq;
-  unsigned   maximumFreq;
-  unsigned   currentFreq;
-  unsigned   currentStep;
+  uint16_t   minimumFreq;
+  uint16_t   maximumFreq;
+  uint16_t   currentFreq;
+  uint8_t    currentStep;
 } Band;
 
 
@@ -80,9 +80,9 @@ const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int  currentFreqIdx = 2; // 41M
 
 
-byte rssi = 0;
-byte stereo = 1;
-byte volume = 0;
+uint8_t rssi = 0;
+uint8_t stereo = 1;
+uint8_t volume = 0;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);

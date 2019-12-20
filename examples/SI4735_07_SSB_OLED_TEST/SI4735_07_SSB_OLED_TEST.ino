@@ -44,7 +44,7 @@
 #include "patch_init.h"       // SSB patch for whole SSBRX initialization string
 // #include "patch_full.h"    // SSB patch for whole SSBRX full download
 
-const int size_content = sizeof ssb_patch_content;  // see ssb_patch_content in patch_full.h or patch_init.h
+const uint16_t size_content = sizeof ssb_patch_content;  // see ssb_patch_content in patch_full.h or patch_init.h
 
 #define AM_FUNCTION 1
 
@@ -90,21 +90,21 @@ long elapsedFrequency = millis();
 volatile int encoderCount = 0;
 
 // Some variables to check the SI4735 status
-unsigned currentFrequency;
-unsigned previousFrequency;
-byte currentStep = 1;
-byte currentBFOStep = 50;
+uint16_t currentFrequency;
+uint16_t previousFrequency;
+uint8_t currentStep = 1;
+uint8_t currentBFOStep = 50;
 
-byte bandwidthIdx = 2;
+uint8_t bandwidthIdx = 2;
 char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 
 typedef struct {
-  unsigned   minimumFreq;
-  unsigned   maximumFreq;
-  unsigned   currentFreq;
-  unsigned   currentStep;
-  byte       currentSSB;
+  uint16_t   minimumFreq;
+  uint16_t   maximumFreq;
+  uint16_t   currentFreq;
+  uint16_t   currentStep;
+  uint8_t    currentSSB;
 } Band;
 
 Band band[] = {
@@ -122,9 +122,9 @@ Band band[] = {
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int  currentFreqIdx = 2;
 
-byte rssi = 0;
-byte stereo = 1;
-byte volume = 0;
+uint8_t rssi = 0;
+uint8_t stereo = 1;
+uint8_t volume = 0;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);

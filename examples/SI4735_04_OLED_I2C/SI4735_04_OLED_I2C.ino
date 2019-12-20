@@ -45,13 +45,13 @@ long elapsedButton = millis();
 volatile int encoderCount = 0;
 
 // Some variables to check the SI4735 status
-unsigned currentFrequency;
-unsigned previousFrequency;
-unsigned lastAmFrequency = 810;     // Starts AM on 810KHz;
-unsigned lastFmFrequency = 10390;   // Starts FM on 103,9MHz
-byte rssi = 0;
-byte stereo = 1;
-byte volume = 0;
+uint16_t currentFrequency;
+uint16_t previousFrequency;
+uint16_t lastAmFrequency = 810;     // Starts AM on 810KHz;
+uint16_t lastFmFrequency = 10390;   // Starts FM on 103,9MHz
+uint8_t rssi = 0;
+uint8_t stereo = 1;
+uint8_t volume = 0;
 
 
 // Devices class declarations
@@ -187,7 +187,7 @@ void showRSSI() {
   display.print(" dBuV");
   
   display.setCursor(70, 7);
-  for (byte i = 0; i < 10; i++)  {
+  for (uint8_t i = 0; i < 10; i++)  {
     if ( i < blk ) 
       display.print("#");
     else

@@ -44,11 +44,11 @@ long elapsedRSSI = millis();
 volatile int encoderCount = 0;
 
 // Some variables to check the SI4735 status
-unsigned currentFrequency;
-unsigned previousFrequency;
-byte rssi = 0;
-byte stereo = 1;
-byte volume = 0;
+uint16_t currentFrequency;
+uint16_t previousFrequency;
+uint8_t rssi = 0;
+uint8_t stereo = 1;
+uint8_t volume = 0;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
@@ -195,14 +195,12 @@ void showVolume()
 
 
 
-void showSmeter(unsigned signalLevel)
+void showSmeter(uint16_t signalLevel)
 {
-  static byte buffer[20]; 
-  static unsigned sample; 
-  static byte idx = 0;
+  static uint8_t buffer[20]; 
+  static uint16_t sample; 
+  static uint8_t idx = 0;
   static bool isFull = false;
-  static unsigned int maxSignal = 0;
-  static unsigned int minSignal = 2014;
   const int hMeter = 65; // horizontal center for needle animation
   const int vMeter = 85; // vertical center for needle animation (outside of dislay limits)
   const int rMeter = 80;
