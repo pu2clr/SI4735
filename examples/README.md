@@ -138,7 +138,8 @@ __Pay attention to the your I2C device voltage. The system can become unstable i
 
 ## Example 05 - Bandwidth filter test (9 band SW Receiver with OLED)
 
-This example is a 9 band SW receiver based on SI4735.  It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). With this resource, you can separate  two stations in adjacent channels. __You can use the same schematic shown for the examples 03 and 04__. 
+This example is a 11 band SW receiver based on SI4735.  It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). With this resource, you can separate  two stations in adjacent channels. __You can use the same schematic shown for the examples 03 and 04__. 
+
 
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_05_SW_OLED_FILTER_TEST/SI4735_05_SW_OLED_FILTER_TEST.ino) to see this example.
 
