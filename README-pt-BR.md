@@ -2,7 +2,7 @@
 
 Esta é uma biblioteca para o ambiente de desenvolvimento Arduino que implementa as funções do CI SI4735, BROADCAST AM / FM / SW RADIO RECEPTOR da Silicon Labs. Esta biblioteca tem o propósito de fornecer uma interface de programação mais amigável aos projetistas de rádios baseados no SI4735. __A comunicação usada por esta biblioteca é I2C__. Consulte as [Características desta Biblioteca](https://github.com/pu2clr/SI4735/blob/master/) para mais detalhes. 
 
-Esta biblioteca foi construída com bases no [“__Si47XX PROGRAMMING GUIDE; AN332__”](https://www.silabs.com/documents/public/application-notes/AN332.pdf) (guia de programação da própria Silicon Labs). Portanto, ela poderá ser usada em todos os integrantes da família SI47XX, respeitando, é claro, as funcionalidades disponíveis para cada versão do CI. Essas funcionalidades podem ser conferidas na matriz de comparação exposta na tebela 1 (__Product Family Function__); páginas 2 e 3 do referido guia. 
+Esta biblioteca foi construída com bases no [“__Si47XX PROGRAMMING GUIDE; AN332__”](https://www.silabs.com/documents/public/application-notes/AN332.pdf). Portanto, ela poderá ser usada em todos os integrantes da família SI47XX, respeitando, é claro, as funcionalidades disponíveis para cada versão do CI. Essas funcionalidades podem ser conferidas na matriz de comparação exposta na tebela 1 (__Product Family Function__); páginas 2 e 3 do referido guia. 
 
 Esta biblioteca pode ser livrimente copiada e distribuída. O modelo de licença utilizado é o do MIT, cujos termos podem ser lidos no documento [__license.txt__](./license.txt). 
 [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#mit-licence)  
