@@ -139,7 +139,7 @@ void showSeparator()
 void showHelp() {
   showSeparator();
   Serial.println("Type: ");
-  Serial.println("U to frequenct up or D to frequency down");
+  Serial.println("U to frequency up or D to frequency down");
   Serial.println("> to go to the next band or < to go to the previous band");
   Serial.println("W to sitch the filter bandwidth");
   Serial.println("B to go to increment the BFO or b decrement the BFO");

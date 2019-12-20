@@ -8,8 +8,8 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 2. [Example 02 - Proof of Concept with SW](https://github.com/pu2clr/SI4735/tree/master/examples#example-02---proof-of-concept-with-sw)
 3. [Example 03 - SS4735 Arduino Library example with LCD 20x4 I2C](https://github.com/pu2clr/SI4735/tree/master/examples#example-03---ss4735-arduino-library-example-with-lcd-20x4-i2c)
 4. [Example 04 - SS4735 Arduino Library example with I2C OLED](https://github.com/pu2clr/SI4735/tree/master/examples#example-04---ss4735-arduino-library-example-with-i2c-oled)
-5. [Example 05 - Bandwidth filter on MW (AM)](https://github.com/pu2clr/SI4735/tree/master/examples#example-05---bandwidth-filter-on-mw-am)
-6. [Example 06 - Bandwidth filter test (9 band SW Receiver with OLED)](https://github.com/pu2clr/SI4735/tree/master/examples#example-06---bandwidth-filter-test-9-band-sw-receiver-with-oled)
+5. [Example 05 - Bandwidth filter test (9 band SW Receiver with OLED)]()
+6. [Example 06 - Proof of COncept with SSB]()
 7. [Example 07 - Si4735 SSB firmware update support - OLED/I2C Suport)](https://github.com/pu2clr/SI4735/tree/master/examples#example-07---si4735-ssb-firmware-update-support)
 8. [Example 08 - Si4735 SSB firmware update support - LCD/I2C Support](https://github.com/pu2clr/SI4735/tree/master/examples#example-08---si4735-ssb-firmware-update-support---lcdi2c-support)
 9. [Example 09 - Si4735 AM/FM radio with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-09---si4735-amfm-radio-with-oled-s-meter)
@@ -135,23 +135,67 @@ __Pay attention to the your I2C device voltage. The system can become unstable i
 <BR>
 
 
-## Example 05 - Bandwidth filter on MW (AM)
 
-Bandwidth of the channel filter for AM reception.  This sketch tests the bandwidth configuration on Si4735 device. It uses the Serial Monitor (Arduino IDE). The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz).
- 
-Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_05_AM_FILTERS/SI4735_05_AM_FILTERS.ino) to see this example.
-
-
-<BR>
-
-
-## Example 06 - Bandwidth filter test (9 band SW Receiver with OLED)
+## Example 05 - Bandwidth filter test (9 band SW Receiver with OLED)
 
 This example is a 9 band SW receiver based on SI4735.  It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). With this resource, you can separate  two stations in adjacent channels. __You can use the same schematic shown for the examples 03 and 04__. 
 
-Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_06_SW_OLED_FILTER_TEST/SI4735_06_SW_OLED_FILTER_TEST.ino) to see this example.
+Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_05_SW_OLED_FILTER_TEST/SI4735_05_SW_OLED_FILTER_TEST.ino) to see this example.
 
 __Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__.
+
+<BR>
+
+## Example 06 - Proof of COncept with SSB
+
+This example shows how can you use SSB features of the Si4735 Arduino Library. It uses the Serial Monitor to get the commands and show the information. 
+
+This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.
+    
+In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
+There is little information available about patching the SI4735. The following information is the understanding of the author of 
+this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device. 
+Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device. 
+Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by 
+the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
+Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
+
+ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment. 
+Given this, it is at your own risk to continue with the procedures suggested here. 
+This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60. 
+Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.  
+
+Features of this sketch: 
+
+1) Internal Arduino pull-up (no external resistors on schematic for buttons and encoder);
+2) Only SSB (LSB and USB);
+3) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+4) Ten ham radio bands pre configured;
+5) BFO Control; and
+6) Frequency step switch (1, 5 and 10KHz);
+
+  Main Parts: 
+  Encoder with push button; 
+  Seven bush buttons;
+  OLED Display with I2C protocol;
+  Arduino Pro mini 3.3V;  
+
+### Commands tha you can use via Arduino Serial Monitor
+| key | Description  |
+| --- | -----------  |
+| U   | frequency up | 
+| D   | frequency down |
+| >   | next band | 
+| <   | previous band |
+| W   | sitches the filter bandwidth |
+| B   | increments the BFO |
+| b   | decrement the BFO |
+| G   | switches on/off the Automatic Gain Control |
+| S   | switches the frequency increment and decrement step |
+| s   | switches the BFO increment and decrement step |
+| H   | shows this help |
+
+
 
 <BR>
 
