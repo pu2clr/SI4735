@@ -568,12 +568,12 @@ void SI4735::getAutomaticGainControl()
  * (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation);
  * 
  * @param uint8_t AGCDIS This param selects whether the AGC is enabled or disabled (0 = AGC enabled; 1 = AGC disabled);
- * @param uint8_t AGCDX AGC Index (0 = Minimum attenuation (max gain); 1 – 36 = Intermediate attenuation); 
+ * @param uint8_t AGCIDX AGC Index (0 = Minimum attenuation (max gain); 1 – 36 = Intermediate attenuation); 
  *             > 37 - Maximum attenuation (min gain) ).
  * 
  * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 
  */
-void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCDX)
+void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
 {
     si47x_agc_overrride agc;
 
@@ -582,7 +582,7 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCDX)
     cmd = (currentTune == FM_TUNE_FREQ) ? FM_AGC_OVERRIDE : AM_AGC_OVERRIDE;
 
     agc.arg.AGCDIS = AGCDIS;
-    agc.arg.AGCDX = AGCDX;
+    agc.arg.AGCIDX = AGCIDX;
 
     waitToSend();
 

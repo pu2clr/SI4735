@@ -39,7 +39,9 @@ So, I strongly recommend starting with this sketch. This example is a proof of c
 | s | Seek - Goes to previous station |
 | + | Volume Up |
 | - | Volume Down |
-| 0 | Show current status | 
+| 0 | Shows current status | 
+| 1 | Goes to previous SW band | 
+| 2 | Goes to next SW band |
 
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_01_POC/SI4735_01_POC.ino) to see this example.
 
@@ -193,6 +195,7 @@ Features of this sketch:
 | G   | switches on/off the Automatic Gain Control |
 | S   | switches the frequency increment and decrement step |
 | s   | switches the BFO increment and decrement step |
+| X   | shows the current status | 
 | H   | shows this help |
 
 

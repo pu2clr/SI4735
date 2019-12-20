@@ -31,7 +31,7 @@ typedef struct {
 
 Band band[] = {{4700, 5200, 4850, 5},
   {5700, 6200, 6000, 5},
-  {7000, 7500, 7200, 5},
+  {7100, 7600, 7300, 5},
   {9300, 10000, 9600, 5},
   {11400, 12200, 11940, 5},
   {13500, 13900, 13600, 5},
@@ -42,7 +42,7 @@ Band band[] = {{4700, 5200, 4850, 5},
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int  currentFreqIdx = 2; // 41M
+int  currentFreqIdx = 1; // 41M
 
 uint16_t currentFrequency;
 
@@ -72,7 +72,7 @@ void setup()
 
 // Instructions
 void showHelp() {
-  Serial.println("Type F to FM; A to MW; L to LW; and 1 to SW");
+  Serial.println("Type F to FM; A to MW; and 1 or 2 to SW");
   Serial.println("Type U to increase and D to decrease the frequency");
   Serial.println("Type S or s to seek station Up or Down");
   Serial.println("Type + or - to volume Up or Down");

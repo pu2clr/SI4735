@@ -553,7 +553,7 @@ typedef union {
         uint8_t AGCDIS : 1; // This bit indicates if the AGC is enabled or disabled. 0 = AGC enabled; 1 = AGC disabled.
         uint8_t DUMMY : 7;
         // RESP2
-        uint8_t AGCDX; // For FM (5 bits - READ_LNA_GAIN_INDEX - 0 = Minimum attenuation (max gain)). For AM (8 bits). This byte reports the current AGC gain index.
+        uint8_t AGCIDX; // For FM (5 bits - READ_LNA_GAIN_INDEX - 0 = Minimum attenuation (max gain)). For AM (8 bits). This byte reports the current AGC gain index.
     } refined;
     uint8_t raw[3];
 } si47x_agc_status;
@@ -571,7 +571,7 @@ typedef union {
         uint8_t AGCDIS : 1; // if set to 1 indicates if the AGC is disabled. 0 = AGC enabled; 1 = AGC disabled.
         uint8_t DUMMY : 7;
         // ARG2
-        uint8_t AGCDX; // AGC Index; If AMAGCDIS = 1, this byte forces the AGC gain index; 0 = Minimum attenuation (max gain)
+        uint8_t AGCIDX; // AGC Index; If AMAGCDIS = 1, this byte forces the AGC gain index; 0 = Minimum attenuation (max gain)
     } arg;
     uint8_t raw[2];
 } si47x_agc_overrride;
@@ -700,8 +700,8 @@ public:
     void getAutomaticGainControl();
 
     inline bool isAgcEnabled() { return !currentAgcStatus.refined.AGCDIS; };  // Returns true if the AGC is enabled
-    inline uint8_t getAgcGainIndex() { return currentAgcStatus.refined.AGCDX; }; // Returns the current AGC gain index.
-    void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCDX);                    // Overrides the AGC setting
+    inline uint8_t getAgcGainIndex() { return currentAgcStatus.refined.AGCIDX; }; // Returns the current AGC gain index.
+    void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX);                    // Overrides the AGC setting
 
     /* RQS STATUS RESPONSE 
      * 

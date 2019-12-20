@@ -51,7 +51,7 @@
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
 #define AM_FUNCTION 1
-#define RESET_PIN -1
+#define RESET_PIN 12
 
 #define LSB 1
 #define USB 2
@@ -96,8 +96,7 @@ int currentFreqIdx = 2;
 uint8_t currentAGCAtt = 0;
 
 uint8_t rssi = 0;
-uint8_t stereo = 1;
-uint8_t volume = 0;
+
 
 SI4735 si4735;
 
@@ -105,13 +104,12 @@ void setup()
 {
 
   Serial.begin(9600);
-  while (!Serial)
-    ;
 
+  
   Serial.println("Si4735 Arduino Library");
   Serial.println("SSB TEST");
   Serial.println("By PU2CLR");
-
+  
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
   // Testing I2C clock speed and SSB behaviour
@@ -134,7 +132,7 @@ void setup()
 
 void showSeparator()
 {
-  Serial.println("**************************");
+  Serial.println("\n**************************");
 }
 
 void showHelp()
@@ -149,6 +147,7 @@ void showHelp()
   Serial.println("A to switch the LNA Gain Index (0, 1, 5, 15 e 26");
   Serial.println("S to switch the frequency increment and decrement step");
   Serial.println("s to switch the BFO increment and decrement step");
+  Serial.println("X Shows the current status");
   Serial.println("H to show this help");
 }
 
@@ -160,9 +159,9 @@ void showFrequency()
   showSeparator();
   Serial.print("Current Frequency: ");
   Serial.print(freqDisplay);
-  Serial.println("KHz");
+  Serial.print("KHz");
   Serial.print(" | Step: ");
-  Serial.print(currentStep);
+  Serial.println(currentStep);
 }
 
 void showStatus()
@@ -170,26 +169,30 @@ void showStatus()
   showSeparator();
   Serial.print("SSB | ");
 
-  // Show AGC Information
   si4735.getAutomaticGainControl();
+  si4735.getCurrentReceivedSignalQuality();
+    
   Serial.print((si4735.isAgcEnabled()) ? "AGC ON " : "AGC OFF");
   Serial.print(" | LNA GAIN index: ");
   Serial.print(si4735.getAgcGainIndex());
+  Serial.print("/");
+  Serial.print(currentAGCAtt);
+  
   Serial.print(" | BW :");
   Serial.print(String(bandwitdth[bandwidthIdx]));
   Serial.print("KHz");
   Serial.print(" | Signal: ");
-  Serial.print(rssi);
+  Serial.print(si4735.getCurrentRSSI());
   Serial.print(" dBuV");
   Serial.print(" | Volume: ");
-  Serial.print(volume);
+  Serial.println(si4735.getVolume());
   showFrequency();
 }
 
 void showBFO()
 {
-
   String bfo;
+  
   if (currentBFO > 0)
     bfo = "+" + String(currentBFO);
   else
@@ -199,10 +202,12 @@ void showBFO()
 
   Serial.print("BFO: ");
   Serial.print(bfo);
-
+  Serial.print("Hz ");
+  
   Serial.print(" | Step: ");
   Serial.print(currentBFOStep);
-  Serial.print("Hz ");
+  Serial.print("Hz ");  
+
 }
 
 void bandUp()
@@ -220,7 +225,7 @@ void bandUp()
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
   currentStep = band[currentFreqIdx].currentStep;
-  delay(100);
+  delay(250);
   currentFrequency = si4735.getCurrentFrequency();
   showStatus();
 }
@@ -240,10 +245,11 @@ void bandDown()
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
   currentStep = band[currentFreqIdx].currentStep;
-  delay(100);
+  delay(250);
   currentFrequency = si4735.getCurrentFrequency();
   showStatus();
 }
+
 
 void loadSSB()
 {
@@ -278,11 +284,15 @@ void loop()
     if (key == 'U' || key == 'u')
     { // frequency up
       si4735.frequencyUp();
+      delay(250);
+      band[currentFreqIdx].currentFreq = currentFrequency = si4735.getCurrentFrequency();
       showFrequency();
     }
     else if (key == 'D' || key == 'd')
     { // frequency down
       si4735.frequencyDown();
+      delay(250);
+      band[currentFreqIdx].currentFreq = currentFrequency = si4735.getCurrentFrequency();
       showFrequency();
     }
     else if (key == 'W' || key == 'w') // sitches the filter bandwidth
@@ -322,6 +332,7 @@ void loop()
     {
       currentBFO -= currentBFOStep;
       si4735.setSSBBfo(currentBFO);
+      showBFO();
     }
     else if (key == 'G' || key == 'g') // switches on/off the Automatic Gain Control
     {
@@ -342,7 +353,8 @@ void loop()
         currentAGCAtt = 26;
       else
         currentAGCAtt = 0;
-      si4735.setAutomaticGainControl(disableAgc, currentAGCAtt);
+      si4735.setAutomaticGainControl(0 /*disableAgc*/, currentAGCAtt);
+      showStatus();
     }
     else if (key == 's') // switches the BFO increment and decrement step
     {
@@ -366,6 +378,8 @@ void loop()
       avc_en = !avc_en;
       si4735.setSSBAutomaticVolumeControl(avc_en);
     }
+    else if (key == 'X' || key == 'x') 
+      showStatus();
     else if (key == 'H' || key == 'h')
       showHelp();
   }
