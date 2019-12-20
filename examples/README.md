@@ -8,10 +8,10 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 2. [Example 02 - Proof of Concept with SW](https://github.com/pu2clr/SI4735/tree/master/examples#example-02---proof-of-concept-with-sw)
 3. [Example 03 - SS4735 Arduino Library example with LCD 20x4 I2C](https://github.com/pu2clr/SI4735/tree/master/examples#example-03---ss4735-arduino-library-example-with-lcd-20x4-i2c)
 4. [Example 04 - SS4735 Arduino Library example with I2C OLED](https://github.com/pu2clr/SI4735/tree/master/examples#example-04---ss4735-arduino-library-example-with-i2c-oled)
-5. [Example 05 - Bandwidth filter test (9 band SW Receiver with OLED)]()
-6. [Example 06 - Proof of COncept with SSB]()
-7. [Example 07 - Si4735 SSB firmware update support - OLED/I2C Suport)](https://github.com/pu2clr/SI4735/tree/master/examples#example-07---si4735-ssb-firmware-update-support)
-8. [Example 08 - Si4735 SSB firmware update support - LCD/I2C Support](https://github.com/pu2clr/SI4735/tree/master/examples#example-08---si4735-ssb-firmware-update-support---lcdi2c-support)
+5. [Example 05 - Bandwidth filter test (9 band SW Receiver with OLED)](https://github.com/pu2clr/SI4735/tree/master/examples#example-05---bandwidth-filter-test-9-band-sw-receiver-with-oled)
+6. [Example 06 - Proof of Concept with SSB](https://github.com/pu2clr/SI4735/tree/master/examples#example-06---proof-of-concept-with-ssb)
+7. [Example 07 - Si4735 SSB firmware update support with OLED)]()
+8. [Example 08 - Si4735 SSB firmware update support - LCD/I2C Support]()
 9. [Example 09 - Si4735 AM/FM radio with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-09---si4735-amfm-radio-with-oled-s-meter)
 10. [Example 10 - Si4735 SW Receiver with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-10---si4735-sw-receiver-with-oled-s-meter)
 
@@ -146,19 +146,18 @@ __Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__
 
 <BR>
 
-## Example 06 - Proof of COncept with SSB
+## Example 06 - Proof of Concept with SSB
 
 This example shows how can you use SSB features of the Si4735 Arduino Library. It uses the Serial Monitor to get the commands and show the information. 
 
-This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.
+This sketch will download a SSB patch to your SI4735 device (patch_full.h or patch_init.h). It can take up to 15KB of the Arduino memory.
     
 In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
 There is little information available about patching the SI4735. The following information is the understanding of the author of 
 this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device. 
 Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device. 
-Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by 
-the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
-Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
+
+Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system. Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
 
 ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment. 
 Given this, it is at your own risk to continue with the procedures suggested here. 
@@ -196,10 +195,14 @@ Features of this sketch:
 | H   | shows this help |
 
 
+For the example 06 you can use the sketch below.
+
+![Silicon Labs Schematic](../extras/images/basic_schematic.png)
+
 
 <BR>
 
-## Example 07 - Si4735 SSB firmware update support
+## Example 07 - Si4735 SSB firmware update support with OLED/I2C
 
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
 
@@ -252,7 +255,7 @@ __Click [here](https://youtu.be/W2Ssjb9P_f4) to see a video about this example__
 
 <BR>
 
-### Example 08 - Si4735 SSB firmware update support - LCD/I2C Support
+## Example 08 - Si4735 SSB firmware update support with LCD/I2C
 
 
 This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
@@ -292,7 +295,7 @@ Pay attention on the push buttons added on this example. The table below shows t
 | BFO_SWITCH       | 13          | Used to select the enconder control (BFO or VFO) |
 
 
-### Example 09 - Si4735 AM/FM radio with OLED S-Meter
+## Example 09 - Si4735 AM/FM radio with OLED S-Meter
 
 This example uses two display I2C devices and the Si4735 connected on the same I2C bus. 
 It is an simple AM and FM radio. The schematic is the same used on Example 10. See below.
@@ -303,7 +306,7 @@ It is an simple AM and FM radio. The schematic is the same used on Example 10. S
 
 <BR>
 
-### Example 10 - Si4735 SW Receiver with OLED S-Meter 
+## Example 10 - Si4735 SW Receiver with OLED S-Meter 
 
 Like the Example 09, this example uses two display and the SI4735 connect on the same I2C bus.
 This radio has 11 bands.
