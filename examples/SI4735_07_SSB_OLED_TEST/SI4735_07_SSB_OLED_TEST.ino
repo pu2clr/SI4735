@@ -94,6 +94,7 @@ uint16_t currentFrequency;
 uint16_t previousFrequency;
 uint8_t currentStep = 1;
 uint8_t currentBFOStep = 50;
+uint8_t currentAGCAtt = 0;
 
 uint8_t bandwidthIdx = 2;
 char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
@@ -412,7 +413,7 @@ void loop()
     } else if ( digitalRead(AGC_SWITCH) == LOW) {
       disableAgc = !disableAgc;
       // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
-      si4735.setAutomaticGainControl(disableAgc, 0);
+      si4735.setAutomaticGainControl(disableAgc, currentAGCAtt);
       showStatus();
     } else if ( digitalRead(STEP_SWITCH) == LOW) {
       if ( bfoOn ) {

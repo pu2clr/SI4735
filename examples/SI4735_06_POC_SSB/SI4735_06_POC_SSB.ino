@@ -93,6 +93,8 @@ Band band[] = {
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int currentFreqIdx = 2;
 
+uint8_t currentAGCAtt = 0;
+
 uint8_t rssi = 0;
 uint8_t stereo = 1;
 uint8_t volume = 0;
@@ -130,13 +132,13 @@ void setup()
   showStatus();
 }
 
-
 void showSeparator()
 {
   Serial.println("**************************");
 }
 
-void showHelp() {
+void showHelp()
+{
   showSeparator();
   Serial.println("Type: ");
   Serial.println("U to frequency up or D to frequency down");
@@ -144,6 +146,7 @@ void showHelp() {
   Serial.println("W to sitch the filter bandwidth");
   Serial.println("B to go to increment the BFO or b decrement the BFO");
   Serial.println("G to switch on/off the Automatic Gain Control");
+  Serial.println("A to switch the LNA Gain Index (0, 1, 5, 15 e 26");
   Serial.println("S to switch the frequency increment and decrement step");
   Serial.println("s to switch the BFO increment and decrement step");
   Serial.println("H to show this help");
@@ -170,9 +173,9 @@ void showStatus()
   // Show AGC Information
   si4735.getAutomaticGainControl();
   Serial.print((si4735.isAgcEnabled()) ? "AGC ON " : "AGC OFF");
-
-  Serial.print("KHz");
-  Serial.print(" | BW:");
+  Serial.print(" | LNA GAIN index: ");
+  Serial.print(si4735.getAgcGainIndex());
+  Serial.print(" | BW :");
   Serial.print(String(bandwitdth[bandwidthIdx]));
   Serial.print("KHz");
   Serial.print(" | Signal: ");
@@ -272,11 +275,13 @@ void loop()
   if (Serial.available() > 0)
   {
     char key = Serial.read();
-    if (key == 'U' || key == 'u') {  // frequency up
+    if (key == 'U' || key == 'u')
+    { // frequency up
       si4735.frequencyUp();
       showFrequency();
     }
-    else if (key == 'D' || key == 'd') { // frequency down
+    else if (key == 'D' || key == 'd')
+    { // frequency down
       si4735.frequencyDown();
       showFrequency();
     }
@@ -292,16 +297,18 @@ void loop()
       else
         si4735.setSBBSidebandCutoffFilter(1);
       showStatus();
-    } 
+    }
     else if (key == '>' || key == '.') // goes to the next band
       bandUp();
-    else if(key == '<' || key == ',') // goes to the previous band
+    else if (key == '<' || key == ',') // goes to the previous band
       bandDown();
-    else if (key == 'V') { // volume down
+    else if (key == 'V')
+    { // volume down
       si4735.volumeUp();
       showStatus();
     }
-    else if (key == 'v') {  // volume down 
+    else if (key == 'v')
+    { // volume down
       si4735.volumeDown();
       showStatus();
     }
@@ -318,34 +325,48 @@ void loop()
     }
     else if (key == 'G' || key == 'g') // switches on/off the Automatic Gain Control
     {
-        disableAgc = !disableAgc;
-        // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
-        si4735.setAutomaticGainControl(disableAgc, 0);
-        showStatus();
+      disableAgc = !disableAgc;
+      // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
+      si4735.setAutomaticGainControl(disableAgc, currentAGCAtt);
+      showStatus();
+    }
+    else if (key == 'A' || key == 'a') // Switches the LNA Gain index  attenuation 
+    {
+      if (currentAGCAtt == 0)
+        currentAGCAtt = 1;
+      else if (currentAGCAtt == 1)
+        currentAGCAtt = 5;
+      else if (currentAGCAtt == 5)
+        currentAGCAtt = 15;
+      else if (currentAGCAtt == 15)
+        currentAGCAtt = 26;
+      else
+        currentAGCAtt = 0;
+      si4735.setAutomaticGainControl(disableAgc, currentAGCAtt);
     }
     else if (key == 's') // switches the BFO increment and decrement step
     {
-        currentBFOStep = (currentBFOStep == 50) ? 10 : 50;
-        showBFO();
+      currentBFOStep = (currentBFOStep == 50) ? 10 : 50;
+      showBFO();
     }
-    else if (key == 'S')  // switches the frequency increment and decrement step
+    else if (key == 'S') // switches the frequency increment and decrement step
     {
-        if (currentStep == 1)
-          currentStep = 5;
-        else if (currentStep == 5)
-          currentStep = 10;
-        else
-          currentStep = 1;
-        si4735.setFrequencyStep(currentStep);
-        band[currentFreqIdx].currentStep = currentStep;
-        showFrequency();
+      if (currentStep == 1)
+        currentStep = 5;
+      else if (currentStep == 5)
+        currentStep = 10;
+      else
+        currentStep = 1;
+      si4735.setFrequencyStep(currentStep);
+      band[currentFreqIdx].currentStep = currentStep;
+      showFrequency();
     }
     else if (key == 'C' || key == 'c') // switches on/off the Automatic Volume Control
     {
       avc_en = !avc_en;
       si4735.setSSBAutomaticVolumeControl(avc_en);
     }
-    else if (key == 'H' || key == 'h') 
+    else if (key == 'H' || key == 'h')
       showHelp();
   }
   delay(200);
