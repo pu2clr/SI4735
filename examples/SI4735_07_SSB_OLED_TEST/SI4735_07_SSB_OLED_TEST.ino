@@ -337,7 +337,10 @@ void bandDown() {
   currentFrequency = si4735.getCurrentFrequency();
 }
 
-
+/*
+ * This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
+ * SSB mode.
+ */
 void loadSSB()
 {
   delay(100);

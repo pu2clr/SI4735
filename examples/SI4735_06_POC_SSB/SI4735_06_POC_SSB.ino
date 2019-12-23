@@ -87,11 +87,11 @@ Band band[] = {
     {18000, 18300, 18100, 1, USB},
     {21000, 21400, 21200, 1, USB},
     {24890, 25000, 24940, 1, USB},
-    {27000, 27500, 27220, 1, USB},
+    {27000, 27700, 27300, 1, USB},
     {28000, 28500, 28400, 1, USB}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int currentFreqIdx = 2;
+int currentFreqIdx = 9;
 
 uint8_t currentAGCAtt = 0;
 
@@ -250,7 +250,10 @@ void bandDown()
   showStatus();
 }
 
-
+/*
+ * This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
+ * SSB mode.
+ */
 void loadSSB()
 {
   delay(100);

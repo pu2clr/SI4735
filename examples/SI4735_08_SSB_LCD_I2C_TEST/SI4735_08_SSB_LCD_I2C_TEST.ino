@@ -193,10 +193,7 @@ void setup()
 // Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
 void rotaryEncoder()
 { // rotary encoder events
-
-
   uint8_t encoderStatus = encoder.process();
-
   if (encoderStatus)
   {
     if (encoderStatus == DIR_CW)
@@ -208,7 +205,6 @@ void rotaryEncoder()
       encoderCount = -1;
     }
   }
-
 }
 
 // Show current frequency
@@ -356,7 +352,10 @@ void bandDown() {
   showStatus();
 }
 
-
+/*
+ * This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
+ * SSB mode.
+ */
 void loadSSB()
 {
   delay(100);
@@ -434,6 +433,7 @@ void loop()
         showBFO();
       else
         showStatus();
+      delay(200);  // waits a little more for releasing the button.    
     } else if ( digitalRead(AGC_SWITCH) == LOW) {
       disableAgc = !disableAgc;
       // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
