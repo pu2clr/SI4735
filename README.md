@@ -267,7 +267,7 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 * Pin 8 connects to the FM antenna interface, and pin 12 connects to the AM antenna interface.
 * Place Si473x-D60 as close as possible to antenna and keep the FMI and AMI traces as short as possible.
 
-
+<BR>
 
 ## Photos (Tools and Accessories) 
 
