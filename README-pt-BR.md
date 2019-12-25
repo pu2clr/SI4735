@@ -274,7 +274,7 @@ Este item apresenta algumas ferraentas e acessórios podem ser úteis em sua mon
 |---------------|---------------|  
 |![Arduino Pro Mini 01](./extras/images/tools_arduino_02_A.png)|![Arduino Pro Mini 02](./extras/images/tools_arduino_02_B.png)|
 
-* Pro Mini 3.3V 8M /5V 16M Atmega328 Replace ATmega128 Arduino Compatible Nano
+* Pro Mini 3.3V 8MHz /5V 16M Atmega328 Replace ATmega128 Arduino Compatible Nano
 
 <BR> 
 

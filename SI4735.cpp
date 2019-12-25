@@ -1410,7 +1410,7 @@ void SI4735::ssbPowerUp()
  * 
  *  @return false if an error is found.
  */
-bool SI4735::downloadPatch(uint8_t *ssb_patch_content, uint16_t  ssb_patch_content_size)
+bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t  ssb_patch_content_size)
 {
     uint8_t content, cmd_status;
     int i, line, offset;
