@@ -110,6 +110,8 @@ uint8_t currentBFOStep = 50;
 uint8_t bandwidthIdx = 2;
 char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
+char *bandModeDesc[] = {"FM", "LSB", "USB", "AM"};
+
 /*
  * Band data structure
  */
@@ -135,8 +137,8 @@ Band band[] = {
     {SW_BAND_TYPE, 5600, 6300, 6000, 5, AM},
     {SW_BAND_TYPE, 7000, 7300, 7100, 1, LSB}, // 40 meters
     {SW_BAND_TYPE, 7300, 7800, 7350, 5, AM},
-    {SW_BAND_TYPE, 9300, 10000, 9400, 5, AM},
-    {SW_BAND_TYPE, 10000, 10500, 10050, 1, USB}, // 30 meters 
+    {SW_BAND_TYPE, 9300, 10000, 9600, 5, AM},
+    {SW_BAND_TYPE, 10000, 10500, 10050, 1, USB}, // 30 meters
     {SW_BAND_TYPE, 11200, 12500, 11940, 5, AM},
     {SW_BAND_TYPE, 13400, 13900, 13600, 5, AM},
     {SW_BAND_TYPE, 14000, 14500, 14200, 1, USB}, // 20 meters
@@ -151,7 +153,7 @@ Band band[] = {
     {SW_BAND_TYPE, 28000, 30000, 28400, 1, USB}}; // 10 meters
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int bandIdx = 2;
+int bandIdx = 0;
 
 uint8_t rssi = 0;
 uint8_t stereo = 1;
@@ -164,7 +166,6 @@ SI4735 si4735;
 
 void setup()
 {
-
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
@@ -190,10 +191,10 @@ void setup()
   display.setCursor(2, 1);
   display.print("Arduino Library");
   delay(500);
-  display.setCursor(6, 2);
-  display.print("SSB TEST");
+  display.setCursor(1, 2);
+  display.print("All in One Radio");
   delay(500);
-  display.setCursor(6, 3);
+  display.setCursor(4, 3);
   display.print("By PU2CLR");
   delay(2000);
   // end Splash
@@ -201,6 +202,13 @@ void setup()
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
+
+  si4735.setup(RESET_PIN, MW_BAND_TYPE);
+
+  // Set up the radio for the current band (see index table variable bandIdx )
+  useBand();
+
+  currentFrequency = previousFrequency = si4735.getFrequency();
 
   si4735.setVolume(45);
   display.clear();
@@ -228,29 +236,48 @@ void rotaryEncoder()
 
 void showFrequency()
 {
-
   String freqDisplay;
-  freqDisplay = String((float)currentFrequency / 1000, 3);
+  String unit;
+  String bandMode;
+  int divider = 1;
+  int decimals = 3;
+  if (band[bandIdx].bandType == FM_BAND_TYPE)
+  {
+    divider = 100;
+    decimals = 1;
+    unit = "MHz";
+  }
+  else if (band[bandIdx].bandType == MW_BAND_TYPE)
+  {
+    divider = 1;
+    decimals = 0;
+    unit = "KHz";
+  }
+  else
+  {
+    divider = 1000;
+    decimals = 3;
+    unit = "KHz";
+  }
+
+  freqDisplay = String((float)currentFrequency / divider, decimals);
 
   display.setCursor(7, 0);
   display.print("        ");
   display.setCursor(7, 0);
   display.print(freqDisplay);
+
+  bandMode = bandModeDesc[band[bandIdx].modeOperation];
+
+  display.setCursor(0, 0);
+  display.print(bandMode);
+
+  display.setCursor(16, 0);
+  display.print(unit);
 }
 
 void showStatus()
 {
-  String unit;
-  String bandMode;
-
-  bandMode = String("SSB");
-  unit = "KHz";
-
-  display.setCursor(0, 0);
-  display.print(String(bandMode));
-
-  display.setCursor(16, 0);
-  display.print(unit);
 
   showFrequency();
 
@@ -343,14 +370,7 @@ void bandUp()
   {
     bandIdx = 0;
   }
-
-  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, band[bandIdx].modeOperation);
-  currentStep = band[bandIdx].currentStep;
-  // Show the current frequency only if it has changed
-  delay(250);
-  currentFrequency = si4735.getFrequency();
-  showStatus();
+  useBand();
 }
 
 void bandDown()
@@ -366,30 +386,7 @@ void bandDown()
   {
     bandIdx = lastBand;
   }
-  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, band[bandIdx].modeOperation);
-  currentStep = band[bandIdx].currentStep;
-  delay(250);
-  // Show the current frequency only if it has changed
-  currentFrequency = si4735.getFrequency();
-  showStatus();
-}
-
-/*
- * Switches the radio to SSB mode 
- */
-void switchToSSB()
-{
-
-  si4735.setup(RESET_PIN, MW_BAND_TYPE);
-
-  delay(100);
-  loadSSB();
-  delay(250);
-  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, band[bandIdx].modeOperation);
-  delay(250);
-  currentFrequency = previousFrequency = si4735.getFrequency();
+  useBand();
 }
 
 /*
@@ -418,11 +415,46 @@ void loadSSB()
 }
 
 /*
+ * Band
+ */
+void useBand()
+{
+
+  if (band[bandIdx].bandType == FM_BAND_TYPE)
+  {
+    si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+  }
+  else if (band[bandIdx].bandType == MW_BAND_TYPE)
+  {
+    si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+  }
+  else if (band[bandIdx].bandType == SW_BAND_TYPE)
+  {
+    if (band[bandIdx].modeOperation != AM)
+    {
+      // switch to SSB mode. Load the patch
+      si4735.setup(RESET_PIN, MW_BAND_TYPE);
+      delay(100);
+      loadSSB();
+      delay(250);
+      si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
+      si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, band[bandIdx].modeOperation);
+      delay(250);
+    }
+    else
+    {
+      si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+    }
+  }
+  currentFrequency = si4735.getFrequency();
+  showStatus();
+}
+
+/*
    Main
 */
 void loop()
 {
-
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
