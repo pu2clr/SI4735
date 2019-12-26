@@ -47,7 +47,9 @@
 
 const uint16_t size_content = sizeof ssb_patch_content;  // see ssb_patch_content in patch_full.h or patch_init.h
 
-#define AM_FUNCTION 1
+#define FM_OPERATION 0
+#define MW_OPERATION 1
+#define SW_OPERATION 2
 
 // OLED Diaplay constants
 #define I2C_ADDRESS 0x3C
@@ -73,8 +75,11 @@ const uint16_t size_content = sizeof ssb_patch_content;  // see ssb_patch_conten
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
+
+#define FM  0
 #define LSB 1
 #define USB 2
+#define AM  3 
 
 bool bfoOn = false;
 bool disableAgc = true;
@@ -101,24 +106,27 @@ char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 
 typedef struct {
+  uint8_t    bandType;     
   uint16_t   minimumFreq;
   uint16_t   maximumFreq;
   uint16_t   currentFreq;
   uint16_t   currentStep;
-  uint8_t    currentSSB;
+  uint8_t    currentMode;
 } Band;
 
 Band band[] = {
-    {1800, 2000, 1900, 1, LSB},
-    {3500, 4000, 3700, 1, LSB},
-    {7000, 7500, 7100, 1, LSB},
-    {10000, 10500, 10050, 1, USB},
-    {14000, 14300, 14200, 1, USB},
-    {18000, 18300, 18100, 1, USB},
-    {21000, 21400, 21200, 1, USB},
-    {24890, 25000, 24940, 1, USB},
-    {27000, 27500, 27220, 1, USB},
-    {28000, 28500, 28400, 1, USB}};
+    {FM_OPERATION, 8400, 10800, 10390, 10, FM},
+    {MW_OPERATION, 570, 1720, 810, 10, AM},
+    {SW_OPERATION, 1800, 2000, 1900, 1, LSB},
+    {SW_OPERATION, 3500, 4000, 3700, 1, LSB},
+    {SW_OPERATION, 7000, 7500, 7100, 1, LSB},
+    {SW_OPERATION, 10000, 10500, 10050, 1, USB},
+    {SW_OPERATION, 14000, 14300, 14200, 1, USB},
+    {SW_OPERATION, 18000, 18300, 18100, 1, USB},
+    {SW_OPERATION, 21000, 21400, 21200, 1, USB},
+    {SW_OPERATION, 24890, 25000, 24940, 1, USB},
+    {SW_OPERATION, 27000, 27500, 27220, 1, USB},
+    {SW_OPERATION, 28000, 28500, 28400, 1, USB}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int  currentFreqIdx = 2;
@@ -172,19 +180,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  si4735.setup(RESET_PIN, AM_FUNCTION);
 
-  // Testing I2C clock speed and SSB behaviour
-  // si4735.setI2CLowSpeedMode();     //  10000 (10KHz)
-  // si4735.setI2CStandardMode();     // 100000 (100KHz)
-  // si4735.setI2CFastMode();            // 400000 (400KHz)
-  delay(100);
-  loadSSB();
-  delay(250);
-  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
-  delay(250);
-  currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
   display.clear();
   showStatus();
@@ -326,7 +322,7 @@ void bandUp() {
   }
 
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
+  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentMode);
   currentStep = band[currentFreqIdx].currentStep;
   // Show the current frequency only if it has changed
   delay(250);
@@ -344,13 +340,32 @@ void bandDown() {
     currentFreqIdx = lastBand;
   }
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep,  band[currentFreqIdx].currentSSB);
+  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep,  band[currentFreqIdx].currentMode);
   currentStep = band[currentFreqIdx].currentStep;
   delay(250);
   // Show the current frequency only if it has changed
   currentFrequency = si4735.getFrequency();
   showStatus();
 }
+
+
+/*
+ * Switches the radio to SSB mode 
+ */
+void switchToSSB() {
+
+  si4735.setup(RESET_PIN, MW_OPERATION);
+
+  delay(100);
+  loadSSB();
+  delay(250);
+  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
+  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentMode);
+  delay(250);
+  currentFrequency = previousFrequency = si4735.getFrequency();  
+  
+}
+
 
 /*
  * This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
