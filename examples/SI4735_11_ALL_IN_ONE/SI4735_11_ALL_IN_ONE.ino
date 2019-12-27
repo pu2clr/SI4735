@@ -136,7 +136,7 @@ Band band[] = {
     {SW_BAND_TYPE, 4500, 5300, 4800, 5, AM},
     {SW_BAND_TYPE, 5600, 6300, 6000, 5, AM},
     {SW_BAND_TYPE, 7000, 7300, 7100, 1, LSB}, // 40 meters
-    {SW_BAND_TYPE, 7300, 7800, 7350, 5, AM},
+    {SW_BAND_TYPE, 7200, 7800, 7350, 5, AM},
     {SW_BAND_TYPE, 9300, 10000, 9600, 5, AM},
     {SW_BAND_TYPE, 10000, 10500, 10050, 1, USB}, // 30 meters
     {SW_BAND_TYPE, 11200, 12500, 11940, 5, AM},
@@ -157,7 +157,7 @@ int bandIdx = 0;
 
 uint8_t rssi = 0;
 uint8_t stereo = 1;
-uint8_t volume = 0;
+uint8_t volume = 50;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
@@ -210,7 +210,7 @@ void setup()
 
   currentFrequency = previousFrequency = si4735.getFrequency();
 
-  si4735.setVolume(45);
+  si4735.setVolume(volume);
   display.clear();
   showStatus();
 }
@@ -426,7 +426,10 @@ void useBand()
   }
   else if (band[bandIdx].bandType == MW_BAND_TYPE)
   {
+    si4735.setTuneFrequencyAntennaCapacitor(0); 
     si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+    delay(250);
+    si4735.setVolume(volume);
   }
   else if (band[bandIdx].bandType == SW_BAND_TYPE)
   {
@@ -437,15 +440,19 @@ void useBand()
       delay(100);
       loadSSB();
       delay(250);
-      si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, band[bandIdx].modeOperation);
       delay(250);
     }
     else
     {
+      si4735.reset(); 
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+      delay(250);
+      volume = 50;
+      si4735.setVolume(volume);
     }
   }
+  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   currentFrequency = si4735.getFrequency();
   showStatus();
 }
@@ -498,10 +505,14 @@ void loop()
       bandUp();
     else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
       bandDown();
-    else if (digitalRead(VOL_UP) == LOW)
+    else if (digitalRead(VOL_UP) == LOW) {
       si4735.volumeUp();
-    else if (digitalRead(VOL_DOWN) == LOW)
+      volume = si4735.getVolume();
+    }
+    else if (digitalRead(VOL_DOWN) == LOW) {
       si4735.volumeDown();
+      volume = si4735.getVolume();     
+    }
     else if (digitalRead(BFO_SWITCH) == LOW)
     {
       bfoOn = !bfoOn;

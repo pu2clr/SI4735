@@ -658,12 +658,13 @@ private:
 
     uint8_t currentSsbStatus;
 
-    void reset(void);
+    // void reset(void);
     void waitInterrupr(void);
     void sendSSBModeProperty(); // Sends SSB_MODE property to the device.
 
 public:
     SI4735();
+    void reset(void);
     void waitToSend(void); // Wait for Si4735 device ready to receive command
     void setup(uint8_t resetPin, uint8_t defaultFunction);
     void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction);
