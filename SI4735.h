@@ -658,7 +658,6 @@ private:
 
     uint8_t currentSsbStatus;
 
-    // void reset(void);
     void waitInterrupr(void);
     void sendSSBModeProperty(); // Sends SSB_MODE property to the device.
 
