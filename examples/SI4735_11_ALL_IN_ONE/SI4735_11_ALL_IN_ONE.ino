@@ -1,15 +1,14 @@
 /*
-  
   Attention: under construction.....
-  
-  SI4735 all in one with SSB Support 
-  
+
+  SI4735 all in one with SSB Support
+
   This sketch was tested on Arduino Pro Mini 3.3V
   This sketch uses LiquidCrystal/LCD with I2C and Encoder.
 
-  This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included 
-  together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C). 
-  Look for LiquidCrystal I2C on Manager Libraries.   
+  This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
+  together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C).
+  Look for LiquidCrystal I2C on Manager Libraries.
 
   This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 8KB of the Arduino memory.
 
@@ -68,7 +67,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
-#define AVC_SWITCH 4       // Switch SSB Automatic Volume Control ON/OFF
+#define MODE_SWITCH 4      // Switch MODE (Am/LSB/USB)
 #define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
@@ -77,19 +76,25 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define AGC_SWITCH 11      // Switch AGC ON/OF
 #define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
-// Seek Function
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
+
+#define DEFAULT_VOLUME 50 // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
 #define USB 2
 #define AM 3
 
+#define SSB 1
+
+char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
+uint8_t currentMode = FM;
+
 bool bfoOn = false;
 bool disableAgc = true;
-bool avc_en = true;
+bool ssbLoaded = false;
 
 int currentBFO = 0;
 int previousBFO = 0;
@@ -107,57 +112,52 @@ uint16_t previousFrequency;
 uint8_t currentStep = 1;
 uint8_t currentBFOStep = 50;
 
-uint8_t bandwidthIdx = 2;
-char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+uint8_t bwIdxSSB = 2;
+char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
-char *bandModeDesc[] = {"FM", "LSB", "USB", "AM"};
+uint8_t bwIdxAM = 1;
+char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 /*
- * Band data structure
- */
+   Band data structure
+*/
 typedef struct
 {
-  uint8_t bandType;      // Band type (FM, MW or SW)
-  uint16_t minimumFreq;  // Minimum frequency of the band
-  uint16_t maximumFreq;  // maximum frequency of the band
-  uint16_t currentFreq;  // Default frequency or current frequency
-  uint16_t currentStep;  // Defeult step (increment and decrement)
-  uint8_t modeOperation; // Default Operation mode (AM, FM, SSB)
+  uint8_t bandType;     // Band type (FM, MW or SW)
+  uint16_t minimumFreq; // Minimum frequency of the band
+  uint16_t maximumFreq; // maximum frequency of the band
+  uint16_t currentFreq; // Default frequency or current frequency
+  uint16_t currentStep; // Defeult step (increment and decrement)
 } Band;
 
 /*
- * Band tables
- */
+   Band tables
+*/
 Band band[] = {
-    {FM_BAND_TYPE, 8400, 10800, 10390, 10, FM},
-    {MW_BAND_TYPE, 570, 1720, 810, 10, AM},
-    {SW_BAND_TYPE, 1800, 3500, 1900, 1, LSB}, // 160 meters
-    {SW_BAND_TYPE, 3500, 4000, 3700, 1, LSB}, // 80 meters
-    {SW_BAND_TYPE, 4500, 5300, 4800, 5, AM},
-    {SW_BAND_TYPE, 5600, 6300, 6000, 5, AM},
-    {SW_BAND_TYPE, 7000, 7300, 7100, 1, LSB}, // 40 meters
-    {SW_BAND_TYPE, 7200, 7800, 7350, 5, AM},
-    {SW_BAND_TYPE, 9300, 10000, 9600, 5, AM},
-    {SW_BAND_TYPE, 10000, 10500, 10050, 1, USB}, // 30 meters
-    {SW_BAND_TYPE, 11200, 12500, 11940, 5, AM},
-    {SW_BAND_TYPE, 13400, 13900, 13600, 5, AM},
-    {SW_BAND_TYPE, 14000, 14500, 14200, 1, USB}, // 20 meters
-    {SW_BAND_TYPE, 15000, 15900, 15300, 5, AM},
-    {SW_BAND_TYPE, 17200, 17900, 17600, 5, AM},
-    {SW_BAND_TYPE, 18000, 18300, 18100, 1, USB}, // 17 meters
-    {SW_BAND_TYPE, 21000, 21400, 21200, 1, USB}, // 15 mters
-    {SW_BAND_TYPE, 21500, 21900, 21525, 5, AM},
-    {SW_BAND_TYPE, 24890, 25000, 24940, 1, USB}, // 12 meters
-    {SW_BAND_TYPE, 25670, 26200, 25800, 5, AM},
-    {SW_BAND_TYPE, 26200, 27900, 27500, 1, USB},  // CB band (11 meters)
-    {SW_BAND_TYPE, 28000, 30000, 28400, 1, USB}}; // 10 meters
+    {FM_BAND_TYPE, 8400, 10800, 10390, 10},
+    {MW_BAND_TYPE, 570, 1720, 810, 10},
+    {SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
+    {SW_BAND_TYPE, 2500, 6300, 3700, 1}, // 80 meters
+    {SW_BAND_TYPE, 6800, 7800, 7200, 1}, // 40 meters
+    {SW_BAND_TYPE, 9200, 10000, 9600, 5},
+    {SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
+    {SW_BAND_TYPE, 11200, 12500, 11940, 5},
+    {SW_BAND_TYPE, 13400, 13900, 13600, 5},
+    {SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
+    {SW_BAND_TYPE, 15000, 15900, 15300, 5},
+    {SW_BAND_TYPE, 17200, 17900, 17600, 5},
+    {SW_BAND_TYPE, 18000, 18300, 18100, 1},  // 17 meters
+    {SW_BAND_TYPE, 21000, 21400, 21900, 1},  // 15 mters
+    {SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
+    {SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
+    {SW_BAND_TYPE, 28000, 30000, 28400, 1}}; // 10 meters
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
 
 uint8_t rssi = 0;
 uint8_t stereo = 1;
-uint8_t volume = 50;
+uint8_t volume = DEFAULT_VOLUME;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
@@ -178,7 +178,7 @@ void setup()
   pinMode(BFO_SWITCH, INPUT_PULLUP);
   pinMode(AGC_SWITCH, INPUT_PULLUP);
   pinMode(STEP_SWITCH, INPUT_PULLUP);
-  pinMode(AVC_SWITCH, INPUT_PULLUP);
+  pinMode(MODE_SWITCH, INPUT_PULLUP);
 
   display.init();
 
@@ -199,6 +199,9 @@ void setup()
   delay(2000);
   // end Splash
 
+  // uncomment the line below if your I2C LCD supports 400Khz.
+  // si4735.setI2CFastMode();
+
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
@@ -207,7 +210,6 @@ void setup()
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
-
   currentFrequency = previousFrequency = si4735.getFrequency();
 
   si4735.setVolume(volume);
@@ -267,15 +269,18 @@ void showFrequency()
   display.setCursor(7, 0);
   display.print(freqDisplay);
 
-  bandMode = bandModeDesc[band[bandIdx].modeOperation];
+  bandMode = bandModeDesc[currentMode];
 
   display.setCursor(0, 0);
   display.print(bandMode);
 
-  display.setCursor(16, 0);
+  display.setCursor(17, 0);
   display.print(unit);
 }
 
+/*
+    Show some basic information on display
+*/
 void showStatus()
 {
 
@@ -296,11 +301,22 @@ void showStatus()
   display.setCursor(0, 3);
   display.print("           ");
   display.setCursor(0, 3);
-  display.print("BW:");
-  display.print(String(bandwitdth[bandwidthIdx]));
-  display.print("KHz");
 
-  showBFO();
+  if (currentMode == LSB || currentMode == USB)
+  {
+    display.print("BW:");
+    display.print(String(bandwitdthSSB[bwIdxSSB]));
+    display.print("KHz");
+    showBFO();
+  }
+  else if (currentMode == AM)
+  {
+    display.print("BW:");
+    display.print(String(bandwitdthAM[bwIdxAM]));
+    display.print("KHz");
+  }
+
+
   showRSSI();
 }
 
@@ -319,7 +335,7 @@ void showRSSI()
     display.print(">");
 }
 
-/* ***************************
+/*
    Shows the volume level on LCD
 */
 void showVolume()
@@ -333,6 +349,10 @@ void showVolume()
   */
 }
 
+/*
+   Shows the BFO current status.
+   Must be called only on SSB mode (LSB or USB)
+*/
 void showBFO()
 {
 
@@ -357,11 +377,15 @@ void showBFO()
   display.print(currentBFOStep);
 }
 
+/*
+   Goes to the next band (see Band table)
+*/
 void bandUp()
 {
-  display.clear();
   // save the current frequency for the band
   band[bandIdx].currentFreq = currentFrequency;
+  band[bandIdx].currentStep = currentStep;
+
   if (bandIdx < lastBand)
   {
     bandIdx++;
@@ -373,11 +397,14 @@ void bandUp()
   useBand();
 }
 
+/*
+   Goes to the previous band (see Band table)
+*/
 void bandDown()
 {
-  display.clear();
   // save the current frequency for the band
   band[bandIdx].currentFreq = currentFrequency;
+  band[bandIdx].currentStep = currentStep;
   if (bandIdx > 0)
   {
     bandIdx--;
@@ -390,11 +417,16 @@ void bandDown()
 }
 
 /*
- * This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
- * SSB mode.
- */
+   This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
+   SSB mode.
+*/
 void loadSSB()
 {
+  display.clear();
+  display.setCursor(0, 2);
+  display.print("  Switching to SSB  ");
+
+  si4735.setup(RESET_PIN, SSB);
   delay(100);
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
   delay(100);
@@ -409,51 +441,49 @@ void loadSSB()
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  si4735.setSSBConfig(bandwidthIdx, 1, 0, 1, 0, 1);
+  si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
   delay(100);
-  showStatus();
+  ssbLoaded = true;
 }
 
 /*
- * Band
- */
+   Switch the radio to current band
+*/
 void useBand()
 {
-
+  // delay(250);
+  display.clear();
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
+    currentMode = FM;
+    si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+    ssbLoaded = false;
   }
-  else if (band[bandIdx].bandType == MW_BAND_TYPE)
+  else
   {
-    si4735.setTuneFrequencyAntennaCapacitor(0); 
-    si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-    delay(250);
-    si4735.setVolume(volume);
-  }
-  else if (band[bandIdx].bandType == SW_BAND_TYPE)
-  {
-    if (band[bandIdx].modeOperation != AM)
+    if (band[bandIdx].bandType == MW_BAND_TYPE)
+      si4735.setTuneFrequencyAntennaCapacitor(0);
+    else
+      si4735.setTuneFrequencyAntennaCapacitor(1);
+
+    if (ssbLoaded)
     {
-      // switch to SSB mode. Load the patch
-      si4735.setup(RESET_PIN, MW_BAND_TYPE);
-      delay(100);
-      loadSSB();
-      delay(250);
-      si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, band[bandIdx].modeOperation);
-      delay(250);
+      si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
     }
     else
     {
-      si4735.reset(); 
+      currentMode = AM;
+      si4735.reset();
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      delay(250);
-      volume = 50;
-      si4735.setVolume(volume);
     }
+
+    volume = DEFAULT_VOLUME;
+    si4735.setVolume(volume);
   }
-  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  currentFrequency = si4735.getFrequency();
+
+  currentFrequency = band[bandIdx].currentFreq;
+  currentStep = band[bandIdx].currentStep;
   showStatus();
 }
 
@@ -465,7 +495,6 @@ void loop()
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
-
     if (bfoOn)
     {
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
@@ -490,28 +519,40 @@ void loop()
     // check if some button is pressed
     if (digitalRead(BANDWIDTH_BUTTON) == LOW)
     {
-      bandwidthIdx++;
-      if (bandwidthIdx > 5)
-        bandwidthIdx = 0;
-      si4735.setSSBAudioBandwidth(bandwidthIdx);
-      // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-      if (bandwidthIdx == 0 || bandwidthIdx == 4 || bandwidthIdx == 5)
-        si4735.setSBBSidebandCutoffFilter(0);
-      else
-        si4735.setSBBSidebandCutoffFilter(1);
+      if (currentMode == LSB || currentMode == USB)
+      {
+        bwIdxSSB++;
+        if (bwIdxSSB > 5)
+          bwIdxSSB = 0;
+        si4735.setSSBAudioBandwidth(bwIdxSSB);
+        // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+        if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
+          si4735.setSBBSidebandCutoffFilter(0);
+        else
+          si4735.setSBBSidebandCutoffFilter(1);
+      }
+      else if (currentMode == AM)
+      {
+        bwIdxAM++;
+        if (bwIdxAM > 6)
+          bwIdxAM = 0;
+        si4735.setBandwidth(bwIdxAM, 0);
+      }
       showStatus();
     }
     else if (digitalRead(BAND_BUTTON_UP) == LOW)
       bandUp();
     else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
       bandDown();
-    else if (digitalRead(VOL_UP) == LOW) {
+    else if (digitalRead(VOL_UP) == LOW)
+    {
       si4735.volumeUp();
       volume = si4735.getVolume();
     }
-    else if (digitalRead(VOL_DOWN) == LOW) {
+    else if (digitalRead(VOL_DOWN) == LOW)
+    {
       si4735.volumeDown();
-      volume = si4735.getVolume();     
+      volume = si4735.getVolume();
     }
     else if (digitalRead(BFO_SWITCH) == LOW)
     {
@@ -531,7 +572,8 @@ void loop()
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
     {
-      if (bfoOn)
+      // This command should work only for SSB mode
+      if (bfoOn && (currentMode == LSB || currentMode == USB))
       {
         currentBFOStep = (currentBFOStep == 50) ? 10 : 50;
         showBFO();
@@ -549,16 +591,31 @@ void loop()
         showStatus();
       }
     }
-    else if (digitalRead(AVC_SWITCH) == LOW)
+    else if (digitalRead(MODE_SWITCH) == LOW)
     {
-      avc_en = !avc_en;
-      si4735.setSSBAutomaticVolumeControl(avc_en);
+      if (currentMode == AM)
+      {
+        // If you were in AM mode, it is necessary to load SSB patch (avery time)
+        loadSSB();
+        currentMode = LSB;
+      }
+      else if (currentMode == LSB)
+      {
+        currentMode = USB;
+      }
+      else if (currentMode == USB)
+      {
+        currentMode = AM;
+        ssbLoaded = false;
+      }
+      // Nothing to do if you are in FM mode
+      useBand();
     }
     elapsedButton = millis();
   }
 
   // Show the current frequency only if it has changed
-  if ((millis() - elapsedFrequency) > MIN_ELAPSED_RSSI_TIME * 4)
+  if ((millis() - elapsedFrequency) > MIN_ELAPSED_RSSI_TIME * 3)
   {
     currentFrequency = si4735.getFrequency();
     if (currentFrequency != previousFrequency)
@@ -588,11 +645,14 @@ void loop()
     showVolume();
   }
 
-  if (currentBFO != previousBFO)
+  if (currentMode == LSB || currentMode == USB)
   {
-    previousBFO = currentBFO;
-    si4735.setSSBBfo(currentBFO);
-    showBFO();
+    if (currentBFO != previousBFO)
+    {
+      previousBFO = currentBFO;
+      si4735.setSSBBfo(currentBFO);
+      showBFO();
+    }
   }
 
   delay(50);
