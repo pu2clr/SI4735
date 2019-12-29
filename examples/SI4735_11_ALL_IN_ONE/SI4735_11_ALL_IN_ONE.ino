@@ -80,7 +80,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
 
-#define DEFAULT_VOLUME 50 // change it for your favorite sound volume
+#define DEFAULT_VOLUME 60 // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -147,7 +147,7 @@ Band band[] = {
     {SW_BAND_TYPE, 15000, 15900, 15300, 5},
     {SW_BAND_TYPE, 17200, 17900, 17600, 5},
     {SW_BAND_TYPE, 18000, 18300, 18100, 1},  // 17 meters
-    {SW_BAND_TYPE, 21000, 21400, 21900, 1},  // 15 mters
+    {SW_BAND_TYPE, 21000, 21900, 21200, 1},  // 15 mters
     {SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
     {SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
     {SW_BAND_TYPE, 28000, 30000, 28400, 1}}; // 10 meters
@@ -198,9 +198,6 @@ void setup()
   display.print("By PU2CLR");
   delay(2000);
   // end Splash
-
-  // uncomment the line below if your I2C LCD supports 400Khz.
-  // si4735.setI2CFastMode();
 
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
@@ -426,14 +423,14 @@ void loadSSB()
   display.setCursor(0, 2);
   display.print("  Switching to SSB  ");
 
+  si4735.setI2CFastMode();
+
   si4735.setup(RESET_PIN, SSB);
-  delay(100);
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
-  delay(100);
   si4735.patchPowerUp();
-  delay(100);
+  delay(50);
   si4735.downloadPatch(ssb_patch_content, size_content);
-  delay(100);
+  delay(50);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
@@ -442,8 +439,9 @@ void loadSSB()
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
   si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
-  delay(100);
+  delay(50);
   ssbLoaded = true;
+  si4735.setI2CStandardMode();
 }
 
 /*
@@ -470,12 +468,14 @@ void useBand()
     if (ssbLoaded)
     {
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
+      si4735.setSSBAutomaticVolumeControl(1);
     }
     else
     {
       currentMode = AM;
       si4735.reset();
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+      si4735.setAutomaticGainControl(1,0);
     }
 
     volume = DEFAULT_VOLUME;
@@ -609,6 +609,8 @@ void loop()
         ssbLoaded = false;
       }
       // Nothing to do if you are in FM mode
+      band[bandIdx].currentFreq = currentFrequency;
+      band[bandIdx].currentStep = currentStep;
       useBand();
     }
     elapsedButton = millis();
