@@ -756,7 +756,7 @@ void SI4735::volumeDown()
 }
 
 /* 
- * RDS implementation 
+ * RDS implementation  (UNDER CONSTRUCTION.....)
  */
 
 /* 
@@ -838,7 +838,9 @@ void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
 
 /*
  * Gets RDS Status.
- * Call getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY) if you want other behaviour
+ * Same result of calling getRdsStatus(0,0,0);
+ * Please, call getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY) instead getRdsStatus() 
+ * if you want other behaviour
  */
 void SI4735::getRdsStatus()
 {
