@@ -847,7 +847,7 @@ private:
     si47x_firmware_query_library queryLibraryId();
     void patchPowerUp(); // Used to apply SSB patch on SI4735
     bool downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size);
-    bool downloadPatch(uint8_t eeprom_i2c_address);
+    bool downloadPatch(int eeprom_i2c_address);
     void ssbPowerUp();
 
     /* 

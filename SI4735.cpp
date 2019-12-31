@@ -1545,11 +1545,10 @@ void SI4735::ssbPowerUp()
 bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t  ssb_patch_content_size)
 {
     uint8_t content, cmd_status;
-    int i, line, offset;
-    // Send patch for whole SSBRX full download
+    int i, offset;
+    // Send patch to the SI4735 device
     for (offset = 0; offset < ssb_patch_content_size; offset += 8)
     {
-        line++;
         Wire.beginTransmission(SI473X_ADDR);
         for (i = 0; i < 8; i++)
         {
@@ -1572,10 +1571,75 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t  ssb
 /*
  * Transfers the content of a patch stored in a eeprom to the SI4735 device.
  * 
+ * TO USE THIS METHOD YOU HAVE TO HAVE A EEPROM WRITEN WITH THE PATCH CONTENT
+ * See the sketch write_ssb_patch_eeprom.ino (TO DO)
+ * 
  * @param eeprom_i2c_address 
  * @return false if an error is found.
  */
-bool SI4735::downloadPatch(uint8_t eeprom_i2c_address)
+bool SI4735::downloadPatch(int eeprom_i2c_address)
 {
-    // TO DO
+    int ssb_patch_content_size;
+    uint8_t content, cmd_status;
+    int i, offset;
+    uint8_t eepromPage[8];
+
+    union { 
+        struct {
+            uint8_t lowByte;
+            uint8_t highByte;
+        } raw;
+        uint16_t value;
+    } eeprom;
+
+    // The first two bytes are the size of the patches
+    // Set the position in the eeprom to read the size of the patch content
+    Wire.beginTransmission(eeprom_i2c_address);
+    Wire.write(0);    // writes the most significant byte 
+    Wire.write(0);    // writes the less significant byte    
+    Wire.endTransmission();
+    Wire.requestFrom(eeprom_i2c_address, 2);
+    eeprom.raw.highByte = Wire.read();
+    eeprom.raw.lowByte = Wire.read();
+
+    ssb_patch_content_size = eeprom.value;
+
+    // the patch content starts on position 2 (the first two bytes are the size of the patch)
+    for (offset = 2; offset < ssb_patch_content_size; offset += 8)
+    {
+        // Set the position in the eeprom to read next 8 bytes
+        eeprom.value = offset;
+        Wire.beginTransmission(eeprom_i2c_address);
+        Wire.write(eeprom.raw.highByte); // writes the most significant byte
+        Wire.write(eeprom.raw.lowByte);  // writes the less significant byte
+        Wire.endTransmission();
+
+        // Reads the next 8 bytes from eeprom
+        Wire.requestFrom(eeprom_i2c_address, 8);
+        for ( i = 0; i < 8; i++ )
+            eepromPage[i] = Wire.read();
+
+        // sends the page (8 bytes) to the SI4735
+        Wire.beginTransmission(SI473X_ADDR);
+        for (i = 0; i < 8; i++)
+            Wire.write(eepromPage[i]);
+        Wire.endTransmission();
+
+        waitToSend();
+        
+        Wire.requestFrom(SI473X_ADDR, 1);
+        cmd_status = Wire.read();
+        // The SI4735 issues a status after each 8 byte transfered.
+        // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
+        if (cmd_status != 0x80)
+            return false;
+    }
+    delayMicroseconds(2500);
+    return true;
 }
+
+
+
+
+
+
