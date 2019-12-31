@@ -588,12 +588,12 @@ void loop()
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
     {
-      if ( currentMode == FM) {
+      if ( currentMode == FM) {  
         fmStereo = !fmStereo;
         if ( fmStereo )
           si4735.setFmStereoOn();
         else
-          si4735.setFmStereoOff();
+          si4735.setFmStereoOff(); // It is not working so far.
       } else {
 
         // This command should work only for SSB mode
