@@ -582,6 +582,8 @@ void loop()
         if (bfoOn)
           showBFO();
         showStatus();
+      } else if (currentMode == FM) {
+        si4735.seekStationUp(); 
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
