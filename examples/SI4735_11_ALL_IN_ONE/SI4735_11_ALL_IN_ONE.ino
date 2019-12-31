@@ -471,7 +471,6 @@ void useBand()
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     ssbLoaded = false;
-    si4735.setFmStereoOff();
   }
   else
   {
