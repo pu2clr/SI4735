@@ -80,7 +80,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
 
-#define DEFAULT_VOLUME 60 // change it for your favorite sound volume
+#define DEFAULT_VOLUME 50 // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -111,7 +111,7 @@ volatile int encoderCount = 0;
 uint16_t currentFrequency;
 uint16_t previousFrequency;
 uint8_t currentStep = 1;
-uint8_t currentBFOStep = 50;
+uint8_t currentBFOStep = 25;
 
 uint8_t bwIdxSSB = 2;
 char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
@@ -140,7 +140,7 @@ Band band[] = {
   {SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
   {SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
   {SW_BAND_TYPE, 4500, 6300, 4850, 5},
-  {SW_BAND_TYPE, 6800, 7800, 7200, 1}, // 40 meters
+  {SW_BAND_TYPE, 6800, 7800, 7200, 5}, // 40 meters
   {SW_BAND_TYPE, 9200, 10000, 9600, 5},
   {SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
   {SW_BAND_TYPE, 11200, 12500, 11940, 5},
@@ -262,7 +262,10 @@ void showFrequency()
     unit = "KHz";
   }
 
-  freqDisplay = String((float)currentFrequency / divider, decimals);
+  if ( !bfoOn )
+    freqDisplay = String((float)currentFrequency / divider, decimals);
+  else
+    freqDisplay = ">" + String((float)currentFrequency / divider, decimals) + "<";
 
   display.setCursor(7, 0);
   display.print("        ");
@@ -286,17 +289,12 @@ void showStatus()
 
   showFrequency();
 
-  // Show AGC Information
-  si4735.getAutomaticGainControl();
-  display.setCursor(0, 1);
-  display.print((si4735.isAgcEnabled()) ? "AGC ON " : "AGC OFF");
 
-  display.setCursor(12, 1);
-  display.print("          ");
-  display.setCursor(12, 1);
+  display.setCursor(13, 1);
+  display.print("      ");
+  display.setCursor(13, 1);
   display.print("St: ");
   display.print(currentStep);
-  display.print("KHz");
 
   display.setCursor(0, 3);
   display.print("           ");
@@ -316,7 +314,13 @@ void showStatus()
     display.print("KHz");
   }
 
+  // Show AGC Information
+  si4735.getAutomaticGainControl();
+  display.setCursor(0, 1);
+  display.print((si4735.isAgcEnabled()) ? "AGC ON " : "AGC OFF");
+
   showRSSI();
+  showVolume();
 }
 
 /* *******************************
@@ -324,18 +328,23 @@ void showStatus()
 */
 void showRSSI()
 {
+  char c = '>';
   int bars = ((rssi / 10.0) / 2.0) + 1;
 
-  display.setCursor(12, 3);
-  display.print("        ");
-  display.setCursor(12, 3);
+  display.setCursor(13, 3);
+  display.print("       ");
+  display.setCursor(13, 3);
   display.print("S:");
+  if ( bars > 5 )  {
+    bars = 5;
+    c = '+';
+  }
   for (int i = 0; i < bars; i++)
     display.print(">");
 
   if ( currentMode == FM) {
     display.setCursor(0, 3);
-    display.print((si4735.getCurrentPilot()) ? "STEREO  " : "MONO     ");
+    display.print((si4735.getCurrentPilot()) ? "STEREO   " : "MONO     ");
   }
 
 }
@@ -345,13 +354,10 @@ void showRSSI()
 */
 void showVolume()
 {
-  /*
-    display.setCursor(10, 2);
-    display.print("          ");
-    display.setCursor(10, 2);
-    display.print("V:");
-    display.print(volume);
-  */
+  display.setCursor(10, 3);
+  display.print("  ");
+  display.setCursor(10, 3);
+  display.print(si4735.getCurrentVolume());
 }
 
 /*
@@ -375,10 +381,10 @@ void showBFO()
   display.print(bfo);
   display.print("Hz ");
 
-  display.setCursor(12, 2);
-  display.print("        ");
-  display.setCursor(12, 2);
-  display.print("St:");
+  display.setCursor(13, 2);
+  display.print("       ");
+  display.setCursor(13, 2);
+  display.print("St: ");
   display.print(currentBFOStep);
 }
 
@@ -555,21 +561,19 @@ void loop()
     else if (digitalRead(VOL_UP) == LOW)
     {
       si4735.volumeUp();
-      volume = si4735.getVolume();
     }
     else if (digitalRead(VOL_DOWN) == LOW)
     {
       si4735.volumeDown();
-      volume = si4735.getVolume();
     }
     else if (digitalRead(BFO_SWITCH) == LOW)
     {
-      bfoOn = !bfoOn;
-      if (bfoOn)
-        showBFO();
-      else
+      if (currentMode == LSB || currentMode == USB) {
+        bfoOn = !bfoOn;
+        if (bfoOn)
+          showBFO();
         showStatus();
-      delay(200); // waits a little more for releasing the button.
+      }
     }
     else if (digitalRead(AGC_SWITCH) == LOW)
     {
@@ -591,7 +595,7 @@ void loop()
         // This command should work only for SSB mode
         if (bfoOn && (currentMode == LSB || currentMode == USB))
         {
-          currentBFOStep = (currentBFOStep == 50) ? 10 : 50;
+          currentBFOStep = (currentBFOStep == 50) ? 10 : 25;
           showBFO();
         }
         else
@@ -624,12 +628,15 @@ void loop()
       {
         currentMode = AM;
         ssbLoaded = false;
+        bfoOn = false;
       }
       // Nothing to do if you are in FM mode
       band[bandIdx].currentFreq = currentFrequency;
       band[bandIdx].currentStep = currentStep;
       useBand();
     }
+
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     elapsedButton = millis();
   }
 
