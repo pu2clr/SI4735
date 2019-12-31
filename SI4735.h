@@ -41,8 +41,14 @@
 #define FM_RDS_CONFIG 0x1502
 #define FM_RDS_CONFIDENCE 0x1503
 
+#define FM_BLEND_STEREO_THRESHOLD 0x1105
+#define FM_BLEND_MONO_THRESHOLD 0x1106
 #define FM_BLEND_RSSI_STEREO_THRESHOLD 0x1800
 #define FM_BLEND_RSSI_MONO_THRESHOLD 0x1801
+#define FM_BLEND_SNR_STEREO_THRESHOLD 0x1804
+#define FM_BLEND_SNR_MONO_THRESHOLD 0x1805
+#define FM_BLEND_MULTIPATH_STEREO_THRESHOLD 0x1808
+#define FM_BLEND_MULTIPATH_MONO_THRESHOLD 0x1809
 
 
 // AM command
@@ -123,6 +129,7 @@
 #define SSB_RF_IF_AGC_ATTACK_RATE 0x3702  // Sets the number of milliseconds the high IF peak detector must be exceeded before decreasing gain. Defaul 4.
 #define SSB_RF_IF_AGC_RELEASE_RATE 0x3703 // Sets the number of milliseconds the low IF peak detector must be exceeded before increasing the gain. Defaul 140.
 
+
 // See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 12 and 13
 #define LSB_MODE 1 // 01
 #define USB_MODE 2 // 10
@@ -131,16 +138,16 @@
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
 #define SI473X_DIGITAL_AUDIO B00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
 
-/*****************************************************************
+    /*****************************************************************
  * SI473X data types 
  * These data types will be usefull to deal with SI473X 
  *****************************************************************/
 
-/*
+    /*
  * Power Up arguments data type 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65
  */
-typedef union {
+    typedef union {
     struct
     {
         // ARG1
@@ -726,7 +733,7 @@ public:
     inline bool getCurrentAfcRailIndicator() { return currentRqsStatus.resp.AFCRL; };  // AFC Rail Indicator.
     inline bool getCurrentSoftMuteIndicator() { return currentRqsStatus.resp.SMUTE; }; // Soft Mute Indicator. Indicates soft mute is engaged.
     // Just FM
-    inline bool getCurrentStereoBlend() { return currentRqsStatus.resp.STBLEND; };           // Indicates amount of stereo blend in % (100 = full stereo, 0 = full mono).
+    inline uint8_t getCurrentStereoBlend() { return currentRqsStatus.resp.STBLEND; };           // Indicates amount of stereo blend in % (100 = full stereo, 0 = full mono).
     inline bool getCurrentPilot() { return currentRqsStatus.resp.PILOT; };                   // Indicates stereo pilot presence.
     inline uint8_t getCurrentMultipath() { return currentRqsStatus.resp.MULT; };                // Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
     inline uint8_t getCurrentSignedFrequencyOffset() { return currentRqsStatus.resp.FREQOFF; }; // Signed frequency offset (kHz).
@@ -784,8 +791,14 @@ public:
     void seekStationDown();
 
 
+    void setFmBlendStereoThreshold(uint8_t parameter);
+    void setFmBlendMonoThreshold(uint8_t parameter);
     void setFmBlendRssiStereoThreshold(uint8_t parameter);
     void setFmBLendRssiMonoThreshold(uint8_t parameter);
+    void setFmBlendSnrStereoThreshold(uint8_t parameter);
+    void setFmBLendSnrMonoThreshold(uint8_t parameter);
+    void setFmBlendMultiPathStereoThreshold(uint8_t parameter);
+    void setFmBlendMultiPathMonoThreshold(uint8_t parameter);
     void setFmStereoOn();
     void setFmStereoOff(); 
 

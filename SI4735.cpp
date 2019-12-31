@@ -477,44 +477,98 @@ void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter) {
     delayMicroseconds(550);
 }
 
+/*
+ * Sets RSSI threshold for stereo blend (Full stereo above threshold, blend below threshold). 
+ * To force stereo, set this to 0. To force mono, set this to 127.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 90. 
+ */
+void SI4735::setFmBlendStereoThreshold(uint8_t parameter){
+    sendProperty(FM_BLEND_STEREO_THRESHOLD, parameter);
+}
+
+/*
+ * Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). 
+ * To force stereo set this to 0. To force mono set this to 127. Default value is 30 dBμV.
+ *  See Si47XX PROGRAMMING GUIDE; AN332; page 56.
+ */
+void SI4735::setFmBlendMonoThreshold(uint8_t parameter)
+{
+    sendProperty(FM_BLEND_MONO_THRESHOLD, parameter);
+}
 
 /* 
  * Sets RSSI threshold for stereo blend. (Full stereo above threshold, blend below threshold.) 
  * To force stereo, set this to 0. To force mono, set this to 127. Default value is 49 dBμV.
- */ 
-void SI4735::setFmBlendRssiStereoThreshold(uint8_t parameter) {
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 59. 
+ */
+    void SI4735::setFmBlendRssiStereoThreshold(uint8_t parameter)
+{
     sendProperty(FM_BLEND_RSSI_STEREO_THRESHOLD, parameter);    
 }
 
 /*
  * Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). 
  * To force stereo, set this to 0. To force mono, set this to 127. Default value is 30 dBμV.
- */ 
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 59.  
+ */
 void SI4735::setFmBLendRssiMonoThreshold(uint8_t parameter) {
     sendProperty(FM_BLEND_RSSI_MONO_THRESHOLD, parameter);    
 }
 
+/*
+ * Sets SNR threshold for stereo blend (Full stereo above threshold, blend below threshold). 
+ * To force stereo, set this to 0. To force mono, set this to 127. Default value is 27 dB.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 59.  
+ */
+void SI4735::setFmBlendSnrStereoThreshold(uint8_t parameter)
+{
+    sendProperty(FM_BLEND_SNR_STEREO_THRESHOLD, parameter);
+}
+
+/*
+ * Sets SNR threshold for mono blend (Full mono below threshold, blend above threshold). 
+ * To force stereo, set this to 0. To force mono, set this to 127. Default value is 14 dB.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 59. 
+ */
+void SI4735::setFmBLendSnrMonoThreshold(uint8_t parameter)
+{
+    sendProperty(FM_BLEND_SNR_MONO_THRESHOLD, parameter);
+}
+
+/* 
+ * Sets multipath threshold for stereo blend (Full stereo below threshold, blend above threshold). 
+ * To force stereo, set this to 100. To force mono, set this to 0. Default value is 20.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 60.
+ */
+void SI4735::setFmBlendMultiPathStereoThreshold(uint8_t parameter)
+{
+    sendProperty(FM_BLEND_MULTIPATH_STEREO_THRESHOLD, parameter);
+}
+
+/*
+ * Sets Multipath threshold for mono blend (Full mono above threshold, blend below threshold). 
+ * To force stereo, set to 100. To force mono, set to 0. The default is 60.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 60.
+ */
+void SI4735::setFmBlendMultiPathMonoThreshold(uint8_t parameter)
+{
+    sendProperty(FM_BLEND_MULTIPATH_MONO_THRESHOLD, parameter);
+}
 
 /* 
  * Turn Off Stereo operation.
- */  
-void SI4735::setFmStereoOff() { 
-    setFmBlendRssiStereoThreshold(127);
-    delay(5);
-    setFmBLendRssiMonoThreshold(127); // Force mono operation
+ */
+void SI4735::setFmStereoOff()
+{
+    // TO DO
 }
 
 /* 
  * Turn Off Stereo operation.
  */  
-void SI4735::setFmStereoOn() { 
-    setFmBlendRssiStereoThreshold(49);
-    setFmBLendRssiMonoThreshold(30); // Turn to FM stereo when the rssi >= 30 dBuV
+void SI4735::setFmStereoOn() {
+    // TO DO
 }
-
-
-
-
 
 
 /*
