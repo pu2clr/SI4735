@@ -55,6 +55,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
 #define SW_BAND_TYPE 2
+#define LW_BAND_TYPE 3
 
 // OLED Diaplay constants
 #define I2C_ADDRESS 0x3C
@@ -86,6 +87,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define LSB 1
 #define USB 2
 #define AM 3
+#define LW 4
 
 #define SSB 1
 
@@ -136,7 +138,8 @@ typedef struct
 */
 Band band[] = {
   {FM_BAND_TYPE, 8400, 10800, 10390, 10},
-  {MW_BAND_TYPE, 570, 1720, 810, 10},
+  {LW_BAND_TYPE, 100, 510, 300, 1}, 
+  {MW_BAND_TYPE, 520, 1720, 810, 10},
   {SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
   {SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
   {SW_BAND_TYPE, 4500, 6300, 4850, 5},
@@ -249,7 +252,7 @@ void showFrequency()
     decimals = 1;
     unit = "MHz";
   }
-  else if (band[bandIdx].bandType == MW_BAND_TYPE)
+  else if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
   {
     divider = 1;
     decimals = 0;
@@ -272,7 +275,10 @@ void showFrequency()
   display.setCursor(7, 0);
   display.print(freqDisplay);
 
-  bandMode = bandModeDesc[currentMode];
+  if (currentFrequency < 520 ) 
+    bandMode = "LW  ";
+  else
+   bandMode = bandModeDesc[currentMode];
 
   display.setCursor(0, 0);
   display.print(bandMode);
@@ -474,7 +480,7 @@ void useBand()
   }
   else
   {
-    if (band[bandIdx].bandType == MW_BAND_TYPE)
+    if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
       si4735.setTuneFrequencyAntennaCapacitor(0);
     else
       si4735.setTuneFrequencyAntennaCapacitor(1);
