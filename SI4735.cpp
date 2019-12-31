@@ -351,6 +351,7 @@ void SI4735::setFM()
     analogPowerUp();
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
+    disableFmDebug();
 }
 
 /*
@@ -568,6 +569,24 @@ void SI4735::setFmStereoOff()
  */  
 void SI4735::setFmStereoOn() {
     // TO DO
+}
+
+/*
+ * There is a debug feature that remains active in Si4704/05/3x-D60 firmware which can create periodic noise in audio.
+ * Silicon Labs recommends you disable this feature by sending the following bytes (shown here in hexadecimal form):
+ * 0x12 0x00 0xFF 0x00 0x00 0x00.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 299. 
+ */
+void SI4735::disableFmDebug() {
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(0x12);
+    Wire.write(0x00);
+    Wire.write(0xFF);
+    Wire.write(0x00);
+    Wire.write(0x00);
+    Wire.write(0x00);
+    Wire.endTransmission();
+    delayMicroseconds(2500);
 }
 
 

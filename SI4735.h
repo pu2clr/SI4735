@@ -672,9 +672,9 @@ private:
     void waitInterrupr(void);
     void sendProperty(uint16_t propertyValue, uint16_t param);
     void sendSSBModeProperty(); // Sends SSB_MODE property to the device.
+    void disableFmDebug();
 
-public:
-    SI4735();
+        public : SI4735();
     void reset(void);
     void waitToSend(void); // Wait for Si4735 device ready to receive command
     void setup(uint8_t resetPin, uint8_t defaultFunction);
