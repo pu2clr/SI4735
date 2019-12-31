@@ -27,7 +27,7 @@
 
   Features of this sketch:
 
-  1) Only SSB (LSB and USB);
+  1) FM, AM (MW and SW) and SSB (LSB and USB);
   2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
   3) 22 commercial and ham radio bands pre configured;
   4) BFO Control; and
@@ -95,6 +95,7 @@ uint8_t currentMode = FM;
 bool bfoOn = false;
 bool disableAgc = true;
 bool ssbLoaded = false;
+bool fmStereo = true;
 
 int currentBFO = 0;
 int previousBFO = 0;
@@ -134,23 +135,25 @@ typedef struct
    Band tables
 */
 Band band[] = {
-    {FM_BAND_TYPE, 8400, 10800, 10390, 10},
-    {MW_BAND_TYPE, 570, 1720, 810, 10},
-    {SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
-    {SW_BAND_TYPE, 2500, 6300, 3700, 1}, // 80 meters
-    {SW_BAND_TYPE, 6800, 7800, 7200, 1}, // 40 meters
-    {SW_BAND_TYPE, 9200, 10000, 9600, 5},
-    {SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
-    {SW_BAND_TYPE, 11200, 12500, 11940, 5},
-    {SW_BAND_TYPE, 13400, 13900, 13600, 5},
-    {SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
-    {SW_BAND_TYPE, 15000, 15900, 15300, 5},
-    {SW_BAND_TYPE, 17200, 17900, 17600, 5},
-    {SW_BAND_TYPE, 18000, 18300, 18100, 1},  // 17 meters
-    {SW_BAND_TYPE, 21000, 21900, 21200, 1},  // 15 mters
-    {SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
-    {SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
-    {SW_BAND_TYPE, 28000, 30000, 28400, 1}}; // 10 meters
+  {FM_BAND_TYPE, 8400, 10800, 10390, 10},
+  {MW_BAND_TYPE, 570, 1720, 810, 10},
+  {SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
+  {SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
+  {SW_BAND_TYPE, 4500, 6300, 4850, 5},
+  {SW_BAND_TYPE, 6800, 7800, 7200, 1}, // 40 meters
+  {SW_BAND_TYPE, 9200, 10000, 9600, 5},
+  {SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
+  {SW_BAND_TYPE, 11200, 12500, 11940, 5},
+  {SW_BAND_TYPE, 13400, 13900, 13600, 5},
+  {SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
+  {SW_BAND_TYPE, 15000, 15900, 15300, 5},
+  {SW_BAND_TYPE, 17200, 17900, 17600, 5},
+  {SW_BAND_TYPE, 18000, 18300, 18100, 1},  // 17 meters
+  {SW_BAND_TYPE, 21000, 21900, 21200, 1},  // 15 mters
+  {SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
+  {SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
+  {SW_BAND_TYPE, 28000, 30000, 28400, 1}
+}; // 10 meters
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
@@ -313,7 +316,6 @@ void showStatus()
     display.print("KHz");
   }
 
-
   showRSSI();
 }
 
@@ -330,6 +332,12 @@ void showRSSI()
   display.print("S:");
   for (int i = 0; i < bars; i++)
     display.print(">");
+
+  if ( currentMode == FM) {
+    display.setCursor(0, 3);
+    display.print((si4735.getCurrentPilot()) ? "STEREO  " : "MONO     ");
+  }
+
 }
 
 /*
@@ -475,7 +483,7 @@ void useBand()
       currentMode = AM;
       si4735.reset();
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      si4735.setAutomaticGainControl(1,0);
+      si4735.setAutomaticGainControl(1, 0);
     }
 
     volume = DEFAULT_VOLUME;
@@ -572,23 +580,32 @@ void loop()
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
     {
-      // This command should work only for SSB mode
-      if (bfoOn && (currentMode == LSB || currentMode == USB))
-      {
-        currentBFOStep = (currentBFOStep == 50) ? 10 : 50;
-        showBFO();
-      }
-      else
-      {
-        if (currentStep == 1)
-          currentStep = 5;
-        else if (currentStep == 5)
-          currentStep = 10;
+      if ( currentMode == FM) {
+        fmStereo = !fmStereo;
+        if ( fmStereo )
+          si4735.setFmStereoOn();
         else
-          currentStep = 1;
-        si4735.setFrequencyStep(currentStep);
-        band[bandIdx].currentStep = currentStep;
-        showStatus();
+          si4735.setFmStereoOff();
+      } else {
+
+        // This command should work only for SSB mode
+        if (bfoOn && (currentMode == LSB || currentMode == USB))
+        {
+          currentBFOStep = (currentBFOStep == 50) ? 10 : 50;
+          showBFO();
+        }
+        else
+        {
+          if (currentStep == 1)
+            currentStep = 5;
+          else if (currentStep == 5)
+            currentStep = 10;
+          else
+            currentStep = 1;
+          si4735.setFrequencyStep(currentStep);
+          band[bandIdx].currentStep = currentStep;
+          showStatus();
+        }
       }
     }
     else if (digitalRead(MODE_SWITCH) == LOW)
@@ -629,7 +646,7 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
-  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 4)
   {
     si4735.getCurrentReceivedSignalQuality();
     if (rssi != si4735.getCurrentRSSI())

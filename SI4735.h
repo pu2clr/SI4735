@@ -41,6 +41,10 @@
 #define FM_RDS_CONFIG 0x1502
 #define FM_RDS_CONFIDENCE 0x1503
 
+#define FM_BLEND_RSSI_STEREO_THRESHOLD 0x1800
+#define FM_BLEND_RSSI_MONO_THRESHOLD 0x1801
+
+
 // AM command
 #define AM_TUNE_FREQ 0x40    // Tunes to a given AM frequency.
 #define AM_SEEK_START 0x41   // Begins searching for a valid AM frequency.
@@ -659,6 +663,7 @@ private:
     uint8_t currentSsbStatus;
 
     void waitInterrupr(void);
+    void sendProperty(uint16_t propertyValue, uint16_t param);
     void sendSSBModeProperty(); // Sends SSB_MODE property to the device.
 
 public:
@@ -721,7 +726,7 @@ public:
     inline bool getCurrentAfcRailIndicator() { return currentRqsStatus.resp.AFCRL; };  // AFC Rail Indicator.
     inline bool getCurrentSoftMuteIndicator() { return currentRqsStatus.resp.SMUTE; }; // Soft Mute Indicator. Indicates soft mute is engaged.
     // Just FM
-    inline bool getCurrentStereoBlend() { return currentRqsStatus.resp.STBLEND; };           // Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono).
+    inline bool getCurrentStereoBlend() { return currentRqsStatus.resp.STBLEND; };           // Indicates amount of stereo blend in % (100 = full stereo, 0 = full mono).
     inline bool getCurrentPilot() { return currentRqsStatus.resp.PILOT; };                   // Indicates stereo pilot presence.
     inline uint8_t getCurrentMultipath() { return currentRqsStatus.resp.MULT; };                // Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
     inline uint8_t getCurrentSignedFrequencyOffset() { return currentRqsStatus.resp.FREQOFF; }; // Signed frequency offset (kHz).
@@ -777,6 +782,12 @@ public:
     void seekStation(uint8_t SEEKUP, uint8_t WRAP);
     void seekStationUp();
     void seekStationDown();
+
+
+    void setFmBlendRssiStereoThreshold(uint8_t parameter);
+    void setFmBLendRssiMonoThreshold(uint8_t parameter);
+    void setFmStereoOn();
+    void setFmStereoOff(); 
 
     // RDS implementation
     void setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t RDSSYNCFOUND, uint8_t RDSSYNCLOST, uint8_t RDSRECV);

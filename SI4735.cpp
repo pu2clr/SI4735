@@ -453,6 +453,70 @@ bool SI4735::isCurrentTuneFM()
     return (currentTune == FM_TUNE_FREQ);
 }
 
+
+/*
+ * Send (set) property to the SI47XX
+ * This method is used for others to send generic properties and params to SI47XX
+ */  
+void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter) {
+
+    si47x_property property;
+    si47x_property param;
+
+    property.value  = propertyValue;
+    param.value = parameter;
+    waitToSend();
+    Wire.beginTransmission(SI473X_ADDR);
+    Wire.write(SET_PROPERTY);
+    Wire.write(0x00);                  
+    Wire.write(property.raw.byteHigh); // Send property - High byte - most significant first
+    Wire.write(property.raw.byteLow);  // Send property - Low byte - less significant after
+    Wire.write(param.raw.byteHigh);    // Send the argments. High Byte - Most significant first
+    Wire.write(param.raw.byteLow);     // Send the argments. Low Byte - Less significant after
+    Wire.endTransmission();
+    delayMicroseconds(550);
+}
+
+
+/* 
+ * Sets RSSI threshold for stereo blend. (Full stereo above threshold, blend below threshold.) 
+ * To force stereo, set this to 0. To force mono, set this to 127. Default value is 49 dBμV.
+ */ 
+void SI4735::setFmBlendRssiStereoThreshold(uint8_t parameter) {
+    sendProperty(FM_BLEND_RSSI_STEREO_THRESHOLD, parameter);    
+}
+
+/*
+ * Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). 
+ * To force stereo, set this to 0. To force mono, set this to 127. Default value is 30 dBμV.
+ */ 
+void SI4735::setFmBLendRssiMonoThreshold(uint8_t parameter) {
+    sendProperty(FM_BLEND_RSSI_MONO_THRESHOLD, parameter);    
+}
+
+
+/* 
+ * Turn Off Stereo operation.
+ */  
+void SI4735::setFmStereoOff() { 
+    setFmBlendRssiStereoThreshold(127);
+    delay(5);
+    setFmBLendRssiMonoThreshold(127); // Force mono operation
+}
+
+/* 
+ * Turn Off Stereo operation.
+ */  
+void SI4735::setFmStereoOn() { 
+    setFmBlendRssiStereoThreshold(49);
+    setFmBLendRssiMonoThreshold(30); // Turn to FM stereo when the rssi >= 30 dBuV
+}
+
+
+
+
+
+
 /*
  * Gets the current frequency of the Si4735 (AM or FM)
  * The method status do it an more. See getStatus below. 
@@ -712,17 +776,10 @@ void SI4735::seekStationDown()
  */
 void SI4735::setVolume(uint8_t volume)
 {
-    waitToSend();
+    
+    sendProperty(RX_VOLUME, volume);    
     this->volume = volume;
-    Wire.beginTransmission(SI473X_ADDR);
-    Wire.write(SET_PROPERTY);
-    Wire.write(0x00);   // Always 0x00
-    Wire.write(0x40);   // RX_VOLUME 0x4000 -> 0x40
-    Wire.write(0x00);   // RX_VOLUME 0x4000 -> 0x00
-    Wire.write(0x00);   // ARG1
-    Wire.write(volume); // ARG2 (level: 0 to 63)
-    Wire.endTransmission();
-    delayMicroseconds(550);
+
 }
 
 /*
