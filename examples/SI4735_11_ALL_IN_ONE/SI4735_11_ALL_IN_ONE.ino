@@ -553,6 +553,7 @@ void loop()
         si4735.setBandwidth(bwIdxAM, 0);
       }
       showStatus();
+      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(BAND_BUTTON_UP) == LOW)
       bandUp();
@@ -561,10 +562,12 @@ void loop()
     else if (digitalRead(VOL_UP) == LOW)
     {
       si4735.volumeUp();
+      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(VOL_DOWN) == LOW)
     {
       si4735.volumeDown();
+      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(BFO_SWITCH) == LOW)
     {
@@ -574,6 +577,7 @@ void loop()
           showBFO();
         showStatus();
       }
+      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(AGC_SWITCH) == LOW)
     {
@@ -610,6 +614,7 @@ void loop()
           band[bandIdx].currentStep = currentStep;
           showStatus();
         }
+        delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       }
     }
     else if (digitalRead(MODE_SWITCH) == LOW)
@@ -635,8 +640,6 @@ void loop()
       band[bandIdx].currentStep = currentStep;
       useBand();
     }
-
-    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     elapsedButton = millis();
   }
 
