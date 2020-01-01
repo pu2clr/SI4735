@@ -16,6 +16,7 @@
  * The first byte is a command, and the next seven bytes are arguments. Writing more than 8 bytes results 
  * in unpredictable device behavior". So, If you are extending this library, consider that restriction presented earlier.
  * 
+ * ATTENTION: inline methods are implemented in SI4735.h
  * 
  * By Ricardo Lima Caratti, Nov 2019.
  */
@@ -1030,11 +1031,13 @@ void SI4735::setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t
 
 // TO DO
 
+// See inlines methods / functions on SI4735.h
+
 /* 
  * Returns the programa type. 
  * Read the Block A content
  */
-uint16_t  SI4735::getRdsPI(void)
+uint16_t SI4735::getRdsPI(void)
 {
     if (getRdsReceived() && getRdsNewBlockA())
     {
@@ -1085,20 +1088,28 @@ uint16_t  SI4735::getRdsProgramType(void)
 
 char *SI4735::getNext2Block(char *c)
 {
-    /*
+ 
     c[1] = (currentRdsStatus.resp.BLOCKDL < 32 || currentRdsStatus.resp.BLOCKDL > 127) ? '.' : currentRdsStatus.resp.BLOCKDL;
     c[0] = (currentRdsStatus.resp.BLOCKDH < 32 || currentRdsStatus.resp.BLOCKDH > 127) ? '.' : currentRdsStatus.resp.BLOCKDH;
-    */
+
 }
 
 char *SI4735::getNext4Block(char *c)
 {
-    /*
-    c[1] = (currentRdsStatus.resp.BLOCKCL < 32 || currentRdsStatus.resp.BLOCKCL > 127) ? '.' : currentRdsStatus.resp.BLOCKCL;
-    c[0] = (currentRdsStatus.resp.BLOCKCH < 32 || currentRdsStatus.resp.BLOCKCH > 127) ? '.' : currentRdsStatus.resp.BLOCKCH;
-    c[3] = (currentRdsStatus.resp.BLOCKDL < 32 || currentRdsStatus.resp.BLOCKDL > 127) ? '.' : currentRdsStatus.resp.BLOCKDL;
-    c[2] = (currentRdsStatus.resp.BLOCKDH < 32 || currentRdsStatus.resp.BLOCKDH > 127) ? '.' : currentRdsStatus.resp.BLOCKDH;
-    */
+    char raw[4];
+    int i,j;
+
+    raw[0] = (currentRdsStatus.resp.BLOCKCH; 
+    raw[1] = currentRdsStatus.resp.BLOCKCL;
+    raw[2] = (currentRdsStatus.resp.BLOCKDH;
+    raw[3] = (currentRdsStatus.resp.BLOCKDL;
+    for ( i = j = 0; i < 4; i++)
+        c[i] = 0; 
+        if ( raw[i] >= 32 and raw[i] <=127 ) {
+            c[j] = raw[i];
+            j++;
+        }
+    }
 }
 
 /*
@@ -1106,12 +1117,14 @@ char *SI4735::getNext4Block(char *c)
  */
 String SI4735::getRdsText(void)
 {
-    /*
+
     // Under Test and construction...
 
     si47x_rds_blockb blkb;
     uint8_t offset;
     uint8_t newB;
+
+
 
     for (int i = 0; i < 64; i++)
         rds_buffer[i] = ' ';
@@ -1138,6 +1151,7 @@ String SI4735::getRdsText(void)
         blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
         blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
     } while (offset == blkb.refined.content);
+
     offset = blkb.refined.content;
     if (offset < 16)
         getNext4Block(&rds_buffer[offset * 4]);
@@ -1158,6 +1172,7 @@ String SI4735::getRdsText(void)
         blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
         blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
     } while (offset == blkb.refined.content);
+
     offset = blkb.refined.content;
     if (offset < 16)
         getNext4Block(&rds_buffer[offset * 4]);
@@ -1165,7 +1180,7 @@ String SI4735::getRdsText(void)
     rds_buffer[64] = 0;
 
     return String(rds_buffer);
-    */
+
 }
 
 /* 
