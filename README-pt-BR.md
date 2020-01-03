@@ -381,6 +381,16 @@ Este item apresenta a lista de funções, métodos e estruturas de dados que pod
   * [volumeUp](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#volumeup)
   * [volumeDown](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#volumedown)
   * [getCurrentVolume](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentvolume)
+* [__FM Stereo and mono Control__](https://github.com/pu2clr/SI4735#fm-stereo-and-mono-control)
+  * [setFmBlendStereoThreshold](https://github.com/pu2clr/SI4735#setfmblendstereothreshold)
+  * [setFmBlendMonoThreshold](https://github.com/pu2clr/SI4735#setfmblendmonothreshold)
+  * [setFmBlendRssiStereoThreshold](https://github.com/pu2clr/SI4735#setfmblendrssistereothreshold)
+  * [setFmBLendRssiMonoThreshold](https://github.com/pu2clr/SI4735#setfmblendrssimonothreshold)
+  * [setFmBlendSnrStereoThreshold](https://github.com/pu2clr/SI4735#setfmblendsnrstereothreshold)
+  * [setFmBLendSnrMonoThreshold](https://github.com/pu2clr/SI4735#setfmblendsnrmonothreshold)
+  * [setFmBlendMultiPathStereoThreshold](https://github.com/pu2clr/SI4735#setfmblendmultipathstereothreshold)
+  * [setFmBlendMultiPathMonoThreshold](https://github.com/pu2clr/SI4735#setfmblendmultipathmonothreshold)
+* [__Si4735 current status__](https://github.com/pu2clr/SI4735#si4735-current-status) 
 * [__Si4735 current status__](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#si4735-current-status)
   * [getFrequency](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getfrequency)
   * [getCurrentFrequency](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#getcurrentfrequency) 
@@ -1289,6 +1299,101 @@ void SI4735::volumeDown()
  */ 
 inline byte SI4735::getCurrentVolume() 
 ```
+
+<BR>
+<BR>
+
+### FM Stereo and Mono Control
+
+Methods to control the Stereo and Mono behaviour of the SI47XX.    
+
+#### setFmBlendStereoThreshold
+```cpp
+/*
+ * Sets RSSI threshold for stereo blend (Full stereo above threshold, blend below threshold). 
+ * To force stereo, set this to 0. To force mono, set this to 127.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 90. 
+ */
+void SI4735::setFmBlendStereoThreshold(uint8_t parameter)
+```
+
+#### setFmBlendMonoThreshold
+
+```cpp
+/*
+ * Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). 
+ * To force stereo set this to 0. To force mono set this to 127. Default value is 30 dBμV.
+ *  See Si47XX PROGRAMMING GUIDE; AN332; page 56.
+ */
+void SI4735::setFmBlendMonoThreshold(uint8_t parameter)
+```
+
+#### setFmBlendRssiStereoThreshold
+```cpp
+/* 
+ * Sets RSSI threshold for stereo blend. (Full stereo above threshold, blend below threshold.) 
+ * To force stereo, set this to 0. To force mono, set this to 127. Default value is 49 dBμV.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 59. 
+ */
+void SI4735::setFmBlendRssiStereoThreshold(uint8_t parameter)
+
+```
+
+#### setFmBLendRssiMonoThreshold
+```cpp
+/*
+ * Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). 
+ * To force stereo, set this to 0. To force mono, set this to 127. Default value is 30 dBμV.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 59.  
+ */
+void SI4735::setFmBLendRssiMonoThreshold(uint8_t parameter)
+```
+
+
+#### setFmBlendSnrStereoThreshold
+```cpp
+/*
+ * Sets SNR threshold for stereo blend (Full stereo above threshold, blend below threshold). 
+ * To force stereo, set this to 0. To force mono, set this to 127. Default value is 27 dB.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 59.  
+ */
+void SI4735::setFmBlendSnrStereoThreshold(uint8_t parameter)
+```
+
+#### setFmBLendSnrMonoThreshold
+
+```cpp
+/*
+ * Sets SNR threshold for mono blend (Full mono below threshold, blend above threshold). 
+ * To force stereo, set this to 0. To force mono, set this to 127. Default value is 14 dB.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 59. 
+ */
+void SI4735::setFmBLendSnrMonoThreshold(uint8_t parameter)
+```
+
+
+#### setFmBlendMultiPathStereoThreshold
+
+```cpp
+/* 
+ * Sets multipath threshold for stereo blend (Full stereo below threshold, blend above threshold). 
+ * To force stereo, set this to 100. To force mono, set this to 0. Default value is 20.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 60.
+ */
+void SI4735::setFmBlendMultiPathStereoThreshold(uint8_t parameter)
+```
+
+#### setFmBlendMultiPathMonoThreshold
+
+```cpp
+/*
+ * Sets Multipath threshold for mono blend (Full mono above threshold, blend below threshold). 
+ * To force stereo, set to 100. To force mono, set to 0. The default is 60.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 60.
+ */
+void SI4735::setFmBlendMultiPathMonoThreshold(uint8_t parameter)
+```
+
 
 
 <BR>
