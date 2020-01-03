@@ -1099,11 +1099,11 @@ char *SI4735::getNext4Block(char *c)
     char raw[4];
     int i,j;
 
-    raw[0] = (currentRdsStatus.resp.BLOCKCH; 
+    raw[0] = currentRdsStatus.resp.BLOCKCH; 
     raw[1] = currentRdsStatus.resp.BLOCKCL;
-    raw[2] = (currentRdsStatus.resp.BLOCKDH;
-    raw[3] = (currentRdsStatus.resp.BLOCKDL;
-    for ( i = j = 0; i < 4; i++)
+    raw[2] = currentRdsStatus.resp.BLOCKDH;
+    raw[3] = currentRdsStatus.resp.BLOCKDL;
+    for ( i = j = 0; i < 4; i++) {
         c[i] = 0; 
         if ( raw[i] >= 32 and raw[i] <=127 ) {
             c[j] = raw[i];

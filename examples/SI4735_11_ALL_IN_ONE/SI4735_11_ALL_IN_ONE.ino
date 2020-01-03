@@ -607,7 +607,7 @@ void loop()
         // This command should work only for SSB mode
         if (bfoOn && (currentMode == LSB || currentMode == USB))
         {
-          currentBFOStep = (currentBFOStep == 50) ? 10 : 25;
+          currentBFOStep = (currentBFOStep == 25) ? 10 : 25;
           showBFO();
         }
         else
