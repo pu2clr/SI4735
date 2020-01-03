@@ -40,6 +40,7 @@
   Arduino Pro mini 3.3V;
 
   By Ricardo Lima Caratti, Nov 2019.
+  Last update: Jan 3, 2020.
 */
 
 #include <SI4735.h>
