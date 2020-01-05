@@ -28,6 +28,8 @@ SI4735::SI4735()
     for (int i = 0; i < 65; i++)
         rds_buffer[i] = ' ';
 
+    rdsIdx = 0;
+
     // 1 = LSB and 2 = USB; 0 = AM, FM or WB
     currentSsbStatus = 0;
 }
@@ -1115,72 +1117,16 @@ char *SI4735::getNext4Block(char *c)
 /*
  * Gets the RDS Text when the message is of the Group Type 2 version A
  */
-String SI4735::getRdsText(void)
+char * SI4735::getRdsText(void)
 {
+    if (rdsIdx >= 16)
+        rdsIdx = 0;
 
-    // Under Test and construction...
+    getNext4Block(&rds_buffer[rdsIdx * 4]);
 
-    si47x_rds_blockb blkb;
-    uint8_t offset;
-    uint8_t newB;
+    rdsIdx += 4;
 
-    // Under construction 
-    
-    for (int i = 0; i < 64; i++)
-        rds_buffer[i] = ' ';
-
-    blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-    blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-
-    offset = blkb.refined.content;
-    if (offset < 16)
-        getNext4Block(&rds_buffer[offset * 4]);
-    do
-    {
-        getRdsStatus();
-        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-    } while (offset == blkb.refined.content);
-    offset = blkb.refined.content;
-    if (offset < 16)
-        getNext4Block(&rds_buffer[offset * 4]);
-
-    do
-    {
-        getRdsStatus();
-        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-    } while (offset == blkb.refined.content);
-
-    offset = blkb.refined.content;
-    if (offset < 16)
-        getNext4Block(&rds_buffer[offset * 4]);
-
-    do
-    {
-        getRdsStatus();
-        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-    } while (offset == blkb.refined.content);
-    offset = blkb.refined.content;
-    if (offset < 16)
-        getNext4Block(&rds_buffer[offset * 4]);
-
-    do
-    {
-        getRdsStatus();
-        blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-    } while (offset == blkb.refined.content);
-
-    offset = blkb.refined.content;
-    if (offset < 16)
-        getNext4Block(&rds_buffer[offset * 4]);
-
-    rds_buffer[64] = 0;
-
-    return String(rds_buffer);
-
+    return rds_buffer;
 }
 
 /* 

@@ -643,6 +643,7 @@ class SI4735
 
 private:
     char rds_buffer[65];
+    int  rdsIdx;
     uint8_t resetPin;
     uint8_t interruptPin;
 
@@ -820,7 +821,7 @@ private:
     uint16_t getRdsGroupType(void);
     uint16_t getRdsVersionCode(void);
     uint16_t getRdsProgramType(void);
-    String getRdsText(void);
+    char * getRdsText(void);
     String getRdsTime(void);
 
     // Test
