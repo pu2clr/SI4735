@@ -1,7 +1,7 @@
 /*
 
    RDS test
-   Under development
+   Under development...
 */
 
 #include <SI4735.h>
@@ -88,7 +88,7 @@ void showRdsText()
   si4735.getRdsStatus();
   // TO DO
 }
-
+// 
 void loop()
 {
   if (Serial.available() > 0)
