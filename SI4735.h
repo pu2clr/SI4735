@@ -813,7 +813,7 @@ private:
     inline bool getRdsNewBlockB() { return currentRdsStatus.resp.RDSNEWBLOCKB; };  // 1 = Valid Block B data has been received.
     inline bool getRdsSync() { return currentRdsStatus.resp.RDSSYNC; };            // 1 = RDS currently synchronized.
     inline bool getGroupLost() { return currentRdsStatus.resp.GRPLOST; };          // 1 = One or more RDS groups discarded due to FIFO overrun.
-    inline uint8_t getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
+    inline uint8_t getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
 
     void setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t BLETHC, uint8_t BLETHD);
     uint16_t getRdsPI(void);

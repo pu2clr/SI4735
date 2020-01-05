@@ -136,7 +136,7 @@ void loop()
     if (si4735.getRdsNewBlockB())
     {
       unsigned gt = si4735.getRdsGroupType();
-      if (gt == 2 || gt == 4)
+      if (gt == 2)
       {
         int i = si4735.getRdsProgramType();
 
