@@ -2001,6 +2001,8 @@ This library implements some RDS features of the SI4735. The table below shows t
 | 30 | Alarm Test | Emergency Test |
 | 31 | Alarm | Emergency |
 
+<BR>
+<BR>
 
 ### setRdsIntSource
 
