@@ -1119,6 +1119,10 @@ char *SI4735::getNext4Block(char *c)
  */
 char * SI4735::getRdsText(void)
 {
+
+    // Needs to get the "Text segment address code".
+    // Each message should be ended by the code 0D (Hex)
+
     if (rdsIdx >= 16)
         rdsIdx = 0;
 

@@ -513,7 +513,6 @@ typedef union {
 
 /*
  * Block B data type
- * More about Group Type Contents see: https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_RDS
  * See also Si47XX PROGRAMMING GUIDE; AN332; pages 78 and 79
  */
 typedef union {
