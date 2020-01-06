@@ -102,6 +102,8 @@ The table below shows some radios based on SI47XX
 | C Crane |  CC Skywave | [Review](https://swling.com/blog/2014/12/review-of-the-c-crane-cc-skywave-portable-radio/) |
 
 
+<BR>
+<BR>
 
 ### Functional Block Diagram
 
