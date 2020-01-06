@@ -1949,7 +1949,7 @@ inline byte SI4735::getFirmwareCHIPREV()
 
 ## RDS
 
-    This library implements some RDS features of the SI4735. The table below shows the features that this library implements.
+This library implements some RDS features of the SI4735. The table below shows the features that this library implements.
 
 <BR>
 <BR>
@@ -1958,9 +1958,9 @@ inline byte SI4735::getFirmwareCHIPREV()
 | Feature | Infoirmation type | Description |  
 | ---------- | --------------- | ---------- | 
 | PTY | Program Type | PTY is a 5-bit that indicates the program type (see table below) |
-| PS | Program Service Name | | 
-| RT | Radiotext (under construction...) | |
-| CT | Clock Time (under construction...) |  |
+| PS | Program Service Name | Station name. It has eight static caharacter with the name of the station | 
+| RT | Radiotext (under construction...) | String with up to 64 characters with additional information about the content currently being transmitted  |
+| CT | Clock Time (under construction...) | It provides the the current clock |
 
 <BR>
 <BR>
