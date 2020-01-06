@@ -1951,6 +1951,8 @@ inline byte SI4735::getFirmwareCHIPREV()
 
     This library implements some RDS features of the SI4735. The table below shows the features that this library implements.
 
+<BR>
+<BR>
 
 ### RDS Features implemented 
 | Feature | Infoirmation type | Description |  
@@ -1960,6 +1962,8 @@ inline byte SI4735::getFirmwareCHIPREV()
 | RT | Radiotext (under construction...) | |
 | CT | Clock Time (under construction...) |  |
 
+<BR>
+<BR>
 
 ### RDS Program type description
 | RDS/RBDS Code | European Program Type | North American Program Type |
