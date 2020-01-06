@@ -1963,7 +1963,7 @@ inline byte SI4735::getFirmwareCHIPREV()
 
 ### RDS Program type description
 | RDS/RBDS Code | European Program Type | North American Program Type |
-| ------------- | _____________________ | ___________________________ |
+| -------- | ---------- | ------ |
 | 0 | No program definition type |	No program definition type |
 | 1 | News	News |
 | 2	 | Current affairs | Information |
