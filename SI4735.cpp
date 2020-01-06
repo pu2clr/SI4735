@@ -1062,10 +1062,28 @@ uint16_t  SI4735::getRdsGroupType(void)
 }
 
 /*
+ * Returns the address of the text segment.
+ * 2A - Each text segment in version 2A groups consists of four characters. A messages of this group can be 
+ *      have up to 64 characters. 
+ * 2B - In version 2B groups, each text segment consists of only two characters. When the current RDS status is
+ *      using this version, the maximum message length will be 32 characters.
+ */
+
+uint8_t SI4735::getRdsTextSegmentAddress(void) {
+
+    si47x_rds_blockb blkb;
+    blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+    blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+
+    return blkb.refined.content;
+}
+
+    /*
  * Gets the version code (extracted from the Block B)
  * Returns  0=A or 1=B
  */
-uint16_t  SI4735::getRdsVersionCode(void)
+    uint16_t
+    SI4735::getRdsVersionCode(void)
 {
     si47x_rds_blockb blkb;
 
@@ -1123,6 +1141,8 @@ char * SI4735::getRdsText(void)
     // Needs to get the "Text segment address code".
     // Each message should be ended by the code 0D (Hex)
 
+
+
     if (rdsIdx >= 16)
         rdsIdx = 0;
 
@@ -1131,6 +1151,36 @@ char * SI4735::getRdsText(void)
     rdsIdx += 4;
 
     return rds_buffer;
+}
+
+char *SI4735::getRdsText2A(void) {
+
+    getRdsStatus();
+
+    if (getRdsReceived()) {
+        if ( getRdsNewBlockB() ) {
+            if (getRdsGroupType() == 2 && getRdsVersionCode() == 0 ) {
+                // Process group 2A
+            }
+        }
+    }
+
+}
+
+char *SI4735::getRdsText2B(void) {
+
+    getRdsStatus();
+
+    if (getRdsReceived())
+    {
+        if (getRdsNewBlockB())
+        {
+            if (getRdsGroupType() == 2 && getRdsVersionCode() == 0)
+            {
+                // Process group 2A
+            }
+        }
+    }
 }
 
 /* 

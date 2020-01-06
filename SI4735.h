@@ -389,6 +389,7 @@ typedef union {
  * FM_RDS_STATUS (0x24) command
  * Data type for command and response information 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
+ * See Also https://en.wikipedia.org/wiki/Radio_Data_System
  */
 
 // Command data type
@@ -454,6 +455,7 @@ typedef union {
 /*
  * FM_RDS_INT_SOURCE property data type
  * See Si47XX PROGRAMMING GUIDE; AN332; page 103
+ * See also https://en.wikipedia.org/wiki/Radio_Data_System
  */
 typedef union {
     struct
@@ -514,6 +516,7 @@ typedef union {
 /*
  * Block B data type
  * See also Si47XX PROGRAMMING GUIDE; AN332; pages 78 and 79
+ * See also https://en.wikipedia.org/wiki/Radio_Data_System
  */
 typedef union {
     struct
@@ -820,7 +823,12 @@ private:
     uint16_t getRdsGroupType(void);
     uint16_t getRdsVersionCode(void);
     uint16_t getRdsProgramType(void);
-    char * getRdsText(void);
+    uint8_t SI4735::getRdsTextSegmentAddress(void);
+    
+    char *getRdsText(void);
+    char *SI4735::getRdsText2A(void);
+    char *SI4735::getRdsText2B(void);
+
     String getRdsTime(void);
 
     // Test
