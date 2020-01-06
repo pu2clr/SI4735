@@ -1949,7 +1949,53 @@ inline byte SI4735::getFirmwareCHIPREV()
 
 ## RDS
 
-    This library implements some RDS features of the SI4735.
+    This library implements some RDS features of the SI4735. The table below shows the features that this library implements.
+
+
+### RDS Features implemented 
+| Feature | Infoirmation type | Description |  
+| ---------- | --------------- | ---------- | 
+| PTY | Program Type | PTY is a 5-bit that indicates the program type (see table below) |
+| PS | Program Service Name | | 
+| RT | Radiotext (under construction...) | |
+| CT | Clock Time (under construction...) |  |
+
+
+### RDS Program type description
+| RDS/RBDS Code | European Program Type | North American Program Type |
+| ------------- | _____________________ | ___________________________ |
+| 0 | No program definition type |	No program definition type |
+| 1 | News	News |
+| 2	 | Current affairs | Information |
+| 3	| Information |	Sport |
+| 4	| Sport | Talk |
+| 5	| Education | Rock |
+| 6	| Drama	| Classic Rock |
+| 7	| Culture |	Adult Hits |
+| 8	| Science |	Soft Rock |
+| 9	| Variable | Top 40 |
+| 10 | Popular Music (Pop) | Country Music |
+| 11 | Rock Music | Oldies Music |
+| 12 | Easy Listening |	Soft Music |
+| 13 | Light Classical | Nostalgia |
+| 14 | Serious Classical | Jazz |
+| 15 | Other Music | Classical |
+| 16 | Weather | Rhythm & Blues Music |
+| 17 | Finance | Soft Rhythm & Blues Music |
+| 18 | Children’s Programs | Language |
+| 19 | Social Affairs | Religious Music |
+| 20 | Religion | Religious Talk |
+| 21 | Phone-in Talk | Personality
+| 22 | Travel |	Public |
+| 23 | Leisure	| College |
+| 24 | Jazz Music | Not assigned |
+| 25 | Country Music | Not assigned |
+| 26 | National Music |	Not assigned |
+| 27 | Oldies Music	Not assigned |
+| 28 | Folk Music |	Not assigned |
+| 29 | Documentary | Weather |
+| 30 | Alarm Test | Emergency Test |
+| 31 | Alarm | Emergency |
 
 
 ### setRdsIntSource
