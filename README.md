@@ -95,7 +95,7 @@ The table below shows some radios based on SI47XX
 | Degen | DE1123/Kaito KA1123 | [Review](https://frrl.wordpress.com/2009/07/11/review-of-the-degen-de1123-dsp-amfmsw-pocket-radio-with-1gb-mp3-player-recorder/)|
 | Degen | DE1125/Kaito KA801 | [Reviews](https://www.eham.net/reviews/view-product?id=9584)|
 | Degen | DE1126 | [Review](https://sites.google.com/site/zliangas/de1126-review)|
-| Degen | DE1127 (discontinued) | |
+| Degen | DE1127 (discontinued) | [Review](https://herculodge.typepad.com/herculodge/2012/01/dave-zantow-provides-firmware-updates-for-degen-de1127-and-de1126-models.html) |
 | Sangean | ATS-909X | [Review](https://swling.com/blog/tag/sangean-ats-909x-review/) |
 | XHDATA | D808 | [Review](https://swling.com/blog/2018/04/a-detailed-review-of-the-xhdata-d-808-and-comparison-with-the-tecsun-pl-660/)|
 | RADIWOW | R-108 | [Review](https://www.hagensieker.com/wordpress/2019/05/08/radiwow-r-108-short-wave-radio-review/)|
