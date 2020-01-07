@@ -1128,10 +1128,15 @@ char *SI4735::getNext4Block(char *c)
     raw[2] = currentRdsStatus.resp.BLOCKDH;
     raw[3] = currentRdsStatus.resp.BLOCKDL;
     for ( i = j = 0; i < 4; i++) {
-        c[i] = 0; 
+        if ( raw[i] == 0xD ) {
+            c[i] = '\0';
+            return;
+        }
         if ( raw[i] >= 32 and raw[i] <=127 ) {
             c[j] = raw[i];
             j++;
+        } else {
+            c[i] = ' ';
         }
     }
 }
@@ -1171,10 +1176,14 @@ char *SI4735::getRdsText2A(void) {
                 blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
                 blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
                 rdsTextAdress2A = blkB.refined.content;
+                if (rdsTextAdress2A >= 0 && rdsTextAdress2A < 16 ) {
+                    getNext4Block(&rds_buffer2A[rdsTextAdress2A * 4]);
+                    return rds_buffer2A;
+                }
             }
         }
     }
-
+    return NULL;
 }
 
 char *SI4735::getRdsText2B(void) {

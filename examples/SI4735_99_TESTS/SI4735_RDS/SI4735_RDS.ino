@@ -17,15 +17,16 @@ unsigned fm_freq = 10390; // 103.9 MHz - Change it to your local FM station with
 
 // ORININAL UE
 char *tabProgramType[] = {
-    "No program definition type", "News", "Current affairs", "Information", "Sport", "Education", "Drama",
-    "Culture", "Science", "Variable", "Popular Music (Pop)", "Rock Music", "Easy Listening", "Light Classical",
-    "Serious Classical", "Other Music", "Weather", "Finance", "Children’s Programs", "Social Affairs", "Religion",
-    "Phone-in Talk", "Travel", "Leisure", "Jazz Music", "Country Music", "National Music", "Oldies Music",
-    "Folk Music", "Documentary", "Alarm Test", "Alarm"};
+  "No program definition type", "News", "Current affairs", "Information", "Sport", "Education", "Drama",
+  "Culture", "Science", "Variable", "Popular Music (Pop)", "Rock Music", "Easy Listening", "Light Classical",
+  "Serious Classical", "Other Music", "Weather", "Finance", "Children’s Programs", "Social Affairs", "Religion",
+  "Phone-in Talk", "Travel", "Leisure", "Jazz Music", "Country Music", "National Music", "Oldies Music",
+  "Folk Music", "Documentary", "Alarm Test", "Alarm"
+};
 
 // USA - comment above and uncomment below if you are using USA
 /*
-char * tabProgramType[] = {
+  char * tabProgramType[] = {
   "No program definition type", "News", "Information", "Sport", "Talk", "Rock", "Classic Rock",
   "Adult Hits", "Soft Rock", "Top 40", "Country Music", "Oldies Music", "Soft Music", "Nostalgia",
   "Jazz", "Classical", "Rhythm & Blues Music", "Soft Rhythm & Blues Music", "Language", "Religious Music", "Religious Talk",
@@ -35,6 +36,7 @@ char * tabProgramType[] = {
 */
 
 SI4735 si4735;
+char *rdsMsg;
 
 void setup()
 {
@@ -88,7 +90,7 @@ void showRdsText()
   si4735.getRdsStatus();
   // TO DO
 }
-// 
+//
 void loop()
 {
   if (Serial.available() > 0)
@@ -130,47 +132,28 @@ void loop()
     }
   }
   // RDS Test
-  si4735.getRdsStatus();
-  if (si4735.getRdsReceived())
+
+  rdsMsg = si4735.getRdsText2A();
+  if  ( rdsMsg != NULL)
   {
-    if (si4735.getRdsNewBlockB())
+    int i = si4735.getRdsProgramType();
+    Serial.print("RDS GT: ");
+    Serial.print(si4735.getRdsGroupType());
+    Serial.print("-RDS V: ");
+    Serial.print(si4735.getRdsVersionCode());
+    Serial.print("-PTy: ");
+    Serial.print(i);
+    Serial.print("-");
+    if (i < 32)
     {
-      unsigned gt = si4735.getRdsGroupType();
-      if (gt == 2)
-      {
-        int i = si4735.getRdsProgramType();
-
-        Serial.print("RDS GT: ");
-        Serial.print(si4735.getRdsGroupType());
-
-        Serial.print("-RDS V: ");
-        Serial.print(si4735.getRdsVersionCode());
-
-        Serial.print("-PTy: ");
-        Serial.print(i);
-        Serial.print("-");
-        if (i < 32)
-        {
-          Serial.print(String(tabProgramType[i]));
-        }
-        else
-        {
-          Serial.print("****");
-        }
-        if (gt == 4)
-        {
-          Serial.print(" - ");
-          Serial.print(si4735.getRdsTime());
-        }
-        else
-        {
-          Serial.print("-");
-          Serial.print(si4735.getRdsText());
-        }
-        Serial.println(">");
-        delay(600);
-      }
+      Serial.print(String(tabProgramType[i]));
     }
+    Serial.print("-");
+    Serial.print(rdsMsg);
+    Serial.println(">");
+    delay(600);
   }
+
+
   delay(100);
 }
