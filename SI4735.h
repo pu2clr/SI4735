@@ -521,7 +521,8 @@ typedef union {
 typedef union {
     struct
     {
-        uint8_t content : 5;            // Depends on Group Type and Version codes.
+        uint8_t content : 4;            // Depends on Group Type and Version codes. If 2A or 2B it is the Text Segment Address.
+        uint8_t text_a_b_flag : 1;      // Do something if chanhe (from binary "0" to binary "1" or vice-versa)
         uint8_t programType : 5;        // PTY (Program Type) code
         uint8_t trafficProgramCode : 1; // 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
         uint8_t versionCode : 1;        // 0=A; 1=B
@@ -644,8 +645,10 @@ class SI4735
 {
 
 private:
-    char rds_buffer[65];
-    int  rdsIdx;
+    char rds_buffer2A[65]; // RDS Radio Text buffer - Program Information
+    char rds_buffer2B[33]; // RDS Radio Text buffer - Station Informaation
+    int  rdsTextAdress2A;
+    int  rdsTextAdress2B;
     uint8_t resetPin;
     uint8_t interruptPin;
 

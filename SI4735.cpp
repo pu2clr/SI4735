@@ -25,10 +25,14 @@
 
 SI4735::SI4735()
 {
-    for (int i = 0; i < 65; i++)
-        rds_buffer[i] = ' ';
+    int i;    
+    for (i = 0; i < 65; i++)
+        rds_buffer2A[i] = ' '; // Radio Text buffer - Program Information
 
-    rdsIdx = 0;
+    for (i = 0; i < 33; i++)
+        rds_buffer2B[i] = 0;   // Radio Text buffer - Station Informaation 
+
+    rdsTextAdress2A = rdsTextAdress2B = 0;
 
     // 1 = LSB and 2 = USB; 0 = AM, FM or WB
     currentSsbStatus = 0;
@@ -1141,26 +1145,32 @@ char * SI4735::getRdsText(void)
     // Needs to get the "Text segment address code".
     // Each message should be ended by the code 0D (Hex)
 
+    if (rdsTextAdress2A >= 16)
+        rdsTextAdress2A = 0;
 
+    getNext4Block(&rds_buffer2A[rdsTextAdress2A * 4]);
 
-    if (rdsIdx >= 16)
-        rdsIdx = 0;
+    rdsTextAdress2A += 4;
 
-    getNext4Block(&rds_buffer[rdsIdx * 4]);
-
-    rdsIdx += 4;
-
-    return rds_buffer;
+    return rds_buffer2A;
 }
 
 char *SI4735::getRdsText2A(void) {
 
+    si47x_rds_blockb blkB;
+
+
     getRdsStatus();
 
-    if (getRdsReceived()) {
+    if (getRdsReceived())
+    {
         if ( getRdsNewBlockB() ) {
             if (getRdsGroupType() == 2 && getRdsVersionCode() == 0 ) {
                 // Process group 2A
+                // Decode B block information
+                blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+                blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+                rdsTextAdress2A = blkB.refined.content;
             }
         }
     }
@@ -1175,9 +1185,9 @@ char *SI4735::getRdsText2B(void) {
     {
         if (getRdsNewBlockB())
         {
-            if (getRdsGroupType() == 2 && getRdsVersionCode() == 0)
+            if (getRdsGroupType() == 2 && getRdsVersionCode() == 1) 
             {
-                // Process group 2A
+                // Process group 2B
             }
         }
     }
