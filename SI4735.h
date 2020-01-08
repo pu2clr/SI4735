@@ -50,7 +50,6 @@
 #define FM_BLEND_MULTIPATH_STEREO_THRESHOLD 0x1808
 #define FM_BLEND_MULTIPATH_MONO_THRESHOLD 0x1809
 
-
 // AM command
 #define AM_TUNE_FREQ 0x40    // Tunes to a given AM frequency.
 #define AM_SEEK_START 0x41   // Begins searching for a valid AM frequency.
@@ -129,7 +128,6 @@
 #define SSB_RF_IF_AGC_ATTACK_RATE 0x3702  // Sets the number of milliseconds the high IF peak detector must be exceeded before decreasing gain. Defaul 4.
 #define SSB_RF_IF_AGC_RELEASE_RATE 0x3703 // Sets the number of milliseconds the low IF peak detector must be exceeded before increasing the gain. Defaul 140.
 
-
 // See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 12 and 13
 #define LSB_MODE 1 // 01
 #define USB_MODE 2 // 10
@@ -138,16 +136,16 @@
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
 #define SI473X_DIGITAL_AUDIO B00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
 
-    /*****************************************************************
+/*****************************************************************
  * SI473X data types 
  * These data types will be usefull to deal with SI473X 
  *****************************************************************/
 
-    /*
+/*
  * Power Up arguments data type 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65
  */
-    typedef union {
+typedef union {
     struct
     {
         // ARG1
@@ -519,15 +517,34 @@ typedef union {
  * See also https://en.wikipedia.org/wiki/Radio_Data_System
  */
 typedef union {
+    struct {
+        uint8_t address : 2;            // Depends on Group Type and Version codes. If 2A or 2B it is the Text Segment Address.
+        uint8_t DI:1;                    // Decoder Controll bit
+        uint8_t MS : 1;                  // Music/Speech
+        uint8_t TA : 1;                 // Traffic Announcement
+        uint8_t programType : 5;        // PTY (Program Type) code
+        uint8_t trafficProgramCode : 1; // (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
+        uint8_t versionCode : 1;        // (B0) => 0=A; 1=B
+        uint8_t groupType : 4;          // Group Type code.
+    } group0;
+    struct
+    {
+        uint8_t address : 4;            // Depends on Group Type and Version codes. If 2A or 2B it is the Text Segment Address.
+        uint8_t textABFlag : 1;         // Do something if it chanhes from binary "0" to binary "1" or vice-versa
+        uint8_t programType : 5;        // PTY (Program Type) code
+        uint8_t trafficProgramCode : 1; // (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
+        uint8_t versionCode : 1;        // (B0) => 0=A; 1=B
+        uint8_t groupType : 4;          // Group Type code.
+
+    } group2;
     struct
     {
         uint8_t content : 4;            // Depends on Group Type and Version codes. If 2A or 2B it is the Text Segment Address.
         uint8_t textABFlag : 1;         // Do something if it chanhes from binary "0" to binary "1" or vice-versa
         uint8_t programType : 5;        // PTY (Program Type) code
-        uint8_t trafficProgramCode : 1; // 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
-        uint8_t versionCode : 1;        // 0=A; 1=B
+        uint8_t trafficProgramCode : 1; // (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
+        uint8_t versionCode : 1;        // (B0) => 0=A; 1=B
         uint8_t groupType : 4;          // Group Type code.
-
     } refined;
     struct
     {
@@ -647,8 +664,12 @@ class SI4735
 private:
     char rds_buffer2A[65]; // RDS Radio Text buffer - Program Information
     char rds_buffer2B[33]; // RDS Radio Text buffer - Station Informaation
-    int  rdsTextAdress2A;
-    int  rdsTextAdress2B;
+    char rds_buffer0A[9];  // RDS Basic tuning and switching information (Type 0 groups)
+    int rdsTextAdress2A;
+    int rdsTextAdress2B;
+    int rdsTextAdress0A;
+
+    uint8_t lastTextFlagAB;
     uint8_t resetPin;
     uint8_t interruptPin;
 
@@ -679,8 +700,12 @@ private:
     void sendProperty(uint16_t propertyValue, uint16_t param);
     void sendSSBModeProperty(); // Sends SSB_MODE property to the device.
     void disableFmDebug();
+    void clearRdsBuffer2A();
+    void clearRdsBuffer2B();
+    void clearRdsBuffer0A();
 
-        public : SI4735();
+public:
+    SI4735();
     void reset(void);
     void waitToSend(void); // Wait for Si4735 device ready to receive command
     void setup(uint8_t resetPin, uint8_t defaultFunction);
@@ -703,14 +728,14 @@ private:
      * Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation
      * See Si47XX PROGRAMMING GUIDE; AN332; pages 63
      */
-    inline bool getSignalQualityInterrupt() { return currentStatus.resp.RSQINT; };        // Gets Received Signal Quality Interrupt(RSQINT)
-    inline bool getRadioDataSystemInterrupt() { return currentStatus.resp.RDSINT; };      // Gets Radio Data System (RDS) Interrupt
-    inline bool getTuneCompleteTriggered() { return currentStatus.resp.STCINT; };         // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
-    inline bool getStatusError() { return currentStatus.resp.ERR; };                      // Return the Error flag (true or false) of status of the least Tune or Seek
-    inline bool getStatusCTS() { return currentStatus.resp.CTS; };                        // Gets the Error flag of status response
-    inline bool getACFIndicator() { return currentStatus.resp.AFCRL; };                   // Returns true if the AFC rails (AFC Rail Indicator).
-    inline bool getBandLimit() { return currentStatus.resp.BLTF; };                       // Returns true if a seek hit the band limit (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
-    inline bool getStatusValid() { return currentStatus.resp.VALID; };                    // eturns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)
+    inline bool getSignalQualityInterrupt() { return currentStatus.resp.RSQINT; };           // Gets Received Signal Quality Interrupt(RSQINT)
+    inline bool getRadioDataSystemInterrupt() { return currentStatus.resp.RDSINT; };         // Gets Radio Data System (RDS) Interrupt
+    inline bool getTuneCompleteTriggered() { return currentStatus.resp.STCINT; };            // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
+    inline bool getStatusError() { return currentStatus.resp.ERR; };                         // Return the Error flag (true or false) of status of the least Tune or Seek
+    inline bool getStatusCTS() { return currentStatus.resp.CTS; };                           // Gets the Error flag of status response
+    inline bool getACFIndicator() { return currentStatus.resp.AFCRL; };                      // Returns true if the AFC rails (AFC Rail Indicator).
+    inline bool getBandLimit() { return currentStatus.resp.BLTF; };                          // Returns true if a seek hit the band limit (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
+    inline bool getStatusValid() { return currentStatus.resp.VALID; };                       // eturns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)
     inline uint8_t getReceivedSignalStrengthIndicator() { return currentStatus.resp.RSSI; }; // Returns integer Received Signal Strength Indicator (dBμV).
     inline uint8_t getStatusSNR() { return currentStatus.resp.SNR; };                        // returns integer containing the SNR metric when tune is complete (dB).
     inline uint8_t getStatusMULT() { return currentStatus.resp.MULT; };                      // Returns integer containing the multipath metric when tune is complete.
@@ -718,19 +743,19 @@ private:
 
     void getAutomaticGainControl();
 
-    inline bool isAgcEnabled() { return !currentAgcStatus.refined.AGCDIS; };  // Returns true if the AGC is enabled
+    inline bool isAgcEnabled() { return !currentAgcStatus.refined.AGCDIS; };      // Returns true if the AGC is enabled
     inline uint8_t getAgcGainIndex() { return currentAgcStatus.refined.AGCIDX; }; // Returns the current AGC gain index.
-    void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX);                    // Overrides the AGC setting
+    void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX);                 // Overrides the AGC setting
 
     /* RQS STATUS RESPONSE 
      * 
      */
     void getCurrentReceivedSignalQuality(uint8_t INTACK);
     void getCurrentReceivedSignalQuality(void);
-    
+
     // AM and FM
-    inline uint8_t getCurrentRSSI() { return currentRqsStatus.resp.RSSI; };               // current receive signal strength (0–127 dBμV).
-    inline uint8_t getCurrentSNR() { return currentRqsStatus.resp.SNR; };                 // current SNR metric (0–127 dB).
+    inline uint8_t getCurrentRSSI() { return currentRqsStatus.resp.RSSI; };            // current receive signal strength (0–127 dBμV).
+    inline uint8_t getCurrentSNR() { return currentRqsStatus.resp.SNR; };              // current SNR metric (0–127 dB).
     inline bool getCurrentRssiDetectLow() { return currentRqsStatus.resp.RSSIILINT; }; // RSSI Detect Low.
     inline bool getCurrentRssiDetectHigh() { return currentRqsStatus.resp.RSSIHINT; }; // RSSI Detect High
     inline bool getCurrentSnrDetectLow() { return currentRqsStatus.resp.SNRLINT; };    // SNR Detect Low.
@@ -740,12 +765,12 @@ private:
     inline bool getCurrentSoftMuteIndicator() { return currentRqsStatus.resp.SMUTE; }; // Soft Mute Indicator. Indicates soft mute is engaged.
     // Just FM
     inline uint8_t getCurrentStereoBlend() { return currentRqsStatus.resp.STBLEND; };           // Indicates amount of stereo blend in % (100 = full stereo, 0 = full mono).
-    inline bool getCurrentPilot() { return currentRqsStatus.resp.PILOT; };                   // Indicates stereo pilot presence.
+    inline bool getCurrentPilot() { return currentRqsStatus.resp.PILOT; };                      // Indicates stereo pilot presence.
     inline uint8_t getCurrentMultipath() { return currentRqsStatus.resp.MULT; };                // Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
     inline uint8_t getCurrentSignedFrequencyOffset() { return currentRqsStatus.resp.FREQOFF; }; // Signed frequency offset (kHz).
-    inline bool getCurrentMultipathDetectLow() { return currentRqsStatus.resp.MULTLINT; };   // Multipath Detect Low.
-    inline bool getCurrentMultipathDetectHigh() { return currentRqsStatus.resp.MULTHINT; };  // Multipath Detect High
-    inline bool getCurrentBlendDetectInterrupt() { return currentRqsStatus.resp.BLENDINT; }; // Blend Detect Interrupt
+    inline bool getCurrentMultipathDetectLow() { return currentRqsStatus.resp.MULTLINT; };      // Multipath Detect Low.
+    inline bool getCurrentMultipathDetectHigh() { return currentRqsStatus.resp.MULTHINT; };     // Multipath Detect High
+    inline bool getCurrentBlendDetectInterrupt() { return currentRqsStatus.resp.BLENDINT; };    // Blend Detect Interrupt
 
     /*
      * FIRMWARE RESPONSE
@@ -756,7 +781,7 @@ private:
     getFirmwarePN()
     {
         return firmwareInfo.resp.PN;
-    };                                                                        //  RESP1 - Part Number (HEX)
+    };                                                                           //  RESP1 - Part Number (HEX)
     inline uint8_t getFirmwareFWMAJOR() { return firmwareInfo.resp.FWMAJOR; };   // RESP2 - Returns the Firmware Major Revision (ASCII).
     inline uint8_t getFirmwareFWMINOR() { return firmwareInfo.resp.FWMINOR; };   // RESP3 - Returns the Firmware Minor Revision (ASCII).
     inline uint8_t getFirmwarePATCHH() { return firmwareInfo.resp.PATCHH; };     // RESP4 -  Returns the Patch ID High byte (HEX).
@@ -796,7 +821,6 @@ private:
     void seekStationUp();
     void seekStationDown();
 
-
     void setFmBlendStereoThreshold(uint8_t parameter);
     void setFmBlendMonoThreshold(uint8_t parameter);
     void setFmBlendRssiStereoThreshold(uint8_t parameter);
@@ -806,31 +830,33 @@ private:
     void setFmBlendMultiPathStereoThreshold(uint8_t parameter);
     void setFmBlendMultiPathMonoThreshold(uint8_t parameter);
     void setFmStereoOn();
-    void setFmStereoOff(); 
+    void setFmStereoOff();
 
     // RDS implementation
     void setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t RDSSYNCFOUND, uint8_t RDSSYNCLOST, uint8_t RDSRECV);
     void getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY);
     void getRdsStatus();
-    inline bool getRdsReceived() { return currentRdsStatus.resp.RDSRECV; };        // 1 = FIFO filled to minimum number of groups
-    inline bool getRdsSyncLost() { return currentRdsStatus.resp.RDSSYNCLOST; };    // 1 = Lost RDS synchronization
-    inline bool getRdsSyncFound() { return currentRdsStatus.resp.RDSSYNCFOUND; };  // 1 = Found RDS synchronization
-    inline bool getRdsNewBlockA() { return currentRdsStatus.resp.RDSNEWBLOCKA; };  // 1 = Valid Block A data has been received.
-    inline bool getRdsNewBlockB() { return currentRdsStatus.resp.RDSNEWBLOCKB; };  // 1 = Valid Block B data has been received.
-    inline bool getRdsSync() { return currentRdsStatus.resp.RDSSYNC; };            // 1 = RDS currently synchronized.
-    inline bool getGroupLost() { return currentRdsStatus.resp.GRPLOST; };          // 1 = One or more RDS groups discarded due to FIFO overrun.
+    inline bool getRdsReceived() { return currentRdsStatus.resp.RDSRECV; };           // 1 = FIFO filled to minimum number of groups
+    inline bool getRdsSyncLost() { return currentRdsStatus.resp.RDSSYNCLOST; };       // 1 = Lost RDS synchronization
+    inline bool getRdsSyncFound() { return currentRdsStatus.resp.RDSSYNCFOUND; };     // 1 = Found RDS synchronization
+    inline bool getRdsNewBlockA() { return currentRdsStatus.resp.RDSNEWBLOCKA; };     // 1 = Valid Block A data has been received.
+    inline bool getRdsNewBlockB() { return currentRdsStatus.resp.RDSNEWBLOCKB; };     // 1 = Valid Block B data has been received.
+    inline bool getRdsSync() { return currentRdsStatus.resp.RDSSYNC; };               // 1 = RDS currently synchronized.
+    inline bool getGroupLost() { return currentRdsStatus.resp.GRPLOST; };             // 1 = One or more RDS groups discarded due to FIFO overrun.
     inline uint8_t getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; // RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty).
 
     void setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t BLETHC, uint8_t BLETHD);
     uint16_t getRdsPI(void);
-    uint16_t getRdsGroupType(void);
-    uint16_t getRdsVersionCode(void);
-    uint16_t getRdsProgramType(void);
-    uint8_t SI4735::getRdsTextSegmentAddress(void);
-    
+    uint8_t getRdsGroupType(void);
+    uint8_t getRdsFlagAB(void);
+    uint8_t getRdsVersionCode(void);
+    uint8_t getRdsProgramType(void);
+    uint8_t getRdsTextSegmentAddress(void);
+
     char *getRdsText(void);
-    char *SI4735::getRdsText2A(void);
-    char *SI4735::getRdsText2B(void);
+    char *getRdsText0A(void); // Gets the Station name 
+    char *getRdsText2A(void); // Gets the Radio Text 
+    char *getRdsText2B(void);
 
     String getRdsTime(void);
 

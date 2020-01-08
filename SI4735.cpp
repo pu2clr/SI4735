@@ -25,24 +25,37 @@
 
 SI4735::SI4735()
 {
-    int i;    
-    for (i = 0; i < 65; i++)
-        rds_buffer2A[i] = ' '; // Radio Text buffer - Program Information
+    clearRdsBuffer2A();
+    clearRdsBuffer2B();
+    clearRdsBuffer0A();
 
-    for (i = 0; i < 33; i++)
-        rds_buffer2B[i] = 0;   // Radio Text buffer - Station Informaation 
-
-    rdsTextAdress2A = rdsTextAdress2B = 0;
+    rdsTextAdress2A = rdsTextAdress2B = lastTextFlagAB = rdsTextAdress0A = 0;
 
     // 1 = LSB and 2 = USB; 0 = AM, FM or WB
     currentSsbStatus = 0;
+}
+
+void SI4735::clearRdsBuffer2A() {
+    for (int i = 0; i < 65; i++)
+        rds_buffer2A[i] = ' '; // Radio Text buffer - Program Information
+}
+
+void SI4735::clearRdsBuffer2B()
+{
+    for (int i = 0; i < 33; i++)
+        rds_buffer2B[i] = ' '; // Radio Text buffer - Station Informaation
+}
+
+void SI4735::clearRdsBuffer0A() {
+    for (int i = 0; i < 9; i++)
+        rds_buffer0A[i] = ' '; // Station Name buffer
 }
 
 /*
 * 
 * This function is called whenever the Si4735 changes. 
 */
-void SI4735::waitInterrupr(void)
+    void SI4735::waitInterrupr(void)
 {
     while (!data_from_si4735)
         ;
@@ -117,13 +130,14 @@ void SI4735::getFirmware(void)
     Wire.write(GET_REV);
     Wire.endTransmission();
 
-    do {
-    waitToSend();
-    // Request for 9 bytes response
-    Wire.requestFrom(SI473X_ADDR, 9);
-    for (int i = 0; i < 9; i++)
-        firmwareInfo.raw[i] = Wire.read();
-    } while (firmwareInfo.resp.ERR); 
+    do
+    {
+        waitToSend();
+        // Request for 9 bytes response
+        Wire.requestFrom(SI473X_ADDR, 9);
+        for (int i = 0; i < 9; i++)
+            firmwareInfo.raw[i] = Wire.read();
+    } while (firmwareInfo.resp.ERR);
 }
 
 /* 
@@ -235,7 +249,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  *                  FM - the valid range is 0 to 191.    
  *                  According to Silicon Labs, automatic capacitor tuning is recommended (value 0). 
  */
-void SI4735::setTuneFrequencyAntennaCapacitor(uint16_t  capacitor)
+void SI4735::setTuneFrequencyAntennaCapacitor(uint16_t capacitor)
 {
 
     si47x_antenna_capacitor cap;
@@ -266,7 +280,7 @@ void SI4735::setTuneFrequencyAntennaCapacitor(uint16_t  capacitor)
  * 
  * @param uint16_t  freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
  */
-void SI4735::setFrequency(uint16_t  freq)
+void SI4735::setFrequency(uint16_t freq)
 {
     waitToSend(); // Wait for the si473x is ready.
     currentFrequency.value = freq;
@@ -369,7 +383,7 @@ void SI4735::setFM()
  * @param initialFreq initial frequency 
  * @param step step used to go to the next channel   
  */
-void SI4735::setAM(uint16_t  fromFreq, uint16_t  toFreq, uint16_t  initialFreq, uint8_t step)
+void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint8_t step)
 {
 
     currentMinimumFrequency = fromFreq;
@@ -394,7 +408,7 @@ void SI4735::setAM(uint16_t  fromFreq, uint16_t  toFreq, uint16_t  initialFreq, 
  * @param initialFreq initial frequency (default frequency)
  * @param step step used to go to the next channel   
  */
-void SI4735::setFM(uint16_t  fromFreq, uint16_t  toFreq, uint16_t  initialFreq, uint8_t step)
+void SI4735::setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint8_t step)
 {
 
     currentMinimumFrequency = fromFreq;
@@ -461,22 +475,22 @@ bool SI4735::isCurrentTuneFM()
     return (currentTune == FM_TUNE_FREQ);
 }
 
-
 /*
  * Send (set) property to the SI47XX
  * This method is used for others to send generic properties and params to SI47XX
- */  
-void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter) {
+ */
+void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter)
+{
 
     si47x_property property;
     si47x_property param;
 
-    property.value  = propertyValue;
+    property.value = propertyValue;
     param.value = parameter;
     waitToSend();
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(SET_PROPERTY);
-    Wire.write(0x00);                  
+    Wire.write(0x00);
     Wire.write(property.raw.byteHigh); // Send property - High byte - most significant first
     Wire.write(property.raw.byteLow);  // Send property - Low byte - less significant after
     Wire.write(param.raw.byteHigh);    // Send the argments. High Byte - Most significant first
@@ -490,7 +504,8 @@ void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter) {
  * To force stereo, set this to 0. To force mono, set this to 127.
  * See Si47XX PROGRAMMING GUIDE; AN332; page 90. 
  */
-void SI4735::setFmBlendStereoThreshold(uint8_t parameter){
+void SI4735::setFmBlendStereoThreshold(uint8_t parameter)
+{
     sendProperty(FM_BLEND_STEREO_THRESHOLD, parameter);
 }
 
@@ -509,9 +524,9 @@ void SI4735::setFmBlendMonoThreshold(uint8_t parameter)
  * To force stereo, set this to 0. To force mono, set this to 127. Default value is 49 dBμV.
  * See Si47XX PROGRAMMING GUIDE; AN332; page 59. 
  */
-    void SI4735::setFmBlendRssiStereoThreshold(uint8_t parameter)
+void SI4735::setFmBlendRssiStereoThreshold(uint8_t parameter)
 {
-    sendProperty(FM_BLEND_RSSI_STEREO_THRESHOLD, parameter);    
+    sendProperty(FM_BLEND_RSSI_STEREO_THRESHOLD, parameter);
 }
 
 /*
@@ -519,8 +534,9 @@ void SI4735::setFmBlendMonoThreshold(uint8_t parameter)
  * To force stereo, set this to 0. To force mono, set this to 127. Default value is 30 dBμV.
  * See Si47XX PROGRAMMING GUIDE; AN332; page 59.  
  */
-void SI4735::setFmBLendRssiMonoThreshold(uint8_t parameter) {
-    sendProperty(FM_BLEND_RSSI_MONO_THRESHOLD, parameter);    
+void SI4735::setFmBLendRssiMonoThreshold(uint8_t parameter)
+{
+    sendProperty(FM_BLEND_RSSI_MONO_THRESHOLD, parameter);
 }
 
 /*
@@ -573,8 +589,9 @@ void SI4735::setFmStereoOff()
 
 /* 
  * Turn Off Stereo operation.
- */  
-void SI4735::setFmStereoOn() {
+ */
+void SI4735::setFmStereoOn()
+{
     // TO DO
 }
 
@@ -584,7 +601,8 @@ void SI4735::setFmStereoOn() {
  * 0x12 0x00 0xFF 0x00 0x00 0x00.
  * See Si47XX PROGRAMMING GUIDE; AN332; page 299. 
  */
-void SI4735::disableFmDebug() {
+void SI4735::disableFmDebug()
+{
     Wire.beginTransmission(SI473X_ADDR);
     Wire.write(0x12);
     Wire.write(0x00);
@@ -596,13 +614,12 @@ void SI4735::disableFmDebug() {
     delayMicroseconds(2500);
 }
 
-
 /*
  * Gets the current frequency of the Si4735 (AM or FM)
  * The method status do it an more. See getStatus below. 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  */
-uint16_t  SI4735::getFrequency()
+uint16_t SI4735::getFrequency()
 {
     si47x_frequency freq;
     getStatus(0, 1);
@@ -622,7 +639,7 @@ uint16_t  SI4735::getFrequency()
  * This method avoids bus traffic and CI processing.
  * However, you can not get others status information like RSSI.
  */
-uint16_t  SI4735::getCurrentFrequency()
+uint16_t SI4735::getCurrentFrequency()
 {
     return currentWorkFrequency;
 }
@@ -856,10 +873,9 @@ void SI4735::seekStationDown()
  */
 void SI4735::setVolume(uint8_t volume)
 {
-    
-    sendProperty(RX_VOLUME, volume);    
-    this->volume = volume;
 
+    sendProperty(RX_VOLUME, volume);
+    this->volume = volume;
 }
 
 /*
@@ -1055,7 +1071,7 @@ uint16_t SI4735::getRdsPI(void)
 /*
  * Returns the Group Type (extracted from the Block B) 
  */
-uint16_t  SI4735::getRdsGroupType(void)
+uint8_t SI4735::getRdsGroupType(void)
 {
     si47x_rds_blockb blkb;
 
@@ -1066,6 +1082,19 @@ uint16_t  SI4735::getRdsGroupType(void)
 }
 
 /*
+ * Returns the current Text Flag A/B  
+ */
+uint8_t SI4735::getRdsFlagAB(void)
+{
+    si47x_rds_blockb blkb;
+
+    blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+    blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+
+    return blkb.refined.textABFlag;
+}
+
+/*
  * Returns the address of the text segment.
  * 2A - Each text segment in version 2A groups consists of four characters. A messages of this group can be 
  *      have up to 64 characters. 
@@ -1073,7 +1102,8 @@ uint16_t  SI4735::getRdsGroupType(void)
  *      using this version, the maximum message length will be 32 characters.
  */
 
-uint8_t SI4735::getRdsTextSegmentAddress(void) {
+uint8_t SI4735::getRdsTextSegmentAddress(void)
+{
 
     si47x_rds_blockb blkb;
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
@@ -1082,12 +1112,11 @@ uint8_t SI4735::getRdsTextSegmentAddress(void) {
     return blkb.refined.content;
 }
 
-    /*
+/*
  * Gets the version code (extracted from the Block B)
  * Returns  0=A or 1=B
  */
-    uint16_t
-    SI4735::getRdsVersionCode(void)
+uint8_t SI4735::getRdsVersionCode(void)
 {
     si47x_rds_blockb blkb;
 
@@ -1100,7 +1129,7 @@ uint8_t SI4735::getRdsTextSegmentAddress(void) {
 /* 
  * Returns the Program Type (extracted from the Block B)
  */
-uint16_t  SI4735::getRdsProgramType(void)
+uint8_t SI4735::getRdsProgramType(void)
 {
     si47x_rds_blockb blkb;
 
@@ -1112,30 +1141,54 @@ uint16_t  SI4735::getRdsProgramType(void)
 
 char *SI4735::getNext2Block(char *c)
 {
- 
-    c[1] = (currentRdsStatus.resp.BLOCKDL < 32 || currentRdsStatus.resp.BLOCKDL > 127) ? '.' : currentRdsStatus.resp.BLOCKDL;
-    c[0] = (currentRdsStatus.resp.BLOCKDH < 32 || currentRdsStatus.resp.BLOCKDH > 127) ? '.' : currentRdsStatus.resp.BLOCKDH;
+    char raw[2];
+    int i, j;
 
+    raw[1] = currentRdsStatus.resp.BLOCKDL;
+    raw[0] = currentRdsStatus.resp.BLOCKDH;
+
+    for (i = j = 0; i < 2; i++)
+    {
+        if (raw[i] == 0xD)
+        {
+            // c[i] = '\0';
+            return;
+        }
+        if (raw[i] >= 32 and raw[i] <= 127)
+        {
+            c[j] = raw[i];
+            j++;
+        }
+        else
+        {
+            c[i] = ' ';
+        }
+    }
 }
 
 char *SI4735::getNext4Block(char *c)
 {
     char raw[4];
-    int i,j;
+    int i, j;
 
-    raw[0] = currentRdsStatus.resp.BLOCKCH; 
+    raw[0] = currentRdsStatus.resp.BLOCKCH;
     raw[1] = currentRdsStatus.resp.BLOCKCL;
     raw[2] = currentRdsStatus.resp.BLOCKDH;
     raw[3] = currentRdsStatus.resp.BLOCKDL;
-    for ( i = j = 0; i < 4; i++) {
-        if ( raw[i] == 0xD ) {
-            c[i] = '\0';
+    for (i = j = 0; i < 4; i++)
+    {
+        if (raw[i] == 0xD)
+        {
+            // c[i] = '\0';
             return;
         }
-        if ( raw[i] >= 32 and raw[i] <=127 ) {
+        if (raw[i] >= 32 and raw[i] <= 127)
+        {
             c[j] = raw[i];
             j++;
-        } else {
+        }
+        else
+        {
             c[i] = ' ';
         }
     }
@@ -1144,7 +1197,7 @@ char *SI4735::getNext4Block(char *c)
 /*
  * Gets the RDS Text when the message is of the Group Type 2 version A
  */
-char * SI4735::getRdsText(void)
+char *SI4735::getRdsText(void)
 {
 
     // Needs to get the "Text segment address code".
@@ -1160,24 +1213,64 @@ char * SI4735::getRdsText(void)
     return rds_buffer2A;
 }
 
-char *SI4735::getRdsText2A(void) {
+char *SI4735::getRdsText0A(void) {
 
     si47x_rds_blockb blkB;
-
 
     getRdsStatus();
 
     if (getRdsReceived())
     {
-        if ( getRdsNewBlockB() ) {
-            if (getRdsGroupType() == 2 && getRdsVersionCode() == 0 ) {
+        if (getRdsNewBlockB())
+        {
+            if (getRdsGroupType() == 0)
+            {
+                // Process group type 0
+                blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+                blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+                rdsTextAdress0A = blkB.group0.address;
+                if (rdsTextAdress2B >= 0 && rdsTextAdress0A < 4)
+                {
+                    getNext2Block(&rds_buffer2B[rdsTextAdress0A * 2]);
+
+                    return rds_buffer0A;
+                }
+            }
+        }
+    }
+    return NULL;
+}
+
+
+char *SI4735::getRdsText2A(void)
+{
+
+    si47x_rds_blockb blkB;
+
+    getRdsStatus();
+
+    if (getRdsReceived())
+    {
+        /*
+        if (lastTextFlagAB != getRdsFlagAB())
+        {
+            lastTextFlagAB = getRdsFlagAB();
+            clearRdsBuffer2A();
+        }
+        */
+        if (getRdsNewBlockB())
+        {
+            if (getRdsGroupType() == 2 /* && getRdsVersionCode() == 0 */ )
+            {
                 // Process group 2A
                 // Decode B block information
                 blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
                 blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-                rdsTextAdress2A = blkB.refined.content;
-                if (rdsTextAdress2A >= 0 && rdsTextAdress2A < 16 ) {
+                rdsTextAdress2A = blkB.group2.address;
+                if (rdsTextAdress2A >= 0 && rdsTextAdress2A < 16)
+                {
                     getNext4Block(&rds_buffer2A[rdsTextAdress2A * 4]);
+                    rds_buffer2A[63] = '\0';
                     return rds_buffer2A;
                 }
             }
@@ -1186,7 +1279,10 @@ char *SI4735::getRdsText2A(void) {
     return NULL;
 }
 
-char *SI4735::getRdsText2B(void) {
+char *SI4735::getRdsText2B(void)
+{
+
+    si47x_rds_blockb blkB;
 
     getRdsStatus();
 
@@ -1194,12 +1290,21 @@ char *SI4735::getRdsText2B(void) {
     {
         if (getRdsNewBlockB())
         {
-            if (getRdsGroupType() == 2 && getRdsVersionCode() == 1) 
+            if (getRdsGroupType() == 2 && getRdsVersionCode() == 1)
             {
                 // Process group 2B
+                blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+                blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+                rdsTextAdress2B = blkB.group2.address;
+                if (rdsTextAdress2B >= 0 && rdsTextAdress2B < 16)
+                {
+                    getNext2Block(&rds_buffer2B[rdsTextAdress2B * 2]);
+                    return rds_buffer2B;
+                }
             }
         }
     }
+    return NULL;
 }
 
 /* 
@@ -1424,7 +1529,7 @@ void SI4735::setSSB(uint8_t usblsb)
  *               value 2 (banary 10) = USB; 
  *               value 1 (banary 01) = LSB.   
  */
-void SI4735::setSSB(uint16_t  fromFreq, uint16_t  toFreq, uint16_t  initialFreq, uint8_t step, uint8_t usblsb)
+void SI4735::setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint8_t step, uint8_t usblsb)
 {
 
     currentMinimumFrequency = fromFreq;
@@ -1576,7 +1681,7 @@ void SI4735::ssbPowerUp()
  * 
  *  @return false if an error is found.
  */
-bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t  ssb_patch_content_size)
+bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size)
 {
     uint8_t content, cmd_status;
     int i, offset;
@@ -1618,8 +1723,9 @@ bool SI4735::downloadPatch(int eeprom_i2c_address)
     int i, offset;
     uint8_t eepromPage[8];
 
-    union { 
-        struct {
+    union {
+        struct
+        {
             uint8_t lowByte;
             uint8_t highByte;
         } raw;
@@ -1629,8 +1735,8 @@ bool SI4735::downloadPatch(int eeprom_i2c_address)
     // The first two bytes are the size of the patches
     // Set the position in the eeprom to read the size of the patch content
     Wire.beginTransmission(eeprom_i2c_address);
-    Wire.write(0);    // writes the most significant byte 
-    Wire.write(0);    // writes the less significant byte    
+    Wire.write(0); // writes the most significant byte
+    Wire.write(0); // writes the less significant byte
     Wire.endTransmission();
     Wire.requestFrom(eeprom_i2c_address, 2);
     eeprom.raw.highByte = Wire.read();
@@ -1650,7 +1756,7 @@ bool SI4735::downloadPatch(int eeprom_i2c_address)
 
         // Reads the next 8 bytes from eeprom
         Wire.requestFrom(eeprom_i2c_address, 8);
-        for ( i = 0; i < 8; i++ )
+        for (i = 0; i < 8; i++)
             eepromPage[i] = Wire.read();
 
         // sends the page (8 bytes) to the SI4735
@@ -1660,7 +1766,7 @@ bool SI4735::downloadPatch(int eeprom_i2c_address)
         Wire.endTransmission();
 
         waitToSend();
-        
+
         Wire.requestFrom(SI473X_ADDR, 1);
         cmd_status = Wire.read();
         // The SI4735 issues a status after each 8 byte transfered.
@@ -1671,9 +1777,3 @@ bool SI4735::downloadPatch(int eeprom_i2c_address)
     delayMicroseconds(2500);
     return true;
 }
-
-
-
-
-
-

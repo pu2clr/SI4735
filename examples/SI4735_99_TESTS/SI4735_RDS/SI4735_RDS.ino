@@ -11,6 +11,10 @@
 
 #define FM_FUNCTION 0
 
+#define ELAPSED_TIME 1500
+
+long rdsElapsedTime = millis();
+
 const unsigned min_fm = 8400;
 const unsigned max_fm = 10900;
 unsigned fm_freq = 10390; // 103.9 MHz - Change it to your local FM station with SDR service
@@ -36,8 +40,9 @@ char *tabProgramType[] = {
 */
 
 SI4735 si4735;
-char *rdsMsg;
-
+char *rdsMsg2A;
+char *rdsMsg2B;
+char *stationInfo;
 void setup()
 {
   Serial.begin(9600);
@@ -72,6 +77,7 @@ void showHelp()
 
 void showCurrenteStatus()
 {
+  delay(250);
   fm_freq = si4735.getFrequency();
   Serial.print("You are tuned on ");
   Serial.print(String(fm_freq / 100.0, 2));
@@ -131,29 +137,42 @@ void loop()
       showHelp();
     }
   }
-  // RDS Test
 
-  rdsMsg = si4735.getRdsText2A();
-  if  ( rdsMsg != NULL)
-  {
-    int i = si4735.getRdsProgramType();
-    Serial.print("RDS GT: ");
-    Serial.print(si4735.getRdsGroupType());
-    Serial.print("-RDS V: ");
-    Serial.print(si4735.getRdsVersionCode());
-    Serial.print("-PTy: ");
-    Serial.print(i);
-    Serial.print("-");
-    if (i < 32)
+  // Checks the RDS information each ELAPSED_TIME seconds
+  if ( (millis() - rdsElapsedTime) > ELAPSED_TIME ) {
+    rdsMsg2A = si4735.getRdsText2A();
+    // rdsMsg2B = si4735.getRdsText2B();
+    delay(100);
+    stationInfo = si4735.getRdsText0A();
+
+    if  ( rdsMsg2A != NULL /* || rdsMsg2B != NULL */ )
     {
-      Serial.print(String(tabProgramType[i]));
-    }
-    Serial.print("-");
-    Serial.print(rdsMsg);
-    Serial.println(">");
-    delay(600);
-  }
+      int i = si4735.getRdsProgramType();
+      Serial.print("RDS GT: ");
+      Serial.print(si4735.getRdsGroupType());
+      Serial.print("-RDS V: ");
+      Serial.print(si4735.getRdsVersionCode());
+      Serial.print("-PTy: ");
+      Serial.print(i);
+      Serial.print("-");
+      if (i < 32)
+      {
+        Serial.print(String(tabProgramType[i]));
+      }
 
+      Serial.print(" -2A <");
+      Serial.print(rdsMsg2A);
+      Serial.print(">");
+
+
+      Serial.print(" -0A <");
+      Serial.print(stationInfo);
+      Serial.print(">");
+
+      Serial.println(".");
+    }
+    rdsElapsedTime = millis();
+  }
 
   delay(100);
 }
