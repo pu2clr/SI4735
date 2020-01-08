@@ -1229,10 +1229,9 @@ char *SI4735::getRdsText0A(void) {
                 blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
                 blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
                 rdsTextAdress0A = blkB.group0.address;
-                if (rdsTextAdress2B >= 0 && rdsTextAdress0A < 4)
+                if (rdsTextAdress0A >= 0 && rdsTextAdress0A < 4)
                 {
                     getNext2Block(&rds_buffer2B[rdsTextAdress0A * 2]);
-
                     return rds_buffer0A;
                 }
             }
