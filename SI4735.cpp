@@ -1320,8 +1320,8 @@ String SI4735::getRdsTime()
         String s;
         uint16_t y, m, d;
 
-        dr.raw[4] = currentRdsStatus.resp.BLOCKBL;
-        dr.raw[5] = currentRdsStatus.resp.BLOCKBH;
+        dt.raw[4] = currentRdsStatus.resp.BLOCKBL;
+        dt.raw[5] = currentRdsStatus.resp.BLOCKBH;
 
         dt.raw[2] = currentRdsStatus.resp.BLOCKCL;
         dt.raw[3] = currentRdsStatus.resp.BLOCKCH;
