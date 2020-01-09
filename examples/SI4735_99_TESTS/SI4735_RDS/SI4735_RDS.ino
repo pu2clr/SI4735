@@ -141,47 +141,45 @@ void loop()
   // Checks the RDS information each ELAPSED_TIME seconds
   if ( (millis() - rdsElapsedTime) > ELAPSED_TIME ) {
     // Monitorar as mensagens e status recebidos por cada estação.
+
+    si4735.getRdsStatus();
+   
     rdsMsg2A = si4735.getRdsText2A();
-    delay(100);
     rdsMsg2B = si4735.getRdsText2B();
-    delay(100);
     stationInfo = si4735.getRdsText0A();
 
-     Serial.print("Group: ");
-     Serial.println(si4735.getRdsGroupType() );
-    
+    Serial.print("PI............: ");
+    Serial.println(si4735.getRdsPI());
 
-    if  ( 1) // rdsMsg2A != NULL /* || rdsMsg2B != NULL */ )
-    {
-      int i = si4735.getRdsProgramType();
-      Serial.print("RDS GT: ");
-      Serial.print(si4735.getRdsGroupType());
-      Serial.print("-RDS V: ");
-      Serial.print(si4735.getRdsVersionCode());
-      Serial.print("-PTy: ");
-      Serial.print(i);
-      Serial.print("-");
-      if (i < 32)
-      {
+    Serial.print("Group Type.....: ");
+    Serial.println(si4735.getRdsGroupType());
+
+    Serial.print("Version........: ");
+    Serial.println(si4735.getRdsVersionCode());
+
+    Serial.print("Flag A/B.......: ");
+    Serial.println(si4735.getRdsFlagAB());
+
+    int i = si4735.getRdsProgramType();
+    Serial.print("Program Type...: ");
+    Serial.print(i);
+    Serial.print(" - ");
+    if (i < 32)
         Serial.print(String(tabProgramType[i]));
-      }
+    Serial.println(".");
 
-      Serial.print(" -0A <");
-      Serial.print(stationInfo);
-      Serial.print(">");
+    Serial.print("Tipo 0A........: <");
+    Serial.print(stationInfo);
+    Serial.println(">");
 
-      Serial.print(" -2A <");
-      Serial.print(rdsMsg2A);
-      Serial.print(">");
+    Serial.print("Tipo 2A........: <");
+    Serial.print(rdsMsg2A);
+    Serial.println(">");
 
+    Serial.print("Tipo 2B........: <");
+    Serial.print(rdsMsg2B);
+    Serial.print(">");
 
-      Serial.print(" -2B <");
-      Serial.print(rdsMsg2B);
-      Serial.print(">");
-
-
-      Serial.println(".");
-    }
     rdsElapsedTime = millis();
   }
 

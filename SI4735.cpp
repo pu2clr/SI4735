@@ -1217,7 +1217,7 @@ char *SI4735::getRdsText0A(void) {
 
     si47x_rds_blockb blkB;
 
-    getRdsStatus();
+    // getRdsStatus();
 
     if (getRdsReceived())
     {
@@ -1246,7 +1246,7 @@ char *SI4735::getRdsText2A(void)
 
     si47x_rds_blockb blkB;
 
-    getRdsStatus();
+    // getRdsStatus();
 
     // if (getRdsReceived())
     // {
@@ -1259,7 +1259,7 @@ char *SI4735::getRdsText2A(void)
         */
        //  if (getRdsNewBlockB())
        //  {
-            if ( getRdsGroupType() == 2 /* && getRdsVersionCode() == 0 */ )
+            if ( getRdsGroupType() == 2  && getRdsVersionCode() == 0  )
             {
                 // Process group 2A
                 // Decode B block information
@@ -1283,7 +1283,7 @@ char *SI4735::getRdsText2B(void)
 
     si47x_rds_blockb blkB;
 
-    getRdsStatus();
+    // getRdsStatus();
 
     if (getRdsReceived())
     {
