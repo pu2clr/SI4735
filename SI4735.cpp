@@ -1333,8 +1333,10 @@ String SI4735::getRdsTime()
         m = ((unsigned)(dt.refined.mjd - 14956.1) - (unsigned)(y * 365.25)) / 30.6001;
         d = (unsigned)(dt.refined.mjd - 14956) - (unsigned)(y * 365.25) - (m * 30.6001);
 
-        if (m > 13)
+        if (m > 13) {
+            m = 1;
             y++;
+        }
 
         y = y % 100;
 
