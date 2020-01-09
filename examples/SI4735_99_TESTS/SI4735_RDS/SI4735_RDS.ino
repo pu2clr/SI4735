@@ -140,13 +140,36 @@ void loop()
 
   // Checks the RDS information each ELAPSED_TIME seconds
   if ( (millis() - rdsElapsedTime) > ELAPSED_TIME ) {
-    // Monitorar as mensagens e status recebidos por cada estação.
 
-    si4735.getRdsStatus();
+    si4735.getRdsStatus(); // It needs to be called before any other RDS call function
    
     rdsMsg2A = si4735.getRdsText2A();
     rdsMsg2B = si4735.getRdsText2B();
     stationInfo = si4735.getRdsText0A();
+
+    Serial.print("RDS Received..: ");
+    Serial.println(si4735.getRdsReceived());
+
+    Serial.print("Sync Lost.....: ");
+    Serial.println(si4735.getRdsSyncLost());
+
+    Serial.print("Sync Found....: ");
+    Serial.println(si4735.getRdsSyncFound());
+
+    Serial.print("Synchronized..: ");
+    Serial.println(si4735.getRdsSync());
+
+    Serial.print("Groups Lost...: ");
+    Serial.println(si4735.getGroupLost());
+
+    Serial.print("FIFO Used.....: ");
+    Serial.println(si4735.getNumRdsFifoUsed());
+
+    Serial.print("New Block A...: ");
+    Serial.println(si4735.getRdsNewBlockA());
+
+    Serial.print("New Block B...: ");
+    Serial.println(si4735.getRdsNewBlockB());
 
     Serial.print("PI............: ");
     Serial.println(si4735.getRdsPI());
