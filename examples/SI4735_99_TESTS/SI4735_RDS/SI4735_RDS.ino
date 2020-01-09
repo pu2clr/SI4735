@@ -1,5 +1,4 @@
 /*
-
    RDS test
    Under development...
 */
@@ -11,22 +10,27 @@
 
 #define FM_FUNCTION 0
 
-#define ELAPSED_TIME 600
+#define ELAPSED_TIME 800
 
 long rdsElapsedTime = millis();
 
 const unsigned min_fm = 8400;
 const unsigned max_fm = 10900;
-unsigned fm_freq = 10390; // 103.9 MHz - Change it to your local FM station with SDR service
 
-// ORININAL UE
-char *tabProgramType[] = {
-  "No program definition type", "News", "Current affairs", "Information", "Sport", "Education", "Drama",
-  "Culture", "Science", "Variable", "Popular Music (Pop)", "Rock Music", "Easy Listening", "Light Classical",
-  "Serious Classical", "Other Music", "Weather", "Finance", "Children’s Programs", "Social Affairs", "Religion",
-  "Phone-in Talk", "Travel", "Leisure", "Jazz Music", "Country Music", "National Music", "Oldies Music",
-  "Folk Music", "Documentary", "Alarm Test", "Alarm"
-};
+// Setup some local FM Stations with SDR 
+uint16_t rdsStations[] = {8090, 9550, 10390, 10570};
+const int maxStations = (sizeof rdsStations / sizeof(uint16_t)) - 1;
+int currentStation = 0;
+unsigned fm_freq = rdsStations[currentStation]; 
+
+// UE
+char *
+    tabProgramType[] = {
+        "No program definition type", "News", "Current affairs", "Information", "Sport", "Education", "Drama",
+        "Culture", "Science", "Variable", "Popular Music (Pop)", "Rock Music", "Easy Listening", "Light Classical",
+        "Serious Classical", "Other Music", "Weather", "Finance", "Children’s Programs", "Social Affairs", "Religion",
+        "Phone-in Talk", "Travel", "Leisure", "Jazz Music", "Country Music", "National Music", "Oldies Music",
+        "Folk Music", "Documentary", "Alarm Test", "Alarm"};
 
 // USA - comment above and uncomment below if you are using USA
 /*
@@ -65,8 +69,9 @@ void setup()
 
 void showHelp()
 {
-  Serial.println("Type: S  to seek the next FM station.");
-  Serial.println("      s  to seek the previous FM station.");
+  Serial.println("Type: S to seek the next FM station.");
+  Serial.println("      s to seek the previous FM station.");
+  Serial.println("      R to go to the next RDS Station that you have configured in the table rdsStations");
   Serial.println("      >  to increase the frequency");
   Serial.println("      <  to decreasee the frequency");
   Serial.println("      +  to volume up");
@@ -131,6 +136,14 @@ void loop()
       fm_freq -= 10;
       si4735.setFrequency(fm_freq);
       showCurrenteStatus();
+    } else if (key == 'r' || key == 'R')
+    { // Goes to the next RDS Station that you configured in the table rdsStations
+      currentStation++;
+      if (currentStation > maxStations )
+        currentStation = 0;
+      fm_freq = rdsStations[currentStation];
+      si4735.setFrequency(fm_freq);
+      showCurrenteStatus();
     }
     else if (key == '?')
     {
@@ -139,10 +152,11 @@ void loop()
   }
 
   // Checks the RDS information each ELAPSED_TIME seconds
-  if ( (millis() - rdsElapsedTime) > ELAPSED_TIME ) {
+  if ((millis() - rdsElapsedTime) > ELAPSED_TIME)
+  {
 
     si4735.getRdsStatus(); // It needs to be called before any other RDS call function
-   
+
     rdsMsg2A = si4735.getRdsText2A();
     rdsMsg2B = si4735.getRdsText2B();
     stationInfo = si4735.getRdsText0A();
@@ -188,7 +202,7 @@ void loop()
     Serial.print(i);
     Serial.print(" - ");
     if (i < 32)
-        Serial.print(String(tabProgramType[i]));
+      Serial.print(String(tabProgramType[i]));
     Serial.println(".");
 
     Serial.print("Tipo 0A........: <");
