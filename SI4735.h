@@ -864,7 +864,7 @@ public:
     char *getRdsText2A(void); // Gets the Radio Text 
     char *getRdsText2B(void);
 
-    String getRdsTime(void);
+    char *getRdsTime(void);
 
     // Test
     char *getNext2Block(char *c);

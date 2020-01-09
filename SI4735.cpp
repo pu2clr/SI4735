@@ -1309,7 +1309,7 @@ char *SI4735::getRdsText2B(void)
 /* 
  * Gets the RDS time and date when the Group type is 4 
  */
-String SI4735::getRdsTime()
+char * SI4735::getRdsTime()
 {
     // Under Test and construction
     // Need to check the Group Type before.
@@ -1343,7 +1343,7 @@ String SI4735::getRdsTime()
         s = String(dt.refined.hour) + ":" + String(dt.refined.minute) + " - " + String(d) + "/" + String(m) +
             "/" + String(y) + "-" + String(dt.refined.offset);
 
-        strncpy(rds_time, s.toCharArray())
+        s.toCharArray(rds_time,19);
         rds_time[19] = '\0';
         return rds_time;
     }
