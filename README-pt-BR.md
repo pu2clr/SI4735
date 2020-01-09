@@ -33,7 +33,7 @@ __Atenção__:
    * [Lista de componentes](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#lista-de-componentes)
    * [Fotos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#fotos)
 9.  [Documentação das funções da Biblioteca](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#documenta%C3%A7%C3%A3o-das-fun%C3%A7%C3%B5es-da-biblioteca)
-10. [Referências](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#references)
+10. [Referências](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#refer%C3%AAncias)
 11. [Exemplos](https://github.com/pu2clr/SI4735/tree/master/examples)
 12. [Vídeos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#videos) 
 
@@ -2347,7 +2347,7 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 
 
 
-## Videos
+## Vídeos
 * [Orientações de uso da biblioteca Arduino para o Si4735](https://youtu.be/0UDOiHFNFVQ)
 * [Dicas para iniciar um projeto de rádio baseado no SI47XX da Silicon Labs](https://youtu.be/YwjrI1NZWbg)
 * [Evaluating SSB audio from the SI4735-based radio prototype](https://youtu.be/Xj7zuiyvysI)
