@@ -142,6 +142,7 @@ void loop()
   if ( (millis() - rdsElapsedTime) > ELAPSED_TIME ) {
     // Monitorar as mensagens e status recebidos por cada estação.
     rdsMsg2A = si4735.getRdsText2A();
+    delay(100);
     rdsMsg2B = si4735.getRdsText2B();
     delay(100);
     stationInfo = si4735.getRdsText0A();
