@@ -2348,7 +2348,9 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 
 
 ## Videos
-
+* [Orientações de uso da biblioteca Arduino para o Si4735](https://youtu.be/0UDOiHFNFVQ)
+* [Dicas para iniciar um projeto de rádio baseado no SI47XX da Silicon Labs](https://youtu.be/YwjrI1NZWbg)
+* [Evaluating SSB audio from the SI4735-based radio prototype](https://youtu.be/Xj7zuiyvysI)
 * [Si4735 Arduino Library example. OLED Application.](https://youtu.be/7Sg4z8tDSA8)
 * [SI4735 Arduino Library and a simple FM and AM radio implementation](https://youtu.be/vzunuxam_Lg) 
 * [SI4735 ARDUINO LIBRARY BANDWIDTH TEST](https://youtu.be/dN1s3RoXGos)   
