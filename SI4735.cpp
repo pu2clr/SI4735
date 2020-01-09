@@ -1280,11 +1280,9 @@ char *SI4735::getRdsText2A(void)
 
 char *SI4735::getRdsText2B(void)
 {
-
     si47x_rds_blockb blkB;
 
     // getRdsStatus();
-
     if (getRdsReceived())
     {
         // if (getRdsNewBlockB())
