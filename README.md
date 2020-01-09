@@ -2511,14 +2511,22 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 10. [RBDS & RDS PTY Codes and Program Types](https://www.fmsystems-inc.com/rbds-rds-pty-codes-program-types/)
 11. [Using RDS/RBDS with the Si4701/03](https://www.silabs.com/documents/public/application-notes/AN243.pdf)
 12. [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
-13. __I2C__ 
+13. __Other implementations using Si4735 and Arduino__
+    * [This is a git fork of [Michael Kennedy's]](https://github.com/FlyingLotus1983/Si4735)  
+    * [Arduino Si4735 radio library](https://sourceforge.net/projects/arduino-si4735/)
+    * [SI4735 AM & FM Receiver Shield](https://www.sparkfun.com/products/retired/10342)
+    * [Si4735 Digital AM/FM Radio Receiver](https://os.mbed.com/users/bwilson30/notebook/si4735-digital-amfm-radio-receiver/)
+    * [Ryan Owens for SparkFun Electronics](https://github.com/csdexter/Si4735)
+    * [Silicon Labs Si4737 WB/AM/FM Stereo/RDS single-chip receiver HAL library for Arduino](https://devhub.io/repos/rickeywang-Si4737_i2c)
+    * [Enhanced Software for Elektor DSP-Radio (Si4735)](https://www.elektormagazine.com/labs/enhanced-software-for-elektor-dsp-radio-si4735)
+14. __I2C__ 
     * [Taking The Leap Off Board: An Introduction To I2C Over Long Wires](https://hackaday.com/2017/02/08/taking-the-leap-off-board-an-introduction-to-i2c-over-long-wires/)
     * [Issues with the I²C (Inter-IC) Bus and How to Solve Them](https://www.digikey.com/en/articles/techzone/2018/aug/issues-with-the-i2c-bus-and-how-to-solve-them)
     * [I2C Manual; Application Note; AN10216-01] (https://www.nxp.com/docs/en/application-note/AN10216.pdf)
     * IMPROVING NOISE IMMUNITY FOR SERIAL INTERFACE; A Lattice Semiconductor White Paper; July 2014
     * [Bus Buffers Simplify Design of Large, Noisy I2C Systems](https://www.analog.com/en/technical-articles/bus-buffers-simplify-design-of-large-noisy-i2c-systems.html#)
     * [Common Problems In Systems](https://www.i2c-bus.org/i2c-primer/common-problems/)
-    * __Forums__
+  15. __Forums__
       * [How to reduce I2C bus noise](https://www.microchip.com/forums/m456630.aspx)
       * [Radio interferes with I2C bus communication](https://www.microchip.com/forums/m456630.aspx)
       * [Reducing Noise on an I2C bus line](http://e2e.ti.com/support/interface/f/138/t/552072)
