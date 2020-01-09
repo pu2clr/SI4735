@@ -553,16 +553,21 @@ typedef union {
     } raw;
 } si47x_rds_blockb;
 
+/*
+ * Group type 4A ( RDS Date and Time)
+ * When group type 4A is used by the station, it shall be transmitted every minute according to EN 50067.
+ * This Structure uses blocks 2,3 and 5 (B,C,D)
+ */
 typedef union {
     struct
     {
-        uint8_t offset : 5;
-        uint8_t offset_sense : 1; //
-        uint8_t minute : 6;       //
-        uint8_t hour : 4;         //
-        uint16_t mjd;
+        uint8_t offset : 5;       // Local Time Offset
+        uint8_t offset_sense : 1; // Local Offset Sign ( 0 = + , 1 = - )
+        uint8_t minute : 6;       // UTC Minutes
+        uint8_t hour : 5;         // UTC Hours
+        uint32_t mjd : 17;        // Modified Julian Day Code
     } refined;
-    uint8_t raw[4];
+    uint8_t raw[6];
 } si47x_rds_date_time;
 
 /* AGC data types
@@ -665,6 +670,7 @@ private:
     char rds_buffer2A[65]; // RDS Radio Text buffer - Program Information
     char rds_buffer2B[33]; // RDS Radio Text buffer - Station Informaation
     char rds_buffer0A[9];  // RDS Basic tuning and switching information (Type 0 groups)
+    char rds_time[20];
     int rdsTextAdress2A;
     int rdsTextAdress2B;
     int rdsTextAdress0A;

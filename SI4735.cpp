@@ -35,7 +35,8 @@ SI4735::SI4735()
     currentSsbStatus = 0;
 }
 
-void SI4735::clearRdsBuffer2A() {
+void SI4735::clearRdsBuffer2A()
+{
     for (int i = 0; i < 65; i++)
         rds_buffer2A[i] = ' '; // Radio Text buffer - Program Information
 }
@@ -46,7 +47,8 @@ void SI4735::clearRdsBuffer2B()
         rds_buffer2B[i] = ' '; // Radio Text buffer - Station Informaation
 }
 
-void SI4735::clearRdsBuffer0A() {
+void SI4735::clearRdsBuffer0A()
+{
     for (int i = 0; i < 9; i++)
         rds_buffer0A[i] = ' '; // Station Name buffer
 }
@@ -55,7 +57,7 @@ void SI4735::clearRdsBuffer0A() {
 * 
 * This function is called whenever the Si4735 changes. 
 */
-    void SI4735::waitInterrupr(void)
+void SI4735::waitInterrupr(void)
 {
     while (!data_from_si4735)
         ;
@@ -1213,7 +1215,8 @@ char *SI4735::getRdsText(void)
     return rds_buffer2A;
 }
 
-char *SI4735::getRdsText0A(void) {
+char *SI4735::getRdsText0A(void)
+{
 
     si47x_rds_blockb blkB;
 
@@ -1223,23 +1226,22 @@ char *SI4735::getRdsText0A(void) {
     {
         // if (getRdsNewBlockB())
         // {
-            if (getRdsGroupType() == 0)
+        if (getRdsGroupType() == 0)
+        {
+            // Process group type 0
+            blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+            blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+            rdsTextAdress0A = blkB.group0.address;
+            if (rdsTextAdress0A >= 0 && rdsTextAdress0A < 4)
             {
-                // Process group type 0
-                blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-                blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-                rdsTextAdress0A = blkB.group0.address;
-                if (rdsTextAdress0A >= 0 && rdsTextAdress0A < 4)
-                {
-                    getNext2Block(&rds_buffer0A[rdsTextAdress0A * 2]);
-                    return rds_buffer0A;
-                }
+                getNext2Block(&rds_buffer0A[rdsTextAdress0A * 2]);
+                return rds_buffer0A;
             }
+        }
         // }
     }
     return NULL;
 }
-
 
 char *SI4735::getRdsText2A(void)
 {
@@ -1250,30 +1252,30 @@ char *SI4735::getRdsText2A(void)
 
     // if (getRdsReceived())
     // {
-        /*
+    /*
         if (lastTextFlagAB != getRdsFlagAB())
         {
             lastTextFlagAB = getRdsFlagAB();
             clearRdsBuffer2A();
         }
         */
-       //  if (getRdsNewBlockB())
-       //  {
-            if ( getRdsGroupType() == 2  && getRdsVersionCode() == 0  )
-            {
-                // Process group 2A
-                // Decode B block information
-                blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-                blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-                rdsTextAdress2A = blkB.group2.address;
-                if (rdsTextAdress2A >= 0 && rdsTextAdress2A < 16)
-                {
-                    getNext4Block(&rds_buffer2A[rdsTextAdress2A * 4]);
-                    rds_buffer2A[63] = '\0';
-                    return rds_buffer2A;
-                }
-            }
-        // }
+    //  if (getRdsNewBlockB())
+    //  {
+    if (getRdsGroupType() == 2 && getRdsVersionCode() == 0)
+    {
+        // Process group 2A
+        // Decode B block information
+        blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+        blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+        rdsTextAdress2A = blkB.group2.address;
+        if (rdsTextAdress2A >= 0 && rdsTextAdress2A < 16)
+        {
+            getNext4Block(&rds_buffer2A[rdsTextAdress2A * 4]);
+            rds_buffer2A[63] = '\0';
+            return rds_buffer2A;
+        }
+    }
+    // }
     // }
     return NULL;
 }
@@ -1287,19 +1289,19 @@ char *SI4735::getRdsText2B(void)
     {
         // if (getRdsNewBlockB())
         // {
-            if (getRdsGroupType() == 2 && getRdsVersionCode() == 1)
+        if (getRdsGroupType() == 2 && getRdsVersionCode() == 1)
+        {
+            // Process group 2B
+            blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+            blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+            rdsTextAdress2B = blkB.group2.address;
+            if (rdsTextAdress2B >= 0 && rdsTextAdress2B < 16)
             {
-                // Process group 2B
-                blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-                blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-                rdsTextAdress2B = blkB.group2.address;
-                if (rdsTextAdress2B >= 0 && rdsTextAdress2B < 16)
-                {
-                    getNext2Block(&rds_buffer2B[rdsTextAdress2B * 2]);
-                    return rds_buffer2B;
-                }
+                getNext2Block(&rds_buffer2B[rdsTextAdress2B * 2]);
+                return rds_buffer2B;
             }
-       //  }
+        }
+        //  }
     }
     return NULL;
 }
@@ -1313,28 +1315,38 @@ String SI4735::getRdsTime()
     // Need to check the Group Type before.
     si47x_rds_date_time dt;
 
-    String s;
-    uint16_t  y, m, d;
+    if (getRdsGroupType() == 4)
+    {
+        String s;
+        uint16_t y, m, d;
 
-    dt.raw[2] = currentRdsStatus.resp.BLOCKCL;
-    dt.raw[3] = currentRdsStatus.resp.BLOCKCH;
+        dr.raw[4] = currentRdsStatus.resp.BLOCKBL;
+        dr.raw[5] = currentRdsStatus.resp.BLOCKBH;
 
-    dt.raw[0] = currentRdsStatus.resp.BLOCKDL;
-    dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
+        dt.raw[2] = currentRdsStatus.resp.BLOCKCL;
+        dt.raw[3] = currentRdsStatus.resp.BLOCKCH;
 
-    y = (unsigned)(dt.refined.mjd - 15078.2) / 365.25;
-    m = ((unsigned)(dt.refined.mjd - 14956.1) - (unsigned)(y * 365.25)) / 30.6001;
-    d = (unsigned)(dt.refined.mjd - 14956) - (unsigned)(y * 365.25) - (m * 30.6001);
+        dt.raw[0] = currentRdsStatus.resp.BLOCKDL;
+        dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
 
-    if (m > 13)
-        y++;
+        y = (unsigned)(dt.refined.mjd - 15078.2) / 365.25;
+        m = ((unsigned)(dt.refined.mjd - 14956.1) - (unsigned)(y * 365.25)) / 30.6001;
+        d = (unsigned)(dt.refined.mjd - 14956) - (unsigned)(y * 365.25) - (m * 30.6001);
 
-    y = y % 100;
+        if (m > 13)
+            y++;
 
-    s = String(dt.refined.hour) + ":" + String(dt.refined.minute) + " - " + String(d) + "/" + String(m) +
-        "/" + String(y) + "-" + String(dt.refined.offset);
+        y = y % 100;
 
-    return s; 
+        s = String(dt.refined.hour) + ":" + String(dt.refined.minute) + " - " + String(d) + "/" + String(m) +
+            "/" + String(y) + "-" + String(dt.refined.offset);
+
+        strncpy(rds_time, s.toCharArray())
+        rds_time[19] = '\0';
+        return rds_time;
+    }
+
+    return NULL;
 }
 
 /*

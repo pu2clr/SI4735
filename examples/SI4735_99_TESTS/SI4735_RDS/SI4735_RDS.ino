@@ -69,8 +69,7 @@ void setup()
 
 void showHelp()
 {
-  Serial.println("Type: S to seek the next FM station.");
-  Serial.println("      s to seek the previous FM station.");
+  Serial.println("Type: S to seek the next FM station or s to seek the Previous.");
   Serial.println("      R to go to the next RDS Station that you have configured in the table rdsStations");
   Serial.println("      >  to increase the frequency");
   Serial.println("      <  to decreasee the frequency");
