@@ -35,7 +35,7 @@ __Atenção__:
 9.  [Documentação das funções da Biblioteca](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#documenta%C3%A7%C3%A3o-das-fun%C3%A7%C3%B5es-da-biblioteca)
 10. [Referências](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#refer%C3%AAncias)
 11. [Exemplos](https://github.com/pu2clr/SI4735/tree/master/examples)
-12. [Vídeos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#videos) 
+12. [Vídeos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#v%C3%ADdeos) 
 
 
 
