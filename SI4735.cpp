@@ -1311,9 +1311,8 @@ char *SI4735::getRdsText2B(void)
  */
 String SI4735::getRdsTime()
 {
-    /*
     // Under Test and construction
-
+    // Need to check the Group Type before.
     si47x_rds_date_time dt;
 
     String s;
@@ -1337,7 +1336,7 @@ String SI4735::getRdsTime()
     s = String(dt.refined.hour) + ":" + String(dt.refined.minute) + " - " + String(d) + "/" + String(m) +
         "/" + String(y) + "-" + String(dt.refined.offset);
 
-    return s; */
+    return s; 
 }
 
 /*
