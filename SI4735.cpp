@@ -1221,8 +1221,8 @@ char *SI4735::getRdsText0A(void) {
 
     if (getRdsReceived())
     {
-        if (getRdsNewBlockB())
-        {
+        // if (getRdsNewBlockB())
+        // {
             if (getRdsGroupType() == 0)
             {
                 // Process group type 0
@@ -1231,11 +1231,11 @@ char *SI4735::getRdsText0A(void) {
                 rdsTextAdress0A = blkB.group0.address;
                 if (rdsTextAdress0A >= 0 && rdsTextAdress0A < 4)
                 {
-                    getNext2Block(&rds_buffer2B[rdsTextAdress0A * 2]);
+                    getNext2Block(&rds_buffer0A[rdsTextAdress0A * 2]);
                     return rds_buffer0A;
                 }
             }
-        }
+        // }
     }
     return NULL;
 }
@@ -1248,8 +1248,8 @@ char *SI4735::getRdsText2A(void)
 
     getRdsStatus();
 
-    if (getRdsReceived())
-    {
+    // if (getRdsReceived())
+    // {
         /*
         if (lastTextFlagAB != getRdsFlagAB())
         {
@@ -1257,9 +1257,9 @@ char *SI4735::getRdsText2A(void)
             clearRdsBuffer2A();
         }
         */
-        if (getRdsNewBlockB())
-        {
-            if (getRdsGroupType() == 2 /* && getRdsVersionCode() == 0 */ )
+       //  if (getRdsNewBlockB())
+       //  {
+            if ( getRdsGroupType() == 2 /* && getRdsVersionCode() == 0 */ )
             {
                 // Process group 2A
                 // Decode B block information
@@ -1273,8 +1273,8 @@ char *SI4735::getRdsText2A(void)
                     return rds_buffer2A;
                 }
             }
-        }
-    }
+        // }
+    // }
     return NULL;
 }
 
@@ -1287,8 +1287,8 @@ char *SI4735::getRdsText2B(void)
 
     if (getRdsReceived())
     {
-        if (getRdsNewBlockB())
-        {
+        // if (getRdsNewBlockB())
+        // {
             if (getRdsGroupType() == 2 && getRdsVersionCode() == 1)
             {
                 // Process group 2B
@@ -1301,7 +1301,7 @@ char *SI4735::getRdsText2B(void)
                     return rds_buffer2B;
                 }
             }
-        }
+       //  }
     }
     return NULL;
 }

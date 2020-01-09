@@ -11,7 +11,7 @@
 
 #define FM_FUNCTION 0
 
-#define ELAPSED_TIME 1500
+#define ELAPSED_TIME 600
 
 long rdsElapsedTime = millis();
 
@@ -141,11 +141,15 @@ void loop()
   // Checks the RDS information each ELAPSED_TIME seconds
   if ( (millis() - rdsElapsedTime) > ELAPSED_TIME ) {
     rdsMsg2A = si4735.getRdsText2A();
-    // rdsMsg2B = si4735.getRdsText2B();
+    rdsMsg2B = si4735.getRdsText2B();
     delay(100);
     stationInfo = si4735.getRdsText0A();
 
-    if  ( rdsMsg2A != NULL /* || rdsMsg2B != NULL */ )
+     Serial.print("Group: ");
+     Serial.println(si4735.getRdsGroupType() );
+    
+
+    if  ( 1) // rdsMsg2A != NULL /* || rdsMsg2B != NULL */ )
     {
       int i = si4735.getRdsProgramType();
       Serial.print("RDS GT: ");
@@ -160,14 +164,19 @@ void loop()
         Serial.print(String(tabProgramType[i]));
       }
 
+      Serial.print(" -0A <");
+      Serial.print(stationInfo);
+      Serial.print(">");
+
       Serial.print(" -2A <");
       Serial.print(rdsMsg2A);
       Serial.print(">");
 
 
-      Serial.print(" -0A <");
-      Serial.print(stationInfo);
+      Serial.print(" -2B <");
+      Serial.print(rdsMsg2B);
       Serial.print(">");
+
 
       Serial.println(".");
     }
