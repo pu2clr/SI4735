@@ -1153,7 +1153,7 @@ char *SI4735::getNext2Block(char *c)
     {
         if (raw[i] == 0xD)
         {
-            c[i] = '\0';
+            c[j] = '\0';
             return;
         }
         if (raw[i] >= 32 and raw[i] <= 127)
@@ -1179,9 +1179,9 @@ char *SI4735::getNext4Block(char *c)
     raw[3] = currentRdsStatus.resp.BLOCKDL;
     for (i = j = 0; i < 4; i++)
     {
-        if (raw[i] == 0xD)
+        if (raw[i] == 0xD || raw[i] == 0xA)
         {
-            c[i] = '\0';
+            c[j] = '\0';
             return;
         }
         if (raw[i] >= 32 and raw[i] <= 127)
@@ -1261,7 +1261,7 @@ char *SI4735::getRdsText2A(void)
         */
     //  if (getRdsNewBlockB())
     //  {
-    if (getRdsGroupType() == 2 && getRdsVersionCode() == 0)
+    if (getRdsGroupType() == 2 /* && getRdsVersionCode() == 0 */)
     {
         // Process group 2A
         // Decode B block information
@@ -1289,7 +1289,7 @@ char *SI4735::getRdsText2B(void)
     // {
         // if (getRdsNewBlockB())
         // {
-        if (getRdsGroupType() == 2 && getRdsVersionCode() == 1)
+        if (getRdsGroupType() == 2 /* && getRdsVersionCode() == 1 */)
         {
             // Process group 2B
             blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
