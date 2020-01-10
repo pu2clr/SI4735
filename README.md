@@ -84,22 +84,22 @@ The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance o
 
 The table below shows some radios based on SI47XX  
 
-| Manufacturer | Model | More information | 
-| ------------ | ----- | ----------- |
-| Tecsun | PL310ET | [About](https://www.tecsunradios.com.au/store/product/tecsun-pl310et-multi-band-radio/)|
-| Tecsun | PL-365 | [Review](https://swling.com/blog/2017/02/charlie-reviews-the-tecsun-pl-365/)|
-| Tecsun | PL-360 | [Review](https://www.edn.com/review-tecsun-pl-360-emi-receiver/) |
-| Tecsun | PL380 | [Reviews](https://www.eham.net/reviews/view-product?id=10240) |
-| Tecsun |  PL880 |  [Reviews](https://www.eham.net/reviews/view-product?id=11457) |
-| Degen | DE1103 DSP | [Review](https://swling.com/blog/2015/11/the-new-degen-de1103-dsp-first-impressions-review/)|
-| Degen | DE1123/Kaito KA1123 | [Review](https://frrl.wordpress.com/2009/07/11/review-of-the-degen-de1123-dsp-amfmsw-pocket-radio-with-1gb-mp3-player-recorder/)|
-| Degen | DE1125/Kaito KA801 | [Reviews](https://www.eham.net/reviews/view-product?id=9584)|
-| Degen | DE1126 | [Review](https://sites.google.com/site/zliangas/de1126-review)|
-| Degen | DE1127 (discontinued) | [Review](https://herculodge.typepad.com/herculodge/2012/01/dave-zantow-provides-firmware-updates-for-degen-de1127-and-de1126-models.html) |
-| Sangean | ATS-909X | [Review](https://swling.com/blog/tag/sangean-ats-909x-review/) |
-| XHDATA | D808 | [Review](https://swling.com/blog/2018/04/a-detailed-review-of-the-xhdata-d-808-and-comparison-with-the-tecsun-pl-660/)|
-| RADIWOW | R-108 | [Review](https://www.hagensieker.com/wordpress/2019/05/08/radiwow-r-108-short-wave-radio-review/)|
-| C Crane |  CC Skywave | [Review](https://swling.com/blog/2014/12/review-of-the-c-crane-cc-skywave-portable-radio/) |
+| Manufacturer | Model | CI |More information |
+| ------------ | ----- | ---- |----------- | 
+| Tecsun | PL310ET | Si4734 |[About](https://www.tecsunradios.com.au/store/product/tecsun-pl310et-multi-band-radio/)|
+| Tecsun | PL-365 | Si4735 |[Review](https://swling.com/blog/2017/02/charlie-reviews-the-tecsun-pl-365/)|
+| Tecsun | PL-360 | Si4734 |[Review](https://www.edn.com/review-tecsun-pl-360-emi-receiver/) |
+| Tecsun | PL380 |  Si4734 |[Reviews](https://www.eham.net/reviews/view-product?id=10240) |
+| Tecsun |  PL880 | Si4735 | [Reviews](https://www.eham.net/reviews/view-product?id=11457) |
+| Degen | DE1103 DSP | Si4735 | [Review](https://swling.com/blog/2015/11/the-new-degen-de1103-dsp-first-impressions-review/)|
+| Degen | DE1123/Kaito KA1123 | Si4734 |[Review](https://frrl.wordpress.com/2009/07/11/review-of-the-degen-de1123-dsp-amfmsw-pocket-radio-with-1gb-mp3-player-recorder/)|
+| Degen | DE1125/Kaito KA801 | Si4734 | [Reviews](https://www.eham.net/reviews/view-product?id=9584)|
+| Degen | DE1126 | Si4734 | [Review](https://sites.google.com/site/zliangas/de1126-review)|
+| Degen | DE1127 (discontinued) | Si4734 | [Review](https://herculodge.typepad.com/herculodge/2012/01/dave-zantow-provides-firmware-updates-for-degen-de1127-and-de1126-models.html) |
+| Sangean | ATS-909X |  Si4735 | [Review](https://swling.com/blog/tag/sangean-ats-909x-review/) |
+| XHDATA | D808 | Si4735 |[Review](https://swling.com/blog/2018/04/a-detailed-review-of-the-xhdata-d-808-and-comparison-with-the-tecsun-pl-660/)|
+| RADIWOW | R-108 |  | [Review](https://www.hagensieker.com/wordpress/2019/05/08/radiwow-r-108-short-wave-radio-review/)|
+| C Crane |  CC Skywave |  |[Review](https://swling.com/blog/2014/12/review-of-the-c-crane-cc-skywave-portable-radio/) |
 
 
 <BR>
