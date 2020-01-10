@@ -1989,6 +1989,9 @@ This library implements some RDS features of the SI4735. The table below shows t
 | CT | Clock Time (under construction...) | It provides the the current clock |
 
 
+<BR>
+<BR> 
+
 The table below shows the main group types implemented by this library
 
 | Group Type | Description |
