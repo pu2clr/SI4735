@@ -1153,7 +1153,7 @@ char *SI4735::getNext2Block(char *c)
     {
         if (raw[i] == 0xD)
         {
-            // c[i] = '\0';
+            c[i] = '\0';
             return;
         }
         if (raw[i] >= 32 and raw[i] <= 127)
@@ -1181,7 +1181,7 @@ char *SI4735::getNext4Block(char *c)
     {
         if (raw[i] == 0xD)
         {
-            // c[i] = '\0';
+            c[i] = '\0';
             return;
         }
         if (raw[i] >= 32 and raw[i] <= 127)
@@ -1217,13 +1217,12 @@ char *SI4735::getRdsText(void)
 
 char *SI4735::getRdsText0A(void)
 {
-
     si47x_rds_blockb blkB;
 
     // getRdsStatus();
 
-    if (getRdsReceived())
-    {
+    // if (getRdsReceived())
+    //{
         // if (getRdsNewBlockB())
         // {
         if (getRdsGroupType() == 0)
@@ -1235,11 +1234,12 @@ char *SI4735::getRdsText0A(void)
             if (rdsTextAdress0A >= 0 && rdsTextAdress0A < 4)
             {
                 getNext2Block(&rds_buffer0A[rdsTextAdress0A * 2]);
+                rds_buffer0A[8] = '\0';
                 return rds_buffer0A;
             }
         }
         // }
-    }
+    // }
     return NULL;
 }
 
@@ -1285,8 +1285,8 @@ char *SI4735::getRdsText2B(void)
     si47x_rds_blockb blkB;
 
     // getRdsStatus();
-    if (getRdsReceived())
-    {
+    // if (getRdsReceived())
+    // {
         // if (getRdsNewBlockB())
         // {
         if (getRdsGroupType() == 2 && getRdsVersionCode() == 1)
@@ -1302,7 +1302,7 @@ char *SI4735::getRdsText2B(void)
             }
         }
         //  }
-    }
+    // }
     return NULL;
 }
 

@@ -10,21 +10,25 @@
 
 #define FM_FUNCTION 0
 
-#define ELAPSED_TIME 800
+#define ELAPSED_TIME 500
 
 long rdsElapsedTime = millis();
 
 const unsigned min_fm = 8400;
 const unsigned max_fm = 10900;
 
-// Setup some local FM Stations with SDR 
-uint16_t rdsStations[] = {8090, 9550, 10390, 10570};
+// Setup some local FM Stations with SDR
+uint16_t rdsStations[] = {10390, 9550, 9290, 8090, 9130, 9070, 9910, 10230, 10430, 10570, 10650};
 const int maxStations = (sizeof rdsStations / sizeof(uint16_t)) - 1;
 int currentStation = 0;
-unsigned fm_freq = rdsStations[currentStation]; 
+
+bool showRdsStatus = true;
+
+unsigned fm_freq;
 
 // UE
-char *
+/*
+  char *
     tabProgramType[] = {
         "No program definition type", "News", "Current affairs", "Information", "Sport", "Education", "Drama",
         "Culture", "Science", "Variable", "Popular Music (Pop)", "Rock Music", "Easy Listening", "Light Classical",
@@ -32,8 +36,8 @@ char *
         "Phone-in Talk", "Travel", "Leisure", "Jazz Music", "Country Music", "National Music", "Oldies Music",
         "Folk Music", "Documentary", "Alarm Test", "Alarm"};
 
-// USA - comment above and uncomment below if you are using USA
-/*
+  // USA - comment above and uncomment below if you are using USA
+  /*
   char * tabProgramType[] = {
   "No program definition type", "News", "Information", "Sport", "Talk", "Rock", "Classic Rock",
   "Adult Hits", "Soft Rock", "Top 40", "Country Music", "Oldies Music", "Soft Music", "Nostalgia",
@@ -47,6 +51,7 @@ SI4735 si4735;
 char *rdsMsg2A;
 char *rdsMsg2B;
 char *stationInfo;
+char *rdsTime;
 void setup()
 {
   Serial.begin(9600);
@@ -58,6 +63,9 @@ void setup()
   si4735.setup(RESET_PIN, INTERRUPT_PIN, FM_FUNCTION);
   si4735.setVolume(45);
   delay(500);
+
+  fm_freq = rdsStations[currentStation];
+
   si4735.setFrequency(fm_freq);
   delay(100);
   showHelp();
@@ -142,7 +150,10 @@ void loop()
         currentStation = 0;
       fm_freq = rdsStations[currentStation];
       si4735.setFrequency(fm_freq);
+      delay(250);
       showCurrenteStatus();
+    } else if ( key == 'M' || key == 'm' ) {
+      showRdsStatus = !showRdsStatus;
     }
     else if (key == '?')
     {
@@ -151,70 +162,86 @@ void loop()
   }
 
   // Checks the RDS information each ELAPSED_TIME seconds
-  if ((millis() - rdsElapsedTime) > ELAPSED_TIME)
+  if ((millis() - rdsElapsedTime) > ELAPSED_TIME  && showRdsStatus )
   {
+
 
     si4735.getRdsStatus(); // It needs to be called before any other RDS call function
 
     rdsMsg2A = si4735.getRdsText2A();
     rdsMsg2B = si4735.getRdsText2B();
     stationInfo = si4735.getRdsText0A();
+    rdsTime = si4735.getRdsTime();
 
-    Serial.print("RDS Received..: ");
+    Serial.print("Frequência..: ");
+    Serial.println(String(fm_freq / 100.0, 2));
+
+    Serial.print("RDS Received: ");
     Serial.println(si4735.getRdsReceived());
 
-    Serial.print("Sync Lost.....: ");
+    Serial.print("Sync Lost...: ");
     Serial.println(si4735.getRdsSyncLost());
 
-    Serial.print("Sync Found....: ");
+    Serial.print("Sync Found..: ");
     Serial.println(si4735.getRdsSyncFound());
 
-    Serial.print("Synchronized..: ");
+    Serial.print("Synchronized: ");
     Serial.println(si4735.getRdsSync());
 
-    Serial.print("Groups Lost...: ");
+    Serial.print("Groups Lost.: ");
     Serial.println(si4735.getGroupLost());
 
-    Serial.print("FIFO Used.....: ");
+    Serial.print("FIFO Used...: ");
     Serial.println(si4735.getNumRdsFifoUsed());
 
-    Serial.print("New Block A...: ");
+    Serial.print("New Block A.: ");
     Serial.println(si4735.getRdsNewBlockA());
 
-    Serial.print("New Block B...: ");
+    Serial.print("New Block B.: ");
     Serial.println(si4735.getRdsNewBlockB());
 
-    Serial.print("PI............: ");
+    Serial.print("PI..........: ");
     Serial.println(si4735.getRdsPI());
 
-    Serial.print("Group Type.....: ");
+    Serial.print("Group Type...: ");
     Serial.println(si4735.getRdsGroupType());
 
-    Serial.print("Version........: ");
+    Serial.print("Version......: ");
     Serial.println(si4735.getRdsVersionCode());
 
-    Serial.print("Flag A/B.......: ");
+    Serial.print("Flag A/B.....: ");
     Serial.println(si4735.getRdsFlagAB());
 
     int i = si4735.getRdsProgramType();
-    Serial.print("Program Type...: ");
+    Serial.print("Program Type.: ");
     Serial.print(i);
     Serial.print(" - ");
-    if (i < 32)
-      Serial.print(String(tabProgramType[i]));
+    // if (i < 32)
+    // Serial.print(String(tabProgramType[i]));
     Serial.println(".");
 
-    Serial.print("Tipo 0A........: <");
-    Serial.print(stationInfo);
-    Serial.println(">");
+    if ( stationInfo != NULL ) {
+      Serial.print("\nTipo 0A.....: ");
+      Serial.print(stationInfo);
+    }
 
-    Serial.print("Tipo 2A........: <");
-    Serial.print(rdsMsg2A);
-    Serial.println(">");
+    if ( rdsMsg2A != NULL ) {
+      Serial.print("\nTipo 2A.....: ");
+      Serial.print(rdsMsg2A);
+    }
 
-    Serial.print("Tipo 2B........: <");
-    Serial.print(rdsMsg2B);
-    Serial.print(">");
+    if ( rdsMsg2B != NULL ) {
+      Serial.print("\nTipo 2B.....: ");
+      Serial.print(rdsMsg2B);
+    }
+
+    if ( rdsTime  != NULL ) {
+      Serial.print("\nTime........: ");
+      Serial.print(rdsTime);
+    }
+
+    Serial.println("\n***********");
+    delay(100);
 
     rdsElapsedTime = millis();
   }

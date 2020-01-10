@@ -867,7 +867,7 @@ public:
     char *getRdsTime(void);
 
     // Test
-    char *getNext2Block(char *c);
+    char *getNext2Block(char *);
     char *getNext4Block(char *);
 
     /*
