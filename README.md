@@ -1988,6 +1988,19 @@ This library implements some RDS features of the SI4735. The table below shows t
 | RT | Radiotext (under construction...) | String with up to 64 characters with additional information about the content currently being transmitted  |
 | CT | Clock Time (under construction...) | It provides the the current clock |
 
+
+The table below shows the main group types implemented by this library
+
+| Group Type | Description |
+| ---------- | ----------- |
+| 0A | Basic information |
+| 0B |  Basic information |
+| 1A  | Additional information |
+| 3A | Setup open data application |
+| 4A | Date and time (UTC) and Offset to convert UTC to local time | 
+| 10A | Program Type Name | 
+| 15B | Basic information |
+
 <BR>
 <BR>
 
