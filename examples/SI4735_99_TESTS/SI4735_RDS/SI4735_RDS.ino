@@ -10,7 +10,7 @@
 
 #define FM_FUNCTION 0
 
-#define ELAPSED_TIME 500
+#define ELAPSED_TIME 800
 
 long rdsElapsedTime = millis();
 
