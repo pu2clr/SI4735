@@ -1996,13 +1996,16 @@ The table below shows the main group types implemented by this library
 
 | Group Type | Description |
 | ---------- | ----------- |
-| 0A | Basic information |
-| 0B |  Basic information |
+| 0A | Basic information [ˆ3] |
+| 0B |  Basic information [ˆ3] |
 | 1A  | Additional information |
 | 3A | Setup open data application |
 | 4A | Date and time (UTC) and Offset to convert UTC to local time | 
 | 10A | Program Type Name | 
 | 15B | Basic information |
+
+* [ˆ3] The basic information includes the Program Service Name and it has 8 characters. It should identifie just the name of the station. However, some stations might use this resource to show other kind of messages, contradicting what is established by the RDS protocol.
+
 
 <BR>
 <BR>
