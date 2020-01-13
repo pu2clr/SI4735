@@ -671,6 +671,7 @@ private:
     char rds_buffer2B[33]; // RDS Radio Text buffer - Station Informaation
     char rds_buffer0A[9];  // RDS Basic tuning and switching information (Type 0 groups)
     char rds_time[20];
+
     int rdsTextAdress2A;
     int rdsTextAdress2B;
     int rdsTextAdress0A;

@@ -1317,15 +1317,12 @@ char * SI4735::getRdsTime()
 
     if (getRdsGroupType() == 4)
     {
-        String s;
         uint16_t y, m, d;
 
         dt.raw[4] = currentRdsStatus.resp.BLOCKBL;
         dt.raw[5] = currentRdsStatus.resp.BLOCKBH;
-
         dt.raw[2] = currentRdsStatus.resp.BLOCKCL;
         dt.raw[3] = currentRdsStatus.resp.BLOCKCH;
-
         dt.raw[0] = currentRdsStatus.resp.BLOCKDL;
         dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
 
@@ -1337,14 +1334,8 @@ char * SI4735::getRdsTime()
             m = 1;
             y++;
         }
-
         y = y % 100;
-
-        s = String(dt.refined.hour) + ":" + String(dt.refined.minute) + " - " + String(d) + "/" + String(m) +
-            "/" + String(y) + "-" + String(dt.refined.offset);
-
-        s.toCharArray(rds_time,19);
-        rds_time[19] = '\0';
+        sprintf(rds_time, "%02/%02/%04 %02d:%02d", d,m,y,dt.refined.hour, dt.refined.minute);
         return rds_time;
     }
 
