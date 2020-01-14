@@ -548,8 +548,8 @@ typedef union {
     struct
     {
         // Need to check this order.
-        uint8_t highValue; // Most Significant byte first
         uint8_t lowValue;
+        uint8_t highValue; // Most Significant byte first
     } raw;
 } si47x_rds_blockb;
 
