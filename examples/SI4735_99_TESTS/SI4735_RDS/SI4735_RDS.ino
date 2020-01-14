@@ -10,7 +10,7 @@
 
 #define FM_FUNCTION 0
 
-#define ELAPSED_TIME 800
+#define ELAPSED_TIME 400
 
 long rdsElapsedTime = millis();
 
@@ -203,9 +203,6 @@ void loop()
     Serial.print("PI..........: ");
     Serial.println(si4735.getRdsPI());
 
-    Serial.print("Group Type...: ");
-    Serial.println(si4735.getRdsGroupType());
-
     Serial.print("Version......: ");
     Serial.println(si4735.getRdsVersionCode());
 
@@ -239,6 +236,10 @@ void loop()
       Serial.print("\nTime........: ");
       Serial.print(rdsTime);
     }
+
+
+    Serial.print("\nGroup Type...: ");
+    Serial.println(si4735.getRdsGroupType());
 
     Serial.println("\n***********");
     delay(100);

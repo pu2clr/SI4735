@@ -989,6 +989,7 @@ void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
         for (uint8_t i = 0; i < 13; i++)
             currentRdsStatus.raw[i] = Wire.read();
     } while (currentRdsStatus.resp.ERR);
+    delayMicroseconds(550);
 }
 
 /*
@@ -1317,7 +1318,11 @@ char * SI4735::getRdsTime()
 
     if (getRdsGroupType() == 4)
     {
-        uint16_t y, m, d;
+        char offset_sign; 
+        int offset_h;
+        int offset_m;
+
+        // uint16_t y, m, d;
 
         dt.raw[4] = currentRdsStatus.resp.BLOCKBL;
         dt.raw[5] = currentRdsStatus.resp.BLOCKBH;
@@ -1326,6 +1331,7 @@ char * SI4735::getRdsTime()
         dt.raw[0] = currentRdsStatus.resp.BLOCKDL;
         dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
 
+        /*
         y = (unsigned)(dt.refined.mjd - 15078.2) / 365.25;
         m = ((unsigned)(dt.refined.mjd - 14956.1) - (unsigned)(y * 365.25)) / 30.6001;
         d = (unsigned)(dt.refined.mjd - 14956) - (unsigned)(y * 365.25) - (m * 30.6001);
@@ -1335,7 +1341,13 @@ char * SI4735::getRdsTime()
             y++;
         }
         y = y % 100;
-        sprintf(rds_time, "%02/%02/%04 %02d:%02d", d,m,y,dt.refined.hour, dt.refined.minute);
+        */
+        // sprintf(rds_time, "%02/%02/%04 %02d:%02d", d,m,y,dt.refined.hour, dt.refined.minute);
+
+        offset_sign = (dt.refined.offset_sense == 1) ? '+' : '-';
+        offset_h = (dt.refined.offset * 30) / 60;
+        offset_m = (dt.refined.offset * 30) - (offset_h * 60);
+        sprintf(rds_time, "%02d:%02d %c%02d:%02d", dt.refined.hour, dt.refined.minute, offset_sign, offset_h, offset_m);
         return rds_time;
     }
 

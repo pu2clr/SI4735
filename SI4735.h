@@ -519,8 +519,8 @@ typedef union {
 typedef union {
     struct {
         uint8_t address : 2;            // Depends on Group Type and Version codes. If 2A or 2B it is the Text Segment Address.
-        uint8_t DI:1;                    // Decoder Controll bit
-        uint8_t MS : 1;                  // Music/Speech
+        uint8_t DI:1;                   // Decoder Controll bit
+        uint8_t MS : 1;                 // Music/Speech
         uint8_t TA : 1;                 // Traffic Announcement
         uint8_t programType : 5;        // PTY (Program Type) code
         uint8_t trafficProgramCode : 1; // (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
