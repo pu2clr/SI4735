@@ -200,7 +200,18 @@ Esta biblioteca foi escrita para a plataforma Arduino é foi testada com sucesso
 
 ### Arduino 5V and Si4735
 
-__Se você usar uma versão 5V do Arduino, UNO por exemplo, utilize alguma estarégia de conversão para conectaá-lo ao Si4735__. 
+__Se você usar uma versão 5V do Arduino, UNO por exemplo, utilize alguma estarégia de conversão para conectá-lo ao Si47XX. Considere também verificar os pinos do Arduino que você estiver utilizando para a conexão correta com o SI47XX (RST, SDA, SCL etc). A tabela a seguir apresenta a pinagem de algumas placas Arduino.__
+
+
+|Board | InterrupT (IRQ) Pins| I2C / TWI pins |
+|------|---------------------| ---------------|
+|328-based <br> (Nano, Mini or Uno) |	D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |
+| Mega | 2, 3, 18, 19, 20 and  21 | 20 (SDA/SDIO), 21 (SCL/SCLK) |
+| 32u4-based <br> (Micro, Leonardo or Yum)	| 0, 1, 2, 3 and 7 | 2 (SDA/SDIO), 3 (SCL/SCLK) |
+| Zero | all digital pins except pin 4 | D8 (SDA/SDIO) and D9 (SCL/SCLK)  |
+| Due	| all digital pins | 20 (SDA/SDIO), 21 (SCL/SCLK) |
+| 101	| all digital pins. <br> Only pins 2, 5, 7, 8, 10, 11, 12, 13 work with CHANGE| |
+
 
 
 ### Esquema básico
