@@ -506,8 +506,8 @@ typedef union {
     } refined;
     struct
     {
-        uint8_t lowValue;
         uint8_t highValue; // Most Significant uint8_t first
+        uint8_t lowValue;
     } raw;
 } si47x_rds_blocka;
 
@@ -547,8 +547,9 @@ typedef union {
     } refined;
     struct
     {
-        uint8_t lowValue;
+        // Need to check this order.
         uint8_t highValue; // Most Significant byte first
+        uint8_t lowValue;
     } raw;
 } si47x_rds_blockb;
 
