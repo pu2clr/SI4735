@@ -547,7 +547,6 @@ typedef union {
     } refined;
     struct
     {
-        // Need to check this order.
         uint8_t lowValue;
         uint8_t highValue; // Most Significant byte first
     } raw;

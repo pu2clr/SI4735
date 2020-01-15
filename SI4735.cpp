@@ -308,8 +308,8 @@ void SI4735::setFrequency(uint16_t freq)
         Wire.write(currentFrequencyParams.arg.ANTCAPL);
     Wire.endTransmission();
     delayMicroseconds(2000);
-    currentWorkFrequency = freq; // check it
     waitToSend();                // Wait for the si473x is ready.
+    currentWorkFrequency = freq; // check it
 }
 
 /* 
@@ -966,9 +966,18 @@ void SI4735::setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t
 void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
 {
     si47x_rds_command rds_cmd;
+    static uint16_t lastFreq;
     // checking current FUNC (Am or FM)
     if (currentTune != FM_TUNE_FREQ)
         return;
+
+    if (lastFreq != currentWorkFrequency)
+    {
+        lastFreq = currentWorkFrequency;
+        clearRdsBuffer2A();
+        clearRdsBuffer2B();
+        clearRdsBuffer0A();
+    }
 
     waitToSend();
 
@@ -1152,7 +1161,7 @@ char *SI4735::getNext2Block(char *c)
 
     for (i = j = 0; i < 2; i++)
     {
-        if (raw[i] == 0xD)
+        if (raw[i] == 0xD || raw[i] == 0xA)
         {
             c[j] = '\0';
             return;
@@ -1222,15 +1231,14 @@ char *SI4735::getRdsText0A(void)
 
     // getRdsStatus();
 
-    // if (getRdsReceived())
-    //{
-        // if (getRdsNewBlockB())
-        // {
+    if (getRdsReceived())
+    {
         if (getRdsGroupType() == 0)
         {
             // Process group type 0
             blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
             blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+
             rdsTextAdress0A = blkB.group0.address;
             if (rdsTextAdress0A >= 0 && rdsTextAdress0A < 4)
             {
@@ -1239,45 +1247,33 @@ char *SI4735::getRdsText0A(void)
                 return rds_buffer0A;
             }
         }
-        // }
-    // }
+    }
     return NULL;
 }
 
 char *SI4735::getRdsText2A(void)
 {
-
     si47x_rds_blockb blkB;
 
     // getRdsStatus();
-
-    // if (getRdsReceived())
-    // {
-    /*
-        if (lastTextFlagAB != getRdsFlagAB())
-        {
-            lastTextFlagAB = getRdsFlagAB();
-            clearRdsBuffer2A();
-        }
-        */
-    //  if (getRdsNewBlockB())
-    //  {
-    if (getRdsGroupType() == 2 /* && getRdsVersionCode() == 0 */)
+    if (getRdsReceived())
     {
-        // Process group 2A
-        // Decode B block information
-        blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-        blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-        rdsTextAdress2A = blkB.group2.address;
-        if (rdsTextAdress2A >= 0 && rdsTextAdress2A < 16)
+        if (getRdsGroupType() == 2 /* && getRdsVersionCode() == 0 */)
         {
-            getNext4Block(&rds_buffer2A[rdsTextAdress2A * 4]);
-            rds_buffer2A[63] = '\0';
-            return rds_buffer2A;
+            // Process group 2A
+            // Decode B block information
+            blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+            blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+            rdsTextAdress2A = blkB.group2.address;
+
+            if (rdsTextAdress2A >= 0 && rdsTextAdress2A < 16)
+            {
+                getNext4Block(&rds_buffer2A[rdsTextAdress2A * 4]);
+                rds_buffer2A[63] = '\0';
+                return rds_buffer2A;
+            }
         }
     }
-    // }
-    // }
     return NULL;
 }
 
@@ -1288,21 +1284,21 @@ char *SI4735::getRdsText2B(void)
     // getRdsStatus();
     // if (getRdsReceived())
     // {
-        // if (getRdsNewBlockB())
-        // {
-        if (getRdsGroupType() == 2 /* && getRdsVersionCode() == 1 */)
+    // if (getRdsNewBlockB())
+    // {
+    if (getRdsGroupType() == 2 /* && getRdsVersionCode() == 1 */)
+    {
+        // Process group 2B
+        blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+        blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+        rdsTextAdress2B = blkB.group2.address;
+        if (rdsTextAdress2B >= 0 && rdsTextAdress2B < 16)
         {
-            // Process group 2B
-            blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-            blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-            rdsTextAdress2B = blkB.group2.address;
-            if (rdsTextAdress2B >= 0 && rdsTextAdress2B < 16)
-            {
-                getNext2Block(&rds_buffer2B[rdsTextAdress2B * 2]);
-                return rds_buffer2B;
-            }
+            getNext2Block(&rds_buffer2B[rdsTextAdress2B * 2]);
+            return rds_buffer2B;
         }
-        //  }
+    }
+    //  }
     // }
     return NULL;
 }
@@ -1310,7 +1306,7 @@ char *SI4735::getRdsText2B(void)
 /* 
  * Gets the RDS time and date when the Group type is 4 
  */
-char * SI4735::getRdsTime()
+char *SI4735::getRdsTime()
 {
     // Under Test and construction
     // Need to check the Group Type before.
@@ -1318,7 +1314,7 @@ char * SI4735::getRdsTime()
 
     if (getRdsGroupType() == 4)
     {
-        char offset_sign; 
+        char offset_sign;
         int offset_h;
         int offset_m;
 
