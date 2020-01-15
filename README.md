@@ -281,7 +281,7 @@ The table below shows the component parts used to build the radio prototype base
 |Part	| Description |
 |-------| ------------ |
 | C1    | 22nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VA pin)|
-| C2    | 100pF Monolithic Multilayer Chip Ceramic non polarized capacitor |
+| C2    | 1nF Monolithic Multilayer Chip Ceramic non polarized capacitor |
 | C3    | 470nF Monolithic Multilayer Chip Ceramic non polarized capacitor| 
 | C4    | 100nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VD pin)|
 | C5 and C6 | 22pF (Crystal load capacitors) | 
