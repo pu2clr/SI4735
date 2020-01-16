@@ -445,7 +445,7 @@ void loadSSB()
   display.setCursor(0, 2);
   display.print("  Switching to SSB  ");
 
-  si4735.setI2CFastMode();
+  si4735.setI2CFastMode(); // sets to 400Khz.
 
   si4735.setup(RESET_PIN, SSB);
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
@@ -463,7 +463,7 @@ void loadSSB()
   si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
   delay(50);
   ssbLoaded = true;
-  si4735.setI2CStandardMode();
+  si4735.setI2CStandardMode(); // goes back to default (100KHz)
 }
 
 /*
