@@ -84,7 +84,7 @@ void SI4735::waitToSend()
 {
     do
     {
-        delayMicroseconds(500);
+        delayMicroseconds(50);
         Wire.requestFrom(SI473X_ADDR, 1);
     } while (!(Wire.read() & B10000000));
 }
@@ -859,6 +859,8 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
 void SI4735::seekStationUp()
 {
     seekStation(1, 1);
+    delay(50);
+    getFrequency();
 }
 
 /*
@@ -867,6 +869,8 @@ void SI4735::seekStationUp()
 void SI4735::seekStationDown()
 {
     seekStation(0, 1);
+    delay(50);
+    getFrequency();
 }
 
 /* 

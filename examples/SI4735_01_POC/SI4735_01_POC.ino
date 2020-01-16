@@ -30,7 +30,6 @@ SI4735 si4735;
 void setup()
 {
   Serial.begin(9600);
-  Serial.println("Test and validation of the SI4735 Arduino Library.");
   Serial.println("AM and FM station tuning test.");
 
   showHelp();
@@ -66,6 +65,7 @@ void showHelp()
 void showStatus()
 {
   si4735.getStatus();
+  si4735.getCurrentReceivedSignalQuality();
   Serial.print("You are tuned on ");
   if (si4735.isCurrentTuneFM())
   {
