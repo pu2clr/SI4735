@@ -84,7 +84,7 @@ void SI4735::waitToSend()
 {
     do
     {
-        delayMicroseconds(50);
+        delayMicroseconds(500); // Need check the minimum value.
         Wire.requestFrom(SI473X_ADDR, 1);
     } while (!(Wire.read() & B10000000));
 }
