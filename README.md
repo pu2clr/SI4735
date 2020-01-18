@@ -30,7 +30,7 @@ __Attention__:
 8. [Hardware Requirements and Setup](https://github.com/pu2clr/SI4735#hardware-requirements-and-setup)
    * [Schematic](https://github.com/pu2clr/SI4735#schematic)
    * [Component Parts](https://github.com/pu2clr/SI4735#parts)
-   * [Boards where this library has been successfully tested]()
+   * [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested)
    * [Photos (Tools and Accessories)](https://github.com/pu2clr/SI4735#photos-tools-and-accessories)
 9.  [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
     * [__RDS Support__](https://github.com/pu2clr/SI4735#rds)
@@ -308,7 +308,7 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 
 <BR>
 
-## Boards where this library has been successfully tested
+### Boards where this library has been successfully tested
 
 The table below shows the some boards where this library has been successfully tested.
 
