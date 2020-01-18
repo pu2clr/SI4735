@@ -84,7 +84,7 @@ void SI4735::waitToSend()
 {
     do
     {
-        delayMicroseconds(500); // Need check the minimum value.
+        delayMicroseconds(250); // Need check the minimum value.
         Wire.requestFrom(SI473X_ADDR, 1);
     } while (!(Wire.read() & B10000000));
 }
@@ -1155,7 +1155,7 @@ uint8_t SI4735::getRdsProgramType(void)
     return blkb.refined.programType;
 }
 
-char *SI4735::getNext2Block(char *c)
+void SI4735::getNext2Block(char *c)
 {
     char raw[2];
     int i, j;
@@ -1182,7 +1182,7 @@ char *SI4735::getNext2Block(char *c)
     }
 }
 
-char *SI4735::getNext4Block(char *c)
+void SI4735::getNext4Block(char *c)
 {
     char raw[4];
     int i, j;
@@ -1697,7 +1697,7 @@ void SI4735::ssbPowerUp()
 bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size)
 {
     uint8_t content, cmd_status;
-    int i, offset;
+    register int i, offset;
     // Send patch to the SI4735 device
     for (offset = 0; offset < ssb_patch_content_size; offset += 8)
     {
@@ -1708,15 +1708,18 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
             Wire.write(content);
         }
         Wire.endTransmission();
+        // delayMicroseconds(250);
         waitToSend();
-        Wire.requestFrom(SI473X_ADDR, 1);
-        cmd_status = Wire.read();
+        
+        // Uncomment the lines below if you want to check erro.
+        // Wire.requestFrom(SI473X_ADDR, 1);
+        // cmd_status = Wire.read();
         // The SI4735 issues a status after each 8 byte transfered.
         // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
-        if (cmd_status != 0x80)
-            return false;
+        // if (cmd_status != 0x80)
+            // return false;
     }
-    delayMicroseconds(2500);
+    delayMicroseconds(250);
     return true;
 }
 

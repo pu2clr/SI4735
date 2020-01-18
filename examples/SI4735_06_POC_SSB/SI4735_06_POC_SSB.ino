@@ -69,6 +69,9 @@ uint8_t currentBFOStep = 50;
 uint8_t bandwidthIdx = 2;
 char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
+
+long et1 = 0, et2 = 0;
+
 typedef struct
 {
   uint16_t minimumFreq;
@@ -119,7 +122,9 @@ void setup()
   delay(100);
   Serial.println("SSB patch is loading...");
   loadSSB();
-  Serial.println("SSB patch is loaded!");
+  Serial.print("SSB patch is loaded in: ");
+  Serial.print( (et2 - et1) );
+  Serial.println("ms");
   delay(250);
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
@@ -261,7 +266,9 @@ void loadSSB()
   delay(100);
   si4735.patchPowerUp();
   delay(100);
+  et1 = millis();
   si4735.downloadPatch(ssb_patch_content, size_content);
+  et2 = millis();
   delay(100);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;

@@ -464,6 +464,7 @@ void loadSSB()
   delay(50);
   ssbLoaded = true;
   si4735.setI2CStandardMode(); // goes back to default (100KHz)
+  display.clear();
 }
 
 /*
