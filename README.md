@@ -16,7 +16,7 @@ There is a facebook group called [__Si47XX for radio listeners__](https://www.fa
 __Attention__: 
 * __Documentation  under construction__. 
 * __The SI4735 is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V converter__.
-
+* __This library has been successfully tested on Arduino Pro Mini 3.3V; ESP32 LOLIN WEMOS; Mega 2560 (using voltage converter).__    
 
 ## Summary
 
@@ -30,6 +30,7 @@ __Attention__:
 8. [Hardware Requirements and Setup](https://github.com/pu2clr/SI4735#hardware-requirements-and-setup)
    * [Schematic](https://github.com/pu2clr/SI4735#schematic)
    * [Component Parts](https://github.com/pu2clr/SI4735#parts)
+   * [Boards where this library has been successfully tested]()
    * [Photos (Tools and Accessories)](https://github.com/pu2clr/SI4735#photos-tools-and-accessories)
 9.  [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
     * [__RDS Support__](https://github.com/pu2clr/SI4735#rds)
@@ -304,6 +305,21 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 * Layout, and Design Guidelines.” Silicon Laboratories will evaluate schematics and layouts for qualified customers.
 * Pin 8 connects to the FM antenna interface, and pin 12 connects to the AM antenna interface.
 * Place Si473x-D60 as close as possible to antenna and keep the FMI and AMI traces as short as possible.
+
+<BR>
+
+## Boards where this library has been successfully tested
+
+The table below shows the some boards where this library has been successfully tested.
+
+
+| Board | Need voltage converter | I2C Pins | Reset Pin |
+| ----- | ---------------------- | -------- | --------- | 
+| Arduino Pro Mini 3.3V 8MHz | No | A4 and A5 | 12 | 
+| Mega 2560 Pro | Yes | 20 and 21 | 12 |
+| ESP32 WEMOS LOLIN32 | No |  21 and 22 | 12 |  
+| Arduino UNO | Yes | A4 and A5 | 12 |
+
 
 <BR>
 
