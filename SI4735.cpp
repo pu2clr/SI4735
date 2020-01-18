@@ -1790,6 +1790,6 @@ bool SI4735::downloadPatch(int eeprom_i2c_address)
         if (cmd_status != 0x80)
             return false;
     }
-    delayMicroseconds(2500);
+    delayMicroseconds(250);
     return true;
 }
