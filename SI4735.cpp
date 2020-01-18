@@ -70,11 +70,11 @@ void SI4735::waitInterrupr(void)
 void SI4735::reset()
 {
     pinMode(resetPin, OUTPUT);
-    delay(100);
+    delay(10);
     digitalWrite(resetPin, LOW);
-    delay(100);
+    delay(10);
     digitalWrite(resetPin, HIGH);
-    delay(100);
+    delay(10);
 }
 
 /*
@@ -84,7 +84,7 @@ void SI4735::waitToSend()
 {
     do
     {
-        delayMicroseconds(250); // Need check the minimum value.
+        delayMicroseconds(220); // Need check the minimum value.
         Wire.requestFrom(SI473X_ADDR, 1);
     } while (!(Wire.read() & B10000000));
 }
@@ -1708,7 +1708,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
             Wire.write(content);
         }
         Wire.endTransmission();
-        // delayMicroseconds(250);
+        // delayMicroseconds(220);
         waitToSend();
         
         // Uncomment the lines below if you want to check erro.

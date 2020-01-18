@@ -445,13 +445,14 @@ void loadSSB()
   display.setCursor(0, 2);
   display.print("  Switching to SSB  ");
 
-  si4735.setI2CFastMode(); // sets to 400Khz.
 
   si4735.setup(RESET_PIN, SSB);
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
   si4735.patchPowerUp();
   delay(50);
+  si4735.setI2CFastMode(); // sets to 400Khz.
   si4735.downloadPatch(ssb_patch_content, size_content);
+  si4735.setI2CStandardMode(); // goes back to default (100KHz)
   delay(50);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
@@ -463,7 +464,6 @@ void loadSSB()
   si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
   delay(50);
   ssbLoaded = true;
-  si4735.setI2CStandardMode(); // goes back to default (100KHz)
   display.clear();
 }
 

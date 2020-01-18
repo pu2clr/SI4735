@@ -267,7 +267,9 @@ void loadSSB()
   si4735.patchPowerUp();
   delay(100);
   et1 = millis();
+  si4735.setI2CFastMode();
   si4735.downloadPatch(ssb_patch_content, size_content);
+  si4735.setI2CStandardMode();
   et2 = millis();
   delay(100);
   // Parameters
