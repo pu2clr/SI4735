@@ -130,7 +130,7 @@ void setup()
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
   delay(100);
   currentFrequency = si4735.getFrequency();
-  si4735.setVolume(40);
+  si4735.setVolume(60);
   showHelp();
   showStatus();
 }
