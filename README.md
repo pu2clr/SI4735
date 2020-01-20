@@ -382,6 +382,19 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 
 The basic circuit built on protoboard is based on the “__SSOP Typical Application Schematic__”, suggested by the Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19). Two pull-up 10K resistors were added on I2C bus. Also, it is recomended to add two 4.7uF capacitors between the CI audio output  and audio amplifier. The photos below do not show these capacitors. See  [C7 and C8 on schematic](https://github.com/pu2clr/SI4735#schematic).
 
+<BR>
+
+The figure below shows a suggestion to shrink the prototype and connections. If you are just doing prototyping, I recommend this approach due to the short connections with the Si4735 (recommended by the manufacturer).
+
+![Mini Protoboard 01](./extras/images/SI4735_mini_protoboard_01.png)
+
+<BR>
+
+The configuration above connected to Arduino Pro Mini is shown below. 
+
+
+![Mini Protoboard 02](./extras/images/SI4735_mini_protoboard_02.png)
+
 
 <BR>
 <BR>
@@ -401,9 +414,10 @@ The figure above shows a schematic implementation using buttons and Encoder. Thi
 <BR>
 
 
-The figure below shows a suggestion to shrink the prototype and connections. If you are just doing prototyping, I recommend this approach due to the short connections with the Si4735 (recommended by the manufacturer).
 
-![Protoboard 00](./extras/images/SI4735_mini_protoboard_01.png)
+
+
+
 
 
 
