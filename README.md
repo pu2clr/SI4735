@@ -395,20 +395,14 @@ The configuration above connected to Arduino Pro Mini is shown below.
 <BR>
 <BR>
 
+
+The following photo shows the most common prototyping approach. Use this approach if you don't want to solder the components on the adapter plate.
+
 ![Protoboard 01](./extras/images/protoboard_01.png)
 
-The figure above shows the very basic shematic implementation (no Button or Encoder).  This protoboard is used by some test  implemented in this project. [See folder examples for more details](./examples) 
-
-<BR>
-<BR>
+The figure above shows the very basic shematic implementation (no Button or Encoder).  This protoboard is used by some test  implemented in this project. See the folder [examples](./examples) for more details and other configuration with LCD and OLED
 
 
-The following figure shows the most common prototyping approach. Use this approach if you don't want to solder the components on the adapter plate.
-
-
-![Protoboard 00](./extras/images/protoboard_00.png)
-
-The figure above shows a schematic implementation using buttons and Encoder. This protoboard will be used in some examples (sketches) writen in this project.  [See folder examples for more details](./examples). 
 
 <BR>
 <BR>
