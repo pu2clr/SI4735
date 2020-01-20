@@ -220,6 +220,8 @@ Unzip the SI4735.zip file in your Arduino Library folder.
 * On __MAC OS__: ˜/Documents/Arduino/libraries
 * On __Linux__: ˜/Documents/Arduino/libraries
 
+See more 
+[![arduino-library-badge](https://www.ardu-badge.com/badge/MyLibrary.svg?)](https://www.ardu-badge.com/PU2CLR%20SI4735)
 
 <BR>
 <BR>
@@ -2596,4 +2598,4 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 * [Evaluating SSB audio from the SI4735-based radio prototype](https://youtu.be/Xj7zuiyvysI)
 
 
-[![arduino-library-badge](https://www.ardu-badge.com/badge/MyLibrary.svg?)](https://www.ardu-badge.com/PU2CLR%20SI4735)
+
