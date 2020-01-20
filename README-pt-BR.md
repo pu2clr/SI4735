@@ -338,11 +338,6 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 <BR> 
 <BR>
 
-|Si4735 on Adapter|Si4735 on Adapter| 
-|---------------|---------------|   
-|![SI4735 on adapter 04](./extras/images/adapter_01.png)|![SI4735 on adapter 05](./extras/images/adapter_02.png)|
-
-
 #### Protoboard
 
 As montagens a seguir são baseadas no circuito proposto pela Silicon Labs (__SSOP Typical Application Schematic__). 
@@ -375,9 +370,7 @@ O protótipo a seguir pode ser usado se você não pretende soldar os componente
 ![Protoboard 01](./extras/images/protoboard_01.png)
 
 
-
-É importante destacar que o circuito montando em protoboard, sobretudo em soluções envolvendo RF,  pode não responder exatamente da forma esperada. Alguns ajustes podem ser necessários para deixar a montagem adequada às suas exigências. A circuito apresentado acima, inicialmente  respondeu bem em LW/MW, SW e FM. No entanto, nos experimentos com SSB, uma pequena interferência foi detectada.  O Sr. Francisco Scaramella, um colaborador deste projeto, inseriu alguns componentes no circuito e obteve excelentes resultados também em SSB em sua montagem com placa matricial e componentes soldados. A abordagem do Sr. Fracisco será inserida neste documento quando oportuno. 
-
+É importante destacar que o circuito montando em protoboard, sobretudo em soluções envolvendo RF,  pode não responder exatamente da forma esperada. Alguns ajustes podem ser necessários para deixar a montagem adequada às suas exigências. A circuito apresentado acima, inicialmente  respondeu bem em LW/MW, SW e FM. No entanto, nos experimentos com SSB, uma pequena interferência foi detectada.  O Sr. Francisco Scaramella, um colaborador deste projeto, inseriu alguns componentes no circuito e obteve excelentes resultados também em SSB em sua montagem com placa matricial e componentes soldados. 
 
 
 ## Documentação das funções da Biblioteca
