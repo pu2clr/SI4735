@@ -367,12 +367,9 @@ A figura a seguir ilustra a mini protoboard apresentada anteriormente conectada 
 
 <BR>
 
-O protótipo a seguir pode ser usado se você não pretende soldar os componentes na própria placa adaptadora. 
+O protótipo a seguir pode ser usado se você não pretende soldar os componentes na própria placa adaptadora. Verifique na pasta [exemplos](https://github.com/pu2clr/SI4735/tree/master/examples) outras configurações deste circuito com display (OLED e LCD).
 
 
-![Protoboard 00](./extras/images/protoboard_00.png)
-
-<BR>
 <BR>
 
 ![Protoboard 01](./extras/images/protoboard_01.png)
