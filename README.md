@@ -400,9 +400,12 @@ The figure above shows a schematic implementation using buttons and Encoder. Thi
 <BR>
 <BR>
 
+
+The figure below shows a suggestion to shrink the prototype and connections. If you are just doing prototyping, I recommend this approach due to the short connections with the Si4735 (recommended by the manufacturer).
+
 ![Protoboard 00](./extras/images/SI4735_mini_protoboard_01.png)
 
-The figure above shows a suggestion for shrinking the prototype and connections. 
+
 
 
 
