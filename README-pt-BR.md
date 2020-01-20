@@ -345,10 +345,29 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 
 #### Protoboard
 
-A montagem a seguir é baseada no circuito proposto pela Silicon Labs (__SSOP Typical Application Schematic__). 
-Recomendo a leitura do manual "__Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19)__". Dois resistores pull-up de 10K foram adicionados ao barramento I2C. Note também que dois capacitores cerâmicos de 4.7uF foram adicionados à saída de audio do SI4735.  
+As montagens a seguir são baseadas no circuito proposto pela Silicon Labs (__SSOP Typical Application Schematic__). 
+Recomendo a leitura do manual "__Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19)__". Dois resistores pull-up de 4.7K foram adicionados ao barramento I2C. Note também que dois capacitores cerâmicos de 4.7uF foram adicionados à saída de audio do SI4735.  
 
 Veja [C7 e C8 no esquema](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#schematic).
+
+<BR>
+
+A figura a seguir apresenta uma versão reduzida do protótipo em uma mini protoboard. A diferença básica desta abordagem é que os componentes básicos necessários conectados ao Si4735, estão soldados na própria placa. Esta abordagem pode promover mais estabilidade ao sistema devido às conexões curtas com o Si4735.   
+
+
+![Mini Protoboard 01](./extras/images/SI4735_mini_protoboard_01.png)
+
+
+<BR>
+
+A figura a seguir ilustra a mini protoboard apresentada anteriormente conectada ao Arduino Pro Mini 3.3V e a uma saída de áudio. 
+
+
+![Mini Protoboard 02](./extras/images/SI4735_mini_protoboard_02.png)
+
+<BR>
+
+O protótipo a seguir pode ser usado se você não pretende soldar os componentes na própria placa adaptadora. 
 
 
 ![Protoboard 00](./extras/images/protoboard_00.png)
