@@ -319,13 +319,15 @@ Este item apresenta algumas ferraentas e acessórios podem ser úteis em sua mon
 
 It was a bit hard to solder the kind of CI on adapter. However, by using a electronic magnifier it was possible.
 
+<BR> 
+
 ### SI4735 soldered on adapter
 
 |Si4735 on Adapter|Si4735 on Adapter| 
 |---------------|---------------|  
 |![SI4735 on adapter 01](./extras/images/si4735_on_adapter_01.png)|![SI4735 on adapter 03](./extras/images/si4735_on_adapter_03.png)|
 
-
+<BR>
 
 ### Soldagem do Si4735 no adaptador
 
