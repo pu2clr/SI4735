@@ -366,3 +366,6 @@ __This sketch has been successfully tested on Pro Mini 3.3V.__
   * AM:  1, 1.8, 2, 2.5, 3, 4 and 6 KHz;
 * BFO Control via encoder;
 * Frequency step options: 1, 5 and 10KHz;
+
+
+[![arduino-library-badge](https://www.ardu-badge.com/badge/MyLibrary.svg?)](https://www.ardu-badge.com/SI4735)
