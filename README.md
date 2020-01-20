@@ -406,23 +406,16 @@ The figure above shows the very basic shematic implementation (no Button or Enco
 <BR>
 <BR>
 
+
+The following figure shows the most common prototyping approach. Use this approach if you don't want to solder the components on the adapter plate.
+
+
 ![Protoboard 00](./extras/images/protoboard_00.png)
 
 The figure above shows a schematic implementation using buttons and Encoder. This protoboard will be used in some examples (sketches) writen in this project.  [See folder examples for more details](./examples). 
 
 <BR>
 <BR>
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## API Documentation
