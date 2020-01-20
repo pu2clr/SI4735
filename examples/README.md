@@ -28,7 +28,7 @@ Test and validation of the SI4735 Arduino Library. The main advantages of using 
 
 __This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
 
-So, I strongly recommend starting with this sketch. This example is a proof of concept of SI4735 Arduino Library. The [SI4735_POC.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_POC) sketch uses just the __Serial Monitor__ and works only on your __Arduino IDE__. However, you can easily replace the Serial Monitor functions to the device functions that you want to use. 
+I strongly recommend starting with this sketch. This example is a proof of concept of SI4735 Arduino Library. The [SI4735_POC.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_POC) sketch uses just the __Serial Monitor__ and works only on your __Arduino IDE__. However, you can easily replace the Serial Monitor functions to the device functions that you want to use. 
 
 
 ### Controls used by example 01
