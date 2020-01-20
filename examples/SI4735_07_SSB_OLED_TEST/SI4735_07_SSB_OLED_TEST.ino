@@ -1,6 +1,14 @@
 /*
   SS4735 SSB Support example with OLED-I2C and Encoder.
 
+  This sketch has been successfully tested on:
+    1) Pro Mini 3.3V; 
+    2) UNO (by using a voltage converter); 
+    3) Arduino Mega (by using a voltage converter); and 
+    4) ESP32 (LOLIN32 WEMOS)
+
+  This sketch has been successfully tested on Pro Mini 3.3V.
+
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
 
   This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.

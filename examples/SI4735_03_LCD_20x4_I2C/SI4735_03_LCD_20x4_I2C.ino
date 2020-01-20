@@ -6,6 +6,8 @@
   together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C). 
   Look for LiquidCrystal I2C on Manager Libraries.    
 
+  This sketch has been successfully tested on Pro Mini 3.3V. 
+
   Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png
 
   By Ricardo Lima Caratti, Nov 2019.

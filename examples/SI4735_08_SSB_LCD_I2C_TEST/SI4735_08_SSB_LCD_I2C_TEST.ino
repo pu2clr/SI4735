@@ -5,6 +5,8 @@
   together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C). 
   Look for LiquidCrystal I2C on Manager Libraries.   
 
+  __This sketch has been successfully tested on Pro Mini 3.3V.__ 
+
   This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.
 
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.

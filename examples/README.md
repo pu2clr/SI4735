@@ -26,7 +26,10 @@ Test and validation of the SI4735 Arduino Library. The main advantages of using 
 * You do not need connect any push buttons or encoders to change volume and frequency;
 * The Arduino IDE is all you need to control the radio.  
 
+__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
+
 So, I strongly recommend starting with this sketch. This example is a proof of concept of SI4735 Arduino Library. The [SI4735_POC.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_POC) sketch uses just the __Serial Monitor__ and works only on your __Arduino IDE__. However, you can easily replace the Serial Monitor functions to the device functions that you want to use. 
+
 
 ### Controls used by example 01
 
@@ -52,6 +55,8 @@ Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_01_POC
 ## Example 02 - Proof of Concept with SW
 
 This example shows how can you use SW features of the Si4735 Arduino Library. Like the previous exemple (Proof of Concept), the [SI4735_POC_SW.ino](examples/SI4735_POC_SW/SI4735_POC_SW.ino) sketch __works only on Arduino IDE__. It uses the Serial Monitor to get the commands and show the information. 
+
+__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
 
 
 ### SW Bands used by the example 02
@@ -105,6 +110,8 @@ __See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAY
 It is a example that shows how to set up a LCD and SI4735 on the same I2C bus. 
 This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the LiquidCrystal I2C Library by Frank de Brabander. You can install LiquidCrystal I2C via Manage Libraries on your Arduino IDE. 
 
+__This sketch has been successfully tested on Pro Mini 3.3V.__ 
+
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_03_LCD_20x4_I2C/SI4735_03_LCD_20x4_I2C.ino) to see this example.
 
 
@@ -115,6 +122,8 @@ __Click [here](https://youtu.be/vzunuxam_Lg) to see a video about this example__
 ## Example 04 - SS4735 Arduino Library example with I2C OLED
 
 This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the SSD1306Ascii Arduino Library by Bill Greiman. You can install SSD1306Ascii via Manage Libraries on your Arduino IDE. The photo below show this example on a protoboard. 
+
+__This sketch has been successfully tested on Pro Mini 3.3V.__ 
 
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_04_OLED_I2C/SI4735_04_OLED_I2C.ino) to see this example.
 
@@ -134,14 +143,14 @@ The schematic below is a sugestion to connect a I2C Display (OLED or LCD 20x4 or
 
 __Pay attention to the your I2C device voltage. The system can become unstable if you are using a wrong voltage__.
 
-
 <BR>
-
 
 
 ## Example 05 - Bandwidth filter test (9 band SW Receiver with OLED)
 
 This example is a 11 band SW receiver based on SI4735.  It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). With this resource, you can separate  two stations in adjacent channels. __You can use the same schematic shown for the examples 03 and 04__. 
+
+__This sketch has been successfully tested on Pro Mini 3.3V.__ 
 
 
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_05_SW_OLED_FILTER_TEST/SI4735_05_SW_OLED_FILTER_TEST.ino) to see this example.
@@ -153,6 +162,8 @@ __Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__
 ## Example 06 - Proof of Concept with SSB
 
 This example shows how can you use SSB features of the Si4735 Arduino Library. It uses the Serial Monitor to get the commands and show the information. 
+
+__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
 
 This sketch will download a SSB patch to your SI4735 device (patch_full.h or patch_init.h). It can take up to 15KB of the Arduino memory.
     
@@ -211,6 +222,8 @@ For the example 06 you can use the sketch below.
 
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
 
+  __This sketch has been successfully tested on Pro Mini 3.3V.__ 
+
   This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.
     
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
@@ -266,6 +279,8 @@ __Click [here](https://youtu.be/W2Ssjb9P_f4) to see a video about this example__
 This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
 This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.
 
+__This sketch has been successfully tested on Pro Mini 3.3V.__ 
+
 Features of this sketch: 
 
 1) __Internal Arduino pull-up (no external resistors on schematic for buttons and encoder)__;
@@ -305,6 +320,8 @@ Pay attention on the push buttons added on this example. The table below shows t
 This example uses two display I2C devices and the Si4735 connected on the same I2C bus. 
 It is an simple AM and FM radio. The schematic is the same used on Example 10. See below.
 
+__This sketch has been successfully tested on Pro Mini 3.3V.__ 
+
 <BR>
 
 ![Protoboard with OLED as a S Meter](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_AM_FM_SMETER.png)
@@ -315,6 +332,8 @@ It is an simple AM and FM radio. The schematic is the same used on Example 10. S
 
 Like the Example 09, this example uses two display and the SI4735 connect on the same I2C bus.
 This radio has 11 bands.
+
+__This sketch has been successfully tested on Pro Mini 3.3V.__ 
 
 <BR>
 
@@ -330,7 +349,10 @@ __See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAY
 
 ## Example 11 - SI4735 all in one with SSB Support
 
-__Under construction...__ 
+This sketch implements an FM/LW/MW/SW - SSB radio.
+
+__This sketch has been successfully tested on Pro Mini 3.3V.__ 
+
 
 ### Features
 * This example implements AM (MW and SW), FM and SSB. 

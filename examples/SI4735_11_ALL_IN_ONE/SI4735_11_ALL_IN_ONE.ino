@@ -5,6 +5,7 @@
 
   This sketch was tested on Arduino Pro Mini 3.3V
   This sketch uses LiquidCrystal/LCD with I2C and Encoder.
+  This sketch has been successfully tested on Pro Mini 3.3V. 
 
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
   together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C).

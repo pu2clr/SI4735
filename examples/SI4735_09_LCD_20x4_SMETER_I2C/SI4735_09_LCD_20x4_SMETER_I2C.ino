@@ -7,6 +7,8 @@
   You also need to install Adafruit_GFX  (https://github.com/adafruit/Adafruit-GFX-Library) and
   Adafruit_SH1106 (https://github.com/wonho-maker/Adafruit_SH1106).
 
+  This sketch has been successfully tested on Pro Mini 3.3V.
+
   By Ricardo Lima Caratti, Nov 2019.
 */
 

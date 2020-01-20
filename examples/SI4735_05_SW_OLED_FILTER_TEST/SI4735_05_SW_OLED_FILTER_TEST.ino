@@ -5,6 +5,8 @@
   It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). 
   The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz).
   
+  This sketch has been successfully tested on Pro Mini 3.3V.
+
   Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. 
   The source code is included together with this sketch.
 
