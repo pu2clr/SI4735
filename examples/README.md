@@ -368,4 +368,3 @@ __This sketch has been successfully tested on Pro Mini 3.3V.__
 * Frequency step options: 1, 5 and 10KHz;
 
 
-[![arduino-library-badge](https://www.ardu-badge.com/badge/MyLibrary.svg?)](https://www.ardu-badge.com/SI4735)
