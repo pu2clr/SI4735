@@ -325,9 +325,7 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 |---------------|---------------|  
 |![SI4735 on adapter 01](./extras/images/si4735_on_adapter_01.png)|![SI4735 on adapter 03](./extras/images/si4735_on_adapter_03.png)|
 
-|Si4735 on Adapter|Si4735 on Adapter| 
-|---------------|---------------|   
-|![SI4735 on adapter 04](./extras/images/adapter_01.png)|![SI4735 on adapter 05](./extras/images/adapter_02.png)|
+
 
 ### Soldagem do Si4735 no adaptador
 
