@@ -26,7 +26,7 @@ Test and validation of the SI4735 Arduino Library. The main advantages of using 
 * You do not need connect any push buttons or encoders to change volume and frequency;
 * The Arduino IDE is all you need to control the radio.  
 
-__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
+__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
 
 I strongly recommend starting with this sketch. This example is a proof of concept of SI4735 Arduino Library. The [SI4735_POC.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_POC) sketch uses just the __Serial Monitor__ and works only on your __Arduino IDE__. However, you can easily replace the Serial Monitor functions to the device functions that you want to use. 
 
@@ -56,8 +56,7 @@ Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_01_POC
 
 This example shows how can you use SW features of the Si4735 Arduino Library. Like the previous exemple (Proof of Concept), the [SI4735_POC_SW.ino](examples/SI4735_POC_SW/SI4735_POC_SW.ino) sketch __works only on Arduino IDE__. It uses the Serial Monitor to get the commands and show the information. 
 
-__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
-
+__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
 
 ### SW Bands used by the example 02
 | Band | From (KHz) | To (KHz) | Default (KHz)|
@@ -163,7 +162,7 @@ __Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__
 
 This example shows how can you use SSB features of the Si4735 Arduino Library. It uses the Serial Monitor to get the commands and show the information. 
 
-__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
+__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
 
 This sketch will download a SSB patch to your SI4735 device (patch_full.h or patch_init.h). It can take up to 15KB of the Arduino memory.
     
