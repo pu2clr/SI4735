@@ -1708,7 +1708,21 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
             Wire.write(content);
         }
         Wire.endTransmission();
-        // delayMicroseconds(220);
+
+        // Testing download performance
+        // approach 1
+        // delayMicroseconds(220); // Minimum delay founded (Need check the minimum value)
+
+        // approach 2
+        /*
+        do
+        {
+            delayMicroseconds(220); // Minimum delay founded (Need check the minimum value)
+            Wire.requestFrom(SI473X_ADDR, 1);
+        } while (!(Wire.read() & B10000000));
+        */
+       
+        // approach 3
         waitToSend();
         
         // Uncomment the lines below if you want to check erro.
