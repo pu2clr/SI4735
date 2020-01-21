@@ -16,7 +16,7 @@ There is a facebook group called [__Si47XX for radio listeners__](https://www.fa
 __Attention__: 
 * __Documentation  under construction__. 
 * __The SI4735 is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V converter__.
-* __This library has been successfully tested on Arduino Pro Mini 3.3V; Arduino YÚN (using voltage converter); ESP32 LOLIN WEMOS; Mega 2560 (using voltage converter).__    
+* __This library has been successfully tested on Arduino Pro Mini 3.3V; Arduino YÚN (using voltage converter); ESP32 L(LOLIN32 WEMOS); Mega 2560 (using voltage converter).__    
 
 ## Summary
 
