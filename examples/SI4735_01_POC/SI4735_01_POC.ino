@@ -9,8 +9,9 @@
    This sketch has been successfully tested on:
     1) Pro Mini 3.3V; 
     2) UNO (by using a voltage converter); 
-    3) Arduino Mega (by using a voltage converter); and 
-    4) ESP32 (LOLIN32 WEMOS)
+    3) Arduino Yún;
+    4) Arduino Mega (by using a voltage converter); and 
+    5) ESP32 (LOLIN32 WEMOS)
 
    I strongly recommend starting with this sketch.
 

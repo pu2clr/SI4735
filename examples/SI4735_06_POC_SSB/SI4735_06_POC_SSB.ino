@@ -4,6 +4,13 @@
  This example shows how can setup the radio on SW/SSB by using the Si4735 Arduino Library.
  It uses the Serial Monitor to get the commands and show the information. 
 
+   This sketch has been successfully tested on:
+    1) Pro Mini 3.3V; 
+    2) UNO (by using a voltage converter); 
+    3) Arduino Yún;
+    4) Arduino Mega (by using a voltage converter); and 
+    5) ESP32 (LOLIN32 WEMOS)
+
  The main advantages of using this sketch are: 
  1) It is a easy way to check if your circuit is working;
  2) You do not need to connect any display device to make your radio works;
