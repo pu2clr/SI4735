@@ -57,6 +57,7 @@ SI4735 si4735;
 void setup()
 {
   Serial.begin(9600);
+  while(!Serial);
   Serial.println("Test and validation of the SI4735 Arduino Library.");
   Serial.println("AM and FM station tuning test.");
 

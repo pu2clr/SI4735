@@ -108,6 +108,7 @@ void setup()
 {
 
   Serial.begin(9600);
+  while(!Serial);
 
   
   Serial.println("Si4735 Arduino Library");
