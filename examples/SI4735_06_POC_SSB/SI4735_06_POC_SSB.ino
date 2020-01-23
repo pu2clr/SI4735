@@ -131,10 +131,10 @@ void setup()
   delay(100);
   Serial.println("SSB patch is loading...");
   loadSSB();
-  Serial.print("SSB patch is loaded in: ");
+  Serial.print("SSB patch was loaded in: ");
   Serial.print( (et2 - et1) );
   Serial.println("ms");
-  delay(250);
+  delay(100);
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
   delay(100);
@@ -270,17 +270,17 @@ void bandDown()
  */
 void loadSSB()
 {
-  delay(100);
+  delay(50);
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
-  delay(100);
+  delay(50);
   si4735.patchPowerUp();
-  delay(100);
+  delay(50);
   et1 = millis();
   si4735.setI2CFastMode();
   si4735.downloadPatch(ssb_patch_content, size_content);
   si4735.setI2CStandardMode();
   et2 = millis();
-  delay(100);
+  delay(50);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
@@ -289,8 +289,6 @@ void loadSSB()
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
   si4735.setSSBConfig(bandwidthIdx, 1, 0, 1, 0, 1);
-  delay(100);
-  showStatus();
 }
 
 /*
