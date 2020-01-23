@@ -22,15 +22,13 @@
 
 #include <SI4735.h>
 
-#define RESET_PIN 12
+#define RESET_PIN 3
 
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
 
 uint16_t currentFrequency;
 uint16_t previousFrequency;
-uint8_t bandwidthIdx = 0;
-char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 SI4735 si4735;
 
@@ -39,9 +37,7 @@ void setup()
   Serial.begin(9600);
   while(!Serial);
   
-  Serial.println("AM and FM station tuning test.");
-
-  showHelp();
+  Serial.println("ATTiny85 AM and FM radio");
 
   delay(500);
   si4735.setup(RESET_PIN, FM_FUNCTION);
@@ -49,48 +45,29 @@ void setup()
   si4735.setFM(8400, 10800, 10390, 10);
   delay(500);
   currentFrequency = previousFrequency = si4735.getFrequency();
-  si4735.setVolume(45);
+  si4735.setVolume(55);
   showStatus();
 }
 
-void showHelp()
-{
-
-  Serial.println("Type F to FM; A to MW; L to LW; and 1 to SW");
-  Serial.println("Type U to increase and D to decrease the frequency");
-  Serial.println("Type S or s to seek station Up or Down");
-  Serial.println("Type + or - to volume Up or Down");
-  Serial.println("Type 0 to show current status");
-  Serial.println("Type B to change Bandwith filter");
-  Serial.println("Type ? to this help.");
-  Serial.println("==================================================");
-  delay(1000);
-}
 
 // Show current frequency
 void showStatus()
 {
+  char freq[10];
   si4735.getStatus();
   si4735.getCurrentReceivedSignalQuality();
-  Serial.print("You are tuned on ");
+  Serial.print("You are on ");
   if (si4735.isCurrentTuneFM())
   {
-    Serial.print(String(currentFrequency / 100.0, 2));
+    sprintf(freq,"%f6.2",currentFrequency / 100.0);
     Serial.print("MHz ");
-    Serial.print((si4735.getCurrentPilot()) ? "STEREO" : "MONO");
+    Serial.print((si4735.getCurrentPilot()) ? "ST" : "MO");
   }
   else
   {
     Serial.print(currentFrequency);
     Serial.print("KHz");
   }
-  Serial.print(" [SNR:");
-  Serial.print(si4735.getCurrentSNR());
-  Serial.print("dB");
-
-  Serial.print(" Signal:");
-  Serial.print(si4735.getCurrentRSSI());
-  Serial.println("dBuV]");
 }
 
 // Main
@@ -126,23 +103,6 @@ void loop()
     case 'd':
       si4735.frequencyDown();
       break;
-    case 'b':
-    case 'B':
-      if (si4735.isCurrentTuneFM())
-      {
-        Serial.println("Not valid for FM");
-      }
-      else
-      {
-        if (bandwidthIdx > 6)
-          bandwidthIdx = 0;
-        si4735.setBandwidth(bandwidthIdx, 1);
-        Serial.print("Filter - Bandwidth: ");
-        Serial.print(String(bandwitdth[bandwidthIdx]));
-        Serial.println(" KHz");
-        bandwidthIdx++;
-      }
-      break;
     case 'S':
       si4735.seekStationUp();
       break;
@@ -151,9 +111,6 @@ void loop()
       break;
     case '0':
       showStatus();
-      break;
-    case '?':
-      showHelp();
       break;
     default:
       break;
