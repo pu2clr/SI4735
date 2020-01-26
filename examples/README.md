@@ -16,6 +16,7 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 10. [Example 10 - Si4735 SW Receiver with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-10---si4735-sw-receiver-with-oled-s-meter)
 11. [Example 11 - SI4735 all in one with SSB Support](https://github.com/pu2clr/SI4735/tree/master/examples#example-11---si4735-all-in-one-with-ssb-support)
 12. [Example 12 - SI4730/SI4735 and the ATtiny85](https://github.com/pu2clr/SI4735/tree/master/examples#example-12---si4730si4735-and-the-attiny85) 
+13. [Videos]()
 
 
 <BR>
@@ -374,6 +375,7 @@ __This sketch has been successfully tested on Pro Mini 3.3V.__
 ## Example 12 - SI4730/SI4735 and the ATtiny85 
 
 This example implements a FM radio using the ATtiny85. 
+See the video [How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s)
 
 ### ATtiny85 Schematic
 
@@ -403,3 +405,13 @@ The Si4730 and ATtiny85 FM radio prototype.
 ![Photo ATtiny85 and Si4730](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4730_attiny85A.jpg)
 
 
+## Videos
+
+* [SI4735 Arduino Library and a simple FM and AM radio implementation](https://youtu.be/vzunuxam_Lg) 
+* [Si4735 Arduino Library example. OLED Application.](https://youtu.be/7Sg4z8tDSA8)
+* [Si4735 Arduino Library and SSB Support (Listening to a QSO on 20 meters)](https://youtu.be/W2Ssjb9P_f4)
+* [SI4735 ARDUINO LIBRARY BANDWIDTH TEST](https://youtu.be/dN1s3RoXGos) 
+* [Evaluating SSB audio from the SI4735-based radio prototype](https://youtu.be/Xj7zuiyvysI)
+* [Si4735 Arduino Library - Arduino Mega 2560 and “ESP32 LOLIN32 WEMOS](https://youtu.be/ArFav_SFEXI)
+* [How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s)
+* [SI4735 Arduino Library working with ATtiny85](https://youtu.be/U9Xpqh3K4e0)
