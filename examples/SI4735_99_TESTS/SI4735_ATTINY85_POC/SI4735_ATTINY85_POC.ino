@@ -104,5 +104,5 @@ void loop()
     currentFrequency = si4735.getFrequency();
     showStatus();
   }
-  delay(10);
+  delay(50);
 }
