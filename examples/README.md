@@ -374,7 +374,7 @@ __This sketch has been successfully tested on Pro Mini 3.3V.__
 
 ## Example 12 - SI4730/SI4735 and the ATtiny85 
 
-This example implements a FM radio using the ATtiny85.
+This example implements a FM radio using the ATtiny85 as the master MCU.
 
 To setup ATtiny85 on Arduino IDE, go to Tools Menu, Board, Board Manager and install "ATTinyCore by Spence Konde". See also the video [How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s).
 
