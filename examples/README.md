@@ -31,7 +31,7 @@ Test and validation of the SI4735 Arduino Library. The main advantages of using 
 
 __This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
 
-I strongly recommend starting with this sketch. This example is a proof of concept of SI4735 Arduino Library. The [SI4735_POC.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_POC) sketch uses just the __Serial Monitor__ and works only on your __Arduino IDE__. However, you can easily replace the Serial Monitor functions to the device functions that you want to use. 
+I strongly recommend starting with this sketch. This example is a proof of concept of SI4735 Arduino Library. The sketch of this example uses just the __Serial Monitor__ and works only on your __Arduino IDE__. However, you can easily replace the Serial Monitor functions to the device functions that you want to use. 
 
 
 ### Controls used by example 01
@@ -57,7 +57,7 @@ Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_01_POC
 
 ## Example 02 - Proof of Concept with SW
 
-This example shows how can you use SW features of the Si4735 Arduino Library. Like the previous exemple (Proof of Concept), the [SI4735_POC_SW.ino](examples/SI4735_POC_SW/SI4735_POC_SW.ino) sketch __works only on Arduino IDE__. It uses the Serial Monitor to get the commands and show the information. 
+This example shows how can you use SW features of the Si4735 Arduino Library. Like the previous exemple (Proof of Concept), the sketch of this example __works only on Arduino IDE__. It uses the Serial Monitor to get the commands and show the information. 
 
 __This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
 
@@ -154,8 +154,6 @@ This example is a 11 band SW receiver based on SI4735.  It shows the selection o
 
 __This sketch has been successfully tested on Pro Mini 3.3V.__ 
 
-
-Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_05_SW_OLED_FILTER_TEST/SI4735_05_SW_OLED_FILTER_TEST.ino) to see this example.
 
 __Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__.
 
