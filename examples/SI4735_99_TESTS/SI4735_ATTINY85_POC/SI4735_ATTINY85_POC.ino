@@ -1,10 +1,6 @@
 /*
    Test and validation of the SI4735 Arduino Library on ATtiny85.
-
-   It is a simple FM radio implementation. 
-
-   This sketch has been successfully tested on ATtiny85 :
-
+   It is a simple AM/FM radio implementation. 
 
    By Ricardo Lima Caratti, Jan 2020.
 */
@@ -15,11 +11,9 @@
 
 #define RESET_PIN 3
 
-#define AM_FM_BUTTON 5      // AM/FM SWITCH
+#define AM_FM_BUTTON 1      // AM/FM SWITCH
 #define SEEK_BUTTON_UP 4    // Seek Up
-#define SEEK_BUTTON_DOWN 1  // Seek Down
 
-#define AM_FUNCTION 1
 #define FM_FUNCTION 0
 
 uint16_t currentFrequency;
@@ -33,9 +27,8 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 void setup()
 {
 
-  pinMode(AM_FM_BUTTON, INPUT_PULLUP);
   pinMode(SEEK_BUTTON_UP, INPUT_PULLUP);
-  pinMode(SEEK_BUTTON_DOWN, INPUT_PULLUP);
+  pinMode(AM_FM_BUTTON, INPUT_PULLUP);
 
 
   lcd.init();
@@ -84,23 +77,20 @@ void showStatus() {
 // Main
 void loop()
 {
-  if (digitalRead(AM_FM_BUTTON) == HIGH ) {
+  if (digitalRead(AM_FM_BUTTON) == LOW ) {
     if  (si4735.isCurrentTuneFM() ) {
       lastFmFrequency = currentFrequency;
-      si4735.setAM(570, 1710,  lastAmFrequency, 10);
+      si4735.setAM(520, 1710,  lastAmFrequency, 10);
     }
     else {
       lastAmFrequency = currentFrequency;
       si4735.setFM(8600, 10800,  lastFmFrequency, 10);
     }
+    delay(250);
+    currentFrequency = si4735.getFrequency();
     showStatus();
   } else if (digitalRead(SEEK_BUTTON_UP) == LOW ) {
     si4735.seekStationUp();
-    currentFrequency = si4735.getFrequency();
-    showStatus();
-  }
-  else if (digitalRead(SEEK_BUTTON_DOWN) == LOW ) {
-    si4735.seekStationDown();
     currentFrequency = si4735.getFrequency();
     showStatus();
   }
