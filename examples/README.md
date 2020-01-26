@@ -367,3 +367,17 @@ __This sketch has been successfully tested on Pro Mini 3.3V.__
 * Frequency step options: 1, 5 and 10KHz;
 
 
+<BR>
+
+## Example 12 - SI4730/SI4735 and the ATtiny85 
+
+This example implements a FM radio using the ATtiny85. 
+
+### ATtiny85 Schematic
+
+
+![Schematic ATtiny85 and Si4735](https://github.com/pu2clr/SI4735/blob/master/extras/images/attiny85_schematic.png)
+
+
+### Photo
+![Photo ATtiny85 and Si4735 on mini breadboard](https://github.com/pu2clr/SI4735/blob/master/extras/images/extra_00_attiny85.jpg)
