@@ -386,13 +386,19 @@ The pull-up resistor values may vary depending on the devices connected to the I
 
 ### Photo
 
+The photo below show the Si4730 on adapter board with the basic components suggested by Silicon Labs.
+
 ![Photo ATtiny85 and Si4730 on Adapter](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4730_on_adapterA.png)
 
 <BR> 
 
+The photo below shows the Si4730 on adapter board connect attached on a mini breadboard.
+
 ![Photo ATtiny85 and Si4730 on mini breadboard](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4730_on_BreadboardA.png)
 
 <BR>
+
+The Si4730 and ATtiny85 FM radio prototype. 
 
 ![Photo ATtiny85 and Si4730](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4730_attiny85A.jpg)
 
