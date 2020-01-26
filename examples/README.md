@@ -374,8 +374,14 @@ __This sketch has been successfully tested on Pro Mini 3.3V.__
 
 ## Example 12 - SI4730/SI4735 and the ATtiny85 
 
-This example implements a FM radio using the ATtiny85. 
-See the video [How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s)
+This example implements a FM radio using the ATtiny85.
+
+To setup ATtiny85 on Arduino IDE, go to Tools Menu, Board, Board Manager and install "ATTinyCore by Spence Konde". See also the video [How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s).
+
+See [ATTiny Core - 1634, x313, x4, x41, x5, x61, x7, x8 and 828 for Arduino 1.6.5 and later (1.8.6+ strongly recommended, see gotchas section)](https://github.com/SpenceKonde/ATTinyCore).
+
+See also [ATtiny85 pinout](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf).
+
 
 ### ATtiny85 Schematic
 
