@@ -15,6 +15,8 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 9. [Example 09 - Si4735 AM/FM radio with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-09---si4735-amfm-radio-with-oled-s-meter)
 10. [Example 10 - Si4735 SW Receiver with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-10---si4735-sw-receiver-with-oled-s-meter)
 11. [Example 11 - SI4735 all in one with SSB Support](https://github.com/pu2clr/SI4735/tree/master/examples#example-11---si4735-all-in-one-with-ssb-support)
+12. [Example 12 - SI4730/SI4735 and the ATtiny85]() 
+
 
 <BR>
 
