@@ -2604,6 +2604,10 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 * [How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s)
 * [SI4735 Arduino Library working with ATtiny85](https://youtu.be/U9Xpqh3K4e0)
 
+### Third-party projects using this library
+
+* [SI4735 SSB](https://youtu.be/z-mkR93L7SI)
+
 
 
 
