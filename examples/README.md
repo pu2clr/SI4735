@@ -415,3 +415,6 @@ The Si4730 and ATtiny85 FM radio prototype.
 * [Si4735 Arduino Library - Arduino Mega 2560 and “ESP32 LOLIN32 WEMOS](https://youtu.be/ArFav_SFEXI)
 * [How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s)
 * [SI4735 Arduino Library working with ATtiny85](https://youtu.be/U9Xpqh3K4e0)
+* [Install the ESP32 Board in Arduino IDE in less than 1 minute (Windows, Mac OS X, and Linux)](https://youtu.be/mBaS3YnqDaU)
+* [Install Arduino Due on Arduino IDE](https://youtu.be/ogXQIYnI8qE)
+* 
