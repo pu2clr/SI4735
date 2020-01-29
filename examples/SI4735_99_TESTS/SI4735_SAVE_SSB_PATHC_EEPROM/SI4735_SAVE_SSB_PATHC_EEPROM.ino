@@ -9,41 +9,85 @@
 
 #include <SI4735.h>
 
+//defines the EEPROM I2C addresss.
+#define EEPROM_I2C_ADDR 0x50 // You might need to change this value
 
-#define EEPROM_I2C_ADDR   0
+// EEPROM address type
+typedef union {
+  struct
+  {
+    uint8_t lowByte;
+    uint8_t highByte;
+  } raw;
+  uint16_t offset;
+} eeprom_offset;
 
-
-void setup() {
-
-
+void setup()
+{
 }
 
-void eepromWrite(int offset, byte val, int i2c_offset)
+/*
+ * Writes a data (byte) to the eepro at a given position (offset).
+ * @param i2c_address I2C bus address of the eeprom device 
+ * @param offset address (position) where the data will be saved;
+ * @param data  data to be saved 
+ */
+void eepromWrite(uint16_t i2c_address, uint16_t offset, uint8_t data)
 {
-  // Begin transmission to I2C EEPROM
-  Wire.beginTransmission(i2c_offset);
- 
-  // Send memory offset as two 8-bit bytes
-  Wire.write((int)(offset >> 8));   // Most significant Byte 
-  Wire.write((int)(offset & 0xFF)); // Less significant Byte
- 
-  // Send data to be stored
-  Wire.write(val);
- 
-  // End the transmission
+  eeprom_address eeprom;
+  eeprom.offset = offset;
+  Wire.beginTransmission(i2c_address);
+  // First, you have to tell where you want to save the data (offset is the position).
+  Wire.write(eeprom.raw.highByte); // Most significant Byte
+  Wire.write(eeprom.raw.lowByte);  // Less significant Byte
+  Wire.write(data);                // Writes the data at the right position (offset)
   Wire.endTransmission();
- 
-  // Add 5ms delay for EEPROM
   delay(5);
 }
 
-// Erase all eeprom content
-void eepromClear() {
+uint8_t * eepromWriteBlock(uint16_t i2c_address, uint16_t offset, uint8_t *pData)
+{
+  eeprom_address eeprom;
+  eeprom.offset = offset;
+
+  Wire.beginTransmission(i2c_address);
+  Wire.write(eeprom.raw.highByte); // Most significant Byte
+  Wire.write(eeprom.raw.lowByte);  // Less significant Byte
+
+  for (register i = 0; i < sizeof(value); i++)
+    Wire.write(*pData++); //dispatch the data bytes
+ 
+  Wire.endTransmission();
+  delay(5); 
+  return pData;
 }
 
+/*
+ * Reads a data (byte) from the eepro at a given position (offset).
+ * @param i2c_address I2C bus address of the eeprom device 
+ * @param offset address (position) where the data will be saved;
+ * @return data (byte)
+ */
+byte readEEPROM(uint16_t i2c_address, uint16_t offset)
+{
+  eeprom_address eeprom;
+  eeprom.offset = offset;
+  Wire.beginTransmission(i2c_address);
+  Wire.write(eeprom.raw.highByte); // Most significant Byte
+  Wire.write(eeprom.raw.lowByte);  // Less significant Byte
+  Wire.endTransmission();
+  Wire.requestFrom(i2c_address, 1);
+  if (Wire.available())
+    return rdata = Wire.read();
+  else
+    return 0xFF;
+}
 
+// Erase all eeprom content
+void eepromClear()
+{
+}
 
-void loop() {
-
-
+void loop()
+{
 }

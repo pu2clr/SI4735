@@ -2607,6 +2607,7 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 ### Third-party projects using this library
 
 * [SI4735 SSB](https://youtu.be/z-mkR93L7SI)
+* [SI4735 11 ALL IN ONE TEST OLED ver from jg3pup](https://youtu.be/bWAcBXwdYmI)
 
 
 
