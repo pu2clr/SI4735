@@ -72,7 +72,7 @@ int currentBFO = 0;
 // Some variables to check the SI4735 status
 uint16_t currentFrequency;
 uint8_t currentStep = 1;
-uint8_t currentBFOStep = 50;
+uint8_t currentBFOStep = 25;
 
 uint8_t bandwidthIdx = 2;
 char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
