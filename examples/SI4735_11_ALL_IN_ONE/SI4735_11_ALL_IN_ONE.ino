@@ -446,16 +446,15 @@ void loadSSB()
   display.setCursor(0, 2);
   display.print("  Switching to SSB  ");
 
-
-  si4735.setup(RESET_PIN, SSB);
-  si4735.queryLibraryId(); // Is it really necessary here? I will check it.
+  si4735.reset();
+  // si4735.queryLibraryId(); // Is it really necessary here? I will check it.
   si4735.patchPowerUp();
-  delay(10);
+  delay(50);
   // si4735.setI2CFastMode(); // Recommended 
   si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
   si4735.downloadPatch(ssb_patch_content, size_content);
   si4735.setI2CStandardMode(); // goes back to default (100KHz)
-  delay(10);
+  delay(50);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)

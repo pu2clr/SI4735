@@ -105,7 +105,7 @@ void SI4735::analogPowerUp(void)
     // Delay at least 500 ms between powerup command and first tune command to wait for
     // the oscillator to stabilize if XOSCEN is set and crystal is used as the RCLK.
     waitToSend();
-    delay(550);
+    delay(500);
 }
 
 /* 
@@ -1639,6 +1639,17 @@ void SI4735::patchPowerUp()
     Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Output
     Wire.endTransmission();
     delayMicroseconds(2500);
+}
+
+/* 
+ * Starts the Si473X device on SSB (same AM Mode). 
+ * Same SI4735::setup optimized to improve loading patch performance 
+ */
+void SI4735::ssbSetup()
+{
+    // setPowerUp(powerUp.arg.CTSIEN, 0, 0, 1, 1, SI473X_ANALOG_AUDIO);
+    reset();
+    // analogPowerUp();
 }
 
 // Used for test
