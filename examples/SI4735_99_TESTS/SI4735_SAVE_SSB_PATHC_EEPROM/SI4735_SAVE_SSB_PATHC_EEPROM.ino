@@ -32,9 +32,9 @@ void setup()
  * @param offset address (position) where the data will be saved;
  * @param data  data to be saved 
  */
-void eepromWrite(uint16_t i2c_address, uint16_t offset, uint8_t data)
+void eepromWrite(uint8_t i2c_address, uint16_t offset, uint8_t data)
 {
-  eeprom_address eeprom;
+  eeprom_offset eeprom;
   eeprom.offset = offset;
   Wire.beginTransmission(i2c_address);
   // First, you have to tell where you want to save the data (offset is the position).
@@ -45,16 +45,16 @@ void eepromWrite(uint16_t i2c_address, uint16_t offset, uint8_t data)
   delay(5);
 }
 
-uint8_t * eepromWriteBlock(uint16_t i2c_address, uint16_t offset, uint8_t *pData)
+uint8_t * eepromWriteBlock(uint8_t i2c_address, uint16_t offset, uint8_t *pData, uint8_t blockSize)
 {
-  eeprom_address eeprom;
+  eeprom_offset eeprom;
   eeprom.offset = offset;
 
   Wire.beginTransmission(i2c_address);
   Wire.write(eeprom.raw.highByte); // Most significant Byte
   Wire.write(eeprom.raw.lowByte);  // Less significant Byte
 
-  for (register i = 0; i < sizeof(value); i++)
+  for (int i = 0; i < blockSize; i++)
     Wire.write(*pData++); //dispatch the data bytes
  
   Wire.endTransmission();
@@ -68,9 +68,9 @@ uint8_t * eepromWriteBlock(uint16_t i2c_address, uint16_t offset, uint8_t *pData
  * @param offset address (position) where the data will be saved;
  * @return data (byte)
  */
-byte readEEPROM(uint16_t i2c_address, uint16_t offset)
+byte readEEPROM(uint8_t i2c_address, uint16_t offset)
 {
-  eeprom_address eeprom;
+  eeprom_offset eeprom;
   eeprom.offset = offset;
   Wire.beginTransmission(i2c_address);
   Wire.write(eeprom.raw.highByte); // Most significant Byte
@@ -78,7 +78,7 @@ byte readEEPROM(uint16_t i2c_address, uint16_t offset)
   Wire.endTransmission();
   Wire.requestFrom(i2c_address, 1);
   if (Wire.available())
-    return rdata = Wire.read();
+    return Wire.read();
   else
     return 0xFF;
 }
