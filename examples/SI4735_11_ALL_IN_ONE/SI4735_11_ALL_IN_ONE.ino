@@ -5,8 +5,8 @@
 
   This sketch was tested on Arduino Pro Mini 3.3V
   This sketch uses LiquidCrystal/LCD with I2C and Encoder.
-  This sketch has been successfully tested on Pro Mini 3.3V and Mega 2650 (still not tested in others). 
-
+  This sketch has been successfully tested on Pro Mini 3.3V and Mega 2650. 
+  
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
   together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C).
   Look for LiquidCrystal I2C on Manager Libraries.
@@ -444,7 +444,9 @@ void loadSSB()
 {
   display.clear();
   display.setCursor(0, 2);
-  display.print("  Switching to SSB  ");
+  // display.print("  Switching to SSB  ");
+  ssbLoaded = true;
+  showStatus();
 
   si4735.reset();
   // si4735.queryLibraryId(); // Is it really necessary here? I will check it.
@@ -464,8 +466,8 @@ void loadSSB()
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
   si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
   delay(50);
-  ssbLoaded = true;
-  display.clear();
+  // ssbLoaded = true;
+  // display.clear();
 }
 
 /*
@@ -474,7 +476,7 @@ void loadSSB()
 void useBand()
 {
   // delay(250);
-  display.clear();
+  // display.clear();
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -502,8 +504,6 @@ void useBand()
       si4735.setAutomaticGainControl(1, 0);
     }
 
-    volume = DEFAULT_VOLUME;
-    si4735.setVolume(volume);
   }
 
   currentFrequency = band[bandIdx].currentFreq;
