@@ -276,7 +276,8 @@ void loadSSB()
   si4735.patchPowerUp();
   delay(50);
   et1 = millis();
-  si4735.setI2CFastMode();
+  // si4735.setI2CFastMode();
+  si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
   si4735.downloadPatch(ssb_patch_content, size_content);
   si4735.setI2CStandardMode();
   et2 = millis();

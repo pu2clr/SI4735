@@ -240,6 +240,12 @@ void rotaryEncoder()
   }
 }
 
+
+void clearLine4() {
+  display.setCursor(0, 2);
+  display.print("                    ");
+}
+
 // Show current frequency
 
 void showFrequency()
@@ -442,21 +448,20 @@ void bandDown()
 */
 void loadSSB()
 {
-  display.clear();
   display.setCursor(0, 2);
-  // display.print("  Switching to SSB  ");
-  ssbLoaded = true;
-  showStatus();
-
+  display.print("  Switching to SSB  ");
+  
   si4735.reset();
-  // si4735.queryLibraryId(); // Is it really necessary here? I will check it.
+  si4735.queryLibraryId(); // Is it really necessary here? I will check it.
   si4735.patchPowerUp();
   delay(50);
   // si4735.setI2CFastMode(); // Recommended 
   si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
   si4735.downloadPatch(ssb_patch_content, size_content);
   si4735.setI2CStandardMode(); // goes back to default (100KHz)
-  delay(50);
+  clearLine4();
+  
+  // delay(50);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
@@ -465,9 +470,9 @@ void loadSSB()
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
   si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
-  delay(50);
-  // ssbLoaded = true;
-  // display.clear();
+  delay(25); 
+  ssbLoaded = true;
+  display.clear();
 }
 
 /*
@@ -477,12 +482,14 @@ void useBand()
 {
   // delay(250);
   // display.clear();
+  clearLine4();
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-    ssbLoaded = false;
+    bfoOn = ssbLoaded = false;
+    
   }
   else
   {
@@ -502,6 +509,7 @@ void useBand()
       si4735.reset();
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
+      bfoOn = false;
     }
 
   }

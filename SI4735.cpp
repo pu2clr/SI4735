@@ -105,7 +105,7 @@ void SI4735::analogPowerUp(void)
     // Delay at least 500 ms between powerup command and first tune command to wait for
     // the oscillator to stabilize if XOSCEN is set and crystal is used as the RCLK.
     waitToSend();
-    delay(500);
+    delay(10); // should be 500
 }
 
 /* 
@@ -1601,7 +1601,7 @@ SI4735::queryLibraryId()
 
     powerDown(); // Is it necessary
 
-    delay(500);
+    // delay(500);
 
     waitToSend();
     Wire.beginTransmission(SI473X_ADDR);
@@ -1721,10 +1721,10 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
         Wire.endTransmission();
 
         // Testing download performance
-        // approach 1
-        // delayMicroseconds(220); // Minimum delay founded (Need check the minimum value)
+        // approach 1 - Faster - unsafer 
+        delayMicroseconds(300); // Minimum delay founded (Need check the minimum value)
 
-        // approach 2
+        // approach 2 - More error control
         /*
         do
         {
@@ -1732,17 +1732,21 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
             Wire.requestFrom(SI473X_ADDR, 1);
         } while (!(Wire.read() & B10000000));
         */
-       
-        // approach 3
+
+        // approach 3 - More error control
+        // waitToSend();
+
+        // approach 4 - safer
+        /*
         waitToSend();
-        
-        // Uncomment the lines below if you want to check erro.
-        // Wire.requestFrom(SI473X_ADDR, 1);
-        // cmd_status = Wire.read();
-        // The SI4735 issues a status after each 8 byte transfered.
-        // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
-        // if (cmd_status != 0x80)
-            // return false;
+        Uncomment the lines below if you want to check erro.
+        Wire.requestFrom(SI473X_ADDR, 1);
+        cmd_status = Wire.read();
+        The SI4735 issues a status after each 8 byte transfered.
+        Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
+        if (cmd_status != 0x80)
+           return false;
+        */
     }
     delayMicroseconds(250);
     return true;
