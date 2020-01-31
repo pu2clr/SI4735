@@ -30,7 +30,7 @@
 uint16_t currentFrequency;
 uint16_t previousFrequency;
 uint8_t bandwidthIdx = 0;
-char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+const char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 SI4735 si4735;
 

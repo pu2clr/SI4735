@@ -5,9 +5,8 @@
     1) Pro Mini 3.3V; 
     2) UNO (by using a voltage converter); 
     3) Arduino Mega (by using a voltage converter); and 
-    4) ESP32 (LOLIN32 WEMOS)
 
-  This sketch has been successfully tested on Pro Mini 3.3V.
+  This sketch DOES NOT COMPILE on Arduino DUE and ESP32 due to OLED library used here. 
 
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
 
@@ -105,7 +104,7 @@ uint8_t currentBFOStep = 50;
 uint8_t currentAGCAtt = 0;
 
 uint8_t bandwidthIdx = 2;
-char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+const char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 
 typedef struct {

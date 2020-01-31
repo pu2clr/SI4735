@@ -29,7 +29,7 @@
 
 
 typedef struct {
-  char *freqName;
+  const char *freqName;
   uint16_t   minimumFreq;
   uint16_t   maximumFreq;
   uint16_t   currentFreq;

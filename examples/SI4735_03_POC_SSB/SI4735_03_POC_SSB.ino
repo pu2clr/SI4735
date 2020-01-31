@@ -1,14 +1,15 @@
 /*
 
  Test and validation of the SI4735 Arduino Library with SSB support.
- This example shows how can setup the radio on SW/SSB by using the Si4735 Arduino Library.
+ This example shows you how to setup the radio on SW/SSB by using the Si4735 Arduino Library.
  It uses the Serial Monitor to get the commands and show the information. 
 
    This sketch has been successfully tested on:
-    1) Pro Mini 3.3V; 
+    1) Tested on Arduino Pro Mini 3.3V; 
     2) UNO (by using a voltage converter); 
     3) Arduino Yún;
-    4) Arduino Mega (by using a voltage converter); and 
+    4) Arduino Mega (by using a voltage converter);
+    5) Arduino DUE; and 
     5) ESP32 (LOLIN32 WEMOS)
 
  The main advantages of using this sketch are: 
@@ -75,7 +76,7 @@ uint8_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
 uint8_t bandwidthIdx = 2;
-char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+const char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 
 long et1 = 0, et2 = 0;
@@ -126,11 +127,14 @@ void setup()
 
   // Testing I2C clock speed and SSB behaviour
   // si4735.setI2CLowSpeedMode();     //  10000 (10KHz)
-  si4735.setI2CStandardMode(); // 100000 (100KHz)
-  // si4735.setI2CFastMode();            // 400000 (400KHz)
-  delay(100);
+  // si4735.setI2CStandardMode();        // 100000 (100KHz)
+  // si4735.setI2CFastMode();         // 400000 (400KHz)
+  si4735.setI2CFastModeCustom(500000); // It is not safe and can crash.
+  delay(10);
   Serial.println("SSB patch is loading...");
+  et1 = millis();
   loadSSB();
+  et2 = millis();
   Serial.print("SSB patch was loaded in: ");
   Serial.print( (et2 - et1) );
   Serial.println("ms");
@@ -270,18 +274,10 @@ void bandDown()
  */
 void loadSSB()
 {
-  delay(50);
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
-  delay(50);
   si4735.patchPowerUp();
   delay(50);
-  et1 = millis();
-  // si4735.setI2CFastMode();
-  si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
   si4735.downloadPatch(ssb_patch_content, size_content);
-  si4735.setI2CStandardMode();
-  et2 = millis();
-  delay(50);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)

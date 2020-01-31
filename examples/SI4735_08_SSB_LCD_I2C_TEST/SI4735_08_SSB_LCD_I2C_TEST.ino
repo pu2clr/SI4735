@@ -5,7 +5,13 @@
   together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C). 
   Look for LiquidCrystal I2C on Manager Libraries.   
 
-  __This sketch has been successfully tested on Pro Mini 3.3V.__ 
+    This sketch has been successfully tested on:
+    1) Pro Mini 3.3V; 
+    2) UNO (by using a voltage converter); 
+    3) Arduino Mega (by using a voltage converter);
+    4) Arduino Micro (see the Operating Voltage of your Arduino Micro); and
+    5) Arduino DUE;
+  
 
   This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.
 
@@ -99,7 +105,7 @@ uint8_t currentStep = 1;
 uint8_t currentBFOStep = 50;
 
 uint8_t bandwidthIdx = 2;
-char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+const char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 
 typedef struct {
