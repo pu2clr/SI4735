@@ -36,15 +36,14 @@
   Main Parts:
   Encoder with push button;
   Seven bush buttons;
-  OLED Display with I2C protocol;
+  OLED oled with I2C protocol;
   Arduino Pro mini 3.3V;
 
   By Ricardo Lima Caratti, Nov 2019.
 */
 
 #include <SI4735.h>
-#include "SSD1306Ascii.h"
-#include "SSD1306AsciiAvrI2c.h"
+#include <Tiny4kOLED.h>
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.
@@ -66,6 +65,7 @@ const uint16_t size_content = sizeof ssb_patch_content;  // see ssb_patch_conten
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
+#define AVC_SWITCH 4       // Switch SSB Automatic Volume Control ON/OFF 
 #define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
@@ -82,6 +82,7 @@ const uint16_t size_content = sizeof ssb_patch_content;  // see ssb_patch_conten
 
 bool bfoOn = false;
 bool disableAgc = true;
+bool avc_en = true;
 
 int currentBFO = 0;
 int previousBFO = 0;
@@ -135,7 +136,7 @@ uint8_t volume = 0;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
-SSD1306AsciiAvrI2c display;
+// SSD1306AsciiAvrI2c oled;
 
 SI4735 si4735;
 
@@ -154,24 +155,24 @@ void setup()
   pinMode(BFO_SWITCH, INPUT_PULLUP);
   pinMode(AGC_SWITCH, INPUT_PULLUP);
   pinMode(STEP_SWITCH, INPUT_PULLUP);
-  // pinMode(AVC_SWITCH, INPUT_PULLUP);
+  pinMode(AVC_SWITCH, INPUT_PULLUP);
 
-  display.begin(&Adafruit128x64, I2C_ADDRESS);
-  display.setFont(Adafruit5x7);
+  oled.begin();
+  oled.setFont(FONT6X8);
   delay(500);
 
   // Splash - Change it for your introduction text.
-  display.set1X();
-  display.setCursor(0, 0);
-  display.print("Si4735 Arduino Library");
+  // oled.set1X();
+  oled.setCursor(0, 0);
+  oled.print("Si4735 Arduino Library");
   delay(500);
-  display.setCursor(30, 3);
-  display.print("SSB TEST");
+  oled.setCursor(30, 3);
+  oled.print("SSB TEST");
   delay(500);
-  display.setCursor(30, 6);
-  display.print("By PU2CLR");
+  oled.setCursor(30, 6);
+  oled.print("By PU2CLR");
   delay(2000);
-  display.clear();
+  oled.clear();
   // end Splash
 
   // Encoder interrupt
@@ -216,18 +217,14 @@ void rotaryEncoder()
 
 // Show current frequency
 void showFrequency() {
-
-  display.set2X();
-  display.setCursor(32, 1);
-  display.print("        "); 
-
-  if ( bfoOn )
-      display.set1X();
-      
-  display.setCursor(32, 1);
-  display.print(currentFrequency);
-  
-  display.set1X();
+  String freqoled;
+  freqoled = String((float)currentFrequency / 1000, 3);
+  oled.setFont(FONT8X16);
+  oled.setCursor(26, 1);
+  oled.print("        ");
+  oled.setCursor(26, 1);
+  oled.print(freqoled);
+  oled.setFont(FONT6X8);
 }
 
 
@@ -239,33 +236,32 @@ void showStatus()
   bandMode = String("SSB");
   unit = "KHz";
 
-  display.set1X();
-  display.setCursor(0, 0);
-  display.print(String(bandMode));
+  oled.setCursor(0, 0);
+  oled.print(String(bandMode));
 
-  display.setCursor(98, 0);
-  display.print(unit);
+  oled.setCursor(98, 0);
+  oled.print(unit);
 
   // Show AGC Information
   si4735.getAutomaticGainControl();
-  display.set1X();
-  display.setCursor(0, 4);
-  display.print((si4735.isAgcEnabled()) ? "AGC ON " : "AGC OFF");
+  // oled.set1X();
+  oled.setCursor(0, 4);
+  oled.print((si4735.isAgcEnabled()) ? "AGC ON " : "AGC OFF");
 
-  display.setCursor(0, 5);
-  display.print("          ");
-  display.setCursor(0, 5);
-  display.print("Step:");
-  display.print(currentStep);
-  display.print("KHz");
+  oled.setCursor(0, 5);
+  oled.print("          ");
+  oled.setCursor(0, 5);
+  oled.print("Step:");
+  oled.print(currentStep);
+  oled.print("KHz");
 
-  display.set1X();
-  display.setCursor(0, 7);
-  display.print("           ");
-  display.setCursor(0, 7);
-  display.print("BW:");
-  display.print(String(bandwitdth[bandwidthIdx]));
-  display.print("KHz");
+  // oled.set1X();
+  oled.setCursor(0, 7);
+  oled.print("           ");
+  oled.setCursor(0, 7);
+  oled.print("BW:");
+  oled.print(String(bandwitdth[bandwidthIdx]));
+  oled.print("KHz");
 
   showFrequency();
 }
@@ -275,11 +271,11 @@ void showStatus()
 */
 void showRSSI()
 {
-  display.set1X();
-  display.setCursor(70, 7);
-  display.print("S:");
-  display.print(rssi);
-  display.print(" dBuV");
+  // oled.set1X();
+  oled.setCursor(70, 7);
+  oled.print("S:");
+  oled.print(rssi);
+  oled.print(" dBuV");
 }
 
 /* ***************************
@@ -287,33 +283,33 @@ void showRSSI()
 */
 void showVolume()
 {
-  display.set1X();
-  display.setCursor(70, 5);
-  display.print("          ");
-  display.setCursor(70, 5);
-  display.print("V:");
-  display.print(volume);
+  // oled.set1X();
+  oled.setCursor(70, 5);
+  oled.print("          ");
+  oled.setCursor(70, 5);
+  oled.print("V:");
+  oled.print(volume);
 }
 
 void showBFO() {
-  char bfo[8];
+  String bfo;
   if ( currentBFO > 0 )
-    sprintf(bfo,"+%d", currentBFO);
+    bfo = "+" + String(currentBFO);
   else
-    sprintf(bfo,"%d", currentBFO);
+    bfo = String(currentBFO);
 
-  display.setCursor(0, 5);
-  display.print("          ");
-  display.setCursor(0, 5);
-  display.print("Step:");
-  display.print(currentBFOStep);
-  display.print("Hz ");
+  oled.setCursor(0, 5);
+  oled.print("          ");
+  oled.setCursor(0, 5);
+  oled.print("Step:");
+  oled.print(currentBFOStep);
+  oled.print("Hz ");
 
-  display.setCursor(70, 4);
-  display.print("         ");
-  display.setCursor(70, 4);
-  display.print("BFO:");
-  display.print(bfo);
+  oled.setCursor(70, 4);
+  oled.print("         ");
+  oled.setCursor(70, 4);
+  oled.print("BFO:");
+  oled.print(bfo);
 }
 
 void bandUp() {
@@ -418,10 +414,8 @@ void loop()
       si4735.volumeDown();
     else if (digitalRead(BFO_SWITCH) == LOW) {
       bfoOn = !bfoOn;
-      if ( bfoOn ) {
+      if ( bfoOn )
         showBFO();
-        showFrequency();
-      }
       else
         showStatus();
     } else if ( digitalRead(AGC_SWITCH) == LOW) {
@@ -444,13 +438,15 @@ void loop()
         band[currentFreqIdx].currentStep = currentStep;
         showStatus();
       }
-    }  
-    delay(50);
+    } else if ( digitalRead(AVC_SWITCH) == LOW ) {
+      avc_en = !avc_en;
+      si4735.setSSBAutomaticVolumeControl(avc_en);
+    }
     elapsedButton = millis();
   }
 
   // Show the current frequency only if it has changed
-  if ( ( millis() - elapsedFrequency) > (MIN_ELAPSED_TIME * 2) ) {
+  if ( ( millis() - elapsedFrequency) > (MIN_ELAPSED_TIME * 4) ) {
     currentFrequency = si4735.getFrequency();
     if (currentFrequency != previousFrequency)
     {
@@ -461,7 +457,7 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
-  if ( ( millis() - elapsedRSSI) > (MIN_ELAPSED_TIME * 3) ) {
+  if ( ( millis() - elapsedRSSI) > (MIN_ELAPSED_TIME * 6) ) {
     si4735.getCurrentReceivedSignalQuality();
     if (rssi != si4735.getCurrentRSSI())
     {
@@ -484,5 +480,5 @@ void loop()
     showBFO();
   }
 
-  delay(15);
+  delay(50);
 }

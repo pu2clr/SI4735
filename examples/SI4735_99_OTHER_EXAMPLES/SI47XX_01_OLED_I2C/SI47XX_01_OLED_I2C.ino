@@ -31,8 +31,8 @@
 
 // Buttons controllers
 #define AM_FM_BUTTON 4      // AM/FM SWITCH
-#define SEEK_BUTTON_UP 5    // Seek Up
-#define SEEK_BUTTON_DOWN 6  // Seek Down
+#define SEEK_BUTTON_UP 6    // Seek Up
+#define SEEK_BUTTON_DOWN 7  // Seek Down
 #define VOL_UP 8            // Volume Volume Up
 #define VOL_DOWN 9          // Volume Down
 // Seek Function
@@ -267,6 +267,7 @@ void loop()
     else if (digitalRead(VOL_DOWN) == LOW )
       si4735.volumeDown();
 
+    delay(35);
     elapsedButton = millis();
   }
 
@@ -299,5 +300,5 @@ void loop()
     showVolume();
   }
 
-  delay(5);
+  delay(15);
 }

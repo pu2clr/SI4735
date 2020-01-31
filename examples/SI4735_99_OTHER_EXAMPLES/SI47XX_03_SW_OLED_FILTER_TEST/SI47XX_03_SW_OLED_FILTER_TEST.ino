@@ -298,6 +298,7 @@ void loop()
     else if (digitalRead(VOL_DOWN) == LOW )
       si4735.volumeDown();
 
+    delay(35);
     elapsedButton = millis();
   }
 
@@ -325,5 +326,5 @@ void loop()
     showVolume();
   }
 
-  delay(50);
+  delay(15);
 }
