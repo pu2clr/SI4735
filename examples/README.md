@@ -107,7 +107,7 @@ __See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAY
 
 <BR>
 
-## Example 06 - Proof of Concept with SSB
+## Example 03 - Proof of Concept with SSB
 
 This example shows how can you use SSB features of the Si4735 Arduino Library. It uses the Serial Monitor to get the commands and show the information. 
 
@@ -162,7 +162,6 @@ Features of this sketch:
 For the example 06 you can use the sketch below.
 
 ![Silicon Labs Schematic](../extras/images/basic_schematic.png)
-
 
 <BR>
 
