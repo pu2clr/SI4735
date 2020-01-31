@@ -9,7 +9,7 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 3. [Example 03 - Proof of Concept with SSB](https://github.com/pu2clr/SI4735/tree/master/examples#example-03---proof-of-concept-with-ssb)
 4. [Example 04 - SI4735 all in one with SSB Support](https://github.com/pu2clr/SI4735/tree/master/examples#example-05---si4735-all-in-one-with-ssb-support)
 5. [Example 05 - SI4730/SI4735 and the ATtiny85]()
-6. [Other Examples using LCD, OLED, Buttons and Encoder]()
+6. [Examples with LCD, OLED, Buttons and Encoder]()
 7. [Related videos](https://github.com/pu2clr/SI4735/tree/master/examples#related-videos)
 
 
@@ -220,6 +220,11 @@ The photo below shows the Si4730 on adapter board connect attached on a mini bre
 The Si4730 and ATtiny85 FM radio prototype. 
 
 ![Photo ATtiny85 and Si4730](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4730_attiny85A.jpg)
+
+
+## Examples with LCD, OLED, Buttons and Encoder
+
+The folder [SI4735_99_OTHER_EXAMPLES](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_99_OTHER_EXAMPLES) contains several other examples that use encoders, buttons, OLED and LCD. This folder also has some sketches used to make tests on the IC Si4735.
 
 
 ## Related videos
