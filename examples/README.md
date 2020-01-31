@@ -167,6 +167,16 @@ This sketch implements an FM/LW/MW/SW - SSB radio.
 __This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Micro (see the operating voltage of your Micro); Arduino Mega (by using a voltage converter); and Arduino DUE;__
 
 
+### Schematic
+
+![Schematic All In One](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_i2c.png)
+
+
+### Protoboard
+
+![Protoboard All In One](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_00.png)
+
+
 ### Features
 * This example implements AM (MW and SW), FM and SSB. 
 * 22 commercial and ham radio bands pre configured;
