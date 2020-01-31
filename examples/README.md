@@ -29,7 +29,7 @@ Test and validation of the SI4735 Arduino Library. The main advantages of using 
 * You do not need connect any push buttons or encoders to change volume and frequency;
 * The Arduino IDE is all you need to control the radio.  
 
-__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
+__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Micro (see the operating voltage of your Micro); Arduino Mega (by using a voltage converter); Arduino DUE; and ESP32 (LOLIN32 WEMOS)__
 
 I strongly recommend starting with this sketch. This example is a proof of concept of SI4735 Arduino Library. The sketch of this example uses just the __Serial Monitor__ and works only on your __Arduino IDE__. However, you can easily replace the Serial Monitor functions to the device functions that you want to use. 
 
@@ -59,7 +59,7 @@ Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_01_POC
 
 This example shows how can you use SW features of the Si4735 Arduino Library. Like the previous exemple (Proof of Concept), the sketch of this example __works only on Arduino IDE__. It uses the Serial Monitor to get the commands and show the information. 
 
-__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Mega (by using a voltage converter) and ESP32 (LOLIN32 WEMOS)__
+__This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Micro (see the operating voltage of your Micro); Arduino Mega (by using a voltage converter); Arduino DUE; and ESP32 (LOLIN32 WEMOS)__
 
 ### SW Bands used by the example 02
 | Band | From (KHz) | To (KHz) | Default (KHz)|
