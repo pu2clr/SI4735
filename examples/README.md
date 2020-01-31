@@ -177,6 +177,9 @@ __This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a vol
 ![Protoboard All In One](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_00.png)
 
 
+See the video [Evaluating SSB audio from the SI4735-based radio prototype to see this example working](https://youtu.be/Xj7zuiyvysI)
+
+
 ### Features
 * This example implements AM (MW and SW), FM and SSB. 
 * 22 commercial and ham radio bands pre configured;
