@@ -9,7 +9,7 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 3. [Example 03 - Proof of Concept with SSB](https://github.com/pu2clr/SI4735/tree/master/examples#example-03---proof-of-concept-with-ssb)
 4. [Example 04 - SI4735 all in one with SSB Support](https://github.com/pu2clr/SI4735/tree/master/examples#example-04---si4735-all-in-one-with-ssb-support)
 5. [Example 05 - SI4730/SI4735 and the ATtiny85](https://github.com/pu2clr/SI4735/tree/master/examples#example-05---si4730si4735-and-the-attiny85)
-6. [Examples with LCD, OLED, Buttons and Encoder](https://github.com/pu2clr/SI4735/tree/master/examples#examples-with-lcd-oled-buttons-and-encoder)
+6. [Other examples with LCD, OLED, Buttons and Encoder](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_99_OTHER_EXAMPLES)
 7. [Related videos](https://github.com/pu2clr/SI4735/tree/master/examples#related-videos)
 
 
