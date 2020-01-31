@@ -163,6 +163,27 @@ For this example you can use the sketch below.
 
 This sketch implements an FM/LW/MW/SW - SSB radio.
 
+This sketch uses I2C LiquidCrystal/LCD, buttons and  Encoder.
+  
+This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
+together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C). Look for LiquidCrystal I2C on Manager Libraries.
+
+This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 8KB of the Arduino memory.
+
+In this context, a patch is a piece of software used to change the behavior of the SI4735 device. There is little information available about patching the SI4735. The following information is the understanding of the author of  this project and it is not necessarily correct. A patch is executed internally (run by nternal MCU) of the device.  Usually, patches are used to fixes bugs or add improvements and new features of the firmware  installed in the internal ROM of the device.  Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system. Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
+
+ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here.
+This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
+Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
+
+Features of this sketch:
+
+* FM, AM (MW and SW) and SSB (LSB and USB);
+* Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+* 22 commercial and ham radio bands pre configured;
+* BFO Control; and
+* Frequency step switch (1, 5 and 10KHz);
+
 
 __This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Micro (see the operating voltage of your Micro); Arduino Mega (by using a voltage converter); and Arduino DUE;__
 

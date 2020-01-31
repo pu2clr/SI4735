@@ -1,9 +1,15 @@
 /*
   SI4735 all in one with SSB Support
 
-  This sketch was tested on Arduino Pro Mini 3.3V
-  This sketch uses LiquidCrystal/LCD with I2C and Encoder.
-  This sketch has been successfully tested on Pro Mini 3.3V, Mega 2650 AND DUE. 
+  This sketch has been successfully tested on:
+  1) Pro Mini 3.3V; 
+  2) UNO (by using a voltage converter); 
+  3) Arduino Yún (by using a voltage converter); 
+  4) Arduino Micro (see the operating voltage of your Micro); 
+  5) Arduino Mega (by using a voltage converter); and 
+  6) Arduino DUE;
+
+  This sketch uses I2C LiquidCrystal/LCD, buttons and  Encoder.
   
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
   together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C).
