@@ -9,7 +9,7 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 3. [Example 03 - Proof of Concept with SSB](https://github.com/pu2clr/SI4735/tree/master/examples#example-03---proof-of-concept-with-ssb)
 4. [Example 04 - SS4735 Arduino Library example with I2C OLED](https://github.com/pu2clr/SI4735/tree/master/examples#example-04---ss4735-arduino-library-example-with-i2c-oled)
 5. [Example 05 - Bandwidth filter test (9 band SW Receiver with OLED)](https://github.com/pu2clr/SI4735/tree/master/examples#example-05---bandwidth-filter-test-9-band-sw-receiver-with-oled)
-6. ]Example 06 - SS4735 Arduino Library example with LCD 20x4 I2C](https://github.com/pu2clr/SI4735/tree/master/examples#example-06---ss4735-arduino-library-example-with-lcd-20x4-i2c)
+6. [Example 06 - SS4735 Arduino Library example with LCD 20x4 I2C](https://github.com/pu2clr/SI4735/tree/master/examples#example-06---ss4735-arduino-library-example-with-lcd-20x4-i2c)
 8. [Example 07 - Si4735 SSB firmware update support with OLED/I2C)](https://github.com/pu2clr/SI4735/tree/master/examples#example-07---si4735-ssb-firmware-update-support-with-oledi2c)
 9. [Example 08 - Si4735 SSB firmware update support with LCD/I2C](https://github.com/pu2clr/SI4735/tree/master/examples#example-08---si4735-ssb-firmware-update-support-with-lcdi2c)
 10. [Example 09 - Si4735 AM/FM radio with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-09---si4735-amfm-radio-with-oled-s-meter)
