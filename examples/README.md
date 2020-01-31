@@ -6,17 +6,17 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 
 1. [Example 01 - Proof of Concept](https://github.com/pu2clr/SI4735/tree/master/examples#example-01---proof-of-concept)
 2. [Example 02 - Proof of Concept with SW](https://github.com/pu2clr/SI4735/tree/master/examples#example-02---proof-of-concept-with-sw)
-3. [Example 03 - SS4735 Arduino Library example with LCD 20x4 I2C](https://github.com/pu2clr/SI4735/tree/master/examples#example-03---ss4735-arduino-library-example-with-lcd-20x4-i2c)
+3. [Example 03 - Proof of Concept with SSB](https://github.com/pu2clr/SI4735/tree/master/examples#example-03---proof-of-concept-with-ssb)
 4. [Example 04 - SS4735 Arduino Library example with I2C OLED](https://github.com/pu2clr/SI4735/tree/master/examples#example-04---ss4735-arduino-library-example-with-i2c-oled)
 5. [Example 05 - Bandwidth filter test (9 band SW Receiver with OLED)](https://github.com/pu2clr/SI4735/tree/master/examples#example-05---bandwidth-filter-test-9-band-sw-receiver-with-oled)
-6. [Example 06 - Proof of Concept with SSB](https://github.com/pu2clr/SI4735/tree/master/examples#example-06---proof-of-concept-with-ssb)
-7. [Example 07 - Si4735 SSB firmware update support with OLED/I2C)](https://github.com/pu2clr/SI4735/tree/master/examples#example-07---si4735-ssb-firmware-update-support-with-oledi2c)
-8. [Example 08 - Si4735 SSB firmware update support with LCD/I2C](https://github.com/pu2clr/SI4735/tree/master/examples#example-08---si4735-ssb-firmware-update-support-with-lcdi2c)
-9. [Example 09 - Si4735 AM/FM radio with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-09---si4735-amfm-radio-with-oled-s-meter)
-10. [Example 10 - Si4735 SW Receiver with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-10---si4735-sw-receiver-with-oled-s-meter)
-11. [Example 11 - SI4735 all in one with SSB Support](https://github.com/pu2clr/SI4735/tree/master/examples#example-11---si4735-all-in-one-with-ssb-support)
-12. [Example 12 - SI4730/SI4735 and the ATtiny85](https://github.com/pu2clr/SI4735/tree/master/examples#example-12---si4730si4735-and-the-attiny85) 
-13. [ Related videos](https://github.com/pu2clr/SI4735/tree/master/examples#related-videos)
+6. Example 06 - SS4735 Arduino Library example with LCD 20x4 I2C](https://github.com/pu2clr/SI4735/tree/master/examples#example-06---ss4735-arduino-library-example-with-lcd-20x4-i2c)
+8. [Example 07 - Si4735 SSB firmware update support with OLED/I2C)](https://github.com/pu2clr/SI4735/tree/master/examples#example-07---si4735-ssb-firmware-update-support-with-oledi2c)
+9. [Example 08 - Si4735 SSB firmware update support with LCD/I2C](https://github.com/pu2clr/SI4735/tree/master/examples#example-08---si4735-ssb-firmware-update-support-with-lcdi2c)
+10. [Example 09 - Si4735 AM/FM radio with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-09---si4735-amfm-radio-with-oled-s-meter)
+11. [Example 10 - Si4735 SW Receiver with OLED S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples#example-10---si4735-sw-receiver-with-oled-s-meter)
+12. [Example 11 - SI4735 all in one with SSB Support](https://github.com/pu2clr/SI4735/tree/master/examples#example-11---si4735-all-in-one-with-ssb-support)
+13. [Example 12 - SI4730/SI4735 and the ATtiny85](https://github.com/pu2clr/SI4735/tree/master/examples#example-12---si4730si4735-and-the-attiny85) 
+14. [ Related videos](https://github.com/pu2clr/SI4735/tree/master/examples#related-videos)
 
 
 <BR>
@@ -107,58 +107,6 @@ __See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAY
 
 <BR>
 
-## Example 03 - SS4735 Arduino Library example with LCD 20x4 I2C
-
-It is a example that shows how to set up a LCD and SI4735 on the same I2C bus. 
-This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the LiquidCrystal I2C Library by Frank de Brabander. You can install LiquidCrystal I2C via Manage Libraries on your Arduino IDE. 
-
-__This sketch has been successfully tested on Pro Mini 3.3V.__ 
-
-Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_03_LCD_20x4_I2C/SI4735_03_LCD_20x4_I2C.ino) to see this example.
-
-
-__Click [here](https://youtu.be/vzunuxam_Lg) to see a video about this example__.
-
-<BR>
-
-## Example 04 - SS4735 Arduino Library example with I2C OLED
-
-This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the SSD1306Ascii Arduino Library by Bill Greiman. You can install SSD1306Ascii via Manage Libraries on your Arduino IDE. The photo below show this example on a protoboard. 
-
-__This sketch has been successfully tested on Pro Mini 3.3V.__ 
-
-Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_04_OLED_I2C/SI4735_04_OLED_I2C.ino) to see this example.
-
-![Silicon Labs Schematic](../extras/images/prot_oled_01.png)
-
-
-__Click [here](https://youtu.be/7Sg4z8tDSA8) to see a video about this example__.
-
-
-<BR>
-
-## Schematic for I2C display device, buttons and encoder (Examples 03 and 04)
-
-The schematic below is a sugestion to connect a I2C Display (OLED or LCD 20x4 or another device), buntons and encoder as well. 
-
-![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_i2c.png)
-
-__Pay attention to the your I2C device voltage. The system can become unstable if you are using a wrong voltage__.
-
-<BR>
-
-
-## Example 05 - Bandwidth filter test (9 band SW Receiver with OLED)
-
-This example is a 11 band SW receiver based on SI4735.  It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). With this resource, you can separate  two stations in adjacent channels. __You can use the same schematic shown for the examples 03 and 04__. 
-
-__This sketch has been successfully tested on Pro Mini 3.3V.__ 
-
-
-__Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__.
-
-<BR>
-
 ## Example 06 - Proof of Concept with SSB
 
 This example shows how can you use SSB features of the Si4735 Arduino Library. It uses the Serial Monitor to get the commands and show the information. 
@@ -214,6 +162,50 @@ Features of this sketch:
 For the example 06 you can use the sketch below.
 
 ![Silicon Labs Schematic](../extras/images/basic_schematic.png)
+
+
+<BR>
+
+## Example 04 - SS4735 Arduino Library example with I2C OLED
+
+This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. This sketch also uses the SSD1306Ascii Arduino Library by Bill Greiman. You can install SSD1306Ascii via Manage Libraries on your Arduino IDE. The photo below show this example on a protoboard. 
+
+__This sketch has been successfully tested on Pro Mini 3.3V.__ 
+
+Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_04_OLED_I2C/SI4735_04_OLED_I2C.ino) to see this example.
+
+![Silicon Labs Schematic](../extras/images/prot_oled_01.png)
+
+
+__Click [here](https://youtu.be/7Sg4z8tDSA8) to see a video about this example__.
+
+
+<BR>
+
+## Schematic for I2C display device, buttons and encoder (Examples 03 and 04)
+
+The schematic below is a sugestion to connect a I2C Display (OLED or LCD 20x4 or another device), buntons and encoder as well. 
+
+![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_i2c.png)
+
+__Pay attention to the your I2C device voltage. The system can become unstable if you are using a wrong voltage__.
+
+<BR>
+
+
+
+
+## Example 06 - Bandwidth filter test (9 band SW Receiver with OLED)
+
+This example is a 11 band SW receiver based on SI4735.  It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). With this resource, you can separate  two stations in adjacent channels. __You can use the same schematic shown for the examples 03 and 04__. 
+
+__This sketch has been successfully tested on Pro Mini 3.3V.__ 
+
+
+__Click [here](https://youtu.be/dN1s3RoXGos) to see a video about this example__.
+
+<BR>
+
 
 
 <BR>
