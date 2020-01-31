@@ -1721,19 +1721,19 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
         Wire.endTransmission();
 
         // Testing download performance
-        // approach 1 - Faster - unsafer 
-        delayMicroseconds(300); // Minimum delay founded (Need check the minimum value)
+        // approach 1 - Faster - less secure (it might crash in some architectures)
+        delayMicroseconds(300); // Need check the minimum value
 
-        // approach 2 - More error control
+        // approach 2 - More control. A little more secure than approach 1
         /*
         do
         {
-            delayMicroseconds(220); // Minimum delay founded (Need check the minimum value)
+            delayMicroseconds(150); // Minimum delay founded (Need check the minimum value)
             Wire.requestFrom(SI473X_ADDR, 1);
         } while (!(Wire.read() & B10000000));
         */
 
-        // approach 3 - More error control
+        // approach 3 - same approach 2
         // waitToSend();
 
         // approach 4 - safer
