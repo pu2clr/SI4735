@@ -322,7 +322,7 @@ This library can be help you to develop a cross-platform software. So far it has
 The table below shows the some boards where this library has been successfully tested.
 
 
-| Board | Need voltage converter | I2C Pins | Reset Pin |
+| Board | Need voltage converter | I2C Pins | Used Reset Pin |
 | ----- | ---------------------- | -------- | --------- | 
 | Arduino Pro Mini 3.3V 8MHz | No | A4 and A5 | 12 | 
 | Mega 2560 Pro | Yes | 20 and 21 | 12 |
@@ -331,7 +331,7 @@ The table below shows the some boards where this library has been successfully t
 | Arduino Yún / ATmega-32u4 | Yes | 2 and 3 | 12 | 
 | ATtiny85 | No | 5 and 7 | 2 (D3) |
 | BlueDuino 3.3V (ATmega-32u4) | No | 2 and 3 | 10 |
-
+| Arduino Mini Pro | Yes | 2 and 3 |  10 | 
 
 
 <BR>
