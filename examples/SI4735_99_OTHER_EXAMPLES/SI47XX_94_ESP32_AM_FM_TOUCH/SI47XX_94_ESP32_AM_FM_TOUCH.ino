@@ -24,6 +24,12 @@
 
 #define RESET_PIN 12
 
+#define TOUCH_BAND_BUTTON_UP 13   // Next band
+#define TOUCH_BAND_BUTTON_DOWN 14 // Previous band
+
+#define CAPACITANCE 30
+
+
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
 
@@ -95,9 +101,27 @@ void showStatus()
   Serial.println("dBuV]");
 }
 
+
+
+int touchUp, touchDown;
+
+
+int readX(int pin) {
+  int val;
+  val = 0;
+  for (int i = 0; i < 50; i++ )
+    val += touchRead(pin);
+  return (val / 50);  
+}
+
+
 // Main
 void loop()
 {
+
+  touchUp = readX(TOUCH_BAND_BUTTON_UP);
+  touchDown = readX(TOUCH_BAND_BUTTON_DOWN);
+  
   if (Serial.available() > 0)
   {
     char key = Serial.read();
@@ -160,7 +184,17 @@ void loop()
     default:
       break;
     }
+  } else if ( (touchUp < CAPACITANCE) ) // goes to the next band
+  {
+    si4735.seekStationUp();;
+    delay(100);
   }
+  else if ( (touchDown < CAPACITANCE) ) // goes to the previous band
+  {
+    si4735.seekStationDown();
+    delay(100);
+  }
+  
   delay(100);
   currentFrequency = si4735.getCurrentFrequency();
   if (currentFrequency != previousFrequency)
@@ -169,4 +203,5 @@ void loop()
     showStatus();
     delay(300);
   }
+  
 }

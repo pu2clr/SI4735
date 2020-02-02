@@ -2,19 +2,9 @@
   SI4735 all in one with SSB Support
 
   This sketch has been successfully tested on:
-  1) Pro Mini 3.3V; 
-  2) UNO (by using a voltage converter); 
-  3) Arduino Yún (by using a voltage converter); 
-  4) Arduino Micro (see the operating voltage of your Micro); 
-  5) Arduino Mega (by using a voltage converter); and 
-  6) Arduino DUE;
 
   This sketch uses I2C LiquidCrystal/LCD, buttons and  Encoder.
   
-  This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
-  together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C).
-  Look for LiquidCrystal I2C on Manager Libraries.
-
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
 
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
@@ -40,16 +30,15 @@
 
   Main Parts:
   Encoder with push button;
-  Seven bush buttons;
-  OLED Display with I2C protocol;
-  Arduino Pro mini 3.3V;
+  LCD20x2 / I2C
+  ESP32 (LOLIN WEMOS)
 
   By Ricardo Lima Caratti, Nov 2019.
   Last update: Jan 3, 2020.
 */
 
 #include <SI4735.h>
-#include <LiquidCrystal_I2C.h>
+// #include <LiquidCrystal_I2C.h>
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.
@@ -73,17 +62,19 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define ENCODER_PIN_A 3
 #define ENCODER_PIN_B 2
 
-// Buttons controllers
-#define MODE_SWITCH 4      // Switch MODE (Am/LSB/USB)
-#define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
-#define VOL_UP 6           // Volume Up
-#define VOL_DOWN 7         // Volume Down
-#define BAND_BUTTON_UP 8   // Next band
-#define BAND_BUTTON_DOWN 9 // Previous band
-#define AGC_SWITCH 11      // Switch AGC ON/OF
-#define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
-#define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
+// You can use some pins as capacitive touch
+#define TOUCH_MODE_SWITCH 13      // Switch MODE (Am/LSB/USB)
+#define TOUCH_BANDWIDTH_BUTTON 12 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
+#define TOUCH_VOL_UP 14           // Volume Up
+#define TOUCH_VOL_DOWN 27         // Volume Down
+#define TOUCH_BAND_BUTTON_UP 26   // Next band
+#define TOUCH_BAND_BUTTON_DOWN 25 // Previous band
+#define TOUCH_AGC_SWITCH 33       // Switch AGC ON/OF
+#define TOUCH_STEP_SWITCH 32      // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
+#define TOUCH_BFO_SWITCH 2        // Used to select the enconder control (BFO or VFO)
 
+
+#define CAPACITANCE 20
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
 
@@ -97,7 +88,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 #define SSB 1
 
-char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
+const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
 bool bfoOn = false;
@@ -122,10 +113,10 @@ uint8_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
 uint8_t bwIdxSSB = 2;
-char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+const char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 uint8_t bwIdxAM = 1;
-char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+const char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 /*
    Band data structure
@@ -174,57 +165,68 @@ uint8_t volume = DEFAULT_VOLUME;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
-LiquidCrystal_I2C display(0x27, 20, 4); // please check the address of your I2C device
+// LiquidCrystal_I2C display(0x27, 20, 4); // please check the address of your I2C device
 SI4735 si4735;
 
 void setup()
 {
   // Encoder pins
-  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
-  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_A, OUTPUT);
+  pinMode(ENCODER_PIN_B, OUTPUT);
 
-  pinMode(BANDWIDTH_BUTTON, INPUT_PULLUP);
-  pinMode(BAND_BUTTON_UP, INPUT_PULLUP);
-  pinMode(BAND_BUTTON_DOWN, INPUT_PULLUP);
-  pinMode(VOL_UP, INPUT_PULLUP);
-  pinMode(VOL_DOWN, INPUT_PULLUP);
-  pinMode(BFO_SWITCH, INPUT_PULLUP);
-  pinMode(AGC_SWITCH, INPUT_PULLUP);
-  pinMode(STEP_SWITCH, INPUT_PULLUP);
-  pinMode(MODE_SWITCH, INPUT_PULLUP);
+  pinMode(TOUCH_BANDWIDTH_BUTTON, OUTPUT);
+  pinMode(TOUCH_BAND_BUTTON_UP, OUTPUT);
+  pinMode(TOUCH_BAND_BUTTON_DOWN, OUTPUT);
+  pinMode(TOUCH_VOL_UP, OUTPUT);
+  pinMode(TOUCH_VOL_DOWN, OUTPUT);
+  pinMode(TOUCH_BFO_SWITCH, OUTPUT);
+  pinMode(TOUCH_AGC_SWITCH, OUTPUT);
+  pinMode(TOUCH_STEP_SWITCH, OUTPUT);
+  pinMode(TOUCH_MODE_SWITCH, OUTPUT);
 
-  display.init();
+  /*
+  // display.init();
 
   delay(500);
 
   // Splash - Change it for your introduction text.
-  display.backlight();
-  display.setCursor(7, 0);
-  display.print("SI4735");
-  display.setCursor(2, 1);
-  display.print("Arduino Library");
+  // display.backlight();
+  // display.setCursor(7, 0);
+  // display.print("SI4735");
+  // display.setCursor(2, 1);
+  // display.print("Arduino Library");
   delay(500);
-  display.setCursor(1, 2);
-  display.print("All in One Radio");
+  // display.setCursor(1, 2);
+  // display.print("All in One Radio");
   delay(500);
-  display.setCursor(4, 3);
-  display.print("By PU2CLR");
+  // display.setCursor(4, 3);
+  // display.print("By PU2CLR");
   delay(2000);
   // end Splash
+  // display.clear();
+  */
 
+  /*
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  si4735.setup(RESET_PIN, MW_BAND_TYPE);
+  */
+  
+  si4735.setup(RESET_PIN, 1);
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
   currentFrequency = previousFrequency = si4735.getFrequency();
 
   si4735.setVolume(volume);
-  display.clear();
+  // display.clear();
   showStatus();
+}
+
+int  touchX( int pin) {
+  return 50;
+  // return touchRead(pin);
 }
 
 // Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
@@ -246,15 +248,15 @@ void rotaryEncoder()
 
 
 void clearLine4() {
-  display.setCursor(0, 2);
-  display.print("                    ");
+  // display.setCursor(0, 2);
+  // display.print("                    ");
 }
 
 // Show current frequency
 
 void showFrequency()
 {
-  String freqDisplay;
+  String freq;
   String unit;
   String bandMode;
   int divider = 1;
@@ -279,29 +281,29 @@ void showFrequency()
   }
 
   if ( !bfoOn )
-    freqDisplay = String((float)currentFrequency / divider, decimals);
+    freq = String((float)currentFrequency / divider, decimals);
   else
-    freqDisplay = ">" + String((float)currentFrequency / divider, decimals) + "<";
+    freq = ">" + String((float)currentFrequency / divider, decimals) + "<";
 
-  display.setCursor(7, 0);
-  display.print("        ");
-  display.setCursor(7, 0);
-  display.print(freqDisplay);
+  // display.setCursor(7, 0);
+  // display.print("        ");
+  // display.setCursor(7, 0);
+  // display.print(freq// display);
 
   if (currentFrequency < 520 ) 
     bandMode = "LW  ";
   else
    bandMode = bandModeDesc[currentMode];
 
-  display.setCursor(0, 0);
-  display.print(bandMode);
+  // display.setCursor(0, 0);
+  // display.print(bandMode);
 
-  display.setCursor(17, 0);
-  display.print(unit);
+  // display.setCursor(17, 0);
+  // display.print(unit);
 }
 
 /*
-    Show some basic information on display
+    Show some basic information on // display
 */
 void showStatus()
 {
@@ -309,34 +311,34 @@ void showStatus()
   showFrequency();
 
 
-  display.setCursor(13, 1);
-  display.print("      ");
-  display.setCursor(13, 1);
-  display.print("St: ");
-  display.print(currentStep);
+  // display.setCursor(13, 1);
+  // display.print("      ");
+  // display.setCursor(13, 1);
+  // display.print("St: ");
+  // display.print(currentStep);
 
-  display.setCursor(0, 3);
-  display.print("           ");
-  display.setCursor(0, 3);
+  // display.setCursor(0, 3);
+  // display.print("           ");
+  // display.setCursor(0, 3);
 
   if (currentMode == LSB || currentMode == USB)
   {
-    display.print("BW:");
-    display.print(String(bandwitdthSSB[bwIdxSSB]));
-    display.print("KHz");
+    // display.print("BW:");
+    // display.print(String(bandwitdthSSB[bwIdxSSB]));
+    // display.print("KHz");
     showBFO();
   }
   else if (currentMode == AM)
   {
-    display.print("BW:");
-    display.print(String(bandwitdthAM[bwIdxAM]));
-    display.print("KHz");
+    // display.print("BW:");
+    // display.print(String(bandwitdthAM[bwIdxAM]));
+    // display.print("KHz");
   }
 
   // Show AGC Information
   si4735.getAutomaticGainControl();
-  display.setCursor(0, 1);
-  display.print((si4735.isAgcEnabled()) ? "AGC ON " : "AGC OFF");
+  // display.setCursor(0, 1);
+  // display.print((si4735.isAgcEnabled()) ? "AGC ON " : "AGC OFF");
 
   showRSSI();
   showVolume();
@@ -350,20 +352,20 @@ void showRSSI()
   char c = '>';
   int bars = ((rssi / 10.0) / 2.0) + 1;
 
-  display.setCursor(13, 3);
-  display.print("       ");
-  display.setCursor(13, 3);
-  display.print("S:");
+  // display.setCursor(13, 3);
+  // display.print("       ");
+  // display.setCursor(13, 3);
+  // display.print("S:");
   if ( bars > 5 )  {
     bars = 5;
     c = '+';
   }
   for (int i = 0; i < bars; i++)
-    display.print(">");
+    // display.print(">");
 
   if ( currentMode == FM) {
-    display.setCursor(0, 3);
-    display.print((si4735.getCurrentPilot()) ? "STEREO   " : "MONO     ");
+    // display.setCursor(0, 3);
+    // display.print((si4735.getCurrentPilot()) ? "STEREO   " : "MONO     ");
   }
 
 }
@@ -373,10 +375,10 @@ void showRSSI()
 */
 void showVolume()
 {
-  display.setCursor(10, 3);
-  display.print("  ");
-  display.setCursor(10, 3);
-  display.print(si4735.getCurrentVolume());
+  // display.setCursor(10, 3);
+  // display.print("  ");
+  // display.setCursor(10, 3);
+  // display.print(si4735.getCurrentVolume());
 }
 
 /*
@@ -393,18 +395,18 @@ void showBFO()
   else
     bfo = String(currentBFO);
 
-  display.setCursor(0, 2);
-  display.print("         ");
-  display.setCursor(0, 2);
-  display.print("BFO:");
-  display.print(bfo);
-  display.print("Hz ");
+  // display.setCursor(0, 2);
+  // display.print("         ");
+  // display.setCursor(0, 2);
+  // display.print("BFO:");
+  // display.print(bfo);
+  // display.print("Hz ");
 
-  display.setCursor(13, 2);
-  display.print("       ");
-  display.setCursor(13, 2);
-  display.print("St: ");
-  display.print(currentBFOStep);
+  // display.setCursor(13, 2);
+  // display.print("       ");
+  // display.setCursor(13, 2);
+  // display.print("St: ");
+  // display.print(currentBFOStep);
 }
 
 /*
@@ -452,8 +454,8 @@ void bandDown()
 */
 void loadSSB()
 {
-  display.setCursor(0, 2);
-  display.print("  Switching to SSB  ");
+  // display.setCursor(0, 2);
+  // display.print("  Switching to SSB  ");
   
   si4735.reset();
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
@@ -476,7 +478,7 @@ void loadSSB()
   si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
   delay(25); 
   ssbLoaded = true;
-  display.clear();
+  // display.clear();
 }
 
 /*
@@ -485,7 +487,7 @@ void loadSSB()
 void useBand()
 {
   // delay(250);
-  // display.clear();
+  // // display.clear();
   clearLine4();
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
@@ -553,7 +555,7 @@ void loop()
   if ((millis() - elapsedButton) > MIN_ELAPSED_TIME)
   {
     // check if some button is pressed
-    if (digitalRead(BANDWIDTH_BUTTON) == LOW)
+    if (touchX(TOUCH_BANDWIDTH_BUTTON) < CAPACITANCE)
     {
       if (currentMode == LSB || currentMode == USB)
       {
@@ -577,21 +579,21 @@ void loop()
       showStatus();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(BAND_BUTTON_UP) == LOW)
+    else if (touchX(TOUCH_BAND_BUTTON_UP) < CAPACITANCE)
       bandUp();
-    else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
+    else if (touchX(TOUCH_BAND_BUTTON_DOWN) < CAPACITANCE)
       bandDown();
-    else if (digitalRead(VOL_UP) == LOW)
+    else if (touchX(TOUCH_VOL_UP) < CAPACITANCE)
     {
       si4735.volumeUp();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(VOL_DOWN) == LOW)
+    else if (touchX(TOUCH_VOL_DOWN) < CAPACITANCE)
     {
       si4735.volumeDown();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(BFO_SWITCH) == LOW)
+    else if (touchX(TOUCH_BFO_SWITCH) < CAPACITANCE)
     {
       if (currentMode == LSB || currentMode == USB) {
         bfoOn = !bfoOn;
@@ -603,14 +605,14 @@ void loop()
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(AGC_SWITCH) == LOW)
+    else if (touchX(TOUCH_AGC_SWITCH) < CAPACITANCE)
     {
       disableAgc = !disableAgc;
       // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
       si4735.setAutomaticGainControl(disableAgc, 1);
       showStatus();
     }
-    else if (digitalRead(STEP_SWITCH) == LOW)
+    else if (touchX(TOUCH_STEP_SWITCH) < CAPACITANCE)
     {
       if ( currentMode == FM) {  
         fmStereo = !fmStereo;
@@ -641,7 +643,7 @@ void loop()
         delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       }
     }
-    else if (digitalRead(MODE_SWITCH) == LOW)
+    else if (touchX(TOUCH_MODE_SWITCH) < CAPACITANCE)
     {
       if (currentMode == AM)
       {
