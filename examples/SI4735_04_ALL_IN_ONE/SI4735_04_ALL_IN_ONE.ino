@@ -308,7 +308,6 @@ void showStatus()
 
   showFrequency();
 
-
   display.setCursor(13, 1);
   display.print("      ");
   display.setCursor(13, 1);
@@ -456,7 +455,7 @@ void loadSSB()
   display.print("  Switching to SSB  ");
   
   si4735.reset();
-  si4735.queryLibraryId(); // Is it really necessary here? I will check it.
+  si4735.queryLibraryId(); // Is it really necessary here?  Just powerDown() maigh work!
   si4735.patchPowerUp();
   delay(50);
   // si4735.setI2CFastMode(); // Recommended 
