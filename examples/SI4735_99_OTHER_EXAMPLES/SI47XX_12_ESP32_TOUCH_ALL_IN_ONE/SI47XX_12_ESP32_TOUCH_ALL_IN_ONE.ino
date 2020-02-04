@@ -1,11 +1,16 @@
 /*
   SI4735 all in one with SSB Support
 
-  This sketch has been successfully tested on ESP LOLIN32 (WEMOS);
-  This sketch uses the capacitive touch ESP32 resource;
-  This sketch uses I2C LiquidCrystal/LCD, buttons and  Encoder.
-
-
+  Features:
+  1) This sketch has been successfully tested on ESP LOLIN32 (WEMOS);
+  2) It uses the capacitive touch ESP32 resource;
+  3) I2C LiquidCrystal/LCD 20x4;
+  4) Encoder;
+  5) FM, AM (MW and SW) and SSB (LSB and USB);
+  6) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+  7) BFO Control; and
+  8) Frequency step switch (1, 5 and 10KHz). 
+  
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of
@@ -19,19 +24,6 @@
   Given this, it is at your own risk to continue with the procedures suggested here.
   This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
   Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
-
-  Features of this sketch:
-
-  1) FM, AM (MW and SW) and SSB (LSB and USB);
-  2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
-  3) 22 commercial and ham radio bands pre configured;
-  4) BFO Control; and
-  5) Frequency step switch (1, 5 and 10KHz);
-
-  Main Parts:
-  Encoder with push button;
-  LCD20x2 / I2C
-  ESP32 (LOLIN WEMOS)
 
   By Ricardo Lima Caratti, Nov 2019.
   Last update: Jan 3, 2020.
@@ -69,12 +61,12 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define TOUCH_VOL_DOWN 14         // Volume Down
 #define TOUCH_BAND_BUTTON_UP 12   // Next band
 #define TOUCH_BAND_BUTTON_DOWN 4  // Previous band
-// #define TOUCH_AGC_SWITCH 0        // Switch AGC ON/OF
+// #define TOUCH_AGC_SWITCH 0     // Switch AGC ON/OF
 #define TOUCH_STEP_SWITCH 2       // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 #define TOUCH_BFO_SWITCH 15       // Used to select the enconder control (BFO or VFO)
 
 
-#define CAPACITANCE 20
+#define CAPACITANCE 20  // You might need to adjust this value.
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
 
@@ -95,6 +87,7 @@ bool bfoOn = false;
 bool disableAgc = true;
 bool ssbLoaded = false;
 bool fmStereo = true;
+bool touch = false;
 
 int currentBFO = 0;
 int previousBFO = 0;
@@ -570,9 +563,11 @@ void loop()
   // Check button commands
   if ((millis() - elapsedButton) > MIN_ELAPSED_TIME)
   {
+    touch = false;
     // check if some button is pressed
     if ( nTOUCH_BANDWIDTH_BUTTON < CAPACITANCE)
     {
+      touch = true;
       if (currentMode == LSB || currentMode == USB)
       {
         bwIdxSSB++;
@@ -595,22 +590,29 @@ void loop()
       showStatus();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (nTOUCH_BAND_BUTTON_UP < CAPACITANCE)
+    else if (nTOUCH_BAND_BUTTON_UP < CAPACITANCE) {
+      touch = true;
       bandUp();
-    else if (nTOUCH_BAND_BUTTON_DOWN < CAPACITANCE)
+    }
+    else if (nTOUCH_BAND_BUTTON_DOWN < CAPACITANCE) {
+      touch = true;
       bandDown();
+    }
     else if (nTOUCH_VOL_UP < CAPACITANCE)
     {
+      touch = true;
       si4735.volumeUp();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (nTOUCH_VOL_DOWN < CAPACITANCE)
     {
+      touch = true;
       si4735.volumeDown();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     } 
     else if (nTOUCH_BFO_SWITCH < CAPACITANCE)
     {
+      touch = true;
       if (currentMode == LSB || currentMode == USB) {
         bfoOn = !bfoOn;
         if (bfoOn)
@@ -630,6 +632,7 @@ void loop()
     } */
     else if (nTOUCH_STEP_SWITCH < CAPACITANCE)
     {
+      touch = true;
       if ( currentMode == FM) {  
         fmStereo = !fmStereo;
         if ( fmStereo )
@@ -637,7 +640,6 @@ void loop()
         else
           si4735.setFmStereoOff(); // It is not working so far.
       } else {
-
         // This command should work only for SSB mode
         if (bfoOn && (currentMode == LSB || currentMode == USB))
         {
@@ -661,6 +663,7 @@ void loop()
     }
     else if (nTOUCH_MODE_SWITCH < CAPACITANCE)
     {
+      touch = true;
       if (currentMode == AM)
       {
         // If you were in AM mode, it is necessary to load SSB patch (avery time)
@@ -682,7 +685,7 @@ void loop()
       band[bandIdx].currentStep = currentStep;
       useBand();
     }
-    delay(200);
+    if (touch) delay(200);
     elapsedButton = millis();
   }
 
@@ -727,5 +730,5 @@ void loop()
     }
   }
 
-  delay(100);
+  delay(50);
 }
