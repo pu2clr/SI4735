@@ -555,9 +555,9 @@ void loop()
   nTOUCH_VOL_UP = touchX(TOUCH_VOL_UP);
   nTOUCH_VOL_DOWN = touchX(TOUCH_VOL_DOWN);  
   nTOUCH_BFO_SWITCH = touchX(TOUCH_BFO_SWITCH);
-  // nTOUCH_AGC_SWITCH = touchX(TOUCH_AGC_SWITCH); 
+  // nTOUCH_AGC_SWITCH = 50; // touchX(TOUCH_AGC_SWITCH); 
   nTOUCH_STEP_SWITCH = touchX(TOUCH_STEP_SWITCH);
-  nTOUCH_MODE_SWITCH = touchX(TOUCH_MODE_SWITCH);
+  nTOUCH_MODE_SWITCH =  touchX(TOUCH_MODE_SWITCH);
 
   // sprintf(buffer,"%d, %d, %d, %d, %d, %d, %d, %d, %d",nTOUCH_BANDWIDTH_BUTTON, nTOUCH_BAND_BUTTON_UP, nTOUCH_BAND_BUTTON_DOWN, nTOUCH_VOL_UP, nTOUCH_VOL_DOWN, nTOUCH_BFO_SWITCH, nTOUCH_AGC_SWITCH, nTOUCH_STEP_SWITCH, nTOUCH_MODE_SWITCH);    
   // Serial.println(buffer);  
@@ -691,6 +691,7 @@ void loop()
     elapsedButton = millis();
   }
 
+  /*
   // Show the current frequency only if it has changed
   if ((millis() - elapsedFrequency) > MIN_ELAPSED_RSSI_TIME * 3)
   {
@@ -701,20 +702,23 @@ void loop()
       showFrequency();
     }
     elapsedFrequency = millis();
-  }
+  } */
 
+  
   // Show RSSI status only if this condition has changed
-  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 4)
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
   {
-    si4735.getCurrentReceivedSignalQuality();
-    if (rssi != si4735.getCurrentRSSI())
+    si4735.getCurrentReceivedSignalQuality(); 
+    /*
+    int aux =  si4735.getCurrentRSSI();
+    if (rssi != aux)
     {
-      rssi = si4735.getCurrentRSSI();
-      showRSSI();
-    }
+      rssi = aux;
+      // showRSSI();
+    } */
     elapsedRSSI = millis();
-  }
-
+  } 
+  
   // Show volume level only if this condition has changed
   if (si4735.getCurrentVolume() != volume)
   {
