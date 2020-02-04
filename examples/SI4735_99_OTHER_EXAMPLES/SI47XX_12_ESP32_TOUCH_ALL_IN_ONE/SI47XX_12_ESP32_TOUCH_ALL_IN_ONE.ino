@@ -134,21 +134,21 @@ Band band[] = {
   {"160m", SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
   {"80m ", SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
   {"60m ", SW_BAND_TYPE, 4500, 5500, 4850, 5},
-  {"49m ",SW_BAND_TYPE, 5600, 6300, 6000, 5},
-  {"41m ",SW_BAND_TYPE, 6800, 7800, 7200, 5}, // 40 meters
-  {"31m ",SW_BAND_TYPE, 9200, 10000, 9600, 5},
-  {"30m ",SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
-  {"25m ",SW_BAND_TYPE, 11200, 12500, 11940, 5},
-  {"22m ",SW_BAND_TYPE, 13400, 13900, 13600, 5},
-  {"20m ",SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
-  {"19m ",SW_BAND_TYPE, 15000, 15900, 15300, 5},
-  {"18m ",SW_BAND_TYPE, 17200, 17900, 17600, 5},
-  {"17m ",SW_BAND_TYPE, 18000, 18300, 18100, 1},  // 17 meters
-  {"15m ",SW_BAND_TYPE, 21000, 21900, 21200, 1},  // 15 mters
-  {"12m ",SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
-  {"CB  ",SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
-  {"10m ",SW_BAND_TYPE, 28000, 30000, 28400, 1}
-}; // 10 meters
+  {"49m ", SW_BAND_TYPE, 5600, 6300, 6000, 5},
+  {"41m ", SW_BAND_TYPE, 6800, 7800, 7100, 5}, // 40 meters
+  {"31m ", SW_BAND_TYPE, 9200, 10000, 9600, 5},
+  {"30m ", SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
+  {"25m ", SW_BAND_TYPE, 11200, 12500, 11940, 5},
+  {"22m ", SW_BAND_TYPE, 13400, 13900, 13600, 5},
+  {"20m ", SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
+  {"19m ", SW_BAND_TYPE, 15000, 15900, 15300, 5},
+  {"18m ", SW_BAND_TYPE, 17200, 17900, 17600, 5},
+  {"17m ", SW_BAND_TYPE, 18000, 18300, 18100, 1},  // 17 meters
+  {"15m ", SW_BAND_TYPE, 21000, 21900, 21200, 1},  // 15 mters
+  {"12m ", SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
+  {"CB  ", SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
+  {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 1}
+};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
