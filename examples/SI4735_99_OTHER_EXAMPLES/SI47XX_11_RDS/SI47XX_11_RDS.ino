@@ -1,5 +1,5 @@
 /*
-   RDS test
+   This sketch is an example of using the RDS functions impplemented byte the Si4735 Library for Arduino. 
    Under development...
 */
 

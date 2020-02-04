@@ -1,7 +1,9 @@
 /*
-  Under construction....
   This sketch stores the SI4735 SSB patch content on an EEPROM. 
   It might useful for Board or MCU with few memory.
+
+  Under construction....
+  
   Ricardo Lima Caratti Dec, 2020    
 */
 
