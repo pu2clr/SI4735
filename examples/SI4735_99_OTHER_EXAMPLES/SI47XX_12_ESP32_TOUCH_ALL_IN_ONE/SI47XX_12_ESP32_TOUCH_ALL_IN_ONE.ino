@@ -67,7 +67,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define TOUCH_BFO_SWITCH 15       // Used to select the enconder control (BFO or VFO)
 
 
-#define CAPACITANCE 20  // You might need to adjust this value.
+#define CAPACITANCE 30  // You might need to adjust this value.
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
 
@@ -179,7 +179,7 @@ void setup()
 
   // Splash - Change it for your introduction text.
   display.backlight();
-  display.setCursor(4, 0);
+  display.setCursor(3, 0);
   display.print("SI4735 on ESP32");
   display.setCursor(2, 1);
   display.print("Arduino Library");
@@ -542,7 +542,8 @@ void loop()
       else
         si4735.frequencyDown();
 
-      // Show the current frequency only if it has changed
+       // Show the current frequency only if it has changed
+       delay(15);
       currentFrequency = si4735.getFrequency();
       showFrequency();
     }
@@ -621,7 +622,9 @@ void loop()
           showBFO();
         showStatus();
       } else if (currentMode == FM) {
-        si4735.seekStationUp(); 
+        si4735.seekStationUp();
+        delay(15);
+        currentFrequency = si4735.getFrequency(); 
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
@@ -691,31 +694,18 @@ void loop()
     elapsedButton = millis();
   }
 
-  /*
-  // Show the current frequency only if it has changed
-  if ((millis() - elapsedFrequency) > MIN_ELAPSED_RSSI_TIME * 3)
-  {
-    currentFrequency = si4735.getFrequency();
-    if (currentFrequency != previousFrequency)
-    {
-      previousFrequency = currentFrequency;
-      showFrequency();
-    }
-    elapsedFrequency = millis();
-  } */
 
   
   // Show RSSI status only if this condition has changed
-  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 12)
   {
     si4735.getCurrentReceivedSignalQuality(); 
-    /*
     int aux =  si4735.getCurrentRSSI();
     if (rssi != aux)
     {
       rssi = aux;
-      // showRSSI();
-    } */
+      showRSSI();
+    } 
     elapsedRSSI = millis();
   } 
   

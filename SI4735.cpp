@@ -335,6 +335,8 @@ void SI4735::frequencyUp()
         currentWorkFrequency += currentStep;
 
     setFrequency(currentWorkFrequency);
+    // delayMicroseconds(2500);
+    delay(20);
 }
 
 /*
@@ -350,6 +352,8 @@ void SI4735::frequencyDown()
         currentWorkFrequency -= currentStep;
 
     setFrequency(currentWorkFrequency);
+    // delayMicroseconds(2500);
+    delay(20);
 }
 
 /*
