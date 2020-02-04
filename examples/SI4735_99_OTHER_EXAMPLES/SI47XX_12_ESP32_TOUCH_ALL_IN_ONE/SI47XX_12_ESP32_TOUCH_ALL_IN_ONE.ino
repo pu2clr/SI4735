@@ -11,13 +11,13 @@
   7) BFO Control; and
   8) Frequency step switch (1, 5 and 10KHz). 
   
-  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
+  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of
   this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
   Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device.
   Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by
-  the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
+  the host MCU (in this case the ESP32). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
   Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
 
   ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment.
@@ -25,7 +25,8 @@
   This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
   Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
 
-  By Ricardo Lima Caratti, Nov 2019.
+
+  By Ricardo Lima Caratti, DEC 2019.
   Last update: Jan 3, 2020.
 */
 
@@ -178,8 +179,8 @@ void setup()
 
   // Splash - Change it for your introduction text.
   display.backlight();
-  display.setCursor(7, 0);
-  display.print("SI4735");
+  display.setCursor(4, 0);
+  display.print("SI4735 on ESP32");
   display.setCursor(2, 1);
   display.print("Arduino Library");
   delay(500);
