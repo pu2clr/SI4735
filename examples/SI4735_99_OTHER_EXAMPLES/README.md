@@ -12,7 +12,10 @@ This folder contains several other examples that use encoders, buttons, OLED and
 6. [Si47XX 06 - AM/FM radio with OLCD and OLED as a S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_99_OTHER_EXAMPLES#si47xx-06---amfm-radio-with-olcd-and-oled-as-a-s-meter)
 7. [Si47XX 07 - SW Receiver with LCD and OLED as a S-Meter](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_99_OTHER_EXAMPLES#si47xx-07---sw-receiver-with-lcd-and-oled-as-a-s-meter)
 8. [SI47XX 08 - AM/FM receiver with ATtiny85](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_99_OTHER_EXAMPLES#si47xx-08---amfm-receiver-with-attiny85) 
-
+9. [SI47XX 09 - Saving SSB patch content on an EEPROM]()
+10. [SI47XX 10 - Using EEPROM with a SSB patch content]()
+11. [SI47XX 11 - RDS Example]()
+12. [SI47XX 12 - All in One on ESP32]()
 
 <BR>
 
@@ -243,3 +246,50 @@ The photo below shows the Si4730 on adapter board connect attached on a mini bre
 The Si4730 and ATtiny85 FM radio prototype. 
 
 ![Photo ATtiny85 and Si4730](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4730_attiny85A.jpg)
+
+<BR> 
+
+## SI47XX 09 - Saving SSB patch content on an EEPROM
+
+This sketch stores the SI4735 SSB patch content on an EEPROM. It might useful for Board or MCU with few memory.
+
+
+### Under construction...
+
+
+## SI47XX 10 - Using EEPROM with a SSB patch content
+
+### Under construction.... 
+
+
+## SI47XX 11 - RDS Example
+
+This sketch is an example of using the RDS functions impplemented byte the Si4735 Library for Arduino. 
+
+### Under construction... 
+
+## SI47XX 12 - All in One on ESP32
+
+This example is a complete FM/AM/LW/SW (with SSB support) receiver based on SI4735 running on ESP32 
+<BR>
+__Features:__
+1) This sketch has been successfully tested on ESP LOLIN32 (WEMOS);
+2) It uses the capacitive touch ESP32 resource;
+3) I2C LiquidCrystal/LCD 20x4;
+4) Encoder;
+5) FM, AM (MW and SW) and SSB (LSB and USB);
+6) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+7) BFO Control; and
+8) Frequency step switch (1, 5 and 10KHz). 
+  
+To support the SSB mode, This sketch downloads a SSB patch to your SI4735 device (patch_init.h). 
+In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
+There is little information available about patching the SI4735. The following information is the understanding of the author of this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device. Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device.
+Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by the host MCU (in this case __ESP32__). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
+Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
+<BR>
+__ATTENTION:__ The author of this project does not guarantee that procedures will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here. This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.  Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
+
+
+
+

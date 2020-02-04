@@ -1,5 +1,5 @@
 /*
-  SI4735 all in one with SSB Support
+  SI4735 all in one with SSB Support on ESP32 
 
   Features:
   1) This sketch has been successfully tested on ESP LOLIN32 (WEMOS);
