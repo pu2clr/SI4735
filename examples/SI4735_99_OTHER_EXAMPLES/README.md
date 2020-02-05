@@ -323,3 +323,28 @@ However, you have pay attention to the new configuration pins on ESP32. See tabl
 
 
 
+It seams that in some ESP32 board, the I2C bus is not configured prorpelly by default. However, you can set almost any pin on ESP32 to setup I2C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. The code below shows that.
+
+```cpp
+// I2C bus pin on ESP32
+#define ESP32_I2C_SDA 21
+#define ESP32_I2C_SCL 22
+
+.
+.
+.
+.
+
+void setup() {
+
+
+  // The line below may be necessary to setup I2C pins on ESP32
+  Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
+
+
+}
+```
+
+
+
+
