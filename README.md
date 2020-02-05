@@ -248,7 +248,7 @@ This library has been written for the Arduino platform and has been successfully
 | Zero | all digital pins except pin 4 | D8 (SDA/SDIO) and D9 (SCL/SCLK)  | Not tested | No |
 | Due	| all digital pins | 20 (SDA/SDIO), 21 (SCL/SCLK) | Yes  |  No |
 | 101	| all digital pins. <br> Only pins 2, 5, 7, 8, 10, 11, 12, 13 work with CHANGE| -  | Not tested | No |
-| ESPRESSIF ESP32 | Most pins |  Most pins (usually 21 and 22) | Yes | No | 
+| ESPRESSIF ESP32 | all GPIO pins |  Most pins (usually 21 and 22) | Yes | No | 
 
 
 
