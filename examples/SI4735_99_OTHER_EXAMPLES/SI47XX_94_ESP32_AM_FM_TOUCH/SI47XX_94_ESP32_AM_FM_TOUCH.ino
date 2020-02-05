@@ -22,7 +22,7 @@
 
 #include <SI4735.h>
 
-#define RESET_PIN 12
+#define RESET_PIN 25
 
 #define TOUCH_BAND_BUTTON_UP 13   // Next band
 #define TOUCH_BAND_BUTTON_DOWN 14 // Previous band
@@ -51,6 +51,8 @@ void setup()
 
   showHelp();
 
+  // The line below might necessary to setup I2C pins on ESP32
+  Wire.begin(21, 22);
   delay(500);
   si4735.setup(RESET_PIN, FM_FUNCTION);
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)

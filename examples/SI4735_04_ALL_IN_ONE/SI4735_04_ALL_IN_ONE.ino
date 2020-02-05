@@ -2,15 +2,15 @@
   SI4735 all in one with SSB Support
 
   This sketch has been successfully tested on:
-  1) Pro Mini 3.3V; 
-  2) UNO (by using a voltage converter); 
-  3) Arduino Yún (by using a voltage converter); 
-  4) Arduino Micro (see the operating voltage of your Micro); 
-  5) Arduino Mega (by using a voltage converter); and 
+  1) Pro Mini 3.3V;
+  2) UNO (by using a voltage converter);
+  3) Arduino Yún (by using a voltage converter);
+  4) Arduino Micro (see the operating voltage of your Micro);
+  5) Arduino Mega (by using a voltage converter); and
   6) Arduino DUE;
 
   This sketch uses I2C LiquidCrystal/LCD, buttons and  Encoder.
-  
+
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
   together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C).
   Look for LiquidCrystal I2C on Manager Libraries.
@@ -144,7 +144,7 @@ typedef struct
 */
 Band band[] = {
   {FM_BAND_TYPE, 8400, 10800, 10390, 10},
-  {LW_BAND_TYPE, 100, 510, 300, 1}, 
+  {LW_BAND_TYPE, 100, 510, 300, 1},
   {MW_BAND_TYPE, 520, 1720, 810, 10},
   {SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
   {SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
@@ -288,10 +288,10 @@ void showFrequency()
   display.setCursor(7, 0);
   display.print(freqDisplay);
 
-  if (currentFrequency < 520 ) 
+  if (currentFrequency < 520 )
     bandMode = "LW  ";
   else
-   bandMode = bandModeDesc[currentMode];
+    bandMode = bandModeDesc[currentMode];
 
   display.setCursor(0, 0);
   display.print(bandMode);
@@ -453,17 +453,17 @@ void loadSSB()
 {
   display.setCursor(0, 2);
   display.print("  Switching to SSB  ");
-  
+
   si4735.reset();
   si4735.queryLibraryId(); // Is it really necessary here?  Just powerDown() maigh work!
   si4735.patchPowerUp();
   delay(50);
-  // si4735.setI2CFastMode(); // Recommended 
+  // si4735.setI2CFastMode(); // Recommended
   si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
   si4735.downloadPatch(ssb_patch_content, size_content);
   si4735.setI2CStandardMode(); // goes back to default (100KHz)
   clearLine4();
-  
+
   // delay(50);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
@@ -473,7 +473,7 @@ void loadSSB()
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
   si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
-  delay(25); 
+  delay(25);
   ssbLoaded = true;
   display.clear();
 }
@@ -492,7 +492,7 @@ void useBand()
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     bfoOn = ssbLoaded = false;
-    
+
   }
   else
   {
@@ -542,8 +542,8 @@ void loop()
         si4735.frequencyDown();
 
       // Show the current frequency only if it has changed
+      delay(30);
       currentFrequency = si4735.getFrequency();
-      showFrequency();
     }
     encoderCount = 0;
   }
@@ -598,7 +598,9 @@ void loop()
           showBFO();
         showStatus();
       } else if (currentMode == FM) {
-        si4735.seekStationUp(); 
+        si4735.seekStationUp();
+        delay(30);
+        currentFrequency = si4735.getFrequency();
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
@@ -611,7 +613,7 @@ void loop()
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
     {
-      if ( currentMode == FM) {  
+      if ( currentMode == FM) {
         fmStereo = !fmStereo;
         if ( fmStereo )
           si4735.setFmStereoOn();
@@ -667,24 +669,20 @@ void loop()
   }
 
   // Show the current frequency only if it has changed
-  if ((millis() - elapsedFrequency) > MIN_ELAPSED_RSSI_TIME * 3)
+  if (currentFrequency != previousFrequency)
   {
-    currentFrequency = si4735.getFrequency();
-    if (currentFrequency != previousFrequency)
-    {
-      previousFrequency = currentFrequency;
-      showFrequency();
-    }
-    elapsedFrequency = millis();
+    previousFrequency = currentFrequency;
+    showFrequency();
   }
 
   // Show RSSI status only if this condition has changed
-  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 4)
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 12)
   {
     si4735.getCurrentReceivedSignalQuality();
-    if (rssi != si4735.getCurrentRSSI())
+    int aux = si4735.getCurrentRSSI();
+    if (rssi != aux)
     {
-      rssi = si4735.getCurrentRSSI();
+      rssi = aux;
       showRSSI();
     }
     elapsedRSSI = millis();

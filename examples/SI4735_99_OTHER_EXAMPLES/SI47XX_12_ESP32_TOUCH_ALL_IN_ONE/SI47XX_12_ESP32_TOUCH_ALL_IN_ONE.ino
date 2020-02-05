@@ -1,5 +1,5 @@
 /*
-  SI4735 all in one with SSB Support on ESP32 
+  SI4735 all in one with SSB Support on ESP32
 
   Features:
   1) This sketch has been successfully tested on ESP LOLIN32 (WEMOS);
@@ -9,8 +9,8 @@
   5) FM, AM (MW and SW) and SSB (LSB and USB);
   6) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
   7) BFO Control; and
-  8) Frequency step switch (1, 5 and 10KHz). 
-  
+  8) Frequency step switch (1, 5 and 10KHz).
+
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of
@@ -130,7 +130,7 @@ typedef struct
 */
 Band band[] = {
   {"FM  ", FM_BAND_TYPE, 8400, 10800, 10390, 10},
-  {"LW  ", LW_BAND_TYPE, 100, 510, 300, 1}, 
+  {"LW  ", LW_BAND_TYPE, 100, 510, 300, 1},
   {"AM  ", MW_BAND_TYPE, 520, 1720, 810, 10},
   {"160m", SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
   {"80m ", SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
@@ -166,9 +166,9 @@ SI4735 si4735;
 void setup()
 {
 
-   Serial.begin(9600);
-   while (!Serial);
-  
+  Serial.begin(9600);
+  while (!Serial);
+
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
@@ -197,7 +197,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  
+
   si4735.setup(RESET_PIN, 1);
 
   // Set up the radio for the current band (see index table variable bandIdx )
@@ -214,7 +214,7 @@ int  touchX( int pin) {
   val = 0;
   for (int i = 0; i < 50; i++ )
     val += touchRead(pin);
-  return (val / 50);  
+  return (val / 50);
 }
 
 // Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
@@ -278,10 +278,10 @@ void showFrequency()
   display.setCursor(7, 0);
   display.print(freq);
 
-  if (currentFrequency < 520 ) 
+  if (currentFrequency < 520 )
     bandMode = "LW  ";
   else
-   bandMode = bandModeDesc[currentMode];
+    bandMode = bandModeDesc[currentMode];
 
   display.setCursor(0, 0);
   display.print(bandMode);
@@ -444,17 +444,17 @@ void loadSSB()
 {
   display.setCursor(0, 2);
   display.print("  Switching to SSB  ");
-  
+
   si4735.reset();
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
   si4735.patchPowerUp();
   delay(50);
-  // si4735.setI2CFastMode(); // Recommended 
+  // si4735.setI2CFastMode(); // Recommended
   si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
   si4735.downloadPatch(ssb_patch_content, size_content);
   si4735.setI2CStandardMode(); // goes back to default (100KHz)
   clearLine4();
-  
+
   // delay(50);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
@@ -464,7 +464,7 @@ void loadSSB()
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
   si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
-  delay(25); 
+  delay(25);
   ssbLoaded = true;
   display.clear();
 }
@@ -481,7 +481,7 @@ void useBand()
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     bfoOn = ssbLoaded = false;
-    
+
   }
   else
   {
@@ -513,11 +513,11 @@ void useBand()
 
 
 
-int   nTOUCH_BANDWIDTH_BUTTON; 
+int   nTOUCH_BANDWIDTH_BUTTON;
 int   nTOUCH_BAND_BUTTON_UP;
 int   nTOUCH_BAND_BUTTON_DOWN;
 int   nTOUCH_VOL_UP;
-int   nTOUCH_VOL_DOWN; 
+int   nTOUCH_VOL_DOWN;
 int   nTOUCH_BFO_SWITCH;
 int   nTOUCH_AGC_SWITCH;
 int   nTOUCH_STEP_SWITCH;
@@ -542,10 +542,9 @@ void loop()
       else
         si4735.frequencyDown();
 
-       // Show the current frequency only if it has changed
-       delay(15);
+      // Show the current frequency only if it has changed
+      delay(30);
       currentFrequency = si4735.getFrequency();
-      showFrequency();
     }
     encoderCount = 0;
   }
@@ -554,14 +553,14 @@ void loop()
   nTOUCH_BAND_BUTTON_UP = touchX(TOUCH_BAND_BUTTON_UP);
   nTOUCH_BAND_BUTTON_DOWN = touchX(TOUCH_BAND_BUTTON_DOWN);
   nTOUCH_VOL_UP = touchX(TOUCH_VOL_UP);
-  nTOUCH_VOL_DOWN = touchX(TOUCH_VOL_DOWN);  
+  nTOUCH_VOL_DOWN = touchX(TOUCH_VOL_DOWN);
   nTOUCH_BFO_SWITCH = touchX(TOUCH_BFO_SWITCH);
-  // nTOUCH_AGC_SWITCH = 50; // touchX(TOUCH_AGC_SWITCH); 
+  // nTOUCH_AGC_SWITCH = 50; // touchX(TOUCH_AGC_SWITCH);
   nTOUCH_STEP_SWITCH = touchX(TOUCH_STEP_SWITCH);
   nTOUCH_MODE_SWITCH =  touchX(TOUCH_MODE_SWITCH);
 
-  // sprintf(buffer,"%d, %d, %d, %d, %d, %d, %d, %d, %d",nTOUCH_BANDWIDTH_BUTTON, nTOUCH_BAND_BUTTON_UP, nTOUCH_BAND_BUTTON_DOWN, nTOUCH_VOL_UP, nTOUCH_VOL_DOWN, nTOUCH_BFO_SWITCH, nTOUCH_AGC_SWITCH, nTOUCH_STEP_SWITCH, nTOUCH_MODE_SWITCH);    
-  // Serial.println(buffer);  
+  // sprintf(buffer,"%d, %d, %d, %d, %d, %d, %d, %d, %d",nTOUCH_BANDWIDTH_BUTTON, nTOUCH_BAND_BUTTON_UP, nTOUCH_BAND_BUTTON_DOWN, nTOUCH_VOL_UP, nTOUCH_VOL_DOWN, nTOUCH_BFO_SWITCH, nTOUCH_AGC_SWITCH, nTOUCH_STEP_SWITCH, nTOUCH_MODE_SWITCH);
+  // Serial.println(buffer);
 
   // Check button commands
   if ((millis() - elapsedButton) > MIN_ELAPSED_TIME)
@@ -612,7 +611,7 @@ void loop()
       touch = true;
       si4735.volumeDown();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-    } 
+    }
     else if (nTOUCH_BFO_SWITCH < CAPACITANCE)
     {
       touch = true;
@@ -623,22 +622,22 @@ void loop()
         showStatus();
       } else if (currentMode == FM) {
         si4735.seekStationUp();
-        delay(15);
-        currentFrequency = si4735.getFrequency(); 
+        delay(30);
+        currentFrequency = si4735.getFrequency();
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     /* else if (nTOUCH_AGC_SWITCH < CAPACITANCE)
-    {
+      {
       disableAgc = !disableAgc;
       // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
       si4735.setAutomaticGainControl(disableAgc, 1);
       showStatus();
-    } */
+      } */
     else if (nTOUCH_STEP_SWITCH < CAPACITANCE)
     {
       touch = true;
-      if ( currentMode == FM) {  
+      if ( currentMode == FM) {
         fmStereo = !fmStereo;
         if ( fmStereo )
           si4735.setFmStereoOn();
@@ -695,20 +694,26 @@ void loop()
   }
 
 
-  
+  // Show the current frequency only if it has changed
+  if (currentFrequency != previousFrequency)
+  {
+    previousFrequency = currentFrequency = si4735.getFrequency();;
+    showFrequency();
+  }
+
   // Show RSSI status only if this condition has changed
   if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 12)
   {
-    si4735.getCurrentReceivedSignalQuality(); 
+    si4735.getCurrentReceivedSignalQuality();
     int aux =  si4735.getCurrentRSSI();
     if (rssi != aux)
     {
       rssi = aux;
       showRSSI();
-    } 
+    }
     elapsedRSSI = millis();
-  } 
-  
+  }
+
   // Show volume level only if this condition has changed
   if (si4735.getCurrentVolume() != volume)
   {
