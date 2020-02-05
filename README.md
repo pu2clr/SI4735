@@ -326,13 +326,21 @@ The table below shows the some boards where this library has been successfully t
 | ----- | ---------------------- | -------- | --------- | 
 | Arduino Pro Mini 3.3V 8MHz | No | A4 and A5 | 12 | 
 | Mega 2560 Pro | Yes | 20 and 21 | 12 |
-| ESP32 WEMOS LOLIN32 | No |  21 and 22 | 12 |  
+| ESP WEMOS LOLIN32 | No |  21 and 22 [ˆ4] | 25 [ˆ5] | 
+| ESP32 Dev Module | No | 21 and 22 [ˆ4] | 25 [ˆ5]|  
 | Arduino UNO | Yes | A4 and A5 | 12 |
 | Arduino Yún / ATmega-32u4 | Yes | 2 and 3 | 12 | 
 | ATtiny85 | No | 5 and 7 | 2 (D3) |
 | Arduino DUE | No | 2 and 3 |   12 |
 | BlueDuino 3.3V (ATmega-32u4) | No | 2 and 3 | 10 |
 | Arduino Mini Pro | Yes | 2 and 3 |  10 | 
+
+* [ˆ4] It seams that in some ESP32 board, the I2C bus is not configured prorpelly by default. However, you can set almost any pin on ESP32 to setup I2C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. The code below shows that.
+* [^5] You can use the pin 12 too.  
+
+1. More about ESP boards on [ESPRESSOF Development Boards](https://www.espressif.com/en/products/hardware/development-boards).
+2. More about BlueDuino on [Seed](https://www.seeedstudio.com/Blueduino-Rev2-Arduino-compatible-pius-BLE-CC2540-p-2550.html).
+3. On [Arduino.cc](https://www.arduino.cc/) you can see the technical specification about many board. 
 
 
 <BR>
