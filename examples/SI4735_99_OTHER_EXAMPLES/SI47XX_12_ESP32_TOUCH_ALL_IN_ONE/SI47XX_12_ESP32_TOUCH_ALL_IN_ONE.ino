@@ -66,6 +66,9 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define TOUCH_STEP_SWITCH 2       // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 #define TOUCH_BFO_SWITCH 15       // Used to select the enconder control (BFO or VFO)
 
+// I2C bus pin on ESP32
+#define ESP32_I2C_SDA 21
+#define ESP32_I2C_SCL 22
 
 #define CAPACITANCE 30  // You might need to adjust this value.
 #define MIN_ELAPSED_TIME 100
@@ -197,7 +200,9 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-
+  // The line below may be necessary to setup I2C pins on ESP32
+  Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
+  
   si4735.setup(RESET_PIN, 1);
 
   // Set up the radio for the current band (see index table variable bandIdx )

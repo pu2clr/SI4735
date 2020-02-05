@@ -27,6 +27,10 @@
 #define TOUCH_BAND_BUTTON_UP 13   // Next band
 #define TOUCH_BAND_BUTTON_DOWN 14 // Previous band
 
+// I2C bus pin on ESP32
+#define ESP32_I2C_SDA 21
+#define ESP32_I2C_SCL 22
+
 #define CAPACITANCE 30
 
 
@@ -51,8 +55,9 @@ void setup()
 
   showHelp();
 
-  // The line below might necessary to setup I2C pins on ESP32
-  Wire.begin(21, 22);
+  // The line below may be necessary to setup I2C pins on ESP32
+  Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
+
   delay(500);
   si4735.setup(RESET_PIN, FM_FUNCTION);
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
