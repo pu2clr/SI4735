@@ -189,6 +189,7 @@ void setup(void)
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
+  
 
   uint16_t ID = tft.readID();
 
@@ -197,17 +198,26 @@ void setup(void)
   tft.begin(ID);
   tft.setRotation(0); //PORTRAIT
   tft.fillScreen(BLACK);
+
+ 
+  // tft.setFont(&FreeSans12pt7b);
+  showText(45, 30, 2, &FreeSans9pt7b, GREEN, "SI4735");
+  showText(45, 90, 2, &FreeSans9pt7b, YELLOW, "Arduino");
+  showText(45, 160, 2, &FreeSans9pt7b, YELLOW, "Library"); 
+  showText(20, 240, 2, &FreeSans9pt7b, WHITE, "By PU2CLR");
+  delay(3000);
+
+  tft.fillScreen(BLACK);
+  
   tft.setFont(&FreeSans9pt7b);
-  bFrequencyUp.initButton(&tft, 60, 200, 115, 40, WHITE, CYAN, BLACK, (char *)"Seek Up", 1);
-  bFrequencyDown.initButton(&tft, 180, 200, 115, 40, WHITE, CYAN, BLACK, (char *)"Seek Down", 1);
-  bSwitchBand.initButton(&tft, 120, 250, 200, 40, WHITE, CYAN, BLACK, (char *)"AM/FM", 1);
+  bFrequencyUp.initButton(&tft, 60, 200, 115, 40, WHITE, CYAN, BLACK, (char *)"B+", 1);
+  bFrequencyDown.initButton(&tft, 180, 200, 115, 40, WHITE, CYAN, BLACK, (char *)"B-", 1);
+  bSwitchBand.initButton(&tft, 120, 250, 200, 40, WHITE, CYAN, BLACK, (char *)"X", 1);
   bFrequencyUp.drawButton(false);
   bFrequencyDown.drawButton(false);
   bSwitchBand.drawButton(false);
-  tft.fillRect(40, 80, 160, 80, RED);
 
-  showText(35, 15, 1, &FreeSans9pt7b, GREEN, "SI4735 Arduino Library");
-  showText(35, 35, 1, &FreeSans9pt7b, YELLOW, "       By PU2CLR      ");
+
 
   // Atach Encoder pins interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
@@ -216,9 +226,9 @@ void setup(void)
   si4735.setup(RESET_PIN, 1);
 
   // Set up the radio for the current band (see index table variable bandIdx )
-  // useBand();
+  useBand();
   currentFrequency = previousFrequency = si4735.getFrequency();
-
+  si4735.setVolume(DEFAULT_VOLUME);
   tft.setFont(&FreeSans9pt7b); // default font
 }
 
@@ -270,21 +280,22 @@ void showFrequency()
 {
   float freq;
   int iFreq, dFreq;
+
+  tft.fillRect(0, 0, 250, 50, BLACK);
+
   if (si4735.isCurrentTuneFM())
   {
     freq = currentFrequency / 100.0;
     iFreq = (int)freq;
-    dFreq = (int)(freq - iFreq);
-    sprintf(buffer, "%3d.%2d MHz", iFreq, dFreq);
+    dFreq = (int)((freq - iFreq) * 10);
+    sprintf(buffer, "%3d.%1d MHz", iFreq, dFreq);
+
   }
   else
   {
-    freq = currentFrequency / 1000.0;
-    iFreq = (int)freq;
-    dFreq = (int)(freq - iFreq);
-    sprintf(buffer, "%2d.%3d KHz", iFreq, dFreq);
+    sprintf(buffer, "%5d KHz",currentFrequency);
   }
-  showText(10, 40, 2, &FreeSans12pt7b, buffer, BLUE);
+  showText(10, 40, 2, &FreeSans12pt7b, YELLOW, buffer);
 
   tft.setFont(&FreeSans9pt7b); // default font
 }
@@ -412,7 +423,7 @@ void useBand()
     }
 
   }
-
+  delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
   showStatus();
@@ -445,8 +456,11 @@ void loop(void)
         si4735.frequencyDown();
 
       // Show the current frequency only if it has changed
-      delay(30);
+      delay(20);
       currentFrequency = si4735.getFrequency();
+      delay(20);
+      currentFrequency = si4735.getFrequency();      
+      
       showFrequency();
     }
     encoderCount = 0;
