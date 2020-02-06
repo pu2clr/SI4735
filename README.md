@@ -405,7 +405,7 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 
 |Si4735 on Adapter|Si4735 on Adapter| 
 |---------------|---------------|  
-|![IC SI4730 soldering on adapter](./extras/images/soldering_01.png)|![SIC SI4730 soldering on adapter](./extras/images/soldering_02.png)|
+|![IC SI4730 soldering on adapter](./extras/images/soldering_01.jpg)|![SIC SI4730 soldering on adapter](./extras/images/soldering_02.jpg)|
 |![SI4735 on adapter 01](./extras/images/si4735_on_adapter_01.png)|![SI4735 on adapter 03](./extras/images/si4735_on_adapter_03.png)|
 
 
