@@ -321,6 +321,8 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 * Start with a high pullup resistor to I2C bus and then reduce it until the best value. For example: start with 10K and try to reduce the value to 4,7K or 3,3K. Select the lowest resistor. 
 
 <BR>
+
+
 ### Boards where this library has been successfully tested
 
 
