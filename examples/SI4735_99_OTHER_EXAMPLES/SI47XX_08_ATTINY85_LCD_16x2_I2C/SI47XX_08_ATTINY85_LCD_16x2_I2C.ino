@@ -13,16 +13,19 @@
 
 #define AM_FM_BUTTON 1      // AM/FM SWITCH
 #define SEEK_BUTTON_UP 4    // Seek Up
-
 #define FM_FUNCTION 0
+#define MAX_TIME 200
 
 uint16_t currentFrequency;
 uint16_t lastAmFrequency = 810;     // Starts AM on 810KHz;
 uint16_t lastFmFrequency = 10390;   // Starts FM on 103,9MHz
 
+long lastQuery = millis(); 
+
 SI4735 si4735;
 
 LiquidCrystal_I2C lcd(0x27, 16, 2); 
+
 
 void setup()
 {
@@ -51,7 +54,9 @@ void setup()
   showStatus();
 }
 
-
+/* 
+ *  Shows the currend frequency
+ */
 void showStatus() {
   // Clear just the frequency information space.
   lcd.setCursor(5,0); 
@@ -73,8 +78,28 @@ void showStatus() {
   }
 }
 
+/*
+ * Show the current Signal Quality
+ */
+void showSignalQuality() {
+  si4735.getCurrentReceivedSignalQuality();
+  lcd.setCursor(0,1);
+  
+  if ( si4735.isCurrentTuneFM() ) 
+      lcd.print((si4735.getCurrentPilot()) ? "ST" : "MO");
+  else 
+      lcd.println("MW");
+      
+  lcd.setCursor(5,1);
+  lcd.print("S:");
+  lcd.setCursor(7,1);
+  lcd.print("         ");
+  lcd.setCursor(7,1);
+  lcd.print(si4735.getCurrentRSSI());
+  lcd.print("dBuV");
+}
 
-// Main
+
 void loop()
 {
   if (digitalRead(AM_FM_BUTTON) == LOW ) {
@@ -93,6 +118,10 @@ void loop()
     si4735.seekStationUp();
     currentFrequency = si4735.getFrequency();
     showStatus();
+  }
+
+  if ((millis() - lastQuery) > MAX_TIME) {
+    lastQuery = millis(); 
   }
   delay(50);
 }
