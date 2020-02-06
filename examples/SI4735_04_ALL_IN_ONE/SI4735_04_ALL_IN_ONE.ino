@@ -140,7 +140,7 @@ typedef struct
 } Band;
 
 /*
-   Band tables
+   Band table
 */
 Band band[] = {
   {FM_BAND_TYPE, 8400, 10800, 10390, 10},
