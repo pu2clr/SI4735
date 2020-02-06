@@ -312,6 +312,15 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 
 <BR>
 
+### Tips to build 
+
+* Try to follow what the Silicon Labs recommend; 
+* Start building the minimum circuit and test it;
+* Use the minimum sketch to test the minimum circuit. The first three examples of this project (see  examples folder) can be used to test the minimum circuit; 
+* Try not improvising the I2C bus connection. Start using a 3.3V MCU (Arduino Pro Mini 8Mhz or DUE,  ESP32 or other 3.3V device) to connect with SI4735;
+* Start with a high pullup resistor to I2C bus and then reduce it until the best value. For example: start with 10K and try to reduce the value to 4,7K or 3,3K. Select the lowest resistor. 
+
+<BR>
 ### Boards where this library has been successfully tested
 
 
