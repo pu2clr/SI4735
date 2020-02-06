@@ -1,7 +1,32 @@
 /* 
- * This sketch uses the mcufriend TFT touct Display on Mega 
- * 
- * By Ricardo Lima Caratti, Feb 2020
+  This sketch uses the mcufriend TFT touct Display on Arduino Mega2580.
+   
+  Features:
+  1) This sketch has been successfully tested on Arduino Mega2560;
+  2) It uses the touch screen interface provided by mcufriend TFT;
+  3) Encoder;
+  4) FM, AM (MW and SW) and SSB (LSB and USB);
+  5) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+  6) BFO Control; and
+  7) Frequency step switch (1, 5 and 10KHz).
+  
+  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
+  In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
+  There is little information available about patching the SI4735. The following information is the understanding of the author of
+  this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
+  Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device.
+  Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by
+  the host MCU (in this case the Arduino Mega2560). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
+  Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
+
+  ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment.
+  Given this, it is at your own risk to continue with the procedures suggested here.
+  This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
+  Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
+
+  Libraries used: SI4735; Adafruit_GFX; MCUFRIEND_kbv; FreeDefaultFonts; TouchScreen; 
+
+  By Ricardo Lima Caratti, Feb 2020
  */
 
 #include <SI4735.h>
@@ -14,6 +39,7 @@
 #include <TouchScreen.h>
 #include "Rotary.h"
 
+#include "patch_init.h" // SSB patch for whole SSBRX initialization string
 
 #define MINPRESSURE 200
 #define MAXPRESSURE 1000
@@ -31,6 +57,32 @@
 #define SW_BAND_TYPE 2
 #define LW_BAND_TYPE 3
 
+#define MIN_ELAPSED_TIME 100
+#define MIN_ELAPSED_RSSI_TIME 150
+#define DEFAULT_VOLUME 50 // change it for your favorite sound volume
+
+#define FM 0
+#define LSB 1
+#define USB 2
+#define AM 3
+#define LW 4
+#define SSB 1
+
+const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
+
+bool bfoOn = false;
+bool disableAgc = true;
+bool ssbLoaded = false;
+bool fmStereo = true;
+bool touch = false;
+
+int currentBFO = 0;
+int previousBFO = 0;
+
+long elapsedRSSI = millis();
+long elapsedButton = millis();
+long elapsedFrequency = millis();
+
 
 // Encoder control variables
 volatile int encoderCount = 0;
@@ -38,6 +90,7 @@ volatile int encoderCount = 0;
 
 typedef struct
 {
+  const char *bandName; 
   uint8_t bandType;     // Band type (FM, MW or SW)
   uint16_t minimumFreq; // Minimum frequency of the band
   uint16_t maximumFreq; // maximum frequency of the band
@@ -46,30 +99,30 @@ typedef struct
 } Band;
 
 /*
-   Band tables
+   Band table
 */
 Band band[] = {
-    {FM_BAND_TYPE, 8400, 10800, 10390, 10},
-    {LW_BAND_TYPE, 100, 510, 300, 1},
-    {MW_BAND_TYPE, 520, 1720, 810, 10},
-    {SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
-    {SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
-    {SW_BAND_TYPE, 4500, 5500, 4850, 5},
-    {SW_BAND_TYPE, 5600, 6300, 6000, 5},
-    {SW_BAND_TYPE, 6800, 7800, 7200, 5}, // 40 meters
-    {SW_BAND_TYPE, 9200, 10000, 9600, 5},
-    {SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
-    {SW_BAND_TYPE, 11200, 12500, 11940, 5},
-    {SW_BAND_TYPE, 13400, 13900, 13600, 5},
-    {SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
-    {SW_BAND_TYPE, 15000, 15900, 15300, 5},
-    {SW_BAND_TYPE, 17200, 17900, 17600, 5},
-    {SW_BAND_TYPE, 18000, 18300, 18100, 1},  // 17 meters
-    {SW_BAND_TYPE, 21000, 21900, 21200, 1},  // 15 mters
-    {SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
-    {SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
-    {SW_BAND_TYPE, 28000, 30000, 28400, 1}}; // 10 meters
-
+  {"FM  ", FM_BAND_TYPE, 8400, 10800, 10390, 10},
+  {"LW  ", LW_BAND_TYPE, 100, 510, 300, 1},
+  {"AM  ", MW_BAND_TYPE, 520, 1720, 810, 10},
+  {"160m", SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
+  {"80m ", SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
+  {"60m ", SW_BAND_TYPE, 4500, 5500, 4850, 5},
+  {"49m ", SW_BAND_TYPE, 5600, 6300, 6000, 5},
+  {"41m ", SW_BAND_TYPE, 6800, 7800, 7100, 5}, // 40 meters
+  {"31m ", SW_BAND_TYPE, 9200, 10000, 9600, 5},
+  {"30m ", SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
+  {"25m ", SW_BAND_TYPE, 11200, 12500, 11940, 5},
+  {"22m ", SW_BAND_TYPE, 13400, 13900, 13600, 5},
+  {"20m ", SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
+  {"19m ", SW_BAND_TYPE, 15000, 15900, 15300, 5},
+  {"18m ", SW_BAND_TYPE, 17200, 17900, 17600, 5},
+  {"17m ", SW_BAND_TYPE, 18000, 18300, 18100, 1},  // 17 meters
+  {"15m ", SW_BAND_TYPE, 21000, 21900, 21200, 1},  // 15 mters
+  {"12m ", SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
+  {"CB  ", SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
+  {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 1}
+};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
@@ -86,6 +139,8 @@ const char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 uint8_t bwIdxAM = 1;
 const char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
+const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
+uint8_t currentMode = FM;
 
 char buffer[64];
 
@@ -100,7 +155,7 @@ const int TS_LEFT = 294, TS_RT = 795, TS_TOP = 189, TS_BOT = 778;
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
 
-Adafruit_GFX_Button bSeekUp, bSeekDown, bSwitchBand;
+Adafruit_GFX_Button bFrequencyUp, bFrequencyDown, bSwitchBand;
 
 int pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -143,11 +198,11 @@ void setup(void)
   tft.setRotation(0); //PORTRAIT
   tft.fillScreen(BLACK);
   tft.setFont(&FreeSans9pt7b);
-  bSeekUp.initButton(&tft, 60, 200, 115, 40, WHITE, CYAN, BLACK, (char *)"Seek Up", 1);
-  bSeekDown.initButton(&tft, 180, 200, 115, 40, WHITE, CYAN, BLACK, (char *)"Seek Down", 1);
+  bFrequencyUp.initButton(&tft, 60, 200, 115, 40, WHITE, CYAN, BLACK, (char *)"Seek Up", 1);
+  bFrequencyDown.initButton(&tft, 180, 200, 115, 40, WHITE, CYAN, BLACK, (char *)"Seek Down", 1);
   bSwitchBand.initButton(&tft, 120, 250, 200, 40, WHITE, CYAN, BLACK, (char *)"AM/FM", 1);
-  bSeekUp.drawButton(false);
-  bSeekDown.drawButton(false);
+  bFrequencyUp.drawButton(false);
+  bFrequencyDown.drawButton(false);
   bSwitchBand.drawButton(false);
   tft.fillRect(40, 80, 160, 80, RED);
 
@@ -240,6 +295,9 @@ void showStatus()
   si4735.getCurrentReceivedSignalQuality();
   // SRN
   tft.fillRect(20, 280, 160, 80, BLUE);
+
+  si4735.getFrequency();
+  showFrequency();
 }
 
 void showBFO()
@@ -250,31 +308,166 @@ void showVolume()
 {
 }
 
+
+/*
+   Goes to the next band (see Band table)
+*/
+void bandUp()
+{
+  // save the current frequency for the band
+  band[bandIdx].currentFreq = currentFrequency;
+  band[bandIdx].currentStep = currentStep;
+
+  if (bandIdx < lastBand)
+  {
+    bandIdx++;
+  }
+  else
+  {
+    bandIdx = 0;
+  }
+  useBand();
+}
+
+/*
+   Goes to the previous band (see Band table)
+*/
+void bandDown()
+{
+  // save the current frequency for the band
+  band[bandIdx].currentFreq = currentFrequency;
+  band[bandIdx].currentStep = currentStep;
+  if (bandIdx > 0)
+  {
+    bandIdx--;
+  }
+  else
+  {
+    bandIdx = lastBand;
+  }
+  useBand();
+}
+
+
+/*
+   This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
+   SSB mode.
+*/
+void loadSSB()
+{
+  si4735.reset();
+  si4735.queryLibraryId(); // Is it really necessary here? I will check it.
+  si4735.patchPowerUp();
+  delay(50);
+  // si4735.setI2CFastMode(); // Recommended
+  si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
+  si4735.downloadPatch(ssb_patch_content, size_content);
+  si4735.setI2CStandardMode(); // goes back to default (100KHz)
+
+  // delay(50);
+  // Parameters
+  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+  // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
+  // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
+  // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
+  // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
+  // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
+  si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
+  delay(25);
+  ssbLoaded = true;
+}
+
+
+/*
+   Switch the radio to current band
+*/
+void useBand()
+{
+  if (band[bandIdx].bandType == FM_BAND_TYPE)
+  {
+    currentMode = FM;
+    si4735.setTuneFrequencyAntennaCapacitor(0);
+    si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+    bfoOn = ssbLoaded = false;
+  }
+  else
+  {
+    if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
+      si4735.setTuneFrequencyAntennaCapacitor(0);
+    else
+      si4735.setTuneFrequencyAntennaCapacitor(1);
+
+    if (ssbLoaded)
+    {
+      si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
+      si4735.setSSBAutomaticVolumeControl(1);
+    }
+    else
+    {
+      currentMode = AM;
+      si4735.reset();
+      si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+      si4735.setAutomaticGainControl(1, 0);
+      bfoOn = false;
+    }
+
+  }
+
+  currentFrequency = band[bandIdx].currentFreq;
+  currentStep = band[bandIdx].currentStep;
+  showStatus();
+}
+
+
+
 /* two buttons are quite simple
 */
 void loop(void)
 {
   bool down = Touch_getXY();
-  bSeekUp.press(down && bSeekUp.contains(pixel_x, pixel_y));
-  bSeekDown.press(down && bSeekDown.contains(pixel_x, pixel_y));
+  bFrequencyUp.press(down && bFrequencyUp.contains(pixel_x, pixel_y));
+  bFrequencyDown.press(down && bFrequencyDown.contains(pixel_x, pixel_y));
   bSwitchBand.press(down && bSwitchBand.contains(pixel_x, pixel_y));
 
-  if (bSeekUp.justReleased())
-    bSeekUp.drawButton(false);
 
-  if (bSeekDown.justReleased())
-    bSeekDown.drawButton(false);
-
-  if (bSeekUp.justPressed())
+  // Check if the encoder has moved.
+  if (encoderCount != 0)
   {
-    bSeekUp.drawButton(false);
-    // tft.fillRect(40, 80, 160, 80, GREEN);
+    if (bfoOn)
+    {
+      currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
+    }
+    else
+    {
+      if (encoderCount == 1)
+        si4735.frequencyUp();
+      else
+        si4735.frequencyDown();
+
+      // Show the current frequency only if it has changed
+      delay(30);
+      currentFrequency = si4735.getFrequency();
+      showFrequency();
+    }
+    encoderCount = 0;
   }
 
-  if (bSeekDown.justPressed())
+  if (bFrequencyUp.justReleased())
+    bFrequencyUp.drawButton(false);
+
+  if (bFrequencyDown.justReleased())
+    bFrequencyDown.drawButton(false);
+
+  if (bFrequencyUp.justPressed())
   {
-    bSeekDown.drawButton(false);
-    // tft.fillRect(40, 80, 160, 80, RED);
+    bFrequencyUp.drawButton(false);
+    bandUp();
+  }
+
+  if (bFrequencyDown.justPressed())
+  {
+    bFrequencyDown.drawButton(false);
+    bandDown();
   }
 
   if (bSwitchBand.justReleased())
@@ -283,7 +476,9 @@ void loop(void)
   if (bSwitchBand.justPressed())
   {
     bSwitchBand.drawButton(false);
-    // tft.fillRect(40, 80, 160, 80, YELLOW);
+
   }
+
+  delay(15);
 
 }

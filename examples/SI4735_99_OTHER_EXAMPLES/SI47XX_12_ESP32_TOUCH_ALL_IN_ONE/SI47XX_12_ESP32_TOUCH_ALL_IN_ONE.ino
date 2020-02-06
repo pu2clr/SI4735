@@ -129,7 +129,7 @@ typedef struct
 } Band;
 
 /*
-   Band tables
+   Band table
 */
 Band band[] = {
   {"FM  ", FM_BAND_TYPE, 8400, 10800, 10390, 10},
@@ -486,7 +486,6 @@ void useBand()
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     bfoOn = ssbLoaded = false;
-
   }
   else
   {
@@ -735,6 +734,5 @@ void loop()
       showBFO();
     }
   }
-
   delay(50);
 }
