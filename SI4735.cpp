@@ -765,17 +765,18 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
 
 /*
  * Sets the maximum gain for automatic volume control.
- * Select a value between 12 and 192. 
  * If no parameter is sent, it will be consider 48dB.
-  */
+ *
+ * @param uint8_t gain  Select a value between 12 and 192.  Defaul value 48dB.
+ */
 void SI4735::setAvcAmMaxGain( uint8_t gain = 0) {
     uint16_t aux;
-    aux = ( gain < 193 )? (gain * 340) : (48 * 340);
+    aux = ( gain > 12 && gain < 193 )? (gain * 340) : (48 * 340);
     sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, aux);
 }
 
 
-/*
+ /*
  * Queries the status of the Received Signal Quality (RSQ) of the current channel
  * Command FM_RSQ_STATUS
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
@@ -784,40 +785,41 @@ void SI4735::setAvcAmMaxGain( uint8_t gain = 0) {
  *        0 = Interrupt status preserved; 
  *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
  */
-void SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
-{
-
-    uint8_t arg;
-    uint8_t cmd;
-    int sizeResponse;
-
-    if (currentTune == FM_TUNE_FREQ)
-    { // FM TUNE
-        cmd = FM_RSQ_STATUS;
-        sizeResponse = 7;
-    }
-    else
-    { // AM TUNE
-        cmd = AM_RSQ_STATUS;
-        sizeResponse = 5;
-    }
-
-    waitToSend();
-
-    arg = INTACK;
-    Wire.beginTransmission(SI473X_ADDR);
-    Wire.write(cmd);
-    Wire.write(arg); // send B00000001
-    Wire.endTransmission();
-
-    do
+        void
+        SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
     {
+
+        uint8_t arg;
+        uint8_t cmd;
+        int sizeResponse;
+
+        if (currentTune == FM_TUNE_FREQ)
+        { // FM TUNE
+            cmd = FM_RSQ_STATUS;
+            sizeResponse = 7;
+        }
+        else
+        { // AM TUNE
+            cmd = AM_RSQ_STATUS;
+            sizeResponse = 5;
+        }
+
         waitToSend();
-        Wire.requestFrom(SI473X_ADDR, sizeResponse);
-        // Gets response information
-        for (uint8_t i = 0; i < sizeResponse; i++)
-            currentRqsStatus.raw[i] = Wire.read();
-    } while (currentRqsStatus.resp.ERR); // Try again if error found
+
+        arg = INTACK;
+        Wire.beginTransmission(SI473X_ADDR);
+        Wire.write(cmd);
+        Wire.write(arg); // send B00000001
+        Wire.endTransmission();
+
+        do
+        {
+            waitToSend();
+            Wire.requestFrom(SI473X_ADDR, sizeResponse);
+            // Gets response information
+            for (uint8_t i = 0; i < sizeResponse; i++)
+                currentRqsStatus.raw[i] = Wire.read();
+        } while (currentRqsStatus.resp.ERR); // Try again if error found
 }
 
 /*

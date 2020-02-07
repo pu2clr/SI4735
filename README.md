@@ -526,6 +526,7 @@ This item shows the SI4735 Arduino Library implemantation. Here you can find the
   * [isAgcEnabled](https://github.com/pu2clr/SI4735#isagcenabled)
   * [getAgcGainIndex](https://github.com/pu2clr/SI4735#getagcgainindex)
   * [setAutomaticGainControl](https://github.com/pu2clr/SI4735#setautomaticgaincontrol)
+  * [setAvcAmMaxGain](https://github.com/pu2clr/SI4735#setavcammaxgain)
 * [__Filters__](https://github.com/pu2clr/SI4735#filters)
   * [setBandwidth](https://github.com/pu2clr/SI4735#setbandwidth) 
 * [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735#si4735-firmware-information)
@@ -1917,6 +1918,28 @@ inline byte getAgcGainIndex()
 void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCIDX)
 ```
 
+### setAvcAmMaxGain
+
+```cpp
+/*
+ * Sets the maximum gain for automatic volume control.
+ * If no parameter is sent, it will be consider 48dB.
+ *
+ * @param uint8_t gain  Select a value between 12 and 192.  Defaul value 48dB.
+ * 
+ */
+void SI4735::setAvcAmMaxGain( uint8_t gain = 48)
+```
+Example :
+```cpp
+    si4735.setAvcAmMaxGain(); // For 48dB gain
+    .
+    .
+    si4735.setAvcAmMaxGain(16); // For 16dB gain
+    .
+    .
+    si4735.setAvcAmMaxGain(x);  // For xdB gain if x is a value between 12 ans 192.
+```
 
 <BR>
 <BR>
