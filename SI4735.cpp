@@ -365,6 +365,7 @@ void SI4735::setAM()
     powerDown();
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
     analogPowerUp();
+    setAvcAmMaxGain(48); // Set AM Automatic Volume Gain to 48
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
 }
