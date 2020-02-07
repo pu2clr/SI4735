@@ -769,7 +769,7 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
  *
  * @param uint8_t gain  Select a value between 12 and 192.  Defaul value 48dB.
  */
-void SI4735::setAvcAmMaxGain( uint8_t gain = 0) {
+void SI4735::setAvcAmMaxGain( uint8_t gain = 48) {
     uint16_t aux;
     aux = ( gain > 12 && gain < 193 )? (gain * 340) : (48 * 340);
     sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, aux);
@@ -785,10 +785,8 @@ void SI4735::setAvcAmMaxGain( uint8_t gain = 0) {
  *        0 = Interrupt status preserved; 
  *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
  */
-        void
-        SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
-    {
-
+void  SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK) 
+{
         uint8_t arg;
         uint8_t cmd;
         int sizeResponse;

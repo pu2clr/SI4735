@@ -749,7 +749,7 @@ public:
     inline uint8_t getAntennaTuningCapacitor() { return currentStatus.resp.READANTCAP; };    // Returns integer containing the current antenna tuning capacitor value.
 
     void getAutomaticGainControl();
-    void setAvcAmMaxGain(uint8_t gain = 0);         // Sets the maximum gain for automatic volume control.
+    void setAvcAmMaxGain(uint8_t gain = 48);         // Sets the maximum gain for automatic volume control.
 
 
     inline bool isAgcEnabled() { return !currentAgcStatus.refined.AGCDIS; };      // Returns true if the AGC is enabled
