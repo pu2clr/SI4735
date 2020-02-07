@@ -230,7 +230,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
         currentTune = AM_TUNE_FREQ;
         currentFrequencyParams.arg.FREEZE = 0;
     }
-    currentFrequencyParams.arg.FAST = 0;
+    currentFrequencyParams.arg.FAST = 1;
     currentFrequencyParams.arg.DUMMY1 = 0;
     currentFrequencyParams.arg.ANTCAPH = 0;
     currentFrequencyParams.arg.ANTCAPL = 1;
@@ -293,7 +293,7 @@ void SI4735::setFrequency(uint16_t freq)
     {
         currentFrequencyParams.arg.DUMMY1 = 0;
         currentFrequencyParams.arg.USBLSB = currentSsbStatus; // Set to LSB or USB
-        currentFrequencyParams.arg.FAST = 0;                  // Used just on AM and FM
+        currentFrequencyParams.arg.FAST = 1;                  // Used just on AM and FM
         currentFrequencyParams.arg.FREEZE = 0;                // Used just on FM
     }
 

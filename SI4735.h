@@ -752,6 +752,10 @@ public:
     void setAvcAmMaxGain(uint8_t gain);         // Sets the maximum gain for automatic volume control.
     inline void setAvcAmMaxGain() { sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, (48 * 340));};
 
+    inline void setAmSoftMuteMaxAttenuation( uint8_t smattn) {sendProperty(AM_SOFT_MUTE_MAX_ATTENUATION, smattn);};
+    inline void setAmSoftMuteMaxAttenuation() {sendProperty(AM_SOFT_MUTE_MAX_ATTENUATION, 0);};
+    
+
     inline bool isAgcEnabled() { return !currentAgcStatus.refined.AGCDIS; };      // Returns true if the AGC is enabled
     inline uint8_t getAgcGainIndex() { return currentAgcStatus.refined.AGCIDX; }; // Returns the current AGC gain index.
     void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX);                 // Overrides the AGC setting
