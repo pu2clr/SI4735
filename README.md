@@ -2,7 +2,7 @@
 
 [Leia este documento em Português](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md)
 
-This is an Arduino library for the SI47XX, BROADCAST AM/FM/SW RADIO RECEIVER IC family from Silicon Labs.  This library is intended to provide an easier interface for controlling the SI47XX by using Arduino platform. __The communication used by this library is I2C__. 
+This is an Arduino library for the SI47XX, BROADCAST AM/FM/SW RADIO RECEIVER IC family from Silicon Labs.  This library is intended to provide an easier interface for controlling the SI47XX by using Arduino platform. __The communication used by this library is I²C__. 
 
 This library was built based on [“__Si47XX PROGRAMMING GUIDE; AN332__ ”](https://www.silabs.com/documents/public/application-notes/AN332.pdf). It also can be used on __all members of the SI47XX family__ respecting, of course, the features available for each IC version. These functionalities can be seen in the comparison matrix shown in table 1 (__Product Family Function__); pages 2 and 3 of the programming guide.
 
@@ -130,7 +130,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 * AM/FM/SW/LW digital tuning
 * RDS/RBDS processor
 * Digital audio out
-* I2C and SPI interface 
+* I²C and SPI interface 
 * Great Programming Guide and additional documentation to deal with the device
 
 
@@ -161,7 +161,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 | SSB | [Single Side Band](https://en.wikipedia.org/wiki/Single-sideband_modulation) | 
 | SDIO | Serial data in/data out pin|
 | SCLK | Serial clock pin |
-| I2C | [I²C - Inter-Integrated Circuit](https://pt.wikipedia.org/wiki/I²C)|
+| I²C | [I²C - Inter-Integrated Circuit](https://pt.wikipedia.org/wiki/I²C)|
 | Soft Mute | Resource used to attenuate the audiooutputs and minimize audible noise in very weak signalconditions | 
 | Firmware Upgrades | The Si473x-D60 contains on-chip program  RAM to accommodate minor changes to the firmware | 
 
@@ -172,14 +172,14 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 
 ## SI4735 Arduino Library Features
 
-This library uses the I2C communication protocol and implements most of the functions offered by Si4735 (BROADCAST AM / FM / SW / LW RADIO RECEIVER). The main features of this library are listed below.
+This library uses the I²C communication protocol and implements most of the functions offered by Si4735 (BROADCAST AM / FM / SW / LW RADIO RECEIVER). The main features of this library are listed below.
 
 1. Open Source 
 2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
 3. C++ Lenguage and Object-oriented programming
 4. Available on Arduino IDE (Manage Libraries)
 5. Simplifies projects based on SI4735
-6. __I2C communication__
+6. __I²C communication__
 7. More than 60 SI4735 [functions implemented](https://github.com/pu2clr/SI4735#api-documentation)
 8. [RDS support](https://github.com/pu2clr/SI4735#rds)(__under construction...__)
 9. [SSB (Single Side Band) patch support](https://github.com/pu2clr/SI4735#single-side-band-ssb-support) 
@@ -229,7 +229,7 @@ See more
 
 ## Hardware Requirements and Setup
 
-This library has been written for the Arduino platform and has been successfully tested on Pro Mini. I beleave it will work on any other Arduino with I2C support.
+This library has been written for the Arduino platform and has been successfully tested on Pro Mini. I beleave it will work on any other Arduino with I²C support.
 
 
 
@@ -239,7 +239,7 @@ This library has been written for the Arduino platform and has been successfully
 
 <BR>
 
-|Board | InterrupT (IRQ) Pins| I2C / TWI pins | successfully tested | Voltage converter |
+|Board | InterrupT (IRQ) Pins| I²C / TWI pins | successfully tested | Voltage converter |
 |------|---------------------| ---------------| ------------------- | ----------------- | 
 |328-based <br> (Nano, Uno or Mini 5V) |	D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | Yes | 
 |328-based <br> (Pro Mini 3.3 / 8Mhz) | D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | No | 
@@ -256,7 +256,7 @@ This library has been written for the Arduino platform and has been successfully
 
 The main porpuse of this prototype is testing de Si4735 Arduino Library. It does not intend to be a real radio for exigent listener. However, it is possible to start with it and after include some devices to improve, for example,  its sensibility beyond other desired features.
 
-The image bellow shows a version of Slicon Labs SSOP Typical Application Schematic. The basic difference are the pull-up resitors on I2C bus. 
+The image bellow shows a version of Slicon Labs SSOP Typical Application Schematic. The basic difference are the pull-up resitors on I²C bus. 
 
 ![Basic Schematic](./extras/images/basic_schematic.png)
 
@@ -298,7 +298,7 @@ The table below shows the component parts used to build the radio prototype base
 | SI4735 | digital CMOS AM(LW, MW and SW)/FM radio receiver IC |
 
   * [ˆ1]: C7 and C8 are ceramic capacitors included by the author of this project. They are not present on original Silicon Labs schematic. 
-  * [ˆ2]: R4 and R5 are pull-up resistor included by the author of this project. They are not present on original Silicon Labs schematic.  This will also depend on other devices connected to the same I2C bus.  __Always try to use the lowest possible value__.
+  * [ˆ2]: R4 and R5 are pull-up resistor included by the author of this project. They are not present on original Silicon Labs schematic.  This will also depend on other devices connected to the same I²C bus.  __Always try to use the lowest possible value__.
 
 __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (page 12)__:
 * Place C1 close to VA and C4 close to VD pin.
@@ -317,8 +317,11 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 * Try to follow what the Silicon Labs recommend; 
 * Start building the minimum circuit and test it;
 * Use the minimum sketch to test the minimum circuit. The first three examples of this project (see  examples folder) can be used to test the minimum circuit; 
-* Try not improvising the I2C bus connection. Start using a 3.3V MCU (Arduino Pro Mini 8MHz or DUE,  ESP32 or other 3.3V device) to connect with SI4735;
-* Start with a high pullup resistor to I2C bus and then reduce it until the best value. For example: start with 10K and try to reduce the value to 4,7K or 3,3K. Select the lowest resistor. 
+* Try not improvising the I²C bus connection. Start using a 3.3V MCU (Arduino Pro Mini 8MHz or DUE,  ESP32 or other 3.3V device) to connect with SI4735;
+* Some devices provide internal pull-up resistors that in some cases can be enabled or disabled. Also, the capacitance of the I²C bus is another variable that have be considered to select the right resistor values. However, that capacitance is not easy to be measured. For thise reasons, it can be a liitle dificult calculate the right resitor values at first. Tha said, start with a high pullup resistor to I²C bus and then reduce it until the best value. For example: start with 10K and try to reduce the value to 4,7K, 3,3K, 2.2L etc. Select the lowest resistor you can.
+* I²C bus devices are available in different speeds. If you are using an I²C display device, check if its speed is compatible with the Si47XX;
+* Using different voltage levels between I²C devices can be unsafe and can destroy parts connected on I²C bus, specially the Si47XX;
+* It is important to wire all your I²C devices on the same common ground. 
 
 <BR>
 
@@ -334,7 +337,7 @@ This library can be help you to develop a cross-platform software. So far, it ha
 The table below shows the some boards where this library has been successfully tested.
 
 
-| Board | Need voltage converter | I2C Pins | Used Reset Pin |
+| Board | Need voltage converter | I²C Pins | Used Reset Pin |
 | ----- | ---------------------- | -------- | --------- | 
 | Arduino Pro Mini 3.3V 8MHz | No | A4 and A5 | 12 | 
 | Mega 2560 Pro | Yes | 20 and 21 | 12 |
@@ -347,7 +350,7 @@ The table below shows the some boards where this library has been successfully t
 | BlueDuino 3.3V (ATmega-32u4) | No | 2 and 3 | 10 |
 | Arduino Mini Pro | Yes | 2 and 3 |  10 | 
 
-* [ˆ4] It seams that in some ESP32 board, the I2C bus is not configured prorpelly by default. However, you can set almost any pin on ESP32 to setup I2C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. The code below shows that.
+* [ˆ4] It seams that in some ESP32 board, the I²C bus is not configured prorpelly by default. However, you can set almost any pin on ESP32 to setup I²C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. The code below shows that.
 * [^5] You can use the pin 12 too.  
 
 1. More about ESP boards on [ESPRESSOF Development Boards](https://www.espressif.com/en/products/hardware/development-boards).
@@ -415,7 +418,7 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 
 #### Protoboard
 
-The basic circuit built on protoboard is based on the “__SSOP Typical Application Schematic__”, suggested by the Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19). Two pull-up 10K resistors were added on I2C bus. Also, it is recomended to add two 4.7uF capacitors between the CI audio output  and audio amplifier. The photos below do not show these capacitors. See  [C7 and C8 on schematic](https://github.com/pu2clr/SI4735#schematic).
+The basic circuit built on protoboard is based on the “__SSOP Typical Application Schematic__”, suggested by the Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19). Two pull-up 10K resistors were added on I²C bus. Also, it is recomended to add two 4.7uF capacitors between the CI audio output  and audio amplifier. The photos below do not show these capacitors. See  [C7 and C8 on schematic](https://github.com/pu2clr/SI4735#schematic).
 
 <BR>
 
@@ -2354,7 +2357,7 @@ SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh5
 The link above will show two files, __amrx_6_0_1_ssbrx_patch_full_0x9D29.csg__ and __amrx_6_0_1_ssbrx_patch_init_0xA902.csg__.  It is important to know that the patch content of the original files is in const hexadecimal representation. Actally, the original files are in ASCII format (not in binary format).  If you are not using C/C++ or if you want to load the files directly to the SI4735, you must convert the values to numeric value of the hexadecimal constants. For example: 0x15 = 21 (00010101); 0x16 = 22 (00010110); 0x01 = 1 (00000001); 0xFF = 255 (11111111); 
 
 __ATTENTION__:
-The author of this project does not guarantee that procedures shown here will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here. __This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60__. Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using. 
+The author of this project does not guarantee that procedures shown here will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here. __This library works with the I²C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60__. Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using. 
 
 
 [Clicl here to see a Si4735 SSB firmware update support ](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_07_SSB_OLED_TEST)
@@ -2609,20 +2612,20 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
     * [Ryan Owens for SparkFun Electronics](https://github.com/csdexter/Si4735)
     * [Silicon Labs Si4737 WB/AM/FM Stereo/RDS single-chip receiver HAL library for Arduino](https://devhub.io/repos/rickeywang-Si4737_i2c)
     * [Enhanced Software for Elektor DSP-Radio (Si4735)](https://www.elektormagazine.com/labs/enhanced-software-for-elektor-dsp-radio-si4735)
-14. __I2C__ 
-    * [Taking The Leap Off Board: An Introduction To I2C Over Long Wires](https://hackaday.com/2017/02/08/taking-the-leap-off-board-an-introduction-to-i2c-over-long-wires/)
-    * [Difference between I2C and SPI](https://dcubestore.com/blog/difference-between-i2c-and-spi/?fbclid=IwAR2pnpqKe9q2R7r28q0PiPt5Cb_JzqdgKkcsLIb43ZSb4ZForI-fWQmZtM0)
+14. __I²C__ 
+    * [Taking The Leap Off Board: An Introduction To I²C Over Long Wires](https://hackaday.com/2017/02/08/taking-the-leap-off-board-an-introduction-to-i2c-over-long-wires/)
+    * [Difference between I²C and SPI](https://dcubestore.com/blog/difference-between-i2c-and-spi/?fbclid=IwAR2pnpqKe9q2R7r28q0PiPt5Cb_JzqdgKkcsLIb43ZSb4ZForI-fWQmZtM0)
     * [Issues with the I²C (Inter-IC) Bus and How to Solve Them](https://www.digikey.com/en/articles/techzone/2018/aug/issues-with-the-i2c-bus-and-how-to-solve-them)
-    * [I2C Manual; Application Note; AN10216-01](https://www.nxp.com/docs/en/application-note/AN10216.pdf)
+    * [I²C Manual; Application Note; AN10216-01](https://www.nxp.com/docs/en/application-note/AN10216.pdf)
     * IMPROVING NOISE IMMUNITY FOR SERIAL INTERFACE; A Lattice Semiconductor White Paper; July 2014
-    * [Bus Buffers Simplify Design of Large, Noisy I2C Systems](https://www.analog.com/en/technical-articles/bus-buffers-simplify-design-of-large-noisy-i2c-systems.html#)
+    * [Bus Buffers Simplify Design of Large, Noisy I²C Systems](https://www.analog.com/en/technical-articles/bus-buffers-simplify-design-of-large-noisy-i2c-systems.html#)
     * [Common Problems In Systems](https://www.i2c-bus.org/i2c-primer/common-problems/)
   1.  __Forums__
-      * [How to reduce I2C bus noise](https://www.microchip.com/forums/m456630.aspx)
-      * [Radio interferes with I2C bus communication](https://www.microchip.com/forums/m456630.aspx)
-      * [Reducing Noise on an I2C bus line](http://e2e.ti.com/support/interface/f/138/t/552072)
-      * [Noise on I2C bus](https://forum.allaboutcircuits.com/threads/noise-on-i2c-bus.41916/)
-      * [Noises on the I2C BUS](https://electronics.stackexchange.com/questions/292032/noises-on-the-i2c-bus)
+      * [How to reduce I²C bus noise](https://www.microchip.com/forums/m456630.aspx)
+      * [Radio interferes with I²C bus communication](https://www.microchip.com/forums/m456630.aspx)
+      * [Reducing Noise on an I²C bus line](http://e2e.ti.com/support/interface/f/138/t/552072)
+      * [Noise on I²C bus](https://forum.allaboutcircuits.com/threads/noise-on-i2c-bus.41916/)
+      * [Noises on the I²C BUS](https://electronics.stackexchange.com/questions/292032/noises-on-the-i2c-bus)
 
 
 <BR>
