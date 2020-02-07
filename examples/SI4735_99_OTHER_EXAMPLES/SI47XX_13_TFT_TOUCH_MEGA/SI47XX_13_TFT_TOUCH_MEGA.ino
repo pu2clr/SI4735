@@ -1,6 +1,6 @@
-/* 
+/*
   This sketch uses the mcufriend TFT touct Display on Arduino Mega2580.
-   
+
   Features:
   1) This sketch has been successfully tested on Arduino Mega2560;
   2) It uses the touch screen interface provided by mcufriend TFT;
@@ -9,7 +9,7 @@
   5) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
   6) BFO Control; and
   7) Frequency step switch (1, 5 and 10KHz).
-  
+
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of
@@ -24,10 +24,10 @@
   This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
   Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
 
-  Libraries used: SI4735; Adafruit_GFX; MCUFRIEND_kbv; FreeDefaultFonts; TouchScreen; 
+  Libraries used: SI4735; Adafruit_GFX; MCUFRIEND_kbv; FreeDefaultFonts; TouchScreen;
 
   By Ricardo Lima Caratti, Feb 2020
- */
+*/
 
 #include <SI4735.h>
 #include <Adafruit_GFX.h>
@@ -90,7 +90,7 @@ volatile int encoderCount = 0;
 
 typedef struct
 {
-  const char *bandName; 
+  const char *bandName;
   uint8_t bandType;     // Band type (FM, MW or SW)
   uint16_t minimumFreq; // Minimum frequency of the band
   uint16_t maximumFreq; // maximum frequency of the band
@@ -188,7 +188,7 @@ void setup(void)
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
-  
+
 
   uint16_t ID = tft.readID();
 
@@ -198,24 +198,24 @@ void setup(void)
   tft.setRotation(0); //PORTRAIT
   tft.fillScreen(BLACK);
 
- 
+
   // tft.setFont(&FreeSans12pt7b);
   showText(45, 30, 2, &FreeSans9pt7b, GREEN, "SI4735");
   showText(45, 90, 2, &FreeSans9pt7b, YELLOW, "Arduino");
-  showText(45, 160, 2, &FreeSans9pt7b, YELLOW, "Library"); 
+  showText(45, 160, 2, &FreeSans9pt7b, YELLOW, "Library");
   showText(20, 240, 2, &FreeSans9pt7b, WHITE, "By PU2CLR");
   delay(3000);
 
   tft.fillScreen(BLACK);
-  
+
   tft.setFont(&FreeSans9pt7b);
   bFrequencyDown.initButton(&tft, 60, 140, 90, 40, WHITE, CYAN, BLACK, (char *)"<<", 1);
-  bFrequencyUp.initButton(&tft, 180, 140, 90, 40, WHITE, CYAN, BLACK, (char *)">>", 1);  
+  bFrequencyUp.initButton(&tft, 180, 140, 90, 40, WHITE, CYAN, BLACK, (char *)">>", 1);
   bVolumeUp.initButton(&tft, 60, 190, 90, 40, WHITE, CYAN, BLACK, (char *)"V+", 1);
   bVolumeDown.initButton(&tft, 180, 190, 90, 40, WHITE, CYAN, BLACK, (char *)"V-", 1);
   bBfo.initButton(&tft, 60, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"BFO", 1);
   bFilter.initButton(&tft, 180, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"|-|", 1);
-  
+
   bFrequencyUp.drawButton(false);
   bFrequencyDown.drawButton(false);
   bVolumeUp.drawButton(false);
@@ -223,7 +223,7 @@ void setup(void)
   bBfo.drawButton(false);
   bFilter.drawButton(false);
 
-  
+
   // Atach Encoder pins interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
@@ -238,10 +238,10 @@ void setup(void)
 }
 
 
-/* 
- * Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt 
- * 
- */
+/*
+   Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
+
+*/
 void rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
@@ -260,15 +260,15 @@ void rotaryEncoder()
 
 
 /*
- * Shows a text on a given position; with a given size and font, and with a given color
- * 
- * @param int x column
- * @param int y line
- * @param int sz font size
- * @param const GFXfont *f font type
- * @param uint16_t color
- * @param char * msg message 
- */
+   Shows a text on a given position; with a given size and font, and with a given color
+
+   @param int x column
+   @param int y line
+   @param int sz font size
+   @param const GFXfont *f font type
+   @param uint16_t color
+   @param char * msg message
+*/
 void showText(int x, int y, int sz, const GFXfont *f, uint16_t color, const char *msg)
 {
   tft.setFont(f);
@@ -279,8 +279,8 @@ void showText(int x, int y, int sz, const GFXfont *f, uint16_t color, const char
 }
 
 /*
- * 
- */
+
+*/
 void showFrequency()
 {
   float freq;
@@ -298,7 +298,7 @@ void showFrequency()
   }
   else
   {
-    sprintf(buffer, "%5d KHz",currentFrequency);
+    sprintf(buffer, "%5d KHz", currentFrequency);
   }
   showText(10, 40, 2, &FreeSans12pt7b, YELLOW, buffer);
 
@@ -316,7 +316,7 @@ void showStatus()
 
   tft.fillRect(0, 50, 250, 50, BLACK);
   showText(80, 90, 2, &FreeSans12pt7b, RED, band[bandIdx].bandName );
-  
+
 }
 
 void showBFO()
@@ -448,6 +448,8 @@ void loop(void)
   bFrequencyDown.press(down && bFrequencyDown.contains(pixel_x, pixel_y));
   bVolumeUp.press(down && bVolumeUp.contains(pixel_x, pixel_y));
   bVolumeDown.press(down && bVolumeDown.contains(pixel_x, pixel_y));
+  bBfo.press(down && bBfo.contains(pixel_x, pixel_y));
+  bFilter.press(down && bFilter.contains(pixel_x, pixel_y));
 
   // Check if the encoder has moved.
   if (encoderCount != 0)
@@ -467,8 +469,8 @@ void loop(void)
       delay(20);
       currentFrequency = si4735.getFrequency();
       delay(20);
-      currentFrequency = si4735.getFrequency();      
-      
+      currentFrequency = si4735.getFrequency();
+
       showFrequency();
     }
     encoderCount = 0;
@@ -508,7 +510,26 @@ void loop(void)
   {
     bVolumeDown.drawButton(false);
     si4735.volumeDown();
-  }  
+  }
+
+
+  if (bBfo.justReleased())
+    bBfo.drawButton(false);
+
+  if (bBfo.justPressed())
+  {
+    bBfo.drawButton(false);
+    if (currentMode == LSB || currentMode == USB) {
+      bfoOn = !bfoOn;
+      if (bfoOn)
+        showBFO();
+    } else if (currentMode == FM) {
+      si4735.seekStationUp();
+      delay(30);
+      currentFrequency = si4735.getFrequency();
+    }
+    showStatus();
+  }
 
   delay(15);
 
