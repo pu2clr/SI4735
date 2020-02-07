@@ -628,7 +628,7 @@ void SI4735::disableFmDebug()
 uint16_t SI4735::getFrequency()
 {
     si47x_frequency freq;
-    getStatus(0, 1);
+    getStatus(1, 1);
     freq.raw.FREQL = currentStatus.resp.READFREQL;
     freq.raw.FREQH = currentStatus.resp.READFREQH;
 
