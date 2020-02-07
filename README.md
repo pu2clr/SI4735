@@ -1931,7 +1931,7 @@ void SI4735::setAutomaticGainControl(byte AGCDIS, byte AGCIDX)
  * @param uint8_t gain  Select a value between 12 and 192.  Defaul value 48dB.
  * 
  */
-void SI4735::setAvcAmMaxGain( uint8_t gain = 48)
+void SI4735::setAvcAmMaxGain( uint8_t gain)
 ```
 Example :
 ```cpp
