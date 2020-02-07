@@ -44,10 +44,15 @@
 #define MINPRESSURE 200
 #define MAXPRESSURE 1000
 
-#define RESET_PIN 22 // Mega2560 digital Pin used to RESET
+#define RESET_PIN 22            // Mega2560 digital Pin used to RESET
+#define ENCODER_PUSH_BUTTON 23  // Used to switch BFO and VFO or other function  
+
 // Enconder PINs (interrupt pins used on Mega2560)
 #define ENCODER_PIN_A 18
 #define ENCODER_PIN_B 19
+
+
+
 
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
@@ -188,7 +193,7 @@ void setup(void)
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
-
+  pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
 
   uint16_t ID = tft.readID();
 
@@ -235,6 +240,8 @@ void setup(void)
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(DEFAULT_VOLUME);
   tft.setFont(&FreeSans9pt7b); // default font
+
+  tft.drawRect(0, 0, 250, 50, WHITE);
 }
 
 
@@ -286,22 +293,19 @@ void showFrequency()
   float freq;
   int iFreq, dFreq;
 
-  tft.fillRect(0, 0, 250, 50, BLACK);
+  tft.fillRect(2, 2, 248, 48, BLACK);
 
   if (si4735.isCurrentTuneFM())
   {
     freq = currentFrequency / 100.0;
-    iFreq = (int)freq;
-    dFreq = (int)((freq - iFreq) * 10);
-    sprintf(buffer, "%3d.%1d MHz", iFreq, dFreq);
-
+    dtostrf(freq,3,1,buffer);
   }
   else
   {
-    sprintf(buffer, "%5d KHz", currentFrequency);
+    sprintf(buffer, "%5d - %1dKHz", currentFrequency, si4735.getTuneFrequencyFast());
   }
-  showText(10, 40, 2, &FreeSans12pt7b, YELLOW, buffer);
-
+  showText(10, 40, 2, &FreeSans9pt7b, YELLOW, buffer);
+  // showText(10, 40, 2, &FreeSans12pt7b, YELLOW, buffer);
   tft.setFont(&FreeSans9pt7b); // default font
 }
 
@@ -558,6 +562,16 @@ void loop(void)
     band[bandIdx].currentFreq = currentFrequency;
     band[bandIdx].currentStep = currentStep;
     useBand();
+  }
+
+  if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)  {
+       if (currentMode == LSB || currentMode == USB) {
+        bfoOn = !bfoOn;
+        if (bfoOn)
+          showBFO();
+        showStatus();
+      }  
+      delay(100);  
   }
   
   delay(15);

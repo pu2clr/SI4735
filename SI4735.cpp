@@ -306,6 +306,7 @@ void SI4735::setFrequency(uint16_t freq)
     // If current tune is not FM sent one more byte
     if (currentTune != FM_TUNE_FREQ)
         Wire.write(currentFrequencyParams.arg.ANTCAPL);
+
     Wire.endTransmission();
     delayMicroseconds(2000);
     waitToSend();                // Wait for the si473x is ready.
@@ -629,6 +630,7 @@ uint16_t SI4735::getFrequency()
 {
     si47x_frequency freq;
     getStatus(0, 1);
+
     freq.raw.FREQL = currentStatus.resp.READFREQL;
     freq.raw.FREQH = currentStatus.resp.READFREQH;
 
@@ -689,6 +691,7 @@ void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
         for (uint8_t i = 0; i < 7; i++)
             currentStatus.raw[i] = Wire.read();
     } while (currentStatus.resp.ERR); // If error, try it again
+    waitToSend();
 }
 
 /*
@@ -1545,7 +1548,6 @@ void SI4735::setSSB(uint8_t usblsb)
  */
 void SI4735::setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint8_t step, uint8_t usblsb)
 {
-
     currentMinimumFrequency = fromFreq;
     currentMaximumFrequency = toFreq;
     currentStep = step;
@@ -1554,11 +1556,8 @@ void SI4735::setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, ui
         initialFreq = fromFreq;
 
     setSSB(usblsb);
-
     currentWorkFrequency = initialFreq;
-
     setFrequency(currentWorkFrequency);
-
     delayMicroseconds(550);
 }
 

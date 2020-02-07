@@ -517,9 +517,10 @@ typedef union {
  * See also https://en.wikipedia.org/wiki/Radio_Data_System
  */
 typedef union {
-    struct {
+    struct
+    {
         uint8_t address : 2;            // Depends on Group Type and Version codes. If 0A or 0B it is the Text Segment Address.
-        uint8_t DI:1;                   // Decoder Controll bit
+        uint8_t DI : 1;                 // Decoder Controll bit
         uint8_t MS : 1;                 // Music/Speech
         uint8_t TA : 1;                 // Traffic Announcement
         uint8_t programType : 5;        // PTY (Program Type) code
@@ -538,7 +539,7 @@ typedef union {
     } group2;
     struct
     {
-        uint8_t content : 4;            // Depends on Group Type and Version codes. 
+        uint8_t content : 4;            // Depends on Group Type and Version codes.
         uint8_t textABFlag : 1;         // Do something if it chanhes from binary "0" to binary "1" or vice-versa
         uint8_t programType : 5;        // PTY (Program Type) code
         uint8_t trafficProgramCode : 1; // (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
@@ -813,7 +814,9 @@ public:
 
     void setFrequencyStep(uint8_t step);
 
+    inline uint8_t getTuneFrequencyFast() { return currentFrequencyParams.arg.FAST; };                  // returns the FAST tuning status
     inline void setTuneFrequencyFast(uint8_t FAST) { currentFrequencyParams.arg.FAST = FAST; };         // FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate
+    inline uint8_t getTuneFrequencyFreeze() { return currentFrequencyParams.arg.FREEZE; };              // returns the FREEZE status
     inline void setTuneFrequencyFreeze(uint8_t FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; // Onlye FM. Freeze Metrics During Alternate Frequency Jump.
     void setTuneFrequencyAntennaCapacitor(uint16_t capacitor);
 
@@ -860,8 +863,8 @@ public:
     uint8_t getRdsTextSegmentAddress(void);
 
     char *getRdsText(void);
-    char *getRdsText0A(void); // Gets the Station name 
-    char *getRdsText2A(void); // Gets the Radio Text 
+    char *getRdsText0A(void); // Gets the Station name
+    char *getRdsText2A(void); // Gets the Radio Text
     char *getRdsText2B(void);
 
     char *getRdsTime(void);
