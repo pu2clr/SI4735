@@ -314,12 +314,12 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 
 ### Tips to build 
 
-* Try to follow what the Silicon Labs recommend; 
+* Try to follow what the Silicon Labs recommends; 
 * Start building the minimum circuit and test it;
 * Use the minimum sketch to test the minimum circuit. The first three examples of this project (see  examples folder) can be used to test the minimum circuit; 
 * Try not improvising the I²C bus connection. Start using a 3.3V MCU (Arduino Pro Mini 8MHz or DUE,  ESP32 or other 3.3V device) to connect with SI4735;
 * Some devices provide internal pull-up resistors that in some cases can be enabled or disabled. Also, the capacitance of the I²C bus is another variable that have be considered to select the right resistor values. However, that capacitance is not easy to be measured. For thise reasons, it can be a liitle dificult calculate the right resitor values at first. Tha said, start with a high pullup resistor to I²C bus and then reduce it until the best value. For example: start with 10K and try to reduce the value to 4,7K, 3,3K, 2.2L etc. Select the lowest resistor you can.
-* I²C bus devices are available in different speeds. If you are using an I²C display device, check if its speed is compatible with the Si47XX;
+* I²C bus devices are available in different speeds. If you are using an I²C display device, check if its speed is compatible with the Si47XX and also with the current speed used by the master MCU;
 * Using different voltage levels between I²C devices can be unsafe and can destroy parts connected on I²C bus, specially the Si47XX;
 * It is important to wire all your I²C devices on the same common ground. 
 
