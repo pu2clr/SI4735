@@ -764,6 +764,18 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
 }
 
 /*
+ * Sets the maximum gain for automatic volume control.
+ * Select a value between 12 and 192. 
+ * If no parameter is sent, it will be consider 48dB.
+  */
+void SI4735::setAvcAmMaxGain( uint8_t gain = 0) {
+    uint16_t aux;
+    aux = ( gain < 193 )? (gain * 340) : (48 * 340);
+    sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, aux);
+}
+
+
+/*
  * Queries the status of the Received Signal Quality (RSQ) of the current channel
  * Command FM_RSQ_STATUS
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
