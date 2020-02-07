@@ -435,7 +435,7 @@ void useBand()
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
       si4735.setAvcAmMaxGain();   // Default is 48dB - same si4735.setAvcAmMaxGain();
-      // si4735.setAmSoftMuteMaxAttenuation(n); // By default is is 0. Use it with a value greater than 0 if you want to change the Soft Mute behaviour.
+      // si4735.setAmSoftMuteMaxAttenuation(0); // By default is is 0. Use it with a value greater than 0 if you want to change the Soft Mute behaviour.
       bfoOn = false;
     }
 
