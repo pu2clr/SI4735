@@ -159,7 +159,7 @@ const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
 const int TS_LEFT = 294, TS_RT = 795, TS_TOP = 189, TS_BOT = 778;
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
-Adafruit_GFX_Button bFrequencyUp, bFrequencyDown, bVolumeUp, bVolumeDown, bSeekUp, bMode;
+Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bMode;
 
 int pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -214,18 +214,20 @@ void setup(void)
   tft.fillScreen(BLACK);
 
   tft.setFont(&FreeSans9pt7b);
-  bFrequencyDown.initButton(&tft, 60, 140, 90, 40, WHITE, CYAN, BLACK, (char *)"<<", 1);
-  bFrequencyUp.initButton(&tft, 180, 140, 90, 40, WHITE, CYAN, BLACK, (char *)">>", 1);
+  bPreviousBand.initButton(&tft, 60, 140, 90, 40, WHITE, CYAN, BLACK, (char *)"<<", 1);
+  bNextBand.initButton(&tft, 180, 140, 90, 40, WHITE, CYAN, BLACK, (char *)">>", 1);
   bVolumeUp.initButton(&tft, 60, 190, 90, 40, WHITE, CYAN, BLACK, (char *)"V+", 1);
   bVolumeDown.initButton(&tft, 180, 190, 90, 40, WHITE, CYAN, BLACK, (char *)"V-", 1);
-  bSeekUp.initButton(&tft, 60, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"Up", 1);
-  bMode.initButton(&tft, 180, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"Modo", 1);
+  bSeekUp.initButton(&tft, 60, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"S.Up", 1);
+  bSeekDown.initButton(&tft, 180, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"S.Down", 1);
+  bMode.initButton(&tft, 60, 290, 90, 40, WHITE, CYAN, BLACK, (char *)"Modo", 1);
 
-  bFrequencyUp.drawButton(false);
-  bFrequencyDown.drawButton(false);
+  bNextBand.drawButton(false);
+  bPreviousBand.drawButton(false);
   bVolumeUp.drawButton(false);
   bVolumeDown.drawButton(false);
   bSeekUp.drawButton(false);
+  bSeekDown.drawButton(false);
   bMode.drawButton(false);
 
 
@@ -241,7 +243,7 @@ void setup(void)
   si4735.setVolume(DEFAULT_VOLUME);
   tft.setFont(&FreeSans9pt7b); // default font
 
-  tft.drawRect(0, 0, 250, 50, WHITE);
+  tft.drawRect(0, 0, 240, 50, WHITE);
 }
 
 
@@ -293,19 +295,20 @@ void showFrequency()
   float freq;
   int iFreq, dFreq;
 
-  tft.fillRect(2, 2, 248, 48, BLACK);
+  tft.fillRect(2, 2, 236, 36, BLACK);
 
   if (si4735.isCurrentTuneFM())
   {
     freq = currentFrequency / 100.0;
     dtostrf(freq,3,1,buffer);
+    strcat(buffer," MHz");
   }
   else
   {
-    sprintf(buffer, "%5d - %1dKHz", currentFrequency, si4735.getTuneFrequencyFast());
+    sprintf(buffer, "%5d KHz", currentFrequency);
   }
-  showText(10, 40, 2, &FreeSans9pt7b, YELLOW, buffer);
-  // showText(10, 40, 2, &FreeSans12pt7b, YELLOW, buffer);
+  showText(30, 35, 2, &FreeSans9pt7b, YELLOW, buffer);
+  // showText(10, 35, 2, &FreeSans12pt7b, YELLOW, buffer);
   tft.setFont(&FreeSans9pt7b); // default font
 }
 
@@ -318,8 +321,8 @@ void showStatus()
   si4735.getFrequency();
   showFrequency();
 
-  tft.fillRect(0, 50, 250, 50, BLACK);
-  showText(80, 90, 2, &FreeSans12pt7b, RED, band[bandIdx].bandName );
+  tft.fillRect(0, 50, 240, 50, BLACK);
+  showText(80, 90, 2, &FreeSans9pt7b, RED, band[bandIdx].bandName );
 
 }
 
@@ -449,11 +452,12 @@ void useBand()
 void loop(void)
 {
   bool down = Touch_getXY();
-  bFrequencyUp.press(down && bFrequencyUp.contains(pixel_x, pixel_y));
-  bFrequencyDown.press(down && bFrequencyDown.contains(pixel_x, pixel_y));
+  bNextBand.press(down && bNextBand.contains(pixel_x, pixel_y));
+  bPreviousBand.press(down && bPreviousBand.contains(pixel_x, pixel_y));
   bVolumeUp.press(down && bVolumeUp.contains(pixel_x, pixel_y));
   bVolumeDown.press(down && bVolumeDown.contains(pixel_x, pixel_y));
   bSeekUp.press(down && bSeekUp.contains(pixel_x, pixel_y));
+  bSeekDown.press(down && bSeekDown.contains(pixel_x, pixel_y));
   bMode.press(down && bMode.contains(pixel_x, pixel_y));
 
   // Check if the encoder has moved.
@@ -479,26 +483,26 @@ void loop(void)
     encoderCount = 0;
   }
 
-  if (bFrequencyUp.justReleased())
-    bFrequencyUp.drawButton(false);
+  // if (bNextBand.justReleased())
+  //   bNextBand.drawButton(false);
 
-  if (bFrequencyDown.justReleased())
-    bFrequencyDown.drawButton(false);
+  // if (bPreviousBand.justReleased())
+  //   bPreviousBand.drawButton(false);
 
-  if (bFrequencyUp.justPressed())
+  if (bNextBand.justPressed())
   {
-    bFrequencyUp.drawButton(false);
+    bNextBand.drawButton(false);
     bandUp();
   }
 
-  if (bFrequencyDown.justPressed())
+  if (bPreviousBand.justPressed())
   {
-    bFrequencyDown.drawButton(false);
+    bPreviousBand.drawButton(false);
     bandDown();
   }
 
-  if (bVolumeUp.justReleased())
-    bVolumeUp.drawButton(false);
+  // if (bVolumeUp.justReleased())
+  //   bVolumeUp.drawButton(false);
 
   if (bVolumeUp.justPressed())
   {
@@ -506,8 +510,8 @@ void loop(void)
     si4735.volumeUp();
   }
 
-  if (bVolumeDown.justReleased())
-    bVolumeDown.drawButton(false);
+  // if (bVolumeDown.justReleased())
+  //   bVolumeDown.drawButton(false);
 
   if (bVolumeDown.justPressed())
   {
@@ -516,23 +520,35 @@ void loop(void)
   }
 
 
-  if (bSeekUp.justReleased())
-    bSeekUp.drawButton(false);
+  // if (bSeekUp.justReleased())
+  //   bSeekUp.drawButton(false);
 
   if (bSeekUp.justPressed())
   {
     bSeekUp.drawButton(false);
      if (currentMode == FM) {
       si4735.seekStationUp();
-      delay(30);
+      delay(15);
       currentFrequency = si4735.getFrequency();
     }
     showStatus();
   }
 
 
-  if (bMode.justReleased())
-    bMode.drawButton(false);
+  if (bSeekDown.justPressed())
+  {
+    bSeekUp.drawButton(false);
+     if (currentMode == FM) {
+      si4735.seekStationDown();
+      delay(15);
+      currentFrequency = si4735.getFrequency();
+    }
+    showStatus();
+  }
+
+
+  // if (bMode.justReleased())
+  //   bMode.drawButton(false);
 
   if (bMode.justPressed())
   {
