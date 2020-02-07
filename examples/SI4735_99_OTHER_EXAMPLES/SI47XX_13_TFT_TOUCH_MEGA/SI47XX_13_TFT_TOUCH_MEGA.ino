@@ -464,6 +464,7 @@ void loop(void)
     }
     else
     {
+      // si4735.setTuneFrequencyFast(0); // Test
       if (encoderCount == 1)
         si4735.frequencyUp();
       else
@@ -472,9 +473,6 @@ void loop(void)
       // Show the current frequency only if it has changed
       delay(20);
       currentFrequency = si4735.getFrequency();
-      delay(20);
-      currentFrequency = si4735.getFrequency();
-
       showFrequency();
     }
     encoderCount = 0;
