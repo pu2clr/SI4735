@@ -154,7 +154,7 @@ const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
 const int TS_LEFT = 294, TS_RT = 795, TS_TOP = 189, TS_BOT = 778;
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
-Adafruit_GFX_Button bFrequencyUp, bFrequencyDown, bVolumeUp, bVolumeDown, bBfo, bFilter;
+Adafruit_GFX_Button bFrequencyUp, bFrequencyDown, bVolumeUp, bVolumeDown, bBfo, bMode;
 
 int pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -214,14 +214,14 @@ void setup(void)
   bVolumeUp.initButton(&tft, 60, 190, 90, 40, WHITE, CYAN, BLACK, (char *)"V+", 1);
   bVolumeDown.initButton(&tft, 180, 190, 90, 40, WHITE, CYAN, BLACK, (char *)"V-", 1);
   bBfo.initButton(&tft, 60, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"BFO", 1);
-  bFilter.initButton(&tft, 180, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"|-|", 1);
+  bMode.initButton(&tft, 180, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"Modo", 1);
 
   bFrequencyUp.drawButton(false);
   bFrequencyDown.drawButton(false);
   bVolumeUp.drawButton(false);
   bVolumeDown.drawButton(false);
   bBfo.drawButton(false);
-  bFilter.drawButton(false);
+  bMode.drawButton(false);
 
 
   // Atach Encoder pins interrupt
@@ -449,7 +449,7 @@ void loop(void)
   bVolumeUp.press(down && bVolumeUp.contains(pixel_x, pixel_y));
   bVolumeDown.press(down && bVolumeDown.contains(pixel_x, pixel_y));
   bBfo.press(down && bBfo.contains(pixel_x, pixel_y));
-  bFilter.press(down && bFilter.contains(pixel_x, pixel_y));
+  bMode.press(down && bMode.contains(pixel_x, pixel_y));
 
   // Check if the encoder has moved.
   if (encoderCount != 0)
@@ -531,6 +531,34 @@ void loop(void)
     showStatus();
   }
 
-  delay(15);
 
+  if (bMode.justReleased())
+    bMode.drawButton(false);
+
+  if (bMode.justPressed())
+  {
+    bMode.drawButton(false);
+    if (currentMode == AM)
+    {
+      // If you were in AM mode, it is necessary to load SSB patch (avery time)
+      loadSSB();
+      currentMode = LSB;
+    }
+    else if (currentMode == LSB)
+    {
+      currentMode = USB;
+    }
+    else if (currentMode == USB)
+    {
+      currentMode = AM;
+      ssbLoaded = false;
+      bfoOn = false;
+    }
+    // Nothing to do if you are in FM mode
+    band[bandIdx].currentFreq = currentFrequency;
+    band[bandIdx].currentStep = currentStep;
+    useBand();
+  }
+  
+  delay(15);
 }
