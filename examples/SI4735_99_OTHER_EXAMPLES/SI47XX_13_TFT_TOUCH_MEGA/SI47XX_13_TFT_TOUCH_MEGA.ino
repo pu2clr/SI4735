@@ -154,8 +154,7 @@ const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
 const int TS_LEFT = 294, TS_RT = 795, TS_TOP = 189, TS_BOT = 778;
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
-
-Adafruit_GFX_Button bFrequencyUp, bFrequencyDown, bSwitchBand;
+Adafruit_GFX_Button bFrequencyUp, bFrequencyDown, bVolumeUp, bVolumeDown, bBfo, bFilter;
 
 int pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -210,15 +209,21 @@ void setup(void)
   tft.fillScreen(BLACK);
   
   tft.setFont(&FreeSans9pt7b);
-  bFrequencyUp.initButton(&tft, 60, 200, 115, 40, WHITE, CYAN, BLACK, (char *)"B+", 1);
-  bFrequencyDown.initButton(&tft, 180, 200, 115, 40, WHITE, CYAN, BLACK, (char *)"B-", 1);
-  bSwitchBand.initButton(&tft, 120, 250, 200, 40, WHITE, CYAN, BLACK, (char *)"X", 1);
+  bFrequencyDown.initButton(&tft, 60, 140, 90, 40, WHITE, CYAN, BLACK, (char *)"<<", 1);
+  bFrequencyUp.initButton(&tft, 180, 140, 90, 40, WHITE, CYAN, BLACK, (char *)">>", 1);  
+  bVolumeUp.initButton(&tft, 60, 190, 90, 40, WHITE, CYAN, BLACK, (char *)"V+", 1);
+  bVolumeDown.initButton(&tft, 180, 190, 90, 40, WHITE, CYAN, BLACK, (char *)"V-", 1);
+  bBfo.initButton(&tft, 60, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"BFO", 1);
+  bFilter.initButton(&tft, 180, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"|-|", 1);
+  
   bFrequencyUp.drawButton(false);
   bFrequencyDown.drawButton(false);
-  bSwitchBand.drawButton(false);
+  bVolumeUp.drawButton(false);
+  bVolumeDown.drawButton(false);
+  bBfo.drawButton(false);
+  bFilter.drawButton(false);
 
-
-
+  
   // Atach Encoder pins interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
@@ -305,10 +310,13 @@ void showStatus()
   si4735.getStatus();
   si4735.getCurrentReceivedSignalQuality();
   // SRN
-  tft.fillRect(20, 280, 160, 80, BLUE);
 
   si4735.getFrequency();
   showFrequency();
+
+  tft.fillRect(0, 50, 250, 50, BLACK);
+  showText(80, 90, 2, &FreeSans12pt7b, RED, band[bandIdx].bandName );
+  
 }
 
 void showBFO()
@@ -438,8 +446,8 @@ void loop(void)
   bool down = Touch_getXY();
   bFrequencyUp.press(down && bFrequencyUp.contains(pixel_x, pixel_y));
   bFrequencyDown.press(down && bFrequencyDown.contains(pixel_x, pixel_y));
-  bSwitchBand.press(down && bSwitchBand.contains(pixel_x, pixel_y));
-
+  bVolumeUp.press(down && bVolumeUp.contains(pixel_x, pixel_y));
+  bVolumeDown.press(down && bVolumeDown.contains(pixel_x, pixel_y));
 
   // Check if the encoder has moved.
   if (encoderCount != 0)
@@ -484,14 +492,23 @@ void loop(void)
     bandDown();
   }
 
-  if (bSwitchBand.justReleased())
-    bSwitchBand.drawButton(false);
+  if (bVolumeUp.justReleased())
+    bVolumeUp.drawButton(false);
 
-  if (bSwitchBand.justPressed())
+  if (bVolumeUp.justPressed())
   {
-    bSwitchBand.drawButton(false);
-
+    bVolumeUp.drawButton(false);
+    si4735.volumeUp();
   }
+
+  if (bVolumeDown.justReleased())
+    bVolumeDown.drawButton(false);
+
+  if (bVolumeDown.justPressed())
+  {
+    bVolumeDown.drawButton(false);
+    si4735.volumeDown();
+  }  
 
   delay(15);
 
