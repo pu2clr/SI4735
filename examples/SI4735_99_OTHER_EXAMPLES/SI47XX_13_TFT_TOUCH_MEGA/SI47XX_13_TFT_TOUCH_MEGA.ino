@@ -159,7 +159,7 @@ const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
 const int TS_LEFT = 294, TS_RT = 795, TS_TOP = 189, TS_BOT = 778;
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
-Adafruit_GFX_Button bFrequencyUp, bFrequencyDown, bVolumeUp, bVolumeDown, bBfo, bMode;
+Adafruit_GFX_Button bFrequencyUp, bFrequencyDown, bVolumeUp, bVolumeDown, bSeekUp, bMode;
 
 int pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -218,14 +218,14 @@ void setup(void)
   bFrequencyUp.initButton(&tft, 180, 140, 90, 40, WHITE, CYAN, BLACK, (char *)">>", 1);
   bVolumeUp.initButton(&tft, 60, 190, 90, 40, WHITE, CYAN, BLACK, (char *)"V+", 1);
   bVolumeDown.initButton(&tft, 180, 190, 90, 40, WHITE, CYAN, BLACK, (char *)"V-", 1);
-  bBfo.initButton(&tft, 60, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"BFO", 1);
+  bSeekUp.initButton(&tft, 60, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"Up", 1);
   bMode.initButton(&tft, 180, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"Modo", 1);
 
   bFrequencyUp.drawButton(false);
   bFrequencyDown.drawButton(false);
   bVolumeUp.drawButton(false);
   bVolumeDown.drawButton(false);
-  bBfo.drawButton(false);
+  bSeekUp.drawButton(false);
   bMode.drawButton(false);
 
 
@@ -452,7 +452,7 @@ void loop(void)
   bFrequencyDown.press(down && bFrequencyDown.contains(pixel_x, pixel_y));
   bVolumeUp.press(down && bVolumeUp.contains(pixel_x, pixel_y));
   bVolumeDown.press(down && bVolumeDown.contains(pixel_x, pixel_y));
-  bBfo.press(down && bBfo.contains(pixel_x, pixel_y));
+  bSeekUp.press(down && bSeekUp.contains(pixel_x, pixel_y));
   bMode.press(down && bMode.contains(pixel_x, pixel_y));
 
   // Check if the encoder has moved.
@@ -517,17 +517,13 @@ void loop(void)
   }
 
 
-  if (bBfo.justReleased())
-    bBfo.drawButton(false);
+  if (bSeekUp.justReleased())
+    bSeekUp.drawButton(false);
 
-  if (bBfo.justPressed())
+  if (bSeekUp.justPressed())
   {
-    bBfo.drawButton(false);
-    if (currentMode == LSB || currentMode == USB) {
-      bfoOn = !bfoOn;
-      if (bfoOn)
-        showBFO();
-    } else if (currentMode == FM) {
+    bSeekUp.drawButton(false);
+     if (currentMode == FM) {
       si4735.seekStationUp();
       delay(30);
       currentFrequency = si4735.getFrequency();
