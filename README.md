@@ -161,6 +161,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 | RST  | Also RSTb—Reset pin, active low |
 | RCLK | External reference clock |
 | SSB | [Single Side Band](https://en.wikipedia.org/wiki/Single-sideband_modulation) | 
+| Attack | attack-time delay -  the time needed for a receiver to respond to an incoming signal |
 | SDIO | Serial data in/data out pin|
 | SCLK | Serial clock pin |
 | I²C | [I²C - Inter-Integrated Circuit](https://pt.wikipedia.org/wiki/I²C)|

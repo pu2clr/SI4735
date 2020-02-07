@@ -431,7 +431,7 @@ void useBand()
       si4735.reset();
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
-      si4735.setAvcAmMaxGain(48);   // Default is 48dB - same si4735.setAvcAmMaxGain();
+      si4735.setAvcAmMaxGain( (uint8_t) 48);   // Default is 48dB - same si4735.setAvcAmMaxGain();
       bfoOn = false;
     }
 
