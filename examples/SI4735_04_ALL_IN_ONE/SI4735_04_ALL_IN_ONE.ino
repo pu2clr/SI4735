@@ -220,6 +220,7 @@ void setup()
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
+  delay(200);
   currentFrequency = previousFrequency = si4735.getFrequency();
 
   si4735.setVolume(volume);
@@ -706,5 +707,6 @@ void loop()
       showBFO();
     }
   }
+  
   delay(50);
 }
