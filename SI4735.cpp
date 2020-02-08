@@ -403,13 +403,9 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
 
     setAM();
 
-
     currentWorkFrequency = initialFreq;
 
     setFrequency(currentWorkFrequency);
-
-
-
 }
 
 /*
