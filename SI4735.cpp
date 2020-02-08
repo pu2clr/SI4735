@@ -389,7 +389,7 @@ void SI4735::setFM()
  * @param fromFreq minimum frequency for the band
  * @param toFreq maximum frequency for the band
  * @param initialFreq initial frequency 
- * @param step step used to go to the next channel   
+ * @param step step used to go to the next channel  
  */
 void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint8_t step)
 {
@@ -403,9 +403,13 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
 
     setAM();
 
+
     currentWorkFrequency = initialFreq;
 
     setFrequency(currentWorkFrequency);
+
+
+
 }
 
 /*

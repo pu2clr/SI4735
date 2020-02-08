@@ -207,8 +207,8 @@ void setup()
   display.setCursor(1, 2);
   display.print("All in One Radio");
   delay(500);
-  display.setCursor(4, 3);
-  display.print("By PU2CLR");
+  display.setCursor(0, 3);
+  display.print("V1.1.4 - By PU2CLR");
   delay(2000);
   // end Splash
 
@@ -479,7 +479,9 @@ void loadSSB()
 }
 
 /*
-   Switch the radio to current band
+   Switch the radio to current band.
+   The bandIdx variable points to the current band. 
+   This function change to the band referenced by bandIdx (see table band).
 */
 void useBand()
 {
@@ -522,9 +524,7 @@ void useBand()
   showStatus();
 }
 
-/*
-   Main
-*/
+
 void loop()
 {
   // Check if the encoder has moved.
@@ -706,6 +706,5 @@ void loop()
       showBFO();
     }
   }
-
   delay(50);
 }
