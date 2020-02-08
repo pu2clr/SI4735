@@ -15,6 +15,14 @@
   together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C).
   Look for LiquidCrystal I2C on Manager Libraries.
 
+
+  ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:
+  This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal
+  pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. 
+  If this occurs in your project, change the circuit to use external pull-up on pin 13.     
+
+
+  ABOUT SSB PATCH:  
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
 
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.

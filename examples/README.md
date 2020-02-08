@@ -202,6 +202,10 @@ This sketch has been successfully tested on:
 ![Schematic All In One](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_i2c.png)
 
 
+#### __ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:__
+This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, change the circuit to use external pull-up on pin 13. 
+
+
 ### Protoboard
 
 ![Protoboard All In One](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_00.png)
