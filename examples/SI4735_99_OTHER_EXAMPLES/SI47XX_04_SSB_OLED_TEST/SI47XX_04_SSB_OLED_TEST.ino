@@ -2,11 +2,11 @@
   SS4735 SSB Support example with OLED-I2C and Encoder.
 
   This sketch has been successfully tested on:
-    1) Pro Mini 3.3V; 
-    2) UNO (by using a voltage converter); 
-    3) Arduino Mega (by using a voltage converter); and 
+    1) Pro Mini 3.3V;
+    2) UNO (by using a voltage converter);
+    3) Arduino Mega (by using a voltage converter); and
 
-  This sketch DOES NOT COMPILE on Arduino DUE and ESP32 due to OLED library used here. 
+  This sketch DOES NOT COMPILE on Arduino DUE and ESP32 due to OLED library used here.
 
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
 
@@ -114,16 +114,17 @@ typedef struct {
 } Band;
 
 Band band[] = {
-    {1800, 2000, 1900, 1, LSB},
-    {3500, 4000, 3700, 1, LSB},
-    {7000, 7500, 7100, 1, LSB},
-    {10000, 10500, 10050, 1, USB},
-    {14000, 14300, 14200, 1, USB},
-    {18000, 18300, 18100, 1, USB},
-    {21000, 21400, 21200, 1, USB},
-    {24890, 25000, 24940, 1, USB},
-    {27000, 27500, 27220, 1, USB},
-    {28000, 28500, 28400, 1, USB}};
+  {1800, 2000, 1900, 1, LSB},
+  {3500, 4000, 3700, 1, LSB},
+  {7000, 7500, 7100, 1, LSB},
+  {10000, 10500, 10050, 1, USB},
+  {14000, 14300, 14200, 1, USB},
+  {18000, 18300, 18100, 1, USB},
+  {21000, 21400, 21200, 1, USB},
+  {24890, 25000, 24940, 1, USB},
+  {27000, 27500, 27220, 1, USB},
+  {28000, 28500, 28400, 1, USB}
+};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int  currentFreqIdx = 2;
@@ -189,7 +190,7 @@ void setup()
   delay(250);
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
-  delay(100);
+  delay(300);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(40);
   showBFO();
@@ -219,14 +220,14 @@ void showFrequency() {
 
   display.set2X();
   display.setCursor(32, 1);
-  display.print("        "); 
+  display.print("        ");
 
   if ( bfoOn )
-      display.set1X();
-      
+    display.set1X();
+
   display.setCursor(32, 1);
   display.print(currentFrequency);
-  
+
   display.set1X();
 }
 
@@ -298,9 +299,9 @@ void showVolume()
 void showBFO() {
   char bfo[8];
   if ( currentBFO > 0 )
-    sprintf(bfo,"+%d", currentBFO);
+    sprintf(bfo, "+%d", currentBFO);
   else
-    sprintf(bfo,"%d", currentBFO);
+    sprintf(bfo, "%d", currentBFO);
 
   display.setCursor(0, 5);
   display.print("          ");
@@ -347,9 +348,9 @@ void bandDown() {
 }
 
 /*
- * This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
- * SSB mode.
- */
+   This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
+   SSB mode.
+*/
 void loadSSB()
 {
   delay(100);
@@ -386,7 +387,7 @@ void loop()
         si4735.frequencyUp();
       else
         si4735.frequencyDown();
-
+      delay(15);
       currentFrequency = si4735.getFrequency();
     }
     encoderCount = 0;
@@ -408,10 +409,16 @@ void loop()
         si4735.setSBBSidebandCutoffFilter(1);
       showStatus();
     }
-    else if (digitalRead(BAND_BUTTON_UP) == LOW)
+    else if (digitalRead(BAND_BUTTON_UP) == LOW) {
       bandUp();
-    else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
+      delay(15);
+      currentFrequency = si4735.getFrequency();
+    }
+    else if (digitalRead(BAND_BUTTON_DOWN) == LOW) {
       bandDown();
+      delay(15);
+      currentFrequency = si4735.getFrequency();
+    }
     else if (digitalRead(VOL_UP) == LOW)
       si4735.volumeUp();
     else if (digitalRead(VOL_DOWN) == LOW)
@@ -444,28 +451,25 @@ void loop()
         band[currentFreqIdx].currentStep = currentStep;
         showStatus();
       }
-    }  
+    }
     delay(50);
     elapsedButton = millis();
   }
 
-  // Show the current frequency only if it has changed
-  if ( ( millis() - elapsedFrequency) > (MIN_ELAPSED_TIME * 2) ) {
-    currentFrequency = si4735.getFrequency();
-    if (currentFrequency != previousFrequency)
-    {
-      previousFrequency = currentFrequency;
-      showFrequency();
-    }
-    elapsedFrequency = millis();
+
+  if (currentFrequency != previousFrequency)
+  {
+    previousFrequency = currentFrequency;
+    showFrequency();
   }
 
   // Show RSSI status only if this condition has changed
-  if ( ( millis() - elapsedRSSI) > (MIN_ELAPSED_TIME * 3) ) {
+  if ( ( millis() - elapsedRSSI) > (MIN_ELAPSED_TIME * 4) ) {
     si4735.getCurrentReceivedSignalQuality();
-    if (rssi != si4735.getCurrentRSSI())
+    int aux = si4735.getCurrentRSSI();
+    if (rssi != aux )
     {
-      rssi = si4735.getCurrentRSSI();
+      rssi = aux;
       showRSSI();
     }
     elapsedRSSI = millis();

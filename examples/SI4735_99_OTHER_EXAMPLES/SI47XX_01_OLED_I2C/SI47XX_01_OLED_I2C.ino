@@ -2,7 +2,7 @@
   SI4735 Arduino Library example with OLED  I2C.
   It is AM and FM radio.
   Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
- 
+
   This sketch has been successfully tested on Pro Mini 3.3V.
 
   Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png
@@ -40,6 +40,7 @@
 #define MIN_ELAPSED_TIME 100
 
 long elapsedButton = millis();
+long elapsedRSSI =  millis();
 
 
 // Encoder control variables
@@ -81,10 +82,10 @@ void setup()
 
   // Splash - Change it for your introduction text.
   display.set1X();
-  display.setCursor(0,0);
+  display.setCursor(0, 0);
   display.print("Si4735 Arduino Library");
   delay(500);
-  display.setCursor(30,3);
+  display.setCursor(30, 3);
   display.print("By PU2CLR");
   delay(3000);
   display.clear();
@@ -98,6 +99,7 @@ void setup()
 
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
   si4735.setFM(8400, 10800,  lastFmFrequency, 10);
+  delay(200);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(35);
 
@@ -132,17 +134,17 @@ void showFrequency() {
   }
   else
   {
-     freqDisplay = String(currentFrequency);
-  }  
+    freqDisplay = String(currentFrequency);
+  }
 
 
   display.set2X();
   display.setCursor(26, 1);
-  display.print("        ");  
+  display.print("        ");
   display.setCursor(26, 1);
   display.print(freqDisplay);
   display.set1X();
-  
+
 }
 
 
@@ -151,20 +153,20 @@ void showStatus()
 
   display.set1X();
   display.setCursor(0, 0);
-  display.print( (si4735.isCurrentTuneFM())? "FM" : "AM" );
+  display.print( (si4735.isCurrentTuneFM()) ? "FM" : "AM" );
 
-  display.setCursor(98,0);
-  display.print((si4735.isCurrentTuneFM())? "MHz" : "KHz");
+  display.setCursor(98, 0);
+  display.print((si4735.isCurrentTuneFM()) ? "MHz" : "KHz");
 
-  
+
   // Show AGC Information
   si4735.getAutomaticGainControl();
   display.set1X();
-  display.setCursor(5,4);
-  display.print((si4735.isAgcEnabled())?"AGC ON" : "AGC OFF" );
-  display.setCursor(5,5);
+  display.setCursor(5, 4);
+  display.print((si4735.isAgcEnabled()) ? "AGC ON" : "AGC OFF" );
+  display.setCursor(5, 5);
   display.print("G.:");
-  display.setCursor( 27,5);
+  display.setCursor( 27, 5);
   display.print(si4735.getAgcGainIndex());
 
   showFrequency();
@@ -186,13 +188,13 @@ void showRSSI() {
   display.print("S:");
   display.print(rssi);
   display.print(" dBuV");
-  
+
   display.setCursor(70, 7);
   for (uint8_t i = 0; i < 10; i++)  {
-    if ( i < blk ) 
+    if ( i < blk )
       display.print("#");
     else
-       display.print(" ");    
+      display.print(" ");
   }
 
 }
@@ -215,7 +217,7 @@ void showStereo() {
 void showVolume() {
   display.set1X();
   display.setCursor(70, 5);
-  display.print("          ");  
+  display.print("          ");
   display.setCursor(70, 5);
   display.print("V:");
   display.print(volume);
@@ -236,6 +238,8 @@ void loop()
     else
       si4735.frequencyDown();
 
+    // Show the current frequency only if it has changed
+    currentFrequency = si4735.getFrequency();
     encoderCount = 0;
   }
 
@@ -248,20 +252,28 @@ void loop()
       if  (si4735.isCurrentTuneFM() ) {
         lastFmFrequency = currentFrequency;
         si4735.setAM(570, 1710,  lastAmFrequency, 10);
+        delay(15);
+        currentFrequency = si4735.getFrequency();
       }
-      else {       
+      else {
         lastAmFrequency = currentFrequency;
         si4735.setFM(8600, 10800,  lastFmFrequency, 10);
+        delay(15);
+        currentFrequency = si4735.getFrequency();
       }
       // Uncoment the line below if you want to disable AGC
-      // si4735.setAutomaticGainControl(1,0);   
+      // si4735.setAutomaticGainControl(1,0);
       display.clear();
-      showStatus();   
+      showStatus();
     }
-    else if (digitalRead(SEEK_BUTTON_UP) == LOW )
+    else if (digitalRead(SEEK_BUTTON_UP) == LOW ) {
       si4735.seekStationUp();
-    else if (digitalRead(SEEK_BUTTON_DOWN) == LOW )
+      currentFrequency = si4735.getFrequency();
+    }
+    else if (digitalRead(SEEK_BUTTON_DOWN) == LOW ) {
       si4735.seekStationDown();
+      currentFrequency = si4735.getFrequency();
+    }
     else if (digitalRead(VOL_UP) == LOW )
       si4735.volumeUp();
     else if (digitalRead(VOL_DOWN) == LOW )
@@ -271,27 +283,30 @@ void loop()
     elapsedButton = millis();
   }
 
-  // Show the current frequency only if it has changed
-  currentFrequency = si4735.getFrequency();
   if ( currentFrequency != previousFrequency ) {
     previousFrequency = currentFrequency;
     showFrequency();
   }
 
-  // Show RSSI status only if this condition has changed
-  si4735.getCurrentReceivedSignalQuality();
-  if ( rssi != si4735.getCurrentRSSI() ) {
-    rssi = si4735.getCurrentRSSI();
-    showRSSI();
-  }
 
-  // Show stereo status only if this condition has changed
-  if (si4735.isCurrentTuneFM() ) {
-    // Show stereo status only if this condition has changed
-    if ( stereo != si4735.getCurrentPilot() ) {
-      stereo = si4735.getCurrentPilot();
-      showStereo();
+  // Show RSSI status only if this condition has changed
+
+  if ( (millis() - elapsedRSSI) > MIN_ELAPSED_TIME * 4) {
+    si4735.getCurrentReceivedSignalQuality();
+    if ( rssi != si4735.getCurrentRSSI() ) {
+      rssi = si4735.getCurrentRSSI();
+      showRSSI();
     }
+
+    // Show stereo status only if this condition has changed
+    if (si4735.isCurrentTuneFM() ) {
+      // Show stereo status only if this condition has changed
+      if ( stereo != si4735.getCurrentPilot() ) {
+        stereo = si4735.getCurrentPilot();
+        showStereo();
+      }
+    }
+    elapsedRSSI =  millis();
   }
 
   // Show volume level only if this condition has changed

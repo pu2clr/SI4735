@@ -1,21 +1,20 @@
 /*
   SS4735 Arduino Library example with OLED I2C.
   Bandwidth filter test (11 bands SW Receiver with OLED)
-  This example is a 11 bands SW receiver based on SI4735.  
-  It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW). 
+  This example is a 11 bands SW receiver based on SI4735.
+  It shows the selection of the bandwidth of the channel filter for AM reception (in this case SW).
   The choices are: 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz).
-  
+
   This sketch has been successfully tested on:
-    Arduino Pro Mini 3.3V; 
+    Arduino Pro Mini 3.3V;
     Arduino UNO (voltage converter);
     Arduino Micro (voltage converter);
     Arduino Yún (voltage converter); and
     Arduino Mega 2560 (voltage converter).
 
-  This sketch DOES NOT COMPILE on Arduino DUE and ESP32 due to OLED libraries used here.   
-      
+  This sketch DOES NOT COMPILE on Arduino DUE and ESP32 due to OLED libraries used here.
 
-  Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. 
+  Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton.
   The source code is included together with this sketch.
 
   Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png
@@ -52,6 +51,7 @@
 #define MIN_ELAPSED_TIME 100
 
 long elapsedButton = millis();
+long elapsedStatus = millis();
 
 // Encoder control variables
 volatile int encoderCount = 0;
@@ -135,11 +135,11 @@ void setup()
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  
-  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
 
+  si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+  delay(200);
   currentFrequency = previousFrequency = si4735.getFrequency();
-  si4735.setVolume(60);
+  si4735.setVolume(50);
 
   showStatus();
 }
@@ -231,7 +231,7 @@ void showVolume()
 
 
 void bandUp() {
-  
+
   // save the current frequency for the band
   band[currentFreqIdx].currentFreq = currentFrequency;
   if ( currentFreqIdx < lastBand ) {
@@ -242,7 +242,6 @@ void bandUp() {
 
   si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
   si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
-
 
 }
 
@@ -272,7 +271,8 @@ void loop()
       si4735.frequencyUp();
     else
       si4735.frequencyDown();
-
+    delay(15);
+    currentFrequency = si4735.getFrequency();
     encoderCount = 0;
   }
 
@@ -289,10 +289,16 @@ void loop()
       si4735.setBandwidth(bandwidthIdx, 0);
       showStatus();
     }
-    else if (digitalRead(BAND_BUTTON_UP) == LOW )
+    else if (digitalRead(BAND_BUTTON_UP) == LOW ) {
       bandUp();
-    else if (digitalRead(BAND_BUTTON_DOWN) == LOW )
+      delay(15);
+      currentFrequency = si4735.getFrequency();
+    }
+    else if (digitalRead(BAND_BUTTON_DOWN) == LOW ) {
       bandDown();
+      delay(15);
+      currentFrequency = si4735.getFrequency();
+    }
     else if (digitalRead(VOL_UP) == LOW )
       si4735.volumeUp();
     else if (digitalRead(VOL_DOWN) == LOW )
@@ -303,27 +309,28 @@ void loop()
   }
 
 
-  // Show the current frequency only if it has changed
-  currentFrequency = si4735.getFrequency();
   if (currentFrequency != previousFrequency)
   {
     previousFrequency = currentFrequency;
     showStatus();
   }
 
-  // Show RSSI status only if this condition has changed
-  si4735.getCurrentReceivedSignalQuality();
-  if (rssi != si4735.getCurrentRSSI())
-  {
-    rssi = si4735.getCurrentRSSI();
-    showRSSI();
-  }
+  if ( (millis() - elapsedStatus) > (4 * MIN_ELAPSED_TIME) ) {
+    // Show RSSI status only if this condition has changed
+    si4735.getCurrentReceivedSignalQuality();
+    if (rssi != si4735.getCurrentRSSI())
+    {
+      rssi = si4735.getCurrentRSSI();
+      showRSSI();
+    }
 
-  // Show volume level only if this condition has changed
-  if (si4735.getCurrentVolume() != volume)
-  {
-    volume = si4735.getCurrentVolume();
-    showVolume();
+    // Show volume level only if this condition has changed
+    if (si4735.getCurrentVolume() != volume)
+    {
+      volume = si4735.getCurrentVolume();
+      showVolume();
+    }
+    elapsedStatus = millis();
   }
 
   delay(15);

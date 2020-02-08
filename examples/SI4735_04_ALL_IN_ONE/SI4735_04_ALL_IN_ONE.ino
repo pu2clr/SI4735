@@ -644,26 +644,28 @@ void loop()
     }
     else if (digitalRead(MODE_SWITCH) == LOW)
     {
-      if (currentMode == AM)
-      {
-        // If you were in AM mode, it is necessary to load SSB patch (avery time)
-        loadSSB();
-        currentMode = LSB;
+      if (currentMode != FM ) {
+        if (currentMode == AM)
+        {
+          // If you were in AM mode, it is necessary to load SSB patch (avery time)
+          loadSSB();
+          currentMode = LSB;
+        }
+        else if (currentMode == LSB)
+        {
+          currentMode = USB;
+        }
+        else if (currentMode == USB)
+        {
+          currentMode = AM;
+          ssbLoaded = false;
+          bfoOn = false;
+        }
+        // Nothing to do if you are in FM mode
+        band[bandIdx].currentFreq = currentFrequency;
+        band[bandIdx].currentStep = currentStep;
+        useBand();
       }
-      else if (currentMode == LSB)
-      {
-        currentMode = USB;
-      }
-      else if (currentMode == USB)
-      {
-        currentMode = AM;
-        ssbLoaded = false;
-        bfoOn = false;
-      }
-      // Nothing to do if you are in FM mode
-      band[bandIdx].currentFreq = currentFrequency;
-      band[bandIdx].currentStep = currentStep;
-      useBand();
     }
     elapsedButton = millis();
   }
