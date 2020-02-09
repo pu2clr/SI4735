@@ -494,8 +494,6 @@ void loadSSB()
 */
 void useBand()
 {
-  // delay(250);
-  // display.clear();
   clearLine4();
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {

@@ -155,8 +155,10 @@ SI4735 si4735;
 
 // ALL Touch panels and wiring is DIFFERENT
 // copy-paste results from TouchScreen_Calibr_native.ino
-const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
-const int TS_LEFT = 294, TS_RT = 795, TS_TOP = 189, TS_BOT = 778;
+
+const int XP=6,XM=A2,YP=A1,YM=7; //240x320 ID=0x9328
+const int TS_LEFT=175,TS_RT=813,TS_TOP=203,TS_BOT=860;
+
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
 Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bMode, bStep;
@@ -214,23 +216,23 @@ void setup(void)
   tft.fillScreen(BLACK);
 
   tft.setFont(&FreeSans9pt7b);
-  bPreviousBand.initButton(&tft, 60, 140, 90, 40, WHITE, CYAN, BLACK, (char *)"<<", 1);
-  bNextBand.initButton(&tft, 180, 140, 90, 40, WHITE, CYAN, BLACK, (char *)">>", 1);
-  bVolumeUp.initButton(&tft, 60, 190, 90, 40, WHITE, CYAN, BLACK, (char *)"V+", 1);
-  bVolumeDown.initButton(&tft, 180, 190, 90, 40, WHITE, CYAN, BLACK, (char *)"V-", 1);
-  bSeekUp.initButton(&tft, 60, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"S.Up", 1);
-  bSeekDown.initButton(&tft, 180, 240, 90, 40, WHITE, CYAN, BLACK, (char *)"S.Down", 1);
-  bMode.initButton(&tft, 60, 290, 90, 40, WHITE, CYAN, BLACK, (char *)"Modo", 1);
-  bStep.initButton(&tft, 180, 290, 90, 40, WHITE, CYAN, BLACK, (char *)"Step", 1);
+  bPreviousBand.initButton(&tft, 60, 140, 40, 20, WHITE, CYAN, BLACK, (char *)"<<", 1);
+  bNextBand.initButton(&tft, 180, 140, 40, 20, WHITE, CYAN, BLACK, (char *)">>", 1);
+  bVolumeDown.initButton(&tft, 60, 180, 40, 20, WHITE, CYAN, BLACK, (char *)"V-", 1);
+  bVolumeUp.initButton(&tft, 180, 180, 40, 20, WHITE, CYAN, BLACK, (char *)"V+", 1);
+  bSeekDown.initButton(&tft, 60, 210, 40, 20, WHITE, CYAN, BLACK, (char *)"<", 1);
+  bSeekUp.initButton(&tft, 180, 210, 40, 20, WHITE, CYAN, BLACK, (char *)">", 1);
+  bMode.initButton(&tft, 60, 250, 40, 20, WHITE, CYAN, BLACK, (char *)"M", 1);
+  bStep.initButton(&tft, 180, 250, 40, 20, WHITE, CYAN, BLACK, (char *)"Stp", 1);
 
-  bNextBand.drawButton(false);
-  bPreviousBand.drawButton(false);
-  bVolumeUp.drawButton(false);
-  bVolumeDown.drawButton(false);
-  bSeekUp.drawButton(false);
-  bSeekDown.drawButton(false);
-  bMode.drawButton(false);
-  bStep.drawButton(false);
+  bNextBand.drawButton(true);
+  bPreviousBand.drawButton(true);
+  bVolumeUp.drawButton(true);
+  bVolumeDown.drawButton(true);
+  bSeekUp.drawButton(true);
+  bSeekDown.drawButton(true);
+  bMode.drawButton(true);
+  bStep.drawButton(true);
 
   // Atach Encoder pins interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
@@ -494,48 +496,48 @@ void loop(void)
   }
 
   // if (bNextBand.justReleased())
-  //   bNextBand.drawButton(false);
+  //   bNextBand.drawButton(true);
 
   // if (bPreviousBand.justReleased())
-  //   bPreviousBand.drawButton(false);
+  //   bPreviousBand.drawButton(true);
 
   if (bNextBand.justPressed())
   {
-    bNextBand.drawButton(false);
+    bNextBand.drawButton(true);
     bandUp();
   }
 
   if (bPreviousBand.justPressed())
   {
-    bPreviousBand.drawButton(false);
+    bPreviousBand.drawButton(true);
     bandDown();
   }
 
   // if (bVolumeUp.justReleased())
-  //   bVolumeUp.drawButton(false);
+  //   bVolumeUp.drawButton(true);
 
   if (bVolumeUp.justPressed())
   {
-    bVolumeUp.drawButton(false);
+    bVolumeUp.drawButton(true);
     si4735.volumeUp();
   }
 
   // if (bVolumeDown.justReleased())
-  //   bVolumeDown.drawButton(false);
+  //   bVolumeDown.drawButton(true);
 
   if (bVolumeDown.justPressed())
   {
-    bVolumeDown.drawButton(false);
+    bVolumeDown.drawButton(true);
     si4735.volumeDown();
   }
 
 
   // if (bSeekUp.justReleased())
-  //   bSeekUp.drawButton(false);
+  //   bSeekUp.drawButton(true);
 
   if (bSeekUp.justPressed())
   {
-    bSeekUp.drawButton(false);
+    bSeekUp.drawButton(true);
     if (currentMode == FM) {
       si4735.seekStationUp();
       delay(15);
@@ -547,7 +549,7 @@ void loop(void)
 
   if (bSeekDown.justPressed())
   {
-    bSeekUp.drawButton(false);
+    bSeekUp.drawButton(true);
     if (currentMode == FM) {
       si4735.seekStationDown();
       delay(15);
@@ -557,31 +559,33 @@ void loop(void)
   }
 
   // if (bMode.justReleased())
-  //   bMode.drawButton(false);
+  //   bMode.drawButton(true);
 
   if (bMode.justPressed())
   {
-    bMode.drawButton(false);
-    if (currentMode == AM)
-    {
-      // If you were in AM mode, it is necessary to load SSB patch (avery time)
-      loadSSB();
-      currentMode = LSB;
-    }
-    else if (currentMode == LSB)
-    {
-      currentMode = USB;
-    }
-    else if (currentMode == USB)
-    {
-      currentMode = AM;
-      ssbLoaded = false;
-      bfoOn = false;
-    }
-    // Nothing to do if you are in FM mode
-    band[bandIdx].currentFreq = currentFrequency;
-    band[bandIdx].currentStep = currentStep;
-    useBand();
+      bMode.drawButton(true);
+      if (currentMode != FM ) {
+        if (currentMode == AM)
+        {
+          // If you were in AM mode, it is necessary to load SSB patch (avery time)
+          loadSSB();
+          currentMode = LSB;
+        }
+        else if (currentMode == LSB)
+        {
+          currentMode = USB;
+        }
+        else if (currentMode == USB)
+        {
+          currentMode = AM;
+          ssbLoaded = false;
+          bfoOn = false;
+        }
+        // Nothing to do if you are in FM mode
+        band[bandIdx].currentFreq = currentFrequency;
+        band[bandIdx].currentStep = currentStep;
+        useBand();
+      }
   }
 
   if (bStep.justPressed())

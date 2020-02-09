@@ -359,4 +359,21 @@ void setup() {
 
 
 
+## SI47XX 13 - All in One With TFT Touch SHield on Arduino Mega
+
+This sketch uses the [mcufriend TFT touch](http://www.mcufriend.com) Display on Arduino Mega2580 (2.4" TFT LCD Shield).
+
+  Features:
+  1) This sketch has been successfully tested on Arduino Mega2560;
+  2) It uses the touch screen interface provided by mcufriend TFT;
+  3) Encoder with button;
+  4) FM, AM (MW and SW) and SSB (LSB and USB);
+  5) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+  6) BFO Control; and
+  7) Frequency step switch (1, 5 and 10KHz).
+
+Before start running this example, you need to calibrate your TFT Touch shield. To do tha, run the example __TouchScreen_Calibr_native.ino__ that comes with Arduino MCUFRIEND_kbv library. That sketch uses the Serial monitor and a own Display to calibrate it. All you have to do is follow the instructions shown by the example (TouchScreen_Calibr_native.ino). 
+
+
+
 
