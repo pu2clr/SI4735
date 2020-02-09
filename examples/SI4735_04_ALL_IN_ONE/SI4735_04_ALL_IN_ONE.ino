@@ -49,7 +49,7 @@
   Main Parts:
   Encoder with push button;
   Seven bush buttons;
-  OLED Display with I2C protocol;
+  LCD20x4 with I2C device;
   Arduino Pro mini 3.3V;
 
   By Ricardo Lima Caratti, Nov 2019.

@@ -7,14 +7,11 @@
   3) Arduino Yún (by using a voltage converter);
   4) Arduino Micro (see the operating voltage of your Micro);
   5) Arduino Mega (by using a voltage converter); and
-  6) Arduino DUE;
 
-  This sketch uses I2C LiquidCrystal/LCD, buttons and  Encoder.
+  This sketch uses I2C OLED/I2C, buttons and  Encoder.
 
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
-  together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C).
-  Look for LiquidCrystal I2C on Manager Libraries.
-
+  together with this sketch) and Tiny4kOLED Library (look for this library on Tools->Manage Libraries). 
 
   ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:
   This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal
@@ -49,7 +46,7 @@
   Main Parts:
   Encoder with push button;
   Seven bush buttons;
-  OLED Display with I2C protocol;
+  OLED Display with I2C device;
   Arduino Pro mini 3.3V;
 
   By Ricardo Lima Caratti, Nov 2019.
@@ -199,8 +196,6 @@ void setup()
   pinMode(AGC_SWITCH, INPUT_PULLUP);
   pinMode(STEP_SWITCH, INPUT_PULLUP);
   pinMode(MODE_SWITCH, INPUT_PULLUP);
-
-
 
   oled.begin();
   oled.clear();

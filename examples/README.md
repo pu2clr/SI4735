@@ -9,8 +9,9 @@ This folder has some examples that might help you to use the Si4735 Arduino Libr
 3. [Example 03 - Proof of Concept with SSB](https://github.com/pu2clr/SI4735/tree/master/examples#example-03---proof-of-concept-with-ssb)
 4. [Example 04 - SI4735 all in one with SSB Support](https://github.com/pu2clr/SI4735/tree/master/examples#example-04---si4735-all-in-one-with-ssb-support)
 5. [Example 05 - SI4730/SI4735 and the ATtiny85](https://github.com/pu2clr/SI4735/tree/master/examples#example-05---si4730si4735-and-the-attiny85)
-6. [Other examples with LCD, OLED, Buttons and Encoder](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_99_OTHER_EXAMPLES)
-7. [Related videos](https://github.com/pu2clr/SI4735/tree/master/examples#related-videos)
+6. [Example 06 - All In One with OLED/I2C]()
+7. [Other examples with LCD, OLED, Buttons and Encoder](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_99_OTHER_EXAMPLES)
+8. [Related videos](https://github.com/pu2clr/SI4735/tree/master/examples#related-videos)
 
 
 <BR>
@@ -275,6 +276,21 @@ The Si4730 and ATtiny85 FM radio prototype.
 ## Examples with LCD, OLED, Buttons and Encoder
 
 The folder [SI4735_99_OTHER_EXAMPLES](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_99_OTHER_EXAMPLES) contains several other examples that use encoders, buttons, OLED and LCD. This folder also has some sketches used to make tests on the IC Si4735.
+
+
+## Example 06 - All In One with OLED/I2C 
+
+This example uses I2C OLED/I2C, buttons and  Encoder. It is almost the same example 04. This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included together with this sketch) and Tiny4kOLED Library (__look for "Tiny4kOLED" on Tools->Manage Libraries__). 
+
+This example has been successfully tested on:
+  1) Pro Mini 3.3V;
+  2) UNO (by using a voltage converter);
+  3) Arduino Yún (by using a voltage converter);
+  4) Arduino Micro (see the operating voltage of your Micro);
+  5) Arduino Mega (by using a voltage converter); and
+  6) Arduino DUE;
+
+
 
 
 ## Related videos
