@@ -1954,7 +1954,23 @@ Example :
 /*
  * Gets the current Automatic Volume Control Maximum gain in dB
  */
-inline uint8_t getCurrentAvcAmMaxGain() {return currentAvcAmMaxGain; };
+inline uint8_t getCurrentAvcAmMaxGain() 
+```
+
+### setAmSoftMuteMaxAttenuation
+
+```cpp
+/*
+ * sets soft mute max attenuation for AM 
+ */
+inline void setAmSoftMuteMaxAttenuation( uint8_t smattn) 
+```    
+
+```cpp
+/*
+ * sets soft mute max attenuation for AM to 0
+ */
+inline void setAmSoftMuteMaxAttenuation() 
 ```
 
 <BR>
