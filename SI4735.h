@@ -692,7 +692,7 @@ private:
 
     uint8_t currentStep;
 
-    uint8_t currentMode;
+    uint8_t currentMode = -1;
 
     si47x_frequency currentFrequency;
     si47x_set_frequency currentFrequencyParams;

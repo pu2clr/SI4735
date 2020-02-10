@@ -362,10 +362,13 @@ void SI4735::frequencyDown()
  */
 void SI4735::setAM()
 {
-    powerDown();
-    setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
-    analogPowerUp();
-    setAvcAmMaxGain(48); // Set AM Automatic Volume Gain to 48
+    // If you are on AM mode, you do not need to set it again.
+    if ( currentMode != MODE_AM) {
+        powerDown();
+        setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
+        analogPowerUp();
+        setAvcAmMaxGain(48); // Set AM Automatic Volume Gain to 48
+    }
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
     currentMode = MODE_AM;
@@ -403,9 +406,7 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
     if (initialFreq < fromFreq || initialFreq > toFreq)
         initialFreq = fromFreq;
 
-    // If you are on AM mode, you do not need to set it again.
-    if ( currentMode != MODE_AM)
-        setAM();
+    setAM();
 
     currentWorkFrequency = initialFreq;
 
