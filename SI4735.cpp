@@ -85,7 +85,7 @@ void SI4735::waitToSend()
     do
     {
         delayMicroseconds(220); // Need check the minimum value.
-        Wire.requestFrom(SI473X_ADDR, 1);
+        Wire.requestFrom(deviceAddress, 1);
     } while (!(Wire.read() & B10000000));
 }
 
@@ -97,7 +97,7 @@ void SI4735::analogPowerUp(void)
 {
     // delayMicroseconds(1000);
     waitToSend();
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(POWER_UP);
     Wire.write(powerUp.raw[0]); // Content of ARG1
     Wire.write(powerUp.raw[1]); // COntent of ARG2
@@ -115,7 +115,7 @@ void SI4735::analogPowerUp(void)
 void SI4735::powerDown(void)
 {
     waitToSend();
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(POWER_DOWN);
     Wire.endTransmission();
     delayMicroseconds(2500);
@@ -128,7 +128,7 @@ void SI4735::getFirmware(void)
 {
     waitToSend();
 
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(GET_REV);
     Wire.endTransmission();
 
@@ -136,7 +136,7 @@ void SI4735::getFirmware(void)
     {
         waitToSend();
         // Request for 9 bytes response
-        Wire.requestFrom(SI473X_ADDR, 9);
+        Wire.requestFrom(deviceAddress, 9);
         for (int i = 0; i < 9; i++)
             firmwareInfo.raw[i] = Wire.read();
     } while (firmwareInfo.resp.ERR);
@@ -298,7 +298,7 @@ void SI4735::setFrequency(uint16_t freq)
         currentFrequencyParams.arg.FREEZE = 0;                // Used just on FM
     }
 
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(currentTune);
     Wire.write(currentFrequencyParams.raw[0]); // Send a byte with FAST and  FREEZE information; if not FM must be 0;
     Wire.write(currentFrequencyParams.arg.FREQH);
@@ -463,7 +463,7 @@ void SI4735::setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT)
 
     waitToSend();
     this->volume = volume;
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(SET_PROPERTY);
     Wire.write(0x00);                  // Always 0x00
     Wire.write(property.raw.byteHigh); // High byte first
@@ -495,7 +495,7 @@ void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter)
     property.value = propertyValue;
     param.value = parameter;
     waitToSend();
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(SET_PROPERTY);
     Wire.write(0x00);
     Wire.write(property.raw.byteHigh); // Send property - High byte - most significant first
@@ -610,7 +610,7 @@ void SI4735::setFmStereoOn()
  */
 void SI4735::disableFmDebug()
 {
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(0x12);
     Wire.write(0x00);
     Wire.write(0xFF);
@@ -678,7 +678,7 @@ void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
     status.arg.INTACK = INTACK;
     status.arg.CANCEL = CANCEL;
 
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(cmd);
     Wire.write(status.raw);
     Wire.endTransmission();
@@ -686,7 +686,7 @@ void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
     do
     {
         waitToSend();
-        Wire.requestFrom(SI473X_ADDR, 7);
+        Wire.requestFrom(deviceAddress, 7);
         // Gets response information
         for (uint8_t i = 0; i < 7; i++)
             currentStatus.raw[i] = Wire.read();
@@ -715,14 +715,14 @@ void SI4735::getAutomaticGainControl()
 
     waitToSend();
 
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(cmd);
     Wire.endTransmission();
 
     do
     {
         waitToSend();
-        Wire.requestFrom(SI473X_ADDR, 3);
+        Wire.requestFrom(deviceAddress, 3);
         currentAgcStatus.raw[0] = Wire.read(); // STATUS response
         currentAgcStatus.raw[1] = Wire.read(); // RESP 1
         currentAgcStatus.raw[2] = Wire.read(); // RESP 2
@@ -754,7 +754,7 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
 
     waitToSend();
 
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(cmd);
     Wire.write(agc.raw[0]);
     Wire.write(agc.raw[1]);
@@ -806,7 +806,7 @@ void  SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
         waitToSend();
 
         arg = INTACK;
-        Wire.beginTransmission(SI473X_ADDR);
+        Wire.beginTransmission(deviceAddress);
         Wire.write(cmd);
         Wire.write(arg); // send B00000001
         Wire.endTransmission();
@@ -814,7 +814,7 @@ void  SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
         do
         {
             waitToSend();
-            Wire.requestFrom(SI473X_ADDR, sizeResponse);
+            Wire.requestFrom(deviceAddress, sizeResponse);
             // Gets response information
             for (uint8_t i = 0; i < sizeResponse; i++)
                 currentRqsStatus.raw[i] = Wire.read();
@@ -854,7 +854,7 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
     seek.arg.SEEKUP = SEEKUP;
     seek.arg.WRAP = WRAP;
 
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(seek_start);
     Wire.write(seek.raw);
 
@@ -977,7 +977,7 @@ void SI4735::setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t
 
     waitToSend();
 
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(SET_PROPERTY);
     Wire.write(0x00);                  // Always 0x00 (I need to check it)
     Wire.write(property.raw.byteHigh); // Send property - High byte - most significant first
@@ -1017,7 +1017,7 @@ void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
     rds_cmd.arg.MTFIFO = MTFIFO;
     rds_cmd.arg.STATUSONLY = STATUSONLY;
 
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(FM_RDS_STATUS);
     Wire.write(rds_cmd.raw);
     Wire.endTransmission();
@@ -1026,7 +1026,7 @@ void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
     {
         waitToSend();
         // Gets response information
-        Wire.requestFrom(SI473X_ADDR, 13);
+        Wire.requestFrom(deviceAddress, 13);
         for (uint8_t i = 0; i < 13; i++)
             currentRdsStatus.raw[i] = Wire.read();
     } while (currentRdsStatus.resp.ERR);
@@ -1084,7 +1084,7 @@ void SI4735::setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t
     config.arg.BLETHD = BLETHD;
     config.arg.DUMMY1 = 0;
 
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(SET_PROPERTY);
     Wire.write(0x00);                  // Always 0x00 (I need to check it)
     Wire.write(property.raw.byteHigh); // Send property - High byte - most significant first
@@ -1407,7 +1407,7 @@ void SI4735::setSSBBfo(int offset)
     property.value = SSB_BFO;
     bfo_offset.value = offset;
 
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(SET_PROPERTY);
     Wire.write(0x00);                  // Always 0x00
     Wire.write(property.raw.byteHigh); // High byte first
@@ -1595,7 +1595,7 @@ void SI4735::sendSSBModeProperty()
     si47x_property property;
     property.value = SSB_MODE;
     waitToSend();
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(SET_PROPERTY);
     Wire.write(0x00);                  // Always 0x00
     Wire.write(property.raw.byteHigh); // High byte first
@@ -1629,7 +1629,7 @@ SI4735::queryLibraryId()
     // delay(500);
 
     waitToSend();
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(POWER_UP);
     Wire.write(0b00011111);          // Set to Read Library ID, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
     Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Line Input.
@@ -1638,7 +1638,7 @@ SI4735::queryLibraryId()
     do
     {
         waitToSend();
-        Wire.requestFrom(SI473X_ADDR, 8);
+        Wire.requestFrom(deviceAddress, 8);
         for (int i = 0; i < 8; i++)
             libraryID.raw[i] = Wire.read();
     } while (libraryID.resp.ERR); // If error found, try it again.
@@ -1658,7 +1658,7 @@ SI4735::queryLibraryId()
 void SI4735::patchPowerUp()
 {
     waitToSend();
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(POWER_UP);
     Wire.write(0b00110001);          // Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
     Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Output
@@ -1681,7 +1681,7 @@ void SI4735::ssbSetup()
 void SI4735::ssbPowerUp()
 {
     waitToSend();
-    Wire.beginTransmission(SI473X_ADDR);
+    Wire.beginTransmission(deviceAddress);
     Wire.write(POWER_UP);
     Wire.write(0b00010001); // Set to AM/SSB, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
     Wire.write(0b00000101); // Set to Analog Line Input.
@@ -1737,7 +1737,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
     // Send patch to the SI4735 device
     for (offset = 0; offset < ssb_patch_content_size; offset += 8)
     {
-        Wire.beginTransmission(SI473X_ADDR);
+        Wire.beginTransmission(deviceAddress);
         for (i = 0; i < 8; i++)
         {
             content = pgm_read_byte_near(ssb_patch_content + (i + offset));
@@ -1754,7 +1754,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
         do
         {
             delayMicroseconds(150); // Minimum delay founded (Need check the minimum value)
-            Wire.requestFrom(SI473X_ADDR, 1);
+            Wire.requestFrom(deviceAddress, 1);
         } while (!(Wire.read() & B10000000));
         */
 
@@ -1765,7 +1765,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
         /*
         waitToSend();
         Uncomment the lines below if you want to check erro.
-        Wire.requestFrom(SI473X_ADDR, 1);
+        Wire.requestFrom(deviceAddress, 1);
         cmd_status = Wire.read();
         The SI4735 issues a status after each 8 byte transfered.
         Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
@@ -1830,14 +1830,14 @@ bool SI4735::downloadPatch(int eeprom_i2c_address)
             eepromPage[i] = Wire.read();
 
         // sends the page (8 bytes) to the SI4735
-        Wire.beginTransmission(SI473X_ADDR);
+        Wire.beginTransmission(deviceAddress);
         for (i = 0; i < 8; i++)
             Wire.write(eepromPage[i]);
         Wire.endTransmission();
 
         waitToSend();
 
-        Wire.requestFrom(SI473X_ADDR, 1);
+        Wire.requestFrom(deviceAddress, 1);
         cmd_status = Wire.read();
         // The SI4735 issues a status after each 8 byte transfered.
         // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.

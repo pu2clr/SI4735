@@ -301,17 +301,17 @@ void showFrequency()
   float freq;
   int iFreq, dFreq;
 
-  tft.fillRect(2, 2, 236, 36, BLACK);
+  tft.fillRect(2, 2, 210, 36, BLACK);
 
   if (si4735.isCurrentTuneFM())
   {
     freq = currentFrequency / 100.0;
     dtostrf(freq, 3, 1, buffer);
-    strcat(buffer, " MHz");
+    // strcat(buffer, " MHz");
   }
   else
   {
-    sprintf(buffer, "%5d KHz", currentFrequency);
+    sprintf(buffer, "%5d", currentFrequency);
   }
   showText(30, 35, 2, &FreeSans9pt7b, YELLOW, buffer);
   // showText(10, 35, 2, &FreeSans12pt7b, YELLOW, buffer);
@@ -552,6 +552,7 @@ void loop(void)
       delay(15);
       currentFrequency = si4735.getFrequency();
     }
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     showStatus();
   }
 
@@ -564,6 +565,7 @@ void loop(void)
       delay(15);
       currentFrequency = si4735.getFrequency();
     }
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     showStatus();
   }
 
@@ -572,6 +574,7 @@ void loop(void)
   {
     audioMute = !audioMute;
     si4735.setAudioMute(audioMute);
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   }
 
   // if (bMode.justReleased())

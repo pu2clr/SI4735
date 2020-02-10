@@ -18,13 +18,15 @@
 #define POWER_PATCH 15 //
 
 // SI473X commands (general)
-#define SI473X_ADDR 0x11    // SI473X I2C buss address - Change this value to 0x63 it the SEN (pin 16) is high
-#define POWER_UP 0x01       // Power up device and mode selection.
-#define GET_REV 0x10        // Returns revision information on the device.
-#define POWER_DOWN 0x11     // Power down device.
-#define SET_PROPERTY 0x12   // Sets the value of a property.
-#define GET_PROPERTY 0x13   // Retrieves a property’s value.
-#define GET_INT_STATUS 0x14 // Read interrupt status bits.
+#define SI473X_ADDR_SEN_LOW   0x11  // SI473X I2C buss address when the SEN pin (16) is set to low 0V.
+#define SI473X_ADDR_SEN_HIGH  0x63  // SI473X I2C buss address when the SEN pin (16) is set to high +3.3V
+
+#define POWER_UP 0x01         // Power up device and mode selection.
+#define GET_REV 0x10          // Returns revision information on the device.
+#define POWER_DOWN 0x11       // Power down device.
+#define SET_PROPERTY 0x12     // Sets the value of a property.
+#define GET_PROPERTY 0x13     // Retrieves a property’s value.
+#define GET_INT_STATUS 0x14   // Read interrupt status bits.
 
 // FM
 #define FM_TUNE_FREQ 0x20
@@ -676,6 +678,8 @@ private:
     int rdsTextAdress2B;
     int rdsTextAdress0A;
 
+    int16_t deviceAddress = SI473X_ADDR_SEN_LOW;
+
     uint8_t lastTextFlagAB;
     uint8_t resetPin;
     uint8_t interruptPin;
@@ -688,10 +692,7 @@ private:
 
     uint8_t currentStep;
 
-    uint8_t currentMode = -1;
     uint8_t currentAvcAmMaxGain = 48; // Automatic Volume Control Gain for AM - Default 48
-
-
 
     si47x_frequency currentFrequency;
     si47x_set_frequency currentFrequencyParams;
@@ -720,6 +721,9 @@ public:
     SI4735();
     void reset(void);
     void waitToSend(void); // Wait for Si4735 device ready to receive command
+
+    inline void setDeviceI2CAddress(uint16_t senPin) {deviceAddress = (senPin)? SI473X_ADDR_SEN_HIGH : SI473X_ADDR_SEN_LOW;};
+
     void setup(uint8_t resetPin, uint8_t defaultFunction);
     void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction);
     void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE);
