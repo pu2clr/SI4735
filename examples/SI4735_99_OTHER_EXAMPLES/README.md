@@ -359,7 +359,7 @@ void setup() {
 
 
 
-## SI47XX 13 - All in One With TFT Touch SHield on Arduino Mega
+## SI47XX 13 - All in One With TFT Touch Shield on Arduino Mega
 
 This sketch uses the [mcufriend TFT touch](http://www.mcufriend.com) Display on Arduino Mega2580 (2.4" TFT LCD Shield).
 

@@ -216,14 +216,14 @@ void setup(void)
   tft.fillScreen(BLACK);
 
   tft.setFont(&FreeSans9pt7b);
-  bPreviousBand.initButton(&tft, 60, 140, 40, 20, WHITE, CYAN, BLACK, (char *)"<<", 1);
-  bNextBand.initButton(&tft, 180, 140, 40, 20, WHITE, CYAN, BLACK, (char *)">>", 1);
-  bVolumeDown.initButton(&tft, 60, 180, 40, 20, WHITE, CYAN, BLACK, (char *)"V-", 1);
-  bVolumeUp.initButton(&tft, 180, 180, 40, 20, WHITE, CYAN, BLACK, (char *)"V+", 1);
-  bSeekDown.initButton(&tft, 60, 210, 40, 20, WHITE, CYAN, BLACK, (char *)"<", 1);
-  bSeekUp.initButton(&tft, 180, 210, 40, 20, WHITE, CYAN, BLACK, (char *)">", 1);
-  bMode.initButton(&tft, 60, 250, 40, 20, WHITE, CYAN, BLACK, (char *)"M", 1);
-  bStep.initButton(&tft, 180, 250, 40, 20, WHITE, CYAN, BLACK, (char *)"Stp", 1);
+  bPreviousBand.initButton(&tft, 30, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"B-", 1);
+  bNextBand.initButton(&tft, 90, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"B+", 1);
+  bVolumeDown.initButton(&tft, 150, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"V-", 1);
+  bVolumeUp.initButton(&tft, 210, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"V+", 1);
+  bSeekDown.initButton(&tft, 30, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"S-", 1);
+  bSeekUp.initButton(&tft, 90, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"S+", 1);
+  bMode.initButton(&tft, 150, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"M", 1);
+  bStep.initButton(&tft, 210, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"Stp", 1);
 
   bNextBand.drawButton(true);
   bPreviousBand.drawButton(true);
