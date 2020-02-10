@@ -368,6 +368,7 @@ void SI4735::setAM()
     setAvcAmMaxGain(48); // Set AM Automatic Volume Gain to 48
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
+    currentMode = MODE_AM;
 }
 
 /*
@@ -381,6 +382,7 @@ void SI4735::setFM()
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
     disableFmDebug();
+    currentMode = MODE_FM;
 }
 
 /*
@@ -389,7 +391,7 @@ void SI4735::setFM()
  * @param fromFreq minimum frequency for the band
  * @param toFreq maximum frequency for the band
  * @param initialFreq initial frequency 
- * @param step step used to go to the next channel  
+ * @param step step used to go to the next channel 
  */
 void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint8_t step)
 {
@@ -401,7 +403,9 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
     if (initialFreq < fromFreq || initialFreq > toFreq)
         initialFreq = fromFreq;
 
-    setAM();
+    // If you are on AM mode, you do not need to set it again.
+    if ( currentMode != MODE_AM)
+        setAM();
 
     currentWorkFrequency = initialFreq;
 
@@ -1544,6 +1548,7 @@ void SI4735::setSSB(uint8_t usblsb)
     // ssbPowerUp(); // Not used for regular operation
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = usblsb;
+    currentMode = MODE_SSB;
 }
 
 /*
@@ -1569,6 +1574,7 @@ void SI4735::setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, ui
         initialFreq = fromFreq;
 
     setSSB(usblsb);
+
     currentWorkFrequency = initialFreq;
     setFrequency(currentWorkFrequency);
     delayMicroseconds(550);

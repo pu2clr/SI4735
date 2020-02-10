@@ -132,6 +132,10 @@
 #define LSB_MODE 1 // 01
 #define USB_MODE 2 // 10
 
+#define MODE_FM 0
+#define MODE_AM 1
+#define MODE_SSB 2
+
 // Parameters
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
 #define SI473X_DIGITAL_AUDIO B00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
@@ -687,6 +691,8 @@ private:
     uint16_t currentWorkFrequency;
 
     uint8_t currentStep;
+
+    uint8_t currentMode;
 
     si47x_frequency currentFrequency;
     si47x_set_frequency currentFrequencyParams;
