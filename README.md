@@ -1031,6 +1031,22 @@ To use the methods below you have to declare the class SI4735 in your sketch. Th
 <BR>
 
 
+
+### setDeviceI2CAddress
+
+```cpp
+/* 
+ * Sets the I2C Bus Address
+ * @param senPin 0 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to low (GND - 0V)
+ *               1 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to high (+3.3V)
+ *
+ * The default value is 0x11 (senPin = 0). In this case you have to ground the pin SEN of the SI473X. 
+ * If you want to change this address, call this function with senPin = 1
+ */
+inline void setDeviceI2CAddress(uint16_t senPin)
+```
+
+
 ### setup
 
 ```cpp
