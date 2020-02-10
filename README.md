@@ -533,7 +533,7 @@ This item shows the SI4735 Arduino Library implemantation. Here you can find the
   * [getAgcGainIndex](https://github.com/pu2clr/SI4735#getagcgainindex)
   * [setAutomaticGainControl](https://github.com/pu2clr/SI4735#setautomaticgaincontrol)
   * [setAvcAmMaxGain](https://github.com/pu2clr/SI4735#setavcammaxgain)
-  * [getCurrentAvcAmMaxGain]()
+  * [getCurrentAvcAmMaxGain](https://github.com/pu2clr/SI4735#getcurrentavcammaxgain)
 * [__Filters__](https://github.com/pu2clr/SI4735#filters)
   * [setBandwidth](https://github.com/pu2clr/SI4735#setbandwidth) 
 * [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735#si4735-firmware-information)
