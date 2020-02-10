@@ -693,6 +693,9 @@ private:
     uint8_t currentStep;
 
     uint8_t currentMode = -1;
+    uint8_t currentAvcAmMaxGain = 48; // Automatic Volume Control Gain for AM - Default 48
+
+
 
     si47x_frequency currentFrequency;
     si47x_set_frequency currentFrequencyParams;
@@ -755,8 +758,11 @@ public:
     inline uint8_t getAntennaTuningCapacitor() { return currentStatus.resp.READANTCAP; };    // Returns integer containing the current antenna tuning capacitor value.
 
     void getAutomaticGainControl();
-    void setAvcAmMaxGain(uint8_t gain);         // Sets the maximum gain for automatic volume control.
-    inline void setAvcAmMaxGain() { sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, (48 * 340));};
+    // Sets the maximum gain for automatic volume control fro AM.
+    void setAvcAmMaxGain(uint8_t gain);         
+    inline void setAvcAmMaxGain() { sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, ((currentAvcAmMaxGain = 48) * 340));};
+    inline uint8_t getCurrentAvcAmMaxGain() {return currentAvcAmMaxGain; };
+
 
     inline void setAmSoftMuteMaxAttenuation( uint8_t smattn) {sendProperty(AM_SOFT_MUTE_MAX_ATTENUATION, smattn);};
     inline void setAmSoftMuteMaxAttenuation() {sendProperty(AM_SOFT_MUTE_MAX_ATTENUATION, 0);};
