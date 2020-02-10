@@ -605,8 +605,6 @@ void loop(void)
 
   if (bStep.justPressed())
   {
-    si4735.setAudioMute(true);
-    
     if ( currentMode == FM) {
       fmStereo = !fmStereo;
       if ( fmStereo )
