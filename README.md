@@ -480,6 +480,7 @@ This item shows the SI4735 Arduino Library implemantation. Here you can find the
   * [setAM](https://github.com/pu2clr/SI4735#setam)
   * [setFM](https://github.com/pu2clr/SI4735#setfm)
   * [setVolume](https://github.com/pu2clr/SI4735#setvolume)
+  * [setAudioMute]()
   * [getVolume](https://github.com/pu2clr/SI4735#getvolume)
   * [volumeUp](https://github.com/pu2clr/SI4735#volumeup)
   * [volumeDown](https://github.com/pu2clr/SI4735#volumedown)
@@ -1394,6 +1395,15 @@ void SI4735::volumeDown()
 
 [See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
 
+### setAudioMute
+
+```cpp
+/*
+ * Sets the audio on or off
+ * @param value if true, mute the audio; if false unmute the audio.
+ */ 
+void setAudioMute( bool value)
+```
 
 ### getCurrentVolume
 

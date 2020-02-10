@@ -64,7 +64,7 @@
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
-#define DEFAULT_VOLUME 50 // change it for your favorite sound volume
+#define DEFAULT_VOLUME 40 // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -76,6 +76,7 @@
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
 bool bfoOn = false;
+bool audioMute = false;
 bool disableAgc = true;
 bool ssbLoaded = false;
 bool fmStereo = true;
@@ -161,7 +162,7 @@ const int TS_LEFT=175,TS_RT=813,TS_TOP=203,TS_BOT=860;
 
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
-Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bMode, bStep;
+Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bMode, bStep, bAudioMute;
 
 int pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -224,6 +225,8 @@ void setup(void)
   bSeekUp.initButton(&tft, 90, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"S+", 1);
   bMode.initButton(&tft, 150, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"M", 1);
   bStep.initButton(&tft, 210, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"Stp", 1);
+  bAudioMute.initButton(&tft, 30, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"X", 1);
+  
 
   bNextBand.drawButton(true);
   bPreviousBand.drawButton(true);
@@ -233,13 +236,13 @@ void setup(void)
   bSeekDown.drawButton(true);
   bMode.drawButton(true);
   bStep.drawButton(true);
+  bAudioMute.drawButton(true);
 
   // Atach Encoder pins interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   si4735.setup(RESET_PIN, 1);
-
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
   currentFrequency = previousFrequency = si4735.getFrequency();
@@ -351,6 +354,7 @@ void showVolume()
 */
 void bandUp()
 {
+  uint8_t v;
   // save the current frequency for the band
   band[bandIdx].currentFreq = currentFrequency;
   band[bandIdx].currentStep = currentStep;
@@ -363,7 +367,9 @@ void bandUp()
   {
     bandIdx = 0;
   }
+
   useBand();
+  
 }
 
 /*
@@ -420,6 +426,7 @@ void loadSSB()
 */
 void useBand()
 {
+ 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -451,6 +458,7 @@ void useBand()
 
   }
   delay(100);
+
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
   showStatus();
@@ -471,6 +479,7 @@ void loop(void)
   bSeekDown.press(down && bSeekDown.contains(pixel_x, pixel_y));
   bMode.press(down && bMode.contains(pixel_x, pixel_y));
   bStep.press(down && bStep.contains(pixel_x, pixel_y));
+  bAudioMute.press(down && bAudioMute.contains(pixel_x, pixel_y));
 
   // Check if the encoder has moved.
   if (encoderCount != 0)
@@ -558,12 +567,18 @@ void loop(void)
     showStatus();
   }
 
+
+  if (bAudioMute.justPressed())
+  {
+    audioMute = !audioMute;
+    si4735.setAudioMute(audioMute);
+  }
+
   // if (bMode.justReleased())
   //   bMode.drawButton(true);
 
   if (bMode.justPressed())
   {
-      bMode.drawButton(true);
       if (currentMode != FM ) {
         if (currentMode == AM)
         {
@@ -590,6 +605,8 @@ void loop(void)
 
   if (bStep.justPressed())
   {
+    si4735.setAudioMute(true);
+    
     if ( currentMode == FM) {
       fmStereo = !fmStereo;
       if ( fmStereo )

@@ -18,7 +18,7 @@
 #define POWER_PATCH 15 //
 
 // SI473X commands (general)
-#define SI473X_ADDR 0x11    // SI473X I2C buss address
+#define SI473X_ADDR 0x11    // SI473X I2C buss address - Change this value to 0x63 it the SEN (pin 16) is high
 #define POWER_UP 0x01       // Power up device and mode selection.
 #define GET_REV 0x10        // Returns revision information on the device.
 #define POWER_DOWN 0x11     // Power down device.
@@ -131,10 +131,6 @@
 // See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 12 and 13
 #define LSB_MODE 1 // 01
 #define USB_MODE 2 // 10
-
-#define MODE_FM 0
-#define MODE_AM 1
-#define MODE_SSB 2
 
 // Parameters
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
@@ -821,6 +817,7 @@ public:
     void volumeDown();
     void volumeUp();
     inline uint8_t getCurrentVolume() { return volume; }; // Returns the current volume level.
+    void setAudioMute( bool off); // if true mute the audio; else unmute
 
     //
     void setAM();

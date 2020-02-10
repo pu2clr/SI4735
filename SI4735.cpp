@@ -195,6 +195,7 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction)
 void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
 {
     setup(resetPin, -1, defaultFunction);
+    delay(250);
 }
 
 /*
@@ -362,16 +363,12 @@ void SI4735::frequencyDown()
  */
 void SI4735::setAM()
 {
-    // If you are on AM mode, you do not need to set it again.
-    if ( currentMode != MODE_AM) {
-        powerDown();
-        setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
-        analogPowerUp();
-        setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain to 48
-    }
+    powerDown();
+    setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
+    analogPowerUp();
+    setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain to 48
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
-    currentMode = MODE_AM;
 }
 
 /*
@@ -385,7 +382,6 @@ void SI4735::setFM()
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
     disableFmDebug();
-    currentMode = MODE_FM;
 }
 
 /*
@@ -407,9 +403,7 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
         initialFreq = fromFreq;
 
     setAM();
-
     currentWorkFrequency = initialFreq;
-
     setFrequency(currentWorkFrequency);
 }
 
@@ -902,10 +896,21 @@ void SI4735::seekStationDown()
  */
 void SI4735::setVolume(uint8_t volume)
 {
-
     sendProperty(RX_VOLUME, volume);
     this->volume = volume;
 }
+
+/*
+ * Sets the audio on or off
+ * @param value if true, mute the audio; if false unmute the audio.
+ * 
+ * See See Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 171 
+ */ 
+void SI4735::setAudioMute( bool off) {
+    uint16_t value = (off)? 3:0; // 3 means mute; 0 means unmute  
+    sendProperty(RX_HARD_MUTE, value);
+}
+
 
 /*
  * Gets the current volume level.
@@ -1550,7 +1555,6 @@ void SI4735::setSSB(uint8_t usblsb)
     // ssbPowerUp(); // Not used for regular operation
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = usblsb;
-    currentMode = MODE_SSB;
 }
 
 /*
