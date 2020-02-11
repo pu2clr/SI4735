@@ -723,7 +723,7 @@ public:
     void waitToSend(void); // Wait for Si4735 device ready to receive command
 
     inline void setDeviceI2CAddress(uint16_t senPin) {deviceAddress = (senPin)? SI473X_ADDR_SEN_HIGH : SI473X_ADDR_SEN_LOW;};
-    int16_t getDeviceI2CAddress(void); // return the current device address of the Si473X or 0 if error
+    int16_t getDeviceI2CAddress(void); // Scans and sets the I2C bus address. Returns the current device address of the Si473X or 0 if error
 
     void setup(uint8_t resetPin, uint8_t defaultFunction);
     void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction);

@@ -465,6 +465,8 @@ This item shows the SI4735 Arduino Library implemantation. Here you can find the
 * [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
 * [__Public Methods__](https://github.com/pu2clr/SI4735#public-methods)
   * [__Usual methods__](https://github.com/pu2clr/SI4735#public-methods)
+  * [setDeviceI2CAddress]()
+  * [getDeviceI2CAddress]()
   * [setup](https://github.com/pu2clr/SI4735#setup)
   * [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
   * [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
