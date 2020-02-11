@@ -79,13 +79,11 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
 
     pinMode(resetPin, OUTPUT);
     digitalWrite(resetPin, HIGH);
-
     delay(100);
 
     Wire.begin();
+    // check 
     Wire.beginTransmission(SI473X_ADDR_SEN_LOW);
-    Wire.write(0x00);
-    Wire.requestFrom(SI473X_ADDR_SEN_LOW, 1);
     error = Wire.endTransmission(); 
     if ( error == 0 ) {
       setDeviceI2CAddress(0);  
@@ -93,8 +91,6 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
     }
 
     Wire.beginTransmission(SI473X_ADDR_SEN_HIGH);
-    Wire.write(0x00);
-    Wire.requestFrom(SI473X_ADDR_SEN_HIGH, 1);
     error = Wire.endTransmission();  
     if ( error == 0 ) {
       setDeviceI2CAddress(1);  
