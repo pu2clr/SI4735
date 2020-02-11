@@ -171,21 +171,21 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 <BR>
 <BR>
 <BR>
-<BR>
 
 ## SI4735 Arduino Library Features
 
 This library uses the I²C communication protocol and implements most of the functions offered by Si4735 (BROADCAST AM / FM / SW / LW RADIO RECEIVER). The main features of this library are listed below.
 
-1. Open Source 
+1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://github.com/pu2clr/SI4735#mit-license) to know more.   
 2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
-3. C++ Lenguage and Object-oriented programming
-4. Available on Arduino IDE (Manage Libraries)
-5. Simplifies projects based on SI4735
-6. __I²C communication__
-7. More than 60 SI4735 [functions implemented](https://github.com/pu2clr/SI4735#api-documentation)
-8. [RDS support](https://github.com/pu2clr/SI4735#rds)(__under construction...__)
-9. [SSB (Single Side Band) patch support](https://github.com/pu2clr/SI4735#single-side-band-ssb-support) 
+3. C++ Lenguage and Object-oriented programming. You can easily extend the SI4735 class by adding more functionalities;
+4. Available on Arduino IDE (Manage Libraries); 
+5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, ATmega328 boards, Atmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested);
+6. Simplifies projects based on SI4735;
+7. __I²C communication__ and Automatic I²C bus address detection; 
+8. It can work on all Si473X IC family from Silicon Labs. More than 100 [functions implemented](https://github.com/pu2clr/SI4735#api-documentation). You can customize almost every feature available on Si47XX IC family. 
+9. [RDS support](https://github.com/pu2clr/SI4735#rds)(__under construction...__)
+10. [SSB (Single Side Band) patch support](https://github.com/pu2clr/SI4735#single-side-band-ssb-support) 
 
 <BR>
 <BR>
