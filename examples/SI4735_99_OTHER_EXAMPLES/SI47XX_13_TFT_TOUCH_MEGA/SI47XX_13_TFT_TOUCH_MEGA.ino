@@ -212,19 +212,14 @@ void setup(void)
   showText(45, 90, 2, &FreeSans9pt7b, YELLOW, "Arduino");
   showText(45, 160, 2, &FreeSans9pt7b, YELLOW, "Library");
   showText(20, 240, 2, &FreeSans9pt7b, WHITE, "By PU2CLR");
-  delay(3000);
-
-
   int16_t si4735Addr = si4735.getDeviceI2CAddress();
-  tft.fillScreen(BLACK);
   if ( si4735Addr == 0 ) {
     showText(0, 160, 2, &FreeSans9pt7b, RED, "Si473X not");
     showText(0, 240, 2, &FreeSans9pt7b, RED, "detected!!");
     while (1);
   } else {
-    sprintf(buffer, "on 0x%x", si4735Addr);
-    showText(0, 90, 2, &FreeSans9pt7b, YELLOW, "Si4735 found");
-    showText(0, 160, 2, &FreeSans9pt7b, YELLOW, buffer);
+    sprintf(buffer, "The Si473X I2C address is 0x%x ", si4735Addr);
+    showText(0, 290, 1, NULL, RED, buffer);
   }
   delay(3000);
 
