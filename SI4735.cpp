@@ -103,7 +103,7 @@ int16_t SI4735::getDeviceI2CAddress() {
  * The parameter senPin is not the I2C bus address. It is the SEN pin setup of the schematic (eletronic circuit).
  * If it is connected to the ground, call this function with senPin = 0; else senPin = 1.
  */
-void setDeviceI2CAddress(uint8_t senPin) {
+void SI4735::setDeviceI2CAddress(uint8_t senPin) {
     deviceAddress = (senPin)? SI473X_ADDR_SEN_HIGH : SI473X_ADDR_SEN_LOW;
 };
 
