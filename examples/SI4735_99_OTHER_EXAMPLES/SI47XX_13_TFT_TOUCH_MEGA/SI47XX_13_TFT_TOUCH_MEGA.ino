@@ -212,7 +212,7 @@ void setup(void)
   showText(45, 90, 2, &FreeSans9pt7b, YELLOW, "Arduino");
   showText(45, 160, 2, &FreeSans9pt7b, YELLOW, "Library");
   showText(20, 240, 2, &FreeSans9pt7b, WHITE, "By PU2CLR");
-  int16_t si4735Addr = si4735.getDeviceI2CAddress();
+  int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
   if ( si4735Addr == 0 ) {
     showText(0, 160, 2, &FreeSans9pt7b, RED, "Si473X not");
     showText(0, 240, 2, &FreeSans9pt7b, RED, "detected!!");

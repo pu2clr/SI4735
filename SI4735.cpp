@@ -66,20 +66,24 @@ void SI4735::waitInterrupr(void)
 /* 
  * Scans for two possible addresses for the Si37XX (0x11 or 0x63 )
  * This function also sets the system to the found I2C bus address of Si47XX.
+ * 
+ * @param uint8_t resetPin MCU Mater (Arduino) reset pin
  * @return 0x11 if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error. 
+ * 
  * You do not need to use this function if the SEN PIN is configured to ground (GND). The default I2C address is 0x11.
  * Use this function if you do not know how the SEN pin is configured.
- */  
-int16_t SI4735::getDeviceI2CAddress() {
+ */
+int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
     int16_t error;
 
-    // setDeviceI2CAddress(1);
-    // return SI473X_ADDR_SEN_HIGH;
+    pinMode(resetPin, OUTPUT);
+    digitalWrite(resetPin, HIGH);
 
-    reset();
-    delay(500);
+    delay(100);
+
     Wire.begin();
     Wire.beginTransmission(SI473X_ADDR_SEN_LOW);
+    Wire.write(0x00);
     Wire.requestFrom(SI473X_ADDR_SEN_LOW, 1);
     error = Wire.endTransmission(); 
     if ( error == 0 ) {
@@ -88,6 +92,7 @@ int16_t SI4735::getDeviceI2CAddress() {
     }
 
     Wire.beginTransmission(SI473X_ADDR_SEN_HIGH);
+    Wire.write(0x00);
     Wire.requestFrom(SI473X_ADDR_SEN_HIGH, 1);
     error = Wire.endTransmission();  
     if ( error == 0 ) {
