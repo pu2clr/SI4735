@@ -465,8 +465,8 @@ This item shows the SI4735 Arduino Library implemantation. Here you can find the
 * [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
 * [__Public Methods__](https://github.com/pu2clr/SI4735#public-methods)
   * [__Usual methods__](https://github.com/pu2clr/SI4735#public-methods)
-  * [setDeviceI2CAddress]()
-  * [getDeviceI2CAddress]()
+  * [setDeviceI2CAddress](https://github.com/pu2clr/SI4735#setdevicei2caddress)
+  * [getDeviceI2CAddress](https://github.com/pu2clr/SI4735#getdevicei2caddress)
   * [setup](https://github.com/pu2clr/SI4735#setup)
   * [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
   * [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
@@ -1044,6 +1044,10 @@ To use the methods below you have to declare the class SI4735 in your sketch. Th
  *
  * The default value is 0x11 (senPin = 0). In this case you have to ground the pin SEN of the SI473X. 
  * If you want to change this address, call this function with senPin = 1
+ *
+ * ATTENTION: 
+ * The parameter senPin is not the I2C bus address. It is the SEN pin setup of the schematic (eletronic circuit).
+ * If it is connected to the ground, call this function with senPin = 0; else senPin = 1.
  */
 inline void setDeviceI2CAddress(uint16_t senPin)
 ```

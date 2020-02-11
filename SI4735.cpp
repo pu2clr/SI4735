@@ -92,6 +92,22 @@ int16_t SI4735::getDeviceI2CAddress() {
     return 0;
 }
 
+/* 
+ * Sets the I2C Bus Address
+ * @param senPin 0 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to low (GND - 0V)
+ *               1 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to high (+3.3V)
+ *
+ * The default value is 0x11 (senPin = 0). In this case you have to ground the pin SEN of the SI473X. 
+ * If you want to change this address, call this function with senPin = 1
+ *
+ * ATTENTION: 
+ * The parameter senPin is not the I2C bus address. It is the SEN pin setup of the schematic (eletronic circuit).
+ * If it is connected to the ground, call this function with senPin = 0; else senPin = 1.
+ */
+void setDeviceI2CAddress(uint8_t senPin) {
+    deviceAddress = (senPin)? SI473X_ADDR_SEN_HIGH : SI473X_ADDR_SEN_LOW;
+};
+
 
 
 /*

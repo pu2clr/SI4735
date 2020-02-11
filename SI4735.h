@@ -722,7 +722,7 @@ public:
     void reset(void);
     void waitToSend(void); // Wait for Si4735 device ready to receive command
 
-    inline void setDeviceI2CAddress(uint16_t senPin) {deviceAddress = (senPin)? SI473X_ADDR_SEN_HIGH : SI473X_ADDR_SEN_LOW;};
+    void setDeviceI2CAddress(uint8_t senPin); // If SEN pin is low senPin = 0; else senPin =  1. 
     int16_t getDeviceI2CAddress(void); // Scans and sets the I2C bus address. Returns the current device address of the Si473X or 0 if error
 
     void setup(uint8_t resetPin, uint8_t defaultFunction);
