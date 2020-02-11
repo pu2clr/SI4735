@@ -1047,6 +1047,7 @@ To use the methods below you have to declare the class SI4735 in your sketch. Th
  * ATTENTION: 
  * The parameter senPin is not the I2C bus address. It is the SEN pin setup of the schematic (eletronic circuit).
  * If it is connected to the ground, call this function with senPin = 0; else senPin = 1.
+ * Acctually you do not need to use this function if the SEN PIN is configured to ground (GND).
  */
 inline void setDeviceI2CAddress(uint16_t senPin)
 ```
@@ -1056,8 +1057,10 @@ inline void setDeviceI2CAddress(uint16_t senPin)
 ```cpp
 /* 
  * Scans for two possible addresses for the Si37XX (0x11 or 0x63 )
- * This function also set the systema to found I2C bus address of Si47XX.
+ * This function also sets the system to found I2C bus address of Si47XX.
  * @return 0x11 if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error. 
+ * You do not need to use this function if the SEN PIN is configured to ground (GND). 
+ * Use this function if you do not know how the SEN pin is configured.
  */  
 int16_t getDeviceI2CAddress() 
 ```

@@ -65,7 +65,10 @@ void SI4735::waitInterrupr(void)
 
 /* 
  * Scans for two possible addresses for the Si37XX (0x11 or 0x63 )
+ * This function also sets the system to found I2C bus address of Si47XX.
  * @return 0x11 if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error. 
+ * You do not need to use this function if the SEN PIN is configured to ground (GND). The default I2C address is 0x11.
+ * Use this function if you do not know how the SEN pin is configured.
  */  
 int16_t SI4735::getDeviceI2CAddress() {
     int16_t error;
@@ -102,11 +105,11 @@ int16_t SI4735::getDeviceI2CAddress() {
  * ATTENTION: 
  * The parameter senPin is not the I2C bus address. It is the SEN pin setup of the schematic (eletronic circuit).
  * If it is connected to the ground, call this function with senPin = 0; else senPin = 1.
+ * You do not need to use this function if the SEN PIN configured to ground (GND).
  */
 void SI4735::setDeviceI2CAddress(uint8_t senPin) {
     deviceAddress = (senPin)? SI473X_ADDR_SEN_HIGH : SI473X_ADDR_SEN_LOW;
 };
-
 
 
 /*
