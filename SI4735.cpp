@@ -82,7 +82,7 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
     delay(100);
 
     Wire.begin();
-    // check 
+    // check 0X11 I2C address
     Wire.beginTransmission(SI473X_ADDR_SEN_LOW);
     error = Wire.endTransmission(); 
     if ( error == 0 ) {
@@ -90,12 +90,15 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
       return SI473X_ADDR_SEN_LOW;
     }
 
+    // check 0X63 I2C address
     Wire.beginTransmission(SI473X_ADDR_SEN_HIGH);
     error = Wire.endTransmission();  
     if ( error == 0 ) {
       setDeviceI2CAddress(1);  
       return SI473X_ADDR_SEN_HIGH;
-    }     
+    }  
+
+    // Did find the device   
     return 0;
 }
 
@@ -392,7 +395,7 @@ void SI4735::frequencyUp()
 
     setFrequency(currentWorkFrequency);
     // delayMicroseconds(2500);
-    delay(20);
+    // delay(20);
 }
 
 /*
@@ -409,7 +412,7 @@ void SI4735::frequencyDown()
 
     setFrequency(currentWorkFrequency);
     // delayMicroseconds(2500);
-    delay(20);
+    // delay(20);
 }
 
 /*
