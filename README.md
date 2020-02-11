@@ -180,7 +180,7 @@ This library uses the I²C communication protocol and implements most of the fun
 2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
 3. C++ Lenguage and Object-oriented programming. You can easily extend the SI4735 class by adding more functionalities;
 4. Available on Arduino IDE (Manage Libraries); 
-5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, ATmega328 boards, Atmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested);
+5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested);
 6. Simplifies projects based on SI4735;
 7. __I²C communication__ and Automatic I²C bus address detection; 
 8. It can work on all Si473X IC family from Silicon Labs. More than 100 [functions implemented](https://github.com/pu2clr/SI4735#api-documentation). You can customize almost every feature available on Si47XX IC family. 
