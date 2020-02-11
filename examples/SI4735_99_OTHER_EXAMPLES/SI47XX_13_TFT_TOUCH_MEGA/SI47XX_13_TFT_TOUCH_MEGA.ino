@@ -157,8 +157,8 @@ SI4735 si4735;
 // ALL Touch panels and wiring is DIFFERENT
 // copy-paste results from TouchScreen_Calibr_native.ino
 
-const int XP=6,XM=A2,YP=A1,YM=7; //240x320 ID=0x9328
-const int TS_LEFT=175,TS_RT=813,TS_TOP=203,TS_BOT=860;
+const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
+const int TS_LEFT = 175, TS_RT = 813, TS_TOP = 203, TS_BOT = 860;
 
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
@@ -214,43 +214,37 @@ void setup(void)
   showText(20, 240, 2, &FreeSans9pt7b, WHITE, "By PU2CLR");
   delay(3000);
 
+
+  int16_t si4735Addr = si4735.getDeviceI2CAddress();
+  tft.fillScreen(BLACK);
+  if ( si4735Addr == 0 ) {
+    showText(0, 160, 2, &FreeSans9pt7b, RED, "Si473X not");
+    showText(0, 240, 2, &FreeSans9pt7b, RED, "detected!!");
+    while (1);
+  } else {
+    sprintf(buffer, "on 0x%x", si4735Addr);
+    showText(0, 90, 2, &FreeSans9pt7b, YELLOW, "Si4735 found");
+    showText(0, 160, 2, &FreeSans9pt7b, YELLOW, buffer);
+  }
+  delay(3000);
+
   tft.fillScreen(BLACK);
 
   tft.setFont(&FreeSans9pt7b);
-  bPreviousBand.initButton(&tft, 30, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"B-", 1);
-  bNextBand.initButton(&tft, 90, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"B+", 1);
-  bVolumeDown.initButton(&tft, 150, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"V-", 1);
-  bVolumeUp.initButton(&tft, 210, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"V+", 1);
-  bSeekDown.initButton(&tft, 30, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"S-", 1);
-  bSeekUp.initButton(&tft, 90, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"S+", 1);
-  bMode.initButton(&tft, 150, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"M", 1);
-  bStep.initButton(&tft, 210, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"Stp", 1);
-  bAudioMute.initButton(&tft, 30, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"X", 1);
-  
 
-  bNextBand.drawButton(true);
-  bPreviousBand.drawButton(true);
-  bVolumeUp.drawButton(true);
-  bVolumeDown.drawButton(true);
-  bSeekUp.drawButton(true);
-  bSeekDown.drawButton(true);
-  bMode.drawButton(true);
-  bStep.drawButton(true);
-  bAudioMute.drawButton(true);
+  showTemplate();
 
   // Atach Encoder pins interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-
   si4735.setup(RESET_PIN, 1);
   // Set up the radio for the current band (see index table variable bandIdx )
+  delay(100);
   useBand();
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(DEFAULT_VOLUME);
   tft.setFont(&FreeSans9pt7b); // default font
-
-  tft.drawRect(0, 0, 240, 50, WHITE);
 }
 
 
@@ -294,6 +288,39 @@ void showText(int x, int y, int sz, const GFXfont *f, uint16_t color, const char
   tft.print(msg);
 }
 
+
+
+void showTemplate() {
+
+  // Área reservada à frequência
+  tft.drawRect(0, 0, 240, 50, WHITE);
+  
+  tft.setFont(NULL);
+  bPreviousBand.initButton(&tft, 30, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"B-", 1);
+  bNextBand.initButton(&tft, 90, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"B+", 1);
+  bVolumeDown.initButton(&tft, 150, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"V-", 1);
+  bVolumeUp.initButton(&tft, 210, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"V+", 1);
+  bSeekDown.initButton(&tft, 30, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"S-", 1);
+  bSeekUp.initButton(&tft, 90, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"S+", 1);
+  bMode.initButton(&tft, 150, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"M", 1);
+  bStep.initButton(&tft, 210, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"Stp", 1);
+  bAudioMute.initButton(&tft, 30, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"X", 1);
+
+  // Exibe os botões (teclado touch)
+  bNextBand.drawButton(true);
+  bPreviousBand.drawButton(true);
+  bVolumeUp.drawButton(true);
+  bVolumeDown.drawButton(true);
+  bSeekUp.drawButton(true);
+  bSeekDown.drawButton(true);
+  bMode.drawButton(true);
+  bStep.drawButton(true);
+  bAudioMute.drawButton(true);
+
+  tft.setFont(NULL);
+
+}
+
 /*
 
 */
@@ -302,25 +329,25 @@ void showFrequency()
   float freq;
   int iFreq, dFreq;
 
-  tft.fillRect(2, 2, 210, 36, BLACK);
-
+  // Clear the frequency field
+  tft.fillRect(2, 2, 140, 38, BLACK); 
+  
   if (si4735.isCurrentTuneFM())
   {
     freq = currentFrequency / 100.0;
     dtostrf(freq, 3, 1, buffer);
-    // strcat(buffer, " MHz");
   }
   else
   {
     sprintf(buffer, "%5d", currentFrequency);
   }
-  showText(30, 35, 2, &FreeSans9pt7b, YELLOW, buffer);
-  // showText(10, 35, 2, &FreeSans12pt7b, YELLOW, buffer);
-  tft.setFont(&FreeSans9pt7b); // default font
+  showText(10, 38, 2, &FreeSans12pt7b, YELLOW, buffer);
+  tft.setFont(NULL); // default font
 }
 
 void showStatus()
 {
+  char unit[5];
   si4735.getStatus();
   si4735.getCurrentReceivedSignalQuality();
   // SRN
@@ -328,21 +355,46 @@ void showStatus()
   si4735.getFrequency();
   showFrequency();
 
-  tft.fillRect(0, 50, 240, 50, BLACK);
 
+
+  tft.fillRect(150, 2, 85, 36, BLACK); 
+  if (si4735.isCurrentTuneFM()) {
+    showText(150, 30, 2, NULL, WHITE, "MHz"); 
+  } else {
+    sprintf(buffer,"Step:%2d",currentStep);
+    showText(150, 10, 2, NULL, WHITE, buffer);
+    showText(150, 30, 2, NULL, WHITE, "KHz"); 
+  }
+  
+
+  tft.fillRect(0, 60, 250, 36, BLACK);  
+   
   if ( band[bandIdx].bandType == SW_BAND_TYPE) {
-    sprintf(buffer, "%s/ %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
-    showText(40, 90, 2, &FreeSans9pt7b, RED, buffer );
+    sprintf(buffer, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
+    showText(5, 60, 2, NULL, RED, buffer );
   }
   else {
     sprintf(buffer, "%s", band[bandIdx].bandName);
-    showText(80, 90, 2, &FreeSans9pt7b, RED, buffer );
+    showText(5, 60, 2, NULL, RED, buffer );
   }
+
+  showBFO();
+  
+  tft.setFont(NULL);
 }
 
 void showBFO()
 {
 
+  if (currentMode == LSB || currentMode == USB  ) { 
+    tft.fillRect(128, 60, 110, 18, BLACK);  
+    sprintf(buffer, "BFO.:%+d",currentBFO);
+    showText(120, 60, 2, NULL, RED, buffer );
+    tft.fillRect(128, 78, 110, 18, BLACK);  
+    sprintf(buffer,"Step:%2d",currentBFOStep);
+    showText(120, 77, 2, NULL, RED, buffer);
+  }
+  
 }
 
 void showVolume()
@@ -370,7 +422,7 @@ void bandUp()
   }
 
   useBand();
-  
+
 }
 
 /*
@@ -427,7 +479,7 @@ void loadSSB()
 */
 void useBand()
 {
- 
+
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -488,6 +540,7 @@ void loop(void)
     if (bfoOn)
     {
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
+      showBFO();
     }
     else
     {
@@ -513,13 +566,13 @@ void loop(void)
 
   if (bNextBand.justPressed())
   {
-    bNextBand.drawButton(true);
+    // bNextBand.drawButton(true);
     bandUp();
   }
 
   if (bPreviousBand.justPressed())
   {
-    bPreviousBand.drawButton(true);
+    // bPreviousBand.drawButton(true);
     bandDown();
   }
 
@@ -537,7 +590,7 @@ void loop(void)
 
   if (bVolumeDown.justPressed())
   {
-    bVolumeDown.drawButton(true);
+    // bVolumeDown.drawButton(true);
     si4735.volumeDown();
   }
 
@@ -547,7 +600,7 @@ void loop(void)
 
   if (bSeekUp.justPressed())
   {
-    bSeekUp.drawButton(true);
+    // bSeekUp.drawButton(true);
     if (currentMode == FM) {
       si4735.seekStationUp();
       delay(15);
@@ -560,7 +613,7 @@ void loop(void)
 
   if (bSeekDown.justPressed())
   {
-    bSeekUp.drawButton(true);
+    // bSeekUp.drawButton(true);
     if (currentMode == FM) {
       si4735.seekStationDown();
       delay(15);
@@ -583,28 +636,28 @@ void loop(void)
 
   if (bMode.justPressed())
   {
-      if (currentMode != FM ) {
-        if (currentMode == AM)
-        {
-          // If you were in AM mode, it is necessary to load SSB patch (avery time)
-          loadSSB();
-          currentMode = LSB;
-        }
-        else if (currentMode == LSB)
-        {
-          currentMode = USB;
-        }
-        else if (currentMode == USB)
-        {
-          currentMode = AM;
-          ssbLoaded = false;
-          bfoOn = false;
-        }
-        // Nothing to do if you are in FM mode
-        band[bandIdx].currentFreq = currentFrequency;
-        band[bandIdx].currentStep = currentStep;
-        useBand();
+    if (currentMode != FM ) {
+      if (currentMode == AM)
+      {
+        // If you were in AM mode, it is necessary to load SSB patch (avery time)
+        loadSSB();
+        currentMode = LSB;
       }
+      else if (currentMode == LSB)
+      {
+        currentMode = USB;
+      }
+      else if (currentMode == USB)
+      {
+        currentMode = AM;
+        ssbLoaded = false;
+        bfoOn = false;
+      }
+      // Nothing to do if you are in FM mode
+      band[bandIdx].currentFreq = currentFrequency;
+      band[bandIdx].currentStep = currentStep;
+      useBand();
+    }
   }
 
   if (bStep.justPressed())

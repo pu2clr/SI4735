@@ -63,6 +63,37 @@ void SI4735::waitInterrupr(void)
         ;
 }
 
+/* 
+ * Scans for two possible addresses for the Si37XX (0x11 or 0x63 )
+ * @return 0x11 if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error. 
+ */  
+int16_t SI4735::getDeviceI2CAddress() {
+    int16_t error;
+
+    Wire.begin();
+    return SI473X_ADDR_SEN_LOW;
+
+    Wire.beginTransmission(SI473X_ADDR_SEN_LOW);
+    Wire.requestFrom(SI473X_ADDR_SEN_LOW, 1);
+    error = Wire.endTransmission(); 
+    if ( error == 0 ) {
+      setDeviceI2CAddress(0);  
+      return SI473X_ADDR_SEN_LOW;
+    }
+
+    Wire.beginTransmission(SI473X_ADDR_SEN_HIGH);
+    Wire.requestFrom(SI473X_ADDR_SEN_HIGH, 1);
+    error = Wire.endTransmission();  
+    if ( error == 0 ) {
+      setDeviceI2CAddress(1);  
+      return SI473X_ADDR_SEN_HIGH;
+    }     
+
+    return 0;
+}
+
+
+
 /*
  * Reset the SI473X   
  * See Si47XX PROGRAMMING GUIDE; AN332;
