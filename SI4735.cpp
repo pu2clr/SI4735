@@ -88,7 +88,6 @@ int16_t SI4735::getDeviceI2CAddress() {
       setDeviceI2CAddress(1);  
       return SI473X_ADDR_SEN_HIGH;
     }     
-
     return 0;
 }
 
