@@ -412,12 +412,15 @@ void SI4735::frequencyDown()
  */
 void SI4735::setAM()
 {
-    powerDown();
-    setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
-    analogPowerUp();
-    setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain to 48
-    setVolume(volume); // Set to previus configured volume
+    if ( lastMode != AM_CURRENT_MODE ) {
+        powerDown();
+        setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
+        analogPowerUp();
+        setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain to 48
+        setVolume(volume); // Set to previus configured volume
+    }
     currentSsbStatus = 0;
+    lastMode = AM_CURRENT_MODE;
 }
 
 /*
@@ -431,6 +434,7 @@ void SI4735::setFM()
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
     disableFmDebug();
+    lastMode = FM_CURRENT_MODE;
 }
 
 /*
@@ -1604,6 +1608,7 @@ void SI4735::setSSB(uint8_t usblsb)
     // ssbPowerUp(); // Not used for regular operation
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = usblsb;
+    lastMode = SSB_CURRENT_MODE;
 }
 
 /*

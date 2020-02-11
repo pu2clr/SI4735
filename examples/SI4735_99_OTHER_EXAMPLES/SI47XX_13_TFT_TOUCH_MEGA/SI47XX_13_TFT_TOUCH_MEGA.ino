@@ -497,7 +497,7 @@ void useBand()
     else
     {
       currentMode = AM;
-      si4735.reset();
+      // si4735.reset(); // ===> Acho que aqui estava o problema. 
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
 

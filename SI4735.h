@@ -134,6 +134,11 @@
 #define LSB_MODE 1 // 01
 #define USB_MODE 2 // 10
 
+#define FM_CURRENT_MODE 0
+#define AM_CURRENT_MODE 1
+#define SSB_CURRENT_MODE 2
+
+
 // Parameters
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
 #define SI473X_DIGITAL_AUDIO B00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
@@ -691,6 +696,8 @@ private:
     uint16_t currentWorkFrequency;
 
     uint8_t currentStep;
+
+    uint8_t lastMode = -1; // Store the last mode used. 
 
     uint8_t currentAvcAmMaxGain = 48; // Automatic Volume Control Gain for AM - Default 48
 
