@@ -64,7 +64,7 @@
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
-#define DEFAULT_VOLUME 40 // change it for your favorite sound volume
+#define DEFAULT_VOLUME 45 // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -219,7 +219,7 @@ void setup(void)
     while (1);
   } else {
     sprintf(buffer, "The Si473X I2C address is 0x%x ", si4735Addr);
-    showText(0, 290, 1, NULL, RED, buffer);
+    showText(25, 290, 1, NULL, RED, buffer);
   }
   delay(3000);
 
@@ -497,7 +497,6 @@ void useBand()
     else
     {
       currentMode = AM;
-      // si4735.reset(); // ===> Acho que aqui estava o problema. 
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
 
@@ -576,7 +575,7 @@ void loop(void)
 
   if (bVolumeUp.justPressed())
   {
-    bVolumeUp.drawButton(true);
+    // bVolumeUp.drawButton(true);
     si4735.volumeUp();
   }
 
@@ -696,8 +695,6 @@ void loop(void)
     }
     delay(100);
   }
-
-
 
   delay(15);
 }

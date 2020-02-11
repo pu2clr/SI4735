@@ -73,9 +73,12 @@ void SI4735::waitInterrupr(void)
 int16_t SI4735::getDeviceI2CAddress() {
     int16_t error;
 
-    Wire.begin();
-    return SI473X_ADDR_SEN_LOW;
+    // setDeviceI2CAddress(1);
+    // return SI473X_ADDR_SEN_HIGH;
 
+    reset();
+    delay(500);
+    Wire.begin();
     Wire.beginTransmission(SI473X_ADDR_SEN_LOW);
     Wire.requestFrom(SI473X_ADDR_SEN_LOW, 1);
     error = Wire.endTransmission(); 
@@ -412,6 +415,8 @@ void SI4735::frequencyDown()
  */
 void SI4735::setAM()
 {
+    // If you’re already using AM mode, you don’t need call powerDown and analogPowerUp. 
+    // The other properties also should have the same value as the previous status.
     if ( lastMode != AM_CURRENT_MODE ) {
         powerDown();
         setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
