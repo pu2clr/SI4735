@@ -1046,6 +1046,17 @@ To use the methods below you have to declare the class SI4735 in your sketch. Th
 inline void setDeviceI2CAddress(uint16_t senPin)
 ```
 
+### getDeviceI2CAddress
+
+```cpp
+/* 
+ * Scans for two possible addresses for the Si37XX (0x11 or 0x63 )
+ * This function also set the systema to found I2C bus address of Si47XX.
+ * @return 0x11 if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error. 
+ */  
+int16_t getDeviceI2CAddress() 
+```
+
 
 ### setup
 
