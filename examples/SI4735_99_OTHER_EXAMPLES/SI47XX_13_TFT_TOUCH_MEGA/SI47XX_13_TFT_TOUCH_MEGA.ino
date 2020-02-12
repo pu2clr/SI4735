@@ -326,14 +326,10 @@ void showTemplate() {
   bFilter.drawButton(true);
   bAGC.drawButton(true);
 
-
   tft.setFont(NULL);
 
 }
 
-/*
-
-*/
 void showFrequency()
 {
   float freq;
@@ -373,11 +369,8 @@ void showStatus()
   si4735.getStatus();
   si4735.getCurrentReceivedSignalQuality();
   // SRN
-
   si4735.getFrequency();
   showFrequency();
-
-
 
   tft.fillRect(150, 2, 85, 36, BLACK);
   if (si4735.isCurrentTuneFM()) {
@@ -421,14 +414,10 @@ void showStatus()
     strcpy( bufferBW, buffer);
     showText(70, 85, 1, NULL, GREEN, bufferAGC);
   }
-
-
   tft.setFont(NULL);
 }
 
 void showRSSI() {
-
-  // tft.fillRect(0, 85, 80, 18, BLACK);
   if (  currentMode == FM ) {
     showText(5, 85, 1, NULL, BLACK, bufferStereo );
     sprintf(buffer, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
@@ -436,6 +425,7 @@ void showRSSI() {
     strcpy(bufferStereo, buffer);
   }
 }
+
 
 char bufferBFO[15];
 char bufferStep[15];
