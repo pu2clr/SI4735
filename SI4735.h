@@ -143,7 +143,7 @@
 #define FM_CURRENT_MODE 0
 #define AM_CURRENT_MODE 1
 #define SSB_CURRENT_MODE 2
-#define MAX_DELAY_AFTER_SET_FREQUENCY 26 // In ms - This value helps to improve the precision during of getting frequency value
+#define MAX_DELAY_AFTER_SET_FREQUENCY 50 // In ms - This value helps to improve the precision during of getting frequency value
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 
 /*****************************************************************
