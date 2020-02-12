@@ -18,6 +18,7 @@
  * 
  * ATTENTION: inline methods are implemented in SI4735.h
  * 
+ * 
  * By Ricardo Lima Caratti, Nov 2019.
  */
 

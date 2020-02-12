@@ -8,7 +8,6 @@
  * See documentation on https://github.com/pu2clr/SI4735
  * Ricardo Lima Caratti, Nov 2019  
  */
-
 #include <Arduino.h>
 #include <Wire.h>
 
