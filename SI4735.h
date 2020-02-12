@@ -139,9 +139,12 @@
 #define SSB_CURRENT_MODE 2
 
 
+
 // Parameters
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
 #define SI473X_DIGITAL_AUDIO B00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
+
+#define MAX_DELAY_AFTER_SET_FREQUENCY 8250 // This value help to improve the precision during of getting frequency value 
 
 /*****************************************************************
  * SI473X data types 
