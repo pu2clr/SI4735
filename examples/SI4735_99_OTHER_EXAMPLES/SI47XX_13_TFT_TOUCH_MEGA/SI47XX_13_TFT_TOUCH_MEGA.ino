@@ -148,6 +148,8 @@ const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
 char buffer[64];
+char bufferFreq[10];
+char bufferStereo[10];
 
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 MCUFRIEND_kbv tft;
@@ -161,7 +163,7 @@ const int TS_LEFT = 175, TS_RT = 813, TS_TOP = 203, TS_BOT = 860;
 
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
-Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM;
+Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bFilter, bAGC;
 
 
 
@@ -304,6 +306,8 @@ void showTemplate() {
   bAM.initButton(&tft, 90, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"AM", 1);
   bLSB.initButton(&tft, 150, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"LSB", 1);
   bUSB.initButton(&tft, 210, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"USB", 1);
+  bFilter.initButton(&tft, 30, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"|Y|", 1);
+  bAGC.initButton(&tft, 90, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"AGC", 1);
 
 
   // Exibe os botões (teclado touch)
@@ -319,6 +323,9 @@ void showTemplate() {
   bAM.drawButton(true);
   bLSB.drawButton(true);
   bUSB.drawButton(true);
+  bFilter.drawButton(true);
+  bAGC.drawButton(true);
+
 
   tft.setFont(NULL);
 
@@ -331,9 +338,11 @@ void showFrequency()
 {
   float freq;
   int iFreq, dFreq;
+  uint16_t color;
 
   // Clear the frequency field
-  tft.fillRect(2, 2, 150, 38, BLACK);
+  // tft.fillRect(2, 2, 150, 38, BLACK);
+  showText(10, 10, 4, NULL, BLACK, bufferFreq);
 
   if (si4735.isCurrentTuneFM())
   {
@@ -341,16 +350,22 @@ void showFrequency()
     dtostrf(freq, 3, 1, buffer);
   }
   else
-  { 
-      freq = currentFrequency / 1000.0;
-      if ( currentFrequency < 1000 ) 
-         sprintf(buffer, "%5d", currentFrequency); 
-      else     
-        dtostrf(freq, 2, 3, buffer);   
+  {
+    freq = currentFrequency / 1000.0;
+    if ( currentFrequency < 1000 )
+      sprintf(buffer, "%5d", currentFrequency);
+    else
+      dtostrf(freq, 2, 3, buffer);
   }
-  showText(10, 10, 4, NULL, YELLOW, buffer);
+  color = (bfoOn) ? CYAN : YELLOW;
+  showText(10, 10, 4, NULL, color, buffer);
   tft.setFont(NULL); // default font
+  strcpy(bufferFreq, buffer);
 }
+
+
+char bufferBW[15];
+char bufferAGC[10];
 
 void showStatus()
 {
@@ -384,33 +399,60 @@ void showStatus()
     showText(5, 60, 2, NULL, RED, buffer );
   }
 
-  showBFO();
+  showText(70, 85, 1, NULL, BLACK, bufferAGC);
+  si4735.getAutomaticGainControl();
+  sprintf(buffer, "AGC %s", (si4735.isAgcEnabled()) ? "ON" : "OFF");
+  strcpy(bufferAGC, buffer);
+
+  if (currentMode == LSB || currentMode == USB)
+  {
+    showText(5, 85, 1, NULL, BLACK, bufferBW );
+    sprintf(buffer, "BW:%s KHz", bandwitdthSSB[bwIdxSSB]);
+    showText(5, 85, 1, NULL, GREEN, buffer );
+    strcpy( bufferBW, buffer);
+    showBFO();
+    showText(70, 85, 1, NULL, GREEN, bufferAGC);
+  }
+  else if (currentMode == AM)
+  {
+    showText(5, 85, 1, NULL, BLACK, bufferBW );
+    sprintf(buffer, "BW:%s KHz", bandwitdthAM[bwIdxAM]);
+    showText(5, 85, 1, NULL, GREEN, buffer );
+    strcpy( bufferBW, buffer);
+    showText(70, 85, 1, NULL, GREEN, bufferAGC);
+  }
+
 
   tft.setFont(NULL);
 }
 
 void showRSSI() {
 
-  tft.fillRect(0, 85, 80, 18, BLACK);
-    if (  currentMode == FM ) {
+  // tft.fillRect(0, 85, 80, 18, BLACK);
+  if (  currentMode == FM ) {
+    showText(5, 85, 1, NULL, BLACK, bufferStereo );
     sprintf(buffer, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
     showText(5, 85, 1, NULL, GREEN, buffer );
+    strcpy(bufferStereo, buffer);
   }
-
 }
+
+char bufferBFO[15];
+char bufferStep[15];
 
 void showBFO()
 {
 
-  if (currentMode == LSB || currentMode == USB  ) {
-    tft.fillRect(188, 60, 110, 18, BLACK);
-    sprintf(buffer, "BFO.:%+d", currentBFO);
-    showText(150, 60, 1, NULL, GREEN, buffer );
-    tft.fillRect(128, 78, 110, 18, BLACK);
-    sprintf(buffer, "Step:%2d", currentBFOStep);
-    showText(150, 77, 1, NULL, GREEN, buffer);
-  }
+  showText(150, 60, 1, NULL, BLACK, bufferBFO );
+  showText(150, 77, 1, NULL, BLACK, bufferStep);
 
+  sprintf(buffer, "BFO.:%+d", currentBFO);
+  showText(150, 60, 1, NULL, GREEN, buffer );
+  strcpy(bufferBFO, buffer);
+  tft.fillRect(128, 78, 110, 18, BLACK);
+  sprintf(buffer, "Step:%2d", currentBFOStep);
+  showText(150, 77, 1, NULL, GREEN, buffer);
+  strcpy(bufferStep, buffer);
 }
 
 void showVolume()
@@ -551,6 +593,9 @@ void loop(void)
   bAM.press(down && bAM.contains(pixel_x, pixel_y));
   bLSB.press(down && bLSB.contains(pixel_x, pixel_y));
   bUSB.press(down && bUSB.contains(pixel_x, pixel_y));
+  bFilter.press(down && bFilter.contains(pixel_x, pixel_y));
+  bAGC.press(down && bAGC.contains(pixel_x, pixel_y));
+
 
   // Check if the encoder has moved.
   if (encoderCount != 0)
@@ -562,7 +607,6 @@ void loop(void)
     }
     else
     {
-      // si4735.setTuneFrequencyFast(0); // Test
       if (encoderCount == 1)
         si4735.frequencyUp();
       else
@@ -600,6 +644,7 @@ void loop(void)
   {
     // bVolumeUp.drawButton(true);
     si4735.volumeUp();
+    delay(MIN_ELAPSED_TIME);
   }
 
   // if (bVolumeDown.justReleased())
@@ -609,6 +654,7 @@ void loop(void)
   {
     // bVolumeDown.drawButton(true);
     si4735.volumeDown();
+    delay(MIN_ELAPSED_TIME);
   }
 
 
@@ -693,13 +739,15 @@ void loop(void)
 
   if (bFM.justPressed())
   {
-    band[bandIdx].currentFreq = currentFrequency;
-    band[bandIdx].currentStep = currentStep;
-    ssbLoaded = false;
-    bfoOn = false;
-    currentMode = FM;
-    bandIdx = 0;
-    useBand();
+    if (currentMode != FM ) {
+      band[bandIdx].currentFreq = currentFrequency;
+      band[bandIdx].currentStep = currentStep;
+      ssbLoaded = false;
+      bfoOn = false;
+      currentMode = FM;
+      bandIdx = 0;
+      useBand();
+    }
   }
 
 
@@ -729,6 +777,43 @@ void loop(void)
       useBand();
     }
   }
+
+
+  if (bAGC.justPressed())
+  {
+    disableAgc = !disableAgc;
+    // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
+    si4735.setAutomaticGainControl(disableAgc, 1);
+    showStatus();
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  }
+
+
+  if (bFilter.justPressed())
+  {
+    if (currentMode == LSB || currentMode == USB)
+    {
+      bwIdxSSB++;
+      if (bwIdxSSB > 5)
+        bwIdxSSB = 0;
+      si4735.setSSBAudioBandwidth(bwIdxSSB);
+      // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+      if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
+        si4735.setSBBSidebandCutoffFilter(0);
+      else
+        si4735.setSBBSidebandCutoffFilter(1);
+    }
+    else if (currentMode == AM)
+    {
+      bwIdxAM++;
+      if (bwIdxAM > 6)
+        bwIdxAM = 0;
+      si4735.setBandwidth(bwIdxAM, 0);
+    }
+    showStatus();
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  }
+
 
   if (bStep.justPressed())
   {
@@ -765,8 +850,9 @@ void loop(void)
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)  {
     if (currentMode == LSB || currentMode == USB) {
       bfoOn = !bfoOn;
-      if (bfoOn)
+      if (bfoOn) {
         showBFO();
+      }
       showStatus();
     }
     delay(100);
