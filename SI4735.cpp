@@ -376,7 +376,7 @@ void SI4735::setFrequency(uint16_t freq)
     Wire.endTransmission();
     waitToSend();                // Wait for the si473x is ready.
     currentWorkFrequency = freq; // check it
-    delayMicroseconds(2500);
+    delay(MAX_DELAY_AFTER_SET_FREQUENCY); // For some reason I need to delay here. 
 }
 
 /* 
@@ -402,7 +402,6 @@ void SI4735::frequencyUp()
         currentWorkFrequency += currentStep;
 
     setFrequency(currentWorkFrequency);
-    delay(MAX_DELAY_AFTER_SET_FREQUENCY); // For some reason I need to delay here. 
 }
 
 /*
@@ -418,7 +417,6 @@ void SI4735::frequencyDown()
         currentWorkFrequency -= currentStep;
 
     setFrequency(currentWorkFrequency);
-    delay(MAX_DELAY_AFTER_SET_FREQUENCY); // For some reason I need to delay here.
 }
 
 /*

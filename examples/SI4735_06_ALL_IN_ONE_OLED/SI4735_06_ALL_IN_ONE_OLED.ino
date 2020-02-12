@@ -92,7 +92,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
 
-#define DEFAULT_VOLUME 50 // change it for your favorite sound volume
+#define DEFAULT_VOLUME 45 // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -148,7 +148,7 @@ typedef struct
    Band table
 */
 Band band[] = {
-  {FM_BAND_TYPE, 8400, 10800, 10390, 10},
+  {FM_BAND_TYPE, 8400, 10800, 10570, 10},
   {LW_BAND_TYPE, 100, 510, 300, 1},
   {MW_BAND_TYPE, 520, 1720, 810, 10},
   {SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
@@ -220,7 +220,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  si4735.setup(RESET_PIN, MW_BAND_TYPE);
+  si4735.setup(RESET_PIN, FM_BAND_TYPE);
 
   delay(300);  
   // Set up the radio for the current band (see index table variable bandIdx )
@@ -491,8 +491,6 @@ void loadSSB()
 */
 void useBand()
 {
-  // delay(250);
-  // oled.clear();
   clearLine4();
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
@@ -513,18 +511,19 @@ void useBand()
     {
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
       si4735.setSSBAutomaticVolumeControl(1);
+      si4735.setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
     }
     else
     {
       currentMode = AM;
-      si4735.reset();
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
+      si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
       bfoOn = false;
     }
 
   }
-
+  delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
   showStatus();
@@ -546,7 +545,7 @@ void loop()
         si4735.frequencyUp();
       else
         si4735.frequencyDown();
-  
+
       // Show the current frequency only if it has changed
       currentFrequency = si4735.getFrequency();
     }
@@ -711,6 +710,5 @@ void loop()
       showBFO();
     }
   }
-  
-  delay(15);
+  delay(10);
 }
