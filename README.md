@@ -2013,6 +2013,7 @@ inline uint8_t getCurrentAvcAmMaxGain()
 ```cpp
 /*
  * sets soft mute max attenuation for AM 
+ * @patam uint8_t smattn if 0 disable.  Default attenuation is 8dB  
  */
 inline void setAmSoftMuteMaxAttenuation( uint8_t smattn) 
 ```    
@@ -2621,6 +2622,26 @@ void SI4735::setSSBDspAfc(byte DSP_AFCDIS)
  */
 void SI4735::setSSBSoftMute(byte SMUTESEL)
 ```
+
+
+### setSsbSoftMuteMaxAttenuation
+
+```cpp
+/*
+ * sets soft mute max attenuation for SSB
+ * @patam uint8_t smattn if 0 disable.  Default attenuation is 8dB   
+ */
+inline void setSsbSoftMuteMaxAttenuation( uint8_t smattn) 
+```
+
+
+```cpp
+/*
+ * sets soft mute max attenuation for SSB to 0
+ */
+inline void setSsbSoftMuteMaxAttenuation() 
+```
+
 
 ### setSSBAutomaticVolumeControl
 
