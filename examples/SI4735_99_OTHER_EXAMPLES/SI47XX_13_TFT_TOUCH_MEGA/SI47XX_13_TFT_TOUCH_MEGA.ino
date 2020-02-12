@@ -32,10 +32,6 @@
 #include <SI4735.h>
 #include <Adafruit_GFX.h>
 #include <MCUFRIEND_kbv.h>
-#include <Fonts/FreeSans9pt7b.h>
-#include <Fonts/FreeSans12pt7b.h>
-#include <Fonts/FreeSerif12pt7b.h>
-#include <FreeDefaultFonts.h>
 #include <TouchScreen.h>
 #include "Rotary.h"
 
@@ -211,14 +207,14 @@ void setup(void)
 
 
   // tft.setFont(&FreeSans12pt7b);
-  showText(45, 30, 2, &FreeSans9pt7b, GREEN, "SI4735");
-  showText(45, 90, 2, &FreeSans9pt7b, YELLOW, "Arduino");
-  showText(45, 160, 2, &FreeSans9pt7b, YELLOW, "Library");
-  showText(20, 240, 2, &FreeSans9pt7b, WHITE, "By PU2CLR");
+  showText(45, 30, 2, NULL, GREEN, "SI4735");
+  showText(45, 90, 2, NULL, YELLOW, "Arduino");
+  showText(45, 160, 2, NULL, YELLOW, "Library");
+  showText(20, 240, 2, NULL, WHITE, "By PU2CLR");
   int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
   if ( si4735Addr == 0 ) {
-    showText(0, 160, 2, &FreeSans9pt7b, RED, "Si473X not");
-    showText(0, 240, 2, &FreeSans9pt7b, RED, "detected!!");
+    showText(0, 160, 2, NULL, RED, "Si473X not");
+    showText(0, 240, 2, NULL, RED, "detected!!");
     while (1);
   } else {
     sprintf(buffer, "The Si473X I2C address is 0x%x ", si4735Addr);
@@ -228,7 +224,6 @@ void setup(void)
 
   tft.fillScreen(BLACK);
 
-  tft.setFont(&FreeSans9pt7b);
 
   showTemplate();
 
@@ -242,7 +237,7 @@ void setup(void)
   useBand();
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(DEFAULT_VOLUME);
-  tft.setFont(&FreeSans9pt7b); // default font
+  tft.setFont(NULL); // default font
 }
 
 

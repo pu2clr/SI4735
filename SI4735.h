@@ -144,7 +144,8 @@
 #define FM_CURRENT_MODE 0
 #define AM_CURRENT_MODE 1
 #define SSB_CURRENT_MODE 2
-#define MAX_DELAY_AFTER_SET_FREQUENCY 26 // This value helps to improve the precision during of getting frequency value (ms)
+#define MAX_DELAY_AFTER_SET_FREQUENCY 26 // In ms - This value helps to improve the precision during of getting frequency value
+#define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 
 /*****************************************************************
  * SI473X data types 
@@ -872,6 +873,7 @@ public:
     void setFmStereoOff();
 
     // RDS implementation
+    void RdsInit();
     void setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t RDSSYNCFOUND, uint8_t RDSSYNCLOST, uint8_t RDSRECV);
     void getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY);
     void getRdsStatus();

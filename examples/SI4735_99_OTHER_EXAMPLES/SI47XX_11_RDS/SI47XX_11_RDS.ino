@@ -61,8 +61,13 @@ void setup()
   delay(500);
 
   si4735.setup(RESET_PIN, INTERRUPT_PIN, FM_FUNCTION);
+  
   si4735.setVolume(45);
+
   delay(500);
+
+  // RDS setup 
+  si4735.RdsInit();
 
   fm_freq = rdsStations[currentStation];
 

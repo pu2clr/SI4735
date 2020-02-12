@@ -25,14 +25,21 @@
 
 SI4735::SI4735()
 {
+    // 1 = LSB and 2 = USB; 0 = AM, FM or WB
+    currentSsbStatus = 0;
+}
+
+
+/* 
+ * Starts the control variables for RDS.
+ */  
+void SI4735::RdsInit() {
+
     clearRdsBuffer2A();
     clearRdsBuffer2B();
     clearRdsBuffer0A();
 
     rdsTextAdress2A = rdsTextAdress2B = lastTextFlagAB = rdsTextAdress0A = 0;
-
-    // 1 = LSB and 2 = USB; 0 = AM, FM or WB
-    currentSsbStatus = 0;
 }
 
 void SI4735::clearRdsBuffer2A()
@@ -141,7 +148,7 @@ void SI4735::waitToSend()
 {
     do
     {
-        delayMicroseconds(220); // Need check the minimum value.
+        delayMicroseconds(MIN_DELAY_WAIT_SEND_LOOP); // Need check the minimum value.
         Wire.requestFrom(deviceAddress, 1);
     } while (!(Wire.read() & B10000000));
 }
@@ -1809,7 +1816,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 
         // Testing download performance
         // approach 1 - Faster - less secure (it might crash in some architectures)
-        delayMicroseconds(300); // Need check the minimum value
+        delayMicroseconds(MIN_DELAY_WAIT_SEND_LOOP); // Need check the minimum value
 
         // approach 2 - More control. A little more secure than approach 1
         /*
@@ -1840,7 +1847,8 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 }
 
 /*
- * Transfers the content of a patch stored in a eeprom to the SI4735 device.
+ *  Under construction... 
+ *  Transfers the content of a patch stored in a eeprom to the SI4735 device.
  * 
  * TO USE THIS METHOD YOU HAVE TO HAVE A EEPROM WRITEN WITH THE PATCH CONTENT
  * See the sketch write_ssb_patch_eeprom.ino (TO DO)
