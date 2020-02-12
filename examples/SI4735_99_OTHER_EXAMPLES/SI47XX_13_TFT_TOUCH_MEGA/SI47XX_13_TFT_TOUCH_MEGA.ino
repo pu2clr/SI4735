@@ -854,5 +854,5 @@ void loop(void)
     }
     elapsedRSSI = millis();
   }
-
+  delay(30);
 }

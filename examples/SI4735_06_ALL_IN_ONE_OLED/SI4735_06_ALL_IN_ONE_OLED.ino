@@ -222,9 +222,10 @@ void setup()
 
   si4735.setup(RESET_PIN, MW_BAND_TYPE);
 
+  delay(300);  
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
-  delay(200);
+
   currentFrequency = previousFrequency = si4735.getFrequency();
 
   si4735.setVolume(volume);
@@ -545,9 +546,8 @@ void loop()
         si4735.frequencyUp();
       else
         si4735.frequencyDown();
-
+  
       // Show the current frequency only if it has changed
-      delay(30);
       currentFrequency = si4735.getFrequency();
     }
     encoderCount = 0;
@@ -712,5 +712,5 @@ void loop()
     }
   }
   
-  delay(50);
+  delay(15);
 }
