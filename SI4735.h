@@ -134,17 +134,17 @@
 #define LSB_MODE 1 // 01
 #define USB_MODE 2 // 10
 
-#define FM_CURRENT_MODE 0
-#define AM_CURRENT_MODE 1
-#define SSB_CURRENT_MODE 2
-
-
 
 // Parameters
 #define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
 #define SI473X_DIGITAL_AUDIO B00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
 
-#define MAX_DELAY_AFTER_SET_FREQUENCY 8250 // This value help to improve the precision during of getting frequency value 
+
+// Other parameters
+#define FM_CURRENT_MODE 0
+#define AM_CURRENT_MODE 1
+#define SSB_CURRENT_MODE 2
+#define MAX_DELAY_AFTER_SET_FREQUENCY 8250 // This value helps to improve the precision during of getting frequency value 
 
 /*****************************************************************
  * SI473X data types 
