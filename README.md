@@ -1639,7 +1639,7 @@ inline bool SI4735::getSignalQualityInterrup()
 /* 
  * Gets Radio Data System (RDS) Interrupt
  */
-inline bool SI4735::getRadioDataSystemInterrupt()
+inline bool getRadioDataSystemInterrupt()
 ```
 
 
@@ -2234,6 +2234,15 @@ The table below shows the main group types implemented by this library
 
 <BR>
 <BR>
+
+### RdsInit
+
+```cpp
+/* 
+ * Starts the control variables for RDS.
+ */  
+void SI4735::RdsInit()
+```
 
 ### setRdsIntSource
 
