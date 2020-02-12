@@ -30,6 +30,7 @@ __Attention__:
 8. [Hardware Requirements and Setup](https://github.com/pu2clr/SI4735#hardware-requirements-and-setup)
    * [Schematic](https://github.com/pu2clr/SI4735#schematic)
    * [Component Parts](https://github.com/pu2clr/SI4735#parts)
+   * [Tips to build](https://github.com/pu2clr/SI4735#tips-to-build)
    * [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested)
    * [Photos (Tools and Accessories)](https://github.com/pu2clr/SI4735#photos-tools-and-accessories)
 9.  [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
