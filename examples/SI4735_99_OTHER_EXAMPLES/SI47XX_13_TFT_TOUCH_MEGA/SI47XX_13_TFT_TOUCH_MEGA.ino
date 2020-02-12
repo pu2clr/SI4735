@@ -522,7 +522,6 @@ void loadSSB()
 */
 void useBand()
 {
-
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -540,18 +539,17 @@ void useBand()
     if (ssbLoaded)
     {
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
-      setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
       si4735.setSSBAutomaticVolumeControl(1);
+      si4735.setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
     }
     else
     {
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
-      setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
+      si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
       bfoOn = false;
     }
-
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
