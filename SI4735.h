@@ -778,6 +778,11 @@ public:
     inline void setAmSoftMuteMaxAttenuation( uint8_t smattn) {sendProperty(AM_SOFT_MUTE_MAX_ATTENUATION, smattn);};
     inline void setAmSoftMuteMaxAttenuation() {sendProperty(AM_SOFT_MUTE_MAX_ATTENUATION, 0);};
 
+    inline void setSsbSoftMuteMaxAttenuation( uint8_t smattn) {sendProperty(SSB_SOFT_MUTE_MAX_ATTENUATION, smattn);};
+    inline void setSsbSoftMuteMaxAttenuation() {sendProperty(SSB_SOFT_MUTE_MAX_ATTENUATION, 0);};
+
+
+
 
     inline bool isAgcEnabled() { return !currentAgcStatus.refined.AGCDIS; };      // Returns true if the AGC is enabled
     inline uint8_t getAgcGainIndex() { return currentAgcStatus.refined.AGCIDX; }; // Returns the current AGC gain index.
