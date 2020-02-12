@@ -144,7 +144,7 @@
 #define FM_CURRENT_MODE 0
 #define AM_CURRENT_MODE 1
 #define SSB_CURRENT_MODE 2
-#define MAX_DELAY_AFTER_SET_FREQUENCY 8250 // This value helps to improve the precision during of getting frequency value 
+#define MAX_DELAY_AFTER_SET_FREQUENCY 26 // This value helps to improve the precision during of getting frequency value (ms)
 
 /*****************************************************************
  * SI473X data types 

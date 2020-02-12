@@ -87,6 +87,7 @@ long elapsedRSSI = millis();
 long elapsedButton = millis();
 long elapsedFrequency = millis();
 
+uint8_t rssi = 0;
 
 // Encoder control variables
 volatile int encoderCount = 0;
@@ -332,7 +333,7 @@ void showFrequency()
   int iFreq, dFreq;
 
   // Clear the frequency field
-  tft.fillRect(2, 2, 140, 38, BLACK);
+  tft.fillRect(2, 2, 150, 38, BLACK);
 
   if (si4735.isCurrentTuneFM())
   {
@@ -340,10 +341,14 @@ void showFrequency()
     dtostrf(freq, 3, 1, buffer);
   }
   else
-  {
-    sprintf(buffer, "%5d", currentFrequency);
+  { 
+      freq = currentFrequency / 1000.0;
+      if ( currentFrequency < 1000 ) 
+         sprintf(buffer, "%5d", currentFrequency); 
+      else     
+        dtostrf(freq, 2, 3, buffer);   
   }
-  showText(10, 38, 2, &FreeSans12pt7b, YELLOW, buffer);
+  showText(10, 10, 4, NULL, YELLOW, buffer);
   tft.setFont(NULL); // default font
 }
 
@@ -361,13 +366,12 @@ void showStatus()
 
   tft.fillRect(150, 2, 85, 36, BLACK);
   if (si4735.isCurrentTuneFM()) {
-    showText(150, 30, 2, NULL, WHITE, "MHz");
+    showText(170, 30, 2, NULL, WHITE, "MHz");
   } else {
     sprintf(buffer, "Step:%2d", currentStep);
-    showText(150, 10, 2, NULL, WHITE, buffer);
-    showText(150, 30, 2, NULL, WHITE, "KHz");
+    showText(170, 10, 1, NULL, WHITE, buffer);
+    showText(170, 30, 2, NULL, WHITE, "KHz");
   }
-
 
   tft.fillRect(0, 60, 250, 36, BLACK);
 
@@ -385,16 +389,26 @@ void showStatus()
   tft.setFont(NULL);
 }
 
+void showRSSI() {
+
+  tft.fillRect(0, 85, 80, 18, BLACK);
+    if (  currentMode == FM ) {
+    sprintf(buffer, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
+    showText(5, 85, 1, NULL, GREEN, buffer );
+  }
+
+}
+
 void showBFO()
 {
 
   if (currentMode == LSB || currentMode == USB  ) {
-    tft.fillRect(128, 60, 110, 18, BLACK);
+    tft.fillRect(188, 60, 110, 18, BLACK);
     sprintf(buffer, "BFO.:%+d", currentBFO);
-    showText(120, 60, 2, NULL, RED, buffer );
+    showText(150, 60, 1, NULL, GREEN, buffer );
     tft.fillRect(128, 78, 110, 18, BLACK);
     sprintf(buffer, "Step:%2d", currentBFOStep);
-    showText(120, 77, 2, NULL, RED, buffer);
+    showText(150, 77, 1, NULL, GREEN, buffer);
   }
 
 }
@@ -555,7 +569,6 @@ void loop(void)
         si4735.frequencyDown();
 
       // Show the current frequency only if it has changed
-      // delay(20);
       currentFrequency = si4735.getFrequency();
       showFrequency();
     }
@@ -759,5 +772,19 @@ void loop(void)
     delay(100);
   }
 
-  delay(5);
+
+  // Show RSSI status only if this condition has changed
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 12)
+  {
+    si4735.getCurrentReceivedSignalQuality();
+    int aux = si4735.getCurrentRSSI();
+    if (rssi != aux)
+    {
+      rssi = aux;
+      showRSSI();
+    }
+    elapsedRSSI = millis();
+  }
+
+  // delay(5);
 }
