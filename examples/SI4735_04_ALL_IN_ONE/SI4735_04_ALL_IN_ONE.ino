@@ -216,7 +216,7 @@ void setup()
   display.print("All in One Radio");
   delay(500);
   display.setCursor(0, 3);
-  display.print("V1.1.4 - By PU2CLR");
+  display.print("V1.1.5 - By PU2CLR");
   delay(2000);
   // end Splash
 
@@ -224,7 +224,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  si4735.setup(RESET_PIN, MW_BAND_TYPE);
+  si4735.setup(RESET_PIN, FM_BAND_TYPE);
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
@@ -514,18 +514,19 @@ void useBand()
     {
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
       si4735.setSSBAutomaticVolumeControl(1);
+      si4735.setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
     }
     else
     {
       currentMode = AM;
-      si4735.reset();
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
+      si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
       bfoOn = false;
     }
 
   }
-
+  delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
   showStatus();
@@ -549,7 +550,6 @@ void loop()
         si4735.frequencyDown();
 
       // Show the current frequency only if it has changed
-      delay(30);
       currentFrequency = si4735.getFrequency();
     }
     encoderCount = 0;
@@ -714,5 +714,5 @@ void loop()
     }
   }
   
-  delay(50);
+  delay(10);
 }

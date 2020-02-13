@@ -297,7 +297,7 @@ void loop()
 
   // Show RSSI status only if this condition has changed
 
-  if ( (millis() - elapsedRSSI) > MIN_ELAPSED_TIME * 4) {
+  if ( (millis() - elapsedRSSI) > MIN_ELAPSED_TIME * 8) {
     si4735.getCurrentReceivedSignalQuality();
     if ( rssi != si4735.getCurrentRSSI() ) {
       rssi = si4735.getCurrentRSSI();

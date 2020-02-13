@@ -257,5 +257,5 @@ void loop()
     showVolume();
   }
   
-  delay(50);
+  delay(15);
 }
