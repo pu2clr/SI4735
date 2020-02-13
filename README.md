@@ -10,7 +10,7 @@ This library can be freely distributed using the MIT Free Software model. [Copyr
 
 Contact: pu2clr@gmail.com
 
-There is a facebook group called [__Si47XX for radio listeners__](https://www.facebook.com/groups/532613604253401/) where the purpose is exchanging experiences with projects based on Silicon Labs  SI47XX IC family. You will be welcome to the group [Si47XX Radio Listening](https://www.facebook.com/groups/532613604253401/).
+There is a facebook group called [__Si47XX for Radio Experimenters__](https://www.facebook.com/groups/532613604253401/) where the purpose is exchanging experiences with projects based on Silicon Labs  SI47XX IC family. You will be welcome to the group [Si47XX Radio Listening](https://www.facebook.com/groups/532613604253401/).
 
 
 __Attention__: 
@@ -2788,7 +2788,7 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 
 
 
-## Join us on Facebook group "Si47XX for radio lesteners".
+## Join us on Facebook group "Si47XX for Radio Experimenters".
 
 <table border="0" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr style=""><td height="28" style="line-height:28px;">&nbsp;</td></tr><tr><td style=""><table border="0" width="280" cellspacing="0" cellpadding="0" style="border-collapse:separate;background-color:#ffffff;border:1px solid #dddfe2;border-radius:3px;font-family:Helvetica, Arial, sans-serif;margin:0px auto;"><tr style="padding-bottom: 8px;"><td style=""><img class="img" src="https://scontent.ffor4-1.fna.fbcdn.net/v/t1.0-0/c0.0.1171.309a/s600x600/82814589_2508096086115764_5250696733104537600_o.jpg?_nc_cat=100&amp;_nc_ohc=TPts5gM6nOQAX9G8ivJ&amp;_nc_ht=scontent.ffor4-1.fna&amp;oh=f38f181f14acba2965aecc325ddffeb7&amp;oe=5EC16DC3" width="280" height="146" alt="" /></td></tr><tr><td style="font-size:14px;font-weight:bold;padding:8px 8px 0px 8px;text-align:center;">SI47XX For Radio Listeners</td></tr><tr><td style="color:#90949c;font-size:12px;font-weight:normal;text-align:center;">Grupo Público · 36 membros</td></tr><tr><td style="padding:8px 12px 12px 12px;"><table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;"><tr><td style="background-color:#4267b2;border-radius:3px;text-align:center;"><a style="color:#3b5998;text-decoration:none;cursor:pointer;width:100%;" href="https://www.facebook.com/plugins/group/join/popup/?group_id=532613604253401&amp;source=email_campaign_plugin" target="_blank" rel="noopener"><table border="0" cellspacing="0" cellpadding="3" align="center" style="border-collapse:collapse;"><tr><td style="border-bottom:3px solid #4267b2;border-top:3px solid #4267b2;color:#FFF;font-family:Helvetica, Arial, sans-serif;font-size:12px;font-weight:bold;">Participar do grupo</td></tr></table></a></td></tr></table></td></tr><tr><td style="border-top:1px solid #dddfe2;font-size:12px;padding:8px 12px;">Intended for hobbyists, experimenters, hams and radio enthusiasts who use SIlicon Labs SI47XX based radios. The purpose of this group is to present an...</td></tr></table></td></tr><tr style=""><td height="28" style="line-height:28px;">&nbsp;</td></tr></table>
 
