@@ -1,6 +1,0 @@
-{
-    "port": "COM3",
-    "board": "arduino:avr:nano",
-    "configuration": "cpu=atmega328",
-    "sketch": "examples\\SI4735_01_POC\\SI4735_01_POC.ino"
-}
