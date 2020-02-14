@@ -72,7 +72,7 @@ void SI4735::waitInterrupr(void)
 }
 
 /* 
- * Scans for two possible addresses for the Si37XX (0x11 or 0x63 )
+ * Scans for two possible addresses for the Si47XX (0x11 or 0x63 )
  * This function also sets the system to the found I2C bus address of Si47XX.
  * 
  * @param uint8_t resetPin MCU Mater (Arduino) reset pin
@@ -126,6 +126,16 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
 void SI4735::setDeviceI2CAddress(uint8_t senPin) {
     deviceAddress = (senPin)? SI473X_ADDR_SEN_HIGH : SI473X_ADDR_SEN_LOW;
 };
+
+/*
+ * Sets the onther I2C Bus Address (for Si470X) 
+ * You can set another I2C address different of 0x11  and 0x63
+ * @param uint8_t i2cAddr (example 0x10)
+ */
+void SI4735::setDeviceOtherI2CAddress(uint8_t i2cAddr) {
+    deviceAddress = i2cAddr;
+};
+
 
 
 /*

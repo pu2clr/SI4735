@@ -734,6 +734,7 @@ public:
 
     void setDeviceI2CAddress(uint8_t senPin); // If SEN pin is low senPin = 0; else senPin =  1.
     int16_t getDeviceI2CAddress(uint8_t resetPin); // Scans and sets the I2C bus address. Returns the current device address of the Si473X or 0 if error
+    void setDeviceOtherI2CAddress(uint8_t i2cAddr); // You can set another I2C address different of 0x11  and 0x63 
 
     void setup(uint8_t resetPin, uint8_t defaultFunction);
     void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction);

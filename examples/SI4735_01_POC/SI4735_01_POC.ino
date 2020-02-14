@@ -45,6 +45,17 @@ void setup()
 
   showHelp();
 
+  // Look for the Si47XX I2C bus address
+  int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
+  if ( si4735Addr == 0 ) {
+    Serial.println("Si473X not found!");
+    while (1);
+  } else {
+    Serial.print("The Si473X I2C address is ");
+    Serial.println(si4735Addr, HEX);
+  }
+
+
   delay(500);
   si4735.setup(RESET_PIN, FM_FUNCTION);
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
