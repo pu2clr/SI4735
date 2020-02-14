@@ -1,6 +1,6 @@
-# Si4735 Library for Arduino
-
 <meta name="google-site-verification" content="_wADvyP4vuP_aw0YTmu90mdAhz70vNwTF_pdAMMb0HY" />
+
+# Si4735 Library for Arduino
 
 [Leia este documento em Português](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md)
 
