@@ -1,5 +1,7 @@
 # Si4735 Library for Arduino
 
+<meta name="google-site-verification" content="_wADvyP4vuP_aw0YTmu90mdAhz70vNwTF_pdAMMb0HY" />
+
 [Leia este documento em Português](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md)
 
 This is an Arduino library for the SI47XX, BROADCAST AM/FM/SW RADIO RECEIVER IC family from Silicon Labs.  This library is intended to provide an easier interface for controlling the SI47XX by using Arduino platform. __The communication used by this library is I²C__. 
