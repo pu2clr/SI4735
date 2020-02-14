@@ -202,6 +202,7 @@ void loop()
     else
       si4735.frequencyDown();
 
+    currentFrequency = si4735.getFrequency();
     encoderCount = 0;
   }
 
@@ -216,10 +217,14 @@ void loop()
        else   
        si4735.setFM(8600, 10800,  10390, 10);
     }
-    else if (digitalRead(SEEK_BUTTON_UP) == LOW )
+    else if (digitalRead(SEEK_BUTTON_UP) == LOW ) {
        si4735.seekStationUp();   
-    else if (digitalRead(SEEK_BUTTON_DOWN) == LOW )
+       currentFrequency = si4735.getFrequency();
+    }
+    else if (digitalRead(SEEK_BUTTON_DOWN) == LOW ) {
        si4735.seekStationDown();   
+       currentFrequency = si4735.getFrequency();
+    }
     else if (digitalRead(VOL_UP) == LOW )
       si4735.volumeUp();
     else if (digitalRead(VOL_DOWN) == LOW )
@@ -229,7 +234,6 @@ void loop()
   }
 
   // Show the current frequency only if it has changed
-  currentFrequency = si4735.getFrequency();
   if ( currentFrequency != previousFrequency ) {
     previousFrequency = currentFrequency;
     showStatus();

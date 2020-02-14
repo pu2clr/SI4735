@@ -3,7 +3,6 @@
   It is AM and FM radio.
   Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
 
-
   ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:
   This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal
   pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. 
@@ -23,7 +22,6 @@
 
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
-
 
 // OLED Diaplay constants
 #define I2C_ADDRESS 0x3C
@@ -48,7 +46,6 @@
 long elapsedButton = millis();
 long elapsedRSSI =  millis();
 
-
 // Encoder control variables
 volatile int encoderCount = 0;
 
@@ -61,21 +58,16 @@ uint8_t rssi = 0;
 uint8_t stereo = 1;
 uint8_t volume = 0;
 
-
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
-
 SSD1306AsciiAvrI2c display;
-
 SI4735 si4735;
 
 void setup()
 {
-
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
-
   pinMode(AM_FM_BUTTON, INPUT_PULLUP);
   pinMode(SEEK_BUTTON_UP, INPUT_PULLUP);
   pinMode(SEEK_BUTTON_DOWN, INPUT_PULLUP);
@@ -102,13 +94,11 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   si4735.setup(RESET_PIN, FM_FUNCTION);
-
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
   si4735.setFM(8400, 10800,  lastFmFrequency, 10);
   delay(200);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(35);
-
   showStatus();
 }
 
@@ -126,10 +116,8 @@ void rotaryEncoder()
   }
 }
 
-
 // Show current frequency
 void showFrequency() {
-
   String freqDisplay;
 
   if ( si4735.isCurrentTuneFM())
@@ -143,27 +131,21 @@ void showFrequency() {
     freqDisplay = String(currentFrequency);
   }
 
-
   display.set2X();
   display.setCursor(26, 1);
   display.print("        ");
   display.setCursor(26, 1);
   display.print(freqDisplay);
   display.set1X();
-
 }
-
 
 void showStatus()
 {
-
   display.set1X();
   display.setCursor(0, 0);
   display.print( (si4735.isCurrentTuneFM()) ? "FM" : "AM" );
-
   display.setCursor(98, 0);
   display.print((si4735.isCurrentTuneFM()) ? "MHz" : "KHz");
-
 
   // Show AGC Information
   si4735.getAutomaticGainControl();
@@ -179,22 +161,18 @@ void showStatus()
   showRSSI();
   showStereo();
   showVolume();
-
 }
-
 
 /* *******************************
    Shows RSSI status
 */
 void showRSSI() {
   int blk = rssi / 10;
-
   display.set1X();
   display.setCursor(70, 6);
   display.print("S:");
   display.print(rssi);
   display.print(" dBuV");
-
   display.setCursor(70, 7);
   for (uint8_t i = 0; i < 10; i++)  {
     if ( i < blk )
@@ -202,20 +180,16 @@ void showRSSI() {
     else
       display.print(" ");
   }
-
 }
-
 
 /* *****************************
    Shows Stereo or Mono status
 */
 void showStereo() {
-
   display.set1X();
   display.setCursor(5, 7);
   display.print((si4735.getCurrentPilot()) ? "STEREO" : "MONO  ");
 }
-
 
 /* ***************************
    Shows the volume level on LCD
@@ -229,13 +203,8 @@ void showVolume() {
   display.print(volume);
 }
 
-
-/*
-   Main
-*/
 void loop()
 {
-
   // Check if the encoder has moved.
   if (encoderCount != 0  ) {
 
@@ -289,14 +258,13 @@ void loop()
     elapsedButton = millis();
   }
 
+  // Checks if currentFrequency changed. 
   if ( currentFrequency != previousFrequency ) {
     previousFrequency = currentFrequency;
     showFrequency();
   }
 
-
   // Show RSSI status only if this condition has changed
-
   if ( (millis() - elapsedRSSI) > MIN_ELAPSED_TIME * 8) {
     si4735.getCurrentReceivedSignalQuality();
     if ( rssi != si4735.getCurrentRSSI() ) {

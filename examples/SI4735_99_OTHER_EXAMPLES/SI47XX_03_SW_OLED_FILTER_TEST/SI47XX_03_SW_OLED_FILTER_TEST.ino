@@ -264,9 +264,6 @@ void bandDown() {
   si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
 }
 
-/*
-   Main
-*/
 void loop()
 {
 
