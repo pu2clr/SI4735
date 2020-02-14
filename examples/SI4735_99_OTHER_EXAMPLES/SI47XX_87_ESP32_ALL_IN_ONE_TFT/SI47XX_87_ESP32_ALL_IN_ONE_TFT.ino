@@ -71,9 +71,9 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define TOUCH_VOL_UP 27           // Volume Up
 #define TOUCH_VOL_DOWN 14         // Volume Down
 #define TOUCH_BAND_BUTTON_UP 12   // Next band
-#define TOUCH_BAND_BUTTON_DOWN 4  // Previous band
+#define TOUCH_BAND_BUTTON_DOWN 32  // Previous band
 // #define TOUCH_AGC_SWITCH 0     // Switch AGC ON/OF
-#define TOUCH_STEP_SWITCH 2       // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
+#define TOUCH_STEP_SWITCH 33       // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 #define TOUCH_BFO_SWITCH 15       // Used to select the enconder control (BFO or VFO)
 
 // I2C bus pin on ESP32
@@ -202,23 +202,24 @@ void setup()
 
   // Use this initializer if using a 1.8" TFT screen:
   tft.initR(INITR_BLACKTAB);      // Init ST7735S chip, ST77XX_BLACK 
+  tft.setRotation(1);
   tft.fillScreen(ST77XX_BLACK);
 
 
   delay(500);
 
-  showText(45, 30, 2, NULL, ST77XX_GREEN, "SI4735");
-  showText(45, 90, 2, NULL, ST77XX_YELLOW, "Arduino");
-  showText(45, 160, 2, NULL, ST77XX_YELLOW, "Library");
-  showText(20, 240, 2, NULL, ST77XX_WHITE, "By PU2CLR");
+  showText(10, 10, 1, NULL, ST77XX_GREEN, "SI4735");
+  showText(10, 30, 1, NULL, ST77XX_YELLOW, "Arduino");
+  showText(10, 50, 1, NULL, ST77XX_YELLOW, "Library");
+  showText(19, 70, 1, NULL, ST77XX_WHITE, "By PU2CLR");
   int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
   if ( si4735Addr == 0 ) {
-    showText(0, 160, 2, NULL, ST77XX_RED, "Si473X not");
-    showText(0, 240, 2, NULL, ST77XX_RED, "detected!!");
+    showText(0, 90, 1, NULL, ST77XX_RED, "Si473X not");
+    showText(0, 110, 1, NULL, ST77XX_RED, "detected!!");
     while (1);
   } else {
     sprintf(buffer, "The Si473X I2C address is 0x%x ", si4735Addr);
-    showText(25, 290, 1, NULL, ST77XX_RED, buffer);
+    showText(10, 110, 1, NULL, ST77XX_RED, buffer);
   }
   delay(3000);
 
@@ -248,10 +249,7 @@ void setup()
 void showTemplate() {
 
   // Frequency area
-  tft.drawRect(0, 0, 240, 50, ST77XX_WHITE);
-
-
-  tft.setFont(NULL);
+  //  tft.drawRect(0, 0, 240, 50, ST77XX_WHITE);
 
 }
 
@@ -263,9 +261,9 @@ void showTemplate() {
 int  touchX( int pin) {
   int val;
   val = 0;
-  for (int i = 0; i < 50; i++ )
+  for (int i = 0; i < 5; i++ )
     val += touchRead(pin);
-  return (val / 50);
+  return (val / 5);
 }
 
 
@@ -324,7 +322,7 @@ void showFrequency()
 
   // Clear the frequency field
   // tft.fillRect(2, 2, 150, 38, ST77XX_BLACK);
-  showText(10, 10, 4, NULL, ST77XX_BLACK, bufferFreq);
+  showText(10, 10, 3, NULL, ST77XX_BLACK, bufferFreq);
 
   if (si4735.isCurrentTuneFM())
   {
@@ -340,7 +338,7 @@ void showFrequency()
       dtostrf(freq, 2, 3, buffer);
   }
   color = (bfoOn) ? ST77XX_CYAN : ST77XX_YELLOW;
-  showText(10, 10, 4, NULL, color, buffer);
+  showText(10, 10, 3, NULL, color, buffer);
   tft.setFont(NULL); // default font
   strcpy(bufferFreq, buffer);
 }
@@ -353,14 +351,14 @@ char bufferAGC[10];
 
 void showStatus()
 {
+
   char unit[5];
   si4735.getStatus();
   si4735.getCurrentReceivedSignalQuality();
   // SRN
   si4735.getFrequency();
   showFrequency();
-
-  tft.fillRect(150, 2, 85, 36, ST77XX_BLACK);
+  // tft.fillRect(150, 2, 85, 36, ST77XX_BLACK);
   if (si4735.isCurrentTuneFM()) {
     showText(170, 30, 2, NULL, ST77XX_WHITE, "MHz");
   } else {
@@ -369,7 +367,7 @@ void showStatus()
     showText(170, 30, 2, NULL, ST77XX_WHITE, "KHz");
   }
 
-  tft.fillRect(0, 60, 250, 36, ST77XX_BLACK);
+  // tft.fillRect(0, 60, 250, 36, ST77XX_BLACK);
 
   if ( band[bandIdx].bandType == SW_BAND_TYPE) {
     sprintf(buffer, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
@@ -411,12 +409,14 @@ void showStatus()
 char bufferStereo[10];
 
 void showRSSI() {
+  /*
   if (  currentMode == FM ) {
     showText(5, 85, 1, NULL, ST77XX_BLACK, bufferStereo );
     sprintf(buffer, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
     showText(5, 85, 1, NULL, ST77XX_GREEN, buffer );
     strcpy(bufferStereo, buffer);
   }
+  */
 }
 
 
@@ -434,15 +434,17 @@ char bufferStep[15];
 
 void showBFO()
 {
+  /*
   showText(150, 60, 1, NULL, ST77XX_BLACK, bufferBFO );
   showText(150, 77, 1, NULL, ST77XX_BLACK, bufferStep);
   sprintf(buffer, "BFO.:%+d", currentBFO);
   showText(150, 60, 1, NULL, ST77XX_GREEN, buffer );
   strcpy(bufferBFO, buffer);
-  tft.fillRect(128, 78, 110, 18, ST77XX_BLACK);
+  // tft.fillRect(128, 78, 110, 18, ST77XX_BLACK);
   sprintf(buffer, "Step:%2d", currentBFOStep);
   showText(150, 77, 1, NULL, ST77XX_GREEN, buffer);
   strcpy(bufferStep, buffer);
+  */
 }
 
 /*
@@ -582,7 +584,6 @@ void loop()
         si4735.frequencyDown();
 
       // Show the current frequency only if it has changed
-      delay(30);
       currentFrequency = si4735.getFrequency();
     }
     encoderCount = 0;
@@ -628,7 +629,6 @@ void loop()
           bwIdxAM = 0;
         si4735.setBandwidth(bwIdxAM, 0);
       }
-      showStatus();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (nTOUCH_BAND_BUTTON_UP < CAPACITANCE) {
@@ -769,5 +769,4 @@ void loop()
       showBFO();
     }
   }
-  delay(50);
 }
