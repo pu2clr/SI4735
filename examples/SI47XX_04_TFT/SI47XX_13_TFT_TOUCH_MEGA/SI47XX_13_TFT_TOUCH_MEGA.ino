@@ -33,6 +33,7 @@
 #include <Adafruit_GFX.h>
 #include <MCUFRIEND_kbv.h>
 #include <TouchScreen.h>
+
 #include "Rotary.h"
 
 #include "patch_init.h" // SSB patch for whole SSBRX initialization string
@@ -127,6 +128,7 @@ Band band[] = {
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
+int lastSwBand = 7;
 
 uint16_t currentFrequency;
 uint16_t previousFrequency;
@@ -285,7 +287,7 @@ void showTemplate() {
   // Área reservada à frequência
   tft.drawRect(0, 0, 240, 50, WHITE);
 
-  tft.drawRect(0,100,240,160, CYAN);
+  tft.drawRect(0, 100, 240, 160, CYAN);
   tft.setFont(NULL);
   bPreviousBand.initButton(&tft, 30, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"Band-", 1);
   bNextBand.initButton(&tft, 90, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"Band+", 1);
@@ -303,7 +305,7 @@ void showTemplate() {
   bLSB.initButton(&tft, 90, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"LSB", 1);
   bUSB.initButton(&tft, 150, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"USB", 1);
   bFilter.initButton(&tft, 210, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"|Y|", 1);
-  
+
   // Exibe os botões (teclado touch)
   bNextBand.drawButton(true);
   bPreviousBand.drawButton(true);
@@ -322,9 +324,14 @@ void showTemplate() {
   bFilter.drawButton(true);
   bAGC.drawButton(true);
 
+
+  showText(0, 302, 1, NULL, GREEN, "RSSI" );
+  tft.drawRect(30, 298, 210, 12, CYAN);
+
   tft.setFont(NULL);
 
 }
+
 
 void showFrequency()
 {
@@ -414,12 +421,21 @@ void showStatus()
 }
 
 void showRSSI() {
+
+  int signalLevel;
+
   if (  currentMode == FM ) {
     showText(5, 85, 1, NULL, BLACK, bufferStereo );
     sprintf(buffer, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
     showText(5, 85, 1, NULL, GREEN, buffer );
     strcpy(bufferStereo, buffer);
   }
+ 
+  signalLevel = map(rssi, 0, 63, 0, 208);
+  tft.fillRect(30, 300, 209, 8, BLACK);
+  tft.fillRect(30, 300, signalLevel, 8, (signalLevel > 25) ? CYAN : RED);
+
+
 }
 
 
@@ -534,8 +550,10 @@ void useBand()
   {
     if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
       si4735.setTuneFrequencyAntennaCapacitor(0);
-    else
+    else {
+      lastSwBand =  bandIdx;
       si4735.setTuneFrequencyAntennaCapacitor(1);
+    }
 
     if (ssbLoaded)
     {
@@ -589,6 +607,7 @@ void loop(void)
     if (bfoOn)
     {
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
+      si4735.setSSBBfo(currentBFO);
       showBFO();
     }
     else
@@ -739,24 +758,24 @@ void loop(void)
 
   if (bMW.justPressed())
   {
-      band[bandIdx].currentFreq = currentFrequency;
-      band[bandIdx].currentStep = currentStep;
-      ssbLoaded = false;
-      bfoOn = false;
-      currentMode = AM;
-      bandIdx = 2;   // See Band table
-      useBand();
+    band[bandIdx].currentFreq = currentFrequency;
+    band[bandIdx].currentStep = currentStep;
+    ssbLoaded = false;
+    bfoOn = false;
+    currentMode = AM;
+    bandIdx = 2;   // See Band table
+    useBand();
   }
 
   if (bSW.justPressed())
   {
-      band[bandIdx].currentFreq = currentFrequency;
-      band[bandIdx].currentStep = currentStep;
-      ssbLoaded = false;
-      bfoOn = false;
-      currentMode = AM;
-      bandIdx = 7;   // See Band table
-      useBand();
+    band[bandIdx].currentFreq = currentFrequency;
+    band[bandIdx].currentStep = currentStep;
+    ssbLoaded = false;
+    bfoOn = false;
+    currentMode = AM;
+    bandIdx = lastSwBand;   // See Band table
+    useBand();
   }
 
 
