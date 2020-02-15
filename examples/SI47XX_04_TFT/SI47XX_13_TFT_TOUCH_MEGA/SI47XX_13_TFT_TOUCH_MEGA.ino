@@ -157,7 +157,7 @@ const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
 const int TS_LEFT = 175, TS_RT = 813, TS_TOP = 203, TS_BOT = 860;
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
-Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bFilter, bAGC;
+Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC;
 
 int pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -203,12 +203,13 @@ void setup(void)
 
 
   // tft.setFont(&FreeSans12pt7b);
-  showText(45, 30, 2, NULL, GREEN, "SI4735");
-  showText(45, 90, 2, NULL, YELLOW, "Arduino");
-  showText(45, 160, 2, NULL, YELLOW, "Library");
-  showText(20, 240, 2, NULL, WHITE, "By PU2CLR");
+  showText(55, 30, 2, NULL, GREEN, "SI4735");
+  showText(55, 90, 2, NULL, YELLOW, "Arduino");
+  showText(55, 160, 2, NULL, YELLOW, "Library");
+  showText(55, 240, 2, NULL, WHITE, "By PU2CLR");
   int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
   if ( si4735Addr == 0 ) {
+    tft.fillScreen(BLACK);
     showText(0, 160, 2, NULL, RED, "Si473X not");
     showText(0, 240, 2, NULL, RED, "detected!!");
     while (1);
@@ -284,6 +285,7 @@ void showTemplate() {
   // Área reservada à frequência
   tft.drawRect(0, 0, 240, 50, WHITE);
 
+  tft.drawRect(0,100,240,160, CYAN);
   tft.setFont(NULL);
   bPreviousBand.initButton(&tft, 30, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"Band-", 1);
   bNextBand.initButton(&tft, 90, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"Band+", 1);
@@ -294,13 +296,14 @@ void showTemplate() {
   bAudioMute.initButton(&tft, 150, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"Mute", 1);
   bStep.initButton(&tft, 210, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"Step", 1);
   bFM.initButton(&tft, 30, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"FM", 1);
-  bAM.initButton(&tft, 90, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"AM", 1);
-  bLSB.initButton(&tft, 150, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"LSB", 1);
-  bUSB.initButton(&tft, 210, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"USB", 1);
-  bFilter.initButton(&tft, 30, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"|Y|", 1);
-  bAGC.initButton(&tft, 90, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"AGC", 1);
-
-
+  bMW.initButton(&tft, 90, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"MW", 1);
+  bSW.initButton(&tft, 150, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"SW", 1);
+  bAGC.initButton(&tft, 210, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"AGC", 1);
+  bAM.initButton(&tft, 30, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"AM", 1);
+  bLSB.initButton(&tft, 90, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"LSB", 1);
+  bUSB.initButton(&tft, 150, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"USB", 1);
+  bFilter.initButton(&tft, 210, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"|Y|", 1);
+  
   // Exibe os botões (teclado touch)
   bNextBand.drawButton(true);
   bPreviousBand.drawButton(true);
@@ -311,6 +314,8 @@ void showTemplate() {
   bStep.drawButton(true);
   bAudioMute.drawButton(true);
   bFM.drawButton(true);
+  bMW.drawButton(true);
+  bSW.drawButton(true);
   bAM.drawButton(true);
   bLSB.drawButton(true);
   bUSB.drawButton(true);
@@ -569,6 +574,8 @@ void loop(void)
   bStep.press(down && bStep.contains(pixel_x, pixel_y));
   bAudioMute.press(down && bAudioMute.contains(pixel_x, pixel_y));
   bFM.press(down && bFM.contains(pixel_x, pixel_y));
+  bMW.press(down && bMW.contains(pixel_x, pixel_y));
+  bSW.press(down && bSW.contains(pixel_x, pixel_y));
   bAM.press(down && bAM.contains(pixel_x, pixel_y));
   bLSB.press(down && bLSB.contains(pixel_x, pixel_y));
   bUSB.press(down && bUSB.contains(pixel_x, pixel_y));
@@ -727,6 +734,29 @@ void loop(void)
       bandIdx = 0;
       useBand();
     }
+  }
+
+
+  if (bMW.justPressed())
+  {
+      band[bandIdx].currentFreq = currentFrequency;
+      band[bandIdx].currentStep = currentStep;
+      ssbLoaded = false;
+      bfoOn = false;
+      currentMode = AM;
+      bandIdx = 2;   // See Band table
+      useBand();
+  }
+
+  if (bSW.justPressed())
+  {
+      band[bandIdx].currentFreq = currentFrequency;
+      band[bandIdx].currentStep = currentStep;
+      ssbLoaded = false;
+      bfoOn = false;
+      currentMode = AM;
+      bandIdx = 7;   // See Band table
+      useBand();
   }
 
 
