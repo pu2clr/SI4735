@@ -14,7 +14,7 @@ By using the examples of this folder, you will do not need any external device t
 * The folder [SI47XX_03_OLED_I2C]() has some examples that show how you can build a radio based on Si473X using the regular I2C OLED. They are very similar to the LCD20x4 sketches. The main difference is the Arduino Library controller of these devices.  
 * The folder [SI47XX_04_TFT]() has some example with TFT and touch screen as an human interface to control the radio based on Si473X.
 * The folder [SI47XX_05_ATTINY85]() has examples of using the Si4735 Arduino Library running on ATtiny85. 
-* The folder [SI47XX_06_ESP32]() has examples that use some great resources of ESP32 boards. It is worth mentioning that the most of the other examples can also run on ESP32. 
+* The folder [SI47XX_06_ESP32]() has examples that use some great resources of the ESP32 boards. It is worth mentioning that the most of the other examples can also run on ESP32. 
 
 
 
