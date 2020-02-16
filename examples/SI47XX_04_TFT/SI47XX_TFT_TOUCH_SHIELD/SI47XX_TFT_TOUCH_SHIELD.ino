@@ -2,13 +2,27 @@
   This sketch uses the mcufriend TFT touct Display on Arduino Mega2580.
 
   Features:
-  1) This sketch has been successfully tested on Arduino Mega2560;
+  1) This sketch has been successfully tested on Arduino Mega2560 and DUE;
   2) It uses the touch screen interface provided by mcufriend TFT;
   3) Encoder;
   4) FM, AM (MW and SW) and SSB (LSB and USB);
   5) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
   6) BFO Control; and
   7) Frequency step switch (1, 5 and 10KHz).
+
+
+  Wire up 
+  
+  Function                MEGA/DUE Pin
+  ----------------------  -------------
+  SDA                     20
+  SCL                     21
+  ENCODER_A               18
+  ENCODER_B               19
+  ENCODER PUSH BUTTON     23
+  RESET                   22
+
+  
 
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
@@ -41,8 +55,8 @@
 #define MINPRESSURE 200
 #define MAXPRESSURE 1000
 
-#define RESET_PIN 22            // Mega2560 digital Pin used to RESET
-#define ENCODER_PUSH_BUTTON 23  // Used to switch BFO and VFO or other function  
+#define RESET_PIN 44            // Mega2560 digital Pin used to RESET
+#define ENCODER_PUSH_BUTTON 45  // Used to switch BFO and VFO or other function  
 
 // Enconder PINs (interrupt pins used on Mega2560)
 #define ENCODER_PIN_A 18
@@ -155,8 +169,8 @@ SI4735 si4735;
 
 // ALL Touch panels and wiring is DIFFERENT
 // copy-paste results from TouchScreen_Calibr_native.ino
-const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
-const int TS_LEFT = 175, TS_RT = 813, TS_TOP = 203, TS_BOT = 860;
+const int XP=6,XM=A2,YP=A1,YM=7; //240x320 ID=0x9328
+const int TS_LEFT=170,TS_RT=827,TS_TOP=130,TS_BOT=868;
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
 Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC;
@@ -237,6 +251,16 @@ void setup(void)
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(DEFAULT_VOLUME);
   tft.setFont(NULL); // default font
+}
+
+
+char *dtostrf (double val, signed char width, unsigned char prec, char *sout) {
+  asm(".global _printf_float");
+
+  char fmt[20];
+  sprintf(fmt, "%%%d.%df", width, prec);
+  sprintf(sout, fmt, val);
+  return sout;
 }
 
 
