@@ -4,7 +4,7 @@ This folder has a set of examples that might help you to use the Si4735 Arduino 
 
 It is important to know tha the author of this library  just try to show how you can use this library and the Si4735 device in your appication. Other devices used in some examples like encoders, buttons and display (OLED, LCD or TFT) are not the focus of this subject. Saing  that, it is possible some implementation using theses devices might need different approaches than used here. 
 
-The most of the example sketches has been developed to run on cross-plataform (ATmega328, Mega2560, DUE, ATmega-32u4, ESP32, ATtiny85 etc). However, in some cases, it was not possible due to hardware limitations in some platform. Each sketch has the set of boards you can run it.  
+The most of the example sketches has been developed to run on cross-plataform (ATmega328, Mega2560, DUE, ATmega-32u4, ESP32, ATtiny85 etc). However, in some cases, it was not possible due to hardware limitations in some board. Each sketch has the set of boards you can run it.  
 
 ## About the examples folders
 
