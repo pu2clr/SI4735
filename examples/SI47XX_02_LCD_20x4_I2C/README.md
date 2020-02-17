@@ -125,8 +125,10 @@ This sketch has been successfully tested on:
 * UNO (by using a voltage converter); 
 * Arduino Yún (by using a voltage converter); 
 * Arduino Micro (see the operating voltage of your Micro); 
-* Arduino Mega (by using a voltage converter); and 
+* Arduino Mega (by using a voltage converter); 
 * Arduino DUE;
+* ESP32 Dev Kit; and
+* ESP LOLIN32 WEMOS
 
 
 ### Schematic
