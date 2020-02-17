@@ -58,7 +58,7 @@ Pay attention on the push buttons added on this example. The table below shows t
 ## Si47XX 02 - AM/FM radio with OLCD and OLED as a S-Meter
 
 This example uses two display I2C devices and the Si4735 connected on the same I2C bus. 
-It is an simple AM and FM radio. The schematic is the same used on Example 10. See below.
+It is an simple AM and FM radio. 
 
 __This sketch has been successfully tested on Pro Mini 3.3V.__ 
 
