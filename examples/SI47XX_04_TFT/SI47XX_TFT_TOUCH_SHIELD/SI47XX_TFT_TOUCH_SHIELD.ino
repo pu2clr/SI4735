@@ -11,8 +11,8 @@
   7) Frequency step switch (1, 5 and 10KHz).
 
 
-  Wire up 
-  
+  Wire up
+
   Function                MEGA/DUE Pin
   ----------------------  -------------
   SDA                     20
@@ -22,7 +22,7 @@
   ENCODER PUSH BUTTON     23
   RESET                   22
 
-  
+
 
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
@@ -55,8 +55,8 @@
 #define MINPRESSURE 200
 #define MAXPRESSURE 1000
 
-#define RESET_PIN 44            // Mega2560 digital Pin used to RESET
-#define ENCODER_PUSH_BUTTON 45  // Used to switch BFO and VFO or other function  
+#define RESET_PIN 22            // Mega2560 digital Pin used to RESET
+#define ENCODER_PUSH_BUTTON 23  // Used to switch BFO and VFO or other function  
 
 // Enconder PINs (interrupt pins used on Mega2560)
 #define ENCODER_PIN_A 18
@@ -169,8 +169,8 @@ SI4735 si4735;
 
 // ALL Touch panels and wiring is DIFFERENT
 // copy-paste results from TouchScreen_Calibr_native.ino
-const int XP=6,XM=A2,YP=A1,YM=7; //240x320 ID=0x9328
-const int TS_LEFT=170,TS_RT=827,TS_TOP=130,TS_BOT=868;
+const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
+const int TS_LEFT = 170, TS_RT = 827, TS_TOP = 130, TS_BOT = 868;
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
 Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC;
@@ -254,6 +254,12 @@ void setup(void)
 }
 
 
+/*
+  dtostrf - Emulation for dtostrf function from avr-libc
+  Copyright (c) 2015 Arduino LLC.  All rights reserved.
+  See: https://github.com/arduino/ArduinoCore-samd/blob/master/cores/arduino/avr/dtostrf.c
+*/
+/*
 char *dtostrf (double val, signed char width, unsigned char prec, char *sout) {
   asm(".global _printf_float");
 
@@ -262,7 +268,7 @@ char *dtostrf (double val, signed char width, unsigned char prec, char *sout) {
   sprintf(sout, fmt, val);
   return sout;
 }
-
+*/
 
 /*
    Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
@@ -357,15 +363,44 @@ void showTemplate() {
 }
 
 
+/*
+ *  Prevents blinking during the frequency display.
+ */
+void showFrequencyValue(int col, int line, char *oldValue, char *newValue, uint16_t color) {
+
+  int c = col;
+
+   while (*oldValue && *newValue) {
+    if ( *oldValue != *newValue ) {
+      tft.drawChar(c, line, *oldValue, BLACK, BLACK, 4);
+      tft.drawChar(c, line, *newValue, color, BLACK, 4);
+    }
+    oldValue++;
+    newValue++;
+    c += 25;
+  }
+
+  while (*oldValue) {
+    tft.drawChar(c, line, *oldValue, BLACK, BLACK, 4);
+    oldValue++;
+    c += 25;
+  }
+
+  while (*newValue) {
+    tft.drawChar(c, line, *newValue, color, BLACK, 4);
+    newValue++;
+    c += 25;
+  }
+
+}
+
+
 void showFrequency()
 {
   float freq;
   int iFreq, dFreq;
   uint16_t color;
 
-  // Clear the frequency field
-  // tft.fillRect(2, 2, 150, 38, BLACK);
-  showText(10, 10, 4, NULL, BLACK, bufferFreq);
 
   if (si4735.isCurrentTuneFM())
   {
@@ -381,7 +416,8 @@ void showFrequency()
       dtostrf(freq, 2, 3, buffer);
   }
   color = (bfoOn) ? CYAN : YELLOW;
-  showText(10, 10, 4, NULL, color, buffer);
+  // showText(10, 10, 4, NULL, color, buffer);
+  showFrequencyValue(10,10,bufferFreq, buffer, color);
   tft.setFont(NULL); // default font
   strcpy(bufferFreq, buffer);
 }
@@ -454,7 +490,7 @@ void showRSSI() {
     showText(5, 85, 1, NULL, GREEN, buffer );
     strcpy(bufferStereo, buffer);
   }
- 
+
   signalLevel = map(rssi, 0, 63, 0, 208);
   tft.fillRect(30, 300, 209, 8, BLACK);
   tft.fillRect(30, 300, signalLevel, 8, (signalLevel > 25) ? CYAN : RED);
@@ -900,6 +936,7 @@ void loop(void)
   }
 
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)  {
+    bufferFreq[0] = '\0';
     if (currentMode == LSB || currentMode == USB) {
       bfoOn = !bfoOn;
       if (bfoOn) {
