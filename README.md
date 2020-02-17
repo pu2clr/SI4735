@@ -340,7 +340,7 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 ### Boards where this library has been successfully tested
 
 
-This library can be help you to develop a cross-platform software. So far, it has been successfully tested on the architectures shown below.    
+This library can be useful to develop a cross-platform software. So far, it has been successfully tested on the architectures shown below.    
 
 ![Silicon Labs Schematic](./extras/images/multiplatform_SI47XX_photo_05.png)
 
