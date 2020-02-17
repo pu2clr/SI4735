@@ -1,4 +1,7 @@
 /*
+
+  Under construction...... 
+
   SS4735 SSB Support example with OLED-I2C and Encoder.
 
   This sketch has been successfully tested on:
