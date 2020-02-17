@@ -3,7 +3,7 @@
 This folder shows how you can use de Si4735 Arduino Library on the very small ATtiny85. 
 
 
-# SI47XX 01 - SI47XX_01_ATTINY85_LCD_16x2_I2C - AM/FM receiver with ATtiny85  
+## SI47XX 01 - SI47XX_01_ATTINY85_LCD_16x2_I2C - AM/FM receiver with ATtiny85  
 
 This example implements an AM and FM receiver using the ATtiny85 as the master MCU.
 
@@ -21,7 +21,6 @@ See also [ATtiny85 pinout](https://ww1.microchip.com/downloads/en/DeviceDoc/Atme
 
 
 The pull-up resistor values may vary depending on the devices connected to the I2C bus. Select the lowest possible resistors. The schematic below show 4.7K for pull-up resistors. However, it can be lower than it.
-
 
 ![Schematic ATtiny85 and Si4735](https://github.com/pu2clr/SI4735/blob/master/extras/images/attiny85_schematic.png)
 
@@ -43,3 +42,11 @@ The photo below shows the Si4730 on adapter board connect attached on a mini bre
 The Si4730 and ATtiny85 FM radio prototype. 
 
 ![Photo ATtiny85 and Si4730](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4730_attiny85A.jpg)
+
+
+
+## Videos
+
+* [How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s)
+* [SI4735 Arduino Library working with ATtiny85](https://youtu.be/U9Xpqh3K4e0)
+
