@@ -1,5 +1,7 @@
 # Radios based on Si4735 working with LCD20x4 / I2C 
 
+This folder has examples of radios based on Si4735 working with LCD20x4 and I2C adapter device. 
+
 
 ## Si47XX 04 - SI4735_04_ALL_IN_ONE - All in One radio with SSB firmware update support with LCD/I2C
 
