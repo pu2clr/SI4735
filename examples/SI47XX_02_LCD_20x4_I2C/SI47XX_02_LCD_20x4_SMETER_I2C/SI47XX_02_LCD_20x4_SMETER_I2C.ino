@@ -254,7 +254,8 @@ void loop()
       si4735.frequencyUp();
     else
       si4735.frequencyDown();
-
+      
+    currentFrequency = si4735.getFrequency();
     encoderCount = 0;
     showSmeter(0);
   }
@@ -270,8 +271,10 @@ void loop()
       else
         si4735.setFM(8600, 10800, 10390, 10);
     }
-    else if (digitalRead(SEEK_BUTTON) == LOW)
+    else if (digitalRead(SEEK_BUTTON) == LOW) {
       si4735.seekStationUp();
+      currentFrequency = si4735.getFrequency();
+    }
     else if (digitalRead(VOL_UP) == LOW)
       si4735.volumeUp();
     else if (digitalRead(VOL_DOWN) == LOW)
@@ -289,7 +292,7 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
-  if ( (millis() - elapsedRSSI) > MIN_ELAPSED_TIME * 2) {
+  if ( (millis() - elapsedRSSI) > MIN_ELAPSED_TIME * 3) {
     si4735.getCurrentReceivedSignalQuality();
     if (rssi != si4735.getCurrentRSSI())
     {
@@ -317,5 +320,5 @@ void loop()
     showVolume();
   }
 
-  delay(50);
+  delay(15);
 }
