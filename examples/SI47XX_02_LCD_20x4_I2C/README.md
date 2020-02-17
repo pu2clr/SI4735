@@ -3,7 +3,7 @@
 This folder has examples of radios based on Si4735 working with LCD20x4 and I2C adapter device. 
 
 
-## Si47XX 04 - SI4735_04_ALL_IN_ONE - All in One radio with SSB firmware update support with LCD/I2C
+## Si47XX 01 - SI47XX_01_LCD_20x4_I2C 
 
 This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. Also, will download a SSB patch to your SI4735 device. It will take about 9KB from Arduino Flash Memory.  
 
@@ -53,6 +53,7 @@ Pay attention on the push buttons added on this example. The table below shows t
 | STEP_SWITCH      | 10          | Used to select the increment or decrement frequency step (1, 5 or 10 KHz) |
 | BFO_SWITCH       | 13          | Used to select the enconder control (BFO or VFO) |
 
+<BR>
 
 ## Si47XX 02 - AM/FM radio with OLCD and OLED as a S-Meter
 
@@ -67,7 +68,7 @@ __This sketch has been successfully tested on Pro Mini 3.3V.__
 
 <BR>
 
-## Si47XX 07 - SW Receiver with LCD and OLED as a S-Meter 
+## SI47XX_03_SW_LCD_SMETER_I2C - SW Receiver with LCD and OLED as a S-Meter 
 
 Like the previous example , this example uses two display and the SI4735 connect on the same I2C bus.
 This radio has 11 bands.
@@ -89,3 +90,8 @@ __See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAY
 ![Protoboard with OLED as a S Meter](https://github.com/pu2clr/SI4735/blob/master/extras/images/protoboard_SW_SMETER.png)
 
 <BR>
+
+## SI473X_04_ALL_IN_ONE - All in One radio 
+
+
+
