@@ -2460,9 +2460,6 @@ String SI4735::getRdsText(void)
 String SI4735::getRdsTime()
 ```
 
-
-
-<BR>
 <BR>
 <BR>
 
