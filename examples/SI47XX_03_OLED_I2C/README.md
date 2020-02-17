@@ -1,4 +1,4 @@
-# Examples using OLED/I2C
+# Radios based on Si4735 working with OLED/I2C
 
 This folder shows some examples using the radio based on Si4735 working with OLED/I2C.
 
