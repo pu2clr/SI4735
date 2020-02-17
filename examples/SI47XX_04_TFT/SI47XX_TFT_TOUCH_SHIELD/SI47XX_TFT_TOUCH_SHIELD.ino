@@ -365,11 +365,13 @@ void showTemplate() {
 
 /*
  *  Prevents blinking during the frequency display.
+ *  Erases the old digits if it has changed and print the new digit values.
  */
 void showFrequencyValue(int col, int line, char *oldValue, char *newValue, uint16_t color) {
 
   int c = col;
 
+   // prints just changed digits 
    while (*oldValue && *newValue) {
     if ( *oldValue != *newValue ) {
       tft.drawChar(c, line, *oldValue, BLACK, BLACK, 4);
@@ -380,12 +382,14 @@ void showFrequencyValue(int col, int line, char *oldValue, char *newValue, uint1
     c += 25;
   }
 
+  // Is there anything else to erase?
   while (*oldValue) {
     tft.drawChar(c, line, *oldValue, BLACK, BLACK, 4);
     oldValue++;
     c += 25;
   }
 
+  // Is there anything else to print?
   while (*newValue) {
     tft.drawChar(c, line, *newValue, color, BLACK, 4);
     newValue++;
@@ -400,7 +404,6 @@ void showFrequency()
   float freq;
   int iFreq, dFreq;
   uint16_t color;
-
 
   if (si4735.isCurrentTuneFM())
   {
