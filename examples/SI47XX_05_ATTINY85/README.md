@@ -1,10 +1,9 @@
-# Examples of using the Si4735 Arduino Library on ATtiny84
+# Examples of using the Si4735 Arduino Library on ATtiny85
 
-
+This folder shows how you can use de Si4735 Arduino Library on the very small ATtiny85. 
 
 
 # SI47XX 08 - AM/FM receiver with ATtiny85  
-
 
 This example implements an AM and FM receiver using the ATtiny85 as the master MCU.
 
