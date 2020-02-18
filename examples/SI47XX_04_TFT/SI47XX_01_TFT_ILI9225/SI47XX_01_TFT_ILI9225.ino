@@ -1,7 +1,7 @@
 /*
-  
+
   Under construction......
-  
+
   It is a sketch for a radio All band and SSB based on Si4735.
 
   Under construction.....
@@ -63,15 +63,18 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define ENCODER_PIN_B 3
 
 // Buttons controllers
-#define MODE_SWITCH 4      // Switch MODE (Am/LSB/USB)
-#define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
-#define VOL_UP 6           // Volume Up
-#define VOL_DOWN 7         // Volume Down
-#define BAND_BUTTON_UP 8   // Next band
-#define BAND_BUTTON_DOWN 9 // Previous band
-#define AGC_SWITCH 11      // Switch AGC ON/OF
-#define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
-#define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
+#define MODE_BUTTON 4       // Switch MODE (Am/LSB/USB)
+#define BAND_BUTTON 5  // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
+#define VOL_BUTTON  6       // Volume Up
+#define MENU_BUTTON 7       // Volume Down
+
+/*
+#define BAND_BUTTON_UP 0   // Next band
+#define BAND_BUTTON_DOWN 0 // Previous band
+#define AGC_SWITCH 0      // Switch AGC ON/OF
+#define STEP_SWITCH 0     // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
+#define MENU_BUTTON 0      // Used to select the enconder control (BFO or VFO)
+*/
 
 
 #define CAPACITANCE 30  // You might need to adjust this value.
@@ -120,7 +123,7 @@ const char * const bandwitdthAM[] PROGMEM = {"6", "4", "3", "2", "1", "1.8", "2.
 const char * const bandModeDesc[] PROGMEM = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
-char buffer[64]; // Useful to handle string 
+char buffer[64]; // Useful to handle string
 
 
 /*
@@ -188,18 +191,13 @@ void setup()
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
-  /*
-  pinMode(BANDWIDTH_BUTTON, INPUT_PULLUP);
-  // pinMode(BAND_BUTTON_UP, INPUT_PULLUP);
-  // pinMode(BAND_BUTTON_DOWN, INPUT_PULLUP);
-  pinMode(VOL_UP, INPUT_PULLUP);
-  pinMode(VOL_DOWN, INPUT_PULLUP);
-  // pinMode(BFO_SWITCH, INPUT_PULLUP);
-  // pinMode(AGC_SWITCH, INPUT_PULLUP);
-  // pinMode(STEP_SWITCH, INPUT_PULLUP);
-  pinMode(MODE_SWITCH, INPUT_PULLUP);
-  */
-  
+
+    pinMode(MODE_BUTTON, INPUT_PULLUP);
+    pinMode(BAND_BUTTON, INPUT_PULLUP);
+    pinMode(VOL_BUTTON, INPUT_PULLUP);
+    pinMode(MENU_BUTTON, INPUT_PULLUP);
+
+
   // Use this initializer if using a 1.8" TFT screen:
   tft.begin();
   tft.setOrientation(1);
@@ -209,28 +207,28 @@ void setup()
   tft.drawText(80, 60, "By PU2CLR", COLOR_YELLOW);
   int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
   if ( si4735Addr == 0 ) {
-    tft.drawText(30, 120, "Si47XX was not detected!", COLOR_YELLOW);
+    tft.drawText(20, 120, "Si47XX was not detected!", COLOR_YELLOW);
     // while (1);
   } else {
     sprintf(buffer, "The Si473X I2C address is 0x%x ", si4735Addr);
     tft.drawText(30, 120, buffer, COLOR_RED);
   }
-  
+
 
   delay(5000);
   tft.clear();
   tft.setFont(Trebuchet_MS16x21);
- 
+
   showTemplate();
-  while(1);
+  // while (1);
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  
+
   // The line below may be necessary to setup I2C pins on ESP32
   // Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
-  
+
   si4735.setup(RESET_PIN, 1);
 
   // Set up the radio for the current band (see index table variable bandIdx )
@@ -243,16 +241,15 @@ void setup()
 
 
 /*
- * Shows the static content on  display
- */
+   Shows the static content on  display
+*/
 void showTemplate() {
 
 
-   // See https://github.com/Nkawu/TFT_22_ILI9225/wiki 
+  // See https://github.com/Nkawu/TFT_22_ILI9225/wiki
 
-   tft.drawRectangle(0, 0, tft.maxX() - 1, tft.maxY() - 1, COLOR_WHITE);
-   tft.drawRectangle(2, 2, tft.maxX() - 3, 40, COLOR_YELLOW);
-   tft.drawText(5, 10, "0123456789", COLOR_RED);
+  tft.drawRectangle(0, 0, tft.maxX() - 1, tft.maxY() - 1, COLOR_WHITE);
+  tft.drawRectangle(2, 2, tft.maxX() - 3, 40, COLOR_YELLOW);
 }
 
 
@@ -269,19 +266,19 @@ void showTemplate() {
 void showText(int x, int y, int sz, const GFXfont *f, uint16_t color, const char *msg)
 {
   /*
-  tft.setFont(f);
-  tft.setCursor(x, y);
-  tft.setTextColor(color);
-  tft.setTextSize(sz);
-  tft.print(msg);
+    tft.setFont(f);
+    tft.setCursor(x, y);
+    tft.setTextColor(color);
+    tft.setTextSize(sz);
+    tft.print(msg);
   */
 }
 
 
-/* 
- *  Reads encoder via interrupt
- *  Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
- */
+/*
+    Reads encoder via interrupt
+    Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
+*/
 void rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
@@ -300,21 +297,19 @@ void rotaryEncoder()
 
 
 /*
- * Shows frequency information on Display
- */
+   Shows frequency information on Display
+*/
 
 char bufferFreq[10];
- 
+
 void showFrequency()
 {
-  /*
   float freq;
   int iFreq, dFreq;
   uint16_t color;
 
-  // Clear the frequency field
-  // tft.fillRect(2, 2, 150, 38, ST77XX_BLACK);
-  showText(10, 10, 2, NULL, ST77XX_BLACK, bufferFreq);
+  // Clear the frequency content field
+  tft.drawText(5, 10, bufferFreq,  COLOR_BLACK);
 
   if (si4735.isCurrentTuneFM())
   {
@@ -329,10 +324,10 @@ void showFrequency()
     else
       dtostrf(freq, 2, 3, buffer);
   }
-  color = (bfoOn) ? ST77XX_CYAN : ST77XX_YELLOW;
-  showText(10, 10, 2, NULL, color, buffer);
-  tft.setFont(NULL); // default font
-  strcpy(bufferFreq, buffer); */
+  color = (bfoOn) ? COLOR_CYAN : COLOR_YELLOW;
+
+  tft.drawText(5, 10, buffer, color);
+  strcpy(bufferFreq, buffer); 
 }
 
 /*
@@ -343,56 +338,57 @@ char bufferAGC[10];
 
 void showStatus()
 {
-  /*
-  char unit[5];
-  si4735.getStatus();
-  si4735.getCurrentReceivedSignalQuality();
-  // SRN
-  si4735.getFrequency();
-  showFrequency();
-  // tft.fillRect(150, 2, 85, 36, ST77XX_BLACK);
-  if (si4735.isCurrentTuneFM()) {
+    char unit[5];
+    si4735.getStatus();
+    si4735.getCurrentReceivedSignalQuality();
+    // SRN
+    si4735.getFrequency();
+    showFrequency();
+
+    /*
+    // tft.fillRect(150, 2, 85, 36, ST77XX_BLACK);
+    if (si4735.isCurrentTuneFM()) {
     showText(170, 30, 2, NULL, ST77XX_WHITE, "MHz");
-  } else {
+    } else {
     sprintf(buffer, "Step:%2d", currentStep);
     showText(170, 10, 1, NULL, ST77XX_WHITE, buffer);
     showText(170, 30, 2, NULL, ST77XX_WHITE, "KHz");
-  }
+    }
 
-  // tft.fillRect(0, 60, 250, 36, ST77XX_BLACK);
+    // tft.fillRect(0, 60, 250, 36, ST77XX_BLACK);
 
-  if ( band[bandIdx].bandType == SW_BAND_TYPE) {
+    if ( band[bandIdx].bandType == SW_BAND_TYPE) {
     sprintf(buffer, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
     showText(5, 60, 2, NULL, ST77XX_RED, buffer );
-  }
-  else {
+    }
+    else {
     sprintf(buffer, "%s", band[bandIdx].bandName);
     showText(5, 60, 2, NULL, ST77XX_RED, buffer );
-  }
+    }
 
-  showText(70, 85, 1, NULL, ST77XX_BLACK, bufferAGC);
-  si4735.getAutomaticGainControl();
-  sprintf(buffer, "AGC %s", (si4735.isAgcEnabled()) ? "ON" : "OFF");
-  strcpy(bufferAGC, buffer);
+    showText(70, 85, 1, NULL, ST77XX_BLACK, bufferAGC);
+    si4735.getAutomaticGainControl();
+    sprintf(buffer, "AGC %s", (si4735.isAgcEnabled()) ? "ON" : "OFF");
+    strcpy(bufferAGC, buffer);
 
-  if (currentMode == LSB || currentMode == USB)
-  {
+    if (currentMode == LSB || currentMode == USB)
+    {
     showText(5, 85, 1, NULL, ST77XX_BLACK, bufferBW );
     sprintf(buffer, "BW:%s KHz", bandwitdthSSB[bwIdxSSB]);
     showText(5, 85, 1, NULL, ST77XX_GREEN, buffer );
     strcpy( bufferBW, buffer);
     showBFO();
     showText(70, 85, 1, NULL, ST77XX_GREEN, bufferAGC);
-  }
-  else if (currentMode == AM)
-  {
+    }
+    else if (currentMode == AM)
+    {
     showText(5, 85, 1, NULL, ST77XX_BLACK, bufferBW );
     sprintf(buffer, "BW:%s KHz", bandwitdthAM[bwIdxAM]);
     showText(5, 85, 1, NULL, ST77XX_GREEN, buffer );
     strcpy( bufferBW, buffer);
     showText(70, 85, 1, NULL, ST77XX_GREEN, bufferAGC);
-  }
-  tft.setFont(NULL); */
+    }
+    tft.setFont(NULL); */
 }
 
 /* *******************************
@@ -402,12 +398,12 @@ char bufferStereo[10];
 
 void showRSSI() {
   /*
-  if (  currentMode == FM ) {
+    if (  currentMode == FM ) {
     showText(5, 85, 1, NULL, ST77XX_BLACK, bufferStereo );
     sprintf(buffer, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
     showText(5, 85, 1, NULL, ST77XX_GREEN, buffer );
     strcpy(bufferStereo, buffer);
-  }
+    }
   */
 }
 
@@ -427,15 +423,15 @@ char bufferStep[15];
 void showBFO()
 {
   /*
-  showText(150, 60, 1, NULL, ST77XX_BLACK, bufferBFO );
-  showText(150, 77, 1, NULL, ST77XX_BLACK, bufferStep);
-  sprintf(buffer, "BFO.:%+d", currentBFO);
-  showText(150, 60, 1, NULL, ST77XX_GREEN, buffer );
-  strcpy(bufferBFO, buffer);
-  // tft.fillRect(128, 78, 110, 18, ST77XX_BLACK);
-  sprintf(buffer, "Step:%2d", currentBFOStep);
-  showText(150, 77, 1, NULL, ST77XX_GREEN, buffer);
-  strcpy(bufferStep, buffer);
+    showText(150, 60, 1, NULL, ST77XX_BLACK, bufferBFO );
+    showText(150, 77, 1, NULL, ST77XX_BLACK, bufferStep);
+    sprintf(buffer, "BFO.:%+d", currentBFO);
+    showText(150, 60, 1, NULL, ST77XX_GREEN, buffer );
+    strcpy(bufferBFO, buffer);
+    // tft.fillRect(128, 78, 110, 18, ST77XX_BLACK);
+    sprintf(buffer, "Step:%2d", currentBFOStep);
+    showText(150, 77, 1, NULL, ST77XX_GREEN, buffer);
+    strcpy(bufferStep, buffer);
   */
 }
 
@@ -552,7 +548,7 @@ void useBand()
 
 void loop()
 {
- // Check if the encoder has moved.
+  // Check if the encoder has moved.
   if (encoderCount != 0)
   {
     if (bfoOn)
@@ -576,7 +572,7 @@ void loop()
   if ((millis() - elapsedButton) > MIN_ELAPSED_TIME)
   {
     // check if some button is pressed
-    if (digitalRead(BANDWIDTH_BUTTON) == LOW)
+    if (digitalRead(BAND_BUTTON) == LOW)
     {
       if (currentMode == LSB || currentMode == USB)
       {
@@ -600,11 +596,11 @@ void loop()
       showStatus();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(BAND_BUTTON_UP) == LOW)
+    else if ( false /*digitalRead(BAND_BUTTON_UP) == LOW */)
       bandUp();
-    else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
+    else if (false /*digitalRead(BAND_BUTTON_DOWN) == LOW */)
       bandDown();
-    else if (digitalRead(VOL_UP) == LOW)
+    else if (digitalRead(VOL_BUTTON) == LOW)
     {
       si4735.volumeUp();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
@@ -614,7 +610,7 @@ void loop()
       si4735.volumeDown();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(BFO_SWITCH) == LOW)
+    else if (digitalRead(MENU_BUTTON) == LOW)
     {
       if (currentMode == LSB || currentMode == USB) {
         bfoOn = !bfoOn;
@@ -628,22 +624,22 @@ void loop()
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(AGC_SWITCH) == LOW)
+    else if (false /*digitalRead(AGC_SWITCH) == LOW */)
     {
       disableAgc = !disableAgc;
       // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
       si4735.setAutomaticGainControl(disableAgc, 1);
       showStatus();
     }
-    else if (digitalRead(STEP_SWITCH) == LOW)
+    else if (false /*digitalRead(STEP_SWITCH) == LOW */)
     { /*
-      if ( currentMode == FM) {
+        if ( currentMode == FM) {
         fmStereo = !fmStereo;
         if ( fmStereo )
           si4735.setFmStereoOn();
         else
           si4735.setFmStereoOff(); // It is not working so far.
-      } else {
+        } else {
 
         // This command should work only for SSB mode
         if (bfoOn && (currentMode == LSB || currentMode == USB))
@@ -664,11 +660,11 @@ void loop()
           showStatus();
         }
         delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-      } */
+        } */
     }
-    else if (digitalRead(MODE_SWITCH) == LOW)
+    else if (digitalRead(MODE_BUTTON) == LOW)
     { /*
-      if (currentMode != FM ) {
+        if (currentMode != FM ) {
         if (currentMode == AM)
         {
           // If you were in AM mode, it is necessary to load SSB patch (avery time)
@@ -689,7 +685,7 @@ void loop()
         band[bandIdx].currentFreq = currentFrequency;
         band[bandIdx].currentStep = currentStep;
         useBand();
-      } */
+        } */
     }
     elapsedButton = millis();
   }
@@ -730,6 +726,6 @@ void loop()
       showBFO();
     }
   }
-  
+
   delay(10);
 }
