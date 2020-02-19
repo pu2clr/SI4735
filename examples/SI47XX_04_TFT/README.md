@@ -8,6 +8,8 @@ This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2
 It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the regular comercial stations. If you are using the same circuit used on examples with OLED and LCD, you have to change some buttons wire up. This TFT device takes five pins from Arduino. For this reason, it is necessary change the pins of some buttons. Fortunately, you can use the ATmega328 analog pins as digital pins.
 
 
+### Wire up and functions
+
 The table below show the pins wire up for this example on Arduino Pro Mini.
 
 | Device name               | Device Pin / Description  |  Arduino Pin  |
@@ -22,7 +24,7 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 |                           | RESET (pin 15)            |     12        |
 |                           | SDIO (pin 18)             |     A4        |
 |                           | RCLK (pin 19)             |     A5        |
-| __Butons__                |                           |               | 
+| __Buttons__               |                           |               | 
 |                           | Switch MODE (AM/LSB/AM)   |      4        |
 |                           | Banddwith                 |      5        | 
 |                           | Next band                 |      6        |
@@ -35,6 +37,37 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 |                           | B                         |       3       |
 
 
+
+## SI47XX_02_TFT_TOUCH_SHIELD
+
+This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on Mega2560 and Arduino DUE
+
+### Features:
+
+1. Encoder to tune stations;
+2. Band selection via touch screen;
+3. Direct Mode selection via toucn screen - FM, AM (MW and SW) and SSB (LSB and USB);
+4. Bandwidth filter;
+5. BFO Control; 
+6. VFO/BFO switching via encoder button
+7. Frequency step switch (1, 5 and 10KHz);
+8. Volume control 
+9. Audio mute; 
+
+
+### Wire up
+
+
+  |Device name      | Function                |  MEGA/DUE Pin     |
+  |-----------      | ----------------------  |  -------------    |
+  | __Si4735__      |                         |                   |
+  | pin 15          |   RESET                 |   22              |  
+  | pin 18          |   SDIO                  |   20 (SDA)        |
+  | pin 19          |   RCLK                  |   21 (SCL)        |
+  | __Encoder__     |                         |                   |
+  | A               |                         |   18              |
+  | B               |                         |   19              |
+  | BUTTON          |  ENCODER PUSH BUTTON    |   23              |  
 
 
 

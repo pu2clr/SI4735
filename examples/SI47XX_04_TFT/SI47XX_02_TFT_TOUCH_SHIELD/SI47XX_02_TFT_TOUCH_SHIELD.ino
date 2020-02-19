@@ -1,5 +1,6 @@
 /*
-  This sketch uses the mcufriend TFT touct Display on Arduino Mega2580.
+  This sketch uses the mcufriend TFT touct Display Shield.
+  You can use it on Mega2560 and Arduino DUE
 
   Features:
   1) This sketch has been successfully tested on Arduino Mega2560 and DUE;
