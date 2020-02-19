@@ -1,24 +1,15 @@
 /*
-
   Under construction......
-
   It is a sketch for a radio All band and SSB based on Si4735.
-
   Under construction.....
-
-
   This sketch uses the TFT from MICROYUM 2.0"
-
   wire up on Arduino UNO, Pro mini
-
   TFT               Pin
   SCK/SCL           13
   SDA/SDI/MOSI      11
   CS/SS             10
   DC/A0/RS          9
   RET/RESET/RTS     8
-
-
   Last update: Jan 2020.
 */
 
@@ -30,7 +21,6 @@
 #include <SPI.h>
 #include "TFT_22_ILI9225.h"
 
-
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.
@@ -38,23 +28,19 @@
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
-
 // TFT MICROYUM or ILI9225 based device pin setup
 #define TFT_RST 8
-#define TFT_RS  9
-#define TFT_CS  10  // SS
-#define TFT_SDI 11  // MOSI
-#define TFT_CLK 13  // SCK
-#define TFT_LED 0   // 0 if wired to +3.3V directly
+#define TFT_RS 9
+#define TFT_CS 10  // SS
+#define TFT_SDI 11 // MOSI
+#define TFT_CLK 13 // SCK
+#define TFT_LED 0  // 0 if wired to +3.3V directly
 #define TFT_BRIGHTNESS 200
-
-
 
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
 #define SW_BAND_TYPE 2
 #define LW_BAND_TYPE 3
-
 
 #define RESET_PIN 12
 
@@ -73,9 +59,6 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define STEP_SWITCH 15     // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 #define BFO_SWITCH 16      // Pin A3 - Used to select the enconder control (BFO or VFO)
 
-
-
-#define CAPACITANCE 30  // You might need to adjust this value.
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
 
@@ -88,7 +71,6 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define LW 4
 
 #define SSB 1
-
 
 bool bfoOn = false;
 bool disableAgc = true;
@@ -113,24 +95,23 @@ uint8_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
 uint8_t bwIdxSSB = 2;
-const char * const bandwitdthSSB[]  = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+const char *const bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 uint8_t bwIdxAM = 1;
-const char * const bandwitdthAM[]  = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+const char *const bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
-const char * const bandModeDesc[]  = {"FM ", "LSB", "USB", "AM "};
+const char *const bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
 char bufferDisplay[64]; // Useful to handle string
 char bufferFreq[10];
 char bufferBFO[15];
-char bufferStep[15];
+char bufferStepVFO[15];
+char bufferStepBFO[15];
 char bufferBW[15];
 char bufferAGC[15];
 char bufferBand[15];
 char bufferStereo[10];
-
-
 
 /*
    Band data structure
@@ -148,28 +129,27 @@ typedef struct
 /*
    Band table
 */
-Band band[]  = {
-  {"FM  ", FM_BAND_TYPE, 8400, 10800, 10390, 10},
-  {"LW  ", LW_BAND_TYPE, 100, 510, 300, 1},
-  {"AM  ", MW_BAND_TYPE, 520, 1720, 810, 10},
-  {"160m", SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
-  {"80m ", SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
-  {"60m ", SW_BAND_TYPE, 4500, 5500, 4850, 5},
-  {"49m ", SW_BAND_TYPE, 5600, 6300, 6000, 5},
-  {"41m ", SW_BAND_TYPE, 6800, 7800, 7100, 5}, // 40 meters
-  {"31m ", SW_BAND_TYPE, 9200, 10000, 9600, 5},
-  {"30m ", SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
-  {"25m ", SW_BAND_TYPE, 11200, 12500, 11940, 5},
-  {"22m ", SW_BAND_TYPE, 13400, 13900, 13600, 5},
-  {"20m ", SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
-  {"19m ", SW_BAND_TYPE, 15000, 15900, 15300, 5},
-  {"18m ", SW_BAND_TYPE, 17200, 17900, 17600, 5},
-  {"17m ", SW_BAND_TYPE, 18000, 18300, 18100, 1},  // 17 meters
-  {"15m ", SW_BAND_TYPE, 21000, 21900, 21200, 1},  // 15 mters
-  {"12m ", SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
-  {"CB  ", SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
-  {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 1}
-};
+Band band[] = {
+    {"FM  ", FM_BAND_TYPE, 8400, 10800, 10390, 10},
+    {"LW  ", LW_BAND_TYPE, 100, 510, 300, 1},
+    {"AM  ", MW_BAND_TYPE, 520, 1720, 810, 10},
+    {"160m", SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
+    {"80m ", SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
+    {"60m ", SW_BAND_TYPE, 4500, 5500, 4850, 5},
+    {"49m ", SW_BAND_TYPE, 5600, 6300, 6000, 5},
+    {"41m ", SW_BAND_TYPE, 6800, 7800, 7100, 5}, // 40 meters
+    {"31m ", SW_BAND_TYPE, 9200, 10000, 9600, 5},
+    {"30m ", SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
+    {"25m ", SW_BAND_TYPE, 11200, 12500, 11940, 5},
+    {"22m ", SW_BAND_TYPE, 13400, 13900, 13600, 5},
+    {"20m ", SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
+    {"19m ", SW_BAND_TYPE, 15000, 15900, 15300, 5},
+    {"18m ", SW_BAND_TYPE, 17200, 17900, 17600, 5},
+    {"17m ", SW_BAND_TYPE, 18000, 18300, 18100, 1}, // 17 meters
+    {"15m ", SW_BAND_TYPE, 21000, 21900, 21200, 1}, // 15 mters
+    {"12m ", SW_BAND_TYPE, 24890, 26200, 24940, 1}, // 12 meters
+    {"CB  ", SW_BAND_TYPE, 26200, 27900, 27500, 1}, // CB band (11 meters)
+    {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 1}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
@@ -181,13 +161,11 @@ uint8_t volume = DEFAULT_VOLUME;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
-
 // For 1.44" and 1.8" TFT with ST7735 use:
 // Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 
 // Use hardware SPI (faster - on Uno: 13-SCK, 12-MISO, 11-MOSI)
 TFT_22_ILI9225 tft = TFT_22_ILI9225(TFT_RST, TFT_RS, TFT_CS, TFT_LED, TFT_BRIGHTNESS);
-
 
 SI4735 si4735;
 
@@ -207,12 +185,11 @@ void setup()
   pinMode(STEP_SWITCH, INPUT_PULLUP);
   pinMode(MODE_SWITCH, INPUT_PULLUP);
 
-
   // Use this initializer if using a 1.8" TFT screen:
   tft.begin();
   tft.setOrientation(1);
   tft.clear();
-  /*
+
     tft.setFont(Terminal6x8);
     tft.drawText(36, 20, "SI4735 Arduino Library", COLOR_RED); // Print string
     tft.drawText(80, 60, "By PU2CLR", COLOR_YELLOW);
@@ -224,17 +201,15 @@ void setup()
     sprintf(bufferDisplay, "The Si473X I2C address is 0x%x ", si4735Addr);
     tft.drawText(15, 120, bufferDisplay, COLOR_RED);
     }
-
     delay(2000);
     tft.clear();
-  */
+
 
   showTemplate();
   // while (1);
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
-
 
   // The line below may be necessary to setup I2C pins on ESP32
   // Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
@@ -249,7 +224,7 @@ void setup()
 
   clearBuffer(bufferDisplay);
   clearBuffer(bufferFreq);
-  clearBuffer(bufferStep);
+  clearBuffer(bufferStepVFO);
   clearBuffer(bufferBFO);
   clearBuffer(bufferBW);
   clearBuffer(bufferAGC);
@@ -258,28 +233,26 @@ void setup()
   showStatus();
 }
 
-
 /*
    Shows the static content on  display
 */
-void showTemplate() {
-
+void showTemplate()
+{
 
   // See https://github.com/Nkawu/TFT_22_ILI9225/wiki
 
   tft.drawRectangle(0, 0, tft.maxX() - 1, tft.maxY() - 1, COLOR_WHITE);
   tft.drawRectangle(2, 2, tft.maxX() - 3, 40, COLOR_YELLOW);
-  tft.drawLine(150, 0, 150, 40, COLOR_YELLOW) ;
+  tft.drawLine(150, 0, 150, 40, COLOR_YELLOW);
 
-  tft.drawLine( 0, 80, tft.maxX() - 1, 80, COLOR_YELLOW) ; //
-  tft.drawLine(60, 40, 60, 80, COLOR_YELLOW) ; // Mode Block
-  tft.drawLine(120, 40, 120, 80, COLOR_YELLOW) ; // Band name
-
-
+  tft.drawLine(0, 80, tft.maxX() - 1, 80, COLOR_YELLOW); //
+  tft.drawLine(60, 40, 60, 80, COLOR_YELLOW);            // Mode Block
+  tft.drawLine(120, 40, 120, 80, COLOR_YELLOW);          // Band name
 }
 
 // Just clear the buffer string array;
-void clearBuffer(char * b) {
+void clearBuffer(char *b)
+{
   b[0] = '\0';
 }
 
@@ -325,7 +298,7 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint16_t colo
   }
 
   // Save the current content to be tested next time
-  strcpy(oldValue, newValue)
+  strcpy(oldValue, newValue);
 
 }
 
@@ -349,18 +322,15 @@ void rotaryEncoder()
   }
 }
 
-
 /*
    Shows frequency information on Display
 */
-
 
 void showFrequency()
 {
   float freq;
   int iFreq, dFreq;
   uint16_t color;
-
 
   tft.setFont(Trebuchet_MS16x21);
 
@@ -372,7 +342,7 @@ void showFrequency()
   else
   {
     freq = currentFrequency / 1000.0;
-    if ( currentFrequency < 1000 )
+    if (currentFrequency < 1000)
       sprintf(bufferDisplay, "%3d", currentFrequency);
     else
       dtostrf(freq, 2, 3, bufferDisplay);
@@ -380,7 +350,7 @@ void showFrequency()
   color = (bfoOn) ? COLOR_CYAN : COLOR_YELLOW;
 
   printValue(10, 10, bufferFreq, bufferDisplay, color, 20);
-  // strcpy(bufferFreq, bufferDisplay);  // Save the current value in another array string
+  // strcpy(bufferFreq, bufferDisplay); // Save the current value in another array string
 }
 
 /*
@@ -398,19 +368,27 @@ void showStatus()
 
   tft.setFont(Terminal6x8);
 
-  if (si4735.isCurrentTuneFM()) {
+
+  printValue(155, 10, bufferStepVFO, bufferDisplay, COLOR_BLACK, 7);
+    
+  if (si4735.isCurrentTuneFM())
+  {
     tft.drawText(155, 30, "MHz", COLOR_RED);
     showBFOTemplate(COLOR_BLACK);
-    clearBufferBW();
-  } else {
+    tft.drawText(124, 45, bufferBW, COLOR_BLACK);
+  }
+  else
+  {
     sprintf(bufferDisplay, "Step: %2.2d", currentStep);
-    tft.drawText(155, 10, bufferDisplay, COLOR_YELLOW);
+    printValue(155, 10, bufferStepVFO, bufferDisplay, COLOR_YELLOW, 7);
+    // strcpy(bufferStepVFO,bufferDisplay);
+    
     tft.drawText(155, 30, "KHz", COLOR_RED);
   }
 
   // Band information
   tft.drawText(4, 60, bufferBand, COLOR_BLACK);
-  if ( band[bandIdx].bandType == SW_BAND_TYPE)
+  if (band[bandIdx].bandType == SW_BAND_TYPE)
     sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
   else
     sprintf(bufferDisplay, "%s", band[bandIdx].bandName);
@@ -424,62 +402,64 @@ void showStatus()
   tft.drawText(65, 60, bufferDisplay, COLOR_CYAN);
   strcpy(bufferAGC, bufferDisplay);
 
-
   // Bandwidth
   if (currentMode == LSB || currentMode == USB)
   {
     tft.drawText(150, 60, bufferStereo, COLOR_BLACK);
     sprintf(bufferDisplay, "BW: %s KHz", bandwitdthSSB[bwIdxSSB]);
-    clearBufferBW();
+    tft.drawText(124, 45, bufferBW, COLOR_BLACK);
     tft.drawText(124, 45, bufferDisplay, COLOR_CYAN);
-    strcpy( bufferBW, bufferDisplay);
+    strcpy(bufferBW, bufferDisplay);
     showBFOTemplate(COLOR_CYAN);
     showBFO();
   }
-  else if (currentMode == AM) {
+  else if (currentMode == AM)
+  {
     tft.drawText(150, 60, bufferStereo, COLOR_BLACK);
     sprintf(bufferDisplay, "BW: %s KHz", bandwitdthAM[bwIdxAM]);
-    clearBufferBW();
+    tft.drawText(124, 45, bufferBW, COLOR_BLACK);
     tft.drawText(124, 45, bufferDisplay, COLOR_CYAN);
-    strcpy( bufferBW, bufferDisplay);
+    strcpy(bufferBW, bufferDisplay);
     showBFOTemplate(COLOR_BLACK);
   }
-
 }
 
 /* *******************************
    Shows RSSI status
 */
 
-
-void showRSSI() {
+void showRSSI()
+{
 
   tft.setFont(Terminal6x8);
-  if (  currentMode == FM ) {
+  if (currentMode == FM)
+  {
     tft.drawText(150, 60, bufferStereo, COLOR_BLACK);
     sprintf(bufferDisplay, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
     tft.drawText(150, 60, bufferDisplay, COLOR_CYAN);
     strcpy(bufferStereo, bufferDisplay);
   }
-
 }
 
-// Clear the Bandwidth Filter filed
-inline void clearBufferBW() {
-  tft.drawText(124, 45, bufferBW, COLOR_BLACK);
+/*
+   Shows the volume level on LCD
+*/
+void showVolume()
+{
 }
 
-// Displays the static area for the SSB/BFO information
-void showBFOTemplate(uint16_t color) {
+void showBFOTemplate(uint16_t color)
+{
 
-  tft.drawText(150, 60, bufferStereo, COLOR_BLACK); 
-  
   tft.setFont(Terminal6x8);
+  
+  tft.drawText(150, 60, bufferStereo, COLOR_BLACK);
+
   tft.drawText(124, 55, "BFO.:", color);
   tft.drawText(124, 65, "Step:", color);
 
   tft.drawText(160, 55, bufferBFO, COLOR_BLACK);
-  tft.drawText(160, 65, bufferStep, COLOR_BLACK);
+  tft.drawText(160, 65, bufferStepBFO, COLOR_BLACK);
 }
 
 void showBFO()
@@ -487,22 +467,16 @@ void showBFO()
 
   tft.setFont(Terminal6x8);
 
-  // tft.drawText(160, 55, bufferBFO, COLOR_BLACK);
-  // tft.drawText(160, 65, bufferStep, COLOR_BLACK);
-
+  tft.drawText(160, 55, bufferBFO, COLOR_BLACK);
+  tft.drawText(160, 65, bufferStepBFO, COLOR_BLACK);
 
   sprintf(bufferDisplay, "%+4d", currentBFO);
-  // tft.drawText(160, 55, bufferDisplay, COLOR_CYAN);
-  printValue(150, 55, bufferBFO, bufferDisplay, color, 5);
-
-  // strcpy(bufferBFO, bufferDisplay);
+  tft.drawText(160, 55, bufferDisplay, COLOR_CYAN);
+  strcpy(bufferBFO, bufferDisplay);
 
   sprintf(bufferDisplay, "%4d", currentBFOStep);
-  // tft.drawText(160, 65, bufferDisplay, COLOR_CYAN);
-  printValue(150, 65, bufferStep, bufferDisplay, color, 5);
-  
-  // strcpy(bufferStep, bufferDisplay);
-
+  tft.drawText(160, 65, bufferDisplay, COLOR_CYAN);
+  strcpy(bufferStepBFO, bufferDisplay);
 }
 
 /*
@@ -577,6 +551,8 @@ void loadSSB()
 */
 void useBand()
 {
+  showBFOTemplate(COLOR_BLACK);
+  
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -680,18 +656,23 @@ void loop()
       } */
     else if (digitalRead(BFO_SWITCH) == LOW)
     {
-      if (currentMode == LSB || currentMode == USB) {
+      if (currentMode == LSB || currentMode == USB)
+      {
         bfoOn = !bfoOn;
-        if (bfoOn) {
+        if (bfoOn)
+        {
           showBFOTemplate(COLOR_CYAN);
           showBFO();
           showStatus();
         }
-        else {
+        else
+        {
           showBFOTemplate(COLOR_BLACK);
         }
         clearBuffer(bufferFreq);
-      } else if (currentMode == FM) {
+      }
+      else if (currentMode == FM)
+      {
         si4735.seekStationUp();
         currentFrequency = si4735.getFrequency();
       }
@@ -707,13 +688,16 @@ void loop()
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
     {
-      if ( currentMode == FM) {
+      if (currentMode == FM)
+      {
         fmStereo = !fmStereo;
-        if ( fmStereo )
+        if (fmStereo)
           si4735.setFmStereoOn();
         else
           si4735.setFmStereoOff(); // It is not working so far.
-      } else {
+      }
+      else
+      {
 
         // This command should work only for SSB mode
         if (bfoOn && (currentMode == LSB || currentMode == USB))
@@ -727,6 +711,8 @@ void loop()
             currentStep = 5;
           else if (currentStep == 5)
             currentStep = 10;
+          else if (currentStep == 10)
+            currentStep = 50;
           else
             currentStep = 1;
           si4735.setFrequencyStep(currentStep);
@@ -738,7 +724,8 @@ void loop()
     }
     else if (digitalRead(MODE_SWITCH) == LOW)
     {
-      if (currentMode != FM ) {
+      if (currentMode != FM)
+      {
         if (currentMode == AM)
         {
           // If you were in AM mode, it is necessary to load SSB patch (avery time)
