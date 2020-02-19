@@ -289,34 +289,45 @@ void clearBuffer(char * b) {
 */
 void printValue(int col, int line, char *oldValue, char *newValue, uint16_t color, uint8_t space) {
   int c = col;
+  char * pOld;
+  char * pNew;
+
+  pOld = oldValue;
+  pNew = newValue;
+
   // prints just changed digits
-  while (*oldValue && *newValue) {
-    if ( *oldValue != *newValue ) {
-      tft.drawChar(c, line, *oldValue, COLOR_BLACK);
-      tft.drawChar(c, line, *newValue, color);
+  while (*pOld && *pNew)
+  {
+    if (*pOld != *pNew)
+    {
+      tft.drawChar(c, line, *pOld, COLOR_BLACK);
+      tft.drawChar(c, line, *pNew, color);
     }
-    oldValue++;
-    newValue++;
+    pOld++;
+    pNew++;
     c += space;
   }
 
   // Is there anything else to erase?
-  while (*oldValue) {
-    tft.drawChar(c, line, *oldValue, COLOR_BLACK);
-    oldValue++;
+  while (*pOld)
+  {
+    tft.drawChar(c, line, *pOld, COLOR_BLACK);
+    pOld++;
     c += space;
   }
 
   // Is there anything else to print?
-  while (*newValue) {
-    tft.drawChar(c, line, *newValue, color);
-    newValue++;
+  while (*pNew)
+  {
+    tft.drawChar(c, line, *pNew, color);
+    pNew++;
     c += space;
   }
 
+  // Save the current content to be tested next time
+  strcpy(oldValue, newValue)
+
 }
-
-
 
 /*
     Reads encoder via interrupt
@@ -369,7 +380,7 @@ void showFrequency()
   color = (bfoOn) ? COLOR_CYAN : COLOR_YELLOW;
 
   printValue(10, 10, bufferFreq, bufferDisplay, color, 20);
-  strcpy(bufferFreq, bufferDisplay);  // Save the current value in another array string
+  // strcpy(bufferFreq, bufferDisplay);  // Save the current value in another array string
 }
 
 /*
@@ -390,7 +401,7 @@ void showStatus()
   if (si4735.isCurrentTuneFM()) {
     tft.drawText(155, 30, "MHz", COLOR_RED);
     showBFOTemplate(COLOR_BLACK);
-    tft.drawText(124, 45, bufferBW, COLOR_BLACK);
+    clearBufferBW();
   } else {
     sprintf(bufferDisplay, "Step: %2.2d", currentStep);
     tft.drawText(155, 10, bufferDisplay, COLOR_YELLOW);
@@ -419,7 +430,7 @@ void showStatus()
   {
     tft.drawText(150, 60, bufferStereo, COLOR_BLACK);
     sprintf(bufferDisplay, "BW: %s KHz", bandwitdthSSB[bwIdxSSB]);
-    tft.drawText(124, 45, bufferBW, COLOR_BLACK);
+    clearBufferBW();
     tft.drawText(124, 45, bufferDisplay, COLOR_CYAN);
     strcpy( bufferBW, bufferDisplay);
     showBFOTemplate(COLOR_CYAN);
@@ -428,7 +439,7 @@ void showStatus()
   else if (currentMode == AM) {
     tft.drawText(150, 60, bufferStereo, COLOR_BLACK);
     sprintf(bufferDisplay, "BW: %s KHz", bandwitdthAM[bwIdxAM]);
-    tft.drawText(124, 45, bufferBW, COLOR_BLACK);
+    clearBufferBW();
     tft.drawText(124, 45, bufferDisplay, COLOR_CYAN);
     strcpy( bufferBW, bufferDisplay);
     showBFOTemplate(COLOR_BLACK);
@@ -453,18 +464,12 @@ void showRSSI() {
 
 }
 
-
-/*
-   Shows the volume level on LCD
-*/
-void showVolume()
-{
-
+// Clear the Bandwidth Filter filed
+inline void clearBufferBW() {
+  tft.drawText(124, 45, bufferBW, COLOR_BLACK);
 }
 
-
-
-
+// Displays the static area for the SSB/BFO information
 void showBFOTemplate(uint16_t color) {
 
   tft.drawText(150, 60, bufferStereo, COLOR_BLACK); 
@@ -482,17 +487,21 @@ void showBFO()
 
   tft.setFont(Terminal6x8);
 
-  tft.drawText(160, 55, bufferBFO, COLOR_BLACK);
-  tft.drawText(160, 65, bufferStep, COLOR_BLACK);
+  // tft.drawText(160, 55, bufferBFO, COLOR_BLACK);
+  // tft.drawText(160, 65, bufferStep, COLOR_BLACK);
 
 
   sprintf(bufferDisplay, "%+4d", currentBFO);
-  tft.drawText(160, 55, bufferDisplay, COLOR_CYAN);
-  strcpy(bufferBFO, bufferDisplay);
+  // tft.drawText(160, 55, bufferDisplay, COLOR_CYAN);
+  printValue(150, 55, bufferBFO, bufferDisplay, color, 5);
+
+  // strcpy(bufferBFO, bufferDisplay);
 
   sprintf(bufferDisplay, "%4d", currentBFOStep);
-  tft.drawText(160, 65, bufferDisplay, COLOR_CYAN);
-  strcpy(bufferStep, bufferDisplay);
+  // tft.drawText(160, 65, bufferDisplay, COLOR_CYAN);
+  printValue(150, 65, bufferStep, bufferDisplay, color, 5);
+  
+  // strcpy(bufferStep, bufferDisplay);
 
 }
 
@@ -568,8 +577,6 @@ void loadSSB()
 */
 void useBand()
 {
-
-
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -769,7 +776,6 @@ void loop()
     }
     elapsedRSSI = millis();
   }
-
 
   delay(10);
 }
