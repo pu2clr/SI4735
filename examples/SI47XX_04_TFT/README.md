@@ -10,26 +10,30 @@ It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and al
 
 The table below show the pins wire up for this example on Arduino Pro Mini.
 
-| Device pin or button      |  Arduino Pin  |
-| --------------------      | ------------  |
-| __Display TFT__           |               | 
-| RST (RESET)               |      8        |  
-| RS                        |      9        |
-| CS                        |     10        |
-| SDI                       |     11        | 
-| CLK                       |     13        | 
-| __Si4735__                |               |
-| RESET (pin 15)            |     12        |
-| SDIO (pin 18)             |     A4        |
-| RCLK (pin 19)             |     A5        |
-| __Butons__                |               | 
-| Switch MODE (AM/LSB/AM)   |      4        |
-| Banddwith                 |      5        | 
-| Next band                 |      6        |
-| Previous band             |      7        |
-| AGC ON/OF                 |     14 / A0   |
-| Frequency Step            |     15 / A1   | 
-| VFO/VFO Switch            |     16 / A3   |
+| Device name               | Device Pin / Description  |  Arduino Pin  |
+| ----------------          | --------------------      | ------------  |
+| __Display TFT__           |                           |               |                    
+|                           | RST (RESET)               |      8        |  
+|                           | RS                        |      9        |
+|                           | CS                        |     10        |
+|                           | SDI                       |     11        | 
+|                           | CLK                       |     13        | 
+| __Si4735__                |                           |               |
+|                           | RESET (pin 15)            |     12        |
+|                           | SDIO (pin 18)             |     A4        |
+|                           | RCLK (pin 19)             |     A5        |
+| __Butons__                |                           |               | 
+|                           | Switch MODE (AM/LSB/AM)   |      4        |
+|                           | Banddwith                 |      5        | 
+|                           | Next band                 |      6        |
+|                           | Previous band             |      7        |
+|                           | AGC ON/OF                 |     14 / A0   |
+|                           | Frequency Step            |     15 / A1   | 
+|                           | VFO/VFO Switch            |     16 / A3   |
+| __Encoder__               |                           |               |
+|                           | A                         |       2       |
+|                           | B                         |       3       |
+
 
 
 
