@@ -22,7 +22,7 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 | __Si4735__                |                           |               |
 |                           | RESET (pin 15)            |     12        |
 |                           | SDIO (pin 18)             |     A4        |
-|                           | RCLK (pin 19)             |     A5        |
+|                           | SCLK (pin 17)             |     A5        |
 | __Buttons__               |                           |               | 
 |                           | Switch MODE (AM/LSB/AM)   |      4        |
 |                           | Banddwith                 |      5        | 
