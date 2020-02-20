@@ -39,7 +39,7 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 
 ## SI47XX_02_TFT_TOUCH_SHIELD
 
-This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on Mega2560 and Arduino DUE
+This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on Mega2560 and Arduino DUE. See the table bellow to right wire up the Mega/DUE to the devices (Si4735 and encoder). 
 
 ### Features:
 
