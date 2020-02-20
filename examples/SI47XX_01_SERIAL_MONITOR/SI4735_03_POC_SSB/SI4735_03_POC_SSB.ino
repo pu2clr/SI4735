@@ -132,7 +132,7 @@ void setup()
   Serial.println("Si4735 Arduino Library");
   Serial.println("SSB TEST");
   Serial.println("By PU2CLR");
-  
+
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
   // Testing I2C clock speed and SSB behaviour

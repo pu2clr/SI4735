@@ -61,7 +61,7 @@ void setup()
     Serial.println("Si473X not found!");
     while (1);
   } else {
-    Serial.print("The Si473X I2C address is ");
+    Serial.print("The Si473X I2C address is 0x");
     Serial.println(si4735Addr, HEX);
   }
 
