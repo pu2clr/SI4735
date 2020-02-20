@@ -11,9 +11,8 @@ Contato: pu2clr@gmail.com
 
 Há grupo de discussão no facebook denominado [__Si47XX para radioescutas__](https://www.facebook.com/groups/1121785218031286/) onde o propósito é trocar experiências com projetos baseados na família de CI SI47XX da Silicon Labs. Você será bem-vindo ao grupo [Si47XX para radioescuta](https://www.facebook.com/groups/1121785218031286/). 
 
-<BR>
 
-__Atenção__: 
+### __Atenção__: 
 * __Esta Biblioteca ainda está em desevolvimento. Portanto, algumas funções e comportamentos podem ser alterados ao longo do desenvolvimento__.
 * __Esta documentação ainda está em construção e sujeita a alteração__. 
 * __O SI4735 é um componente que opera com 3.3V. Se você não estiver usando uma versão do Arduino que opera com esta tensão, você deve usar alguma estratégia de conversão de tensão (incluindo os pinos digitais e analógicos) para trabalar corretamente com o SI4735__. 
