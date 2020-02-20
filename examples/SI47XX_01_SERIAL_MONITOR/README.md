@@ -5,6 +5,18 @@ This folder has some basic examples that will help you to test you board.
 __All sketches of this folder have been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Micro (see the operating voltage of your Micro); Arduino Mega (by using a voltage converter); Arduino DUE; and ESP32 (Dev Kit and LOLIN32 WEMOS)__
 
 
+
+The table below show the Si4735 and Arduino Pro Mini pin connections 
+
+
+| Si4735 pin      |  Arduino Pin  |
+| ----------------| ------------  |
+| RESET (pin 15)  |     12        |
+| SDIO (pin 18)   |     A4        |
+| RCLK (pin 19)   |     A5        |
+
+
+
 ## Example 01 - SI4735_01_POC 
 
 Test and validation of the SI4735 Arduino Library. The main advantages of using this sketch are: 
