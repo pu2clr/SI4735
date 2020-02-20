@@ -144,8 +144,8 @@ Band band[] = {
 
 
 const char * const text_arduino_library = "SI4735 Arduino Library";
-const char * const text_author  = "By PU2CLR";
 const char * const text_example  = "Example - Modify it to your liking.";
+const char * const text_author  = "By PU2CLR";
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
