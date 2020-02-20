@@ -13,7 +13,7 @@ The table below show the Si4735 and Arduino Pro Mini pin connections
 | ----------------| ------------  |
 | RESET (pin 15)  |     12        |
 | SDIO (pin 18)   |     A4        |
-| RCLK (pin 19)   |     A5        |
+| SCLK (pin 17)   |     A5        |
 
 
 
