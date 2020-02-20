@@ -62,7 +62,7 @@ This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on M
   | __Si4735__      |                         |                   |
   | pin 15          |   RESET                 |   22              |  
   | pin 18          |   SDIO                  |   20 (SDA)        |
-  | pin 19          |   RCLK                  |   21 (SCL)        |
+  | pin 17          |   SCLK                  |   21 (SCL)        |
   | __Encoder__     |                         |                   |
   | A               |                         |   18              |
   | B               |                         |   19              |
