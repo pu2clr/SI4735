@@ -147,7 +147,6 @@ SI4735 si4735;
 
 void setup()
 {
-
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);

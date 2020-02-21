@@ -98,14 +98,14 @@ const char * bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
 char bufferDisplay[40]; // Useful to handle string
-char bufferFreq[10];
+char bufferFreq[15];
 char bufferBFO[15];
-char bufferStepVFO[10];
-char bufferStepBFO[10];
-char bufferBW[10];
-char bufferAGC[10];
-char bufferBand[12];
-char bufferStereo[10];
+char bufferStepVFO[15];
+char bufferStepBFO[15];
+char bufferBW[15];
+char bufferAGC[15];
+char bufferBand[15];
+char bufferStereo[15];
 
 /*
    Band data structure
@@ -144,8 +144,8 @@ Band band[] = {
 
 
 const char * const text_arduino_library = "SI4735 Arduino Library";
-const char * const text_example  = "Example - Modify it to your liking.";
-const char * const text_author  = "By PU2CLR";
+const char * const text_example  = "https://github.com/pu2clr/SI4735";
+const char * const text_author  = "DIY - By PU2CLR";
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
@@ -219,9 +219,9 @@ void showTemplate()
   tft.drawRectangle(45, 150,  maxX1 - 2, 156, COLOR_YELLOW);
   tft.drawRectangle(45, 163,  maxX1 - 2, 169, COLOR_YELLOW);
 
-  tft.drawText(10, 90, text_arduino_library, COLOR_YELLOW);
-  tft.drawText(10, 110, text_example, COLOR_YELLOW);
-  tft.drawText(10, 130, text_author, COLOR_YELLOW);
+  tft.drawText(5, 90, text_arduino_library, COLOR_YELLOW);
+  tft.drawText(5, 110, text_example, COLOR_YELLOW);
+  tft.drawText(5, 130, text_author, COLOR_YELLOW);
   
 }
 
@@ -341,7 +341,7 @@ void showStatus()
   else
   {
     sprintf(bufferDisplay, "Step: %2.2d", currentStep);
-    printValue(155, 10, bufferStepVFO, bufferDisplay, COLOR_YELLOW, 7);
+    printValue(155, 10, bufferStepVFO, bufferDisplay, COLOR_YELLOW, 6);
     tft.drawText(155, 30, "KHz", COLOR_RED);
   }
 
@@ -349,12 +349,12 @@ void showStatus()
     sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
   else
     sprintf(bufferDisplay, "%s", band[bandIdx].bandName);
-  printValue(4, 60, bufferBand, bufferDisplay, COLOR_CYAN, 7);
+  printValue(4, 60, bufferBand, bufferDisplay, COLOR_CYAN, 6);
 
   // AGC
   si4735.getAutomaticGainControl();
   sprintf(bufferDisplay, "AGC %s", (si4735.isAgcEnabled()) ? "ON  " : "OFF");
-  printValue(65, 60, bufferAGC, bufferDisplay, COLOR_CYAN, 7);
+  printValue(65, 60, bufferAGC, bufferDisplay, COLOR_CYAN, 6);
 
 
   // Bandwidth
@@ -373,7 +373,7 @@ void showStatus()
       showBFO();
     }
     sprintf(bufferDisplay, "BW: %s KHz", bandwitdthSSB[bwIdxSSB]);
-    printValue(124, 45, bufferBW, bufferDisplay, COLOR_CYAN, 7);
+    printValue(124, 45, bw, bufferDisplay, COLOR_CYAN, 6);
     showBFOTemplate(COLOR_CYAN);
   }
 
@@ -414,8 +414,9 @@ void showBFOTemplate(uint16_t color)
   tft.drawText(124, 55, "BFO.:", color);
   tft.drawText(124, 65, "Step:", color);
 
-  tft.drawText(160, 55, bufferBFO, COLOR_BLACK);
-  tft.drawText(160, 65, bufferStepBFO, COLOR_BLACK);
+  tft.fillRectangle(160,55, 218,65,COLOR_BLACK);
+  // tft.drawText(160, 55, bufferBFO, COLOR_BLACK);
+  // tft.drawText(160, 65, bufferStepBFO, COLOR_BLACK);
 }
 
 void showBFO()
