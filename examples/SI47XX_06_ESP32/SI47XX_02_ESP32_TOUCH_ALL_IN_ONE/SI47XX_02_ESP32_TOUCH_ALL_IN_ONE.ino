@@ -64,8 +64,8 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define RESET_PIN 25
 
 // Enconder PINs
-#define ENCODER_PIN_A 17
-#define ENCODER_PIN_B 16
+#define ENCODER_PIN_A 16
+#define ENCODER_PIN_B 17
 
 // You can use some pins as capacitive touch
 #define TOUCH_MODE_SWITCH  32     // Switch MODE (Am/LSB/USB)

@@ -33,7 +33,7 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 This example is a complete FM/AM/LW/SW (with SSB support) receiver based on SI4735 running on ESP32 
 
 
-###__Features:__
+### __Features:__
 1) This sketch has been successfully tested on ESP LOLIN32 (WEMOS);
 2) It uses the capacitive touch ESP32 resource;
 3) I2C LiquidCrystal/LCD 20x4;
@@ -53,11 +53,11 @@ __ATTENTION:__ The author of this project does not guarantee that procedures wil
 
 ### ESP32 considerations
 
-The ESP32 has a great resource to interact with system. Instead of buttons, you can use the capacitive sensors available on ESP32 IC family. 
+The ESP32 has a great resource to interact with system. Instead of buttons, you can use the capacitive sensors available on ESP32 board family. 
 
-The ESP32 is a 3.3V part. Pay attention on your I2C LCD device voltage. If it is not 3.3V, the system cannot work properly.
+__The ESP32 is a 3.3V part. Pay attention on your I2C LCD device voltage. If it is not 3.3V, the system cannot work properly__.
 
-The ESP32 board has enough RAM memory to support all SSB patch and a nice TFT Display. Consider this feature to improve your sketch.
+The ESP32 board has enough RAM memory to support all SSB patch and a nice TFT Display library. Consider this feature to improve your sketch.
 
 
 ### Schematic 
@@ -66,7 +66,7 @@ You can use the same schematic used on Arduino family.
 However, you have pay attention to the new configuration pins on ESP32. See tables bellow.
 
 
-### ESP-LOLIN32-WEMOS touch capacitive and intterrupt pins
+### ESP-LOLIN32-WEMOS touch capacitive 
 
 | GPIO   | Used as  | Constant number (#define)| Function Description | 
 | ------ | -------- | ------------------ | ----------- | 
@@ -78,16 +78,14 @@ However, you have pay attention to the new configuration pins on ESP32. See tabl
 | GPIO4  | Capacitive |  4 | Switch to the previous band | 
 | GPIO2  | Capacitive |  2 | Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 | GPIO15 | Capacitive | 15 | Used to select the enconder control (BFO or VFO) 
-| GPIO17 | Interrupt |  17 | Encoder pin A |
-| GPIO16 | Interrupr |  16 | Encoder pin B |
 
 
 ### Encoder wire up
 
 | Encoder   | Function              |ESP LOLIN32 WEMOS (GPIO) |
 |-----------| ----------------------|-------------------------|
-| A         |                       |   18                    |
-| B         |                       |   19                    |
+| A         |  interrupt            |   16                    |
+| B         |  interrupt            |   17                    |
 | BUTTON    |  ENCODER PUSH BUTTON  |   23                    |  
 
 
