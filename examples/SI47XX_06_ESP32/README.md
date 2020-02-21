@@ -7,14 +7,25 @@ This folder show some examples with Si4735 Arduino Library  and ESP32 platform.
 
 ## Example SI47XX_01_ESP32_AM_FM_TOUCH_SERIAL_MONITOR
 
-This sketch uses just the Serial Monitor as the human interface to test and validation of the SI4735 Arduino Library on ESP platform. It is very useful to test your circuit and setup. 
+This sketch uses just the Serial Monitor as the human interface to test and validation of the SI4735 Arduino Library on ESP platform. It can be very useful to test your circuit. 
 
 ### The main advantages of using this sketch are: 
 
-* It is a easy way to check if your circuit is working;
+* It is a easy way to check if your setup is working;
 * You do not need to connect any display device to make your radio works;
 * You do not need connect any push buttons or encoders to change volume and frequency;
 * The Arduino IDE is all you need to control the radio.  
+
+
+### Si4735 Wire up
+
+
+| Si4735    | Function              |ESP LOLIN32 WEMOS (GPIO) |
+|-----------| ----------------------|-------------------------|
+| pin 15    |   RESET               |   22                    |  
+| pin 18    |   SDIO                |   20 (SDA)              |
+| pin 17    |   SCLK                |   21 (SCL)              |
+
 
 
 ## Example SI47XX_02_ESP32_TOUCH_ALL_IN_ONE
@@ -71,19 +82,7 @@ However, you have pay attention to the new configuration pins on ESP32. See tabl
 | GPIO16 | Interrupr |  16 | Encoder pin B |
 
 
-### Si4735 Wire up
-
-
-### Wire up
-
-
-| Si4735    | Function              |ESP LOLIN32 WEMOS (GPIO) |
-|-----------| ----------------------|-------------------------|
-| pin 15    |   RESET               |   22                    |  
-| pin 18    |   SDIO                |   20 (SDA)              |
-| pin 17    |   SCLK                |   21 (SCL)              |
-
-
+### Encoder wire up
 
 | Encoder   | Function              |ESP LOLIN32 WEMOS (GPIO) |
 |-----------| ----------------------|-------------------------|
