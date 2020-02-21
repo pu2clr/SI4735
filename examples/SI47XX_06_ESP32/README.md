@@ -52,12 +52,12 @@ The ESP32 board has enough RAM memory to support all SSB patch and a nice TFT Di
 ### Schematic 
 
 You can use the same schematic used on Arduino family. 
-However, you have pay attention to the new configuration pins on ESP32. See table bellow.
+However, you have pay attention to the new configuration pins on ESP32. See tables bellow.
 
 
 ### ESP-LOLIN32-WEMOS touch capacitive and intterrupt pins
 
-| GPIO   | Used as  | Arduino constant number | Function Description | 
+| GPIO   | Used as  | Constant number (#define)| Function Description | 
 | ------ | -------- | ------------------ | ----------- | 
 | GPIO32 | Capacitive | 32 | Switch MODE (Am/LSB/USB) | 
 | GPIO33 | Capacitive | 33 | Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz |
@@ -70,6 +70,26 @@ However, you have pay attention to the new configuration pins on ESP32. See tabl
 | GPIO17 | Interrupt |  17 | Encoder pin A |
 | GPIO16 | Interrupr |  16 | Encoder pin B |
 
+
+### Si4735 Wire up
+
+
+### Wire up
+
+
+| Si4735    | Function              |ESP LOLIN32 WEMOS (GPIO) |
+|-----------| ----------------------|-------------------------|
+| pin 15    |   RESET               |   22                    |  
+| pin 18    |   SDIO                |   20 (SDA)              |
+| pin 17    |   SCLK                |   21 (SCL)              |
+
+
+
+| Encoder   | Function              |ESP LOLIN32 WEMOS (GPIO) |
+|-----------| ----------------------|-------------------------|
+| A         |                       |   18                    |
+| B         |                       |   19                    |
+| BUTTON    |  ENCODER PUSH BUTTON  |   23                    |  
 
 
 
@@ -88,7 +108,7 @@ It seams that in some ESP32 board, the I2C bus is not configured prorpelly by de
 void setup() {
 
 
-  // The line below may be necessary to setup I2C pins on ESP32
+  // The line below may be necessary to setup I2C pins on ESP32 Dev Module
   Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
 
 

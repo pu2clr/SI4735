@@ -11,6 +11,18 @@
   7) BFO Control; and
   8) Frequency step switch (1, 5 and 10KHz).
 
+  | Si4735    | Function              |ESP LOLIN32 WEMOS (GPIO) |
+  |-----------| ----------------------|-------------------------|
+  | pin 15    |   RESET               |   22                    |  
+  | pin 18    |   SDIO                |   20 (SDA)              |
+  | pin 17    |   SCLK                |   21 (SCL)              |
+
+  | Encoder   | Function              |ESP LOLIN32 WEMOS (GPIO) |
+  |-----------| ----------------------|-------------------------|
+  | A         |                       |   18                    |
+  | B         |                       |   19                    |
+  | BUTTON    |  ENCODER PUSH BUTTON  |   23                    |  
+
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of
