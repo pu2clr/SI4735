@@ -32,8 +32,6 @@
   |                           | A                         |       2       |
   |                           | B                         |       3       |
 
-
-
   By PU2CLR, Ricardo,  Feb  2020.
 */
 
