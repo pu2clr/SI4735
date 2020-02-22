@@ -23,7 +23,6 @@
   ENCODER PUSH BUTTON     23
   RESET                   22
 
-
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of
