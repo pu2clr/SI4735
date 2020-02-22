@@ -699,7 +699,7 @@ private:
     uint16_t currentMaximumFrequency;
     uint16_t currentWorkFrequency;
 
-    uint8_t currentStep;
+    uint16_t currentStep;
 
     uint8_t lastMode = -1; // Store the last mode used. 
 
@@ -844,12 +844,12 @@ public:
     //
     void setAM();
     void setFM();
-    void setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint8_t step);
-    void setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint8_t step);
+    void setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint16_t step);
+    void setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step);
 
     void setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT);
 
-    void setFrequencyStep(uint8_t step);
+    void setFrequencyStep(uint16_t step);
 
     inline uint8_t getTuneFrequencyFast() { return currentFrequencyParams.arg.FAST; };                  // returns the FAST tuning status
     inline void setTuneFrequencyFast(uint8_t FAST) { currentFrequencyParams.arg.FAST = FAST; };         // FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate
@@ -917,7 +917,7 @@ public:
     void ssbSetup();
     void setSSBBfo(int offset);
     void setSSBConfig(uint8_t AUDIOBW, uint8_t SBCUTFLT, uint8_t AVC_DIVIDER, uint8_t AVCEN, uint8_t SMUTESEL, uint8_t DSP_AFCDIS);
-    void setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint8_t step, uint8_t usblsb);
+    void setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint16_t step, uint8_t usblsb);
     void setSSB(uint8_t usblsb);
     void setSSBAudioBandwidth(uint8_t AUDIOBW);
     void setSSBAutomaticVolumeControl(uint8_t AVCEN);

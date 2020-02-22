@@ -394,7 +394,7 @@ void SI4735::setFrequency(uint16_t freq)
  *             For AM, 1 (1KHz) to 10 (10KHz) are valid values.
  *             For FM 5 (50KHz) and 10 (100KHz) are valid values.  
  */
-void SI4735::setFrequencyStep(uint8_t step)
+void SI4735::setFrequencyStep(uint16_t step)
 {
     currentStep = step;
 }
@@ -468,7 +468,7 @@ void SI4735::setFM()
  * @param initialFreq initial frequency 
  * @param step step used to go to the next channel 
  */
-void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint8_t step)
+void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step)
 {
 
     currentMinimumFrequency = fromFreq;
@@ -491,7 +491,7 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
  * @param initialFreq initial frequency (default frequency)
  * @param step step used to go to the next channel   
  */
-void SI4735::setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint8_t step)
+void SI4735::setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step)
 {
 
     currentMinimumFrequency = fromFreq;
@@ -1647,7 +1647,7 @@ void SI4735::setSSB(uint8_t usblsb)
  *               value 2 (banary 10) = USB; 
  *               value 1 (banary 01) = LSB.   
  */
-void SI4735::setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint8_t step, uint8_t usblsb)
+void SI4735::setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step, uint8_t usblsb)
 {
     currentMinimumFrequency = fromFreq;
     currentMaximumFrequency = toFreq;

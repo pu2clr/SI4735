@@ -6,13 +6,33 @@
   For this reason, it is necessary change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
-  wire up on Arduino UNO, Pro mini
-  TFT               Pin
-  SCK/SCL           13
-  SDA/SDI/MOSI      11
-  CS/SS             10
-  DC/A0/RS          9
-  RET/RESET/RTS     8
+  Wire up on Arduino UNO, Pro mini
+
+  | Device name               | Device Pin / Description  |  Arduino Pin  |
+  | ----------------          | --------------------      | ------------  |
+  | Display TFT               |                           |               |
+  |                           | RST (RESET)               |      8        |
+  |                           | RS                        |      9        |
+  |                           | CS                        |     10        |
+  |                           | SDI                       |     11        |
+  |                           | CLK                       |     13        |
+  |     Si4735                |                           |               |
+  |                           | RESET (pin 15)            |     12        |
+  |                           | SDIO (pin 18)             |     A4        |
+  |                           | SCLK (pin 17)             |     A5        |
+  |     Buttons               |                           |               |
+  |                           | Switch MODE (AM/LSB/AM)   |      4        |
+  |                           | Banddwith                 |      5        |
+  |                           | Next band                 |      6        |
+  |                           | Previous band             |      7        |
+  |                           | AGC ON/OF                 |     14 / A0   |
+  |                           | Frequency Step            |     15 / A1   |
+  |                           | VFO/VFO Switch            |     16 / A3   |
+  |    Encoder                |                           |               |
+  |                           | A                         |       2       |
+  |                           | B                         |       3       |
+
+
 
   By PU2CLR, Ricardo,  Feb  2020.
 */
@@ -70,6 +90,8 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 #define SSB 1
 
+#define CLEAR_BUFFER(x)  (x[0] = '\0');
+
 bool bfoOn = false;
 bool disableAgc = true;
 bool ssbLoaded = false;
@@ -85,7 +107,7 @@ volatile int encoderCount = 0;
 
 // Some variables to check the SI4735 status
 uint16_t currentFrequency;
-uint8_t currentStep = 1;
+
 uint8_t currentBFOStep = 25;
 
 uint8_t bwIdxSSB = 2;
@@ -96,6 +118,11 @@ const char * bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 const char * bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
+
+uint16_t currentStep = 1;
+
+
+
 
 char bufferDisplay[40]; // Useful to handle string
 char bufferFreq[15];
@@ -124,31 +151,32 @@ typedef struct
    Band table
 */
 Band band[] = {
-  {"FM  ", FM_BAND_TYPE, 8400, 10800, 10390, 10},
-  {"LW  ", LW_BAND_TYPE, 100, 510, 300, 1},
-  {"AM  ", MW_BAND_TYPE, 520, 1720, 810, 10},
-  {"80m ", SW_BAND_TYPE, 1800, 4500, 3700, 1}, // 80 meters - 160 meters
-  {"60m ", SW_BAND_TYPE, 4500, 6300, 6000, 5}, //
-  {"41m ", SW_BAND_TYPE, 6800, 7800, 7100, 5}, // 40 meters
-  {"31m ", SW_BAND_TYPE, 9200, 10000, 9600, 5},
-  {"25m ", SW_BAND_TYPE, 11200, 12500, 11940, 5},
-  {"22m ", SW_BAND_TYPE, 13400, 13900, 13600, 5},
-  {"20m ", SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
-  {"19m ", SW_BAND_TYPE, 15000, 15900, 15300, 5},
-  {"17m ", SW_BAND_TYPE, 18000, 18300, 18100, 1}, // 17 meters
-  {"15m ", SW_BAND_TYPE, 21000, 21900, 21200, 1}, // 15 mters
-  {"12m ", SW_BAND_TYPE, 24890, 26200, 24940, 1}, // 12 meters
-  {"CB  ", SW_BAND_TYPE, 26200, 27900, 27500, 1}, // CB band (11 meters)
-  {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 1}
+  {"FM ", FM_BAND_TYPE, 8400, 10800, 10390, 10},
+  {"LW ", LW_BAND_TYPE, 100, 510, 300, 1},
+  {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
+  {"80m", SW_BAND_TYPE, 3000, 4500, 3700, 1}, // 80 meters - 160 meters
+  {"60m", SW_BAND_TYPE, 4500, 6300, 6000, 5}, //
+  {"41m", SW_BAND_TYPE, 6800, 7800, 7100, 5}, // 40 meters
+  {"31m", SW_BAND_TYPE, 9200, 10000, 9600, 5},
+  {"25m", SW_BAND_TYPE, 11200, 12500, 11940, 5},
+  {"22m", SW_BAND_TYPE, 13400, 13900, 13600, 5},
+  {"20m", SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
+  {"19m", SW_BAND_TYPE, 15000, 15900, 15300, 5},
+  {"17m", SW_BAND_TYPE, 18000, 18300, 18100, 1}, // 17 meters
+  {"15m", SW_BAND_TYPE, 21000, 21900, 21200, 1}, // 15 mters
+  {"CB ", SW_BAND_TYPE, 26200, 27900, 27500, 1}, // CB band (11 meters)
+  {"10m", SW_BAND_TYPE, 28000, 30000, 28400, 1},
+  {"All", SW_BAND_TYPE, 1700, 30000, 14200, 1}, // ALL SW (From 1.7 to 30 MHZ)
 };
-
-
-const char * const text_arduino_library = "SI4735 Arduino Library";
-const char * const text_example  = "https://github.com/pu2clr/SI4735";
-const char * const text_author  = "DIY - By PU2CLR";
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
+
+
+const char * const text_arduino_library = "PU2CLR-SI4735 Arduino Library";
+const char * const text_example  = "https://github.com/pu2clr/SI4735";
+const char * const text_message  = "DIY - You can make it better.";
+
 
 uint8_t rssi = 0;
 uint8_t snr = 0;
@@ -196,15 +224,14 @@ void setup()
 */
 void showTemplate()
 {
-
   int maxY1 = tft.maxY() - 1;
-  int maxX1 = tft.maxX() -1;
-  
+  int maxX1 = tft.maxX() - 1;
+
   tft.setFont(Terminal6x8);
 
   tft.drawRectangle(0, 0, maxX1, maxY1, COLOR_WHITE);
   tft.drawRectangle(2, 2, maxX1 - 2, 40, COLOR_YELLOW);
-  
+
   tft.drawLine(150, 0, 150, 40, COLOR_YELLOW);
 
   tft.drawLine(0, 80, maxX1, 80, COLOR_YELLOW); //
@@ -221,15 +248,10 @@ void showTemplate()
 
   tft.drawText(5, 90, text_arduino_library, COLOR_YELLOW);
   tft.drawText(5, 110, text_example, COLOR_YELLOW);
-  tft.drawText(5, 130, text_author, COLOR_YELLOW);
-  
+  tft.drawText(5, 130, text_message, COLOR_YELLOW);
 }
 
-// Just clear the buffer string array;
-void clearBuffer(char *b)
-{
-  b[0] = '\0';
-}
+
 
 /*
     Prevents blinking during the frequency display.
@@ -283,9 +305,9 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint16_t colo
 void rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
- 
+
   if (encoderStatus)
-      encoderCount = (encoderStatus == DIR_CW)? 1 : -1;
+    encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
 }
 
 /*
@@ -325,7 +347,6 @@ void showStatus()
   si4735.getStatus();
   si4735.getCurrentReceivedSignalQuality();
   // SRN
-
   currentFrequency = si4735.getFrequency();
   showFrequency();
 
@@ -335,8 +356,8 @@ void showStatus()
   if (si4735.isCurrentTuneFM())
   {
     tft.drawText(155, 30, "MHz", COLOR_RED);
-    showBFOTemplate(COLOR_BLACK);
-    tft.drawText(124, 45, bufferBW, COLOR_BLACK);
+    // showBFOTemplate(COLOR_BLACK);
+    // tft.drawText(124, 45, bufferBW, COLOR_BLACK);
   }
   else
   {
@@ -356,28 +377,34 @@ void showStatus()
   sprintf(bufferDisplay, "AGC %s", (si4735.isAgcEnabled()) ? "ON  " : "OFF");
   printValue(65, 60, bufferAGC, bufferDisplay, COLOR_CYAN, 6);
 
+  showFilter();
+  
+}
+
+
+void showFilter() {
 
   // Bandwidth
   if (currentMode == LSB || currentMode == USB || currentMode == AM) {
     char * bw;
-    uint16_t colorBFO = COLOR_CYAN;
-
+ 
     tft.drawText(150, 60, bufferStereo, COLOR_BLACK); // Erase Stereo/Mono information
 
     if (currentMode == AM) {
       bw = (char *) bandwitdthAM[bwIdxAM];
-      colorBFO = COLOR_BLACK;
     }
     else {
       bw = (char *) bandwitdthSSB[bwIdxSSB];
+      showBFOTemplate(COLOR_CYAN);
       showBFO();
     }
-    sprintf(bufferDisplay, "BW: %s KHz", bandwitdthSSB[bwIdxSSB]);
-    printValue(124, 45, bw, bufferDisplay, COLOR_CYAN, 6);
-    showBFOTemplate(COLOR_CYAN);
+    sprintf(bufferDisplay, "BW: %s KHz", bw);
+    printValue(124, 45, bufferBW, bufferDisplay, COLOR_CYAN, 6);
   }
-
+   
 }
+
+
 
 /* *******************************
    Shows RSSI status
@@ -414,9 +441,16 @@ void showBFOTemplate(uint16_t color)
   tft.drawText(124, 55, "BFO.:", color);
   tft.drawText(124, 65, "Step:", color);
 
-  tft.fillRectangle(160,55, 218,65,COLOR_BLACK);
+  //tft.fillRectangle(160,55, 218,67,COLOR_BLACK);
   // tft.drawText(160, 55, bufferBFO, COLOR_BLACK);
   // tft.drawText(160, 65, bufferStepBFO, COLOR_BLACK);
+  // showBFO();
+}
+
+void clearBFO() {
+  tft.fillRectangle(124,52, 218,73,COLOR_BLACK); // Clear All BFO area
+  CLEAR_BUFFER(bufferBFO);
+  CLEAR_BUFFER(bufferStepBFO);
 }
 
 void showBFO()
@@ -428,7 +462,6 @@ void showBFO()
 
   sprintf(bufferDisplay, "%4d", currentBFOStep);
   printValue(160, 65, bufferStepBFO, bufferDisplay, COLOR_CYAN, 7);
-
 }
 
 /*
@@ -523,6 +556,9 @@ void useBand()
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
+  rssi = 0;
+  clearBFO();
+  tft.fillRectangle(155, 3, 216, 20, COLOR_BLACK);  // Clear Step field
   showStatus();
 }
 
@@ -590,20 +626,21 @@ void loop()
         if (bfoOn)
         {
           showBFOTemplate(COLOR_CYAN);
-          showBFO();
           showStatus();
+          showBFO();
         }
         else
         {
           showBFOTemplate(COLOR_BLACK);
+          clearBFO();
         }
-        clearBuffer(bufferFreq);
-      }
+        CLEAR_BUFFER(bufferFreq);
+      } /* Uncomment this block if you want FM Seek Station when push encoder button
       else if (currentMode == FM)
       {
         si4735.seekStationUp();
         currentFrequency = si4735.getFrequency();
-      }
+      } */
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       showFrequency();
     }
@@ -630,6 +667,8 @@ void loop()
           currentStep = 10;
         else if (currentStep == 10)
           currentStep = 50;
+        else if ( currentStep == 50 &&  bandIdx == lastBand)  // If band index is All, you can use 500KHz Step.
+          currentStep = 500;
         else
           currentStep = 1;
         si4735.setFrequencyStep(currentStep);
@@ -667,7 +706,7 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
-  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 12)
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
   {
     si4735.getCurrentReceivedSignalQuality();
     // int aux = si4735.getReceivedSignalStrengthIndicator();

@@ -24,7 +24,6 @@
   RESET                   22
 
 
-
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of
@@ -138,17 +137,18 @@ Band band[] = {
   {"15m ", SW_BAND_TYPE, 21000, 21900, 21200, 1},  // 15 mters
   {"12m ", SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
   {"CB  ", SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
-  {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 1}
+  {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 1},
+  {"All HF",SW_BAND_TYPE, 1700, 30000, 15000, 1}  // All HF in one band
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
-int lastSwBand = 7;
+int lastSwBand = 7;  // Saves the last SW band used 
 
 uint16_t currentFrequency;
 uint16_t previousFrequency;
 uint8_t bandwidthIdx = 0;
-uint8_t currentStep = 1;
+uint16_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
 uint8_t bwIdxSSB = 2;
@@ -355,6 +355,8 @@ void showTemplate() {
   bFilter.drawButton(true);
   bAGC.drawButton(true);
 
+  showText(0,270,1,NULL,YELLOW,"PU2CLR-Si4535 Arduino Library-Example");
+  showText(0,285,1,NULL,YELLOW,"DIY - You can make it better.");
 
   showText(0, 302, 1, NULL, GREEN, "RSSI" );
   tft.drawRect(30, 298, 210, 12, CYAN);
@@ -439,7 +441,7 @@ void showStatus()
   si4735.getFrequency();
   showFrequency();
 
-  tft.fillRect(150, 2, 85, 36, BLACK);
+  tft.fillRect(155, 2, 83, 36, BLACK);
   if (si4735.isCurrentTuneFM()) {
     showText(170, 30, 2, NULL, WHITE, "MHz");
   } else {
@@ -929,6 +931,10 @@ void loop(void)
           currentStep = 5;
         else if (currentStep == 5)
           currentStep = 10;
+        else if (currentStep == 10)
+          currentStep = 100;
+        else if (currentStep == 100  && bandIdx == lastBand )
+          currentStep = 500;
         else
           currentStep = 1;
         si4735.setFrequencyStep(currentStep);
