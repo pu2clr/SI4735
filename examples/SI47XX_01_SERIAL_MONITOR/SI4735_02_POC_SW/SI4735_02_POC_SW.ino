@@ -1,7 +1,8 @@
 /*
    Test and validation of the SI4735 Arduino Library.
    This example shows how can setup the radio on SW by using the Si4735 Arduino Library.
-
+   This sketch divides the HF spectrum in many bands. See band table.
+   
    The main advantages of using this sketch are:
     1) It is a easy way to check if your circuit is working;
     2) You do not need to connect any display device to make your radio works;

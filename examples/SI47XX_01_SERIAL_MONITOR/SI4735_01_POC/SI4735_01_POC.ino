@@ -1,5 +1,7 @@
 /*
    Test and validation of the SI4735 Arduino Library.
+   It is a FM, MW and SW (1700KHz to 30000Khz)
+   
    The main advantages of using this sketch are: 
     1) It is a easy way to check if your circuit is working;
     2) You do not need to connect any display device to make your radio works;
@@ -41,6 +43,7 @@ uint16_t currentFrequency;
 uint16_t previousFrequency;
 uint8_t bandwidthIdx = 0;
 const char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+
 
 SI4735 si4735;
 
@@ -85,6 +88,7 @@ void showHelp()
   Serial.println("Type + or - to volume Up or Down");
   Serial.println("Type 0 to show current status");
   Serial.println("Type B to change Bandwith filter");
+  Serial.println("Type 5 to step 5Khz; 6 to 10KHz; 7 to 100Khz; 8 to 1000KHz");
   Serial.println("Type ? to this help.");
   Serial.println("==================================================");
   delay(1000);
@@ -139,7 +143,7 @@ void loop()
       si4735.setFM(8600, 10800, 10390, 10);
       break;
     case '1':
-      si4735.setAM(9400, 9990, 9600, 5);
+      si4735.setAM(1700, 30000, 9600, 5);
       break;
     case 'U':
     case 'u':
@@ -174,6 +178,18 @@ void loop()
       break;
     case '0':
       showStatus();
+      break;
+    case '5':
+      si4735.setFrequencyStep(5);
+      break;    
+    case '6':
+      si4735.setFrequencyStep(10);
+      break;
+    case '7':
+      si4735.setFrequencyStep(100);
+      break;
+    case '8':
+      si4735.setFrequencyStep(1000);
       break;
     case '?':
       showHelp();
