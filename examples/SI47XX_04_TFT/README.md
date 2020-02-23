@@ -2,6 +2,16 @@
 
 This folder has some examples of using the TFT. 
 
+
+![Si4735 and TFT Projects](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4735_TFT_PROJECTS.png)
+
+<BR> 
+
+Videos:
+* [Si4735 All in One Receiver running on Arduino Pro Mini 3.3V (8MHz) and TFT Display](https://youtu.be/oL8qyRglZ8I)
+* [Si4735 All in One Receiver with TFT Touch Screen](https://youtu.be/Zs59ThVumuE)
+
+
 ## SI47XX_01_TFT_ILI9225 
 
 This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a [SPI TFT from MICROYUM (2" - 176 x 220)](https://github.com/Nkawu/TFT_22_ILI9225/wiki) based on ILI9225 driver. It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the regular comercial stations. If you are using the same circuit used on examples with OLED and LCD, you have to change some buttons wire up. This TFT device takes five pins from Arduino. For this reason, it is necessary change the pins of some buttons. Fortunately, you can use the ATmega328 analog pins as digital pins.
