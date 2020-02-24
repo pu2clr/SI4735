@@ -234,8 +234,7 @@ See more
 
 ## Hardware Requirements and Setup
 
-This library has been written for the Arduino platform and has been successfully tested on Pro Mini. I beleave it will work on any other Arduino with I²C support.
-
+This library has been written for the Arduino platform and has been successfully tested on many platform. See [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested)
 
 
 ### Arduino 5V and Si4735
