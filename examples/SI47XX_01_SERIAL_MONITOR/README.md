@@ -19,7 +19,8 @@ The table below show the Si4735 and Arduino Pro Mini pin connections
 
 ## Example 01 - SI4735_01_POC 
 
-Test and validation of the SI4735 Arduino Library. The main advantages of using this sketch are: 
+Test and validation of the SI4735 Arduino Library. It is an receiver FM, MW and SW (from 1.7MHz to 30MHz).
+The main advantages of using this sketch are: 
 * It is a easy way to check if your circuit is working;
 * You do not need to connect any display device to make your radio works;
 * You do not need connect any push buttons or encoders to change volume and frequency;
@@ -43,8 +44,10 @@ I strongly recommend starting with this sketch. This example is a proof of conce
 | + | Volume Up |
 | - | Volume Down |
 | 0 | Shows current status | 
-| 1 | Goes to previous SW band | 
-| 2 | Goes to next SW band |
+| 1 | SW band (from 1.7MHz to 30MHz) | 
+| 5-8 | Steps for SW: 5 to step 5Khz; 6 to 10KHz; 7 to 100Khz; 8 to 1000KHz  |
+
+
 
 Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_01_POC/SI4735_01_POC.ino) to see this example.
 
