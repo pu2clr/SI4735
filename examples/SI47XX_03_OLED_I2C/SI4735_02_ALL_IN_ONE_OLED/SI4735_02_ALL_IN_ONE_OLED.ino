@@ -111,11 +111,9 @@ bool ssbLoaded = false;
 bool fmStereo = true;
 
 int currentBFO = 0;
-int previousBFO = 0;
 
 long elapsedRSSI = millis();
 long elapsedButton = millis();
-long elapsedFrequency = millis();
 
 // Encoder control variables
 volatile int encoderCount = 0;
@@ -538,6 +536,8 @@ void loop()
     if (bfoOn)
     {
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
+      si4735.setSSBBfo(currentBFO);
+      showBFO();
     }
     else
     {
@@ -587,11 +587,15 @@ void loop()
     else if (digitalRead(VOL_UP) == LOW)
     {
       si4735.volumeUp();
+      volume = si4735.getVolume();
+      showVolume();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(VOL_DOWN) == LOW)
     {
       si4735.volumeDown();
+      volume = si4735.getVolume();
+      showVolume();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(BFO_SWITCH) == LOW)
@@ -682,7 +686,7 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
-  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 12)
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 9)
   {
     si4735.getCurrentReceivedSignalQuality();
     int aux = si4735.getCurrentRSSI();
@@ -694,21 +698,5 @@ void loop()
     elapsedRSSI = millis();
   }
 
-  // Show volume level only if this condition has changed
-  if (si4735.getCurrentVolume() != volume)
-  {
-    volume = si4735.getCurrentVolume();
-    showVolume();
-  }
-
-  if (currentMode == LSB || currentMode == USB)
-  {
-    if (currentBFO != previousBFO)
-    {
-      previousBFO = currentBFO;
-      si4735.setSSBBfo(currentBFO);
-      showBFO();
-    }
-  }
   delay(10);
 }

@@ -2773,6 +2773,8 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 
 ## Videos
 
+* [Si4735 All in One Receiver running on Arduino Pro Mini 3.3V (8MHz) and TFT Display](https://youtu.be/oL8qyRglZ8I)
+* [Si4735 All in One Receiver with TFT Touch Screen](https://youtu.be/Zs59ThVumuE)
 * [Si4735 Arduino Library example. OLED Application.](https://youtu.be/7Sg4z8tDSA8)
 * [SI4735 Arduino Library and a simple FM and AM radio implementation](https://youtu.be/vzunuxam_Lg) 
 * [SI4735 ARDUINO LIBRARY BANDWIDTH TEST](https://youtu.be/dN1s3RoXGos) 
@@ -2785,6 +2787,8 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 
 * [SI4735 SSB](https://youtu.be/z-mkR93L7SI)
 * [SI4735 11 ALL IN ONE TEST OLED ver from jg3pup](https://youtu.be/bWAcBXwdYmI)
+* [New HF SSB receiver made of Si4735 is done!](https://youtu.be/Q50NToLuLK4)
+  
 
 
 
