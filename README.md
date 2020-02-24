@@ -453,7 +453,7 @@ The following photo shows the most common prototyping approach. Use this approac
 
 ![Protoboard 01](./extras/images/protoboard_01.png)
 
-The figure above shows the very basic shematic implementation (no Button or Encoder).  This protoboard is used by some test  implemented in this project. See the folder [examples](./examples) for more details and other configuration with LCD and OLED
+The figure above shows the very basic shematic implementation (no Button or Encoder). See the folder [examples](./examples) for more details and other configuration with LCD and OLED
 
 
 
