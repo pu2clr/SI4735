@@ -164,7 +164,7 @@ Band band[] = {
   {"15m", SW_BAND_TYPE, 21000, 21900, 21200, 1}, // 15 mters
   {"CB ", SW_BAND_TYPE, 26200, 27900, 27500, 1}, // CB band (11 meters)
   {"10m", SW_BAND_TYPE, 28000, 30000, 28400, 1},
-  {"All", SW_BAND_TYPE, 1700, 30000, 14200, 1}, // ALL SW (From 1.7 to 30 MHZ)
+  {"All", SW_BAND_TYPE, 100, 30000, 14200, 1}, // ALL SW (From 1.7 to 30 MHZ)
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;

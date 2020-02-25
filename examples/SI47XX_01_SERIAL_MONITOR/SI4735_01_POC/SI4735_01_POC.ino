@@ -143,7 +143,7 @@ void loop()
       si4735.setFM(8600, 10800, 10390, 10);
       break;
     case '1':
-      si4735.setAM(1700, 30000, 9600, 5);
+      si4735.setAM(100, 30000, 9600, 5);
       break;
     case 'U':
     case 'u':

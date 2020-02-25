@@ -137,7 +137,7 @@ Band band[] = {
   {"12m ", SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
   {"CB  ", SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
   {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 1},
-  {"All HF",SW_BAND_TYPE, 1700, 30000, 15000, 1}  // All HF in one band
+  {"All HF",SW_BAND_TYPE, 100, 30000, 15000, 1}  // All HF in one band
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
