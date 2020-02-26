@@ -2483,8 +2483,6 @@ __ATTENTION__:
 The author of this project does not guarantee that procedures shown here will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here. __This library works with the I²C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60__. Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using. 
 
 
-[Clicl here to see a Si4735 SSB firmware update support ](https://github.com/pu2clr/SI4735/tree/master/examples/SI4735_07_SSB_OLED_TEST)
-
 
 ### queryLibraryId
 
