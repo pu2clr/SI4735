@@ -9,7 +9,7 @@ The most of the sketches has been developed to run on cross-plataform (ATmega328
 
 ### It is strongly recommended running these examples with the latest version of the Si4735 Arduino Library. If you are using earlier versions of this library, some examples may not work correctly. Please, check if you are using the last release of this library. 
 
-#### If you have saved the examples in your personal folder, it is important to know the last versions of these examples come with the each new release of the library. Probably, some examples was also fixed or optimized. So, check you are using the last version of the example too. 
+#### If you have saved the examples in your personal folder, it is important to know the last versions of these examples come with the each new release of the library. Probably, some examples was also fixed or optimized. So, check if you are using the last version of the example too. 
 
 
 ## About the examples folders
