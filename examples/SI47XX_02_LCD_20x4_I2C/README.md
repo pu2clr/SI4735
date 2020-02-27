@@ -79,6 +79,13 @@ __This sketch has been successfully tested on Pro Mini 3.3V.__
 
 ![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png)
 
+
+<BR>
+__The picture below shows the SI4735-D60 pinout__
+
+![Si4735-D60 pinout](../../extras/images/Si4735-D60-pinout.png)
+
+
 #### __ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:__
 This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, change the circuit to use external pull-up on pin 13. 
 

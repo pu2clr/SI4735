@@ -32,6 +32,11 @@ The schematic below is a sugestion to connect a I2C Display (OLED or LCD 20x4 or
 __Pay attention to the your I2C device voltage. The system can become unstable if you are using a wrong voltage__.
 
 
+### The picture below shows the SI4735-D60 pinout
+
+![Si4735-D60 pinout](../../extras/images/Si4735-D60-pinout.png)
+
+
 
 ## Si47XX 02 - SI4735_02_ALL_IN_ONE_OLED - All in One Radio with SSB firmware update support
 
