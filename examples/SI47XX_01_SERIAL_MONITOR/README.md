@@ -104,7 +104,7 @@ The schematic below is the same shown at the main page of this project and shows
 
 ### The picture below shows the SI4735-D60 pinout
 
-![Si4735-D60 pinout](../../extras/images/Si4735-D60-pinout.png)
+![Si4735-D60 pinout](https://github.com/pu2clr/SI4735/blob/master/extras/images/Si4735-D60-pinout.png)
 
 
 

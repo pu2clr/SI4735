@@ -83,7 +83,7 @@ __This sketch has been successfully tested on Pro Mini 3.3V.__
 <BR>
 __The picture below shows the SI4735-D60 pinout__
 
-![Si4735-D60 pinout](../../extras/images/Si4735-D60-pinout.png)
+![Si4735-D60 pinout](https://github.com/pu2clr/SI4735/blob/master/extras/images/Si4735-D60-pinout.png)
 
 
 #### __ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:__
