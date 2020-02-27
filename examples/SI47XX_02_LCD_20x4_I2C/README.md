@@ -8,7 +8,9 @@ This folder has examples of radios based on Si4735 working with LCD20x4 and I2C 
 This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch. Also, will download a SSB patch to your SI4735 device. It will take about 9KB from Arduino Flash Memory.  
 
 <BR>
+
 __This sketch has been successfully tested on:__
+
 * Pro Mini 3.3V; 
 * UNO (by using a voltage converter); 
 * Arduino Yún (by using a voltage converter); 
