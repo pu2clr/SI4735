@@ -1,4 +1,4 @@
-# Radios based on Si4735 working with LCD20x4 / I2C 
+# Receivers based on Si4735 working with LCD20x4 / I2C 
 
 This folder has examples of radios based on Si4735 working with LCD20x4 and I2C adapter device. 
 

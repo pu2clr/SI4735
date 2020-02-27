@@ -101,6 +101,12 @@ The schematic below is the same shown at the main page of this project and shows
 
 ![Silicon Labs Schematic](../../extras/images/basic_schematic.png)
 
+
+### The picture below shows the SI4735-D60 pinout
+
+![Si4735-D60 pinout](../../extras/images/Si4735-D60-pinout.png)
+
+
 __See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
 
 
