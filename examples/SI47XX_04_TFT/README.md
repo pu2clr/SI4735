@@ -17,7 +17,7 @@ Videos:
 This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a [SPI TFT from MICROYUM (2" - 176 x 220)](https://github.com/Nkawu/TFT_22_ILI9225/wiki) based on ILI9225 driver. It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the regular commercial stations. 
 
 1. Encoder to tune stations;
-2. Band selection vi push buttons
+2. Band selection via push buttons
 3. AM, FM and SSB;
 4. LW, MW and SW;
 5. Bandwidth filter;
