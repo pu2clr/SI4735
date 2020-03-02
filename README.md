@@ -493,10 +493,10 @@ This item shows the SI4735 Arduino Library implemantation. Here you can find the
   * [setTuneFrequencyFreeze](https://github.com/pu2clr/SI4735#settunefrequencyfreeze)
   * [isCurrentTuneFM](https://github.com/pu2clr/SI4735#iscurrenttunefm)
   * [seekStation](https://github.com/pu2clr/SI4735#seekstation)
-  * [seekStationUp]()
-  * [seekStationDown]()
-  * [setSeekAmLimits]()
-  * [setSeekAmSpacing]()
+  * [seekStationUp](https://github.com/pu2clr/SI4735#seekstationup-and-seekstationdown)
+  * [seekStationDown](https://github.com/pu2clr/SI4735#seekstationup-and-seekstationdown)
+  * [setSeekAmLimits](https://github.com/pu2clr/SI4735#setseekamlimits)
+  * [setSeekAmSpacing](https://github.com/pu2clr/SI4735#setseekamspacing)
   * [setAM](https://github.com/pu2clr/SI4735#setam)
   * [setFM](https://github.com/pu2clr/SI4735#setfm)
   * [setVolume](https://github.com/pu2clr/SI4735#setvolume)
@@ -1290,7 +1290,7 @@ void SI4735::seekStation(byte SEEKUP, byte WRAP)
     si4735.seekStation(1,1);
 ```
 
-#### seekStationUp and seekStationDown
+### seekStationUp and seekStationDown
 
 ```cpp
 /*
