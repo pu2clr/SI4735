@@ -2795,6 +2795,12 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 * [SI4735 SSB](https://youtu.be/z-mkR93L7SI)
 * [SI4735 11 ALL IN ONE TEST OLED ver from jg3pup](https://youtu.be/bWAcBXwdYmI)
 * [New HF SSB receiver made of Si4735 is done!](https://youtu.be/Q50NToLuLK4)
+* [SSB DSP radio (Si4735) version 5 revision 2](https://youtu.be/Q3jkiwOWeUo)
+* [Si4735 LCD版でSSBを受信](https://youtu.be/bBeU09wal0I)
+* [Wefax576 via SI4735 with audio cable fldigi](https://youtu.be/kJuxSI1GlDs)
+
+
+
   
 
 
