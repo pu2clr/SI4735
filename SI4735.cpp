@@ -986,7 +986,23 @@ void SI4735::setSeekAmSpacing(uint16_t spacing)
     sendProperty(AM_SEEK_FREQ_SPACING, spacing);
 }
 
+/*
+ * Sets the SNR threshold for a valid AM Seek/Tune. 
+ * If the value is zero then SNR threshold is not considered when doing a seek. Default value is 5 dB.
+ */
+void SI4735::setSeekSrnThreshold(uint16_t value)
+{
+    sendProperty(AM_SEEK_SNR_THRESHOLD, value);
+}
 
+/*
+ * Sets the RSSI threshold for a valid AM Seek/Tune. 
+ * If the value is zero then RSSI threshold is not considered when doing a seek. Default value is 25 dBμV.
+ */
+void SI4735::setSeekRssiThreshold(uint16_t value)
+{
+    sendProperty(AM_SEEK_RSSI_THRESHOLD, value);
+}
 
 /* 
  * Sets volume level
