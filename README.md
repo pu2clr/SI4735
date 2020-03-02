@@ -41,9 +41,8 @@ __Attention__:
 1.  [References](https://github.com/pu2clr/SI4735#references)
 2.  [Examples](https://github.com/pu2clr/SI4735/tree/master/examples)
 3.  [Videos](https://github.com/pu2clr/SI4735#videos) 
-     * [Si4735 Arduino Library example. OLED Application.](https://youtu.be/7Sg4z8tDSA8)
-     * [SI4735 Arduino Library and a simple FM and AM radio implementation](https://youtu.be/vzunuxam_Lg) 
-     * [SI4735 ARDUINO LIBRARY BANDWIDTH TEST](https://youtu.be/dN1s3RoXGos)   
+    1.  [Examples by the author]()
+    2.  [Third-party projects using this library](https://github.com/pu2clr/SI4735#third-party-projects-using-this-library)
 
 <BR>
 
@@ -2779,6 +2778,10 @@ void SI4735::setSSB(unsigned fromFreq, unsigned toFreq, unsigned initialFreq, by
 
 
 ## Videos
+
+Here you can see some experiments using this library.
+
+### Project examples using this library made by the author
 
 * [Si4735 All in One Receiver running on Arduino Pro Mini 3.3V (8MHz) and TFT Display](https://youtu.be/oL8qyRglZ8I)
 * [Si4735 All in One Receiver with TFT Touch Screen](https://youtu.be/Zs59ThVumuE)
