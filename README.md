@@ -493,6 +493,10 @@ This item shows the SI4735 Arduino Library implemantation. Here you can find the
   * [setTuneFrequencyFreeze](https://github.com/pu2clr/SI4735#settunefrequencyfreeze)
   * [isCurrentTuneFM](https://github.com/pu2clr/SI4735#iscurrenttunefm)
   * [seekStation](https://github.com/pu2clr/SI4735#seekstation)
+  * [seekStationUp]()
+  * [seekStationDown]()
+  * [setSeekAmLimits]()
+  * [setSeekAmSpacing]()
   * [setAM](https://github.com/pu2clr/SI4735#setam)
   * [setFM](https://github.com/pu2clr/SI4735#setfm)
   * [setVolume](https://github.com/pu2clr/SI4735#setvolume)
@@ -1302,6 +1306,26 @@ void SI4735::seekStationDown()
 
 [See full example](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_POC/SI4735_POC.ino)
 
+
+### setSeekAmLimits
+```cpp
+/*
+ * Sets the bottom and top frequency of the AM band for seek. Default is 520 to 1710.
+ * @param uint16_t bottom - the bottom of the AM band for seek
+ * @param uint16_t    top - the top of the AM band for seek
+ */
+void setSeekAmLimits(uint16_t bottom, uint16_t top)
+```
+
+
+### setSeekAmSpacing
+```cpp
+/*
+ * Selects frequency spacingfor AM seek. Default is 10 kHz spacing.
+ * @param uint16_t spacing - step in KHz
+ */
+void setSeekAmSpacing(uint16_t spacing)
+```
 
 
 ### setAM

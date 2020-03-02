@@ -866,6 +866,8 @@ public:
     void seekStation(uint8_t SEEKUP, uint8_t WRAP);
     void seekStationUp();
     void seekStationDown();
+    void setSeekAmLimits(uint16_t bottom, uint16_t top); // Sets the bottom and top of the AM band for seek. Default is 520 to 1710.
+    void setSeekAmSpacing(uint16_t spacing);             // Selects frequency spacing for AM seek. Default is 10 kHz spacing.
 
     void setFmBlendStereoThreshold(uint8_t parameter);
     void setFmBlendMonoThreshold(uint8_t parameter);
