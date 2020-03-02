@@ -1259,7 +1259,7 @@ void SI4735::setTuneFrequencyAntennaCapacitor(unsigned capacitor)
  * If set, executes fast and invalidated tune. The tune status will not be accurate
  * @param FAST if 1 executes fast and invalidated tune. Defult value is 0.
  */
-inline void setTuneFrequencyFast(byte FAST) 
+inline void SI4735::setTuneFrequencyFast(byte FAST) 
 ```
 
 ### setTuneFrequencyFreeze
@@ -1268,7 +1268,7 @@ inline void setTuneFrequencyFast(byte FAST)
 /*
  * Freeze Metrics During Alternate Frequency Jump. Only used on FM. 
  */ 
-inline void setTuneFrequencyFreeze(byte FREEZE) 
+inline void SI4735::setTuneFrequencyFreeze(byte FREEZE) 
 ```
 
 
@@ -1314,7 +1314,7 @@ void SI4735::seekStationDown()
  * @param uint16_t bottom - the bottom of the AM band for seek
  * @param uint16_t    top - the top of the AM band for seek
  */
-void setSeekAmLimits(uint16_t bottom, uint16_t top)
+void SI4735::setSeekAmLimits(uint16_t bottom, uint16_t top)
 ```
 
 
@@ -1324,7 +1324,7 @@ void setSeekAmLimits(uint16_t bottom, uint16_t top)
  * Selects frequency spacingfor AM seek. Default is 10 kHz spacing.
  * @param uint16_t spacing - step in KHz
  */
-void setSeekAmSpacing(uint16_t spacing)
+void SI4735::setSeekAmSpacing(uint16_t spacing)
 ```
 
 

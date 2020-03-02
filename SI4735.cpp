@@ -971,7 +971,8 @@ void SI4735::seekStationDown()
  * @param uint16_t bottom - the bottom of the AM band for seek
  * @param uint16_t    top - the top of the AM band for seek
  */
-void setSeekAmLimits(uint16_t bottom, uint16_t top) {
+void SI4735::setSeekAmLimits(uint16_t bottom, uint16_t top)
+{
     sendProperty(AM_SEEK_BAND_BOTTOM, bottom);
     sendProperty(AM_SEEK_BAND_TOP, top);
 }
@@ -980,7 +981,7 @@ void setSeekAmLimits(uint16_t bottom, uint16_t top) {
  * Selects frequency spacingfor AM seek. Default is 10 kHz spacing.
  * @param uint16_t spacing - step in KHz
  */
-void setSeekAmSpacing(uint16_t spacing)
+void SI4735::setSeekAmSpacing(uint16_t spacing)
 {
     sendProperty(AM_SEEK_FREQ_SPACING, spacing);
 }
