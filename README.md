@@ -41,8 +41,8 @@ __Attention__:
 1.  [References](https://github.com/pu2clr/SI4735#references)
 2.  [Examples](https://github.com/pu2clr/SI4735/tree/master/examples)
 3.  [Videos](https://github.com/pu2clr/SI4735#videos) 
-    1.  [Project examples made by the author]()
-    2.  [Third-party projects using this library](https://github.com/pu2clr/SI4735#third-party-projects-using-this-library)
+    * [Project examples made by the author](https://github.com/pu2clr/SI4735#project-examples-made-by-the-author)
+    * [Third-party projects using this library](https://github.com/pu2clr/SI4735#third-party-projects-using-this-library)
 
 <BR>
 
