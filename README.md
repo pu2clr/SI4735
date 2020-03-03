@@ -500,6 +500,8 @@ This item shows the SI4735 Arduino Library implemantation. Here you can find the
   * [seekStationDown](https://github.com/pu2clr/SI4735#seekstationup-and-seekstationdown)
   * [setSeekAmLimits](https://github.com/pu2clr/SI4735#setseekamlimits)
   * [setSeekAmSpacing](https://github.com/pu2clr/SI4735#setseekamspacing)
+  * [setSeekSrnThreshold]()
+  * [setSeekRssiThreshold]()
   * [setAM](https://github.com/pu2clr/SI4735#setam)
   * [setFM](https://github.com/pu2clr/SI4735#setfm)
   * [setVolume](https://github.com/pu2clr/SI4735#setvolume)
