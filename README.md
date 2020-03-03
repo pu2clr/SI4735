@@ -1245,7 +1245,8 @@ void SI4735::frequencyDown()
  * 
  * @param capacitor If zero, the tuning capacitor value is selected automatically. 
  *                  If the value is set to anything other than 0:
- *                  AM - the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. ANTCAP manual range is 1–6143;
+ *                  AM - the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. ANTCAP manual range is 
+ *                       1 to 6143;
  *                  FM - the valid range is 0 to 191.    
  *                  According to Silicon Labs, automatic capacitor tuning is recommended (value 0). 
  */
