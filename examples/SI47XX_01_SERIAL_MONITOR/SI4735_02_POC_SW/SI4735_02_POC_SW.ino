@@ -64,6 +64,17 @@ void setup()
   Serial.println("Test and validation of the SI4735 Arduino Library.");
   Serial.println("AM and FM station tuning test.");
 
+
+  // gets and sets the Si47XX I2C bus address.
+  int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
+  if ( si4735Addr == 0 ) {
+    Serial.println("Si473X not found!");
+    while (1);
+  } else {
+    Serial.print("The Si473X I2C address is 0x");
+    Serial.println(si4735Addr, HEX);
+  }
+
   showHelp();
 
   delay(500);
