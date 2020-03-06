@@ -360,19 +360,19 @@ This library can be useful to develop a cross-platform software. So far, it has 
 The table below shows the some boards where this library has been successfully tested.
 
 
-| Board | Need voltage converter | I²C Pins | Used Reset Pin |
-| ----- | ---------------------- | -------- | --------- | 
-| Arduino Pro Mini 3.3V 8MHz | No | A4 and A5 | 12 | 
-| Mega 2560 Pro | Yes | 20 and 21 | 12 |
-| ESP WEMOS LOLIN32 | No |  21 and 22 [ˆ4] | 25 [ˆ5] | 
-| ESP32 Dev Module | No | 21 and 22 [ˆ4] | 25 [ˆ5]|  
-| Arduino UNO | Yes | A4 and A5 | 12 |
-| Arduino Yún / ATmega-32u4 | Yes | 2 and 3 | 12 | 
-| ATtiny85 | No | 5 and 7 | 2 (D3) |
-| Arduino DUE | No | 2 and 3 |   12 |
-| BlueDuino 3.3V (ATmega-32u4) | No | 2 and 3 | 10 |
-| Arduino Mini Pro | Yes | 2 and 3 |  10 | 
-| STM32F746G-DISCO | No | - | - |
+| Board | Need voltage converter | I²C Pins | Used Reset Pin | Features |
+| ----- | ---------------------- | -------- | --------- | -----  |
+| Arduino Pro Mini 3.3V 8MHz | No | A4 and A5 | 12 | [More...](https://store.arduino.cc/usa/arduino-pro-mini) |
+| Mega 2560 Pro | Yes | 20 and 21 | 12 | [More...](https://store.arduino.cc/usa/mega-2560-r3)|
+| ESP WEMOS LOLIN32 | No |  21 and 22 [ˆ4] | 25 [ˆ5] | [More...](https://docs.platformio.org/en/latest/boards/espressif32/lolin32.html) |
+| ESP32 Dev Module | No | 21 and 22 [ˆ4] | 25 [ˆ5]| [More...](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf) |
+| Arduino UNO | Yes | A4 and A5 | 12 | [More...](https://store.arduino.cc/usa/arduino-uno-rev3) |
+| Arduino Yún / ATmega-32u4 | Yes | 2 and 3 | 12 | [More...](https://store.arduino.cc/usa/arduino-yun)|
+| ATtiny85 | No | 5 and 7 | 2 (D3) | [More...](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf)|
+| Arduino DUE | No | 2 and 3 |   12 | [More...](https://store.arduino.cc/usa/due) |
+| BlueDuino 3.3V (ATmega-32u4) | No | 2 and 3 | 10 | [More...](https://wiki.aprbrother.com/en/BlueDuino_rev2.html) |
+| Arduino Mini Pro | Yes | 2 and 3 |  10 | [More...](https://store.arduino.cc/usa/arduino-pro-mini) |
+| STM32F746G-DISCO | No | - | - | [More...](https://www.st.com/en/evaluation-tools/32f746gdiscovery.html?fbclid=IwAR2D9OwhInHQ8WYxeflJQ7QV2aNscFbfcbeblaFcYq0angJIjCKmkQBPTBc) |
 
 * [ˆ4] It seams that in some ESP32 board, the I²C bus is not configured prorpelly by default. However, you can set almost any pin on ESP32 to setup I²C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. The code below shows that.
 * [^5] You can use the pin 12 too.  
