@@ -2227,6 +2227,8 @@ inline byte SI4735::getFirmwareCHIPREV()
 
 This library implements some RDS features of the SI4735. The table below shows the features that this library implements.
 
+__The RDS functions have not yet been properly tested__.
+
 <BR>
 <BR>
 
