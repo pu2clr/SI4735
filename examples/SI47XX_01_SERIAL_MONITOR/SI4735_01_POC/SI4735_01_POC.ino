@@ -62,6 +62,7 @@ void setup()
   int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
   if ( si4735Addr == 0 ) {
     Serial.println("Si473X not found!");
+    Serial.flush();
     while (1);
   } else {
     Serial.print("The Si473X I2C address is 0x");
