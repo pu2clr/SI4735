@@ -372,6 +372,7 @@ The table below shows the some boards where this library has been successfully t
 | Arduino DUE | No | 2 and 3 |   12 |
 | BlueDuino 3.3V (ATmega-32u4) | No | 2 and 3 | 10 |
 | Arduino Mini Pro | Yes | 2 and 3 |  10 | 
+| STM32F746G-DISCO | No | - | - |
 
 * [ˆ4] It seams that in some ESP32 board, the I²C bus is not configured prorpelly by default. However, you can set almost any pin on ESP32 to setup I²C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. The code below shows that.
 * [^5] You can use the pin 12 too.  
