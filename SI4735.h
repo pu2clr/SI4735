@@ -733,10 +733,6 @@ public:
     void reset(void);
     void waitToSend(void); // Wait for Si4735 device ready to receive command
 
-    void setDeviceI2CAddress(uint8_t senPin); // If SEN pin is low senPin = 0; else senPin =  1.
-    int16_t getDeviceI2CAddress(uint8_t resetPin); // Scans and sets the I2C bus address. Returns the current device address of the Si473X or 0 if error
-    void setDeviceOtherI2CAddress(uint8_t i2cAddr); // You can set another I2C address different of 0x11  and 0x63 
-
     void setup(uint8_t resetPin, uint8_t defaultFunction);
     void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction);
     void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE);
@@ -948,4 +944,9 @@ public:
     inline void setI2CStandardMode(void) { Wire.setClock(100000); };
     inline void setI2CFastMode(void) { Wire.setClock(400000); };
     inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); }; // Used to find the best clock
+
+    void setDeviceI2CAddress(uint8_t senPin); // If SEN pin is low (connected to the GND) set senPin = 0; else set senPin =  1.
+    int16_t getDeviceI2CAddress(uint8_t resetPin); // Scans and sets the I2C bus address. Returns the current device address of the Si473X or 0 if error
+    void setDeviceOtherI2CAddress(uint8_t i2cAddr); // You can set another I2C address different of 0x11  and 0x63 
+
 };
