@@ -199,7 +199,7 @@ void setup()
   oled.clear();
   oled.on();
   oled.setFont(FONT6X8);
- 
+  
   // Splash - Change it for your introduction text.
   oled.setCursor(40, 0);
   oled.print("SI4735");
@@ -214,9 +214,13 @@ void setup()
   delay(5000);
   // end Splash
 
+  
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
+
+
+  si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C buss address and set it.  Returns 0 if error
 
   si4735.setup(RESET_PIN, FM_BAND_TYPE);
 

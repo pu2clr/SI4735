@@ -2,14 +2,30 @@
 
 SI4735 si4735;
 
+
+#define RESET_PIN 12
+
+
 void setup() {
 
   Serial.begin(9600);
   Serial.println("Type S to seek up or s to seek down");
 
+
+  // Look for the Si47XX I2C bus address
+  int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
+  if ( si4735Addr == 0 ) {
+    Serial.println("Si473X not found!");
+    Serial.flush();
+    while (1);
+  } else {
+    Serial.print("The Si473X I2C address is 0x");
+    Serial.println(si4735Addr, HEX);
+  }
+
   // 12 -> RESET PIN
   //  0 -  FM FUNCTION
-  si4735.setup(12, 0);
+  si4735.setup(RESET_PIN, 0);
 
   // Start working on FM at 103,9MHz
   si4735.setFM(8400, 10800,  10390, 10);
