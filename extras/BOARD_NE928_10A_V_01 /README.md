@@ -24,14 +24,17 @@ This board comes with the SEN pin connected to +V. So the I2C buss address is 0x
 
 ## Firmware information 
 
+The table below shows the query result of Firmware Information command
 
-Firmware Information.
-Part Number (HEX)........: 1E
-Firmware Major Revision..: 50
-Firmware Minor Revision..: 48
-Patch ID ................: 00
-Component Major Revision.: 50
-Component Minor Revision.: 48
-Chip Revision............: 66
+| Firmware Information | Value |
+| ------------------- | ----- |
+| Part Number (HEX) | 1E |
+| Firmware Major Revision | 50 |
+| Firmware Minor Revision | 48 |
+| Patch ID | 00 |
+| Component Major Revision | 50 |
+| Component Minor Revision | 48 |
+| Chip Revision | 66 |
+
 
 
