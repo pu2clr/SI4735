@@ -12,7 +12,7 @@ Unlike the PL102B, a very similar boarad and also supported by the Si4735 Arduin
 ![NE928-10A V:01 label](./NE928_Si4730_01.png)
 
 
-## Si4730 label 
+## IC label "3020 BHFI 913" (Si4730)
 
 ![Si4730 label ](./NE928_Si4730_04.jpg)
 
@@ -35,6 +35,7 @@ The table below shows the query result of Firmware Information command.
 | Component Major Revision | 50 |
 | Component Minor Revision | 48 |
 | Chip Revision | 66 |
+
 
 
 
