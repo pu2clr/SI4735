@@ -634,6 +634,8 @@ void useBand()
       si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
       bfoOn = false;
     }
+    // Set the botton and top limit frequencies for the Si47XX seek function
+    si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
@@ -734,11 +736,11 @@ void loop(void)
   if (bSeekUp.justPressed())
   {
     // bSeekUp.drawButton(true);
-    if (currentMode == FM) {
+    // if (currentMode == FM) {
       si4735.seekStationUp();
       delay(15);
       currentFrequency = si4735.getFrequency();
-    }
+    // }
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     showStatus();
   }
@@ -747,11 +749,11 @@ void loop(void)
   if (bSeekDown.justPressed())
   {
     // bSeekUp.drawButton(true);
-    if (currentMode == FM) {
+    // if (currentMode == FM) {
       si4735.seekStationDown();
       delay(15);
       currentFrequency = si4735.getFrequency();
-    }
+    // }
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     showStatus();
   }
