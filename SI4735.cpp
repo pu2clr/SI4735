@@ -85,8 +85,10 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
     int16_t error;
 
     pinMode(resetPin, OUTPUT);
+    delay(50);
+    digitalWrite(resetPin, LOW);
+    delay(50);
     digitalWrite(resetPin, HIGH);
-    delay(100);
 
     Wire.begin();
     // check 0X11 I2C address

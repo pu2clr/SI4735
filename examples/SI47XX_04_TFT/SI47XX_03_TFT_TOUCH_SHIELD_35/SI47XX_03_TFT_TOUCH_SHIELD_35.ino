@@ -1,6 +1,9 @@
 /*
-  This sketch uses the mcufriend TFT touct Display Shield.
-  You can use it on Arduino DUE
+  
+  Under construction......
+  
+  This sketch uses the MICROYUM 3.5" TFT touct Display Shield (www.microyum.cc).
+  It works just on Arduino DUE.
 
   Features:
   1) This sketch has been successfully tested on Arduino Mega2560 and DUE;
@@ -175,12 +178,11 @@ SI4735 si4735;
 // ALL Touch panels and wiring is DIFFERENT
 // copy-paste results from TouchScreen_Calibr_native.ino
 const int XP=6,XM=A2,YP=A1,YM=7; //320x480 ID=0x6814
-const int TS_LEFT=882,TS_RT=200,TS_TOP=916,TS_BOT=120;
+const int TS_LEFT=881,TS_RT=205,TS_TOP=916,TS_BOT=121;
 
 
 
-
-TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
+TouchScreen ts = TouchScreen(XP, YP, XM, YM, 320);
 Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC;
 
 int pixel_x, pixel_y; //Touch_getXY() updates global vars
@@ -323,9 +325,10 @@ void showText(int x, int y, int sz, const GFXfont *f, uint16_t color, const char
 void showTemplate() {
 
   // Área reservada à frequência
-  tft.drawRect(0, 0, 240, 50, WHITE);
+  tft.drawRect(0, 0, tft.width(), 50, WHITE);
+   
 
-  tft.drawRect(0, 100, 240, 160, CYAN);
+  tft.drawRect(0, 100, tft.width(), 160, CYAN);
   tft.setFont(NULL);
   bPreviousBand.initButton(&tft, 30, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"Band-", 1);
   bNextBand.initButton(&tft, 90, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"Band+", 1);
