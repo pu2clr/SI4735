@@ -707,12 +707,11 @@ void loop()
   if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
   {
     si4735.getCurrentReceivedSignalQuality();
-    // int aux = si4735.getReceivedSignalStrengthIndicator();
     int aux = si4735.getCurrentRSSI();
     if (rssi != aux)
     {
       rssi = aux;
-      snr = si4735.getStatusSNR();
+      snr = si4735.getCurrentSNR();
       showRSSI();
     }
     elapsedRSSI = millis();
