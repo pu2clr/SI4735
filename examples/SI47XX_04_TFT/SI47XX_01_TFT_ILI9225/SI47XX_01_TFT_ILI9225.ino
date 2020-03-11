@@ -120,8 +120,6 @@ uint8_t currentMode = FM;
 uint16_t currentStep = 1;
 
 
-
-
 char bufferDisplay[40]; // Useful to handle string
 char bufferFreq[15];
 char bufferBFO[15];
