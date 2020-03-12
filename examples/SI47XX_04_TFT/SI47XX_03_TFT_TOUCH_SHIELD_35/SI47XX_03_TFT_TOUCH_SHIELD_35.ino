@@ -65,9 +65,6 @@
 #define ENCODER_PIN_A 24
 #define ENCODER_PIN_B 25
 
-
-
-
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
 
