@@ -889,14 +889,15 @@ void  SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
         Wire.write(arg); // send B00000001
         Wire.endTransmission();
 
-        do
-        {
+        // Check it
+        // do
+        //{
             waitToSend();
             Wire.requestFrom(deviceAddress, sizeResponse);
             // Gets response information
             for (uint8_t i = 0; i < sizeResponse; i++)
                 currentRqsStatus.raw[i] = Wire.read();
-        } while (currentRqsStatus.resp.ERR); // Try again if error found
+        //} while (currentRqsStatus.resp.ERR); // Try again if error found
 }
 
 /*
