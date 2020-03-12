@@ -3,7 +3,7 @@
   Under construction......
   
   This sketch uses the MICROYUM 3.5" TFT touct Display Shield (www.microyum.cc).
-  It works just on Arduino DUE.
+  It works only on Arduino DUE.
 
   Features:
   1) This sketch has been successfully tested on Arduino Mega2560 and DUE;
@@ -21,10 +21,10 @@
   ----------------------  -------------
   SDA                     20
   SCL                     21
-  ENCODER_A               22
-  ENCODER_B               23
-  ENCODER PUSH BUTTON     24
-  RESET                   25
+  ENCODER_A               24        - On DUE all Digital pin can be used with Interrupt
+  ENCODER_B               25        - On DUE all Digital pin can be used with Interrupt
+  RESET                   26
+  ENCODER PUSH BUTTON     27
 
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
