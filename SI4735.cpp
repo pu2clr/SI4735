@@ -873,12 +873,12 @@ void  SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
         if (currentTune == FM_TUNE_FREQ)
         { // FM TUNE
             cmd = FM_RSQ_STATUS;
-            sizeResponse = 7;
+            sizeResponse = 8;
         }
         else
         { // AM TUNE
             cmd = AM_RSQ_STATUS;
-            sizeResponse = 5;
+            sizeResponse = 6;
         }
 
         waitToSend();
