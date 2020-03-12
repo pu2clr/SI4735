@@ -58,8 +58,6 @@
 #define MAXPRESSURE 1000
 
 
-
-
 #define RESET_PIN 26            // Mega2560 digital Pin used to RESET
 #define ENCODER_PUSH_BUTTON 27  // Used to switch BFO and VFO or other function  
 
@@ -246,7 +244,6 @@ void setup(void)
   delay(3000);
 
   tft.fillScreen(BLACK);
-
 
   showTemplate();
 
