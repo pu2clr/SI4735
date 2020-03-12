@@ -764,9 +764,9 @@ void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
     do
     {
         waitToSend();
-        Wire.requestFrom(deviceAddress, 7);
+        Wire.requestFrom(deviceAddress, 8); // Check it
         // Gets response information
-        for (uint8_t i = 0; i < 7; i++)
+        for (uint8_t i = 0; i < 8; i++)
             currentStatus.raw[i] = Wire.read();
     } while (currentStatus.resp.ERR); // If error, try it again
     waitToSend();
@@ -873,12 +873,12 @@ void  SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
         if (currentTune == FM_TUNE_FREQ)
         { // FM TUNE
             cmd = FM_RSQ_STATUS;
-            sizeResponse = 8;
+            sizeResponse = 8; // Check it
         }
         else
         { // AM TUNE
             cmd = AM_RSQ_STATUS;
-            sizeResponse = 6;
+            sizeResponse = 6; // Check it
         }
 
         waitToSend();

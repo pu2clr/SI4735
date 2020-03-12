@@ -418,8 +418,8 @@ void showRSSI()
     printValue(150, 60, bufferStereo, bufferDisplay, COLOR_CYAN, 7);
   }
 
-  rssiLevel = 47 + map(rssi, 0, 100, 0, ( maxAux  - 43) );
-  snrLevel = 47 + map(snr, 0, 100, 0, ( maxAux  - 43) );
+  rssiLevel = 47 + map(rssi, 0, 127, 0, ( maxAux  - 43) );
+  snrLevel = 47 + map(snr, 0, 127, 0, ( maxAux  - 43) );
 
 
   tft.fillRectangle(46, 151,  maxAux - 3, 155, COLOR_BLACK);

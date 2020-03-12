@@ -262,7 +262,7 @@ typedef union {
         // RESP7
         uint8_t READANTCAP; // Contains the current antenna tuning capacitor value
     } resp;
-    uint8_t raw[7];
+    uint8_t raw[8]; // Check it
 } si47x_response_status;
 
 /*
