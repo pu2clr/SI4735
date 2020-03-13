@@ -419,7 +419,9 @@ void showRSSI()
   }
 
   // Check it
+  // RSSI: 0 to 127 dBuV
   rssiLevel = 47 + map(rssi, 0, 127, 0, ( maxAux  - 43) );
+  // SNR.: 0 to 127 dB
   snrLevel = 47 + map(snr, 0, 127, 0, ( maxAux  - 43) );
 
   tft.fillRectangle(46, 151,  maxAux - 3, 155, COLOR_BLACK);
