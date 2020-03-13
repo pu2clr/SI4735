@@ -18,14 +18,13 @@
  3) You do not need connect any push buttons or encoders to change volume and frequency;
  4) The Arduino IDE is all you need to control the radio.  
 
-
-The table below show the Si4735 and Arduino Pro Mini pin connections 
+ The table below shows the Si4735 and Arduino Pro Mini pin connections 
     
-| Si4735 pin      |  Arduino Pin  |
-| ----------------| ------------  |
-| RESET (pin 15)  |     12        |
-| SDIO (pin 18)   |     A4        |
-| RCLK (pin 19)   |     A5        |
+    | Si4735 pin      |  Arduino Pin  |
+    | ----------------| ------------  |
+    | RESET (pin 15)  |     12        |
+    | SDIO (pin 18)   |     A4        |
+    | RCLK (pin 17)   |     A5        |
 
 
 This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.

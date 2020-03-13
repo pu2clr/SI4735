@@ -16,13 +16,13 @@
     5) ESP32 (LOLIN32 WEMOS)
 
 
-    The table below shows the Si4735 and Arduino Pro Mini pin connections 
+    The table below shows the Si4735 and STM32F103C8 pin connections 
     
     | Si4735 pin      |  Arduino Pin  |
     | ----------------| ------------  |
-    | RESET (pin 15)  |     12        |
-    | SDIO (pin 18)   |     A4        |
-    | RCLK (pin 17)   |     A5        |
+    | RESET (pin 15)  |     PA12      |
+    | SDIO (pin 18)   |     PB7 (B7)  |
+    | RCLK (pin 17)   |     PB6 (B6)  |
 
 
    I strongly recommend starting with this sketch.
@@ -34,7 +34,7 @@
 
 #include <SI4735.h>
 
-#define RESET_PIN 12
+#define RESET_PIN PA12
 
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0

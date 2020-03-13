@@ -16,6 +16,15 @@
     4) Arduino Mega (by using a voltage converter); and 
     5) ESP32 (LOLIN32 WEMOS)
 
+    The table below shows the Si4735 and Arduino Pro Mini pin connections 
+    
+    | Si4735 pin      |  Arduino Pin  |
+    | ----------------| ------------  |
+    | RESET (pin 15)  |     12        |
+    | SDIO (pin 18)   |     A4        |
+    | RCLK (pin 17)   |     A5        |
+
+
    Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic.png
 
    By Ricardo Lima Caratti, Nov 2019.
