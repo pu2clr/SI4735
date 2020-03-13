@@ -222,7 +222,9 @@ void showStatus()
   Serial.print(" | BW :");
   Serial.print(String(bandwitdth[bandwidthIdx]));
   Serial.print("KHz");
-  Serial.print(" | Signal: ");
+  Serial.print(" | SNR: ");
+  Serial.print(si4735.getCurrentSNR());
+  Serial.print(" | RSSI: ");
   Serial.print(si4735.getCurrentRSSI());
   Serial.print(" dBuV");
   Serial.print(" | Volume: ");

@@ -129,7 +129,7 @@ void showStatus()
   Serial.print(si4735.getCurrentSNR());
   Serial.print("dB");
 
-  Serial.print(" Signal:" );
+  Serial.print(" RSSI:" );
   Serial.print(si4735.getCurrentRSSI());
   Serial.println("dBuV]");
 
