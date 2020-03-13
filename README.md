@@ -1823,7 +1823,7 @@ See  Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
 
 ```cpp
 /*  
- * Queries the status of the Received Signal Quality (RSQ) of the current channel. The methods getCurrentRSSI(), getCurrentSNR() etc,
+ * Queries the status of the Received Signal Quality (RSQ) of the current channel. The methods getCurrentRSSI(), * * getCurrentSNR() etc,
  * Call this method first and then you can call getCurrentRSSI(), getCurrentSNR() etc. 
  * 
  * @param INTACK Interrupt Acknowledge; 0 = Interrupt status preserved; 1 = Clears RSQINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT
