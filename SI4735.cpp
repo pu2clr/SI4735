@@ -854,9 +854,9 @@ void SI4735::setAvcAmMaxGain( uint8_t gain) {
     sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, aux);
 }
 
-
- /*
- * Queries the status of the Received Signal Quality (RSQ) of the current channel
+/*
+ * Queries the status of the Received Signal Quality (RSQ) of the current channel.
+ * This method sould be called berore call getCurrentRSSI(), getCurrentSNR() etc.
  * Command FM_RSQ_STATUS
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
  * 
