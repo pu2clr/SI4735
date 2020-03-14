@@ -52,7 +52,7 @@
 #include <SI4735.h>
 
 #include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306_STM32.h>
+#include <Adafruit_SSD1306.h>
 
 #include "Rotary.h"
 
@@ -71,7 +71,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define I2C_ADDRESS 0x3C
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
-#define OLED_RESET    -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+#define OLED_RESET    4 // Reset pin # (or -1 if sharing Arduino reset pin)
 
 
 // Si4735 and receiver constants
@@ -174,6 +174,7 @@ const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
 
 uint8_t rssi = 0;
+uint8_t snr = 0;
 uint8_t stereo = 1;
 uint8_t volume = DEFAULT_VOLUME;
 
@@ -200,35 +201,30 @@ void setup()
   pinMode(STEP_SWITCH, INPUT_PULLUP);
   pinMode(MODE_SWITCH, INPUT_PULLUP);
 
-  /*
-  oled.display();
+  oled.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   oled.clearDisplay();
-  oled.setTextSize(1);   
   oled.setTextColor(SSD1306_WHITE);
-  oled.setCursor(0, 0); 
-  oled.println("Si4735");
-  */
-  
-  /*
-  oled.begin();
-  oled.clear();
-  oled.on();
-  oled.setFont(FONT6X8);
-  
+ 
   // Splash - Change it for your introduction text.
+  oled.setTextSize(1); // Draw 2X-scale text
   oled.setCursor(40, 0);
   oled.print("SI4735");
-  oled.setCursor(20, 1);
+  oled.setCursor(20, 10);
   oled.print("Arduino Library");
+  oled.display(); 
   delay(500);
-  oled.setCursor(15, 2);
+  oled.setCursor(15, 20);
   oled.print("All in One Radio");
+  oled.display(); 
   delay(500);
-  oled.setCursor(10, 3);
-  oled.print("V1.1.5 - By PU2CLR");
+  oled.setCursor(30, 35);
+  oled.print("SMT32 - OLED");
+  oled.setCursor(10, 50);
+  oled.print("V1.1.6 - By PU2CLR");
+  
+  oled.display(); 
   delay(5000);
   // end Splash
-  */
   
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
@@ -246,9 +242,8 @@ void setup()
   currentFrequency = previousFrequency = si4735.getFrequency();
 
   si4735.setVolume(volume);
-  // oled.clear();
-  // showStatus();
-  // while(1);
+  oled.clearDisplay();
+  showStatus();
 }
 
 // Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
@@ -270,15 +265,14 @@ void rotaryEncoder()
 
 
 void clearLine4() {
-  oled.setCursor(0, 2);
-  oled.print("                    ");
+  oled.fillRect(0, 20, oled.width(), 10, SSD1306_BLACK);
+  oled.display(); 
 }
 
 // Show current frequency
 
 void showFrequency()
 {
-  return;  
   String freqDisplay;
   String unit;
   String bandMode;
@@ -308,6 +302,9 @@ void showFrequency()
   else
     freqDisplay = ">" + String((float)currentFrequency / divider, decimals) + "<";
 
+  // Clear the line 0
+  oled.fillRect(0, 0, oled.width(), 10, SSD1306_BLACK);
+  
   oled.setCursor(38, 0);
   oled.print("        ");
   oled.setCursor(38, 0);
@@ -323,6 +320,7 @@ void showFrequency()
 
   oled.setCursor(95, 0);
   oled.print(unit);
+  oled.display(); 
 }
 
 /*
@@ -330,18 +328,18 @@ void showFrequency()
 */
 void showStatus()
 {
-  return;
+  oled.clearDisplay();
   showFrequency();
 
-  oled.setCursor(80, 1);
+  oled.setCursor(80, 10);
   oled.print("      ");
-  oled.setCursor(80, 1);
+  oled.setCursor(80, 10);
   oled.print("St: ");
   oled.print(currentStep);
 
-  oled.setCursor(0, 3);
+  oled.setCursor(0, 30);
   oled.print("           ");
-  oled.setCursor(0, 3);
+  oled.setCursor(0, 30);
 
   if (currentMode == LSB || currentMode == USB)
   {
@@ -356,14 +354,19 @@ void showStatus()
     oled.print(String(bandwitdthAM[bwIdxAM]));
     oled.print("KHz");
   }
+  else if ( currentMode == FM) {
+    oled.setCursor(0, 30);
+    oled.print((si4735.getCurrentPilot()) ? "STEREO" : "MONO");
+  }
 
   // Show AGC Information
   si4735.getAutomaticGainControl();
-  oled.setCursor(0, 1);
+  oled.setCursor(0, 10);
   oled.print((si4735.isAgcEnabled()) ? "AGC ON " : "AGC OFF");
 
   showRSSI();
   showVolume();
+  oled.display(); 
 }
 
 /* *******************************
@@ -371,26 +374,30 @@ void showStatus()
 */
 void showRSSI()
 {
-  return;
-  char c = '>';
   int bars = ((rssi / 10.0) / 2.0) + 1;
 
-  oled.setCursor(80, 3);
-  oled.print("       ");
-  oled.setCursor(80, 3);
-  oled.print("S:");
-  if ( bars > 5 )  {
-    bars = 5;
-    c = '+';
-  }
-  for (int i = 0; i < bars; i++)
-    oled.print(">");
-
+  // Clear the RSSI information
+  oled.fillRect(0, 50, oled.width(), 10, SSD1306_BLACK);
+  // Clear the Stereo and Volume Information 
+  oled.fillRect(0, 30, oled.width(), 10, SSD1306_BLACK);
   if ( currentMode == FM) {
-    oled.setCursor(0, 3);
-    oled.print((si4735.getCurrentPilot()) ? "STEREO   " : "MONO     ");
+    oled.setCursor(0, 30);
+    oled.print((si4735.getCurrentPilot()) ? "STEREO" : "MONO");
+    showVolume();
   }
 
+  oled.setCursor(0, 50);
+  oled.print("RSSI:");
+  oled.print(rssi); 
+  oled.print("dBuV"); 
+  
+  oled.setCursor(75, 50);
+  oled.print("SNR:");
+  oled.print(snr); 
+  oled.print("dB"); 
+  
+
+  oled.display();
 }
 
 /*
@@ -398,11 +405,13 @@ void showRSSI()
 */
 void showVolume()
 {
-  return;
-  oled.setCursor(60, 3);
-  oled.print("  ");
-  oled.setCursor(60, 3);
+  // Clear the Volume information
+  oled.fillRect(0, 60, 20, 10, SSD1306_BLACK);
+  oled.setCursor(90, 30);
+  oled.print("V:"); 
   oled.print(si4735.getCurrentVolume());
+  
+  oled.display();
 }
 
 /*
@@ -411,7 +420,6 @@ void showVolume()
 */
 void showBFO()
 {
-  return;
   String bfo;
 
   if (currentBFO > 0)
@@ -419,18 +427,19 @@ void showBFO()
   else
     bfo = String(currentBFO);
 
-  oled.setCursor(0, 2);
-  oled.print("         ");
-  oled.setCursor(0, 2);
+  oled.fillRect(0, 20, oled.width(), 10, SSD1306_BLACK);
+  
+  oled.setCursor(0, 20);
   oled.print("BFO:");
   oled.print(bfo);
   oled.print("Hz ");
 
-  oled.setCursor(80, 2);
+  oled.setCursor(80, 20);
   oled.print("       ");
-  oled.setCursor(80, 2);
+  oled.setCursor(80, 20);
   oled.print("St: ");
   oled.print(currentBFOStep);
+  oled.display();
 }
 
 /*
@@ -715,6 +724,7 @@ void loop()
     if (rssi != aux)
     {
       rssi = aux;
+      snr = si4735.getCurrentSNR();
       showRSSI();
     }
     elapsedRSSI = millis();
