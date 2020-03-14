@@ -22,7 +22,7 @@
     | ----------------| ------------  |
     | RESET (pin 15)  |     PA12      |
     | SDIO (pin 18)   |     PB7 (B7)  |
-    | RCLK (pin 17)   |     PB6 (B6)  |
+    | SCLK (pin 17)   |     PB6 (B6)  |
 
 
    I strongly recommend starting with this sketch.
