@@ -22,7 +22,7 @@
     | ----------------| ------------  |
     | RESET (pin 15)  |     12        |
     | SDIO (pin 18)   |     A4        |
-    | RCLK (pin 17)   |     A5        |
+    | CLK (pin 17)   |     A5        |
 
 
    I strongly recommend starting with this sketch.

@@ -69,7 +69,7 @@ By Ricardo Lima Caratti, Nov 2019.
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
 #define AM_FUNCTION 1
-#define RESET_PIN 12
+#define RESET_PIN PA12
 
 #define LSB 1
 #define USB 2

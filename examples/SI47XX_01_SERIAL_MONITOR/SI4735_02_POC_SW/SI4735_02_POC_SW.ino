@@ -22,7 +22,7 @@
     | ----------------| ------------  |
     | RESET (pin 15)  |     12        |
     | SDIO (pin 18)   |     A4        |
-    | RCLK (pin 17)   |     A5        |
+    | SCLK (pin 17)   |     A5        |
 
 
    Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic.png

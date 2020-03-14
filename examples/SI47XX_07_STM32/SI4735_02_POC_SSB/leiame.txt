@@ -1,0 +1,16 @@
+O autor desta biblioteca não garante que os procedimentos sugeridos  aqui funcionarão em seu 
+ambiente  de  desenvolvimento. Dito  isso, fica  por  sua  conta  e  risco  a  execução  dos 
+procedimentos de aplicação da atualização (patch) do SI4735 bem como do uso das funções para 
+SSB desenvolvidas aqui. Em outras palavras, o autor desta biblioteca não se responsabilizará 
+por qualquer dano em seu dispositivo SI4735 ou qualquer outro dispositivo que  você  utilize 
+com esta biblioteca.
+
+Conforme dito anteriormente, há pouca documentação disponível na Internet  sobre a  aplicação 
+de  patch  para  o  SI4735. O  conteúdo  deste  tópico  expõe  o  entendimento do autor desta 
+biblioteca. Dito disso, algumas informações colocadas aqui podem não ser precisas.
+
+É importante saber  que  o  patch  aplicado  para o SI4735, fica armazenado na RAM interna do 
+SI4735. Como a RAM é uma memória volátil, essa atualização deve ser carregada sempre que você 
+retornar o sistema para o modo SSB. Isto  é, se  você  mudar  o  modo  de SSB para FM ou AM e 
+depois  retornar   para  o  modo  SSB,  essa  ação exigirá   que  você   recarregue  o  patch 
+novamente antes começar a operar com SSB. O mesmo vale para os comandos reset ou power down.
