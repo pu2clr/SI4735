@@ -17,6 +17,21 @@ Unlike the PL102B, a very similar board based on Si4730 and also supported by th
 ![Si4730 label ](./NE928_Si4730_04.jpg)
 
 
+
+## Arduino Pro Mini 3.3V (8MHz) connection
+
+
+|  board NE928-10A V:01 |  Arduino Pro Mini |
+| --------------------- | ----------------- |
+| GND  | GND | 
+| VA   | VCC |
+| SDIO | A4  |
+| SCLK | A5  |
+| RST  | D12 |
+
+ 
+
+
 ## The Si473X I2C address 
 
 This board comes with the SEN pin connected to +V. So the I2C buss address is 0x63
