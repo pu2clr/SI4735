@@ -1,19 +1,17 @@
 /*
-
-  Under construction......
-
-  This sketch uses the MICROYUM 3.5" TFT touct Display Shield (www.microyum.cc).
-  It works only on Arduino Mega 2560.
+  This sketch uses the mcufriend TFT touct Display Shield.
+  You can use it on Mega2560. 
+  It is a RDS example. 
 
   Features:
-  1) This sketch has been successfully tested on Arduino Mega2560 and DUE;
+  1) This sketch has been successfully tested on Arduino Mega2560;
   2) It uses the touch screen interface provided by mcufriend TFT;
   3) Encoder;
   4) FM, AM (MW and SW) and SSB (LSB and USB);
   5) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
-  6) BFO Control; and
-  7) Frequency step switch (1, 5 and 10KHz).
-
+  6) BFO Control;
+  7) RDS;
+  8) Frequency step switch (1, 5 and 10KHz).
 
   Wire up
 
@@ -520,25 +518,28 @@ char bufferRdsMsg[255];
 
 
 void showRDSMsg() {
-  
 
-  showText(60, 85, 1, NULL, BLACK, bufferRdsMsg );
+  if (strcmp(bufferRdsMsg, rdsMsg) == 0) return;
+
+  showText(60, 85, 1, NULL, BLACK, bufferRdsMsg);
   sprintf(buffer, "%s", rdsMsg);
   showText(60, 85, 1, NULL, GREEN, buffer );
   strcpy(bufferRdsMsg, buffer);
   
-  delay(50); 
+  delay(250); 
 }
 
 
 void showRDSStation() {
-  
-  showText(60, 60, 1, NULL, BLACK, bufferStatioName );
+
+  if (strcmp(bufferStatioName, stationName) == 0 ) return;
+
+  showText(60, 60, 1, NULL, BLACK, bufferStatioName);
   sprintf(buffer, "%s", stationName);
   showText(60, 60, 1, NULL, GREEN, buffer );
   strcpy(bufferStatioName, buffer);
 
-  delay(50); 
+  delay(250); 
 }
 
 void checkRDS() {
