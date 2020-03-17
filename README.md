@@ -2853,6 +2853,7 @@ Here you can see some experiments using this library.
 ### Third-party projects using this library
 
 * [SI4735 SSB](https://youtu.be/z-mkR93L7SI)
+* [All Band Radio with a Nice Interface](https://youtu.be/hRHSzFr_lQE)
 * [SI4735 11 ALL IN ONE TEST OLED ver from jg3pup](https://youtu.be/bWAcBXwdYmI)
 * [New HF SSB receiver made of Si4735 is done!](https://youtu.be/Q50NToLuLK4)
 * [SSB DSP radio (Si4735) version 5 revision 2](https://youtu.be/Q3jkiwOWeUo)
