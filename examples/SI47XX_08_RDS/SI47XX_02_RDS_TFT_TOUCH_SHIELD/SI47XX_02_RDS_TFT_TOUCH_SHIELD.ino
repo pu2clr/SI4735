@@ -1,9 +1,9 @@
 /*
-  
+
   Under construction......
-  
+
   This sketch uses the MICROYUM 3.5" TFT touct Display Shield (www.microyum.cc).
-  It works only on Arduino DUE.
+  It works only on Arduino Mega 2560.
 
   Features:
   1) This sketch has been successfully tested on Arduino Mega2560 and DUE;
@@ -17,14 +17,14 @@
 
   Wire up
 
-  Function                MEGA/DUE Pin
+  Function                MEGA Pin
   ----------------------  -------------
   SDA                     20
   SCL                     21
-  ENCODER_A               24        - On DUE all Digital pin can be used with Interrupt
-  ENCODER_B               25        - On DUE all Digital pin can be used with Interrupt
-  RESET                   26
-  ENCODER PUSH BUTTON     27
+  ENCODER_A               18        - On DUE all Digital pin can be used with Interrupt
+  ENCODER_B               19        - On DUE all Digital pin can be used with Interrupt
+  RESET                   22
+  ENCODER PUSH BUTTON     23
 
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
@@ -58,12 +58,12 @@
 #define MAXPRESSURE 1000
 
 
-#define RESET_PIN 26            // Mega2560 digital Pin used to RESET
-#define ENCODER_PUSH_BUTTON 27  // Used to switch BFO and VFO or other function  
+#define RESET_PIN 22            // Mega2560 digital Pin used to RESET
+#define ENCODER_PUSH_BUTTON 23  // Used to switch BFO and VFO or other function  
 
 // Enconder PINs (interrupt pins used on DUE. All Digital DUE Pins can be used as interrupt)
-#define ENCODER_PIN_A 24
-#define ENCODER_PIN_B 25
+#define ENCODER_PIN_A 18
+#define ENCODER_PIN_B 19
 
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
@@ -140,12 +140,12 @@ Band band[] = {
   {"12m ", SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
   {"CB  ", SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
   {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 1},
-  {"All HF",SW_BAND_TYPE, 100, 30000, 15000, 1}  // All HF in one band
+  {"All HF", SW_BAND_TYPE, 100, 30000, 15000, 1} // All HF in one band
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
-int lastSwBand = 7;  // Saves the last SW band used 
+int lastSwBand = 7;  // Saves the last SW band used
 
 uint16_t currentFrequency;
 uint16_t previousFrequency;
@@ -162,7 +162,7 @@ const char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
-char buffer[64];
+char buffer[255];
 char bufferFreq[10];
 char bufferStereo[10];
 
@@ -172,10 +172,8 @@ SI4735 si4735;
 
 // ALL Touch panels and wiring is DIFFERENT
 // copy-paste results from TouchScreen_Calibr_native.ino
-const int XP=6,XM=A2,YP=A1,YM=7; //320x480 ID=0x6814
-const int TS_LEFT=881,TS_RT=205,TS_TOP=916,TS_BOT=121;
-
-
+const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
+const int TS_LEFT = 170, TS_RT = 827, TS_TOP = 130, TS_BOT = 868;
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 320);
 Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC;
@@ -249,6 +247,7 @@ void setup(void)
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   si4735.setup(RESET_PIN, 1);
+  
   // Set up the radio for the current band (see index table variable bandIdx )
   delay(100);
   useBand();
@@ -257,21 +256,6 @@ void setup(void)
   tft.setFont(NULL); // default font
 }
 
-
-/*
-  dtostrf - Emulation for dtostrf function from avr-libc
-  Copyright (c) 2015 Arduino LLC.  All rights reserved.
-  See: https://github.com/arduino/ArduinoCore-samd/blob/master/cores/arduino/avr/dtostrf.c
-*/
-
-char *dtostrf (double val, signed char width, unsigned char prec, char *sout) {
-  asm(".global _printf_float");
-
-  char fmt[20];
-  sprintf(fmt, "%%%d.%df", width, prec);
-  sprintf(sout, fmt, val);
-  return sout;
-}
 
 
 /*
@@ -320,7 +304,7 @@ void showTemplate() {
 
   // Área reservada à frequência
   tft.drawRect(0, 0, tft.width(), 50, WHITE);
-   
+
 
   tft.drawRect(0, 100, tft.width(), 160, CYAN);
   tft.setFont(NULL);
@@ -359,8 +343,8 @@ void showTemplate() {
   bFilter.drawButton(true);
   bAGC.drawButton(true);
 
-  showText(0,270,1,NULL,YELLOW,"PU2CLR-Si4535 Arduino Library-Example");
-  showText(0,285,1,NULL,YELLOW,"DIY - You can make it better.");
+  showText(0, 270, 1, NULL, YELLOW, "PU2CLR-Si4535 Arduino Library-Example");
+  showText(0, 285, 1, NULL, YELLOW, "DIY - You can make it better.");
 
   showText(0, 302, 1, NULL, GREEN, "RSSI" );
   tft.drawRect(30, 298, 210, 12, CYAN);
@@ -371,15 +355,15 @@ void showTemplate() {
 
 
 /*
- *  Prevents blinking during the frequency display.
- *  Erases the old digits if it has changed and print the new digit values.
- */
+    Prevents blinking during the frequency display.
+    Erases the old digits if it has changed and print the new digit values.
+*/
 void showFrequencyValue(int col, int line, char *oldValue, char *newValue, uint16_t color) {
 
   int c = col;
 
-   // prints just changed digits 
-   while (*oldValue && *newValue) {
+  // prints just changed digits
+  while (*oldValue && *newValue) {
     if ( *oldValue != *newValue ) {
       tft.drawChar(c, line, *oldValue, BLACK, BLACK, 4);
       tft.drawChar(c, line, *newValue, color, BLACK, 4);
@@ -427,7 +411,7 @@ void showFrequency()
   }
   color = (bfoOn) ? CYAN : YELLOW;
   // showText(10, 10, 4, NULL, color, buffer);
-  showFrequencyValue(10,10,bufferFreq, buffer, color);
+  showFrequencyValue(10, 10, bufferFreq, buffer, color);
   tft.setFont(NULL); // default font
   strcpy(bufferFreq, buffer);
 }
@@ -529,8 +513,45 @@ void showBFO()
 
 
 
-void showRDS() {
+char *rdsMsg;
+char *stationName;
+char bufferStatioName[255];
+char bufferRdsMsg[255];
+
+
+void showRDSMsg() {
   
+
+  showText(60, 85, 1, NULL, BLACK, bufferRdsMsg );
+  sprintf(buffer, "%s", rdsMsg);
+  showText(60, 85, 1, NULL, GREEN, buffer );
+  strcpy(bufferRdsMsg, buffer);
+  
+  delay(50); 
+}
+
+
+void showRDSStation() {
+  
+  showText(60, 60, 1, NULL, BLACK, bufferStatioName );
+  sprintf(buffer, "%s", stationName);
+  showText(60, 60, 1, NULL, GREEN, buffer );
+  strcpy(bufferStatioName, buffer);
+
+  delay(50); 
+}
+
+void checkRDS() {
+
+  si4735.getRdsStatus();
+  if (si4735.getRdsReceived()) {
+    if (si4735.getRdsSync() && si4735.getRdsSyncFound() ) {
+      rdsMsg = si4735.getRdsText2A();
+      stationName = si4735.getRdsText0A();
+      if ( rdsMsg != NULL )   showRDSMsg();
+      if ( stationName != NULL )   showRDSStation();
+    }
+  }
 }
 
 void showVolume()
@@ -621,6 +642,8 @@ void useBand()
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     bfoOn = ssbLoaded = false;
+    si4735.RdsInit();
+    si4735.setRdsConfig(1, 2, 2, 2, 2);    
   }
   else
   {
@@ -980,5 +1003,16 @@ void loop(void)
     }
     elapsedRSSI = millis();
   }
-  delay(30);
+
+  if ( currentMode == FM) {
+    if ( currentFrequency != previousFrequency ) {
+      rdsMsg = stationName = "\0";
+      showRDSMsg();
+      showRDSStation();
+      previousFrequency = currentFrequency;
+    }
+    checkRDS();
+  }
+
+  delay(20);
 }
