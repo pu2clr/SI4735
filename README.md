@@ -489,7 +489,7 @@ This item shows the SI4735 Arduino Library implemantation. Here you can find the
   * [getDeviceI2CAddress](https://github.com/pu2clr/SI4735#getdevicei2caddress)
   * [setup](https://github.com/pu2clr/SI4735#setup)
   * [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
-  * [analogPowerUp](https://github.com/pu2clr/SI4735#analogpowerup)
+  * [radioPowerUp](https://github.com/pu2clr/SI4735#radiopowerup)
   * [powerDown](https://github.com/pu2clr/SI4735#powerdown)
   * [setFrequency](https://github.com/pu2clr/SI4735#setfrequency)
   * [frequencyUp](https://github.com/pu2clr/SI4735#frequencyup)
@@ -1106,7 +1106,8 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin)
  * @param byte interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled
  * @param byte defaultFunction
  */
-void SI4735::setup(byte resetPin, byte interruptPin, byte defaultFunction)
+void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO)
+
 ```
 
 #### If you are not using interrupt use the __setup__ method as shown below.
@@ -1161,19 +1162,20 @@ void setup()
 void SI4735::setPowerUp(byte CTSIEN, byte GPO2OEN, byte PATCH, byte XOSCEN, byte FUNC, byte OPMODE)
 ```
 
-### analogPowerUp
+### radioPowerUp
 
 
 ```cpp
 /*
- * Powerup in Analog Mode
- * You have to call setPowerUp before call analogPowerUp. 
- * Use setPowerUp to select FM, AM or SSB (if SSB patch apllied) mode.
+ * Powerup the radio
+ * You have to call setPowerUp before call this method. 
+ * Use setPowerUp to select FM, AM or SSB (if SSB patch apllied) modes and 
+ * audio mode (Analog or Digital)
  */
-void SI4735::analogPowerUp(void) 
+void SI4735::radioPowerUp(void) 
 ```
 
-#### Example of using analogPowerUp
+#### Example of using radioPowerUp
 
 ```cpp 
     // Set the initial SI473X behavior
@@ -1185,7 +1187,7 @@ void SI4735::analogPowerUp(void)
     // OPMODE   SI473X_ANALOG_AUDIO = 00000101 = Analog audio outputs (LOUT/ROUT).
 
     setPowerUp(1, 1, 0, 1, defaultFunction, SI473X_ANALOG_AUDIO);
-    analogPowerUp();
+    radioPowerUp();
 ```    
 
 ### powerDown
