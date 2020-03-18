@@ -165,8 +165,34 @@ void SI4735::waitToSend()
     } while (!(Wire.read() & B10000000));
 }
 
+/* 
+ * Powerup the Si47XX
+ * Before call this function call the setPowerUp to set up the parameters.
+ * Parameters you have to set up with setPowerUp
+ * CTSIEN   Interrupt anabled or disabled;
+ * GPO2OEN  GPO2 Output Enable or disabled;
+ * PATCH    Boot normally or patch;
+ * XOSCEN   Use external crystal oscillator;
+ * FUNC     defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
+ * OPMODE   SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011)
+ */
+void SI4735::radioPowerUp(void) {
+    // delayMicroseconds(1000);
+    waitToSend();
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(POWER_UP);
+    Wire.write(powerUp.raw[0]); // Content of ARG1
+    Wire.write(powerUp.raw[1]); // COntent of ARG2
+    Wire.endTransmission();
+    // Delay at least 500 ms between powerup command and first tune command to wait for
+    // the oscillator to stabilize if XOSCEN is set and crystal is used as the RCLK.
+    waitToSend();
+    delay(10);
+}
+
 /*
- * Powerup in Analog Mode
+ * Powerup in Analog Mode. It will be deprecated. Consider use radioPowerUp instead.
+ * Actually this function works fo Digital and Analog modes. 
  * You have to call setPowerUp method before. 
  */
 void SI4735::analogPowerUp(void)
@@ -181,7 +207,7 @@ void SI4735::analogPowerUp(void)
     // Delay at least 500 ms between powerup command and first tune command to wait for
     // the oscillator to stabilize if XOSCEN is set and crystal is used as the RCLK.
     waitToSend();
-    delay(10); // should be 500
+    delay(10); 
 }
 
 /* 
@@ -220,12 +246,15 @@ void SI4735::getFirmware(void)
 
 /* 
  * Starts the Si473X device. 
- * 
+ *
+ * If the audio mode parameter is not entered, analog mode will be considered.
+ *  
  * @param uint8_t resetPin Digital Arduino Pin used to RESET command 
  * @param uint8_t interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled
  * @param uint8_t defaultFunction
+ * @param uint8_t audioMode default SI473X_ANALOG_AUDIO (Analog Audio)
  */
-void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction)
+void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO)
 {
     uint8_t interruptEnable = 0;
     Wire.begin();
@@ -252,11 +281,11 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction)
     // PATCH    0 -> Boot normally;
     // XOSCEN   1 -> Use external crystal oscillator;
     // FUNC     defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
-    // OPMODE   SI473X_ANALOG_AUDIO = 00000101 = Analog audio outputs (LOUT/ROUT).
-    setPowerUp(interruptEnable, 0, 0, 1, defaultFunction, SI473X_ANALOG_AUDIO);
+    // OPMODE   SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO.
+    setPowerUp(interruptEnable, 0, 0, 1, defaultFunction, audioMode);
 
     reset();
-    analogPowerUp();
+    radioPowerUp();
     setVolume(30); // Default volume level.
     getFirmware();
 }
@@ -435,12 +464,12 @@ void SI4735::frequencyDown()
  */
 void SI4735::setAM()
 {
-    // If you’re already using AM mode, you don’t need call powerDown and analogPowerUp. 
+    // If you’re already using AM mode, you don’t need call powerDown and radioPowerUp. 
     // The other properties also should have the same value as the previous status.
     if ( lastMode != AM_CURRENT_MODE ) {
         powerDown();
         setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
-        analogPowerUp();
+        radioPowerUp();
         setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain to 48
         setVolume(volume); // Set to previus configured volume
     }
@@ -455,7 +484,7 @@ void SI4735::setFM()
 {
     powerDown();
     setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
-    analogPowerUp();
+    radioPowerUp();
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
     disableFmDebug();
@@ -1668,7 +1697,7 @@ void SI4735::setSSB(uint8_t usblsb)
     // powerDown();
     // It starts with the same AM parameters.
     setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
-    analogPowerUp();
+    radioPowerUp();
     // ssbPowerUp(); // Not used for regular operation
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = usblsb;
@@ -1792,7 +1821,7 @@ void SI4735::ssbSetup()
 {
     // setPowerUp(powerUp.arg.CTSIEN, 0, 0, 1, 1, SI473X_ANALOG_AUDIO);
     reset();
-    // analogPowerUp();
+    // radioPowerUp();
 }
 
 // Used for test

@@ -734,9 +734,10 @@ public:
     void waitToSend(void); // Wait for Si4735 device ready to receive command
 
     void setup(uint8_t resetPin, uint8_t defaultFunction);
-    void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction);
+    void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode);
     void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE);
-    void analogPowerUp(void);
+    void radioPowerUp(void);    // call setPowerUp before call this method.
+    void analogPowerUp(void);   // deprecated. Use radioPowerUp.
     void powerDown(void);
 
     void setFrequency(uint16_t);
