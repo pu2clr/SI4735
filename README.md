@@ -1101,18 +1101,17 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin)
 ```cpp
 /* 
  * Starts the Si473X device. 
- *
- * If the audio mode parameter is not entered, analog mode will be considered.
  *  
  * @param uint8_t resetPin Digital Arduino Pin used to RESET command 
  * @param uint8_t interruptPin interrupt Arduino Pin (see your Arduino pinout). 
  *                If less than 0,iterrupt disabled
  * @param uint8_t defaultFunction
- * @param uint8_t audioMode default SI473X_ANALOG_AUDIO (Analog Audio). 
+ * @param uint8_t audioMode default is SI473X_ANALOG_AUDIO (Analog Audio). 
  *                Use SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO
+ * 
+ * ATTENTION: If the audio mode parameter is not entered, analog mode will be considered.
  */
 void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO)
-
 ```
 
 #### If you are not using interrupt use the __setup__ method as shown below.
