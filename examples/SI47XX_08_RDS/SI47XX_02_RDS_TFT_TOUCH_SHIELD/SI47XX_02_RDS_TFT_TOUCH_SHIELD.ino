@@ -513,8 +513,10 @@ void showBFO()
 
 char *rdsMsg;
 char *stationName;
+char *rdsTime;
 char bufferStatioName[255];
 char bufferRdsMsg[255];
+char bufferRdsTime[32];
 
 
 void showRDSMsg() {
@@ -542,6 +544,19 @@ void showRDSStation() {
   delay(250); 
 }
 
+void showRDSTime() {
+
+  if (strcmp(bufferRdsTime, rdsTime) == 0 ) return;
+
+  showText(100, 60, 1, NULL, BLACK, bufferRdsTime);
+  sprintf(buffer, "%s", rdsTime);
+  showText(100, 60, 1, NULL, GREEN, buffer );
+  strcpy(bufferRdsTime, buffer);
+
+  delay(250); 
+  
+}
+
 void checkRDS() {
 
   si4735.getRdsStatus();
@@ -549,8 +564,10 @@ void checkRDS() {
     if (si4735.getRdsSync() && si4735.getRdsSyncFound() ) {
       rdsMsg = si4735.getRdsText2A();
       stationName = si4735.getRdsText0A();
+      rdsTime = si4735.getRdsTime();
       if ( rdsMsg != NULL )   showRDSMsg();
       if ( stationName != NULL )   showRDSStation();
+      if ( rdsTime != NULL ) showRDSTime();
     }
   }
 }
@@ -1007,7 +1024,7 @@ void loop(void)
 
   if ( currentMode == FM) {
     if ( currentFrequency != previousFrequency ) {
-      rdsMsg = stationName = "\0";
+      rdsMsg[0] = stationName[0] = '\0';
       showRDSMsg();
       showRDSStation();
       previousFrequency = currentFrequency;
