@@ -298,6 +298,63 @@ void showText(int x, int y, int sz, const GFXfont *f, uint16_t color, const char
 
 
 
+/*
+    Prevents blinking during the frequency display.
+    Erases the old char/digit value if it has changed and print the new one.
+*/
+void printText(int col, int line, int sizeText, char *oldValue, char *newValue, uint16_t color, uint8_t space) {
+  int c = col;
+  char * pOld;
+  char * pNew;
+
+  pOld = oldValue;
+  pNew = newValue;
+
+  tft.setTextSize(sizeText);
+  
+  // prints just changed digits
+  while (*pOld && *pNew)
+  {
+    if (*pOld != *pNew)
+    {
+      tft.setTextColor(BLACK);
+      tft.setCursor(c, line);
+      tft.print(*pOld);
+      tft.setTextColor(color);
+      tft.setCursor(c, line);
+      tft.print(*pNew);
+    }
+    pOld++;
+    pNew++;
+    c += space;
+  }
+
+  // Is there anything else to erase?
+  tft.setTextColor(BLACK);
+  while (*pOld)
+  {
+    tft.setCursor(c, line);
+    tft.print(*pOld);
+    pOld++;
+    c += space;
+  }
+
+  // Is there anything else to print?
+  tft.setTextColor(color);
+  while (*pNew)
+  {
+    tft.setCursor(c, line);
+    tft.print(*pNew);
+    pNew++;
+    c += space;
+  }
+
+  // Save the current content to be tested next time
+  strcpy(oldValue, newValue);
+}
+
+
+
 void showTemplate() {
 
   // Área reservada à frequência
@@ -520,39 +577,22 @@ char bufferRdsTime[32];
 
 
 void showRDSMsg() {
-
   if (strcmp(bufferRdsMsg, rdsMsg) == 0) return;
-
-  showText(60, 85, 1, NULL, BLACK, bufferRdsMsg);
-  sprintf(buffer, "%s", rdsMsg);
-  showText(60, 85, 1, NULL, GREEN, buffer );
-  strcpy(bufferRdsMsg, buffer);
-  
+  printText(60, 85,1,bufferRdsMsg, rdsMsg, GREEN, 6);
   delay(250); 
 }
 
 
 void showRDSStation() {
-
   if (strcmp(bufferStatioName, stationName) == 0 ) return;
-
-  showText(60, 60, 1, NULL, BLACK, bufferStatioName);
-  sprintf(buffer, "%s", stationName);
-  showText(60, 60, 1, NULL, GREEN, buffer );
-  strcpy(bufferStatioName, buffer);
-
+  printText(60, 60,1,bufferStatioName, stationName, GREEN, 6);
   delay(250); 
 }
 
 void showRDSTime() {
 
   if (strcmp(bufferRdsTime, rdsTime) == 0 ) return;
-
-  showText(100, 60, 1, NULL, BLACK, bufferRdsTime);
-  sprintf(buffer, "%s", rdsTime);
-  showText(100, 60, 1, NULL, GREEN, buffer );
-  strcpy(bufferRdsTime, buffer);
-
+  printText(120, 60,1,bufferRdsTime, rdsTime, GREEN, 6);
   delay(250); 
   
 }
@@ -1024,7 +1064,8 @@ void loop(void)
 
   if ( currentMode == FM) {
     if ( currentFrequency != previousFrequency ) {
-      rdsMsg[0] = stationName[0] = '\0';
+      tft.fillRect(60, 59, 250, 36, BLACK);
+      bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] =  bufferRdsTime[0] = rdsMsg[0] = stationName[0] = '\0';
       showRDSMsg();
       showRDSStation();
       previousFrequency = currentFrequency;
