@@ -89,7 +89,7 @@ void showHelp()
   Serial.println("Type + or - to volume Up or Down");
   Serial.println("Type 0 to show current status");
   Serial.println("Type B to change Bandwith filter");
-  Serial.println("Type 5 to 8 (step 5Khz; 6 to 10KHz; 7 to 100Khz; 8 to 1000KHz)");
+  Serial.println("Type 4 to 8 (4 to step 1; 5 to step 5Khz; 6 to 10KHz; 7 to 100Khz; 8 to 1000KHz)");
   Serial.println("Type ? to this help.");
   Serial.println("==================================================");
   delay(1000);
@@ -137,7 +137,9 @@ void loop()
       break;
     case 'a':
     case 'A':
-      si4735.setAM(570, 1710, 810, 10);
+      si4735.setAM(520, 1750, 810, 10);
+      si4735.setSeekAmLimits(520, 1750);
+      si4735.setSeekAmSpacing(10); // spacing 50KHz
       break;
     case 'f':
     case 'F':
@@ -145,6 +147,8 @@ void loop()
       break;
     case '1':
       si4735.setAM(100, 30000, 9600, 5);
+      si4735.setSeekAmLimits(100, 30000);
+      si4735.setSeekAmSpacing(5); // spacing 50KHz
       break;
     case 'U':
     case 'u':
@@ -180,6 +184,9 @@ void loop()
     case '0':
       showStatus();
       break;
+    case '4':
+      si4735.setFrequencyStep(1);
+      break;  
     case '5':
       si4735.setFrequencyStep(5);
       break;    

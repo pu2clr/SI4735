@@ -500,11 +500,13 @@ void showStatus()
     showText(5, 60, 2, NULL, RED, buffer );
   }
   else {
-    sprintf(buffer, "%s", band[bandIdx].bandName);
-    showText(5, 60, 2, NULL, RED, buffer );
+    // sprintf(buffer, "%s", band[bandIdx].bandName);
+    // showText(5, 60, 2, NULL, RED, buffer );
+    showText(5, 60, 2, NULL, RED, band[bandIdx].bandName );
   }
 
   showText(70, 85, 1, NULL, BLACK, bufferAGC);
+  
   si4735.getAutomaticGainControl();
   sprintf(buffer, "AGC %s", (si4735.isAgcEnabled()) ? "ON" : "OFF");
   strcpy(bufferAGC, buffer);
@@ -578,21 +580,21 @@ char bufferRdsTime[32];
 
 void showRDSMsg() {
   if (strcmp(bufferRdsMsg, rdsMsg) == 0) return;
-  printText(60, 85,1,bufferRdsMsg, rdsMsg, GREEN, 6);
+  printText(55, 85,1,bufferRdsMsg, rdsMsg, GREEN, 6);
   delay(250); 
 }
 
 
 void showRDSStation() {
   if (strcmp(bufferStatioName, stationName) == 0 ) return;
-  printText(60, 60,1,bufferStatioName, stationName, GREEN, 6);
+  printText(55, 60,1,bufferStatioName, stationName, GREEN, 6);
   delay(250); 
 }
 
 void showRDSTime() {
 
   if (strcmp(bufferRdsTime, rdsTime) == 0 ) return;
-  printText(120, 60,1,bufferRdsTime, rdsTime, GREEN, 6);
+  printText(150, 60,1,bufferRdsTime, rdsTime, GREEN, 6);
   delay(250); 
   
 }
@@ -724,6 +726,8 @@ void useBand()
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
       si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
+      si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
+      si4735.setSeekAmSpacing(5);
       bfoOn = false;
     }
   }
@@ -1064,7 +1068,7 @@ void loop(void)
 
   if ( currentMode == FM) {
     if ( currentFrequency != previousFrequency ) {
-      tft.fillRect(60, 59, 250, 36, BLACK);
+      tft.fillRect(54, 59, 250, 36, BLACK);
       bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] =  bufferRdsTime[0] = rdsMsg[0] = stationName[0] = '\0';
       showRDSMsg();
       showRDSStation();

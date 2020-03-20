@@ -632,8 +632,13 @@ void useBand()
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
       si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
+      si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
+      si4735.setSeekAmSpacing(5);
       bfoOn = false;
     }
+
+    
+    
     // Set the botton and top limit frequencies for the Si47XX seek function
     si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
   }
