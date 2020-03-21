@@ -8,15 +8,7 @@
     3) You do not need connect any push buttons or encoders to change volume and frequency;
     4) The Arduino IDE is all you need to control the radio.  
    
-   This sketch has been successfully tested on:
-    1) Pro Mini 3.3V; 
-    2) UNO (by using a voltage converter); 
-    3) Arduino Yún;
-    4) Arduino Mega (by using a voltage converter); and 
-    5) ESP32 (LOLIN32 WEMOS)
-
-
-    The table below shows the Si4735 and STM32F103C8 pin connections 
+     The table below shows the Si4735 and STM32F103C8 pin connections 
     
     | Si4735 pin      |  Arduino Pin  |
     | ----------------| ------------  |

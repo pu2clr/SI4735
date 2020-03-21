@@ -3,6 +3,13 @@
 
   This sketch has been successfully tested on STM32F103
 
+ The table below shows the Si4735 and STM32F103C8 pin connections 
+    
+ | Si4735 pin      |  Arduino Pin  |
+ | ----------------| ------------  |
+ | RESET (pin 15)  |     PA12      |
+ | SDIO (pin 18)   |     PB7 (B7)  |
+ | SCLK (pin 17)   |     PB6 (B6)  |
 
   This sketch uses I2C OLED/I2C, buttons and  Encoder.
 
@@ -43,7 +50,6 @@
   Encoder with push button;
   Seven bush buttons;
   OLED Display with I2C device;
-  Arduino Pro mini 3.3V;
 
   By Ricardo Lima Caratti, Nov 2019.
   Last update: Jan 3, 2020.

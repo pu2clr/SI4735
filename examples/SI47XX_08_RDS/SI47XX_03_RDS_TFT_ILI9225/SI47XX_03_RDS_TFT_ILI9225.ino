@@ -105,6 +105,7 @@ volatile int encoderCount = 0;
 
 // Some variables to check the SI4735 status
 uint16_t currentFrequency;
+uint16_t previousFrequency = 0;
 
 uint8_t currentBFOStep = 25;
 
@@ -150,16 +151,14 @@ Band band[] = {
   {"FM ", FM_BAND_TYPE, 8400, 10800, 10390, 10},
   {"LW ", LW_BAND_TYPE, 100, 510, 300, 1},
   {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
-  {"All", SW_BAND_TYPE, 100, 30000, 14200, 1}, // ALL SW (From 1.7 to 30 MHZ)
+  {"SW1", SW_BAND_TYPE, 1700, 30000, 7100,  1}, // ALL SW1 (from 1.7 to 30MHz)
+  {"SW2", SW_BAND_TYPE, 1700, 30000, 14200, 1}  // ALL SW2 (from 1.7 to 30MHz) 
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
 
-const char * const text_arduino_library = ""; // "PU2CLR-SI4735 Arduino Library";
-const char * const text_example  = ""; // "https://github.com/pu2clr/SI4735";
-const char * const text_message  = ""; // "DIY - You can make it better.";
-
+const char * const text_message  = "DIY: github.com/pu2clr/SI4735";
 
 uint8_t rssi = 0;
 uint8_t snr = 0;
@@ -229,8 +228,6 @@ void showTemplate()
   tft.drawRectangle(45, 150,  maxX1 - 2, 156, COLOR_YELLOW);
   tft.drawRectangle(45, 163,  maxX1 - 2, 169, COLOR_YELLOW);
 
-  tft.drawText(5, 90, text_arduino_library, COLOR_YELLOW);
-  tft.drawText(5, 110, text_example, COLOR_YELLOW);
   tft.drawText(5, 130, text_message, COLOR_YELLOW);
 }
 
@@ -339,8 +336,8 @@ void showStatus()
   if (si4735.isCurrentTuneFM())
   {
     tft.drawText(155, 30, "MHz", COLOR_RED);
-    // showBFOTemplate(COLOR_BLACK);
-    // tft.drawText(124, 45, bufferBW, COLOR_BLACK);
+    tft.drawText(124, 45, bufferBW, COLOR_BLACK);
+    CLEAR_BUFFER(bufferBW)
   }
   else
   {
@@ -360,8 +357,7 @@ void showStatus()
   sprintf(bufferDisplay, "AGC %s", (si4735.isAgcEnabled()) ? "ON  " : "OFF");
   printValue(65, 60, bufferAGC, bufferDisplay, COLOR_CYAN, 6);
 
-  showFilter();
-  
+  showFilter(); 
 }
 
 
@@ -389,46 +385,47 @@ void showFilter() {
 
 char *rdsMsg;
 char *stationName;
-char bufferStatioName[255];
-char bufferRdsMsg[255];
+char *rdsTime;
+char bufferStatioName[50];
+char bufferRdsMsg[100];
+char bufferRdsTime[32];
 
-void showRDSMsg()
-{
 
-  if (strcmp(bufferRdsMsg, rdsMsg) == 0)
-    return;
-
-  // showText(60, 85, 1, NULL, BLACK, bufferRdsMsg);
-  sprintf(bufferDisplay, "%s", rdsMsg);
-  // showText(60, 85, 1, NULL, GREEN, buffer);
-  strcpy(bufferRdsMsg, bufferDisplay);
-
-  delay(250);
+void showRDSMsg() {
+  rdsMsg[35] = bufferRdsMsg[35] = '\0'; 
+  if (strcmp(bufferRdsMsg, rdsMsg) == 0) return;
+  printValue(5, 90, bufferRdsMsg, rdsMsg, COLOR_GREEN, 6);
+  delay(250); 
 }
 
-void showRDSStation()
-{
 
-  if (strcmp(bufferStatioName, stationName) == 0)
-    return;
+void showRDSStation() {
+  if (strcmp(bufferStatioName, stationName) == 0 ) return;
+  printValue(5, 110,bufferStatioName, stationName, COLOR_GREEN, 6);
+  delay(250); 
+}
 
-  // showText(60, 60, 1, NULL, BLACK, bufferStatioName);
-  sprintf(bufferDisplay, "%s", stationName);
-  // showText(60, 60, 1, NULL, GREEN, buffer);
-  strcpy(bufferStatioName, bufferDisplay);
+void showRDSTime() {
 
-  delay(250);
+  if (strcmp(bufferRdsTime, rdsTime) == 0 ) return;
+  printValue(80, 110, bufferRdsTime, rdsTime, COLOR_GREEN, 6);
+  delay(250); 
+  
 }
 
 void checkRDS() {
 
+  tft.setFont(Terminal6x8);
+  
   si4735.getRdsStatus();
   if (si4735.getRdsReceived()) {
     if (si4735.getRdsSync() && si4735.getRdsSyncFound() ) {
       rdsMsg = si4735.getRdsText2A();
       stationName = si4735.getRdsText0A();
+      rdsTime = si4735.getRdsTime();
       if ( rdsMsg != NULL )   showRDSMsg();
       if ( stationName != NULL )   showRDSStation();
+      if ( rdsTime != NULL ) showRDSTime();
     }
   }
 }
@@ -556,6 +553,7 @@ void loadSSB()
 void useBand()
 {
   showBFOTemplate(COLOR_BLACK);
+  tft.fillRectangle(3, 90,  tft.maxX() -5, 120, COLOR_BLACK);
 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
@@ -752,17 +750,17 @@ void loop()
     elapsedRSSI = millis();
   }
 
-  if (currentMode == FM)
-  {
-   //  if (currentFrequency != previousFrequency)
-    // {
-      rdsMsg = stationName = "\0";
+  if ( currentMode == FM) {
+    if ( currentFrequency != previousFrequency ) {
+      tft.fillRectangle(3, 90,  tft.maxX() -5, 120, COLOR_BLACK);
+      bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] =  bufferRdsTime[0] = rdsMsg[0] = stationName[0] = '\0';
       showRDSMsg();
       showRDSStation();
-      // previousFrequency = currentFrequency;
-    // }
+      previousFrequency = currentFrequency;
+    }
     checkRDS();
   }
+
 
   delay(10);
 }

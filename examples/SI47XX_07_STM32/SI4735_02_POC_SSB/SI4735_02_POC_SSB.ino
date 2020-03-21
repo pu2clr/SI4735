@@ -1,31 +1,14 @@
 /*
 
  Test and validation of the SI4735 Arduino Library with SSB support.
- This example shows you how to setup the radio on SW/SSB by using the Si4735 Arduino Library.
- It uses the Serial Monitor to get the commands and show the information. 
 
- This sketch has been successfully tested on:
- 1) Tested on Arduino Pro Mini 3.3V; 
- 2) UNO (by using a voltage converter); 
- 3) Arduino Yún;
- 4) Arduino Mega (by using a voltage converter);
- 5) Arduino DUE; and 
- 6) ESP32 (LOLIN32 WEMOS)
-
- The main advantages of using this sketch are: 
- 1) It is a easy way to check if your circuit is working;
- 2) You do not need to connect any display device to make your radio works;
- 3) You do not need connect any push buttons or encoders to change volume and frequency;
- 4) The Arduino IDE is all you need to control the radio.  
-
- The table below shows the Si4735 and Arduino Pro Mini pin connections 
+ The table below shows the Si4735 and STM32F103C8 pin connections 
     
-    | Si4735 pin      |  Arduino Pin  |
-    | ----------------| ------------  |
-    | RESET (pin 15)  |     12        |
-    | SDIO (pin 18)   |     A4        |
-    | SCLK (pin 17)   |     A5        |
-
+ | Si4735 pin      |  Arduino Pin  |
+ | ----------------| ------------  |
+ | RESET (pin 15)  |     PA12      |
+ | SDIO (pin 18)   |     PB7 (B7)  |
+ | SCLK (pin 17)   |     PB6 (B6)  |
 
 This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.
 
@@ -54,9 +37,8 @@ Main Parts:
 Encoder with push button;
 Seven bush buttons;
 OLED Display with I2C protocol;
-Arduino Pro mini 3.3V;
 
-By Ricardo Lima Caratti, Nov 2019.
+By Ricardo Lima Caratti, Feb 2019.
   
 */
 
