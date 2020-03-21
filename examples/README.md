@@ -22,6 +22,7 @@ By using the examples of this folder, you will do not need any external device t
 * The folder [SI47XX_05_ATTINY85](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85) has examples of using the Si4735 Arduino Library running on ATtiny85. 
 * The folder [SI47XX_06_ESP32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32) has examples that use some great resources of the ESP32 boards. It is worth mentioning that the most of the other examples can also run on ESP32. 
 * The folder [SI47XX_07_STM32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32) has examples of using the STM32F103 Series. 
+* The folder [SI47XX_08_RDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS) has examples of using FM RDS/RBDS features of the Si4735 Arduino Library.
 
 
 
