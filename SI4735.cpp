@@ -768,8 +768,7 @@ void SI4735::digitalOutputSampleRate(uint16_t DOSR)
  * The method status do it an more. See getStatus below. 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  */
-    uint16_t
-    SI4735::getFrequency()
+uint16_t SI4735::getFrequency()
 {
     si47x_frequency freq;
     getStatus(0, 1);
