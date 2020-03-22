@@ -563,6 +563,9 @@ This item shows the SI4735 Arduino Library implemantation. Here you can find the
   * [setAutomaticGainControl](https://github.com/pu2clr/SI4735#setautomaticgaincontrol)
   * [setAvcAmMaxGain](https://github.com/pu2clr/SI4735#setavcammaxgain)
   * [getCurrentAvcAmMaxGain](https://github.com/pu2clr/SI4735#getcurrentavcammaxgain)
+* [__Digital Audio__]()
+  * [digitalOutputFormat]()
+  * [digitalOutputSampleRate]()
 * [__Filters__](https://github.com/pu2clr/SI4735#filters)
   * [setBandwidth](https://github.com/pu2clr/SI4735#setbandwidth) 
 * [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735#si4735-firmware-information)
@@ -2100,6 +2103,35 @@ inline void setAmSoftMuteMaxAttenuation()
 <BR>
 
 
+
+## Digital Audio 
+
+
+### digitalOutputFormat
+
+```cpp
+/*
+ * Configures the digital audio output format. 
+ * Options: DCLK edge, data format, force mono, and sample precision. 
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 195. 
+
+ * @params uint8_t OSIZE Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
+ * @params uint8_t OMONO Digital Output Mono Mode (0=Use mono/stereo blend ).
+ * @params uint8_t OMODE Digital Output Mode (0=I2S, 6 = Left-justified, 8 = MSB at second DCLK after DFS pulse, 12 = MSB at first DCLK after DFS pulse).
+ * @params uint8_t OFALL Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge)
+ */
+void SI4735::digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, uint8_t OFALL)
+```
+
+### digitalOutputSampleRate
+```cpp
+/*
+ * Enables digital audio output and configures digital audio output sample rate in samples per second (sps).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 196. 
+ * @params uint16_t DOSR Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
+ */
+void SI4735::digitalOutputSampleRate(uint16_t DOSR)
+```
 
 
 
