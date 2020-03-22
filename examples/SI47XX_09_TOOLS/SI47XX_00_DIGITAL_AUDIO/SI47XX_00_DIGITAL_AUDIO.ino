@@ -73,7 +73,17 @@ void setup()
 
 
   delay(500);
-  si4735.setup(RESET_PIN, FM_FUNCTION);
+  // Starts the system using DIGITAL AUDIO setup.
+  si4735.setup(RESET_PIN, -1, FM_FUNCTION, SI473X_DIGITAL_AUDIO);
+
+  // 2 -> Digital Output Audio Sample Precision is 24 bits
+  // 0 -> Output Mono Mode 
+  // 0 -> Output Mode is I2S
+  // 0 -> Output DCLK Edge (0 = use DCLK rising edge)
+  si4735.digitalOutputFormat(2, 0, 0, 0);
+  // Digital Output Sample Rate(32–48 ksps)
+  si4735.digitalOutputSampleRate(32); 
+
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
   si4735.setFM(8400, 10800, 10390, 10);
   delay(500);
