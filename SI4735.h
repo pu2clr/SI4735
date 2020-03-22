@@ -687,7 +687,7 @@ typedef union {
  */
 typedef struct {
     uint16_t DOSR; // Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
-} si4735_digital_output_sample_rate; 
+} si4735_digital_output_sample_rate; // Maybe not necessary 
 
 
 /************************ Deal with Interrupt  *************************/

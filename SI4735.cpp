@@ -729,15 +729,14 @@ void SI4735::disableFmDebug()
 }
 
 
-/*
- * Digital audio Setup 
- */
+
+/********  Digital audio Setup *******/
 
 /*
  * Configures the digital audio output format. 
  * Options: DCLK edge, data format, force mono, and sample precision. 
  * See Si47XX PROGRAMMING GUIDE; AN332; page 195. 
- * 
+
  * @params uint8_t OSIZE Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
  * @params uint8_t OMONO Digital Output Mono Mode (0=Use mono/stereo blend ).
  * @params uint8_t OMODE Digital Output Mode (0=I2S, 6 = Left-justified, 8 = MSB at second DCLK after DFS pulse, 12 = MSB at first DCLK after DFS pulse).
