@@ -698,7 +698,7 @@ void loop()
           currentStep = 10;
         else if (currentStep == 10)
           currentStep = 50;
-        else if ( currentStep == 50 &&  bandIdx == lastBand)  // If band index is All, you can use 500KHz Step.
+        else if ( currentStep == 50 &&  bandIdx > 2 )  // If band index is not VHF(FM), LW (AM) and MW(AM) you can use 500KHz Step.
           currentStep = 500;
         else
           currentStep = 1;

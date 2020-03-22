@@ -664,6 +664,32 @@ typedef union {
     uint8_t raw[2];
 } si47x_ssb_mode;
 
+/*
+ * Digital audio output format data structure (Property 0x0102. DIGITAL_OUTPUT_FORMAT).
+ * Useed to configure: DCLK edge, data format, force mono, and sample precision.
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 195. 
+ */
+typedef union {
+    struct {    
+        uint8_t OSIZE : 2; // Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
+        uint8_t OMONO : 1; // Digital Output Mono Mode (0=Use mono/stereo blend ).
+        uint8_t OMODE : 4; // Digital Output Mode (0000=I2S, 0110 = Left-justified, 1000 = MSB at second DCLK after DFS pulse, 1100 = MSB at first DCLK after DFS pulse).
+        uint8_t OFALL : 1; // Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge)
+        uint8_t dummy : 8; // Always 0.
+    } refined; 
+    uint16_t raw;
+} si4735_digital_output_format;
+
+/*
+ * Digital audio output sample structure (Property 0x0104. DIGITAL_OUTPUT_SAMPLE_RATE).
+ * Used to enable digital audio output and to configure the digital audio output sample rate in samples per second (sps).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 196. 
+ */
+typedef struct {
+    uint16_t DOSR; // Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
+} si4735_digital_output_sample_rate; 
+
+
 /************************ Deal with Interrupt  *************************/
 volatile static bool data_from_si4735;
 
@@ -838,7 +864,11 @@ public:
     inline uint8_t getCurrentVolume() { return volume; }; // Returns the current volume level.
     void setAudioMute( bool off); // if true mute the audio; else unmute
 
-    //
+    // Digital Audio setup
+    void digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, uint8_t OFALL);
+    void digitalOutputSampleRate(uint16_t DOSR);
+
+    // Receiver Mode
     void setAM();
     void setFM();
     void setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint16_t step);

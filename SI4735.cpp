@@ -1,7 +1,7 @@
 /*
  * This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
  * Arduino development environment.  It works with I2C protocol. 
- * This library is intended to provide an easier interface for controlling the SI4435.
+ * This library is intended to provide an easier interface for controlling the SI4735.
  * See documentation on https://github.com/pu2clr/SI4735.
  * 
  * See also: 
@@ -728,12 +728,49 @@ void SI4735::disableFmDebug()
     delayMicroseconds(2500);
 }
 
+
+/*
+ * Digital audio Setup 
+ */
+
+/*
+ * Configures the digital audio output format. 
+ * Options: DCLK edge, data format, force mono, and sample precision. 
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 195. 
+ * 
+ * @params uint8_t OSIZE Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
+ * @params uint8_t OMONO Digital Output Mono Mode (0=Use mono/stereo blend ).
+ * @params uint8_t OMODE Digital Output Mode (0=I2S, 6 = Left-justified, 8 = MSB at second DCLK after DFS pulse, 12 = MSB at first DCLK after DFS pulse).
+ * @params uint8_t OFALL Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge)
+ */
+void SI4735::digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, uint8_t OFALL)
+{
+    si4735_digital_output_format df;
+    df.refined.OSIZE = OSIZE;
+    df.refined.OMONO = OMONO;
+    df.refined.OMODE = OMODE;
+    df.refined.OFALL = OFALL;
+    sendProperty(DIGITAL_OUTPUT_FORMAT, df.raw);
+}
+
+/*
+ * Enables digital audio output and configures digital audio output sample rate in samples per second (sps).
+ * See Si47XX PROGRAMMING GUIDE; AN332; page 196. 
+ * @params uint16_t DOSR Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
+ */
+void SI4735::digitalOutputSampleRate(uint16_t DOSR)
+{
+    sendProperty(DIGITAL_OUTPUT_SAMPLE_RATE, DOSR);
+}
+
+
 /*
  * Gets the current frequency of the Si4735 (AM or FM)
  * The method status do it an more. See getStatus below. 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  */
-uint16_t SI4735::getFrequency()
+    uint16_t
+    SI4735::getFrequency()
 {
     si47x_frequency freq;
     getStatus(0, 1);
