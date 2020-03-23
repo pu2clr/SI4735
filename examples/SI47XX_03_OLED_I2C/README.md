@@ -15,7 +15,10 @@ Click [here](https://github.com/pu2clr/SI4735/blob/master/examples/SI4735_04_OLE
 
 
 #### __ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:__
-This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, change the circuit to use external pull-up on pin 13. 
+This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project you can do:
+  *  use the pin 14. This pin is the A0 (Analog). But you have to refer it by 14 to use it as a digital pin (just change 13 by 14 on the sketch examples); 
+  *  change the circuit and sketch to use external pull-up on pin 13;
+  *  remove the LED or resitor connected to the led from the board.   
 
 
 __Click [here](https://youtu.be/7Sg4z8tDSA8) to see a video about this example__.

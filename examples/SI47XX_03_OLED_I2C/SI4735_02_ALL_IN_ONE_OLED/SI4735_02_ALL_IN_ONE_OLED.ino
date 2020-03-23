@@ -14,10 +14,12 @@
   together with this sketch) and Tiny4kOLED Library (look for this library on Tools->Manage Libraries). 
 
   ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:
-  This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal
-  pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. 
-  If this occurs in your project, change the circuit to use external pull-up on pin 13.     
-
+  This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. 
+  If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage 
+  caused by the LED circuit. If this occurs in your project you can do:
+  1. use the pin 14. This pin is the A0 (Analog). But you have to refer it by 14 to use it as a digital pin (just change 13 by 14 on the sketch examples); 
+  2. change the circuit and sketch to use external pull-up on pin 13;
+  3. remove the LED or resitor connected to the led from the board (caution). 
 
   ABOUT SSB PATCH:  
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
@@ -88,6 +90,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define AGC_SWITCH 11      // Switch AGC ON/OF
 #define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
+// #define BFO_SWITCH 14   // A0 (Alternative to the pin 13). Used to select the enconder control (BFO or VFO)
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150

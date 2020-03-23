@@ -4,9 +4,12 @@
   Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
 
   ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:
-  This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal
-  pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. 
-  If this occurs in your project, change the circuit to use external pull-up on pin 13.     
+  This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. 
+  If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage 
+  caused by the LED circuit. If this occurs in your project you can do:
+  1. use the pin 14. This pin is the A0 (Analog). But you have to refer it by 14 to use it as a digital pin (just change 13 by 14 on the sketch examples); 
+  2. change the circuit and sketch to use external pull-up on pin 13;
+  3. remove the LED or resitor connected to the led from the board (caution). 
 
   This sketch has been successfully tested on Pro Mini 3.3V.
 
