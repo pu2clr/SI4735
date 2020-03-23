@@ -341,9 +341,9 @@ void showStatus()
   }
   else
   {
-    sprintf(bufferDisplay, "Step: %2.2d", currentStep);
-    printValue(155, 10, bufferStepVFO, bufferDisplay, COLOR_YELLOW, 6);
-    tft.drawText(155, 30, "KHz", COLOR_RED);
+    sprintf(bufferDisplay, "Stp: %3d", currentStep);
+    printValue(153, 10, bufferStepVFO, bufferDisplay, COLOR_YELLOW, 6);
+    tft.drawText(153, 30, "KHz", COLOR_RED);
   }
 
   if (band[bandIdx].bandType == SW_BAND_TYPE)
@@ -467,7 +467,7 @@ void showBFOTemplate(uint16_t color)
   tft.drawText(150, 60, bufferStereo, COLOR_BLACK);
 
   tft.drawText(124, 55, "BFO.:", color);
-  tft.drawText(124, 65, "Step:", color);
+  tft.drawText(124, 65, "Stp.:", color);
 
   //tft.fillRectangle(160,55, 218,67,COLOR_BLACK);
   // tft.drawText(160, 55, bufferBFO, COLOR_BLACK);

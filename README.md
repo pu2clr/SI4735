@@ -37,11 +37,13 @@ __Attention__:
    * [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested)
    * [Photos (Tools and Accessories)](https://github.com/pu2clr/SI4735#photos-tools-and-accessories)
 9.  [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
+    * [__Functions__ (public methods)](https://github.com/pu2clr/SI4735#public-methods)
+    * [__Defined Data Types and Structures__](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
     * [__RDS Support__](https://github.com/pu2clr/SI4735#rds)
     * [__SI4735 and SSB (Single Side Band) Support__](https://github.com/pu2clr/SI4735#si4735-patch-support-for-single-side-band)
-1.  [References](https://github.com/pu2clr/SI4735#references)
-2.  [Examples](https://github.com/pu2clr/SI4735/tree/master/examples)
-3.  [Videos](https://github.com/pu2clr/SI4735#videos) 
+11. [References](https://github.com/pu2clr/SI4735#references)
+12. [Examples](https://github.com/pu2clr/SI4735/tree/master/examples)
+13. [Videos](https://github.com/pu2clr/SI4735#videos) 
     * [Project examples made by the author](https://github.com/pu2clr/SI4735#project-examples-made-by-the-author)
     * [Third-party projects using this library](https://github.com/pu2clr/SI4735#third-party-projects-using-this-library)
 
@@ -617,8 +619,11 @@ This item shows the SI4735 Arduino Library implemantation. Here you can find the
 
 ### Defined Data Types and Structures
 
+The goal here is separate data from code. 
 
-To make the SI4735 device easier to deal, some defined data types were built to handle byte and bits responses.
+The Si47XX family works with many internal data that can be represented by data structure or defined data type in C/C++. These C/C++ resources have been used widely here. This aproach made the library easier to build and maintain. Each data structure created here has its reference (name of the document and page on which it was based). In other words, to make the SI47XX device easier to deal, some defined data types were created to handle  byte and bits to process  commands, properties and responses.
+
+
 
 ```cpp
 /*****************************************************************
