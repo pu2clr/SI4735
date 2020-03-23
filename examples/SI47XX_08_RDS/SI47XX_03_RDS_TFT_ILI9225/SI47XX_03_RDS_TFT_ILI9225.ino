@@ -341,6 +341,7 @@ void showStatus()
   }
   else
   {
+    tft.fillRectangle(153, 3, 216, 20, COLOR_BLACK);  // Clear Step field
     sprintf(bufferDisplay, "Stp: %3d", currentStep);
     printValue(153, 10, bufferStepVFO, bufferDisplay, COLOR_YELLOW, 6);
     tft.drawText(153, 30, "KHz", COLOR_RED);
@@ -476,7 +477,7 @@ void showBFOTemplate(uint16_t color)
 }
 
 void clearBFO() {
-  tft.fillRectangle(124,52, 218,73,COLOR_BLACK); // Clear All BFO area
+  tft.fillRectangle(124,52, 218,79,COLOR_BLACK); // Clear All BFO area
   CLEAR_BUFFER(bufferBFO);
   CLEAR_BUFFER(bufferStepBFO);
 }
@@ -589,7 +590,7 @@ void useBand()
   currentStep = band[bandIdx].currentStep;
   rssi = 0;
   clearBFO();
-  tft.fillRectangle(155, 3, 216, 20, COLOR_BLACK);  // Clear Step field
+  tft.fillRectangle(153, 3, 216, 20, COLOR_BLACK);  // Clear Step field
   showStatus();
 }
 
