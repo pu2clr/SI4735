@@ -136,9 +136,10 @@
 
 
 // Parameters
-#define SI473X_ANALOG_AUDIO B00000101  // Analog Audio Inputs
-#define SI473X_DIGITAL_AUDIO B00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
-
+#define SI473X_ANALOG_AUDIO   B00000101  // Analog Audio Inputs
+#define SI473X_DIGITAL_AUDIO1 B00001011  // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
+#define SI473X_DIGITAL_AUDIO2 B10110000  // Digital audio outputs (DCLK, DFS, DIO)
+#define SI473X_DIGITAL_AUDIO3 B10110101  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO)
 
 // Other parameters
 #define FM_CURRENT_MODE 0
@@ -147,16 +148,16 @@
 #define MAX_DELAY_AFTER_SET_FREQUENCY 30 // In ms - This value helps to improve the precision during of getting frequency value
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 
-/*****************************************************************
+    /*****************************************************************
  * SI473X data types 
  * These data types will be usefull to deal with SI473X 
  *****************************************************************/
 
-/*
+    /*
  * Power Up arguments data type 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65
  */
-typedef union {
+    typedef union {
     struct
     {
         // ARG1
