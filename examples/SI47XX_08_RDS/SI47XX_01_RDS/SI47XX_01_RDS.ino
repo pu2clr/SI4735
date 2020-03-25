@@ -1,6 +1,6 @@
 /*
-   This sketch is an example of using the RDS functions impplemented byte the Si4735 Library for Arduino. 
-   Under development...
+  Under development...
+  This sketch is an example of using the RDS functions impplemented byte the Si4735 Library for Arduino. 
 */
 
 #include <SI4735.h>

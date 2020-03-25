@@ -7,7 +7,6 @@
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
   Wire up on Arduino UNO, Pro mini
-
   | Device name               | Device Pin / Description  |  Arduino Pin  |
   | ----------------          | --------------------      | ------------  |
   | Display TFT               |                           |               |

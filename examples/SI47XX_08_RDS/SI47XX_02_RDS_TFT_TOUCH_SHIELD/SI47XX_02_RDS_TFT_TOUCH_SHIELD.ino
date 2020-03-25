@@ -19,8 +19,8 @@
   ----------------------  -------------
   SDA                     20
   SCL                     21
-  ENCODER_A               18        - On DUE all Digital pin can be used with Interrupt
-  ENCODER_B               19        - On DUE all Digital pin can be used with Interrupt
+  ENCODER_A               18        - On Arduino DUE all Digital pin can be used with Interrupt
+  ENCODER_B               19        - On Arduino DUE all Digital pin can be used with Interrupt
   RESET                   22
   ENCODER PUSH BUTTON     23
 

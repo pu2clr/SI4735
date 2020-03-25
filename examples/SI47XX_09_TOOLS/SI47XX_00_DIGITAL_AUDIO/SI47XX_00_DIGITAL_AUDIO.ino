@@ -1,6 +1,6 @@
 /*
    
-   Under construction....
+   Under construction...
     
    Digital Audio output test. 
 
