@@ -16,7 +16,7 @@
  * The first byte is a command, and the next seven bytes are arguments. Writing more than 8 bytes results 
  * in unpredictable device behavior". So, If you are extending this library, consider that restriction presented earlier.
  * 
- * ATTENTION: inline methods are implemented in SI4735.h
+ * ATTENTION: Some methods were implemented usin inline resource. Inline methods are implemented in SI4735.h
  * 
  * By Ricardo Lima Caratti, Nov 2019.
  */
