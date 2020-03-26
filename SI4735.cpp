@@ -1621,12 +1621,8 @@ void SI4735::setSSBBfo(int offset)
  */
 void SI4735::setSSBConfig(uint8_t AUDIOBW, uint8_t SBCUTFLT, uint8_t AVC_DIVIDER, uint8_t AVCEN, uint8_t SMUTESEL, uint8_t DSP_AFCDIS)
 {
-    si47x_property property;
-
     if (currentTune == FM_TUNE_FREQ) // Only AM/SSB mode
         return;
-
-    property.value = SSB_MODE;
 
     currentSSBMode.param.AUDIOBW = AUDIOBW;
     currentSSBMode.param.SBCUTFLT = SBCUTFLT;
@@ -1972,7 +1968,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 bool SI4735::downloadPatch(int eeprom_i2c_address)
 {
     int ssb_patch_content_size;
-    uint8_t content, cmd_status;
+    uint8_t cmd_status;
     int i, offset;
     uint8_t eepromPage[8];
 
