@@ -693,6 +693,11 @@ typedef struct {
 /************************ Deal with Interrupt  *************************/
 volatile static bool data_from_si4735;
 
+/*
+ * If you are using interrupt feature, this function will be called by the system, not by you. 
+ * If you are not using interrupt feature, ignore the compile message:
+ *      warning: 'void interrupt_hundler()' defined but not used [-Wunused-function]
+ */
 static void interrupt_hundler()
 {
     data_from_si4735 = true;

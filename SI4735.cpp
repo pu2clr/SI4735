@@ -276,7 +276,7 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, 
     data_from_si4735 = false;
 
     // Set the initial SI473X behavior
-    // CTSIEN   1 -> Interrupt anabled;
+    // CTSIEN   1 -> Interrupt anabled or disable;
     // GPO2OEN  1 -> GPO2 Output Enable;
     // PATCH    0 -> Boot normally;
     // XOSCEN   1 -> Use external crystal oscillator;
