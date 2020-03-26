@@ -1379,7 +1379,7 @@ void SI4735::getNext2Block(char *c)
             c[j] = '\0';
             return;
         }
-        if (raw[i] >= 32 and raw[i] <= 127)
+        if (raw[i] >= 32)
         {
             c[j] = raw[i];
             j++;
@@ -1407,7 +1407,7 @@ void SI4735::getNext4Block(char *c)
             c[j] = '\0';
             return;
         }
-        if (raw[i] >= 32 and raw[i] <= 127)
+        if (raw[i] >= 32)
         {
             c[j] = raw[i];
             j++;
@@ -1642,7 +1642,7 @@ void SI4735::setSSBConfig(uint8_t AUDIOBW, uint8_t SBCUTFLT, uint8_t AVC_DIVIDER
  */
 void SI4735::setSSBDspAfc(uint8_t DSP_AFCDIS)
 {
-    currentSSBMode.param.DSP_AFCDIS;
+    currentSSBMode.param.DSP_AFCDIS = DSP_AFCDIS;
     sendSSBModeProperty();
 }
 
@@ -1653,7 +1653,7 @@ void SI4735::setSSBDspAfc(uint8_t DSP_AFCDIS)
  */
 void SI4735::setSSBSoftMute(uint8_t SMUTESEL)
 {
-    currentSSBMode.param.SMUTESEL;
+    currentSSBMode.param.SMUTESEL = SMUTESEL;
     sendSSBModeProperty();
 }
 
@@ -1675,7 +1675,7 @@ void SI4735::setSSBAutomaticVolumeControl(uint8_t AVCEN)
  */
 void SI4735::setSSBAvcDivider(uint8_t AVC_DIVIDER)
 {
-    currentSSBMode.param.AVC_DIVIDER;
+    currentSSBMode.param.AVC_DIVIDER = AVC_DIVIDER;
     sendSSBModeProperty();
 }
 
@@ -1687,7 +1687,7 @@ void SI4735::setSSBAvcDivider(uint8_t AVC_DIVIDER)
  */
 void SI4735::setSBBSidebandCutoffFilter(uint8_t SBCUTFLT)
 {
-    currentSSBMode.param.SBCUTFLT;
+    currentSSBMode.param.SBCUTFLT = SBCUTFLT;
     sendSSBModeProperty();
 }
 
@@ -1910,10 +1910,10 @@ void SI4735::ssbPowerUp()
  */
 bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size)
 {
-    uint8_t content, cmd_status;
+    uint8_t content;
     register int i, offset;
     // Send patch to the SI4735 device
-    for (offset = 0; offset < ssb_patch_content_size; offset += 8)
+    for (offset = 0; offset < (int) ssb_patch_content_size; offset += 8)
     {
         Wire.beginTransmission(deviceAddress);
         for (i = 0; i < 8; i++)
@@ -1942,6 +1942,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
         // approach 4 - safer
         /*
         waitToSend();
+        uint8_t cmd_status;
         Uncomment the lines below if you want to check erro.
         Wire.requestFrom(deviceAddress, 1);
         cmd_status = Wire.read();
