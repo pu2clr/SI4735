@@ -147,12 +147,12 @@
 #define MAX_DELAY_AFTER_SET_FREQUENCY 30 // In ms - This value helps to improve the precision during of getting frequency value
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 
-    /*****************************************************************
+/*****************************************************************
  * SI473X data types 
  * These data types will be usefull to deal with SI473X 
  *****************************************************************/
 
-    /*
+/*
  * Power Up arguments data type 
  * See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65
  */
