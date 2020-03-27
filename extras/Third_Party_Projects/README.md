@@ -10,6 +10,15 @@ The project aims to serve as a platform through which several developers can con
 [Read more...](https://davidmartinsengineering.wordpress.com/si4735-radio-kit/)
 
 
+## David's videos 
+
+* [SI4735 Radio KIT prototype](https://youtu.be/ENqokz09xvU)
+* [SI4735 KIT. First LF test](https://youtu.be/hjDvo8ehZi4)
+* [SI4735 KIT. First SSB test](https://youtu.be/bZW6NiOEGSQ)
+* [SI4735 KIT - First FM test](https://youtu.be/LudpuwJSajU)
+
+
+
 ## Jim Reagan
 
 [Jim's Schematic](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Jim%20Reagan)
