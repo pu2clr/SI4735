@@ -1,0 +1,48 @@
+Si4735_SMD Partlisy
+====================================================================
+
+Part     Value          Device         Package   Library        Sheet
+
+ANT-AM                  22-S-02        6410-02S  con-molex      1
+ANT-FM                  22-S-02        6410-02S  con-molex      1
+AUDIO                   22-S-03        6410-03S  con-molex      1
+C1       2p7            C-EUC0805      C0805     res_cap        1
+C2       104            C-EUC0805      C0805     res_cap        1
+C3       27p            C-EUC0805      C0805     res_cap        1
+C4       100p           C-EUC0805      C0805     res_cap        1
+C5       104            C-EUC0805      C0805     res_cap        1
+C6       104            C-EUC0805      C0805     res_cap        1
+C7       47/50          CPOL-EUSMCD    SMC_D     res_cap        1
+C8       1nF            C-EUC0805      C0805     res_cap        1
+C9       100/16         CPOL-EUSMCC    SMC_C     res_cap        1
+C10      50p            C-TRIMMTZ03    CTRIMTZ03 res_cap        1
+C11      104            C-EUC0805      C0805     res_cap        1
+C12      104            C-EUC0805      C0805     res_cap        1
+C13      104            C-EUC0805      C0805     res_cap        1
+C14      104            C-EUC0805      C0805     res_cap        1
+C15      22n            C-EUC0805      C0805     res_cap        1
+C16      22n            C-EUC0805      C0805     res_cap        1
+C17      10n            C-EUC0805      C0805     res_cap        1
+C18      10n            C-EUC0805      C0805     res_cap        1
+CTL                     22-27-2041V-04 6410-04V  con-molex      1
+D1       D07            1N4007DO214AC  DO214AC   diode          1
+IC1      SI4735-D60     SI4735-24S     SSOP24    RF_lib         1
+IC3      LM2936-3.3     LM29XXT        SOT223    v-reg0         1
+INT                     PAD-WIRE-B     PAD0047   Pads           1
+L1       10uH           L-EU0805       L0805     res_cap        1
+L2       10uH           L-EU0805       L0805     res_cap        1
+L3       10uH           L-EU0805       L0805     res_cap        1
+L4       10uH           L-EU0805       L0805     res_cap        1
+PWR                     22-S-02        6410-02S  con-molex      1
+R1       100k           R-EU_R0805     R0805     res_cap        1
+R5       3k9            R-EU_R0805     R0805     res_cap        1
+R6       3k9            R-EU_R0805     R0805     res_cap        1
+R7       2k2            R-EU_R0805     R0805     res_cap        1
+R8       2k2            R-EU_R0805     R0805     res_cap        1
+R9       1k5            R-EU_R0805     R0805     res_cap        1
+R10      2k7            R-EU_R0805     R0805     res_cap        1
+T1       BS170          BS170S         SOT23     transistor-fet 1
+T2       BS170          BS170S         SOT23     transistor-fet 1
+X1       32.768         CRYSTALTC26H   TC26H     crystal        1
+
+Capacitors 0805 = 50V

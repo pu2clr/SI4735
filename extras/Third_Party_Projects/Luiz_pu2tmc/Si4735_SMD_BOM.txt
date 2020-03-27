@@ -1,0 +1,44 @@
+Partlist exported from C:/Users/Luiz/Documents/eagle/Radio DSP Si4735/Radio/Gerbers/Si4735_SMD.sch at 20/03/2020 13:26:57
+
+Part   Value      Device         Package   Description                                                         
+ANT-AM            22-S-02        6410-02S  CONNECTOR, PIN - minimodul                                                                                           
+ANT-FM            22-S-02        6410-02S  CONNECTOR, PIN - minimodul                                                                                           
+AUDIO             22-S-03        6410-03S  CONNECTOR, PIN - minimodul                                                                                           
+C1     2p7        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C2     104        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C3     27p        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C4     100p       C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C5     104        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C6     104        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C7     47/50      CPOL-EUSMCD    SMC_D     POLARIZED CAPACITOR, European symbol                                                           
+C8     1nF        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C9     100/16     CPOL-EUSMCC    SMC_C     POLARIZED CAPACITOR, European symbol                                                           
+C10    50p        C-TRIMMTZ03    CTRIMTZ03 Trimm capacitor                                                                                
+C11    104        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C12    104        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C13    104        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C14    104        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C15    22n        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C16    22n        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C17    10n        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+C18    10n        C-EUC0805      C0805     CAPACITOR, European symbol                                                                     
+CTL               22-27-2041V-04 6410-04V  CONNECTOR, PIN - minimodul                                                                                      
+D1     D07        1N4007DO214AC  DO214AC   DO-214AC: SURFACE MOUNT GENERAL RECTIFIER JEDEC  molded plastic body                            
+IC1    SI4735-D60 SI4735-24S     SSOP24    DSP Radio reciever                                                                             
+IC3    LM2936-3.3 LM29XXT        SOT223    CI regulador National SOT223 Low Drop                                                          
+INT               PAD-WIRE-B     PAD0047   CONNECTOR, PIN - minimodul 	                                                                                                  
+L1     10uH       L-EU0805       L0805     INDUCTOR, European symbol                                                                      
+L2     10uH       L-EU0805       L0805     INDUCTOR, European symbol                                                                      
+L3     10uH       L-EU0805       L0805     INDUCTOR, European symbol                                                                      
+L4     10uH       L-EU0805       L0805     INDUCTOR, European symbol                                                                      
+PWR               22-S-02        6410-02S  CONNECTOR, PIN - minimodul                                                                                           
+R1     100k       R-EU_R0805     R0805     RESISTOR, European symbol                                                                      
+R5     3k9        R-EU_R0805     R0805     RESISTOR, European symbol                                                                      
+R6     3k9        R-EU_R0805     R0805     RESISTOR, European symbol                                                                      
+R7     2k2        R-EU_R0805     R0805     RESISTOR, European symbol                                                                      
+R8     2k2        R-EU_R0805     R0805     RESISTOR, European symbol                                                                      
+R9     1k5        R-EU_R0805     R0805     RESISTOR, European symbol                                                                      
+R10    2k7        R-EU_R0805     R0805     RESISTOR, European symbol                                                                      
+T1     BS170      BS170S         SOT23     FET TO92 60 volts small signals                                                                
+T2     BS170      BS170S         SOT23     FET TO92 60 volts small signals                                                                
+X1     32.768     CRYSTALTC26H   TC26H     CRYSTAL                                                                    

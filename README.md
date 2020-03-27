@@ -2904,6 +2904,7 @@ Here you can see some experiments using this library.
 * [SSB DSP radio (Si4735) version 5 revision 2](https://youtu.be/Q3jkiwOWeUo)
 * [Si4735 LCD版でSSBを受信](https://youtu.be/bBeU09wal0I)
 * [Wefax576 via SI4735 with audio cable fldigi](https://youtu.be/kJuxSI1GlDs)
+* [SI4735 KIT - First FM test](https://youtu.be/LudpuwJSajU)
 
 
 
