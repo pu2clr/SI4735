@@ -9,3 +9,14 @@ The project aims to serve as a platform through which several developers can con
 
 [Read more...](https://davidmartinsengineering.wordpress.com/si4735-radio-kit/)
 
+
+## Jim Reagan
+
+[Jim's Schematic](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Jim%20Reagan)
+
+
+## PU2TMC
+
+[Artifacts]https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Luiz_pu2tmc
+
+
