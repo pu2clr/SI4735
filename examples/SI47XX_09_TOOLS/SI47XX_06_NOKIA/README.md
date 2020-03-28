@@ -1,6 +1,5 @@
 # Nokia 5110 LCD
 
-
 This project uses: 
 
 * Arduino Nano 
@@ -8,7 +7,8 @@ This project uses:
 * Nokia 5110 LCD
 * Home brew Si4735 board  
 
-Arduino Wire up
+
+## Arduino Wire up
 
 | NOKIA 5110 pins | Arduino Pin | Description |
 | --------------- | ----------- | ----------- |
@@ -19,7 +19,7 @@ Arduino Wire up
 | NOKIA_RST       |  6          | LCD reset (RST) | 
 
 
-### Si4735, buttons and encoder wire up 
+## Si4735, buttons and encoder wire up 
 
 The table below show the pins wire up for this example on Arduino Pro Mini.
 
