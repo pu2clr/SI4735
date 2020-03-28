@@ -2,9 +2,9 @@
  * This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
  * Arduino development environment.  It works with I2C protocol. 
  * This library is intended to provide an easier interface for controlling the SI4735.
- * See documentation on https://github.com/pu2clr/SI4735.
+ * @see documentation on https://github.com/pu2clr/SI4735.
  * 
- * See also: 
+ * @see also: 
  *  Si47XX PROGRAMMING GUIDE; AN332
  *  AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
  * 
@@ -141,7 +141,7 @@ void SI4735::setDeviceOtherI2CAddress(uint8_t i2cAddr) {
 
 /*
  * Reset the SI473X   
- * See Si47XX PROGRAMMING GUIDE; AN332;
+ * @see Si47XX PROGRAMMING GUIDE; AN332;
  */
 void SI4735::reset()
 {
@@ -306,7 +306,7 @@ void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
 /*
  * Set the Power Up parameters for si473X. 
  * Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()
- * See Si47XX PROGRAMMING GUIDE; AN332; pages 65 and 129
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 65 and 129
  * @param uint8_t CTSIEN sets Interrupt anabled or disabled (1 = anabled and 0 = disabled )
  * @param uint8_t GPO2OEN sets GP02 Si473X pin enabled (1 = anabled and 0 = disabled )
  * @param uint8_t PATCH  Used for firmware patch updates. Use it always 0 here. 
@@ -348,7 +348,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * For FM, Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the antenna input.
  * 
  * 
- * See Si47XX PROGRAMMING GUIDE; AN332; pages 71 and 136
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 71 and 136
  * 
  * 
  * @param capacitor If zero, the tuning capacitor value is selected automatically. 
@@ -616,7 +616,7 @@ void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter)
 /*
  * Sets RSSI threshold for stereo blend (Full stereo above threshold, blend below threshold). 
  * To force stereo, set this to 0. To force mono, set this to 127.
- * See Si47XX PROGRAMMING GUIDE; AN332; page 90. 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 90. 
  */
 void SI4735::setFmBlendStereoThreshold(uint8_t parameter)
 {
@@ -636,7 +636,7 @@ void SI4735::setFmBlendMonoThreshold(uint8_t parameter)
 /* 
  * Sets RSSI threshold for stereo blend. (Full stereo above threshold, blend below threshold.) 
  * To force stereo, set this to 0. To force mono, set this to 127. Default value is 49 dBμV.
- * See Si47XX PROGRAMMING GUIDE; AN332; page 59. 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 59. 
  */
 void SI4735::setFmBlendRssiStereoThreshold(uint8_t parameter)
 {
@@ -646,7 +646,7 @@ void SI4735::setFmBlendRssiStereoThreshold(uint8_t parameter)
 /*
  * Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). 
  * To force stereo, set this to 0. To force mono, set this to 127. Default value is 30 dBμV.
- * See Si47XX PROGRAMMING GUIDE; AN332; page 59.  
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 59.  
  */
 void SI4735::setFmBLendRssiMonoThreshold(uint8_t parameter)
 {
@@ -656,7 +656,7 @@ void SI4735::setFmBLendRssiMonoThreshold(uint8_t parameter)
 /*
  * Sets SNR threshold for stereo blend (Full stereo above threshold, blend below threshold). 
  * To force stereo, set this to 0. To force mono, set this to 127. Default value is 27 dB.
- * See Si47XX PROGRAMMING GUIDE; AN332; page 59.  
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 59.  
  */
 void SI4735::setFmBlendSnrStereoThreshold(uint8_t parameter)
 {
@@ -666,7 +666,7 @@ void SI4735::setFmBlendSnrStereoThreshold(uint8_t parameter)
 /*
  * Sets SNR threshold for mono blend (Full mono below threshold, blend above threshold). 
  * To force stereo, set this to 0. To force mono, set this to 127. Default value is 14 dB.
- * See Si47XX PROGRAMMING GUIDE; AN332; page 59. 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 59. 
  */
 void SI4735::setFmBLendSnrMonoThreshold(uint8_t parameter)
 {
@@ -676,7 +676,7 @@ void SI4735::setFmBLendSnrMonoThreshold(uint8_t parameter)
 /* 
  * Sets multipath threshold for stereo blend (Full stereo below threshold, blend above threshold). 
  * To force stereo, set this to 100. To force mono, set this to 0. Default value is 20.
- * See Si47XX PROGRAMMING GUIDE; AN332; page 60.
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 60.
  */
 void SI4735::setFmBlendMultiPathStereoThreshold(uint8_t parameter)
 {
@@ -686,7 +686,7 @@ void SI4735::setFmBlendMultiPathStereoThreshold(uint8_t parameter)
 /*
  * Sets Multipath threshold for mono blend (Full mono above threshold, blend below threshold). 
  * To force stereo, set to 100. To force mono, set to 0. The default is 60.
- * See Si47XX PROGRAMMING GUIDE; AN332; page 60.
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 60.
  */
 void SI4735::setFmBlendMultiPathMonoThreshold(uint8_t parameter)
 {
@@ -713,7 +713,7 @@ void SI4735::setFmStereoOn()
  * There is a debug feature that remains active in Si4704/05/3x-D60 firmware which can create periodic noise in audio.
  * Silicon Labs recommends you disable this feature by sending the following bytes (shown here in hexadecimal form):
  * 0x12 0x00 0xFF 0x00 0x00 0x00.
- * See Si47XX PROGRAMMING GUIDE; AN332; page 299. 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 299. 
  */
 void SI4735::disableFmDebug()
 {
@@ -735,7 +735,7 @@ void SI4735::disableFmDebug()
 /*
  * Configures the digital audio output format. 
  * Options: DCLK edge, data format, force mono, and sample precision. 
- * See Si47XX PROGRAMMING GUIDE; AN332; page 195. 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 195. 
 
  * @params uint8_t OSIZE Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
  * @params uint8_t OMONO Digital Output Mono Mode (0=Use mono/stereo blend ).
@@ -754,7 +754,7 @@ void SI4735::digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, ui
 
 /*
  * Enables digital audio output and configures digital audio output sample rate in samples per second (sps).
- * See Si47XX PROGRAMMING GUIDE; AN332; page 196. 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 196. 
  * @params uint16_t DOSR Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
  */
 void SI4735::digitalOutputSampleRate(uint16_t DOSR)
@@ -766,7 +766,7 @@ void SI4735::digitalOutputSampleRate(uint16_t DOSR)
 /*
  * Gets the current frequency of the Si4735 (AM or FM)
  * The method status do it an more. See getStatus below. 
- * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  */
 uint16_t SI4735::getFrequency()
 {
@@ -794,7 +794,7 @@ uint16_t SI4735::getCurrentFrequency()
 /*
  * Gets the current status  of the Si4735 (AM or FM)
  * 
- * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  *
  */
 void SI4735::getStatus()
@@ -804,7 +804,7 @@ void SI4735::getStatus()
 
 /*
  * Gets the current status  of the Si4735 (AM or FM)
- * See Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  * 
  * @param uint8_t INTACK Seek/Tune Interrupt Clear. If set, clears the seek/tune complete interrupt status indicator;
  * @param uint8_t CANCEL Cancel seek. If set, aborts a seek currently in progress;
@@ -838,8 +838,8 @@ void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
 
 /*
  * Queries AGC STATUS
- * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 80; for AM page 142.
- * See AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; For FM page 80; for AM page 142.
+ * @see AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
  * After call this method, you can call isAgcEnabled to know the AGC status and getAgcGainIndex to know the gain index value.
  */
 void SI4735::getAutomaticGainControl()
@@ -881,7 +881,7 @@ void SI4735::getAutomaticGainControl()
  * @param uint8_t AGCIDX AGC Index (0 = Minimum attenuation (max gain); 1 – 36 = Intermediate attenuation); 
  *             > 37 - Maximum attenuation (min gain) ).
  * 
- * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 
  */
 void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
 {
@@ -922,7 +922,7 @@ void SI4735::setAvcAmMaxGain( uint8_t gain) {
  * Queries the status of the Received Signal Quality (RSQ) of the current channel.
  * This method sould be called berore call getCurrentRSSI(), getCurrentSNR() etc.
  * Command FM_RSQ_STATUS
- * See Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
  * 
  * @param INTACK Interrupt Acknowledge. 
  *        0 = Interrupt status preserved; 
@@ -967,7 +967,7 @@ void  SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
 /*
  * Queries the status of the Received Signal Quality (RSQ) of the current channel
  * Command FM_RSQ_STATUS
- * See Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
  * 
  * @param INTACK Interrupt Acknowledge. 
  *        0 = Interrupt status preserved; 
@@ -980,7 +980,7 @@ void SI4735::getCurrentReceivedSignalQuality(void)
 
 /*
  * Look for a station 
- * See Si47XX PROGRAMMING GUIDE; AN332; pages 55, 72, 125 and 137
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 55, 72, 125 and 137
  * 
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
  * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
@@ -1072,8 +1072,11 @@ void SI4735::setSeekRssiThreshold(uint16_t value)
 }
 
 /* 
- * Sets volume level
+ * Sets volume level (0  to 63)
+ * 
  * @param uint8_t volume (domain: 0 - 63) 
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332;
  */
 void SI4735::setVolume(uint8_t volume)
 {
@@ -1083,9 +1086,10 @@ void SI4735::setVolume(uint8_t volume)
 
 /*
  * Sets the audio on or off
+ * 
  * @param value if true, mute the audio; if false unmute the audio.
  * 
- * See See Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 171 
+ * @see See Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 171 
  */ 
 void SI4735::setAudioMute( bool off) {
     uint16_t value = (off)? 3:0; // 3 means mute; 0 means unmute  
@@ -1129,8 +1133,10 @@ void SI4735::volumeDown()
 
 /* 
  * Configures interrupt related to RDS
+ * 
  * Use this method if want to use interrupt
- * See Si47XX PROGRAMMING GUIDE; AN332; page 103
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 103
  * 
  * @param RDSRECV If set, generate RDSINT when RDS FIFO has at least FM_RDS_INT_FIFO_COUNT entries.
  * @param RDSSYNCLOST If set, generate RDSINT when RDS loses synchronization.
@@ -1171,7 +1177,7 @@ void SI4735::setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t
 
 /*
  * RDS COMMAND FM_RDS_STATUS
- * See Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
  * @param INTACK Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT.
  * @param MTFIFO 0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO.
  * @param STATUSONLY Determines if data should be removed from the RDS FIFO.
@@ -1608,7 +1614,7 @@ void SI4735::setSSBBfo(int offset)
  * 4) Set soft-mute based on RSSI or SNR;
  * 5) Enable or disbable automatic volume control (AVC) function. 
  * 
- * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  * 
  * @param AUDIOBW SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz.
  * @param SBCUTFLT SSB side band cutoff filter for band passand low pass filter
@@ -1710,7 +1716,7 @@ void SI4735::setSBBSidebandCutoffFilter(uint8_t SBCUTFLT)
  *   to enable the band pass filter for better high- cut performance on the wanted side band. 
  *   Otherwise, set it to 1.
  * 
- * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  */
 void SI4735::setSSBAudioBandwidth(uint8_t AUDIOBW)
 {
@@ -1738,7 +1744,7 @@ void SI4735::setSSB(uint8_t usblsb)
 /*
  * Set the radio to SSB (LW/MW/SW) function. 
  * 
- * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14
  * 
  * @param fromFreq minimum frequency for the band
  * @param toFreq maximum frequency for the band
@@ -1961,7 +1967,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
  *  Transfers the content of a patch stored in a eeprom to the SI4735 device.
  * 
  * TO USE THIS METHOD YOU HAVE TO HAVE A EEPROM WRITEN WITH THE PATCH CONTENT
- * See the sketch write_ssb_patch_eeprom.ino (TO DO)
+ * @see the sketch write_ssb_patch_eeprom.ino (TO DO)
  * 
  * @param eeprom_i2c_address 
  * @return false if an error is found.
