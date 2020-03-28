@@ -19,7 +19,7 @@ The sketch is compiling. However, the system was not tested.
 
 ## Arduino Wire up
 
-| NOKIA 5110 pins | Arduino Pin | Description |
+| NOKIA 5110 pin | Arduino Pin | Description |
 | --------------- | ----------- | ----------- |
 | NOKIA_SCK       | 13          | SCK is LCD serial clock (SCLK) |
 | NOKIA_DIN       | 11          | MOSI is LCD DIN |
