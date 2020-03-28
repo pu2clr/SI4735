@@ -4,8 +4,7 @@
   Waiting for a Nokia5110 LCD from eBay. 
 
   It is compiling. You can try use and adjust it if you have an Nokia 5110
- 
-  
+   
   SI4735 all in one with SSB Support
   
   This Sketch uses:
@@ -55,6 +54,7 @@
 
   By Ricardo Lima Caratti, Nov 2019.
   Last update: Jan 3, 2020.
+  
 */
 
 #include <SI4735.h>
