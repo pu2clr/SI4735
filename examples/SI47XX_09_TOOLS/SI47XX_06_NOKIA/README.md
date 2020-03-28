@@ -6,8 +6,8 @@ The sketch is compiling. However, the system was not tested.
 
 ## This project uses: 
 
-* Arduino Nano 
-* A shift voltage converter to I2C bus
+* Arduino Nano 5V
+* I2C bus shift voltage converter to connect the Si4735 to the Arduino
 * Nokia 5110 LCD
 * Home brew Si4735 board  
 
@@ -16,6 +16,7 @@ The sketch is compiling. However, the system was not tested.
 * FM, AM and SSB
 * LW, MW and SW (from 3 to 30 MHz)
 * Volume, Band select and filters controlled via buttons
+* 
 
 
 ## Arduino Wire up
