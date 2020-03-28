@@ -16,8 +16,6 @@ The sketch is compiling. However, the system was not tested.
 * FM, AM and SSB
 * LW, MW and SW (from 3 to 30 MHz)
 * Volume, Band select and filters controlled via buttons
-* 
-
 
 ## Arduino Wire up
 
