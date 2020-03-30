@@ -135,10 +135,10 @@
 
 
 // Parameters
-#define SI473X_ANALOG_AUDIO   B00000101  // Analog Audio Inputs
-#define SI473X_DIGITAL_AUDIO1 B00001011  // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
-#define SI473X_DIGITAL_AUDIO2 B10110000  // Digital audio outputs (DCLK, DFS, DIO)
-#define SI473X_DIGITAL_AUDIO3 B10110101  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO)
+#define SI473X_ANALOG_AUDIO   0b00000101  // Analog Audio Inputs
+#define SI473X_DIGITAL_AUDIO1 0b00001011  // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
+#define SI473X_DIGITAL_AUDIO2 0b10110000  // Digital audio outputs (DCLK, DFS, DIO)
+#define SI473X_DIGITAL_AUDIO3 0b10110101  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO)
 
 // Other parameters
 #define FM_CURRENT_MODE 0
