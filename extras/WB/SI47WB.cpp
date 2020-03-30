@@ -1,6 +1,6 @@
 // Under construction.... 
 #include <SI4735.h>
-#include "wb.h"
+#include <SI47WB.h>
 
 /*
  * Set the Power Up parameters for si473X. 
