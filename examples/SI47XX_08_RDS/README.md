@@ -24,7 +24,6 @@
 
 
 
-
 ## RDS Overview
 
 The RDS is communication protocol used to send small messages to regular FM radio receivers.  It is capable to send to your receiver messages about the program type, traffic information, local time, alternative frequencies and text. 

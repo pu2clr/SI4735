@@ -1,6 +1,6 @@
 /*
   This sketch uses the mcufriend TFT touct Display Shield.
-  You can use it on Mega2560. 
+  You can use it on Mega2560 or DUE. 
   It is a RDS example. 
 
   Features:
@@ -15,8 +15,8 @@
 
   Wire up
 
-  Function                MEGA Pin
-  ----------------------  -------------
+  Function                MEGA2560 or DUE  Pin
+  ----------------------  --------------------
   SDA                     20
   SCL                     21
   ENCODER_A               18        - On Arduino DUE all Digital pin can be used with Interrupt
@@ -278,6 +278,26 @@ void rotaryEncoder()
 
 
 /*
+  dtostrf - Emulation for dtostrf function from avr-libc
+  
+  The function below wil be compiled just on Arduino DUE board. 
+  
+  Copyright (c) 2015 Arduino LLC.  All rights reserved.
+  See: https://github.com/arduino/ArduinoCore-samd/blob/master/cores/arduino/avr/dtostrf.c
+*/
+
+#if defined(ARDUINO_SAM_DUE)
+char *dtostrf (double val, signed char width, unsigned char prec, char *sout) {
+  asm(".global _printf_float");
+
+  char fmt[20];
+  sprintf(fmt, "%%%d.%df", width, prec);
+  sprintf(sout, fmt, val);
+  return sout;
+}
+#endif
+
+/*
    Shows a text on a given position; with a given size and font, and with a given color
 
    @param int x column
@@ -448,7 +468,6 @@ void showFrequencyValue(int col, int line, char *oldValue, char *newValue, uint1
 void showFrequency()
 {
   float freq;
-  int iFreq, dFreq;
   uint16_t color;
 
   if (si4735.isCurrentTuneFM())
@@ -477,7 +496,6 @@ char bufferAGC[10];
 
 void showStatus()
 {
-  char unit[5];
   si4735.getStatus();
   si4735.getCurrentReceivedSignalQuality();
   // SRN
@@ -624,7 +642,6 @@ void showVolume()
 */
 void bandUp()
 {
-  uint8_t v;
   // save the current frequency for the band
   band[bandIdx].currentFreq = currentFrequency;
   band[bandIdx].currentStep = currentStep;

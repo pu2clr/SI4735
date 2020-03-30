@@ -253,14 +253,18 @@ void setup(void)
   tft.setFont(NULL); // default font
 }
 
-
 /*
   dtostrf - Emulation for dtostrf function from avr-libc
+  
+  The function below wil be compiled just on Arduino DUE board. 
+  
   Copyright (c) 2015 Arduino LLC.  All rights reserved.
   See: https://github.com/arduino/ArduinoCore-samd/blob/master/cores/arduino/avr/dtostrf.c
 */
-/*
-char *dtostrf (double val, signed char width, unsigned char prec, char *sout) {
+
+#if defined(ARDUINO_SAM_DUE)
+char *dtostrf(double val, signed char width, unsigned char prec, char *sout)
+{
   asm(".global _printf_float");
 
   char fmt[20];
@@ -268,7 +272,7 @@ char *dtostrf (double val, signed char width, unsigned char prec, char *sout) {
   sprintf(sout, fmt, val);
   return sout;
 }
-*/
+#endif
 
 /*
    Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
