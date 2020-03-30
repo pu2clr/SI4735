@@ -18,8 +18,8 @@
   ----------------------  -------------
   SDA                     20
   SCL                     21
-  ENCODER_A               18
-  ENCODER_B               19
+  ENCODER_A               18    - Any digital pin on Arduino DUE can be setted up as interrupt
+  ENCODER_B               19    - Any digital pin on Arduino DUE can be setted up as interrupt
   ENCODER PUSH BUTTON     23
   RESET                   22
 
@@ -253,6 +253,9 @@ void setup(void)
   tft.setFont(NULL); // default font
 }
 
+
+#if defined(ARDUINO_SAM_DUE)
+
 /*
   dtostrf - Emulation for dtostrf function from avr-libc
   
@@ -262,7 +265,6 @@ void setup(void)
   See: https://github.com/arduino/ArduinoCore-samd/blob/master/cores/arduino/avr/dtostrf.c
 */
 
-#if defined(ARDUINO_SAM_DUE)
 char *dtostrf(double val, signed char width, unsigned char prec, char *sout)
 {
   asm(".global _printf_float");

@@ -1,9 +1,6 @@
 # SI473X RDS  
 
-
-
 ![Photo radio TFT touch screen on Mega2560](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4735_SDR_01_TFT_TOUCH.png)
-
 
 ## RDS Terminology
 

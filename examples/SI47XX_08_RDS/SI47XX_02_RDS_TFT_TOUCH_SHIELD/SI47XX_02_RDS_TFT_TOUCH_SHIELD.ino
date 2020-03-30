@@ -4,7 +4,7 @@
   It is a RDS example. 
 
   Features:
-  1) This sketch has been successfully tested on Arduino Mega2560;
+  1) This sketch has been successfully tested on Arduino Mega2560 and Arduino DUE;
   2) It uses the touch screen interface provided by mcufriend TFT;
   3) Encoder;
   4) FM, AM (MW and SW) and SSB (LSB and USB);
@@ -277,6 +277,8 @@ void rotaryEncoder()
 }
 
 
+
+#if defined(ARDUINO_SAM_DUE)
 /*
   dtostrf - Emulation for dtostrf function from avr-libc
   
@@ -285,8 +287,6 @@ void rotaryEncoder()
   Copyright (c) 2015 Arduino LLC.  All rights reserved.
   See: https://github.com/arduino/ArduinoCore-samd/blob/master/cores/arduino/avr/dtostrf.c
 */
-
-#if defined(ARDUINO_SAM_DUE)
 char *dtostrf (double val, signed char width, unsigned char prec, char *sout) {
   asm(".global _printf_float");
 

@@ -64,6 +64,8 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 
 This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on Mega2560 and Arduino DUE. See the table bellow to right wire up the Mega/DUE to the devices (Si4735 and encoder). 
 
+It is important to know that any digital pin on Arduino DUE can be configured as interrupt. 
+
 ### Features:
 
 1. Encoder to tune stations;
