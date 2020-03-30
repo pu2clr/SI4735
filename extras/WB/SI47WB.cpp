@@ -48,6 +48,45 @@ void SI47WB::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
 }
 
 /*
+ * Set the frequency to the corrent function of the Si4735 (AM, FM or WB)
+ * You have to call setup or setPowerUp before call setFrequency.
+ * 
+ * @param uint16_t  freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
+ */
+/*
+void SI47WB::setFrequency(uint16_t freq)
+{
+    waitToSend(); // Wait for the si473x is ready.
+    currentFrequency.value = freq;
+    currentFrequencyParams.arg.FREQH = currentFrequency.raw.FREQH;
+    currentFrequencyParams.arg.FREQL = currentFrequency.raw.FREQL;
+
+    if (currentSsbStatus != 0)
+    {
+        currentFrequencyParams.arg.DUMMY1 = 0;
+        currentFrequencyParams.arg.USBLSB = currentSsbStatus; // Set to LSB or USB
+        currentFrequencyParams.arg.FAST = 1;                  // Used just on AM and FM
+        currentFrequencyParams.arg.FREEZE = 0;                // Used just on FM
+    }
+
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(currentTune);
+    Wire.write(currentFrequencyParams.raw[0]); // Send a byte with FAST and  FREEZE information; if not FM must be 0;
+    Wire.write(currentFrequencyParams.arg.FREQH);
+    Wire.write(currentFrequencyParams.arg.FREQL);
+    if (currentTune != WB_TUNE_FREQ ) { 
+        Wire.write(currentFrequencyParams.arg.ANTCAPH);
+        // If current tune is AM or SSB sent one more byte
+        if (currentTune != FM_TUNE_FREQ) 
+            Wire.write(currentFrequencyParams.arg.ANTCAPL);
+    }
+    Wire.endTransmission();
+    waitToSend();                         // Wait for the si473x is ready.
+    currentWorkFrequency = freq;          // check it
+    delay(MAX_DELAY_AFTER_SET_FREQUENCY); // For some reason I need to delay here.
+} */
+
+/*
  * Selects the tuning capacitor value.
  * 
  * For FM, Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the antenna input.

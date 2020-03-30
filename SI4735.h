@@ -708,7 +708,7 @@ static void interrupt_hundler()
 class SI4735
 {
 
-private:
+protected:
     char rds_buffer2A[65]; // RDS Radio Text buffer - Program Information
     char rds_buffer2B[33]; // RDS Radio Text buffer - Station Informaation
     char rds_buffer0A[9];  // RDS Basic tuning and switching information (Type 0 groups)
