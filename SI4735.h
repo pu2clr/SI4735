@@ -707,7 +707,6 @@ static void interrupt_hundler()
 
 class SI4735
 {
-
 protected:
     char rds_buffer2A[65]; // RDS Radio Text buffer - Program Information
     char rds_buffer2B[33]; // RDS Radio Text buffer - Station Informaation
