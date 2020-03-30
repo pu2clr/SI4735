@@ -1,5 +1,4 @@
 // Under construction.... 
-#include <SI4735.h>
 #include <SI47WB.h>
 
 /*
@@ -53,7 +52,7 @@ void SI47WB::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * 
  * @param uint16_t  freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
  */
-/*
+
 void SI47WB::setFrequency(uint16_t freq)
 {
     waitToSend(); // Wait for the si473x is ready.
@@ -84,7 +83,7 @@ void SI47WB::setFrequency(uint16_t freq)
     waitToSend();                         // Wait for the si473x is ready.
     currentWorkFrequency = freq;          // check it
     delay(MAX_DELAY_AFTER_SET_FREQUENCY); // For some reason I need to delay here.
-} */
+} 
 
 /*
  * Selects the tuning capacitor value.

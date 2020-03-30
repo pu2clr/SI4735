@@ -27,5 +27,5 @@ public:
     void setTuneFrequencyAntennaCapacitor(uint16_t capacitor);
     void setWB();
     void setWB(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step);
-    // void setFrequency(uint16_t freq)
+    void setFrequency(uint16_t freq)
 };
