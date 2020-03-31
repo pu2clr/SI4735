@@ -577,6 +577,8 @@ typedef union {
  * Group type 4A ( RDS Date and Time)
  * When group type 4A is used by the station, it shall be transmitted every minute according to EN 50067.
  * This Structure uses blocks 2,3 and 5 (B,C,D)
+ * 
+ *  Commented due to “Crosses boundary” on GCC 32-bit plataform.
  */
 /*
 typedef union {
