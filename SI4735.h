@@ -592,8 +592,8 @@ typedef union {
 
 /* AGC data types
  * FM / AM and SSB structure to AGC
- * See Si47XX PROGRAMMING GUIDE; AN332; For FM page 80; for AM page 142
- * See AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; For FM page 80; for AM page 142
+ * @see AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
  */
 typedef union {
     struct
