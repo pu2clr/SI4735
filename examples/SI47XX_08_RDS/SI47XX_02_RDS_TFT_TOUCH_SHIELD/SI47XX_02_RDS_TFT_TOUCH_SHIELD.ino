@@ -170,8 +170,11 @@ SI4735 si4735;
 
 // ALL Touch panels and wiring is DIFFERENT
 // copy-paste results from TouchScreen_Calibr_native.ino
+
+// TFT Touch shield 1 (old)
 const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
 const int TS_LEFT = 170, TS_RT = 827, TS_TOP = 130, TS_BOT = 868;
+
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 320);
 Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC;

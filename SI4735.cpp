@@ -1521,6 +1521,9 @@ char *SI4735::getRdsTime()
     // Need to check the Group Type before.
     si47x_rds_date_time dt;
 
+    uint16_t minute;
+    uint16_t hour;
+
     if (getRdsGroupType() == 4)
     {
         char offset_sign;
@@ -1536,23 +1539,15 @@ char *SI4735::getRdsTime()
         dt.raw[0] = currentRdsStatus.resp.BLOCKDL;
         dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
 
-        /*
-        y = (unsigned)(dt.refined.mjd - 15078.2) / 365.25;
-        m = ((unsigned)(dt.refined.mjd - 14956.1) - (unsigned)(y * 365.25)) / 30.6001;
-        d = (unsigned)(dt.refined.mjd - 14956) - (unsigned)(y * 365.25) - (m * 30.6001);
-
-        if (m > 13) {
-            m = 1;
-            y++;
-        }
-        y = y % 100;
-        */
-        // sprintf(rds_time, "%02/%02/%04 %02d:%02d", d,m,y,dt.refined.hour, dt.refined.minute);
+        minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
+        hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
 
         offset_sign = (dt.refined.offset_sense == 1) ? '+' : '-';
         offset_h = (dt.refined.offset * 30) / 60;
         offset_m = (dt.refined.offset * 30) - (offset_h * 60);
-        sprintf(rds_time, "%02d:%02d %c%02d:%02d", dt.refined.hour, dt.refined.minute, offset_sign, offset_h, offset_m);
+        // sprintf(rds_time, "%02u:%02u %c%02u:%02u", dt.refined.hour, dt.refined.minute, offset_sign, offset_h, offset_m);
+        sprintf(rds_time, "%02u:%02u %c%02u:%02u", hour, minute, offset_sign, offset_h, offset_m);
+
         return rds_time;
     }
 
