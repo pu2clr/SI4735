@@ -197,17 +197,7 @@ void SI4735::radioPowerUp(void) {
  */
 void SI4735::analogPowerUp(void)
 {
-    // delayMicroseconds(1000);
-    waitToSend();
-    Wire.beginTransmission(deviceAddress);
-    Wire.write(POWER_UP);
-    Wire.write(powerUp.raw[0]); // Content of ARG1
-    Wire.write(powerUp.raw[1]); // COntent of ARG2
-    Wire.endTransmission();
-    // Delay at least 500 ms between powerup command and first tune command to wait for
-    // the oscillator to stabilize if XOSCEN is set and crystal is used as the RCLK.
-    waitToSend();
-    delay(10); 
+    radioPowerUp();
 }
 
 /* 

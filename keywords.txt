@@ -8,7 +8,7 @@ S4735 KEYWORD1
 setup KEYWORD2
 reset KEYWORD2
 setPowerUp KEYWORD2
-setanalogPowerUp KEYWORD2
+radioPowerUp KEYWORD2
 setFrequency KEYWORD2
 frequencyUp KEYWORD2
 frequencyDown KEYWORD2
