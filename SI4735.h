@@ -526,36 +526,45 @@ typedef union {
  * Block B data type
  * See also Si47XX PROGRAMMING GUIDE; AN332; pages 78 and 79
  * See also https://en.wikipedia.org/wiki/Radio_Data_System
+ * 
+ * For GCC on System-V ABI on 386-compatible (32-bit processors), the following stands:
+ * 1) Bit-fields are allocated from right to left (least to most significant).
+ * 2) A bit-field must entirely reside in a storage unit appropriate for its declared type.
+ *    Thus a bit-field never crosses its unit boundary.
+ * 3) Bit-fields may share a storage unit with other struct/union members, including members that are not bit-fields.
+ *    Of course, struct members occupy different parts of the storage unit.
+ * 4) Unnamed bit-fields' types do not affect the alignment of a structure or union, although individual 
+      bit-fields' member offsets obey the alignment constraints.   
  */
 typedef union {
     struct
     {
-        uint8_t address : 2;            // Depends on Group Type and Version codes. If 0A or 0B it is the Text Segment Address.
-        uint8_t DI : 1;                 // Decoder Controll bit
-        uint8_t MS : 1;                 // Music/Speech
-        uint8_t TA : 1;                 // Traffic Announcement
-        uint8_t programType : 5;        // PTY (Program Type) code
-        uint8_t trafficProgramCode : 1; // (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
-        uint8_t versionCode : 1;        // (B0) => 0=A; 1=B
-        uint8_t groupType : 4;          // Group Type code.
+        uint16_t address : 2;            // Depends on Group Type and Version codes. If 0A or 0B it is the Text Segment Address.
+        uint16_t DI : 1;                 // Decoder Controll bit
+        uint16_t MS : 1;                 // Music/Speech
+        uint16_t TA : 1;                 // Traffic Announcement
+        uint16_t programType : 5;        // PTY (Program Type) code
+        uint16_t trafficProgramCode : 1; // (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
+        uint16_t versionCode : 1;        // (B0) => 0=A; 1=B
+        uint16_t groupType : 4;          // Group Type code.
     } group0;
     struct
     {
-        uint8_t address : 4;            // Depends on Group Type and Version codes. If 2A or 2B it is the Text Segment Address.
-        uint8_t textABFlag : 1;         // Do something if it chanhes from binary "0" to binary "1" or vice-versa
-        uint8_t programType : 5;        // PTY (Program Type) code
-        uint8_t trafficProgramCode : 1; // (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
-        uint8_t versionCode : 1;        // (B0) => 0=A; 1=B
-        uint8_t groupType : 4;          // Group Type code.
+        uint16_t address : 4;            // Depends on Group Type and Version codes. If 2A or 2B it is the Text Segment Address.
+        uint16_t textABFlag : 1;         // Do something if it chanhes from binary "0" to binary "1" or vice-versa
+        uint16_t programType : 5;        // PTY (Program Type) code
+        uint16_t trafficProgramCode : 1; // (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
+        uint16_t versionCode : 1;        // (B0) => 0=A; 1=B
+        uint16_t groupType : 4;          // Group Type code.
     } group2;
     struct
     {
-        uint8_t content : 4;            // Depends on Group Type and Version codes.
-        uint8_t textABFlag : 1;         // Do something if it chanhes from binary "0" to binary "1" or vice-versa
-        uint8_t programType : 5;        // PTY (Program Type) code
-        uint8_t trafficProgramCode : 1; // (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
-        uint8_t versionCode : 1;        // (B0) => 0=A; 1=B
-        uint8_t groupType : 4;          // Group Type code.
+        uint16_t content : 4;            // Depends on Group Type and Version codes.
+        uint16_t textABFlag : 1;         // Do something if it chanhes from binary "0" to binary "1" or vice-versa
+        uint16_t programType : 5;        // PTY (Program Type) code
+        uint16_t trafficProgramCode : 1; // (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
+        uint16_t versionCode : 1;        // (B0) => 0=A; 1=B
+        uint16_t groupType : 4;          // Group Type code.
     } refined;
     struct
     {
