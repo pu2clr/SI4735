@@ -2214,8 +2214,8 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 }
 
 /**
- *  Under construction... 
- *  Transfers the content of a patch stored in a eeprom to the SI4735 device.
+ * Under construction... 
+ * Transfers the content of a patch stored in a eeprom to the SI4735 device.
  * 
  * TO USE THIS METHOD YOU HAVE TO HAVE A EEPROM WRITEN WITH THE PATCH CONTENT
  * 
