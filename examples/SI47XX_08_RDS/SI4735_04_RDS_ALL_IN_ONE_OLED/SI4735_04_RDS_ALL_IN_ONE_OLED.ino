@@ -359,7 +359,8 @@ void showStatus()
 */
 void showRSSI()
 {
-  char c = '>';
+  char c[2] = ">";
+
   int bars = ((rssi / 10.0) / 2.0) + 1;
 
   oled.setCursor(80, 3);
@@ -368,10 +369,10 @@ void showRSSI()
   oled.print("S:");
   if ( bars > 5 )  {
     bars = 5;
-    c = '+';
+    c[0] = '+';
   }
   for (int i = 0; i < bars; i++)
-    oled.print(">");
+    oled.print(c);
 
   if ( currentMode == FM) {
     oled.setCursor(0, 3);

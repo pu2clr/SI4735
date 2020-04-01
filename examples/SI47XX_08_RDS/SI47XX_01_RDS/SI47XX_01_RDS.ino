@@ -37,7 +37,6 @@ unsigned fm_freq;
         "Folk Music", "Documentary", "Alarm Test", "Alarm"};
 
   // USA - comment above and uncomment below if you are using USA
-  /*
   char * tabProgramType[] = {
   "No program definition type", "News", "Information", "Sport", "Talk", "Rock", "Classic Rock",
   "Adult Hits", "Soft Rock", "Top 40", "Country Music", "Oldies Music", "Soft Music", "Nostalgia",
