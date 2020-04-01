@@ -1288,6 +1288,8 @@ void SI4735::setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t
     Wire.write(config.raw[0]);
     Wire.endTransmission();
     delayMicroseconds(550);
+
+    RdsInit(); 
 }
 
 /** 
