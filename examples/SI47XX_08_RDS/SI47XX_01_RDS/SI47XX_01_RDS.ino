@@ -66,9 +66,6 @@ void setup()
 
   delay(500);
 
-  // RDS setup 
-  si4735.RdsInit();
-
   fm_freq = rdsStations[currentStation];
 
   si4735.setFrequency(fm_freq);
@@ -76,7 +73,6 @@ void setup()
   showHelp();
 
   showCurrenteStatus();
-
   si4735.setRdsConfig(1, 2, 2, 2, 2);
 }
 

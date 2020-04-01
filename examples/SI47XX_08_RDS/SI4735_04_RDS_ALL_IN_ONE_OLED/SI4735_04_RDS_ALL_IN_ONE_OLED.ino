@@ -558,7 +558,6 @@ void useBand()
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     bfoOn = ssbLoaded = false;
-    si4735.RdsInit();
     si4735.setRdsConfig(1, 2, 2, 2, 2);
   }
   else
