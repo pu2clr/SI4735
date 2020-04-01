@@ -815,10 +815,12 @@ public:
     uint16_t getFrequency(void);
     uint16_t getCurrentFrequency(); // See documentation
 
-    /* STATUS RESPONSE
+    /** 
+     * STATUS RESPONSE
      * Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation
      * See Si47XX PROGRAMMING GUIDE; AN332; pages 63
      */
+    
     inline bool getSignalQualityInterrupt() { return currentStatus.resp.RSQINT; };           // Gets Received Signal Quality Interrupt(RSQINT)
     inline bool getRadioDataSystemInterrupt() { return currentStatus.resp.RDSINT; };         // Gets Radio Data System (RDS) Interrupt
     inline bool getTuneCompleteTriggered() { return currentStatus.resp.STCINT; };            // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.

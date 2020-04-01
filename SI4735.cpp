@@ -1387,6 +1387,9 @@ void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
 /**
  * Gets RDS Status.
  * Same result of calling getRdsStatus(0,0,0);
+ * 
+ * @see SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
+ * 
  * Please, call getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY) instead getRdsStatus() 
  * if you want other behaviour
  */
@@ -1395,14 +1398,15 @@ void SI4735::getRdsStatus()
     getRdsStatus(0, 0, 0);
 }
 
-
-// TO DO
-
 // See inlines methods / functions on SI4735.h
 
-/* 
+/**  
  * Returns the programa type. 
  * Read the Block A content
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
+ * 
+ * @return BLOCKAL
  */
 uint16_t SI4735::getRdsPI(void)
 {
