@@ -270,12 +270,13 @@ void SI4735::getFirmware(void)
  *
  * If the audio mode parameter is not entered, analog mode will be considered.
  *  
+ * 
  * @param uint8_t resetPin Digital Arduino Pin used to RESET command 
  * @param uint8_t interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled
  * @param uint8_t defaultFunction
  * @param uint8_t audioMode default SI473X_ANALOG_AUDIO (Analog Audio). Use SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO
  */
-void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO)
+void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode)
 {
     uint8_t interruptEnable = 0;
     Wire.begin();
@@ -1458,7 +1459,6 @@ uint8_t SI4735::getRdsFlagAB(void)
  */
 uint8_t SI4735::getRdsTextSegmentAddress(void)
 {
-
     si47x_rds_blockb blkb;
     blkb.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
     blkb.raw.highValue = currentRdsStatus.resp.BLOCKBH;

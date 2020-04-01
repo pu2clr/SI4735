@@ -798,8 +798,10 @@ public:
     void reset(void);
     void waitToSend(void); // Wait for Si4735 device ready to receive command
 
+    // for setup, the default is  SI473X_ANALOG_AUDIO
     void setup(uint8_t resetPin, uint8_t defaultFunction);
     void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO);
+    
     void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE);
     void radioPowerUp(void);    // call setPowerUp before call this method.
     void analogPowerUp(void);   // deprecated. Use radioPowerUp.
@@ -820,7 +822,7 @@ public:
      * Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation
      * See Si47XX PROGRAMMING GUIDE; AN332; pages 63
      */
-    
+
     inline bool getSignalQualityInterrupt() { return currentStatus.resp.RSQINT; };           // Gets Received Signal Quality Interrupt(RSQINT)
     inline bool getRadioDataSystemInterrupt() { return currentStatus.resp.RDSINT; };         // Gets Radio Data System (RDS) Interrupt
     inline bool getTuneCompleteTriggered() { return currentStatus.resp.STCINT; };            // Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
