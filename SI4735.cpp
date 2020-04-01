@@ -2048,7 +2048,7 @@ void SI4735::sendSSBModeProperty()
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 214, 215, 216, 219
  * @see si47x_firmware_query_library in SI4735.h
  * 
- * @return si47x_firmware_query_library 
+ * @return si47x_firmware_query_library  Library Identification
  */
 si47x_firmware_query_library SI4735::queryLibraryId()
 {
