@@ -1728,7 +1728,14 @@ char *SI4735::getRdsTime()
 }
 
 /***************************************************************************************
- * SSB implementation 
+ * Single Side Band (SSB) implementation 
+ * 
+ * This implementation was tested only on Si4735-D60 device. 
+ *
+ * SSB modulation is a refinement of amplitude modulation that one of the side band 
+ * and the carrier are suppressed.
+ *
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5 
  * 
  * First of all, it is important to say that the SSB patch content is not part of
  * this library. The paches used here were made available by Mr. Vadim Afonkin on 
@@ -1910,7 +1917,7 @@ void SI4735::setSBBSidebandCutoffFilter(uint8_t SBCUTFLT)
     sendSSBModeProperty();
 }
 
-/*
+/**
  * SSB Audio Bandwidth for SSB mode
  * 
  * 0 = 1.2 kHz low-pass filter* . (default)
@@ -1930,6 +1937,8 @@ void SI4735::setSBBSidebandCutoffFilter(uint8_t SBCUTFLT)
  *   Otherwise, set it to 1.
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
+ * 
+ * @param AUDIOBW the valid values are 0, 1, 2, 3, 4 or 5; see description above
  */
 void SI4735::setSSBAudioBandwidth(uint8_t AUDIOBW)
 {
@@ -1938,8 +1947,15 @@ void SI4735::setSSBAudioBandwidth(uint8_t AUDIOBW)
     sendSSBModeProperty();
 }
 
-/*
- * Set the radio to AM function. It means: LW MW and SW.
+/**
+ * Set the radio to AM function. 
+ * It means: LW MW and SW.
+ * 
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14 
+ * @see setAM()
+ * @see void SI4735::setFrequency(uint16_t freq)
+ * 
+ * @param usblsb upper or lower side band;  1 = LSB; 2 = USB
  */
 void SI4735::setSSB(uint8_t usblsb)
 {
@@ -1983,7 +1999,7 @@ void SI4735::setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, ui
     delayMicroseconds(550);
 }
 
-/* 
+/**  
  * Just send the property SSB_MOD to the device. 
  * Internal use (privete method). 
  */
@@ -2004,20 +2020,37 @@ void SI4735::sendSSBModeProperty()
     delayMicroseconds(550);
 }
 
-/*
- * ****************
- * PATCH RESOURCES
- */
+/***************************************************************************************
+ * SI47XX PATCH RESOURCES
+ **************************************************************************************/
 
-/*
+/** 
    Call it first if you are applying a patch on SI4735. 
    Used to confirm if the patch is compatible with the internal device library revision.
    See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
 
    @return a struct si47x_firmware_query_library (see it in SI4735.h)
 */
-si47x_firmware_query_library
-SI4735::queryLibraryId()
+
+/**
+ * Query the library information
+ * 
+ * You have to call this function if you are applying a patch on SI47XX (SI4735-D60)
+ * 
+ * The first command that is sent to the device is the POWER_UP command to confirm 
+ * that the patch is compatible with the internal device library revision. 
+ * The device moves into the powerup mode, returns the reply, and moves into the 
+ * powerdown mode. The POWER_UP command is sent to the device again to configure 
+ * the mode of the device and additionally is used to start the patching process.
+ * When applying the patch, the PATCH bit in ARG1 of the POWER_UP command must be 
+ * set to 1 to begin the patching process. [AN332 page 219].
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 214, 215, 216, 219
+ * @see si47x_firmware_query_library in SI4735.h
+ * 
+ * @return si47x_firmware_query_library 
+ */
+si47x_firmware_query_library SI4735::queryLibraryId()
 {
     si47x_firmware_query_library libraryID;
 
@@ -2045,12 +2078,13 @@ SI4735::queryLibraryId()
     return libraryID;
 }
 
-/*
+/**  
  *  This method can be used to prepare the device to apply SSBRX patch
  *  Call queryLibraryId before call this method. 
- *  Powerup the device by issuing the POWER_UP command with FUNC = 1 (AM/SW/LW Receive) 
- *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
- *  AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
+ *  Powerup the device by issuing the POWER_UP command with FUNC = 1 (AM/SW/LW Receive)
+ *  
+ *  @see Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
+ *  @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
  */
 void SI4735::patchPowerUp()
 {
@@ -2063,7 +2097,7 @@ void SI4735::patchPowerUp()
     delayMicroseconds(2500);
 }
 
-/* 
+/** 
  * Starts the Si473X device on SSB (same AM Mode). 
  * Same SI4735::setup optimized to improve loading patch performance 
  */
@@ -2074,7 +2108,10 @@ void SI4735::ssbSetup()
     // radioPowerUp();
 }
 
-// Used for test
+
+/**
+ * This function can be useful for debug and teste. 
+ */
 void SI4735::ssbPowerUp()
 {
     waitToSend();
@@ -2093,10 +2130,9 @@ void SI4735::ssbPowerUp()
     powerUp.arg.OPMODE = 0b00000101; // 0x5 = 00000101 = Analog audio outputs (LOUT/ROUT).
 }
 
-/*
+/**
  *  Transfers the content of a patch stored in a array of bytes to the SI4735 device. 
  *  You must mount an array as shown below and know the size of that array as well.
- *  See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.  
  * 
  *  It is importante to say  that patches to the SI4735 are distributed in binary form and 
  *  have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino).
@@ -2106,6 +2142,8 @@ void SI4735::ssbPowerUp()
  * 
  *  The disadvantage of this approach is the amount of memory used by the patch content. 
  *  This may limit the use of other radio functions you want implemented in Arduino.
+ * 
+ *  @see Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.  
  * 
  *  Example of content:
  *  const PROGMEM uint8_t ssb_patch_content_full[] =
@@ -2175,11 +2213,12 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
     return true;
 }
 
-/*
+/**
  *  Under construction... 
  *  Transfers the content of a patch stored in a eeprom to the SI4735 device.
  * 
  * TO USE THIS METHOD YOU HAVE TO HAVE A EEPROM WRITEN WITH THE PATCH CONTENT
+ * 
  * @see the sketch write_ssb_patch_eeprom.ino (TO DO)
  * 
  * @param eeprom_i2c_address 
