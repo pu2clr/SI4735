@@ -1468,7 +1468,8 @@ uint8_t SI4735::getRdsTextSegmentAddress(void)
 
 /**
  * Gets the version code (extracted from the Block B)
- * Returns  0=A or 1=B
+ * 
+ * @returns  0=A or 1=B
  */
 uint8_t SI4735::getRdsVersionCode(void)
 {
@@ -1480,8 +1481,12 @@ uint8_t SI4735::getRdsVersionCode(void)
     return blkb.refined.versionCode;
 }
 
-/* 
+/**  
  * Returns the Program Type (extracted from the Block B)
+ * 
+ * @see https://en.wikipedia.org/wiki/Radio_Data_System
+ * 
+ * @return program type (an integer betwenn 0 and 31)
  */
 uint8_t SI4735::getRdsProgramType(void)
 {
@@ -1493,6 +1498,11 @@ uint8_t SI4735::getRdsProgramType(void)
     return blkb.refined.programType;
 }
 
+/**
+ * Process data received from group 2B
+ * 
+ * @param c  char array reference to the "group 2B" text 
+ */
 void SI4735::getNext2Block(char *c)
 {
     char raw[2];
@@ -1520,6 +1530,11 @@ void SI4735::getNext2Block(char *c)
     }
 }
 
+/**
+ * Process data received from group 2A
+ * 
+ * @param c  char array reference to the "group  2A" text 
+ */
 void SI4735::getNext4Block(char *c)
 {
     char raw[4];
@@ -1548,8 +1563,11 @@ void SI4735::getNext4Block(char *c)
     }
 }
 
-/*
+
+/**
  * Gets the RDS Text when the message is of the Group Type 2 version A
+ * 
+ * @return char*  The string (char array) with the content (Text) received from group 2A 
  */
 char *SI4735::getRdsText(void)
 {
@@ -1567,6 +1585,12 @@ char *SI4735::getRdsText(void)
     return rds_buffer2A;
 }
 
+/**
+ * Gets the station name and other messages. 
+ * 
+ * @return char* should return a string with the station name. 
+ *         However, some stations send other kind of messages
+ */
 char *SI4735::getRdsText0A(void)
 {
     si47x_rds_blockb blkB;
@@ -1593,6 +1617,11 @@ char *SI4735::getRdsText0A(void)
     return NULL;
 }
 
+/**
+ * Gets the Text processed for the 2A group
+ * 
+ * @return char* string with the Text of the group A2  
+ */
 char *SI4735::getRdsText2A(void)
 {
     si47x_rds_blockb blkB;
@@ -1619,6 +1648,12 @@ char *SI4735::getRdsText2A(void)
     return NULL;
 }
 
+
+/**
+ * Gets the Text processed for the 2B group
+ * 
+ * @return char* string with the Text of the group AB  
+ */
 char *SI4735::getRdsText2B(void)
 {
     si47x_rds_blockb blkB;
@@ -1645,8 +1680,10 @@ char *SI4735::getRdsText2B(void)
     return NULL;
 }
 
-/* 
+/**
  * Gets the RDS time and date when the Group type is 4 
+ * 
+ * @return char* a string with hh:mm +/- offset
  */
 char *SI4735::getRdsTime()
 {
@@ -1690,15 +1727,57 @@ char *SI4735::getRdsTime()
     return NULL;
 }
 
-/*
- * SSB Comand and properties implementation 
+/***************************************************************************************
+ * SSB implementation 
  * 
- * First consideration: I will write here about the Patches released by SIlicon Labs for some customers....
+ * First of all, it is important to say that the SSB patch content is not part of
+ * this library. The paches used here were made available by Mr. Vadim Afonkin on 
+ * his Dropbox repository. It is important to note that the author of this library
+ * does not encourage anyone to use the SSB patches content for commercial purposes.
+ * In other words, this library only supports SSB patches, the patches themselves 
+ * are not part of this library.  
  * 
- */
+ * What does SSB patch means?
+ * In this context, a patch is a piece of software used to change the behavior of 
+ * the SI4735 device.
+ * There is little information available about patching the SI4735.
+ *  
+ * The following information is the understanding of the author of this project and 
+ * it is not necessarily correct. 
+ * 
+ * A patch is executed internally (run by internal MCU) of the device. Usually, 
+ * patches are used to fixes bugs or add improvements and new features of the firmware
+ * installed in the internal ROM of the device. Patches to the SI4735 are distributed
+ * in binary form and have to be transferred to the internal RAM of the device by the 
+ * host MCU (in this case Arduino boards). 
+ * Since the RAM is volatile memory, the patch stored into the device gets lost when 
+ * you turn off the system. Consequently, the content of the patch has to be transferred
+ * again to the device each time after turn on the system or reset the device.
+ * 
+ * I would like to thank Mr Vadim Afonkin for making available the SSBRX patches for 
+ * SI4735-D60 on his Dropbox repository. On this repository you have two files, 
+ * amrx_6_0_1_ssbrx_patch_full_0x9D29.csg and amrx_6_0_1_ssbrx_patch_init_0xA902.csg. 
+ * It is important to know that the patch content of the original files is constant 
+ * hexadecimal representation used by the language C/C++. Actally, the original files 
+ * are in ASCII format (not in binary format). 
+ * If you are not using C/C++ or if you want to load the files directly to the SI4735, 
+ * you must convert the values to numeric value of the hexadecimal constants. 
+ * For example: 0x15 = 21 (00010101); 0x16 = 22 (00010110); 0x01 = 1 (00000001); 
+ * 0xFF = 255 (11111111);
+ *
+ * ATTENTION: The author of this project does not guarantee that procedures shown 
+ * here will work in your development environment. Given this, it is at your own risk 
+ * to continue with the procedures suggested here. This library works with the I²C 
+ * communication protocol and it is designed to apply a SSB extension PATCH to CI 
+ * SI4735-D60. Once again, the author disclaims any liability for any damage this 
+ * procedure may cause to your SI4735 or other devices that you are using.
+ ****************************************************************************************/
 
-/* 
+/**
  * Sets the SSB Beat Frequency Offset (BFO). 
+ * 
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 5 and 23
+ * 
  * @param offset 16-bit signed value (unit in Hz). The valid range is -16383 to +16383 Hz. 
  */
 void SI4735::setSSBBfo(int offset)
@@ -1727,7 +1806,7 @@ void SI4735::setSSBBfo(int offset)
     delayMicroseconds(550);
 }
 
-/*
+/**
  * Set the SSB receiver mode details:
  * 1) Enable or disable AFC track to carrier function for receiving normal AM signals;
  * 2) Set the audio bandwidth;
@@ -1762,10 +1841,12 @@ void SI4735::setSSBConfig(uint8_t AUDIOBW, uint8_t SBCUTFLT, uint8_t AVC_DIVIDER
     sendSSBModeProperty();
 }
 
-/* 
+/**
  * Sets DSP AFC disable or enable
- * 0 = SYNC mode, AFC enable
- * 1 = SSB mode, AFC disable
+ * 
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
+ * 
+ * @param DSP_AFCDIS 0 = SYNC mode, AFC enable; 1 = SSB mode, AFC disable
  */
 void SI4735::setSSBDspAfc(uint8_t DSP_AFCDIS)
 {
@@ -1773,10 +1854,13 @@ void SI4735::setSSBDspAfc(uint8_t DSP_AFCDIS)
     sendSSBModeProperty();
 }
 
-/* 
- * Sets SSB Soft-mute Based on RSSI or SNR Selection:
- * 0 = Soft-mute based on RSSI (default).
- * 1 = Soft-mute based on SNR.
+
+/**
+ * Sets SSB Soft-mute Based on RSSI or SNR Selection: 
+ * 
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
+ * 
+ * @param SMUTESEL  0 = Soft-mute based on RSSI (default); 1 = Soft-mute based on SNR.
  */
 void SI4735::setSSBSoftMute(uint8_t SMUTESEL)
 {
@@ -1784,10 +1868,12 @@ void SI4735::setSSBSoftMute(uint8_t SMUTESEL)
     sendSSBModeProperty();
 }
 
-/*
+/**
  * Sets SSB Automatic Volume Control (AVC) for SSB mode
- * 0 = Disable AVC.
- * 1 = Enable AVC (default).
+ * 
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
+ * 
+ * @param AVCEN 0 = Disable AVC; 1 = Enable AVC (default).
  */
 void SI4735::setSSBAutomaticVolumeControl(uint8_t AVCEN)
 {
@@ -1795,10 +1881,12 @@ void SI4735::setSSBAutomaticVolumeControl(uint8_t AVCEN)
     sendSSBModeProperty();
 }
 
-/*
+/**
  * Sets AVC Divider
- * for SSB mode, set divider = 0
- * for SYNC mode, set divider = 3 Other values = not allowed.
+ * 
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24  
+ * 
+ * @param AVC_DIVIDER  SSB mode, set divider = 0; SYNC mode, set divider = 3; Other values = not allowed.
  */
 void SI4735::setSSBAvcDivider(uint8_t AVC_DIVIDER)
 {
@@ -1806,11 +1894,15 @@ void SI4735::setSSBAvcDivider(uint8_t AVC_DIVIDER)
     sendSSBModeProperty();
 }
 
-/* 
+/**  
  * Sets SBB Sideband Cutoff Filter for band pass and low pass filters:
  * 0 = Band pass filter to cutoff both the unwanted side band and high frequency components > 2.0 kHz of the wanted side band. (default)
  * 1 = Low pass filter to cutoff the unwanted side band. 
  * Other values = not allowed.
+ *
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
+ *  
+ * @param SBCUTFLT 0 or 1; see above
  */
 void SI4735::setSBBSidebandCutoffFilter(uint8_t SBCUTFLT)
 {
