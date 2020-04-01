@@ -320,7 +320,6 @@ char bufferFreq[10];
 void showFrequency()
 {
   float freq;
-  int iFreq, dFreq;
   uint16_t color;
 
   // Clear the frequency field
@@ -354,8 +353,6 @@ char bufferAGC[10];
 
 void showStatus()
 {
-
-  char unit[5];
   si4735.getStatus();
   si4735.getCurrentReceivedSignalQuality();
   // SRN

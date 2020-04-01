@@ -355,7 +355,6 @@ void showStatus()
 */
 void showRSSI()
 {
-  char c = '>';
   int bars = ((rssi / 10.0) / 2.0) + 1;
 
   display.setCursor(13, 3);
@@ -364,7 +363,6 @@ void showRSSI()
   display.print("S:");
   if ( bars > 5 )  {
     bars = 5;
-    c = '+';
   }
   for (int i = 0; i < bars; i++)
     display.print(">");

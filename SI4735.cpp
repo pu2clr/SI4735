@@ -1466,7 +1466,7 @@ uint8_t SI4735::getRdsTextSegmentAddress(void)
     return blkb.refined.content;
 }
 
-/*
+/**
  * Gets the version code (extracted from the Block B)
  * Returns  0=A or 1=B
  */

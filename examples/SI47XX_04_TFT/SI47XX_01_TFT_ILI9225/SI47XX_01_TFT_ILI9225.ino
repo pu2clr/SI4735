@@ -312,7 +312,6 @@ void rotaryEncoder()
 void showFrequency()
 {
   float freq;
-  int iFreq, dFreq;
   uint16_t color;
 
   tft.setFont(Trebuchet_MS16x21);
@@ -339,7 +338,6 @@ void showFrequency()
 */
 void showStatus()
 {
-  char unit[5];
   si4735.getStatus();
   si4735.getCurrentReceivedSignalQuality();
   // SRN

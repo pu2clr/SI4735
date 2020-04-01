@@ -357,7 +357,6 @@ void showStatus()
 */
 void showRSSI()
 {
-  char c = '>';
   int bars = ((rssi / 10.0) / 2.0) + 1;
 
   oled.setCursor(80, 3);
@@ -366,7 +365,6 @@ void showRSSI()
   oled.print("S:");
   if ( bars > 5 )  {
     bars = 5;
-    c = '+';
   }
   for (int i = 0; i < bars; i++)
     oled.print(">");
