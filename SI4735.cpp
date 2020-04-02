@@ -1,4 +1,4 @@
-/**
+/*!
  * This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
  * Arduino development environment.  It works with I2C protocol. 
  * This library is intended to provide an easier interface for controlling the SI4735.

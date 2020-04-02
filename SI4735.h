@@ -1,4 +1,4 @@
-/**
+/*!
  * SI4735 ARDUINO LIBRARY  
  * Const, Data type and Methods definitions
  * References: 
