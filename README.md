@@ -257,7 +257,6 @@ This library was developed using the C++ language and the Object-oriented Progra
 All methods defined in Si4735 class are explained on [API documentation of this library](https://github.com/pu2clr/SI4735/tree/master/extras/apidoc/rtf). The list below refer to the method groups implemented by the Si4735 class.   
 
 
-
 #### Si47XX device setup and startup
 
 Methods of this group are useful to configure the way that the Si47XX devices have to be initiate. 
