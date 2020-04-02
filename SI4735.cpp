@@ -24,8 +24,12 @@
 
 #include <SI4735.h>
 
+/** @defgroup group05 Deal with Interrupt and I2C bus */
+
 /**
- * Construct a new SI4735::SI4735 object
+ * @ingroup group05 Constructor
+ * 
+ * @brief Construct a new SI4735::SI4735 object
  * 
  */
 SI4735::SI4735()
@@ -40,7 +44,11 @@ SI4735::SI4735()
 */
 
 /**
- *  If you setup interrupt, this function will be called whenever the Si4735 changes. 
+ * @ingroup group05 Interrupt
+ *  
+ * @brief Interrupt handle
+ * 
+ * @details If you setup interrupt, this function will be called whenever the Si4735 changes. 
  * 
  */
 void SI4735::waitInterrupr(void)
@@ -50,7 +58,12 @@ void SI4735::waitInterrupr(void)
 }
 
 /** 
- * Scans for two possible addresses for the Si47XX (0x11 or 0x63 )
+ * @ingroup group05 I2C bus address
+ * 
+ * @brief I2C bus address setup
+ * 
+ * @details Scans for two possible addresses for the Si47XX (0x11 or 0x63 )
+ * 
  * This function also sets the system to the found I2C bus address of Si47XX.
  * 
  * You do not need to use this function if the SEN PIN is configured to ground (GND). 
@@ -58,8 +71,8 @@ void SI4735::waitInterrupr(void)
  * Use this function if you do not know how the SEN pin is configured.
  * 
  * @param uint8_t  resetPin MCU Mater (Arduino) reset pin
- * @return int16_t 0x11   if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of
- *                 the Si47XX is HIGH or 0x0 if error.                
+ * 
+ * @return int16_t 0x11   if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error.                
  */
 int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
     int16_t error;
@@ -92,10 +105,12 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
 }
 
 /** 
- * Sets the I2C Bus Address
+ * @ingroup group05 I2C bus address
+ * 
+ * @brief Sets the I2C Bus Address
  *
- * ATTENTION: 
- * The parameter senPin is not the I2C bus address. It is the SEN pin setup of the schematic (eletronic circuit).
+ * @details The parameter senPin is not the I2C bus address. It is the SEN pin setup of the schematic (eletronic circuit).
+ * 
  * If it is connected to the ground, call this function with senPin = 0; else senPin = 1.
  * You do not need to use this function if the SEN PIN configured to ground (GND).
  * 
@@ -111,17 +126,25 @@ void SI4735::setDeviceI2CAddress(uint8_t senPin) {
 };
 
 /**
- * Sets the onther I2C Bus Address (for Si470X) 
- * You can set another I2C address different of 0x11  and 0x63
+ * @ingroup group05 I2C bus address
+ * 
+ * @brief Sets the onther I2C Bus Address (for Si470X) 
+ * 
+ * @details You can set another I2C address different of 0x11  and 0x63
+ * 
  * @param uint8_t i2cAddr (example 0x10)
  */
 void SI4735::setDeviceOtherI2CAddress(uint8_t i2cAddr) {
     deviceAddress = i2cAddr;
 };
 
+/** @defgroup group06 Host and slave MCU setup */
 
 /**
- * Reset the SI473X   
+ * @ingroup group06 RESET
+ * 
+ * @brief Reset the SI473X  
+ *  
  * @see Si47XX PROGRAMMING GUIDE; AN332;
  */
 void SI4735::reset()
@@ -135,8 +158,12 @@ void SI4735::reset()
 }
 
 /**
- * Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1).  
+ * @ingroup group06 Wait to send command 
+ * 
+ * @brief  Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1).  
+ * 
  * This function should be used before sending any command to a SI47XX device.
+ * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 63, 128
  */
 void SI4735::waitToSend()
