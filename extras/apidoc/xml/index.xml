@@ -487,6 +487,34 @@
     <member refid="unionsi47x__tune__status_1a6cb498a025a973418d27991eb3151489" kind="variable"><name>arg</name></member>
     <member refid="unionsi47x__tune__status_1aefcfcb9eaa95ed7d8ce1740ac7f9eb7e" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="keywords_8txt" kind="file"><name>keywords.txt</name>
+  </compound>
+  <compound refid="license_8txt" kind="file"><name>license.txt</name>
+    <member refid="license_8txt_1af02105b8d25cac5346c70f0f8bebb2e8" kind="variable"><name>charge</name></member>
+    <member refid="license_8txt_1af6e42a41d4c1cf711ce91ba8a9536d5e" kind="variable"><name>restriction</name></member>
+    <member refid="license_8txt_1a7388852deccfa55d4e4bca59a3355748" kind="variable"><name>use</name></member>
+    <member refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kind="variable"><name>copy</name></member>
+    <member refid="license_8txt_1a84db115c842c0bc29f97fd73629d8163" kind="variable"><name>modify</name></member>
+    <member refid="license_8txt_1aad4b713ca657a67ecbb454b02ceabff8" kind="variable"><name>merge</name></member>
+    <member refid="license_8txt_1ada0e4295c02ecf483dd4971c92e92f1c" kind="variable"><name>publish</name></member>
+    <member refid="license_8txt_1aa3cf7f49d189d9fc5cee827d2633810d" kind="variable"><name>distribute</name></member>
+    <member refid="license_8txt_1a9f571168d2ee9a598450704a59d048d3" kind="variable"><name>sublicense</name></member>
+    <member refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kind="variable"><name>Software</name></member>
+    <member refid="license_8txt_1ad33c8f6a68363f2875b84f7c4ca98aba" kind="variable"><name>so</name></member>
+    <member refid="license_8txt_1a044015f5b936eb88da66708aa08bd4ac" kind="variable"><name>conditions</name></member>
+    <member refid="license_8txt_1a21bee792560027a3b96a9a882b5828d5" kind="variable"><name>KIND</name></member>
+    <member refid="license_8txt_1a9c731e523f6a35737f231bf24431695d" kind="variable"><name>IMPLIED</name></member>
+    <member refid="license_8txt_1a383a15303ad81a4fe142cc242a159500" kind="variable"><name>MERCHANTABILITY</name></member>
+    <member refid="license_8txt_1a4a9625896658845302ef88eafd1fa1e4" kind="variable"><name>CLAIM</name></member>
+    <member refid="license_8txt_1ae99750133f5a506a38868d5f2722a738" kind="variable"><name>LIABILITY</name></member>
+    <member refid="license_8txt_1a11bbb92d08ed0375aed257ed87428ab5" kind="variable"><name>CONTRACT</name></member>
+    <member refid="license_8txt_1a511c87561dea0d59cb52a8dccf4f47b7" kind="variable"><name>OTHERWISE</name></member>
+    <member refid="license_8txt_1a335caee353e1dcd2730d391908fd43a1" kind="variable"><name>FROM</name></member>
+    <member refid="license_8txt_1a6d046fad0357ac1277fe46baca5cc7de" kind="function"><name>Copyright</name></member>
+    <member refid="license_8txt_1a230902626bc74ad7e058274476c0ff96" kind="function"><name>files</name></member>
+  </compound>
+  <compound refid="_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
+  </compound>
   <compound refid="_s_i4735_8cpp" kind="file"><name>SI4735.cpp</name>
   </compound>
   <compound refid="_s_i4735_8h" kind="file"><name>SI4735.h</name>
@@ -598,9 +626,6 @@
     <member refid="_s_i4735_8h_1a36a47e0973bdcc39f5d864e4fee7cd66" kind="variable"><name>data_from_si4735</name></member>
     <member refid="group__group04_1ga01f69d5bf584f94eabd1b113579b2c1e" kind="function"><name>interrupt_hundler</name></member>
   </compound>
-  <compound refid="group__group04" kind="group"><name>group04</name>
-    <member refid="group__group04_1ga01f69d5bf584f94eabd1b113579b2c1e" kind="function"><name>interrupt_hundler</name></member>
-  </compound>
   <compound refid="group__group05" kind="group"><name>group05</name>
     <member refid="group__group05_1ga818c60896490631e4311452c99ff361f" kind="function"><name>SI4735</name></member>
     <member refid="group__group05_1gad2e95c88de0dfa58ff7aa36988071421" kind="function"><name>waitInterrupr</name></member>
@@ -616,11 +641,10 @@
     <member refid="group__group06_1ga412f51386c47a17cf04fd0a3c3078726" kind="function"><name>analogPowerUp</name></member>
     <member refid="group__group06_1gaa554b3390fb6c5a4d6661b96afae73ae" kind="function"><name>powerDown</name></member>
   </compound>
-  <compound refid="group__group02" kind="group"><name>group02</name>
-  </compound>
-  <compound refid="group__group03" kind="group"><name>group03</name>
-  </compound>
-  <compound refid="group__group01" kind="group"><name>group01</name>
+  <compound refid="group__group07" kind="group"><name>group07</name>
+    <member refid="group__group07_1ga2fbc7e2187a7c645879623100dbc8502" kind="function"><name>getFirmware</name></member>
+    <member refid="group__group07_1ga95fd37277dbb8b16b5ae7a996a5f9eba" kind="function"><name>setup</name></member>
+    <member refid="group__group07_1ga944ed704e2175a6cf660ad65ca5bbad5" kind="function"><name>setup</name></member>
   </compound>
   <compound refid="group__group08" kind="group"><name>group08</name>
     <member refid="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" kind="function"><name>setTuneFrequencyAntennaCapacitor</name></member>
@@ -633,10 +657,16 @@
     <member refid="group__group08_1ga43c5ea36995a3897820e0170d94c81f4" kind="function"><name>setAM</name></member>
     <member refid="group__group08_1ga673bc4b17d564bb6e7f3e9a61d35fbb3" kind="function"><name>setFM</name></member>
   </compound>
-  <compound refid="group__group07" kind="group"><name>group07</name>
-    <member refid="group__group07_1ga2fbc7e2187a7c645879623100dbc8502" kind="function"><name>getFirmware</name></member>
-    <member refid="group__group07_1ga95fd37277dbb8b16b5ae7a996a5f9eba" kind="function"><name>setup</name></member>
-    <member refid="group__group07_1ga944ed704e2175a6cf660ad65ca5bbad5" kind="function"><name>setup</name></member>
+  <compound refid="group__group01" kind="group"><name>group01</name>
+  </compound>
+  <compound refid="group__group02" kind="group"><name>group02</name>
+  </compound>
+  <compound refid="group__group03" kind="group"><name>group03</name>
+  </compound>
+  <compound refid="group__group04" kind="group"><name>group04</name>
+    <member refid="group__group04_1ga01f69d5bf584f94eabd1b113579b2c1e" kind="function"><name>interrupt_hundler</name></member>
+  </compound>
+  <compound refid="md__s_i4735__r_e_a_d_m_e" kind="page"><name>md_SI4735_README</name>
   </compound>
   <compound refid="deprecated" kind="page"><name>deprecated</name>
   </compound>

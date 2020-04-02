@@ -92,7 +92,8 @@
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>The bandwidth of the AM channel filter data type AMCHFLT values: 0 = 6 kHz Bandwidth 1 = 4 kHz Bandwidth 2 = 3 kHz Bandwidth 3 = 2 kHz Bandwidth 4 = 1 kHz Bandwidth 5 = 1.8 kHz Bandwidth 6 = 2.5 kHz Bandwidth, gradual roll off 7–15 = Reserved (Do not use)</para>
+<para>The bandwidth of the AM channel filter data type AMCHFLT values: 0 = 6 kHz Bandwidth <linebreak/>
+ 1 = 4 kHz Bandwidth 2 = 3 kHz Bandwidth 3 = 2 kHz Bandwidth 4 = 1 kHz Bandwidth 5 = 1.8 kHz Bandwidth 6 = 2.5 kHz Bandwidth, gradual roll off 7–15 = Reserved (Do not use)</para>
 <para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 125 and 151 </para>
 </simplesect>
 </para>

@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="keywords_8txt" kind="file" language="C++">
+    <compoundname>keywords.txt</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">##################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Syntax<sp/>Coloring<sp/>Map<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Datatypes<sp/>(KEYWORD1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">S4735<sp/>KEYWORD1</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Methods<sp/>(KEYWORD2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">setup<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">reset<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">setPowerUp<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">radioPowerUp<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">setFrequency<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">frequencyUp<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">frequencyDown<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">isCurrentTuneFM<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">seekStation<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">setAM<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">setFM<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">setVolume<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">volumeUp<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">volumeDown<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">getStatus<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">getTuneCompleteTriggered<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">getSignalQualityInterrupt<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">getRadioDataSystemInterrupt<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">getStatusError<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">getStatusCTS<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">getACFIndicator<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">getBandLimit<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">getReceivedSignalStrengthIndicator<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">getStatusSNR<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">getStatusMULT<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">getAntennaTuningCapacitor<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">getStatusValid<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">getFirmwarePN<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">getFirmwareFWMAJOR<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">getFirmwareFWMINOR<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">getFirmwarePATCHH<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">getFirmwarePATCHL<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">getFirmwareCMPMAJOR<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">getFirmwareCMPMINOR<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">getFirmwareCHIPREV<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">setRdsIntSource<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">setRdsConfig<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">getRdsStatus<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">getRdsReceived<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">getRdsSyncLost<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">getRdsSyncFound<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">getRdsNewBlockA<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">getRdsNewBlockB<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">getRdsSync<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">getGroupLost<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">getNumRdsFifoUsed<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">getRdsPI<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">getRdsGroupType<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">getRdsVersionCode<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">getRdsProgramType<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">getRdsText<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">getNumRdsFifoUsed<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">setI2CFastMode<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">setI2CStandardMode<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">setI2CLowSpeedMode<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">ssbPowerUp<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">downloadPatch<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">patchPowerUp<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">setSSBSoftMute<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">setSSBDspAfc<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">setSSBAvcDivider<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">setSBBSidebandCutoffFilter<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">setSSBAutomaticVolumeControl<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">setSSBAudioBandwidth<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">setSSB<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">setSSBConfig<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">setSSBBfo<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">getCurrentFrequency<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">waitToSend<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">isAgcEnabled<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">getAgcGainIndex<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">setAutomaticGainControl<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">getCurrentReceivedSignalQuality<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">getCurrentRSSI<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">getCurrentSNR<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">getCurrentRssiDetectLow<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">getCurrentSnrDetectLow<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">getCurrentSnrDetectHigh<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">getCurrentValidChannel<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">getCurrentAfcRailIndicator<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">getCurrentSoftMuteIndicator<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">getCurrentStereoBlend<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">getCurrentPilot<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">getCurrentMultipath<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">getCurrentSignedFrequencyOffset<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">getCurrentMultipathDetectLow<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">getCurrentMultipathDetectHigh<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">getCurrentBlendDetectInterrupt<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">setBandwidth<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">setFrequencyStep<sp/>KEYWORD2<sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal">setTuneFrequencyFast<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">setTuneFrequencyFreeze<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">setTuneFrequencyAntennaCapacitor<sp/>KEYWORD2</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="preprocessor">#Literals</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">SI473X_ADDR<sp/>LITERAL1</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><ref refid="_s_i4735_8h_1abf6b929a6f72c48fdb78218394541db2" kindref="member">POWER_UP</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">SI5351_DEFAULT_CLK<sp/><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><ref refid="_s_i4735_8h_1a9fbb31eec68a8b17895fd18640296013" kindref="member">GET_REV</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><ref refid="_s_i4735_8h_1aad04e0c9afdeec307d5b9cb2062d784d" kindref="member">POWER_DOWN</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><ref refid="_s_i4735_8h_1a92cfecd26935c8864d65bbdc6031acb0" kindref="member">SET_PROPERTY</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><ref refid="_s_i4735_8h_1acf7a3971c551fcdf7ae16bb0f31c149d" kindref="member">GET_PROPERTY</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><ref refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" kindref="member">FM_TUNE_FREQ</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><ref refid="_s_i4735_8h_1aeb1de40ffb7cb51cf4a151f5d1b746d7" kindref="member">RX_VOLUME</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><ref refid="_s_i4735_8h_1a25ef5653fc9206ab83d8215c209e9922" kindref="member">FM_SEEK_START</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><ref refid="_s_i4735_8h_1a1c2be0c09ef2120b4e7b6d050a4a7735" kindref="member">FM_TUNE_STATUS</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><ref refid="_s_i4735_8h_1a9b58aeaeabdad7b1525ccc31f5d0d201" kindref="member">FM_RSQ_STATUS</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><ref refid="_s_i4735_8h_1ac37ef03bb47367289779f5f9bc00b18f" kindref="member">FM_RDS_STATUS</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><ref refid="_s_i4735_8h_1a5c3e83244b4ab4a76d9c5c1ed86f3a54" kindref="member">AM_TUNE_FREQ</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><ref refid="_s_i4735_8h_1ae08ea65cd9de522d012b7867da9ded6b" kindref="member">AM_TUNE_STATUS</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><ref refid="_s_i4735_8h_1a54146d0cab2573ea21cf4e95d2317fcb" kindref="member">AM_RSQ_STATUS</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><ref refid="_s_i4735_8h_1a0a7dcdb2acffb213a5c11abd3ed96297" kindref="member">AM_AGC_STATUS</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><ref refid="_s_i4735_8h_1a2b26f91fc9564254afd58904239f7645" kindref="member">AM_AGC_OVERRIDE</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><ref refid="_s_i4735_8h_1ac4ede73dbac84ceab4a5bc876104bc20" kindref="member">GPIO_CTL</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><ref refid="_s_i4735_8h_1aee1a56baeb6b8457fb722fd36dad5bbf" kindref="member">GPIO_SET</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><ref refid="_s_i4735_8h_1a8b7e6ccffb54cef940f3bd78d255bc36" kindref="member">FM_RDS_INT_SOURCE</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><ref refid="_s_i4735_8h_1afdc3800cf259f4c1acb254d1ad61f21b" kindref="member">FM_RDS_INT_FIFO_COUNT</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><ref refid="_s_i4735_8h_1afbaa25e11748b1bd64456d3eae79fdee" kindref="member">FM_RDS_CONFIG</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><ref refid="_s_i4735_8h_1a6651f2bcc216c9b0950999f70bf2be44" kindref="member">FM_RDS_CONFIDENCE</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><ref refid="_s_i4735_8h_1afd6b0255af56b3deee67ef1fe14d2fd6" kindref="member">SI473X_ANALOG_AUDIO</ref><sp/>LITERAL1</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">SI473X_DIGITAL_AUDIO<sp/>LITERAL1</highlight></codeline>
+    </programlisting>
+    <location file="SI4735/keywords.txt"/>
+  </compounddef>
+</doxygen>

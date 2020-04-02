@@ -30,9 +30,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="200" column="17" bodyfile="SI4735/SI4735.h" bodystart="200" bodyend="-1"/>
-        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
-        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="884" endline="894">SI4735::getFrequency</referencedby>
-        <referencedby refid="class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f" compoundref="_s_i4735_8cpp" startline="1865" endline="1889">SI4735::setSSBBfo</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__frequency_1a1a992fcfef59a6c6b1612e006264840f" prot="public" static="no" mutable="no">
         <type>struct si47x_frequency::@1</type>
@@ -65,7 +62,8 @@
 <para>Represents how the frequency is stored in the si4735. </para>
     </briefdescription>
     <detaileddescription>
-<para>It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH) </para>
+<para>It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH) <linebreak/>
+ </para>
     </detaileddescription>
     <location file="SI4735/SI4735.h" line="196" column="15" bodyfile="SI4735/SI4735.h" bodystart="196" bodyend="203"/>
     <listofallmembers>

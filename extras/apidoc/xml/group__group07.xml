@@ -22,10 +22,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1054" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="298" bodyend="314"/>
-        <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
-        <references refid="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" compoundref="_s_i4735_8h" startline="907">SI4735::firmwareInfo</references>
-        <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">SI4735::waitToSend</references>
+        <location file="SI4735/SI4735.h" line="1056" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="298" bodyend="314"/>
       </memberdef>
       <memberdef kind="function" id="group__group07_1ga95fd37277dbb8b16b5ae7a996a5f9eba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -47,7 +44,7 @@
         <param>
           <type>uint8_t</type>
           <declname>audioMode</declname>
-          <defval>SI473X_ANALOG_AUDIO</defval>
+          <defval><ref refid="_s_i4735_8h_1afd6b0255af56b3deee67ef1fe14d2fd6" kindref="member">SI473X_ANALOG_AUDIO</ref></defval>
         </param>
         <briefdescription>
 <para>Starts the Si473X device. </para>
@@ -91,8 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="933" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="328" bodyend="362"/>
-        <references refid="class_s_i4735_1af8f8123888060f858c74ba08a29ff38b" compoundref="_s_i4735_8h" startline="889">SI4735::interruptPin</references>
+        <location file="SI4735/SI4735.h" line="935" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="328" bodyend="362"/>
       </memberdef>
       <memberdef kind="function" id="group__group07_1ga944ed704e2175a6cf660ad65ca5bbad5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -108,7 +104,8 @@
           <declname>defaultFunction</declname>
         </param>
         <briefdescription>
-<para>Starts the Si473X device. </para>
+<para>Starts the Si473X device. <linebreak/>
+ </para>
         </briefdescription>
         <detaileddescription>
 <para>Use this setup if you are not using interrupt resource</para>
@@ -133,7 +130,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="932" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="374" bodyend="378"/>
+        <location file="SI4735/SI4735.h" line="934" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="374" bodyend="378"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

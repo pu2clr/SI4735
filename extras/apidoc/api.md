@@ -8,7 +8,7 @@
 `union `[`si47x_agc_overrride`](#unionsi47x__agc__overrride) | If FM, Overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 (minimum attenuation) and 26 (maximum attenuation). If AM, overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0
 `union `[`si47x_agc_status`](#unionsi47x__agc__status) | AGC data types FM / AM and SSB structure to AGC
 `union `[`si47x_antenna_capacitor`](#unionsi47x__antenna__capacitor) | Antenna Tuning Capacitor data type manupulation.
-`union `[`si47x_bandwidth_config`](#unionsi47x__bandwidth__config) | The bandwidth of the AM channel filter data type AMCHFLT values: 0 = 6 kHz Bandwidth 1 = 4 kHz Bandwidth 2 = 3 kHz Bandwidth 3 = 2 kHz Bandwidth 4 = 1 kHz Bandwidth 5 = 1.8 kHz Bandwidth 6 = 2.5 kHz Bandwidth, gradual roll off 7–15 = Reserved (Do not use)
+`union `[`si47x_bandwidth_config`](#unionsi47x__bandwidth__config) | The bandwidth of the AM channel filter data type AMCHFLT values: 0 = 6 kHz Bandwidth 
 `union `[`si47x_firmware_information`](#unionsi47x__firmware__information) | Data representation for Firmware Information (GET_REV)
 `union `[`si47x_firmware_query_library`](#unionsi47x__firmware__query__library) | Firmware Query Library ID response.
 `union `[`si47x_frequency`](#unionsi47x__frequency) | Represents how the frequency is stored in the si4735.

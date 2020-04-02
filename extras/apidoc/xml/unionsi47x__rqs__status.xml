@@ -130,7 +130,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="427" column="17" bodyfile="SI4735/SI4735.h" bodystart="427" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1adf11a66236392ca107b5d52a8747f838" compoundref="_s_i4735_8h" startline="993" endline="993">SI4735::getCurrentRssiDetectHigh</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rqs__status_1a6429b6373a1aabce38b2ddde7cdae2a7" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -146,7 +145,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="428" column="17" bodyfile="SI4735/SI4735.h" bodystart="428" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a1296592571c85b89ed59a4ee2324bd52" compoundref="_s_i4735_8h" startline="994" endline="994">SI4735::getCurrentSnrDetectLow</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rqs__status_1a3ec547d32d35e825bd3cc8dc6aa04371" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -162,7 +160,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="429" column="17" bodyfile="SI4735/SI4735.h" bodystart="429" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1aec3c71a3252dd6660e5bceebc0d1f988" compoundref="_s_i4735_8h" startline="995" endline="995">SI4735::getCurrentSnrDetectHigh</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rqs__status_1ab8511df192966df4c4c30fd5fbd85a8d" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -178,7 +175,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="430" column="17" bodyfile="SI4735/SI4735.h" bodystart="430" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ad194a5c915620c6a1b8b3d6d7ed645d9" compoundref="_s_i4735_8h" startline="1004" endline="1004">SI4735::getCurrentMultipathDetectLow</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rqs__status_1a1c7edf40697da61d47979d5c6945a7be" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -194,7 +190,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="431" column="17" bodyfile="SI4735/SI4735.h" bodystart="431" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a82d0865cf348deb0c9f81a2f12222fb0" compoundref="_s_i4735_8h" startline="1005" endline="1005">SI4735::getCurrentMultipathDetectHigh</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rqs__status_1a5468b11528cf37097fe88a2e694aeb15" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -239,7 +234,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="435" column="17" bodyfile="SI4735/SI4735.h" bodystart="435" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a5ce1abf8c9d53c027f6b0870efedda1b" compoundref="_s_i4735_8h" startline="996" endline="996">SI4735::getCurrentValidChannel</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rqs__status_1a9961f89a4da7115916a5c84b66a80d80" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -255,7 +249,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="436" column="17" bodyfile="SI4735/SI4735.h" bodystart="436" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1affe5cee9daf44677802a94f96d893c94" compoundref="_s_i4735_8h" startline="997" endline="997">SI4735::getCurrentAfcRailIndicator</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rqs__status_1a796ebb2d3d900cfce84d0dc2f5b0585d" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -329,7 +322,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="442" column="17" bodyfile="SI4735/SI4735.h" bodystart="442" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a127fa3d2f9b7d57169bbef95703fb4c9" compoundref="_s_i4735_8h" startline="1001" endline="1001">SI4735::getCurrentPilot</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rqs__status_1ab5558da768af2d0430d094a90caec3a2" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -358,7 +350,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="445" column="17" bodyfile="SI4735/SI4735.h" bodystart="445" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1adb3fe55583dafeac7439a303b637d162" compoundref="_s_i4735_8h" startline="991" endline="991">SI4735::getCurrentSNR</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rqs__status_1aa537fb8dcc34e82a937bf4d522a7ace0" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -373,7 +364,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="446" column="17" bodyfile="SI4735/SI4735.h" bodystart="446" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a6d521bb5c7ef7811e57c7128cb2106b3" compoundref="_s_i4735_8h" startline="1002" endline="1002">SI4735::getCurrentMultipath</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rqs__status_1ab332136092ea1ced84e916f4fc791679" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -388,7 +378,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="447" column="17" bodyfile="SI4735/SI4735.h" bodystart="447" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a2b3bfeca3b545f5741b1ed70a1dba077" compoundref="_s_i4735_8h" startline="1003" endline="1003">SI4735::getCurrentSignedFrequencyOffset</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3" prot="public" static="no" mutable="no">
         <type>struct si47x_rqs_status::@10</type>

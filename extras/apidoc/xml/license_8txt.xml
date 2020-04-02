@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="license_8txt" kind="file" language="C++">
+    <compoundname>license.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="license_8txt_1af02105b8d25cac5346c70f0f8bebb2e8" prot="public" static="no" mutable="no">
+        <type>MIT License free of</type>
+        <definition>MIT License free of charge</definition>
+        <argsstring></argsstring>
+        <name>charge</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="13" bodyfile="SI4735/license.txt" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1af6e42a41d4c1cf711ce91ba8a9536d5e" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without restriction</definition>
+        <argsstring></argsstring>
+        <name>restriction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="137" bodyfile="SI4735/license.txt" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1a7388852deccfa55d4e4bca59a3355748" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to use</definition>
+        <argsstring></argsstring>
+        <name>use</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="192" bodyfile="SI4735/license.txt" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1a5fc027ff17a37592346d4ce949961132" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to copy</definition>
+        <argsstring></argsstring>
+        <name>copy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="196" bodyfile="SI4735/license.txt" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1a84db115c842c0bc29f97fd73629d8163" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to modify</definition>
+        <argsstring></argsstring>
+        <name>modify</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="201" bodyfile="SI4735/license.txt" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1aad4b713ca657a67ecbb454b02ceabff8" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to merge</definition>
+        <argsstring></argsstring>
+        <name>merge</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="208" bodyfile="SI4735/license.txt" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1ada0e4295c02ecf483dd4971c92e92f1c" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to publish</definition>
+        <argsstring></argsstring>
+        <name>publish</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="214" bodyfile="SI4735/license.txt" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1aa3cf7f49d189d9fc5cee827d2633810d" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to distribute</definition>
+        <argsstring></argsstring>
+        <name>distribute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="222" bodyfile="SI4735/license.txt" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1a9f571168d2ee9a598450704a59d048d3" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to sublicense</definition>
+        <argsstring></argsstring>
+        <name>sublicense</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="233" bodyfile="SI4735/license.txt" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the Software without including without limitation the rights to and or sell copies of the</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to and or sell copies of the Software</definition>
+        <argsstring></argsstring>
+        <name>Software</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="269" bodyfile="SI4735/license.txt" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1ad33c8f6a68363f2875b84f7c4ca98aba" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to and or sell copies of the and to permit persons to whom the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> is furnished to do</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to and or sell copies of the and to permit persons to whom the Software is furnished to do so</definition>
+        <argsstring></argsstring>
+        <name>so</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="340" bodyfile="SI4735/license.txt" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1a044015f5b936eb88da66708aa08bd4ac" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to and or sell copies of the and to permit persons to whom the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> is furnished to do subject to the following</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to and or sell copies of the and to permit persons to whom the Software is furnished to do subject to the following conditions</definition>
+        <argsstring></argsstring>
+        <name>conditions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="368" bodyfile="SI4735/license.txt" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1a21bee792560027a3b96a9a882b5828d5" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to and or sell copies of the and to permit persons to whom the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> is furnished to do subject to the following WITHOUT WARRANTY OF ANY</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to and or sell copies of the and to permit persons to whom the Software is furnished to do subject to the following WITHOUT WARRANTY OF ANY KIND</definition>
+        <argsstring></argsstring>
+        <name>KIND</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="9" column="26" bodyfile="SI4735/license.txt" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1a9c731e523f6a35737f231bf24431695d" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to and or sell copies of the and to permit persons to whom the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to and or sell copies of the and to permit persons to whom the Software is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR IMPLIED</definition>
+        <argsstring></argsstring>
+        <name>IMPLIED</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="9" column="42" bodyfile="SI4735/license.txt" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1a383a15303ad81a4fe142cc242a159500" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to and or sell copies of the and to permit persons to whom the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to and or sell copies of the and to permit persons to whom the Software is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF MERCHANTABILITY</definition>
+        <argsstring></argsstring>
+        <name>MERCHANTABILITY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="9" column="96" bodyfile="SI4735/license.txt" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1a4a9625896658845302ef88eafd1fa1e4" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to and or sell copies of the and to permit persons to whom the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to and or sell copies of the and to permit persons to whom the Software is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM</definition>
+        <argsstring></argsstring>
+        <name>CLAIM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="9" column="234" bodyfile="SI4735/license.txt" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1ae99750133f5a506a38868d5f2722a738" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to and or sell copies of the and to permit persons to whom the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DAMAGES OR OTHER</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to and or sell copies of the and to permit persons to whom the Software is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DAMAGES OR OTHER LIABILITY</definition>
+        <argsstring></argsstring>
+        <name>LIABILITY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="9" column="257" bodyfile="SI4735/license.txt" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1a11bbb92d08ed0375aed257ed87428ab5" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to and or sell copies of the and to permit persons to whom the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DAMAGES OR OTHER WHETHER IN AN ACTION OF</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to and or sell copies of the and to permit persons to whom the Software is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DAMAGES OR OTHER WHETHER IN AN ACTION OF CONTRACT</definition>
+        <argsstring></argsstring>
+        <name>CONTRACT</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="9" column="291" bodyfile="SI4735/license.txt" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1a511c87561dea0d59cb52a8dccf4f47b7" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to and or sell copies of the and to permit persons to whom the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DAMAGES OR OTHER WHETHER IN AN ACTION OF TORT OR</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to and or sell copies of the and to permit persons to whom the Software is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DAMAGES OR OTHER WHETHER IN AN ACTION OF TORT OR OTHERWISE</definition>
+        <argsstring></argsstring>
+        <name>OTHERWISE</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="9" column="308" bodyfile="SI4735/license.txt" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="license_8txt_1a335caee353e1dcd2730d391908fd43a1" prot="public" static="no" mutable="no">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation to deal in the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> without including without limitation the rights to and or sell copies of the and to permit persons to whom the <ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref> is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DAMAGES OR OTHER WHETHER IN AN ACTION OF TORT OR ARISING</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation to deal in the Software without including without limitation the rights to and or sell copies of the and to permit persons to whom the Software is furnished to do subject to the following WITHOUT WARRANTY OF ANY EXPRESS OR INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DAMAGES OR OTHER WHETHER IN AN ACTION OF TORT OR ARISING FROM</definition>
+        <argsstring></argsstring>
+        <name>FROM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="9" column="326" bodyfile="SI4735/license.txt" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="license_8txt_1a6d046fad0357ac1277fe46baca5cc7de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MIT License</type>
+        <definition>MIT License Copyright</definition>
+        <argsstring>(c) 2019 Ricardo Lima Caratti Permission is hereby granted</argsstring>
+        <name>Copyright</name>
+        <param>
+          <type>c</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="3" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="license_8txt_1a230902626bc74ad7e058274476c0ff96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MIT License free of to any person obtaining a <ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref> of this software and associated documentation</type>
+        <definition>MIT License free of to any person obtaining a copy of this software and associated documentation files</definition>
+        <argsstring>(the &quot;Software&quot;)</argsstring>
+        <name>files</name>
+        <param>
+          <type>the &quot;Software&quot;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/license.txt" line="5" column="97"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">MIT<sp/>License</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><ref refid="license_8txt_1a6d046fad0357ac1277fe46baca5cc7de" kindref="member">Copyright</ref><sp/>(c)<sp/>2019<sp/>Ricardo<sp/>Lima<sp/>Caratti</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Permission<sp/>is<sp/>hereby<sp/>granted,<sp/>free<sp/>of<sp/><ref refid="license_8txt_1af02105b8d25cac5346c70f0f8bebb2e8" kindref="member">charge</ref>,<sp/>to<sp/>any<sp/>person<sp/>obtaining<sp/>a<sp/><ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref><sp/>of<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>software<sp/>and<sp/>associated<sp/>documentation<sp/><ref refid="license_8txt_1a230902626bc74ad7e058274476c0ff96" kindref="member">files</ref><sp/>(the<sp/></highlight><highlight class="stringliteral">&quot;Software&quot;</highlight><highlight class="normal">),<sp/>to<sp/>deal<sp/>in<sp/>the<sp/><ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref><sp/>without<sp/><ref refid="license_8txt_1af6e42a41d4c1cf711ce91ba8a9536d5e" kindref="member">restriction</ref>,<sp/>including<sp/>without<sp/>limitation<sp/>the<sp/>rights<sp/>to<sp/><ref refid="license_8txt_1a7388852deccfa55d4e4bca59a3355748" kindref="member">use</ref>,<sp/><ref refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kindref="member">copy</ref>,<sp/><ref refid="license_8txt_1a84db115c842c0bc29f97fd73629d8163" kindref="member">modify</ref>,<sp/><ref refid="license_8txt_1aad4b713ca657a67ecbb454b02ceabff8" kindref="member">merge</ref>,<sp/><ref refid="license_8txt_1ada0e4295c02ecf483dd4971c92e92f1c" kindref="member">publish</ref>,<sp/><ref refid="license_8txt_1aa3cf7f49d189d9fc5cee827d2633810d" kindref="member">distribute</ref>,<sp/><ref refid="license_8txt_1a9f571168d2ee9a598450704a59d048d3" kindref="member">sublicense</ref>,<sp/>and/or<sp/>sell<sp/>copies<sp/>of<sp/>the<sp/><ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref>,<sp/>and<sp/>to<sp/>permit<sp/>persons<sp/>to<sp/>whom<sp/>the<sp/><ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref><sp/>is<sp/>furnished<sp/>to<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/><ref refid="license_8txt_1ad33c8f6a68363f2875b84f7c4ca98aba" kindref="member">so</ref>,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/><ref refid="license_8txt_1a044015f5b936eb88da66708aa08bd4ac" kindref="member">conditions</ref>:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">The<sp/>above<sp/>copyright<sp/>notice<sp/>and<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>permission<sp/>notice<sp/>shall<sp/>be<sp/>included<sp/>in<sp/>all<sp/>copies<sp/>or<sp/>substantial<sp/>portions<sp/>of<sp/>the<sp/><ref refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kindref="member">Software</ref>.</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/></highlight><highlight class="stringliteral">&quot;AS<sp/>IS&quot;</highlight><highlight class="normal">,<sp/>WITHOUT<sp/>WARRANTY<sp/>OF<sp/>ANY<sp/><ref refid="license_8txt_1a21bee792560027a3b96a9a882b5828d5" kindref="member">KIND</ref>,<sp/>EXPRESS<sp/>OR<sp/><ref refid="license_8txt_1a9c731e523f6a35737f231bf24431695d" kindref="member">IMPLIED</ref>,<sp/>INCLUDING<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO<sp/>THE<sp/>ARRANTIES<sp/>OF<sp/><ref refid="license_8txt_1a383a15303ad81a4fe142cc242a159500" kindref="member">MERCHANTABILITY</ref>,<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>AND<sp/>NONINFRINGEMENT.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHORS<sp/>OR<sp/>COPYRIGHT<sp/>HOLDERS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/><ref refid="license_8txt_1a4a9625896658845302ef88eafd1fa1e4" kindref="member">CLAIM</ref>,<sp/>DAMAGES<sp/>OR<sp/>OTHER<sp/><ref refid="license_8txt_1ae99750133f5a506a38868d5f2722a738" kindref="member">LIABILITY</ref>,<sp/>WHETHER<sp/>IN<sp/>AN<sp/>ACTION<sp/>OF<sp/><ref refid="license_8txt_1a11bbb92d08ed0375aed257ed87428ab5" kindref="member">CONTRACT</ref>,<sp/>TORT<sp/>OR<sp/><ref refid="license_8txt_1a511c87561dea0d59cb52a8dccf4f47b7" kindref="member">OTHERWISE</ref>,<sp/>ARISING<sp/><ref refid="license_8txt_1a335caee353e1dcd2730d391908fd43a1" kindref="member">FROM</ref>,<sp/>OUT<sp/>OF<sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>SOFTWARE<sp/>OR<sp/>THE<sp/>USE<sp/>OR<sp/>OTHER<sp/>DEALINGS<sp/>IN<sp/>THE<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="SI4735/license.txt"/>
+  </compounddef>
+</doxygen>

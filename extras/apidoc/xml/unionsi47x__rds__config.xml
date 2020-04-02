@@ -32,7 +32,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="568" column="17" bodyfile="SI4735/SI4735.h" bodystart="568" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__config_1a892701752004744896276653c17a5793" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -62,7 +61,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="570" column="17" bodyfile="SI4735/SI4735.h" bodystart="570" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__config_1a8fde60b58e168d978e259f3899ce5e0b" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -78,7 +76,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="571" column="17" bodyfile="SI4735/SI4735.h" bodystart="571" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__config_1a985f772fda4648f338757b919de189f0" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -94,7 +91,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="572" column="17" bodyfile="SI4735/SI4735.h" bodystart="572" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__config_1af43318436df83ca903da3c6eaf797c5f" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_config::@14</type>

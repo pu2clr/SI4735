@@ -30,7 +30,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="213" column="17" bodyfile="SI4735/SI4735.h" bodystart="213" bodyend="-1"/>
-        <referencedby refid="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" compoundref="_s_i4735_8cpp" startline="398" endline="420">SI4735::setTuneFrequencyAntennaCapacitor</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1a29548a9c68843bb6aa86eabcd33a9633" prot="public" static="no" mutable="no">
         <type>struct si47x_antenna_capacitor::@2</type>
