@@ -29,7 +29,9 @@ __Attention__:
 6. [Labrary Features](https://github.com/pu2clr/SI4735#si4735-arduino-library-features)
 7. [Library Installation](https://github.com/pu2clr/SI4735#library-installation)
 8. [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
-   * [About Class, Methods(functions) and custom data type structures]()
+   * [About Class, Methods(functions) and custom data type structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
+   * [RDS support](https://github.com/pu2clr/SI4735#rds)
+   * [SSB support](https://github.com/pu2clr/SI4735#si4735-patch-support-for-single-side-band)
 9.  [Hardware Requirements and Setup](https://github.com/pu2clr/SI4735#hardware-requirements-and-setup)
    * [Schematic](https://github.com/pu2clr/SI4735#schematic)
    * [Component Parts](https://github.com/pu2clr/SI4735#parts)
@@ -246,11 +248,11 @@ You can download the API documentation of this library in PDF or RTL format.
 
 The Si47XX family works with many internal data that can be represented by data structure or defined data type in C/C++. These C/C++ resources have been used widely here. This aproach made the library easier to build and maintain. Each data structure created here has its reference (name of the document and page on which it was based). In other words, to make the SI47XX device easier to deal, some defined data types were created to handle  byte and bits to process  commands, properties and responses.
 
-All data types defined in Si4735 Arduino Library are explained on [API documentation of this library](https://github.com/pu2clr/SI4735/tree/master/extras/apidoc/rtf).  
+All data types defined in Si4735 Arduino Library are explained on [API documentation of this library](https://github.com/pu2clr/SI4735/tree/master/extras/apidoc/rtf).  Click [here](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/rtf/pu2clr_si4735_api_doc.pdf) to go to API docummentation.
 
 ### Public methods 
 
-This library was developed using the C++ language and the Object-oriented Programming approach. Methods are functions that belongs to the class, in this case SI4735 class. 
+This library was developed using the C++ language and the Object-oriented Programming approach. Methods are functions that belongs to the class, in this case SI4735 class. Click [here](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/rtf/pu2clr_si4735_api_doc.pdf) to go to API docummentation.
 
 All methods defined in Si4735 class are explained on [API documentation of this library](https://github.com/pu2clr/SI4735/tree/master/extras/apidoc/rtf). The list below refer to the method groups implemented by the Si4735 class.   
 
