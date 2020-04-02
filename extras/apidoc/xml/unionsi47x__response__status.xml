@@ -4,266 +4,6 @@
     <compoundname>si47x_response_status</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="unionsi47x__response__status_1a01ca22a28b83206bd992372d20c32f2f" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::STCINT</definition>
-        <argsstring></argsstring>
-        <name>STCINT</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="271" column="17" bodyfile="SI4735/SI4735.h" bodystart="271" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a2cc659bddc5efc7695f2a6031c2edd4b" compoundref="_s_i4735_8h" startline="958" endline="958">SI4735::getTuneCompleteTriggered</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1a8bb865e96113a5755fc3e721f2623418" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::DUMMY1</definition>
-        <argsstring></argsstring>
-        <name>DUMMY1</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="272" column="17" bodyfile="SI4735/SI4735.h" bodystart="272" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1a19cfe8d1b0badae5253ff243e05d7afa" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::RDSINT</definition>
-        <argsstring></argsstring>
-        <name>RDSINT</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="273" column="17" bodyfile="SI4735/SI4735.h" bodystart="273" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a97dc44d9927ea58730a18fb6baa6867f" compoundref="_s_i4735_8h" startline="957" endline="957">SI4735::getRadioDataSystemInterrupt</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1a301f61dac86d37ec2fc74c79c98254ab" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::RSQINT</definition>
-        <argsstring></argsstring>
-        <name>RSQINT</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>Radio Data System (RDS) Interrup; 0 = interrupt has not been triggered. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="274" column="17" bodyfile="SI4735/SI4735.h" bodystart="274" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ad194137a6a712a599e3c26e5b6357594" compoundref="_s_i4735_8h" startline="956" endline="956">SI4735::getSignalQualityInterrupt</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1a6206af5b53630164e9526eae84573a13" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::DUMMY2</definition>
-        <argsstring></argsstring>
-        <name>DUMMY2</name>
-        <bitfield> 2</bitfield>
-        <briefdescription>
-<para>Received Signal Quality Interrupt; 0 = interrupt has not been triggered. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="275" column="17" bodyfile="SI4735/SI4735.h" bodystart="275" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1a0693308479f69e970ec92ce1d1dcbf9c" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::ERR</definition>
-        <argsstring></argsstring>
-        <name>ERR</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="276" column="17" bodyfile="SI4735/SI4735.h" bodystart="276" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a5c0f4036a7fbbd11a26f1f6f4579d3cd" compoundref="_s_i4735_8cpp" startline="916" endline="940">SI4735::getStatus</referencedby>
-        <referencedby refid="class_s_i4735_1a69723840497ed693d6f9a4e840ab07c9" compoundref="_s_i4735_8h" startline="959" endline="959">SI4735::getStatusError</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1a6816e97ec06655d72350b83eae0e9f4c" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::CTS</definition>
-        <argsstring></argsstring>
-        <name>CTS</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>Error. 0 = No error 1 = Error. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="277" column="17" bodyfile="SI4735/SI4735.h" bodystart="277" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1afcb38f53b6eb71cadcefa0bb472ca943" compoundref="_s_i4735_8h" startline="960" endline="960">SI4735::getStatusCTS</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1aa4da6ef23dc23e40e9dcfc582ac7a53e" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::VALID</definition>
-        <argsstring></argsstring>
-        <name>VALID</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>Clear to Send. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="279" column="17" bodyfile="SI4735/SI4735.h" bodystart="279" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1afb19da8a05320d7f38cca8325725edfd" compoundref="_s_i4735_8h" startline="963" endline="963">SI4735::getStatusValid</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1acc8c563c2eaf6702c36961fd300fecfb" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::AFCRL</definition>
-        <argsstring></argsstring>
-        <name>AFCRL</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>Valid Channel. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="280" column="17" bodyfile="SI4735/SI4735.h" bodystart="280" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ab8a51de592fd40fdd872039b3c70716f" compoundref="_s_i4735_8h" startline="961" endline="961">SI4735::getACFIndicator</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1a88284e575e52c96efa3eb0248010ba73" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::DUMMY3</definition>
-        <argsstring></argsstring>
-        <name>DUMMY3</name>
-        <bitfield> 5</bitfield>
-        <briefdescription>
-<para>AFC Rail Indicator. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="281" column="17" bodyfile="SI4735/SI4735.h" bodystart="281" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1adf288c085c8f9a7b6a84ca9746541ea5" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::BLTF</definition>
-        <argsstring></argsstring>
-        <name>BLTF</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="282" column="17" bodyfile="SI4735/SI4735.h" bodystart="282" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a19e96565a2dec7ec68469f45c8d3e084" compoundref="_s_i4735_8h" startline="962" endline="962">SI4735::getBandLimit</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1a7d5ca536d8706e6cc9df2c8d5aea268e" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::READFREQH</definition>
-        <argsstring></argsstring>
-        <name>READFREQH</name>
-        <briefdescription>
-<para>Reports if a seek hit the band limit. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="284" column="17" bodyfile="SI4735/SI4735.h" bodystart="284" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="884" endline="894">SI4735::getFrequency</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1a6d5f612fc40df215e9f4c6a94b68e2e6" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::READFREQL</definition>
-        <argsstring></argsstring>
-        <name>READFREQL</name>
-        <briefdescription>
-<para>Read Frequency High byte. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="286" column="17" bodyfile="SI4735/SI4735.h" bodystart="286" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="884" endline="894">SI4735::getFrequency</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1a524207ce1b79627d69f94049ba8c614d" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::RSSI</definition>
-        <argsstring></argsstring>
-        <name>RSSI</name>
-        <briefdescription>
-<para>Read Frequency Low byte. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="288" column="17" bodyfile="SI4735/SI4735.h" bodystart="288" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1aeeefd12b49dbc764e0f45fe208441482" compoundref="_s_i4735_8h" startline="964" endline="964">SI4735::getReceivedSignalStrengthIndicator</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1a14f5ce9ed117d45a2230b6f87b88a4cb" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::SNR</definition>
-        <argsstring></argsstring>
-        <name>SNR</name>
-        <briefdescription>
-<para>Received Signal Strength Indicator (dBμV) </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="290" column="17" bodyfile="SI4735/SI4735.h" bodystart="290" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ac0bd4daaa321ef8956dca4d1e4e5cd3c" compoundref="_s_i4735_8h" startline="965" endline="965">SI4735::getStatusSNR</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1a1ee21104ab8a4a13619ee5c3f7fb3f2f" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::MULT</definition>
-        <argsstring></argsstring>
-        <name>MULT</name>
-        <briefdescription>
-<para>This byte contains the SNR metric when tune is complete (dB). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="292" column="17" bodyfile="SI4735/SI4735.h" bodystart="292" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a0f9b5438a6f92c8f2e538ee640f353ab" compoundref="_s_i4735_8h" startline="966" endline="966">SI4735::getStatusMULT</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__response__status_1acd0a9f2982a84c43b8127f5e54982f19" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_response_status::READANTCAP</definition>
-        <argsstring></argsstring>
-        <name>READANTCAP</name>
-        <briefdescription>
-<para>Contains the multipath metric when tune is complete. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="294" column="17" bodyfile="SI4735/SI4735.h" bodystart="294" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a3905d6551992b4dd51d13f05978d9081" compoundref="_s_i4735_8h" startline="967" endline="967">SI4735::getAntennaTuningCapacitor</referencedby>
-      </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e" prot="public" static="no" mutable="no">
         <type>struct si47x_response_status::@5</type>
         <definition>struct si47x_response_status::@5 si47x_response_status::resp</definition>
@@ -276,20 +16,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="295" column="10"/>
-        <referencedby refid="class_s_i4735_1ab8a51de592fd40fdd872039b3c70716f" compoundref="_s_i4735_8h" startline="961" endline="961">SI4735::getACFIndicator</referencedby>
-        <referencedby refid="class_s_i4735_1a3905d6551992b4dd51d13f05978d9081" compoundref="_s_i4735_8h" startline="967" endline="967">SI4735::getAntennaTuningCapacitor</referencedby>
-        <referencedby refid="class_s_i4735_1a19e96565a2dec7ec68469f45c8d3e084" compoundref="_s_i4735_8h" startline="962" endline="962">SI4735::getBandLimit</referencedby>
         <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="884" endline="894">SI4735::getFrequency</referencedby>
-        <referencedby refid="class_s_i4735_1a97dc44d9927ea58730a18fb6baa6867f" compoundref="_s_i4735_8h" startline="957" endline="957">SI4735::getRadioDataSystemInterrupt</referencedby>
-        <referencedby refid="class_s_i4735_1aeeefd12b49dbc764e0f45fe208441482" compoundref="_s_i4735_8h" startline="964" endline="964">SI4735::getReceivedSignalStrengthIndicator</referencedby>
-        <referencedby refid="class_s_i4735_1ad194137a6a712a599e3c26e5b6357594" compoundref="_s_i4735_8h" startline="956" endline="956">SI4735::getSignalQualityInterrupt</referencedby>
         <referencedby refid="class_s_i4735_1a5c0f4036a7fbbd11a26f1f6f4579d3cd" compoundref="_s_i4735_8cpp" startline="916" endline="940">SI4735::getStatus</referencedby>
-        <referencedby refid="class_s_i4735_1afcb38f53b6eb71cadcefa0bb472ca943" compoundref="_s_i4735_8h" startline="960" endline="960">SI4735::getStatusCTS</referencedby>
-        <referencedby refid="class_s_i4735_1a69723840497ed693d6f9a4e840ab07c9" compoundref="_s_i4735_8h" startline="959" endline="959">SI4735::getStatusError</referencedby>
-        <referencedby refid="class_s_i4735_1a0f9b5438a6f92c8f2e538ee640f353ab" compoundref="_s_i4735_8h" startline="966" endline="966">SI4735::getStatusMULT</referencedby>
-        <referencedby refid="class_s_i4735_1ac0bd4daaa321ef8956dca4d1e4e5cd3c" compoundref="_s_i4735_8h" startline="965" endline="965">SI4735::getStatusSNR</referencedby>
-        <referencedby refid="class_s_i4735_1afb19da8a05320d7f38cca8325725edfd" compoundref="_s_i4735_8h" startline="963" endline="963">SI4735::getStatusValid</referencedby>
+        <referencedby refid="class_s_i4735_1ad194137a6a712a599e3c26e5b6357594" compoundref="_s_i4735_8h" startline="956" endline="956">SI4735::getSignalQualityInterrupt</referencedby>
+        <referencedby refid="class_s_i4735_1a97dc44d9927ea58730a18fb6baa6867f" compoundref="_s_i4735_8h" startline="957" endline="957">SI4735::getRadioDataSystemInterrupt</referencedby>
         <referencedby refid="class_s_i4735_1a2cc659bddc5efc7695f2a6031c2edd4b" compoundref="_s_i4735_8h" startline="958" endline="958">SI4735::getTuneCompleteTriggered</referencedby>
+        <referencedby refid="class_s_i4735_1a69723840497ed693d6f9a4e840ab07c9" compoundref="_s_i4735_8h" startline="959" endline="959">SI4735::getStatusError</referencedby>
+        <referencedby refid="class_s_i4735_1afcb38f53b6eb71cadcefa0bb472ca943" compoundref="_s_i4735_8h" startline="960" endline="960">SI4735::getStatusCTS</referencedby>
+        <referencedby refid="class_s_i4735_1ab8a51de592fd40fdd872039b3c70716f" compoundref="_s_i4735_8h" startline="961" endline="961">SI4735::getACFIndicator</referencedby>
+        <referencedby refid="class_s_i4735_1a19e96565a2dec7ec68469f45c8d3e084" compoundref="_s_i4735_8h" startline="962" endline="962">SI4735::getBandLimit</referencedby>
+        <referencedby refid="class_s_i4735_1afb19da8a05320d7f38cca8325725edfd" compoundref="_s_i4735_8h" startline="963" endline="963">SI4735::getStatusValid</referencedby>
+        <referencedby refid="class_s_i4735_1aeeefd12b49dbc764e0f45fe208441482" compoundref="_s_i4735_8h" startline="964" endline="964">SI4735::getReceivedSignalStrengthIndicator</referencedby>
+        <referencedby refid="class_s_i4735_1ac0bd4daaa321ef8956dca4d1e4e5cd3c" compoundref="_s_i4735_8h" startline="965" endline="965">SI4735::getStatusSNR</referencedby>
+        <referencedby refid="class_s_i4735_1a0f9b5438a6f92c8f2e538ee640f353ab" compoundref="_s_i4735_8h" startline="966" endline="966">SI4735::getStatusMULT</referencedby>
+        <referencedby refid="class_s_i4735_1a3905d6551992b4dd51d13f05978d9081" compoundref="_s_i4735_8h" startline="967" endline="967">SI4735::getAntennaTuningCapacitor</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a9b236e03804629e73a4b19fddb72b4cd" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -317,25 +57,8 @@
     </detaileddescription>
     <location file="SI4735/SI4735.h" line="267" column="15" bodyfile="SI4735/SI4735.h" bodystart="267" bodyend="297"/>
     <listofallmembers>
-      <member refid="unionsi47x__response__status_1acc8c563c2eaf6702c36961fd300fecfb" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>AFCRL</name></member>
-      <member refid="unionsi47x__response__status_1adf288c085c8f9a7b6a84ca9746541ea5" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>BLTF</name></member>
-      <member refid="unionsi47x__response__status_1a6816e97ec06655d72350b83eae0e9f4c" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>CTS</name></member>
-      <member refid="unionsi47x__response__status_1a8bb865e96113a5755fc3e721f2623418" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>DUMMY1</name></member>
-      <member refid="unionsi47x__response__status_1a6206af5b53630164e9526eae84573a13" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>DUMMY2</name></member>
-      <member refid="unionsi47x__response__status_1a88284e575e52c96efa3eb0248010ba73" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>DUMMY3</name></member>
-      <member refid="unionsi47x__response__status_1a0693308479f69e970ec92ce1d1dcbf9c" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>ERR</name></member>
-      <member refid="unionsi47x__response__status_1a1ee21104ab8a4a13619ee5c3f7fb3f2f" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>MULT</name></member>
       <member refid="unionsi47x__response__status_1a9b236e03804629e73a4b19fddb72b4cd" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>raw</name></member>
-      <member refid="unionsi47x__response__status_1a19cfe8d1b0badae5253ff243e05d7afa" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>RDSINT</name></member>
-      <member refid="unionsi47x__response__status_1acd0a9f2982a84c43b8127f5e54982f19" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>READANTCAP</name></member>
-      <member refid="unionsi47x__response__status_1a7d5ca536d8706e6cc9df2c8d5aea268e" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>READFREQH</name></member>
-      <member refid="unionsi47x__response__status_1a6d5f612fc40df215e9f4c6a94b68e2e6" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>READFREQL</name></member>
       <member refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>resp</name></member>
-      <member refid="unionsi47x__response__status_1a301f61dac86d37ec2fc74c79c98254ab" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>RSQINT</name></member>
-      <member refid="unionsi47x__response__status_1a524207ce1b79627d69f94049ba8c614d" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>RSSI</name></member>
-      <member refid="unionsi47x__response__status_1a14f5ce9ed117d45a2230b6f87b88a4cb" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>SNR</name></member>
-      <member refid="unionsi47x__response__status_1a01ca22a28b83206bd992372d20c32f2f" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>STCINT</name></member>
-      <member refid="unionsi47x__response__status_1aa4da6ef23dc23e40e9dcfc582ac7a53e" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>VALID</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

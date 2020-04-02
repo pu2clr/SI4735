@@ -4,148 +4,6 @@
     <compoundname>si47x_agc_status</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="unionsi47x__agc__status_1a46cac3781dee36161e8ac2a9bf507ad5" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_status::STCINT</definition>
-        <argsstring></argsstring>
-        <name>STCINT</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="712" column="17" bodyfile="SI4735/SI4735.h" bodystart="712" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__agc__status_1ac7467eba73b0a1354f96210196b9702e" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_status::DUMMY1</definition>
-        <argsstring></argsstring>
-        <name>DUMMY1</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="713" column="17" bodyfile="SI4735/SI4735.h" bodystart="713" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__agc__status_1a0fc5f60be89de344c288ccbe90a6dda4" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_status::RDSINT</definition>
-        <argsstring></argsstring>
-        <name>RDSINT</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="714" column="17" bodyfile="SI4735/SI4735.h" bodystart="714" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__agc__status_1ae4023d6a4ab935f3ceedba6695964ab5" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_status::RSQINT</definition>
-        <argsstring></argsstring>
-        <name>RSQINT</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="715" column="17" bodyfile="SI4735/SI4735.h" bodystart="715" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__agc__status_1a1a7a0bd5c44fc89974005235a8b4e1ae" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_status::DUMMY2</definition>
-        <argsstring></argsstring>
-        <name>DUMMY2</name>
-        <bitfield> 2</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="716" column="17" bodyfile="SI4735/SI4735.h" bodystart="716" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__agc__status_1a4483c8293b7c3779b3564da97eee97d1" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_status::ERR</definition>
-        <argsstring></argsstring>
-        <name>ERR</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="717" column="17" bodyfile="SI4735/SI4735.h" bodystart="717" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1aaae187575b9868ff427c063c3a6cca2a" compoundref="_s_i4735_8cpp" startline="960" endline="987">SI4735::getAutomaticGainControl</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__agc__status_1a0ce35e707134980da54508249216fb1c" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_status::CTS</definition>
-        <argsstring></argsstring>
-        <name>CTS</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="718" column="17" bodyfile="SI4735/SI4735.h" bodystart="718" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__agc__status_1a329da2e6ccd1656d2a6b9c6b1483faeb" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_status::AGCDIS</definition>
-        <argsstring></argsstring>
-        <name>AGCDIS</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="720" column="17" bodyfile="SI4735/SI4735.h" bodystart="720" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1aea08b7e553212cbe01bf6f4ec9e02de7" compoundref="_s_i4735_8h" startline="982" endline="982">SI4735::isAgcEnabled</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__agc__status_1acb16cb23caa69a764a8e14bf00bd8be0" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_status::DUMMY</definition>
-        <argsstring></argsstring>
-        <name>DUMMY</name>
-        <bitfield> 7</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="721" column="17" bodyfile="SI4735/SI4735.h" bodystart="721" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__agc__status_1a542909611f2b6093f46af7362ae9d9fd" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_status::AGCIDX</definition>
-        <argsstring></argsstring>
-        <name>AGCIDX</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="723" column="17" bodyfile="SI4735/SI4735.h" bodystart="723" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a4eceaf5745e87fcca6cf31c04c5635bd" compoundref="_s_i4735_8h" startline="983" endline="983">SI4735::getAgcGainIndex</referencedby>
-      </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1aa6916dac978ef9cfd53ffe7783c4d8da" prot="public" static="no" mutable="no">
         <type>struct si47x_agc_status::@22</type>
         <definition>struct si47x_agc_status::@22 si47x_agc_status::refined</definition>
@@ -158,9 +16,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="724" column="13"/>
-        <referencedby refid="class_s_i4735_1a4eceaf5745e87fcca6cf31c04c5635bd" compoundref="_s_i4735_8h" startline="983" endline="983">SI4735::getAgcGainIndex</referencedby>
         <referencedby refid="class_s_i4735_1aaae187575b9868ff427c063c3a6cca2a" compoundref="_s_i4735_8cpp" startline="960" endline="987">SI4735::getAutomaticGainControl</referencedby>
         <referencedby refid="class_s_i4735_1aea08b7e553212cbe01bf6f4ec9e02de7" compoundref="_s_i4735_8h" startline="982" endline="982">SI4735::isAgcEnabled</referencedby>
+        <referencedby refid="class_s_i4735_1a4eceaf5745e87fcca6cf31c04c5635bd" compoundref="_s_i4735_8h" startline="983" endline="983">SI4735::getAgcGainIndex</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1a2f03c32a90a7991f2433bf8a5291885d" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -189,18 +47,8 @@
     </detaileddescription>
     <location file="SI4735/SI4735.h" line="708" column="15" bodyfile="SI4735/SI4735.h" bodystart="708" bodyend="726"/>
     <listofallmembers>
-      <member refid="unionsi47x__agc__status_1a329da2e6ccd1656d2a6b9c6b1483faeb" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>AGCDIS</name></member>
-      <member refid="unionsi47x__agc__status_1a542909611f2b6093f46af7362ae9d9fd" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>AGCIDX</name></member>
-      <member refid="unionsi47x__agc__status_1a0ce35e707134980da54508249216fb1c" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>CTS</name></member>
-      <member refid="unionsi47x__agc__status_1acb16cb23caa69a764a8e14bf00bd8be0" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>DUMMY</name></member>
-      <member refid="unionsi47x__agc__status_1ac7467eba73b0a1354f96210196b9702e" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>DUMMY1</name></member>
-      <member refid="unionsi47x__agc__status_1a1a7a0bd5c44fc89974005235a8b4e1ae" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>DUMMY2</name></member>
-      <member refid="unionsi47x__agc__status_1a4483c8293b7c3779b3564da97eee97d1" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>ERR</name></member>
       <member refid="unionsi47x__agc__status_1a2f03c32a90a7991f2433bf8a5291885d" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>raw</name></member>
-      <member refid="unionsi47x__agc__status_1a0fc5f60be89de344c288ccbe90a6dda4" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>RDSINT</name></member>
       <member refid="unionsi47x__agc__status_1aa6916dac978ef9cfd53ffe7783c4d8da" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>refined</name></member>
-      <member refid="unionsi47x__agc__status_1ae4023d6a4ab935f3ceedba6695964ab5" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>RSQINT</name></member>
-      <member refid="unionsi47x__agc__status_1a46cac3781dee36161e8ac2a9bf507ad5" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>STCINT</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

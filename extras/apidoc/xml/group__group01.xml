@@ -4,15 +4,25 @@
     <compoundname>group01</compoundname>
     <title>SI473X data types</title>
     <innerclass refid="unionsi473x__powerup" prot="public">si473x_powerup</innerclass>
+    <innerclass refid="structsi473x__powerup_8arg" prot="public">si473x_powerup.arg</innerclass>
     <innerclass refid="unionsi47x__frequency" prot="public">si47x_frequency</innerclass>
+    <innerclass refid="structsi47x__frequency_8raw" prot="public">si47x_frequency.raw</innerclass>
     <innerclass refid="unionsi47x__antenna__capacitor" prot="public">si47x_antenna_capacitor</innerclass>
+    <innerclass refid="structsi47x__antenna__capacitor_8raw" prot="public">si47x_antenna_capacitor.raw</innerclass>
     <innerclass refid="unionsi47x__set__frequency" prot="public">si47x_set_frequency</innerclass>
+    <innerclass refid="structsi47x__set__frequency_8arg" prot="public">si47x_set_frequency.arg</innerclass>
     <innerclass refid="unionsi47x__seek" prot="public">si47x_seek</innerclass>
+    <innerclass refid="structsi47x__seek_8arg" prot="public">si47x_seek.arg</innerclass>
     <innerclass refid="unionsi47x__response__status" prot="public">si47x_response_status</innerclass>
+    <innerclass refid="structsi47x__response__status_8resp" prot="public">si47x_response_status.resp</innerclass>
     <innerclass refid="unionsi47x__firmware__information" prot="public">si47x_firmware_information</innerclass>
+    <innerclass refid="structsi47x__firmware__information_8resp" prot="public">si47x_firmware_information.resp</innerclass>
     <innerclass refid="unionsi47x__firmware__query__library" prot="public">si47x_firmware_query_library</innerclass>
+    <innerclass refid="structsi47x__firmware__query__library_8resp" prot="public">si47x_firmware_query_library.resp</innerclass>
     <innerclass refid="unionsi47x__tune__status" prot="public">si47x_tune_status</innerclass>
+    <innerclass refid="structsi47x__tune__status_8arg" prot="public">si47x_tune_status.arg</innerclass>
     <innerclass refid="unionsi47x__property" prot="public">si47x_property</innerclass>
+    <innerclass refid="structsi47x__property_8raw" prot="public">si47x_property.raw</innerclass>
     <briefdescription>
 <para>SI473X data representation. </para>
     </briefdescription>

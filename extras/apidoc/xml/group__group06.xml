@@ -162,23 +162,12 @@
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="935" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="194" bodyend="220"/>
         <references refid="_s_i4735_8h_1a5c3e83244b4ab4a76d9c5c1ed86f3a54" compoundref="_s_i4735_8h" startline="59">AM_TUNE_FREQ</references>
-        <references refid="unionsi47x__set__frequency_1a9aee8ee0d04a6a7e732210fdea987d2c" compoundref="_s_i4735_8h" startline="234">si47x_set_frequency::ANTCAPH</references>
-        <references refid="unionsi47x__set__frequency_1a712fdd01147dcef829431bc2fc94a012" compoundref="_s_i4735_8h" startline="235">si47x_set_frequency::ANTCAPL</references>
         <references refid="unionsi473x__powerup_1a1d76ab95c8f37f3ee9f2266e0a818455">si473x_powerup::arg</references>
         <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
-        <references refid="unionsi473x__powerup_1a21297439eccc575f7c0a3228a4061fa7" compoundref="_s_i4735_8h" startline="183">si473x_powerup::CTSIEN</references>
         <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">SI4735::currentFrequencyParams</references>
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">SI4735::currentTune</references>
-        <references refid="unionsi47x__set__frequency_1a0f58c9f3ce774e07a2acc9ba4e968c85" compoundref="_s_i4735_8h" startline="230">si47x_set_frequency::DUMMY1</references>
-        <references refid="unionsi47x__set__frequency_1a629c45776aead687497d92dfabad925d" compoundref="_s_i4735_8h" startline="228">si47x_set_frequency::FAST</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
-        <references refid="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" compoundref="_s_i4735_8h" startline="229">si47x_set_frequency::FREEZE</references>
-        <references refid="unionsi473x__powerup_1aa6f9fd2636a0a6797755b99c343ef648" compoundref="_s_i4735_8h" startline="179">si473x_powerup::FUNC</references>
-        <references refid="unionsi473x__powerup_1a6da21e782c18e0d15791f712e602bf0f" compoundref="_s_i4735_8h" startline="182">si473x_powerup::GPO2OEN</references>
-        <references refid="unionsi473x__powerup_1a5deeab3cdc44cc652b6e8867dd8e9833" compoundref="_s_i4735_8h" startline="185">si473x_powerup::OPMODE</references>
-        <references refid="unionsi473x__powerup_1aff3f1655e972eff4630c66f0b4ec7704" compoundref="_s_i4735_8h" startline="181">si473x_powerup::PATCH</references>
         <references refid="class_s_i4735_1a1331b701088bda20bf0844e2e38be142" compoundref="_s_i4735_8h" startline="912">SI4735::powerUp</references>
-        <references refid="unionsi473x__powerup_1ae68c435fb0ff2ad54bc17ac794a482c1" compoundref="_s_i4735_8h" startline="180">si473x_powerup::XOSCEN</references>
         <referencedby refid="group__group08_1ga753390952a1f2c2a98343979f1f3daa0" compoundref="_s_i4735_8cpp" startline="525" endline="538">SI4735::setAM</referencedby>
         <referencedby refid="group__group08_1gacd89e7b8adefcbc4e89f802acb915906" compoundref="_s_i4735_8cpp" startline="547" endline="556">SI4735::setFM</referencedby>
         <referencedby refid="class_s_i4735_1a3e907ddf560a0c8286fa55768701b3da" compoundref="_s_i4735_8cpp" startline="2035" endline="2046">SI4735::setSSB</referencedby>

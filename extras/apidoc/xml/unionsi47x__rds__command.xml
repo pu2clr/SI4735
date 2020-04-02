@@ -4,65 +4,6 @@
     <compoundname>si47x_rds_command</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="unionsi47x__rds__command_1af342e43abded03f247b1366762be7e09" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_command::INTACK</definition>
-        <argsstring></argsstring>
-        <name>INTACK</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="463" column="17" bodyfile="SI4735/SI4735.h" bodystart="463" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" compoundref="_s_i4735_8cpp" startline="1425" endline="1461">SI4735::getRdsStatus</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__command_1a0a99bc3eb133aef468004ee950b77cdd" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_command::MTFIFO</definition>
-        <argsstring></argsstring>
-        <name>MTFIFO</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="464" column="17" bodyfile="SI4735/SI4735.h" bodystart="464" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" compoundref="_s_i4735_8cpp" startline="1425" endline="1461">SI4735::getRdsStatus</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__command_1a502e1f710ac40b85373d662512fcaaaa" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_command::STATUSONLY</definition>
-        <argsstring></argsstring>
-        <name>STATUSONLY</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="465" column="17" bodyfile="SI4735/SI4735.h" bodystart="465" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" compoundref="_s_i4735_8cpp" startline="1425" endline="1461">SI4735::getRdsStatus</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__command_1a3b27e9ff8048cbc2f8ec469afe0088dc" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_command::dummy</definition>
-        <argsstring></argsstring>
-        <name>dummy</name>
-        <bitfield> 5</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="466" column="17" bodyfile="SI4735/SI4735.h" bodystart="466" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__command_1a41282c2bfe9a791181ba01c6787840ec" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_command::@11</type>
         <definition>struct si47x_rds_command::@11 si47x_rds_command::arg</definition>
@@ -105,11 +46,7 @@
     <location file="SI4735/SI4735.h" line="460" column="15" bodyfile="SI4735/SI4735.h" bodystart="460" bodyend="469"/>
     <listofallmembers>
       <member refid="unionsi47x__rds__command_1a41282c2bfe9a791181ba01c6787840ec" prot="public" virt="non-virtual"><scope>si47x_rds_command</scope><name>arg</name></member>
-      <member refid="unionsi47x__rds__command_1a3b27e9ff8048cbc2f8ec469afe0088dc" prot="public" virt="non-virtual"><scope>si47x_rds_command</scope><name>dummy</name></member>
-      <member refid="unionsi47x__rds__command_1af342e43abded03f247b1366762be7e09" prot="public" virt="non-virtual"><scope>si47x_rds_command</scope><name>INTACK</name></member>
-      <member refid="unionsi47x__rds__command_1a0a99bc3eb133aef468004ee950b77cdd" prot="public" virt="non-virtual"><scope>si47x_rds_command</scope><name>MTFIFO</name></member>
       <member refid="unionsi47x__rds__command_1a3c151920e2f167bfa7c47193a20ecb58" prot="public" virt="non-virtual"><scope>si47x_rds_command</scope><name>raw</name></member>
-      <member refid="unionsi47x__rds__command_1a502e1f710ac40b85373d662512fcaaaa" prot="public" virt="non-virtual"><scope>si47x_rds_command</scope><name>STATUSONLY</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

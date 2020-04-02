@@ -4,44 +4,6 @@
     <compoundname>si47x_property</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="unionsi47x__property_1a03bfb4b4b42b829deecc04647a1331d7" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_property::byteLow</definition>
-        <argsstring></argsstring>
-        <name>byteLow</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="396" column="17" bodyfile="SI4735/SI4735.h" bodystart="396" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ae351181347f8c512b625d98ef7844961" compoundref="_s_i4735_8cpp" startline="678" endline="695">SI4735::sendProperty</referencedby>
-        <referencedby refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">SI4735::sendSSBModeProperty</referencedby>
-        <referencedby refid="class_s_i4735_1a8755743a36d2d4662c8db918d02ee4e1" compoundref="_s_i4735_8cpp" startline="632" endline="659">SI4735::setBandwidth</referencedby>
-        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
-        <referencedby refid="class_s_i4735_1a530e64d00d95b4ceb13ce33aa74c63cb" compoundref="_s_i4735_8cpp" startline="1384" endline="1413">SI4735::setRdsIntSource</referencedby>
-        <referencedby refid="class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f" compoundref="_s_i4735_8cpp" startline="1865" endline="1889">SI4735::setSSBBfo</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_property::byteHigh</definition>
-        <argsstring></argsstring>
-        <name>byteHigh</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="397" column="17" bodyfile="SI4735/SI4735.h" bodystart="397" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ae351181347f8c512b625d98ef7844961" compoundref="_s_i4735_8cpp" startline="678" endline="695">SI4735::sendProperty</referencedby>
-        <referencedby refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">SI4735::sendSSBModeProperty</referencedby>
-        <referencedby refid="class_s_i4735_1a8755743a36d2d4662c8db918d02ee4e1" compoundref="_s_i4735_8cpp" startline="632" endline="659">SI4735::setBandwidth</referencedby>
-        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
-        <referencedby refid="class_s_i4735_1a530e64d00d95b4ceb13ce33aa74c63cb" compoundref="_s_i4735_8cpp" startline="1384" endline="1413">SI4735::setRdsIntSource</referencedby>
-        <referencedby refid="class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f" compoundref="_s_i4735_8cpp" startline="1865" endline="1889">SI4735::setSSBBfo</referencedby>
-      </memberdef>
       <memberdef kind="variable" id="unionsi47x__property_1ae9ac96f5c6d10f227a6926f787232e27" prot="public" static="no" mutable="no">
         <type>struct si47x_property::@9</type>
         <definition>struct si47x_property::@9 si47x_property::raw</definition>
@@ -54,12 +16,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="398" column="9"/>
-        <referencedby refid="class_s_i4735_1ae351181347f8c512b625d98ef7844961" compoundref="_s_i4735_8cpp" startline="678" endline="695">SI4735::sendProperty</referencedby>
-        <referencedby refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">SI4735::sendSSBModeProperty</referencedby>
         <referencedby refid="class_s_i4735_1a8755743a36d2d4662c8db918d02ee4e1" compoundref="_s_i4735_8cpp" startline="632" endline="659">SI4735::setBandwidth</referencedby>
+        <referencedby refid="class_s_i4735_1ae351181347f8c512b625d98ef7844961" compoundref="_s_i4735_8cpp" startline="678" endline="695">SI4735::sendProperty</referencedby>
         <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
         <referencedby refid="class_s_i4735_1a530e64d00d95b4ceb13ce33aa74c63cb" compoundref="_s_i4735_8cpp" startline="1384" endline="1413">SI4735::setRdsIntSource</referencedby>
         <referencedby refid="class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f" compoundref="_s_i4735_8cpp" startline="1865" endline="1889">SI4735::setSSBBfo</referencedby>
+        <referencedby refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">SI4735::sendSSBModeProperty</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__property_1a7c04205c5a1798b35b738b2908853bfa" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -73,9 +35,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="399" column="14" bodyfile="SI4735/SI4735.h" bodystart="399" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a8755743a36d2d4662c8db918d02ee4e1" compoundref="_s_i4735_8cpp" startline="632" endline="659">SI4735::setBandwidth</referencedby>
         <referencedby refid="class_s_i4735_1ae351181347f8c512b625d98ef7844961" compoundref="_s_i4735_8cpp" startline="678" endline="695">SI4735::sendProperty</referencedby>
         <referencedby refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">SI4735::sendSSBModeProperty</referencedby>
-        <referencedby refid="class_s_i4735_1a8755743a36d2d4662c8db918d02ee4e1" compoundref="_s_i4735_8cpp" startline="632" endline="659">SI4735::setBandwidth</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -86,8 +48,6 @@
     </detaileddescription>
     <location file="SI4735/SI4735.h" line="393" column="15" bodyfile="SI4735/SI4735.h" bodystart="393" bodyend="400"/>
     <listofallmembers>
-      <member refid="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" prot="public" virt="non-virtual"><scope>si47x_property</scope><name>byteHigh</name></member>
-      <member refid="unionsi47x__property_1a03bfb4b4b42b829deecc04647a1331d7" prot="public" virt="non-virtual"><scope>si47x_property</scope><name>byteLow</name></member>
       <member refid="unionsi47x__property_1ae9ac96f5c6d10f227a6926f787232e27" prot="public" virt="non-virtual"><scope>si47x_property</scope><name>raw</name></member>
       <member refid="unionsi47x__property_1a7c04205c5a1798b35b738b2908853bfa" prot="public" virt="non-virtual"><scope>si47x_property</scope><name>value</name></member>
     </listofallmembers>

@@ -4,49 +4,6 @@
     <compoundname>si47x_agc_overrride</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="unionsi47x__agc__overrride_1a7e92f8e598d792f6d0b11e2bd921e01b" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_overrride::AGCDIS</definition>
-        <argsstring></argsstring>
-        <name>AGCDIS</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="741" column="17" bodyfile="SI4735/SI4735.h" bodystart="741" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a27c22f5671ce3229e925e5fbe93ba0a6" compoundref="_s_i4735_8cpp" startline="1001" endline="1021">SI4735::setAutomaticGainControl</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__agc__overrride_1aa4a9fc283d2f8345a0815d463f561e6d" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_overrride::DUMMY</definition>
-        <argsstring></argsstring>
-        <name>DUMMY</name>
-        <bitfield> 7</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="742" column="17" bodyfile="SI4735/SI4735.h" bodystart="742" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__agc__overrride_1a65e8a65b69cd633b05480655a525904d" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_agc_overrride::AGCIDX</definition>
-        <argsstring></argsstring>
-        <name>AGCIDX</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="744" column="17" bodyfile="SI4735/SI4735.h" bodystart="744" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a27c22f5671ce3229e925e5fbe93ba0a6" compoundref="_s_i4735_8cpp" startline="1001" endline="1021">SI4735::setAutomaticGainControl</referencedby>
-      </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__overrride_1ae235ce810f1b7d481def598b0e7c5234" prot="public" static="no" mutable="no">
         <type>struct si47x_agc_overrride::@23</type>
         <definition>struct si47x_agc_overrride::@23 si47x_agc_overrride::arg</definition>
@@ -86,10 +43,7 @@
     </detaileddescription>
     <location file="SI4735/SI4735.h" line="737" column="15" bodyfile="SI4735/SI4735.h" bodystart="737" bodyend="747"/>
     <listofallmembers>
-      <member refid="unionsi47x__agc__overrride_1a7e92f8e598d792f6d0b11e2bd921e01b" prot="public" virt="non-virtual"><scope>si47x_agc_overrride</scope><name>AGCDIS</name></member>
-      <member refid="unionsi47x__agc__overrride_1a65e8a65b69cd633b05480655a525904d" prot="public" virt="non-virtual"><scope>si47x_agc_overrride</scope><name>AGCIDX</name></member>
       <member refid="unionsi47x__agc__overrride_1ae235ce810f1b7d481def598b0e7c5234" prot="public" virt="non-virtual"><scope>si47x_agc_overrride</scope><name>arg</name></member>
-      <member refid="unionsi47x__agc__overrride_1aa4a9fc283d2f8345a0815d463f561e6d" prot="public" virt="non-virtual"><scope>si47x_agc_overrride</scope><name>DUMMY</name></member>
       <member refid="unionsi47x__agc__overrride_1a7b8218655c25e1f8d75d92818ec24f20" prot="public" virt="non-virtual"><scope>si47x_agc_overrride</scope><name>raw</name></member>
     </listofallmembers>
   </compounddef>

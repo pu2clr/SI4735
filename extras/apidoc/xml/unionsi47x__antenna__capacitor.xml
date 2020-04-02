@@ -4,35 +4,6 @@
     <compoundname>si47x_antenna_capacitor</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1a327b39363f0d152ba8a5f4c7252fc358" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_antenna_capacitor::ANTCAPL</definition>
-        <argsstring></argsstring>
-        <name>ANTCAPL</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="212" column="17" bodyfile="SI4735/SI4735.h" bodystart="212" bodyend="-1"/>
-        <referencedby refid="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" compoundref="_s_i4735_8cpp" startline="398" endline="420">SI4735::setTuneFrequencyAntennaCapacitor</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1a26952301dd2779d1976f92c2e521c476" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_antenna_capacitor::ANTCAPH</definition>
-        <argsstring></argsstring>
-        <name>ANTCAPH</name>
-        <briefdescription>
-<para>Antenna Tuning Capacitor High byte. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="213" column="17" bodyfile="SI4735/SI4735.h" bodystart="213" bodyend="-1"/>
-        <referencedby refid="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" compoundref="_s_i4735_8cpp" startline="398" endline="420">SI4735::setTuneFrequencyAntennaCapacitor</referencedby>
-      </memberdef>
       <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1a29548a9c68843bb6aa86eabcd33a9633" prot="public" static="no" mutable="no">
         <type>struct si47x_antenna_capacitor::@2</type>
         <definition>struct si47x_antenna_capacitor::@2 si47x_antenna_capacitor::raw</definition>
@@ -69,8 +40,6 @@
     </detaileddescription>
     <location file="SI4735/SI4735.h" line="209" column="15" bodyfile="SI4735/SI4735.h" bodystart="209" bodyend="216"/>
     <listofallmembers>
-      <member refid="unionsi47x__antenna__capacitor_1a26952301dd2779d1976f92c2e521c476" prot="public" virt="non-virtual"><scope>si47x_antenna_capacitor</scope><name>ANTCAPH</name></member>
-      <member refid="unionsi47x__antenna__capacitor_1a327b39363f0d152ba8a5f4c7252fc358" prot="public" virt="non-virtual"><scope>si47x_antenna_capacitor</scope><name>ANTCAPL</name></member>
       <member refid="unionsi47x__antenna__capacitor_1a29548a9c68843bb6aa86eabcd33a9633" prot="public" virt="non-virtual"><scope>si47x_antenna_capacitor</scope><name>raw</name></member>
       <member refid="unionsi47x__antenna__capacitor_1aa59f9604df88a98b91295b0a9c009bbd" prot="public" virt="non-virtual"><scope>si47x_antenna_capacitor</scope><name>value</name></member>
     </listofallmembers>

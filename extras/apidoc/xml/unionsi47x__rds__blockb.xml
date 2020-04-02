@@ -4,124 +4,6 @@
     <compoundname>si47x_rds_blockb</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="unionsi47x__rds__blockb_1ae85fb9b6893b7ae94df7d9bdf30d8fb4" prot="public" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t si47x_rds_blockb::address</definition>
-        <argsstring></argsstring>
-        <name>address</name>
-        <bitfield> 2</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="615" column="18" bodyfile="SI4735/SI4735.h" bodystart="615" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a12d917629b78fffebac5ecf8f2936921" compoundref="_s_i4735_8cpp" startline="1669" endline="1693">SI4735::getRdsText0A</referencedby>
-        <referencedby refid="class_s_i4735_1ae54d0f5562ca7615c3b90bee00c29ab4" compoundref="_s_i4735_8cpp" startline="1700" endline="1724">SI4735::getRdsText2A</referencedby>
-        <referencedby refid="class_s_i4735_1a806d5cfbbeb6ca1299ce20b1220fdb18" compoundref="_s_i4735_8cpp" startline="1732" endline="1756">SI4735::getRdsText2B</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__blockb_1ab328b512ede3263b8cc3ee358280199c" prot="public" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t si47x_rds_blockb::DI</definition>
-        <argsstring></argsstring>
-        <name>DI</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="616" column="18" bodyfile="SI4735/SI4735.h" bodystart="616" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__blockb_1a096ab1230df03262dd29149a6154e08f" prot="public" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t si47x_rds_blockb::MS</definition>
-        <argsstring></argsstring>
-        <name>MS</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="617" column="18" bodyfile="SI4735/SI4735.h" bodystart="617" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__blockb_1afc5d18af2058dc55887e01c2e40c6025" prot="public" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t si47x_rds_blockb::TA</definition>
-        <argsstring></argsstring>
-        <name>TA</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="618" column="18" bodyfile="SI4735/SI4735.h" bodystart="618" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__blockb_1ae0500c0f2c43a9701e8d19353bc12438" prot="public" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t si47x_rds_blockb::programType</definition>
-        <argsstring></argsstring>
-        <name>programType</name>
-        <bitfield> 5</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="619" column="18" bodyfile="SI4735/SI4735.h" bodystart="619" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ac28fa3818d4f900c4f4ba6be10c1405b" compoundref="_s_i4735_8cpp" startline="1566" endline="1574">SI4735::getRdsProgramType</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__blockb_1a963a0cba84ca0fa8e7443c927bfc0322" prot="public" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t si47x_rds_blockb::trafficProgramCode</definition>
-        <argsstring></argsstring>
-        <name>trafficProgramCode</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="620" column="18" bodyfile="SI4735/SI4735.h" bodystart="620" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__blockb_1a30c1925754d5eaca0dfa29739bc90244" prot="public" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t si47x_rds_blockb::versionCode</definition>
-        <argsstring></argsstring>
-        <name>versionCode</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="621" column="18" bodyfile="SI4735/SI4735.h" bodystart="621" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1af9b6cb614d1b01b11bb23c19e6deb8b9" compoundref="_s_i4735_8cpp" startline="1549" endline="1557">SI4735::getRdsVersionCode</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__blockb_1a15f89b1b22c05a2d7f873f0251c549e7" prot="public" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t si47x_rds_blockb::groupType</definition>
-        <argsstring></argsstring>
-        <name>groupType</name>
-        <bitfield> 4</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="622" column="18" bodyfile="SI4735/SI4735.h" bodystart="622" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1aa35366e5cded7b864f7268a7e4a8dbe9" compoundref="_s_i4735_8cpp" startline="1499" endline="1507">SI4735::getRdsGroupType</referencedby>
-      </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__blockb_1a059a039022499410d7d337fe96e3cbab" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_blockb::@17</type>
         <definition>struct si47x_rds_blockb::@17 si47x_rds_blockb::group0</definition>
@@ -135,21 +17,6 @@
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="623" column="12"/>
         <referencedby refid="class_s_i4735_1a12d917629b78fffebac5ecf8f2936921" compoundref="_s_i4735_8cpp" startline="1669" endline="1693">SI4735::getRdsText0A</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__blockb_1a59a87427b5d83b59d705780ea2069cc0" prot="public" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t si47x_rds_blockb::textABFlag</definition>
-        <argsstring></argsstring>
-        <name>textABFlag</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="627" column="18" bodyfile="SI4735/SI4735.h" bodystart="627" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a05f76a0a0ebda813483f1df24e890904" compoundref="_s_i4735_8cpp" startline="1515" endline="1523">SI4735::getRdsFlagAB</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__blockb_1aa6d5cedf34d36a7719b521d02b8a3666" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_blockb::@18</type>
@@ -166,21 +33,6 @@
         <referencedby refid="class_s_i4735_1ae54d0f5562ca7615c3b90bee00c29ab4" compoundref="_s_i4735_8cpp" startline="1700" endline="1724">SI4735::getRdsText2A</referencedby>
         <referencedby refid="class_s_i4735_1a806d5cfbbeb6ca1299ce20b1220fdb18" compoundref="_s_i4735_8cpp" startline="1732" endline="1756">SI4735::getRdsText2B</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__blockb_1a62c7cb3e50672c3244d0098b449ebe9b" prot="public" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t si47x_rds_blockb::content</definition>
-        <argsstring></argsstring>
-        <name>content</name>
-        <bitfield> 4</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="635" column="18" bodyfile="SI4735/SI4735.h" bodystart="635" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ab1ed04a109330e7e9206483c7cdf5ef9" compoundref="_s_i4735_8cpp" startline="1535" endline="1542">SI4735::getRdsTextSegmentAddress</referencedby>
-      </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__blockb_1ad6bf3043057d5ccfb4294cad28c7b9a5" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_blockb::@19</type>
         <definition>struct si47x_rds_blockb::@19 si47x_rds_blockb::refined</definition>
@@ -193,53 +45,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="641" column="13"/>
-        <referencedby refid="class_s_i4735_1a05f76a0a0ebda813483f1df24e890904" compoundref="_s_i4735_8cpp" startline="1515" endline="1523">SI4735::getRdsFlagAB</referencedby>
         <referencedby refid="class_s_i4735_1aa35366e5cded7b864f7268a7e4a8dbe9" compoundref="_s_i4735_8cpp" startline="1499" endline="1507">SI4735::getRdsGroupType</referencedby>
-        <referencedby refid="class_s_i4735_1ac28fa3818d4f900c4f4ba6be10c1405b" compoundref="_s_i4735_8cpp" startline="1566" endline="1574">SI4735::getRdsProgramType</referencedby>
+        <referencedby refid="class_s_i4735_1a05f76a0a0ebda813483f1df24e890904" compoundref="_s_i4735_8cpp" startline="1515" endline="1523">SI4735::getRdsFlagAB</referencedby>
         <referencedby refid="class_s_i4735_1ab1ed04a109330e7e9206483c7cdf5ef9" compoundref="_s_i4735_8cpp" startline="1535" endline="1542">SI4735::getRdsTextSegmentAddress</referencedby>
         <referencedby refid="class_s_i4735_1af9b6cb614d1b01b11bb23c19e6deb8b9" compoundref="_s_i4735_8cpp" startline="1549" endline="1557">SI4735::getRdsVersionCode</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__blockb_1ae93ff5d62ed6a769b50bb25cb808fa2f" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_blockb::lowValue</definition>
-        <argsstring></argsstring>
-        <name>lowValue</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="644" column="17" bodyfile="SI4735/SI4735.h" bodystart="644" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a05f76a0a0ebda813483f1df24e890904" compoundref="_s_i4735_8cpp" startline="1515" endline="1523">SI4735::getRdsFlagAB</referencedby>
-        <referencedby refid="class_s_i4735_1aa35366e5cded7b864f7268a7e4a8dbe9" compoundref="_s_i4735_8cpp" startline="1499" endline="1507">SI4735::getRdsGroupType</referencedby>
         <referencedby refid="class_s_i4735_1ac28fa3818d4f900c4f4ba6be10c1405b" compoundref="_s_i4735_8cpp" startline="1566" endline="1574">SI4735::getRdsProgramType</referencedby>
-        <referencedby refid="class_s_i4735_1a12d917629b78fffebac5ecf8f2936921" compoundref="_s_i4735_8cpp" startline="1669" endline="1693">SI4735::getRdsText0A</referencedby>
-        <referencedby refid="class_s_i4735_1ae54d0f5562ca7615c3b90bee00c29ab4" compoundref="_s_i4735_8cpp" startline="1700" endline="1724">SI4735::getRdsText2A</referencedby>
-        <referencedby refid="class_s_i4735_1a806d5cfbbeb6ca1299ce20b1220fdb18" compoundref="_s_i4735_8cpp" startline="1732" endline="1756">SI4735::getRdsText2B</referencedby>
-        <referencedby refid="class_s_i4735_1ab1ed04a109330e7e9206483c7cdf5ef9" compoundref="_s_i4735_8cpp" startline="1535" endline="1542">SI4735::getRdsTextSegmentAddress</referencedby>
-        <referencedby refid="class_s_i4735_1af9b6cb614d1b01b11bb23c19e6deb8b9" compoundref="_s_i4735_8cpp" startline="1549" endline="1557">SI4735::getRdsVersionCode</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__blockb_1a0bf139b12b0eed8a0d20a7f3f60cb634" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_blockb::highValue</definition>
-        <argsstring></argsstring>
-        <name>highValue</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="645" column="17" bodyfile="SI4735/SI4735.h" bodystart="645" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a05f76a0a0ebda813483f1df24e890904" compoundref="_s_i4735_8cpp" startline="1515" endline="1523">SI4735::getRdsFlagAB</referencedby>
-        <referencedby refid="class_s_i4735_1aa35366e5cded7b864f7268a7e4a8dbe9" compoundref="_s_i4735_8cpp" startline="1499" endline="1507">SI4735::getRdsGroupType</referencedby>
-        <referencedby refid="class_s_i4735_1ac28fa3818d4f900c4f4ba6be10c1405b" compoundref="_s_i4735_8cpp" startline="1566" endline="1574">SI4735::getRdsProgramType</referencedby>
-        <referencedby refid="class_s_i4735_1a12d917629b78fffebac5ecf8f2936921" compoundref="_s_i4735_8cpp" startline="1669" endline="1693">SI4735::getRdsText0A</referencedby>
-        <referencedby refid="class_s_i4735_1ae54d0f5562ca7615c3b90bee00c29ab4" compoundref="_s_i4735_8cpp" startline="1700" endline="1724">SI4735::getRdsText2A</referencedby>
-        <referencedby refid="class_s_i4735_1a806d5cfbbeb6ca1299ce20b1220fdb18" compoundref="_s_i4735_8cpp" startline="1732" endline="1756">SI4735::getRdsText2B</referencedby>
-        <referencedby refid="class_s_i4735_1ab1ed04a109330e7e9206483c7cdf5ef9" compoundref="_s_i4735_8cpp" startline="1535" endline="1542">SI4735::getRdsTextSegmentAddress</referencedby>
-        <referencedby refid="class_s_i4735_1af9b6cb614d1b01b11bb23c19e6deb8b9" compoundref="_s_i4735_8cpp" startline="1549" endline="1557">SI4735::getRdsVersionCode</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__blockb_1a004a14fe7748648a3f4248c63075f472" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_blockb::@20</type>
@@ -253,14 +63,14 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="646" column="9"/>
-        <referencedby refid="class_s_i4735_1a05f76a0a0ebda813483f1df24e890904" compoundref="_s_i4735_8cpp" startline="1515" endline="1523">SI4735::getRdsFlagAB</referencedby>
         <referencedby refid="class_s_i4735_1aa35366e5cded7b864f7268a7e4a8dbe9" compoundref="_s_i4735_8cpp" startline="1499" endline="1507">SI4735::getRdsGroupType</referencedby>
+        <referencedby refid="class_s_i4735_1a05f76a0a0ebda813483f1df24e890904" compoundref="_s_i4735_8cpp" startline="1515" endline="1523">SI4735::getRdsFlagAB</referencedby>
+        <referencedby refid="class_s_i4735_1ab1ed04a109330e7e9206483c7cdf5ef9" compoundref="_s_i4735_8cpp" startline="1535" endline="1542">SI4735::getRdsTextSegmentAddress</referencedby>
+        <referencedby refid="class_s_i4735_1af9b6cb614d1b01b11bb23c19e6deb8b9" compoundref="_s_i4735_8cpp" startline="1549" endline="1557">SI4735::getRdsVersionCode</referencedby>
         <referencedby refid="class_s_i4735_1ac28fa3818d4f900c4f4ba6be10c1405b" compoundref="_s_i4735_8cpp" startline="1566" endline="1574">SI4735::getRdsProgramType</referencedby>
         <referencedby refid="class_s_i4735_1a12d917629b78fffebac5ecf8f2936921" compoundref="_s_i4735_8cpp" startline="1669" endline="1693">SI4735::getRdsText0A</referencedby>
         <referencedby refid="class_s_i4735_1ae54d0f5562ca7615c3b90bee00c29ab4" compoundref="_s_i4735_8cpp" startline="1700" endline="1724">SI4735::getRdsText2A</referencedby>
         <referencedby refid="class_s_i4735_1a806d5cfbbeb6ca1299ce20b1220fdb18" compoundref="_s_i4735_8cpp" startline="1732" endline="1756">SI4735::getRdsText2B</referencedby>
-        <referencedby refid="class_s_i4735_1ab1ed04a109330e7e9206483c7cdf5ef9" compoundref="_s_i4735_8cpp" startline="1535" endline="1542">SI4735::getRdsTextSegmentAddress</referencedby>
-        <referencedby refid="class_s_i4735_1af9b6cb614d1b01b11bb23c19e6deb8b9" compoundref="_s_i4735_8cpp" startline="1549" endline="1557">SI4735::getRdsVersionCode</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -278,22 +88,10 @@
     </detaileddescription>
     <location file="SI4735/SI4735.h" line="612" column="15" bodyfile="SI4735/SI4735.h" bodystart="612" bodyend="647"/>
     <listofallmembers>
-      <member refid="unionsi47x__rds__blockb_1ae85fb9b6893b7ae94df7d9bdf30d8fb4" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>address</name></member>
-      <member refid="unionsi47x__rds__blockb_1a62c7cb3e50672c3244d0098b449ebe9b" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>content</name></member>
-      <member refid="unionsi47x__rds__blockb_1ab328b512ede3263b8cc3ee358280199c" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>DI</name></member>
       <member refid="unionsi47x__rds__blockb_1a059a039022499410d7d337fe96e3cbab" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>group0</name></member>
       <member refid="unionsi47x__rds__blockb_1aa6d5cedf34d36a7719b521d02b8a3666" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>group2</name></member>
-      <member refid="unionsi47x__rds__blockb_1a15f89b1b22c05a2d7f873f0251c549e7" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>groupType</name></member>
-      <member refid="unionsi47x__rds__blockb_1a0bf139b12b0eed8a0d20a7f3f60cb634" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>highValue</name></member>
-      <member refid="unionsi47x__rds__blockb_1ae93ff5d62ed6a769b50bb25cb808fa2f" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>lowValue</name></member>
-      <member refid="unionsi47x__rds__blockb_1a096ab1230df03262dd29149a6154e08f" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>MS</name></member>
-      <member refid="unionsi47x__rds__blockb_1ae0500c0f2c43a9701e8d19353bc12438" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>programType</name></member>
       <member refid="unionsi47x__rds__blockb_1a004a14fe7748648a3f4248c63075f472" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>raw</name></member>
       <member refid="unionsi47x__rds__blockb_1ad6bf3043057d5ccfb4294cad28c7b9a5" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>refined</name></member>
-      <member refid="unionsi47x__rds__blockb_1afc5d18af2058dc55887e01c2e40c6025" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>TA</name></member>
-      <member refid="unionsi47x__rds__blockb_1a59a87427b5d83b59d705780ea2069cc0" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>textABFlag</name></member>
-      <member refid="unionsi47x__rds__blockb_1a963a0cba84ca0fa8e7443c927bfc0322" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>trafficProgramCode</name></member>
-      <member refid="unionsi47x__rds__blockb_1a30c1925754d5eaca0dfa29739bc90244" prot="public" virt="non-virtual"><scope>si47x_rds_blockb</scope><name>versionCode</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>
