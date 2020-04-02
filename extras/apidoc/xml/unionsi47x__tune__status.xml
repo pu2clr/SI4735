@@ -32,7 +32,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="380" column="17" bodyfile="SI4735/SI4735.h" bodystart="380" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a5c0f4036a7fbbd11a26f1f6f4579d3cd" compoundref="_s_i4735_8cpp" startline="842" endline="866">SI4735::getStatus</referencedby>
+        <referencedby refid="class_s_i4735_1a5c0f4036a7fbbd11a26f1f6f4579d3cd" compoundref="_s_i4735_8cpp" startline="916" endline="940">SI4735::getStatus</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__tune__status_1af014b49f5eb0de7ac951dd1d52321026" prot="public" static="no" mutable="no">
         <type>uint8_t</type>

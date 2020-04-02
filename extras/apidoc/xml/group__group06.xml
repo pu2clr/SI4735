@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__group06" kind="group">
+    <compoundname>group06</compoundname>
+    <title>Host and slave MCU setup</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group06_1gadc6014674bd4d1ee3aab56c605926db1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SI4735::reset</definition>
+        <argsstring>(void)</argsstring>
+        <name>reset</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Reset the SI473X <linebreak/>
+ </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="928" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="150" bodyend="158"/>
+        <referencedby refid="class_s_i4735_1a6f045d3725a457116236ee92d41c4265" compoundref="_s_i4735_8cpp" startline="2180" endline="2185">SI4735::ssbSetup</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SI4735::waitToSend</definition>
+        <argsstring>(void)</argsstring>
+        <name>waitToSend</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1). <linebreak/>
+ </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function should be used before sending any command to a SI47XX device.</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 63, 128 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="929" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="169" bodyend="176"/>
+        <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
+        <referencedby refid="class_s_i4735_1aa99cdde8dd65eb92f2ada159cc215c98" compoundref="_s_i4735_8cpp" startline="2303" endline="2363">SI4735::downloadPatch</referencedby>
+        <referencedby refid="class_s_i4735_1aaae187575b9868ff427c063c3a6cca2a" compoundref="_s_i4735_8cpp" startline="960" endline="987">SI4735::getAutomaticGainControl</referencedby>
+        <referencedby refid="class_s_i4735_1abf59183da13c72384093fc238c3114cf" compoundref="_s_i4735_8cpp" startline="1049" endline="1083">SI4735::getCurrentReceivedSignalQuality</referencedby>
+        <referencedby refid="group__group07_1ga2fbc7e2187a7c645879623100dbc8502" compoundref="_s_i4735_8cpp" startline="298" endline="314">SI4735::getFirmware</referencedby>
+        <referencedby refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" compoundref="_s_i4735_8cpp" startline="1425" endline="1461">SI4735::getRdsStatus</referencedby>
+        <referencedby refid="class_s_i4735_1a5c0f4036a7fbbd11a26f1f6f4579d3cd" compoundref="_s_i4735_8cpp" startline="916" endline="940">SI4735::getStatus</referencedby>
+        <referencedby refid="class_s_i4735_1afaabd6c73b7ad7c20ae959d5b75c1e71" compoundref="_s_i4735_8cpp" startline="2165" endline="2174">SI4735::patchPowerUp</referencedby>
+        <referencedby refid="group__group06_1gaa554b3390fb6c5a4d6661b96afae73ae" compoundref="_s_i4735_8cpp" startline="280" endline="287">SI4735::powerDown</referencedby>
+        <referencedby refid="class_s_i4735_1adfc2c82524918224cf19fec5b7fcf6d1" compoundref="_s_i4735_8cpp" startline="2128" endline="2154">SI4735::queryLibraryId</referencedby>
+        <referencedby refid="group__group06_1ga3e228da65641f4dcf4253262e19bde9b" compoundref="_s_i4735_8cpp" startline="241" endline="253">SI4735::radioPowerUp</referencedby>
+        <referencedby refid="class_s_i4735_1a3280b98b8331f00b4d0158ef1b076533" compoundref="_s_i4735_8cpp" startline="1108" endline="1134">SI4735::seekStation</referencedby>
+        <referencedby refid="class_s_i4735_1ae351181347f8c512b625d98ef7844961" compoundref="_s_i4735_8cpp" startline="678" endline="695">SI4735::sendProperty</referencedby>
+        <referencedby refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">SI4735::sendSSBModeProperty</referencedby>
+        <referencedby refid="class_s_i4735_1a27c22f5671ce3229e925e5fbe93ba0a6" compoundref="_s_i4735_8cpp" startline="1001" endline="1021">SI4735::setAutomaticGainControl</referencedby>
+        <referencedby refid="class_s_i4735_1a8755743a36d2d4662c8db918d02ee4e1" compoundref="_s_i4735_8cpp" startline="632" endline="659">SI4735::setBandwidth</referencedby>
+        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
+        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
+        <referencedby refid="class_s_i4735_1a530e64d00d95b4ceb13ce33aa74c63cb" compoundref="_s_i4735_8cpp" startline="1384" endline="1413">SI4735::setRdsIntSource</referencedby>
+        <referencedby refid="class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f" compoundref="_s_i4735_8cpp" startline="1865" endline="1889">SI4735::setSSBBfo</referencedby>
+        <referencedby refid="class_s_i4735_1a0fcfd8e487c594707b3f2aaa71a86d68" compoundref="_s_i4735_8cpp" startline="2191" endline="2207">SI4735::ssbPowerUp</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SI4735::setPowerUp</definition>
+        <argsstring>(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE)</argsstring>
+        <name>setPowerUp</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>CTSIEN</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>GPO2OEN</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>PATCH</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>XOSCEN</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>FUNC</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>OPMODE</declname>
+        </param>
+        <briefdescription>
+<para>Set the Power Up parameters for si473X. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 65 and 129</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>uint8_t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CTSIEN sets Interrupt anabled or disabled (1 = anabled and 0 = disabled ) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>uint8_t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>GPO2OEN sets GP02 Si473X pin enabled (1 = anabled and 0 = disabled ) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>uint8_t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PATCH Used for firmware patch updates. Use it always 0 here. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>uint8_t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>XOSCEN sets external Crystal enabled or disabled </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>uint8_t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>FUNC sets the receiver function have to be used [0 = FM Receive; 1 = AM (LW/MW/SW) and SSB (if SSB patch apllied)] </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>uint8_t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>OPMODE set the kind of audio mode you want to use. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="935" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="194" bodyend="220"/>
+        <references refid="unionsi47x__set__frequency_1a9aee8ee0d04a6a7e732210fdea987d2c" compoundref="_s_i4735_8h" startline="234">si47x_set_frequency::ANTCAPH</references>
+        <references refid="unionsi47x__set__frequency_1a712fdd01147dcef829431bc2fc94a012" compoundref="_s_i4735_8h" startline="235">si47x_set_frequency::ANTCAPL</references>
+        <references refid="unionsi473x__powerup_1a21297439eccc575f7c0a3228a4061fa7" compoundref="_s_i4735_8h" startline="183">si473x_powerup::CTSIEN</references>
+        <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">SI4735::currentFrequencyParams</references>
+        <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">SI4735::currentTune</references>
+        <references refid="unionsi47x__set__frequency_1a0f58c9f3ce774e07a2acc9ba4e968c85" compoundref="_s_i4735_8h" startline="230">si47x_set_frequency::DUMMY1</references>
+        <references refid="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" compoundref="_s_i4735_8h" startline="229">si47x_set_frequency::FREEZE</references>
+        <references refid="unionsi473x__powerup_1a6da21e782c18e0d15791f712e602bf0f" compoundref="_s_i4735_8h" startline="182">si473x_powerup::GPO2OEN</references>
+        <references refid="unionsi473x__powerup_1a5deeab3cdc44cc652b6e8867dd8e9833" compoundref="_s_i4735_8h" startline="185">si473x_powerup::OPMODE</references>
+        <references refid="unionsi473x__powerup_1aff3f1655e972eff4630c66f0b4ec7704" compoundref="_s_i4735_8h" startline="181">si473x_powerup::PATCH</references>
+        <references refid="class_s_i4735_1a1331b701088bda20bf0844e2e38be142" compoundref="_s_i4735_8h" startline="912">SI4735::powerUp</references>
+        <references refid="unionsi473x__powerup_1ae68c435fb0ff2ad54bc17ac794a482c1" compoundref="_s_i4735_8h" startline="180">si473x_powerup::XOSCEN</references>
+        <referencedby refid="group__group08_1ga753390952a1f2c2a98343979f1f3daa0" compoundref="_s_i4735_8cpp" startline="525" endline="538">SI4735::setAM</referencedby>
+        <referencedby refid="group__group08_1gacd89e7b8adefcbc4e89f802acb915906" compoundref="_s_i4735_8cpp" startline="547" endline="556">SI4735::setFM</referencedby>
+        <referencedby refid="class_s_i4735_1a3e907ddf560a0c8286fa55768701b3da" compoundref="_s_i4735_8cpp" startline="2035" endline="2046">SI4735::setSSB</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__group06_1ga3e228da65641f4dcf4253262e19bde9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SI4735::radioPowerUp</definition>
+        <argsstring>(void)</argsstring>
+        <name>radioPowerUp</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Powerup the Si47XX. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Before call this function call the setPowerUp to set up the parameters.</para>
+<para>Parameters you have to set up with setPowerUp</para>
+<para>CTSIEN Interrupt anabled or disabled; GPO2OEN GPO2 Output Enable or disabled; PATCH Boot normally or patch; XOSCEN Use external crystal oscillator; FUNC defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver. OPMODE SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011)</para>
+<para><simplesect kind="see"><para><ref refid="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" kindref="member">SI4735::setPowerUp()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 64, 129 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="936" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="241" bodyend="253"/>
+        <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
+        <references refid="class_s_i4735_1a1331b701088bda20bf0844e2e38be142" compoundref="_s_i4735_8h" startline="912">SI4735::powerUp</references>
+        <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">SI4735::waitToSend</references>
+        <referencedby refid="group__group06_1ga412f51386c47a17cf04fd0a3c3078726" compoundref="_s_i4735_8cpp" startline="265" endline="268">SI4735::analogPowerUp</referencedby>
+        <referencedby refid="group__group08_1ga753390952a1f2c2a98343979f1f3daa0" compoundref="_s_i4735_8cpp" startline="525" endline="538">SI4735::setAM</referencedby>
+        <referencedby refid="group__group08_1gacd89e7b8adefcbc4e89f802acb915906" compoundref="_s_i4735_8cpp" startline="547" endline="556">SI4735::setFM</referencedby>
+        <referencedby refid="class_s_i4735_1a3e907ddf560a0c8286fa55768701b3da" compoundref="_s_i4735_8cpp" startline="2035" endline="2046">SI4735::setSSB</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__group06_1ga412f51386c47a17cf04fd0a3c3078726" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SI4735::analogPowerUp</definition>
+        <argsstring>(void)</argsstring>
+        <name>analogPowerUp</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>You have to call setPowerUp method before. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000001"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Consider use radioPowerUp instead</para>
+</xrefdescription></xrefsect></para>
+<para><simplesect kind="see"><para><ref refid="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" kindref="member">SI4735::setPowerUp()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 64, 129 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="937" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="265" bodyend="268"/>
+        <references refid="group__group06_1ga3e228da65641f4dcf4253262e19bde9b" compoundref="_s_i4735_8cpp" startline="241" endline="253">SI4735::radioPowerUp</references>
+      </memberdef>
+      <memberdef kind="function" id="group__group06_1gaa554b3390fb6c5a4d6661b96afae73ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SI4735::powerDown</definition>
+        <argsstring>(void)</argsstring>
+        <name>powerDown</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Moves the device from powerup to powerdown mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>After Power Down command, only the Power Up command is accepted.</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 67, 132 </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__group06_1ga3e228da65641f4dcf4253262e19bde9b" kindref="member">radioPowerUp()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="938" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="280" bodyend="287"/>
+        <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
+        <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">SI4735::waitToSend</references>
+        <referencedby refid="class_s_i4735_1adfc2c82524918224cf19fec5b7fcf6d1" compoundref="_s_i4735_8cpp" startline="2128" endline="2154">SI4735::queryLibraryId</referencedby>
+        <referencedby refid="group__group08_1ga753390952a1f2c2a98343979f1f3daa0" compoundref="_s_i4735_8cpp" startline="525" endline="538">SI4735::setAM</referencedby>
+        <referencedby refid="group__group08_1gacd89e7b8adefcbc4e89f802acb915906" compoundref="_s_i4735_8cpp" startline="547" endline="556">SI4735::setFM</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

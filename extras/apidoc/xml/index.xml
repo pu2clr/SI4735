@@ -30,23 +30,23 @@
     <member refid="class_s_i4735_1a1331b701088bda20bf0844e2e38be142" kind="variable"><name>powerUp</name></member>
     <member refid="class_s_i4735_1aa5220772c468fcfb69b5d16163de73fc" kind="variable"><name>volume</name></member>
     <member refid="class_s_i4735_1a05730ca069db4be7c45a9c92f29d3b52" kind="variable"><name>currentSsbStatus</name></member>
-    <member refid="class_s_i4735_1ad2e95c88de0dfa58ff7aa36988071421" kind="function"><name>waitInterrupr</name></member>
+    <member refid="group__group05_1gad2e95c88de0dfa58ff7aa36988071421" kind="function"><name>waitInterrupr</name></member>
     <member refid="class_s_i4735_1ae351181347f8c512b625d98ef7844961" kind="function"><name>sendProperty</name></member>
     <member refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" kind="function"><name>sendSSBModeProperty</name></member>
     <member refid="class_s_i4735_1ae4683e9a9fc7a633305b18dae54fbd83" kind="function"><name>disableFmDebug</name></member>
     <member refid="class_s_i4735_1ac65c552004f5e5e646638e37a5a68213" kind="function"><name>clearRdsBuffer2A</name></member>
     <member refid="class_s_i4735_1aed0988165057aa2880f41b88ac236cd7" kind="function"><name>clearRdsBuffer2B</name></member>
     <member refid="class_s_i4735_1adede134b96fd5650b87673ce413babb2" kind="function"><name>clearRdsBuffer0A</name></member>
-    <member refid="class_s_i4735_1a818c60896490631e4311452c99ff361f" kind="function"><name>SI4735</name></member>
-    <member refid="class_s_i4735_1adc6014674bd4d1ee3aab56c605926db1" kind="function"><name>reset</name></member>
-    <member refid="class_s_i4735_1a7b45c1b22c3c1a3f2326bee913d1e1e0" kind="function"><name>waitToSend</name></member>
-    <member refid="class_s_i4735_1a944ed704e2175a6cf660ad65ca5bbad5" kind="function"><name>setup</name></member>
-    <member refid="class_s_i4735_1a95fd37277dbb8b16b5ae7a996a5f9eba" kind="function"><name>setup</name></member>
-    <member refid="class_s_i4735_1a8bc001cb28dc8fbd88ba0fa7024eca39" kind="function"><name>setPowerUp</name></member>
-    <member refid="class_s_i4735_1a3e228da65641f4dcf4253262e19bde9b" kind="function"><name>radioPowerUp</name></member>
-    <member refid="class_s_i4735_1a412f51386c47a17cf04fd0a3c3078726" kind="function"><name>analogPowerUp</name></member>
-    <member refid="class_s_i4735_1aa554b3390fb6c5a4d6661b96afae73ae" kind="function"><name>powerDown</name></member>
-    <member refid="class_s_i4735_1a63d205f2d3169ba877a2bd2ee28d224f" kind="function"><name>setFrequency</name></member>
+    <member refid="group__group05_1ga818c60896490631e4311452c99ff361f" kind="function"><name>SI4735</name></member>
+    <member refid="group__group06_1gadc6014674bd4d1ee3aab56c605926db1" kind="function"><name>reset</name></member>
+    <member refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" kind="function"><name>waitToSend</name></member>
+    <member refid="group__group07_1ga944ed704e2175a6cf660ad65ca5bbad5" kind="function"><name>setup</name></member>
+    <member refid="group__group07_1ga95fd37277dbb8b16b5ae7a996a5f9eba" kind="function"><name>setup</name></member>
+    <member refid="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" kind="function"><name>setPowerUp</name></member>
+    <member refid="group__group06_1ga3e228da65641f4dcf4253262e19bde9b" kind="function"><name>radioPowerUp</name></member>
+    <member refid="group__group06_1ga412f51386c47a17cf04fd0a3c3078726" kind="function"><name>analogPowerUp</name></member>
+    <member refid="group__group06_1gaa554b3390fb6c5a4d6661b96afae73ae" kind="function"><name>powerDown</name></member>
+    <member refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" kind="function"><name>setFrequency</name></member>
     <member refid="class_s_i4735_1a3cf856c44fcfffb3d81b22b1d09b881f" kind="function"><name>getStatus</name></member>
     <member refid="class_s_i4735_1a5c0f4036a7fbbd11a26f1f6f4579d3cd" kind="function"><name>getStatus</name></member>
     <member refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" kind="function"><name>getFrequency</name></member>
@@ -108,21 +108,21 @@
     <member refid="class_s_i4735_1a12d4e173d096b1568e4209a63534d4f6" kind="function"><name>setAudioMute</name></member>
     <member refid="class_s_i4735_1aea652d358b4b586b6d5964ceb8eb7c81" kind="function"><name>digitalOutputFormat</name></member>
     <member refid="class_s_i4735_1a1a404ca11fb32b457be2d7cfe484dd03" kind="function"><name>digitalOutputSampleRate</name></member>
-    <member refid="class_s_i4735_1a753390952a1f2c2a98343979f1f3daa0" kind="function"><name>setAM</name></member>
-    <member refid="class_s_i4735_1acd89e7b8adefcbc4e89f802acb915906" kind="function"><name>setFM</name></member>
-    <member refid="class_s_i4735_1a43c5ea36995a3897820e0170d94c81f4" kind="function"><name>setAM</name></member>
-    <member refid="class_s_i4735_1a673bc4b17d564bb6e7f3e9a61d35fbb3" kind="function"><name>setFM</name></member>
+    <member refid="group__group08_1ga753390952a1f2c2a98343979f1f3daa0" kind="function"><name>setAM</name></member>
+    <member refid="group__group08_1gacd89e7b8adefcbc4e89f802acb915906" kind="function"><name>setFM</name></member>
+    <member refid="group__group08_1ga43c5ea36995a3897820e0170d94c81f4" kind="function"><name>setAM</name></member>
+    <member refid="group__group08_1ga673bc4b17d564bb6e7f3e9a61d35fbb3" kind="function"><name>setFM</name></member>
     <member refid="class_s_i4735_1a8755743a36d2d4662c8db918d02ee4e1" kind="function"><name>setBandwidth</name></member>
-    <member refid="class_s_i4735_1a794f6fe7987e146a0135b8e6fabec55c" kind="function"><name>setFrequencyStep</name></member>
+    <member refid="group__group08_1ga794f6fe7987e146a0135b8e6fabec55c" kind="function"><name>setFrequencyStep</name></member>
     <member refid="class_s_i4735_1a8c54bfc1fcf1dd989e697cc9b7094f59" kind="function"><name>getTuneFrequencyFast</name></member>
     <member refid="class_s_i4735_1a51d816112d974f10306d9d001667395a" kind="function"><name>setTuneFrequencyFast</name></member>
     <member refid="class_s_i4735_1a667fead0c7b2658c2b932370ad4e4f88" kind="function"><name>getTuneFrequencyFreeze</name></member>
     <member refid="class_s_i4735_1aee22a5ce06d4948fad2365a7b62fbd8d" kind="function"><name>setTuneFrequencyFreeze</name></member>
-    <member refid="class_s_i4735_1aaceadaaf0835e3db124d1b36f2aebd3c" kind="function"><name>setTuneFrequencyAntennaCapacitor</name></member>
-    <member refid="class_s_i4735_1ac0fcfd64dcf30b11d4dc219d9f7fc5d9" kind="function"><name>frequencyUp</name></member>
-    <member refid="class_s_i4735_1a93fff524a6f900ac91eb1222ce73f9ba" kind="function"><name>frequencyDown</name></member>
+    <member refid="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" kind="function"><name>setTuneFrequencyAntennaCapacitor</name></member>
+    <member refid="group__group08_1gac0fcfd64dcf30b11d4dc219d9f7fc5d9" kind="function"><name>frequencyUp</name></member>
+    <member refid="group__group08_1ga93fff524a6f900ac91eb1222ce73f9ba" kind="function"><name>frequencyDown</name></member>
     <member refid="class_s_i4735_1ae7ca2ffa6ad68ca69e4f35a3c40bbc3c" kind="function"><name>isCurrentTuneFM</name></member>
-    <member refid="class_s_i4735_1a2fbc7e2187a7c645879623100dbc8502" kind="function"><name>getFirmware</name></member>
+    <member refid="group__group07_1ga2fbc7e2187a7c645879623100dbc8502" kind="function"><name>getFirmware</name></member>
     <member refid="class_s_i4735_1a39f0e95a5efe5bd9add926c6f538528a" kind="function"><name>setFunction</name></member>
     <member refid="class_s_i4735_1a3280b98b8331f00b4d0158ef1b076533" kind="function"><name>seekStation</name></member>
     <member refid="class_s_i4735_1aad5211e3fff28141473442f59008e415" kind="function"><name>seekStationUp</name></member>
@@ -187,9 +187,9 @@
     <member refid="class_s_i4735_1a00ade87631677b8cc88098d0b55cd5a4" kind="function"><name>setI2CStandardMode</name></member>
     <member refid="class_s_i4735_1a7bb3214f70381cf26bb93f96729d641e" kind="function"><name>setI2CFastMode</name></member>
     <member refid="class_s_i4735_1a7433b4e80fd3b501efeae7973d29c985" kind="function"><name>setI2CFastModeCustom</name></member>
-    <member refid="class_s_i4735_1a748a4027f317972cb2fb1aed4865973b" kind="function"><name>setDeviceI2CAddress</name></member>
-    <member refid="class_s_i4735_1a8eddbfb3e62786aa4843d4bcd25da2b9" kind="function"><name>getDeviceI2CAddress</name></member>
-    <member refid="class_s_i4735_1a668008457910e916ebadf15bda2e5b29" kind="function"><name>setDeviceOtherI2CAddress</name></member>
+    <member refid="group__group05_1ga748a4027f317972cb2fb1aed4865973b" kind="function"><name>setDeviceI2CAddress</name></member>
+    <member refid="group__group05_1ga8eddbfb3e62786aa4843d4bcd25da2b9" kind="function"><name>getDeviceI2CAddress</name></member>
+    <member refid="group__group05_1ga668008457910e916ebadf15bda2e5b29" kind="function"><name>setDeviceOtherI2CAddress</name></member>
   </compound>
   <compound refid="unionsi4735__digital__output__format" kind="union"><name>si4735_digital_output_format</name>
     <member refid="unionsi4735__digital__output__format_1aad9941e3bc74c7621c493dfa8d066521" kind="variable"><name>OSIZE</name></member>
@@ -602,12 +602,43 @@
     <member refid="group__group04_1ga01f69d5bf584f94eabd1b113579b2c1e" kind="function"><name>interrupt_hundler</name></member>
   </compound>
   <compound refid="group__group05" kind="group"><name>group05</name>
+    <member refid="group__group05_1ga818c60896490631e4311452c99ff361f" kind="function"><name>SI4735</name></member>
+    <member refid="group__group05_1gad2e95c88de0dfa58ff7aa36988071421" kind="function"><name>waitInterrupr</name></member>
+    <member refid="group__group05_1ga8eddbfb3e62786aa4843d4bcd25da2b9" kind="function"><name>getDeviceI2CAddress</name></member>
+    <member refid="group__group05_1ga748a4027f317972cb2fb1aed4865973b" kind="function"><name>setDeviceI2CAddress</name></member>
+    <member refid="group__group05_1ga668008457910e916ebadf15bda2e5b29" kind="function"><name>setDeviceOtherI2CAddress</name></member>
+  </compound>
+  <compound refid="group__group06" kind="group"><name>group06</name>
+    <member refid="group__group06_1gadc6014674bd4d1ee3aab56c605926db1" kind="function"><name>reset</name></member>
+    <member refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" kind="function"><name>waitToSend</name></member>
+    <member refid="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" kind="function"><name>setPowerUp</name></member>
+    <member refid="group__group06_1ga3e228da65641f4dcf4253262e19bde9b" kind="function"><name>radioPowerUp</name></member>
+    <member refid="group__group06_1ga412f51386c47a17cf04fd0a3c3078726" kind="function"><name>analogPowerUp</name></member>
+    <member refid="group__group06_1gaa554b3390fb6c5a4d6661b96afae73ae" kind="function"><name>powerDown</name></member>
   </compound>
   <compound refid="group__group02" kind="group"><name>group02</name>
   </compound>
   <compound refid="group__group03" kind="group"><name>group03</name>
   </compound>
   <compound refid="group__group01" kind="group"><name>group01</name>
+  </compound>
+  <compound refid="group__group08" kind="group"><name>group08</name>
+    <member refid="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" kind="function"><name>setTuneFrequencyAntennaCapacitor</name></member>
+    <member refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" kind="function"><name>setFrequency</name></member>
+    <member refid="group__group08_1ga794f6fe7987e146a0135b8e6fabec55c" kind="function"><name>setFrequencyStep</name></member>
+    <member refid="group__group08_1gac0fcfd64dcf30b11d4dc219d9f7fc5d9" kind="function"><name>frequencyUp</name></member>
+    <member refid="group__group08_1ga93fff524a6f900ac91eb1222ce73f9ba" kind="function"><name>frequencyDown</name></member>
+    <member refid="group__group08_1ga753390952a1f2c2a98343979f1f3daa0" kind="function"><name>setAM</name></member>
+    <member refid="group__group08_1gacd89e7b8adefcbc4e89f802acb915906" kind="function"><name>setFM</name></member>
+    <member refid="group__group08_1ga43c5ea36995a3897820e0170d94c81f4" kind="function"><name>setAM</name></member>
+    <member refid="group__group08_1ga673bc4b17d564bb6e7f3e9a61d35fbb3" kind="function"><name>setFM</name></member>
+  </compound>
+  <compound refid="group__group07" kind="group"><name>group07</name>
+    <member refid="group__group07_1ga2fbc7e2187a7c645879623100dbc8502" kind="function"><name>getFirmware</name></member>
+    <member refid="group__group07_1ga95fd37277dbb8b16b5ae7a996a5f9eba" kind="function"><name>setup</name></member>
+    <member refid="group__group07_1ga944ed704e2175a6cf660ad65ca5bbad5" kind="function"><name>setup</name></member>
+  </compound>
+  <compound refid="deprecated" kind="page"><name>deprecated</name>
   </compound>
   <compound refid="dir_3c9cfd4004874c83bd03942a202d17f2" kind="dir"><name>SI4735</name>
   </compound>

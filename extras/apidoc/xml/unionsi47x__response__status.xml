@@ -182,7 +182,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="284" column="17" bodyfile="SI4735/SI4735.h" bodystart="284" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="810" endline="820">SI4735::getFrequency</referencedby>
+        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="884" endline="894">SI4735::getFrequency</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a6d5f612fc40df215e9f4c6a94b68e2e6" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -197,7 +197,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="286" column="17" bodyfile="SI4735/SI4735.h" bodystart="286" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="810" endline="820">SI4735::getFrequency</referencedby>
+        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="884" endline="894">SI4735::getFrequency</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a524207ce1b79627d69f94049ba8c614d" prot="public" static="no" mutable="no">
         <type>uint8_t</type>

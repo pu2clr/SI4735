@@ -46,7 +46,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="252" column="17" bodyfile="SI4735/SI4735.h" bodystart="252" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a3280b98b8331f00b4d0158ef1b076533" compoundref="_s_i4735_8cpp" startline="1034" endline="1060">SI4735::seekStation</referencedby>
+        <referencedby refid="class_s_i4735_1a3280b98b8331f00b4d0158ef1b076533" compoundref="_s_i4735_8cpp" startline="1108" endline="1134">SI4735::seekStation</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__seek_1a1acbac12abdb5b0ba3e81d353720c6ba" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
