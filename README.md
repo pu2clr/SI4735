@@ -42,9 +42,9 @@ __Attention__:
     * [Third-party projects using this library](https://github.com/pu2clr/SI4735#third-party-projects-using-this-library)
 
 
-<a id="raw-url" href="https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/rtf/pu2clr_si4735_api_doc.pdf">Download API documentation in PDF format</a>
+<a id="raw-url1" href="https://raw.githubusercontent.com/pu2clr/SI4735/blob/master/extras/apidoc/rtf/pu2clr_si4735_api_doc.pdf">Download API documentation in PDF format</a>
 
-<a id="raw-url" href="https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/rtf/pu2clr_si4735_api_doc.rtf">Download API documentation in RTF format (can be read from Microsoft Word)</a>
+<a id="raw-url2" href="https://raw.githubusercontent.com/pu2clr/SI4735/blob/master/extras/apidoc/rtf/pu2clr_si4735_api_doc.rtf">Download API documentation in RTF format (can be read from Microsoft Word)</a>
 
 
 <BR>
