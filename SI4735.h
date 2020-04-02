@@ -594,6 +594,7 @@ typedef union {
  * @brief Block B data type
  * 
  * @details For GCC on System-V ABI on 386-compatible (32-bit processors), the following stands:
+ * 
  * 1) Bit-fields are allocated from right to left (least to most significant).
  * 2) A bit-field must entirely reside in a storage unit appropriate for its declared type.
  *    Thus a bit-field never crosses its unit boundary.
