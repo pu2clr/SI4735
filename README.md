@@ -482,7 +482,7 @@ The figure above shows the very basic shematic implementation (no Button or Enco
 
 ## API Documentation
 
-You can read the Si4735 Arduino Library documentation by clicking [here](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/api.md). 
+You can read the Si4735 Arduino Library documentation by clicking [here](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/api.md).  You can also download the _PDF_ version [here]()
 
 
 
