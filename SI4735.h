@@ -793,8 +793,9 @@ typedef union {
 /**
  * @ingroup group03
  * 
- * Digital audio output format data structure (Property 0x0102. DIGITAL_OUTPUT_FORMAT).
- * Useed to configure: DCLK edge, data format, force mono, and sample precision.
+ * @brief Digital audio output format data structure (Property 0x0102. DIGITAL_OUTPUT_FORMAT).
+ * 
+ * @details Used to configure: DCLK edge, data format, force mono, and sample precision.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 195. 
  */
@@ -812,8 +813,9 @@ typedef union {
 /**
  * @ingroup group03
  * 
- * Digital audio output sample structure (Property 0x0104. DIGITAL_OUTPUT_SAMPLE_RATE).
- * Used to enable digital audio output and to configure the digital audio output sample rate in samples per second (sps).
+ * @brief Digital audio output sample structure (Property 0x0104. DIGITAL_OUTPUT_SAMPLE_RATE).
+ * 
+ * @details Used to enable digital audio output and to configure the digital audio output sample rate in samples per second (sps).
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 196. 
  */
@@ -831,7 +833,11 @@ typedef struct {
 volatile static bool data_from_si4735; /** @ingroup group04 store the interrupt status */
 
 /**
- * @ingroup group03
+ * @ingroup group04
+ * 
+ * @brief Interrupt Function
+ * 
+ * @details this function just set the volatile static bool data_from_si4735 to true;
  * 
  * If you are using interrupt feature, this function will be called by the system, not by you. 
  * If you are not using interrupt feature, please, ignore the compile message:
@@ -842,43 +848,56 @@ static void interrupt_hundler()
     data_from_si4735 = true;
 };
 
+/** @defgroup group05 Deal with Interrupt */
+
 /********************************************************************** 
  * SI4735 Class definition
  **********************************************************************/
 
-
+/**
+ * @ingroup group05
+ * 
+ * @brief SI4735 Class 
+ * 
+ * @details This class implements all functions to help you to control the Si47XX devices. 
+ * This library was built based on “Si47XX PROGRAMMING GUIDE; AN332 ”. 
+ * It also can be used on all members of the SI473X family respecting, of course, the features available 
+ * for each IC version.  * These functionalities can be seen in the comparison matrix shown in 
+ * table 1 (Product Family Function); pages 2 and 3 of the programming guide.
+ * 
+ */
 class SI4735
 {
 protected:
     char rds_buffer2A[65]; //! RDS Radio Text buffer - Program Information
     char rds_buffer2B[33]; //! RDS Radio Text buffer - Station Informaation
     char rds_buffer0A[9];  //! RDS Basic tuning and switching information (Type 0 groups)
-    char rds_time[20];
+    char rds_time[20];     //! RDS date time received information  
 
-    int rdsTextAdress2A;
-    int rdsTextAdress2B;
-    int rdsTextAdress0A;
+    int rdsTextAdress2A; //! rds_buffer2A current position
+    int rdsTextAdress2B; //! rds_buffer2B current position
+    int rdsTextAdress0A; //! rds_buffer0A current position
 
-    int16_t deviceAddress = SI473X_ADDR_SEN_LOW;
+    int16_t deviceAddress = SI473X_ADDR_SEN_LOW; //! current I2C buss address
 
     uint8_t lastTextFlagAB;
-    uint8_t resetPin;
-    uint8_t interruptPin;
+    uint8_t resetPin; //! pin used on Arduino Board to RESET the Si47XX device
+    uint8_t interruptPin; //! pin used on Arduino Board to control interrupt. If -1, interrupt is no used.
 
-    uint8_t currentTune;
+    uint8_t currentTune; //! tell the current tune (FM, AM or SSB)
 
-    uint16_t currentMinimumFrequency;
-    uint16_t currentMaximumFrequency;
-    uint16_t currentWorkFrequency;
+    uint16_t currentMinimumFrequency; //! minimum frequency of the current band
+    uint16_t currentMaximumFrequency; //! maximum frequency of the current band 
+    uint16_t currentWorkFrequency; //! current frequency
 
-    uint16_t currentStep;
+    uint16_t currentStep; //! current steps
 
     uint8_t lastMode = -1; //! Store the last mode used. 
 
-    uint8_t currentAvcAmMaxGain = 48; // Automatic Volume Control Gain for AM - Default 48
+    uint8_t currentAvcAmMaxGain = 48; //! Automatic Volume Control Gain for AM - Default 48
 
-    si47x_frequency currentFrequency;
-    si47x_set_frequency currentFrequencyParams;
+    si47x_frequency currentFrequency; //! data structure to get current frequency
+    si47x_set_frequency currentFrequencyParams; 
     si47x_rqs_status currentRqsStatus;
     si47x_response_status currentStatus;
     si47x_firmware_information firmwareInfo;
