@@ -305,6 +305,7 @@
         <argsstring></argsstring>
         <name>currentStatus</name>
         <briefdescription>
+<para>current Radio SIgnal Quality status </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -318,6 +319,7 @@
         <argsstring></argsstring>
         <name>firmwareInfo</name>
         <briefdescription>
+<para>current device status </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -331,6 +333,7 @@
         <argsstring></argsstring>
         <name>currentRdsStatus</name>
         <briefdescription>
+<para>firmware information </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -344,6 +347,7 @@
         <argsstring></argsstring>
         <name>currentAgcStatus</name>
         <briefdescription>
+<para>current RDS status </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -357,6 +361,7 @@
         <argsstring></argsstring>
         <name>currentSSBMode</name>
         <briefdescription>
+<para>current AGC status </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -370,6 +375,7 @@
         <argsstring></argsstring>
         <name>powerUp</name>
         <briefdescription>
+<para>indicates if USB or LSB </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>

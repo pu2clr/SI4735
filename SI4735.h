@@ -898,12 +898,12 @@ protected:
 
     si47x_frequency currentFrequency; //! data structure to get current frequency
     si47x_set_frequency currentFrequencyParams; 
-    si47x_rqs_status currentRqsStatus;
-    si47x_response_status currentStatus;
-    si47x_firmware_information firmwareInfo;
-    si47x_rds_status currentRdsStatus;
-    si47x_agc_status currentAgcStatus;
-    si47x_ssb_mode currentSSBMode;
+    si47x_rqs_status currentRqsStatus; //! current Radio SIgnal Quality status 
+    si47x_response_status currentStatus; //! current device status
+    si47x_firmware_information firmwareInfo; //! firmware information
+    si47x_rds_status currentRdsStatus; //! current RDS status
+    si47x_agc_status currentAgcStatus; //! current AGC status
+    si47x_ssb_mode currentSSBMode; //! indicates if USB or LSB
 
     si473x_powerup powerUp;
 
