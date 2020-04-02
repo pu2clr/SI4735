@@ -17,6 +17,8 @@
  * 
  * ATTENTION: Some methods were implemented usin inline resource. Inline methods are implemented in SI4735.h
  * 
+ * @author PU2CLR - Ricardo Lima Caratti 
+ * 
  * By Ricardo Lima Caratti, Nov 2019.
  */
 

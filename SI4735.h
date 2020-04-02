@@ -5,9 +5,11 @@
  *      Si47XX PROGRAMMING GUIDE AN332
  *      AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE
  * 
- * See documentation on https://github.com/pu2clr/SI4735
- * Ricardo Lima Caratti, Nov 2019 
- *  
+ * @see documentation on https://github.com/pu2clr/SI4735
+ * 
+ * @author PU2CLR - Ricardo Lima Caratti 
+ * 
+ * By Ricardo Lima Caratti, Nov 2019 
  */
 #include <Arduino.h>
 #include <Wire.h>
@@ -866,6 +868,7 @@ static void interrupt_hundler()
  * for each IC version.  These functionalities can be seen in the comparison matrix shown in 
  * table 1 (Product Family Function); pages 2 and 3 of the programming guide.
  * 
+ * @author PU2CLR - Ricardo Lima Caratti 
  */
 class SI4735
 {
