@@ -596,6 +596,15 @@
     <member refid="_s_i4735_8h_1a3d77e4d0458eed0b6ba584c737e8df21" kind="define"><name>MAX_DELAY_AFTER_SET_FREQUENCY</name></member>
     <member refid="_s_i4735_8h_1a166d7b31e78d530aba242e50dd903de4" kind="define"><name>MIN_DELAY_WAIT_SEND_LOOP</name></member>
     <member refid="_s_i4735_8h_1a36a47e0973bdcc39f5d864e4fee7cd66" kind="variable"><name>data_from_si4735</name></member>
-    <member refid="_s_i4735_8h_1a01f69d5bf584f94eabd1b113579b2c1e" kind="function"><name>interrupt_hundler</name></member>
+    <member refid="group__group03_1ga01f69d5bf584f94eabd1b113579b2c1e" kind="function"><name>interrupt_hundler</name></member>
+  </compound>
+  <compound refid="group__group04" kind="group"><name>group04</name>
+  </compound>
+  <compound refid="group__group02" kind="group"><name>group02</name>
+  </compound>
+  <compound refid="group__group03" kind="group"><name>group03</name>
+    <member refid="group__group03_1ga01f69d5bf584f94eabd1b113579b2c1e" kind="function"><name>interrupt_hundler</name></member>
+  </compound>
+  <compound refid="group__group01" kind="group"><name>group01</name>
   </compound>
 </doxygenindex>

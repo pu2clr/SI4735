@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__group02" kind="group">
+    <compoundname>group02</compoundname>
+    <title>RDS Data types</title>
+    <innerclass refid="unionsi47x__rqs__status" prot="public">si47x_rqs_status</innerclass>
+    <innerclass refid="unionsi47x__rds__command" prot="public">si47x_rds_command</innerclass>
+    <innerclass refid="unionsi47x__rds__status" prot="public">si47x_rds_status</innerclass>
+    <innerclass refid="unionsi47x__rds__int__source" prot="public">si47x_rds_int_source</innerclass>
+    <innerclass refid="unionsi47x__rds__config" prot="public">si47x_rds_config</innerclass>
+    <innerclass refid="unionsi47x__rds__blocka" prot="public">si47x_rds_blocka</innerclass>
+    <innerclass refid="unionsi47x__rds__blockb" prot="public">si47x_rds_blockb</innerclass>
+    <innerclass refid="unionsi47x__rds__date__time" prot="public">si47x_rds_date_time</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

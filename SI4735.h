@@ -147,13 +147,12 @@
 #define MAX_DELAY_AFTER_SET_FREQUENCY 30 // In ms - This value helps to improve the precision during of getting frequency value
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 
-/*!
- * SI473X data types 
- * 
+/** @defgroup group01 SI473X data types 
+ *  
  * The goal here is separate data from code. 
  * The Si47XX family works with many internal data that can be represented by data structure 
  * or defined data type in C/C++. These C/C++ resources have been used widely here.  
- * This aproach made the library easier to build and maintain.  * Each data structure created 
+ * This aproach made the library easier to build and maintain.  Each data structure created 
  * here has its reference (name of the document and page on which it was based). 
  * In other words, to make the SI47XX device easier to deal, some defined data types were 
  * created to handle byte and bits to process  commands, properties and responses.
@@ -161,6 +160,7 @@
  */
 
 /**
+ * @ingroup group01
  * Power Up arguments data type 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65
@@ -181,6 +181,7 @@ typedef union {
 } si473x_powerup;
 
 /**
+ * @ingroup group01
  * Represents how the  frequency is stored in the si4735.
  * It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH)  
  */
@@ -194,6 +195,7 @@ typedef union {
 } si47x_frequency;
 
 /**
+ * @ingroup group01
  * Antenna Tuning Capacitor data type manupulation 
  */
 typedef union {
@@ -206,6 +208,7 @@ typedef union {
 } si47x_antenna_capacitor;
 
 /**
+ * @ingroup group01
  * AM_TUNE_FREQ data type command
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 135
@@ -226,7 +229,9 @@ typedef union {
 } si47x_set_frequency;
 
 /** 
- *  Represents searching for a valid frequency data type.
+ * @ingroup group01 
+ * 
+ * Represents searching for a valid frequency data type.
  */
 typedef union {
     struct
@@ -240,6 +245,8 @@ typedef union {
 } si47x_seek;
 
 /**  
+ * @ingroup group01
+ * 
  * Response status command 
  * 
  * @see Si47XX PROGRAMMING GUIDE; pages 73 and 
@@ -276,8 +283,9 @@ typedef union {
     uint8_t raw[8]; //! Check it
 } si47x_response_status;
 
-
 /**
+ * @ingroup group01
+ * 
  * Data representation for  Firmware Information (GET_REV)
  * The part number, chip revision, firmware revision, patch revision and component revision numbers. 
  * 
@@ -308,6 +316,8 @@ typedef union {
 } si47x_firmware_information;
 
 /**
+ * @ingroup group01
+ * 
  * Firmware Query Library ID response. 
  * Used to represent the response of a power up command with FUNC = 15 (patch)
  * 
@@ -340,6 +350,8 @@ typedef union {
 } si47x_firmware_query_library;
 
 /**
+ * @ingroup group01
+ * 
  * Status of FM_TUNE_FREQ or FM_SEEK_START commands or 
  * Status of AM_TUNE_FREQ or AM_SEEK_START commands.
  * 
@@ -356,6 +368,8 @@ typedef union {
 } si47x_tune_status;
 
 /**
+ * @ingroup group01
+ * 
  * Property Data type (help to deal with SET_PROPERTY command on si473X)
  */
 typedef union {
@@ -367,11 +381,11 @@ typedef union {
     uint16_t value;
 } si47x_property;
 
-/**********************************************************************
- * RDS Data types 
- **********************************************************************/
+
+/** @defgroup group02 RDS Data types */
 
 /** 
+ * @ingroup group02
  * Data type for status information about the received signal quality
  * FM_RSQ_STATUS and AM_RSQ_STATUS
  * 
@@ -416,6 +430,8 @@ typedef union {
 } si47x_rqs_status;
 
 /**
+ * @ingroup group02
+ * 
  * FM_RDS_STATUS (0x24) command
  * Data type for command and response information 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
@@ -434,6 +450,8 @@ typedef union {
 } si47x_rds_command;
 
 /**
+ * @ingroup group02
+ * 
  * Response data type for current channel and reads an entry from the RDS FIFO.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
@@ -486,6 +504,8 @@ typedef union {
 } si47x_rds_status;
 
 /**
+ * @ingroup group02
+ * 
  * FM_RDS_INT_SOURCE property data type
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 103
@@ -507,6 +527,8 @@ typedef union {
 } si47x_rds_int_source;
 
 /**
+ * @ingroup group02
+ * 
  * Data type for FM_RDS_CONFIG Property
  * 
  * IMPORTANT: all block errors must be less than or equal the associated block error threshold for the group 
@@ -534,6 +556,8 @@ typedef union {
 } si47x_rds_config;
 
 /**
+ * @ingroup group02
+ * 
  * Block A data type
  */
 typedef union {
@@ -549,6 +573,8 @@ typedef union {
 } si47x_rds_blocka;
 
 /**
+ * @ingroup group02
+ * 
  * Block B data type
  * 
  * For GCC on System-V ABI on 386-compatible (32-bit processors), the following stands:
@@ -601,6 +627,8 @@ typedef union {
 } si47x_rds_blockb;
 
 /*
+ * 
+ * 
  * Group type 4A ( RDS Date and Time)
  * When group type 4A is used by the station, it shall be transmitted every minute according to EN 50067.
  * This Structure uses blocks 2,3 and 5 (B,C,D)
@@ -622,6 +650,8 @@ typedef union {
 */
 
 /**
+ * @ingroup group02
+ * 
  * Group type 4A ( RDS Date and Time)
  * When group type 4A is used by the station, it shall be transmitted every minute according to EN 50067.
  * This Structure uses blocks 2,3 and 5 (B,C,D)
@@ -644,7 +674,11 @@ typedef union {
     uint8_t raw[6];
 } si47x_rds_date_time;
 
+/** @defgroup group03 Receiver Status and Setup */
+
 /** 
+ * @ingroup group03
+ * 
  * AGC data types
  * FM / AM and SSB structure to AGC
  * 
@@ -672,6 +706,8 @@ typedef union {
 } si47x_agc_status;
 
 /** 
+ * @ingroup group03
+ * 
  * If FM, Overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 
  * (minimum attenuation) and 26 (maximum attenuation).
  * If AM, overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0
@@ -691,6 +727,8 @@ typedef union {
 } si47x_agc_overrride;
 
 /** 
+ * @ingroup group03
+ * 
  * The bandwidth of the AM channel filter data type
  * AMCHFLT values: 0 = 6 kHz Bandwidth                    
  *                 1 = 4 kHz Bandwidth
@@ -715,6 +753,8 @@ typedef union {
 } si47x_bandwidth_config; // AM_CHANNEL_FILTER
 
 /** 
+ * @ingroup group03
+ * 
  * SSB - datatype for SSB_MODE (property 0x0101)
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
@@ -734,6 +774,8 @@ typedef union {
 } si47x_ssb_mode;
 
 /**
+ * @ingroup group03
+ * 
  * Digital audio output format data structure (Property 0x0102. DIGITAL_OUTPUT_FORMAT).
  * Useed to configure: DCLK edge, data format, force mono, and sample precision.
  * 
@@ -751,6 +793,8 @@ typedef union {
 } si4735_digital_output_format;
 
 /**
+ * @ingroup group03
+ * 
  * Digital audio output sample structure (Property 0x0104. DIGITAL_OUTPUT_SAMPLE_RATE).
  * Used to enable digital audio output and to configure the digital audio output sample rate in samples per second (sps).
  * 
@@ -765,9 +809,13 @@ typedef struct {
  * Deal with Interrupt
  ******************************************************************/
 
-volatile static bool data_from_si4735; //! Deal with Interrupt
+/** @defgroup group04 Deal with Interrupt */
+
+volatile static bool data_from_si4735; /** @ingroup group04 store the interrupt status */
 
 /**
+ * @ingroup group03
+ * 
  * If you are using interrupt feature, this function will be called by the system, not by you. 
  * If you are not using interrupt feature, please, ignore the compile message:
  * "warning: 'void interrupt_hundler()' defined but not used [-Wunused-function]"
@@ -780,7 +828,6 @@ static void interrupt_hundler()
 /********************************************************************** 
  * SI4735 Class definition
  **********************************************************************/
-
 
 
 class SI4735

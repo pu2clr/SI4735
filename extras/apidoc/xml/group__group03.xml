@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__group03" kind="group">
+    <compoundname>group03</compoundname>
+    <title>Receiver Status and Setup</title>
+    <innerclass refid="unionsi47x__agc__status" prot="public">si47x_agc_status</innerclass>
+    <innerclass refid="unionsi47x__agc__overrride" prot="public">si47x_agc_overrride</innerclass>
+    <innerclass refid="unionsi47x__bandwidth__config" prot="public">si47x_bandwidth_config</innerclass>
+    <innerclass refid="unionsi47x__ssb__mode" prot="public">si47x_ssb_mode</innerclass>
+    <innerclass refid="unionsi4735__digital__output__format" prot="public">si4735_digital_output_format</innerclass>
+    <innerclass refid="structsi4735__digital__output__sample__rate" prot="public">si4735_digital_output_sample_rate</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group03_1ga01f69d5bf584f94eabd1b113579b2c1e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void interrupt_hundler</definition>
+        <argsstring>()</argsstring>
+        <name>interrupt_hundler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>If you are using interrupt feature, this function will be called by the system, not by you. If you are not using interrupt feature, please, ignore the compile message: &quot;warning: &apos;void interrupt_hundler()&apos; defined but not used [-Wunused-function]&quot; </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="823" column="13" bodyfile="SI4735.h" bodystart="823" bodyend="826"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

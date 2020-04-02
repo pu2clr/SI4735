@@ -2,10 +2,10 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`class `[`SI4735`](#class_s_i4735) | 
+`class `[`SI4735`](#class_s_i4735) | [SI4735](#class_s_i4735) Class definition
 `struct `[`si4735_digital_output_sample_rate`](#structsi4735__digital__output__sample__rate) | Digital audio output sample structure (Property 0x0104. DIGITAL_OUTPUT_SAMPLE_RATE). Used to enable digital audio output and to configure the digital audio output sample rate in samples per second (sps).
 `union `[`si4735_digital_output_format`](#unionsi4735__digital__output__format) | Digital audio output format data structure (Property 0x0102. DIGITAL_OUTPUT_FORMAT). Useed to configure: DCLK edge, data format, force mono, and sample precision.
-`union `[`si473x_powerup`](#unionsi473x__powerup) | SI473X data types
+`union `[`si473x_powerup`](#unionsi473x__powerup) | Power Up arguments data type
 `union `[`si47x_agc_overrride`](#unionsi47x__agc__overrride) | If FM, Overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 (minimum attenuation) and 26 (maximum attenuation). If AM, overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0
 `union `[`si47x_agc_status`](#unionsi47x__agc__status) | AGC data types FM / AM and SSB structure to AGC
 `union `[`si47x_antenna_capacitor`](#unionsi47x__antenna__capacitor) | Antenna Tuning Capacitor data type manupulation
@@ -30,6 +30,8 @@
 
 # class `SI4735` {#class_s_i4735}
 
+[SI4735](#class_s_i4735) Class definition
+
 ## Summary
 
  Members                        | Descriptions                                
@@ -46,7 +48,7 @@
 `public void `[`setFrequency`](#class_s_i4735_1a63d205f2d3169ba877a2bd2ee28d224f)`(uint16_t)` | Set the frequency to the corrent function of the Si4735 (FM, AM or SSB) You have to call setup or setPowerUp before call setFrequency.
 `public void `[`getStatus`](#class_s_i4735_1a3cf856c44fcfffb3d81b22b1d09b881f)`()` | Gets the current status of the Si4735 (AM or FM)
 `public void `[`getStatus`](#class_s_i4735_1a5c0f4036a7fbbd11a26f1f6f4579d3cd)`(uint8_t,uint8_t)` | Gets the current status of the Si4735 (AM or FM) 
-`public uint16_t `[`getFrequency`](#class_s_i4735_1a7e88bb573604d465536c13554d5c61f8)`(void)` | Gets the current frequency of the Si4735 (AM or FM) The method status do it an more. See getStatus below.
+`public uint16_t `[`getFrequency`](#class_s_i4735_1a7e88bb573604d465536c13554d5c61f8)`(void)` | Device Status Information Gets the current frequency of the Si4735 (AM or FM) The method status do it an more. See getStatus below.
 `public uint16_t `[`getCurrentFrequency`](#class_s_i4735_1a8240278970ae8bf7283e14714b4329ad)`()` | Gets the current frequency saved in memory. Unlike getFrequency, this method gets the current frequency recorded after the last setFrequency command. This method avoids bus traffic and CI processing. However, you can not get others status information like RSSI.
 `public inline bool `[`getSignalQualityInterrupt`](#class_s_i4735_1ad194137a6a712a599e3c26e5b6357594)`()` | STATUS RESPONSE Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation See Si47XX PROGRAMMING GUIDE; AN332; pages 63
 `public inline bool `[`getRadioDataSystemInterrupt`](#class_s_i4735_1a97dc44d9927ea58730a18fb6baa6867f)`()` | Gets Received Signal Quality Interrupt(RSQINT)
@@ -71,7 +73,7 @@
 `public inline bool `[`isAgcEnabled`](#class_s_i4735_1aea08b7e553212cbe01bf6f4ec9e02de7)`()` | 
 `public inline uint8_t `[`getAgcGainIndex`](#class_s_i4735_1a4eceaf5745e87fcca6cf31c04c5635bd)`()` | 
 `public void `[`setAutomaticGainControl`](#class_s_i4735_1a27c22f5671ce3229e925e5fbe93ba0a6)`(uint8_t AGCDIS,uint8_t AGCIDX)` | If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 (minimum attenuation) and 26 (maximum attenuation); If AM/SSB, Overrides the AM AGC setting by disabling the AGC and forcing the gain index that ranges between 0 (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation);
-`public void `[`getCurrentReceivedSignalQuality`](#class_s_i4735_1abf59183da13c72384093fc238c3114cf)`(uint8_t INTACK)` | Queries the status of the Received Signal Quality (RSQ) of the current channel. This method sould be called berore call [getCurrentRSSI()](#class_s_i4735_1a4f5abf562ec00767a3b84f74eba5ac4d), [getCurrentSNR()](#class_s_i4735_1adb3fe55583dafeac7439a303b637d162) etc. Command FM_RSQ_STATUS
+`public void `[`getCurrentReceivedSignalQuality`](#class_s_i4735_1abf59183da13c72384093fc238c3114cf)`(uint8_t INTACK)` | Queries the status of the Received Signal Quality (RSQ) of the current channel. This method sould be called berore call getCurrentRSSI(), [getCurrentSNR()](#class_s_i4735_1adb3fe55583dafeac7439a303b637d162) etc. Command FM_RSQ_STATUS
 `public void `[`getCurrentReceivedSignalQuality`](#class_s_i4735_1a7393fa4f9d7811c8d0c0f48283ef6435)`(void)` | Queries the status of the Received Signal Quality (RSQ) of the current channel Command FM_RSQ_STATUS
 `public inline uint8_t `[`getCurrentRSSI`](#class_s_i4735_1a4f5abf562ec00767a3b84f74eba5ac4d)`()` | 
 `public inline uint8_t `[`getCurrentSNR`](#class_s_i4735_1adb3fe55583dafeac7439a303b637d162)`()` | current receive signal strength (0–127 dBμV).
@@ -103,7 +105,7 @@
 `public void `[`volumeUp`](#class_s_i4735_1a5e3e8cf04ca99c6be2dbe15d72b4efa3)`()` | Set sound volume level Up 
 `public inline uint8_t `[`getCurrentVolume`](#class_s_i4735_1a430b86ccfd4d6c89da9202a538e0cfc9)`()` | 
 `public void `[`setAudioMute`](#class_s_i4735_1a12d4e173d096b1568e4209a63534d4f6)`(bool off)` | Returns the current volume level.
-`public void `[`digitalOutputFormat`](#class_s_i4735_1aea652d358b4b586b6d5964ceb8eb7c81)`(uint8_t OSIZE,uint8_t OMONO,uint8_t OMODE,uint8_t OFALL)` | Configures the digital audio output format. Options: DCLK edge, data format, force mono, and sample precision.
+`public void `[`digitalOutputFormat`](#class_s_i4735_1aea652d358b4b586b6d5964ceb8eb7c81)`(uint8_t OSIZE,uint8_t OMONO,uint8_t OMODE,uint8_t OFALL)` | Digital Audio Setup Configures the digital audio output format. Options: DCLK edge, data format, force mono, and sample precision.
 `public void `[`digitalOutputSampleRate`](#class_s_i4735_1a1a404ca11fb32b457be2d7cfe484dd03)`(uint16_t DOSR)` | Enables digital audio output and configures digital audio output sample rate in samples per second (sps).
 `public void `[`setAM`](#class_s_i4735_1a753390952a1f2c2a98343979f1f3daa0)`()` | Sets the radio to AM function. It means: LW MW and SW.
 `public void `[`setFM`](#class_s_i4735_1acd89e7b8adefcbc4e89f802acb915906)`()` | Sets the radio to FM function
@@ -138,7 +140,7 @@
 `public void `[`setFmBlendMultiPathMonoThreshold`](#class_s_i4735_1acc9fd27b38f49f167facfcc4f6216c5e)`(uint8_t parameter)` | Sets Multipath threshold for mono blend (Full mono above threshold, blend below threshold). To force stereo, set to 100. To force mono, set to 0. The default is 60.
 `public void `[`setFmStereoOn`](#class_s_i4735_1a52c7b7b1f0ed9121b0e64516b2bd2a55)`()` | Turn Off Stereo operation.
 `public void `[`setFmStereoOff`](#class_s_i4735_1a59ce1008944ff9a51b6c5baeb3a3e2cb)`()` | Turn Off Stereo operation.
-`public void `[`RdsInit`](#class_s_i4735_1affdba9ca9fb9bf5bb671ac3d448a7e89)`()` | Starts the control variables for RDS.
+`public void `[`RdsInit`](#class_s_i4735_1affdba9ca9fb9bf5bb671ac3d448a7e89)`()` | RDS implementation Starts the control variables for RDS.
 `public void `[`setRdsIntSource`](#class_s_i4735_1a530e64d00d95b4ceb13ce33aa74c63cb)`(uint8_t RDSNEWBLOCKB,uint8_t RDSNEWBLOCKA,uint8_t RDSSYNCFOUND,uint8_t RDSSYNCLOST,uint8_t RDSRECV)` | Configures interrupt related to RDS
 `public void `[`getRdsStatus`](#class_s_i4735_1a350a2033671a7620d4b9290a2347e185)`(uint8_t INTACK,uint8_t MTFIFO,uint8_t STATUSONLY)` | Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS
 `public void `[`getRdsStatus`](#class_s_i4735_1a94cce3834f85fc127e8c2dab3a03e875)`()` | Gets RDS Status. Same result of calling getRdsStatus(0,0,0);
@@ -165,7 +167,7 @@
 `public void `[`getNext2Block`](#class_s_i4735_1ab1f4f137139b40fe386ca51586999e50)`(char *)` | Process data received from group 2B
 `public void `[`getNext4Block`](#class_s_i4735_1adb0a3c39aeacba0faf39aadd9465021f)`(char *)` | Process data received from group 2A
 `public void `[`ssbSetup`](#class_s_i4735_1a6f045d3725a457116236ee92d41c4265)`()` | Starts the Si473X device on SSB (same AM Mode). Same [SI4735::setup](#class_s_i4735_1a944ed704e2175a6cf660ad65ca5bbad5) optimized to improve loading patch performance
-`public void `[`setSSBBfo`](#class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f)`(int offset)` | Sets the SSB Beat Frequency Offset (BFO).
+`public void `[`setSSBBfo`](#class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f)`(int offset)` | Single Side Band (SSB) implementation
 `public void `[`setSSBConfig`](#class_s_i4735_1a9224e7d4ef14c887da96dbefd2dcefd3)`(uint8_t AUDIOBW,uint8_t SBCUTFLT,uint8_t AVC_DIVIDER,uint8_t AVCEN,uint8_t SMUTESEL,uint8_t DSP_AFCDIS)` | Set the SSB receiver mode details: 1) Enable or disable AFC track to carrier function for receiving normal AM signals; 2) Set the audio bandwidth; 3) Set the side band cutoff filter; 4) Set soft-mute based on RSSI or SNR; 5) Enable or disbable automatic volume control (AVC) function.
 `public void `[`setSSB`](#class_s_i4735_1a7c48f2af416b1f89dbedbfbe9a637620)`(uint16_t fromFreq,uint16_t toFreq,uint16_t intialFreq,uint16_t step,uint8_t usblsb)` | 
 `public void `[`setSSB`](#class_s_i4735_1a3e907ddf560a0c8286fa55768701b3da)`(uint8_t usblsb)` | Set the radio to AM function. It means: LW MW and SW.
@@ -175,7 +177,7 @@
 `public void `[`setSSBAvcDivider`](#class_s_i4735_1afc5e87c50a1eba6de9504c114cc1cb70)`(uint8_t AVC_DIVIDER)` | Sets AVC Divider
 `public void `[`setSSBDspAfc`](#class_s_i4735_1a6cde26a5abf759a628012d1457d85c72)`(uint8_t DSP_AFCDIS)` | Sets DSP AFC disable or enable
 `public void `[`setSSBSoftMute`](#class_s_i4735_1a91251dfc2ff9488aaef3aa1a528097d9)`(uint8_t SMUTESEL)` | Sets SSB Soft-mute Based on RSSI or SNR Selection:
-`public `[`si47x_firmware_query_library`](#unionsi47x__firmware__query__library)` `[`queryLibraryId`](#class_s_i4735_1adfc2c82524918224cf19fec5b7fcf6d1)`()` | Call it first if you are applying a patch on [SI4735](#class_s_i4735). Used to confirm if the patch is compatible with the internal device library revision. See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
+`public `[`si47x_firmware_query_library`](#unionsi47x__firmware__query__library)` `[`queryLibraryId`](#class_s_i4735_1adfc2c82524918224cf19fec5b7fcf6d1)`()` | SI47XX PATCH RESOURCES Call it first if you are applying a patch on [SI4735](#class_s_i4735). Used to confirm if the patch is compatible with the internal device library revision. See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
 `public void `[`patchPowerUp`](#class_s_i4735_1afaabd6c73b7ad7c20ae959d5b75c1e71)`()` | This method can be used to prepare the device to apply SSBRX patch Call queryLibraryId before call this method. Powerup the device by issuing the POWER_UP command with FUNC = 1 (AM/SW/LW Receive)
 `public bool `[`downloadPatch`](#class_s_i4735_1afd1343bd8b4f0c290ef81c418222036c)`(const uint8_t * ssb_patch_content,const uint16_t ssb_patch_content_size)` | Transfers the content of a patch stored in a array of bytes to the [SI4735](#class_s_i4735) device. You must mount an array as shown below and know the size of that array as well.
 `public bool `[`downloadPatch`](#class_s_i4735_1aa99cdde8dd65eb92f2ada159cc215c98)`(int eeprom_i2c_address)` | Under construction... Transfers the content of a patch stored in a eeprom to the [SI4735](#class_s_i4735) device.
@@ -235,7 +237,7 @@ This is a library for the [SI4735](#class_s_i4735), BROADCAST AM/FM/SW RADIO REC
 
 Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For write operations, the system controller next sends a data byte on SDIO, which is captured by the device on rising edges of SCLK. The device acknowledges each data byte by driving SDIO low for one cycle on the next falling edge of SCLK. The system controller may write up to 8 data bytes in a single 2-wire transaction. The first byte is a command, and the next seven bytes are arguments. Writing more than 8 bytes results in unpredictable device behavior". So, If you are extending this library, consider that restriction presented earlier.
 
-ATTENTION: Some methods were implemented usin inline resource. Inline methods are implemented in [SI4735.h](#_s_i4735_8h)
+ATTENTION: Some methods were implemented usin inline resource. Inline methods are implemented in [SI4735.h](#_s_i4735_8h_source)
 
 By Ricardo Lima Caratti, Nov 2019. Construct a new [SI4735::SI4735](#class_s_i4735_1a818c60896490631e4311452c99ff361f) object
 
@@ -343,7 +345,7 @@ Gets the current status of the Si4735 (AM or FM)
 
 #### `public uint16_t `[`getFrequency`](#class_s_i4735_1a7e88bb573604d465536c13554d5c61f8)`(void)` {#class_s_i4735_1a7e88bb573604d465536c13554d5c61f8}
 
-Gets the current frequency of the Si4735 (AM or FM) The method status do it an more. See getStatus below.
+Device Status Information Gets the current frequency of the Si4735 (AM or FM) The method status do it an more. See getStatus below.
 
 **See also**: Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
 
@@ -451,7 +453,7 @@ If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a 
 
 #### `public void `[`getCurrentReceivedSignalQuality`](#class_s_i4735_1abf59183da13c72384093fc238c3114cf)`(uint8_t INTACK)` {#class_s_i4735_1abf59183da13c72384093fc238c3114cf}
 
-Queries the status of the Received Signal Quality (RSQ) of the current channel. This method sould be called berore call [getCurrentRSSI()](#class_s_i4735_1a4f5abf562ec00767a3b84f74eba5ac4d), [getCurrentSNR()](#class_s_i4735_1adb3fe55583dafeac7439a303b637d162) etc. Command FM_RSQ_STATUS
+Queries the status of the Received Signal Quality (RSQ) of the current channel. This method sould be called berore call getCurrentRSSI(), [getCurrentSNR()](#class_s_i4735_1adb3fe55583dafeac7439a303b637d162) etc. Command FM_RSQ_STATUS
 
 **See also**: Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
 
@@ -608,7 +610,7 @@ Sets the audio on or off
 
 #### `public void `[`digitalOutputFormat`](#class_s_i4735_1aea652d358b4b586b6d5964ceb8eb7c81)`(uint8_t OSIZE,uint8_t OMONO,uint8_t OMODE,uint8_t OFALL)` {#class_s_i4735_1aea652d358b4b586b6d5964ceb8eb7c81}
 
-Configures the digital audio output format. Options: DCLK edge, data format, force mono, and sample precision.
+Digital Audio Setup Configures the digital audio output format. Options: DCLK edge, data format, force mono, and sample precision.
 
 **See also**: Si47XX PROGRAMMING GUIDE; AN332; page 195.
 
@@ -884,7 +886,7 @@ Turn Off Stereo operation.
 
 #### `public void `[`RdsInit`](#class_s_i4735_1affdba9ca9fb9bf5bb671ac3d448a7e89)`()` {#class_s_i4735_1affdba9ca9fb9bf5bb671ac3d448a7e89}
 
-Starts the control variables for RDS.
+RDS implementation Starts the control variables for RDS.
 
 #### `public void `[`setRdsIntSource`](#class_s_i4735_1a530e64d00d95b4ceb13ce33aa74c63cb)`(uint8_t RDSNEWBLOCKB,uint8_t RDSNEWBLOCKA,uint8_t RDSSYNCFOUND,uint8_t RDSSYNCLOST,uint8_t RDSRECV)` {#class_s_i4735_1a530e64d00d95b4ceb13ce33aa74c63cb}
 
@@ -1075,7 +1077,25 @@ Starts the Si473X device on SSB (same AM Mode). Same [SI4735::setup](#class_s_i4
 
 #### `public void `[`setSSBBfo`](#class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f)`(int offset)` {#class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f}
 
-Sets the SSB Beat Frequency Offset (BFO).
+Single Side Band (SSB) implementation
+
+This implementation was tested only on Si4735-D60 device.
+
+SSB modulation is a refinement of amplitude modulation that one of the side band and the carrier are suppressed.
+
+**See also**: AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5
+
+First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library. 
+
+What does SSB patch means? In this context, a patch is a piece of software used to change the behavior of the [SI4735](#class_s_i4735) device. There is little information available about patching the [SI4735](#class_s_i4735).
+
+The following information is the understanding of the author of this project and it is not necessarily correct.
+
+A patch is executed internally (run by internal MCU) of the device. Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device. Patches to the [SI4735](#class_s_i4735) are distributed in binary form and have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino boards). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system. Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
+
+I would like to thank Mr Vadim Afonkin for making available the SSBRX patches for SI4735-D60 on his Dropbox repository. On this repository you have two files, amrx_6_0_1_ssbrx_patch_full_0x9D29.csg and amrx_6_0_1_ssbrx_patch_init_0xA902.csg. It is important to know that the patch content of the original files is constant hexadecimal representation used by the language C/C++. Actally, the original files are in ASCII format (not in binary format). If you are not using C/C++ or if you want to load the files directly to the [SI4735](#class_s_i4735), you must convert the values to numeric value of the hexadecimal constants. For example: 0x15 = 21 (00010101); 0x16 = 22 (00010110); 0x01 = 1 (00000001); 0xFF = 255 (11111111);
+
+ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here. This library works with the I²C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60. Once again, the author disclaims any liability for any damage this procedure may cause to your [SI4735](#class_s_i4735) or other devices that you are using. Sets the SSB Beat Frequency Offset (BFO).
 
 **See also**: AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 5 and 23
 
@@ -1174,10 +1194,10 @@ Sets SSB Soft-mute Based on RSSI or SNR Selection:
 
 #### `public `[`si47x_firmware_query_library`](#unionsi47x__firmware__query__library)` `[`queryLibraryId`](#class_s_i4735_1adfc2c82524918224cf19fec5b7fcf6d1)`()` {#class_s_i4735_1adfc2c82524918224cf19fec5b7fcf6d1}
 
-Call it first if you are applying a patch on [SI4735](#class_s_i4735). Used to confirm if the patch is compatible with the internal device library revision. See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
+SI47XX PATCH RESOURCES Call it first if you are applying a patch on [SI4735](#class_s_i4735). Used to confirm if the patch is compatible with the internal device library revision. See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
 
 #### Returns
-a struct [si47x_firmware_query_library](#unionsi47x__firmware__query__library) (see it in [SI4735.h](#_s_i4735_8h)) Query the library information
+a struct [si47x_firmware_query_library](#unionsi47x__firmware__query__library) (see it in [SI4735.h](#_s_i4735_8h_source)) Query the library information
 
 You have to call this function if you are applying a patch on SI47XX (SI4735-D60)
 
@@ -1185,7 +1205,7 @@ The first command that is sent to the device is the POWER_UP command to confirm 
 
 **See also**: Si47XX PROGRAMMING GUIDE; AN332; pages 214, 215, 216, 219 
 
-**See also**: [si47x_firmware_query_library](#unionsi47x__firmware__query__library) in [SI4735.h](#_s_i4735_8h)
+**See also**: [si47x_firmware_query_library](#unionsi47x__firmware__query__library) in [SI4735.h](#_s_i4735_8h_source)
 
 #### Returns
 [si47x_firmware_query_library](#unionsi47x__firmware__query__library) Library Identification

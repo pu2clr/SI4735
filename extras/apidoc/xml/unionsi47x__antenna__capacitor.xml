@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="202" column="17" bodyfile="SI4735.h" bodystart="202" bodyend="-1"/>
+        <location file="SI4735.h" line="204" column="17" bodyfile="SI4735.h" bodystart="204" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1a26952301dd2779d1976f92c2e521c476" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="203" column="17" bodyfile="SI4735.h" bodystart="203" bodyend="-1"/>
+        <location file="SI4735.h" line="205" column="17" bodyfile="SI4735.h" bodystart="205" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1a29548a9c68843bb6aa86eabcd33a9633" prot="public" static="no" mutable="no">
         <type>struct si47x_antenna_capacitor::@2</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="204" column="9"/>
+        <location file="SI4735.h" line="206" column="9"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1aa59f9604df88a98b91295b0a9c009bbd" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -55,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="205" column="14" bodyfile="SI4735.h" bodystart="205" bodyend="-1"/>
+        <location file="SI4735.h" line="207" column="14" bodyfile="SI4735.h" bodystart="207" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -63,7 +63,7 @@
     <detaileddescription>
 <para>Antenna Tuning Capacitor data type manupulation </para>
     </detaileddescription>
-    <location file="SI4735.h" line="199" column="15" bodyfile="SI4735.h" bodystart="199" bodyend="206"/>
+    <location file="SI4735.h" line="201" column="15" bodyfile="SI4735.h" bodystart="201" bodyend="208"/>
     <listofallmembers>
       <member refid="unionsi47x__antenna__capacitor_1a26952301dd2779d1976f92c2e521c476" prot="public" virt="non-virtual"><scope>si47x_antenna_capacitor</scope><name>ANTCAPH</name></member>
       <member refid="unionsi47x__antenna__capacitor_1a327b39363f0d152ba8a5f4c7252fc358" prot="public" virt="non-virtual"><scope>si47x_antenna_capacitor</scope><name>ANTCAPL</name></member>
