@@ -50,6 +50,7 @@ You can download the API documentation of this library in PDF or RTL format.
 
 <a id="raw-url1" href="https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/rtf/">Download API documentation in PDF or RTL format</a>
 
+You can also click [here](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/api.md).
 
 <BR>
 
