@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structsi47x__set__frequency_8arg" kind="struct" language="C++" prot="public">
+    <compoundname>si47x_set_frequency.arg</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsi47x__set__frequency_8arg_1adca6e617f6fb54033deb311e7e7c93cc" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>FAST</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="228" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__set__frequency_8arg_1a1da4c7af6c0e106e2aec1c483252b329" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>FREEZE</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>ARG1 - FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="229" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__set__frequency_8arg_1a3651c40ccc4450f2fc89fa3139dedd5a" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>DUMMY1</name>
+        <bitfield> 4</bitfield>
+        <briefdescription>
+<para>Valid only for FM (Must be 0 to AM) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="230" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__set__frequency_8arg_1a46ba89190297ccd0df7c8f8b5f72497f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>USBLSB</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+<para>Always set 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="231" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__set__frequency_8arg_1a8836c6ec927c24305d2fd26a5aec2e2b" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>FREQH</name>
+        <briefdescription>
+<para>SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="232" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__set__frequency_8arg_1a858dfb4be81dfbd057aa63aded06bf3d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>FREQL</name>
+        <briefdescription>
+<para>ARG2 - Tune Frequency High byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="233" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__set__frequency_8arg_1a5f437dbf77cdadcbb215ce5db44edbe6" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>ANTCAPH</name>
+        <briefdescription>
+<para>ARG3 - Tune Frequency Low byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="234" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__set__frequency_8arg_1a0475bf71e813922e317ef7cb7b3df9fa" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>ANTCAPL</name>
+        <briefdescription>
+<para>ARG4 - Antenna Tuning Capacitor High byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="235" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="SI4735/SI4735.h" line="227" column="1" bodyfile="SI4735/SI4735.h" bodystart="226" bodyend="236"/>
+    <listofallmembers>
+      <member refid="structsi47x__set__frequency_8arg_1a5f437dbf77cdadcbb215ce5db44edbe6" prot="public" virt="non-virtual"><scope>si47x_set_frequency.arg</scope><name>ANTCAPH</name></member>
+      <member refid="structsi47x__set__frequency_8arg_1a0475bf71e813922e317ef7cb7b3df9fa" prot="public" virt="non-virtual"><scope>si47x_set_frequency.arg</scope><name>ANTCAPL</name></member>
+      <member refid="structsi47x__set__frequency_8arg_1a3651c40ccc4450f2fc89fa3139dedd5a" prot="public" virt="non-virtual"><scope>si47x_set_frequency.arg</scope><name>DUMMY1</name></member>
+      <member refid="structsi47x__set__frequency_8arg_1adca6e617f6fb54033deb311e7e7c93cc" prot="public" virt="non-virtual"><scope>si47x_set_frequency.arg</scope><name>FAST</name></member>
+      <member refid="structsi47x__set__frequency_8arg_1a1da4c7af6c0e106e2aec1c483252b329" prot="public" virt="non-virtual"><scope>si47x_set_frequency.arg</scope><name>FREEZE</name></member>
+      <member refid="structsi47x__set__frequency_8arg_1a8836c6ec927c24305d2fd26a5aec2e2b" prot="public" virt="non-virtual"><scope>si47x_set_frequency.arg</scope><name>FREQH</name></member>
+      <member refid="structsi47x__set__frequency_8arg_1a858dfb4be81dfbd057aa63aded06bf3d" prot="public" virt="non-virtual"><scope>si47x_set_frequency.arg</scope><name>FREQL</name></member>
+      <member refid="structsi47x__set__frequency_8arg_1a46ba89190297ccd0df7c8f8b5f72497f" prot="public" virt="non-virtual"><scope>si47x_set_frequency.arg</scope><name>USBLSB</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

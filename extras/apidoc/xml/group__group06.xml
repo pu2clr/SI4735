@@ -23,7 +23,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="930" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="150" bodyend="158"/>
+        <location file="SI4735/SI4735.h" line="928" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="150" bodyend="158"/>
+        <references refid="class_s_i4735_1a6470177f747ef7eb8e7d02c76f72b19e" compoundref="_s_i4735_8h" startline="888">SI4735::resetPin</references>
+        <referencedby refid="class_s_i4735_1a6f045d3725a457116236ee92d41c4265" compoundref="_s_i4735_8cpp" startline="2180" endline="2185">SI4735::ssbSetup</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -45,7 +47,29 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="931" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="169" bodyend="176"/>
+        <location file="SI4735/SI4735.h" line="929" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="169" bodyend="176"/>
+        <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
+        <references refid="_s_i4735_8h_1a166d7b31e78d530aba242e50dd903de4" compoundref="_s_i4735_8h" startline="152">MIN_DELAY_WAIT_SEND_LOOP</references>
+        <referencedby refid="class_s_i4735_1aa99cdde8dd65eb92f2ada159cc215c98" compoundref="_s_i4735_8cpp" startline="2303" endline="2363">SI4735::downloadPatch</referencedby>
+        <referencedby refid="class_s_i4735_1aaae187575b9868ff427c063c3a6cca2a" compoundref="_s_i4735_8cpp" startline="960" endline="987">SI4735::getAutomaticGainControl</referencedby>
+        <referencedby refid="class_s_i4735_1abf59183da13c72384093fc238c3114cf" compoundref="_s_i4735_8cpp" startline="1049" endline="1083">SI4735::getCurrentReceivedSignalQuality</referencedby>
+        <referencedby refid="group__group07_1ga2fbc7e2187a7c645879623100dbc8502" compoundref="_s_i4735_8cpp" startline="298" endline="314">SI4735::getFirmware</referencedby>
+        <referencedby refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" compoundref="_s_i4735_8cpp" startline="1425" endline="1461">SI4735::getRdsStatus</referencedby>
+        <referencedby refid="class_s_i4735_1a5c0f4036a7fbbd11a26f1f6f4579d3cd" compoundref="_s_i4735_8cpp" startline="916" endline="940">SI4735::getStatus</referencedby>
+        <referencedby refid="class_s_i4735_1afaabd6c73b7ad7c20ae959d5b75c1e71" compoundref="_s_i4735_8cpp" startline="2165" endline="2174">SI4735::patchPowerUp</referencedby>
+        <referencedby refid="group__group06_1gaa554b3390fb6c5a4d6661b96afae73ae" compoundref="_s_i4735_8cpp" startline="280" endline="287">SI4735::powerDown</referencedby>
+        <referencedby refid="class_s_i4735_1adfc2c82524918224cf19fec5b7fcf6d1" compoundref="_s_i4735_8cpp" startline="2128" endline="2154">SI4735::queryLibraryId</referencedby>
+        <referencedby refid="group__group06_1ga3e228da65641f4dcf4253262e19bde9b" compoundref="_s_i4735_8cpp" startline="241" endline="253">SI4735::radioPowerUp</referencedby>
+        <referencedby refid="class_s_i4735_1a3280b98b8331f00b4d0158ef1b076533" compoundref="_s_i4735_8cpp" startline="1108" endline="1134">SI4735::seekStation</referencedby>
+        <referencedby refid="class_s_i4735_1ae351181347f8c512b625d98ef7844961" compoundref="_s_i4735_8cpp" startline="678" endline="695">SI4735::sendProperty</referencedby>
+        <referencedby refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">SI4735::sendSSBModeProperty</referencedby>
+        <referencedby refid="class_s_i4735_1a27c22f5671ce3229e925e5fbe93ba0a6" compoundref="_s_i4735_8cpp" startline="1001" endline="1021">SI4735::setAutomaticGainControl</referencedby>
+        <referencedby refid="class_s_i4735_1a8755743a36d2d4662c8db918d02ee4e1" compoundref="_s_i4735_8cpp" startline="632" endline="659">SI4735::setBandwidth</referencedby>
+        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
+        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
+        <referencedby refid="class_s_i4735_1a530e64d00d95b4ceb13ce33aa74c63cb" compoundref="_s_i4735_8cpp" startline="1384" endline="1413">SI4735::setRdsIntSource</referencedby>
+        <referencedby refid="class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f" compoundref="_s_i4735_8cpp" startline="1865" endline="1889">SI4735::setSSBBfo</referencedby>
+        <referencedby refid="class_s_i4735_1a0fcfd8e487c594707b3f2aaa71a86d68" compoundref="_s_i4735_8cpp" startline="2191" endline="2207">SI4735::ssbPowerUp</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -136,7 +160,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="937" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="194" bodyend="220"/>
+        <location file="SI4735/SI4735.h" line="935" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="194" bodyend="220"/>
+        <references refid="_s_i4735_8h_1a5c3e83244b4ab4a76d9c5c1ed86f3a54" compoundref="_s_i4735_8h" startline="59">AM_TUNE_FREQ</references>
+        <references refid="unionsi473x__powerup_1a1d76ab95c8f37f3ee9f2266e0a818455">si473x_powerup::arg</references>
+        <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
+        <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">SI4735::currentFrequencyParams</references>
+        <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">SI4735::currentTune</references>
+        <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
+        <references refid="class_s_i4735_1a1331b701088bda20bf0844e2e38be142" compoundref="_s_i4735_8h" startline="912">SI4735::powerUp</references>
+        <referencedby refid="group__group08_1ga753390952a1f2c2a98343979f1f3daa0" compoundref="_s_i4735_8cpp" startline="525" endline="538">SI4735::setAM</referencedby>
+        <referencedby refid="group__group08_1gacd89e7b8adefcbc4e89f802acb915906" compoundref="_s_i4735_8cpp" startline="547" endline="556">SI4735::setFM</referencedby>
+        <referencedby refid="class_s_i4735_1a3e907ddf560a0c8286fa55768701b3da" compoundref="_s_i4735_8cpp" startline="2035" endline="2046">SI4735::setSSB</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__group06_1ga3e228da65641f4dcf4253262e19bde9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -161,7 +195,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="938" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="241" bodyend="253"/>
+        <location file="SI4735/SI4735.h" line="936" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="241" bodyend="253"/>
+        <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
+        <references refid="_s_i4735_8h_1abf6b929a6f72c48fdb78218394541db2" compoundref="_s_i4735_8h" startline="27">POWER_UP</references>
+        <references refid="class_s_i4735_1a1331b701088bda20bf0844e2e38be142" compoundref="_s_i4735_8h" startline="912">SI4735::powerUp</references>
+        <references refid="unionsi473x__powerup_1ab82e658c5816b0c31e32e100ff776ebe" compoundref="_s_i4735_8h" startline="187">si473x_powerup::raw</references>
+        <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">SI4735::waitToSend</references>
+        <referencedby refid="group__group06_1ga412f51386c47a17cf04fd0a3c3078726" compoundref="_s_i4735_8cpp" startline="265" endline="268">SI4735::analogPowerUp</referencedby>
+        <referencedby refid="group__group08_1ga753390952a1f2c2a98343979f1f3daa0" compoundref="_s_i4735_8cpp" startline="525" endline="538">SI4735::setAM</referencedby>
+        <referencedby refid="group__group08_1gacd89e7b8adefcbc4e89f802acb915906" compoundref="_s_i4735_8cpp" startline="547" endline="556">SI4735::setFM</referencedby>
+        <referencedby refid="class_s_i4735_1a3e907ddf560a0c8286fa55768701b3da" compoundref="_s_i4735_8cpp" startline="2035" endline="2046">SI4735::setSSB</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__group06_1ga412f51386c47a17cf04fd0a3c3078726" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -185,7 +228,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="939" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="265" bodyend="268"/>
+        <location file="SI4735/SI4735.h" line="937" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="265" bodyend="268"/>
+        <references refid="group__group06_1ga3e228da65641f4dcf4253262e19bde9b" compoundref="_s_i4735_8cpp" startline="241" endline="253">SI4735::radioPowerUp</references>
       </memberdef>
       <memberdef kind="function" id="group__group06_1gaa554b3390fb6c5a4d6661b96afae73ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -208,7 +252,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="940" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="280" bodyend="287"/>
+        <location file="SI4735/SI4735.h" line="938" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="280" bodyend="287"/>
+        <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
+        <references refid="_s_i4735_8h_1aad04e0c9afdeec307d5b9cb2062d784d" compoundref="_s_i4735_8h" startline="29">POWER_DOWN</references>
+        <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">SI4735::waitToSend</references>
+        <referencedby refid="class_s_i4735_1adfc2c82524918224cf19fec5b7fcf6d1" compoundref="_s_i4735_8cpp" startline="2128" endline="2154">SI4735::queryLibraryId</referencedby>
+        <referencedby refid="group__group08_1ga753390952a1f2c2a98343979f1f3daa0" compoundref="_s_i4735_8cpp" startline="525" endline="538">SI4735::setAM</referencedby>
+        <referencedby refid="group__group08_1gacd89e7b8adefcbc4e89f802acb915906" compoundref="_s_i4735_8cpp" startline="547" endline="556">SI4735::setFM</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>

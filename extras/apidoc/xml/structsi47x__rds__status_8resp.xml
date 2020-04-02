@@ -1,0 +1,487 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structsi47x__rds__status_8resp" kind="struct" language="C++" prot="public">
+    <compoundname>si47x_rds_status.resp</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1af8f21d801809287d578344911b65697c" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>STCINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="482" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a3651c40ccc4450f2fc89fa3139dedd5a" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>DUMMY1</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="483" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a53d648e7e9d100d590e2f65ec7de079f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RDSINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="484" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a8acf6c55c97050e7abd06c104012c77a" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RSQINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="485" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1abece94c62273dc7ecfabc565b76dbbe5" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>DUMMY2</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="486" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1acd22bad976363fdd1bfbf6759fede482" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>ERR</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="487" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1ae16433ffd3adc248f0ce2608a95c3c76" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>CTS</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="488" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1aa75f4ec874d6a5f181b8e423950bfde0" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RDSRECV</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="490" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a95a3b24fca811ec5f3f6572fe7da0bcf" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RDSSYNCLOST</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>RDS Received; 1 = FIFO filled to minimum number of groups set by RDSFIFOCNT. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="491" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a1cd218d6a523d2d9120d8ab8a9dd93c7" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RDSSYNCFOUND</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>RDS Sync Lost; 1 = Lost RDS synchronization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="492" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a613aa5c14b3ccc6304a519292c482ed1" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>DUMMY3</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>RDS Sync Found; 1 = Found RDS synchronization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="493" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1aa2d4c2b673c2842773854cdd6f28e033" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RDSNEWBLOCKA</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="494" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a67434ed313bef4d6221df6a51971c994" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RDSNEWBLOCKB</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>RDS New Block A; 1 = Valid Block A data has been received. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="495" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a9182569d693623e6b469099542b303e4" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>DUMMY4</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+<para>RDS New Block B; 1 = Valid Block B data has been received. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="496" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a67a91dac9065974c1b69fea4ad395faf" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RDSSYNC</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="498" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a1fc4251a40ec4352f10fc3ecb20f2c79" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>DUMMY5</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>RDS Sync; 1 = RDS currently synchronized. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="499" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a97eaf5b8af040d5cc1d1951e45846c72" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>GRPLOST</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="500" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1ae47e340f9899842ec70c03024de8cf89" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>DUMMY6</name>
+        <bitfield> 5</bitfield>
+        <briefdescription>
+<para>Group Lost; 1 = One or more RDS groups discarded due to FIFO overrun. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="501" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a4a3b791b8fe2bf1f76df87f754967f5e" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RDSFIFOUSED</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="503" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a2843da4b952c7be9fb480c58a29ea378" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLOCKAH</name>
+        <briefdescription>
+<para>RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="504" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a0f0906669ad239fff687df038925d138" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLOCKAL</name>
+        <briefdescription>
+<para>RESP4 - RDS Block A; HIGH byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="505" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a41992f4f83625a17ffbb4df533f4d192" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLOCKBH</name>
+        <briefdescription>
+<para>RESP5 - RDS Block A; LOW byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="506" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a5393be02dfd7f56d0567e5f1406fffed" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLOCKBL</name>
+        <briefdescription>
+<para>RESP6 - RDS Block B; HIGH byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="507" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1ae464b56d44650f86be59aeef27abfbbe" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLOCKCH</name>
+        <briefdescription>
+<para>RESP7 - RDS Block B; LOW byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="508" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a8c78c7dd8484c36b843457e3e4f165ac" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLOCKCL</name>
+        <briefdescription>
+<para>RESP8 - RDS Block C; HIGH byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="509" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1ab46176005c9a362139e953d3633ed8f8" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLOCKDH</name>
+        <briefdescription>
+<para>RESP9 - RDS Block C; LOW byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="510" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1ae0fd3095e63eb37b945a03706e7fa697" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLOCKDL</name>
+        <briefdescription>
+<para>RESP10 - RDS Block D; HIGH byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="511" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a7d449b80d36bbc910ef88b6fcfe90364" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLED</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+<para>RESP11 - RDS Block D; LOW byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="517" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1a8e74ab448e91f67eaabee7a52ab05fec" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLEC</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="518" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1aa4eb947cc07974dfc44c1da340b21c0f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLEB</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="519" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__status_8resp_1abe92870ea28d50ecdfd8f987836e103f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLEA</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="520" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="SI4735/SI4735.h" line="480" column="1" bodyfile="SI4735/SI4735.h" bodystart="479" bodyend="521"/>
+    <listofallmembers>
+      <member refid="structsi47x__rds__status_8resp_1abe92870ea28d50ecdfd8f987836e103f" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>BLEA</name></member>
+      <member refid="structsi47x__rds__status_8resp_1aa4eb947cc07974dfc44c1da340b21c0f" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>BLEB</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a8e74ab448e91f67eaabee7a52ab05fec" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>BLEC</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a7d449b80d36bbc910ef88b6fcfe90364" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>BLED</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a2843da4b952c7be9fb480c58a29ea378" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>BLOCKAH</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a0f0906669ad239fff687df038925d138" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>BLOCKAL</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a41992f4f83625a17ffbb4df533f4d192" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>BLOCKBH</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a5393be02dfd7f56d0567e5f1406fffed" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>BLOCKBL</name></member>
+      <member refid="structsi47x__rds__status_8resp_1ae464b56d44650f86be59aeef27abfbbe" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>BLOCKCH</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a8c78c7dd8484c36b843457e3e4f165ac" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>BLOCKCL</name></member>
+      <member refid="structsi47x__rds__status_8resp_1ab46176005c9a362139e953d3633ed8f8" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>BLOCKDH</name></member>
+      <member refid="structsi47x__rds__status_8resp_1ae0fd3095e63eb37b945a03706e7fa697" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>BLOCKDL</name></member>
+      <member refid="structsi47x__rds__status_8resp_1ae16433ffd3adc248f0ce2608a95c3c76" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>CTS</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a3651c40ccc4450f2fc89fa3139dedd5a" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>DUMMY1</name></member>
+      <member refid="structsi47x__rds__status_8resp_1abece94c62273dc7ecfabc565b76dbbe5" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>DUMMY2</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a613aa5c14b3ccc6304a519292c482ed1" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>DUMMY3</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a9182569d693623e6b469099542b303e4" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>DUMMY4</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a1fc4251a40ec4352f10fc3ecb20f2c79" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>DUMMY5</name></member>
+      <member refid="structsi47x__rds__status_8resp_1ae47e340f9899842ec70c03024de8cf89" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>DUMMY6</name></member>
+      <member refid="structsi47x__rds__status_8resp_1acd22bad976363fdd1bfbf6759fede482" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>ERR</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a97eaf5b8af040d5cc1d1951e45846c72" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>GRPLOST</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a4a3b791b8fe2bf1f76df87f754967f5e" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>RDSFIFOUSED</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a53d648e7e9d100d590e2f65ec7de079f" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>RDSINT</name></member>
+      <member refid="structsi47x__rds__status_8resp_1aa2d4c2b673c2842773854cdd6f28e033" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>RDSNEWBLOCKA</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a67434ed313bef4d6221df6a51971c994" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>RDSNEWBLOCKB</name></member>
+      <member refid="structsi47x__rds__status_8resp_1aa75f4ec874d6a5f181b8e423950bfde0" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>RDSRECV</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a67a91dac9065974c1b69fea4ad395faf" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>RDSSYNC</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a1cd218d6a523d2d9120d8ab8a9dd93c7" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>RDSSYNCFOUND</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a95a3b24fca811ec5f3f6572fe7da0bcf" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>RDSSYNCLOST</name></member>
+      <member refid="structsi47x__rds__status_8resp_1a8acf6c55c97050e7abd06c104012c77a" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>RSQINT</name></member>
+      <member refid="structsi47x__rds__status_8resp_1af8f21d801809287d578344911b65697c" prot="public" virt="non-virtual"><scope>si47x_rds_status.resp</scope><name>STCINT</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

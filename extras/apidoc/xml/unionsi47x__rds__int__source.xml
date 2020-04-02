@@ -4,125 +4,6 @@
     <compoundname>si47x_rds_int_source</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="unionsi47x__rds__int__source_1aabbae0cca723fa1610ca96f7a62a734f" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_int_source::RDSRECV</definition>
-        <argsstring></argsstring>
-        <name>RDSRECV</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="536" column="17" bodyfile="SI4735/SI4735.h" bodystart="536" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__int__source_1a0bb106ab53cfba94833fefd596a5d1cf" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_int_source::RDSSYNCLOST</definition>
-        <argsstring></argsstring>
-        <name>RDSSYNCLOST</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>If set, generate RDSINT when RDS FIFO has at least FM_RDS_INT_FIFO_COUNT entries. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="537" column="17" bodyfile="SI4735/SI4735.h" bodystart="537" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__int__source_1adb4e16cc0024b4c0338d163a83ec43ec" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_int_source::RDSSYNCFOUND</definition>
-        <argsstring></argsstring>
-        <name>RDSSYNCFOUND</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>If set, generate RDSINT when RDS loses synchronization. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="538" column="17" bodyfile="SI4735/SI4735.h" bodystart="538" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__int__source_1ac5de9b6d946471e6ff768bd87988125b" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_int_source::DUMMY1</definition>
-        <argsstring></argsstring>
-        <name>DUMMY1</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>f set, generate RDSINT when RDS gains synchronization. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="539" column="17" bodyfile="SI4735/SI4735.h" bodystart="539" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__int__source_1a6363c0e46e99336e8381bc0cc4ccacf7" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_int_source::RDSNEWBLOCKA</definition>
-        <argsstring></argsstring>
-        <name>RDSNEWBLOCKA</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>Always write to 0. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="540" column="17" bodyfile="SI4735/SI4735.h" bodystart="540" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__int__source_1abe78350d5e3cb85a60859f52ce279efd" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_int_source::RDSNEWBLOCKB</definition>
-        <argsstring></argsstring>
-        <name>RDSNEWBLOCKB</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>If set, generate an interrupt when Block A data is found or subsequently changed. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="541" column="17" bodyfile="SI4735/SI4735.h" bodystart="541" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__int__source_1a1244e55bf5f7da541ebc7ef17880ffaa" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_int_source::DUMMY2</definition>
-        <argsstring></argsstring>
-        <name>DUMMY2</name>
-        <bitfield> 5</bitfield>
-        <briefdescription>
-<para>If set, generate an interrupt when Block B data is found or subsequently changed. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="542" column="17" bodyfile="SI4735/SI4735.h" bodystart="542" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__rds__int__source_1a7647574bbb20d7f447c273b0f347caa9" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_rds_int_source::DUMMY3</definition>
-        <argsstring></argsstring>
-        <name>DUMMY3</name>
-        <bitfield> 5</bitfield>
-        <briefdescription>
-<para>Reserved - Always write to 0. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="543" column="17" bodyfile="SI4735/SI4735.h" bodystart="543" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__int__source_1ab4e20ced6462d57774e19b0516416011" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_int_source::@13</type>
         <definition>struct si47x_rds_int_source::@13 si47x_rds_int_source::refined</definition>
@@ -135,6 +16,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="544" column="13"/>
+        <referencedby refid="class_s_i4735_1a530e64d00d95b4ceb13ce33aa74c63cb" compoundref="_s_i4735_8cpp" startline="1384" endline="1413">SI4735::setRdsIntSource</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__int__source_1abfd03e295ce96a214407c2705d9b96c7" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -148,6 +30,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="545" column="13" bodyfile="SI4735/SI4735.h" bodystart="545" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a530e64d00d95b4ceb13ce33aa74c63cb" compoundref="_s_i4735_8cpp" startline="1384" endline="1413">SI4735::setRdsIntSource</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -162,15 +45,7 @@
     </detaileddescription>
     <location file="SI4735/SI4735.h" line="533" column="15" bodyfile="SI4735/SI4735.h" bodystart="533" bodyend="546"/>
     <listofallmembers>
-      <member refid="unionsi47x__rds__int__source_1ac5de9b6d946471e6ff768bd87988125b" prot="public" virt="non-virtual"><scope>si47x_rds_int_source</scope><name>DUMMY1</name></member>
-      <member refid="unionsi47x__rds__int__source_1a1244e55bf5f7da541ebc7ef17880ffaa" prot="public" virt="non-virtual"><scope>si47x_rds_int_source</scope><name>DUMMY2</name></member>
-      <member refid="unionsi47x__rds__int__source_1a7647574bbb20d7f447c273b0f347caa9" prot="public" virt="non-virtual"><scope>si47x_rds_int_source</scope><name>DUMMY3</name></member>
       <member refid="unionsi47x__rds__int__source_1abfd03e295ce96a214407c2705d9b96c7" prot="public" virt="non-virtual"><scope>si47x_rds_int_source</scope><name>raw</name></member>
-      <member refid="unionsi47x__rds__int__source_1a6363c0e46e99336e8381bc0cc4ccacf7" prot="public" virt="non-virtual"><scope>si47x_rds_int_source</scope><name>RDSNEWBLOCKA</name></member>
-      <member refid="unionsi47x__rds__int__source_1abe78350d5e3cb85a60859f52ce279efd" prot="public" virt="non-virtual"><scope>si47x_rds_int_source</scope><name>RDSNEWBLOCKB</name></member>
-      <member refid="unionsi47x__rds__int__source_1aabbae0cca723fa1610ca96f7a62a734f" prot="public" virt="non-virtual"><scope>si47x_rds_int_source</scope><name>RDSRECV</name></member>
-      <member refid="unionsi47x__rds__int__source_1adb4e16cc0024b4c0338d163a83ec43ec" prot="public" virt="non-virtual"><scope>si47x_rds_int_source</scope><name>RDSSYNCFOUND</name></member>
-      <member refid="unionsi47x__rds__int__source_1a0bb106ab53cfba94833fefd596a5d1cf" prot="public" virt="non-virtual"><scope>si47x_rds_int_source</scope><name>RDSSYNCLOST</name></member>
       <member refid="unionsi47x__rds__int__source_1ab4e20ced6462d57774e19b0516416011" prot="public" virt="non-virtual"><scope>si47x_rds_int_source</scope><name>refined</name></member>
     </listofallmembers>
   </compounddef>

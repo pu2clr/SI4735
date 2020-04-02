@@ -192,328 +192,364 @@
     <member refid="group__group05_1ga668008457910e916ebadf15bda2e5b29" kind="function"><name>setDeviceOtherI2CAddress</name></member>
   </compound>
   <compound refid="unionsi4735__digital__output__format" kind="union"><name>si4735_digital_output_format</name>
-    <member refid="unionsi4735__digital__output__format_1aad9941e3bc74c7621c493dfa8d066521" kind="variable"><name>OSIZE</name></member>
-    <member refid="unionsi4735__digital__output__format_1a810bfc21a334fbf3bf53b8dd934bb603" kind="variable"><name>OMONO</name></member>
-    <member refid="unionsi4735__digital__output__format_1ae2f67694a90085fc652649e37b3984b1" kind="variable"><name>OMODE</name></member>
-    <member refid="unionsi4735__digital__output__format_1a43a50ac17d929c197fae422f1fd648e3" kind="variable"><name>OFALL</name></member>
-    <member refid="unionsi4735__digital__output__format_1ab1a6803d3f409753fc7ed9e145ff3813" kind="variable"><name>dummy</name></member>
     <member refid="unionsi4735__digital__output__format_1a776ee9e744dd7da8e747d0c881c5d205" kind="variable"><name>refined</name></member>
     <member refid="unionsi4735__digital__output__format_1a0fa2c05d8877d3c680e904842993c33e" kind="variable"><name>raw</name></member>
+  </compound>
+  <compound refid="structsi4735__digital__output__format_8refined" kind="struct"><name>si4735_digital_output_format.refined</name>
+    <member refid="structsi4735__digital__output__format_8refined_1a8e0cf30fb9cddc896d94167934615d42" kind="variable"><name>OSIZE</name></member>
+    <member refid="structsi4735__digital__output__format_8refined_1a61324adf2d131b4df8038991cbca0842" kind="variable"><name>OMONO</name></member>
+    <member refid="structsi4735__digital__output__format_8refined_1a870fffeed608a381a3abc7e27b22a7ee" kind="variable"><name>OMODE</name></member>
+    <member refid="structsi4735__digital__output__format_8refined_1abfdc1bd5a8f46739eef7fd4fa44ad600" kind="variable"><name>OFALL</name></member>
+    <member refid="structsi4735__digital__output__format_8refined_1a275876e34cf609db118f3d84b799a790" kind="variable"><name>dummy</name></member>
   </compound>
   <compound refid="structsi4735__digital__output__sample__rate" kind="struct"><name>si4735_digital_output_sample_rate</name>
     <member refid="structsi4735__digital__output__sample__rate_1a9988ba829a46409f23d7cb9bb0f156d9" kind="variable"><name>DOSR</name></member>
   </compound>
   <compound refid="unionsi473x__powerup" kind="union"><name>si473x_powerup</name>
-    <member refid="unionsi473x__powerup_1aa6f9fd2636a0a6797755b99c343ef648" kind="variable"><name>FUNC</name></member>
-    <member refid="unionsi473x__powerup_1ae68c435fb0ff2ad54bc17ac794a482c1" kind="variable"><name>XOSCEN</name></member>
-    <member refid="unionsi473x__powerup_1aff3f1655e972eff4630c66f0b4ec7704" kind="variable"><name>PATCH</name></member>
-    <member refid="unionsi473x__powerup_1a6da21e782c18e0d15791f712e602bf0f" kind="variable"><name>GPO2OEN</name></member>
-    <member refid="unionsi473x__powerup_1a21297439eccc575f7c0a3228a4061fa7" kind="variable"><name>CTSIEN</name></member>
-    <member refid="unionsi473x__powerup_1a5deeab3cdc44cc652b6e8867dd8e9833" kind="variable"><name>OPMODE</name></member>
     <member refid="unionsi473x__powerup_1a1d76ab95c8f37f3ee9f2266e0a818455" kind="variable"><name>arg</name></member>
     <member refid="unionsi473x__powerup_1ab82e658c5816b0c31e32e100ff776ebe" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi473x__powerup_8arg" kind="struct"><name>si473x_powerup.arg</name>
+    <member refid="structsi473x__powerup_8arg_1a1e49c8ad07b69571bfcafaf18ac9fa5b" kind="variable"><name>FUNC</name></member>
+    <member refid="structsi473x__powerup_8arg_1a22c9aef8785be330d7e1faf88bcfd4b1" kind="variable"><name>XOSCEN</name></member>
+    <member refid="structsi473x__powerup_8arg_1a63bc9a3997d66d835d9f3ec29451407d" kind="variable"><name>PATCH</name></member>
+    <member refid="structsi473x__powerup_8arg_1a16e39ff0e3715799964f55ae2059869d" kind="variable"><name>GPO2OEN</name></member>
+    <member refid="structsi473x__powerup_8arg_1a70cc84d478cf749951dcd0abde88b0ce" kind="variable"><name>CTSIEN</name></member>
+    <member refid="structsi473x__powerup_8arg_1adc7ae7360da2a9886f674ed6943a2524" kind="variable"><name>OPMODE</name></member>
+  </compound>
   <compound refid="unionsi47x__agc__overrride" kind="union"><name>si47x_agc_overrride</name>
-    <member refid="unionsi47x__agc__overrride_1a7e92f8e598d792f6d0b11e2bd921e01b" kind="variable"><name>AGCDIS</name></member>
-    <member refid="unionsi47x__agc__overrride_1aa4a9fc283d2f8345a0815d463f561e6d" kind="variable"><name>DUMMY</name></member>
-    <member refid="unionsi47x__agc__overrride_1a65e8a65b69cd633b05480655a525904d" kind="variable"><name>AGCIDX</name></member>
     <member refid="unionsi47x__agc__overrride_1ae235ce810f1b7d481def598b0e7c5234" kind="variable"><name>arg</name></member>
     <member refid="unionsi47x__agc__overrride_1a7b8218655c25e1f8d75d92818ec24f20" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__agc__overrride_8arg" kind="struct"><name>si47x_agc_overrride.arg</name>
+    <member refid="structsi47x__agc__overrride_8arg_1aeaad2cabb6417746b2dd432eda476f55" kind="variable"><name>AGCDIS</name></member>
+    <member refid="structsi47x__agc__overrride_8arg_1abd2103035a8021942390a78a431ba0c4" kind="variable"><name>DUMMY</name></member>
+    <member refid="structsi47x__agc__overrride_8arg_1a26bd0af30c189325bd004e10593eb5cd" kind="variable"><name>AGCIDX</name></member>
+  </compound>
   <compound refid="unionsi47x__agc__status" kind="union"><name>si47x_agc_status</name>
-    <member refid="unionsi47x__agc__status_1a46cac3781dee36161e8ac2a9bf507ad5" kind="variable"><name>STCINT</name></member>
-    <member refid="unionsi47x__agc__status_1ac7467eba73b0a1354f96210196b9702e" kind="variable"><name>DUMMY1</name></member>
-    <member refid="unionsi47x__agc__status_1a0fc5f60be89de344c288ccbe90a6dda4" kind="variable"><name>RDSINT</name></member>
-    <member refid="unionsi47x__agc__status_1ae4023d6a4ab935f3ceedba6695964ab5" kind="variable"><name>RSQINT</name></member>
-    <member refid="unionsi47x__agc__status_1a1a7a0bd5c44fc89974005235a8b4e1ae" kind="variable"><name>DUMMY2</name></member>
-    <member refid="unionsi47x__agc__status_1a4483c8293b7c3779b3564da97eee97d1" kind="variable"><name>ERR</name></member>
-    <member refid="unionsi47x__agc__status_1a0ce35e707134980da54508249216fb1c" kind="variable"><name>CTS</name></member>
-    <member refid="unionsi47x__agc__status_1a329da2e6ccd1656d2a6b9c6b1483faeb" kind="variable"><name>AGCDIS</name></member>
-    <member refid="unionsi47x__agc__status_1acb16cb23caa69a764a8e14bf00bd8be0" kind="variable"><name>DUMMY</name></member>
-    <member refid="unionsi47x__agc__status_1a542909611f2b6093f46af7362ae9d9fd" kind="variable"><name>AGCIDX</name></member>
     <member refid="unionsi47x__agc__status_1aa6916dac978ef9cfd53ffe7783c4d8da" kind="variable"><name>refined</name></member>
     <member refid="unionsi47x__agc__status_1a2f03c32a90a7991f2433bf8a5291885d" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__agc__status_8refined" kind="struct"><name>si47x_agc_status.refined</name>
+    <member refid="structsi47x__agc__status_8refined_1af8f21d801809287d578344911b65697c" kind="variable"><name>STCINT</name></member>
+    <member refid="structsi47x__agc__status_8refined_1a3651c40ccc4450f2fc89fa3139dedd5a" kind="variable"><name>DUMMY1</name></member>
+    <member refid="structsi47x__agc__status_8refined_1a53d648e7e9d100d590e2f65ec7de079f" kind="variable"><name>RDSINT</name></member>
+    <member refid="structsi47x__agc__status_8refined_1a8acf6c55c97050e7abd06c104012c77a" kind="variable"><name>RSQINT</name></member>
+    <member refid="structsi47x__agc__status_8refined_1abece94c62273dc7ecfabc565b76dbbe5" kind="variable"><name>DUMMY2</name></member>
+    <member refid="structsi47x__agc__status_8refined_1acd22bad976363fdd1bfbf6759fede482" kind="variable"><name>ERR</name></member>
+    <member refid="structsi47x__agc__status_8refined_1ae16433ffd3adc248f0ce2608a95c3c76" kind="variable"><name>CTS</name></member>
+    <member refid="structsi47x__agc__status_8refined_1aeaad2cabb6417746b2dd432eda476f55" kind="variable"><name>AGCDIS</name></member>
+    <member refid="structsi47x__agc__status_8refined_1abd2103035a8021942390a78a431ba0c4" kind="variable"><name>DUMMY</name></member>
+    <member refid="structsi47x__agc__status_8refined_1a26bd0af30c189325bd004e10593eb5cd" kind="variable"><name>AGCIDX</name></member>
+  </compound>
   <compound refid="unionsi47x__antenna__capacitor" kind="union"><name>si47x_antenna_capacitor</name>
-    <member refid="unionsi47x__antenna__capacitor_1a327b39363f0d152ba8a5f4c7252fc358" kind="variable"><name>ANTCAPL</name></member>
-    <member refid="unionsi47x__antenna__capacitor_1a26952301dd2779d1976f92c2e521c476" kind="variable"><name>ANTCAPH</name></member>
     <member refid="unionsi47x__antenna__capacitor_1a29548a9c68843bb6aa86eabcd33a9633" kind="variable"><name>raw</name></member>
     <member refid="unionsi47x__antenna__capacitor_1aa59f9604df88a98b91295b0a9c009bbd" kind="variable"><name>value</name></member>
   </compound>
+  <compound refid="structsi47x__antenna__capacitor_8raw" kind="struct"><name>si47x_antenna_capacitor.raw</name>
+    <member refid="structsi47x__antenna__capacitor_8raw_1a0475bf71e813922e317ef7cb7b3df9fa" kind="variable"><name>ANTCAPL</name></member>
+    <member refid="structsi47x__antenna__capacitor_8raw_1a5f437dbf77cdadcbb215ce5db44edbe6" kind="variable"><name>ANTCAPH</name></member>
+  </compound>
   <compound refid="unionsi47x__bandwidth__config" kind="union"><name>si47x_bandwidth_config</name>
-    <member refid="unionsi47x__bandwidth__config_1a9126e88e995ef2b30a3b3b0b3a57e4b8" kind="variable"><name>AMCHFLT</name></member>
-    <member refid="unionsi47x__bandwidth__config_1a9782eb3c7fdb503308a9efa0b2feca59" kind="variable"><name>DUMMY1</name></member>
-    <member refid="unionsi47x__bandwidth__config_1a83bcbed43c2a8b60e237189c24690706" kind="variable"><name>AMPLFLT</name></member>
-    <member refid="unionsi47x__bandwidth__config_1aa5135cee2e47231eee7ade4cdbe6a3c7" kind="variable"><name>DUMMY2</name></member>
     <member refid="unionsi47x__bandwidth__config_1aad8c326eb12c8fe5dc1dc1d2bf78e37c" kind="variable"><name>param</name></member>
     <member refid="unionsi47x__bandwidth__config_1aa8fd81f2f62788fac6c3cce7b1ea765d" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__bandwidth__config_8param" kind="struct"><name>si47x_bandwidth_config.param</name>
+    <member refid="structsi47x__bandwidth__config_8param_1ad992f11e8896f68a81b13fcd6ae2a3b1" kind="variable"><name>AMCHFLT</name></member>
+    <member refid="structsi47x__bandwidth__config_8param_1a3651c40ccc4450f2fc89fa3139dedd5a" kind="variable"><name>DUMMY1</name></member>
+    <member refid="structsi47x__bandwidth__config_8param_1ae6741d3dc93d6502bb837ca874ee4f94" kind="variable"><name>AMPLFLT</name></member>
+    <member refid="structsi47x__bandwidth__config_8param_1abece94c62273dc7ecfabc565b76dbbe5" kind="variable"><name>DUMMY2</name></member>
+  </compound>
   <compound refid="unionsi47x__firmware__information" kind="union"><name>si47x_firmware_information</name>
-    <member refid="unionsi47x__firmware__information_1a11c6e65b83ca64f5b9fc45190f45a8ad" kind="variable"><name>STCINT</name></member>
-    <member refid="unionsi47x__firmware__information_1aef521ef2e42eb830ea5b14bcdf6d0551" kind="variable"><name>DUMMY1</name></member>
-    <member refid="unionsi47x__firmware__information_1af50b483a7662b33db230842fbe21d47a" kind="variable"><name>RDSINT</name></member>
-    <member refid="unionsi47x__firmware__information_1a5de0ac503dac166199f5dda90b0236d3" kind="variable"><name>RSQINT</name></member>
-    <member refid="unionsi47x__firmware__information_1abcde7d1a90346f3a7a8601cc66e29c71" kind="variable"><name>DUMMY2</name></member>
-    <member refid="unionsi47x__firmware__information_1a7155c52df7d6e6ff21b9f9eda85e7782" kind="variable"><name>ERR</name></member>
-    <member refid="unionsi47x__firmware__information_1ab219d98631b91d0deb504578a3ffe3bc" kind="variable"><name>CTS</name></member>
-    <member refid="unionsi47x__firmware__information_1a76c4c996809c5212f7dae2b3b7c41bf4" kind="variable"><name>PN</name></member>
-    <member refid="unionsi47x__firmware__information_1ace4719bdaf8df7e8b46c149032146ff9" kind="variable"><name>FWMAJOR</name></member>
-    <member refid="unionsi47x__firmware__information_1a6ea81f71d748770422b1d0da50225cc9" kind="variable"><name>FWMINOR</name></member>
-    <member refid="unionsi47x__firmware__information_1ac0d0b792ff45f27e75530c6a1a7395e5" kind="variable"><name>PATCHH</name></member>
-    <member refid="unionsi47x__firmware__information_1adb11fe484e59e3f8bb77d675d9b03950" kind="variable"><name>PATCHL</name></member>
-    <member refid="unionsi47x__firmware__information_1ac18795035fa07c597e8a6c3f10745984" kind="variable"><name>CMPMAJOR</name></member>
-    <member refid="unionsi47x__firmware__information_1a66dcdf7f96777f5ca05fdadfd3c6f764" kind="variable"><name>CMPMINOR</name></member>
-    <member refid="unionsi47x__firmware__information_1aa88ca593c77a71ca1726ab48ebd70ee3" kind="variable"><name>CHIPREV</name></member>
     <member refid="unionsi47x__firmware__information_1a62ecd35a00b7a8bd4faaf82cd69d522e" kind="variable"><name>resp</name></member>
     <member refid="unionsi47x__firmware__information_1aa2ba7bbaa745c8ca18c83226246654e5" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__firmware__information_8resp" kind="struct"><name>si47x_firmware_information.resp</name>
+    <member refid="structsi47x__firmware__information_8resp_1af8f21d801809287d578344911b65697c" kind="variable"><name>STCINT</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1a3651c40ccc4450f2fc89fa3139dedd5a" kind="variable"><name>DUMMY1</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1a53d648e7e9d100d590e2f65ec7de079f" kind="variable"><name>RDSINT</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1a8acf6c55c97050e7abd06c104012c77a" kind="variable"><name>RSQINT</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1abece94c62273dc7ecfabc565b76dbbe5" kind="variable"><name>DUMMY2</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1acd22bad976363fdd1bfbf6759fede482" kind="variable"><name>ERR</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1ae16433ffd3adc248f0ce2608a95c3c76" kind="variable"><name>CTS</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1a7b6166324dc52f374d908e03602b1daf" kind="variable"><name>PN</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1a67c65213847ea2a824306b665bd2851f" kind="variable"><name>FWMAJOR</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1ae0c243088677f14fc8dd9c9508e068ff" kind="variable"><name>FWMINOR</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1a3ab7055a80e6c432a1116bfb27181811" kind="variable"><name>PATCHH</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1a07cead1237e34b4696dce647443ad10e" kind="variable"><name>PATCHL</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1aab5038bb547e9aa4b543112de6904611" kind="variable"><name>CMPMAJOR</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1a62c98580b8d5220cf351861ddd86fd07" kind="variable"><name>CMPMINOR</name></member>
+    <member refid="structsi47x__firmware__information_8resp_1ab9dbe73951d365ea8a945760cec79a5e" kind="variable"><name>CHIPREV</name></member>
+  </compound>
   <compound refid="unionsi47x__firmware__query__library" kind="union"><name>si47x_firmware_query_library</name>
-    <member refid="unionsi47x__firmware__query__library_1ad07e512a1eb23e60eece86e718b7ecea" kind="variable"><name>STCINT</name></member>
-    <member refid="unionsi47x__firmware__query__library_1aa360dd8ff311d0d03c7f370838ff1990" kind="variable"><name>DUMMY1</name></member>
-    <member refid="unionsi47x__firmware__query__library_1a75e1d08338572d095f5a328b7f49bfde" kind="variable"><name>RDSINT</name></member>
-    <member refid="unionsi47x__firmware__query__library_1a30ddfa3ce3b2b47c8158f863d0786c15" kind="variable"><name>RSQINT</name></member>
-    <member refid="unionsi47x__firmware__query__library_1aac193d548ce3d80de2f8c9d7b790978a" kind="variable"><name>DUMMY2</name></member>
-    <member refid="unionsi47x__firmware__query__library_1a60468fd4aadf3086bc6f7096e75b9573" kind="variable"><name>ERR</name></member>
-    <member refid="unionsi47x__firmware__query__library_1a83d105d2e1d15302b29aea53c94d9ffb" kind="variable"><name>CTS</name></member>
-    <member refid="unionsi47x__firmware__query__library_1a57a47a34ae760b8383f081ca73cb679c" kind="variable"><name>PN</name></member>
-    <member refid="unionsi47x__firmware__query__library_1ab950d4b9a969762568b25a1c5692bc73" kind="variable"><name>FWMAJOR</name></member>
-    <member refid="unionsi47x__firmware__query__library_1a42d8ea389edcd3e3464f8215493c7f0b" kind="variable"><name>FWMINOR</name></member>
-    <member refid="unionsi47x__firmware__query__library_1aac2622049ed120c5be5a9d2599d895b2" kind="variable"><name>RESERVED1</name></member>
-    <member refid="unionsi47x__firmware__query__library_1a92d947bf9624b09cb7a3dd30a1f02e18" kind="variable"><name>RESERVED2</name></member>
-    <member refid="unionsi47x__firmware__query__library_1a9428364e365a3638261b93acb0ccd0e2" kind="variable"><name>CHIPREV</name></member>
-    <member refid="unionsi47x__firmware__query__library_1a5090c975c3786f9c5925b9f7bdb09f51" kind="variable"><name>LIBRARYID</name></member>
     <member refid="unionsi47x__firmware__query__library_1a328de8db27422fb20f1335f29e67b8ed" kind="variable"><name>resp</name></member>
     <member refid="unionsi47x__firmware__query__library_1a5235c5b07b71d6dc4c76c275a091c63c" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__firmware__query__library_8resp" kind="struct"><name>si47x_firmware_query_library.resp</name>
+    <member refid="structsi47x__firmware__query__library_8resp_1af8f21d801809287d578344911b65697c" kind="variable"><name>STCINT</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1a3651c40ccc4450f2fc89fa3139dedd5a" kind="variable"><name>DUMMY1</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1a53d648e7e9d100d590e2f65ec7de079f" kind="variable"><name>RDSINT</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1a8acf6c55c97050e7abd06c104012c77a" kind="variable"><name>RSQINT</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1abece94c62273dc7ecfabc565b76dbbe5" kind="variable"><name>DUMMY2</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1acd22bad976363fdd1bfbf6759fede482" kind="variable"><name>ERR</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1ae16433ffd3adc248f0ce2608a95c3c76" kind="variable"><name>CTS</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1a7b6166324dc52f374d908e03602b1daf" kind="variable"><name>PN</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1a67c65213847ea2a824306b665bd2851f" kind="variable"><name>FWMAJOR</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1ae0c243088677f14fc8dd9c9508e068ff" kind="variable"><name>FWMINOR</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1ad8179a090910d4923b044cbce813c8ea" kind="variable"><name>RESERVED1</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1a0b5885d29a74762639e4b55c51ce2d85" kind="variable"><name>RESERVED2</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1ab9dbe73951d365ea8a945760cec79a5e" kind="variable"><name>CHIPREV</name></member>
+    <member refid="structsi47x__firmware__query__library_8resp_1afb747a51a99db36a17a01f11e3cafbe5" kind="variable"><name>LIBRARYID</name></member>
+  </compound>
   <compound refid="unionsi47x__frequency" kind="union"><name>si47x_frequency</name>
-    <member refid="unionsi47x__frequency_1abe921825c86d54f9f38411677a489d89" kind="variable"><name>FREQL</name></member>
-    <member refid="unionsi47x__frequency_1ae85fcb4329c600511e2127e1c5029f8c" kind="variable"><name>FREQH</name></member>
     <member refid="unionsi47x__frequency_1a1a992fcfef59a6c6b1612e006264840f" kind="variable"><name>raw</name></member>
     <member refid="unionsi47x__frequency_1aad12ac434ec9907e90a3f6b95377ca76" kind="variable"><name>value</name></member>
   </compound>
+  <compound refid="structsi47x__frequency_8raw" kind="struct"><name>si47x_frequency.raw</name>
+    <member refid="structsi47x__frequency_8raw_1a858dfb4be81dfbd057aa63aded06bf3d" kind="variable"><name>FREQL</name></member>
+    <member refid="structsi47x__frequency_8raw_1a8836c6ec927c24305d2fd26a5aec2e2b" kind="variable"><name>FREQH</name></member>
+  </compound>
   <compound refid="unionsi47x__property" kind="union"><name>si47x_property</name>
-    <member refid="unionsi47x__property_1a03bfb4b4b42b829deecc04647a1331d7" kind="variable"><name>byteLow</name></member>
-    <member refid="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" kind="variable"><name>byteHigh</name></member>
     <member refid="unionsi47x__property_1ae9ac96f5c6d10f227a6926f787232e27" kind="variable"><name>raw</name></member>
     <member refid="unionsi47x__property_1a7c04205c5a1798b35b738b2908853bfa" kind="variable"><name>value</name></member>
   </compound>
+  <compound refid="structsi47x__property_8raw" kind="struct"><name>si47x_property.raw</name>
+    <member refid="structsi47x__property_8raw_1a1f3859652867ab4a967c5caa3e2ab353" kind="variable"><name>byteLow</name></member>
+    <member refid="structsi47x__property_8raw_1a7b280732d6c370d505d537b0ab9f7e30" kind="variable"><name>byteHigh</name></member>
+  </compound>
   <compound refid="unionsi47x__rds__blocka" kind="union"><name>si47x_rds_blocka</name>
-    <member refid="unionsi47x__rds__blocka_1aca7324b126cebc5c0993e4d6f1a3a67e" kind="variable"><name>pi</name></member>
     <member refid="unionsi47x__rds__blocka_1a1a7f496c8e0b77574f49c7808aeb186c" kind="variable"><name>refined</name></member>
-    <member refid="unionsi47x__rds__blocka_1a0143e0506e13766406571bd29ca604a6" kind="variable"><name>highValue</name></member>
-    <member refid="unionsi47x__rds__blocka_1a1148360b97c0c704c46a00ceb36360b4" kind="variable"><name>lowValue</name></member>
     <member refid="unionsi47x__rds__blocka_1ad64069e22c176c0e1b12e9a23eb54f20" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__rds__blocka_8raw" kind="struct"><name>si47x_rds_blocka.raw</name>
+    <member refid="structsi47x__rds__blocka_8raw_1aaee469db16fdff1aa5439b776b3d5860" kind="variable"><name>highValue</name></member>
+    <member refid="structsi47x__rds__blocka_8raw_1a72a22270b4e47acf046fad64a8720e4f" kind="variable"><name>lowValue</name></member>
+  </compound>
+  <compound refid="structsi47x__rds__blocka_8refined" kind="struct"><name>si47x_rds_blocka.refined</name>
+    <member refid="structsi47x__rds__blocka_8refined_1a72ab8af56bddab33b269c5964b26620a" kind="variable"><name>pi</name></member>
+  </compound>
   <compound refid="unionsi47x__rds__blockb" kind="union"><name>si47x_rds_blockb</name>
-    <member refid="unionsi47x__rds__blockb_1ae85fb9b6893b7ae94df7d9bdf30d8fb4" kind="variable"><name>address</name></member>
-    <member refid="unionsi47x__rds__blockb_1ab328b512ede3263b8cc3ee358280199c" kind="variable"><name>DI</name></member>
-    <member refid="unionsi47x__rds__blockb_1a096ab1230df03262dd29149a6154e08f" kind="variable"><name>MS</name></member>
-    <member refid="unionsi47x__rds__blockb_1afc5d18af2058dc55887e01c2e40c6025" kind="variable"><name>TA</name></member>
-    <member refid="unionsi47x__rds__blockb_1ae0500c0f2c43a9701e8d19353bc12438" kind="variable"><name>programType</name></member>
-    <member refid="unionsi47x__rds__blockb_1a963a0cba84ca0fa8e7443c927bfc0322" kind="variable"><name>trafficProgramCode</name></member>
-    <member refid="unionsi47x__rds__blockb_1a30c1925754d5eaca0dfa29739bc90244" kind="variable"><name>versionCode</name></member>
-    <member refid="unionsi47x__rds__blockb_1a15f89b1b22c05a2d7f873f0251c549e7" kind="variable"><name>groupType</name></member>
     <member refid="unionsi47x__rds__blockb_1a059a039022499410d7d337fe96e3cbab" kind="variable"><name>group0</name></member>
-    <member refid="unionsi47x__rds__blockb_1a59a87427b5d83b59d705780ea2069cc0" kind="variable"><name>textABFlag</name></member>
     <member refid="unionsi47x__rds__blockb_1aa6d5cedf34d36a7719b521d02b8a3666" kind="variable"><name>group2</name></member>
-    <member refid="unionsi47x__rds__blockb_1a62c7cb3e50672c3244d0098b449ebe9b" kind="variable"><name>content</name></member>
     <member refid="unionsi47x__rds__blockb_1ad6bf3043057d5ccfb4294cad28c7b9a5" kind="variable"><name>refined</name></member>
-    <member refid="unionsi47x__rds__blockb_1ae93ff5d62ed6a769b50bb25cb808fa2f" kind="variable"><name>lowValue</name></member>
-    <member refid="unionsi47x__rds__blockb_1a0bf139b12b0eed8a0d20a7f3f60cb634" kind="variable"><name>highValue</name></member>
     <member refid="unionsi47x__rds__blockb_1a004a14fe7748648a3f4248c63075f472" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__rds__blockb_8group0" kind="struct"><name>si47x_rds_blockb.group0</name>
+    <member refid="structsi47x__rds__blockb_8group0_1a884d9804999fc47a3c2694e49ad2536a" kind="variable"><name>address</name></member>
+    <member refid="structsi47x__rds__blockb_8group0_1aa1b1c0cd777edd2e5cfcaf8e2e7dcab8" kind="variable"><name>DI</name></member>
+    <member refid="structsi47x__rds__blockb_8group0_1a7a663caea1b722a63dc2868158ed584d" kind="variable"><name>MS</name></member>
+    <member refid="structsi47x__rds__blockb_8group0_1a890a10788493e3d572586e991cd43543" kind="variable"><name>TA</name></member>
+    <member refid="structsi47x__rds__blockb_8group0_1a264bd2c2ca8c895803767b0d39ff4a09" kind="variable"><name>programType</name></member>
+    <member refid="structsi47x__rds__blockb_8group0_1a59e69d63ce38754ea53c4461b5cba1e2" kind="variable"><name>trafficProgramCode</name></member>
+    <member refid="structsi47x__rds__blockb_8group0_1a20583dcf173525a78f726ef45329c5ae" kind="variable"><name>versionCode</name></member>
+    <member refid="structsi47x__rds__blockb_8group0_1a19223bd3731a4215ead3ba6a1eb8bbe8" kind="variable"><name>groupType</name></member>
+  </compound>
+  <compound refid="structsi47x__rds__blockb_8group2" kind="struct"><name>si47x_rds_blockb.group2</name>
+    <member refid="structsi47x__rds__blockb_8group2_1a884d9804999fc47a3c2694e49ad2536a" kind="variable"><name>address</name></member>
+    <member refid="structsi47x__rds__blockb_8group2_1a652bfdc159637b708ac6e6f92d7650bc" kind="variable"><name>textABFlag</name></member>
+    <member refid="structsi47x__rds__blockb_8group2_1a264bd2c2ca8c895803767b0d39ff4a09" kind="variable"><name>programType</name></member>
+    <member refid="structsi47x__rds__blockb_8group2_1a59e69d63ce38754ea53c4461b5cba1e2" kind="variable"><name>trafficProgramCode</name></member>
+    <member refid="structsi47x__rds__blockb_8group2_1a20583dcf173525a78f726ef45329c5ae" kind="variable"><name>versionCode</name></member>
+    <member refid="structsi47x__rds__blockb_8group2_1a19223bd3731a4215ead3ba6a1eb8bbe8" kind="variable"><name>groupType</name></member>
+  </compound>
+  <compound refid="structsi47x__rds__blockb_8raw" kind="struct"><name>si47x_rds_blockb.raw</name>
+    <member refid="structsi47x__rds__blockb_8raw_1a72a22270b4e47acf046fad64a8720e4f" kind="variable"><name>lowValue</name></member>
+    <member refid="structsi47x__rds__blockb_8raw_1aaee469db16fdff1aa5439b776b3d5860" kind="variable"><name>highValue</name></member>
+  </compound>
+  <compound refid="structsi47x__rds__blockb_8refined" kind="struct"><name>si47x_rds_blockb.refined</name>
+    <member refid="structsi47x__rds__blockb_8refined_1a9a0364b9e99bb480dd25e1f0284c8555" kind="variable"><name>content</name></member>
+    <member refid="structsi47x__rds__blockb_8refined_1a652bfdc159637b708ac6e6f92d7650bc" kind="variable"><name>textABFlag</name></member>
+    <member refid="structsi47x__rds__blockb_8refined_1a264bd2c2ca8c895803767b0d39ff4a09" kind="variable"><name>programType</name></member>
+    <member refid="structsi47x__rds__blockb_8refined_1a59e69d63ce38754ea53c4461b5cba1e2" kind="variable"><name>trafficProgramCode</name></member>
+    <member refid="structsi47x__rds__blockb_8refined_1a20583dcf173525a78f726ef45329c5ae" kind="variable"><name>versionCode</name></member>
+    <member refid="structsi47x__rds__blockb_8refined_1a19223bd3731a4215ead3ba6a1eb8bbe8" kind="variable"><name>groupType</name></member>
+  </compound>
   <compound refid="unionsi47x__rds__command" kind="union"><name>si47x_rds_command</name>
-    <member refid="unionsi47x__rds__command_1af342e43abded03f247b1366762be7e09" kind="variable"><name>INTACK</name></member>
-    <member refid="unionsi47x__rds__command_1a0a99bc3eb133aef468004ee950b77cdd" kind="variable"><name>MTFIFO</name></member>
-    <member refid="unionsi47x__rds__command_1a502e1f710ac40b85373d662512fcaaaa" kind="variable"><name>STATUSONLY</name></member>
-    <member refid="unionsi47x__rds__command_1a3b27e9ff8048cbc2f8ec469afe0088dc" kind="variable"><name>dummy</name></member>
     <member refid="unionsi47x__rds__command_1a41282c2bfe9a791181ba01c6787840ec" kind="variable"><name>arg</name></member>
     <member refid="unionsi47x__rds__command_1a3c151920e2f167bfa7c47193a20ecb58" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__rds__command_8arg" kind="struct"><name>si47x_rds_command.arg</name>
+    <member refid="structsi47x__rds__command_8arg_1aa1b4c5526f2abe4a5d02be4016a44020" kind="variable"><name>INTACK</name></member>
+    <member refid="structsi47x__rds__command_8arg_1a89ada8287a1cbe8c1cbcbaf629797e69" kind="variable"><name>MTFIFO</name></member>
+    <member refid="structsi47x__rds__command_8arg_1a0ad827114d7e2367674a05bbcdc53eda" kind="variable"><name>STATUSONLY</name></member>
+    <member refid="structsi47x__rds__command_8arg_1a275876e34cf609db118f3d84b799a790" kind="variable"><name>dummy</name></member>
+  </compound>
   <compound refid="unionsi47x__rds__config" kind="union"><name>si47x_rds_config</name>
-    <member refid="unionsi47x__rds__config_1ac6a693161ec0198fd24255e1dbcbf668" kind="variable"><name>RDSEN</name></member>
-    <member refid="unionsi47x__rds__config_1a849a3b2c92974fdfb9542db006e0976d" kind="variable"><name>DUMMY1</name></member>
-    <member refid="unionsi47x__rds__config_1a892701752004744896276653c17a5793" kind="variable"><name>BLETHD</name></member>
-    <member refid="unionsi47x__rds__config_1a2a243d520165c64e15fbad8b7ac2f5d9" kind="variable"><name>BLETHC</name></member>
-    <member refid="unionsi47x__rds__config_1a8fde60b58e168d978e259f3899ce5e0b" kind="variable"><name>BLETHB</name></member>
-    <member refid="unionsi47x__rds__config_1a985f772fda4648f338757b919de189f0" kind="variable"><name>BLETHA</name></member>
     <member refid="unionsi47x__rds__config_1af43318436df83ca903da3c6eaf797c5f" kind="variable"><name>arg</name></member>
     <member refid="unionsi47x__rds__config_1ace0fc779a1af19098b03178fcbaafffe" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__rds__config_8arg" kind="struct"><name>si47x_rds_config.arg</name>
+    <member refid="structsi47x__rds__config_8arg_1af06feb780d38d7dc59d42878a3353c7f" kind="variable"><name>RDSEN</name></member>
+    <member refid="structsi47x__rds__config_8arg_1a3651c40ccc4450f2fc89fa3139dedd5a" kind="variable"><name>DUMMY1</name></member>
+    <member refid="structsi47x__rds__config_8arg_1a08e321d989e5154ff4e8a2b5d0fbb057" kind="variable"><name>BLETHD</name></member>
+    <member refid="structsi47x__rds__config_8arg_1a1246c30829bddc4264fe51b0abc00dbe" kind="variable"><name>BLETHC</name></member>
+    <member refid="structsi47x__rds__config_8arg_1a659adbc2d25b37801235e309fb25737f" kind="variable"><name>BLETHB</name></member>
+    <member refid="structsi47x__rds__config_8arg_1a955ffa2ef1f258071376294e01482059" kind="variable"><name>BLETHA</name></member>
+  </compound>
   <compound refid="unionsi47x__rds__date__time" kind="union"><name>si47x_rds_date_time</name>
-    <member refid="unionsi47x__rds__date__time_1a79cc7bd950d06a144f2aae2bc469a257" kind="variable"><name>offset</name></member>
-    <member refid="unionsi47x__rds__date__time_1aed1f1a5592157d224412846fdc938eb9" kind="variable"><name>offset_sense</name></member>
-    <member refid="unionsi47x__rds__date__time_1af33644839f1535209df8f35fc00332c7" kind="variable"><name>minute1</name></member>
-    <member refid="unionsi47x__rds__date__time_1a00b09fe57cee76fda811c7e868045c2d" kind="variable"><name>minute2</name></member>
-    <member refid="unionsi47x__rds__date__time_1a4c42077d5a7c458002c2545b19446e49" kind="variable"><name>hour1</name></member>
-    <member refid="unionsi47x__rds__date__time_1ab310eb63caafa1f15e1aec5b41c3d658" kind="variable"><name>hour2</name></member>
-    <member refid="unionsi47x__rds__date__time_1a555dbd8fd36e4a5d5ec4ac7baf365a45" kind="variable"><name>mjd</name></member>
     <member refid="unionsi47x__rds__date__time_1a2fd48898a9f78b595a28dee19485d771" kind="variable"><name>refined</name></member>
     <member refid="unionsi47x__rds__date__time_1a4632acc947ded9cc9577df163fabba69" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__rds__date__time_8refined" kind="struct"><name>si47x_rds_date_time.refined</name>
+    <member refid="structsi47x__rds__date__time_8refined_1a7a86c157ee9713c34fbd7a1ee40f0c5a" kind="variable"><name>offset</name></member>
+    <member refid="structsi47x__rds__date__time_8refined_1a5ba6e404c489ff4f757e7c77cb9fa310" kind="variable"><name>offset_sense</name></member>
+    <member refid="structsi47x__rds__date__time_8refined_1a756bdae430708e155654a844c2bcc33b" kind="variable"><name>minute1</name></member>
+    <member refid="structsi47x__rds__date__time_8refined_1a57b42af48e9b3407c002d157d89f50ad" kind="variable"><name>minute2</name></member>
+    <member refid="structsi47x__rds__date__time_8refined_1a0351524e66b386b6638dd47c0d00de65" kind="variable"><name>hour1</name></member>
+    <member refid="structsi47x__rds__date__time_8refined_1a38034b153ffba397eebfcd07b4a50414" kind="variable"><name>hour2</name></member>
+    <member refid="structsi47x__rds__date__time_8refined_1a7f7685b39180278dd0fa69f523c7bd24" kind="variable"><name>mjd</name></member>
+  </compound>
   <compound refid="unionsi47x__rds__int__source" kind="union"><name>si47x_rds_int_source</name>
-    <member refid="unionsi47x__rds__int__source_1aabbae0cca723fa1610ca96f7a62a734f" kind="variable"><name>RDSRECV</name></member>
-    <member refid="unionsi47x__rds__int__source_1a0bb106ab53cfba94833fefd596a5d1cf" kind="variable"><name>RDSSYNCLOST</name></member>
-    <member refid="unionsi47x__rds__int__source_1adb4e16cc0024b4c0338d163a83ec43ec" kind="variable"><name>RDSSYNCFOUND</name></member>
-    <member refid="unionsi47x__rds__int__source_1ac5de9b6d946471e6ff768bd87988125b" kind="variable"><name>DUMMY1</name></member>
-    <member refid="unionsi47x__rds__int__source_1a6363c0e46e99336e8381bc0cc4ccacf7" kind="variable"><name>RDSNEWBLOCKA</name></member>
-    <member refid="unionsi47x__rds__int__source_1abe78350d5e3cb85a60859f52ce279efd" kind="variable"><name>RDSNEWBLOCKB</name></member>
-    <member refid="unionsi47x__rds__int__source_1a1244e55bf5f7da541ebc7ef17880ffaa" kind="variable"><name>DUMMY2</name></member>
-    <member refid="unionsi47x__rds__int__source_1a7647574bbb20d7f447c273b0f347caa9" kind="variable"><name>DUMMY3</name></member>
     <member refid="unionsi47x__rds__int__source_1ab4e20ced6462d57774e19b0516416011" kind="variable"><name>refined</name></member>
     <member refid="unionsi47x__rds__int__source_1abfd03e295ce96a214407c2705d9b96c7" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__rds__int__source_8refined" kind="struct"><name>si47x_rds_int_source.refined</name>
+    <member refid="structsi47x__rds__int__source_8refined_1aa75f4ec874d6a5f181b8e423950bfde0" kind="variable"><name>RDSRECV</name></member>
+    <member refid="structsi47x__rds__int__source_8refined_1a95a3b24fca811ec5f3f6572fe7da0bcf" kind="variable"><name>RDSSYNCLOST</name></member>
+    <member refid="structsi47x__rds__int__source_8refined_1a1cd218d6a523d2d9120d8ab8a9dd93c7" kind="variable"><name>RDSSYNCFOUND</name></member>
+    <member refid="structsi47x__rds__int__source_8refined_1a3651c40ccc4450f2fc89fa3139dedd5a" kind="variable"><name>DUMMY1</name></member>
+    <member refid="structsi47x__rds__int__source_8refined_1aa2d4c2b673c2842773854cdd6f28e033" kind="variable"><name>RDSNEWBLOCKA</name></member>
+    <member refid="structsi47x__rds__int__source_8refined_1a67434ed313bef4d6221df6a51971c994" kind="variable"><name>RDSNEWBLOCKB</name></member>
+    <member refid="structsi47x__rds__int__source_8refined_1abece94c62273dc7ecfabc565b76dbbe5" kind="variable"><name>DUMMY2</name></member>
+    <member refid="structsi47x__rds__int__source_8refined_1a613aa5c14b3ccc6304a519292c482ed1" kind="variable"><name>DUMMY3</name></member>
+  </compound>
   <compound refid="unionsi47x__rds__status" kind="union"><name>si47x_rds_status</name>
-    <member refid="unionsi47x__rds__status_1a38e112538a750e20362fa4086bdc1c67" kind="variable"><name>STCINT</name></member>
-    <member refid="unionsi47x__rds__status_1a719fb011cdac3625ca49bf56eb5e7871" kind="variable"><name>DUMMY1</name></member>
-    <member refid="unionsi47x__rds__status_1a2bf807412f68e85e1d1628fcc5acfe45" kind="variable"><name>RDSINT</name></member>
-    <member refid="unionsi47x__rds__status_1acd8e3813c37d8ec13504944be12ba965" kind="variable"><name>RSQINT</name></member>
-    <member refid="unionsi47x__rds__status_1a238052039e13683004da9a0f6ee0d1bd" kind="variable"><name>DUMMY2</name></member>
-    <member refid="unionsi47x__rds__status_1a41add87380f9111393a82011c5ac41ec" kind="variable"><name>ERR</name></member>
-    <member refid="unionsi47x__rds__status_1a92c83f47eed1d093556a6683667cef11" kind="variable"><name>CTS</name></member>
-    <member refid="unionsi47x__rds__status_1a365509f9f63ab4d495da416cbe5b31ae" kind="variable"><name>RDSRECV</name></member>
-    <member refid="unionsi47x__rds__status_1a2fbbcc16519fdfb6ef16620f68f1f2e6" kind="variable"><name>RDSSYNCLOST</name></member>
-    <member refid="unionsi47x__rds__status_1a724e174d22e1b23c09ebfb49cbf75c8c" kind="variable"><name>RDSSYNCFOUND</name></member>
-    <member refid="unionsi47x__rds__status_1a89380f067e7ff15a567c08b3d898f756" kind="variable"><name>DUMMY3</name></member>
-    <member refid="unionsi47x__rds__status_1a5dfb7e323dbce0663e1f23d0352494b0" kind="variable"><name>RDSNEWBLOCKA</name></member>
-    <member refid="unionsi47x__rds__status_1a72d5e07659bcf0026efc05f8d434ea1d" kind="variable"><name>RDSNEWBLOCKB</name></member>
-    <member refid="unionsi47x__rds__status_1ad7f429a27d5bef1742ae3f09b908ddb2" kind="variable"><name>DUMMY4</name></member>
-    <member refid="unionsi47x__rds__status_1a65956b2f1cd9abe1f7e58e17d55017fa" kind="variable"><name>RDSSYNC</name></member>
-    <member refid="unionsi47x__rds__status_1af6942f61d505db6398e71a49adc251bb" kind="variable"><name>DUMMY5</name></member>
-    <member refid="unionsi47x__rds__status_1a899a0317e5a766b03ea72490b7b42570" kind="variable"><name>GRPLOST</name></member>
-    <member refid="unionsi47x__rds__status_1a189bda3c2c184bdd3a168ff3e3f3e8e6" kind="variable"><name>DUMMY6</name></member>
-    <member refid="unionsi47x__rds__status_1ac5e65790b373d223498f5690086de8b3" kind="variable"><name>RDSFIFOUSED</name></member>
-    <member refid="unionsi47x__rds__status_1aa1d1c479eb1adb66bcfc7d16d15b7b59" kind="variable"><name>BLOCKAH</name></member>
-    <member refid="unionsi47x__rds__status_1a307a99811323be2c6e64bf2473aaa8f2" kind="variable"><name>BLOCKAL</name></member>
-    <member refid="unionsi47x__rds__status_1afc7f4e06b12a6d9b8304a691deb4fc8e" kind="variable"><name>BLOCKBH</name></member>
-    <member refid="unionsi47x__rds__status_1ac81b652130f0e91b2af8184e303b5d54" kind="variable"><name>BLOCKBL</name></member>
-    <member refid="unionsi47x__rds__status_1acb3be1a907d57f35a5db5dc79d1c4603" kind="variable"><name>BLOCKCH</name></member>
-    <member refid="unionsi47x__rds__status_1a9e02b88bb18b2111798c346c3f40e599" kind="variable"><name>BLOCKCL</name></member>
-    <member refid="unionsi47x__rds__status_1a6e7bcc48e5ad38ae9a4754d90735e0eb" kind="variable"><name>BLOCKDH</name></member>
-    <member refid="unionsi47x__rds__status_1ab2c92efdeed49c5fe867771fb5cd5862" kind="variable"><name>BLOCKDL</name></member>
-    <member refid="unionsi47x__rds__status_1ad5355a265868ead3568f770eec76c820" kind="variable"><name>BLED</name></member>
-    <member refid="unionsi47x__rds__status_1a857d0246debf3f8c3cd293b145f1c6f9" kind="variable"><name>BLEC</name></member>
-    <member refid="unionsi47x__rds__status_1a7082ef480b324395f05b860814a65e0e" kind="variable"><name>BLEB</name></member>
-    <member refid="unionsi47x__rds__status_1acf0a1491e6545e50bf2e62b6ca299fc4" kind="variable"><name>BLEA</name></member>
     <member refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed" kind="variable"><name>resp</name></member>
     <member refid="unionsi47x__rds__status_1a526947c93583b28968de411b0206fdfb" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__rds__status_8resp" kind="struct"><name>si47x_rds_status.resp</name>
+    <member refid="structsi47x__rds__status_8resp_1af8f21d801809287d578344911b65697c" kind="variable"><name>STCINT</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a3651c40ccc4450f2fc89fa3139dedd5a" kind="variable"><name>DUMMY1</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a53d648e7e9d100d590e2f65ec7de079f" kind="variable"><name>RDSINT</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a8acf6c55c97050e7abd06c104012c77a" kind="variable"><name>RSQINT</name></member>
+    <member refid="structsi47x__rds__status_8resp_1abece94c62273dc7ecfabc565b76dbbe5" kind="variable"><name>DUMMY2</name></member>
+    <member refid="structsi47x__rds__status_8resp_1acd22bad976363fdd1bfbf6759fede482" kind="variable"><name>ERR</name></member>
+    <member refid="structsi47x__rds__status_8resp_1ae16433ffd3adc248f0ce2608a95c3c76" kind="variable"><name>CTS</name></member>
+    <member refid="structsi47x__rds__status_8resp_1aa75f4ec874d6a5f181b8e423950bfde0" kind="variable"><name>RDSRECV</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a95a3b24fca811ec5f3f6572fe7da0bcf" kind="variable"><name>RDSSYNCLOST</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a1cd218d6a523d2d9120d8ab8a9dd93c7" kind="variable"><name>RDSSYNCFOUND</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a613aa5c14b3ccc6304a519292c482ed1" kind="variable"><name>DUMMY3</name></member>
+    <member refid="structsi47x__rds__status_8resp_1aa2d4c2b673c2842773854cdd6f28e033" kind="variable"><name>RDSNEWBLOCKA</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a67434ed313bef4d6221df6a51971c994" kind="variable"><name>RDSNEWBLOCKB</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a9182569d693623e6b469099542b303e4" kind="variable"><name>DUMMY4</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a67a91dac9065974c1b69fea4ad395faf" kind="variable"><name>RDSSYNC</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a1fc4251a40ec4352f10fc3ecb20f2c79" kind="variable"><name>DUMMY5</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a97eaf5b8af040d5cc1d1951e45846c72" kind="variable"><name>GRPLOST</name></member>
+    <member refid="structsi47x__rds__status_8resp_1ae47e340f9899842ec70c03024de8cf89" kind="variable"><name>DUMMY6</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a4a3b791b8fe2bf1f76df87f754967f5e" kind="variable"><name>RDSFIFOUSED</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a2843da4b952c7be9fb480c58a29ea378" kind="variable"><name>BLOCKAH</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a0f0906669ad239fff687df038925d138" kind="variable"><name>BLOCKAL</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a41992f4f83625a17ffbb4df533f4d192" kind="variable"><name>BLOCKBH</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a5393be02dfd7f56d0567e5f1406fffed" kind="variable"><name>BLOCKBL</name></member>
+    <member refid="structsi47x__rds__status_8resp_1ae464b56d44650f86be59aeef27abfbbe" kind="variable"><name>BLOCKCH</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a8c78c7dd8484c36b843457e3e4f165ac" kind="variable"><name>BLOCKCL</name></member>
+    <member refid="structsi47x__rds__status_8resp_1ab46176005c9a362139e953d3633ed8f8" kind="variable"><name>BLOCKDH</name></member>
+    <member refid="structsi47x__rds__status_8resp_1ae0fd3095e63eb37b945a03706e7fa697" kind="variable"><name>BLOCKDL</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a7d449b80d36bbc910ef88b6fcfe90364" kind="variable"><name>BLED</name></member>
+    <member refid="structsi47x__rds__status_8resp_1a8e74ab448e91f67eaabee7a52ab05fec" kind="variable"><name>BLEC</name></member>
+    <member refid="structsi47x__rds__status_8resp_1aa4eb947cc07974dfc44c1da340b21c0f" kind="variable"><name>BLEB</name></member>
+    <member refid="structsi47x__rds__status_8resp_1abe92870ea28d50ecdfd8f987836e103f" kind="variable"><name>BLEA</name></member>
+  </compound>
   <compound refid="unionsi47x__response__status" kind="union"><name>si47x_response_status</name>
-    <member refid="unionsi47x__response__status_1a01ca22a28b83206bd992372d20c32f2f" kind="variable"><name>STCINT</name></member>
-    <member refid="unionsi47x__response__status_1a8bb865e96113a5755fc3e721f2623418" kind="variable"><name>DUMMY1</name></member>
-    <member refid="unionsi47x__response__status_1a19cfe8d1b0badae5253ff243e05d7afa" kind="variable"><name>RDSINT</name></member>
-    <member refid="unionsi47x__response__status_1a301f61dac86d37ec2fc74c79c98254ab" kind="variable"><name>RSQINT</name></member>
-    <member refid="unionsi47x__response__status_1a6206af5b53630164e9526eae84573a13" kind="variable"><name>DUMMY2</name></member>
-    <member refid="unionsi47x__response__status_1a0693308479f69e970ec92ce1d1dcbf9c" kind="variable"><name>ERR</name></member>
-    <member refid="unionsi47x__response__status_1a6816e97ec06655d72350b83eae0e9f4c" kind="variable"><name>CTS</name></member>
-    <member refid="unionsi47x__response__status_1aa4da6ef23dc23e40e9dcfc582ac7a53e" kind="variable"><name>VALID</name></member>
-    <member refid="unionsi47x__response__status_1acc8c563c2eaf6702c36961fd300fecfb" kind="variable"><name>AFCRL</name></member>
-    <member refid="unionsi47x__response__status_1a88284e575e52c96efa3eb0248010ba73" kind="variable"><name>DUMMY3</name></member>
-    <member refid="unionsi47x__response__status_1adf288c085c8f9a7b6a84ca9746541ea5" kind="variable"><name>BLTF</name></member>
-    <member refid="unionsi47x__response__status_1a7d5ca536d8706e6cc9df2c8d5aea268e" kind="variable"><name>READFREQH</name></member>
-    <member refid="unionsi47x__response__status_1a6d5f612fc40df215e9f4c6a94b68e2e6" kind="variable"><name>READFREQL</name></member>
-    <member refid="unionsi47x__response__status_1a524207ce1b79627d69f94049ba8c614d" kind="variable"><name>RSSI</name></member>
-    <member refid="unionsi47x__response__status_1a14f5ce9ed117d45a2230b6f87b88a4cb" kind="variable"><name>SNR</name></member>
-    <member refid="unionsi47x__response__status_1a1ee21104ab8a4a13619ee5c3f7fb3f2f" kind="variable"><name>MULT</name></member>
-    <member refid="unionsi47x__response__status_1acd0a9f2982a84c43b8127f5e54982f19" kind="variable"><name>READANTCAP</name></member>
     <member refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e" kind="variable"><name>resp</name></member>
     <member refid="unionsi47x__response__status_1a9b236e03804629e73a4b19fddb72b4cd" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__response__status_8resp" kind="struct"><name>si47x_response_status.resp</name>
+    <member refid="structsi47x__response__status_8resp_1af8f21d801809287d578344911b65697c" kind="variable"><name>STCINT</name></member>
+    <member refid="structsi47x__response__status_8resp_1a3651c40ccc4450f2fc89fa3139dedd5a" kind="variable"><name>DUMMY1</name></member>
+    <member refid="structsi47x__response__status_8resp_1a53d648e7e9d100d590e2f65ec7de079f" kind="variable"><name>RDSINT</name></member>
+    <member refid="structsi47x__response__status_8resp_1a8acf6c55c97050e7abd06c104012c77a" kind="variable"><name>RSQINT</name></member>
+    <member refid="structsi47x__response__status_8resp_1abece94c62273dc7ecfabc565b76dbbe5" kind="variable"><name>DUMMY2</name></member>
+    <member refid="structsi47x__response__status_8resp_1acd22bad976363fdd1bfbf6759fede482" kind="variable"><name>ERR</name></member>
+    <member refid="structsi47x__response__status_8resp_1ae16433ffd3adc248f0ce2608a95c3c76" kind="variable"><name>CTS</name></member>
+    <member refid="structsi47x__response__status_8resp_1ac9f1a6384b1c466d4612f513bd8e13ea" kind="variable"><name>VALID</name></member>
+    <member refid="structsi47x__response__status_8resp_1a4f37d8e1a484e1ac152858e71923f86c" kind="variable"><name>AFCRL</name></member>
+    <member refid="structsi47x__response__status_8resp_1a613aa5c14b3ccc6304a519292c482ed1" kind="variable"><name>DUMMY3</name></member>
+    <member refid="structsi47x__response__status_8resp_1a4163d039102268d1b6ac272a25006d7f" kind="variable"><name>BLTF</name></member>
+    <member refid="structsi47x__response__status_8resp_1a0d093ad5e587811b66f0047303ec86a9" kind="variable"><name>READFREQH</name></member>
+    <member refid="structsi47x__response__status_8resp_1ad667880f1209fa0da1d2c87c794329c7" kind="variable"><name>READFREQL</name></member>
+    <member refid="structsi47x__response__status_8resp_1a6833f5d3374c1679bea428b50dbad9cc" kind="variable"><name>RSSI</name></member>
+    <member refid="structsi47x__response__status_8resp_1a8dc5367d65459f69d78eb03e93f7703f" kind="variable"><name>SNR</name></member>
+    <member refid="structsi47x__response__status_8resp_1a36b0ca295026d76ee15df50dc4991e90" kind="variable"><name>MULT</name></member>
+    <member refid="structsi47x__response__status_8resp_1aa4c3e6fac8670fa0b36ba68ff185aa24" kind="variable"><name>READANTCAP</name></member>
+  </compound>
   <compound refid="unionsi47x__rqs__status" kind="union"><name>si47x_rqs_status</name>
-    <member refid="unionsi47x__rqs__status_1a2e61a3cc9498a20b9b5e631cf7f7a395" kind="variable"><name>STCINT</name></member>
-    <member refid="unionsi47x__rqs__status_1a79007d32c2dc0695eee8e2e978356d90" kind="variable"><name>DUMMY1</name></member>
-    <member refid="unionsi47x__rqs__status_1aa50f1f40d277dcc42ce8833ae805477e" kind="variable"><name>RDSINT</name></member>
-    <member refid="unionsi47x__rqs__status_1a1c771417de53d336db85f728eea9e2e7" kind="variable"><name>RSQINT</name></member>
-    <member refid="unionsi47x__rqs__status_1a671af7a40dc7d0d051a138416bbeb29a" kind="variable"><name>DUMMY2</name></member>
-    <member refid="unionsi47x__rqs__status_1afb8c85d6e84a540d37419ab99fc23c94" kind="variable"><name>ERR</name></member>
-    <member refid="unionsi47x__rqs__status_1af7beac2eb02d8eb6f155417b638e4fa1" kind="variable"><name>CTS</name></member>
-    <member refid="unionsi47x__rqs__status_1a820a302920843a8fbf92865644a11ce9" kind="variable"><name>RSSIILINT</name></member>
-    <member refid="unionsi47x__rqs__status_1aaf3f6a82b0878afbd7a4a18544577552" kind="variable"><name>RSSIHINT</name></member>
-    <member refid="unionsi47x__rqs__status_1a6429b6373a1aabce38b2ddde7cdae2a7" kind="variable"><name>SNRLINT</name></member>
-    <member refid="unionsi47x__rqs__status_1a3ec547d32d35e825bd3cc8dc6aa04371" kind="variable"><name>SNRHINT</name></member>
-    <member refid="unionsi47x__rqs__status_1ab8511df192966df4c4c30fd5fbd85a8d" kind="variable"><name>MULTLINT</name></member>
-    <member refid="unionsi47x__rqs__status_1a1c7edf40697da61d47979d5c6945a7be" kind="variable"><name>MULTHINT</name></member>
-    <member refid="unionsi47x__rqs__status_1a5468b11528cf37097fe88a2e694aeb15" kind="variable"><name>DUMMY3</name></member>
-    <member refid="unionsi47x__rqs__status_1adb9c59f3070d42da5be6b34fe4760bb2" kind="variable"><name>BLENDINT</name></member>
-    <member refid="unionsi47x__rqs__status_1ac5a8820c2556ca30ddb6fae020a837dd" kind="variable"><name>VALID</name></member>
-    <member refid="unionsi47x__rqs__status_1a9961f89a4da7115916a5c84b66a80d80" kind="variable"><name>AFCRL</name></member>
-    <member refid="unionsi47x__rqs__status_1a796ebb2d3d900cfce84d0dc2f5b0585d" kind="variable"><name>DUMMY4</name></member>
-    <member refid="unionsi47x__rqs__status_1a08ec28496a92405a3b3948b17159af2b" kind="variable"><name>SMUTE</name></member>
-    <member refid="unionsi47x__rqs__status_1aa36d76a841b57cc87a0950cf39b6e2c1" kind="variable"><name>DUMMY5</name></member>
-    <member refid="unionsi47x__rqs__status_1a5f89f19c73e7f50b7b34336439225682" kind="variable"><name>STBLEND</name></member>
-    <member refid="unionsi47x__rqs__status_1a52b82f9f286b136af201ded7600cc48d" kind="variable"><name>PILOT</name></member>
-    <member refid="unionsi47x__rqs__status_1ab5558da768af2d0430d094a90caec3a2" kind="variable"><name>RSSI</name></member>
-    <member refid="unionsi47x__rqs__status_1a5663dde3abbab045bc4a535cfe796eff" kind="variable"><name>SNR</name></member>
-    <member refid="unionsi47x__rqs__status_1aa537fb8dcc34e82a937bf4d522a7ace0" kind="variable"><name>MULT</name></member>
-    <member refid="unionsi47x__rqs__status_1ab332136092ea1ced84e916f4fc791679" kind="variable"><name>FREQOFF</name></member>
     <member refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3" kind="variable"><name>resp</name></member>
     <member refid="unionsi47x__rqs__status_1a184e0892bc82522efe50c49836bb8cc5" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__rqs__status_8resp" kind="struct"><name>si47x_rqs_status.resp</name>
+    <member refid="structsi47x__rqs__status_8resp_1af8f21d801809287d578344911b65697c" kind="variable"><name>STCINT</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a3651c40ccc4450f2fc89fa3139dedd5a" kind="variable"><name>DUMMY1</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a53d648e7e9d100d590e2f65ec7de079f" kind="variable"><name>RDSINT</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a8acf6c55c97050e7abd06c104012c77a" kind="variable"><name>RSQINT</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1abece94c62273dc7ecfabc565b76dbbe5" kind="variable"><name>DUMMY2</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1acd22bad976363fdd1bfbf6759fede482" kind="variable"><name>ERR</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1ae16433ffd3adc248f0ce2608a95c3c76" kind="variable"><name>CTS</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a78e3f2f0b0c5b1dfd51e3c0d48ae18e3" kind="variable"><name>RSSIILINT</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a1c2886a1d02e462622c810dec48a7a8d" kind="variable"><name>RSSIHINT</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a97383bc737ce99a121985160e6ffa344" kind="variable"><name>SNRLINT</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1ae2e739596a7340b62844e12390115e6a" kind="variable"><name>SNRHINT</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1af07f7e10faec4b062b389868532a8146" kind="variable"><name>MULTLINT</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a6b4ed08de1237c36d005669ead7d8a50" kind="variable"><name>MULTHINT</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a613aa5c14b3ccc6304a519292c482ed1" kind="variable"><name>DUMMY3</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a78a25db6cd73b193ba6c941df8584d35" kind="variable"><name>BLENDINT</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1ac9f1a6384b1c466d4612f513bd8e13ea" kind="variable"><name>VALID</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a4f37d8e1a484e1ac152858e71923f86c" kind="variable"><name>AFCRL</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a9182569d693623e6b469099542b303e4" kind="variable"><name>DUMMY4</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a018a3d212081bb86b34e6b8fbd88c4e2" kind="variable"><name>SMUTE</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a1fc4251a40ec4352f10fc3ecb20f2c79" kind="variable"><name>DUMMY5</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1aedcdb3b2f6ac6daf3bacf8bb54a92d28" kind="variable"><name>STBLEND</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1aece6117f0bc60ec824fe5d441abdb288" kind="variable"><name>PILOT</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a6833f5d3374c1679bea428b50dbad9cc" kind="variable"><name>RSSI</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a8dc5367d65459f69d78eb03e93f7703f" kind="variable"><name>SNR</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a36b0ca295026d76ee15df50dc4991e90" kind="variable"><name>MULT</name></member>
+    <member refid="structsi47x__rqs__status_8resp_1a0c144971635328e95870811948c9071a" kind="variable"><name>FREQOFF</name></member>
+  </compound>
   <compound refid="unionsi47x__seek" kind="union"><name>si47x_seek</name>
-    <member refid="unionsi47x__seek_1a708768c904cefc35c63312ba5eea71c2" kind="variable"><name>RESERVED1</name></member>
-    <member refid="unionsi47x__seek_1aada4b18c65da9723670759e78440757f" kind="variable"><name>WRAP</name></member>
-    <member refid="unionsi47x__seek_1acd509f67721224c4b0ad0ebdfad56dad" kind="variable"><name>SEEKUP</name></member>
-    <member refid="unionsi47x__seek_1a1acbac12abdb5b0ba3e81d353720c6ba" kind="variable"><name>RESERVED2</name></member>
     <member refid="unionsi47x__seek_1a83a4a1f6952444528689d02324cc460f" kind="variable"><name>arg</name></member>
     <member refid="unionsi47x__seek_1a894bfdc90f00f3064991edc0c439e66a" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__seek_8arg" kind="struct"><name>si47x_seek.arg</name>
+    <member refid="structsi47x__seek_8arg_1ad8179a090910d4923b044cbce813c8ea" kind="variable"><name>RESERVED1</name></member>
+    <member refid="structsi47x__seek_8arg_1ae1c8555fcf0ea2bb648a6fd527d658c0" kind="variable"><name>WRAP</name></member>
+    <member refid="structsi47x__seek_8arg_1aed8a1fd68dec9364930b51d020ba07d6" kind="variable"><name>SEEKUP</name></member>
+    <member refid="structsi47x__seek_8arg_1a0b5885d29a74762639e4b55c51ce2d85" kind="variable"><name>RESERVED2</name></member>
+  </compound>
   <compound refid="unionsi47x__set__frequency" kind="union"><name>si47x_set_frequency</name>
-    <member refid="unionsi47x__set__frequency_1a629c45776aead687497d92dfabad925d" kind="variable"><name>FAST</name></member>
-    <member refid="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" kind="variable"><name>FREEZE</name></member>
-    <member refid="unionsi47x__set__frequency_1a0f58c9f3ce774e07a2acc9ba4e968c85" kind="variable"><name>DUMMY1</name></member>
-    <member refid="unionsi47x__set__frequency_1a224ff2b8897867521dc7e83e4a7aadae" kind="variable"><name>USBLSB</name></member>
-    <member refid="unionsi47x__set__frequency_1a55e3e49406688a65d9e90427ba3290cd" kind="variable"><name>FREQH</name></member>
-    <member refid="unionsi47x__set__frequency_1a0b7fcda4891b52509b53168d581936e3" kind="variable"><name>FREQL</name></member>
-    <member refid="unionsi47x__set__frequency_1a9aee8ee0d04a6a7e732210fdea987d2c" kind="variable"><name>ANTCAPH</name></member>
-    <member refid="unionsi47x__set__frequency_1a712fdd01147dcef829431bc2fc94a012" kind="variable"><name>ANTCAPL</name></member>
     <member refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65" kind="variable"><name>arg</name></member>
     <member refid="unionsi47x__set__frequency_1a57e2bfb6b0c9c0fb7d6ffac131824b8a" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__set__frequency_8arg" kind="struct"><name>si47x_set_frequency.arg</name>
+    <member refid="structsi47x__set__frequency_8arg_1adca6e617f6fb54033deb311e7e7c93cc" kind="variable"><name>FAST</name></member>
+    <member refid="structsi47x__set__frequency_8arg_1a1da4c7af6c0e106e2aec1c483252b329" kind="variable"><name>FREEZE</name></member>
+    <member refid="structsi47x__set__frequency_8arg_1a3651c40ccc4450f2fc89fa3139dedd5a" kind="variable"><name>DUMMY1</name></member>
+    <member refid="structsi47x__set__frequency_8arg_1a46ba89190297ccd0df7c8f8b5f72497f" kind="variable"><name>USBLSB</name></member>
+    <member refid="structsi47x__set__frequency_8arg_1a8836c6ec927c24305d2fd26a5aec2e2b" kind="variable"><name>FREQH</name></member>
+    <member refid="structsi47x__set__frequency_8arg_1a858dfb4be81dfbd057aa63aded06bf3d" kind="variable"><name>FREQL</name></member>
+    <member refid="structsi47x__set__frequency_8arg_1a5f437dbf77cdadcbb215ce5db44edbe6" kind="variable"><name>ANTCAPH</name></member>
+    <member refid="structsi47x__set__frequency_8arg_1a0475bf71e813922e317ef7cb7b3df9fa" kind="variable"><name>ANTCAPL</name></member>
+  </compound>
   <compound refid="unionsi47x__ssb__mode" kind="union"><name>si47x_ssb_mode</name>
-    <member refid="unionsi47x__ssb__mode_1a12aeb6bf478c3c4b6d4243a84f05a5eb" kind="variable"><name>AUDIOBW</name></member>
-    <member refid="unionsi47x__ssb__mode_1ae22aa453dbf8787acceef11d30306dfd" kind="variable"><name>SBCUTFLT</name></member>
-    <member refid="unionsi47x__ssb__mode_1a3c4def7aad4a7f875bd189cfde29c733" kind="variable"><name>AVC_DIVIDER</name></member>
-    <member refid="unionsi47x__ssb__mode_1abdcac9b7553fc2d62f51262eacec0069" kind="variable"><name>AVCEN</name></member>
-    <member refid="unionsi47x__ssb__mode_1aeed76b90e22efa54ef80062032785bc2" kind="variable"><name>SMUTESEL</name></member>
-    <member refid="unionsi47x__ssb__mode_1a5c337f3327b40a61d5ccc22141892651" kind="variable"><name>DUMMY1</name></member>
-    <member refid="unionsi47x__ssb__mode_1a12c18df3a3e8d78325292f50e222bd01" kind="variable"><name>DSP_AFCDIS</name></member>
     <member refid="unionsi47x__ssb__mode_1a9a2be4f98978b6b580b7d64cfc07c66c" kind="variable"><name>param</name></member>
     <member refid="unionsi47x__ssb__mode_1ac57630fdfe3cf7069f8483a50a41c501" kind="variable"><name>raw</name></member>
   </compound>
+  <compound refid="structsi47x__ssb__mode_8param" kind="struct"><name>si47x_ssb_mode.param</name>
+    <member refid="structsi47x__ssb__mode_8param_1a38eda9266347ac0c0f09182baa2fefd0" kind="variable"><name>AUDIOBW</name></member>
+    <member refid="structsi47x__ssb__mode_8param_1a5fd112c4d977a89cf8b7717ef0a12a9b" kind="variable"><name>SBCUTFLT</name></member>
+    <member refid="structsi47x__ssb__mode_8param_1a911ed778d046d0d22bf2df2938c1f084" kind="variable"><name>AVC_DIVIDER</name></member>
+    <member refid="structsi47x__ssb__mode_8param_1a55576f7d4412f08280e49fba44ef707a" kind="variable"><name>AVCEN</name></member>
+    <member refid="structsi47x__ssb__mode_8param_1aeb7815cb295d531065f797c39cf36da5" kind="variable"><name>SMUTESEL</name></member>
+    <member refid="structsi47x__ssb__mode_8param_1a3651c40ccc4450f2fc89fa3139dedd5a" kind="variable"><name>DUMMY1</name></member>
+    <member refid="structsi47x__ssb__mode_8param_1a5ff4a830553e8db4d36f8b3677e3d412" kind="variable"><name>DSP_AFCDIS</name></member>
+  </compound>
   <compound refid="unionsi47x__tune__status" kind="union"><name>si47x_tune_status</name>
-    <member refid="unionsi47x__tune__status_1a8de6a5fbc60de94bd0850ffd85fac5a9" kind="variable"><name>INTACK</name></member>
-    <member refid="unionsi47x__tune__status_1ae6d5968d62f9c0eec44528e7b050f0bf" kind="variable"><name>CANCEL</name></member>
-    <member refid="unionsi47x__tune__status_1af014b49f5eb0de7ac951dd1d52321026" kind="variable"><name>RESERVED2</name></member>
     <member refid="unionsi47x__tune__status_1a6cb498a025a973418d27991eb3151489" kind="variable"><name>arg</name></member>
     <member refid="unionsi47x__tune__status_1aefcfcb9eaa95ed7d8ce1740ac7f9eb7e" kind="variable"><name>raw</name></member>
   </compound>
-  <compound refid="keywords_8txt" kind="file"><name>keywords.txt</name>
-  </compound>
-  <compound refid="license_8txt" kind="file"><name>license.txt</name>
-    <member refid="license_8txt_1af02105b8d25cac5346c70f0f8bebb2e8" kind="variable"><name>charge</name></member>
-    <member refid="license_8txt_1af6e42a41d4c1cf711ce91ba8a9536d5e" kind="variable"><name>restriction</name></member>
-    <member refid="license_8txt_1a7388852deccfa55d4e4bca59a3355748" kind="variable"><name>use</name></member>
-    <member refid="license_8txt_1a5fc027ff17a37592346d4ce949961132" kind="variable"><name>copy</name></member>
-    <member refid="license_8txt_1a84db115c842c0bc29f97fd73629d8163" kind="variable"><name>modify</name></member>
-    <member refid="license_8txt_1aad4b713ca657a67ecbb454b02ceabff8" kind="variable"><name>merge</name></member>
-    <member refid="license_8txt_1ada0e4295c02ecf483dd4971c92e92f1c" kind="variable"><name>publish</name></member>
-    <member refid="license_8txt_1aa3cf7f49d189d9fc5cee827d2633810d" kind="variable"><name>distribute</name></member>
-    <member refid="license_8txt_1a9f571168d2ee9a598450704a59d048d3" kind="variable"><name>sublicense</name></member>
-    <member refid="license_8txt_1acd5f6fc3bc0ca6669b69716abdd68f6a" kind="variable"><name>Software</name></member>
-    <member refid="license_8txt_1ad33c8f6a68363f2875b84f7c4ca98aba" kind="variable"><name>so</name></member>
-    <member refid="license_8txt_1a044015f5b936eb88da66708aa08bd4ac" kind="variable"><name>conditions</name></member>
-    <member refid="license_8txt_1a21bee792560027a3b96a9a882b5828d5" kind="variable"><name>KIND</name></member>
-    <member refid="license_8txt_1a9c731e523f6a35737f231bf24431695d" kind="variable"><name>IMPLIED</name></member>
-    <member refid="license_8txt_1a383a15303ad81a4fe142cc242a159500" kind="variable"><name>MERCHANTABILITY</name></member>
-    <member refid="license_8txt_1a4a9625896658845302ef88eafd1fa1e4" kind="variable"><name>CLAIM</name></member>
-    <member refid="license_8txt_1ae99750133f5a506a38868d5f2722a738" kind="variable"><name>LIABILITY</name></member>
-    <member refid="license_8txt_1a11bbb92d08ed0375aed257ed87428ab5" kind="variable"><name>CONTRACT</name></member>
-    <member refid="license_8txt_1a511c87561dea0d59cb52a8dccf4f47b7" kind="variable"><name>OTHERWISE</name></member>
-    <member refid="license_8txt_1a335caee353e1dcd2730d391908fd43a1" kind="variable"><name>FROM</name></member>
-    <member refid="license_8txt_1a6d046fad0357ac1277fe46baca5cc7de" kind="function"><name>Copyright</name></member>
-    <member refid="license_8txt_1a230902626bc74ad7e058274476c0ff96" kind="function"><name>files</name></member>
-  </compound>
-  <compound refid="_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
+  <compound refid="structsi47x__tune__status_8arg" kind="struct"><name>si47x_tune_status.arg</name>
+    <member refid="structsi47x__tune__status_8arg_1aa1b4c5526f2abe4a5d02be4016a44020" kind="variable"><name>INTACK</name></member>
+    <member refid="structsi47x__tune__status_8arg_1a2027c027133e22c8929e2874dc44dd36" kind="variable"><name>CANCEL</name></member>
+    <member refid="structsi47x__tune__status_8arg_1a0b5885d29a74762639e4b55c51ce2d85" kind="variable"><name>RESERVED2</name></member>
   </compound>
   <compound refid="_s_i4735_8cpp" kind="file"><name>SI4735.cpp</name>
   </compound>
@@ -626,6 +662,9 @@
     <member refid="_s_i4735_8h_1a36a47e0973bdcc39f5d864e4fee7cd66" kind="variable"><name>data_from_si4735</name></member>
     <member refid="group__group04_1ga01f69d5bf584f94eabd1b113579b2c1e" kind="function"><name>interrupt_hundler</name></member>
   </compound>
+  <compound refid="group__group04" kind="group"><name>group04</name>
+    <member refid="group__group04_1ga01f69d5bf584f94eabd1b113579b2c1e" kind="function"><name>interrupt_hundler</name></member>
+  </compound>
   <compound refid="group__group05" kind="group"><name>group05</name>
     <member refid="group__group05_1ga818c60896490631e4311452c99ff361f" kind="function"><name>SI4735</name></member>
     <member refid="group__group05_1gad2e95c88de0dfa58ff7aa36988071421" kind="function"><name>waitInterrupr</name></member>
@@ -641,10 +680,11 @@
     <member refid="group__group06_1ga412f51386c47a17cf04fd0a3c3078726" kind="function"><name>analogPowerUp</name></member>
     <member refid="group__group06_1gaa554b3390fb6c5a4d6661b96afae73ae" kind="function"><name>powerDown</name></member>
   </compound>
-  <compound refid="group__group07" kind="group"><name>group07</name>
-    <member refid="group__group07_1ga2fbc7e2187a7c645879623100dbc8502" kind="function"><name>getFirmware</name></member>
-    <member refid="group__group07_1ga95fd37277dbb8b16b5ae7a996a5f9eba" kind="function"><name>setup</name></member>
-    <member refid="group__group07_1ga944ed704e2175a6cf660ad65ca5bbad5" kind="function"><name>setup</name></member>
+  <compound refid="group__group02" kind="group"><name>group02</name>
+  </compound>
+  <compound refid="group__group03" kind="group"><name>group03</name>
+  </compound>
+  <compound refid="group__group01" kind="group"><name>group01</name>
   </compound>
   <compound refid="group__group08" kind="group"><name>group08</name>
     <member refid="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" kind="function"><name>setTuneFrequencyAntennaCapacitor</name></member>
@@ -657,16 +697,10 @@
     <member refid="group__group08_1ga43c5ea36995a3897820e0170d94c81f4" kind="function"><name>setAM</name></member>
     <member refid="group__group08_1ga673bc4b17d564bb6e7f3e9a61d35fbb3" kind="function"><name>setFM</name></member>
   </compound>
-  <compound refid="group__group01" kind="group"><name>group01</name>
-  </compound>
-  <compound refid="group__group02" kind="group"><name>group02</name>
-  </compound>
-  <compound refid="group__group03" kind="group"><name>group03</name>
-  </compound>
-  <compound refid="group__group04" kind="group"><name>group04</name>
-    <member refid="group__group04_1ga01f69d5bf584f94eabd1b113579b2c1e" kind="function"><name>interrupt_hundler</name></member>
-  </compound>
-  <compound refid="md__s_i4735__r_e_a_d_m_e" kind="page"><name>md_SI4735_README</name>
+  <compound refid="group__group07" kind="group"><name>group07</name>
+    <member refid="group__group07_1ga2fbc7e2187a7c645879623100dbc8502" kind="function"><name>getFirmware</name></member>
+    <member refid="group__group07_1ga95fd37277dbb8b16b5ae7a996a5f9eba" kind="function"><name>setup</name></member>
+    <member refid="group__group07_1ga944ed704e2175a6cf660ad65ca5bbad5" kind="function"><name>setup</name></member>
   </compound>
   <compound refid="deprecated" kind="page"><name>deprecated</name>
   </compound>

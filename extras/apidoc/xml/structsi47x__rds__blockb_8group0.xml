@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structsi47x__rds__blockb_8group0" kind="struct" language="C++" prot="public">
+    <compoundname>si47x_rds_blockb.group0</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsi47x__rds__blockb_8group0_1a884d9804999fc47a3c2694e49ad2536a" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>address</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="615" column="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__blockb_8group0_1aa1b1c0cd777edd2e5cfcaf8e2e7dcab8" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>DI</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="616" column="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__blockb_8group0_1a7a663caea1b722a63dc2868158ed584d" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>MS</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="617" column="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__blockb_8group0_1a890a10788493e3d572586e991cd43543" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>TA</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="618" column="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__blockb_8group0_1a264bd2c2ca8c895803767b0d39ff4a09" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>programType</name>
+        <bitfield> 5</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="619" column="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__blockb_8group0_1a59e69d63ce38754ea53c4461b5cba1e2" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>trafficProgramCode</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="620" column="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__blockb_8group0_1a20583dcf173525a78f726ef45329c5ae" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>versionCode</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="621" column="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__blockb_8group0_1a19223bd3731a4215ead3ba6a1eb8bbe8" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>groupType</name>
+        <bitfield> 4</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="622" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="SI4735/SI4735.h" line="614" column="1" bodyfile="SI4735/SI4735.h" bodystart="613" bodyend="623"/>
+    <listofallmembers>
+      <member refid="structsi47x__rds__blockb_8group0_1a884d9804999fc47a3c2694e49ad2536a" prot="public" virt="non-virtual"><scope>si47x_rds_blockb.group0</scope><name>address</name></member>
+      <member refid="structsi47x__rds__blockb_8group0_1aa1b1c0cd777edd2e5cfcaf8e2e7dcab8" prot="public" virt="non-virtual"><scope>si47x_rds_blockb.group0</scope><name>DI</name></member>
+      <member refid="structsi47x__rds__blockb_8group0_1a19223bd3731a4215ead3ba6a1eb8bbe8" prot="public" virt="non-virtual"><scope>si47x_rds_blockb.group0</scope><name>groupType</name></member>
+      <member refid="structsi47x__rds__blockb_8group0_1a7a663caea1b722a63dc2868158ed584d" prot="public" virt="non-virtual"><scope>si47x_rds_blockb.group0</scope><name>MS</name></member>
+      <member refid="structsi47x__rds__blockb_8group0_1a264bd2c2ca8c895803767b0d39ff4a09" prot="public" virt="non-virtual"><scope>si47x_rds_blockb.group0</scope><name>programType</name></member>
+      <member refid="structsi47x__rds__blockb_8group0_1a890a10788493e3d572586e991cd43543" prot="public" virt="non-virtual"><scope>si47x_rds_blockb.group0</scope><name>TA</name></member>
+      <member refid="structsi47x__rds__blockb_8group0_1a59e69d63ce38754ea53c4461b5cba1e2" prot="public" virt="non-virtual"><scope>si47x_rds_blockb.group0</scope><name>trafficProgramCode</name></member>
+      <member refid="structsi47x__rds__blockb_8group0_1a20583dcf173525a78f726ef45329c5ae" prot="public" virt="non-virtual"><scope>si47x_rds_blockb.group0</scope><name>versionCode</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -22,7 +22,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1056" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="298" bodyend="314"/>
+        <location file="SI4735/SI4735.h" line="1054" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="298" bodyend="314"/>
+        <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
+        <references refid="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" compoundref="_s_i4735_8h" startline="907">SI4735::firmwareInfo</references>
+        <references refid="_s_i4735_8h_1a9fbb31eec68a8b17895fd18640296013" compoundref="_s_i4735_8h" startline="28">GET_REV</references>
+        <references refid="unionsi47x__firmware__information_1aa2ba7bbaa745c8ca18c83226246654e5" compoundref="_s_i4735_8h" startline="329">si47x_firmware_information::raw</references>
+        <references refid="unionsi47x__firmware__information_1a62ecd35a00b7a8bd4faaf82cd69d522e">si47x_firmware_information::resp</references>
+        <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">SI4735::waitToSend</references>
       </memberdef>
       <memberdef kind="function" id="group__group07_1ga95fd37277dbb8b16b5ae7a996a5f9eba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -88,7 +94,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="935" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="328" bodyend="362"/>
+        <location file="SI4735/SI4735.h" line="933" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="328" bodyend="362"/>
+        <references refid="class_s_i4735_1af8f8123888060f858c74ba08a29ff38b" compoundref="_s_i4735_8h" startline="889">SI4735::interruptPin</references>
+        <references refid="class_s_i4735_1a6470177f747ef7eb8e7d02c76f72b19e" compoundref="_s_i4735_8h" startline="888">SI4735::resetPin</references>
       </memberdef>
       <memberdef kind="function" id="group__group07_1ga944ed704e2175a6cf660ad65ca5bbad5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -130,7 +138,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="934" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="374" bodyend="378"/>
+        <location file="SI4735/SI4735.h" line="932" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="374" bodyend="378"/>
+        <references refid="class_s_i4735_1a6470177f747ef7eb8e7d02c76f72b19e" compoundref="_s_i4735_8h" startline="888">SI4735::resetPin</references>
       </memberdef>
       </sectiondef>
     <briefdescription>

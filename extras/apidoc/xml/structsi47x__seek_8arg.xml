@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structsi47x__seek_8arg" kind="struct" language="C++" prot="public">
+    <compoundname>si47x_seek.arg</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsi47x__seek_8arg_1ad8179a090910d4923b044cbce813c8ea" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RESERVED1</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="250" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__seek_8arg_1ae1c8555fcf0ea2bb648a6fd527d658c0" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>WRAP</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="251" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__seek_8arg_1aed8a1fd68dec9364930b51d020ba07d6" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>SEEKUP</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="252" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__seek_8arg_1a0b5885d29a74762639e4b55c51ce2d85" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RESERVED2</name>
+        <bitfield> 4</bitfield>
+        <briefdescription>
+<para>Determines the direction of the search, either UP = 1, or DOWN = 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="253" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="SI4735/SI4735.h" line="249" column="1" bodyfile="SI4735/SI4735.h" bodystart="248" bodyend="254"/>
+    <listofallmembers>
+      <member refid="structsi47x__seek_8arg_1ad8179a090910d4923b044cbce813c8ea" prot="public" virt="non-virtual"><scope>si47x_seek.arg</scope><name>RESERVED1</name></member>
+      <member refid="structsi47x__seek_8arg_1a0b5885d29a74762639e4b55c51ce2d85" prot="public" virt="non-virtual"><scope>si47x_seek.arg</scope><name>RESERVED2</name></member>
+      <member refid="structsi47x__seek_8arg_1aed8a1fd68dec9364930b51d020ba07d6" prot="public" virt="non-virtual"><scope>si47x_seek.arg</scope><name>SEEKUP</name></member>
+      <member refid="structsi47x__seek_8arg_1ae1c8555fcf0ea2bb648a6fd527d658c0" prot="public" virt="non-virtual"><scope>si47x_seek.arg</scope><name>WRAP</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

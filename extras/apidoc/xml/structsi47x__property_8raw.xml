@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structsi47x__property_8raw" kind="struct" language="C++" prot="public">
+    <compoundname>si47x_property.raw</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsi47x__property_8raw_1a1f3859652867ab4a967c5caa3e2ab353" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>byteLow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="396" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__property_8raw_1a7b280732d6c370d505d537b0ab9f7e30" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>byteHigh</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="397" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="SI4735/SI4735.h" line="395" column="1" bodyfile="SI4735/SI4735.h" bodystart="394" bodyend="398"/>
+    <listofallmembers>
+      <member refid="structsi47x__property_8raw_1a7b280732d6c370d505d537b0ab9f7e30" prot="public" virt="non-virtual"><scope>si47x_property.raw</scope><name>byteHigh</name></member>
+      <member refid="structsi47x__property_8raw_1a1f3859652867ab4a967c5caa3e2ab353" prot="public" virt="non-virtual"><scope>si47x_property.raw</scope><name>byteLow</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

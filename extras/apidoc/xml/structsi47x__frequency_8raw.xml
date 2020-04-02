@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structsi47x__frequency_8raw" kind="struct" language="C++" prot="public">
+    <compoundname>si47x_frequency.raw</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsi47x__frequency_8raw_1a858dfb4be81dfbd057aa63aded06bf3d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>FREQL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="199" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__frequency_8raw_1a8836c6ec927c24305d2fd26a5aec2e2b" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>FREQH</name>
+        <briefdescription>
+<para>Tune Frequency High byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="200" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="SI4735/SI4735.h" line="198" column="1" bodyfile="SI4735/SI4735.h" bodystart="197" bodyend="201"/>
+    <listofallmembers>
+      <member refid="structsi47x__frequency_8raw_1a8836c6ec927c24305d2fd26a5aec2e2b" prot="public" virt="non-virtual"><scope>si47x_frequency.raw</scope><name>FREQH</name></member>
+      <member refid="structsi47x__frequency_8raw_1a858dfb4be81dfbd057aa63aded06bf3d" prot="public" virt="non-virtual"><scope>si47x_frequency.raw</scope><name>FREQL</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

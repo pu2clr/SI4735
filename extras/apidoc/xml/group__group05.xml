@@ -17,7 +17,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="929" column="5" bodyfile="SI4735/SI4735.cpp" bodystart="35" bodyend="39"/>
+        <location file="SI4735/SI4735.h" line="927" column="5" bodyfile="SI4735/SI4735.cpp" bodystart="35" bodyend="39"/>
+        <references refid="class_s_i4735_1a05730ca069db4be7c45a9c92f29d3b52" compoundref="_s_i4735_8h" startline="916">SI4735::currentSsbStatus</references>
       </memberdef>
       <memberdef kind="function" id="group__group05_1gad2e95c88de0dfa58ff7aa36988071421" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -35,7 +36,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="920" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="54" bodyend="58"/>
+        <location file="SI4735/SI4735.h" line="918" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="54" bodyend="58"/>
       </memberdef>
       <memberdef kind="function" id="group__group05_1ga8eddbfb3e62786aa4843d4bcd25da2b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int16_t</type>
@@ -69,7 +70,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1155" column="13" bodyfile="SI4735/SI4735.cpp" bodystart="77" bodyend="105"/>
+        <location file="SI4735/SI4735.h" line="1153" column="13" bodyfile="SI4735/SI4735.cpp" bodystart="77" bodyend="105"/>
+        <references refid="class_s_i4735_1a6470177f747ef7eb8e7d02c76f72b19e" compoundref="_s_i4735_8h" startline="888">SI4735::resetPin</references>
+        <references refid="group__group05_1ga748a4027f317972cb2fb1aed4865973b" compoundref="_s_i4735_8cpp" startline="124" endline="126">SI4735::setDeviceI2CAddress</references>
+        <references refid="_s_i4735_8h_1a16a01f9b53951b9796f59e48eb28c435" compoundref="_s_i4735_8h" startline="25">SI473X_ADDR_SEN_HIGH</references>
+        <references refid="_s_i4735_8h_1a501219f4a661e7aee098f263cba5d2a5" compoundref="_s_i4735_8h" startline="24">SI473X_ADDR_SEN_LOW</references>
       </memberdef>
       <memberdef kind="function" id="group__group05_1ga748a4027f317972cb2fb1aed4865973b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -100,7 +105,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1154" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="124" bodyend="126"/>
+        <location file="SI4735/SI4735.h" line="1152" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="124" bodyend="126"/>
+        <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
+        <references refid="_s_i4735_8h_1a16a01f9b53951b9796f59e48eb28c435" compoundref="_s_i4735_8h" startline="25">SI473X_ADDR_SEN_HIGH</references>
+        <references refid="_s_i4735_8h_1a501219f4a661e7aee098f263cba5d2a5" compoundref="_s_i4735_8h" startline="24">SI473X_ADDR_SEN_LOW</references>
+        <referencedby refid="group__group05_1ga8eddbfb3e62786aa4843d4bcd25da2b9" compoundref="_s_i4735_8cpp" startline="77" endline="105">SI4735::getDeviceI2CAddress</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__group05_1ga668008457910e916ebadf15bda2e5b29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -129,7 +138,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1156" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="137" bodyend="139"/>
+        <location file="SI4735/SI4735.h" line="1154" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="137" bodyend="139"/>
+        <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
       </memberdef>
       </sectiondef>
     <briefdescription>

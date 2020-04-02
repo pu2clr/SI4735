@@ -35,7 +35,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1051" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="398" bodyend="420"/>
+        <location file="SI4735/SI4735.h" line="1049" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="398" bodyend="420"/>
+        <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
+        <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">SI4735::currentFrequencyParams</references>
+        <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">SI4735::currentTune</references>
+        <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
+        <references refid="unionsi47x__antenna__capacitor_1a29548a9c68843bb6aa86eabcd33a9633">si47x_antenna_capacitor::raw</references>
+        <references refid="unionsi47x__antenna__capacitor_1aa59f9604df88a98b91295b0a9c009bbd" compoundref="_s_i4735_8h" startline="215">si47x_antenna_capacitor::value</references>
       </memberdef>
       <memberdef kind="function" id="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -68,7 +74,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="942" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="434" bodyend="463"/>
+        <location file="SI4735/SI4735.h" line="940" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="434" bodyend="463"/>
+        <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
+        <references refid="class_s_i4735_1a4439c40db789f02371ea0fb9b22650c5" compoundref="_s_i4735_8h" startline="903">SI4735::currentFrequency</references>
+        <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">SI4735::currentFrequencyParams</references>
+        <references refid="class_s_i4735_1a05730ca069db4be7c45a9c92f29d3b52" compoundref="_s_i4735_8h" startline="916">SI4735::currentSsbStatus</references>
+        <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">SI4735::currentTune</references>
+        <references refid="class_s_i4735_1a9da4f3df9e5e6b0448eff15e12f690dd" compoundref="_s_i4735_8h" startline="895">SI4735::currentWorkFrequency</references>
+        <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
+        <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
+        <references refid="_s_i4735_8h_1a3d77e4d0458eed0b6ba584c737e8df21" compoundref="_s_i4735_8h" startline="151">MAX_DELAY_AFTER_SET_FREQUENCY</references>
+        <references refid="unionsi47x__frequency_1a1a992fcfef59a6c6b1612e006264840f">si47x_frequency::raw</references>
+        <references refid="unionsi47x__set__frequency_1a57e2bfb6b0c9c0fb7d6ffac131824b8a" compoundref="_s_i4735_8h" startline="237">si47x_set_frequency::raw</references>
+        <references refid="unionsi47x__frequency_1aad12ac434ec9907e90a3f6b95377ca76" compoundref="_s_i4735_8h" startline="202">si47x_frequency::value</references>
+        <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">SI4735::waitToSend</references>
+        <referencedby refid="group__group08_1ga93fff524a6f900ac91eb1222ce73f9ba" compoundref="_s_i4735_8cpp" startline="505" endline="514">SI4735::frequencyDown</referencedby>
+        <referencedby refid="group__group08_1gac0fcfd64dcf30b11d4dc219d9f7fc5d9" compoundref="_s_i4735_8cpp" startline="488" endline="496">SI4735::frequencyUp</referencedby>
+        <referencedby refid="group__group08_1ga43c5ea36995a3897820e0170d94c81f4" compoundref="_s_i4735_8cpp" startline="570" endline="583">SI4735::setAM</referencedby>
+        <referencedby refid="group__group08_1ga673bc4b17d564bb6e7f3e9a61d35fbb3" compoundref="_s_i4735_8cpp" startline="599" endline="613">SI4735::setFM</referencedby>
+        <referencedby refid="class_s_i4735_1a7c48f2af416b1f89dbedbfbe9a637620" compoundref="_s_i4735_8cpp" startline="2061" endline="2075">SI4735::setSSB</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__group08_1ga794f6fe7987e146a0135b8e6fabec55c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -98,7 +122,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1045" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="476" bodyend="479"/>
+        <location file="SI4735/SI4735.h" line="1043" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="476" bodyend="479"/>
+        <references refid="class_s_i4735_1ad72759f246cceb147bf031b72173b0ca" compoundref="_s_i4735_8h" startline="897">SI4735::currentStep</references>
       </memberdef>
       <memberdef kind="function" id="group__group08_1gac0fcfd64dcf30b11d4dc219d9f7fc5d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -115,7 +140,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1053" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="488" bodyend="496"/>
+        <location file="SI4735/SI4735.h" line="1051" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="488" bodyend="496"/>
+        <references refid="class_s_i4735_1aa3d41ad3fdb9d821a721a8acfaf47670" compoundref="_s_i4735_8h" startline="894">SI4735::currentMaximumFrequency</references>
+        <references refid="class_s_i4735_1a4663c1c92d980472556368944cb2fc68" compoundref="_s_i4735_8h" startline="893">SI4735::currentMinimumFrequency</references>
+        <references refid="class_s_i4735_1ad72759f246cceb147bf031b72173b0ca" compoundref="_s_i4735_8h" startline="897">SI4735::currentStep</references>
+        <references refid="class_s_i4735_1a9da4f3df9e5e6b0448eff15e12f690dd" compoundref="_s_i4735_8h" startline="895">SI4735::currentWorkFrequency</references>
+        <references refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</references>
       </memberdef>
       <memberdef kind="function" id="group__group08_1ga93fff524a6f900ac91eb1222ce73f9ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -132,7 +162,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1054" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="505" bodyend="514"/>
+        <location file="SI4735/SI4735.h" line="1052" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="505" bodyend="514"/>
+        <references refid="class_s_i4735_1aa3d41ad3fdb9d821a721a8acfaf47670" compoundref="_s_i4735_8h" startline="894">SI4735::currentMaximumFrequency</references>
+        <references refid="class_s_i4735_1a4663c1c92d980472556368944cb2fc68" compoundref="_s_i4735_8h" startline="893">SI4735::currentMinimumFrequency</references>
+        <references refid="class_s_i4735_1ad72759f246cceb147bf031b72173b0ca" compoundref="_s_i4735_8h" startline="897">SI4735::currentStep</references>
+        <references refid="class_s_i4735_1a9da4f3df9e5e6b0448eff15e12f690dd" compoundref="_s_i4735_8h" startline="895">SI4735::currentWorkFrequency</references>
+        <references refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</references>
       </memberdef>
       <memberdef kind="function" id="group__group08_1ga753390952a1f2c2a98343979f1f3daa0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -150,7 +185,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1038" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="525" bodyend="538"/>
+        <location file="SI4735/SI4735.h" line="1036" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="525" bodyend="538"/>
+        <references refid="_s_i4735_8h_1a3c1a90b99ac7623ed1c7375c419f91db" compoundref="_s_i4735_8h" startline="149">AM_CURRENT_MODE</references>
+        <references refid="class_s_i4735_1a650490ab792c1853c97f600661ecdaa1" compoundref="_s_i4735_8h" startline="901">SI4735::currentAvcAmMaxGain</references>
+        <references refid="class_s_i4735_1a05730ca069db4be7c45a9c92f29d3b52" compoundref="_s_i4735_8h" startline="916">SI4735::currentSsbStatus</references>
+        <references refid="class_s_i4735_1a157e4ae8cd53396973584aa10888cd47" compoundref="_s_i4735_8h" startline="899">SI4735::lastMode</references>
+        <references refid="group__group06_1gaa554b3390fb6c5a4d6661b96afae73ae" compoundref="_s_i4735_8cpp" startline="280" endline="287">SI4735::powerDown</references>
+        <references refid="group__group06_1ga3e228da65641f4dcf4253262e19bde9b" compoundref="_s_i4735_8cpp" startline="241" endline="253">SI4735::radioPowerUp</references>
+        <references refid="class_s_i4735_1a6e1e0e48d71e09debb07fc6dbe884829" compoundref="_s_i4735_8h" startline="972" endline="972">SI4735::setAvcAmMaxGain</references>
+        <references refid="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="194" endline="220">SI4735::setPowerUp</references>
+        <references refid="class_s_i4735_1a3b7543657dfd36da962267bb8692b796" compoundref="_s_i4735_8cpp" startline="1215" endline="1219">SI4735::setVolume</references>
+        <references refid="_s_i4735_8h_1afd6b0255af56b3deee67ef1fe14d2fd6" compoundref="_s_i4735_8h" startline="142">SI473X_ANALOG_AUDIO</references>
+        <references refid="class_s_i4735_1aa5220772c468fcfb69b5d16163de73fc" compoundref="_s_i4735_8h" startline="914">SI4735::volume</references>
+        <referencedby refid="group__group08_1ga43c5ea36995a3897820e0170d94c81f4" compoundref="_s_i4735_8cpp" startline="570" endline="583">SI4735::setAM</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__group08_1gacd89e7b8adefcbc4e89f802acb915906" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -167,7 +214,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1039" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="547" bodyend="556"/>
+        <location file="SI4735/SI4735.h" line="1037" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="547" bodyend="556"/>
+        <references refid="class_s_i4735_1a05730ca069db4be7c45a9c92f29d3b52" compoundref="_s_i4735_8h" startline="916">SI4735::currentSsbStatus</references>
+        <references refid="class_s_i4735_1ae4683e9a9fc7a633305b18dae54fbd83" compoundref="_s_i4735_8cpp" startline="824" endline="835">SI4735::disableFmDebug</references>
+        <references refid="_s_i4735_8h_1aca16710d5708c296b0aee577ac4dbe12" compoundref="_s_i4735_8h" startline="148">FM_CURRENT_MODE</references>
+        <references refid="class_s_i4735_1a157e4ae8cd53396973584aa10888cd47" compoundref="_s_i4735_8h" startline="899">SI4735::lastMode</references>
+        <references refid="group__group06_1gaa554b3390fb6c5a4d6661b96afae73ae" compoundref="_s_i4735_8cpp" startline="280" endline="287">SI4735::powerDown</references>
+        <references refid="group__group06_1ga3e228da65641f4dcf4253262e19bde9b" compoundref="_s_i4735_8cpp" startline="241" endline="253">SI4735::radioPowerUp</references>
+        <references refid="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="194" endline="220">SI4735::setPowerUp</references>
+        <references refid="class_s_i4735_1a3b7543657dfd36da962267bb8692b796" compoundref="_s_i4735_8cpp" startline="1215" endline="1219">SI4735::setVolume</references>
+        <references refid="_s_i4735_8h_1afd6b0255af56b3deee67ef1fe14d2fd6" compoundref="_s_i4735_8h" startline="142">SI473X_ANALOG_AUDIO</references>
+        <references refid="class_s_i4735_1aa5220772c468fcfb69b5d16163de73fc" compoundref="_s_i4735_8h" startline="914">SI4735::volume</references>
+        <referencedby refid="group__group08_1ga673bc4b17d564bb6e7f3e9a61d35fbb3" compoundref="_s_i4735_8cpp" startline="599" endline="613">SI4735::setFM</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__group08_1ga43c5ea36995a3897820e0170d94c81f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -234,7 +292,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1040" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="570" bodyend="583"/>
+        <location file="SI4735/SI4735.h" line="1038" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="570" bodyend="583"/>
+        <references refid="class_s_i4735_1aa3d41ad3fdb9d821a721a8acfaf47670" compoundref="_s_i4735_8h" startline="894">SI4735::currentMaximumFrequency</references>
+        <references refid="class_s_i4735_1a4663c1c92d980472556368944cb2fc68" compoundref="_s_i4735_8h" startline="893">SI4735::currentMinimumFrequency</references>
+        <references refid="class_s_i4735_1ad72759f246cceb147bf031b72173b0ca" compoundref="_s_i4735_8h" startline="897">SI4735::currentStep</references>
+        <references refid="class_s_i4735_1a9da4f3df9e5e6b0448eff15e12f690dd" compoundref="_s_i4735_8h" startline="895">SI4735::currentWorkFrequency</references>
+        <references refid="group__group08_1ga753390952a1f2c2a98343979f1f3daa0" compoundref="_s_i4735_8cpp" startline="525" endline="538">SI4735::setAM</references>
+        <references refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</references>
       </memberdef>
       <memberdef kind="function" id="group__group08_1ga673bc4b17d564bb6e7f3e9a61d35fbb3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -302,7 +366,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="1041" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="599" bodyend="613"/>
+        <location file="SI4735/SI4735.h" line="1039" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="599" bodyend="613"/>
+        <references refid="class_s_i4735_1aa3d41ad3fdb9d821a721a8acfaf47670" compoundref="_s_i4735_8h" startline="894">SI4735::currentMaximumFrequency</references>
+        <references refid="class_s_i4735_1a4663c1c92d980472556368944cb2fc68" compoundref="_s_i4735_8h" startline="893">SI4735::currentMinimumFrequency</references>
+        <references refid="class_s_i4735_1ad72759f246cceb147bf031b72173b0ca" compoundref="_s_i4735_8h" startline="897">SI4735::currentStep</references>
+        <references refid="class_s_i4735_1a9da4f3df9e5e6b0448eff15e12f690dd" compoundref="_s_i4735_8h" startline="895">SI4735::currentWorkFrequency</references>
+        <references refid="group__group08_1gacd89e7b8adefcbc4e89f802acb915906" compoundref="_s_i4735_8cpp" startline="547" endline="556">SI4735::setFM</references>
+        <references refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</references>
       </memberdef>
       </sectiondef>
     <briefdescription>

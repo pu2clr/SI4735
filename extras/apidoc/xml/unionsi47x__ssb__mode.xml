@@ -4,110 +4,6 @@
     <compoundname>si47x_ssb_mode</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="unionsi47x__ssb__mode_1a12aeb6bf478c3c4b6d4243a84f05a5eb" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_ssb_mode::AUDIOBW</definition>
-        <argsstring></argsstring>
-        <name>AUDIOBW</name>
-        <bitfield> 4</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="785" column="17" bodyfile="SI4735/SI4735.h" bodystart="785" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__ssb__mode_1ae22aa453dbf8787acceef11d30306dfd" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_ssb_mode::SBCUTFLT</definition>
-        <argsstring></argsstring>
-        <name>SBCUTFLT</name>
-        <bitfield> 4</bitfield>
-        <briefdescription>
-<para>0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="786" column="17" bodyfile="SI4735/SI4735.h" bodystart="786" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__ssb__mode_1a3c4def7aad4a7f875bd189cfde29c733" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_ssb_mode::AVC_DIVIDER</definition>
-        <argsstring></argsstring>
-        <name>AVC_DIVIDER</name>
-        <bitfield> 4</bitfield>
-        <briefdescription>
-<para>SSB side band cutoff filter for band passand low pass filter. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="787" column="17" bodyfile="SI4735/SI4735.h" bodystart="787" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__ssb__mode_1abdcac9b7553fc2d62f51262eacec0069" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_ssb_mode::AVCEN</definition>
-        <argsstring></argsstring>
-        <name>AVCEN</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>set 0 for SSB mode; set 3 for SYNC mode; </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="788" column="17" bodyfile="SI4735/SI4735.h" bodystart="788" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__ssb__mode_1aeed76b90e22efa54ef80062032785bc2" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_ssb_mode::SMUTESEL</definition>
-        <argsstring></argsstring>
-        <name>SMUTESEL</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default);. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="789" column="17" bodyfile="SI4735/SI4735.h" bodystart="789" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__ssb__mode_1a5c337f3327b40a61d5ccc22141892651" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_ssb_mode::DUMMY1</definition>
-        <argsstring></argsstring>
-        <name>DUMMY1</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>SSB Soft-mute Based on RSSI or SNR. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="790" column="17" bodyfile="SI4735/SI4735.h" bodystart="790" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__ssb__mode_1a12c18df3a3e8d78325292f50e222bd01" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_ssb_mode::DSP_AFCDIS</definition>
-        <argsstring></argsstring>
-        <name>DSP_AFCDIS</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>Always write 0;. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="791" column="17" bodyfile="SI4735/SI4735.h" bodystart="791" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="unionsi47x__ssb__mode_1a9a2be4f98978b6b580b7d64cfc07c66c" prot="public" static="no" mutable="no">
         <type>struct si47x_ssb_mode::@25</type>
         <definition>struct si47x_ssb_mode::@25 si47x_ssb_mode::param</definition>
@@ -120,6 +16,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="792" column="11"/>
+        <referencedby refid="class_s_i4735_1a9224e7d4ef14c887da96dbefd2dcefd3" compoundref="_s_i4735_8cpp" startline="1910" endline="1924">SI4735::setSSBConfig</referencedby>
+        <referencedby refid="class_s_i4735_1a6cde26a5abf759a628012d1457d85c72" compoundref="_s_i4735_8cpp" startline="1933" endline="1937">SI4735::setSSBDspAfc</referencedby>
+        <referencedby refid="class_s_i4735_1a91251dfc2ff9488aaef3aa1a528097d9" compoundref="_s_i4735_8cpp" startline="1947" endline="1951">SI4735::setSSBSoftMute</referencedby>
+        <referencedby refid="class_s_i4735_1acacf1dac4c0ec170d1da629dd1fd30cb" compoundref="_s_i4735_8cpp" startline="1960" endline="1964">SI4735::setSSBAutomaticVolumeControl</referencedby>
+        <referencedby refid="class_s_i4735_1afc5e87c50a1eba6de9504c114cc1cb70" compoundref="_s_i4735_8cpp" startline="1973" endline="1977">SI4735::setSSBAvcDivider</referencedby>
+        <referencedby refid="class_s_i4735_1ae9d50b24642784943fefedbac944a8e8" compoundref="_s_i4735_8cpp" startline="1989" endline="1993">SI4735::setSBBSidebandCutoffFilter</referencedby>
+        <referencedby refid="class_s_i4735_1a6b2ad4d027463262350134490d16bf32" compoundref="_s_i4735_8cpp" startline="2018" endline="2023">SI4735::setSSBAudioBandwidth</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__ssb__mode_1ac57630fdfe3cf7069f8483a50a41c501" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -133,6 +36,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="793" column="13" bodyfile="SI4735/SI4735.h" bodystart="793" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">SI4735::sendSSBModeProperty</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -145,15 +49,8 @@
     </detaileddescription>
     <location file="SI4735/SI4735.h" line="782" column="15" bodyfile="SI4735/SI4735.h" bodystart="782" bodyend="794"/>
     <listofallmembers>
-      <member refid="unionsi47x__ssb__mode_1a12aeb6bf478c3c4b6d4243a84f05a5eb" prot="public" virt="non-virtual"><scope>si47x_ssb_mode</scope><name>AUDIOBW</name></member>
-      <member refid="unionsi47x__ssb__mode_1a3c4def7aad4a7f875bd189cfde29c733" prot="public" virt="non-virtual"><scope>si47x_ssb_mode</scope><name>AVC_DIVIDER</name></member>
-      <member refid="unionsi47x__ssb__mode_1abdcac9b7553fc2d62f51262eacec0069" prot="public" virt="non-virtual"><scope>si47x_ssb_mode</scope><name>AVCEN</name></member>
-      <member refid="unionsi47x__ssb__mode_1a12c18df3a3e8d78325292f50e222bd01" prot="public" virt="non-virtual"><scope>si47x_ssb_mode</scope><name>DSP_AFCDIS</name></member>
-      <member refid="unionsi47x__ssb__mode_1a5c337f3327b40a61d5ccc22141892651" prot="public" virt="non-virtual"><scope>si47x_ssb_mode</scope><name>DUMMY1</name></member>
       <member refid="unionsi47x__ssb__mode_1a9a2be4f98978b6b580b7d64cfc07c66c" prot="public" virt="non-virtual"><scope>si47x_ssb_mode</scope><name>param</name></member>
       <member refid="unionsi47x__ssb__mode_1ac57630fdfe3cf7069f8483a50a41c501" prot="public" virt="non-virtual"><scope>si47x_ssb_mode</scope><name>raw</name></member>
-      <member refid="unionsi47x__ssb__mode_1ae22aa453dbf8787acceef11d30306dfd" prot="public" virt="non-virtual"><scope>si47x_ssb_mode</scope><name>SBCUTFLT</name></member>
-      <member refid="unionsi47x__ssb__mode_1aeed76b90e22efa54ef80062032785bc2" prot="public" virt="non-virtual"><scope>si47x_ssb_mode</scope><name>SMUTESEL</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

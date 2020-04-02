@@ -4,215 +4,6 @@
     <compoundname>si47x_firmware_information</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1a11c6e65b83ca64f5b9fc45190f45a8ad" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::STCINT</definition>
-        <argsstring></argsstring>
-        <name>STCINT</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="312" column="17" bodyfile="SI4735/SI4735.h" bodystart="312" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1aef521ef2e42eb830ea5b14bcdf6d0551" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::DUMMY1</definition>
-        <argsstring></argsstring>
-        <name>DUMMY1</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="313" column="17" bodyfile="SI4735/SI4735.h" bodystart="313" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1af50b483a7662b33db230842fbe21d47a" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::RDSINT</definition>
-        <argsstring></argsstring>
-        <name>RDSINT</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="314" column="17" bodyfile="SI4735/SI4735.h" bodystart="314" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1a5de0ac503dac166199f5dda90b0236d3" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::RSQINT</definition>
-        <argsstring></argsstring>
-        <name>RSQINT</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="315" column="17" bodyfile="SI4735/SI4735.h" bodystart="315" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1abcde7d1a90346f3a7a8601cc66e29c71" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::DUMMY2</definition>
-        <argsstring></argsstring>
-        <name>DUMMY2</name>
-        <bitfield> 2</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="316" column="17" bodyfile="SI4735/SI4735.h" bodystart="316" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1a7155c52df7d6e6ff21b9f9eda85e7782" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::ERR</definition>
-        <argsstring></argsstring>
-        <name>ERR</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="317" column="17" bodyfile="SI4735/SI4735.h" bodystart="317" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1ab219d98631b91d0deb504578a3ffe3bc" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::CTS</definition>
-        <argsstring></argsstring>
-        <name>CTS</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="318" column="17" bodyfile="SI4735/SI4735.h" bodystart="318" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1a76c4c996809c5212f7dae2b3b7c41bf4" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::PN</definition>
-        <argsstring></argsstring>
-        <name>PN</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="319" column="17" bodyfile="SI4735/SI4735.h" bodystart="319" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1ace4719bdaf8df7e8b46c149032146ff9" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::FWMAJOR</definition>
-        <argsstring></argsstring>
-        <name>FWMAJOR</name>
-        <briefdescription>
-<para>RESP1 - Final 2 digits of Part Number (HEX). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="320" column="17" bodyfile="SI4735/SI4735.h" bodystart="320" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1a6ea81f71d748770422b1d0da50225cc9" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::FWMINOR</definition>
-        <argsstring></argsstring>
-        <name>FWMINOR</name>
-        <briefdescription>
-<para>RESP2 - Firmware Major Revision (ASCII). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="321" column="17" bodyfile="SI4735/SI4735.h" bodystart="321" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1ac0d0b792ff45f27e75530c6a1a7395e5" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::PATCHH</definition>
-        <argsstring></argsstring>
-        <name>PATCHH</name>
-        <briefdescription>
-<para>RESP3 - Firmware Minor Revision (ASCII). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="322" column="17" bodyfile="SI4735/SI4735.h" bodystart="322" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1adb11fe484e59e3f8bb77d675d9b03950" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::PATCHL</definition>
-        <argsstring></argsstring>
-        <name>PATCHL</name>
-        <briefdescription>
-<para>RESP4 - Patch ID High byte (HEX). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="323" column="17" bodyfile="SI4735/SI4735.h" bodystart="323" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1ac18795035fa07c597e8a6c3f10745984" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::CMPMAJOR</definition>
-        <argsstring></argsstring>
-        <name>CMPMAJOR</name>
-        <briefdescription>
-<para>RESP5 - Patch ID Low byte (HEX). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="324" column="17" bodyfile="SI4735/SI4735.h" bodystart="324" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1a66dcdf7f96777f5ca05fdadfd3c6f764" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::CMPMINOR</definition>
-        <argsstring></argsstring>
-        <name>CMPMINOR</name>
-        <briefdescription>
-<para>RESP6 - Component Major Revision (ASCII). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="325" column="17" bodyfile="SI4735/SI4735.h" bodystart="325" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__firmware__information_1aa88ca593c77a71ca1726ab48ebd70ee3" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_firmware_information::CHIPREV</definition>
-        <argsstring></argsstring>
-        <name>CHIPREV</name>
-        <briefdescription>
-<para>RESP7 - Component Minor Revision (ASCII). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="326" column="17" bodyfile="SI4735/SI4735.h" bodystart="326" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="unionsi47x__firmware__information_1a62ecd35a00b7a8bd4faaf82cd69d522e" prot="public" static="no" mutable="no">
         <type>struct si47x_firmware_information::@6</type>
         <definition>struct si47x_firmware_information::@6 si47x_firmware_information::resp</definition>
@@ -225,6 +16,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="328" column="10"/>
+        <referencedby refid="group__group07_1ga2fbc7e2187a7c645879623100dbc8502" compoundref="_s_i4735_8cpp" startline="298" endline="314">SI4735::getFirmware</referencedby>
+        <referencedby refid="class_s_i4735_1ab26fbd99452daaf18875ff1c3c35d081" compoundref="_s_i4735_8h" startline="1014" endline="1014">SI4735::getFirmwarePN</referencedby>
+        <referencedby refid="class_s_i4735_1ac2f451cb7320b66d8e08698dcacd50d0" compoundref="_s_i4735_8h" startline="1015" endline="1015">SI4735::getFirmwareFWMAJOR</referencedby>
+        <referencedby refid="class_s_i4735_1a74b68fcd5718520fc0683977dfc18fc8" compoundref="_s_i4735_8h" startline="1016" endline="1016">SI4735::getFirmwareFWMINOR</referencedby>
+        <referencedby refid="class_s_i4735_1a58b99a8d5ec2199cb5f2105675aa7a56" compoundref="_s_i4735_8h" startline="1017" endline="1017">SI4735::getFirmwarePATCHH</referencedby>
+        <referencedby refid="class_s_i4735_1ac10b3cd3875985e2c129fea14e2bc47a" compoundref="_s_i4735_8h" startline="1018" endline="1018">SI4735::getFirmwarePATCHL</referencedby>
+        <referencedby refid="class_s_i4735_1ab57870d69969e73265e9cffe2a73d868" compoundref="_s_i4735_8h" startline="1019" endline="1019">SI4735::getFirmwareCMPMAJOR</referencedby>
+        <referencedby refid="class_s_i4735_1a883645d266a612ce07d71fdb2cd81e5f" compoundref="_s_i4735_8h" startline="1020" endline="1020">SI4735::getFirmwareCMPMINOR</referencedby>
+        <referencedby refid="class_s_i4735_1acd363d9111e4a57cf2e1167634bc1b5f" compoundref="_s_i4735_8h" startline="1021" endline="1021">SI4735::getFirmwareCHIPREV</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__firmware__information_1aa2ba7bbaa745c8ca18c83226246654e5" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -238,6 +38,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="329" column="13" bodyfile="SI4735/SI4735.h" bodystart="329" bodyend="-1"/>
+        <referencedby refid="group__group07_1ga2fbc7e2187a7c645879623100dbc8502" compoundref="_s_i4735_8cpp" startline="298" endline="314">SI4735::getFirmware</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -251,23 +52,8 @@
     </detaileddescription>
     <location file="SI4735/SI4735.h" line="308" column="15" bodyfile="SI4735/SI4735.h" bodystart="308" bodyend="330"/>
     <listofallmembers>
-      <member refid="unionsi47x__firmware__information_1aa88ca593c77a71ca1726ab48ebd70ee3" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>CHIPREV</name></member>
-      <member refid="unionsi47x__firmware__information_1ac18795035fa07c597e8a6c3f10745984" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>CMPMAJOR</name></member>
-      <member refid="unionsi47x__firmware__information_1a66dcdf7f96777f5ca05fdadfd3c6f764" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>CMPMINOR</name></member>
-      <member refid="unionsi47x__firmware__information_1ab219d98631b91d0deb504578a3ffe3bc" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>CTS</name></member>
-      <member refid="unionsi47x__firmware__information_1aef521ef2e42eb830ea5b14bcdf6d0551" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>DUMMY1</name></member>
-      <member refid="unionsi47x__firmware__information_1abcde7d1a90346f3a7a8601cc66e29c71" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>DUMMY2</name></member>
-      <member refid="unionsi47x__firmware__information_1a7155c52df7d6e6ff21b9f9eda85e7782" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>ERR</name></member>
-      <member refid="unionsi47x__firmware__information_1ace4719bdaf8df7e8b46c149032146ff9" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>FWMAJOR</name></member>
-      <member refid="unionsi47x__firmware__information_1a6ea81f71d748770422b1d0da50225cc9" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>FWMINOR</name></member>
-      <member refid="unionsi47x__firmware__information_1ac0d0b792ff45f27e75530c6a1a7395e5" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>PATCHH</name></member>
-      <member refid="unionsi47x__firmware__information_1adb11fe484e59e3f8bb77d675d9b03950" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>PATCHL</name></member>
-      <member refid="unionsi47x__firmware__information_1a76c4c996809c5212f7dae2b3b7c41bf4" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>PN</name></member>
       <member refid="unionsi47x__firmware__information_1aa2ba7bbaa745c8ca18c83226246654e5" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>raw</name></member>
-      <member refid="unionsi47x__firmware__information_1af50b483a7662b33db230842fbe21d47a" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>RDSINT</name></member>
       <member refid="unionsi47x__firmware__information_1a62ecd35a00b7a8bd4faaf82cd69d522e" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>resp</name></member>
-      <member refid="unionsi47x__firmware__information_1a5de0ac503dac166199f5dda90b0236d3" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>RSQINT</name></member>
-      <member refid="unionsi47x__firmware__information_1a11c6e65b83ca64f5b9fc45190f45a8ad" prot="public" virt="non-virtual"><scope>si47x_firmware_information</scope><name>STCINT</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

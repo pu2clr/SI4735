@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structsi47x__rds__blocka_8raw" kind="struct" language="C++" prot="public">
+    <compoundname>si47x_rds_blocka.raw</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsi47x__rds__blocka_8raw_1aaee469db16fdff1aa5439b776b3d5860" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>highValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="589" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__rds__blocka_8raw_1a72a22270b4e47acf046fad64a8720e4f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>lowValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="590" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="SI4735/SI4735.h" line="588" column="1" bodyfile="SI4735/SI4735.h" bodystart="587" bodyend="591"/>
+    <listofallmembers>
+      <member refid="structsi47x__rds__blocka_8raw_1aaee469db16fdff1aa5439b776b3d5860" prot="public" virt="non-virtual"><scope>si47x_rds_blocka.raw</scope><name>highValue</name></member>
+      <member refid="structsi47x__rds__blocka_8raw_1a72a22270b4e47acf046fad64a8720e4f" prot="public" virt="non-virtual"><scope>si47x_rds_blocka.raw</scope><name>lowValue</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

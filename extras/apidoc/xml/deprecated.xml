@@ -7,7 +7,7 @@
     </briefdescription>
     <detaileddescription>
 <para><variablelist>
-<varlistentry><term>Member <ref refid="group__group06_1ga412f51386c47a17cf04fd0a3c3078726" kindref="member">SI4735::analogPowerUp</ref>  (void)</term></varlistentry>
+<varlistentry><term>Global <ref refid="group__group06_1ga412f51386c47a17cf04fd0a3c3078726" kindref="member">SI4735::analogPowerUp</ref>  (void)</term></varlistentry>
 <listitem><para><anchor id="deprecated_1_deprecated000001"/>Consider use radioPowerUp instead</para>
 </listitem>
 </variablelist>

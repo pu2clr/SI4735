@@ -1,0 +1,277 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structsi47x__response__status_8resp" kind="struct" language="C++" prot="public">
+    <compoundname>si47x_response_status.resp</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1af8f21d801809287d578344911b65697c" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>STCINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="271" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1a3651c40ccc4450f2fc89fa3139dedd5a" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>DUMMY1</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="272" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1a53d648e7e9d100d590e2f65ec7de079f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RDSINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="273" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1a8acf6c55c97050e7abd06c104012c77a" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RSQINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Radio Data System (RDS) Interrup; 0 = interrupt has not been triggered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="274" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1abece94c62273dc7ecfabc565b76dbbe5" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>DUMMY2</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+<para>Received Signal Quality Interrupt; 0 = interrupt has not been triggered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="275" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1acd22bad976363fdd1bfbf6759fede482" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>ERR</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="276" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1ae16433ffd3adc248f0ce2608a95c3c76" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>CTS</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Error. 0 = No error 1 = Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="277" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1ac9f1a6384b1c466d4612f513bd8e13ea" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>VALID</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Clear to Send. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="279" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1a4f37d8e1a484e1ac152858e71923f86c" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>AFCRL</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Valid Channel. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="280" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1a613aa5c14b3ccc6304a519292c482ed1" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>DUMMY3</name>
+        <bitfield> 5</bitfield>
+        <briefdescription>
+<para>AFC Rail Indicator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="281" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1a4163d039102268d1b6ac272a25006d7f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>BLTF</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="282" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1a0d093ad5e587811b66f0047303ec86a9" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>READFREQH</name>
+        <briefdescription>
+<para>Reports if a seek hit the band limit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="284" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1ad667880f1209fa0da1d2c87c794329c7" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>READFREQL</name>
+        <briefdescription>
+<para>Read Frequency High byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="286" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1a6833f5d3374c1679bea428b50dbad9cc" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>RSSI</name>
+        <briefdescription>
+<para>Read Frequency Low byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="288" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1a8dc5367d65459f69d78eb03e93f7703f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>SNR</name>
+        <briefdescription>
+<para>Received Signal Strength Indicator (dBμV) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="290" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1a36b0ca295026d76ee15df50dc4991e90" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>MULT</name>
+        <briefdescription>
+<para>This byte contains the SNR metric when tune is complete (dB). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="292" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi47x__response__status_8resp_1aa4c3e6fac8670fa0b36ba68ff185aa24" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>READANTCAP</name>
+        <briefdescription>
+<para>Contains the multipath metric when tune is complete. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="294" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="SI4735/SI4735.h" line="269" column="1" bodyfile="SI4735/SI4735.h" bodystart="268" bodyend="295"/>
+    <listofallmembers>
+      <member refid="structsi47x__response__status_8resp_1a4f37d8e1a484e1ac152858e71923f86c" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>AFCRL</name></member>
+      <member refid="structsi47x__response__status_8resp_1a4163d039102268d1b6ac272a25006d7f" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>BLTF</name></member>
+      <member refid="structsi47x__response__status_8resp_1ae16433ffd3adc248f0ce2608a95c3c76" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>CTS</name></member>
+      <member refid="structsi47x__response__status_8resp_1a3651c40ccc4450f2fc89fa3139dedd5a" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>DUMMY1</name></member>
+      <member refid="structsi47x__response__status_8resp_1abece94c62273dc7ecfabc565b76dbbe5" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>DUMMY2</name></member>
+      <member refid="structsi47x__response__status_8resp_1a613aa5c14b3ccc6304a519292c482ed1" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>DUMMY3</name></member>
+      <member refid="structsi47x__response__status_8resp_1acd22bad976363fdd1bfbf6759fede482" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>ERR</name></member>
+      <member refid="structsi47x__response__status_8resp_1a36b0ca295026d76ee15df50dc4991e90" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>MULT</name></member>
+      <member refid="structsi47x__response__status_8resp_1a53d648e7e9d100d590e2f65ec7de079f" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>RDSINT</name></member>
+      <member refid="structsi47x__response__status_8resp_1aa4c3e6fac8670fa0b36ba68ff185aa24" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>READANTCAP</name></member>
+      <member refid="structsi47x__response__status_8resp_1a0d093ad5e587811b66f0047303ec86a9" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>READFREQH</name></member>
+      <member refid="structsi47x__response__status_8resp_1ad667880f1209fa0da1d2c87c794329c7" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>READFREQL</name></member>
+      <member refid="structsi47x__response__status_8resp_1a8acf6c55c97050e7abd06c104012c77a" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>RSQINT</name></member>
+      <member refid="structsi47x__response__status_8resp_1a6833f5d3374c1679bea428b50dbad9cc" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>RSSI</name></member>
+      <member refid="structsi47x__response__status_8resp_1a8dc5367d65459f69d78eb03e93f7703f" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>SNR</name></member>
+      <member refid="structsi47x__response__status_8resp_1af8f21d801809287d578344911b65697c" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>STCINT</name></member>
+      <member refid="structsi47x__response__status_8resp_1ac9f1a6384b1c466d4612f513bd8e13ea" prot="public" virt="non-virtual"><scope>si47x_response_status.resp</scope><name>VALID</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

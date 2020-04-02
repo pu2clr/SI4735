@@ -4,50 +4,6 @@
     <compoundname>si47x_tune_status</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="unionsi47x__tune__status_1a8de6a5fbc60de94bd0850ffd85fac5a9" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_tune_status::INTACK</definition>
-        <argsstring></argsstring>
-        <name>INTACK</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="379" column="17" bodyfile="SI4735/SI4735.h" bodystart="379" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__tune__status_1ae6d5968d62f9c0eec44528e7b050f0bf" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_tune_status::CANCEL</definition>
-        <argsstring></argsstring>
-        <name>CANCEL</name>
-        <bitfield> 1</bitfield>
-        <briefdescription>
-<para>If set, clears the seek/tune complete interrupt status indicator. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="380" column="17" bodyfile="SI4735/SI4735.h" bodystart="380" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="unionsi47x__tune__status_1af014b49f5eb0de7ac951dd1d52321026" prot="public" static="no" mutable="no">
-        <type>uint8_t</type>
-        <definition>uint8_t si47x_tune_status::RESERVED2</definition>
-        <argsstring></argsstring>
-        <name>RESERVED2</name>
-        <bitfield> 6</bitfield>
-        <briefdescription>
-<para>If set, aborts a seek currently in progress. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="381" column="17" bodyfile="SI4735/SI4735.h" bodystart="381" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="unionsi47x__tune__status_1a6cb498a025a973418d27991eb3151489" prot="public" static="no" mutable="no">
         <type>struct si47x_tune_status::@8</type>
         <definition>struct si47x_tune_status::@8 si47x_tune_status::arg</definition>
@@ -60,6 +16,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="382" column="9"/>
+        <referencedby refid="class_s_i4735_1a5c0f4036a7fbbd11a26f1f6f4579d3cd" compoundref="_s_i4735_8cpp" startline="916" endline="940">SI4735::getStatus</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__tune__status_1aefcfcb9eaa95ed7d8ce1740ac7f9eb7e" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -73,6 +30,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="383" column="13" bodyfile="SI4735/SI4735.h" bodystart="383" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a5c0f4036a7fbbd11a26f1f6f4579d3cd" compoundref="_s_i4735_8cpp" startline="916" endline="940">SI4735::getStatus</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -87,10 +45,7 @@
     <location file="SI4735/SI4735.h" line="376" column="15" bodyfile="SI4735/SI4735.h" bodystart="376" bodyend="384"/>
     <listofallmembers>
       <member refid="unionsi47x__tune__status_1a6cb498a025a973418d27991eb3151489" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>arg</name></member>
-      <member refid="unionsi47x__tune__status_1ae6d5968d62f9c0eec44528e7b050f0bf" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>CANCEL</name></member>
-      <member refid="unionsi47x__tune__status_1a8de6a5fbc60de94bd0850ffd85fac5a9" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>INTACK</name></member>
       <member refid="unionsi47x__tune__status_1aefcfcb9eaa95ed7d8ce1740ac7f9eb7e" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>raw</name></member>
-      <member refid="unionsi47x__tune__status_1af014b49f5eb0de7ac951dd1d52321026" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>RESERVED2</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>
