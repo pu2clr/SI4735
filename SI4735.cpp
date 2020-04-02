@@ -2078,6 +2078,7 @@ si47x_firmware_query_library SI4735::queryLibraryId()
     return libraryID;
 }
 
+
 /**  
  *  This method can be used to prepare the device to apply SSBRX patch
  *  Call queryLibraryId before call this method. 
