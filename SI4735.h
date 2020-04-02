@@ -147,7 +147,7 @@
 #define MAX_DELAY_AFTER_SET_FREQUENCY 30 // In ms - This value helps to improve the precision during of getting frequency value
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 
-/*****************************************************************
+/*!
  * SI473X data types 
  * 
  * The goal here is separate data from code. 
@@ -158,7 +158,7 @@
  * In other words, to make the SI47XX device easier to deal, some defined data types were 
  * created to handle byte and bits to process  commands, properties and responses.
  * These data types will be usefull to deal with SI473X 
- *****************************************************************/
+ */
 
 /**
  * Power Up arguments data type 
@@ -956,7 +956,7 @@ public:
     inline uint8_t getTuneFrequencyFast() { return currentFrequencyParams.arg.FAST; };                  //! Returns the FAST tuning status
     inline void setTuneFrequencyFast(uint8_t FAST) { currentFrequencyParams.arg.FAST = FAST; };         //! FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate
     inline uint8_t getTuneFrequencyFreeze() { return currentFrequencyParams.arg.FREEZE; };              //! Returns the FREEZE status
-    inline void setTuneFrequencyFreeze(uint8_t FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; //! Onlye FM. Freeze Metrics During Alternate Frequency Jump.
+    inline void setTuneFrequencyFreeze(uint8_t FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; //! Only FM. Freeze Metrics During Alternate Frequency Jump.
     void setTuneFrequencyAntennaCapacitor(uint16_t capacitor);
 
     void frequencyUp();

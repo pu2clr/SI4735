@@ -5,7 +5,7 @@
 `class `[`SI4735`](#class_s_i4735) | 
 `struct `[`si4735_digital_output_sample_rate`](#structsi4735__digital__output__sample__rate) | Digital audio output sample structure (Property 0x0104. DIGITAL_OUTPUT_SAMPLE_RATE). Used to enable digital audio output and to configure the digital audio output sample rate in samples per second (sps).
 `union `[`si4735_digital_output_format`](#unionsi4735__digital__output__format) | Digital audio output format data structure (Property 0x0102. DIGITAL_OUTPUT_FORMAT). Useed to configure: DCLK edge, data format, force mono, and sample precision.
-`union `[`si473x_powerup`](#unionsi473x__powerup) | Power Up arguments data type
+`union `[`si473x_powerup`](#unionsi473x__powerup) | SI473X data types
 `union `[`si47x_agc_overrride`](#unionsi47x__agc__overrride) | If FM, Overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 (minimum attenuation) and 26 (maximum attenuation). If AM, overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0
 `union `[`si47x_agc_status`](#unionsi47x__agc__status) | AGC data types FM / AM and SSB structure to AGC
 `union `[`si47x_antenna_capacitor`](#unionsi47x__antenna__capacitor) | Antenna Tuning Capacitor data type manupulation
@@ -115,7 +115,7 @@
 `public inline void `[`setTuneFrequencyFast`](#class_s_i4735_1a51d816112d974f10306d9d001667395a)`(uint8_t FAST)` | Returns the FAST tuning status.
 `public inline uint8_t `[`getTuneFrequencyFreeze`](#class_s_i4735_1a667fead0c7b2658c2b932370ad4e4f88)`()` | FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate.
 `public inline void `[`setTuneFrequencyFreeze`](#class_s_i4735_1aee22a5ce06d4948fad2365a7b62fbd8d)`(uint8_t FREEZE)` | Returns the FREEZE status.
-`public void `[`setTuneFrequencyAntennaCapacitor`](#class_s_i4735_1aaceadaaf0835e3db124d1b36f2aebd3c)`(uint16_t capacitor)` | Onlye FM. Freeze Metrics During Alternate Frequency Jump.
+`public void `[`setTuneFrequencyAntennaCapacitor`](#class_s_i4735_1aaceadaaf0835e3db124d1b36f2aebd3c)`(uint16_t capacitor)` | Only FM. Freeze Metrics During Alternate Frequency Jump.
 `public void `[`frequencyUp`](#class_s_i4735_1ac0fcfd64dcf30b11d4dc219d9f7fc5d9)`()` | Increments the current frequency on current band/function by using the current step.
 `public void `[`frequencyDown`](#class_s_i4735_1a93fff524a6f900ac91eb1222ce73f9ba)`()` | Decrements the current frequency on current band/function by using the current step.
 `public bool `[`isCurrentTuneFM`](#class_s_i4735_1ae7ca2ffa6ad68ca69e4f35a3c40bbc3c)`()` | Returns true if the current function is FM (FM_TUNE_FREQ).
@@ -709,7 +709,7 @@ Returns the FREEZE status.
 
 #### `public void `[`setTuneFrequencyAntennaCapacitor`](#class_s_i4735_1aaceadaaf0835e3db124d1b36f2aebd3c)`(uint16_t capacitor)` {#class_s_i4735_1aaceadaaf0835e3db124d1b36f2aebd3c}
 
-Onlye FM. Freeze Metrics During Alternate Frequency Jump.
+Only FM. Freeze Metrics During Alternate Frequency Jump.
 
 Selects the tuning capacitor value.
 

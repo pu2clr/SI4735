@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="182" column="17" bodyfile="SI4735.h" bodystart="182" bodyend="-1"/>
+        <location file="SI4735.h" line="190" column="17" bodyfile="SI4735.h" bodystart="190" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__frequency_1ae85fcb4329c600511e2127e1c5029f8c" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="183" column="17" bodyfile="SI4735.h" bodystart="183" bodyend="-1"/>
+        <location file="SI4735.h" line="191" column="17" bodyfile="SI4735.h" bodystart="191" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__frequency_1a1a992fcfef59a6c6b1612e006264840f" prot="public" static="no" mutable="no">
         <type>struct si47x_frequency::@1</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="184" column="9"/>
+        <location file="SI4735.h" line="192" column="9"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__frequency_1aad12ac434ec9907e90a3f6b95377ca76" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -55,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="185" column="14" bodyfile="SI4735.h" bodystart="185" bodyend="-1"/>
+        <location file="SI4735.h" line="193" column="14" bodyfile="SI4735.h" bodystart="193" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -64,7 +64,7 @@
 <para>Represents how the frequency is stored in the si4735. It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH) <linebreak/>
  </para>
     </detaileddescription>
-    <location file="SI4735.h" line="179" column="15" bodyfile="SI4735.h" bodystart="179" bodyend="186"/>
+    <location file="SI4735.h" line="187" column="15" bodyfile="SI4735.h" bodystart="187" bodyend="194"/>
     <listofallmembers>
       <member refid="unionsi47x__frequency_1ae85fcb4329c600511e2127e1c5029f8c" prot="public" virt="non-virtual"><scope>si47x_frequency</scope><name>FREQH</name></member>
       <member refid="unionsi47x__frequency_1abe921825c86d54f9f38411677a489d89" prot="public" virt="non-virtual"><scope>si47x_frequency</scope><name>FREQL</name></member>

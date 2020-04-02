@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="343" column="17" bodyfile="SI4735.h" bodystart="343" bodyend="-1"/>
+        <location file="SI4735.h" line="351" column="17" bodyfile="SI4735.h" bodystart="351" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__tune__status_1ae6d5968d62f9c0eec44528e7b050f0bf" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="344" column="17" bodyfile="SI4735.h" bodystart="344" bodyend="-1"/>
+        <location file="SI4735.h" line="352" column="17" bodyfile="SI4735.h" bodystart="352" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__tune__status_1af014b49f5eb0de7ac951dd1d52321026" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="345" column="17" bodyfile="SI4735.h" bodystart="345" bodyend="-1"/>
+        <location file="SI4735.h" line="353" column="17" bodyfile="SI4735.h" bodystart="353" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__tune__status_1a6cb498a025a973418d27991eb3151489" prot="public" static="no" mutable="no">
         <type>struct si47x_tune_status::@8</type>
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="346" column="9"/>
+        <location file="SI4735.h" line="354" column="9"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__tune__status_1aefcfcb9eaa95ed7d8ce1740ac7f9eb7e" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="347" column="13" bodyfile="SI4735.h" bodystart="347" bodyend="-1"/>
+        <location file="SI4735.h" line="355" column="13" bodyfile="SI4735.h" bodystart="355" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -83,7 +83,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="SI4735.h" line="340" column="15" bodyfile="SI4735.h" bodystart="340" bodyend="348"/>
+    <location file="SI4735.h" line="348" column="15" bodyfile="SI4735.h" bodystart="348" bodyend="356"/>
     <listofallmembers>
       <member refid="unionsi47x__tune__status_1a6cb498a025a973418d27991eb3151489" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>arg</name></member>
       <member refid="unionsi47x__tune__status_1ae6d5968d62f9c0eec44528e7b050f0bf" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>CANCEL</name></member>

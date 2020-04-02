@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="781" column="10" bodyfile="SI4735.h" bodystart="781" bodyend="-1"/>
+        <location file="SI4735.h" line="789" column="10" bodyfile="SI4735.h" bodystart="789" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a7aa607f80e97d45ac7a80cdcbdeb09f9" prot="protected" static="no" mutable="no">
         <type>char</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="782" column="10" bodyfile="SI4735.h" bodystart="782" bodyend="-1"/>
+        <location file="SI4735.h" line="790" column="10" bodyfile="SI4735.h" bodystart="790" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1ac24a8bbd39628c2981208cb452165a0e" prot="protected" static="no" mutable="no">
         <type>char</type>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="783" column="10" bodyfile="SI4735.h" bodystart="783" bodyend="-1"/>
+        <location file="SI4735.h" line="791" column="10" bodyfile="SI4735.h" bodystart="791" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a1746daa81b363880dd106fa430784bf8" prot="protected" static="no" mutable="no">
         <type>char</type>
@@ -57,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="784" column="10" bodyfile="SI4735.h" bodystart="784" bodyend="-1"/>
+        <location file="SI4735.h" line="792" column="10" bodyfile="SI4735.h" bodystart="792" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a1c7ec3559a78c5ef1bda49cb0abdf1de" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -70,7 +70,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="786" column="9" bodyfile="SI4735.h" bodystart="786" bodyend="-1"/>
+        <location file="SI4735.h" line="794" column="9" bodyfile="SI4735.h" bodystart="794" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1adecc2478d73cd7d18e1f88fd70d1488d" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -83,7 +83,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="787" column="9" bodyfile="SI4735.h" bodystart="787" bodyend="-1"/>
+        <location file="SI4735.h" line="795" column="9" bodyfile="SI4735.h" bodystart="795" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a11477d1eb13efb348395a4984b67f392" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -96,7 +96,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="788" column="9" bodyfile="SI4735.h" bodystart="788" bodyend="-1"/>
+        <location file="SI4735.h" line="796" column="9" bodyfile="SI4735.h" bodystart="796" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" prot="protected" static="no" mutable="no">
         <type>int16_t</type>
@@ -110,7 +110,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="790" column="13" bodyfile="SI4735.h" bodystart="790" bodyend="-1"/>
+        <location file="SI4735.h" line="798" column="13" bodyfile="SI4735.h" bodystart="798" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1abd965c0e49493bc2c7c37547d36dcc96" prot="protected" static="no" mutable="no">
         <type>uint8_t</type>
@@ -123,7 +123,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="792" column="13" bodyfile="SI4735.h" bodystart="792" bodyend="-1"/>
+        <location file="SI4735.h" line="800" column="13" bodyfile="SI4735.h" bodystart="800" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a6470177f747ef7eb8e7d02c76f72b19e" prot="protected" static="no" mutable="no">
         <type>uint8_t</type>
@@ -136,7 +136,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="793" column="13" bodyfile="SI4735.h" bodystart="793" bodyend="-1"/>
+        <location file="SI4735.h" line="801" column="13" bodyfile="SI4735.h" bodystart="801" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1af8f8123888060f858c74ba08a29ff38b" prot="protected" static="no" mutable="no">
         <type>uint8_t</type>
@@ -149,7 +149,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="794" column="13" bodyfile="SI4735.h" bodystart="794" bodyend="-1"/>
+        <location file="SI4735.h" line="802" column="13" bodyfile="SI4735.h" bodystart="802" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" prot="protected" static="no" mutable="no">
         <type>uint8_t</type>
@@ -162,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="796" column="13" bodyfile="SI4735.h" bodystart="796" bodyend="-1"/>
+        <location file="SI4735.h" line="804" column="13" bodyfile="SI4735.h" bodystart="804" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a4663c1c92d980472556368944cb2fc68" prot="protected" static="no" mutable="no">
         <type>uint16_t</type>
@@ -175,7 +175,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="798" column="14" bodyfile="SI4735.h" bodystart="798" bodyend="-1"/>
+        <location file="SI4735.h" line="806" column="14" bodyfile="SI4735.h" bodystart="806" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1aa3d41ad3fdb9d821a721a8acfaf47670" prot="protected" static="no" mutable="no">
         <type>uint16_t</type>
@@ -188,7 +188,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="799" column="14" bodyfile="SI4735.h" bodystart="799" bodyend="-1"/>
+        <location file="SI4735.h" line="807" column="14" bodyfile="SI4735.h" bodystart="807" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a9da4f3df9e5e6b0448eff15e12f690dd" prot="protected" static="no" mutable="no">
         <type>uint16_t</type>
@@ -201,7 +201,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="800" column="14" bodyfile="SI4735.h" bodystart="800" bodyend="-1"/>
+        <location file="SI4735.h" line="808" column="14" bodyfile="SI4735.h" bodystart="808" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1ad72759f246cceb147bf031b72173b0ca" prot="protected" static="no" mutable="no">
         <type>uint16_t</type>
@@ -214,7 +214,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="802" column="14" bodyfile="SI4735.h" bodystart="802" bodyend="-1"/>
+        <location file="SI4735.h" line="810" column="14" bodyfile="SI4735.h" bodystart="810" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a157e4ae8cd53396973584aa10888cd47" prot="protected" static="no" mutable="no">
         <type>uint8_t</type>
@@ -228,7 +228,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="804" column="13" bodyfile="SI4735.h" bodystart="804" bodyend="-1"/>
+        <location file="SI4735.h" line="812" column="13" bodyfile="SI4735.h" bodystart="812" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a650490ab792c1853c97f600661ecdaa1" prot="protected" static="no" mutable="no">
         <type>uint8_t</type>
@@ -243,7 +243,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="806" column="13" bodyfile="SI4735.h" bodystart="806" bodyend="-1"/>
+        <location file="SI4735.h" line="814" column="13" bodyfile="SI4735.h" bodystart="814" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a4439c40db789f02371ea0fb9b22650c5" prot="protected" static="no" mutable="no">
         <type><ref refid="unionsi47x__frequency" kindref="compound">si47x_frequency</ref></type>
@@ -256,7 +256,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="808" column="21" bodyfile="SI4735.h" bodystart="808" bodyend="-1"/>
+        <location file="SI4735.h" line="816" column="21" bodyfile="SI4735.h" bodystart="816" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" prot="protected" static="no" mutable="no">
         <type><ref refid="unionsi47x__set__frequency" kindref="compound">si47x_set_frequency</ref></type>
@@ -269,7 +269,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="809" column="25" bodyfile="SI4735.h" bodystart="809" bodyend="-1"/>
+        <location file="SI4735.h" line="817" column="25" bodyfile="SI4735.h" bodystart="817" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" prot="protected" static="no" mutable="no">
         <type><ref refid="unionsi47x__rqs__status" kindref="compound">si47x_rqs_status</ref></type>
@@ -282,7 +282,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="810" column="22" bodyfile="SI4735.h" bodystart="810" bodyend="-1"/>
+        <location file="SI4735.h" line="818" column="22" bodyfile="SI4735.h" bodystart="818" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" prot="protected" static="no" mutable="no">
         <type><ref refid="unionsi47x__response__status" kindref="compound">si47x_response_status</ref></type>
@@ -295,7 +295,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="811" column="27" bodyfile="SI4735.h" bodystart="811" bodyend="-1"/>
+        <location file="SI4735.h" line="819" column="27" bodyfile="SI4735.h" bodystart="819" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" prot="protected" static="no" mutable="no">
         <type><ref refid="unionsi47x__firmware__information" kindref="compound">si47x_firmware_information</ref></type>
@@ -308,7 +308,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="812" column="32" bodyfile="SI4735.h" bodystart="812" bodyend="-1"/>
+        <location file="SI4735.h" line="820" column="32" bodyfile="SI4735.h" bodystart="820" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" prot="protected" static="no" mutable="no">
         <type><ref refid="unionsi47x__rds__status" kindref="compound">si47x_rds_status</ref></type>
@@ -321,7 +321,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="813" column="22" bodyfile="SI4735.h" bodystart="813" bodyend="-1"/>
+        <location file="SI4735.h" line="821" column="22" bodyfile="SI4735.h" bodystart="821" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1adf2d1f37ec9edf95e14aecb3cdc7417d" prot="protected" static="no" mutable="no">
         <type><ref refid="unionsi47x__agc__status" kindref="compound">si47x_agc_status</ref></type>
@@ -334,7 +334,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="814" column="22" bodyfile="SI4735.h" bodystart="814" bodyend="-1"/>
+        <location file="SI4735.h" line="822" column="22" bodyfile="SI4735.h" bodystart="822" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a74ee9c99b1e092f7b1efa2f771f38324" prot="protected" static="no" mutable="no">
         <type><ref refid="unionsi47x__ssb__mode" kindref="compound">si47x_ssb_mode</ref></type>
@@ -347,7 +347,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="815" column="20" bodyfile="SI4735.h" bodystart="815" bodyend="-1"/>
+        <location file="SI4735.h" line="823" column="20" bodyfile="SI4735.h" bodystart="823" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a1331b701088bda20bf0844e2e38be142" prot="protected" static="no" mutable="no">
         <type><ref refid="unionsi473x__powerup" kindref="compound">si473x_powerup</ref></type>
@@ -360,7 +360,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="817" column="20" bodyfile="SI4735.h" bodystart="817" bodyend="-1"/>
+        <location file="SI4735.h" line="825" column="20" bodyfile="SI4735.h" bodystart="825" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1aa5220772c468fcfb69b5d16163de73fc" prot="protected" static="no" mutable="no">
         <type>uint8_t</type>
@@ -374,7 +374,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="819" column="13" bodyfile="SI4735.h" bodystart="819" bodyend="-1"/>
+        <location file="SI4735.h" line="827" column="13" bodyfile="SI4735.h" bodystart="827" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_s_i4735_1a05730ca069db4be7c45a9c92f29d3b52" prot="protected" static="no" mutable="no">
         <type>uint8_t</type>
@@ -387,7 +387,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="821" column="13" bodyfile="SI4735.h" bodystart="821" bodyend="-1"/>
+        <location file="SI4735.h" line="829" column="13" bodyfile="SI4735.h" bodystart="829" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -406,7 +406,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="823" column="10" bodyfile="SI4735.cpp" bodystart="45" bodyend="49"/>
+        <location file="SI4735.h" line="831" column="10" bodyfile="SI4735.cpp" bodystart="45" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ae351181347f8c512b625d98ef7844961" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -432,7 +432,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="824" column="10" bodyfile="SI4735.cpp" bodystart="603" bodyend="620"/>
+        <location file="SI4735.h" line="832" column="10" bodyfile="SI4735.cpp" bodystart="603" bodyend="620"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -446,7 +446,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="825" column="10" bodyfile="SI4735.cpp" bodystart="2006" bodyend="2021"/>
+        <location file="SI4735.h" line="833" column="10" bodyfile="SI4735.cpp" bodystart="2006" bodyend="2021"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ae4683e9a9fc7a633305b18dae54fbd83" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -463,7 +463,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="826" column="10" bodyfile="SI4735.cpp" bodystart="749" bodyend="760"/>
+        <location file="SI4735.h" line="834" column="10" bodyfile="SI4735.cpp" bodystart="749" bodyend="760"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac65c552004f5e5e646638e37a5a68213" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -477,7 +477,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="827" column="10" bodyfile="SI4735.cpp" bodystart="1213" bodyend="1217"/>
+        <location file="SI4735.h" line="835" column="10" bodyfile="SI4735.cpp" bodystart="1213" bodyend="1217"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aed0988165057aa2880f41b88ac236cd7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -491,7 +491,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="828" column="10" bodyfile="SI4735.cpp" bodystart="1223" bodyend="1227"/>
+        <location file="SI4735.h" line="836" column="10" bodyfile="SI4735.cpp" bodystart="1223" bodyend="1227"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1adede134b96fd5650b87673ce413babb2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -505,7 +505,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="829" column="10" bodyfile="SI4735.cpp" bodystart="1232" bodyend="1236"/>
+        <location file="SI4735.h" line="837" column="10" bodyfile="SI4735.cpp" bodystart="1232" bodyend="1236"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -527,7 +527,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="832" column="5" bodyfile="SI4735.cpp" bodystart="30" bodyend="34"/>
+        <location file="SI4735.h" line="840" column="5" bodyfile="SI4735.cpp" bodystart="30" bodyend="34"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1adc6014674bd4d1ee3aab56c605926db1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -547,7 +547,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="833" column="10" bodyfile="SI4735.cpp" bodystart="126" bodyend="134"/>
+        <location file="SI4735.h" line="841" column="10" bodyfile="SI4735.cpp" bodystart="126" bodyend="134"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a7b45c1b22c3c1a3f2326bee913d1e1e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -567,7 +567,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="834" column="10" bodyfile="SI4735.cpp" bodystart="141" bodyend="148"/>
+        <location file="SI4735.h" line="842" column="10" bodyfile="SI4735.cpp" bodystart="141" bodyend="148"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a944ed704e2175a6cf660ad65ca5bbad5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -608,7 +608,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="837" column="10" bodyfile="SI4735.cpp" bodystart="322" bodyend="326"/>
+        <location file="SI4735.h" line="845" column="10" bodyfile="SI4735.cpp" bodystart="322" bodyend="326"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a95fd37277dbb8b16b5ae7a996a5f9eba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -674,7 +674,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="838" column="10" bodyfile="SI4735.cpp" bodystart="279" bodyend="313"/>
+        <location file="SI4735.h" line="846" column="10" bodyfile="SI4735.cpp" bodystart="279" bodyend="313"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a8bc001cb28dc8fbd88ba0fa7024eca39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -764,7 +764,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="840" column="10" bodyfile="SI4735.cpp" bodystart="163" bodyend="189"/>
+        <location file="SI4735.h" line="848" column="10" bodyfile="SI4735.cpp" bodystart="163" bodyend="189"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a3e228da65641f4dcf4253262e19bde9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -787,7 +787,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="841" column="10" bodyfile="SI4735.cpp" bodystart="206" bodyend="218"/>
+        <location file="SI4735.h" line="849" column="10" bodyfile="SI4735.cpp" bodystart="206" bodyend="218"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a412f51386c47a17cf04fd0a3c3078726" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -804,7 +804,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="842" column="10" bodyfile="SI4735.cpp" bodystart="225" bodyend="228"/>
+        <location file="SI4735.h" line="850" column="10" bodyfile="SI4735.cpp" bodystart="225" bodyend="228"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aa554b3390fb6c5a4d6661b96afae73ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -824,7 +824,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="843" column="10" bodyfile="SI4735.cpp" bodystart="236" bodyend="243"/>
+        <location file="SI4735.h" line="851" column="10" bodyfile="SI4735.cpp" bodystart="236" bodyend="243"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a63d205f2d3169ba877a2bd2ee28d224f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -856,7 +856,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="845" column="10" bodyfile="SI4735.cpp" bodystart="376" bodyend="405"/>
+        <location file="SI4735.h" line="853" column="10" bodyfile="SI4735.cpp" bodystart="376" bodyend="405"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a3cf856c44fcfffb3d81b22b1d09b881f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -873,7 +873,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="848" column="10" bodyfile="SI4735.cpp" bodystart="872" bodyend="875"/>
+        <location file="SI4735.h" line="856" column="10" bodyfile="SI4735.cpp" bodystart="872" bodyend="875"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a5c0f4036a7fbbd11a26f1f6f4579d3cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -914,7 +914,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="849" column="10" bodyfile="SI4735.cpp" bodystart="841" bodyend="865"/>
+        <location file="SI4735.h" line="857" column="10" bodyfile="SI4735.cpp" bodystart="841" bodyend="865"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint16_t</type>
@@ -934,7 +934,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="852" column="14" bodyfile="SI4735.cpp" bodystart="809" bodyend="819"/>
+        <location file="SI4735.h" line="860" column="14" bodyfile="SI4735.cpp" bodystart="809" bodyend="819"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a8240278970ae8bf7283e14714b4329ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint16_t</type>
@@ -951,7 +951,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="853" column="14" bodyfile="SI4735.cpp" bodystart="829" bodyend="832"/>
+        <location file="SI4735.h" line="861" column="14" bodyfile="SI4735.cpp" bodystart="829" bodyend="832"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ad194137a6a712a599e3c26e5b6357594" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -965,7 +965,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="861" column="17" bodyfile="SI4735.h" bodystart="861" bodyend="861"/>
+        <location file="SI4735.h" line="869" column="17" bodyfile="SI4735.h" bodystart="869" bodyend="869"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a97dc44d9927ea58730a18fb6baa6867f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -979,7 +979,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="862" column="17" bodyfile="SI4735.h" bodystart="862" bodyend="862"/>
+        <location file="SI4735.h" line="870" column="17" bodyfile="SI4735.h" bodystart="870" bodyend="870"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a2cc659bddc5efc7695f2a6031c2edd4b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -993,7 +993,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="863" column="17" bodyfile="SI4735.h" bodystart="863" bodyend="863"/>
+        <location file="SI4735.h" line="871" column="17" bodyfile="SI4735.h" bodystart="871" bodyend="871"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a69723840497ed693d6f9a4e840ab07c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1007,7 +1007,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="864" column="17" bodyfile="SI4735.h" bodystart="864" bodyend="864"/>
+        <location file="SI4735.h" line="872" column="17" bodyfile="SI4735.h" bodystart="872" bodyend="872"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1afcb38f53b6eb71cadcefa0bb472ca943" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1021,7 +1021,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="865" column="17" bodyfile="SI4735.h" bodystart="865" bodyend="865"/>
+        <location file="SI4735.h" line="873" column="17" bodyfile="SI4735.h" bodystart="873" bodyend="873"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ab8a51de592fd40fdd872039b3c70716f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1035,7 +1035,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="866" column="17" bodyfile="SI4735.h" bodystart="866" bodyend="866"/>
+        <location file="SI4735.h" line="874" column="17" bodyfile="SI4735.h" bodystart="874" bodyend="874"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a19e96565a2dec7ec68469f45c8d3e084" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1049,7 +1049,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="867" column="17" bodyfile="SI4735.h" bodystart="867" bodyend="867"/>
+        <location file="SI4735.h" line="875" column="17" bodyfile="SI4735.h" bodystart="875" bodyend="875"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1afb19da8a05320d7f38cca8325725edfd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1063,7 +1063,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="868" column="17" bodyfile="SI4735.h" bodystart="868" bodyend="868"/>
+        <location file="SI4735.h" line="876" column="17" bodyfile="SI4735.h" bodystart="876" bodyend="876"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aeeefd12b49dbc764e0f45fe208441482" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1077,7 +1077,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="869" column="20" bodyfile="SI4735.h" bodystart="869" bodyend="869"/>
+        <location file="SI4735.h" line="877" column="20" bodyfile="SI4735.h" bodystart="877" bodyend="877"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac0bd4daaa321ef8956dca4d1e4e5cd3c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1091,7 +1091,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="870" column="20" bodyfile="SI4735.h" bodystart="870" bodyend="870"/>
+        <location file="SI4735.h" line="878" column="20" bodyfile="SI4735.h" bodystart="878" bodyend="878"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a0f9b5438a6f92c8f2e538ee640f353ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1105,7 +1105,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="871" column="20" bodyfile="SI4735.h" bodystart="871" bodyend="871"/>
+        <location file="SI4735.h" line="879" column="20" bodyfile="SI4735.h" bodystart="879" bodyend="879"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a3905d6551992b4dd51d13f05978d9081" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1119,7 +1119,7 @@ Pay attention: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For writ
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="872" column="20" bodyfile="SI4735.h" bodystart="872" bodyend="872"/>
+        <location file="SI4735.h" line="880" column="20" bodyfile="SI4735.h" bodystart="880" bodyend="880"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aaae187575b9868ff427c063c3a6cca2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1139,7 +1139,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="874" column="10" bodyfile="SI4735.cpp" bodystart="885" bodyend="912"/>
+        <location file="SI4735.h" line="882" column="10" bodyfile="SI4735.cpp" bodystart="885" bodyend="912"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a98d12da4b801493a350ecf770f4f2d8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1169,7 +1169,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="876" column="10" bodyfile="SI4735.cpp" bodystart="956" bodyend="961"/>
+        <location file="SI4735.h" line="884" column="10" bodyfile="SI4735.cpp" bodystart="956" bodyend="961"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a6e1e0e48d71e09debb07fc6dbe884829" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1182,7 +1182,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="877" column="17" bodyfile="SI4735.h" bodystart="877" bodyend="877"/>
+        <location file="SI4735.h" line="885" column="17" bodyfile="SI4735.h" bodystart="885" bodyend="885"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a27dd7dfd46583eb5be91cfc9461807ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1195,7 +1195,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="878" column="20" bodyfile="SI4735.h" bodystart="878" bodyend="878"/>
+        <location file="SI4735.h" line="886" column="20" bodyfile="SI4735.h" bodystart="886" bodyend="886"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1acc57f6bde08e94462a9d75fe28a66ea8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1212,7 +1212,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="880" column="17" bodyfile="SI4735.h" bodystart="880" bodyend="880"/>
+        <location file="SI4735.h" line="888" column="17" bodyfile="SI4735.h" bodystart="888" bodyend="888"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac1af311f799e8a007cbd048a88f1abe9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1225,7 +1225,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="881" column="17" bodyfile="SI4735.h" bodystart="881" bodyend="881"/>
+        <location file="SI4735.h" line="889" column="17" bodyfile="SI4735.h" bodystart="889" bodyend="889"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ad357ccc5f207ec11d36d9569046c098f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1242,7 +1242,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="883" column="17" bodyfile="SI4735.h" bodystart="883" bodyend="883"/>
+        <location file="SI4735.h" line="891" column="17" bodyfile="SI4735.h" bodystart="891" bodyend="891"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1afd057daf737a78a50ad1a03a6b43a111" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1255,7 +1255,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="884" column="17" bodyfile="SI4735.h" bodystart="884" bodyend="884"/>
+        <location file="SI4735.h" line="892" column="17" bodyfile="SI4735.h" bodystart="892" bodyend="892"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aea08b7e553212cbe01bf6f4ec9e02de7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1268,7 +1268,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="887" column="17" bodyfile="SI4735.h" bodystart="887" bodyend="887"/>
+        <location file="SI4735.h" line="895" column="17" bodyfile="SI4735.h" bodystart="895" bodyend="895"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a4eceaf5745e87fcca6cf31c04c5635bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1281,7 +1281,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="888" column="20" bodyfile="SI4735.h" bodystart="888" bodyend="888"/>
+        <location file="SI4735.h" line="896" column="20" bodyfile="SI4735.h" bodystart="896" bodyend="896"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a27c22f5671ce3229e925e5fbe93ba0a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1323,7 +1323,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="889" column="10" bodyfile="SI4735.cpp" bodystart="926" bodyend="946"/>
+        <location file="SI4735.h" line="897" column="10" bodyfile="SI4735.cpp" bodystart="926" bodyend="946"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1abf59183da13c72384093fc238c3114cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1353,7 +1353,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="891" column="10" bodyfile="SI4735.cpp" bodystart="974" bodyend="1008"/>
+        <location file="SI4735.h" line="899" column="10" bodyfile="SI4735.cpp" bodystart="974" bodyend="1008"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a7393fa4f9d7811c8d0c0f48283ef6435" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1382,7 +1382,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="892" column="10" bodyfile="SI4735.cpp" bodystart="1020" bodyend="1023"/>
+        <location file="SI4735.h" line="900" column="10" bodyfile="SI4735.cpp" bodystart="1020" bodyend="1023"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a4f5abf562ec00767a3b84f74eba5ac4d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1395,7 +1395,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="895" column="20" bodyfile="SI4735.h" bodystart="895" bodyend="895"/>
+        <location file="SI4735.h" line="903" column="20" bodyfile="SI4735.h" bodystart="903" bodyend="903"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1adb3fe55583dafeac7439a303b637d162" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1409,7 +1409,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="896" column="20" bodyfile="SI4735.h" bodystart="896" bodyend="896"/>
+        <location file="SI4735.h" line="904" column="20" bodyfile="SI4735.h" bodystart="904" bodyend="904"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a0c9ae82012cdc97c4080b84e37fa1820" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1423,7 +1423,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="897" column="17" bodyfile="SI4735.h" bodystart="897" bodyend="897"/>
+        <location file="SI4735.h" line="905" column="17" bodyfile="SI4735.h" bodystart="905" bodyend="905"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1adf11a66236392ca107b5d52a8747f838" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1437,7 +1437,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="898" column="17" bodyfile="SI4735.h" bodystart="898" bodyend="898"/>
+        <location file="SI4735.h" line="906" column="17" bodyfile="SI4735.h" bodystart="906" bodyend="906"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a1296592571c85b89ed59a4ee2324bd52" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1451,7 +1451,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="899" column="17" bodyfile="SI4735.h" bodystart="899" bodyend="899"/>
+        <location file="SI4735.h" line="907" column="17" bodyfile="SI4735.h" bodystart="907" bodyend="907"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aec3c71a3252dd6660e5bceebc0d1f988" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1465,7 +1465,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="900" column="17" bodyfile="SI4735.h" bodystart="900" bodyend="900"/>
+        <location file="SI4735.h" line="908" column="17" bodyfile="SI4735.h" bodystart="908" bodyend="908"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a5ce1abf8c9d53c027f6b0870efedda1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1479,7 +1479,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="901" column="17" bodyfile="SI4735.h" bodystart="901" bodyend="901"/>
+        <location file="SI4735.h" line="909" column="17" bodyfile="SI4735.h" bodystart="909" bodyend="909"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1affe5cee9daf44677802a94f96d893c94" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1493,7 +1493,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="902" column="17" bodyfile="SI4735.h" bodystart="902" bodyend="902"/>
+        <location file="SI4735.h" line="910" column="17" bodyfile="SI4735.h" bodystart="910" bodyend="910"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a76e8485292878c1294e5910601f4575f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1507,7 +1507,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="903" column="17" bodyfile="SI4735.h" bodystart="903" bodyend="903"/>
+        <location file="SI4735.h" line="911" column="17" bodyfile="SI4735.h" bodystart="911" bodyend="911"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1acaafab62dd411dc9b79f9fb96e8c8832" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1521,7 +1521,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="905" column="20" bodyfile="SI4735.h" bodystart="905" bodyend="905"/>
+        <location file="SI4735.h" line="913" column="20" bodyfile="SI4735.h" bodystart="913" bodyend="913"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a127fa3d2f9b7d57169bbef95703fb4c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1535,7 +1535,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="906" column="17" bodyfile="SI4735.h" bodystart="906" bodyend="906"/>
+        <location file="SI4735.h" line="914" column="17" bodyfile="SI4735.h" bodystart="914" bodyend="914"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a6d521bb5c7ef7811e57c7128cb2106b3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1549,7 +1549,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="907" column="20" bodyfile="SI4735.h" bodystart="907" bodyend="907"/>
+        <location file="SI4735.h" line="915" column="20" bodyfile="SI4735.h" bodystart="915" bodyend="915"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a2b3bfeca3b545f5741b1ed70a1dba077" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1563,7 +1563,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="908" column="20" bodyfile="SI4735.h" bodystart="908" bodyend="908"/>
+        <location file="SI4735.h" line="916" column="20" bodyfile="SI4735.h" bodystart="916" bodyend="916"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ad194a5c915620c6a1b8b3d6d7ed645d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1577,7 +1577,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="909" column="17" bodyfile="SI4735.h" bodystart="909" bodyend="909"/>
+        <location file="SI4735.h" line="917" column="17" bodyfile="SI4735.h" bodystart="917" bodyend="917"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a82d0865cf348deb0c9f81a2f12222fb0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1591,7 +1591,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="910" column="17" bodyfile="SI4735.h" bodystart="910" bodyend="910"/>
+        <location file="SI4735.h" line="918" column="17" bodyfile="SI4735.h" bodystart="918" bodyend="918"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a16107a2f2e51cce5a7e2b1b303425118" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1605,7 +1605,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="911" column="17" bodyfile="SI4735.h" bodystart="911" bodyend="911"/>
+        <location file="SI4735.h" line="919" column="17" bodyfile="SI4735.h" bodystart="919" bodyend="919"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ab26fbd99452daaf18875ff1c3c35d081" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1619,7 +1619,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="919" column="20" bodyfile="SI4735.h" bodystart="919" bodyend="919"/>
+        <location file="SI4735.h" line="927" column="20" bodyfile="SI4735.h" bodystart="927" bodyend="927"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac2f451cb7320b66d8e08698dcacd50d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1633,7 +1633,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="920" column="20" bodyfile="SI4735.h" bodystart="920" bodyend="920"/>
+        <location file="SI4735.h" line="928" column="20" bodyfile="SI4735.h" bodystart="928" bodyend="928"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a74b68fcd5718520fc0683977dfc18fc8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1647,7 +1647,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="921" column="20" bodyfile="SI4735.h" bodystart="921" bodyend="921"/>
+        <location file="SI4735.h" line="929" column="20" bodyfile="SI4735.h" bodystart="929" bodyend="929"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a58b99a8d5ec2199cb5f2105675aa7a56" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1661,7 +1661,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="922" column="20" bodyfile="SI4735.h" bodystart="922" bodyend="922"/>
+        <location file="SI4735.h" line="930" column="20" bodyfile="SI4735.h" bodystart="930" bodyend="930"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac10b3cd3875985e2c129fea14e2bc47a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1675,7 +1675,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="923" column="20" bodyfile="SI4735.h" bodystart="923" bodyend="923"/>
+        <location file="SI4735.h" line="931" column="20" bodyfile="SI4735.h" bodystart="931" bodyend="931"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ab57870d69969e73265e9cffe2a73d868" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1689,7 +1689,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="924" column="20" bodyfile="SI4735.h" bodystart="924" bodyend="924"/>
+        <location file="SI4735.h" line="932" column="20" bodyfile="SI4735.h" bodystart="932" bodyend="932"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a883645d266a612ce07d71fdb2cd81e5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1703,7 +1703,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="925" column="20" bodyfile="SI4735.h" bodystart="925" bodyend="925"/>
+        <location file="SI4735.h" line="933" column="20" bodyfile="SI4735.h" bodystart="933" bodyend="933"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1acd363d9111e4a57cf2e1167634bc1b5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1717,7 +1717,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="926" column="20" bodyfile="SI4735.h" bodystart="926" bodyend="926"/>
+        <location file="SI4735.h" line="934" column="20" bodyfile="SI4735.h" bodystart="934" bodyend="934"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a3b7543657dfd36da962267bb8692b796" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1748,7 +1748,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="929" column="10" bodyfile="SI4735.cpp" bodystart="1140" bodyend="1144"/>
+        <location file="SI4735.h" line="937" column="10" bodyfile="SI4735.cpp" bodystart="1140" bodyend="1144"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1acf79be50a01fe91abd498e5d42d83317" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint8_t</type>
@@ -1767,7 +1767,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="930" column="13" bodyfile="SI4735.cpp" bodystart="1165" bodyend="1168"/>
+        <location file="SI4735.h" line="938" column="13" bodyfile="SI4735.cpp" bodystart="1165" bodyend="1168"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a23d49ab35895b76e0898405fac086c09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1785,7 +1785,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="931" column="10" bodyfile="SI4735.cpp" bodystart="1187" bodyend="1192"/>
+        <location file="SI4735.h" line="939" column="10" bodyfile="SI4735.cpp" bodystart="1187" bodyend="1192"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a5e3e8cf04ca99c6be2dbe15d72b4efa3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1803,7 +1803,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="932" column="10" bodyfile="SI4735.cpp" bodystart="1175" bodyend="1180"/>
+        <location file="SI4735.h" line="940" column="10" bodyfile="SI4735.cpp" bodystart="1175" bodyend="1180"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a430b86ccfd4d6c89da9202a538e0cfc9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1816,7 +1816,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="933" column="20" bodyfile="SI4735.h" bodystart="933" bodyend="933"/>
+        <location file="SI4735.h" line="941" column="20" bodyfile="SI4735.h" bodystart="941" bodyend="941"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a12d4e173d096b1568e4209a63534d4f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1847,7 +1847,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="934" column="10" bodyfile="SI4735.cpp" bodystart="1153" bodyend="1156"/>
+        <location file="SI4735.h" line="942" column="10" bodyfile="SI4735.cpp" bodystart="1153" bodyend="1156"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aea652d358b4b586b6d5964ceb8eb7c81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1913,7 +1913,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="937" column="10" bodyfile="SI4735.cpp" bodystart="777" bodyend="785"/>
+        <location file="SI4735.h" line="945" column="10" bodyfile="SI4735.cpp" bodystart="777" bodyend="785"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a1a404ca11fb32b457be2d7cfe484dd03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1943,7 +1943,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="938" column="10" bodyfile="SI4735.cpp" bodystart="794" bodyend="797"/>
+        <location file="SI4735.h" line="946" column="10" bodyfile="SI4735.cpp" bodystart="794" bodyend="797"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a753390952a1f2c2a98343979f1f3daa0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1960,7 +1960,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="941" column="10" bodyfile="SI4735.cpp" bodystart="458" bodyend="471"/>
+        <location file="SI4735.h" line="949" column="10" bodyfile="SI4735.cpp" bodystart="458" bodyend="471"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1acd89e7b8adefcbc4e89f802acb915906" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1977,7 +1977,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="942" column="10" bodyfile="SI4735.cpp" bodystart="478" bodyend="487"/>
+        <location file="SI4735.h" line="950" column="10" bodyfile="SI4735.cpp" bodystart="478" bodyend="487"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a43c5ea36995a3897820e0170d94c81f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2044,7 +2044,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="943" column="10" bodyfile="SI4735.cpp" bodystart="499" bodyend="512"/>
+        <location file="SI4735.h" line="951" column="10" bodyfile="SI4735.cpp" bodystart="499" bodyend="512"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a673bc4b17d564bb6e7f3e9a61d35fbb3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2111,7 +2111,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="944" column="10" bodyfile="SI4735.cpp" bodystart="524" bodyend="538"/>
+        <location file="SI4735.h" line="952" column="10" bodyfile="SI4735.cpp" bodystart="524" bodyend="538"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a8755743a36d2d4662c8db918d02ee4e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2154,7 +2154,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="946" column="10" bodyfile="SI4735.cpp" bodystart="557" bodyend="584"/>
+        <location file="SI4735.h" line="954" column="10" bodyfile="SI4735.cpp" bodystart="557" bodyend="584"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a794f6fe7987e146a0135b8e6fabec55c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2184,7 +2184,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="948" column="10" bodyfile="SI4735.cpp" bodystart="417" bodyend="420"/>
+        <location file="SI4735.h" line="956" column="10" bodyfile="SI4735.cpp" bodystart="417" bodyend="420"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a8c54bfc1fcf1dd989e697cc9b7094f59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -2197,7 +2197,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="950" column="20" bodyfile="SI4735.h" bodystart="950" bodyend="950"/>
+        <location file="SI4735.h" line="958" column="20" bodyfile="SI4735.h" bodystart="958" bodyend="958"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a51d816112d974f10306d9d001667395a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -2215,7 +2215,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="951" column="17" bodyfile="SI4735.h" bodystart="951" bodyend="951"/>
+        <location file="SI4735.h" line="959" column="17" bodyfile="SI4735.h" bodystart="959" bodyend="959"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a667fead0c7b2658c2b932370ad4e4f88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -2229,7 +2229,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="952" column="20" bodyfile="SI4735.h" bodystart="952" bodyend="952"/>
+        <location file="SI4735.h" line="960" column="20" bodyfile="SI4735.h" bodystart="960" bodyend="960"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aee22a5ce06d4948fad2365a7b62fbd8d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -2247,7 +2247,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="953" column="17" bodyfile="SI4735.h" bodystart="953" bodyend="953"/>
+        <location file="SI4735.h" line="961" column="17" bodyfile="SI4735.h" bodystart="961" bodyend="961"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aaceadaaf0835e3db124d1b36f2aebd3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2259,7 +2259,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
           <declname>capacitor</declname>
         </param>
         <briefdescription>
-<para>Onlye FM. Freeze Metrics During Alternate Frequency Jump. </para>
+<para>Only FM. Freeze Metrics During Alternate Frequency Jump. </para>
         </briefdescription>
         <detaileddescription>
 <para>Selects the tuning capacitor value.</para>
@@ -2280,7 +2280,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="954" column="10" bodyfile="SI4735.cpp" bodystart="343" bodyend="365"/>
+        <location file="SI4735.h" line="962" column="10" bodyfile="SI4735.cpp" bodystart="343" bodyend="365"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac0fcfd64dcf30b11d4dc219d9f7fc5d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2297,7 +2297,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="956" column="10" bodyfile="SI4735.cpp" bodystart="427" bodyend="435"/>
+        <location file="SI4735.h" line="964" column="10" bodyfile="SI4735.cpp" bodystart="427" bodyend="435"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a93fff524a6f900ac91eb1222ce73f9ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2314,7 +2314,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="957" column="10" bodyfile="SI4735.cpp" bodystart="442" bodyend="451"/>
+        <location file="SI4735.h" line="965" column="10" bodyfile="SI4735.cpp" bodystart="442" bodyend="451"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ae7ca2ffa6ad68ca69e4f35a3c40bbc3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -2331,7 +2331,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="958" column="10" bodyfile="SI4735.cpp" bodystart="592" bodyend="595"/>
+        <location file="SI4735.h" line="966" column="10" bodyfile="SI4735.cpp" bodystart="592" bodyend="595"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a2fbc7e2187a7c645879623100dbc8502" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2351,7 +2351,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="959" column="10" bodyfile="SI4735.cpp" bodystart="250" bodyend="266"/>
+        <location file="SI4735.h" line="967" column="10" bodyfile="SI4735.cpp" bodystart="250" bodyend="266"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a39f0e95a5efe5bd9add926c6f538528a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2368,7 +2368,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="961" column="10"/>
+        <location file="SI4735.h" line="969" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a3280b98b8331f00b4d0158ef1b076533" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2410,7 +2410,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="962" column="10" bodyfile="SI4735.cpp" bodystart="1033" bodyend="1059"/>
+        <location file="SI4735.h" line="970" column="10" bodyfile="SI4735.cpp" bodystart="1033" bodyend="1059"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aad5211e3fff28141473442f59008e415" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2427,7 +2427,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="963" column="10" bodyfile="SI4735.cpp" bodystart="1066" bodyend="1071"/>
+        <location file="SI4735.h" line="971" column="10" bodyfile="SI4735.cpp" bodystart="1066" bodyend="1071"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a1eeaa09670cdbdc7ddd724c940d2506b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2444,7 +2444,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="964" column="10" bodyfile="SI4735.cpp" bodystart="1078" bodyend="1083"/>
+        <location file="SI4735.h" line="972" column="10" bodyfile="SI4735.cpp" bodystart="1078" bodyend="1083"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a6b901d5cd729364dbda6e5b811dc9ec2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2486,7 +2486,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="965" column="10" bodyfile="SI4735.cpp" bodystart="1093" bodyend="1097"/>
+        <location file="SI4735.h" line="973" column="10" bodyfile="SI4735.cpp" bodystart="1093" bodyend="1097"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a6f8218c0bbdcb75ea54bc8af2a60dcc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2516,7 +2516,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="966" column="10" bodyfile="SI4735.cpp" bodystart="1106" bodyend="1109"/>
+        <location file="SI4735.h" line="974" column="10" bodyfile="SI4735.cpp" bodystart="1106" bodyend="1109"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aeef76371500acdbdc17ca8dc980e1fff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2537,7 +2537,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="967" column="10" bodyfile="SI4735.cpp" bodystart="1117" bodyend="1120"/>
+        <location file="SI4735.h" line="975" column="10" bodyfile="SI4735.cpp" bodystart="1117" bodyend="1120"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a13397b273f7ab6fa7d5f48f116edac9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2558,7 +2558,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="968" column="10" bodyfile="SI4735.cpp" bodystart="1128" bodyend="1131"/>
+        <location file="SI4735.h" line="976" column="10" bodyfile="SI4735.cpp" bodystart="1128" bodyend="1131"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac598865516ca09db7dbfa6a84da7f179" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2588,7 +2588,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="970" column="10" bodyfile="SI4735.cpp" bodystart="631" bodyend="634"/>
+        <location file="SI4735.h" line="978" column="10" bodyfile="SI4735.cpp" bodystart="631" bodyend="634"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1adf4c5ec4473fd8486dd2ec7a19a10d24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2618,7 +2618,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="971" column="10" bodyfile="SI4735.cpp" bodystart="644" bodyend="647"/>
+        <location file="SI4735.h" line="979" column="10" bodyfile="SI4735.cpp" bodystart="644" bodyend="647"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ab063630466dccea3becc11d60d122904" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2647,7 +2647,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="972" column="10" bodyfile="SI4735.cpp" bodystart="656" bodyend="659"/>
+        <location file="SI4735.h" line="980" column="10" bodyfile="SI4735.cpp" bodystart="656" bodyend="659"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a1b134a94138b3bf993a5d3eb5f8ed5c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2678,7 +2678,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="973" column="10" bodyfile="SI4735.cpp" bodystart="669" bodyend="672"/>
+        <location file="SI4735.h" line="981" column="10" bodyfile="SI4735.cpp" bodystart="669" bodyend="672"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a1d1a5eed976370d99827ba55d08b9293" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2709,7 +2709,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="974" column="10" bodyfile="SI4735.cpp" bodystart="682" bodyend="685"/>
+        <location file="SI4735.h" line="982" column="10" bodyfile="SI4735.cpp" bodystart="682" bodyend="685"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ae2c30536e59f6691d990a2b9cf21f07e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2739,7 +2739,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="975" column="10" bodyfile="SI4735.cpp" bodystart="695" bodyend="698"/>
+        <location file="SI4735.h" line="983" column="10" bodyfile="SI4735.cpp" bodystart="695" bodyend="698"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a0ed776a193fb2fcff783d4a82ff714e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2769,7 +2769,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="976" column="10" bodyfile="SI4735.cpp" bodystart="708" bodyend="711"/>
+        <location file="SI4735.h" line="984" column="10" bodyfile="SI4735.cpp" bodystart="708" bodyend="711"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1acc9fd27b38f49f167facfcc4f6216c5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2799,7 +2799,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="977" column="10" bodyfile="SI4735.cpp" bodystart="721" bodyend="724"/>
+        <location file="SI4735.h" line="985" column="10" bodyfile="SI4735.cpp" bodystart="721" bodyend="724"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a52c7b7b1f0ed9121b0e64516b2bd2a55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2813,7 +2813,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="978" column="10" bodyfile="SI4735.cpp" bodystart="737" bodyend="740"/>
+        <location file="SI4735.h" line="986" column="10" bodyfile="SI4735.cpp" bodystart="737" bodyend="740"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a59ce1008944ff9a51b6c5baeb3a3e2cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2827,7 +2827,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="979" column="10" bodyfile="SI4735.cpp" bodystart="729" bodyend="732"/>
+        <location file="SI4735.h" line="987" column="10" bodyfile="SI4735.cpp" bodystart="729" bodyend="732"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1affdba9ca9fb9bf5bb671ac3d448a7e89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2841,7 +2841,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="982" column="10" bodyfile="SI4735.cpp" bodystart="1201" bodyend="1207"/>
+        <location file="SI4735.h" line="990" column="10" bodyfile="SI4735.cpp" bodystart="1201" bodyend="1207"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a530e64d00d95b4ceb13ce33aa74c63cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2920,7 +2920,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="983" column="10" bodyfile="SI4735.cpp" bodystart="1309" bodyend="1338"/>
+        <location file="SI4735.h" line="991" column="10" bodyfile="SI4735.cpp" bodystart="1309" bodyend="1338"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2974,7 +2974,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="984" column="10" bodyfile="SI4735.cpp" bodystart="1350" bodyend="1386"/>
+        <location file="SI4735.h" line="992" column="10" bodyfile="SI4735.cpp" bodystart="1350" bodyend="1386"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a94cce3834f85fc127e8c2dab3a03e875" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2991,7 +2991,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="985" column="10" bodyfile="SI4735.cpp" bodystart="1397" bodyend="1400"/>
+        <location file="SI4735.h" line="993" column="10" bodyfile="SI4735.cpp" bodystart="1397" bodyend="1400"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a6e8405ea5846fab586080a7be696178e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -3004,7 +3004,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="986" column="17" bodyfile="SI4735.h" bodystart="986" bodyend="986"/>
+        <location file="SI4735.h" line="994" column="17" bodyfile="SI4735.h" bodystart="994" bodyend="994"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac283a8a89cc885c2740c65a7128ff7ef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -3018,7 +3018,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="987" column="17" bodyfile="SI4735.h" bodystart="987" bodyend="987"/>
+        <location file="SI4735.h" line="995" column="17" bodyfile="SI4735.h" bodystart="995" bodyend="995"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a78e906f12771490771c624be1777784d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -3032,7 +3032,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="988" column="17" bodyfile="SI4735.h" bodystart="988" bodyend="988"/>
+        <location file="SI4735.h" line="996" column="17" bodyfile="SI4735.h" bodystart="996" bodyend="996"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a561a052a8c737302368274c774d8c129" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -3046,7 +3046,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="989" column="17" bodyfile="SI4735.h" bodystart="989" bodyend="989"/>
+        <location file="SI4735.h" line="997" column="17" bodyfile="SI4735.h" bodystart="997" bodyend="997"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aff740d85cc04c257f53c7e910bd45fcf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -3060,7 +3060,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="990" column="17" bodyfile="SI4735.h" bodystart="990" bodyend="990"/>
+        <location file="SI4735.h" line="998" column="17" bodyfile="SI4735.h" bodystart="998" bodyend="998"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a6e899b37cbc3dcd0ab969724e4008f0f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -3074,7 +3074,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="991" column="17" bodyfile="SI4735.h" bodystart="991" bodyend="991"/>
+        <location file="SI4735.h" line="999" column="17" bodyfile="SI4735.h" bodystart="999" bodyend="999"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a8db437efc42a81466d8daf4dcc35c50c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -3088,7 +3088,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="992" column="17" bodyfile="SI4735.h" bodystart="992" bodyend="992"/>
+        <location file="SI4735.h" line="1000" column="17" bodyfile="SI4735.h" bodystart="1000" bodyend="1000"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a819c370ff03c52a527fbc85f9877f526" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -3102,7 +3102,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="993" column="20" bodyfile="SI4735.h" bodystart="993" bodyend="993"/>
+        <location file="SI4735.h" line="1001" column="20" bodyfile="SI4735.h" bodystart="1001" bodyend="1001"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3185,7 +3185,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="995" column="10" bodyfile="SI4735.cpp" bodystart="1265" bodyend="1294"/>
+        <location file="SI4735.h" line="1003" column="10" bodyfile="SI4735.cpp" bodystart="1265" bodyend="1294"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1af1e67b201799a9e8d7208a32a65656b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint16_t</type>
@@ -3207,7 +3207,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="996" column="14" bodyfile="SI4735.cpp" bodystart="1412" bodyend="1419"/>
+        <location file="SI4735.h" line="1004" column="14" bodyfile="SI4735.cpp" bodystart="1412" bodyend="1419"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aa35366e5cded7b864f7268a7e4a8dbe9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint8_t</type>
@@ -3224,7 +3224,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="997" column="13" bodyfile="SI4735.cpp" bodystart="1424" bodyend="1432"/>
+        <location file="SI4735.h" line="1005" column="13" bodyfile="SI4735.cpp" bodystart="1424" bodyend="1432"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a05f76a0a0ebda813483f1df24e890904" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint8_t</type>
@@ -3245,7 +3245,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="998" column="13" bodyfile="SI4735.cpp" bodystart="1440" bodyend="1448"/>
+        <location file="SI4735.h" line="1006" column="13" bodyfile="SI4735.cpp" bodystart="1440" bodyend="1448"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1af9b6cb614d1b01b11bb23c19e6deb8b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint8_t</type>
@@ -3265,7 +3265,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="999" column="13" bodyfile="SI4735.cpp" bodystart="1474" bodyend="1482"/>
+        <location file="SI4735.h" line="1007" column="13" bodyfile="SI4735.cpp" bodystart="1474" bodyend="1482"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac28fa3818d4f900c4f4ba6be10c1405b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint8_t</type>
@@ -3287,7 +3287,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1000" column="13" bodyfile="SI4735.cpp" bodystart="1491" bodyend="1499"/>
+        <location file="SI4735.h" line="1008" column="13" bodyfile="SI4735.cpp" bodystart="1491" bodyend="1499"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ab1ed04a109330e7e9206483c7cdf5ef9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint8_t</type>
@@ -3307,7 +3307,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1001" column="13" bodyfile="SI4735.cpp" bodystart="1460" bodyend="1467"/>
+        <location file="SI4735.h" line="1009" column="13" bodyfile="SI4735.cpp" bodystart="1460" bodyend="1467"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a71cbaa3e0c103db7cee5969d162bec5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char *</type>
@@ -3327,7 +3327,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1003" column="10" bodyfile="SI4735.cpp" bodystart="1572" bodyend="1586"/>
+        <location file="SI4735.h" line="1011" column="10" bodyfile="SI4735.cpp" bodystart="1572" bodyend="1586"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a12d917629b78fffebac5ecf8f2936921" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char *</type>
@@ -3347,7 +3347,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1004" column="10" bodyfile="SI4735.cpp" bodystart="1594" bodyend="1618"/>
+        <location file="SI4735.h" line="1012" column="10" bodyfile="SI4735.cpp" bodystart="1594" bodyend="1618"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ae54d0f5562ca7615c3b90bee00c29ab4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char *</type>
@@ -3368,7 +3368,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1005" column="10" bodyfile="SI4735.cpp" bodystart="1625" bodyend="1649"/>
+        <location file="SI4735.h" line="1013" column="10" bodyfile="SI4735.cpp" bodystart="1625" bodyend="1649"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a806d5cfbbeb6ca1299ce20b1220fdb18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char *</type>
@@ -3389,7 +3389,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1006" column="10" bodyfile="SI4735.cpp" bodystart="1657" bodyend="1681"/>
+        <location file="SI4735.h" line="1014" column="10" bodyfile="SI4735.cpp" bodystart="1657" bodyend="1681"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aa8436bb156f3ac8321c65941be42fdba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char *</type>
@@ -3409,7 +3409,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1008" column="10" bodyfile="SI4735.cpp" bodystart="1688" bodyend="1728"/>
+        <location file="SI4735.h" line="1016" column="10" bodyfile="SI4735.cpp" bodystart="1688" bodyend="1728"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ab1f4f137139b40fe386ca51586999e50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3437,7 +3437,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1011" column="10" bodyfile="SI4735.cpp" bodystart="1506" bodyend="1531"/>
+        <location file="SI4735.h" line="1019" column="10" bodyfile="SI4735.cpp" bodystart="1506" bodyend="1531"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1adb0a3c39aeacba0faf39aadd9465021f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3465,7 +3465,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1012" column="10" bodyfile="SI4735.cpp" bodystart="1538" bodyend="1564"/>
+        <location file="SI4735.h" line="1020" column="10" bodyfile="SI4735.cpp" bodystart="1538" bodyend="1564"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a6f045d3725a457116236ee92d41c4265" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3479,7 +3479,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1017" column="10" bodyfile="SI4735.cpp" bodystart="2104" bodyend="2109"/>
+        <location file="SI4735.h" line="1025" column="10" bodyfile="SI4735.cpp" bodystart="2104" bodyend="2109"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3509,7 +3509,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1018" column="10" bodyfile="SI4735.cpp" bodystart="1790" bodyend="1814"/>
+        <location file="SI4735.h" line="1026" column="10" bodyfile="SI4735.cpp" bodystart="1790" bodyend="1814"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a9224e7d4ef14c887da96dbefd2dcefd3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3599,7 +3599,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1019" column="10" bodyfile="SI4735.cpp" bodystart="1835" bodyend="1849"/>
+        <location file="SI4735.h" line="1027" column="10" bodyfile="SI4735.cpp" bodystart="1835" bodyend="1849"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a7c48f2af416b1f89dbedbfbe9a637620" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3632,7 +3632,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1020" column="10" bodyfile="SI4735.cpp" bodystart="1986" bodyend="2000"/>
+        <location file="SI4735.h" line="1028" column="10" bodyfile="SI4735.cpp" bodystart="1986" bodyend="2000"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a3e907ddf560a0c8286fa55768701b3da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3666,7 +3666,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1021" column="10" bodyfile="SI4735.cpp" bodystart="1960" bodyend="1971"/>
+        <location file="SI4735.h" line="1029" column="10" bodyfile="SI4735.cpp" bodystart="1960" bodyend="1971"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a6b2ad4d027463262350134490d16bf32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3697,7 +3697,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1022" column="10" bodyfile="SI4735.cpp" bodystart="1943" bodyend="1948"/>
+        <location file="SI4735.h" line="1030" column="10" bodyfile="SI4735.cpp" bodystart="1943" bodyend="1948"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1acacf1dac4c0ec170d1da629dd1fd30cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3727,7 +3727,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1023" column="10" bodyfile="SI4735.cpp" bodystart="1885" bodyend="1889"/>
+        <location file="SI4735.h" line="1031" column="10" bodyfile="SI4735.cpp" bodystart="1885" bodyend="1889"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ae9d50b24642784943fefedbac944a8e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3757,7 +3757,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1024" column="10" bodyfile="SI4735.cpp" bodystart="1914" bodyend="1918"/>
+        <location file="SI4735.h" line="1032" column="10" bodyfile="SI4735.cpp" bodystart="1914" bodyend="1918"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1afc5e87c50a1eba6de9504c114cc1cb70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3788,7 +3788,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1025" column="10" bodyfile="SI4735.cpp" bodystart="1898" bodyend="1902"/>
+        <location file="SI4735.h" line="1033" column="10" bodyfile="SI4735.cpp" bodystart="1898" bodyend="1902"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a6cde26a5abf759a628012d1457d85c72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3818,7 +3818,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1026" column="10" bodyfile="SI4735.cpp" bodystart="1858" bodyend="1862"/>
+        <location file="SI4735.h" line="1034" column="10" bodyfile="SI4735.cpp" bodystart="1858" bodyend="1862"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a91251dfc2ff9488aaef3aa1a528097d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3848,7 +3848,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1027" column="10" bodyfile="SI4735.cpp" bodystart="1872" bodyend="1876"/>
+        <location file="SI4735.h" line="1035" column="10" bodyfile="SI4735.cpp" bodystart="1872" bodyend="1876"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1adfc2c82524918224cf19fec5b7fcf6d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="unionsi47x__firmware__query__library" kindref="compound">si47x_firmware_query_library</ref></type>
@@ -3873,7 +3873,7 @@ You have to call this function if you are applying a patch on SI47XX (SI4735-D60
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1032" column="34" bodyfile="SI4735.cpp" bodystart="2053" bodyend="2079"/>
+        <location file="SI4735.h" line="1040" column="34" bodyfile="SI4735.cpp" bodystart="2053" bodyend="2079"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1afaabd6c73b7ad7c20ae959d5b75c1e71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3892,7 +3892,7 @@ You have to call this function if you are applying a patch on SI47XX (SI4735-D60
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1033" column="10" bodyfile="SI4735.cpp" bodystart="2089" bodyend="2098"/>
+        <location file="SI4735.h" line="1041" column="10" bodyfile="SI4735.cpp" bodystart="2089" bodyend="2098"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1afd1343bd8b4f0c290ef81c418222036c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -3942,7 +3942,7 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1034" column="10" bodyfile="SI4735.cpp" bodystart="2168" bodyend="2214"/>
+        <location file="SI4735.h" line="1042" column="10" bodyfile="SI4735.cpp" bodystart="2168" bodyend="2214"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aa99cdde8dd65eb92f2ada159cc215c98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -3975,7 +3975,7 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1035" column="10" bodyfile="SI4735.cpp" bodystart="2227" bodyend="2287"/>
+        <location file="SI4735.h" line="1043" column="10" bodyfile="SI4735.cpp" bodystart="2227" bodyend="2287"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a0fcfd8e487c594707b3f2aaa71a86d68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -3989,7 +3989,7 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1036" column="10" bodyfile="SI4735.cpp" bodystart="2115" bodyend="2131"/>
+        <location file="SI4735.h" line="1044" column="10" bodyfile="SI4735.cpp" bodystart="2115" bodyend="2131"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aecfcd50dbb3d95d66c8cdc77d52af63c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -4005,7 +4005,7 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1044" column="17" bodyfile="SI4735.h" bodystart="1044" bodyend="1044"/>
+        <location file="SI4735.h" line="1052" column="17" bodyfile="SI4735.h" bodystart="1052" bodyend="1052"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a00ade87631677b8cc88098d0b55cd5a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -4022,7 +4022,7 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1045" column="17" bodyfile="SI4735.h" bodystart="1045" bodyend="1045"/>
+        <location file="SI4735.h" line="1053" column="17" bodyfile="SI4735.h" bodystart="1053" bodyend="1053"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a7bb3214f70381cf26bb93f96729d641e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -4039,7 +4039,7 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1046" column="17" bodyfile="SI4735.h" bodystart="1046" bodyend="1046"/>
+        <location file="SI4735.h" line="1054" column="17" bodyfile="SI4735.h" bodystart="1054" bodyend="1054"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a7433b4e80fd3b501efeae7973d29c985" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -4070,7 +4070,7 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1055" column="17" bodyfile="SI4735.h" bodystart="1055" bodyend="1055"/>
+        <location file="SI4735.h" line="1063" column="17" bodyfile="SI4735.h" bodystart="1063" bodyend="1063"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a748a4027f317972cb2fb1aed4865973b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -4100,7 +4100,7 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1057" column="10" bodyfile="SI4735.cpp" bodystart="108" bodyend="110"/>
+        <location file="SI4735.h" line="1065" column="10" bodyfile="SI4735.cpp" bodystart="108" bodyend="110"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a8eddbfb3e62786aa4843d4bcd25da2b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int16_t</type>
@@ -4132,7 +4132,7 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1058" column="13" bodyfile="SI4735.cpp" bodystart="63" bodyend="91"/>
+        <location file="SI4735.h" line="1066" column="13" bodyfile="SI4735.cpp" bodystart="63" bodyend="91"/>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a668008457910e916ebadf15bda2e5b29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -4159,7 +4159,7 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="1059" column="10" bodyfile="SI4735.cpp" bodystart="117" bodyend="119"/>
+        <location file="SI4735.h" line="1067" column="10" bodyfile="SI4735.cpp" bodystart="117" bodyend="119"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -4235,7 +4235,7 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
         <link refid="unionsi47x__agc__status"/>
       </node>
     </collaborationgraph>
-    <location file="SI4735.h" line="777" column="1" bodyfile="SI4735.h" bodystart="776" bodyend="1059"/>
+    <location file="SI4735.h" line="785" column="1" bodyfile="SI4735.h" bodystart="784" bodyend="1067"/>
     <listofallmembers>
       <member refid="class_s_i4735_1a412f51386c47a17cf04fd0a3c3078726" prot="public" virt="non-virtual"><scope>SI4735</scope><name>analogPowerUp</name></member>
       <member refid="class_s_i4735_1adede134b96fd5650b87673ce413babb2" prot="protected" virt="non-virtual"><scope>SI4735</scope><name>clearRdsBuffer0A</name></member>
