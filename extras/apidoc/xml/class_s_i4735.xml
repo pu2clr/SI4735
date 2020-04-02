@@ -641,6 +641,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="919" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="678" bodyend="695"/>
+        <references refid="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" compoundref="_s_i4735_8h" startline="397">si47x_property::byteHigh</references>
+        <references refid="unionsi47x__property_1a03bfb4b4b42b829deecc04647a1331d7" compoundref="_s_i4735_8h" startline="396">si47x_property::byteLow</references>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
         <references refid="unionsi47x__property_1ae9ac96f5c6d10f227a6926f787232e27">si47x_property::raw</references>
         <references refid="_s_i4735_8h_1a92cfecd26935c8864d65bbdc6031acb0" compoundref="_s_i4735_8h" startline="30">SET_PROPERTY</references>
@@ -679,6 +681,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="920" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="2081" bodyend="2096"/>
+        <references refid="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" compoundref="_s_i4735_8h" startline="397">si47x_property::byteHigh</references>
+        <references refid="unionsi47x__property_1a03bfb4b4b42b829deecc04647a1331d7" compoundref="_s_i4735_8h" startline="396">si47x_property::byteLow</references>
         <references refid="class_s_i4735_1a74ee9c99b1e092f7b1efa2f771f38324" compoundref="_s_i4735_8h" startline="910">currentSSBMode</references>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
         <references refid="unionsi47x__property_1ae9ac96f5c6d10f227a6926f787232e27">si47x_property::raw</references>
@@ -1051,12 +1055,23 @@
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="935" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="194" bodyend="220"/>
         <references refid="_s_i4735_8h_1a5c3e83244b4ab4a76d9c5c1ed86f3a54" compoundref="_s_i4735_8h" startline="59">AM_TUNE_FREQ</references>
+        <references refid="unionsi47x__set__frequency_1a9aee8ee0d04a6a7e732210fdea987d2c" compoundref="_s_i4735_8h" startline="234">si47x_set_frequency::ANTCAPH</references>
+        <references refid="unionsi47x__set__frequency_1a712fdd01147dcef829431bc2fc94a012" compoundref="_s_i4735_8h" startline="235">si47x_set_frequency::ANTCAPL</references>
         <references refid="unionsi473x__powerup_1a1d76ab95c8f37f3ee9f2266e0a818455">si473x_powerup::arg</references>
         <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
+        <references refid="unionsi473x__powerup_1a21297439eccc575f7c0a3228a4061fa7" compoundref="_s_i4735_8h" startline="183">si473x_powerup::CTSIEN</references>
         <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">currentFrequencyParams</references>
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">currentTune</references>
+        <references refid="unionsi47x__set__frequency_1a0f58c9f3ce774e07a2acc9ba4e968c85" compoundref="_s_i4735_8h" startline="230">si47x_set_frequency::DUMMY1</references>
+        <references refid="unionsi47x__set__frequency_1a629c45776aead687497d92dfabad925d" compoundref="_s_i4735_8h" startline="228">si47x_set_frequency::FAST</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
+        <references refid="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" compoundref="_s_i4735_8h" startline="229">si47x_set_frequency::FREEZE</references>
+        <references refid="unionsi473x__powerup_1aa6f9fd2636a0a6797755b99c343ef648" compoundref="_s_i4735_8h" startline="179">si473x_powerup::FUNC</references>
+        <references refid="unionsi473x__powerup_1a6da21e782c18e0d15791f712e602bf0f" compoundref="_s_i4735_8h" startline="182">si473x_powerup::GPO2OEN</references>
+        <references refid="unionsi473x__powerup_1a5deeab3cdc44cc652b6e8867dd8e9833" compoundref="_s_i4735_8h" startline="185">si473x_powerup::OPMODE</references>
+        <references refid="unionsi473x__powerup_1aff3f1655e972eff4630c66f0b4ec7704" compoundref="_s_i4735_8h" startline="181">si473x_powerup::PATCH</references>
         <references refid="class_s_i4735_1a1331b701088bda20bf0844e2e38be142" compoundref="_s_i4735_8h" startline="912">powerUp</references>
+        <references refid="unionsi473x__powerup_1ae68c435fb0ff2ad54bc17ac794a482c1" compoundref="_s_i4735_8h" startline="180">si473x_powerup::XOSCEN</references>
         <referencedby refid="group__group08_1ga753390952a1f2c2a98343979f1f3daa0" compoundref="_s_i4735_8cpp" startline="525" endline="538">setAM</referencedby>
         <referencedby refid="group__group08_1gacd89e7b8adefcbc4e89f802acb915906" compoundref="_s_i4735_8cpp" startline="547" endline="556">setFM</referencedby>
         <referencedby refid="class_s_i4735_1a3e907ddf560a0c8286fa55768701b3da" compoundref="_s_i4735_8cpp" startline="2035" endline="2046">setSSB</referencedby>
@@ -1181,6 +1196,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="940" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="434" bodyend="463"/>
+        <references refid="unionsi47x__set__frequency_1a9aee8ee0d04a6a7e732210fdea987d2c" compoundref="_s_i4735_8h" startline="234">si47x_set_frequency::ANTCAPH</references>
+        <references refid="unionsi47x__set__frequency_1a712fdd01147dcef829431bc2fc94a012" compoundref="_s_i4735_8h" startline="235">si47x_set_frequency::ANTCAPL</references>
         <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
         <references refid="class_s_i4735_1a4439c40db789f02371ea0fb9b22650c5" compoundref="_s_i4735_8h" startline="903">currentFrequency</references>
         <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">currentFrequencyParams</references>
@@ -1188,10 +1205,18 @@
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">currentTune</references>
         <references refid="class_s_i4735_1a9da4f3df9e5e6b0448eff15e12f690dd" compoundref="_s_i4735_8h" startline="895">currentWorkFrequency</references>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
+        <references refid="unionsi47x__set__frequency_1a0f58c9f3ce774e07a2acc9ba4e968c85" compoundref="_s_i4735_8h" startline="230">si47x_set_frequency::DUMMY1</references>
+        <references refid="unionsi47x__set__frequency_1a629c45776aead687497d92dfabad925d" compoundref="_s_i4735_8h" startline="228">si47x_set_frequency::FAST</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
+        <references refid="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" compoundref="_s_i4735_8h" startline="229">si47x_set_frequency::FREEZE</references>
+        <references refid="unionsi47x__frequency_1ae85fcb4329c600511e2127e1c5029f8c" compoundref="_s_i4735_8h" startline="200">si47x_frequency::FREQH</references>
+        <references refid="unionsi47x__set__frequency_1a55e3e49406688a65d9e90427ba3290cd" compoundref="_s_i4735_8h" startline="232">si47x_set_frequency::FREQH</references>
+        <references refid="unionsi47x__frequency_1abe921825c86d54f9f38411677a489d89" compoundref="_s_i4735_8h" startline="199">si47x_frequency::FREQL</references>
+        <references refid="unionsi47x__set__frequency_1a0b7fcda4891b52509b53168d581936e3" compoundref="_s_i4735_8h" startline="233">si47x_set_frequency::FREQL</references>
         <references refid="_s_i4735_8h_1a3d77e4d0458eed0b6ba584c737e8df21" compoundref="_s_i4735_8h" startline="151">MAX_DELAY_AFTER_SET_FREQUENCY</references>
         <references refid="unionsi47x__frequency_1a1a992fcfef59a6c6b1612e006264840f">si47x_frequency::raw</references>
         <references refid="unionsi47x__set__frequency_1a57e2bfb6b0c9c0fb7d6ffac131824b8a" compoundref="_s_i4735_8h" startline="237">si47x_set_frequency::raw</references>
+        <references refid="unionsi47x__set__frequency_1a224ff2b8897867521dc7e83e4a7aadae" compoundref="_s_i4735_8h" startline="231">si47x_set_frequency::USBLSB</references>
         <references refid="unionsi47x__frequency_1aad12ac434ec9907e90a3f6b95377ca76" compoundref="_s_i4735_8h" startline="202">si47x_frequency::value</references>
         <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">waitToSend</references>
         <referencedby refid="group__group08_1ga93fff524a6f900ac91eb1222ce73f9ba" compoundref="_s_i4735_8cpp" startline="505" endline="514">frequencyDown</referencedby>
@@ -1260,11 +1285,14 @@
         <location file="SI4735/SI4735.h" line="944" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="916" bodyend="940"/>
         <references refid="_s_i4735_8h_1ae08ea65cd9de522d012b7867da9ded6b" compoundref="_s_i4735_8h" startline="61">AM_TUNE_STATUS</references>
         <references refid="unionsi47x__tune__status_1a6cb498a025a973418d27991eb3151489">si47x_tune_status::arg</references>
+        <references refid="unionsi47x__tune__status_1ae6d5968d62f9c0eec44528e7b050f0bf" compoundref="_s_i4735_8h" startline="380">si47x_tune_status::CANCEL</references>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">currentTune</references>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
+        <references refid="unionsi47x__response__status_1a0693308479f69e970ec92ce1d1dcbf9c" compoundref="_s_i4735_8h" startline="276">si47x_response_status::ERR</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
         <references refid="_s_i4735_8h_1a1c2be0c09ef2120b4e7b6d050a4a7735" compoundref="_s_i4735_8h" startline="37">FM_TUNE_STATUS</references>
+        <references refid="unionsi47x__tune__status_1a8de6a5fbc60de94bd0850ffd85fac5a9" compoundref="_s_i4735_8h" startline="379">si47x_tune_status::INTACK</references>
         <references refid="unionsi47x__response__status_1a9b236e03804629e73a4b19fddb72b4cd" compoundref="_s_i4735_8h" startline="296">si47x_response_status::raw</references>
         <references refid="unionsi47x__tune__status_1aefcfcb9eaa95ed7d8ce1740ac7f9eb7e" compoundref="_s_i4735_8h" startline="383">si47x_tune_status::raw</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
@@ -1291,8 +1319,12 @@
         <location file="SI4735/SI4735.h" line="947" column="14" bodyfile="SI4735/SI4735.cpp" bodystart="884" bodyend="894"/>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
         <references refid="class_s_i4735_1a9da4f3df9e5e6b0448eff15e12f690dd" compoundref="_s_i4735_8h" startline="895">currentWorkFrequency</references>
+        <references refid="unionsi47x__frequency_1ae85fcb4329c600511e2127e1c5029f8c" compoundref="_s_i4735_8h" startline="200">si47x_frequency::FREQH</references>
+        <references refid="unionsi47x__frequency_1abe921825c86d54f9f38411677a489d89" compoundref="_s_i4735_8h" startline="199">si47x_frequency::FREQL</references>
         <references refid="class_s_i4735_1a3cf856c44fcfffb3d81b22b1d09b881f" compoundref="_s_i4735_8cpp" startline="947" endline="950">getStatus</references>
         <references refid="unionsi47x__frequency_1a1a992fcfef59a6c6b1612e006264840f">si47x_frequency::raw</references>
+        <references refid="unionsi47x__response__status_1a7d5ca536d8706e6cc9df2c8d5aea268e" compoundref="_s_i4735_8h" startline="284">si47x_response_status::READFREQH</references>
+        <references refid="unionsi47x__response__status_1a6d5f612fc40df215e9f4c6a94b68e2e6" compoundref="_s_i4735_8h" startline="286">si47x_response_status::READFREQL</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
         <references refid="unionsi47x__frequency_1aad12ac434ec9907e90a3f6b95377ca76" compoundref="_s_i4735_8h" startline="202">si47x_frequency::value</references>
         <referencedby refid="class_s_i4735_1a1eeaa09670cdbdc7ddd724c940d2506b" compoundref="_s_i4735_8cpp" startline="1153" endline="1158">seekStationDown</referencedby>
@@ -1331,6 +1363,7 @@
         <location file="SI4735/SI4735.h" line="956" column="17" bodyfile="SI4735/SI4735.h" bodystart="956" bodyend="956"/>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
+        <references refid="unionsi47x__response__status_1a301f61dac86d37ec2fc74c79c98254ab" compoundref="_s_i4735_8h" startline="274">si47x_response_status::RSQINT</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a97dc44d9927ea58730a18fb6baa6867f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1346,6 +1379,7 @@
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="957" column="17" bodyfile="SI4735/SI4735.h" bodystart="957" bodyend="957"/>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
+        <references refid="unionsi47x__response__status_1a19cfe8d1b0badae5253ff243e05d7afa" compoundref="_s_i4735_8h" startline="273">si47x_response_status::RDSINT</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a2cc659bddc5efc7695f2a6031c2edd4b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -1363,6 +1397,7 @@
         <location file="SI4735/SI4735.h" line="958" column="17" bodyfile="SI4735/SI4735.h" bodystart="958" bodyend="958"/>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
+        <references refid="unionsi47x__response__status_1a01ca22a28b83206bd992372d20c32f2f" compoundref="_s_i4735_8h" startline="271">si47x_response_status::STCINT</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a69723840497ed693d6f9a4e840ab07c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1378,6 +1413,7 @@
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="959" column="17" bodyfile="SI4735/SI4735.h" bodystart="959" bodyend="959"/>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
+        <references refid="unionsi47x__response__status_1a0693308479f69e970ec92ce1d1dcbf9c" compoundref="_s_i4735_8h" startline="276">si47x_response_status::ERR</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1afcb38f53b6eb71cadcefa0bb472ca943" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -1393,6 +1429,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="960" column="17" bodyfile="SI4735/SI4735.h" bodystart="960" bodyend="960"/>
+        <references refid="unionsi47x__response__status_1a6816e97ec06655d72350b83eae0e9f4c" compoundref="_s_i4735_8h" startline="277">si47x_response_status::CTS</references>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
       </memberdef>
@@ -1409,6 +1446,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="961" column="17" bodyfile="SI4735/SI4735.h" bodystart="961" bodyend="961"/>
+        <references refid="unionsi47x__response__status_1acc8c563c2eaf6702c36961fd300fecfb" compoundref="_s_i4735_8h" startline="280">si47x_response_status::AFCRL</references>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
       </memberdef>
@@ -1425,6 +1463,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="962" column="17" bodyfile="SI4735/SI4735.h" bodystart="962" bodyend="962"/>
+        <references refid="unionsi47x__response__status_1adf288c085c8f9a7b6a84ca9746541ea5" compoundref="_s_i4735_8h" startline="282">si47x_response_status::BLTF</references>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
       </memberdef>
@@ -1443,6 +1482,7 @@
         <location file="SI4735/SI4735.h" line="963" column="17" bodyfile="SI4735/SI4735.h" bodystart="963" bodyend="963"/>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
+        <references refid="unionsi47x__response__status_1aa4da6ef23dc23e40e9dcfc582ac7a53e" compoundref="_s_i4735_8h" startline="279">si47x_response_status::VALID</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aeeefd12b49dbc764e0f45fe208441482" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1459,6 +1499,7 @@
         <location file="SI4735/SI4735.h" line="964" column="20" bodyfile="SI4735/SI4735.h" bodystart="964" bodyend="964"/>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
+        <references refid="unionsi47x__response__status_1a524207ce1b79627d69f94049ba8c614d" compoundref="_s_i4735_8h" startline="288">si47x_response_status::RSSI</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac0bd4daaa321ef8956dca4d1e4e5cd3c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1475,6 +1516,7 @@
         <location file="SI4735/SI4735.h" line="965" column="20" bodyfile="SI4735/SI4735.h" bodystart="965" bodyend="965"/>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
+        <references refid="unionsi47x__response__status_1a14f5ce9ed117d45a2230b6f87b88a4cb" compoundref="_s_i4735_8h" startline="290">si47x_response_status::SNR</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a0f9b5438a6f92c8f2e538ee640f353ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1490,6 +1532,7 @@
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="966" column="20" bodyfile="SI4735/SI4735.h" bodystart="966" bodyend="966"/>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
+        <references refid="unionsi47x__response__status_1a1ee21104ab8a4a13619ee5c3f7fb3f2f" compoundref="_s_i4735_8h" startline="292">si47x_response_status::MULT</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a3905d6551992b4dd51d13f05978d9081" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -1506,6 +1549,7 @@
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="967" column="20" bodyfile="SI4735/SI4735.h" bodystart="967" bodyend="967"/>
         <references refid="class_s_i4735_1a7ad35ba002b73b66e9ce97b304854695" compoundref="_s_i4735_8h" startline="906">currentStatus</references>
+        <references refid="unionsi47x__response__status_1acd0a9f2982a84c43b8127f5e54982f19" compoundref="_s_i4735_8h" startline="294">si47x_response_status::READANTCAP</references>
         <references refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e">si47x_response_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aaae187575b9868ff427c063c3a6cca2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -1531,6 +1575,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <references refid="class_s_i4735_1adf2d1f37ec9edf95e14aecb3cdc7417d" compoundref="_s_i4735_8h" startline="909">currentAgcStatus</references>
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">currentTune</references>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
+        <references refid="unionsi47x__agc__status_1a4483c8293b7c3779b3564da97eee97d1" compoundref="_s_i4735_8h" startline="717">si47x_agc_status::ERR</references>
         <references refid="_s_i4735_8h_1ac5bbf51a4a4b25c538375567c2f4c8dc" compoundref="_s_i4735_8h" startline="38">FM_AGC_STATUS</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
         <references refid="unionsi47x__agc__status_1a2f03c32a90a7991f2433bf8a5291885d" compoundref="_s_i4735_8h" startline="725">si47x_agc_status::raw</references>
@@ -1681,6 +1726,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="982" column="17" bodyfile="SI4735/SI4735.h" bodystart="982" bodyend="982"/>
+        <references refid="unionsi47x__agc__status_1a329da2e6ccd1656d2a6b9c6b1483faeb" compoundref="_s_i4735_8h" startline="720">si47x_agc_status::AGCDIS</references>
         <references refid="class_s_i4735_1adf2d1f37ec9edf95e14aecb3cdc7417d" compoundref="_s_i4735_8h" startline="909">currentAgcStatus</references>
         <references refid="unionsi47x__agc__status_1aa6916dac978ef9cfd53ffe7783c4d8da">si47x_agc_status::refined</references>
       </memberdef>
@@ -1696,6 +1742,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="983" column="20" bodyfile="SI4735/SI4735.h" bodystart="983" bodyend="983"/>
+        <references refid="unionsi47x__agc__status_1a542909611f2b6093f46af7362ae9d9fd" compoundref="_s_i4735_8h" startline="723">si47x_agc_status::AGCIDX</references>
         <references refid="class_s_i4735_1adf2d1f37ec9edf95e14aecb3cdc7417d" compoundref="_s_i4735_8h" startline="909">currentAgcStatus</references>
         <references refid="unionsi47x__agc__status_1aa6916dac978ef9cfd53ffe7783c4d8da">si47x_agc_status::refined</references>
       </memberdef>
@@ -1740,6 +1787,8 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="984" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1001" bodyend="1021"/>
+        <references refid="unionsi47x__agc__overrride_1a7e92f8e598d792f6d0b11e2bd921e01b" compoundref="_s_i4735_8h" startline="741">si47x_agc_overrride::AGCDIS</references>
+        <references refid="unionsi47x__agc__overrride_1a65e8a65b69cd633b05480655a525904d" compoundref="_s_i4735_8h" startline="744">si47x_agc_overrride::AGCIDX</references>
         <references refid="_s_i4735_8h_1a2b26f91fc9564254afd58904239f7645" compoundref="_s_i4735_8h" startline="64">AM_AGC_OVERRIDE</references>
         <references refid="unionsi47x__agc__overrride_1ae235ce810f1b7d481def598b0e7c5234">si47x_agc_overrride::arg</references>
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">currentTune</references>
@@ -1830,6 +1879,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="990" column="20" bodyfile="SI4735/SI4735.h" bodystart="990" bodyend="990"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
+        <references refid="unionsi47x__rqs__status_1ab5558da768af2d0430d094a90caec3a2" compoundref="_s_i4735_8h" startline="444">si47x_rqs_status::RSSI</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1adb3fe55583dafeac7439a303b637d162" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1846,6 +1896,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="991" column="20" bodyfile="SI4735/SI4735.h" bodystart="991" bodyend="991"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
+        <references refid="unionsi47x__rqs__status_1a5663dde3abbab045bc4a535cfe796eff" compoundref="_s_i4735_8h" startline="445">si47x_rqs_status::SNR</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a0c9ae82012cdc97c4080b84e37fa1820" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1862,6 +1913,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="992" column="17" bodyfile="SI4735/SI4735.h" bodystart="992" bodyend="992"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
+        <references refid="unionsi47x__rqs__status_1a820a302920843a8fbf92865644a11ce9" compoundref="_s_i4735_8h" startline="426">si47x_rqs_status::RSSIILINT</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1adf11a66236392ca107b5d52a8747f838" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1878,6 +1930,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="993" column="17" bodyfile="SI4735/SI4735.h" bodystart="993" bodyend="993"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
+        <references refid="unionsi47x__rqs__status_1aaf3f6a82b0878afbd7a4a18544577552" compoundref="_s_i4735_8h" startline="427">si47x_rqs_status::RSSIHINT</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a1296592571c85b89ed59a4ee2324bd52" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1894,6 +1947,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="994" column="17" bodyfile="SI4735/SI4735.h" bodystart="994" bodyend="994"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
+        <references refid="unionsi47x__rqs__status_1a6429b6373a1aabce38b2ddde7cdae2a7" compoundref="_s_i4735_8h" startline="428">si47x_rqs_status::SNRLINT</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aec3c71a3252dd6660e5bceebc0d1f988" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1910,6 +1964,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="995" column="17" bodyfile="SI4735/SI4735.h" bodystart="995" bodyend="995"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
+        <references refid="unionsi47x__rqs__status_1a3ec547d32d35e825bd3cc8dc6aa04371" compoundref="_s_i4735_8h" startline="429">si47x_rqs_status::SNRHINT</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a5ce1abf8c9d53c027f6b0870efedda1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1926,6 +1981,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="996" column="17" bodyfile="SI4735/SI4735.h" bodystart="996" bodyend="996"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
+        <references refid="unionsi47x__rqs__status_1ac5a8820c2556ca30ddb6fae020a837dd" compoundref="_s_i4735_8h" startline="435">si47x_rqs_status::VALID</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1affe5cee9daf44677802a94f96d893c94" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1940,6 +1996,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="997" column="17" bodyfile="SI4735/SI4735.h" bodystart="997" bodyend="997"/>
+        <references refid="unionsi47x__rqs__status_1a9961f89a4da7115916a5c84b66a80d80" compoundref="_s_i4735_8h" startline="436">si47x_rqs_status::AFCRL</references>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
       </memberdef>
@@ -1958,6 +2015,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="998" column="17" bodyfile="SI4735/SI4735.h" bodystart="998" bodyend="998"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
+        <references refid="unionsi47x__rqs__status_1a08ec28496a92405a3b3948b17159af2b" compoundref="_s_i4735_8h" startline="438">si47x_rqs_status::SMUTE</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1acaafab62dd411dc9b79f9fb96e8c8832" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1974,6 +2032,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="1000" column="20" bodyfile="SI4735/SI4735.h" bodystart="1000" bodyend="1000"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
+        <references refid="unionsi47x__rqs__status_1a5f89f19c73e7f50b7b34336439225682" compoundref="_s_i4735_8h" startline="441">si47x_rqs_status::STBLEND</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a127fa3d2f9b7d57169bbef95703fb4c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1989,6 +2048,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1001" column="17" bodyfile="SI4735/SI4735.h" bodystart="1001" bodyend="1001"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
+        <references refid="unionsi47x__rqs__status_1a52b82f9f286b136af201ded7600cc48d" compoundref="_s_i4735_8h" startline="442">si47x_rqs_status::PILOT</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a6d521bb5c7ef7811e57c7128cb2106b3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2005,6 +2065,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1002" column="20" bodyfile="SI4735/SI4735.h" bodystart="1002" bodyend="1002"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
+        <references refid="unionsi47x__rqs__status_1aa537fb8dcc34e82a937bf4d522a7ace0" compoundref="_s_i4735_8h" startline="446">si47x_rqs_status::MULT</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a2b3bfeca3b545f5741b1ed70a1dba077" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2021,6 +2082,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1003" column="20" bodyfile="SI4735/SI4735.h" bodystart="1003" bodyend="1003"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
+        <references refid="unionsi47x__rqs__status_1ab332136092ea1ced84e916f4fc791679" compoundref="_s_i4735_8h" startline="447">si47x_rqs_status::FREQOFF</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ad194a5c915620c6a1b8b3d6d7ed645d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2037,6 +2099,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1004" column="17" bodyfile="SI4735/SI4735.h" bodystart="1004" bodyend="1004"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
+        <references refid="unionsi47x__rqs__status_1ab8511df192966df4c4c30fd5fbd85a8d" compoundref="_s_i4735_8h" startline="430">si47x_rqs_status::MULTLINT</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a82d0865cf348deb0c9f81a2f12222fb0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2053,6 +2116,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1005" column="17" bodyfile="SI4735/SI4735.h" bodystart="1005" bodyend="1005"/>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
+        <references refid="unionsi47x__rqs__status_1a1c7edf40697da61d47979d5c6945a7be" compoundref="_s_i4735_8h" startline="431">si47x_rqs_status::MULTHINT</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a16107a2f2e51cce5a7e2b1b303425118" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2068,6 +2132,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1006" column="17" bodyfile="SI4735/SI4735.h" bodystart="1006" bodyend="1006"/>
+        <references refid="unionsi47x__rqs__status_1adb9c59f3070d42da5be6b34fe4760bb2" compoundref="_s_i4735_8h" startline="433">si47x_rqs_status::BLENDINT</references>
         <references refid="class_s_i4735_1a9edd8cc9254695631795e7efc008eb28" compoundref="_s_i4735_8h" startline="905">currentRqsStatus</references>
         <references refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3">si47x_rqs_status::resp</references>
       </memberdef>
@@ -2085,6 +2150,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1014" column="20" bodyfile="SI4735/SI4735.h" bodystart="1014" bodyend="1014"/>
         <references refid="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" compoundref="_s_i4735_8h" startline="907">firmwareInfo</references>
+        <references refid="unionsi47x__firmware__information_1a76c4c996809c5212f7dae2b3b7c41bf4" compoundref="_s_i4735_8h" startline="319">si47x_firmware_information::PN</references>
         <references refid="unionsi47x__firmware__information_1a62ecd35a00b7a8bd4faaf82cd69d522e">si47x_firmware_information::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac2f451cb7320b66d8e08698dcacd50d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2101,6 +2167,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1015" column="20" bodyfile="SI4735/SI4735.h" bodystart="1015" bodyend="1015"/>
         <references refid="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" compoundref="_s_i4735_8h" startline="907">firmwareInfo</references>
+        <references refid="unionsi47x__firmware__information_1ace4719bdaf8df7e8b46c149032146ff9" compoundref="_s_i4735_8h" startline="320">si47x_firmware_information::FWMAJOR</references>
         <references refid="unionsi47x__firmware__information_1a62ecd35a00b7a8bd4faaf82cd69d522e">si47x_firmware_information::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a74b68fcd5718520fc0683977dfc18fc8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2117,6 +2184,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1016" column="20" bodyfile="SI4735/SI4735.h" bodystart="1016" bodyend="1016"/>
         <references refid="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" compoundref="_s_i4735_8h" startline="907">firmwareInfo</references>
+        <references refid="unionsi47x__firmware__information_1a6ea81f71d748770422b1d0da50225cc9" compoundref="_s_i4735_8h" startline="321">si47x_firmware_information::FWMINOR</references>
         <references refid="unionsi47x__firmware__information_1a62ecd35a00b7a8bd4faaf82cd69d522e">si47x_firmware_information::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a58b99a8d5ec2199cb5f2105675aa7a56" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2133,6 +2201,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1017" column="20" bodyfile="SI4735/SI4735.h" bodystart="1017" bodyend="1017"/>
         <references refid="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" compoundref="_s_i4735_8h" startline="907">firmwareInfo</references>
+        <references refid="unionsi47x__firmware__information_1ac0d0b792ff45f27e75530c6a1a7395e5" compoundref="_s_i4735_8h" startline="322">si47x_firmware_information::PATCHH</references>
         <references refid="unionsi47x__firmware__information_1a62ecd35a00b7a8bd4faaf82cd69d522e">si47x_firmware_information::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac10b3cd3875985e2c129fea14e2bc47a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2149,6 +2218,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1018" column="20" bodyfile="SI4735/SI4735.h" bodystart="1018" bodyend="1018"/>
         <references refid="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" compoundref="_s_i4735_8h" startline="907">firmwareInfo</references>
+        <references refid="unionsi47x__firmware__information_1adb11fe484e59e3f8bb77d675d9b03950" compoundref="_s_i4735_8h" startline="323">si47x_firmware_information::PATCHL</references>
         <references refid="unionsi47x__firmware__information_1a62ecd35a00b7a8bd4faaf82cd69d522e">si47x_firmware_information::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ab57870d69969e73265e9cffe2a73d868" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2164,6 +2234,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1019" column="20" bodyfile="SI4735/SI4735.h" bodystart="1019" bodyend="1019"/>
+        <references refid="unionsi47x__firmware__information_1ac18795035fa07c597e8a6c3f10745984" compoundref="_s_i4735_8h" startline="324">si47x_firmware_information::CMPMAJOR</references>
         <references refid="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" compoundref="_s_i4735_8h" startline="907">firmwareInfo</references>
         <references refid="unionsi47x__firmware__information_1a62ecd35a00b7a8bd4faaf82cd69d522e">si47x_firmware_information::resp</references>
       </memberdef>
@@ -2180,6 +2251,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1020" column="20" bodyfile="SI4735/SI4735.h" bodystart="1020" bodyend="1020"/>
+        <references refid="unionsi47x__firmware__information_1a66dcdf7f96777f5ca05fdadfd3c6f764" compoundref="_s_i4735_8h" startline="325">si47x_firmware_information::CMPMINOR</references>
         <references refid="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" compoundref="_s_i4735_8h" startline="907">firmwareInfo</references>
         <references refid="unionsi47x__firmware__information_1a62ecd35a00b7a8bd4faaf82cd69d522e">si47x_firmware_information::resp</references>
       </memberdef>
@@ -2196,6 +2268,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1021" column="20" bodyfile="SI4735/SI4735.h" bodystart="1021" bodyend="1021"/>
+        <references refid="unionsi47x__firmware__information_1aa88ca593c77a71ca1726ab48ebd70ee3" compoundref="_s_i4735_8h" startline="326">si47x_firmware_information::CHIPREV</references>
         <references refid="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" compoundref="_s_i4735_8h" startline="907">firmwareInfo</references>
         <references refid="unionsi47x__firmware__information_1a62ecd35a00b7a8bd4faaf82cd69d522e">si47x_firmware_information::resp</references>
       </memberdef>
@@ -2411,6 +2484,10 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1032" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="852" bodyend="860"/>
         <references refid="_s_i4735_8h_1a9c2e283ffdf9f900c3e35bc90f25a8ba" compoundref="_s_i4735_8h" startline="78">DIGITAL_OUTPUT_FORMAT</references>
+        <references refid="unionsi4735__digital__output__format_1a43a50ac17d929c197fae422f1fd648e3" compoundref="_s_i4735_8h" startline="810">si4735_digital_output_format::OFALL</references>
+        <references refid="unionsi4735__digital__output__format_1ae2f67694a90085fc652649e37b3984b1" compoundref="_s_i4735_8h" startline="809">si4735_digital_output_format::OMODE</references>
+        <references refid="unionsi4735__digital__output__format_1a810bfc21a334fbf3bf53b8dd934bb603" compoundref="_s_i4735_8h" startline="808">si4735_digital_output_format::OMONO</references>
+        <references refid="unionsi4735__digital__output__format_1aad9941e3bc74c7621c493dfa8d066521" compoundref="_s_i4735_8h" startline="807">si4735_digital_output_format::OSIZE</references>
         <references refid="unionsi4735__digital__output__format_1a0fa2c05d8877d3c680e904842993c33e" compoundref="_s_i4735_8h" startline="813">si4735_digital_output_format::raw</references>
         <references refid="unionsi4735__digital__output__format_1a776ee9e744dd7da8e747d0c881c5d205">si4735_digital_output_format::refined</references>
         <references refid="class_s_i4735_1ae351181347f8c512b625d98ef7844961" compoundref="_s_i4735_8cpp" startline="678" endline="695">sendProperty</references>
@@ -2695,6 +2772,10 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1041" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="632" bodyend="659"/>
         <references refid="_s_i4735_8h_1a4a220091c92c619ac986d574a616b2cb" compoundref="_s_i4735_8h" startline="83">AM_CHANNEL_FILTER</references>
+        <references refid="unionsi47x__bandwidth__config_1a9126e88e995ef2b30a3b3b0b3a57e4b8" compoundref="_s_i4735_8h" startline="767">si47x_bandwidth_config::AMCHFLT</references>
+        <references refid="unionsi47x__bandwidth__config_1a83bcbed43c2a8b60e237189c24690706" compoundref="_s_i4735_8h" startline="769">si47x_bandwidth_config::AMPLFLT</references>
+        <references refid="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" compoundref="_s_i4735_8h" startline="397">si47x_property::byteHigh</references>
+        <references refid="unionsi47x__property_1a03bfb4b4b42b829deecc04647a1331d7" compoundref="_s_i4735_8h" startline="396">si47x_property::byteLow</references>
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">currentTune</references>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
@@ -2751,6 +2832,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="1045" column="20" bodyfile="SI4735/SI4735.h" bodystart="1045" bodyend="1045"/>
         <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
         <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">currentFrequencyParams</references>
+        <references refid="unionsi47x__set__frequency_1a629c45776aead687497d92dfabad925d" compoundref="_s_i4735_8h" startline="228">si47x_set_frequency::FAST</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a51d816112d974f10306d9d001667395a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -2771,6 +2853,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="1046" column="17" bodyfile="SI4735/SI4735.h" bodystart="1046" bodyend="1046"/>
         <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
         <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">currentFrequencyParams</references>
+        <references refid="unionsi47x__set__frequency_1a629c45776aead687497d92dfabad925d" compoundref="_s_i4735_8h" startline="228">si47x_set_frequency::FAST</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a667fead0c7b2658c2b932370ad4e4f88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -2787,6 +2870,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="1047" column="20" bodyfile="SI4735/SI4735.h" bodystart="1047" bodyend="1047"/>
         <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
         <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">currentFrequencyParams</references>
+        <references refid="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" compoundref="_s_i4735_8h" startline="229">si47x_set_frequency::FREEZE</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aee22a5ce06d4948fad2365a7b62fbd8d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -2807,6 +2891,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <location file="SI4735/SI4735.h" line="1048" column="17" bodyfile="SI4735/SI4735.h" bodystart="1048" bodyend="1048"/>
         <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
         <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">currentFrequencyParams</references>
+        <references refid="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" compoundref="_s_i4735_8h" startline="229">si47x_set_frequency::FREEZE</references>
       </memberdef>
       <memberdef kind="function" id="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2840,10 +2925,16 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1049" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="398" bodyend="420"/>
+        <references refid="unionsi47x__antenna__capacitor_1a26952301dd2779d1976f92c2e521c476" compoundref="_s_i4735_8h" startline="213">si47x_antenna_capacitor::ANTCAPH</references>
+        <references refid="unionsi47x__set__frequency_1a9aee8ee0d04a6a7e732210fdea987d2c" compoundref="_s_i4735_8h" startline="234">si47x_set_frequency::ANTCAPH</references>
+        <references refid="unionsi47x__antenna__capacitor_1a327b39363f0d152ba8a5f4c7252fc358" compoundref="_s_i4735_8h" startline="212">si47x_antenna_capacitor::ANTCAPL</references>
+        <references refid="unionsi47x__set__frequency_1a712fdd01147dcef829431bc2fc94a012" compoundref="_s_i4735_8h" startline="235">si47x_set_frequency::ANTCAPL</references>
         <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
         <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">currentFrequencyParams</references>
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">currentTune</references>
+        <references refid="unionsi47x__set__frequency_1a0f58c9f3ce774e07a2acc9ba4e968c85" compoundref="_s_i4735_8h" startline="230">si47x_set_frequency::DUMMY1</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
+        <references refid="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" compoundref="_s_i4735_8h" startline="229">si47x_set_frequency::FREEZE</references>
         <references refid="unionsi47x__antenna__capacitor_1a29548a9c68843bb6aa86eabcd33a9633">si47x_antenna_capacitor::raw</references>
         <references refid="unionsi47x__antenna__capacitor_1aa59f9604df88a98b91295b0a9c009bbd" compoundref="_s_i4735_8h" startline="215">si47x_antenna_capacitor::value</references>
       </memberdef>
@@ -2930,6 +3021,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1054" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="298" bodyend="314"/>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
+        <references refid="unionsi47x__firmware__information_1a7155c52df7d6e6ff21b9f9eda85e7782" compoundref="_s_i4735_8h" startline="317">si47x_firmware_information::ERR</references>
         <references refid="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" compoundref="_s_i4735_8h" startline="907">firmwareInfo</references>
         <references refid="_s_i4735_8h_1a9fbb31eec68a8b17895fd18640296013" compoundref="_s_i4735_8h" startline="28">GET_REV</references>
         <references refid="unionsi47x__firmware__information_1aa2ba7bbaa745c8ca18c83226246654e5" compoundref="_s_i4735_8h" startline="329">si47x_firmware_information::raw</references>
@@ -3001,7 +3093,9 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <references refid="_s_i4735_8h_1a25ef5653fc9206ab83d8215c209e9922" compoundref="_s_i4735_8h" startline="36">FM_SEEK_START</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
         <references refid="unionsi47x__seek_1a894bfdc90f00f3064991edc0c439e66a" compoundref="_s_i4735_8h" startline="255">si47x_seek::raw</references>
+        <references refid="unionsi47x__seek_1acd509f67721224c4b0ad0ebdfad56dad" compoundref="_s_i4735_8h" startline="252">si47x_seek::SEEKUP</references>
         <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">waitToSend</references>
+        <references refid="unionsi47x__seek_1aada4b18c65da9723670759e78440757f" compoundref="_s_i4735_8h" startline="251">si47x_seek::WRAP</references>
         <referencedby refid="class_s_i4735_1a1eeaa09670cdbdc7ddd724c940d2506b" compoundref="_s_i4735_8cpp" startline="1153" endline="1158">seekStationDown</referencedby>
         <referencedby refid="class_s_i4735_1aad5211e3fff28141473442f59008e415" compoundref="_s_i4735_8cpp" startline="1141" endline="1146">seekStationUp</referencedby>
       </memberdef>
@@ -3551,12 +3645,21 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1078" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1384" bodyend="1413"/>
+        <references refid="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" compoundref="_s_i4735_8h" startline="397">si47x_property::byteHigh</references>
+        <references refid="unionsi47x__property_1a03bfb4b4b42b829deecc04647a1331d7" compoundref="_s_i4735_8h" startline="396">si47x_property::byteLow</references>
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">currentTune</references>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
+        <references refid="unionsi47x__rds__int__source_1ac5de9b6d946471e6ff768bd87988125b" compoundref="_s_i4735_8h" startline="539">si47x_rds_int_source::DUMMY1</references>
+        <references refid="unionsi47x__rds__int__source_1a1244e55bf5f7da541ebc7ef17880ffaa" compoundref="_s_i4735_8h" startline="542">si47x_rds_int_source::DUMMY2</references>
         <references refid="_s_i4735_8h_1a8b7e6ccffb54cef940f3bd78d255bc36" compoundref="_s_i4735_8h" startline="44">FM_RDS_INT_SOURCE</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
         <references refid="unionsi47x__property_1ae9ac96f5c6d10f227a6926f787232e27">si47x_property::raw</references>
         <references refid="unionsi47x__rds__int__source_1abfd03e295ce96a214407c2705d9b96c7" compoundref="_s_i4735_8h" startline="545">si47x_rds_int_source::raw</references>
+        <references refid="unionsi47x__rds__int__source_1a6363c0e46e99336e8381bc0cc4ccacf7" compoundref="_s_i4735_8h" startline="540">si47x_rds_int_source::RDSNEWBLOCKA</references>
+        <references refid="unionsi47x__rds__int__source_1abe78350d5e3cb85a60859f52ce279efd" compoundref="_s_i4735_8h" startline="541">si47x_rds_int_source::RDSNEWBLOCKB</references>
+        <references refid="unionsi47x__rds__int__source_1aabbae0cca723fa1610ca96f7a62a734f" compoundref="_s_i4735_8h" startline="536">si47x_rds_int_source::RDSRECV</references>
+        <references refid="unionsi47x__rds__int__source_1adb4e16cc0024b4c0338d163a83ec43ec" compoundref="_s_i4735_8h" startline="538">si47x_rds_int_source::RDSSYNCFOUND</references>
+        <references refid="unionsi47x__rds__int__source_1a0bb106ab53cfba94833fefd596a5d1cf" compoundref="_s_i4735_8h" startline="537">si47x_rds_int_source::RDSSYNCLOST</references>
         <references refid="unionsi47x__rds__int__source_1ab4e20ced6462d57774e19b0516416011">si47x_rds_int_source::refined</references>
         <references refid="_s_i4735_8h_1a92cfecd26935c8864d65bbdc6031acb0" compoundref="_s_i4735_8h" startline="30">SET_PROPERTY</references>
         <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">waitToSend</references>
@@ -3622,11 +3725,15 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">currentTune</references>
         <references refid="class_s_i4735_1a9da4f3df9e5e6b0448eff15e12f690dd" compoundref="_s_i4735_8h" startline="895">currentWorkFrequency</references>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
+        <references refid="unionsi47x__rds__status_1a41add87380f9111393a82011c5ac41ec" compoundref="_s_i4735_8h" startline="487">si47x_rds_status::ERR</references>
         <references refid="_s_i4735_8h_1ac37ef03bb47367289779f5f9bc00b18f" compoundref="_s_i4735_8h" startline="41">FM_RDS_STATUS</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
+        <references refid="unionsi47x__rds__command_1af342e43abded03f247b1366762be7e09" compoundref="_s_i4735_8h" startline="463">si47x_rds_command::INTACK</references>
+        <references refid="unionsi47x__rds__command_1a0a99bc3eb133aef468004ee950b77cdd" compoundref="_s_i4735_8h" startline="464">si47x_rds_command::MTFIFO</references>
         <references refid="unionsi47x__rds__command_1a3c151920e2f167bfa7c47193a20ecb58" compoundref="_s_i4735_8h" startline="468">si47x_rds_command::raw</references>
         <references refid="unionsi47x__rds__status_1a526947c93583b28968de411b0206fdfb" compoundref="_s_i4735_8h" startline="522">si47x_rds_status::raw</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
+        <references refid="unionsi47x__rds__command_1a502e1f710ac40b85373d662512fcaaaa" compoundref="_s_i4735_8h" startline="465">si47x_rds_command::STATUSONLY</references>
         <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">waitToSend</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a94cce3834f85fc127e8c2dab3a03e875" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -3659,6 +3766,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1081" column="17" bodyfile="SI4735/SI4735.h" bodystart="1081" bodyend="1081"/>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__status_1a365509f9f63ab4d495da416cbe5b31ae" compoundref="_s_i4735_8h" startline="490">si47x_rds_status::RDSRECV</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
         <referencedby refid="class_s_i4735_1af1e67b201799a9e8d7208a32a65656b5" compoundref="_s_i4735_8cpp" startline="1487" endline="1494">getRdsPI</referencedby>
         <referencedby refid="class_s_i4735_1a12d917629b78fffebac5ecf8f2936921" compoundref="_s_i4735_8cpp" startline="1669" endline="1693">getRdsText0A</referencedby>
@@ -3678,6 +3786,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1082" column="17" bodyfile="SI4735/SI4735.h" bodystart="1082" bodyend="1082"/>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__status_1a2fbbcc16519fdfb6ef16620f68f1f2e6" compoundref="_s_i4735_8h" startline="491">si47x_rds_status::RDSSYNCLOST</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a78e906f12771490771c624be1777784d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -3694,6 +3803,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1083" column="17" bodyfile="SI4735/SI4735.h" bodystart="1083" bodyend="1083"/>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__status_1a724e174d22e1b23c09ebfb49cbf75c8c" compoundref="_s_i4735_8h" startline="492">si47x_rds_status::RDSSYNCFOUND</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a561a052a8c737302368274c774d8c129" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -3710,6 +3820,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1084" column="17" bodyfile="SI4735/SI4735.h" bodystart="1084" bodyend="1084"/>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__status_1a5dfb7e323dbce0663e1f23d0352494b0" compoundref="_s_i4735_8h" startline="494">si47x_rds_status::RDSNEWBLOCKA</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
         <referencedby refid="class_s_i4735_1af1e67b201799a9e8d7208a32a65656b5" compoundref="_s_i4735_8cpp" startline="1487" endline="1494">getRdsPI</referencedby>
       </memberdef>
@@ -3727,6 +3838,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1085" column="17" bodyfile="SI4735/SI4735.h" bodystart="1085" bodyend="1085"/>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__status_1a72d5e07659bcf0026efc05f8d434ea1d" compoundref="_s_i4735_8h" startline="495">si47x_rds_status::RDSNEWBLOCKB</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a6e899b37cbc3dcd0ab969724e4008f0f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -3743,6 +3855,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1086" column="17" bodyfile="SI4735/SI4735.h" bodystart="1086" bodyend="1086"/>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__status_1a65956b2f1cd9abe1f7e58e17d55017fa" compoundref="_s_i4735_8h" startline="498">si47x_rds_status::RDSSYNC</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a8db437efc42a81466d8daf4dcc35c50c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -3759,6 +3872,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1087" column="17" bodyfile="SI4735/SI4735.h" bodystart="1087" bodyend="1087"/>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__status_1a899a0317e5a766b03ea72490b7b42570" compoundref="_s_i4735_8h" startline="500">si47x_rds_status::GRPLOST</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a819c370ff03c52a527fbc85f9877f526" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -3775,6 +3889,7 @@ Please, call <ref refid="class_s_i4735_1a350a2033671a7620d4b9290a2347e185" kindr
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1088" column="20" bodyfile="SI4735/SI4735.h" bodystart="1088" bodyend="1088"/>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__status_1ac5e65790b373d223498f5690086de8b3" compoundref="_s_i4735_8h" startline="503">si47x_rds_status::RDSFIFOUSED</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -3860,10 +3975,18 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1090" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1340" bodyend="1369"/>
         <references refid="unionsi47x__rds__config_1af43318436df83ca903da3c6eaf797c5f">si47x_rds_config::arg</references>
+        <references refid="unionsi47x__rds__config_1a985f772fda4648f338757b919de189f0" compoundref="_s_i4735_8h" startline="572">si47x_rds_config::BLETHA</references>
+        <references refid="unionsi47x__rds__config_1a8fde60b58e168d978e259f3899ce5e0b" compoundref="_s_i4735_8h" startline="571">si47x_rds_config::BLETHB</references>
+        <references refid="unionsi47x__rds__config_1a2a243d520165c64e15fbad8b7ac2f5d9" compoundref="_s_i4735_8h" startline="570">si47x_rds_config::BLETHC</references>
+        <references refid="unionsi47x__rds__config_1a892701752004744896276653c17a5793" compoundref="_s_i4735_8h" startline="569">si47x_rds_config::BLETHD</references>
+        <references refid="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" compoundref="_s_i4735_8h" startline="397">si47x_property::byteHigh</references>
+        <references refid="unionsi47x__property_1a03bfb4b4b42b829deecc04647a1331d7" compoundref="_s_i4735_8h" startline="396">si47x_property::byteLow</references>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
+        <references refid="unionsi47x__rds__config_1a849a3b2c92974fdfb9542db006e0976d" compoundref="_s_i4735_8h" startline="568">si47x_rds_config::DUMMY1</references>
         <references refid="_s_i4735_8h_1afbaa25e11748b1bd64456d3eae79fdee" compoundref="_s_i4735_8h" startline="46">FM_RDS_CONFIG</references>
         <references refid="unionsi47x__property_1ae9ac96f5c6d10f227a6926f787232e27">si47x_property::raw</references>
         <references refid="unionsi47x__rds__config_1ace0fc779a1af19098b03178fcbaafffe" compoundref="_s_i4735_8h" startline="574">si47x_rds_config::raw</references>
+        <references refid="unionsi47x__rds__config_1ac6a693161ec0198fd24255e1dbcbf668" compoundref="_s_i4735_8h" startline="567">si47x_rds_config::RDSEN</references>
         <references refid="class_s_i4735_1affdba9ca9fb9bf5bb671ac3d448a7e89" compoundref="_s_i4735_8cpp" startline="1276" endline="1282">RdsInit</references>
         <references refid="_s_i4735_8h_1a92cfecd26935c8864d65bbdc6031acb0" compoundref="_s_i4735_8h" startline="30">SET_PROPERTY</references>
         <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">waitToSend</references>
@@ -3889,6 +4012,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1091" column="14" bodyfile="SI4735/SI4735.cpp" bodystart="1487" bodyend="1494"/>
+        <references refid="unionsi47x__rds__status_1a307a99811323be2c6e64bf2473aaa8f2" compoundref="_s_i4735_8h" startline="505">si47x_rds_status::BLOCKAL</references>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
         <references refid="class_s_i4735_1a561a052a8c737302368274c774d8c129" compoundref="_s_i4735_8h" startline="1084" endline="1084">getRdsNewBlockA</references>
         <references refid="class_s_i4735_1a6e8405ea5846fab586080a7be696178e" compoundref="_s_i4735_8h" startline="1081" endline="1081">getRdsReceived</references>
@@ -3910,7 +4034,12 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1092" column="13" bodyfile="SI4735/SI4735.cpp" bodystart="1499" bodyend="1507"/>
+        <references refid="unionsi47x__rds__status_1afc7f4e06b12a6d9b8304a691deb4fc8e" compoundref="_s_i4735_8h" startline="506">si47x_rds_status::BLOCKBH</references>
+        <references refid="unionsi47x__rds__status_1ac81b652130f0e91b2af8184e303b5d54" compoundref="_s_i4735_8h" startline="507">si47x_rds_status::BLOCKBL</references>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__blockb_1a15f89b1b22c05a2d7f873f0251c549e7" compoundref="_s_i4735_8h" startline="622">si47x_rds_blockb::groupType</references>
+        <references refid="unionsi47x__rds__blockb_1a0bf139b12b0eed8a0d20a7f3f60cb634" compoundref="_s_i4735_8h" startline="645">si47x_rds_blockb::highValue</references>
+        <references refid="unionsi47x__rds__blockb_1ae93ff5d62ed6a769b50bb25cb808fa2f" compoundref="_s_i4735_8h" startline="644">si47x_rds_blockb::lowValue</references>
         <references refid="unionsi47x__rds__blockb_1a004a14fe7748648a3f4248c63075f472">si47x_rds_blockb::raw</references>
         <references refid="unionsi47x__rds__blockb_1ad6bf3043057d5ccfb4294cad28c7b9a5">si47x_rds_blockb::refined</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
@@ -3939,10 +4068,15 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1093" column="13" bodyfile="SI4735/SI4735.cpp" bodystart="1515" bodyend="1523"/>
+        <references refid="unionsi47x__rds__status_1afc7f4e06b12a6d9b8304a691deb4fc8e" compoundref="_s_i4735_8h" startline="506">si47x_rds_status::BLOCKBH</references>
+        <references refid="unionsi47x__rds__status_1ac81b652130f0e91b2af8184e303b5d54" compoundref="_s_i4735_8h" startline="507">si47x_rds_status::BLOCKBL</references>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__blockb_1a0bf139b12b0eed8a0d20a7f3f60cb634" compoundref="_s_i4735_8h" startline="645">si47x_rds_blockb::highValue</references>
+        <references refid="unionsi47x__rds__blockb_1ae93ff5d62ed6a769b50bb25cb808fa2f" compoundref="_s_i4735_8h" startline="644">si47x_rds_blockb::lowValue</references>
         <references refid="unionsi47x__rds__blockb_1a004a14fe7748648a3f4248c63075f472">si47x_rds_blockb::raw</references>
         <references refid="unionsi47x__rds__blockb_1ad6bf3043057d5ccfb4294cad28c7b9a5">si47x_rds_blockb::refined</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
+        <references refid="unionsi47x__rds__blockb_1a59a87427b5d83b59d705780ea2069cc0" compoundref="_s_i4735_8h" startline="627">si47x_rds_blockb::textABFlag</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1af9b6cb614d1b01b11bb23c19e6deb8b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint8_t</type>
@@ -3963,10 +4097,15 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1094" column="13" bodyfile="SI4735/SI4735.cpp" bodystart="1549" bodyend="1557"/>
+        <references refid="unionsi47x__rds__status_1afc7f4e06b12a6d9b8304a691deb4fc8e" compoundref="_s_i4735_8h" startline="506">si47x_rds_status::BLOCKBH</references>
+        <references refid="unionsi47x__rds__status_1ac81b652130f0e91b2af8184e303b5d54" compoundref="_s_i4735_8h" startline="507">si47x_rds_status::BLOCKBL</references>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__blockb_1a0bf139b12b0eed8a0d20a7f3f60cb634" compoundref="_s_i4735_8h" startline="645">si47x_rds_blockb::highValue</references>
+        <references refid="unionsi47x__rds__blockb_1ae93ff5d62ed6a769b50bb25cb808fa2f" compoundref="_s_i4735_8h" startline="644">si47x_rds_blockb::lowValue</references>
         <references refid="unionsi47x__rds__blockb_1a004a14fe7748648a3f4248c63075f472">si47x_rds_blockb::raw</references>
         <references refid="unionsi47x__rds__blockb_1ad6bf3043057d5ccfb4294cad28c7b9a5">si47x_rds_blockb::refined</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
+        <references refid="unionsi47x__rds__blockb_1a30c1925754d5eaca0dfa29739bc90244" compoundref="_s_i4735_8h" startline="621">si47x_rds_blockb::versionCode</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1ac28fa3818d4f900c4f4ba6be10c1405b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint8_t</type>
@@ -3989,7 +4128,12 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1095" column="13" bodyfile="SI4735/SI4735.cpp" bodystart="1566" bodyend="1574"/>
+        <references refid="unionsi47x__rds__status_1afc7f4e06b12a6d9b8304a691deb4fc8e" compoundref="_s_i4735_8h" startline="506">si47x_rds_status::BLOCKBH</references>
+        <references refid="unionsi47x__rds__status_1ac81b652130f0e91b2af8184e303b5d54" compoundref="_s_i4735_8h" startline="507">si47x_rds_status::BLOCKBL</references>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__blockb_1a0bf139b12b0eed8a0d20a7f3f60cb634" compoundref="_s_i4735_8h" startline="645">si47x_rds_blockb::highValue</references>
+        <references refid="unionsi47x__rds__blockb_1ae93ff5d62ed6a769b50bb25cb808fa2f" compoundref="_s_i4735_8h" startline="644">si47x_rds_blockb::lowValue</references>
+        <references refid="unionsi47x__rds__blockb_1ae0500c0f2c43a9701e8d19353bc12438" compoundref="_s_i4735_8h" startline="619">si47x_rds_blockb::programType</references>
         <references refid="unionsi47x__rds__blockb_1a004a14fe7748648a3f4248c63075f472">si47x_rds_blockb::raw</references>
         <references refid="unionsi47x__rds__blockb_1ad6bf3043057d5ccfb4294cad28c7b9a5">si47x_rds_blockb::refined</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
@@ -4013,7 +4157,12 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1096" column="13" bodyfile="SI4735/SI4735.cpp" bodystart="1535" bodyend="1542"/>
+        <references refid="unionsi47x__rds__status_1afc7f4e06b12a6d9b8304a691deb4fc8e" compoundref="_s_i4735_8h" startline="506">si47x_rds_status::BLOCKBH</references>
+        <references refid="unionsi47x__rds__status_1ac81b652130f0e91b2af8184e303b5d54" compoundref="_s_i4735_8h" startline="507">si47x_rds_status::BLOCKBL</references>
+        <references refid="unionsi47x__rds__blockb_1a62c7cb3e50672c3244d0098b449ebe9b" compoundref="_s_i4735_8h" startline="635">si47x_rds_blockb::content</references>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
+        <references refid="unionsi47x__rds__blockb_1a0bf139b12b0eed8a0d20a7f3f60cb634" compoundref="_s_i4735_8h" startline="645">si47x_rds_blockb::highValue</references>
+        <references refid="unionsi47x__rds__blockb_1ae93ff5d62ed6a769b50bb25cb808fa2f" compoundref="_s_i4735_8h" startline="644">si47x_rds_blockb::lowValue</references>
         <references refid="unionsi47x__rds__blockb_1a004a14fe7748648a3f4248c63075f472">si47x_rds_blockb::raw</references>
         <references refid="unionsi47x__rds__blockb_1ad6bf3043057d5ccfb4294cad28c7b9a5">si47x_rds_blockb::refined</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
@@ -4060,11 +4209,16 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1099" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1669" bodyend="1693"/>
+        <references refid="unionsi47x__rds__blockb_1ae85fb9b6893b7ae94df7d9bdf30d8fb4" compoundref="_s_i4735_8h" startline="615">si47x_rds_blockb::address</references>
+        <references refid="unionsi47x__rds__status_1afc7f4e06b12a6d9b8304a691deb4fc8e" compoundref="_s_i4735_8h" startline="506">si47x_rds_status::BLOCKBH</references>
+        <references refid="unionsi47x__rds__status_1ac81b652130f0e91b2af8184e303b5d54" compoundref="_s_i4735_8h" startline="507">si47x_rds_status::BLOCKBL</references>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
         <references refid="class_s_i4735_1ab1f4f137139b40fe386ca51586999e50" compoundref="_s_i4735_8cpp" startline="1581" endline="1606">getNext2Block</references>
         <references refid="class_s_i4735_1aa35366e5cded7b864f7268a7e4a8dbe9" compoundref="_s_i4735_8cpp" startline="1499" endline="1507">getRdsGroupType</references>
         <references refid="class_s_i4735_1a6e8405ea5846fab586080a7be696178e" compoundref="_s_i4735_8h" startline="1081" endline="1081">getRdsReceived</references>
         <references refid="unionsi47x__rds__blockb_1a059a039022499410d7d337fe96e3cbab">si47x_rds_blockb::group0</references>
+        <references refid="unionsi47x__rds__blockb_1a0bf139b12b0eed8a0d20a7f3f60cb634" compoundref="_s_i4735_8h" startline="645">si47x_rds_blockb::highValue</references>
+        <references refid="unionsi47x__rds__blockb_1ae93ff5d62ed6a769b50bb25cb808fa2f" compoundref="_s_i4735_8h" startline="644">si47x_rds_blockb::lowValue</references>
         <references refid="unionsi47x__rds__blockb_1a004a14fe7748648a3f4248c63075f472">si47x_rds_blockb::raw</references>
         <references refid="class_s_i4735_1ac24a8bbd39628c2981208cb452165a0e" compoundref="_s_i4735_8h" startline="878">rds_buffer0A</references>
         <references refid="class_s_i4735_1a11477d1eb13efb348395a4984b67f392" compoundref="_s_i4735_8h" startline="883">rdsTextAdress0A</references>
@@ -4090,11 +4244,16 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1100" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1700" bodyend="1724"/>
+        <references refid="unionsi47x__rds__blockb_1ae85fb9b6893b7ae94df7d9bdf30d8fb4" compoundref="_s_i4735_8h" startline="615">si47x_rds_blockb::address</references>
+        <references refid="unionsi47x__rds__status_1afc7f4e06b12a6d9b8304a691deb4fc8e" compoundref="_s_i4735_8h" startline="506">si47x_rds_status::BLOCKBH</references>
+        <references refid="unionsi47x__rds__status_1ac81b652130f0e91b2af8184e303b5d54" compoundref="_s_i4735_8h" startline="507">si47x_rds_status::BLOCKBL</references>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
         <references refid="class_s_i4735_1adb0a3c39aeacba0faf39aadd9465021f" compoundref="_s_i4735_8cpp" startline="1613" endline="1639">getNext4Block</references>
         <references refid="class_s_i4735_1aa35366e5cded7b864f7268a7e4a8dbe9" compoundref="_s_i4735_8cpp" startline="1499" endline="1507">getRdsGroupType</references>
         <references refid="class_s_i4735_1a6e8405ea5846fab586080a7be696178e" compoundref="_s_i4735_8h" startline="1081" endline="1081">getRdsReceived</references>
         <references refid="unionsi47x__rds__blockb_1aa6d5cedf34d36a7719b521d02b8a3666">si47x_rds_blockb::group2</references>
+        <references refid="unionsi47x__rds__blockb_1a0bf139b12b0eed8a0d20a7f3f60cb634" compoundref="_s_i4735_8h" startline="645">si47x_rds_blockb::highValue</references>
+        <references refid="unionsi47x__rds__blockb_1ae93ff5d62ed6a769b50bb25cb808fa2f" compoundref="_s_i4735_8h" startline="644">si47x_rds_blockb::lowValue</references>
         <references refid="unionsi47x__rds__blockb_1a004a14fe7748648a3f4248c63075f472">si47x_rds_blockb::raw</references>
         <references refid="class_s_i4735_1a0b40791484c47c0bf90d8dc255a20269" compoundref="_s_i4735_8h" startline="876">rds_buffer2A</references>
         <references refid="class_s_i4735_1a1c7ec3559a78c5ef1bda49cb0abdf1de" compoundref="_s_i4735_8h" startline="881">rdsTextAdress2A</references>
@@ -4120,10 +4279,15 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1101" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1732" bodyend="1756"/>
+        <references refid="unionsi47x__rds__blockb_1ae85fb9b6893b7ae94df7d9bdf30d8fb4" compoundref="_s_i4735_8h" startline="615">si47x_rds_blockb::address</references>
+        <references refid="unionsi47x__rds__status_1afc7f4e06b12a6d9b8304a691deb4fc8e" compoundref="_s_i4735_8h" startline="506">si47x_rds_status::BLOCKBH</references>
+        <references refid="unionsi47x__rds__status_1ac81b652130f0e91b2af8184e303b5d54" compoundref="_s_i4735_8h" startline="507">si47x_rds_status::BLOCKBL</references>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
         <references refid="class_s_i4735_1ab1f4f137139b40fe386ca51586999e50" compoundref="_s_i4735_8cpp" startline="1581" endline="1606">getNext2Block</references>
         <references refid="class_s_i4735_1aa35366e5cded7b864f7268a7e4a8dbe9" compoundref="_s_i4735_8cpp" startline="1499" endline="1507">getRdsGroupType</references>
         <references refid="unionsi47x__rds__blockb_1aa6d5cedf34d36a7719b521d02b8a3666">si47x_rds_blockb::group2</references>
+        <references refid="unionsi47x__rds__blockb_1a0bf139b12b0eed8a0d20a7f3f60cb634" compoundref="_s_i4735_8h" startline="645">si47x_rds_blockb::highValue</references>
+        <references refid="unionsi47x__rds__blockb_1ae93ff5d62ed6a769b50bb25cb808fa2f" compoundref="_s_i4735_8h" startline="644">si47x_rds_blockb::lowValue</references>
         <references refid="unionsi47x__rds__blockb_1a004a14fe7748648a3f4248c63075f472">si47x_rds_blockb::raw</references>
         <references refid="class_s_i4735_1a7aa607f80e97d45ac7a80cdcbdeb09f9" compoundref="_s_i4735_8h" startline="877">rds_buffer2B</references>
         <references refid="class_s_i4735_1adecc2478d73cd7d18e1f88fd70d1488d" compoundref="_s_i4735_8h" startline="882">rdsTextAdress2B</references>
@@ -4148,8 +4312,20 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1103" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1763" bodyend="1803"/>
+        <references refid="unionsi47x__rds__status_1afc7f4e06b12a6d9b8304a691deb4fc8e" compoundref="_s_i4735_8h" startline="506">si47x_rds_status::BLOCKBH</references>
+        <references refid="unionsi47x__rds__status_1ac81b652130f0e91b2af8184e303b5d54" compoundref="_s_i4735_8h" startline="507">si47x_rds_status::BLOCKBL</references>
+        <references refid="unionsi47x__rds__status_1acb3be1a907d57f35a5db5dc79d1c4603" compoundref="_s_i4735_8h" startline="508">si47x_rds_status::BLOCKCH</references>
+        <references refid="unionsi47x__rds__status_1a9e02b88bb18b2111798c346c3f40e599" compoundref="_s_i4735_8h" startline="509">si47x_rds_status::BLOCKCL</references>
+        <references refid="unionsi47x__rds__status_1a6e7bcc48e5ad38ae9a4754d90735e0eb" compoundref="_s_i4735_8h" startline="510">si47x_rds_status::BLOCKDH</references>
+        <references refid="unionsi47x__rds__status_1ab2c92efdeed49c5fe867771fb5cd5862" compoundref="_s_i4735_8h" startline="511">si47x_rds_status::BLOCKDL</references>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
         <references refid="class_s_i4735_1aa35366e5cded7b864f7268a7e4a8dbe9" compoundref="_s_i4735_8cpp" startline="1499" endline="1507">getRdsGroupType</references>
+        <references refid="unionsi47x__rds__date__time_1a4c42077d5a7c458002c2545b19446e49" compoundref="_s_i4735_8h" startline="690">si47x_rds_date_time::hour1</references>
+        <references refid="unionsi47x__rds__date__time_1ab310eb63caafa1f15e1aec5b41c3d658" compoundref="_s_i4735_8h" startline="691">si47x_rds_date_time::hour2</references>
+        <references refid="unionsi47x__rds__date__time_1af33644839f1535209df8f35fc00332c7" compoundref="_s_i4735_8h" startline="688">si47x_rds_date_time::minute1</references>
+        <references refid="unionsi47x__rds__date__time_1a00b09fe57cee76fda811c7e868045c2d" compoundref="_s_i4735_8h" startline="689">si47x_rds_date_time::minute2</references>
+        <references refid="unionsi47x__rds__date__time_1a79cc7bd950d06a144f2aae2bc469a257" compoundref="_s_i4735_8h" startline="686">si47x_rds_date_time::offset</references>
+        <references refid="unionsi47x__rds__date__time_1aed1f1a5592157d224412846fdc938eb9" compoundref="_s_i4735_8h" startline="687">si47x_rds_date_time::offset_sense</references>
         <references refid="unionsi47x__rds__date__time_1a4632acc947ded9cc9577df163fabba69" compoundref="_s_i4735_8h" startline="694">si47x_rds_date_time::raw</references>
         <references refid="class_s_i4735_1a1746daa81b363880dd106fa430784bf8" compoundref="_s_i4735_8h" startline="879">rds_time</references>
         <references refid="unionsi47x__rds__date__time_1a2fd48898a9f78b595a28dee19485d771">si47x_rds_date_time::refined</references>
@@ -4182,6 +4358,8 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1106" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1581" bodyend="1606"/>
+        <references refid="unionsi47x__rds__status_1a6e7bcc48e5ad38ae9a4754d90735e0eb" compoundref="_s_i4735_8h" startline="510">si47x_rds_status::BLOCKDH</references>
+        <references refid="unionsi47x__rds__status_1ab2c92efdeed49c5fe867771fb5cd5862" compoundref="_s_i4735_8h" startline="511">si47x_rds_status::BLOCKDL</references>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
         <referencedby refid="class_s_i4735_1a12d917629b78fffebac5ecf8f2936921" compoundref="_s_i4735_8cpp" startline="1669" endline="1693">getRdsText0A</referencedby>
@@ -4214,6 +4392,10 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1107" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1613" bodyend="1639"/>
+        <references refid="unionsi47x__rds__status_1acb3be1a907d57f35a5db5dc79d1c4603" compoundref="_s_i4735_8h" startline="508">si47x_rds_status::BLOCKCH</references>
+        <references refid="unionsi47x__rds__status_1a9e02b88bb18b2111798c346c3f40e599" compoundref="_s_i4735_8h" startline="509">si47x_rds_status::BLOCKCL</references>
+        <references refid="unionsi47x__rds__status_1a6e7bcc48e5ad38ae9a4754d90735e0eb" compoundref="_s_i4735_8h" startline="510">si47x_rds_status::BLOCKDH</references>
+        <references refid="unionsi47x__rds__status_1ab2c92efdeed49c5fe867771fb5cd5862" compoundref="_s_i4735_8h" startline="511">si47x_rds_status::BLOCKDL</references>
         <references refid="class_s_i4735_1a42d5c6991d90ea1c8ae35b74f8bccc48" compoundref="_s_i4735_8h" startline="908">currentRdsStatus</references>
         <references refid="unionsi47x__rds__status_1aea81052e86fe18311ff060dee39776ed">si47x_rds_status::resp</references>
         <referencedby refid="class_s_i4735_1a71cbaa3e0c103db7cee5969d162bec5d" compoundref="_s_i4735_8cpp" startline="1647" endline="1661">getRdsText</referencedby>
@@ -4274,9 +4456,13 @@ First of all, it is important to say that the SSB patch content is not part of t
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1113" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1865" bodyend="1889"/>
+        <references refid="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" compoundref="_s_i4735_8h" startline="397">si47x_property::byteHigh</references>
+        <references refid="unionsi47x__property_1a03bfb4b4b42b829deecc04647a1331d7" compoundref="_s_i4735_8h" startline="396">si47x_property::byteLow</references>
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">currentTune</references>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
+        <references refid="unionsi47x__frequency_1ae85fcb4329c600511e2127e1c5029f8c" compoundref="_s_i4735_8h" startline="200">si47x_frequency::FREQH</references>
+        <references refid="unionsi47x__frequency_1abe921825c86d54f9f38411677a489d89" compoundref="_s_i4735_8h" startline="199">si47x_frequency::FREQL</references>
         <references refid="unionsi47x__frequency_1a1a992fcfef59a6c6b1612e006264840f">si47x_frequency::raw</references>
         <references refid="unionsi47x__property_1ae9ac96f5c6d10f227a6926f787232e27">si47x_property::raw</references>
         <references refid="_s_i4735_8h_1a92cfecd26935c8864d65bbdc6031acb0" compoundref="_s_i4735_8h" startline="30">SET_PROPERTY</references>
@@ -4373,11 +4559,18 @@ First of all, it is important to say that the SSB patch content is not part of t
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1114" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1910" bodyend="1924"/>
+        <references refid="unionsi47x__ssb__mode_1a12aeb6bf478c3c4b6d4243a84f05a5eb" compoundref="_s_i4735_8h" startline="785">si47x_ssb_mode::AUDIOBW</references>
+        <references refid="unionsi47x__ssb__mode_1a3c4def7aad4a7f875bd189cfde29c733" compoundref="_s_i4735_8h" startline="787">si47x_ssb_mode::AVC_DIVIDER</references>
+        <references refid="unionsi47x__ssb__mode_1abdcac9b7553fc2d62f51262eacec0069" compoundref="_s_i4735_8h" startline="788">si47x_ssb_mode::AVCEN</references>
         <references refid="class_s_i4735_1a74ee9c99b1e092f7b1efa2f771f38324" compoundref="_s_i4735_8h" startline="910">currentSSBMode</references>
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">currentTune</references>
+        <references refid="unionsi47x__ssb__mode_1a12c18df3a3e8d78325292f50e222bd01" compoundref="_s_i4735_8h" startline="791">si47x_ssb_mode::DSP_AFCDIS</references>
+        <references refid="unionsi47x__ssb__mode_1a5c337f3327b40a61d5ccc22141892651" compoundref="_s_i4735_8h" startline="790">si47x_ssb_mode::DUMMY1</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
         <references refid="unionsi47x__ssb__mode_1a9a2be4f98978b6b580b7d64cfc07c66c">si47x_ssb_mode::param</references>
+        <references refid="unionsi47x__ssb__mode_1ae22aa453dbf8787acceef11d30306dfd" compoundref="_s_i4735_8h" startline="786">si47x_ssb_mode::SBCUTFLT</references>
         <references refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">sendSSBModeProperty</references>
+        <references refid="unionsi47x__ssb__mode_1aeed76b90e22efa54ef80062032785bc2" compoundref="_s_i4735_8h" startline="789">si47x_ssb_mode::SMUTESEL</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1a7c48f2af416b1f89dbedbfbe9a637620" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -4489,6 +4682,7 @@ First of all, it is important to say that the SSB patch content is not part of t
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1117" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="2018" bodyend="2023"/>
+        <references refid="unionsi47x__ssb__mode_1a12aeb6bf478c3c4b6d4243a84f05a5eb" compoundref="_s_i4735_8h" startline="785">si47x_ssb_mode::AUDIOBW</references>
         <references refid="class_s_i4735_1a74ee9c99b1e092f7b1efa2f771f38324" compoundref="_s_i4735_8h" startline="910">currentSSBMode</references>
         <references refid="unionsi47x__ssb__mode_1a9a2be4f98978b6b580b7d64cfc07c66c">si47x_ssb_mode::param</references>
         <references refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">sendSSBModeProperty</references>
@@ -4522,6 +4716,7 @@ First of all, it is important to say that the SSB patch content is not part of t
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1118" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1960" bodyend="1964"/>
+        <references refid="unionsi47x__ssb__mode_1abdcac9b7553fc2d62f51262eacec0069" compoundref="_s_i4735_8h" startline="788">si47x_ssb_mode::AVCEN</references>
         <references refid="class_s_i4735_1a74ee9c99b1e092f7b1efa2f771f38324" compoundref="_s_i4735_8h" startline="910">currentSSBMode</references>
         <references refid="unionsi47x__ssb__mode_1a9a2be4f98978b6b580b7d64cfc07c66c">si47x_ssb_mode::param</references>
         <references refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">sendSSBModeProperty</references>
@@ -4557,6 +4752,7 @@ First of all, it is important to say that the SSB patch content is not part of t
         <location file="SI4735/SI4735.h" line="1119" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1989" bodyend="1993"/>
         <references refid="class_s_i4735_1a74ee9c99b1e092f7b1efa2f771f38324" compoundref="_s_i4735_8h" startline="910">currentSSBMode</references>
         <references refid="unionsi47x__ssb__mode_1a9a2be4f98978b6b580b7d64cfc07c66c">si47x_ssb_mode::param</references>
+        <references refid="unionsi47x__ssb__mode_1ae22aa453dbf8787acceef11d30306dfd" compoundref="_s_i4735_8h" startline="786">si47x_ssb_mode::SBCUTFLT</references>
         <references refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">sendSSBModeProperty</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1afc5e87c50a1eba6de9504c114cc1cb70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -4589,6 +4785,7 @@ First of all, it is important to say that the SSB patch content is not part of t
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1120" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1973" bodyend="1977"/>
+        <references refid="unionsi47x__ssb__mode_1a3c4def7aad4a7f875bd189cfde29c733" compoundref="_s_i4735_8h" startline="787">si47x_ssb_mode::AVC_DIVIDER</references>
         <references refid="class_s_i4735_1a74ee9c99b1e092f7b1efa2f771f38324" compoundref="_s_i4735_8h" startline="910">currentSSBMode</references>
         <references refid="unionsi47x__ssb__mode_1a9a2be4f98978b6b580b7d64cfc07c66c">si47x_ssb_mode::param</references>
         <references refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">sendSSBModeProperty</references>
@@ -4623,6 +4820,7 @@ First of all, it is important to say that the SSB patch content is not part of t
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1121" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="1933" bodyend="1937"/>
         <references refid="class_s_i4735_1a74ee9c99b1e092f7b1efa2f771f38324" compoundref="_s_i4735_8h" startline="910">currentSSBMode</references>
+        <references refid="unionsi47x__ssb__mode_1a12c18df3a3e8d78325292f50e222bd01" compoundref="_s_i4735_8h" startline="791">si47x_ssb_mode::DSP_AFCDIS</references>
         <references refid="unionsi47x__ssb__mode_1a9a2be4f98978b6b580b7d64cfc07c66c">si47x_ssb_mode::param</references>
         <references refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">sendSSBModeProperty</references>
       </memberdef>
@@ -4658,6 +4856,7 @@ First of all, it is important to say that the SSB patch content is not part of t
         <references refid="class_s_i4735_1a74ee9c99b1e092f7b1efa2f771f38324" compoundref="_s_i4735_8h" startline="910">currentSSBMode</references>
         <references refid="unionsi47x__ssb__mode_1a9a2be4f98978b6b580b7d64cfc07c66c">si47x_ssb_mode::param</references>
         <references refid="class_s_i4735_1ae1d866bfc4cb37c4268c8942b4b4d062" compoundref="_s_i4735_8cpp" startline="2081" endline="2096">sendSSBModeProperty</references>
+        <references refid="unionsi47x__ssb__mode_1aeed76b90e22efa54ef80062032785bc2" compoundref="_s_i4735_8h" startline="789">si47x_ssb_mode::SMUTESEL</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1adfc2c82524918224cf19fec5b7fcf6d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="unionsi47x__firmware__query__library" kindref="compound">si47x_firmware_query_library</ref></type>
@@ -4684,6 +4883,7 @@ You have to call this function if you are applying a patch on SI47XX (SI4735-D60
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1127" column="34" bodyfile="SI4735/SI4735.cpp" bodystart="2128" bodyend="2154"/>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
+        <references refid="unionsi47x__firmware__query__library_1a60468fd4aadf3086bc6f7096e75b9573" compoundref="_s_i4735_8h" startline="353">si47x_firmware_query_library::ERR</references>
         <references refid="_s_i4735_8h_1abf6b929a6f72c48fdb78218394541db2" compoundref="_s_i4735_8h" startline="27">POWER_UP</references>
         <references refid="group__group06_1gaa554b3390fb6c5a4d6661b96afae73ae" compoundref="_s_i4735_8cpp" startline="280" endline="287">powerDown</references>
         <references refid="unionsi47x__firmware__query__library_1a5235c5b07b71d6dc4c76c275a091c63c" compoundref="_s_i4735_8h" startline="364">si47x_firmware_query_library::raw</references>
@@ -4815,10 +5015,16 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1131" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="2191" bodyend="2207"/>
         <references refid="unionsi473x__powerup_1a1d76ab95c8f37f3ee9f2266e0a818455">si473x_powerup::arg</references>
+        <references refid="unionsi473x__powerup_1a21297439eccc575f7c0a3228a4061fa7" compoundref="_s_i4735_8h" startline="183">si473x_powerup::CTSIEN</references>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">deviceAddress</references>
+        <references refid="unionsi473x__powerup_1aa6f9fd2636a0a6797755b99c343ef648" compoundref="_s_i4735_8h" startline="179">si473x_powerup::FUNC</references>
+        <references refid="unionsi473x__powerup_1a6da21e782c18e0d15791f712e602bf0f" compoundref="_s_i4735_8h" startline="182">si473x_powerup::GPO2OEN</references>
+        <references refid="unionsi473x__powerup_1a5deeab3cdc44cc652b6e8867dd8e9833" compoundref="_s_i4735_8h" startline="185">si473x_powerup::OPMODE</references>
+        <references refid="unionsi473x__powerup_1aff3f1655e972eff4630c66f0b4ec7704" compoundref="_s_i4735_8h" startline="181">si473x_powerup::PATCH</references>
         <references refid="_s_i4735_8h_1abf6b929a6f72c48fdb78218394541db2" compoundref="_s_i4735_8h" startline="27">POWER_UP</references>
         <references refid="class_s_i4735_1a1331b701088bda20bf0844e2e38be142" compoundref="_s_i4735_8h" startline="912">powerUp</references>
         <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">waitToSend</references>
+        <references refid="unionsi473x__powerup_1ae68c435fb0ff2ad54bc17ac794a482c1" compoundref="_s_i4735_8h" startline="180">si473x_powerup::XOSCEN</references>
       </memberdef>
       <memberdef kind="function" id="class_s_i4735_1aecfcd50dbb3d95d66c8cdc77d52af63c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>

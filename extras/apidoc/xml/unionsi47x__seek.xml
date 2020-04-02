@@ -4,6 +4,66 @@
     <compoundname>si47x_seek</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__seek_1a708768c904cefc35c63312ba5eea71c2" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_seek::RESERVED1</definition>
+        <argsstring></argsstring>
+        <name>RESERVED1</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="250" column="17" bodyfile="SI4735/SI4735.h" bodystart="250" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__seek_1aada4b18c65da9723670759e78440757f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_seek::WRAP</definition>
+        <argsstring></argsstring>
+        <name>WRAP</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="251" column="17" bodyfile="SI4735/SI4735.h" bodystart="251" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a3280b98b8331f00b4d0158ef1b076533" compoundref="_s_i4735_8cpp" startline="1108" endline="1134">SI4735::seekStation</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__seek_1acd509f67721224c4b0ad0ebdfad56dad" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_seek::SEEKUP</definition>
+        <argsstring></argsstring>
+        <name>SEEKUP</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="252" column="17" bodyfile="SI4735/SI4735.h" bodystart="252" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a3280b98b8331f00b4d0158ef1b076533" compoundref="_s_i4735_8cpp" startline="1108" endline="1134">SI4735::seekStation</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__seek_1a1acbac12abdb5b0ba3e81d353720c6ba" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_seek::RESERVED2</definition>
+        <argsstring></argsstring>
+        <name>RESERVED2</name>
+        <bitfield> 4</bitfield>
+        <briefdescription>
+<para>Determines the direction of the search, either UP = 1, or DOWN = 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="253" column="17" bodyfile="SI4735/SI4735.h" bodystart="253" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="unionsi47x__seek_1a83a4a1f6952444528689d02324cc460f" prot="public" static="no" mutable="no">
         <type>struct si47x_seek::@4</type>
         <definition>struct si47x_seek::@4 si47x_seek::arg</definition>
@@ -43,6 +103,10 @@
     <listofallmembers>
       <member refid="unionsi47x__seek_1a83a4a1f6952444528689d02324cc460f" prot="public" virt="non-virtual"><scope>si47x_seek</scope><name>arg</name></member>
       <member refid="unionsi47x__seek_1a894bfdc90f00f3064991edc0c439e66a" prot="public" virt="non-virtual"><scope>si47x_seek</scope><name>raw</name></member>
+      <member refid="unionsi47x__seek_1a708768c904cefc35c63312ba5eea71c2" prot="public" virt="non-virtual"><scope>si47x_seek</scope><name>RESERVED1</name></member>
+      <member refid="unionsi47x__seek_1a1acbac12abdb5b0ba3e81d353720c6ba" prot="public" virt="non-virtual"><scope>si47x_seek</scope><name>RESERVED2</name></member>
+      <member refid="unionsi47x__seek_1acd509f67721224c4b0ad0ebdfad56dad" prot="public" virt="non-virtual"><scope>si47x_seek</scope><name>SEEKUP</name></member>
+      <member refid="unionsi47x__seek_1aada4b18c65da9723670759e78440757f" prot="public" virt="non-virtual"><scope>si47x_seek</scope><name>WRAP</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

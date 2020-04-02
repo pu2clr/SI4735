@@ -4,6 +4,100 @@
     <compoundname>si47x_rds_config</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__rds__config_1ac6a693161ec0198fd24255e1dbcbf668" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::RDSEN</definition>
+        <argsstring></argsstring>
+        <name>RDSEN</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="567" column="17" bodyfile="SI4735/SI4735.h" bodystart="567" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__config_1a849a3b2c92974fdfb9542db006e0976d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::DUMMY1</definition>
+        <argsstring></argsstring>
+        <name>DUMMY1</name>
+        <bitfield> 7</bitfield>
+        <briefdescription>
+<para>1 = RDS Processing Enable. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="568" column="17" bodyfile="SI4735/SI4735.h" bodystart="568" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__config_1a892701752004744896276653c17a5793" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::BLETHD</definition>
+        <argsstring></argsstring>
+        <name>BLETHD</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="569" column="17" bodyfile="SI4735/SI4735.h" bodystart="569" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__config_1a2a243d520165c64e15fbad8b7ac2f5d9" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::BLETHC</definition>
+        <argsstring></argsstring>
+        <name>BLETHC</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+<para>Block Error Threshold BLOCKD. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="570" column="17" bodyfile="SI4735/SI4735.h" bodystart="570" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__config_1a8fde60b58e168d978e259f3899ce5e0b" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::BLETHB</definition>
+        <argsstring></argsstring>
+        <name>BLETHB</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+<para>Block Error Threshold BLOCKC. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="571" column="17" bodyfile="SI4735/SI4735.h" bodystart="571" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__config_1a985f772fda4648f338757b919de189f0" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::BLETHA</definition>
+        <argsstring></argsstring>
+        <name>BLETHA</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+<para>Block Error Threshold BLOCKB. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="572" column="17" bodyfile="SI4735/SI4735.h" bodystart="572" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1ad9718a85c79a311c26997bbda20f2351" compoundref="_s_i4735_8cpp" startline="1340" endline="1369">SI4735::setRdsConfig</referencedby>
+      </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__config_1af43318436df83ca903da3c6eaf797c5f" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_config::@14</type>
         <definition>struct si47x_rds_config::@14 si47x_rds_config::arg</definition>
@@ -45,7 +139,13 @@
     <location file="SI4735/SI4735.h" line="564" column="15" bodyfile="SI4735/SI4735.h" bodystart="564" bodyend="575"/>
     <listofallmembers>
       <member refid="unionsi47x__rds__config_1af43318436df83ca903da3c6eaf797c5f" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>arg</name></member>
+      <member refid="unionsi47x__rds__config_1a985f772fda4648f338757b919de189f0" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>BLETHA</name></member>
+      <member refid="unionsi47x__rds__config_1a8fde60b58e168d978e259f3899ce5e0b" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>BLETHB</name></member>
+      <member refid="unionsi47x__rds__config_1a2a243d520165c64e15fbad8b7ac2f5d9" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>BLETHC</name></member>
+      <member refid="unionsi47x__rds__config_1a892701752004744896276653c17a5793" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>BLETHD</name></member>
+      <member refid="unionsi47x__rds__config_1a849a3b2c92974fdfb9542db006e0976d" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>DUMMY1</name></member>
       <member refid="unionsi47x__rds__config_1ace0fc779a1af19098b03178fcbaafffe" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>raw</name></member>
+      <member refid="unionsi47x__rds__config_1ac6a693161ec0198fd24255e1dbcbf668" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>RDSEN</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

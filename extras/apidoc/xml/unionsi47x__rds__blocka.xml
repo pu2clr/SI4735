@@ -4,6 +4,19 @@
     <compoundname>si47x_rds_blocka</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__rds__blocka_1aca7324b126cebc5c0993e4d6f1a3a67e" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t si47x_rds_blocka::pi</definition>
+        <argsstring></argsstring>
+        <name>pi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="585" column="18" bodyfile="SI4735/SI4735.h" bodystart="585" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__blocka_1a1a7f496c8e0b77574f49c7808aeb186c" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_blocka::@15</type>
         <definition>struct si47x_rds_blocka::@15 si47x_rds_blocka::refined</definition>
@@ -16,6 +29,32 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="586" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__blocka_1a0143e0506e13766406571bd29ca604a6" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_blocka::highValue</definition>
+        <argsstring></argsstring>
+        <name>highValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="589" column="17" bodyfile="SI4735/SI4735.h" bodystart="589" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__blocka_1a1148360b97c0c704c46a00ceb36360b4" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_blocka::lowValue</definition>
+        <argsstring></argsstring>
+        <name>lowValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="590" column="17" bodyfile="SI4735/SI4735.h" bodystart="590" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__blocka_1ad64069e22c176c0e1b12e9a23eb54f20" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_blocka::@16</type>
@@ -38,6 +77,9 @@
     </detaileddescription>
     <location file="SI4735/SI4735.h" line="582" column="15" bodyfile="SI4735/SI4735.h" bodystart="582" bodyend="592"/>
     <listofallmembers>
+      <member refid="unionsi47x__rds__blocka_1a0143e0506e13766406571bd29ca604a6" prot="public" virt="non-virtual"><scope>si47x_rds_blocka</scope><name>highValue</name></member>
+      <member refid="unionsi47x__rds__blocka_1a1148360b97c0c704c46a00ceb36360b4" prot="public" virt="non-virtual"><scope>si47x_rds_blocka</scope><name>lowValue</name></member>
+      <member refid="unionsi47x__rds__blocka_1aca7324b126cebc5c0993e4d6f1a3a67e" prot="public" virt="non-virtual"><scope>si47x_rds_blocka</scope><name>pi</name></member>
       <member refid="unionsi47x__rds__blocka_1ad64069e22c176c0e1b12e9a23eb54f20" prot="public" virt="non-virtual"><scope>si47x_rds_blocka</scope><name>raw</name></member>
       <member refid="unionsi47x__rds__blocka_1a1a7f496c8e0b77574f49c7808aeb186c" prot="public" virt="non-virtual"><scope>si47x_rds_blocka</scope><name>refined</name></member>
     </listofallmembers>

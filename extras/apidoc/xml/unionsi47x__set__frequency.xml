@@ -4,6 +4,142 @@
     <compoundname>si47x_set_frequency</compoundname>
     <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
       <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__set__frequency_1a629c45776aead687497d92dfabad925d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_set_frequency::FAST</definition>
+        <argsstring></argsstring>
+        <name>FAST</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="228" column="17" bodyfile="SI4735/SI4735.h" bodystart="228" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a8c54bfc1fcf1dd989e697cc9b7094f59" compoundref="_s_i4735_8h" startline="1045" endline="1045">SI4735::getTuneFrequencyFast</referencedby>
+        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
+        <referencedby refid="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="194" endline="220">SI4735::setPowerUp</referencedby>
+        <referencedby refid="class_s_i4735_1a51d816112d974f10306d9d001667395a" compoundref="_s_i4735_8h" startline="1046" endline="1046">SI4735::setTuneFrequencyFast</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_set_frequency::FREEZE</definition>
+        <argsstring></argsstring>
+        <name>FREEZE</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>ARG1 - FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="229" column="17" bodyfile="SI4735/SI4735.h" bodystart="229" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a667fead0c7b2658c2b932370ad4e4f88" compoundref="_s_i4735_8h" startline="1047" endline="1047">SI4735::getTuneFrequencyFreeze</referencedby>
+        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
+        <referencedby refid="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="194" endline="220">SI4735::setPowerUp</referencedby>
+        <referencedby refid="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" compoundref="_s_i4735_8cpp" startline="398" endline="420">SI4735::setTuneFrequencyAntennaCapacitor</referencedby>
+        <referencedby refid="class_s_i4735_1aee22a5ce06d4948fad2365a7b62fbd8d" compoundref="_s_i4735_8h" startline="1048" endline="1048">SI4735::setTuneFrequencyFreeze</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__set__frequency_1a0f58c9f3ce774e07a2acc9ba4e968c85" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_set_frequency::DUMMY1</definition>
+        <argsstring></argsstring>
+        <name>DUMMY1</name>
+        <bitfield> 4</bitfield>
+        <briefdescription>
+<para>Valid only for FM (Must be 0 to AM) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="230" column="17" bodyfile="SI4735/SI4735.h" bodystart="230" bodyend="-1"/>
+        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
+        <referencedby refid="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="194" endline="220">SI4735::setPowerUp</referencedby>
+        <referencedby refid="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" compoundref="_s_i4735_8cpp" startline="398" endline="420">SI4735::setTuneFrequencyAntennaCapacitor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__set__frequency_1a224ff2b8897867521dc7e83e4a7aadae" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_set_frequency::USBLSB</definition>
+        <argsstring></argsstring>
+        <name>USBLSB</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+<para>Always set 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="231" column="17" bodyfile="SI4735/SI4735.h" bodystart="231" bodyend="-1"/>
+        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__set__frequency_1a55e3e49406688a65d9e90427ba3290cd" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_set_frequency::FREQH</definition>
+        <argsstring></argsstring>
+        <name>FREQH</name>
+        <briefdescription>
+<para>SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="232" column="17" bodyfile="SI4735/SI4735.h" bodystart="232" bodyend="-1"/>
+        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__set__frequency_1a0b7fcda4891b52509b53168d581936e3" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_set_frequency::FREQL</definition>
+        <argsstring></argsstring>
+        <name>FREQL</name>
+        <briefdescription>
+<para>ARG2 - Tune Frequency High byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="233" column="17" bodyfile="SI4735/SI4735.h" bodystart="233" bodyend="-1"/>
+        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__set__frequency_1a9aee8ee0d04a6a7e732210fdea987d2c" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_set_frequency::ANTCAPH</definition>
+        <argsstring></argsstring>
+        <name>ANTCAPH</name>
+        <briefdescription>
+<para>ARG3 - Tune Frequency Low byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="234" column="17" bodyfile="SI4735/SI4735.h" bodystart="234" bodyend="-1"/>
+        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
+        <referencedby refid="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="194" endline="220">SI4735::setPowerUp</referencedby>
+        <referencedby refid="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" compoundref="_s_i4735_8cpp" startline="398" endline="420">SI4735::setTuneFrequencyAntennaCapacitor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__set__frequency_1a712fdd01147dcef829431bc2fc94a012" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_set_frequency::ANTCAPL</definition>
+        <argsstring></argsstring>
+        <name>ANTCAPL</name>
+        <briefdescription>
+<para>ARG4 - Antenna Tuning Capacitor High byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="235" column="17" bodyfile="SI4735/SI4735.h" bodystart="235" bodyend="-1"/>
+        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
+        <referencedby refid="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="194" endline="220">SI4735::setPowerUp</referencedby>
+        <referencedby refid="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" compoundref="_s_i4735_8cpp" startline="398" endline="420">SI4735::setTuneFrequencyAntennaCapacitor</referencedby>
+      </memberdef>
       <memberdef kind="variable" id="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65" prot="public" static="no" mutable="no">
         <type>struct si47x_set_frequency::@3</type>
         <definition>struct si47x_set_frequency::@3 si47x_set_frequency::arg</definition>
@@ -16,12 +152,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="236" column="9"/>
+        <referencedby refid="class_s_i4735_1a8c54bfc1fcf1dd989e697cc9b7094f59" compoundref="_s_i4735_8h" startline="1045" endline="1045">SI4735::getTuneFrequencyFast</referencedby>
+        <referencedby refid="class_s_i4735_1a667fead0c7b2658c2b932370ad4e4f88" compoundref="_s_i4735_8h" startline="1047" endline="1047">SI4735::getTuneFrequencyFreeze</referencedby>
+        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
         <referencedby refid="group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="194" endline="220">SI4735::setPowerUp</referencedby>
         <referencedby refid="group__group08_1gaaceadaaf0835e3db124d1b36f2aebd3c" compoundref="_s_i4735_8cpp" startline="398" endline="420">SI4735::setTuneFrequencyAntennaCapacitor</referencedby>
-        <referencedby refid="group__group08_1ga63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="434" endline="463">SI4735::setFrequency</referencedby>
-        <referencedby refid="class_s_i4735_1a8c54bfc1fcf1dd989e697cc9b7094f59" compoundref="_s_i4735_8h" startline="1045" endline="1045">SI4735::getTuneFrequencyFast</referencedby>
         <referencedby refid="class_s_i4735_1a51d816112d974f10306d9d001667395a" compoundref="_s_i4735_8h" startline="1046" endline="1046">SI4735::setTuneFrequencyFast</referencedby>
-        <referencedby refid="class_s_i4735_1a667fead0c7b2658c2b932370ad4e4f88" compoundref="_s_i4735_8h" startline="1047" endline="1047">SI4735::getTuneFrequencyFreeze</referencedby>
         <referencedby refid="class_s_i4735_1aee22a5ce06d4948fad2365a7b62fbd8d" compoundref="_s_i4735_8h" startline="1048" endline="1048">SI4735::setTuneFrequencyFreeze</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__set__frequency_1a57e2bfb6b0c9c0fb7d6ffac131824b8a" prot="public" static="no" mutable="no">
@@ -49,8 +185,16 @@
     </detaileddescription>
     <location file="SI4735/SI4735.h" line="225" column="15" bodyfile="SI4735/SI4735.h" bodystart="225" bodyend="238"/>
     <listofallmembers>
+      <member refid="unionsi47x__set__frequency_1a9aee8ee0d04a6a7e732210fdea987d2c" prot="public" virt="non-virtual"><scope>si47x_set_frequency</scope><name>ANTCAPH</name></member>
+      <member refid="unionsi47x__set__frequency_1a712fdd01147dcef829431bc2fc94a012" prot="public" virt="non-virtual"><scope>si47x_set_frequency</scope><name>ANTCAPL</name></member>
       <member refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65" prot="public" virt="non-virtual"><scope>si47x_set_frequency</scope><name>arg</name></member>
+      <member refid="unionsi47x__set__frequency_1a0f58c9f3ce774e07a2acc9ba4e968c85" prot="public" virt="non-virtual"><scope>si47x_set_frequency</scope><name>DUMMY1</name></member>
+      <member refid="unionsi47x__set__frequency_1a629c45776aead687497d92dfabad925d" prot="public" virt="non-virtual"><scope>si47x_set_frequency</scope><name>FAST</name></member>
+      <member refid="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" prot="public" virt="non-virtual"><scope>si47x_set_frequency</scope><name>FREEZE</name></member>
+      <member refid="unionsi47x__set__frequency_1a55e3e49406688a65d9e90427ba3290cd" prot="public" virt="non-virtual"><scope>si47x_set_frequency</scope><name>FREQH</name></member>
+      <member refid="unionsi47x__set__frequency_1a0b7fcda4891b52509b53168d581936e3" prot="public" virt="non-virtual"><scope>si47x_set_frequency</scope><name>FREQL</name></member>
       <member refid="unionsi47x__set__frequency_1a57e2bfb6b0c9c0fb7d6ffac131824b8a" prot="public" virt="non-virtual"><scope>si47x_set_frequency</scope><name>raw</name></member>
+      <member refid="unionsi47x__set__frequency_1a224ff2b8897867521dc7e83e4a7aadae" prot="public" virt="non-virtual"><scope>si47x_set_frequency</scope><name>USBLSB</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

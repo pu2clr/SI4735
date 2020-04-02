@@ -24,6 +24,7 @@
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1054" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="298" bodyend="314"/>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
+        <references refid="unionsi47x__firmware__information_1a7155c52df7d6e6ff21b9f9eda85e7782" compoundref="_s_i4735_8h" startline="317">si47x_firmware_information::ERR</references>
         <references refid="class_s_i4735_1ad03d545e53a7ca2fe072a7b03d60910e" compoundref="_s_i4735_8h" startline="907">SI4735::firmwareInfo</references>
         <references refid="_s_i4735_8h_1a9fbb31eec68a8b17895fd18640296013" compoundref="_s_i4735_8h" startline="28">GET_REV</references>
         <references refid="unionsi47x__firmware__information_1aa2ba7bbaa745c8ca18c83226246654e5" compoundref="_s_i4735_8h" startline="329">si47x_firmware_information::raw</references>

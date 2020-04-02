@@ -36,10 +36,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="1049" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="398" bodyend="420"/>
+        <references refid="unionsi47x__antenna__capacitor_1a26952301dd2779d1976f92c2e521c476" compoundref="_s_i4735_8h" startline="213">si47x_antenna_capacitor::ANTCAPH</references>
+        <references refid="unionsi47x__set__frequency_1a9aee8ee0d04a6a7e732210fdea987d2c" compoundref="_s_i4735_8h" startline="234">si47x_set_frequency::ANTCAPH</references>
+        <references refid="unionsi47x__antenna__capacitor_1a327b39363f0d152ba8a5f4c7252fc358" compoundref="_s_i4735_8h" startline="212">si47x_antenna_capacitor::ANTCAPL</references>
+        <references refid="unionsi47x__set__frequency_1a712fdd01147dcef829431bc2fc94a012" compoundref="_s_i4735_8h" startline="235">si47x_set_frequency::ANTCAPL</references>
         <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
         <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">SI4735::currentFrequencyParams</references>
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">SI4735::currentTune</references>
+        <references refid="unionsi47x__set__frequency_1a0f58c9f3ce774e07a2acc9ba4e968c85" compoundref="_s_i4735_8h" startline="230">si47x_set_frequency::DUMMY1</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
+        <references refid="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" compoundref="_s_i4735_8h" startline="229">si47x_set_frequency::FREEZE</references>
         <references refid="unionsi47x__antenna__capacitor_1a29548a9c68843bb6aa86eabcd33a9633">si47x_antenna_capacitor::raw</references>
         <references refid="unionsi47x__antenna__capacitor_1aa59f9604df88a98b91295b0a9c009bbd" compoundref="_s_i4735_8h" startline="215">si47x_antenna_capacitor::value</references>
       </memberdef>
@@ -75,6 +81,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="SI4735/SI4735.h" line="940" column="10" bodyfile="SI4735/SI4735.cpp" bodystart="434" bodyend="463"/>
+        <references refid="unionsi47x__set__frequency_1a9aee8ee0d04a6a7e732210fdea987d2c" compoundref="_s_i4735_8h" startline="234">si47x_set_frequency::ANTCAPH</references>
+        <references refid="unionsi47x__set__frequency_1a712fdd01147dcef829431bc2fc94a012" compoundref="_s_i4735_8h" startline="235">si47x_set_frequency::ANTCAPL</references>
         <references refid="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65">si47x_set_frequency::arg</references>
         <references refid="class_s_i4735_1a4439c40db789f02371ea0fb9b22650c5" compoundref="_s_i4735_8h" startline="903">SI4735::currentFrequency</references>
         <references refid="class_s_i4735_1a8253ae2f3c87a6943776f8a63a691ca3" compoundref="_s_i4735_8h" startline="904">SI4735::currentFrequencyParams</references>
@@ -82,10 +90,18 @@
         <references refid="class_s_i4735_1acc3d3a411d181e08846219661dbde1c4" compoundref="_s_i4735_8h" startline="891">SI4735::currentTune</references>
         <references refid="class_s_i4735_1a9da4f3df9e5e6b0448eff15e12f690dd" compoundref="_s_i4735_8h" startline="895">SI4735::currentWorkFrequency</references>
         <references refid="class_s_i4735_1a243ecc7d01fc0d0e9cabb4ed00b9e47d" compoundref="_s_i4735_8h" startline="885">SI4735::deviceAddress</references>
+        <references refid="unionsi47x__set__frequency_1a0f58c9f3ce774e07a2acc9ba4e968c85" compoundref="_s_i4735_8h" startline="230">si47x_set_frequency::DUMMY1</references>
+        <references refid="unionsi47x__set__frequency_1a629c45776aead687497d92dfabad925d" compoundref="_s_i4735_8h" startline="228">si47x_set_frequency::FAST</references>
         <references refid="_s_i4735_8h_1aa9acf37dc2ae6e26a01780d6d4e6dcc1" compoundref="_s_i4735_8h" startline="35">FM_TUNE_FREQ</references>
+        <references refid="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" compoundref="_s_i4735_8h" startline="229">si47x_set_frequency::FREEZE</references>
+        <references refid="unionsi47x__frequency_1ae85fcb4329c600511e2127e1c5029f8c" compoundref="_s_i4735_8h" startline="200">si47x_frequency::FREQH</references>
+        <references refid="unionsi47x__set__frequency_1a55e3e49406688a65d9e90427ba3290cd" compoundref="_s_i4735_8h" startline="232">si47x_set_frequency::FREQH</references>
+        <references refid="unionsi47x__frequency_1abe921825c86d54f9f38411677a489d89" compoundref="_s_i4735_8h" startline="199">si47x_frequency::FREQL</references>
+        <references refid="unionsi47x__set__frequency_1a0b7fcda4891b52509b53168d581936e3" compoundref="_s_i4735_8h" startline="233">si47x_set_frequency::FREQL</references>
         <references refid="_s_i4735_8h_1a3d77e4d0458eed0b6ba584c737e8df21" compoundref="_s_i4735_8h" startline="151">MAX_DELAY_AFTER_SET_FREQUENCY</references>
         <references refid="unionsi47x__frequency_1a1a992fcfef59a6c6b1612e006264840f">si47x_frequency::raw</references>
         <references refid="unionsi47x__set__frequency_1a57e2bfb6b0c9c0fb7d6ffac131824b8a" compoundref="_s_i4735_8h" startline="237">si47x_set_frequency::raw</references>
+        <references refid="unionsi47x__set__frequency_1a224ff2b8897867521dc7e83e4a7aadae" compoundref="_s_i4735_8h" startline="231">si47x_set_frequency::USBLSB</references>
         <references refid="unionsi47x__frequency_1aad12ac434ec9907e90a3f6b95377ca76" compoundref="_s_i4735_8h" startline="202">si47x_frequency::value</references>
         <references refid="group__group06_1ga7b45c1b22c3c1a3f2326bee913d1e1e0" compoundref="_s_i4735_8cpp" startline="169" endline="176">SI4735::waitToSend</references>
         <referencedby refid="group__group08_1ga93fff524a6f900ac91eb1222ce73f9ba" compoundref="_s_i4735_8cpp" startline="505" endline="514">SI4735::frequencyDown</referencedby>
