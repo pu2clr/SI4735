@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="unionsi47x__bandwidth__config" kind="union" language="C++" prot="public">
+    <compoundname>si47x_bandwidth_config</compoundname>
+    <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__bandwidth__config_1a9126e88e995ef2b30a3b3b0b3a57e4b8" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_bandwidth_config::AMCHFLT</definition>
+        <argsstring></argsstring>
+        <name>AMCHFLT</name>
+        <bitfield> 4</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="701" column="17" bodyfile="SI4735.h" bodystart="701" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__bandwidth__config_1a9782eb3c7fdb503308a9efa0b2feca59" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_bandwidth_config::DUMMY1</definition>
+        <argsstring></argsstring>
+        <name>DUMMY1</name>
+        <bitfield> 4</bitfield>
+        <briefdescription>
+<para>Selects the bandwidth of the AM channel filter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="702" column="17" bodyfile="SI4735.h" bodystart="702" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__bandwidth__config_1a83bcbed43c2a8b60e237189c24690706" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_bandwidth_config::AMPLFLT</definition>
+        <argsstring></argsstring>
+        <name>AMPLFLT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="703" column="17" bodyfile="SI4735.h" bodystart="703" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__bandwidth__config_1aa5135cee2e47231eee7ade4cdbe6a3c7" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_bandwidth_config::DUMMY2</definition>
+        <argsstring></argsstring>
+        <name>DUMMY2</name>
+        <bitfield> 7</bitfield>
+        <briefdescription>
+<para>Enables the AM Power Line Noise Rejection Filter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="704" column="17" bodyfile="SI4735.h" bodystart="704" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__bandwidth__config_1aad8c326eb12c8fe5dc1dc1d2bf78e37c" prot="public" static="no" mutable="no">
+        <type>struct si47x_bandwidth_config::@24</type>
+        <definition>struct si47x_bandwidth_config::@24 si47x_bandwidth_config::param</definition>
+        <argsstring></argsstring>
+        <name>param</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="705" column="11"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__bandwidth__config_1aa8fd81f2f62788fac6c3cce7b1ea765d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_bandwidth_config::raw[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="706" column="13" bodyfile="SI4735.h" bodystart="706" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The bandwidth of the AM channel filter data type AMCHFLT values: 0 = 6 kHz Bandwidth <linebreak/>
+ 1 = 4 kHz Bandwidth 2 = 3 kHz Bandwidth 3 = 2 kHz Bandwidth 4 = 1 kHz Bandwidth 5 = 1.8 kHz Bandwidth 6 = 2.5 kHz Bandwidth, gradual roll off 7–15 = Reserved (Do not use)</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 125 and 151 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="SI4735.h" line="698" column="15" bodyfile="SI4735.h" bodystart="698" bodyend="707"/>
+    <listofallmembers>
+      <member refid="unionsi47x__bandwidth__config_1a9126e88e995ef2b30a3b3b0b3a57e4b8" prot="public" virt="non-virtual"><scope>si47x_bandwidth_config</scope><name>AMCHFLT</name></member>
+      <member refid="unionsi47x__bandwidth__config_1a83bcbed43c2a8b60e237189c24690706" prot="public" virt="non-virtual"><scope>si47x_bandwidth_config</scope><name>AMPLFLT</name></member>
+      <member refid="unionsi47x__bandwidth__config_1a9782eb3c7fdb503308a9efa0b2feca59" prot="public" virt="non-virtual"><scope>si47x_bandwidth_config</scope><name>DUMMY1</name></member>
+      <member refid="unionsi47x__bandwidth__config_1aa5135cee2e47231eee7ade4cdbe6a3c7" prot="public" virt="non-virtual"><scope>si47x_bandwidth_config</scope><name>DUMMY2</name></member>
+      <member refid="unionsi47x__bandwidth__config_1aad8c326eb12c8fe5dc1dc1d2bf78e37c" prot="public" virt="non-virtual"><scope>si47x_bandwidth_config</scope><name>param</name></member>
+      <member refid="unionsi47x__bandwidth__config_1aa8fd81f2f62788fac6c3cce7b1ea765d" prot="public" virt="non-virtual"><scope>si47x_bandwidth_config</scope><name>raw</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

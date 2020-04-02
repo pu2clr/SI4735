@@ -1,0 +1,310 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="unionsi47x__response__status" kind="union" language="C++" prot="public">
+    <compoundname>si47x_response_status</compoundname>
+    <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__response__status_1a01ca22a28b83206bd992372d20c32f2f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::STCINT</definition>
+        <argsstring></argsstring>
+        <name>STCINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="243" column="17" bodyfile="SI4735.h" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a8bb865e96113a5755fc3e721f2623418" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::DUMMY1</definition>
+        <argsstring></argsstring>
+        <name>DUMMY1</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="244" column="17" bodyfile="SI4735.h" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a19cfe8d1b0badae5253ff243e05d7afa" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::RDSINT</definition>
+        <argsstring></argsstring>
+        <name>RDSINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="245" column="17" bodyfile="SI4735.h" bodystart="245" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a301f61dac86d37ec2fc74c79c98254ab" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::RSQINT</definition>
+        <argsstring></argsstring>
+        <name>RSQINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Radio Data System (RDS) Interrup; 0 = interrupt has not been triggered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="246" column="17" bodyfile="SI4735.h" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a6206af5b53630164e9526eae84573a13" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::DUMMY2</definition>
+        <argsstring></argsstring>
+        <name>DUMMY2</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+<para>Received Signal Quality Interrupt; 0 = interrupt has not been triggered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="247" column="17" bodyfile="SI4735.h" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a0693308479f69e970ec92ce1d1dcbf9c" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::ERR</definition>
+        <argsstring></argsstring>
+        <name>ERR</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="248" column="17" bodyfile="SI4735.h" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a6816e97ec06655d72350b83eae0e9f4c" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::CTS</definition>
+        <argsstring></argsstring>
+        <name>CTS</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Error. 0 = No error 1 = Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="249" column="17" bodyfile="SI4735.h" bodystart="249" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1aa4da6ef23dc23e40e9dcfc582ac7a53e" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::VALID</definition>
+        <argsstring></argsstring>
+        <name>VALID</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Clear to Send. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="251" column="17" bodyfile="SI4735.h" bodystart="251" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1acc8c563c2eaf6702c36961fd300fecfb" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::AFCRL</definition>
+        <argsstring></argsstring>
+        <name>AFCRL</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Valid Channel. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="252" column="17" bodyfile="SI4735.h" bodystart="252" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a88284e575e52c96efa3eb0248010ba73" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::DUMMY3</definition>
+        <argsstring></argsstring>
+        <name>DUMMY3</name>
+        <bitfield> 5</bitfield>
+        <briefdescription>
+<para>AFC Rail Indicator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="253" column="17" bodyfile="SI4735.h" bodystart="253" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1adf288c085c8f9a7b6a84ca9746541ea5" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::BLTF</definition>
+        <argsstring></argsstring>
+        <name>BLTF</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="254" column="17" bodyfile="SI4735.h" bodystart="254" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a7d5ca536d8706e6cc9df2c8d5aea268e" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::READFREQH</definition>
+        <argsstring></argsstring>
+        <name>READFREQH</name>
+        <briefdescription>
+<para>Reports if a seek hit the band limit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="256" column="17" bodyfile="SI4735.h" bodystart="256" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a6d5f612fc40df215e9f4c6a94b68e2e6" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::READFREQL</definition>
+        <argsstring></argsstring>
+        <name>READFREQL</name>
+        <briefdescription>
+<para>Read Frequency High byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="258" column="17" bodyfile="SI4735.h" bodystart="258" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a524207ce1b79627d69f94049ba8c614d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::RSSI</definition>
+        <argsstring></argsstring>
+        <name>RSSI</name>
+        <briefdescription>
+<para>Read Frequency Low byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="260" column="17" bodyfile="SI4735.h" bodystart="260" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a14f5ce9ed117d45a2230b6f87b88a4cb" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::SNR</definition>
+        <argsstring></argsstring>
+        <name>SNR</name>
+        <briefdescription>
+<para>Received Signal Strength Indicator (dBμV) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="262" column="17" bodyfile="SI4735.h" bodystart="262" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a1ee21104ab8a4a13619ee5c3f7fb3f2f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::MULT</definition>
+        <argsstring></argsstring>
+        <name>MULT</name>
+        <briefdescription>
+<para>This byte contains the SNR metric when tune is complete (dB). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="264" column="17" bodyfile="SI4735.h" bodystart="264" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1acd0a9f2982a84c43b8127f5e54982f19" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::READANTCAP</definition>
+        <argsstring></argsstring>
+        <name>READANTCAP</name>
+        <briefdescription>
+<para>Contains the multipath metric when tune is complete. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="266" column="17" bodyfile="SI4735.h" bodystart="266" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e" prot="public" static="no" mutable="no">
+        <type>struct si47x_response_status::@5</type>
+        <definition>struct si47x_response_status::@5 si47x_response_status::resp</definition>
+        <argsstring></argsstring>
+        <name>resp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="267" column="10"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__response__status_1a9b236e03804629e73a4b19fddb72b4cd" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_response_status::raw[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="268" column="13" bodyfile="SI4735.h" bodystart="268" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Response status command</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; pages 73 and </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="SI4735.h" line="239" column="15" bodyfile="SI4735.h" bodystart="239" bodyend="269"/>
+    <listofallmembers>
+      <member refid="unionsi47x__response__status_1acc8c563c2eaf6702c36961fd300fecfb" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>AFCRL</name></member>
+      <member refid="unionsi47x__response__status_1adf288c085c8f9a7b6a84ca9746541ea5" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>BLTF</name></member>
+      <member refid="unionsi47x__response__status_1a6816e97ec06655d72350b83eae0e9f4c" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>CTS</name></member>
+      <member refid="unionsi47x__response__status_1a8bb865e96113a5755fc3e721f2623418" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>DUMMY1</name></member>
+      <member refid="unionsi47x__response__status_1a6206af5b53630164e9526eae84573a13" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>DUMMY2</name></member>
+      <member refid="unionsi47x__response__status_1a88284e575e52c96efa3eb0248010ba73" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>DUMMY3</name></member>
+      <member refid="unionsi47x__response__status_1a0693308479f69e970ec92ce1d1dcbf9c" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>ERR</name></member>
+      <member refid="unionsi47x__response__status_1a1ee21104ab8a4a13619ee5c3f7fb3f2f" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>MULT</name></member>
+      <member refid="unionsi47x__response__status_1a9b236e03804629e73a4b19fddb72b4cd" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>raw</name></member>
+      <member refid="unionsi47x__response__status_1a19cfe8d1b0badae5253ff243e05d7afa" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>RDSINT</name></member>
+      <member refid="unionsi47x__response__status_1acd0a9f2982a84c43b8127f5e54982f19" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>READANTCAP</name></member>
+      <member refid="unionsi47x__response__status_1a7d5ca536d8706e6cc9df2c8d5aea268e" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>READFREQH</name></member>
+      <member refid="unionsi47x__response__status_1a6d5f612fc40df215e9f4c6a94b68e2e6" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>READFREQL</name></member>
+      <member refid="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>resp</name></member>
+      <member refid="unionsi47x__response__status_1a301f61dac86d37ec2fc74c79c98254ab" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>RSQINT</name></member>
+      <member refid="unionsi47x__response__status_1a524207ce1b79627d69f94049ba8c614d" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>RSSI</name></member>
+      <member refid="unionsi47x__response__status_1a14f5ce9ed117d45a2230b6f87b88a4cb" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>SNR</name></member>
+      <member refid="unionsi47x__response__status_1a01ca22a28b83206bd992372d20c32f2f" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>STCINT</name></member>
+      <member refid="unionsi47x__response__status_1aa4da6ef23dc23e40e9dcfc582ac7a53e" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>VALID</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,449 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="unionsi47x__rqs__status" kind="union" language="C++" prot="public">
+    <compoundname>si47x_rqs_status</compoundname>
+    <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a2e61a3cc9498a20b9b5e631cf7f7a395" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::STCINT</definition>
+        <argsstring></argsstring>
+        <name>STCINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="380" column="17" bodyfile="SI4735.h" bodystart="380" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a79007d32c2dc0695eee8e2e978356d90" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::DUMMY1</definition>
+        <argsstring></argsstring>
+        <name>DUMMY1</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="381" column="17" bodyfile="SI4735.h" bodystart="381" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1aa50f1f40d277dcc42ce8833ae805477e" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::RDSINT</definition>
+        <argsstring></argsstring>
+        <name>RDSINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="382" column="17" bodyfile="SI4735.h" bodystart="382" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a1c771417de53d336db85f728eea9e2e7" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::RSQINT</definition>
+        <argsstring></argsstring>
+        <name>RSQINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="383" column="17" bodyfile="SI4735.h" bodystart="383" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a671af7a40dc7d0d051a138416bbeb29a" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::DUMMY2</definition>
+        <argsstring></argsstring>
+        <name>DUMMY2</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="384" column="17" bodyfile="SI4735.h" bodystart="384" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1afb8c85d6e84a540d37419ab99fc23c94" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::ERR</definition>
+        <argsstring></argsstring>
+        <name>ERR</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="385" column="17" bodyfile="SI4735.h" bodystart="385" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1af7beac2eb02d8eb6f155417b638e4fa1" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::CTS</definition>
+        <argsstring></argsstring>
+        <name>CTS</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="386" column="17" bodyfile="SI4735.h" bodystart="386" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a820a302920843a8fbf92865644a11ce9" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::RSSIILINT</definition>
+        <argsstring></argsstring>
+        <name>RSSIILINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="388" column="17" bodyfile="SI4735.h" bodystart="388" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1aaf3f6a82b0878afbd7a4a18544577552" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::RSSIHINT</definition>
+        <argsstring></argsstring>
+        <name>RSSIHINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>RSSI Detect Low. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="389" column="17" bodyfile="SI4735.h" bodystart="389" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a6429b6373a1aabce38b2ddde7cdae2a7" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::SNRLINT</definition>
+        <argsstring></argsstring>
+        <name>SNRLINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>RSSI Detect High. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="390" column="17" bodyfile="SI4735.h" bodystart="390" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a3ec547d32d35e825bd3cc8dc6aa04371" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::SNRHINT</definition>
+        <argsstring></argsstring>
+        <name>SNRHINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>SNR Detect Low. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="391" column="17" bodyfile="SI4735.h" bodystart="391" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1ab8511df192966df4c4c30fd5fbd85a8d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::MULTLINT</definition>
+        <argsstring></argsstring>
+        <name>MULTLINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>SNR Detect High. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="392" column="17" bodyfile="SI4735.h" bodystart="392" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a1c7edf40697da61d47979d5c6945a7be" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::MULTHINT</definition>
+        <argsstring></argsstring>
+        <name>MULTHINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Multipath Detect Low. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="393" column="17" bodyfile="SI4735.h" bodystart="393" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a5468b11528cf37097fe88a2e694aeb15" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::DUMMY3</definition>
+        <argsstring></argsstring>
+        <name>DUMMY3</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Multipath Detect High. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="394" column="17" bodyfile="SI4735.h" bodystart="394" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1adb9c59f3070d42da5be6b34fe4760bb2" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::BLENDINT</definition>
+        <argsstring></argsstring>
+        <name>BLENDINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="395" column="17" bodyfile="SI4735.h" bodystart="395" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1ac5a8820c2556ca30ddb6fae020a837dd" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::VALID</definition>
+        <argsstring></argsstring>
+        <name>VALID</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Blend Detect Interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="397" column="17" bodyfile="SI4735.h" bodystart="397" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a9961f89a4da7115916a5c84b66a80d80" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::AFCRL</definition>
+        <argsstring></argsstring>
+        <name>AFCRL</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Valid Channel. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="398" column="17" bodyfile="SI4735.h" bodystart="398" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a796ebb2d3d900cfce84d0dc2f5b0585d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::DUMMY4</definition>
+        <argsstring></argsstring>
+        <name>DUMMY4</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>AFC Rail Indicator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="399" column="17" bodyfile="SI4735.h" bodystart="399" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a08ec28496a92405a3b3948b17159af2b" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::SMUTE</definition>
+        <argsstring></argsstring>
+        <name>SMUTE</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="400" column="17" bodyfile="SI4735.h" bodystart="400" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1aa36d76a841b57cc87a0950cf39b6e2c1" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::DUMMY5</definition>
+        <argsstring></argsstring>
+        <name>DUMMY5</name>
+        <bitfield> 4</bitfield>
+        <briefdescription>
+<para>Soft Mute Indicator. Indicates soft mute is engaged. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="401" column="17" bodyfile="SI4735.h" bodystart="401" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a5f89f19c73e7f50b7b34336439225682" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::STBLEND</definition>
+        <argsstring></argsstring>
+        <name>STBLEND</name>
+        <bitfield> 7</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="403" column="17" bodyfile="SI4735.h" bodystart="403" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a52b82f9f286b136af201ded7600cc48d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::PILOT</definition>
+        <argsstring></argsstring>
+        <name>PILOT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="404" column="17" bodyfile="SI4735.h" bodystart="404" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1ab5558da768af2d0430d094a90caec3a2" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::RSSI</definition>
+        <argsstring></argsstring>
+        <name>RSSI</name>
+        <briefdescription>
+<para>Indicates stereo pilot presence. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="406" column="17" bodyfile="SI4735.h" bodystart="406" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a5663dde3abbab045bc4a535cfe796eff" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::SNR</definition>
+        <argsstring></argsstring>
+        <name>SNR</name>
+        <briefdescription>
+<para>RESP4 - Contains the current receive signal strength (0–127 dBμV). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="407" column="17" bodyfile="SI4735.h" bodystart="407" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1aa537fb8dcc34e82a937bf4d522a7ace0" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::MULT</definition>
+        <argsstring></argsstring>
+        <name>MULT</name>
+        <briefdescription>
+<para>RESP5 - Contains the current SNR metric (0–127 dB). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="408" column="17" bodyfile="SI4735.h" bodystart="408" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1ab332136092ea1ced84e916f4fc791679" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::FREQOFF</definition>
+        <argsstring></argsstring>
+        <name>FREQOFF</name>
+        <briefdescription>
+<para>RESP6 - Contains the current multipath metric. (0 = no multipath; 100 = full multipath) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="409" column="17" bodyfile="SI4735.h" bodystart="409" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3" prot="public" static="no" mutable="no">
+        <type>struct si47x_rqs_status::@10</type>
+        <definition>struct si47x_rqs_status::@10 si47x_rqs_status::resp</definition>
+        <argsstring></argsstring>
+        <name>resp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="408" column="10"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rqs__status_1a184e0892bc82522efe50c49836bb8cc5" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rqs_status::raw[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="409" column="13" bodyfile="SI4735.h" bodystart="409" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Data type for status information about the received signal quality FM_RSQ_STATUS and AM_RSQ_STATUS</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 75 and </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="SI4735.h" line="372" column="15" bodyfile="SI4735.h" bodystart="372" bodyend="408"/>
+    <listofallmembers>
+      <member refid="unionsi47x__rqs__status_1a9961f89a4da7115916a5c84b66a80d80" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>AFCRL</name></member>
+      <member refid="unionsi47x__rqs__status_1adb9c59f3070d42da5be6b34fe4760bb2" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>BLENDINT</name></member>
+      <member refid="unionsi47x__rqs__status_1af7beac2eb02d8eb6f155417b638e4fa1" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>CTS</name></member>
+      <member refid="unionsi47x__rqs__status_1a79007d32c2dc0695eee8e2e978356d90" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>DUMMY1</name></member>
+      <member refid="unionsi47x__rqs__status_1a671af7a40dc7d0d051a138416bbeb29a" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>DUMMY2</name></member>
+      <member refid="unionsi47x__rqs__status_1a5468b11528cf37097fe88a2e694aeb15" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>DUMMY3</name></member>
+      <member refid="unionsi47x__rqs__status_1a796ebb2d3d900cfce84d0dc2f5b0585d" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>DUMMY4</name></member>
+      <member refid="unionsi47x__rqs__status_1aa36d76a841b57cc87a0950cf39b6e2c1" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>DUMMY5</name></member>
+      <member refid="unionsi47x__rqs__status_1afb8c85d6e84a540d37419ab99fc23c94" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>ERR</name></member>
+      <member refid="unionsi47x__rqs__status_1ab332136092ea1ced84e916f4fc791679" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>FREQOFF</name></member>
+      <member refid="unionsi47x__rqs__status_1aa537fb8dcc34e82a937bf4d522a7ace0" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>MULT</name></member>
+      <member refid="unionsi47x__rqs__status_1a1c7edf40697da61d47979d5c6945a7be" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>MULTHINT</name></member>
+      <member refid="unionsi47x__rqs__status_1ab8511df192966df4c4c30fd5fbd85a8d" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>MULTLINT</name></member>
+      <member refid="unionsi47x__rqs__status_1a52b82f9f286b136af201ded7600cc48d" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>PILOT</name></member>
+      <member refid="unionsi47x__rqs__status_1a184e0892bc82522efe50c49836bb8cc5" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>raw</name></member>
+      <member refid="unionsi47x__rqs__status_1aa50f1f40d277dcc42ce8833ae805477e" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>RDSINT</name></member>
+      <member refid="unionsi47x__rqs__status_1af8872b0bb6b013a57f21914dc05c20a3" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>resp</name></member>
+      <member refid="unionsi47x__rqs__status_1a1c771417de53d336db85f728eea9e2e7" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>RSQINT</name></member>
+      <member refid="unionsi47x__rqs__status_1ab5558da768af2d0430d094a90caec3a2" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>RSSI</name></member>
+      <member refid="unionsi47x__rqs__status_1aaf3f6a82b0878afbd7a4a18544577552" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>RSSIHINT</name></member>
+      <member refid="unionsi47x__rqs__status_1a820a302920843a8fbf92865644a11ce9" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>RSSIILINT</name></member>
+      <member refid="unionsi47x__rqs__status_1a08ec28496a92405a3b3948b17159af2b" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>SMUTE</name></member>
+      <member refid="unionsi47x__rqs__status_1a5663dde3abbab045bc4a535cfe796eff" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>SNR</name></member>
+      <member refid="unionsi47x__rqs__status_1a3ec547d32d35e825bd3cc8dc6aa04371" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>SNRHINT</name></member>
+      <member refid="unionsi47x__rqs__status_1a6429b6373a1aabce38b2ddde7cdae2a7" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>SNRLINT</name></member>
+      <member refid="unionsi47x__rqs__status_1a5f89f19c73e7f50b7b34336439225682" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>STBLEND</name></member>
+      <member refid="unionsi47x__rqs__status_1a2e61a3cc9498a20b9b5e631cf7f7a395" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>STCINT</name></member>
+      <member refid="unionsi47x__rqs__status_1ac5a8820c2556ca30ddb6fae020a837dd" prot="public" virt="non-virtual"><scope>si47x_rqs_status</scope><name>VALID</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="unionsi47x__antenna__capacitor" kind="union" language="C++" prot="public">
+    <compoundname>si47x_antenna_capacitor</compoundname>
+    <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1a327b39363f0d152ba8a5f4c7252fc358" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_antenna_capacitor::ANTCAPL</definition>
+        <argsstring></argsstring>
+        <name>ANTCAPL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="194" column="17" bodyfile="SI4735.h" bodystart="194" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1a26952301dd2779d1976f92c2e521c476" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_antenna_capacitor::ANTCAPH</definition>
+        <argsstring></argsstring>
+        <name>ANTCAPH</name>
+        <briefdescription>
+<para>Antenna Tuning Capacitor High byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="195" column="17" bodyfile="SI4735.h" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1a29548a9c68843bb6aa86eabcd33a9633" prot="public" static="no" mutable="no">
+        <type>struct si47x_antenna_capacitor::@2</type>
+        <definition>struct si47x_antenna_capacitor::@2 si47x_antenna_capacitor::raw</definition>
+        <argsstring></argsstring>
+        <name>raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="196" column="9"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1aa59f9604df88a98b91295b0a9c009bbd" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t si47x_antenna_capacitor::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="197" column="14" bodyfile="SI4735.h" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Antenna Tuning Capacitor data type manupulation </para>
+    </detaileddescription>
+    <location file="SI4735.h" line="191" column="15" bodyfile="SI4735.h" bodystart="191" bodyend="198"/>
+    <listofallmembers>
+      <member refid="unionsi47x__antenna__capacitor_1a26952301dd2779d1976f92c2e521c476" prot="public" virt="non-virtual"><scope>si47x_antenna_capacitor</scope><name>ANTCAPH</name></member>
+      <member refid="unionsi47x__antenna__capacitor_1a327b39363f0d152ba8a5f4c7252fc358" prot="public" virt="non-virtual"><scope>si47x_antenna_capacitor</scope><name>ANTCAPL</name></member>
+      <member refid="unionsi47x__antenna__capacitor_1a29548a9c68843bb6aa86eabcd33a9633" prot="public" virt="non-virtual"><scope>si47x_antenna_capacitor</scope><name>raw</name></member>
+      <member refid="unionsi47x__antenna__capacitor_1aa59f9604df88a98b91295b0a9c009bbd" prot="public" virt="non-virtual"><scope>si47x_antenna_capacitor</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

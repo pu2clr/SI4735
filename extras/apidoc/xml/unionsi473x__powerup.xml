@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="unionsi473x__powerup" kind="union" language="C++" prot="public">
+    <compoundname>si473x_powerup</compoundname>
+    <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi473x__powerup_1aa6f9fd2636a0a6797755b99c343ef648" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si473x_powerup::FUNC</definition>
+        <argsstring></argsstring>
+        <name>FUNC</name>
+        <bitfield> 4</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="170" column="17" bodyfile="SI4735.h" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi473x__powerup_1ae68c435fb0ff2ad54bc17ac794a482c1" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si473x_powerup::XOSCEN</definition>
+        <argsstring></argsstring>
+        <name>XOSCEN</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Function (0 = FM Receive; 1–14 = Reserved; 15 = Query Library ID) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="171" column="17" bodyfile="SI4735.h" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi473x__powerup_1aff3f1655e972eff4630c66f0b4ec7704" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si473x_powerup::PATCH</definition>
+        <argsstring></argsstring>
+        <name>PATCH</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Crystal Oscillator Enable (0 = crystal oscillator disabled; 1 = Use crystal oscillator and and OPMODE=ANALOG AUDIO) . </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="172" column="17" bodyfile="SI4735.h" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi473x__powerup_1a6da21e782c18e0d15791f712e602bf0f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si473x_powerup::GPO2OEN</definition>
+        <argsstring></argsstring>
+        <name>GPO2OEN</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>Patch Enable (0 = Boot normally; 1 = Copy non-volatile memory to RAM). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="173" column="17" bodyfile="SI4735.h" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi473x__powerup_1a21297439eccc575f7c0a3228a4061fa7" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si473x_powerup::CTSIEN</definition>
+        <argsstring></argsstring>
+        <name>CTSIEN</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>GPO2 Output Enable (0 = GPO2 output disabled; 1 = GPO2 output enabled). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="174" column="17" bodyfile="SI4735.h" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi473x__powerup_1a5deeab3cdc44cc652b6e8867dd8e9833" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si473x_powerup::OPMODE</definition>
+        <argsstring></argsstring>
+        <name>OPMODE</name>
+        <briefdescription>
+<para>CTS Interrupt Enable (0 = CTS interrupt disabled; 1 = CTS interrupt enabled). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="176" column="17" bodyfile="SI4735.h" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi473x__powerup_1a1d76ab95c8f37f3ee9f2266e0a818455" prot="public" static="no" mutable="no">
+        <type>struct si473x_powerup::@0</type>
+        <definition>struct si473x_powerup::@0 si473x_powerup::arg</definition>
+        <argsstring></argsstring>
+        <name>arg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="174" column="9"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi473x__powerup_1ab82e658c5816b0c31e32e100ff776ebe" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si473x_powerup::raw[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="175" column="13" bodyfile="SI4735.h" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Power Up arguments data type</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="SI4735.h" line="160" column="15" bodyfile="SI4735.h" bodystart="160" bodyend="173"/>
+    <listofallmembers>
+      <member refid="unionsi473x__powerup_1a1d76ab95c8f37f3ee9f2266e0a818455" prot="public" virt="non-virtual"><scope>si473x_powerup</scope><name>arg</name></member>
+      <member refid="unionsi473x__powerup_1a21297439eccc575f7c0a3228a4061fa7" prot="public" virt="non-virtual"><scope>si473x_powerup</scope><name>CTSIEN</name></member>
+      <member refid="unionsi473x__powerup_1aa6f9fd2636a0a6797755b99c343ef648" prot="public" virt="non-virtual"><scope>si473x_powerup</scope><name>FUNC</name></member>
+      <member refid="unionsi473x__powerup_1a6da21e782c18e0d15791f712e602bf0f" prot="public" virt="non-virtual"><scope>si473x_powerup</scope><name>GPO2OEN</name></member>
+      <member refid="unionsi473x__powerup_1a5deeab3cdc44cc652b6e8867dd8e9833" prot="public" virt="non-virtual"><scope>si473x_powerup</scope><name>OPMODE</name></member>
+      <member refid="unionsi473x__powerup_1aff3f1655e972eff4630c66f0b4ec7704" prot="public" virt="non-virtual"><scope>si473x_powerup</scope><name>PATCH</name></member>
+      <member refid="unionsi473x__powerup_1ab82e658c5816b0c31e32e100ff776ebe" prot="public" virt="non-virtual"><scope>si473x_powerup</scope><name>raw</name></member>
+      <member refid="unionsi473x__powerup_1ae68c435fb0ff2ad54bc17ac794a482c1" prot="public" virt="non-virtual"><scope>si473x_powerup</scope><name>XOSCEN</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

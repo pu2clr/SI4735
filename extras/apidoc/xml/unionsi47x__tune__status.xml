@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="unionsi47x__tune__status" kind="union" language="C++" prot="public">
+    <compoundname>si47x_tune_status</compoundname>
+    <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__tune__status_1a8de6a5fbc60de94bd0850ffd85fac5a9" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_tune_status::INTACK</definition>
+        <argsstring></argsstring>
+        <name>INTACK</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="343" column="17" bodyfile="SI4735.h" bodystart="343" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__tune__status_1ae6d5968d62f9c0eec44528e7b050f0bf" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_tune_status::CANCEL</definition>
+        <argsstring></argsstring>
+        <name>CANCEL</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+<para>If set, clears the seek/tune complete interrupt status indicator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="344" column="17" bodyfile="SI4735.h" bodystart="344" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__tune__status_1af014b49f5eb0de7ac951dd1d52321026" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_tune_status::RESERVED2</definition>
+        <argsstring></argsstring>
+        <name>RESERVED2</name>
+        <bitfield> 6</bitfield>
+        <briefdescription>
+<para>If set, aborts a seek currently in progress. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="345" column="17" bodyfile="SI4735.h" bodystart="345" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__tune__status_1a6cb498a025a973418d27991eb3151489" prot="public" static="no" mutable="no">
+        <type>struct si47x_tune_status::@8</type>
+        <definition>struct si47x_tune_status::@8 si47x_tune_status::arg</definition>
+        <argsstring></argsstring>
+        <name>arg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="346" column="9"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__tune__status_1aefcfcb9eaa95ed7d8ce1740ac7f9eb7e" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_tune_status::raw</definition>
+        <argsstring></argsstring>
+        <name>raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="347" column="13" bodyfile="SI4735.h" bodystart="347" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Status of FM_TUNE_FREQ or FM_SEEK_START commands or Status of AM_TUNE_FREQ or AM_SEEK_START commands.</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 73 and 139 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="SI4735.h" line="340" column="15" bodyfile="SI4735.h" bodystart="340" bodyend="348"/>
+    <listofallmembers>
+      <member refid="unionsi47x__tune__status_1a6cb498a025a973418d27991eb3151489" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>arg</name></member>
+      <member refid="unionsi47x__tune__status_1ae6d5968d62f9c0eec44528e7b050f0bf" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>CANCEL</name></member>
+      <member refid="unionsi47x__tune__status_1a8de6a5fbc60de94bd0850ffd85fac5a9" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>INTACK</name></member>
+      <member refid="unionsi47x__tune__status_1aefcfcb9eaa95ed7d8ce1740ac7f9eb7e" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>raw</name></member>
+      <member refid="unionsi47x__tune__status_1af014b49f5eb0de7ac951dd1d52321026" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>RESERVED2</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

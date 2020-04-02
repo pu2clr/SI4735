@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="unionsi47x__agc__status" kind="union" language="C++" prot="public">
+    <compoundname>si47x_agc_status</compoundname>
+    <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__agc__status_1a46cac3781dee36161e8ac2a9bf507ad5" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_status::STCINT</definition>
+        <argsstring></argsstring>
+        <name>STCINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="650" column="17" bodyfile="SI4735.h" bodystart="650" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__status_1ac7467eba73b0a1354f96210196b9702e" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_status::DUMMY1</definition>
+        <argsstring></argsstring>
+        <name>DUMMY1</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="651" column="17" bodyfile="SI4735.h" bodystart="651" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__status_1a0fc5f60be89de344c288ccbe90a6dda4" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_status::RDSINT</definition>
+        <argsstring></argsstring>
+        <name>RDSINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="652" column="17" bodyfile="SI4735.h" bodystart="652" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__status_1ae4023d6a4ab935f3ceedba6695964ab5" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_status::RSQINT</definition>
+        <argsstring></argsstring>
+        <name>RSQINT</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="653" column="17" bodyfile="SI4735.h" bodystart="653" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__status_1a1a7a0bd5c44fc89974005235a8b4e1ae" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_status::DUMMY2</definition>
+        <argsstring></argsstring>
+        <name>DUMMY2</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="654" column="17" bodyfile="SI4735.h" bodystart="654" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__status_1a4483c8293b7c3779b3564da97eee97d1" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_status::ERR</definition>
+        <argsstring></argsstring>
+        <name>ERR</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="655" column="17" bodyfile="SI4735.h" bodystart="655" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__status_1a0ce35e707134980da54508249216fb1c" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_status::CTS</definition>
+        <argsstring></argsstring>
+        <name>CTS</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="656" column="17" bodyfile="SI4735.h" bodystart="656" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__status_1a329da2e6ccd1656d2a6b9c6b1483faeb" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_status::AGCDIS</definition>
+        <argsstring></argsstring>
+        <name>AGCDIS</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="658" column="17" bodyfile="SI4735.h" bodystart="658" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__status_1acb16cb23caa69a764a8e14bf00bd8be0" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_status::DUMMY</definition>
+        <argsstring></argsstring>
+        <name>DUMMY</name>
+        <bitfield> 7</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="659" column="17" bodyfile="SI4735.h" bodystart="659" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__status_1a542909611f2b6093f46af7362ae9d9fd" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_status::AGCIDX</definition>
+        <argsstring></argsstring>
+        <name>AGCIDX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="661" column="17" bodyfile="SI4735.h" bodystart="661" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__status_1aa6916dac978ef9cfd53ffe7783c4d8da" prot="public" static="no" mutable="no">
+        <type>struct si47x_agc_status::@22</type>
+        <definition>struct si47x_agc_status::@22 si47x_agc_status::refined</definition>
+        <argsstring></argsstring>
+        <name>refined</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="662" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__status_1a2f03c32a90a7991f2433bf8a5291885d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_status::raw[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="663" column="13" bodyfile="SI4735.h" bodystart="663" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>AGC data types FM / AM and SSB structure to AGC</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; For FM page 80; for AM page 142 </para>
+</simplesect>
+<simplesect kind="see"><para>AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="SI4735.h" line="646" column="15" bodyfile="SI4735.h" bodystart="646" bodyend="664"/>
+    <listofallmembers>
+      <member refid="unionsi47x__agc__status_1a329da2e6ccd1656d2a6b9c6b1483faeb" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>AGCDIS</name></member>
+      <member refid="unionsi47x__agc__status_1a542909611f2b6093f46af7362ae9d9fd" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>AGCIDX</name></member>
+      <member refid="unionsi47x__agc__status_1a0ce35e707134980da54508249216fb1c" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>CTS</name></member>
+      <member refid="unionsi47x__agc__status_1acb16cb23caa69a764a8e14bf00bd8be0" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>DUMMY</name></member>
+      <member refid="unionsi47x__agc__status_1ac7467eba73b0a1354f96210196b9702e" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>DUMMY1</name></member>
+      <member refid="unionsi47x__agc__status_1a1a7a0bd5c44fc89974005235a8b4e1ae" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>DUMMY2</name></member>
+      <member refid="unionsi47x__agc__status_1a4483c8293b7c3779b3564da97eee97d1" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>ERR</name></member>
+      <member refid="unionsi47x__agc__status_1a2f03c32a90a7991f2433bf8a5291885d" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>raw</name></member>
+      <member refid="unionsi47x__agc__status_1a0fc5f60be89de344c288ccbe90a6dda4" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>RDSINT</name></member>
+      <member refid="unionsi47x__agc__status_1aa6916dac978ef9cfd53ffe7783c4d8da" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>refined</name></member>
+      <member refid="unionsi47x__agc__status_1ae4023d6a4ab935f3ceedba6695964ab5" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>RSQINT</name></member>
+      <member refid="unionsi47x__agc__status_1a46cac3781dee36161e8ac2a9bf507ad5" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>STCINT</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

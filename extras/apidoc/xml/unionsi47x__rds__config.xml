@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="unionsi47x__rds__config" kind="union" language="C++" prot="public">
+    <compoundname>si47x_rds_config</compoundname>
+    <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__rds__config_1ac6a693161ec0198fd24255e1dbcbf668" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::RDSEN</definition>
+        <argsstring></argsstring>
+        <name>RDSEN</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="518" column="17" bodyfile="SI4735.h" bodystart="518" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__config_1a849a3b2c92974fdfb9542db006e0976d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::DUMMY1</definition>
+        <argsstring></argsstring>
+        <name>DUMMY1</name>
+        <bitfield> 7</bitfield>
+        <briefdescription>
+<para>1 = RDS Processing Enable. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="519" column="17" bodyfile="SI4735.h" bodystart="519" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__config_1a892701752004744896276653c17a5793" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::BLETHD</definition>
+        <argsstring></argsstring>
+        <name>BLETHD</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="520" column="17" bodyfile="SI4735.h" bodystart="520" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__config_1a2a243d520165c64e15fbad8b7ac2f5d9" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::BLETHC</definition>
+        <argsstring></argsstring>
+        <name>BLETHC</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+<para>Block Error Threshold BLOCKD. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="521" column="17" bodyfile="SI4735.h" bodystart="521" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__config_1a8fde60b58e168d978e259f3899ce5e0b" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::BLETHB</definition>
+        <argsstring></argsstring>
+        <name>BLETHB</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+<para>Block Error Threshold BLOCKC. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="522" column="17" bodyfile="SI4735.h" bodystart="522" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__config_1a985f772fda4648f338757b919de189f0" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::BLETHA</definition>
+        <argsstring></argsstring>
+        <name>BLETHA</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+<para>Block Error Threshold BLOCKB. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="523" column="17" bodyfile="SI4735.h" bodystart="523" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__config_1af43318436df83ca903da3c6eaf797c5f" prot="public" static="no" mutable="no">
+        <type>struct si47x_rds_config::@14</type>
+        <definition>struct si47x_rds_config::@14 si47x_rds_config::arg</definition>
+        <argsstring></argsstring>
+        <name>arg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="524" column="9"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__config_1ace0fc779a1af19098b03178fcbaafffe" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_config::raw[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="525" column="13" bodyfile="SI4735.h" bodystart="525" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Data type for FM_RDS_CONFIG Property</para>
+<para>IMPORTANT: all block errors must be less than or equal the associated block error threshold for the group to be stored in the RDS FIFO. 0 = No errors; 1 = 1–2 bit errors detected and corrected; 2 = 3–5 bit errors detected and corrected; 3 = Uncorrectable. Recommended Block Error Threshold options: 2,2,2,2 = No group stored if any errors are uncorrected. 3,3,3,3 = Group stored regardless of errors. 0,0,0,0 = No group stored containing corrected or uncorrected errors. 3,2,3,3 = Group stored with corrected errors on B, regardless of errors on A, C, or D.</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 58 and 104 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="SI4735.h" line="515" column="15" bodyfile="SI4735.h" bodystart="515" bodyend="526"/>
+    <listofallmembers>
+      <member refid="unionsi47x__rds__config_1af43318436df83ca903da3c6eaf797c5f" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>arg</name></member>
+      <member refid="unionsi47x__rds__config_1a985f772fda4648f338757b919de189f0" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>BLETHA</name></member>
+      <member refid="unionsi47x__rds__config_1a8fde60b58e168d978e259f3899ce5e0b" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>BLETHB</name></member>
+      <member refid="unionsi47x__rds__config_1a2a243d520165c64e15fbad8b7ac2f5d9" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>BLETHC</name></member>
+      <member refid="unionsi47x__rds__config_1a892701752004744896276653c17a5793" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>BLETHD</name></member>
+      <member refid="unionsi47x__rds__config_1a849a3b2c92974fdfb9542db006e0976d" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>DUMMY1</name></member>
+      <member refid="unionsi47x__rds__config_1ace0fc779a1af19098b03178fcbaafffe" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>raw</name></member>
+      <member refid="unionsi47x__rds__config_1ac6a693161ec0198fd24255e1dbcbf668" prot="public" virt="non-virtual"><scope>si47x_rds_config</scope><name>RDSEN</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

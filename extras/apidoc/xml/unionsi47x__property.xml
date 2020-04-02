@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="unionsi47x__property" kind="union" language="C++" prot="public">
+    <compoundname>si47x_property</compoundname>
+    <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__property_1a03bfb4b4b42b829deecc04647a1331d7" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_property::byteLow</definition>
+        <argsstring></argsstring>
+        <name>byteLow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="356" column="17" bodyfile="SI4735.h" bodystart="356" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_property::byteHigh</definition>
+        <argsstring></argsstring>
+        <name>byteHigh</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="357" column="17" bodyfile="SI4735.h" bodystart="357" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__property_1ae9ac96f5c6d10f227a6926f787232e27" prot="public" static="no" mutable="no">
+        <type>struct si47x_property::@9</type>
+        <definition>struct si47x_property::@9 si47x_property::raw</definition>
+        <argsstring></argsstring>
+        <name>raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="358" column="9"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__property_1a7c04205c5a1798b35b738b2908853bfa" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t si47x_property::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="359" column="14" bodyfile="SI4735.h" bodystart="359" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Property Data type (help to deal with SET_PROPERTY command on si473X) </para>
+    </detaileddescription>
+    <location file="SI4735.h" line="353" column="15" bodyfile="SI4735.h" bodystart="353" bodyend="360"/>
+    <listofallmembers>
+      <member refid="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" prot="public" virt="non-virtual"><scope>si47x_property</scope><name>byteHigh</name></member>
+      <member refid="unionsi47x__property_1a03bfb4b4b42b829deecc04647a1331d7" prot="public" virt="non-virtual"><scope>si47x_property</scope><name>byteLow</name></member>
+      <member refid="unionsi47x__property_1ae9ac96f5c6d10f227a6926f787232e27" prot="public" virt="non-virtual"><scope>si47x_property</scope><name>raw</name></member>
+      <member refid="unionsi47x__property_1a7c04205c5a1798b35b738b2908853bfa" prot="public" virt="non-virtual"><scope>si47x_property</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

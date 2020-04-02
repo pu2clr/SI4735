@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="unionsi47x__agc__overrride" kind="union" language="C++" prot="public">
+    <compoundname>si47x_agc_overrride</compoundname>
+    <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__agc__overrride_1a7e92f8e598d792f6d0b11e2bd921e01b" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_overrride::AGCDIS</definition>
+        <argsstring></argsstring>
+        <name>AGCDIS</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="677" column="17" bodyfile="SI4735.h" bodystart="677" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__overrride_1aa4a9fc283d2f8345a0815d463f561e6d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_overrride::DUMMY</definition>
+        <argsstring></argsstring>
+        <name>DUMMY</name>
+        <bitfield> 7</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="678" column="17" bodyfile="SI4735.h" bodystart="678" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__overrride_1a65e8a65b69cd633b05480655a525904d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_overrride::AGCIDX</definition>
+        <argsstring></argsstring>
+        <name>AGCIDX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="680" column="17" bodyfile="SI4735.h" bodystart="680" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__overrride_1ae235ce810f1b7d481def598b0e7c5234" prot="public" static="no" mutable="no">
+        <type>struct si47x_agc_overrride::@23</type>
+        <definition>struct si47x_agc_overrride::@23 si47x_agc_overrride::arg</definition>
+        <argsstring></argsstring>
+        <name>arg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="681" column="9"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__agc__overrride_1a7b8218655c25e1f8d75d92818ec24f20" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_agc_overrride::raw[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="682" column="13" bodyfile="SI4735.h" bodystart="682" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>If FM, Overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 (minimum attenuation) and 26 (maximum attenuation). If AM, overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="SI4735.h" line="673" column="15" bodyfile="SI4735.h" bodystart="673" bodyend="683"/>
+    <listofallmembers>
+      <member refid="unionsi47x__agc__overrride_1a7e92f8e598d792f6d0b11e2bd921e01b" prot="public" virt="non-virtual"><scope>si47x_agc_overrride</scope><name>AGCDIS</name></member>
+      <member refid="unionsi47x__agc__overrride_1a65e8a65b69cd633b05480655a525904d" prot="public" virt="non-virtual"><scope>si47x_agc_overrride</scope><name>AGCIDX</name></member>
+      <member refid="unionsi47x__agc__overrride_1ae235ce810f1b7d481def598b0e7c5234" prot="public" virt="non-virtual"><scope>si47x_agc_overrride</scope><name>arg</name></member>
+      <member refid="unionsi47x__agc__overrride_1aa4a9fc283d2f8345a0815d463f561e6d" prot="public" virt="non-virtual"><scope>si47x_agc_overrride</scope><name>DUMMY</name></member>
+      <member refid="unionsi47x__agc__overrride_1a7b8218655c25e1f8d75d92818ec24f20" prot="public" virt="non-virtual"><scope>si47x_agc_overrride</scope><name>raw</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

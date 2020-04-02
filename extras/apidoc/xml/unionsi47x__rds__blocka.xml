@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="unionsi47x__rds__blocka" kind="union" language="C++" prot="public">
+    <compoundname>si47x_rds_blocka</compoundname>
+    <includes refid="_s_i4735_8h" local="no">SI4735.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionsi47x__rds__blocka_1aca7324b126cebc5c0993e4d6f1a3a67e" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t si47x_rds_blocka::pi</definition>
+        <argsstring></argsstring>
+        <name>pi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="534" column="18" bodyfile="SI4735.h" bodystart="534" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__blocka_1a1a7f496c8e0b77574f49c7808aeb186c" prot="public" static="no" mutable="no">
+        <type>struct si47x_rds_blocka::@15</type>
+        <definition>struct si47x_rds_blocka::@15 si47x_rds_blocka::refined</definition>
+        <argsstring></argsstring>
+        <name>refined</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="535" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__blocka_1a0143e0506e13766406571bd29ca604a6" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_blocka::highValue</definition>
+        <argsstring></argsstring>
+        <name>highValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="538" column="17" bodyfile="SI4735.h" bodystart="538" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__blocka_1a1148360b97c0c704c46a00ceb36360b4" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t si47x_rds_blocka::lowValue</definition>
+        <argsstring></argsstring>
+        <name>lowValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="539" column="17" bodyfile="SI4735.h" bodystart="539" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionsi47x__rds__blocka_1ad64069e22c176c0e1b12e9a23eb54f20" prot="public" static="no" mutable="no">
+        <type>struct si47x_rds_blocka::@16</type>
+        <definition>struct si47x_rds_blocka::@16 si47x_rds_blocka::raw</definition>
+        <argsstring></argsstring>
+        <name>raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735.h" line="540" column="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Block A data type </para>
+    </detaileddescription>
+    <location file="SI4735.h" line="531" column="15" bodyfile="SI4735.h" bodystart="531" bodyend="541"/>
+    <listofallmembers>
+      <member refid="unionsi47x__rds__blocka_1a0143e0506e13766406571bd29ca604a6" prot="public" virt="non-virtual"><scope>si47x_rds_blocka</scope><name>highValue</name></member>
+      <member refid="unionsi47x__rds__blocka_1a1148360b97c0c704c46a00ceb36360b4" prot="public" virt="non-virtual"><scope>si47x_rds_blocka</scope><name>lowValue</name></member>
+      <member refid="unionsi47x__rds__blocka_1aca7324b126cebc5c0993e4d6f1a3a67e" prot="public" virt="non-virtual"><scope>si47x_rds_blocka</scope><name>pi</name></member>
+      <member refid="unionsi47x__rds__blocka_1ad64069e22c176c0e1b12e9a23eb54f20" prot="public" virt="non-virtual"><scope>si47x_rds_blocka</scope><name>raw</name></member>
+      <member refid="unionsi47x__rds__blocka_1a1a7f496c8e0b77574f49c7808aeb186c" prot="public" virt="non-virtual"><scope>si47x_rds_blocka</scope><name>refined</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
