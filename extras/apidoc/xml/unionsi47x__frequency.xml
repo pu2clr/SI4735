@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="197" column="17" bodyfile="SI4735/SI4735.h" bodystart="197" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="199" column="17" bodyfile="SI4735/SI4735.h" bodystart="199" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__frequency_1ae85fcb4329c600511e2127e1c5029f8c" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -29,10 +29,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="198" column="17" bodyfile="SI4735/SI4735.h" bodystart="198" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="376" endline="405">SI4735::setFrequency</referencedby>
-        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="809" endline="819">SI4735::getFrequency</referencedby>
-        <referencedby refid="class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f" compoundref="_s_i4735_8cpp" startline="1790" endline="1814">SI4735::setSSBBfo</referencedby>
+        <location file="SI4735/SI4735.h" line="200" column="17" bodyfile="SI4735/SI4735.h" bodystart="200" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a63d205f2d3169ba877a2bd2ee28d224f" compoundref="_s_i4735_8cpp" startline="377" endline="406">SI4735::setFrequency</referencedby>
+        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="810" endline="820">SI4735::getFrequency</referencedby>
+        <referencedby refid="class_s_i4735_1a55cf9a091d314a1aa21552f2254f756f" compoundref="_s_i4735_8cpp" startline="1791" endline="1815">SI4735::setSSBBfo</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__frequency_1a1a992fcfef59a6c6b1612e006264840f" prot="public" static="no" mutable="no">
         <type>struct si47x_frequency::@1</type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="199" column="9"/>
+        <location file="SI4735/SI4735.h" line="201" column="9"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__frequency_1aad12ac434ec9907e90a3f6b95377ca76" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="200" column="14" bodyfile="SI4735/SI4735.h" bodystart="200" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="202" column="14" bodyfile="SI4735/SI4735.h" bodystart="202" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -68,7 +68,7 @@
 <para>It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH) <linebreak/>
  </para>
     </detaileddescription>
-    <location file="SI4735/SI4735.h" line="194" column="15" bodyfile="SI4735/SI4735.h" bodystart="194" bodyend="201"/>
+    <location file="SI4735/SI4735.h" line="196" column="15" bodyfile="SI4735/SI4735.h" bodystart="196" bodyend="203"/>
     <listofallmembers>
       <member refid="unionsi47x__frequency_1ae85fcb4329c600511e2127e1c5029f8c" prot="public" virt="non-virtual"><scope>si47x_frequency</scope><name>FREQH</name></member>
       <member refid="unionsi47x__frequency_1abe921825c86d54f9f38411677a489d89" prot="public" virt="non-virtual"><scope>si47x_frequency</scope><name>FREQL</name></member>

@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="805" column="17" bodyfile="SI4735/SI4735.h" bodystart="805" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="807" column="17" bodyfile="SI4735/SI4735.h" bodystart="807" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi4735__digital__output__format_1a810bfc21a334fbf3bf53b8dd934bb603" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -31,8 +31,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="806" column="17" bodyfile="SI4735/SI4735.h" bodystart="806" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1aea652d358b4b586b6d5964ceb8eb7c81" compoundref="_s_i4735_8cpp" startline="777" endline="785">SI4735::digitalOutputFormat</referencedby>
+        <location file="SI4735/SI4735.h" line="808" column="17" bodyfile="SI4735/SI4735.h" bodystart="808" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1aea652d358b4b586b6d5964ceb8eb7c81" compoundref="_s_i4735_8cpp" startline="778" endline="786">SI4735::digitalOutputFormat</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi4735__digital__output__format_1ae2f67694a90085fc652649e37b3984b1" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -47,8 +47,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="807" column="17" bodyfile="SI4735/SI4735.h" bodystart="807" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1aea652d358b4b586b6d5964ceb8eb7c81" compoundref="_s_i4735_8cpp" startline="777" endline="785">SI4735::digitalOutputFormat</referencedby>
+        <location file="SI4735/SI4735.h" line="809" column="17" bodyfile="SI4735/SI4735.h" bodystart="809" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1aea652d358b4b586b6d5964ceb8eb7c81" compoundref="_s_i4735_8cpp" startline="778" endline="786">SI4735::digitalOutputFormat</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi4735__digital__output__format_1a43a50ac17d929c197fae422f1fd648e3" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -63,8 +63,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="808" column="17" bodyfile="SI4735/SI4735.h" bodystart="808" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1aea652d358b4b586b6d5964ceb8eb7c81" compoundref="_s_i4735_8cpp" startline="777" endline="785">SI4735::digitalOutputFormat</referencedby>
+        <location file="SI4735/SI4735.h" line="810" column="17" bodyfile="SI4735/SI4735.h" bodystart="810" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1aea652d358b4b586b6d5964ceb8eb7c81" compoundref="_s_i4735_8cpp" startline="778" endline="786">SI4735::digitalOutputFormat</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi4735__digital__output__format_1ab1a6803d3f409753fc7ed9e145ff3813" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -79,7 +79,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="809" column="17" bodyfile="SI4735/SI4735.h" bodystart="809" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="811" column="17" bodyfile="SI4735/SI4735.h" bodystart="811" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi4735__digital__output__format_1a776ee9e744dd7da8e747d0c881c5d205" prot="public" static="no" mutable="no">
         <type>struct si4735_digital_output_format::@26</type>
@@ -92,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="810" column="13"/>
+        <location file="SI4735/SI4735.h" line="812" column="13"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi4735__digital__output__format_1a0fa2c05d8877d3c680e904842993c33e" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -105,7 +105,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="811" column="14" bodyfile="SI4735/SI4735.h" bodystart="811" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="813" column="14" bodyfile="SI4735/SI4735.h" bodystart="813" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -117,7 +117,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="SI4735/SI4735.h" line="803" column="15" bodyfile="SI4735/SI4735.h" bodystart="803" bodyend="812"/>
+    <location file="SI4735/SI4735.h" line="805" column="15" bodyfile="SI4735/SI4735.h" bodystart="805" bodyend="814"/>
     <listofallmembers>
       <member refid="unionsi4735__digital__output__format_1ab1a6803d3f409753fc7ed9e145ff3813" prot="public" virt="non-virtual"><scope>si4735_digital_output_format</scope><name>dummy</name></member>
       <member refid="unionsi4735__digital__output__format_1a43a50ac17d929c197fae422f1fd648e3" prot="public" virt="non-virtual"><scope>si4735_digital_output_format</scope><name>OFALL</name></member>

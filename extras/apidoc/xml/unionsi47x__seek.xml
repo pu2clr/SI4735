@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="248" column="17" bodyfile="SI4735/SI4735.h" bodystart="248" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="250" column="17" bodyfile="SI4735/SI4735.h" bodystart="250" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__seek_1aada4b18c65da9723670759e78440757f" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="249" column="17" bodyfile="SI4735/SI4735.h" bodystart="249" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="251" column="17" bodyfile="SI4735/SI4735.h" bodystart="251" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__seek_1acd509f67721224c4b0ad0ebdfad56dad" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -45,8 +45,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="250" column="17" bodyfile="SI4735/SI4735.h" bodystart="250" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a3280b98b8331f00b4d0158ef1b076533" compoundref="_s_i4735_8cpp" startline="1033" endline="1059">SI4735::seekStation</referencedby>
+        <location file="SI4735/SI4735.h" line="252" column="17" bodyfile="SI4735/SI4735.h" bodystart="252" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a3280b98b8331f00b4d0158ef1b076533" compoundref="_s_i4735_8cpp" startline="1034" endline="1060">SI4735::seekStation</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__seek_1a1acbac12abdb5b0ba3e81d353720c6ba" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="251" column="17" bodyfile="SI4735/SI4735.h" bodystart="251" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="253" column="17" bodyfile="SI4735/SI4735.h" bodystart="253" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__seek_1a83a4a1f6952444528689d02324cc460f" prot="public" static="no" mutable="no">
         <type>struct si47x_seek::@4</type>
@@ -74,7 +74,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="252" column="9"/>
+        <location file="SI4735/SI4735.h" line="254" column="9"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__seek_1a894bfdc90f00f3064991edc0c439e66a" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -87,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="253" column="13" bodyfile="SI4735/SI4735.h" bodystart="253" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="255" column="13" bodyfile="SI4735/SI4735.h" bodystart="255" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -96,7 +96,7 @@
     <detaileddescription>
 <para>Represents searching for a valid frequency data type. </para>
     </detaileddescription>
-    <location file="SI4735/SI4735.h" line="245" column="15" bodyfile="SI4735/SI4735.h" bodystart="245" bodyend="254"/>
+    <location file="SI4735/SI4735.h" line="247" column="15" bodyfile="SI4735/SI4735.h" bodystart="247" bodyend="256"/>
     <listofallmembers>
       <member refid="unionsi47x__seek_1a83a4a1f6952444528689d02324cc460f" prot="public" virt="non-virtual"><scope>si47x_seek</scope><name>arg</name></member>
       <member refid="unionsi47x__seek_1a894bfdc90f00f3064991edc0c439e66a" prot="public" virt="non-virtual"><scope>si47x_seek</scope><name>raw</name></member>

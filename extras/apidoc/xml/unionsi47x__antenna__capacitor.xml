@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="210" column="17" bodyfile="SI4735/SI4735.h" bodystart="210" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="212" column="17" bodyfile="SI4735/SI4735.h" bodystart="212" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1a26952301dd2779d1976f92c2e521c476" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -29,8 +29,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="211" column="17" bodyfile="SI4735/SI4735.h" bodystart="211" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1aaceadaaf0835e3db124d1b36f2aebd3c" compoundref="_s_i4735_8cpp" startline="343" endline="365">SI4735::setTuneFrequencyAntennaCapacitor</referencedby>
+        <location file="SI4735/SI4735.h" line="213" column="17" bodyfile="SI4735/SI4735.h" bodystart="213" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1aaceadaaf0835e3db124d1b36f2aebd3c" compoundref="_s_i4735_8cpp" startline="344" endline="366">SI4735::setTuneFrequencyAntennaCapacitor</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1a29548a9c68843bb6aa86eabcd33a9633" prot="public" static="no" mutable="no">
         <type>struct si47x_antenna_capacitor::@2</type>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="212" column="9"/>
+        <location file="SI4735/SI4735.h" line="214" column="9"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__antenna__capacitor_1aa59f9604df88a98b91295b0a9c009bbd" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -56,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="213" column="14" bodyfile="SI4735/SI4735.h" bodystart="213" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="215" column="14" bodyfile="SI4735/SI4735.h" bodystart="215" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -64,7 +64,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="SI4735/SI4735.h" line="207" column="15" bodyfile="SI4735/SI4735.h" bodystart="207" bodyend="214"/>
+    <location file="SI4735/SI4735.h" line="209" column="15" bodyfile="SI4735/SI4735.h" bodystart="209" bodyend="216"/>
     <listofallmembers>
       <member refid="unionsi47x__antenna__capacitor_1a26952301dd2779d1976f92c2e521c476" prot="public" virt="non-virtual"><scope>si47x_antenna_capacitor</scope><name>ANTCAPH</name></member>
       <member refid="unionsi47x__antenna__capacitor_1a327b39363f0d152ba8a5f4c7252fc358" prot="public" virt="non-virtual"><scope>si47x_antenna_capacitor</scope><name>ANTCAPL</name></member>

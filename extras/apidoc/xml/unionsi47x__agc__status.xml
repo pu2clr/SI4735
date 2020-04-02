@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="710" column="17" bodyfile="SI4735/SI4735.h" bodystart="710" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="712" column="17" bodyfile="SI4735/SI4735.h" bodystart="712" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1ac7467eba73b0a1354f96210196b9702e" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="711" column="17" bodyfile="SI4735/SI4735.h" bodystart="711" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="713" column="17" bodyfile="SI4735/SI4735.h" bodystart="713" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1a0fc5f60be89de344c288ccbe90a6dda4" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="712" column="17" bodyfile="SI4735/SI4735.h" bodystart="712" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="714" column="17" bodyfile="SI4735/SI4735.h" bodystart="714" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1ae4023d6a4ab935f3ceedba6695964ab5" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="713" column="17" bodyfile="SI4735/SI4735.h" bodystart="713" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="715" column="17" bodyfile="SI4735/SI4735.h" bodystart="715" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1a1a7a0bd5c44fc89974005235a8b4e1ae" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="714" column="17" bodyfile="SI4735/SI4735.h" bodystart="714" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="716" column="17" bodyfile="SI4735/SI4735.h" bodystart="716" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1a4483c8293b7c3779b3564da97eee97d1" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="715" column="17" bodyfile="SI4735/SI4735.h" bodystart="715" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="717" column="17" bodyfile="SI4735/SI4735.h" bodystart="717" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1a0ce35e707134980da54508249216fb1c" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -100,7 +100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="716" column="17" bodyfile="SI4735/SI4735.h" bodystart="716" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="718" column="17" bodyfile="SI4735/SI4735.h" bodystart="718" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1a329da2e6ccd1656d2a6b9c6b1483faeb" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -114,7 +114,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="718" column="17" bodyfile="SI4735/SI4735.h" bodystart="718" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="720" column="17" bodyfile="SI4735/SI4735.h" bodystart="720" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1acb16cb23caa69a764a8e14bf00bd8be0" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -128,7 +128,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="719" column="17" bodyfile="SI4735/SI4735.h" bodystart="719" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="721" column="17" bodyfile="SI4735/SI4735.h" bodystart="721" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1a542909611f2b6093f46af7362ae9d9fd" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -141,7 +141,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="721" column="17" bodyfile="SI4735/SI4735.h" bodystart="721" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="723" column="17" bodyfile="SI4735/SI4735.h" bodystart="723" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1aa6916dac978ef9cfd53ffe7783c4d8da" prot="public" static="no" mutable="no">
         <type>struct si47x_agc_status::@22</type>
@@ -154,7 +154,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="722" column="13"/>
+        <location file="SI4735/SI4735.h" line="724" column="13"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__agc__status_1a2f03c32a90a7991f2433bf8a5291885d" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -167,7 +167,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="723" column="13" bodyfile="SI4735/SI4735.h" bodystart="723" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="725" column="13" bodyfile="SI4735/SI4735.h" bodystart="725" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -180,7 +180,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="SI4735/SI4735.h" line="706" column="15" bodyfile="SI4735/SI4735.h" bodystart="706" bodyend="724"/>
+    <location file="SI4735/SI4735.h" line="708" column="15" bodyfile="SI4735/SI4735.h" bodystart="708" bodyend="726"/>
     <listofallmembers>
       <member refid="unionsi47x__agc__status_1a329da2e6ccd1656d2a6b9c6b1483faeb" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>AGCDIS</name></member>
       <member refid="unionsi47x__agc__status_1a542909611f2b6093f46af7362ae9d9fd" prot="public" virt="non-virtual"><scope>si47x_agc_status</scope><name>AGCIDX</name></member>

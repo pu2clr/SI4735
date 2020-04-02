@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="824" column="14" bodyfile="SI4735/SI4735.h" bodystart="824" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="826" column="14" bodyfile="SI4735/SI4735.h" bodystart="826" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -27,7 +27,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="SI4735/SI4735.h" line="823" column="15" bodyfile="SI4735/SI4735.h" bodystart="823" bodyend="825"/>
+    <location file="SI4735/SI4735.h" line="825" column="15" bodyfile="SI4735/SI4735.h" bodystart="825" bodyend="827"/>
     <listofallmembers>
       <member refid="structsi4735__digital__output__sample__rate_1a9988ba829a46409f23d7cb9bb0f156d9" prot="public" virt="non-virtual"><scope>si4735_digital_output_sample_rate</scope><name>DOSR</name></member>
     </listofallmembers>

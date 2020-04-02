@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="269" column="17" bodyfile="SI4735/SI4735.h" bodystart="269" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="271" column="17" bodyfile="SI4735/SI4735.h" bodystart="271" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a8bb865e96113a5755fc3e721f2623418" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="270" column="17" bodyfile="SI4735/SI4735.h" bodystart="270" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="272" column="17" bodyfile="SI4735/SI4735.h" bodystart="272" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a19cfe8d1b0badae5253ff243e05d7afa" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="271" column="17" bodyfile="SI4735/SI4735.h" bodystart="271" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="273" column="17" bodyfile="SI4735/SI4735.h" bodystart="273" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a301f61dac86d37ec2fc74c79c98254ab" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -60,8 +60,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="272" column="17" bodyfile="SI4735/SI4735.h" bodystart="272" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ad194137a6a712a599e3c26e5b6357594" compoundref="_s_i4735_8h" startline="953" endline="953">SI4735::getSignalQualityInterrupt</referencedby>
+        <location file="SI4735/SI4735.h" line="274" column="17" bodyfile="SI4735/SI4735.h" bodystart="274" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1ad194137a6a712a599e3c26e5b6357594" compoundref="_s_i4735_8h" startline="956" endline="956">SI4735::getSignalQualityInterrupt</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a6206af5b53630164e9526eae84573a13" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="273" column="17" bodyfile="SI4735/SI4735.h" bodystart="273" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="275" column="17" bodyfile="SI4735/SI4735.h" bodystart="275" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a0693308479f69e970ec92ce1d1dcbf9c" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -90,7 +90,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="274" column="17" bodyfile="SI4735/SI4735.h" bodystart="274" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="276" column="17" bodyfile="SI4735/SI4735.h" bodystart="276" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a6816e97ec06655d72350b83eae0e9f4c" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -105,8 +105,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="275" column="17" bodyfile="SI4735/SI4735.h" bodystart="275" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1afcb38f53b6eb71cadcefa0bb472ca943" compoundref="_s_i4735_8h" startline="957" endline="957">SI4735::getStatusCTS</referencedby>
+        <location file="SI4735/SI4735.h" line="277" column="17" bodyfile="SI4735/SI4735.h" bodystart="277" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1afcb38f53b6eb71cadcefa0bb472ca943" compoundref="_s_i4735_8h" startline="960" endline="960">SI4735::getStatusCTS</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1aa4da6ef23dc23e40e9dcfc582ac7a53e" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -121,8 +121,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="277" column="17" bodyfile="SI4735/SI4735.h" bodystart="277" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1afb19da8a05320d7f38cca8325725edfd" compoundref="_s_i4735_8h" startline="960" endline="960">SI4735::getStatusValid</referencedby>
+        <location file="SI4735/SI4735.h" line="279" column="17" bodyfile="SI4735/SI4735.h" bodystart="279" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1afb19da8a05320d7f38cca8325725edfd" compoundref="_s_i4735_8h" startline="963" endline="963">SI4735::getStatusValid</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1acc8c563c2eaf6702c36961fd300fecfb" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -137,8 +137,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="278" column="17" bodyfile="SI4735/SI4735.h" bodystart="278" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ab8a51de592fd40fdd872039b3c70716f" compoundref="_s_i4735_8h" startline="958" endline="958">SI4735::getACFIndicator</referencedby>
+        <location file="SI4735/SI4735.h" line="280" column="17" bodyfile="SI4735/SI4735.h" bodystart="280" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1ab8a51de592fd40fdd872039b3c70716f" compoundref="_s_i4735_8h" startline="961" endline="961">SI4735::getACFIndicator</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a88284e575e52c96efa3eb0248010ba73" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -153,7 +153,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="279" column="17" bodyfile="SI4735/SI4735.h" bodystart="279" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="281" column="17" bodyfile="SI4735/SI4735.h" bodystart="281" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1adf288c085c8f9a7b6a84ca9746541ea5" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -167,7 +167,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="280" column="17" bodyfile="SI4735/SI4735.h" bodystart="280" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="282" column="17" bodyfile="SI4735/SI4735.h" bodystart="282" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a7d5ca536d8706e6cc9df2c8d5aea268e" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -181,8 +181,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="282" column="17" bodyfile="SI4735/SI4735.h" bodystart="282" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="809" endline="819">SI4735::getFrequency</referencedby>
+        <location file="SI4735/SI4735.h" line="284" column="17" bodyfile="SI4735/SI4735.h" bodystart="284" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="810" endline="820">SI4735::getFrequency</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a6d5f612fc40df215e9f4c6a94b68e2e6" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -196,8 +196,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="284" column="17" bodyfile="SI4735/SI4735.h" bodystart="284" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="809" endline="819">SI4735::getFrequency</referencedby>
+        <location file="SI4735/SI4735.h" line="286" column="17" bodyfile="SI4735/SI4735.h" bodystart="286" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a7e88bb573604d465536c13554d5c61f8" compoundref="_s_i4735_8cpp" startline="810" endline="820">SI4735::getFrequency</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a524207ce1b79627d69f94049ba8c614d" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -211,8 +211,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="286" column="17" bodyfile="SI4735/SI4735.h" bodystart="286" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1aeeefd12b49dbc764e0f45fe208441482" compoundref="_s_i4735_8h" startline="961" endline="961">SI4735::getReceivedSignalStrengthIndicator</referencedby>
+        <location file="SI4735/SI4735.h" line="288" column="17" bodyfile="SI4735/SI4735.h" bodystart="288" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1aeeefd12b49dbc764e0f45fe208441482" compoundref="_s_i4735_8h" startline="964" endline="964">SI4735::getReceivedSignalStrengthIndicator</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a14f5ce9ed117d45a2230b6f87b88a4cb" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -226,8 +226,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="288" column="17" bodyfile="SI4735/SI4735.h" bodystart="288" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1ac0bd4daaa321ef8956dca4d1e4e5cd3c" compoundref="_s_i4735_8h" startline="962" endline="962">SI4735::getStatusSNR</referencedby>
+        <location file="SI4735/SI4735.h" line="290" column="17" bodyfile="SI4735/SI4735.h" bodystart="290" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1ac0bd4daaa321ef8956dca4d1e4e5cd3c" compoundref="_s_i4735_8h" startline="965" endline="965">SI4735::getStatusSNR</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a1ee21104ab8a4a13619ee5c3f7fb3f2f" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -241,8 +241,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="290" column="17" bodyfile="SI4735/SI4735.h" bodystart="290" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a0f9b5438a6f92c8f2e538ee640f353ab" compoundref="_s_i4735_8h" startline="963" endline="963">SI4735::getStatusMULT</referencedby>
+        <location file="SI4735/SI4735.h" line="292" column="17" bodyfile="SI4735/SI4735.h" bodystart="292" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a0f9b5438a6f92c8f2e538ee640f353ab" compoundref="_s_i4735_8h" startline="966" endline="966">SI4735::getStatusMULT</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1acd0a9f2982a84c43b8127f5e54982f19" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -256,8 +256,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="292" column="17" bodyfile="SI4735/SI4735.h" bodystart="292" bodyend="-1"/>
-        <referencedby refid="class_s_i4735_1a3905d6551992b4dd51d13f05978d9081" compoundref="_s_i4735_8h" startline="964" endline="964">SI4735::getAntennaTuningCapacitor</referencedby>
+        <location file="SI4735/SI4735.h" line="294" column="17" bodyfile="SI4735/SI4735.h" bodystart="294" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a3905d6551992b4dd51d13f05978d9081" compoundref="_s_i4735_8h" startline="967" endline="967">SI4735::getAntennaTuningCapacitor</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1ab3395dbf4658a828c26e6d5cfcc3b18e" prot="public" static="no" mutable="no">
         <type>struct si47x_response_status::@5</type>
@@ -270,7 +270,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="293" column="10"/>
+        <location file="SI4735/SI4735.h" line="295" column="10"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__response__status_1a9b236e03804629e73a4b19fddb72b4cd" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -283,7 +283,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="294" column="13" bodyfile="SI4735/SI4735.h" bodystart="294" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="296" column="13" bodyfile="SI4735/SI4735.h" bodystart="296" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -295,7 +295,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="SI4735/SI4735.h" line="265" column="15" bodyfile="SI4735/SI4735.h" bodystart="265" bodyend="295"/>
+    <location file="SI4735/SI4735.h" line="267" column="15" bodyfile="SI4735/SI4735.h" bodystart="267" bodyend="297"/>
     <listofallmembers>
       <member refid="unionsi47x__response__status_1acc8c563c2eaf6702c36961fd300fecfb" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>AFCRL</name></member>
       <member refid="unionsi47x__response__status_1adf288c085c8f9a7b6a84ca9746541ea5" prot="public" virt="non-virtual"><scope>si47x_response_status</scope><name>BLTF</name></member>
