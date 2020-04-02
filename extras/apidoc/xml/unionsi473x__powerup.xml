@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="176" column="17" bodyfile="SI4735/SI4735.h" bodystart="176" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="177" column="17" bodyfile="SI4735/SI4735.h" bodystart="177" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi473x__powerup_1ae68c435fb0ff2ad54bc17ac794a482c1" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -31,7 +31,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="177" column="17" bodyfile="SI4735/SI4735.h" bodystart="177" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="178" column="17" bodyfile="SI4735/SI4735.h" bodystart="178" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="163" endline="189">SI4735::setPowerUp</referencedby>
+        <referencedby refid="class_s_i4735_1a0fcfd8e487c594707b3f2aaa71a86d68" compoundref="_s_i4735_8cpp" startline="2116" endline="2132">SI4735::ssbPowerUp</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi473x__powerup_1aff3f1655e972eff4630c66f0b4ec7704" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -46,7 +48,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="178" column="17" bodyfile="SI4735/SI4735.h" bodystart="178" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="179" column="17" bodyfile="SI4735/SI4735.h" bodystart="179" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="163" endline="189">SI4735::setPowerUp</referencedby>
+        <referencedby refid="class_s_i4735_1a0fcfd8e487c594707b3f2aaa71a86d68" compoundref="_s_i4735_8cpp" startline="2116" endline="2132">SI4735::ssbPowerUp</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi473x__powerup_1a6da21e782c18e0d15791f712e602bf0f" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -61,7 +65,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="179" column="17" bodyfile="SI4735/SI4735.h" bodystart="179" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="180" column="17" bodyfile="SI4735/SI4735.h" bodystart="180" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="163" endline="189">SI4735::setPowerUp</referencedby>
+        <referencedby refid="class_s_i4735_1a0fcfd8e487c594707b3f2aaa71a86d68" compoundref="_s_i4735_8cpp" startline="2116" endline="2132">SI4735::ssbPowerUp</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi473x__powerup_1a21297439eccc575f7c0a3228a4061fa7" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -76,7 +82,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="180" column="17" bodyfile="SI4735/SI4735.h" bodystart="180" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="181" column="17" bodyfile="SI4735/SI4735.h" bodystart="181" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="163" endline="189">SI4735::setPowerUp</referencedby>
+        <referencedby refid="class_s_i4735_1a0fcfd8e487c594707b3f2aaa71a86d68" compoundref="_s_i4735_8cpp" startline="2116" endline="2132">SI4735::ssbPowerUp</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi473x__powerup_1a5deeab3cdc44cc652b6e8867dd8e9833" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -90,7 +98,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="182" column="17" bodyfile="SI4735/SI4735.h" bodystart="182" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="183" column="17" bodyfile="SI4735/SI4735.h" bodystart="183" bodyend="-1"/>
+        <referencedby refid="class_s_i4735_1a8bc001cb28dc8fbd88ba0fa7024eca39" compoundref="_s_i4735_8cpp" startline="163" endline="189">SI4735::setPowerUp</referencedby>
+        <referencedby refid="class_s_i4735_1a0fcfd8e487c594707b3f2aaa71a86d68" compoundref="_s_i4735_8cpp" startline="2116" endline="2132">SI4735::ssbPowerUp</referencedby>
       </memberdef>
       <memberdef kind="variable" id="unionsi473x__powerup_1a1d76ab95c8f37f3ee9f2266e0a818455" prot="public" static="no" mutable="no">
         <type>struct si473x_powerup::@0</type>
@@ -103,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="183" column="9"/>
+        <location file="SI4735/SI4735.h" line="184" column="9"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi473x__powerup_1ab82e658c5816b0c31e32e100ff776ebe" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -116,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="184" column="13" bodyfile="SI4735/SI4735.h" bodystart="184" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="185" column="13" bodyfile="SI4735/SI4735.h" bodystart="185" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -127,7 +137,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="SI4735/SI4735.h" line="172" column="15" bodyfile="SI4735/SI4735.h" bodystart="172" bodyend="185"/>
+    <location file="SI4735/SI4735.h" line="173" column="15" bodyfile="SI4735/SI4735.h" bodystart="173" bodyend="186"/>
     <listofallmembers>
       <member refid="unionsi473x__powerup_1a1d76ab95c8f37f3ee9f2266e0a818455" prot="public" virt="non-virtual"><scope>si473x_powerup</scope><name>arg</name></member>
       <member refid="unionsi473x__powerup_1a21297439eccc575f7c0a3228a4061fa7" prot="public" virt="non-virtual"><scope>si473x_powerup</scope><name>CTSIEN</name></member>

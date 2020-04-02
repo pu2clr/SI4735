@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="683" column="17" bodyfile="SI4735/SI4735.h" bodystart="683" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="684" column="17" bodyfile="SI4735/SI4735.h" bodystart="684" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__date__time_1aed1f1a5592157d224412846fdc938eb9" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="684" column="17" bodyfile="SI4735/SI4735.h" bodystart="684" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="685" column="17" bodyfile="SI4735/SI4735.h" bodystart="685" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__date__time_1af33644839f1535209df8f35fc00332c7" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="685" column="17" bodyfile="SI4735/SI4735.h" bodystart="685" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="686" column="17" bodyfile="SI4735/SI4735.h" bodystart="686" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__date__time_1a00b09fe57cee76fda811c7e868045c2d" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="686" column="17" bodyfile="SI4735/SI4735.h" bodystart="686" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="687" column="17" bodyfile="SI4735/SI4735.h" bodystart="687" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__date__time_1a4c42077d5a7c458002c2545b19446e49" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="687" column="17" bodyfile="SI4735/SI4735.h" bodystart="687" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="688" column="17" bodyfile="SI4735/SI4735.h" bodystart="688" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__date__time_1ab310eb63caafa1f15e1aec5b41c3d658" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="688" column="17" bodyfile="SI4735/SI4735.h" bodystart="688" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="689" column="17" bodyfile="SI4735/SI4735.h" bodystart="689" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__date__time_1a555dbd8fd36e4a5d5ec4ac7baf365a45" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -100,7 +100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="689" column="18" bodyfile="SI4735/SI4735.h" bodystart="689" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="690" column="18" bodyfile="SI4735/SI4735.h" bodystart="690" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__date__time_1a2fd48898a9f78b595a28dee19485d771" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_date_time::@21</type>
@@ -113,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="690" column="13"/>
+        <location file="SI4735/SI4735.h" line="691" column="13"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__date__time_1a4632acc947ded9cc9577df163fabba69" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -126,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="691" column="13" bodyfile="SI4735/SI4735.h" bodystart="691" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="692" column="13" bodyfile="SI4735/SI4735.h" bodystart="692" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -135,7 +135,7 @@
 <para>Group type 4A ( RDS Date and Time) When group type 4A is used by the station, it shall be transmitted every minute according to EN 50067. This Structure uses blocks 2,3 and 5 (B,C,D)</para>
 <para>ATTENTION: To make it compatible with 8, 16 and 32 bits platforms and avoid Crosses boundary, it was necessary to split minute and hour representation. </para>
     </detaileddescription>
-    <location file="SI4735/SI4735.h" line="680" column="15" bodyfile="SI4735/SI4735.h" bodystart="680" bodyend="692"/>
+    <location file="SI4735/SI4735.h" line="681" column="15" bodyfile="SI4735/SI4735.h" bodystart="681" bodyend="693"/>
     <listofallmembers>
       <member refid="unionsi47x__rds__date__time_1a4c42077d5a7c458002c2545b19446e49" prot="public" virt="non-virtual"><scope>si47x_rds_date_time</scope><name>hour1</name></member>
       <member refid="unionsi47x__rds__date__time_1ab310eb63caafa1f15e1aec5b41c3d658" prot="public" virt="non-virtual"><scope>si47x_rds_date_time</scope><name>hour2</name></member>

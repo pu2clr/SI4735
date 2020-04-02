@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="764" column="17" bodyfile="SI4735/SI4735.h" bodystart="764" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="765" column="17" bodyfile="SI4735/SI4735.h" bodystart="765" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__bandwidth__config_1a9782eb3c7fdb503308a9efa0b2feca59" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="765" column="17" bodyfile="SI4735/SI4735.h" bodystart="765" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="766" column="17" bodyfile="SI4735/SI4735.h" bodystart="766" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__bandwidth__config_1a83bcbed43c2a8b60e237189c24690706" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="766" column="17" bodyfile="SI4735/SI4735.h" bodystart="766" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="767" column="17" bodyfile="SI4735/SI4735.h" bodystart="767" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__bandwidth__config_1aa5135cee2e47231eee7ade4cdbe6a3c7" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -60,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="767" column="17" bodyfile="SI4735/SI4735.h" bodystart="767" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="768" column="17" bodyfile="SI4735/SI4735.h" bodystart="768" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__bandwidth__config_1aad8c326eb12c8fe5dc1dc1d2bf78e37c" prot="public" static="no" mutable="no">
         <type>struct si47x_bandwidth_config::@24</type>
@@ -73,7 +73,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="768" column="11"/>
+        <location file="SI4735/SI4735.h" line="769" column="11"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__bandwidth__config_1aa8fd81f2f62788fac6c3cce7b1ea765d" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="769" column="13" bodyfile="SI4735/SI4735.h" bodystart="769" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="770" column="13" bodyfile="SI4735/SI4735.h" bodystart="770" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -98,7 +98,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="SI4735/SI4735.h" line="761" column="15" bodyfile="SI4735/SI4735.h" bodystart="761" bodyend="770"/>
+    <location file="SI4735/SI4735.h" line="762" column="15" bodyfile="SI4735/SI4735.h" bodystart="762" bodyend="771"/>
     <listofallmembers>
       <member refid="unionsi47x__bandwidth__config_1a9126e88e995ef2b30a3b3b0b3a57e4b8" prot="public" virt="non-virtual"><scope>si47x_bandwidth_config</scope><name>AMCHFLT</name></member>
       <member refid="unionsi47x__bandwidth__config_1a83bcbed43c2a8b60e237189c24690706" prot="public" virt="non-virtual"><scope>si47x_bandwidth_config</scope><name>AMPLFLT</name></member>
