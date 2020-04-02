@@ -150,7 +150,9 @@
 
 /** @defgroup group01 SI473X data types 
  *  
- * The goal here is separate data from code. 
+ * @brief SI473X data representation
+ * 
+ * @details The goal here is separate data from code. 
  * The Si47XX family works with many internal data that can be represented by data structure 
  * or defined data type in C/C++. These C/C++ resources have been used widely here.  
  * This aproach made the library easier to build and maintain.  Each data structure created 
@@ -162,7 +164,8 @@
 
 /**
  * @ingroup group01
- * Power Up arguments data type 
+ * 
+ * @brief Power Up arguments data type 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65
  */
@@ -183,8 +186,9 @@ typedef union {
 
 /**
  * @ingroup group01
- * Represents how the  frequency is stored in the si4735.
- * It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH)  
+ * 
+ * @brief Represents how the  frequency is stored in the si4735.
+ * @details It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH)  
  */
 typedef union {
     struct
@@ -197,7 +201,7 @@ typedef union {
 
 /**
  * @ingroup group01
- * Antenna Tuning Capacitor data type manupulation 
+ * @brief Antenna Tuning Capacitor data type manupulation 
  */
 typedef union {
     struct
@@ -210,7 +214,8 @@ typedef union {
 
 /**
  * @ingroup group01
- * AM_TUNE_FREQ data type command
+ * 
+ * @brief AM Tune frequency data type command (AM_TUNE_FREQ command)
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 135
  */
@@ -232,7 +237,9 @@ typedef union {
 /** 
  * @ingroup group01 
  * 
- * Represents searching for a valid frequency data type.
+ * @brief Seek frequency (automatic tuning)
+ * 
+ * @details Represents searching for a valid frequency data type.
  */
 typedef union {
     struct
@@ -248,7 +255,9 @@ typedef union {
 /**  
  * @ingroup group01
  * 
- * Response status command 
+ * @brief Response status command 
+ * 
+ * @details Response data from a query status command
  * 
  * @see Si47XX PROGRAMMING GUIDE; pages 73 and 
  */
@@ -287,8 +296,9 @@ typedef union {
 /**
  * @ingroup group01
  * 
- * Data representation for  Firmware Information (GET_REV)
- * The part number, chip revision, firmware revision, patch revision and component revision numbers. 
+ * @brief Data representation for  Firmware Information (GET_REV)
+ * 
+ * @details The part number, chip revision, firmware revision, patch revision and component revision numbers. 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 66 and 131 
  */
@@ -319,8 +329,9 @@ typedef union {
 /**
  * @ingroup group01
  * 
- * Firmware Query Library ID response. 
- * Used to represent the response of a power up command with FUNC = 15 (patch)
+ * @brief Firmware Query Library ID response. 
+ * 
+ * @details Used to represent the response of a power up command with FUNC = 15 (patch)
  * 
  * To confirm that the patch is compatible with the internal device library revision, the library 
  * revision should be confirmed by issuing the POWER_UP command with Function = 15 (query library ID)
@@ -353,8 +364,9 @@ typedef union {
 /**
  * @ingroup group01
  * 
- * Status of FM_TUNE_FREQ or FM_SEEK_START commands or 
- * Status of AM_TUNE_FREQ or AM_SEEK_START commands.
+ * @brief Seek station status
+ * 
+ * @details Status of FM_TUNE_FREQ or FM_SEEK_START commands or Status of AM_TUNE_FREQ or AM_SEEK_START commands.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 73 and 139
  */
@@ -371,7 +383,9 @@ typedef union {
 /**
  * @ingroup group01
  * 
- * Property Data type (help to deal with SET_PROPERTY command on si473X)
+ * @brief Data type to deal with SET_PROPERTY command
+ * 
+ * @details Property Data type (help to deal with SET_PROPERTY command on si473X)
  */
 typedef union {
     struct
@@ -387,8 +401,10 @@ typedef union {
 
 /** 
  * @ingroup group02
- * Data type for status information about the received signal quality
- * FM_RSQ_STATUS and AM_RSQ_STATUS
+ * 
+ * @brief  Radio Signal Quality data representation 
+ * 
+ * @details Data type for status information about the received signal quality (FM_RSQ_STATUS and AM_RSQ_STATUS)
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 
  */
@@ -433,10 +449,9 @@ typedef union {
 /**
  * @ingroup group02
  * 
- * FM_RDS_STATUS (0x24) command
- * Data type for command and response information 
- * @see Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
- * 
+ * @brief Data type for RDS Status command and response information 
+ *
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78 
  * @see Also https://en.wikipedia.org/wiki/Radio_Data_System
  */
 typedef union {
@@ -453,7 +468,7 @@ typedef union {
 /**
  * @ingroup group02
  * 
- * Response data type for current channel and reads an entry from the RDS FIFO.
+ * @brief Response data type for current channel and reads an entry from the RDS FIFO.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
  */
@@ -507,7 +522,7 @@ typedef union {
 /**
  * @ingroup group02
  * 
- * FM_RDS_INT_SOURCE property data type
+ * @brief FM_RDS_INT_SOURCE property data type
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 103
  * @see also https://en.wikipedia.org/wiki/Radio_Data_System
@@ -530,7 +545,7 @@ typedef union {
 /**
  * @ingroup group02
  * 
- * Data type for FM_RDS_CONFIG Property
+ * @brief Data type for FM_RDS_CONFIG Property
  * 
  * IMPORTANT: all block errors must be less than or equal the associated block error threshold for the group 
  * to be stored in the RDS FIFO. 
@@ -559,7 +574,7 @@ typedef union {
 /**
  * @ingroup group02
  * 
- * Block A data type
+ * @brief Block A data type
  */
 typedef union {
     struct
@@ -576,9 +591,9 @@ typedef union {
 /**
  * @ingroup group02
  * 
- * Block B data type
+ * @brief Block B data type
  * 
- * For GCC on System-V ABI on 386-compatible (32-bit processors), the following stands:
+ * @details For GCC on System-V ABI on 386-compatible (32-bit processors), the following stands:
  * 1) Bit-fields are allocated from right to left (least to most significant).
  * 2) A bit-field must entirely reside in a storage unit appropriate for its declared type.
  *    Thus a bit-field never crosses its unit boundary.

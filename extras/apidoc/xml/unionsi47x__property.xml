@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="378" column="17" bodyfile="SI4735.h" bodystart="378" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="393" column="17" bodyfile="SI4735/SI4735.h" bodystart="393" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="379" column="17" bodyfile="SI4735.h" bodystart="379" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="394" column="17" bodyfile="SI4735/SI4735.h" bodystart="394" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__property_1ae9ac96f5c6d10f227a6926f787232e27" prot="public" static="no" mutable="no">
         <type>struct si47x_property::@9</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="380" column="9"/>
+        <location file="SI4735/SI4735.h" line="395" column="9"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__property_1a7c04205c5a1798b35b738b2908853bfa" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -54,15 +54,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="381" column="14" bodyfile="SI4735.h" bodystart="381" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="396" column="14" bodyfile="SI4735/SI4735.h" bodystart="396" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
+<para>Data type to deal with SET_PROPERTY command. </para>
     </briefdescription>
     <detaileddescription>
 <para>Property Data type (help to deal with SET_PROPERTY command on si473X) </para>
     </detaileddescription>
-    <location file="SI4735.h" line="375" column="15" bodyfile="SI4735.h" bodystart="375" bodyend="382"/>
+    <location file="SI4735/SI4735.h" line="390" column="15" bodyfile="SI4735/SI4735.h" bodystart="390" bodyend="397"/>
     <listofallmembers>
       <member refid="unionsi47x__property_1a245899dc4f66d03abb75401ffb6df8f2" prot="public" virt="non-virtual"><scope>si47x_property</scope><name>byteHigh</name></member>
       <member refid="unionsi47x__property_1a03bfb4b4b42b829deecc04647a1331d7" prot="public" virt="non-virtual"><scope>si47x_property</scope><name>byteLow</name></member>

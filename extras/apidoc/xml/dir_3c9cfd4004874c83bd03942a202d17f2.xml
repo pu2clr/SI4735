@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_3c9cfd4004874c83bd03942a202d17f2" kind="dir">
+    <compoundname>SI4735</compoundname>
+    <innerfile refid="_s_i4735_8cpp">SI4735.cpp</innerfile>
+    <innerfile refid="_s_i4735_8h">SI4735.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="SI4735/"/>
+  </compounddef>
+</doxygen>

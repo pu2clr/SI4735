@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="566" column="18" bodyfile="SI4735.h" bodystart="566" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="582" column="18" bodyfile="SI4735/SI4735.h" bodystart="582" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__blocka_1a1a7f496c8e0b77574f49c7808aeb186c" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_blocka::@15</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="567" column="13"/>
+        <location file="SI4735/SI4735.h" line="583" column="13"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__blocka_1a0143e0506e13766406571bd29ca604a6" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="570" column="17" bodyfile="SI4735.h" bodystart="570" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="586" column="17" bodyfile="SI4735/SI4735.h" bodystart="586" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__blocka_1a1148360b97c0c704c46a00ceb36360b4" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="571" column="17" bodyfile="SI4735.h" bodystart="571" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="587" column="17" bodyfile="SI4735/SI4735.h" bodystart="587" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__blocka_1ad64069e22c176c0e1b12e9a23eb54f20" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_blocka::@16</type>
@@ -67,15 +67,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="572" column="9"/>
+        <location file="SI4735/SI4735.h" line="588" column="9"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
+<para>Block A data type. </para>
     </briefdescription>
     <detaileddescription>
-<para>Block A data type </para>
     </detaileddescription>
-    <location file="SI4735.h" line="563" column="15" bodyfile="SI4735.h" bodystart="563" bodyend="573"/>
+    <location file="SI4735/SI4735.h" line="579" column="15" bodyfile="SI4735/SI4735.h" bodystart="579" bodyend="589"/>
     <listofallmembers>
       <member refid="unionsi47x__rds__blocka_1a0143e0506e13766406571bd29ca604a6" prot="public" virt="non-virtual"><scope>si47x_rds_blocka</scope><name>highValue</name></member>
       <member refid="unionsi47x__rds__blocka_1a1148360b97c0c704c46a00ceb36360b4" prot="public" virt="non-virtual"><scope>si47x_rds_blocka</scope><name>lowValue</name></member>

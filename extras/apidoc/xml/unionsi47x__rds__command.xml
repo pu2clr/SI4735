@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="444" column="17" bodyfile="SI4735.h" bodystart="444" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="460" column="17" bodyfile="SI4735/SI4735.h" bodystart="460" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__command_1a0a99bc3eb133aef468004ee950b77cdd" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="445" column="17" bodyfile="SI4735.h" bodystart="445" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="461" column="17" bodyfile="SI4735/SI4735.h" bodystart="461" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__command_1a502e1f710ac40b85373d662512fcaaaa" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="446" column="17" bodyfile="SI4735.h" bodystart="446" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="462" column="17" bodyfile="SI4735/SI4735.h" bodystart="462" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__command_1a3b27e9ff8048cbc2f8ec469afe0088dc" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="447" column="17" bodyfile="SI4735.h" bodystart="447" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="463" column="17" bodyfile="SI4735/SI4735.h" bodystart="463" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__command_1a41282c2bfe9a791181ba01c6787840ec" prot="public" static="no" mutable="no">
         <type>struct si47x_rds_command::@11</type>
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="448" column="9"/>
+        <location file="SI4735/SI4735.h" line="464" column="9"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__rds__command_1a3c151920e2f167bfa7c47193a20ecb58" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -84,19 +84,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="449" column="13" bodyfile="SI4735.h" bodystart="449" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="465" column="13" bodyfile="SI4735/SI4735.h" bodystart="465" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
+<para>Data type for RDS Status command and response information. </para>
     </briefdescription>
     <detaileddescription>
-<para>FM_RDS_STATUS (0x24) command Data type for command and response information <simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78 </para>
 </simplesect>
 <simplesect kind="see"><para>Also <ulink url="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipedia.org/wiki/Radio_Data_System</ulink> </para>
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="SI4735.h" line="441" column="15" bodyfile="SI4735.h" bodystart="441" bodyend="450"/>
+    <location file="SI4735/SI4735.h" line="457" column="15" bodyfile="SI4735/SI4735.h" bodystart="457" bodyend="466"/>
     <listofallmembers>
       <member refid="unionsi47x__rds__command_1a41282c2bfe9a791181ba01c6787840ec" prot="public" virt="non-virtual"><scope>si47x_rds_command</scope><name>arg</name></member>
       <member refid="unionsi47x__rds__command_1a3b27e9ff8048cbc2f8ec469afe0088dc" prot="public" virt="non-virtual"><scope>si47x_rds_command</scope><name>dummy</name></member>

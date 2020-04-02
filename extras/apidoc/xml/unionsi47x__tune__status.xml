@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="363" column="17" bodyfile="SI4735.h" bodystart="363" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="376" column="17" bodyfile="SI4735/SI4735.h" bodystart="376" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__tune__status_1ae6d5968d62f9c0eec44528e7b050f0bf" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="364" column="17" bodyfile="SI4735.h" bodystart="364" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="377" column="17" bodyfile="SI4735/SI4735.h" bodystart="377" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__tune__status_1af014b49f5eb0de7ac951dd1d52321026" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="365" column="17" bodyfile="SI4735.h" bodystart="365" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="378" column="17" bodyfile="SI4735/SI4735.h" bodystart="378" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__tune__status_1a6cb498a025a973418d27991eb3151489" prot="public" static="no" mutable="no">
         <type>struct si47x_tune_status::@8</type>
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="366" column="9"/>
+        <location file="SI4735/SI4735.h" line="379" column="9"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__tune__status_1aefcfcb9eaa95ed7d8ce1740ac7f9eb7e" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -72,10 +72,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="367" column="13" bodyfile="SI4735.h" bodystart="367" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="380" column="13" bodyfile="SI4735/SI4735.h" bodystart="380" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
+<para>Seek station status. </para>
     </briefdescription>
     <detaileddescription>
 <para>Status of FM_TUNE_FREQ or FM_SEEK_START commands or Status of AM_TUNE_FREQ or AM_SEEK_START commands.</para>
@@ -83,7 +84,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="SI4735.h" line="360" column="15" bodyfile="SI4735.h" bodystart="360" bodyend="368"/>
+    <location file="SI4735/SI4735.h" line="373" column="15" bodyfile="SI4735/SI4735.h" bodystart="373" bodyend="381"/>
     <listofallmembers>
       <member refid="unionsi47x__tune__status_1a6cb498a025a973418d27991eb3151489" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>arg</name></member>
       <member refid="unionsi47x__tune__status_1ae6d5968d62f9c0eec44528e7b050f0bf" prot="public" virt="non-virtual"><scope>si47x_tune_status</scope><name>CANCEL</name></member>

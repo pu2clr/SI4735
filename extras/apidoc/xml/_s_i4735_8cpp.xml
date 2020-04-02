@@ -13,7 +13,7 @@
         </childnode>
       </node>
       <node id="1">
-        <label>SI4735.cpp</label>
+        <label>SI4735/SI4735.cpp</label>
         <link refid="_s_i4735_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -1441,6 +1441,6 @@
 <codeline lineno="2287"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="2288"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="SI4735.cpp"/>
+    <location file="SI4735/SI4735.cpp"/>
   </compounddef>
 </doxygen>

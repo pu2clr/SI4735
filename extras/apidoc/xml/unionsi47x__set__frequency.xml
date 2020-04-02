@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="219" column="17" bodyfile="SI4735.h" bodystart="219" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="225" column="17" bodyfile="SI4735/SI4735.h" bodystart="225" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__set__frequency_1ad419130c085839f718f6530e18943c23" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="220" column="17" bodyfile="SI4735.h" bodystart="220" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="226" column="17" bodyfile="SI4735/SI4735.h" bodystart="226" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__set__frequency_1a0f58c9f3ce774e07a2acc9ba4e968c85" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="221" column="17" bodyfile="SI4735.h" bodystart="221" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="227" column="17" bodyfile="SI4735/SI4735.h" bodystart="227" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__set__frequency_1a224ff2b8897867521dc7e83e4a7aadae" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="222" column="17" bodyfile="SI4735.h" bodystart="222" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="228" column="17" bodyfile="SI4735/SI4735.h" bodystart="228" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__set__frequency_1a55e3e49406688a65d9e90427ba3290cd" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -75,7 +75,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="223" column="17" bodyfile="SI4735.h" bodystart="223" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="229" column="17" bodyfile="SI4735/SI4735.h" bodystart="229" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__set__frequency_1a0b7fcda4891b52509b53168d581936e3" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -89,7 +89,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="224" column="17" bodyfile="SI4735.h" bodystart="224" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="230" column="17" bodyfile="SI4735/SI4735.h" bodystart="230" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__set__frequency_1a9aee8ee0d04a6a7e732210fdea987d2c" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -103,7 +103,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="225" column="17" bodyfile="SI4735.h" bodystart="225" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="231" column="17" bodyfile="SI4735/SI4735.h" bodystart="231" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__set__frequency_1a712fdd01147dcef829431bc2fc94a012" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -117,7 +117,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="226" column="17" bodyfile="SI4735.h" bodystart="226" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="232" column="17" bodyfile="SI4735/SI4735.h" bodystart="232" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__set__frequency_1aa3e4a9050e218540a247ebd988f5bc65" prot="public" static="no" mutable="no">
         <type>struct si47x_set_frequency::@3</type>
@@ -130,7 +130,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="227" column="9"/>
+        <location file="SI4735/SI4735.h" line="233" column="9"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi47x__set__frequency_1a57e2bfb6b0c9c0fb7d6ffac131824b8a" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -143,18 +143,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735.h" line="228" column="13" bodyfile="SI4735.h" bodystart="228" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="234" column="13" bodyfile="SI4735/SI4735.h" bodystart="234" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
+<para>AM Tune frequency data type command (AM_TUNE_FREQ command) </para>
     </briefdescription>
     <detaileddescription>
-<para>AM_TUNE_FREQ data type command</para>
 <para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 135 </para>
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="SI4735.h" line="216" column="15" bodyfile="SI4735.h" bodystart="216" bodyend="229"/>
+    <location file="SI4735/SI4735.h" line="222" column="15" bodyfile="SI4735/SI4735.h" bodystart="222" bodyend="235"/>
     <listofallmembers>
       <member refid="unionsi47x__set__frequency_1a9aee8ee0d04a6a7e732210fdea987d2c" prot="public" virt="non-virtual"><scope>si47x_set_frequency</scope><name>ANTCAPH</name></member>
       <member refid="unionsi47x__set__frequency_1a712fdd01147dcef829431bc2fc94a012" prot="public" virt="non-virtual"><scope>si47x_set_frequency</scope><name>ANTCAPL</name></member>
