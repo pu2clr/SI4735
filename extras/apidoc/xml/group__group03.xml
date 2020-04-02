@@ -9,22 +9,6 @@
     <innerclass refid="unionsi47x__ssb__mode" prot="public">si47x_ssb_mode</innerclass>
     <innerclass refid="unionsi4735__digital__output__format" prot="public">si4735_digital_output_format</innerclass>
     <innerclass refid="structsi4735__digital__output__sample__rate" prot="public">si4735_digital_output_sample_rate</innerclass>
-      <sectiondef kind="func">
-      <memberdef kind="function" id="group__group03_1ga01f69d5bf584f94eabd1b113579b2c1e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>static void interrupt_hundler</definition>
-        <argsstring>()</argsstring>
-        <name>interrupt_hundler</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>If you are using interrupt feature, this function will be called by the system, not by you. If you are not using interrupt feature, please, ignore the compile message: &quot;warning: &apos;void interrupt_hundler()&apos; defined but not used [-Wunused-function]&quot; </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="SI4735/SI4735.h" line="839" column="13" bodyfile="SI4735/SI4735.h" bodystart="839" bodyend="842"/>
-      </memberdef>
-      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -3,6 +3,24 @@
   <compounddef id="group__group04" kind="group">
     <compoundname>group04</compoundname>
     <title>Deal with Interrupt</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group04_1ga01f69d5bf584f94eabd1b113579b2c1e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void interrupt_hundler</definition>
+        <argsstring>()</argsstring>
+        <name>interrupt_hundler</name>
+        <briefdescription>
+<para>Interrupt Function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>this function just set the volatile static bool data_from_si4735 to true;</para>
+<para>If you are using interrupt feature, this function will be called by the system, not by you. If you are not using interrupt feature, please, ignore the compile message: &quot;warning: &apos;void interrupt_hundler()&apos; defined but not used [-Wunused-function]&quot; </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SI4735/SI4735.h" line="846" column="13" bodyfile="SI4735/SI4735.h" bodystart="846" bodyend="849"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

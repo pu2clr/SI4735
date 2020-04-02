@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="802" column="17" bodyfile="SI4735/SI4735.h" bodystart="802" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="804" column="17" bodyfile="SI4735/SI4735.h" bodystart="804" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi4735__digital__output__format_1a810bfc21a334fbf3bf53b8dd934bb603" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="803" column="17" bodyfile="SI4735/SI4735.h" bodystart="803" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="805" column="17" bodyfile="SI4735/SI4735.h" bodystart="805" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi4735__digital__output__format_1ae2f67694a90085fc652649e37b3984b1" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="804" column="17" bodyfile="SI4735/SI4735.h" bodystart="804" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="806" column="17" bodyfile="SI4735/SI4735.h" bodystart="806" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi4735__digital__output__format_1a43a50ac17d929c197fae422f1fd648e3" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="805" column="17" bodyfile="SI4735/SI4735.h" bodystart="805" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="807" column="17" bodyfile="SI4735/SI4735.h" bodystart="807" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi4735__digital__output__format_1ab1a6803d3f409753fc7ed9e145ff3813" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="806" column="17" bodyfile="SI4735/SI4735.h" bodystart="806" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="808" column="17" bodyfile="SI4735/SI4735.h" bodystart="808" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi4735__digital__output__format_1a776ee9e744dd7da8e747d0c881c5d205" prot="public" static="no" mutable="no">
         <type>struct si4735_digital_output_format::@26</type>
@@ -89,7 +89,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="807" column="13"/>
+        <location file="SI4735/SI4735.h" line="809" column="13"/>
       </memberdef>
       <memberdef kind="variable" id="unionsi4735__digital__output__format_1a0fa2c05d8877d3c680e904842993c33e" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -102,18 +102,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="SI4735/SI4735.h" line="808" column="14" bodyfile="SI4735/SI4735.h" bodystart="808" bodyend="-1"/>
+        <location file="SI4735/SI4735.h" line="810" column="14" bodyfile="SI4735/SI4735.h" bodystart="810" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
+<para>Digital audio output format data structure (Property 0x0102. DIGITAL_OUTPUT_FORMAT). </para>
     </briefdescription>
     <detaileddescription>
-<para>Digital audio output format data structure (Property 0x0102. DIGITAL_OUTPUT_FORMAT). Useed to configure: DCLK edge, data format, force mono, and sample precision.</para>
+<para>Used to configure: DCLK edge, data format, force mono, and sample precision.</para>
 <para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; page 195. </para>
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="SI4735/SI4735.h" line="800" column="15" bodyfile="SI4735/SI4735.h" bodystart="800" bodyend="809"/>
+    <location file="SI4735/SI4735.h" line="802" column="15" bodyfile="SI4735/SI4735.h" bodystart="802" bodyend="811"/>
     <listofallmembers>
       <member refid="unionsi4735__digital__output__format_1ab1a6803d3f409753fc7ed9e145ff3813" prot="public" virt="non-virtual"><scope>si4735_digital_output_format</scope><name>dummy</name></member>
       <member refid="unionsi4735__digital__output__format_1a43a50ac17d929c197fae422f1fd648e3" prot="public" virt="non-virtual"><scope>si4735_digital_output_format</scope><name>OFALL</name></member>
