@@ -863,7 +863,7 @@ static void interrupt_hundler()
  * @details This class implements all functions to help you to control the Si47XX devices. 
  * This library was built based on “Si47XX PROGRAMMING GUIDE; AN332 ”. 
  * It also can be used on all members of the SI473X family respecting, of course, the features available 
- * for each IC version.  * These functionalities can be seen in the comparison matrix shown in 
+ * for each IC version.  These functionalities can be seen in the comparison matrix shown in 
  * table 1 (Product Family Function); pages 2 and 3 of the programming guide.
  * 
  */

@@ -2,13 +2,12 @@
  * This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
  * Arduino development environment.  It works with I2C protocol. 
  * This library is intended to provide an easier interface for controlling the SI4735.
+ * 
  * @see documentation on https://github.com/pu2clr/SI4735.
+ * @see Si47XX PROGRAMMING GUIDE; AN332
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
  * 
- * @see also: 
- *  Si47XX PROGRAMMING GUIDE; AN332
- *  AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
- * 
- * Pay attention: 
+ * ATTENTION: 
  * According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For write operations, the system controller next 
  * sends a data byte on SDIO, which is captured by the device on rising edges of SCLK. The device acknowledges 
  * each data byte by driving SDIO low for one cycle on the next falling edge of SCLK. 
