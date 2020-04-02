@@ -176,8 +176,11 @@ void SI4735::waitToSend()
 }
 
 /**
- * Set the Power Up parameters for si473X. 
- * Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()
+ * @ingroup group06 Si47XX device Power Up parameters 
+ *  
+ * @brief Set the Power Up parameters for si473X. 
+ * 
+ * @details Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 65 and 129
  * 
@@ -217,8 +220,12 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
 }
 
 /**
- * Powerup the Si47XX
- * Before call this function call the setPowerUp to set up the parameters.
+ * @ingroup group06 Si47XX device Power Up 
+ * 
+ * @brief Powerup the Si47XX
+ * 
+ * @details Before call this function call the setPowerUp to set up the parameters.
+ * 
  * Parameters you have to set up with setPowerUp
  * 
  * CTSIEN   Interrupt anabled or disabled;
@@ -246,9 +253,14 @@ void SI4735::radioPowerUp(void) {
 }
 
 /**
- * Powerup in Analog Mode. It will be deprecated. Consider use radioPowerUp instead.
- * Actually this function works fo Digital and Analog modes. 
- * You have to call setPowerUp method before. 
+ * @ingroup   group06 Si47XX device Power Up 
+ * 
+ * @deprecated Consider use radioPowerUp instead
+ * 
+ * @brief You have to call setPowerUp method before. 
+ * 
+ * @see  SI4735::setPowerUp()
+ * @see  Si47XX PROGRAMMING GUIDE; AN332; pages 64, 129
  */
 void SI4735::analogPowerUp(void)
 {
@@ -256,10 +268,14 @@ void SI4735::analogPowerUp(void)
 }
 
 /** 
- * Moves the device from powerup to powerdown mode.
- * After Power Down command, only the Power Up command is accepted.
+ * @ingroup   group06 Si47XX device Power Down 
+ * 
+ * @brief Moves the device from powerup to powerdown mode.
+ * 
+ * @details After Power Down command, only the Power Up command is accepted.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 67, 132
+ * @see radioPowerUp()
  */
 void SI4735::powerDown(void)
 {
@@ -270,8 +286,12 @@ void SI4735::powerDown(void)
     delayMicroseconds(2500);
 }
 
+/** @defgroup group07 Si47XX device information and start up */
+
 /**
- * Gets firmware information 
+ * @ingroup   group07 Firmware Information 
+ * 
+ * @brief Gets firmware information 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 66, 131
  */
@@ -294,11 +314,12 @@ void SI4735::getFirmware(void)
 }
 
 /** 
- * Starts the Si473X device. 
- *
- * If the audio mode parameter is not entered, analog mode will be considered.
+ * @ingroup   group07 Device start up 
  *  
- * 
+ * @brief Starts the Si473X device. 
+ *
+ * @details If the audio mode parameter is not entered, analog mode will be considered.
+ *  
  * @param uint8_t resetPin Digital Arduino Pin used to RESET command 
  * @param uint8_t interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled
  * @param uint8_t defaultFunction
@@ -341,8 +362,11 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, 
 }
 
 /** 
- * Starts the Si473X device.  
- * Use this setup if you are not using interrupt resource
+ * @ingroup   group07 Device start up 
+ * 
+ * @brief  Starts the Si473X device.  
+ * 
+ * @details Use this setup if you are not using interrupt resource
  * 
  * @param uint8_t resetPin Digital Arduino Pin used to RESET command 
  * @param uint8_t defaultFunction
@@ -353,11 +377,14 @@ void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
     delay(250);
 }
 
+/** @defgroup group08 Si47XX device Mode, Band and Frequency setup */
 
 /**
- * Selects the tuning capacitor value.
+ * @ingroup   group08 Internal Antenna Tuning capacitor
  * 
- * For FM, Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the antenna input.
+ * @brief Selects the tuning capacitor value.
+ * 
+ * @details For FM, Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the antenna input.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 71 and 136
  * 
@@ -393,8 +420,11 @@ void SI4735::setTuneFrequencyAntennaCapacitor(uint16_t capacitor)
 }
 
 /**
- * Set the frequency to the corrent function of the Si4735 (FM, AM or SSB)
- * You have to call setup or setPowerUp before call setFrequency.
+ * @ingroup   group08 Tune Frequency 
+ * 
+ * @brief Set the frequency to the corrent function of the Si4735 (FM, AM or SSB)
+ * 
+ * @details You have to call setup or setPowerUp before call setFrequency.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 70, 135
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13
@@ -433,10 +463,11 @@ void SI4735::setFrequency(uint16_t freq)
 }
 
 /** 
- * Sets the current step value. 
+ * @ingroup group08 Tune Frequency step
  * 
- * ATTENTION: This function does not check the limits of the current band. 
- *            Please, don't take a step bigger than your legs.
+ * @brief Sets the current step value. 
+ * 
+ * @details This function does not check the limits of the current band. Please, don't take a step bigger than your legs.
  * 
  * @param step if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz
  *             For AM, 1 (1KHz) to 1000 (1MHz) are valid values.
@@ -448,9 +479,11 @@ void SI4735::setFrequencyStep(uint16_t step)
 }
 
 /**
- *  Increments the current frequency on current band/function by using the current step.
+ * @ingroup group08 Tune Frequency 
+ *  
+ * @brief Increments the current frequency on current band/function by using the current step.
  * 
- *  @see setFrequencyStep()
+ * @see setFrequencyStep()
  */
 void SI4735::frequencyUp()
 {
@@ -463,9 +496,11 @@ void SI4735::frequencyUp()
 }
 
 /**
- * Decrements the current frequency on current band/function by using the current step.
+ * @ingroup group08 Tune Frequency 
+ * 
+ * @brief Decrements the current frequency on current band/function by using the current step.
  *  
- * @see setFrequencyStep
+ * @see setFrequencyStep()
  */
 void SI4735::frequencyDown()
 {
@@ -479,13 +514,17 @@ void SI4735::frequencyDown()
 }
 
 /**
- * Sets the radio to AM function. It means: LW MW and SW.
+ * @ingroup group08 Set mode and Band
+ * 
+ * @brief Sets the radio to AM function. It means: LW MW and SW.
+ * 
+ * @details Define the band range you want to use for the AM mode. 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 129.
  */
 void SI4735::setAM()
 {
-    // If you’re already using AM mode, you don’t need call powerDown and radioPowerUp. 
+    // If you’re already using AM mode, it is not necessary to call powerDown and radioPowerUp. 
     // The other properties also should have the same value as the previous status.
     if ( lastMode != AM_CURRENT_MODE ) {
         powerDown();
@@ -499,7 +538,9 @@ void SI4735::setAM()
 }
 
 /**
- * Sets the radio to FM function
+ * @ingroup group08 Set mode and Band
+ * 
+ * @brief Sets the radio to FM function
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 64. 
  */
@@ -515,7 +556,9 @@ void SI4735::setFM()
 }
 
 /**
- * Sets the radio to AM (LW/MW/SW) function. 
+ * @ingroup group08 Set mode and Band
+ * 
+ * @brief Sets the radio to AM (LW/MW/SW) function. 
  * 
  * @see setAM()
  * 
@@ -540,7 +583,11 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
 }
 
 /**
- * Sets the radio to FM function. 
+ * @ingroup group08 Set mode and Band
+ * 
+ * @brief Sets the radio to FM function. 
+ * 
+ * @details Defines the band range you want to use for the FM mode. 
  * 
  * @see setFM()
  * 
