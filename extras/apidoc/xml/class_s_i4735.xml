@@ -70,8 +70,7 @@
         <argsstring></argsstring>
         <name>rdsTextAdress2A</name>
         <briefdescription>
-<para>RDS date time received information <linebreak/>
- </para>
+<para>RDS date time received information. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -733,8 +732,7 @@
           <type>void</type>
         </param>
         <briefdescription>
-<para>Reset the SI473X <linebreak/>
- </para>
+<para>Reset the SI473X. </para>
         </briefdescription>
         <detaileddescription>
 <para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; </para>
@@ -755,8 +753,7 @@
           <type>void</type>
         </param>
         <briefdescription>
-<para>Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1). <linebreak/>
- </para>
+<para>Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1). </para>
         </briefdescription>
         <detaileddescription>
 <para>This function should be used before sending any command to a SI47XX device.</para>
@@ -803,8 +800,7 @@
           <declname>defaultFunction</declname>
         </param>
         <briefdescription>
-<para>Starts the Si473X device. <linebreak/>
- </para>
+<para>Starts the Si473X device. </para>
         </briefdescription>
         <detaileddescription>
 <para>Use this setup if you are not using interrupt resource</para>
@@ -1215,7 +1211,8 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Device Status Information Gets the current frequency of the Si4735 (AM or FM) The method status do it an more. See getStatus below.</para>
+<para>Device Status Information</para>
+<para>Gets the current frequency of the Si4735 (AM or FM) The method status do it an more. See getStatus below.</para>
 <para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM) </para>
 </simplesect>
 </para>
@@ -2141,8 +2138,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Set sound volume level Down <linebreak/>
-</para>
+<para>Set sound volume level Down</para>
 <para><simplesect kind="see"><para><ref refid="class_s_i4735_1a3b7543657dfd36da962267bb8692b796" kindref="member">setVolume()</ref> </para>
 </simplesect>
 </para>
@@ -2160,8 +2156,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Set sound volume level Up <linebreak/>
-</para>
+<para>Set sound volume level Up</para>
 <para><simplesect kind="see"><para><ref refid="class_s_i4735_1a3b7543657dfd36da962267bb8692b796" kindref="member">setVolume()</ref> </para>
 </simplesect>
 </para>
@@ -2240,7 +2235,8 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Digital Audio Setup Configures the digital audio output format. Options: DCLK edge, data format, force mono, and sample precision.</para>
+<para>Digital Audio Setup</para>
+<para>Configures the digital audio output format. Options: DCLK edge, data format, force mono, and sample precision.</para>
 <para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; page 195.</para>
 </simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -2497,8 +2493,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
 <parametername>step</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>step used to go to the next channel <linebreak/>
- </para>
+<para>step used to go to the next channel </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -2538,8 +2533,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
 <parametername>AMCHFLT</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the choices are: 0 = 6 kHz Bandwidth <linebreak/>
- 1 = 4 kHz Bandwidth 2 = 3 kHz Bandwidth 3 = 2 kHz Bandwidth 4 = 1 kHz Bandwidth 5 = 1.8 kHz Bandwidth 6 = 2.5 kHz Bandwidth, gradual roll off 7–15 = Reserved (Do not use). </para>
+<para>the choices are: 0 = 6 kHz Bandwidth 1 = 4 kHz Bandwidth 2 = 3 kHz Bandwidth 3 = 2 kHz Bandwidth 4 = 1 kHz Bandwidth 5 = 1.8 kHz Bandwidth 6 = 2.5 kHz Bandwidth, gradual roll off 7–15 = Reserved (Do not use). </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -2579,8 +2573,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
 <parametername>step</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz For AM, 1 (1KHz) to 1000 (1MHz) are valid values. For FM 5 (50KHz) and 10 (100KHz) are valid values. <linebreak/>
- </para>
+<para>if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz For AM, 1 (1KHz) to 1000 (1MHz) are valid values. For FM 5 (50KHz) and 10 (100KHz) are valid values. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -2681,8 +2674,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
 <parametername>capacitor</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>If zero, the tuning capacitor value is selected automatically. If the value is set to anything other than 0: AM - the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. ANTCAP manual range is 1–6143; FM - the valid range is 0 to 191. <linebreak/>
- According to Silicon Labs, automatic capacitor tuning is recommended (value 0). </para>
+<para>If zero, the tuning capacitor value is selected automatically. If the value is set to anything other than 0: AM - the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. ANTCAP manual range is 1–6143; FM - the valid range is 0 to 191. According to Silicon Labs, automatic capacitor tuning is recommended (value 0). </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -3110,8 +3102,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </briefdescription>
         <detaileddescription>
 <para>Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). To force stereo, set this to 0. To force mono, set this to 127. Default value is 30 dBμV.</para>
-<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; page 59. <linebreak/>
-</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; page 59.</para>
 </simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -3142,8 +3133,7 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         </briefdescription>
         <detaileddescription>
 <para>Sets SNR threshold for stereo blend (Full stereo above threshold, blend below threshold). To force stereo, set this to 0. To force mono, set this to 127. Default value is 27 dB.</para>
-<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; page 59. <linebreak/>
-</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; page 59.</para>
 </simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -3290,7 +3280,8 @@ After call this method, you can call isAgcEnabled to know the AGC status and get
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>RDS implementation Starts the control variables for RDS. </para>
+<para>RDS implementation</para>
+<para>Starts the control variables for RDS. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -3639,8 +3630,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
 <parametername>uint8_t</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>BLETHA Block Error Threshold BLOCKA. <linebreak/>
- </para>
+<para>BLETHA Block Error Threshold BLOCKA. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -3648,8 +3638,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
 <parametername>uint8_t</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>BLETHB Block Error Threshold BLOCKB. <linebreak/>
- </para>
+<para>BLETHB Block Error Threshold BLOCKB. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -3657,8 +3646,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
 <parametername>uint8_t</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>BLETHC Block Error Threshold BLOCKC. <linebreak/>
- </para>
+<para>BLETHC Block Error Threshold BLOCKC. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -3743,8 +3731,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Returns the current Text Flag A/B <linebreak/>
-</para>
+<para>Returns the current Text Flag A/B</para>
 <para><simplesect kind="return"><para>uint8_t </para>
 </simplesect>
 </para>
@@ -3888,8 +3875,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </briefdescription>
         <detaileddescription>
 <para>Gets the Text processed for the 2A group</para>
-<para><simplesect kind="return"><para>char* string with the Text of the group A2 <linebreak/>
- </para>
+<para><simplesect kind="return"><para>char* string with the Text of the group A2 </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -3915,8 +3901,7 @@ MPORTANT: All block errors must be less than or equal the associated block error
         </briefdescription>
         <detaileddescription>
 <para>Gets the Text processed for the 2B group</para>
-<para><simplesect kind="return"><para>char* string with the Text of the group AB <linebreak/>
- </para>
+<para><simplesect kind="return"><para>char* string with the Text of the group AB </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -4060,13 +4045,13 @@ MPORTANT: All block errors must be less than or equal the associated block error
 <para>SSB modulation is a refinement of amplitude modulation that one of the side band and the carrier are suppressed.</para>
 <para><simplesect kind="see"><para>AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5</para>
 </simplesect>
-First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library. <linebreak/>
-</para>
+First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.</para>
 <para>What does SSB patch means? In this context, a patch is a piece of software used to change the behavior of the <ref refid="class_s_i4735" kindref="compound">SI4735</ref> device. There is little information available about patching the <ref refid="class_s_i4735" kindref="compound">SI4735</ref>.</para>
 <para>The following information is the understanding of the author of this project and it is not necessarily correct.</para>
 <para>A patch is executed internally (run by internal MCU) of the device. Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device. Patches to the <ref refid="class_s_i4735" kindref="compound">SI4735</ref> are distributed in binary form and have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino boards). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system. Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.</para>
 <para>I would like to thank Mr Vadim Afonkin for making available the SSBRX patches for SI4735-D60 on his Dropbox repository. On this repository you have two files, amrx_6_0_1_ssbrx_patch_full_0x9D29.csg and amrx_6_0_1_ssbrx_patch_init_0xA902.csg. It is important to know that the patch content of the original files is constant hexadecimal representation used by the language C/C++. Actally, the original files are in ASCII format (not in binary format). If you are not using C/C++ or if you want to load the files directly to the <ref refid="class_s_i4735" kindref="compound">SI4735</ref>, you must convert the values to numeric value of the hexadecimal constants. For example: 0x15 = 21 (00010101); 0x16 = 22 (00010110); 0x01 = 1 (00000001); 0xFF = 255 (11111111);</para>
-<para>ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here. This library works with the I²C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60. Once again, the author disclaims any liability for any damage this procedure may cause to your <ref refid="class_s_i4735" kindref="compound">SI4735</ref> or other devices that you are using. Sets the SSB Beat Frequency Offset (BFO).</para>
+<para>ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here. This library works with the I²C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60. Once again, the author disclaims any liability for any damage this procedure may cause to your <ref refid="class_s_i4735" kindref="compound">SI4735</ref> or other devices that you are using.</para>
+<para>Sets the SSB Beat Frequency Offset (BFO).</para>
 <para><simplesect kind="see"><para>AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 5 and 23</para>
 </simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -4370,8 +4355,7 @@ First of all, it is important to say that the SSB patch content is not part of t
         </briefdescription>
         <detaileddescription>
 <para>Sets AVC Divider</para>
-<para><simplesect kind="see"><para>AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 <linebreak/>
-</para>
+<para><simplesect kind="see"><para>AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24</para>
 </simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -4465,10 +4449,12 @@ First of all, it is important to say that the SSB patch content is not part of t
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>SI47XX PATCH RESOURCES Call it first if you are applying a patch on <ref refid="class_s_i4735" kindref="compound">SI4735</ref>. Used to confirm if the patch is compatible with the internal device library revision. See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.</para>
-<para><simplesect kind="return"><para>a struct <ref refid="unionsi47x__firmware__query__library" kindref="compound">si47x_firmware_query_library</ref> (see it in <ref refid="_s_i4735_8h_source" kindref="compound">SI4735.h</ref>) Query the library information</para>
+<para>SI47XX PATCH RESOURCES</para>
+<para>Call it first if you are applying a patch on <ref refid="class_s_i4735" kindref="compound">SI4735</ref>. Used to confirm if the patch is compatible with the internal device library revision. See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.</para>
+<para><simplesect kind="return"><para>a struct <ref refid="unionsi47x__firmware__query__library" kindref="compound">si47x_firmware_query_library</ref> (see it in <ref refid="_s_i4735_8h_source" kindref="compound">SI4735.h</ref>)</para>
 </simplesect>
-You have to call this function if you are applying a patch on SI47XX (SI4735-D60)</para>
+Query the library information</para>
+<para>You have to call this function if you are applying a patch on SI47XX (SI4735-D60)</para>
 <para>The first command that is sent to the device is the POWER_UP command to confirm that the patch is compatible with the internal device library revision. The device moves into the powerup mode, returns the reply, and moves into the powerdown mode. The POWER_UP command is sent to the device again to configure the mode of the device and additionally is used to start the patching process. When applying the patch, the PATCH bit in ARG1 of the POWER_UP command must be set to 1 to begin the patching process. [AN332 page 219].</para>
 <para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 214, 215, 216, 219 </para>
 </simplesect>
@@ -4525,11 +4511,9 @@ You have to call this function if you are applying a patch on SI47XX (SI4735-D60
 <para>Transfers the content of a patch stored in a array of bytes to the <ref refid="class_s_i4735" kindref="compound">SI4735</ref> device. You must mount an array as shown below and know the size of that array as well.</para>
 <para>It is importante to say that patches to the <ref refid="class_s_i4735" kindref="compound">SI4735</ref> are distributed in binary form and have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system. Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.</para>
 <para>The disadvantage of this approach is the amount of memory used by the patch content. This may limit the use of other radio functions you want implemented in Arduino.</para>
-<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220. <linebreak/>
-</para>
+<para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.</para>
 </simplesect>
-Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB patch for whole SSBRX full download 0x15, 0x00, 0x0F, 0xE0, 0xF2, 0x73, 0x76, 0x2F, 0x16, 0x6F, 0x26, 0x1E, 0x00, 0x4B, 0x2C, 0x58, 0x16, 0xA3, 0x74, 0x0F, 0xE0, 0x4C, 0x36, 0xE4, 0x16, 0x3B, 0x1D, 0x4A, 0xEC, 0x36, 0x28, 0xB7, 0x16, 0x00, 0x3A, 0x47, 0x37, 0x00, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x9D, 0x29}; <linebreak/>
-</para>
+Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB patch for whole SSBRX full download 0x15, 0x00, 0x0F, 0xE0, 0xF2, 0x73, 0x76, 0x2F, 0x16, 0x6F, 0x26, 0x1E, 0x00, 0x4B, 0x2C, 0x58, 0x16, 0xA3, 0x74, 0x0F, 0xE0, 0x4C, 0x36, 0xE4, 0x16, 0x3B, 0x1D, 0x4A, 0xEC, 0x36, 0x28, 0xB7, 0x16, 0x00, 0x3A, 0x47, 0x37, 0x00, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x9D, 0x29};</para>
 <para>const int size_content_full = sizeof ssb_patch_content_full;</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -4753,8 +4737,7 @@ Example of content: const PROGMEM uint8_t ssb_patch_content_full[] = { // SSB pa
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>int16_t 0x11 if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error. <linebreak/>
- </para>
+<simplesect kind="return"><para>int16_t 0x11 if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error. </para>
 </simplesect>
 </para>
         </detaileddescription>

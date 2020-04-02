@@ -228,8 +228,7 @@
     </briefdescription>
     <detaileddescription>
 <para>For GCC on System-V ABI on 386-compatible (32-bit processors), the following stands:</para>
-<para>1) Bit-fields are allocated from right to left (least to most significant). 2) A bit-field must entirely reside in a storage unit appropriate for its declared type. Thus a bit-field never crosses its unit boundary. 3) Bit-fields may share a storage unit with other struct/union members, including members that are not bit-fields. Of course, struct members occupy different parts of the storage unit. 4) Unnamed bit-fields&apos; types do not affect the alignment of a structure or union, although individual bit-fields&apos; member offsets obey the alignment constraints. <linebreak/>
-</para>
+<para>1) Bit-fields are allocated from right to left (least to most significant). 2) A bit-field must entirely reside in a storage unit appropriate for its declared type. Thus a bit-field never crosses its unit boundary. 3) Bit-fields may share a storage unit with other struct/union members, including members that are not bit-fields. Of course, struct members occupy different parts of the storage unit. 4) Unnamed bit-fields&apos; types do not affect the alignment of a structure or union, although individual bit-fields&apos; member offsets obey the alignment constraints.</para>
 <para><simplesect kind="see"><para>also Si47XX PROGRAMMING GUIDE; AN332; pages 78 and 79 </para>
 </simplesect>
 <simplesect kind="see"><para>also <ulink url="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipedia.org/wiki/Radio_Data_System</ulink> </para>

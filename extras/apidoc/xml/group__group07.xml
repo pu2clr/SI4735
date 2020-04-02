@@ -108,8 +108,7 @@
           <declname>defaultFunction</declname>
         </param>
         <briefdescription>
-<para>Starts the Si473X device. <linebreak/>
- </para>
+<para>Starts the Si473X device. </para>
         </briefdescription>
         <detaileddescription>
 <para>Use this setup if you are not using interrupt resource</para>

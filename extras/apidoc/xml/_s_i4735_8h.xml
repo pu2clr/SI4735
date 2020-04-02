@@ -65,8 +65,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><ref refid="class_s_i4735" kindref="compound">SI4735</ref> ARDUINO LIBRARY <linebreak/>
- Const, Data type and Methods definitions References: Si47XX PROGRAMMING GUIDE AN332 AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE</para>
+<para><ref refid="class_s_i4735" kindref="compound">SI4735</ref> ARDUINO LIBRARY Const, Data type and Methods definitions References: Si47XX PROGRAMMING GUIDE AN332 AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE</para>
 <para><simplesect kind="see"><para>documentation on <ulink url="https://github.com/pu2clr/SI4735">https://github.com/pu2clr/SI4735</ulink></para>
 </simplesect>
 <simplesect kind="author"><para>PU2CLR - Ricardo Lima Caratti</para>

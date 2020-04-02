@@ -13,8 +13,7 @@
           <type>void</type>
         </param>
         <briefdescription>
-<para>Reset the SI473X <linebreak/>
- </para>
+<para>Reset the SI473X. </para>
         </briefdescription>
         <detaileddescription>
 <para><simplesect kind="see"><para>Si47XX PROGRAMMING GUIDE; AN332; </para>
@@ -35,8 +34,7 @@
           <type>void</type>
         </param>
         <briefdescription>
-<para>Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1). <linebreak/>
- </para>
+<para>Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1). </para>
         </briefdescription>
         <detaileddescription>
 <para>This function should be used before sending any command to a SI47XX device.</para>

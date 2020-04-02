@@ -39,8 +39,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '928';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Reset the SI473X  
-<br>
+Reset the SI473X.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 @see Si47XX PROGRAMMING GUIDE; AN332;
@@ -68,8 +67,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '929';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1).  
-<br>
+Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1).
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 This function should be used before sending any command to a SI47XX device.
@@ -206,8 +204,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '932';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Starts the Si473X device.  
-<br>
+Starts the Si473X device.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 Use this setup if you are not using interrupt resource
@@ -785,6 +782,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 Device Status Information
+
 Gets the current frequency of the Si4735 (AM or FM)
 The method status do it an more. See getStatus below. 
 
@@ -2219,7 +2217,6 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  Set sound volume level Down   
-<br>
 
 @see setVolume() 
 _EnD_oF_dEf_TeXt_;
@@ -2245,7 +2242,6 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  Set sound volume level Up   
-<br>
 
 @see setVolume()
 _EnD_oF_dEf_TeXt_;
@@ -2346,6 +2342,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 Digital Audio Setup
+
 Configures the digital audio output format. 
 Options: DCLK edge, data format, force mono, and sample precision.
 
@@ -2648,7 +2645,6 @@ Defines the band range you want to use for the FM mode.
 @param toFreq maximum frequency for the band
 @param initialFreq initial frequency (default frequency)
 @param step step used to go to the next channel   
-<br>
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1aa3d41ad3fdb9d821a721a8acfaf47670';
@@ -2715,7 +2711,6 @@ Works only in AM / SSB (LW/MW/SW)
 @see Si47XX PROGRAMMING GUIDE; AN332; pages 125, 151, 277, 181.
 
 @param AMCHFLT the choices are:   0 = 6 kHz Bandwidth                    
-<br>
                                   1 = 4 kHz Bandwidth
                                   2 = 3 kHz Bandwidth
                                   3 = 2 kHz Bandwidth
@@ -2767,7 +2762,6 @@ This function does not check the limits of the current band. Please, don't take 
 @param step if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz
             For AM, 1 (1KHz) to 1000 (1MHz) are valid values.
             For FM 5 (50KHz) and 10 (100KHz) are valid values.  
-<br>
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1ad72759f246cceb147bf031b72173b0ca';
@@ -2916,7 +2910,6 @@ For FM, Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the ant
                  AM - the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. 
                       ANTCAP manual range is 1–6143;
                  FM - the valid range is 0 to 191.    
-<br>
                  According to Silicon Labs, automatic capacitor tuning is recommended (value 0). 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
@@ -3516,7 +3509,6 @@ Sets RSSI threshold for mono blend (Full mono below threshold, blend above thres
 To force stereo, set this to 0. To force mono, set this to 127. Default value is 30 dBμV.
 
 @see Si47XX PROGRAMMING GUIDE; AN332; page 59.  
-<br>
 
 @param parameter valid values: 0 to 127
 _EnD_oF_dEf_TeXt_;
@@ -3551,7 +3543,6 @@ Sets SNR threshold for stereo blend (Full stereo above threshold, blend below th
 To force stereo, set this to 0. To force mono, set this to 127. Default value is 27 dB.
 
 @see Si47XX PROGRAMMING GUIDE; AN332; page 59.  
-<br>
 
 @param parameter valid values: 0 to 127
 _EnD_oF_dEf_TeXt_;
@@ -3715,6 +3706,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 RDS implementation 
+
 Starts the control variables for RDS.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
@@ -4234,11 +4226,8 @@ Recommended Block Error Threshold options:
 
 @param uint8_t RDSEN RDS Processing Enable; 1 = RDS processing enabled.
 @param uint8_t BLETHA Block Error Threshold BLOCKA.   
-<br>
 @param uint8_t BLETHB Block Error Threshold BLOCKB.  
-<br>
 @param uint8_t BLETHC Block Error Threshold BLOCKC.  
-<br>
 @param uint8_t BLETHD Block Error Threshold BLOCKD. 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
@@ -4399,7 +4388,6 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 Returns the current Text Flag A/B  
-<br>
 
 @return uint8_t 
 _EnD_oF_dEf_TeXt_;
@@ -4664,7 +4652,6 @@ _EnD_oF_dEf_TeXt_;
 Gets the Text processed for the 2A group
 
 @return char* string with the Text of the group A2  
-<br>
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1afc7f4e06b12a6d9b8304a691deb4fc8e';
@@ -4720,7 +4707,6 @@ _EnD_oF_dEf_TeXt_;
 Gets the Text processed for the 2B group
 
 @return char* string with the Text of the group AB  
-<br>
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1afc7f4e06b12a6d9b8304a691deb4fc8e';
@@ -5000,7 +4986,6 @@ his Dropbox repository. It is important to note that the author of this library
 does not encourage anyone to use the SSB patches content for commercial purposes.
 In other words, this library only supports SSB patches, the patches themselves 
 are not part of this library.  
-<br>
 
 What does SSB patch means?
 In this context, a patch is a piece of software used to change the behavior of 
@@ -5036,6 +5021,7 @@ to continue with the procedures suggested here. This library works with the I²C
 communication protocol and it is designed to apply a SSB extension PATCH to CI 
 SI4735-D60. Once again, the author disclaims any liability for any damage this 
 procedure may cause to your SI4735 or other devices that you are using.
+
 Sets the SSB Beat Frequency Offset (BFO). 
 
 @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 5 and 23
@@ -5444,7 +5430,6 @@ _EnD_oF_dEf_TeXt_;
 Sets AVC Divider
 
 @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24  
-<br>
 
 @param AVC_DIVIDER  SSB mode, set divider = 0; SYNC mode, set divider = 3; Other values = not allowed.
 _EnD_oF_dEf_TeXt_;
@@ -5566,11 +5551,13 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 SI47XX PATCH RESOURCES
+ 
 Call it first if you are applying a patch on SI4735. 
 Used to confirm if the patch is compatible with the internal device library revision.
 See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
 
 @return a struct si47x_firmware_query_library (see it in SI4735.h)
+
 Query the library information
 
 You have to call this function if you are applying a patch on SI47XX (SI4735-D60)
@@ -5677,7 +5664,6 @@ The disadvantage of this approach is the amount of memory used by the patch cont
 This may limit the use of other radio functions you want implemented in Arduino.
 
 @see Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.  
-<br>
 
 Example of content:
 const PROGMEM uint8_t ssb_patch_content_full[] =
@@ -5691,7 +5677,6 @@ const PROGMEM uint8_t ssb_patch_content_full[] =
      0x16, 0x3B, 0x1D, 0x4A, 0xEC, 0x36, 0x28, 0xB7,
      0x16, 0x00, 0x3A, 0x47, 0x37, 0x00, 0x00, 0x00,
      0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x9D, 0x29};   
-<br>
 
 const int size_content_full = sizeof ssb_patch_content_full;
 
@@ -5981,7 +5966,6 @@ Use this function if you do not know how the SEN pin is configured.
 @param uint8_t  resetPin MCU Mater (Arduino) reset pin
 
 @return int16_t 0x11   if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error.                
-<br>
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga748a4027f317972cb2fb1aed4865973b';
@@ -6482,8 +6466,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '881';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-RDS date time received information  
-<br>
+RDS date time received information.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -7620,6 +7603,7 @@ SI4735 Class definition
 
 
 
+
 This class implements all functions to help you to control the Si47XX devices. 
 This library was built based on “Si47XX PROGRAMMING GUIDE; AN332 ”. 
 It also can be used on all members of the SI473X family respecting, of course, the features available 
@@ -8725,7 +8709,6 @@ _EnD_oF_dEf_TeXt_;
   cp-documentation = <<_EnD_oF_dEf_TeXt_
 The bandwidth of the AM channel filter data type
 AMCHFLT values: 0 = 6 kHz Bandwidth                    
-<br>
                 1 = 4 kHz Bandwidth
                 2 = 3 kHz Bandwidth
                 3 = 2 kHz Bandwidth
@@ -9503,7 +9486,6 @@ Represents how the  frequency is stored in the si4735.
 _EnD_oF_dEf_TeXt_;
   cp-documentation = <<_EnD_oF_dEf_TeXt_
 It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH)  
-<br>
 _EnD_oF_dEf_TeXt_;
 }; /* union */
 union = {
@@ -10007,7 +9989,6 @@ For GCC on System-V ABI on 386-compatible (32-bit processors), the following sta
    Of course, struct members occupy different parts of the storage unit.
 4) Unnamed bit-fields' types do not affect the alignment of a structure or union, although individual 
    bit-fields' member offsets obey the alignment constraints.   
-<br>
 
 @see also Si47XX PROGRAMMING GUIDE; AN332; pages 78 and 79
 @see also https://en.wikipedia.org/wiki/Radio_Data_System
@@ -13274,7 +13255,6 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-documentation = <<_EnD_oF_dEf_TeXt_
 SI4735 ARDUINO LIBRARY  
-<br>
 Const, Data type and Methods definitions
 References: 
      Si47XX PROGRAMMING GUIDE AN332

@@ -26,8 +26,7 @@
 <parametername>capacitor</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>If zero, the tuning capacitor value is selected automatically. If the value is set to anything other than 0: AM - the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. ANTCAP manual range is 1–6143; FM - the valid range is 0 to 191. <linebreak/>
- According to Silicon Labs, automatic capacitor tuning is recommended (value 0). </para>
+<para>If zero, the tuning capacitor value is selected automatically. If the value is set to anything other than 0: AM - the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. ANTCAP manual range is 1–6143; FM - the valid range is 0 to 191. According to Silicon Labs, automatic capacitor tuning is recommended (value 0). </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -114,8 +113,7 @@
 <parametername>step</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz For AM, 1 (1KHz) to 1000 (1MHz) are valid values. For FM 5 (50KHz) and 10 (100KHz) are valid values. <linebreak/>
- </para>
+<para>if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz For AM, 1 (1KHz) to 1000 (1MHz) are valid values. For FM 5 (50KHz) and 10 (100KHz) are valid values. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -350,8 +348,7 @@
 <parametername>step</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>step used to go to the next channel <linebreak/>
- </para>
+<para>step used to go to the next channel </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
