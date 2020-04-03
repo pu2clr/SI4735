@@ -921,7 +921,7 @@ protected:
     void disableFmDebug(); //! disable some Si47XX debug resources implemented by the Silicon Labs 
     void clearRdsBuffer2A(); //! Clear RDS group type 2A buffer 
     void clearRdsBuffer2B(); //! Clear RDS group type 2B buffer
-    void clearRdsBuffer0A(); //! Crear RDS group type 0A buffer
+    void clearRdsBuffer0A(); //! Clear RDS group type 0A buffer
 
 public:
     SI4735(); 
@@ -988,7 +988,7 @@ public:
     inline bool getStatusError() { 
         return currentStatus.resp.ERR; 
     };   
-                          
+
     inline bool getStatusCTS() { return currentStatus.resp.CTS; };                           //! Gets the Error flag of status response
     inline bool getACFIndicator() { return currentStatus.resp.AFCRL; };                      //! Returns true if the AFC rails (AFC Rail Indicator).
     inline bool getBandLimit() { return currentStatus.resp.BLTF; };                          //! Returns true if a seek hit the band limit (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
