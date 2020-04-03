@@ -1,10 +1,10 @@
-/*!
+/**
  * SI4735 ARDUINO LIBRARY  
  * Const, Data type and Methods definitions
- * References: 
- *      Si47XX PROGRAMMING GUIDE AN332
- *      AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE
- * 
+ *   
+ * @see Si47XX PROGRAMMING GUIDE AN332 
+ * @ref https://www.silabs.com/documents/public/application-notes/AN332.pdf
+ * @see  AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE
  * @see documentation on https://github.com/pu2clr/SI4735
  * 
  * @author PU2CLR - Ricardo Lima Caratti 

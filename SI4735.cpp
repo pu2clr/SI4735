@@ -1,4 +1,4 @@
-/*!
+/**
  * This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
  * Arduino development environment.  It works with I2C protocol. 
  * This library is intended to provide an easier interface for controlling the SI4735.
@@ -613,9 +613,26 @@ void SI4735::setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
 }
 
 /**
- * Selects the bandwidth of the channel filter for AM reception. The choices are 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). 
- * The default bandwidth is 2 kHz.
- * Works only in AM / SSB (LW/MW/SW) 
+ * @ingroup group08 Check FM mode status
+ * 
+ * @brief Returns true if the current function is FM (FM_TUNE_FREQ).
+ * 
+ * @return true if the current function is FM (FM_TUNE_FREQ).
+ */
+bool SI4735::isCurrentTuneFM()
+{
+    return (currentTune == FM_TUNE_FREQ);
+}
+
+
+/** @defgroup group09 Si47XX filter setup  */
+
+/**
+ * @ingroup group09 Set bandwidth
+ * 
+ * @brief Selects the bandwidth of the channel filter for AM reception. 
+ * 
+ * @details The choices are 6, 4, 3, 2, 2.5, 1.8, or 1 (kHz). The default bandwidth is 2 kHz. It works only in AM / SSB (LW/MW/SW) 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 125, 151, 277, 181.
  * 
@@ -658,20 +675,14 @@ void SI4735::setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT)
     waitToSend();
 }
 
+/** @defgroup group10 Tools method */
 
 /**
- * Returns true if the current function is FM (FM_TUNE_FREQ).
+ * @ingroup group10 Generic send property
  * 
- * @return true if the current function is FM (FM_TUNE_FREQ).
- */
-bool SI4735::isCurrentTuneFM()
-{
-    return (currentTune == FM_TUNE_FREQ);
-}
-
-/**
- * Sends (sets) property to the SI47XX
- * This method is used for others to send generic properties and params to SI47XX
+ * @brief Sends (sets) property to the SI47XX
+ * 
+ * @details This method is used for others to send generic properties and params to SI47XX
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 68, 124 and  133.
  */
@@ -694,10 +705,14 @@ void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter)
     delayMicroseconds(550);
 }
 
+/** @defgroup group12 FM Mono Stereo audio setup */
 
 /**
- * Sets RSSI threshold for stereo blend (Full stereo above threshold, blend below threshold). 
- * To force stereo, set this to 0. To force mono, set this to 127.
+ * @ingroup group12 FM Mono Stereo audio setup
+ *  
+ * @brief Sets RSSI threshold for stereo blend (Full stereo above threshold, blend below threshold). 
+ * 
+ * @details To force stereo, set this to 0. To force mono, set this to 127.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 90. 
  * 
@@ -709,8 +724,11 @@ void SI4735::setFmBlendStereoThreshold(uint8_t parameter)
 }
 
 /**
- * Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). 
- * To force stereo set this to 0. To force mono set this to 127. Default value is 30 dBμV.
+ * @ingroup group12 FM Mono Stereo audio setup
+ * 
+ * @brief Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). 
+ * 
+ * @details To force stereo set this to 0. To force mono set this to 127. Default value is 30 dBμV.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 56.
  * 
@@ -722,8 +740,12 @@ void SI4735::setFmBlendMonoThreshold(uint8_t parameter)
 }
 
 /** 
- * Sets RSSI threshold for stereo blend. (Full stereo above threshold, blend below threshold.) 
- * To force stereo, set this to 0. To force mono, set this to 127. Default value is 49 dBμV.
+ * @ingroup group12 FM Mono Stereo audio setup
+ * 
+ * @brief Sets RSSI threshold for stereo blend. (Full stereo above threshold, blend below threshold.) 
+ * 
+ * @details To force stereo, set this to 0. To force mono, set this to 127. Default value is 49 dBμV.
+ * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 59. 
  * 
  * @param parameter valid values: 0 to 127
@@ -734,8 +756,11 @@ void SI4735::setFmBlendRssiStereoThreshold(uint8_t parameter)
 }
 
 /** 
- * Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). 
- * To force stereo, set this to 0. To force mono, set this to 127. Default value is 30 dBμV.
+ * @ingroup group12 FM Mono Stereo audio setup
+ * 
+ * @brief Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). 
+ * 
+ * @details To force stereo, set this to 0. To force mono, set this to 127. Default value is 30 dBμV.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 59.  
  * 
@@ -747,8 +772,11 @@ void SI4735::setFmBLendRssiMonoThreshold(uint8_t parameter)
 }
 
 /**
- * Sets SNR threshold for stereo blend (Full stereo above threshold, blend below threshold). 
- * To force stereo, set this to 0. To force mono, set this to 127. Default value is 27 dB.
+ * @ingroup group12 FM Mono Stereo audio setup
+ * 
+ * @brief Sets SNR threshold for stereo blend (Full stereo above threshold, blend below threshold). 
+ * 
+ * @details To force stereo, set this to 0. To force mono, set this to 127. Default value is 27 dB.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 59.  
  * 
@@ -760,8 +788,11 @@ void SI4735::setFmBlendSnrStereoThreshold(uint8_t parameter)
 }
 
 /**
- * Sets SNR threshold for mono blend (Full mono below threshold, blend above threshold). 
- * To force stereo, set this to 0. To force mono, set this to 127. Default value is 14 dB.
+ * @ingroup group12 FM Mono Stereo audio setup
+ * 
+ * @brief Sets SNR threshold for mono blend (Full mono below threshold, blend above threshold). 
+ * 
+ * @details To force stereo, set this to 0. To force mono, set this to 127. Default value is 14 dB.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 59. 
  * 
@@ -773,8 +804,11 @@ void SI4735::setFmBLendSnrMonoThreshold(uint8_t parameter)
 }
 
 /** 
- * Sets multipath threshold for stereo blend (Full stereo below threshold, blend above threshold). 
- * To force stereo, set this to 100. To force mono, set this to 0. Default value is 20.
+ * @ingroup group12 FM Mono Stereo audio setup
+ * 
+ * @brief Sets multipath threshold for stereo blend (Full stereo below threshold, blend above threshold). 
+ * 
+ * @details To force stereo, set this to 100. To force mono, set this to 0. Default value is 20.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 60.
  * 
@@ -786,8 +820,11 @@ void SI4735::setFmBlendMultiPathStereoThreshold(uint8_t parameter)
 }
 
 /**
- * Sets Multipath threshold for mono blend (Full mono above threshold, blend below threshold). 
- * To force stereo, set to 100. To force mono, set to 0. The default is 60.
+ * @ingroup group12 FM Mono Stereo audio setup
+ * 
+ * @brief Sets Multipath threshold for mono blend (Full mono above threshold, blend below threshold). 
+ * 
+ * @details To force stereo, set to 100. To force mono, set to 0. The default is 60.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 60.
  * 
@@ -799,24 +836,31 @@ void SI4735::setFmBlendMultiPathMonoThreshold(uint8_t parameter)
 }
 
 /** 
- * Turn Off Stereo operation.
+ * @ingroup group12 FM Mono Stereo audio setup
+ * 
+ * @brief Turn Off Stereo operation.
  */
 void SI4735::setFmStereoOff()
 {
-    // TO DO
+    //! TO DO
 }
 
 /** 
- * Turn Off Stereo operation.
+ * @ingroup group12 FM Mono Stereo audio setup
+ * 
+ * @brief Turn Off Stereo operation.
  */
 void SI4735::setFmStereoOn()
 {
-    // TO DO
+    //! TO DO
 }
 
 /**
- * There is a debug feature that remains active in Si4704/05/3x-D60 firmware which can create periodic noise in audio.
- * Silicon Labs recommends you disable this feature by sending the following bytes (shown here in hexadecimal form):
+ * @ingroup group12 FM Mono Stereo audio setup
+ * 
+ * @brief There is a debug feature that remains active in Si4704/05/3x-D60 firmware which can create periodic noise in audio.
+ * 
+ * @details Silicon Labs recommends you disable this feature by sending the following bytes (shown here in hexadecimal form):
  * 0x12 0x00 0xFF 0x00 0x00 0x00.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 299. 
@@ -834,13 +878,14 @@ void SI4735::disableFmDebug()
     delayMicroseconds(2500);
 }
 
-/*******************************************************************************
- * Digital Audio Setup
- ******************************************************************************/
+/** @defgroup group13 Audio setup */
 
 /**
- * Configures the digital audio output format. 
- * Options: DCLK edge, data format, force mono, and sample precision.
+ * @ingroup group13 Digital Audio setup
+ * 
+ * @brief Configures the digital audio output format. 
+ * 
+ * @details Options: DCLK edge, data format, force mono, and sample precision.
  *  
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 195. 
 
@@ -860,7 +905,9 @@ void SI4735::digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, ui
 }
 
 /**
- * Enables digital audio output and configures digital audio output sample rate in samples per second (sps).
+ * @ingroup group13 Digital Audio setup
+ * 
+ * @brief Enables digital audio output and configures digital audio output sample rate in samples per second (sps).
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 196. 
  * 
@@ -871,13 +918,90 @@ void SI4735::digitalOutputSampleRate(uint16_t DOSR)
     sendProperty(DIGITAL_OUTPUT_SAMPLE_RATE, DOSR);
 }
 
+/** 
+ * @ingroup group13 Audio volume
+ * 
+ * @brief Sets volume level (0  to 63)
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 170, 173 and 204
+ * 
+ * @param uint8_t volume (domain: 0 - 63) 
+ */
+void SI4735::setVolume(uint8_t volume)
+{
+    sendProperty(RX_VOLUME, volume);
+    this->volume = volume;
+}
+
+/**
+ * @ingroup group13 Audio volume
+ * 
+ * @brief Sets the audio on or off
+ * 
+ * @see See Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 171 
+ * 
+ * @param value if true, mute the audio; if false unmute the audio.
+ */
+void SI4735::setAudioMute(bool off)
+{
+    uint16_t value = (off) ? 3 : 0; // 3 means mute; 0 means unmute
+    sendProperty(RX_HARD_MUTE, value);
+}
+
+/**
+ * @ingroup group13 Audio volume
+ * 
+ * @brief Gets the current volume level.
+ * 
+ * @see setVolume()
+ * 
+ * @return volume (domain: 0 - 63) 
+ */
+uint8_t SI4735::getVolume()
+{
+    return this->volume;
+}
+
+/**
+ * @ingroup group13 Audio volume
+ *  
+ * @brief Set sound volume level Up   
+ *  
+ * @see setVolume()
+ */
+void SI4735::volumeUp()
+{
+    if (volume < 63)
+        volume++;
+    setVolume(volume);
+}
+
+/**
+ * @ingroup group13 Audio volume
+ *  
+ * @brief Set sound volume level Down   
+ * 
+ * @see setVolume() 
+ */
+void SI4735::volumeDown()
+{
+    if (volume > 0)
+        volume--;
+    setVolume(volume);
+}
+
+/** @defgroup group14 Frequency and Si47XX device status */
+
 /*******************************************************************************
  * Device Status Information
  ******************************************************************************/
 
 /**
- * Gets the current frequency of the Si4735 (AM or FM)
- * The method status do it an more. See getStatus below. 
+ * @ingroup group14 Frequency 
+ * 
+ * @brief Gets the current frequency of the Si4735 (AM or FM)
+ * 
+ * @details The method status do it an more. See getStatus below. 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  */
@@ -894,10 +1018,13 @@ uint16_t SI4735::getFrequency()
 }
 
 /**
- * Gets the current frequency saved in memory. 
- * Unlike getFrequency, this method gets the current frequency recorded after the last setFrequency command. 
- * This method avoids bus traffic and CI processing.
- * However, you can not get others status information like RSSI.
+ * @ingroup group14 Frequency 
+ * 
+ * @brief Gets the current frequency saved in memory. 
+ * 
+ * @details Unlike getFrequency, this method gets the current frequency recorded after the last setFrequency command. 
+ * @details This method avoids bus traffic and CI processing.
+ * @details However, you can not get others status information like RSSI.
  * 
  * @see getFrequency()
  */
@@ -907,7 +1034,10 @@ uint16_t SI4735::getCurrentFrequency()
 }
 
 /**
- * Gets the current status  of the Si4735 (AM or FM)
+ * @ingroup group14 Frequency 
+ * 
+ * @brief Gets the current status  of the Si4735 (AM or FM)
+ * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  * 
  * @param uint8_t INTACK Seek/Tune Interrupt Clear. If set, clears the seek/tune complete interrupt status indicator;
@@ -940,7 +1070,9 @@ void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
 }
 
 /**
- * Gets the current status  of the Si4735 (AM or FM)
+ * @ingroup group14 Si47XX device Status 
+ * 
+ * @brief Gets the current status  of the Si4735 (AM or FM)
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
  */
@@ -950,12 +1082,15 @@ void SI4735::getStatus()
 }
 
 /**
- * Queries AGC STATUS
+ * @ingroup group14 Si47XX AGC 
+ * 
+ * @brief Queries Automatic Gain Control STATUS
+ * 
+ * @details After call this method, you can call isAgcEnabled to know the AGC status and getAgcGainIndex to know the gain index value.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; For FM page 80; for AM page 142.
  * @see AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
  * 
- * After call this method, you can call isAgcEnabled to know the AGC status and getAgcGainIndex to know the gain index value.
  */
 void SI4735::getAutomaticGainControl()
 {
@@ -987,10 +1122,14 @@ void SI4735::getAutomaticGainControl()
 }
 
 /** 
- * If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 
- * (minimum attenuation) and 26 (maximum attenuation);
- * If AM/SSB, Overrides the AM AGC setting by disabling the AGC and forcing the gain index that ranges between 0 
- * (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation);
+ * @ingroup group14 Si47XX AGC 
+ * 
+ * @brief Automatic Gain Control setup 
+ * 
+ * @details If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 
+ * (minimum attenuation) and 26 (maximum attenuation).
+ * @details If AM/SSB, Overrides the AM AGC setting by disabling the AGC and forcing the gain index that ranges between 0 
+ * (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation).
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 
  * 
@@ -1021,8 +1160,11 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
 }
 
 /**
- * Sets the maximum gain for automatic volume control.
- * If no parameter is sent, it will be consider 48dB.
+ * @ingroup group14 Si47XX Automatic Volume Control
+ * 
+ * @brief Sets the maximum gain for automatic volume control.
+ * 
+ * @details If no parameter is sent, it will be consider 48dB.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 152
  * 
@@ -1036,8 +1178,11 @@ void SI4735::setAvcAmMaxGain( uint8_t gain) {
 }
 
 /**
- * Queries the status of the Received Signal Quality (RSQ) of the current channel.
- * This method sould be called berore call getCurrentRSSI(), getCurrentSNR() etc.
+ * @ingroup group14 Si47XX Received Signal Quality
+ * 
+ * @brief Queries the status of the Received Signal Quality (RSQ) of the current channel.
+ * 
+ * @details This method sould be called berore call getCurrentRSSI(), getCurrentSNR() etc.
  * Command FM_RSQ_STATUS
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
@@ -1083,8 +1228,9 @@ void  SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
 }
 
 /**
- * Queries the status of the Received Signal Quality (RSQ) of the current channel
- * Command FM_RSQ_STATUS
+ * @ingroup group14 Si47XX Received Signal Quality
+ * 
+ * @brief Queries the status of the Received Signal Quality (RSQ) of the current channel (FM_RSQ_STATUS)
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141
  * 
@@ -1097,8 +1243,12 @@ void SI4735::getCurrentReceivedSignalQuality(void)
     getCurrentReceivedSignalQuality(0);
 }
 
+/** @defgroup group15 Tune */
+
 /**
- * Look for a station 
+ * @ingroup group15 Seek 
+ * 
+ * @brief Look for a station (Automatic tune)
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 55, 72, 125 and 137
  * 
@@ -1134,7 +1284,9 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
 }
 
 /**
- * Search for the next station 
+ * @ingroup group15 Seek 
+ * 
+ * @brief Search for the next station 
  * 
  * @see seekStation(uint8_t SEEKUP, uint8_t WRAP)
  */
@@ -1146,7 +1298,9 @@ void SI4735::seekStationUp()
 }
 
 /**
- * Search the previous station
+ * @ingroup group15 Seek 
+ * 
+ * @brief Search the previous station
  * 
  * @see seekStation(uint8_t SEEKUP, uint8_t WRAP)
  */
@@ -1158,7 +1312,9 @@ void SI4735::seekStationDown()
 }
 
 /**
- * Sets the bottom frequency and top frequency of the AM band for seek. Default is 520 to 1710.
+ * @ingroup group15 Seek 
+ * 
+ * @brief Sets the bottom frequency and top frequency of the AM band for seek. Default is 520 to 1710.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 127, 161, and 162
  * 
@@ -1172,7 +1328,9 @@ void SI4735::setSeekAmLimits(uint16_t bottom, uint16_t top)
 }
 
 /**
- * Selects frequency spacingfor AM seek. Default is 10 kHz spacing.
+ * @ingroup group15 Seek 
+ * 
+ * @brief Selects frequency spacingfor AM seek. Default is 10 kHz spacing.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 163, 229 and 283
  * 
@@ -1184,8 +1342,11 @@ void SI4735::setSeekAmSpacing(uint16_t spacing)
 }
 
 /**
- * Sets the SNR threshold for a valid AM Seek/Tune. 
- * If the value is zero then SNR threshold is not considered when doing a seek. Default value is 5 dB.
+ * @ingroup group15 Seek 
+ * 
+ * @brief Sets the SNR threshold for a valid AM Seek/Tune. 
+ * 
+ * @details If the value is zero then SNR threshold is not considered when doing a seek. Default value is 5 dB.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 127
  */
@@ -1195,8 +1356,11 @@ void SI4735::setSeekSrnThreshold(uint16_t value)
 }
 
 /**
- * Sets the RSSI threshold for a valid AM Seek/Tune. 
- * If the value is zero then RSSI threshold is not considered when doing a seek. Default value is 25 dBμV.
+ * @ingroup group15 Seek 
+ * 
+ * @brief Sets the RSSI threshold for a valid AM Seek/Tune. 
+ * 
+ * @details If the value is zero then RSSI threshold is not considered when doing a seek. Default value is 25 dBμV.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 127
  */
@@ -1205,73 +1369,20 @@ void SI4735::setSeekRssiThreshold(uint16_t value)
     sendProperty(AM_SEEK_RSSI_THRESHOLD, value);
 }
 
-/** 
- * Sets volume level (0  to 63)
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 170, 173 and 204
- * 
- * @param uint8_t volume (domain: 0 - 63) 
- */
-void SI4735::setVolume(uint8_t volume)
-{
-    sendProperty(RX_VOLUME, volume);
-    this->volume = volume;
-}
-
-/**
- * Sets the audio on or off
- * 
- * @see See Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 171 
- * 
- * @param value if true, mute the audio; if false unmute the audio.
- */
-void SI4735::setAudioMute( bool off) {
-    uint16_t value = (off)? 3:0; // 3 means mute; 0 means unmute  
-    sendProperty(RX_HARD_MUTE, value);
-}
-
-/**
- * Gets the current volume level.
- * 
- * @see setVolume()
- * 
- * @return volume (domain: 0 - 63) 
- */
-uint8_t SI4735::getVolume()
-{
-    return this->volume;
-}
-
-/**
- *  Set sound volume level Up   
- *  
- * @see setVolume()
- */
-void SI4735::volumeUp()
-{
-    if (volume < 63)
-        volume++;
-    setVolume(volume);
-}
-
-/**
- *  Set sound volume level Down   
- * 
- * @see setVolume() 
- */
-void SI4735::volumeDown()
-{
-    if (volume > 0)
-        volume--;
-    setVolume(volume);
-}
+/** @defgroup group16 FM RDS/DBDS */
 
 /*******************************************************************************
  * RDS implementation 
  ******************************************************************************/
 
 /**
- * Starts the control variables for RDS.
+ * @ingroup group16 RDS setup 
+ *  
+ * @brief  Starts the control member variables for RDS.
+ * 
+ * @details This method is called by setRdsConfig()
+ * 
+ * @see setRdsConfig()
  */
 void SI4735::RdsInit()
 {
@@ -1282,7 +1393,9 @@ void SI4735::RdsInit()
 }
 
 /**
- *  Clear RDS buffer 2A (text) 
+ * @ingroup group16 RDS setup 
+ *  
+ * @brief Clear RDS buffer 2A (text) 
  * 
  */
 void SI4735::clearRdsBuffer2A()
@@ -1292,7 +1405,9 @@ void SI4735::clearRdsBuffer2A()
 }
 
 /**
- * Clear RDS buffer 2B (text)
+ * @ingroup group16 RDS setup 
+ * 
+ * @brief Clear RDS buffer 2B (text)
  * 
  */
 void SI4735::clearRdsBuffer2B()
@@ -1301,7 +1416,9 @@ void SI4735::clearRdsBuffer2B()
         rds_buffer2B[i] = ' '; // Radio Text buffer - Station Informaation
 }
 /**
- * Clear RDS buffer 0A (text)
+ * @ingroup group16 RDS setup 
+ * 
+ * @brief Clear RDS buffer 0A (text)
  * 
  */
 void SI4735::clearRdsBuffer0A()
@@ -1311,14 +1428,17 @@ void SI4735::clearRdsBuffer0A()
 }
 
 /**
- * Sets RDS property  (FM_RDS_CONFIG)
- * Configures RDS settings to enable RDS processing (RDSEN) and set RDS block error thresholds. 
- * When a RDS Group is received, all block errors must be less than or equal the associated block 
- * error threshold for the group to be stored in the RDS FIFO. 
+ * @ingroup group16 RDS setup 
+ * 
+ * @brief Sets RDS property  (FM_RDS_CONFIG)
+ * 
+ * @details Configures RDS settings to enable RDS processing (RDSEN) and set RDS block error thresholds. 
+ * @details When a RDS Group is received, all block errors must be less than or equal the associated block 
+ * @details error threshold for the group to be stored in the RDS FIFO. 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 104
  * 
- * MPORTANT: 
+ * IMPORTANT: 
  * All block errors must be less than or equal the associated block error threshold 
  * for the group to be stored in the RDS FIFO. 
  * 0 = No errors.
@@ -1369,9 +1489,11 @@ void SI4735::setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t
 }
 
 /** 
- * Configures interrupt related to RDS
+ * @ingroup group16 RDS setup 
  * 
- * Use this method if want to use interrupt
+ * @brief Configures interrupt related to RDS
+ * 
+ * @details Use this method if want to use interrupt
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 103
  * 
@@ -1413,8 +1535,9 @@ void SI4735::setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t
 }
 
 /**
- * Gets the RDS status. Store the status in currentRdsStatus member. 
- * RDS COMMAND FM_RDS_STATUS
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 55 and 77
  * 
@@ -1461,13 +1584,15 @@ void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
 }
 
 /**
- * Gets RDS Status.
- * Same result of calling getRdsStatus(0,0,0);
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Gets RDS Status.
+ * 
+ * @details Same result of calling getRdsStatus(0,0,0).
+ * @details Please, call getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY) instead getRdsStatus() 
+ * if you want other behaviour. 
  * 
  * @see SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
- * 
- * Please, call getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY) instead getRdsStatus() 
- * if you want other behaviour
  */
 void SI4735::getRdsStatus()
 {
@@ -1477,8 +1602,11 @@ void SI4735::getRdsStatus()
 // See inlines methods / functions on SI4735.h
 
 /**  
- * Returns the programa type. 
- * Read the Block A content
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Returns the programa type. 
+ * 
+ * @details Read the Block A content
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78
  * 
@@ -1494,7 +1622,11 @@ uint16_t SI4735::getRdsPI(void)
 }
 
 /**
- * Returns the Group Type (extracted from the Block B) 
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Returns the Group Type (extracted from the Block B)
+ * 
+ * @return BLOCKBL 
  */
 uint8_t SI4735::getRdsGroupType(void)
 {
@@ -1506,11 +1638,12 @@ uint8_t SI4735::getRdsGroupType(void)
     return blkb.refined.groupType;
 }
 
-
 /**
- * Returns the current Text Flag A/B  
+ * @ingroup group16 RDS status 
  * 
- * @return uint8_t 
+ * @brief Returns the current Text Flag A/B  
+ * 
+ * @return uint8_t current Text Flag A/B  
  */
 uint8_t SI4735::getRdsFlagAB(void)
 {
@@ -1522,12 +1655,14 @@ uint8_t SI4735::getRdsFlagAB(void)
     return blkb.refined.textABFlag;
 }
 
-
 /**
- * Returns the address of the text segment.
- * 2A - Each text segment in version 2A groups consists of four characters. A messages of this group can be 
- *      have up to 64 characters. 
- * 2B - In version 2B groups, each text segment consists of only two characters. When the current RDS status is
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Returns the address of the text segment.
+ * 
+ * @details 2A - Each text segment in version 2A groups consists of four characters. A messages of this group can be 
+ * have up to 64 characters. 
+ * @details 2B - In version 2B groups, each text segment consists of only two characters. When the current RDS status is
  *      using this version, the maximum message length will be 32 characters.
  * 
  * @return uint8_t the address of the text segment.
@@ -1542,7 +1677,9 @@ uint8_t SI4735::getRdsTextSegmentAddress(void)
 }
 
 /**
- * Gets the version code (extracted from the Block B)
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Gets the version code (extracted from the Block B)
  * 
  * @returns  0=A or 1=B
  */
@@ -1557,7 +1694,9 @@ uint8_t SI4735::getRdsVersionCode(void)
 }
 
 /**  
- * Returns the Program Type (extracted from the Block B)
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Returns the Program Type (extracted from the Block B)
  * 
  * @see https://en.wikipedia.org/wiki/Radio_Data_System
  * 
@@ -1574,7 +1713,9 @@ uint8_t SI4735::getRdsProgramType(void)
 }
 
 /**
- * Process data received from group 2B
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Process data received from group 2B
  * 
  * @param c  char array reference to the "group 2B" text 
  */
@@ -1606,7 +1747,9 @@ void SI4735::getNext2Block(char *c)
 }
 
 /**
- * Process data received from group 2A
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Process data received from group 2A
  * 
  * @param c  char array reference to the "group  2A" text 
  */
@@ -1638,9 +1781,10 @@ void SI4735::getNext4Block(char *c)
     }
 }
 
-
 /**
- * Gets the RDS Text when the message is of the Group Type 2 version A
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Gets the RDS Text when the message is of the Group Type 2 version A
  * 
  * @return char*  The string (char array) with the content (Text) received from group 2A 
  */
@@ -1661,7 +1805,9 @@ char *SI4735::getRdsText(void)
 }
 
 /**
- * Gets the station name and other messages. 
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Gets the station name and other messages. 
  * 
  * @return char* should return a string with the station name. 
  *         However, some stations send other kind of messages
@@ -1693,7 +1839,9 @@ char *SI4735::getRdsText0A(void)
 }
 
 /**
- * Gets the Text processed for the 2A group
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Gets the Text processed for the 2A group
  * 
  * @return char* string with the Text of the group A2  
  */
@@ -1723,9 +1871,10 @@ char *SI4735::getRdsText2A(void)
     return NULL;
 }
 
-
 /**
- * Gets the Text processed for the 2B group
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Gets the Text processed for the 2B group
  * 
  * @return char* string with the Text of the group AB  
  */
@@ -1756,7 +1905,9 @@ char *SI4735::getRdsText2B(void)
 }
 
 /**
- * Gets the RDS time and date when the Group type is 4 
+ * @ingroup group16 RDS status 
+ * 
+ * @brief Gets the RDS time and date when the Group type is 4 
  * 
  * @return char* a string with hh:mm +/- offset
  */
@@ -1801,6 +1952,8 @@ char *SI4735::getRdsTime()
 
     return NULL;
 }
+
+/** @defgroup group17 Si4735-D60 Single Side Band (SSB) support */
 
 /***************************************************************************************
  * Single Side Band (SSB) implementation 
@@ -1856,7 +2009,9 @@ char *SI4735::getRdsTime()
  ****************************************************************************************/
 
 /**
- * Sets the SSB Beat Frequency Offset (BFO). 
+ * @ingroup group17 Patch and SSB support 
+ *  
+ * @brief Sets the SSB Beat Frequency Offset (BFO). 
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 5 and 23
  * 
@@ -1889,12 +2044,16 @@ void SI4735::setSSBBfo(int offset)
 }
 
 /**
- * Set the SSB receiver mode details:
- * 1) Enable or disable AFC track to carrier function for receiving normal AM signals;
- * 2) Set the audio bandwidth;
- * 3) Set the side band cutoff filter;
- * 4) Set soft-mute based on RSSI or SNR;
- * 5) Enable or disbable automatic volume control (AVC) function. 
+ * @ingroup group17 Patch and SSB support
+ * 
+ * @brief Sets the SSB receiver mode.
+ * 
+ * @details You can use this method for:  
+ * @details 1) Enable or disable AFC track to carrier function for receiving normal AM signals;
+ * @details 2) Set the audio bandwidth;
+ * @details 3) Set the side band cutoff filter;
+ * @details 4) Set soft-mute based on RSSI or SNR;
+ * @details 5) Enable or disbable automatic volume control (AVC) function. 
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  * 
@@ -1924,7 +2083,9 @@ void SI4735::setSSBConfig(uint8_t AUDIOBW, uint8_t SBCUTFLT, uint8_t AVC_DIVIDER
 }
 
 /**
- * Sets DSP AFC disable or enable
+ * @ingroup group17 Patch and SSB support
+ * 
+ * @brief Sets DSP AFC disable or enable
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  * 
@@ -1936,9 +2097,10 @@ void SI4735::setSSBDspAfc(uint8_t DSP_AFCDIS)
     sendSSBModeProperty();
 }
 
-
 /**
- * Sets SSB Soft-mute Based on RSSI or SNR Selection: 
+ * @ingroup group17 Patch and SSB support 
+ * 
+ * @brief Sets SSB Soft-mute Based on RSSI or SNR Selection: 
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  * 
@@ -1951,7 +2113,9 @@ void SI4735::setSSBSoftMute(uint8_t SMUTESEL)
 }
 
 /**
- * Sets SSB Automatic Volume Control (AVC) for SSB mode
+ * @ingroup group17 Patch and SSB support
+ * 
+ * @brief Sets SSB Automatic Volume Control (AVC) for SSB mode
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  * 
@@ -1964,7 +2128,9 @@ void SI4735::setSSBAutomaticVolumeControl(uint8_t AVCEN)
 }
 
 /**
- * Sets AVC Divider
+ * @ingroup group17 Patch and SSB support
+ * 
+ * @brief Sets AVC Divider
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24  
  * 
@@ -1977,9 +2143,12 @@ void SI4735::setSSBAvcDivider(uint8_t AVC_DIVIDER)
 }
 
 /**  
- * Sets SBB Sideband Cutoff Filter for band pass and low pass filters:
- * 0 = Band pass filter to cutoff both the unwanted side band and high frequency components > 2.0 kHz of the wanted side band. (default)
- * 1 = Low pass filter to cutoff the unwanted side band. 
+ * @ingroup group17 Patch and SSB support
+ * 
+ * @brief Sets SBB Sideband Cutoff Filter for band pass and low pass filters.
+ * 
+ * @details 0 = Band pass filter to cutoff both the unwanted side band and high frequency components > 2.0 kHz of the wanted side band. (default)
+ * @details 1 = Low pass filter to cutoff the unwanted side band. 
  * Other values = not allowed.
  *
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
@@ -1993,23 +2162,24 @@ void SI4735::setSBBSidebandCutoffFilter(uint8_t SBCUTFLT)
 }
 
 /**
- * SSB Audio Bandwidth for SSB mode
+ * @ingroup group17 Patch and SSB support
  * 
- * 0 = 1.2 kHz low-pass filter* . (default)
- * 1 = 2.2 kHz low-pass filter* .
- * 2 = 3.0 kHz low-pass filter.
- * 3 = 4.0 kHz low-pass filter.
- * 4 = 500 Hz band-pass filter for receiving CW signal, i.e. [250 Hz, 750 Hz]
- *     with center frequency at 500 Hz when USB is selected or [-250 Hz, -750 1Hz] with center 
- *     frequency at -500Hz when LSB is selected* .
- * 5 = 1 kHz band-pass filter for receiving CW signal, i.e. [500 Hz, 1500 Hz] with center 
- *     frequency at 1 kHz when USB is selected or [-500 Hz, -1500 1 Hz] with center frequency 
- *     at -1kHz when LSB is selected* .
- * Other values = reserved.
- * Note:
- *   If audio bandwidth selected is about 2 kHz or below, it is recommended to set SBCUTFLT[3:0] to 0 
- *   to enable the band pass filter for better high- cut performance on the wanted side band. 
- *   Otherwise, set it to 1.
+ * @brief SSB Audio Bandwidth for SSB mode
+ * 
+ * @details 0 = 1.2 kHz low-pass filter  (default).
+ * @details 1 = 2.2 kHz low-pass filter.
+ * @details 2 = 3.0 kHz low-pass filter.
+ * @details 3 = 4.0 kHz low-pass filter.
+ * @details 4 = 500 Hz band-pass filter for receiving CW signal, i.e. [250 Hz, 750 Hz] with center 
+ * frequency at 500 Hz when USB is selected or [-250 Hz, -750 1Hz] with center frequency at -500Hz 
+ * when LSB is selected* .
+ * @details 5 = 1 kHz band-pass filter for receiving CW signal, i.e. [500 Hz, 1500 Hz] with center 
+ * frequency at 1 kHz when USB is selected or [-500 Hz, -1500 1 Hz] with center frequency 
+ *     at -1kHz when LSB is selected.
+ * @details Other values = reserved.
+ * 
+ * @details If audio bandwidth selected is about 2 kHz or below, it is recommended to set SBCUTFLT[3:0] to 0 
+ * to enable the band pass filter for better high- cut performance on the wanted side band. Otherwise, set it to 1.
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  * 
@@ -2023,8 +2193,11 @@ void SI4735::setSSBAudioBandwidth(uint8_t AUDIOBW)
 }
 
 /**
- * Set the radio to AM function. 
- * It means: LW MW and SW.
+ * @ingroup group17 Patch and SSB support
+ * 
+ * @brief Set the radio to AM function. 
+ * 
+ * @details It means: LW MW and SW.
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14 
  * @see setAM()
@@ -2045,8 +2218,10 @@ void SI4735::setSSB(uint8_t usblsb)
     lastMode = SSB_CURRENT_MODE;
 }
 
-/*
- * Set the radio to SSB (LW/MW/SW) function. 
+/**
+ * @ingroup group17 Patch and SSB support
+ *  
+ * @details Set the radio to SSB (LW/MW/SW) function. 
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14
  * 
@@ -2075,8 +2250,9 @@ void SI4735::setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, ui
 }
 
 /**  
- * Just send the property SSB_MOD to the device. 
- * Internal use (privete method). 
+ * @ingroup group17 Patch and SSB support
+ * 
+ * @brief Just send the property SSB_MOD to the device.  Internal use (privete method). 
  */
 void SI4735::sendSSBModeProperty()
 {
@@ -2100,31 +2276,27 @@ void SI4735::sendSSBModeProperty()
  **************************************************************************************/
 
 /** 
-   Call it first if you are applying a patch on SI4735. 
-   Used to confirm if the patch is compatible with the internal device library revision.
-   See Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
-
-   @return a struct si47x_firmware_query_library (see it in SI4735.h)
-*/
-
-/**
- * Query the library information
+ * @ingroup group17 Patch and SSB support
  * 
- * You have to call this function if you are applying a patch on SI47XX (SI4735-D60)
+ * @brief Query the library information of the Si47XX device 
  * 
- * The first command that is sent to the device is the POWER_UP command to confirm 
+ * @details Used to confirm if the patch is compatible with the internal device library revision.
+ * 
+ * @details You have to call this function if you are applying a patch on SI47XX (SI4735-D60).
+ * @details The first command that is sent to the device is the POWER_UP command to confirm 
  * that the patch is compatible with the internal device library revision. 
- * The device moves into the powerup mode, returns the reply, and moves into the 
- * powerdown mode. The POWER_UP command is sent to the device again to configure 
+ * @details The device moves into the powerup mode, returns the reply, and moves into the 
+ * powerdown mode. 
+ * @details The POWER_UP command is sent to the device again to configure 
  * the mode of the device and additionally is used to start the patching process.
- * When applying the patch, the PATCH bit in ARG1 of the POWER_UP command must be 
+ * @details When applying the patch, the PATCH bit in ARG1 of the POWER_UP command must be 
  * set to 1 to begin the patching process. [AN332 page 219].
  * 
- * @see Si47XX PROGRAMMING GUIDE; AN332; pages 214, 215, 216, 219
- * @see si47x_firmware_query_library in SI4735.h
- * 
- * @return si47x_firmware_query_library  Library Identification
- */
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.
+ * @see struct si47x_firmware_query_library
+ *
+ * @return a struct si47x_firmware_query_library (see it in SI4735.h)
+*/
 si47x_firmware_query_library SI4735::queryLibraryId()
 {
     si47x_firmware_query_library libraryID;
@@ -2153,14 +2325,16 @@ si47x_firmware_query_library SI4735::queryLibraryId()
     return libraryID;
 }
 
-
 /**  
- *  This method can be used to prepare the device to apply SSBRX patch
- *  Call queryLibraryId before call this method. 
- *  Powerup the device by issuing the POWER_UP command with FUNC = 1 (AM/SW/LW Receive)
+ * @ingroup group17 Patch and SSB support
  *  
- *  @see Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
- *  @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
+ * @brief This method can be used to prepare the device to apply SSBRX patch
+ *  
+ * @details Call queryLibraryId before call this method. Powerup the device by issuing the POWER_UP 
+ * command with FUNC = 1 (AM/SW/LW Receive).
+ *  
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
  */
 void SI4735::patchPowerUp()
 {
@@ -2174,8 +2348,11 @@ void SI4735::patchPowerUp()
 }
 
 /** 
- * Starts the Si473X device on SSB (same AM Mode). 
- * Same SI4735::setup optimized to improve loading patch performance 
+ * @ingroup group17 Patch and SSB support
+ * 
+ * @brief Starts the Si473X device on SSB (same AM Mode). 
+ * 
+ * @details Same SI4735::setup optimized to improve loading patch performance 
  */
 void SI4735::ssbSetup()
 {
@@ -2184,9 +2361,10 @@ void SI4735::ssbSetup()
     // radioPowerUp();
 }
 
-
 /**
- * This function can be useful for debug and teste. 
+ * @ingroup group17 Patch and SSB support
+ * 
+ * @brief This function can be useful for debug and test. 
  */
 void SI4735::ssbPowerUp()
 {
@@ -2207,21 +2385,22 @@ void SI4735::ssbPowerUp()
 }
 
 /**
- *  Transfers the content of a patch stored in a array of bytes to the SI4735 device. 
- *  You must mount an array as shown below and know the size of that array as well.
+ * @ingroup group17 Patch and SSB support
+ *  
+ * @brief Transfers the content of a patch stored in a array of bytes to the SI4735 device. 
+ *  
+ * @details You must mount an array as shown below and know the size of that array as well.
  * 
- *  It is importante to say  that patches to the SI4735 are distributed in binary form and 
+ *  @details It is importante to say  that patches to the SI4735 are distributed in binary form and 
  *  have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino).
  *  Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off 
  *  the system. Consequently, the content of the patch has to be transferred again to the device 
  *  each time after turn on the system or reset the device.
  * 
- *  The disadvantage of this approach is the amount of memory used by the patch content. 
+ *  @details The disadvantage of this approach is the amount of memory used by the patch content. 
  *  This may limit the use of other radio functions you want implemented in Arduino.
  * 
- *  @see Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.  
- * 
- *  Example of content:
+ *  @details Example of content:
  *  const PROGMEM uint8_t ssb_patch_content_full[] =
  *   { // SSB patch for whole SSBRX full download
  *       0x15, 0x00, 0x0F, 0xE0, 0xF2, 0x73, 0x76, 0x2F,
@@ -2235,6 +2414,8 @@ void SI4735::ssbPowerUp()
  *       0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x9D, 0x29};   
  * 
  *  const int size_content_full = sizeof ssb_patch_content_full;
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.  
  * 
  *  @param ssb_patch_content point to array of bytes content patch.
  *  @param ssb_patch_content_size array size (number of bytes). The maximum size allowed for a patch is 15856 bytes
@@ -2290,10 +2471,13 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 }
 
 /**
- * Under construction... 
- * Transfers the content of a patch stored in a eeprom to the SI4735 device.
+ * @ingroup group17 Patch and SSB support
+ *  
+ * @brief Transfers the content of a patch stored in a eeprom to the SI4735 device.
  * 
- * TO USE THIS METHOD YOU HAVE TO HAVE A EEPROM WRITEN WITH THE PATCH CONTENT
+ * @details TO USE THIS METHOD YOU HAVE TO HAVE A EEPROM WRITEN WITH THE PATCH CONTENT
+ * 
+ * ATTENTION: Under construction...
  * 
  * @see the sketch write_ssb_patch_eeprom.ino (TO DO)
  * 
