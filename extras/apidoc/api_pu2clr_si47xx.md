@@ -97,8 +97,9 @@ Unzip the SI4735.zip file in your Arduino Library folder.
 * On __Linux__: ˜/Documents/Arduino/libraries
 
 ### See also:
-[Video - Installing PU2CLR Si4735 Library on Arduino IDE](https://youtu.be/M9h-tlV_l-k)
-[![arduino-library-badge](https://www.ardu-badge.com/badge/MyLibrary.svg?)](https://www.ardu-badge.com/PU2CLR%20SI4735)
+* [Video - Installing PU2CLR Si4735 Library on Arduino IDE](https://youtu.be/M9h-tlV_l-k)
+
+* [![arduino-library-badge](https://www.ardu-badge.com/badge/MyLibrary.svg?)](https://www.ardu-badge.com/PU2CLR%20SI4735)
 
 <BR>
 
