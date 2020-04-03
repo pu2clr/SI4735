@@ -112,7 +112,7 @@ This library has been written for the Arduino platform and has been successfully
 
 This library can be useful to develop a cross-platform software. So far, it has been successfully tested on the architectures shown below.    
 
-![Silicon Labs Schematic]([./extras/images/multiplatform_SI47XX_photo_05.png](https://github.com/pu2clr/SI4735/blob/master/extras/images/multiplatform_SI47XX_photo_05.png))
+![Compatible boards](https://github.com/pu2clr/SI4735/blob/master/extras/images/multiplatform_SI47XX_photo_05.png)
 
 The table below shows the some boards where this library has been successfully tested.
 
