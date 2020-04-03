@@ -915,48 +915,80 @@ protected:
 
     uint8_t currentSsbStatus;
 
-    void waitInterrupr(void);
-    void sendProperty(uint16_t propertyValue, uint16_t param);
-    void sendSSBModeProperty(); // Sends SSB_MODE property to the device.
-    void disableFmDebug();
-    void clearRdsBuffer2A();
-    void clearRdsBuffer2B();
-    void clearRdsBuffer0A();
+    void waitInterrupr(void); //! wait for interrupt (useful if you are using interrupt resource)
+    void sendProperty(uint16_t propertyValue, uint16_t param); //! Sends the property command to the device
+    void sendSSBModeProperty(); //! Sends SSB_MODE property to the device.
+    void disableFmDebug(); //! disable some Si47XX debug resources implemented by the Silicon Labs 
+    void clearRdsBuffer2A(); //! Clear RDS group type 2A buffer 
+    void clearRdsBuffer2B(); //! Clear RDS group type 2B buffer
+    void clearRdsBuffer0A(); //! Crear RDS group type 0A buffer
 
 public:
-    SI4735();
-    void reset(void);
-    void waitToSend(void); // Wait for Si4735 device ready to receive command
+    SI4735(); 
+    void reset(void); //! Reset the Si47XX device
+    void waitToSend(void); //! Wait for the Si47XX device is ready to receive a command
 
     // for setup, the default is  SI473X_ANALOG_AUDIO
-    void setup(uint8_t resetPin, uint8_t defaultFunction);
-    void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO);
-    
-    void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE);
-    void radioPowerUp(void);    // call setPowerUp before call this method.
-    void analogPowerUp(void);   // deprecated. Use radioPowerUp.
+    void setup(uint8_t resetPin, uint8_t defaultFunction); // Set the Si47XX device up
+    void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO); // Set the Si47XX device up
+
+    void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE); //! Configure the Si47XX to power it up
+    void radioPowerUp(void);    //! Power the receiver up. Call setPowerUp before call this method.
+    void analogPowerUp(void);   //! Deprecated. Use radioPowerUp.
     void powerDown(void);
 
-    void setFrequency(uint16_t);
+    void setFrequency(uint16_t); //! Tune the receiver
 
     // getStatus
-    void getStatus();
+    void getStatus(); //! Gets the current status of the Si47XX device
     void getStatus(uint8_t, uint8_t);
 
     // Status response
-    uint16_t getFrequency(void);
-    uint16_t getCurrentFrequency(); // See documentation
+    uint16_t getFrequency(void); //! Gets the current frequency
+    uint16_t getCurrentFrequency(); //! Gets the current frequency stored in memory (it does not query the Si47XX device)
 
     /** 
      * STATUS RESPONSE
      * Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation
-     * See Si47XX PROGRAMMING GUIDE; AN332; pages 63
+     * @see Si47XX PROGRAMMING GUIDE; AN332; pages 63
      */
 
-    inline bool getSignalQualityInterrupt() { return currentStatus.resp.RSQINT; };           //! Gets Received Signal Quality Interrupt(RSQINT)
-    inline bool getRadioDataSystemInterrupt() { return currentStatus.resp.RDSINT; };         //! Gets Radio Data System (RDS) Interrupt
-    inline bool getTuneCompleteTriggered() { return currentStatus.resp.STCINT; };            //! Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
-    inline bool getStatusError() { return currentStatus.resp.ERR; };                         //! Return the Error flag (true or false) of status of the least Tune or Seek
+    /**
+     * @brief Get the Signal Quality Interrupt status
+     * @see Si47XX PROGRAMMING GUIDE; AN332; pages 63            
+     * @return RDSINT status
+     */
+    inline bool getSignalQualityInterrupt() { 
+        return currentStatus.resp.RSQINT; 
+    };
+
+    /**
+     * @brief Get the Radio Data System (RDS) Interrupt status
+     * @see Si47XX PROGRAMMING GUIDE; AN332; pages 63
+     * @return RDSINT status  
+     */
+    inline bool getRadioDataSystemInterrupt() { 
+        return currentStatus.resp.RDSINT; 
+    };
+
+    /**
+     * @brief Get the Tune Complete status
+     * @details Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
+     * @return STCINT status  
+     */
+    inline bool getTuneCompleteTriggered() { 
+        return currentStatus.resp.STCINT;
+    };
+
+    /**
+     * @brief Get the Status Error 
+     * @details Return the Error flag (true or false) of status of the least Tune or Seek
+     * @return Error flag 
+     */
+    inline bool getStatusError() { 
+        return currentStatus.resp.ERR; 
+    };   
+                          
     inline bool getStatusCTS() { return currentStatus.resp.CTS; };                           //! Gets the Error flag of status response
     inline bool getACFIndicator() { return currentStatus.resp.AFCRL; };                      //! Returns true if the AFC rails (AFC Rail Indicator).
     inline bool getBandLimit() { return currentStatus.resp.BLTF; };                          //! Returns true if a seek hit the band limit (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
