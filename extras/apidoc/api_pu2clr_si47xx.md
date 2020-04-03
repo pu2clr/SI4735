@@ -2,50 +2,16 @@
 
 # Si4735 Library for Arduino
 
-[Leia este documento em Português](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md)
-
-This is an Arduino library for the SI47XX, BROADCAST AM/FM/SW RADIO RECEIVER IC family from Silicon Labs.  This library is intended to provide an easier interface for controlling the SI47XX by using Arduino platform. __The communication used by this library is I²C__.
-
-This library was built based on [“__Si47XX PROGRAMMING GUIDE; AN332__ ”](https://www.silabs.com/documents/public/application-notes/AN332.pdf). It also can be used on __all members of the SI473X family__ respecting, of course, the features available for each IC version. These functionalities can be seen in the comparison matrix shown in table 1 (__Product Family Function__); pages 2 and 3 of the programming guide.
-
-This library can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence)  
+This library can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#mit-licence)  
 
 Contact: pu2clr@gmail.com
 
 There is a facebook group called [__Si47XX for Radio Experimenters__](https://www.facebook.com/groups/532613604253401/) where the purpose is exchanging experiences with projects based on Silicon Labs  SI47XX IC family. You will be welcome to the group [Si47XX for Radio Experimenters](https://www.facebook.com/groups/532613604253401/).
 
 
-
 __Attention__:
-* __Documentation  under construction__.
-* __The SI473 (SI473X) is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V converter__.
-* __This library has been successfully tested on Arduino Pro Mini 3.3V; Arduino UNO (using voltage converter); Arduino YÚN (using voltage converter); ESP32 (LOLIN32 WEMOS); Mega 2560 (using voltage converter); Genuino Micro/Atmega32u4 (using voltage converter) and Arduino DUE.__    
-
-## Summary
-
-1. [License Copyright](https://github.com/pu2clr/SI4735#mit-licence)
-2. [Thanks](https://github.com/pu2clr/SI4735#thanks)
-3. [Your support is important](https://github.com/pu2clr/SI4735#your-support-is-important)
-4. [About the SI4735](https://github.com/pu2clr/SI4735#about-the-si4735)
-5. [Terminology](https://github.com/pu2clr/SI4735#si4735-terminology)
-6. [Labrary Features](https://github.com/pu2clr/SI4735#si4735-arduino-library-features)
-7. [Library Installation](https://github.com/pu2clr/SI4735#library-installation)
-8. [Hardware Requirements and Setup](https://github.com/pu2clr/SI4735#hardware-requirements-and-setup)
-   * [Schematic](https://github.com/pu2clr/SI4735#schematic)
-   * [Component Parts](https://github.com/pu2clr/SI4735#parts)
-   * [Tips to build](https://github.com/pu2clr/SI4735#tips-to-build)
-   * [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested)
-   * [Photos (Tools and Accessories)](https://github.com/pu2clr/SI4735#photos-tools-and-accessories)
-9.  [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
-    * [__Functions__ (public methods)](https://github.com/pu2clr/SI4735#public-methods)
-    * [__Defined Data Types and Structures__](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
-    * [__RDS Support__](https://github.com/pu2clr/SI4735#rds)
-    * [__SI4735 and SSB (Single Side Band) Support__](https://github.com/pu2clr/SI4735#si4735-patch-support-for-single-side-band)
-11. [References](https://github.com/pu2clr/SI4735#references)
-12. [Examples](https://github.com/pu2clr/SI4735/tree/master/examples)
-13. [Videos](https://github.com/pu2clr/SI4735#videos)
-    * [Project examples made by the author](https://github.com/pu2clr/SI4735#project-examples-made-by-the-author)
-    * [Third-party projects using this library](https://github.com/pu2clr/SI4735#third-party-projects-using-this-library)
+* You might prefer read the library documentation via [this PDF file](). 
+* This library has been successfully tested on Arduino Pro Mini 3.3V; Arduino UNO (using voltage converter); Arduino YÚN (using voltage converter); ESP32 (LOLIN32 WEMOS); Mega 2560 (using voltage converter); Genuino Micro/Atmega32u4 (using voltage converter) and Arduino DUE.   
 
 <BR>
 
@@ -75,123 +41,24 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <BR>
 <BR>
 
-
 ## Your support is important.
 
 If you would like to support this library development, consider joining this project via Github. Alternatively, make suggestions on features you would like available in this library. Thank you!
-
-<BR>
-<BR>
-
-## About the SI4735  
-
-The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance on AM (LW/MW/SW) and local FM station. The SI4735 can be programmed by using commands and responses. You can contron it via a microcontroller like Arduino. To make the SI4735 perform an action, the microccontroller have to send a set of bytes (command and arguments) that the device interpret it and executes the given command.
-
-<BR>
-
-## Radios based on Si47XX Family
-
-The table below shows some radios based on SI47XX  
-
-| Manufacturer | Model | CI |More information |
-| ------------ | ----- | ---- |----------- |
-| Tecsun | PL310ET | Si4734 |[About](https://www.tecsunradios.com.au/store/product/tecsun-pl310et-multi-band-radio/)|
-| Tecsun | PL-365 | Si4735 |[Review](https://swling.com/blog/2017/02/charlie-reviews-the-tecsun-pl-365/)|
-| Tecsun | PL-360 | Si4734 |[Review](https://www.edn.com/review-tecsun-pl-360-emi-receiver/) |
-| Tecsun | PL380 |  Si4734 |[Reviews](https://www.eham.net/reviews/view-product?id=10240) |
-| Tecsun |  PL880 | Si4735 | [Reviews](https://www.eham.net/reviews/view-product?id=11457) |
-| Degen | DE1103 DSP | Si4735 | [Review](https://swling.com/blog/2015/11/the-new-degen-de1103-dsp-first-impressions-review/)|
-| Degen | DE1123/Kaito KA1123 | Si4734 |[Review](https://frrl.wordpress.com/2009/07/11/review-of-the-degen-de1123-dsp-amfmsw-pocket-radio-with-1gb-mp3-player-recorder/)|
-| Degen | DE1125/Kaito KA801 | Si4734 | [Reviews](https://www.eham.net/reviews/view-product?id=9584)|
-| Degen | DE1126 | Si4734 | [Review](https://sites.google.com/site/zliangas/de1126-review)|
-| Degen | DE1127 (discontinued) | Si4734 | [Review](https://herculodge.typepad.com/herculodge/2012/01/dave-zantow-provides-firmware-updates-for-degen-de1127-and-de1126-models.html) |
-| Sangean | ATS-909X |  Si4735 | [Review](https://swling.com/blog/tag/sangean-ats-909x-review/) |
-| XHDATA | D808 | Si4735 |[Review](https://swling.com/blog/2018/04/a-detailed-review-of-the-xhdata-d-808-and-comparison-with-the-tecsun-pl-660/)|
-| RADIWOW | R-108 |  | [Review](https://www.hagensieker.com/wordpress/2019/05/08/radiwow-r-108-short-wave-radio-review/)|
-| C Crane |  CC Skywave |  |[Review](https://swling.com/blog/2014/12/review-of-the-c-crane-cc-skywave-portable-radio/) |
-
-
-<BR>
-<BR>
-
-### Functional Block Diagram
-
-The image below shows the SI473X-D60 block diagram. It was extracted from Silicon Labs Si4730/31/34/35-D60 / BROADCAST AM/FM/SW/LW RADIO RECEIVER (page 21). __Note that the author of this Library highlights in red the pin operating voltages that can be connected to the Arduino__. Be aware of the operating voltage of the Arduino pins you will use in your project. Preferably use an Arduino with 3.3V operating voltage. If you are not using a 3.3V version of Arduino, you must use a kind of 5V to 3.3V converter on RST, SCLK, SDIO and SEN (depending on your project).
-
-
-![SI473x Block Diagram](extras/images/block_diagram.png)
-
-<BR>
-<BR>
-
-### The main Si4735 features
-
-* FM band support (64–108 MHz)
-* AM (MW) band support (520–1710 kHz)
-* SW band support (2.3–26.1 MHz)
-* LW band support (153–279 kHz)
-* Allows firmware upgrade. Including the possibility of adjustments to demodulate SSB.
-* Advanced AM/FM seek tuning
-* Automatic frequency control (AFC)
-* Automatic gain control (AGC)
-* Digital FM stereo decoder
-* AM/FM/SW/LW digital tuning
-* RDS/RBDS processor
-* Digital audio out
-* I²C and SPI interface
-* Great Programming Guide and additional documentation to deal with the device
-
-
-<BR>
-<BR>
-
-
-## SI4735 Terminology
-
-| Term | Description |
-| ---- | ----- |
-| API  | Application Programming Interface (API). In this context, it is an interface that you can use to simplify the implementation and maintenance of your software (Arduino sketch) |
-|Arduino Libraries|Libraries are files written in C or C++ (.c, .cpp) which provide your sketches with extra functionality. The SI4735 Library provides extra functionalities to make easier the Arduino deal with Si4735 device|
-|IDE   |Integrated Development Environment|      
-|Sketch|Name that Arduino environment uses for a program|
-|interrupt|In this context, it is a Arduino Resource. Allows important tasks to be performed regardless of the flow of your program|
-|C++| A object-oriented programming (OOP) language. It is a superset of the C language with an additional concept of "classes." |
-|programming guide| In this context it refers to [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)|
-| LNA | Low Noise Amplifier |
-|POC| Proof of Concept|
-| SEN | Serial enable pin, active low; used as device select in 3-wire and SPI operation and address selection in 2-wire operation|
-| CTS | Clear to send |
-| STC | Seek/Tune Complete |
-| RESP | Response byte (n = 1 to 15) |
-| RESPONSEn | Response register (16-bit) in 3-Wire mode (n = 1 to 8)|
-| RST  | Also RSTb—Reset pin, active low |
-| RCLK | External reference clock |
-| SSB | [Single Side Band](https://en.wikipedia.org/wiki/Single-sideband_modulation) |
-| Attack | attack-time delay -  the time needed for a receiver to respond to an incoming signal |
-| SDIO | Serial data in/data out pin|
-| SCLK | Serial clock pin |
-| I²C | [I²C - Inter-Integrated Circuit](https://pt.wikipedia.org/wiki/I²C)|
-| Soft Mute | Resource used to attenuate the audiooutputs and minimize audible noise in very weak signalconditions |
-| Firmware Upgrades | The Si473x-D60 contains on-chip program  RAM to accommodate minor changes to the firmware |
-
-<BR>
-<BR>
-<BR>
 
 ## SI4735 Arduino Library Features
 
 This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs. The main features of this library are listed below.
 
-1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://github.com/pu2clr/SI4735#mit-license) to know more.   
+1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#mit-license) to know more.   
 2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
 3. C++ Language and Object-oriented programming. You can easily extend the SI4735 class by adding more functionalities;
 4. Available on Arduino IDE (Manage Libraries);
-5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested);
+5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#boards-where-this-library-has-been-successfully-tested);
 6. Simplifies projects based on SI4735;
 7. __I²C communication__ and Automatic I²C bus address detection;
-8. More than 100 [functions implemented](https://github.com/pu2clr/SI4735#api-documentation). You can customize almost every feature available on Si47XX family.
-9. [RDS support](https://github.com/pu2clr/SI4735#rds)(__under construction...__)
-10. [SSB (Single Side Band) patch support](https://github.com/pu2clr/SI4735#single-side-band-ssb-support)
+8. More than 100 [functions implemented](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#api-documentation). You can customize almost every feature available on Si47XX family.
+9. [RDS support](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#rds)(__under construction...__)
+10. [SSB (Single Side Band) patch support](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#single-side-band-ssb-support)
 
 <BR>
 <BR>
@@ -229,142 +96,24 @@ Unzip the SI4735.zip file in your Arduino Library folder.
 * On __MAC OS__: ˜/Documents/Arduino/libraries
 * On __Linux__: ˜/Documents/Arduino/libraries
 
-See more
+### See also:
+[Video - Installing PU2CLR Si4735 Library on Arduino IDE](https://youtu.be/M9h-tlV_l-k)
 [![arduino-library-badge](https://www.ardu-badge.com/badge/MyLibrary.svg?)](https://www.ardu-badge.com/PU2CLR%20SI4735)
 
 <BR>
-<BR>
-
 
 ## Hardware Requirements and Setup
 
-This library has been written for the Arduino platform and has been successfully tested on many platform. See [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested)
+This library has been written for the Arduino platform and has been successfully tested on many platform. See [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#boards-where-this-library-has-been-successfully-tested)
 
 
-### Arduino 5V and Si4735
-
-* __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO or anothe board, YOU HAVE TO USE A KIND OF 5V TO 3.3V CONVERTER. Also pay attention to the appropriated pinout of your board to select the correct interrupt (IRQ- if you are using), RST, SDIO and SCLK pins. The table below shows some Arduino board pinout.__
-
-<BR>
-
-|Board | InterrupT (IRQ) Pins| I²C / TWI pins | successfully tested | Voltage converter |
-|------|---------------------| ---------------| ------------------- | ----------------- |
-|328-based <br> (Nano, Uno or Mini 5V) |	D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | Yes |
-|328-based <br> (Pro Mini 3.3 / 8Mhz) | D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | No |
-| Mega 2560 | 2, 3, 18, 19, 20 and  21 | 20 (SDA/SDIO), 21 (SCL/SCLK) | Yes | Yes |
-| 32u4-based <br> (Micro, Leonardo or Yum)	| 0, 1, 2, 3 and 7 | 2 (SDA/SDIO), 3 (SCL/SCLK) |  Yes | Yes |
-| Zero | all digital pins except pin 4 | D8 (SDA/SDIO) and D9 (SCL/SCLK)  | Not tested | No |
-| Due	| all digital pins | 20 (SDA/SDIO), 21 (SCL/SCLK) | Yes  |  No |
-| 101	| all digital pins. <br> Only pins 2, 5, 7, 8, 10, 11, 12, 13 work with CHANGE| -  | Not tested | No |
-| ESPRESSIF ESP32 | all GPIO pins |  Most pins (usually 21 and 22) | Yes | No |
-| STM32F103  | PA0, PA1 | PB6 (SCL) and PB7(SDA) | Yes | No |
-
-
-
-### Schematic
-
-The main porpuse of this prototype is testing de Si4735 Arduino Library. It does not intend to be a real radio for exigent listener. However, it is possible to start with it and after include some devices to improve, for example,  its sensibility beyond other desired features.
-
-The image bellow shows a version of Slicon Labs SSOP Typical Application Schematic connect to the host MCU (Arduino Pro Pini 3.3V). __Pay attention to the Si4735-D60 SEN pin (16).  When the SEN pin is connected to the ground, the I²C bus address is 0x11. When the SEN pin is connected to +3.3V, the I²C bus address is 0x63.  By default, the "Si4735 Arduino Library" uses the 0x11 I²C bus address (SEN pin connected to GND). If you want to use the address 0x63 (SEN connected on +3.3V), see the functions (methods) getDeviceI2CAddress, setDeviceI2CAddress and setDeviceOtherI2CAddress__.   
-
-
-![Basic Schematic](./extras/images/basic_schematic.png)
-
-
-
-
-#### The picture below shows the SI4735-D60 pinout
-
-![Si4735-D60 pinout](https://github.com/pu2clr/SI4735/blob/master/extras/images/Si4735-D60-pinout.png)
-
-
-* __See some Shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
-
-* __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO, YOU HAVE TO USE A KIND OF 5V TO 3.3V CONVERTER. Also pay attention to the appropriated Arduino pinout to select the correct interrupt (IRQ), RST, SDIO and SCLK pins. The table below shows some Arduino board pinout__.  
-* __The Si473X PEN pin (16 on SSOP version and 6 on QFN version) when connected to the ground, the I²C bus address is 0x11. When this pin is connected to +3.3V, the I²C bus address is 0x63__. See the functions [getDeviceI2CAddress](https://github.com/pu2clr/SI4735#getdevicei2caddress) and [setDeviceI2CAddress](https://github.com/pu2clr/SI4735#setdevicei2caddress) to correct setup. If you follow the schematic used in this project, you do not need to do anything (the default I²C bus address is 0x11). If you do not know how this pin is configured on the board, use [getDeviceI2CAddress](https://github.com/pu2clr/SI4735#getdevicei2caddress).  
-
-
-
-
-<BR>
-<BR>
-
-#### The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
-
-
-![Silicon Labs Schematic](./extras/images/silicon_labs_schematic_pag_19.png)
-
-
-<BR>
-<BR>
-
-### Parts
-
-The table below shows the component parts used to build the radio prototype based on Si4735 and used the Slicon Labs SSOP Typical Application Schematic as main source. However, some parts were included by the author of this project.
-
-
-|Part	| Description |
-|-------| ------------ |
-| C1    | 22nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VA pin)|
-| C2    | 1nF Monolithic Multilayer Chip Ceramic non polarized capacitor |
-| C3    | 470nF Monolithic Multilayer Chip Ceramic non polarized capacitor|
-| C4    | 100nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VD pin)|
-| C5 and C6 | 22pF (Crystal load capacitors) |
-| C7 and C8[ˆ1] | 4.7uF Monolithic Multilayer Chip Ceramic non polarized capacitor |
-| R3    | 2.2K |
-| (R4 and R5)[ˆ2] | 2.2K to 10K (pull-up resistors) |
-| L1 | Ferrite loop stick (about 500 μH) |
-| X1    | 32.768 kHz crystal |
-| SI4735 | digital CMOS AM(LW, MW and SW)/FM radio receiver IC |
-
-  * [ˆ1]: C7 and C8 are ceramic capacitors included by the author of this project. They are not present on original Silicon Labs schematic.
-  * [ˆ2]: R4 and R5 are pull-up resistor included by the author of this project. They are not present on original Silicon Labs schematic.  This will also depend on other devices connected to the same I²C bus.  __Always try to use the lowest possible value__.
-
-__Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (page 12)__:
-* Place C1 close to VA and C4 close to VD pin.
-* All grounds connect directly to GND plane on PCB.
-* Pins 6 and 7 are no connects, leave floating.
-* Pins 10 and 11 are unused. Tie these pins to GND.
-* To ensure proper operation and receiver performance, follow the guidelines in “AN383: Si47xx Antenna, Schematic,
-* Layout, and Design Guidelines.” Silicon Laboratories will evaluate schematics and layouts for qualified customers.
-* Pin 8 connects to the FM antenna interface, and pin 12 connects to the AM antenna interface.
-* Place Si473x-D60 as close as possible to antenna and keep the FMI and AMI traces as short as possible.
-
-<BR>
-
-### Tips to build
-
-* Try to follow what the Silicon Labs recommends;
-* Start building the minimum circuit and test it;
-* Check if the Si47XX RESET pin (15 on SSOP version or 5 on QFN version) is connected on  your MCU (Arduino) pin defined as RESET the (the most of schematics and examples of this project this pin is the digital pin 12);
-* Use the minimum sketch to test the minimum circuit. The first three examples of this project (see  examples folder) can be used to test the minimum circuit;
-* Try not improvising the I²C bus connection. Start using a 3.3V MCU (Arduino Pro Mini 8MHz or DUE,  ESP32 or other 3.3V device) to connect with SI4735;
-* Some devices provide internal pull-up resistors that in some cases can be enabled or disabled. Also, the capacitance of the I²C bus is another variable that have be considered to select the right resistor values. However, that capacitance is not easy to be measured. For these reasons, it can be a liitle dificult calculate the right resitor values at first. That said, start with a high pullup resistor to I²C bus and then reduce it until the best value. For example: start with 10K and try to reduce the value to 4,7K, 3,3K, 2.2K etc. Select the lowest resistor you can.
-* I²C bus devices are available in different speeds. If you are using an I²C display device, check if its speed is compatible with the Si47XX and also with the current speed used by the master MCU;
-* Using different voltage levels between I²C devices can be unsafe and can destroy parts connected on I²C bus, specially the Si47XX;
-* It is important to wire all your I²C devices on the same common ground.
-* If you are using Arduino Mini Pro, ONU or similar, pay attention to the pin 13 and the use of internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, you can do:
-  *  Use the pin 14. This pin is the A0 (Analog). But you have to refer it by 14 to use it as digital pin;
-  *  Change the circuit and sketch to use external pull-up on pin 13;
-  *  Remove the LED or resitor connected to the led from the board.   
-* Use only batteries to power your circuit. Receptions in LW, MW and SW can be seriously harmed by the use of power supplies connected to the grid.
-* See some Shortwave antenna configuration on [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)  
-
-
-
-<BR>
-
-
-### Boards where this library has been successfully tested
-
+## Boards where this library has been successfully tested
 
 This library can be useful to develop a cross-platform software. So far, it has been successfully tested on the architectures shown below.    
 
-![Silicon Labs Schematic](./extras/images/multiplatform_SI47XX_photo_05.png)
-
+![Silicon Labs Schematic]([./extras/images/multiplatform_SI47XX_photo_05.png](https://github.com/pu2clr/SI4735/blob/master/extras/images/multiplatform_SI47XX_photo_05.png))
 
 The table below shows the some boards where this library has been successfully tested.
-
 
 | Board | Need voltage converter | I²C Pins | Used Reset Pin | Features |
 | ----- | ---------------------- | -------- | --------- | -----  |
@@ -388,236 +137,143 @@ The table below shows the some boards where this library has been successfully t
 2. More about BlueDuino on [Seed](https://www.seeedstudio.com/Blueduino-Rev2-Arduino-compatible-pius-BLE-CC2540-p-2550.html).
 3. On [Arduino.cc](https://www.arduino.cc/) you can see the technical specification about many board.
 
-
-<BR>
-
-## Photos (Tools and Accessories)
-
-This item describes some tools and accessories you might need to build your radio based on SI4735. Most of the accessories used in this project you will find on eBay and AliExpress.
-
-
-|Arduino Pro Mini|Arduino Pro Mini|
-|---------------|---------------|  
-|![Arduino Pro Mini 01](./extras/images/tools_arduino_02_A.png)|![Arduino Pro Mini 02](./extras/images/tools_arduino_02_B.png)|
-
-* Pro Mini 3.3V 8MHz /5V 16M Atmega328 Replace ATmega128 Arduino Compatible Nano
-
-<BR>
-
-| FT232 USB Adapter |FT232 USB Adapter|
-|---------------|---------------|   
-|![FT232 USB A](./extras/images/tools_FT232_usb_a.png)|![SI4735 on adapter 05](./extras/images/tools_FT232_usb_b.png)|
-
-* FT232RL 3.3V 5.5V FTDI USB to TTL Serial Adapter Module for Arduino Mini Port
-
-
-<BR>
-
-|Magnifier|Solder|
-|---------------|---------------|   
-|![Magnifier](./extras/images/tools_lente_01.png)|![Solder](./extras/images/tools_soldador_01.png)|
-
-* 50-1000X Magnifier Wireless WiFi Electric Microscope 2.0MP 8LED Endoscope Camera
-* Soldering Iron Station with Temperature Control
-
-<BR>
-
-|Adapter for SI4735|Soldering Accessories|
-|---------------|---------------|   
-|![Adatper for Si4735](./extras/images/tools_adaptador.png)|![Soldering Accessories](./extras/images/tools_soldas_e_suporte.png)|
-
-* SO SOP SOIC SSOP TSSOP 24 Pin to DIP 24 Adapter PCB Board Converter
-* 50g Soldering Paste Solder Flux Paste Cream for PCB PGA SMD BGA
-* BGA SMD Soldering Paste Flux
-
-
-<BR>
-
-It was a bit hard to solder the kind of CI on adapter. However, by using a electronic magnifier it was possible.
-
-### SI4735 soldered on adapter
-
-|Si4735 on Adapter|Si4735 on Adapter|
-|---------------|---------------|  
-|![IC SI4730 soldering on adapter](./extras/images/soldering_01.jpg)|![SIC SI4730 soldering on adapter](./extras/images/soldering_02.jpg)|
-|![SI4735 on adapter 01](./extras/images/si4735_on_adapter_01.png)|![SI4735 on adapter 03](./extras/images/si4735_on_adapter_03.png)|
-
-
-
-
-
-
-#### Protoboard
-
-The basic circuit built on protoboard is based on the “__SSOP Typical Application Schematic__”, suggested by the Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19). Two pull-up 4.7K resistors were added on I²C bus (It is an arbitrary value. Actually, this value may vary depending on your devices connected to the bus). Also, it is recomended to add two 4.7uF capacitors between the CI audio output  and audio amplifier. The photos below do not show these capacitors. See  [C7 and C8 on schematic](https://github.com/pu2clr/SI4735#schematic).
-
-<BR>
-
-The figure below shows a suggestion to shrink the prototype and connections. If you are just doing prototyping, I recommend this approach due to the short connections with the Si4735 (recommended by the manufacturer).
-
-![Mini Protoboard 01](./extras/images/SI4735_mini_protoboard_01.png)
-
-<BR>
-
-The configuration above connected to Arduino Pro Mini is shown below.
-
-
-![Mini Protoboard 02](./extras/images/SI4735_mini_protoboard_02.png)
-
-
-<BR>
-<BR>
-
-
-The following photo shows the most common prototyping approach. Use this approach if you don't want to solder the components on the adapter plate.
-
-![Protoboard 01](./extras/images/protoboard_01.png)
-
-The figure above shows the very basic shematic implementation (no Button or Encoder). See the folder [examples](./examples) for more details and other configuration with LCD and OLED
-
-
-
-<BR>
-<BR>
-
-
 ## API Documentation
 
 This item shows the SI4735 Arduino Library implemantation. Here you can find the set of functions and methods that you can use to build your radio.
 
 ### API Index
 
-* [Defined Data Types and Structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
-* [__Public Methods__](https://github.com/pu2clr/SI4735#public-methods)
-  * [__Usual methods__](https://github.com/pu2clr/SI4735#public-methods)
-  * [setDeviceI2CAddress](https://github.com/pu2clr/SI4735#setdevicei2caddress)
-  * [getDeviceI2CAddress](https://github.com/pu2clr/SI4735#getdevicei2caddress)
-  * [setup](https://github.com/pu2clr/SI4735#setup)
-  * [setPowerUp](https://github.com/pu2clr/SI4735#setpowerup)
-  * [radioPowerUp](https://github.com/pu2clr/SI4735#radiopowerup)
-  * [powerDown](https://github.com/pu2clr/SI4735#powerdown)
-  * [setFrequency](https://github.com/pu2clr/SI4735#setfrequency)
-  * [frequencyUp](https://github.com/pu2clr/SI4735#frequencyup)
-  * [frequencyDown](https://github.com/pu2clr/SI4735#frequencydown)
-  * [setTuneFrequencyAntennaCapacitor](https://github.com/pu2clr/SI4735#settunefrequencyantennacapacitor)
-  * [setTuneFrequencyFast](https://github.com/pu2clr/SI4735#settunefrequencyfast)
-  * [setTuneFrequencyFreeze](https://github.com/pu2clr/SI4735#settunefrequencyfreeze)
-  * [isCurrentTuneFM](https://github.com/pu2clr/SI4735#iscurrenttunefm)
-  * [seekStation](https://github.com/pu2clr/SI4735#seekstation)
-  * [seekStationUp](https://github.com/pu2clr/SI4735#seekstationup-and-seekstationdown)
-  * [seekStationDown](https://github.com/pu2clr/SI4735#seekstationup-and-seekstationdown)
-  * [setSeekAmLimits](https://github.com/pu2clr/SI4735#setseekamlimits)
-  * [setSeekAmSpacing](https://github.com/pu2clr/SI4735#setseekamspacing)
-  * [setSeekSrnThreshold](https://github.com/pu2clr/SI4735#setseeksrnthreshold)
-  * [setSeekRssiThreshold](https://github.com/pu2clr/SI4735#setseekrssithreshold)
-  * [setAM](https://github.com/pu2clr/SI4735#setam)
-  * [setFM](https://github.com/pu2clr/SI4735#setfm)
-  * [setVolume](https://github.com/pu2clr/SI4735#setvolume)
-  * [setAudioMute](https://github.com/pu2clr/SI4735#setaudiomute)
-  * [getVolume](https://github.com/pu2clr/SI4735#getvolume)
-  * [volumeUp](https://github.com/pu2clr/SI4735#volumeup)
-  * [volumeDown](https://github.com/pu2clr/SI4735#volumedown)
-  * [getCurrentVolume](https://github.com/pu2clr/SI4735#getcurrentvolume)
-* [__FM Stereo and mono Control__](https://github.com/pu2clr/SI4735#fm-stereo-and-mono-control)
-  * [setFmBlendStereoThreshold](https://github.com/pu2clr/SI4735#setfmblendstereothreshold)
-  * [setFmBlendMonoThreshold](https://github.com/pu2clr/SI4735#setfmblendmonothreshold)
-  * [setFmBlendRssiStereoThreshold](https://github.com/pu2clr/SI4735#setfmblendrssistereothreshold)
-  * [setFmBLendRssiMonoThreshold](https://github.com/pu2clr/SI4735#setfmblendrssimonothreshold)
-  * [setFmBlendSnrStereoThreshold](https://github.com/pu2clr/SI4735#setfmblendsnrstereothreshold)
-  * [setFmBLendSnrMonoThreshold](https://github.com/pu2clr/SI4735#setfmblendsnrmonothreshold)
-  * [setFmBlendMultiPathStereoThreshold](https://github.com/pu2clr/SI4735#setfmblendmultipathstereothreshold)
-  * [setFmBlendMultiPathMonoThreshold](https://github.com/pu2clr/SI4735#setfmblendmultipathmonothreshold)
-* [__Si4735 current status__](https://github.com/pu2clr/SI4735#si4735-current-status)
-  * [getFrequency](https://github.com/pu2clr/SI4735#getfrequency)
-  * [getCurrentFrequency](https://github.com/pu2clr/SI4735#getcurrentfrequency)
-  * [getStatus](https://github.com/pu2clr/SI4735#getstatus)
-  * [getTuneCompleteTriggered](https://github.com/pu2clr/SI4735#gettunecompletetriggered)
-  * [getSignalQualityInterrupt](https://github.com/pu2clr/SI4735#getsignalqualityinterrupt)
+* [Defined Data Types and Structures](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#defined-data-types-and-structures)
+* [__Public Methods__](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#public-methods)
+  * [__Usual methods__](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#public-methods)
+  * [setDeviceI2CAddress](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setdevicei2caddress)
+  * [getDeviceI2CAddress](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getdevicei2caddress)
+  * [setup](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setup)
+  * [setPowerUp](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setpowerup)
+  * [radioPowerUp](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#radiopowerup)
+  * [powerDown](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#powerdown)
+  * [setFrequency](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setfrequency)
+  * [frequencyUp](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#frequencyup)
+  * [frequencyDown](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#frequencydown)
+  * [setTuneFrequencyAntennaCapacitor](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#settunefrequencyantennacapacitor)
+  * [setTuneFrequencyFast](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#settunefrequencyfast)
+  * [setTuneFrequencyFreeze](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#settunefrequencyfreeze)
+  * [isCurrentTuneFM](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#iscurrenttunefm)
+  * [seekStation](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#seekstation)
+  * [seekStationUp](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#seekstationup-and-seekstationdown)
+  * [seekStationDown](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#seekstationup-and-seekstationdown)
+  * [setSeekAmLimits](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setseekamlimits)
+  * [setSeekAmSpacing](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setseekamspacing)
+  * [setSeekSrnThreshold](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setseeksrnthreshold)
+  * [setSeekRssiThreshold](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setseekrssithreshold)
+  * [setAM](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setam)
+  * [setFM](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setfm)
+  * [setVolume](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setvolume)
+  * [setAudioMute](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setaudiomute)
+  * [getVolume](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getvolume)
+  * [volumeUp](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#volumeup)
+  * [volumeDown](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#volumedown)
+  * [getCurrentVolume](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentvolume)
+* [__FM Stereo and mono Control__](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#fm-stereo-and-mono-control)
+  * [setFmBlendStereoThreshold](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setfmblendstereothreshold)
+  * [setFmBlendMonoThreshold](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setfmblendmonothreshold)
+  * [setFmBlendRssiStereoThreshold](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setfmblendrssistereothreshold)
+  * [setFmBLendRssiMonoThreshold](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setfmblendrssimonothreshold)
+  * [setFmBlendSnrStereoThreshold](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setfmblendsnrstereothreshold)
+  * [setFmBLendSnrMonoThreshold](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setfmblendsnrmonothreshold)
+  * [setFmBlendMultiPathStereoThreshold](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setfmblendmultipathstereothreshold)
+  * [setFmBlendMultiPathMonoThreshold](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setfmblendmultipathmonothreshold)
+* [__Si4735 current status__](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#si4735-current-status)
+  * [getFrequency](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getfrequency)
+  * [getCurrentFrequency](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentfrequency)
+  * [getStatus](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getstatus)
+  * [getTuneCompleteTriggered](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#gettunecompletetriggered)
+  * [getSignalQualityInterrupt](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getsignalqualityinterrupt)
   * [getRadioDataSystemInterrupt](getRadioDataSystemInterrupt)
-  * [getStatusError](https://github.com/pu2clr/SI4735#getstatuserror)
-  * [getStatusCTS](https://github.com/pu2clr/SI4735#getstatuscts)
-  * [getACFIndicator](https://github.com/pu2clr/SI4735#getacfindicator)
-  * [getBandLimit](https://github.com/pu2clr/SI4735#getbandlimit)
-  * [getReceivedSignalStrengthIndicator](https://github.com/pu2clr/SI4735#getreceivedsignalstrengthindicator)
-  * [getStatusSNR](https://github.com/pu2clr/SI4735#getstatussnr)
-  * [getStatusMULT](https://github.com/pu2clr/SI4735#getstatusmult)
-  * [getAntennaTuningCapacitor](https://github.com/pu2clr/SI4735#getantennatuningcapacitor)
-  * [getStatusValid](https://github.com/pu2clr/SI4735#getstatusvalid)
-* [__SI4735 Received Signal Quality__](https://github.com/pu2clr/SI4735#si4735-received-signal-quality)
-  * [getCurrentReceivedSignalQuality](https://github.com/pu2clr/SI4735#getcurrentreceivedsignalquality)
-  * [getCurrentRSSI](https://github.com/pu2clr/SI4735#getcurrentrssi)
-  * [getCurrentSNR](https://github.com/pu2clr/SI4735#getcurrentsnr)
-  * [getCurrentRssiDetectLow](https://github.com/pu2clr/SI4735#getcurrentrssidetectlow)
-  * [getCurrentRssiDetectHigh](https://github.com/pu2clr/SI4735#getcurrentrssidetecthigh)
-  * [getCurrentSnrDetectLow](https://github.com/pu2clr/SI4735#getcurrentsnrdetectlow)
-  * [getCurrentSnrDetectHigh](https://github.com/pu2clr/SI4735#getcurrentsnrdetecthigh)
-  * [getCurrentValidChannel](https://github.com/pu2clr/SI4735#getcurrentvalidchannel)
-  * [getCurrentAfcRailIndicator](https://github.com/pu2clr/SI4735#getcurrentafcrailindicator)
-  * [getCurrentSoftMuteIndicator](https://github.com/pu2clr/SI4735#getcurrentsoftmuteindicator)
-  * [getCurrentStereoBlend](https://github.com/pu2clr/SI4735#getcurrentstereoblend)
-  * [getCurrentPilot](https://github.com/pu2clr/SI4735#getcurrentpilot)
-  * [getCurrentMultipath](https://github.com/pu2clr/SI4735#getcurrentmultipath)
-  * [getCurrentSignedFrequencyOffset](https://github.com/pu2clr/SI4735#getcurrentsignedfrequencyoffset)
-  * [getCurrentMultipathDetectLow](https://github.com/pu2clr/SI4735#getcurrentmultipathdetectlow)
-  * [getCurrentMultipathDetectHigh](https://github.com/pu2clr/SI4735#getcurrentmultipathdetecthigh)
-  * [getCurrentBlendDetectInterrupt](https://github.com/pu2clr/SI4735#getcurrentblenddetectinterrupt)
-* [__Current AGC Status__](https://github.com/pu2clr/SI4735#current-agc-status)
-  * [getAutomaticGainControl](https://github.com/pu2clr/SI4735#getautomaticgaincontrol)
-  * [isAgcEnabled](https://github.com/pu2clr/SI4735#isagcenabled)
-  * [getAgcGainIndex](https://github.com/pu2clr/SI4735#getagcgainindex)
-  * [setAutomaticGainControl](https://github.com/pu2clr/SI4735#setautomaticgaincontrol)
-  * [setAvcAmMaxGain](https://github.com/pu2clr/SI4735#setavcammaxgain)
-  * [getCurrentAvcAmMaxGain](https://github.com/pu2clr/SI4735#getcurrentavcammaxgain)
-* [__Digital Audio__](https://github.com/pu2clr/SI4735#digital-audio)
-  * [digitalOutputFormat](https://github.com/pu2clr/SI4735#digitaloutputformat)
-  * [digitalOutputSampleRate](https://github.com/pu2clr/SI4735#digitaloutputsamplerate)
-* [__Filters__](https://github.com/pu2clr/SI4735#filters)
-  * [setBandwidth](https://github.com/pu2clr/SI4735#setbandwidth)
-* [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735#si4735-firmware-information)
-  * [getFirmwarePN](https://github.com/pu2clr/SI4735#getfirmwarepn)
-  * [getFirmwareFWMAJOR](https://github.com/pu2clr/SI4735#getfirmwarefwmajor)
-  * [getFirmwareFWMINOR](https://github.com/pu2clr/SI4735#getfirmwarefwminor)
-  * [getFirmwarePATCHH](https://github.com/pu2clr/SI4735#getfirmwarepatchh)
-  * [getFirmwarePATCHL](https://github.com/pu2clr/SI4735#getfirmwarepatchl)
-  * [getFirmwareCMPMAJOR](https://github.com/pu2clr/SI4735#getfirmwarecmpmajor)
-  * [getFirmwareCMPMINOR](https://github.com/pu2clr/SI4735#getfirmwarecmpminor)
-  * [getFirmwareCHIPREV](https://github.com/pu2clr/SI4735#getfirmwarechiprev)
-* [__RDS__](https://github.com/pu2clr/SI4735#rds)
-  * [setRdsIntSource](https://github.com/pu2clr/SI4735#setrdsintsource)
-  * [setRdsConfig](https://github.com/pu2clr/SI4735#setrdsconfig)
-  * [getRdsStatus](https://github.com/pu2clr/SI4735#getrdsstatus)
-  * [getRdsReceived](https://github.com/pu2clr/SI4735#getrdsreceived)
-  * [getRdsSyncLost](https://github.com/pu2clr/SI4735#getrdssynclost)
-  * [getRdsSyncFound](https://github.com/pu2clr/SI4735#getrdssyncfound)
-  * [getRdsNewBlockA](https://github.com/pu2clr/SI4735#getrdsnewblocka)
-  * [getRdsNewBlockB](https://github.com/pu2clr/SI4735#getrdsnewblockb)
-  * [getRdsSync](https://github.com/pu2clr/SI4735#getrdssync)
-  * [getGroupLost](https://github.com/pu2clr/SI4735#getgrouplost)
-  * [getNumRdsFifoUsed](https://github.com/pu2clr/SI4735#getnumrdsfifoused)
-  * [getRdsPI](https://github.com/pu2clr/SI4735#getrdspi)
-  * [getRdsGroupType](https://github.com/pu2clr/SI4735#getrdsgrouptype)
-  * [getRdsVersionCode](https://github.com/pu2clr/SI4735#getrdsversioncode)
-  * [getRdsProgramType](https://github.com/pu2clr/SI4735#getrdsprogramtype)
-  * [getRdsText](https://github.com/pu2clr/SI4735#getrdstext)
-  * [getRdsTime](https://github.com/pu2clr/SI4735#getrdstime)
-* [__SI4735 Patch Support for Single Side Band__](https://github.com/pu2clr/SI4735#si4735-patch-support-for-single-side-band)
-  * [SI4735 patch](https://github.com/pu2clr/SI4735#si4735-patch-support-for-single-side-band)
-  * [queryLibraryId](https://github.com/pu2clr/SI4735#querylibraryid)
-  * [patchPowerUp](https://github.com/pu2clr/SI4735#patchpowerup)
-  * [downloadPatch](https://github.com/pu2clr/SI4735#downloadpatch)
-  * [Single Side Band (SSB) Methods](https://github.com/pu2clr/SI4735#single-side-band-ssb-methods)
-  * [setSSBBfo](https://github.com/pu2clr/SI4735#setssbbfo)
-  * [setSSBConfig](https://github.com/pu2clr/SI4735#setssbconfig)
-  * [setSSB](https://github.com/pu2clr/SI4735#setssb)
-  * [setSSBAudioBandwidth](https://github.com/pu2clr/SI4735#setssbaudiobandwidth)
-  * [setSBBSidebandCutoffFilter](https://github.com/pu2clr/SI4735#setsbbsidebandcutofffilter)
-  * [setSSBAvcDivider](https://github.com/pu2clr/SI4735#setssbavcdivider)
-  * [setSSBAvcDivider](https://github.com/pu2clr/SI4735#setssbavcdivider)
-  * [setSSBAutomaticVolumeControl](https://github.com/pu2clr/SI4735#setssbautomaticvolumecontrol)
-  * [setSSBSoftMute](https://github.com/pu2clr/SI4735#setssbsoftmute)
-  * [setSSBDspAfc](https://github.com/pu2clr/SI4735#setssbdspafc)
-  * [setSSBConfig](https://github.com/pu2clr/SI4735#setssbconfig)
-  * [setSSBBfo](https://github.com/pu2clr/SI4735#setssbbfo)
+  * [getStatusError](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getstatuserror)
+  * [getStatusCTS](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getstatuscts)
+  * [getACFIndicator](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getacfindicator)
+  * [getBandLimit](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getbandlimit)
+  * [getReceivedSignalStrengthIndicator](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getreceivedsignalstrengthindicator)
+  * [getStatusSNR](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getstatussnr)
+  * [getStatusMULT](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getstatusmult)
+  * [getAntennaTuningCapacitor](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getantennatuningcapacitor)
+  * [getStatusValid](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getstatusvalid)
+* [__SI4735 Received Signal Quality__](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#si4735-received-signal-quality)
+  * [getCurrentReceivedSignalQuality](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentreceivedsignalquality)
+  * [getCurrentRSSI](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentrssi)
+  * [getCurrentSNR](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentsnr)
+  * [getCurrentRssiDetectLow](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentrssidetectlow)
+  * [getCurrentRssiDetectHigh](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentrssidetecthigh)
+  * [getCurrentSnrDetectLow](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentsnrdetectlow)
+  * [getCurrentSnrDetectHigh](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentsnrdetecthigh)
+  * [getCurrentValidChannel](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentvalidchannel)
+  * [getCurrentAfcRailIndicator](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentafcrailindicator)
+  * [getCurrentSoftMuteIndicator](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentsoftmuteindicator)
+  * [getCurrentStereoBlend](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentstereoblend)
+  * [getCurrentPilot](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentpilot)
+  * [getCurrentMultipath](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentmultipath)
+  * [getCurrentSignedFrequencyOffset](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentsignedfrequencyoffset)
+  * [getCurrentMultipathDetectLow](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentmultipathdetectlow)
+  * [getCurrentMultipathDetectHigh](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentmultipathdetecthigh)
+  * [getCurrentBlendDetectInterrupt](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentblenddetectinterrupt)
+* [__Current AGC Status__](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#current-agc-status)
+  * [getAutomaticGainControl](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getautomaticgaincontrol)
+  * [isAgcEnabled](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#isagcenabled)
+  * [getAgcGainIndex](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getagcgainindex)
+  * [setAutomaticGainControl](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setautomaticgaincontrol)
+  * [setAvcAmMaxGain](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setavcammaxgain)
+  * [getCurrentAvcAmMaxGain](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getcurrentavcammaxgain)
+* [__Digital Audio__](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#digital-audio)
+  * [digitalOutputFormat](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#digitaloutputformat)
+  * [digitalOutputSampleRate](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#digitaloutputsamplerate)
+* [__Filters__](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#filters)
+  * [setBandwidth](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setbandwidth)
+* [__SI4735 Firmware Information__](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#si4735-firmware-information)
+  * [getFirmwarePN](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getfirmwarepn)
+  * [getFirmwareFWMAJOR](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getfirmwarefwmajor)
+  * [getFirmwareFWMINOR](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getfirmwarefwminor)
+  * [getFirmwarePATCHH](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getfirmwarepatchh)
+  * [getFirmwarePATCHL](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getfirmwarepatchl)
+  * [getFirmwareCMPMAJOR](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getfirmwarecmpmajor)
+  * [getFirmwareCMPMINOR](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getfirmwarecmpminor)
+  * [getFirmwareCHIPREV](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getfirmwarechiprev)
+* [__RDS__](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#rds)
+  * [setRdsIntSource](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setrdsintsource)
+  * [setRdsConfig](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setrdsconfig)
+  * [getRdsStatus](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdsstatus)
+  * [getRdsReceived](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdsreceived)
+  * [getRdsSyncLost](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdssynclost)
+  * [getRdsSyncFound](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdssyncfound)
+  * [getRdsNewBlockA](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdsnewblocka)
+  * [getRdsNewBlockB](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdsnewblockb)
+  * [getRdsSync](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdssync)
+  * [getGroupLost](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getgrouplost)
+  * [getNumRdsFifoUsed](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getnumrdsfifoused)
+  * [getRdsPI](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdspi)
+  * [getRdsGroupType](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdsgrouptype)
+  * [getRdsVersionCode](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdsversioncode)
+  * [getRdsProgramType](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdsprogramtype)
+  * [getRdsText](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdstext)
+  * [getRdsTime](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#getrdstime)
+* [__SI4735 Patch Support for Single Side Band__](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#si4735-patch-support-for-single-side-band)
+  * [SI4735 patch](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#si4735-patch-support-for-single-side-band)
+  * [queryLibraryId](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#querylibraryid)
+  * [patchPowerUp](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#patchpowerup)
+  * [downloadPatch](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#downloadpatch)
+  * [Single Side Band (SSB) Methods](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#single-side-band-ssb-methods)
+  * [setSSBBfo](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setssbbfo)
+  * [setSSBConfig](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setssbconfig)
+  * [setSSB](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setssb)
+  * [setSSBAudioBandwidth](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setssbaudiobandwidth)
+  * [setSBBSidebandCutoffFilter](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setsbbsidebandcutofffilter)
+  * [setSSBAvcDivider](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setssbavcdivider)
+  * [setSSBAvcDivider](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setssbavcdivider)
+  * [setSSBAutomaticVolumeControl](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setssbautomaticvolumecontrol)
+  * [setSSBSoftMute](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setssbsoftmute)
+  * [setSSBDspAfc](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setssbdspafc)
+  * [setSSBConfig](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setssbconfig)
+  * [setSSBBfo](https://github.com/pu2clr/SI4735/extras/apidoc/api_pu2clr_si47xx.md#setssbbfo)
 
 
 ### Defined Data Types and Structures
