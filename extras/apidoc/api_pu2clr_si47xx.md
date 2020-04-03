@@ -71,21 +71,21 @@ You can install this library on your Arduino environment using different methods
 
 This is the easiest method to install this library.
 
-![Installing from Arduino IDE 01](https://github.com/pu2clr/SI4735/extras/images/lib_install_01.png)
+![Installing from Arduino IDE 01](https://github.com/pu2clr/SI4735/blob/master/extras/images/lib_install_01.png)
 
 <BR>
 
-![Installing from Arduino IDE 02](https://github.com/pu2clr/SI4735/extras/images/lib_install_02.png)
+![Installing from Arduino IDE 02](https://github.com/pu2clr/SI4735/blob/master/extras/images/lib_install_02.png)
 
 <BR>
 
 ### Installing via this repository
 
-![Installing from this repository](https://github.com/pu2clr/SI4735/extras/images/install_lib_from_git_01.png)
+![Installing from this repository](https://github.com/pu2clr/SI4735/blob/master/extras/images/install_lib_from_git_01.png)
 
 <BR>
 
-![Installing from this repository](https://github.com/pu2clr/SI4735/extras/images/install_lib_from_git_02.png)
+![Installing from this repository](https://github.com/pu2clr/SI4735/blob/master/extras/images/install_lib_from_git_02.png)
 
 
 First, you have to download this library in zip format. [Click here](https://github.com/pu2clr/SI4735/archive/master.zip) to download.
