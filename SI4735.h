@@ -987,33 +987,156 @@ public:
      */
     inline bool getStatusError() { 
         return currentStatus.resp.ERR; 
-    };   
+    };
 
-    inline bool getStatusCTS() { return currentStatus.resp.CTS; };                           //! Gets the Error flag of status response
-    inline bool getACFIndicator() { return currentStatus.resp.AFCRL; };                      //! Returns true if the AFC rails (AFC Rail Indicator).
-    inline bool getBandLimit() { return currentStatus.resp.BLTF; };                          //! Returns true if a seek hit the band limit (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
-    inline bool getStatusValid() { return currentStatus.resp.VALID; };                       //! Returns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)
-    inline uint8_t getReceivedSignalStrengthIndicator() { return currentStatus.resp.RSSI; }; //! Returns integer Received Signal Strength Indicator (dBμV).
-    inline uint8_t getStatusSNR() { return currentStatus.resp.SNR; };                        //! Returns integer containing the SNR metric when tune is complete (dB).
-    inline uint8_t getStatusMULT() { return currentStatus.resp.MULT; };                      //! Returns integer containing the multipath metric when tune is complete.
-    inline uint8_t getAntennaTuningCapacitor() { return currentStatus.resp.READANTCAP; };    //! Returns integer containing the current antenna tuning capacitor value.
+    /**
+     * @brief Gets the Error flag Clear to Send
+     * 
+     * @return CTS 
+     */
+    inline bool getStatusCTS() { return currentStatus.resp.CTS; };
 
-    void getAutomaticGainControl();
-    // Sets the maximum gain for automatic volume control fro AM.
-    void setAvcAmMaxGain(uint8_t gain);         
-    inline void setAvcAmMaxGain() { sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, ((currentAvcAmMaxGain = 48) * 340));};
-    inline uint8_t getCurrentAvcAmMaxGain() {return currentAvcAmMaxGain; };
+    /**
+     * @brief Returns true if the AFC rails (AFC Rail Indicator).
+     * 
+     * @return true 
+     */
+    inline bool getACFIndicator() {
+         return currentStatus.resp.AFCRL; 
+    };
 
-    inline void setAmSoftMuteMaxAttenuation( uint8_t smattn) {sendProperty(AM_SOFT_MUTE_MAX_ATTENUATION, smattn);};
-    inline void setAmSoftMuteMaxAttenuation() {sendProperty(AM_SOFT_MUTE_MAX_ATTENUATION, 0);};
+    /**
+     * @brief Returns true if a seek hit the band limit 
+     * 
+     * @details (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
+     * 
+     * @return BLTF 
+     */
+    inline bool getBandLimit() { 
+        return currentStatus.resp.BLTF; 
+    };
 
-    inline void setSsbSoftMuteMaxAttenuation( uint8_t smattn) {sendProperty(SSB_SOFT_MUTE_MAX_ATTENUATION, smattn);};
-    inline void setSsbSoftMuteMaxAttenuation() {sendProperty(SSB_SOFT_MUTE_MAX_ATTENUATION, 0);};
+    /**
+     * @brief Gets the channel status
+     * 
+     * @details Returns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)
+     * 
+     * @return true 
+     * @return false 
+     */
+    inline bool getStatusValid() { 
+        return currentStatus.resp.VALID; 
+    };
+
+    /**
+     * @brief Returns the value of  Received Signal Strength Indicator (dBμV).
+     * 
+     * @return uint8_t 
+     */
+    inline uint8_t getReceivedSignalStrengthIndicator() { 
+        return currentStatus.resp.RSSI; 
+    };
+
+    /**
+     * @brief Gets the SNR metric when tune is complete (dB)
+     * 
+     * @details Returns the value  of the SNR metric when tune is complete (dB).
+     * 
+     * @return uint8_t 
+     */
+    inline uint8_t getStatusSNR() { 
+        return currentStatus.resp.SNR; 
+    };
+
+    /**
+     * @brief Get the Status the M U L T 
+     * 
+     * @details Returns the value containing the multipath metric when tune is complete.
+     * 
+     * @return uint8_t 
+     */
+    inline uint8_t getStatusMULT() { 
+        return currentStatus.resp.MULT; 
+    };
+
+    /**
+     * @brief Get the Antenna Tuning Capacitor value
+     * 
+     * @details Returns the current antenna tuning capacitor value.
+     * 
+     * @return uint8_t capacitance 
+     */
+    inline uint8_t getAntennaTuningCapacitor() { 
+        return currentStatus.resp.READANTCAP; 
+    }; 
+
+    void getAutomaticGainControl(); //! Queries Automatic Gain Control STATUS
+
+    /**
+     * @brief Sets the Avc Am Max Gain to 48dB
+     * 
+     */
+    inline void setAvcAmMaxGain() { 
+        sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, ((currentAvcAmMaxGain = 48) * 340));
+    };
+
+    void setAvcAmMaxGain(uint8_t gain); //! Sets the maximum gain for automatic volume control.
+
+    /**
+     * @brief Get the current Avc Am Max Gain 
+     * 
+     * @return uint8_t Current AVC gain index value
+     */
+    inline uint8_t getCurrentAvcAmMaxGain() {
+        return currentAvcAmMaxGain; 
+    };
+
+    /**
+     * @brief Sets the Am Soft Mute Max Attenuation 
+     * 
+     * @details This function can be useful to disable Soft Mute. The value 0 disable soft mute.
+     * @details Specified in units of dB. Default maximum attenuation is 8 dB.
+     * 
+     * @see Si47XX PROGRAMMING GUIDE; AN332; page 158. 
+     * 
+     * @param smattn Maximum attenuation to apply when in soft mute
+     */
+    inline void setAmSoftMuteMaxAttenuation( uint8_t smattn = 0) {
+        sendProperty(AM_SOFT_MUTE_MAX_ATTENUATION, smattn);
+    };
 
 
-    inline bool isAgcEnabled() { return !currentAgcStatus.refined.AGCDIS; };      // Returns true if the AGC is enabled
-    inline uint8_t getAgcGainIndex() { return currentAgcStatus.refined.AGCIDX; }; // Returns the current AGC gain index.
-    void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX);                 // Overrides the AGC setting
+    /**
+     * @brief Sets the SSB Soft Mute Max Attenuation object
+     * 
+     * @details Sets maximum attenuation during soft mute (dB). Set to 0 to disable soft mute. 
+     * @details Specified in units of dB. Default maximum attenuation is 8 dB.
+     * 
+     * @param smattn Maximum attenuation to apply when in soft mute.
+     */
+    inline void setSsbSoftMuteMaxAttenuation( uint8_t smattn = 0) {
+        sendProperty(SSB_SOFT_MUTE_MAX_ATTENUATION, smattn);
+    };
+
+    /**
+     * @brief Checks if the AGC is enabled
+     *
+     * @return true if the AGC is enabled 
+     */
+    inline bool isAgcEnabled() { 
+        return !currentAgcStatus.refined.AGCDIS; 
+    };
+
+    /**
+     * @brief Gets the current AGC gain index
+     * 
+     * @return uint8_t The current AGC gain index.
+     */
+    inline uint8_t getAgcGainIndex() { 
+        return currentAgcStatus.refined.AGCIDX; 
+    }; 
+
+    void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX); //! Overrides the AGC setting
 
     void getCurrentReceivedSignalQuality(uint8_t INTACK);
     void getCurrentReceivedSignalQuality(void);

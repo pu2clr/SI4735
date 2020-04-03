@@ -1163,10 +1163,11 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
  * @ingroup group14 Si47XX Automatic Volume Control
  * 
  * @brief Sets the maximum gain for automatic volume control.
- * 
+ *  
  * @details If no parameter is sent, it will be consider 48dB.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 152
+ * @see setAvcAmMaxGain()
  * 
  * @param uint8_t gain  Select a value between 12 and 192.  Defaul value 48dB.
  */
