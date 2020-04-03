@@ -236,9 +236,7 @@ See more
 
 ## API Documentation 
 
-This library has tow documentation sources. A [legacy documentation](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/api_pu2clr_si47xx.md) and one generated automatically by Doxygen tools.  
-
-The [Legacy Documentation](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/api_pu2clr_si47xx.md) style may not be updated frequently.
+This library has tow documentation sources: A [legacy documentation](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/api_pu2clr_si47xx.md) and one documentation generated automatically by Doxygen tools.  The [Legacy Documentation](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/api_pu2clr_si47xx.md) style may not be updated frequently.
 
 [Doxygen](http://www.doxygen.nl/index.html) is a tools that can generate documentation from source code. This tools help the development team to keep the documentation updated. 
 
