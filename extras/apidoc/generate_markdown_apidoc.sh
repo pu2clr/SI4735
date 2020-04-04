@@ -1,1 +1,0 @@
-moxygen --anchors --output api.md ./xml
