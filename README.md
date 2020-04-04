@@ -30,6 +30,7 @@ __Attention__:
 7. [Library Installation](https://pu2clr.github.io/SI4735/#library-installation)
 8. [API Documentation](https://pu2clr.github.io/SI4735/#api-documentation)
    * [About Class, Methods(functions) and custom data type structures](https://pu2clr.github.io/SI4735/#defined-data-types-and-structures)
+   * [PU2CLR SI4735 Arduino Library methods (functions)](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
    * [RDS support](https://pu2clr.github.io/SI4735/#rds)
    * [SSB support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band)
 9.  [Hardware Requirements and Setup](https://pu2clr.github.io/SI4735/#hardware-requirements-and-setup)
@@ -248,13 +249,14 @@ If you prefer, you can also read the documentation directly from the [SI4735.cpp
 
 The Si47XX family works with many internal data that can be represented by data structure or defined data type in C/C++. These C/C++ resources have been used widely here. This aproach made the library easier to build and maintain. Each data structure created here has its reference (name of the document and page on which it was based). In other words, to make the SI47XX device easier to deal, some defined data types were created to handle  byte and bits to process  commands, properties and responses.
 
-All data types defined in Si4735 Arduino Library are explained on [API documentation of this library](https://pu2clr.github.io/SI4735//tree/master/extras/apidoc/rtf).  Click [here](https://pu2clr.github.io/SI4735//blob/master/extras/apidoc/rtf/pu2clr_si4735_api_doc.pdf) to go to API docummentation.
+All data types defined in Si4735 Arduino Library are explained [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
+
 
 ### Public methods 
 
 This library was developed using the C++ language and the Object-oriented Programming approach. Methods are functions that belongs to the class, in this case SI4735 class. Click [here](https://pu2clr.github.io/SI4735//blob/master/extras/apidoc/rtf/pu2clr_si4735_api_doc.pdf) to go to API docummentation.
 
-All methods defined in Si4735 class are explained on [API documentation of this library](https://pu2clr.github.io/SI4735//tree/master/extras/apidoc/rtf). The list below refer to the method groups implemented by the Si4735 class.   
+All methods defined in Si4735 class are explained on [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/). The list below refer to the method groups implemented by the Si4735 class.   
 
 
 #### Si47XX device setup and startup
@@ -285,7 +287,7 @@ Methods to setup the audio mode (Digital or Analog), volume, mute etc.
 
 #### RDS
 
-This library implements some RDS features of the SI4735
+This library implements some RDS features of the SI4735. All function to deal with RDS are documented [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/).
 
 The table below shows the features that this library implements.
 
@@ -303,7 +305,6 @@ __The RDS functions have not yet been properly tested__.
 | CT | Clock Time (under construction...) | It provides the the current clock |
 
 
-<BR>
 <BR>
 
 ##### The table below shows the main group types implemented by this library
@@ -364,7 +365,7 @@ __The RDS functions have not yet been properly tested__.
 
 #### SI4735 Patch Support for Single Side Band
 
-The SI4735 class implements a set of methods to apply patches and deal with SSB mode.
+The SI4735 class implements a set of methods to apply patches and deal with SSB mode. All documentation about pathces can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/).
 
 __First of all, it is important to say that the SSB patch content is not part of this library__. The paches used here were made available by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. __In other words, this library only supports SSB patches, the patches themselves are not part of this library__.
 
@@ -382,6 +383,7 @@ SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh5
 __ATTENTION__:
 The author of this project does not guarantee that procedures shown here will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here. __This library works with the I²C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60__. Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
 
+All methods/functions to deal with SSB on Si4735-D60 can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/).
 
 <BR>
 
@@ -431,7 +433,6 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 
 * __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO, YOU HAVE TO USE A KIND OF 5V TO 3.3V CONVERTER. Also pay attention to the appropriated Arduino pinout to select the correct interrupt (IRQ), RST, SDIO and SCLK pins. The table below shows some Arduino board pinout__.  
 * __The Si473X PEN pin (16 on SSOP version and 6 on QFN version) when connected to the ground, the I²C bus address is 0x11. When this pin is connected to +3.3V, the I²C bus address is 0x63__. See the functions [getDeviceI2CAddress](https://pu2clr.github.io/SI4735/#getdevicei2caddress) and [setDeviceI2CAddress](https://pu2clr.github.io/SI4735/#setdevicei2caddress) to correct setup. If you follow the schematic used in this project, you do not need to do anything (the default I²C bus address is 0x11). If you do not know how this pin is configured on the board, use [getDeviceI2CAddress](https://pu2clr.github.io/SI4735/#getdevicei2caddress).  
-
 
 
 
