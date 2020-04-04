@@ -39,7 +39,7 @@ __Attention__:
    * [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
    * [Photos (Tools and Accessories)](https://pu2clr.github.io/SI4735/#photos-tools-and-accessories)
 11. [References](https://pu2clr.github.io/SI4735/#references)
-12. [Examples](https://pu2clr.github.io/SI4735//tree/master/examples)
+12. [Examples](https://pu2clr.github.io/SI4735/examples)
 13. [Videos](https://pu2clr.github.io/SI4735/#videos) 
     * [Project examples made by the author](https://pu2clr.github.io/SI4735/#project-examples-made-by-the-author)
     * [Third-party projects using this library](https://pu2clr.github.io/SI4735/#third-party-projects-using-this-library)
