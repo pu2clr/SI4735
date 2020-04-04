@@ -298,6 +298,7 @@ __The RDS functions have not yet been properly tested__.
 <BR>
 
 ##### RDS Features implemented
+
 | Feature | Infoirmation type | Description |  
 | ---------- | --------------- | ---------- |
 | PTY | Program Type | PTY is a 5-bit that indicates the program type (see table below) |
