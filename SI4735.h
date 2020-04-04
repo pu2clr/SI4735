@@ -5,8 +5,8 @@
  * @details This library is intended to provide an easier interface for controlling the SI47XX by using Arduino platform. 
  * @details The communication used by this library is I2C.
  * @details This file contains: const (#define), Defined Data type and Methods declarations
- * @details You can see a complete documentation on https://github.com/pu2clr/SI4735
- * @details The are more than 20 examples on https://github.com/pu2clr/SI4735/tree/master/examples
+ * @details You can see a complete documentation on <https://github.com/pu2clr/SI4735>
+ * @details The are more than 20 examples on <https://github.com/pu2clr/SI4735/tree/master/examples>
  *   
  * @see https://github.com/pu2clr/SI4735
  * @see Si47XX PROGRAMMING GUIDE AN332 
