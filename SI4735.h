@@ -915,37 +915,37 @@ protected:
 
     uint8_t currentSsbStatus;
 
-    void waitInterrupr(void); //! wait for interrupt (useful if you are using interrupt resource)
-    void sendProperty(uint16_t propertyValue, uint16_t param); //! Sends the property command to the device
-    void sendSSBModeProperty(); //! Sends SSB_MODE property to the device.
-    void disableFmDebug(); //! disable some Si47XX debug resources implemented by the Silicon Labs 
-    void clearRdsBuffer2A(); //! Clear RDS group type 2A buffer 
-    void clearRdsBuffer2B(); //! Clear RDS group type 2B buffer
-    void clearRdsBuffer0A(); //! Clear RDS group type 0A buffer
+    void waitInterrupr(void); 
+    void sendProperty(uint16_t propertyValue, uint16_t param); 
+    void sendSSBModeProperty(); 
+    void disableFmDebug();  
+    void clearRdsBuffer2A(); 
+    void clearRdsBuffer2B(); 
+    void clearRdsBuffer0A(); 
 
 public:
     SI4735(); 
-    void reset(void); //! Reset the Si47XX device
-    void waitToSend(void); //! Wait for the Si47XX device is ready to receive a command
+    void reset(void); 
+    void waitToSend(void); 
 
     // for setup, the default is  SI473X_ANALOG_AUDIO
-    void setup(uint8_t resetPin, uint8_t defaultFunction); // Set the Si47XX device up
-    void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO); // Set the Si47XX device up
+    void setup(uint8_t resetPin, uint8_t defaultFunction); 
+    void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO); 
 
-    void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE); //! Configure the Si47XX to power it up
-    void radioPowerUp(void);    //! Power the receiver up. Call setPowerUp before call this method.
-    void analogPowerUp(void);   //! Deprecated. Use radioPowerUp.
+    void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE); 
+    void radioPowerUp(void);    
+    void analogPowerUp(void);   
     void powerDown(void);
 
-    void setFrequency(uint16_t); //! Tune the receiver
+    void setFrequency(uint16_t); 
 
     // getStatus
-    void getStatus(); //! Gets the current status of the Si47XX device
+    void getStatus(); 
     void getStatus(uint8_t, uint8_t);
 
     // Status response
-    uint16_t getFrequency(void); //! Gets the current frequency
-    uint16_t getCurrentFrequency(); //! Gets the current frequency stored in memory (it does not query the Si47XX device)
+    uint16_t getFrequency(void); 
+    uint16_t getCurrentFrequency(); 
 
     /** 
      * STATUS RESPONSE
@@ -1136,10 +1136,10 @@ public:
         return currentAgcStatus.refined.AGCIDX; 
     }; 
 
-    void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX); //! Overrides the AGC setting
+    void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX); 
 
-    void getCurrentReceivedSignalQuality(uint8_t INTACK); //! Queries the status of the Received Signal Quality (RSQ) of the current channel.
-    void getCurrentReceivedSignalQuality(void);           //! Queries the status of the Received Signal Quality (RSQ) of the current channel.
+    void getCurrentReceivedSignalQuality(uint8_t INTACK); 
+    void getCurrentReceivedSignalQuality(void);           
 
     // AM and FM
 
@@ -1309,27 +1309,27 @@ public:
     inline void setTuneFrequencyFreeze(uint8_t FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; //! Only FM. Freeze Metrics During Alternate Frequency Jump.
     void setTuneFrequencyAntennaCapacitor(uint16_t capacitor);
 
-    void frequencyUp(); //! Increments the current frequency on current band/function by using the current step.
-    void frequencyDown(); //! Decrements the current frequency on current band/function by using the current step.
-    bool isCurrentTuneFM(); //! Returns true if the current function is FM (FM_TUNE_FREQ).
-    void getFirmware(void); //! Gets firmware information
+    void frequencyUp(); 
+    void frequencyDown(); 
+    bool isCurrentTuneFM(); 
+    void getFirmware(void); 
 
-    void seekStation(uint8_t SEEKUP, uint8_t WRAP); //! Look for a station (Automatic tune)
-    void seekStationUp();                           //!Search for the next station
-    void seekStationDown();                         //! Search for the previous station
-    void setSeekAmLimits(uint16_t bottom, uint16_t top); //! Sets the bottom and top of the AM band for seek. Default is 520 to 1710.
-    void setSeekAmSpacing(uint16_t spacing);             //! Selects frequency spacing for AM seek. Default is 10 kHz spacing.
-    void setSeekSrnThreshold(uint16_t value);            //! Sets the SNR threshold for a valid AM Seek/Tune.
-    void setSeekRssiThreshold(uint16_t value);           //! Sets the RSSI threshold for a valid AM Seek/Tune.
+    void seekStation(uint8_t SEEKUP, uint8_t WRAP); 
+    void seekStationUp();                           
+    void seekStationDown();                         
+    void setSeekAmLimits(uint16_t bottom, uint16_t top); 
+    void setSeekAmSpacing(uint16_t spacing);            
+    void setSeekSrnThreshold(uint16_t value);            
+    void setSeekRssiThreshold(uint16_t value);           
 
-    void setFmBlendStereoThreshold(uint8_t parameter); //! Sets RSSI threshold for stereo blend (Full stereo above threshold, blend below threshold).
-    void setFmBlendMonoThreshold(uint8_t parameter);   //! Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold).
-    void setFmBlendRssiStereoThreshold(uint8_t parameter); //! Sets RSSI threshold for stereo blend. (Full stereo above threshold, blend below threshold.)
-    void setFmBLendRssiMonoThreshold(uint8_t parameter);   //! Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold).
-    void setFmBlendSnrStereoThreshold(uint8_t parameter);  //! Sets SNR threshold for stereo blend (Full stereo above threshold, blend below threshold).
-    void setFmBLendSnrMonoThreshold(uint8_t parameter);    //!Sets SNR threshold for mono blend (Full mono below threshold, blend above threshold).
-    void setFmBlendMultiPathStereoThreshold(uint8_t parameter); //! Sets multipath threshold for stereo blend (Full stereo below threshold, blend above threshold).
-    void setFmBlendMultiPathMonoThreshold(uint8_t parameter);   //! Sets Multipath threshold for mono blend (Full mono above threshold, blend below threshold).
+    void setFmBlendStereoThreshold(uint8_t parameter); 
+    void setFmBlendMonoThreshold(uint8_t parameter);   
+    void setFmBlendRssiStereoThreshold(uint8_t parameter); 
+    void setFmBLendRssiMonoThreshold(uint8_t parameter);   
+    void setFmBlendSnrStereoThreshold(uint8_t parameter);  
+    void setFmBLendSnrMonoThreshold(uint8_t parameter);    
+    void setFmBlendMultiPathStereoThreshold(uint8_t parameter); 
+    void setFmBlendMultiPathMonoThreshold(uint8_t parameter);   
     void setFmStereoOn();
     void setFmStereoOff();
 
@@ -1385,7 +1385,7 @@ public:
      * SSB PATCH
      */
     si47x_firmware_query_library queryLibraryId();
-    void patchPowerUp(); // Used to apply SSB patch on SI4735
+    void patchPowerUp(); 
     bool downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size);
     bool downloadPatch(int eeprom_i2c_address);
     void ssbPowerUp();
@@ -1409,8 +1409,8 @@ public:
      */
     inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); }; 
 
-    void setDeviceI2CAddress(uint8_t senPin); // If SEN pin is low (connected to the GND) set senPin = 0; else set senPin =  1.
-    int16_t getDeviceI2CAddress(uint8_t resetPin); // Scans and sets the I2C bus address. Returns the current device address of the Si473X or 0 if error
-    void setDeviceOtherI2CAddress(uint8_t i2cAddr); // You can set another I2C address different of 0x11  and 0x63 
+    void setDeviceI2CAddress(uint8_t senPin); 
+    int16_t getDeviceI2CAddress(uint8_t resetPin); 
+    void setDeviceOtherI2CAddress(uint8_t i2cAddr); 
 
 };
