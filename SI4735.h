@@ -1138,23 +1138,129 @@ public:
 
     void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX); //! Overrides the AGC setting
 
-    void getCurrentReceivedSignalQuality(uint8_t INTACK);
-    void getCurrentReceivedSignalQuality(void);
+    void getCurrentReceivedSignalQuality(uint8_t INTACK); //! Queries the status of the Received Signal Quality (RSQ) of the current channel.
+    void getCurrentReceivedSignalQuality(void);           //! Queries the status of the Received Signal Quality (RSQ) of the current channel.
 
     // AM and FM
-    inline uint8_t getCurrentRSSI() { return currentRqsStatus.resp.RSSI; };            //! current receive signal strength (0–127 dBμV).
-    inline uint8_t getCurrentSNR() { return currentRqsStatus.resp.SNR; };              //! current SNR metric (0–127 dB).
-    inline bool getCurrentRssiDetectLow() { return currentRqsStatus.resp.RSSIILINT; }; //! RSSI Detect Low.
-    inline bool getCurrentRssiDetectHigh() { return currentRqsStatus.resp.RSSIHINT; }; //! RSSI Detect High
-    inline bool getCurrentSnrDetectLow() { return currentRqsStatus.resp.SNRLINT; };    //! SNR Detect Low.
-    inline bool getCurrentSnrDetectHigh() { return currentRqsStatus.resp.SNRHINT; };   //! SNR Detect High
-    inline bool getCurrentValidChannel() { return currentRqsStatus.resp.VALID; };      //! Valid Channel.
-    inline bool getCurrentAfcRailIndicator() { return currentRqsStatus.resp.AFCRL; };  //! AFC Rail Indicator.
-    inline bool getCurrentSoftMuteIndicator() { return currentRqsStatus.resp.SMUTE; }; //! Soft Mute Indicator. Indicates soft mute is engaged.
+
+    /**
+     * @brief Get the current receive signal strength (0–127 dBμV)
+     * 
+     * @return uint8_t a value between 0 to 127
+     */
+    inline uint8_t getCurrentRSSI() { 
+        return currentRqsStatus.resp.RSSI; 
+    };
+
+    /**
+     * @brief Gets the current SNR metric (0–127 dB).
+     * 
+     * @return uint8_t SNR value in dB (0-127)
+     */
+    inline uint8_t getCurrentSNR() { 
+        return currentRqsStatus.resp.SNR; 
+    };
+
+    /**
+     * @brief Checks if RSSI detected is LOW. 
+     * 
+     * @return true if RSSI is low
+     */
+    inline bool getCurrentRssiDetectLow() { 
+        return currentRqsStatus.resp.RSSIILINT; 
+    };
+
+    /**
+     * @brief Checks if RSSI detected is high 
+     * 
+     * @return true if RSSI detected is high
+     */
+    inline bool getCurrentRssiDetectHigh() { 
+        return currentRqsStatus.resp.RSSIHINT; 
+    };
+
+    /**
+     * @brief Checks if SNR detect is low
+     * 
+     * @return true if SNR detected is low
+     */
+    inline bool getCurrentSnrDetectLow() { 
+        return currentRqsStatus.resp.SNRLINT; 
+    };
+
+    /**
+     * @brief Checks if SNR detect is high
+     * 
+     * @return true  if SNR detect is high
+     */
+    inline bool getCurrentSnrDetectHigh() { 
+        return currentRqsStatus.resp.SNRHINT; 
+    };
+
+    /**
+     * @brief Checks if the current channel is valid
+     * 
+     * @return true if the current channel is valid
+     */
+    inline bool getCurrentValidChannel() { 
+        return currentRqsStatus.resp.VALID; 
+    };
+
+    /**
+     * @brief AFC Rail Indicator
+     * 
+     * @return true or false
+     */
+    inline bool getCurrentAfcRailIndicator() { 
+        return currentRqsStatus.resp.AFCRL; 
+    };
+
+    /**
+     * @brief Soft Mute Indicator. 
+     * 
+     * @details Indicates soft mute is engaged.
+     * 
+     * @return true  if soft mute indicates is engaged.
+     */
+    inline bool getCurrentSoftMuteIndicator() { 
+        return currentRqsStatus.resp.SMUTE; 
+    };
+
+
     // Just FM
-    inline uint8_t getCurrentStereoBlend() { return currentRqsStatus.resp.STBLEND; };           //! Indicates amount of stereo blend in % (100 = full stereo, 0 = full mono).
-    inline bool getCurrentPilot() { return currentRqsStatus.resp.PILOT; };                      //! Indicates stereo pilot presence.
-    inline uint8_t getCurrentMultipath() { return currentRqsStatus.resp.MULT; };                //! Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
+
+    /**
+     * @brief Gets the value of the amount of stereo blend in % (100 = full stereo, 0 = full mono).
+     * 
+     * @return uint8_t value (0 to 100)
+     */
+    inline uint8_t getCurrentStereoBlend() { 
+        return currentRqsStatus.resp.STBLEND; 
+    };
+
+    /**
+     * @brief Checks the current pilot 
+     * 
+     * @details Indicates stereo pilot presence.
+     * 
+     * @return true if stereo pilot presence has detected
+     */
+    inline bool getCurrentPilot() { 
+        return currentRqsStatus.resp.PILOT; 
+    };
+
+    /**
+     * @brief Gets the current Multipath
+     *  
+     * @details Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
+     * 
+     * @return uint8_t value (0 to 100)
+     */
+    inline uint8_t getCurrentMultipath() { 
+        return currentRqsStatus.resp.MULT; 
+    };
+
+
     inline uint8_t getCurrentSignedFrequencyOffset() { return currentRqsStatus.resp.FREQOFF; }; //! Signed frequency offset (kHz).
     inline bool getCurrentMultipathDetectLow() { return currentRqsStatus.resp.MULTLINT; };      //! Multipath Detect Low.
     inline bool getCurrentMultipathDetectHigh() { return currentRqsStatus.resp.MULTHINT; };     //! Multipath Detect High
@@ -1203,28 +1309,27 @@ public:
     inline void setTuneFrequencyFreeze(uint8_t FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; //! Only FM. Freeze Metrics During Alternate Frequency Jump.
     void setTuneFrequencyAntennaCapacitor(uint16_t capacitor);
 
-    void frequencyUp();
-    void frequencyDown();
-    bool isCurrentTuneFM();
-    void getFirmware(void);
+    void frequencyUp(); //! Increments the current frequency on current band/function by using the current step.
+    void frequencyDown(); //! Decrements the current frequency on current band/function by using the current step.
+    bool isCurrentTuneFM(); //! Returns true if the current function is FM (FM_TUNE_FREQ).
+    void getFirmware(void); //! Gets firmware information
 
-    void setFunction(uint8_t FUNC);
-    void seekStation(uint8_t SEEKUP, uint8_t WRAP);
-    void seekStationUp();
-    void seekStationDown();
-    void setSeekAmLimits(uint16_t bottom, uint16_t top); // Sets the bottom and top of the AM band for seek. Default is 520 to 1710.
-    void setSeekAmSpacing(uint16_t spacing);             // Selects frequency spacing for AM seek. Default is 10 kHz spacing.
-    void setSeekSrnThreshold(uint16_t value);
-    void setSeekRssiThreshold(uint16_t value);
+    void seekStation(uint8_t SEEKUP, uint8_t WRAP); //! Look for a station (Automatic tune)
+    void seekStationUp();                           //!Search for the next station
+    void seekStationDown();                         //! Search for the previous station
+    void setSeekAmLimits(uint16_t bottom, uint16_t top); //! Sets the bottom and top of the AM band for seek. Default is 520 to 1710.
+    void setSeekAmSpacing(uint16_t spacing);             //! Selects frequency spacing for AM seek. Default is 10 kHz spacing.
+    void setSeekSrnThreshold(uint16_t value);            //! Sets the SNR threshold for a valid AM Seek/Tune.
+    void setSeekRssiThreshold(uint16_t value);           //! Sets the RSSI threshold for a valid AM Seek/Tune.
 
-    void setFmBlendStereoThreshold(uint8_t parameter);
-    void setFmBlendMonoThreshold(uint8_t parameter);
-    void setFmBlendRssiStereoThreshold(uint8_t parameter);
-    void setFmBLendRssiMonoThreshold(uint8_t parameter);
-    void setFmBlendSnrStereoThreshold(uint8_t parameter);
-    void setFmBLendSnrMonoThreshold(uint8_t parameter);
-    void setFmBlendMultiPathStereoThreshold(uint8_t parameter);
-    void setFmBlendMultiPathMonoThreshold(uint8_t parameter);
+    void setFmBlendStereoThreshold(uint8_t parameter); //! Sets RSSI threshold for stereo blend (Full stereo above threshold, blend below threshold).
+    void setFmBlendMonoThreshold(uint8_t parameter);   //! Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold).
+    void setFmBlendRssiStereoThreshold(uint8_t parameter); //! Sets RSSI threshold for stereo blend. (Full stereo above threshold, blend below threshold.)
+    void setFmBLendRssiMonoThreshold(uint8_t parameter);   //! Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold).
+    void setFmBlendSnrStereoThreshold(uint8_t parameter);  //! Sets SNR threshold for stereo blend (Full stereo above threshold, blend below threshold).
+    void setFmBLendSnrMonoThreshold(uint8_t parameter);    //!Sets SNR threshold for mono blend (Full mono below threshold, blend above threshold).
+    void setFmBlendMultiPathStereoThreshold(uint8_t parameter); //! Sets multipath threshold for stereo blend (Full stereo below threshold, blend above threshold).
+    void setFmBlendMultiPathMonoThreshold(uint8_t parameter);   //! Sets Multipath threshold for mono blend (Full mono above threshold, blend below threshold).
     void setFmStereoOn();
     void setFmStereoOff();
 
