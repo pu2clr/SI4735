@@ -231,7 +231,6 @@ Unzip the SI4735.zip file in your Arduino Library folder.
 See more 
 [![arduino-library-badge](https://www.ardu-badge.com/badge/MyLibrary.svg?)](https://www.ardu-badge.com/PU2CLR%20SI4735)
 
-
 <BR>
 
 ## API Documentation 
