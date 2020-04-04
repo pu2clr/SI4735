@@ -364,7 +364,7 @@ __The RDS functions have not yet been properly tested__.
 | 30 | Alarm Test | Emergency Test |
 | 31 | Alarm | Emergency |
 
-<BR>
+
 
 #### SI4735 Patch Support for Single Side Band
 
