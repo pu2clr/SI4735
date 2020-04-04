@@ -6,6 +6,7 @@
  * This library is intended to provide an easier interface for controlling the SI4735.
  * 
  * If need to build a prototype based on SI47XX device, see <https://pu2clr.github.io/SI4735/><br>
+ * 
  * This larary has more than 20 examples. See <https://github.com/pu2clr/SI4735/tree/master/examples><br>
  * 
  * This library was built based on [Si47XX PROGRAMMING GUIDE-AN332](https://www.silabs.com/documents/public/application-notes/AN332.pdf) document from Silicon Labs. 
