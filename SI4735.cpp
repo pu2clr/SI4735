@@ -20,7 +20,7 @@
  * 
  * @author PU2CLR - Ricardo Lima Caratti 
  * @date Nov 2019
- * @copyright MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence). 
+ * @copyright MIT Free Software model. See [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence). 
  */
 
 #include <SI4735.h>

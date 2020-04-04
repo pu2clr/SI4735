@@ -14,10 +14,8 @@
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE
  *  
  * @author PU2CLR - Ricardo Lima Caratti 
- * 
- * By Ricardo Lima Caratti, Nov 2019 
+ * @date Nov 2019
  */
-
 
 #include <Arduino.h>
 #include <Wire.h>
