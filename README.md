@@ -6,7 +6,7 @@ This is an Arduino library for the SI47XX, BROADCAST AM/FM/SW RADIO RECEIVER IC 
 
 This library was built based on [“__Si47XX PROGRAMMING GUIDE; AN332__ ”](https://www.silabs.com/documents/public/application-notes/AN332.pdf). It also can be used on __all members of the SI473X family__ respecting, of course, the features available for each IC version. These functionalities can be seen in the comparison matrix shown in table 1 (__Product Family Function__); pages 2 and 3 of the programming guide.
 
-This library can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence)  
+This library can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://pu2clr.github.io/pu2clr/SI4735#mit-licence)  
 
 Contact: pu2clr@gmail.com
 
@@ -21,28 +21,28 @@ __Attention__:
 
 ## Summary
 
-1. [License Copyright](https://github.com/pu2clr/SI4735#mit-licence)
-2. [Thanks](https://github.com/pu2clr/SI4735#thanks)
-3. [Your support is important](https://github.com/pu2clr/SI4735#your-support-is-important)
-4. [About the SI4735](https://github.com/pu2clr/SI4735#about-the-si4735)
-5. [Terminology](https://github.com/pu2clr/SI4735#si4735-terminology)
-6. [Labrary Features](https://github.com/pu2clr/SI4735#si4735-arduino-library-features)
-7. [Library Installation](https://github.com/pu2clr/SI4735#library-installation)
-8. [API Documentation](https://github.com/pu2clr/SI4735#api-documentation)
-   * [About Class, Methods(functions) and custom data type structures](https://github.com/pu2clr/SI4735#defined-data-types-and-structures)
-   * [RDS support](https://github.com/pu2clr/SI4735#rds)
-   * [SSB support](https://github.com/pu2clr/SI4735#si4735-patch-support-for-single-side-band)
-9.  [Hardware Requirements and Setup](https://github.com/pu2clr/SI4735#hardware-requirements-and-setup)
-   * [Schematic](https://github.com/pu2clr/SI4735#schematic)
-   * [Component Parts](https://github.com/pu2clr/SI4735#parts)
-   * [Tips to build](https://github.com/pu2clr/SI4735#tips-to-build)
-   * [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested)
-   * [Photos (Tools and Accessories)](https://github.com/pu2clr/SI4735#photos-tools-and-accessories)
-11. [References](https://github.com/pu2clr/SI4735#references)
-12. [Examples](https://github.com/pu2clr/SI4735/tree/master/examples)
-13. [Videos](https://github.com/pu2clr/SI4735#videos) 
-    * [Project examples made by the author](https://github.com/pu2clr/SI4735#project-examples-made-by-the-author)
-    * [Third-party projects using this library](https://github.com/pu2clr/SI4735#third-party-projects-using-this-library)
+1. [License Copyright](https://pu2clr.github.io/pu2clr/SI4735#mit-licence)
+2. [Thanks](https://pu2clr.github.io/pu2clr/SI4735#thanks)
+3. [Your support is important](https://pu2clr.github.io/pu2clr/SI4735#your-support-is-important)
+4. [About the SI4735](https://pu2clr.github.io/pu2clr/SI4735#about-the-si4735)
+5. [Terminology](https://pu2clr.github.io/pu2clr/SI4735#si4735-terminology)
+6. [Labrary Features](https://pu2clr.github.io/pu2clr/SI4735#si4735-arduino-library-features)
+7. [Library Installation](https://pu2clr.github.io/pu2clr/SI4735#library-installation)
+8. [API Documentation](https://pu2clr.github.io/pu2clr/SI4735#api-documentation)
+   * [About Class, Methods(functions) and custom data type structures](https://pu2clr.github.io/pu2clr/SI4735#defined-data-types-and-structures)
+   * [RDS support](https://pu2clr.github.io/pu2clr/SI4735#rds)
+   * [SSB support](https://pu2clr.github.io/pu2clr/SI4735#si4735-patch-support-for-single-side-band)
+9.  [Hardware Requirements and Setup](https://pu2clr.github.io/pu2clr/SI4735#hardware-requirements-and-setup)
+   * [Schematic](https://pu2clr.github.io/pu2clr/SI4735#schematic)
+   * [Component Parts](https://pu2clr.github.io/pu2clr/SI4735#parts)
+   * [Tips to build](https://pu2clr.github.io/pu2clr/SI4735#tips-to-build)
+   * [Boards where this library has been successfully tested](https://pu2clr.github.io/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested)
+   * [Photos (Tools and Accessories)](https://pu2clr.github.io/pu2clr/SI4735#photos-tools-and-accessories)
+11. [References](https://pu2clr.github.io/pu2clr/SI4735#references)
+12. [Examples](https://pu2clr.github.io/pu2clr/SI4735/tree/master/examples)
+13. [Videos](https://pu2clr.github.io/pu2clr/SI4735#videos) 
+    * [Project examples made by the author](https://pu2clr.github.io/pu2clr/SI4735#project-examples-made-by-the-author)
+    * [Third-party projects using this library](https://pu2clr.github.io/pu2clr/SI4735#third-party-projects-using-this-library)
 
 
 
@@ -181,16 +181,16 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 
 This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs. The main features of this library are listed below.
 
-1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://github.com/pu2clr/SI4735#mit-license) to know more.   
+1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://pu2clr.github.io/pu2clr/SI4735#mit-license) to know more.   
 2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
 3. C++ Language and Object-oriented programming. You can easily extend the SI4735 class by adding more functionalities;
 4. Available on Arduino IDE (Manage Libraries); 
-5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested);
+5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested);
 6. Simplifies projects based on SI4735;
 7. __I²C communication__ and Automatic I²C bus address detection; 
-8. More than 100 [functions implemented](https://github.com/pu2clr/SI4735#api-documentation). You can customize almost every feature available on Si47XX family. 
-9. [RDS support](https://github.com/pu2clr/SI4735#rds)(__under construction...__)
-10. [SSB (Single Side Band) patch support](https://github.com/pu2clr/SI4735#single-side-band-ssb-support) 
+8. More than 100 [functions implemented](https://pu2clr.github.io/pu2clr/SI4735#api-documentation). You can customize almost every feature available on Si47XX family. 
+9. [RDS support](https://pu2clr.github.io/pu2clr/SI4735#rds)(__under construction...__)
+10. [SSB (Single Side Band) patch support](https://pu2clr.github.io/pu2clr/SI4735#single-side-band-ssb-support) 
 
 <BR>
 <BR>
@@ -220,7 +220,7 @@ This is the easiest method to install this library.
 ![Installing from this repository](extras/images/install_lib_from_git_02.png)
 
 
-First, you have to download this library in zip format. [Click here](https://github.com/pu2clr/SI4735/archive/master.zip) to download.
+First, you have to download this library in zip format. [Click here](https://pu2clr.github.io/pu2clr/SI4735/archive/master.zip) to download.
 
 Unzip the SI4735.zip file in your Arduino Library folder. 
 
@@ -238,27 +238,27 @@ See more
 
 This library has tow documentation sources: 
 
-* [Legacy documentation](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/api_pu2clr_si47xx.md); and one 
+* [Legacy documentation](https://pu2clr.github.io/pu2clr/SI4735/blob/master/extras/apidoc/api_pu2clr_si47xx.md); and one 
 * [Documentation generated automatically by Doxygen tools. [Click here to see the SI4735 Arduino Library documentation generated by Doxygen](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
 
 [Doxygen](http://www.doxygen.nl/index.html) is a tools that can generate documentation from source code. This tools help the development team to keep the documentation updated. 
 
-If you prefer, you can also read the documentation directly from the [SI4735.cpp](https://github.com/pu2clr/SI4735/blob/master/SI4735.cpp) and [SI4735.h](https://github.com/pu2clr/SI4735/blob/master/SI4735.h).These files are also well documented. 
+If you prefer, you can also read the documentation directly from the [SI4735.cpp](https://pu2clr.github.io/pu2clr/SI4735/blob/master/SI4735.cpp) and [SI4735.h](https://pu2clr.github.io/pu2clr/SI4735/blob/master/SI4735.h).These files are also well documented. 
 
-[You can download the API documentation of this library in PDF or RTL format](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/rtf/). 
+[You can download the API documentation of this library in PDF or RTL format](https://pu2clr.github.io/pu2clr/SI4735/blob/master/extras/apidoc/rtf/). 
 
 
 ### Defined Data Types and Structures
 
 The Si47XX family works with many internal data that can be represented by data structure or defined data type in C/C++. These C/C++ resources have been used widely here. This aproach made the library easier to build and maintain. Each data structure created here has its reference (name of the document and page on which it was based). In other words, to make the SI47XX device easier to deal, some defined data types were created to handle  byte and bits to process  commands, properties and responses.
 
-All data types defined in Si4735 Arduino Library are explained on [API documentation of this library](https://github.com/pu2clr/SI4735/tree/master/extras/apidoc/rtf).  Click [here](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/rtf/pu2clr_si4735_api_doc.pdf) to go to API docummentation.
+All data types defined in Si4735 Arduino Library are explained on [API documentation of this library](https://pu2clr.github.io/pu2clr/SI4735/tree/master/extras/apidoc/rtf).  Click [here](https://pu2clr.github.io/pu2clr/SI4735/blob/master/extras/apidoc/rtf/pu2clr_si4735_api_doc.pdf) to go to API docummentation.
 
 ### Public methods 
 
-This library was developed using the C++ language and the Object-oriented Programming approach. Methods are functions that belongs to the class, in this case SI4735 class. Click [here](https://github.com/pu2clr/SI4735/blob/master/extras/apidoc/rtf/pu2clr_si4735_api_doc.pdf) to go to API docummentation.
+This library was developed using the C++ language and the Object-oriented Programming approach. Methods are functions that belongs to the class, in this case SI4735 class. Click [here](https://pu2clr.github.io/pu2clr/SI4735/blob/master/extras/apidoc/rtf/pu2clr_si4735_api_doc.pdf) to go to API docummentation.
 
-All methods defined in Si4735 class are explained on [API documentation of this library](https://github.com/pu2clr/SI4735/tree/master/extras/apidoc/rtf). The list below refer to the method groups implemented by the Si4735 class.   
+All methods defined in Si4735 class are explained on [API documentation of this library](https://pu2clr.github.io/pu2clr/SI4735/tree/master/extras/apidoc/rtf). The list below refer to the method groups implemented by the Si4735 class.   
 
 
 #### Si47XX device setup and startup
@@ -388,7 +388,7 @@ The author of this project does not guarantee that procedures shown here will wo
 
 ## Hardware Requirements and Setup
 
-This library has been written for the Arduino platform and has been successfully tested on many platform. See [Boards where this library has been successfully tested](https://github.com/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested)
+This library has been written for the Arduino platform and has been successfully tested on many platform. See [Boards where this library has been successfully tested](https://pu2clr.github.io/pu2clr/SI4735#boards-where-this-library-has-been-successfully-tested)
 
 
 ### Arduino 5V and Si4735
@@ -425,13 +425,13 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 
 #### The picture below shows the SI4735-D60 pinout
 
-![Si4735-D60 pinout](https://github.com/pu2clr/SI4735/blob/master/extras/images/Si4735-D60-pinout.png)
+![Si4735-D60 pinout](https://pu2clr.github.io/pu2clr/SI4735/blob/master/extras/images/Si4735-D60-pinout.png)
 
 
 * __See some Shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
 
 * __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO, YOU HAVE TO USE A KIND OF 5V TO 3.3V CONVERTER. Also pay attention to the appropriated Arduino pinout to select the correct interrupt (IRQ), RST, SDIO and SCLK pins. The table below shows some Arduino board pinout__.  
-* __The Si473X PEN pin (16 on SSOP version and 6 on QFN version) when connected to the ground, the I²C bus address is 0x11. When this pin is connected to +3.3V, the I²C bus address is 0x63__. See the functions [getDeviceI2CAddress](https://github.com/pu2clr/SI4735#getdevicei2caddress) and [setDeviceI2CAddress](https://github.com/pu2clr/SI4735#setdevicei2caddress) to correct setup. If you follow the schematic used in this project, you do not need to do anything (the default I²C bus address is 0x11). If you do not know how this pin is configured on the board, use [getDeviceI2CAddress](https://github.com/pu2clr/SI4735#getdevicei2caddress).  
+* __The Si473X PEN pin (16 on SSOP version and 6 on QFN version) when connected to the ground, the I²C bus address is 0x11. When this pin is connected to +3.3V, the I²C bus address is 0x63__. See the functions [getDeviceI2CAddress](https://pu2clr.github.io/pu2clr/SI4735#getdevicei2caddress) and [setDeviceI2CAddress](https://pu2clr.github.io/pu2clr/SI4735#setdevicei2caddress) to correct setup. If you follow the schematic used in this project, you do not need to do anything (the default I²C bus address is 0x11). If you do not know how this pin is configured on the board, use [getDeviceI2CAddress](https://pu2clr.github.io/pu2clr/SI4735#getdevicei2caddress).  
 
 
 
@@ -599,7 +599,7 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 
 #### Protoboard
 
-The basic circuit built on protoboard is based on the “__SSOP Typical Application Schematic__”, suggested by the Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19). Two pull-up 4.7K resistors were added on I²C bus (It is an arbitrary value. Actually, this value may vary depending on your devices connected to the bus). Also, it is recomended to add two 4.7uF capacitors between the CI audio output  and audio amplifier. The photos below do not show these capacitors. See  [C7 and C8 on schematic](https://github.com/pu2clr/SI4735#schematic).
+The basic circuit built on protoboard is based on the “__SSOP Typical Application Schematic__”, suggested by the Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19). Two pull-up 4.7K resistors were added on I²C bus (It is an arbitrary value. Actually, this value may vary depending on your devices connected to the bus). Also, it is recomended to add two 4.7uF capacitors between the CI audio output  and audio amplifier. The photos below do not show these capacitors. See  [C7 and C8 on schematic](https://pu2clr.github.io/pu2clr/SI4735#schematic).
 
 <BR>
 
@@ -627,7 +627,7 @@ The figure above shows the very basic shematic implementation (no Button or Enco
 
 ## References
 
-1. [Silicon Labs Si4737 WB/AM/FM Stereo/RDS single-chip receiver HAL library for Arduino ](https://github.com/rickeywang/Si4737_i2c)
+1. [Silicon Labs Si4737 WB/AM/FM Stereo/RDS single-chip receiver HAL library for Arduino ](https://pu2clr.github.io/rickeywang/Si4737_i2c)
 2. [BROADCAST AM/FM/SW/LW RADIO RECEIVER](https://www.silabs.com/documents/public/data-sheets/Si4730-31-34-35-D60.pdf)
 3. [SI47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
 4. AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
@@ -640,11 +640,11 @@ The figure above shows the very basic shematic implementation (no Button or Enco
 11. [Using RDS/RBDS with the Si4701/03](https://www.silabs.com/documents/public/application-notes/AN243.pdf)
 12. [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
 13. __Other implementations using Si4735 and Arduino__
-    * [This is a git fork of [Michael Kennedy's]](https://github.com/FlyingLotus1983/Si4735)  
+    * [This is a git fork of [Michael Kennedy's]](https://pu2clr.github.io/FlyingLotus1983/Si4735)  
     * [Arduino Si4735 radio library](https://sourceforge.net/projects/arduino-si4735/)
     * [SI4735 AM & FM Receiver Shield](https://www.sparkfun.com/products/retired/10342)
     * [Si4735 Digital AM/FM Radio Receiver](https://os.mbed.com/users/bwilson30/notebook/si4735-digital-amfm-radio-receiver/)
-    * [Ryan Owens for SparkFun Electronics](https://github.com/csdexter/Si4735)
+    * [Ryan Owens for SparkFun Electronics](https://pu2clr.github.io/csdexter/Si4735)
     * [Silicon Labs Si4737 WB/AM/FM Stereo/RDS single-chip receiver HAL library for Arduino](https://devhub.io/repos/rickeywang-Si4737_i2c)
     * [Enhanced Software for Elektor DSP-Radio (Si4735)](https://www.elektormagazine.com/labs/enhanced-software-for-elektor-dsp-radio-si4735)
 14. __I²C__ 
