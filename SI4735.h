@@ -18,25 +18,6 @@
  * By Ricardo Lima Caratti, Nov 2019 
  */
 
-/**
- * @tableofcontents
- * @section group01 SI473X data types
- * @section group02 RDS Data types
- * @section group03 Receiver Status and Setup 
- * @section group04 Deal with Interrupt
- * @section group05 Deal with Interrupt and I2C bus
- * @section group06 Host and slave MCU setup
- * @section group07 Si47XX device information and start up
- * @section group08 Si47XX device Mode, Band and Frequency setup
- * @section group09 Si47XX filter setup
- * @section group10 Tools method
- * @section group12 FM Mono Stereo audio setup
- * @section group13 Audio setup
- * @section group14 Frequency and Si47XX device status
- * @section group15 Tune
- * @section group16 FM RDS/DBDS
- * @section group17 Si4735-D60 Single Side Band (SSB) support
- */
 
 #include <Arduino.h>
 #include <Wire.h>
@@ -857,18 +838,10 @@ typedef struct {
 } si4735_digital_output_sample_rate; // Maybe not necessary 
 
 
-/*******************************************************************
- * Deal with Interrupt
- ******************************************************************/
-
-/** @defgroup group04 Deal with Interrupt */
-/** @section group04 Deal with Interrupt */
 
 volatile static bool data_from_si4735; /** @ingroup group04 store the interrupt status */
 
 /**
- * @ingroup group04
- * 
  * @brief Interrupt Function
  * 
  * @details this function just set the volatile static bool data_from_si4735 to true;
@@ -882,15 +855,12 @@ static void interrupt_hundler()
     data_from_si4735 = true;
 };
 
-/** @defgroup group05 Deal with Interrupt */
 
 /********************************************************************** 
  * SI4735 Class definition
  **********************************************************************/
 
 /**
- * @ingroup group05
- * 
  * @brief SI4735 Class 
  * 
  * @details This class implements all functions to help you to control the Si47XX devices. 

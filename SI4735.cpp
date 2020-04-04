@@ -1,40 +1,39 @@
 /**
- * @brief SI47XX Arduino Library implementation 
+ * @mainpage SI47XX Arduino Library implementation 
  * 
- * @details This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
+ * This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
  * Arduino development environment.  It works with I2C protocol. 
  * This library is intended to provide an easier interface for controlling the SI4735.
- * @details You can see a complete documentation on <https://github.com/pu2clr/SI4735>
- * @details The are more than 20 examples on <https://github.com/pu2clr/SI4735/tree/master/examples>
  * 
- * @see documentation on https://github.com/pu2clr/SI4735.
+ * If need to build a prototype based on SI47XX device, see <https://github.com/pu2clr/SI4735>
+ * This larary has more than 20 examples. See <https://github.com/pu2clr/SI4735/tree/master/examples>
+ * 
+ * This library was built based on [Si47XX PROGRAMMING GUIDE-AN332](https://www.silabs.com/documents/public/application-notes/AN332.pdf) document from Silicon Labs. 
+ * It also can be used on **all members of the SI473X family** respecting, of course, the features available for each IC version. 
+ * These functionalities can be seen in the comparison matrix shown in table 1 (Product Family Function); pages 2 and 3 of the programming guide.
+ * 
+ * This library can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence).  
+ * Contact: pu2clr@gmail.com
+ * 
  * @see Si47XX PROGRAMMING GUIDE; AN332
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
  * 
- * @details 
- * According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For write operations, the system controller next 
+ * @author PU2CLR - Ricardo Lima Caratti 
+ * @date Nov 2019
+ * @copyright MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence). 
+ */
+
+#include <SI4735.h>
+
+/**
+ * @brief Construct a new SI4735::SI4735 object
+ * @details According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For write operations, the system controller next 
  * sends a data byte on SDIO, which is captured by the device on rising edges of SCLK. The device acknowledges 
  * each data byte by driving SDIO low for one cycle on the next falling edge of SCLK. 
  * The system controller may write up to 8 data bytes in a single 2-wire transaction. 
  * The first byte is a command, and the next seven bytes are arguments. Writing more than 8 bytes results 
  * in unpredictable device behavior". So, If you are extending this library, consider that restriction presented earlier.
- * 
  * @details Some methods were implemented usin inline resource. Inline methods are implemented in SI4735.h
- * 
- * @author PU2CLR - Ricardo Lima Caratti 
- * 
- * By Ricardo Lima Caratti, Nov 2019.
- */
-
-#include <SI4735.h>
-
-/** @defgroup group05 Deal with Interrupt and I2C bus */
-/** @section  group05 Deal with Interrupt and I2C bus */
-
-/**
- * @ingroup group05 Constructor
- * @brief Construct a new SI4735::SI4735 object
- * 
  */
 SI4735::SI4735()
 {
@@ -42,10 +41,9 @@ SI4735::SI4735()
     currentSsbStatus = 0;
 }
 
-/*
-* 
-* This function is called whenever the Si4735 changes. 
-*/
+
+/** @defgroup group05 Deal with Interrupt and I2C bus */
+
 
 /**
  * @ingroup group05 Interrupt
@@ -138,7 +136,6 @@ void SI4735::setDeviceOtherI2CAddress(uint8_t i2cAddr) {
 };
 
 /** @defgroup group06 Host and slave MCU setup */
-/** @section group06 Host and slave MCU setup */
 
 /**
  * @ingroup group06 RESET
@@ -288,7 +285,6 @@ void SI4735::powerDown(void)
 }
 
 /** @defgroup group07 Si47XX device information and start up */
-/** @section group07 Si47XX device information and start up */
 
 /**
  * @ingroup   group07 Firmware Information 
@@ -382,7 +378,6 @@ void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
 }
 
 /** @defgroup group08 Si47XX device Mode, Band and Frequency setup */
-/** @section group08 Si47XX device Mode, Band and Frequency setup */
 
 /**
  * @ingroup   group08 Internal Antenna Tuning capacitor
@@ -631,7 +626,6 @@ bool SI4735::isCurrentTuneFM()
 
 
 /** @defgroup group09 Si47XX filter setup  */
-/** @section group09 Si47XX filter setup  */
 
 /**
  * @ingroup group09 Set bandwidth
@@ -682,7 +676,6 @@ void SI4735::setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT)
 }
 
 /** @defgroup group10 Tools method */
-/** @section group10 Tools method */
 
 /**
  * @ingroup group10 Generic send property
@@ -713,7 +706,6 @@ void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter)
 }
 
 /** @defgroup group12 FM Mono Stereo audio setup */
-/** @section group12 FM Mono Stereo audio setup */
 
 /**
  * @ingroup group12 FM Mono Stereo audio setup
@@ -887,7 +879,6 @@ void SI4735::disableFmDebug()
 }
 
 /** @defgroup group13 Audio setup */
-/** @section group13 Audio setup */
 
 /**
  * @ingroup group13 Digital Audio setup
@@ -1000,7 +991,6 @@ void SI4735::volumeDown()
 }
 
 /** @defgroup group14 Frequency and Si47XX device status */
-/** @section group14 Frequency and Si47XX device status */
 
 /*******************************************************************************
  * Device Status Information
@@ -1255,7 +1245,6 @@ void SI4735::getCurrentReceivedSignalQuality(void)
 }
 
 /** @defgroup group15 Tune */
-/** @section group15 Tune */
 
 /**
  * @ingroup group15 Seek 
@@ -1382,7 +1371,6 @@ void SI4735::setSeekRssiThreshold(uint16_t value)
 }
 
 /** @defgroup group16 FM RDS/DBDS */
-/** @section group16 FM RDS/DBDS */
 
 /*******************************************************************************
  * RDS implementation 
@@ -1970,29 +1958,20 @@ char *SI4735::getRdsTime()
     return NULL;
 }
 
-/** @defgroup group17 Si4735-D60 Single Side Band (SSB) support */
-/** @section group17 Si4735-D60 Single Side Band (SSB) support */
-
-/***************************************************************************************
- * Single Side Band (SSB) implementation 
+/**
+ * @defgroup group17 Si4735-D60 Single Side Band (SSB) support
  * 
- * This implementation was tested only on Si4735-D60 device. 
- *
- * SSB modulation is a refinement of amplitude modulation that one of the side band 
- * and the carrier are suppressed.
- *
- * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5 
+ * @brief Single Side Band (SSB) implementation.<br>  
+ * First of all, it is important to say that the SSB patch content **is not part of this library**. 
+ * The paches used here were made available by Mr. Vadim Afonkin on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). 
+ * It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes.
+ * In other words, this library only supports SSB patches, the patches themselves are not part of this library.  
  * 
- * First of all, it is important to say that the SSB patch content is not part of
- * this library. The paches used here were made available by Mr. Vadim Afonkin on 
- * his Dropbox repository. It is important to note that the author of this library
- * does not encourage anyone to use the SSB patches content for commercial purposes.
- * In other words, this library only supports SSB patches, the patches themselves 
- * are not part of this library.  
+ * @details This implementation was tested only on Si4735-D60 device. 
+ * @details SSB modulation is a refinement of amplitude modulation that one of the side band and the carrier are suppressed.
  * 
- * What does SSB patch means?
- * In this context, a patch is a piece of software used to change the behavior of 
- * the SI4735 device.
+ * @details What does SSB patch means?
+ * In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
  * There is little information available about patching the SI4735.
  *  
  * The following information is the understanding of the author of this project and 
@@ -2017,14 +1996,15 @@ char *SI4735::getRdsTime()
  * you must convert the values to numeric value of the hexadecimal constants. 
  * For example: 0x15 = 21 (00010101); 0x16 = 22 (00010110); 0x01 = 1 (00000001); 
  * 0xFF = 255 (11111111);
- *
- * ATTENTION: The author of this project does not guarantee that procedures shown 
+ * 
+ * @details ATTENTION: The author of this project does not guarantee that procedures shown 
  * here will work in your development environment. Given this, it is at your own risk 
  * to continue with the procedures suggested here. This library works with the I²C 
  * communication protocol and it is designed to apply a SSB extension PATCH to CI 
  * SI4735-D60. Once again, the author disclaims any liability for any damage this 
  * procedure may cause to your SI4735 or other devices that you are using.
- ****************************************************************************************/
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5 
+ */
 
 /**
  * @ingroup group17 Patch and SSB support 
@@ -2419,6 +2399,7 @@ void SI4735::ssbPowerUp()
  *  This may limit the use of other radio functions you want implemented in Arduino.
  * 
  *  @details Example of content:
+ *  @code
  *  const PROGMEM uint8_t ssb_patch_content_full[] =
  *   { // SSB patch for whole SSBRX full download
  *       0x15, 0x00, 0x0F, 0xE0, 0xF2, 0x73, 0x76, 0x2F,
@@ -2432,6 +2413,7 @@ void SI4735::ssbPowerUp()
  *       0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x9D, 0x29};   
  * 
  *  const int size_content_full = sizeof ssb_patch_content_full;
+ *  @endcode
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220.  
  * 
