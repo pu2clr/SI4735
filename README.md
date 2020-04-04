@@ -310,7 +310,7 @@ __The RDS functions have not yet been properly tested__.
 <BR>
 <BR>
 
-The table below shows the main group types implemented by this library
+##### The table below shows the main group types implemented by this library
 
 | Group Type | Description |
 | ---------- | ----------- |
@@ -327,6 +327,8 @@ The table below shows the main group types implemented by this library
 <BR>
 
 ##### RDS Program type description
+
+
 | RDS/RBDS Code | European Program Type | North American Program Type |
 | -------- | ---------- | ------ |
 | 0 | No program definition type |	No program definition type |
