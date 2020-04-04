@@ -1,16 +1,43 @@
 /**
- * SI4735 ARDUINO LIBRARY  
- * Const, Data type and Methods definitions
+ * @brief SI4735 ARDUINO LIBRARY  
+ * 
+ * @details This is an Arduino library for the SI47XX, BROADCAST AM/FM/SW RADIO RECEIVER IC family from Silicon Labs. 
+ * @details This library is intended to provide an easier interface for controlling the SI47XX by using Arduino platform. 
+ * @details The communication used by this library is I2C.
+ * @details This file contains: const (#define), Defined Data type and Methods declarations
+ * @details You can see a complete documentation on https://github.com/pu2clr/SI4735
+ * @details The are more than 20 examples on https://github.com/pu2clr/SI4735/tree/master/examples
  *   
+ * @see https://github.com/pu2clr/SI4735
  * @see Si47XX PROGRAMMING GUIDE AN332 
  * @ref https://www.silabs.com/documents/public/application-notes/AN332.pdf
- * @see  AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE
- * @see documentation on https://github.com/pu2clr/SI4735
- * 
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE
+ *  
  * @author PU2CLR - Ricardo Lima Caratti 
  * 
  * By Ricardo Lima Caratti, Nov 2019 
  */
+
+/**
+ * @tableofcontents
+ * @section group01 SI473X data types
+ * @section group02 RDS Data types
+ * @section group03 Receiver Status and Setup 
+ * @section group04 Deal with Interrupt
+ * @section group05 Deal with Interrupt and I2C bus
+ * @section group06 Host and slave MCU setup
+ * @section group07 Si47XX device information and start up
+ * @section group08 Si47XX device Mode, Band and Frequency setup
+ * @section group09 Si47XX filter setup
+ * @section group10 Tools method
+ * @section group12 FM Mono Stereo audio setup
+ * @section group13 Audio setup
+ * @section group14 Frequency and Si47XX device status
+ * @section group15 Tune
+ * @section group16 FM RDS/DBDS
+ * @section group17 Si4735-D60 Single Side Band (SSB) support
+ */
+
 #include <Arduino.h>
 #include <Wire.h>
 
@@ -152,6 +179,7 @@
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 
 /** @defgroup group01 SI473X data types 
+ * @section group01 SI473X data types 
  *  
  * @brief SI473X data representation
  * 
@@ -401,6 +429,7 @@ typedef union {
 
 
 /** @defgroup group02 RDS Data types */
+/** @section group02 RDS Data types */
 
 /** 
  * @ingroup group02
@@ -695,6 +724,7 @@ typedef union {
 } si47x_rds_date_time;
 
 /** @defgroup group03 Receiver Status and Setup */
+/** @section group03 Receiver Status and Setup */
 
 /** 
  * @ingroup group03
@@ -832,6 +862,7 @@ typedef struct {
  ******************************************************************/
 
 /** @defgroup group04 Deal with Interrupt */
+/** @section group04 Deal with Interrupt */
 
 volatile static bool data_from_si4735; /** @ingroup group04 store the interrupt status */
 

@@ -7,7 +7,7 @@
  * @see Si47XX PROGRAMMING GUIDE; AN332
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
  * 
- * ATTENTION: 
+ * @details 
  * According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For write operations, the system controller next 
  * sends a data byte on SDIO, which is captured by the device on rising edges of SCLK. The device acknowledges 
  * each data byte by driving SDIO low for one cycle on the next falling edge of SCLK. 
@@ -15,7 +15,7 @@
  * The first byte is a command, and the next seven bytes are arguments. Writing more than 8 bytes results 
  * in unpredictable device behavior". So, If you are extending this library, consider that restriction presented earlier.
  * 
- * ATTENTION: Some methods were implemented usin inline resource. Inline methods are implemented in SI4735.h
+ * @details Some methods were implemented usin inline resource. Inline methods are implemented in SI4735.h
  * 
  * @author PU2CLR - Ricardo Lima Caratti 
  * 
@@ -25,10 +25,10 @@
 #include <SI4735.h>
 
 /** @defgroup group05 Deal with Interrupt and I2C bus */
+/** @section  group05 Deal with Interrupt and I2C bus */
 
 /**
  * @ingroup group05 Constructor
- * 
  * @brief Construct a new SI4735::SI4735 object
  * 
  */
@@ -45,7 +45,6 @@ SI4735::SI4735()
 
 /**
  * @ingroup group05 Interrupt
- *  
  * @brief Interrupt handle
  * 
  * @details If you setup interrupt, this function will be called whenever the Si4735 changes. 
@@ -135,6 +134,7 @@ void SI4735::setDeviceOtherI2CAddress(uint8_t i2cAddr) {
 };
 
 /** @defgroup group06 Host and slave MCU setup */
+/** @section group06 Host and slave MCU setup */
 
 /**
  * @ingroup group06 RESET
@@ -284,13 +284,16 @@ void SI4735::powerDown(void)
 }
 
 /** @defgroup group07 Si47XX device information and start up */
+/** @section group07 Si47XX device information and start up */
 
 /**
  * @ingroup   group07 Firmware Information 
  * 
  * @brief Gets firmware information 
+ * @details The firmware information will be stored in firmwareInfo member variable 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 66, 131
+ * @see firmwareInfo
  */
 void SI4735::getFirmware(void)
 {
@@ -375,6 +378,7 @@ void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
 }
 
 /** @defgroup group08 Si47XX device Mode, Band and Frequency setup */
+/** @section group08 Si47XX device Mode, Band and Frequency setup */
 
 /**
  * @ingroup   group08 Internal Antenna Tuning capacitor
@@ -623,6 +627,7 @@ bool SI4735::isCurrentTuneFM()
 
 
 /** @defgroup group09 Si47XX filter setup  */
+/** @section group09 Si47XX filter setup  */
 
 /**
  * @ingroup group09 Set bandwidth
@@ -673,6 +678,7 @@ void SI4735::setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT)
 }
 
 /** @defgroup group10 Tools method */
+/** @section group10 Tools method */
 
 /**
  * @ingroup group10 Generic send property
@@ -703,6 +709,7 @@ void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter)
 }
 
 /** @defgroup group12 FM Mono Stereo audio setup */
+/** @section group12 FM Mono Stereo audio setup */
 
 /**
  * @ingroup group12 FM Mono Stereo audio setup
@@ -876,6 +883,7 @@ void SI4735::disableFmDebug()
 }
 
 /** @defgroup group13 Audio setup */
+/** @section group13 Audio setup */
 
 /**
  * @ingroup group13 Digital Audio setup
@@ -988,6 +996,7 @@ void SI4735::volumeDown()
 }
 
 /** @defgroup group14 Frequency and Si47XX device status */
+/** @section group14 Frequency and Si47XX device status */
 
 /*******************************************************************************
  * Device Status Information
@@ -1242,6 +1251,7 @@ void SI4735::getCurrentReceivedSignalQuality(void)
 }
 
 /** @defgroup group15 Tune */
+/** @section group15 Tune */
 
 /**
  * @ingroup group15 Seek 
@@ -1368,6 +1378,7 @@ void SI4735::setSeekRssiThreshold(uint16_t value)
 }
 
 /** @defgroup group16 FM RDS/DBDS */
+/** @section group16 FM RDS/DBDS */
 
 /*******************************************************************************
  * RDS implementation 
@@ -1956,6 +1967,7 @@ char *SI4735::getRdsTime()
 }
 
 /** @defgroup group17 Si4735-D60 Single Side Band (SSB) support */
+/** @section group17 Si4735-D60 Single Side Band (SSB) support */
 
 /***************************************************************************************
  * Single Side Band (SSB) implementation 
