@@ -10,7 +10,7 @@ There is a facebook group called [__Si47XX for Radio Experimenters__](https://ww
 
 
 __Attention__:
-* You might prefer read the library documentation via [this PDF file](). 
+* You might prefer read the library documentation [via this URL](https://pu2clr.github.io/SI4735/extras/apidoc/html/). 
 * This library has been successfully tested on Arduino Pro Mini 3.3V; Arduino UNO (using voltage converter); Arduino YÚN (using voltage converter); ESP32 (LOLIN32 WEMOS); Mega 2560 (using voltage converter); Genuino Micro/Atmega32u4 (using voltage converter) and Arduino DUE.   
 
 <BR>
