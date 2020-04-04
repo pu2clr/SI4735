@@ -62,13 +62,11 @@ void SI4735::waitInterrupr(void)
  * 
  * @brief I2C bus address setup
  * 
- * @details Scans for two possible addresses for the Si47XX (0x11 or 0x63 )
- * 
- * This function also sets the system to the found I2C bus address of Si47XX.
- * 
- * You do not need to use this function if the SEN PIN is configured to ground (GND). 
+ * @details Scans for two possible addresses for the Si47XX (0x11 or 0x63).
+ * @details This function also sets the system to the found I2C bus address of Si47XX.
+ * @details You do not need to use this function if the SEN PIN is configured to ground (GND). 
  * The default I2C address is 0x11.
- * Use this function if you do not know how the SEN pin is configured.
+ * @details Use this function if you do not know how the SEN pin is configured.
  * 
  * @param uint8_t  resetPin MCU Mater (Arduino) reset pin
  * 
@@ -110,15 +108,13 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
  * @brief Sets the I2C Bus Address
  *
  * @details The parameter senPin is not the I2C bus address. It is the SEN pin setup of the schematic (eletronic circuit).
- * 
- * If it is connected to the ground, call this function with senPin = 0; else senPin = 1.
- * You do not need to use this function if the SEN PIN configured to ground (GND).
- * 
- * The default value is 0x11 (senPin = 0). In this case you have to ground the pin SEN of the SI473X. 
- * If you want to change this address, call this function with senPin = 1
+ * @details If it is connected to the ground, call this function with senPin = 0; else senPin = 1.
+ * @details You do not need to use this function if the SEN PIN configured to ground (GND).
+ * @details The default value is 0x11 (senPin = 0). In this case you have to ground the pin SEN of the SI473X. 
+ * @details If you want to change this address, call this function with senPin = 1.
  *  
- * @param senPin 0 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to low (GND - 0V)
- *               1 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to high (+3.3V)
+ * @param senPin 0 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to low (GND - 0V);
+ *               1 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to high (+3.3V).
  *
  */
 void SI4735::setDeviceI2CAddress(uint8_t senPin) {
@@ -162,7 +158,7 @@ void SI4735::reset()
  * 
  * @brief  Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1).  
  * 
- * This function should be used before sending any command to a SI47XX device.
+ * @details This function should be used before sending any command to a SI47XX device.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 63, 128
  */
@@ -226,14 +222,15 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * 
  * @details Before call this function call the setPowerUp to set up the parameters.
  * 
- * Parameters you have to set up with setPowerUp
- * 
- * CTSIEN   Interrupt anabled or disabled;
- * GPO2OEN  GPO2 Output Enable or disabled;
- * PATCH    Boot normally or patch;
- * XOSCEN   Use external crystal oscillator;
- * FUNC     defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
- * OPMODE   SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011)
+ * @details Parameters you have to set up with setPowerUp
+ * | Parameter | Description |
+ * | --------- | ----------- |
+ * | CTSIEN    | Interrupt anabled or disabled |
+ * | GPO2OEN   | GPO2 Output Enable or disabled |
+ * | PATCH     | Boot normally or patch |
+ * | XOSCEN    | Use external crystal oscillator |
+ * | FUNC      | defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver |
+ * | OPMODE    | SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011) |
  * 
  * @see  SI4735::setPowerUp()
  * @see  Si47XX PROGRAMMING GUIDE; AN332; pages 64, 129
@@ -1431,26 +1428,30 @@ void SI4735::clearRdsBuffer0A()
 /**
  * @ingroup group16 RDS setup 
  * 
- * @brief Sets RDS property  (FM_RDS_CONFIG)
+ * @brief Sets RDS property
  * 
  * @details Configures RDS settings to enable RDS processing (RDSEN) and set RDS block error thresholds. 
  * @details When a RDS Group is received, all block errors must be less than or equal the associated block 
- * @details error threshold for the group to be stored in the RDS FIFO. 
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332; page 104
- * 
- * IMPORTANT: 
+ * error threshold for the group to be stored in the RDS FIFO. 
+ * @details IMPORTANT: 
  * All block errors must be less than or equal the associated block error threshold 
  * for the group to be stored in the RDS FIFO. 
- * 0 = No errors.
- * 1 = 1–2 bit errors detected and corrected. 
- * 2 = 3–5 bit errors detected and corrected. 
- * 3 = Uncorrectable.
- * Recommended Block Error Threshold options:
- *  2,2,2,2 = No group stored if any errors are uncorrected.
- *  3,3,3,3 = Group stored regardless of errors.
- *  0,0,0,0 = No group stored containing corrected or uncorrected errors.
- *  3,2,3,3 = Group stored with corrected errors on B, regardless of errors on A, C, or D.
+ * |Value | Description |
+ * |------| ----------- | 
+ * | 0    | No errors |
+ * | 1    | 1–2 bit errors detected and corrected |
+ * | 2    | 3–5 bit errors detected and corrected |
+ * | 3    | Uncorrectable |
+ * 
+ * @details Recommended Block Error Threshold options:
+ * | Exemples | Description |
+ * | -------- | ----------- |
+ * | 2,2,2,2  | No group stored if any errors are uncorrected |
+ * | 3,3,3,3  | Group stored regardless of errors |
+ * | 0,0,0,0  | No group stored containing corrected or uncorrected errors |
+ * | 3,2,3,3  | Group stored with corrected errors on B, regardless of errors on A, C, or D | 
+ *  
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 104
  * 
  * @param uint8_t RDSEN RDS Processing Enable; 1 = RDS processing enabled.
  * @param uint8_t BLETHA Block Error Threshold BLOCKA.   
