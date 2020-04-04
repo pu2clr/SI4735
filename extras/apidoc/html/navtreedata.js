@@ -24,6 +24,8 @@ var NAVTREE =
 [
   [ "Si4735 Arduino Library", "index.html", [
     [ "SI47XX Arduino Library implementation", "index.html", null ],
+    [ "Test List", "test.html", null ],
+    [ "Todo List", "todo.html", null ],
     [ "Deprecated List", "deprecated.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", "annotated.html", [

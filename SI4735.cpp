@@ -49,7 +49,7 @@ SI4735::SI4735()
 /**
  * @ingroup group05 Interrupt
  * @brief Interrupt handle
- * 
+ * @test
  * @details If you setup interrupt, this function will be called whenever the Si4735 changes. 
  * 
  */
@@ -72,7 +72,8 @@ void SI4735::waitInterrupr(void)
  * 
  * @param uint8_t  resetPin MCU Mater (Arduino) reset pin
  * 
- * @return int16_t 0x11   if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error.                
+ * @return int16_t 0x11   if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error.  
+ * @test              
  */
 int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
     int16_t error;
@@ -838,7 +839,7 @@ void SI4735::setFmBlendMultiPathMonoThreshold(uint8_t parameter)
 
 /** 
  * @ingroup group12 FM Mono Stereo audio setup
- * 
+ * @todo 
  * @brief Turn Off Stereo operation.
  */
 void SI4735::setFmStereoOff()
@@ -848,7 +849,7 @@ void SI4735::setFmStereoOff()
 
 /** 
  * @ingroup group12 FM Mono Stereo audio setup
- * 
+ * @todo 
  * @brief Turn Off Stereo operation.
  */
 void SI4735::setFmStereoOn()
