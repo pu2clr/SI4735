@@ -201,11 +201,12 @@ typedef union {
  * @details It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH)  
  */
 typedef union {
+    //! Raw data that represents the frequency stored in the Si47XX device.
     struct
     {
         uint8_t FREQL; //! Tune Frequency High byte.
         uint8_t FREQH; //! Tune Frequency Low byte.
-    } raw; //! Raw data that represents the frequency stored in the Si47XX device.
+    } raw; 
     uint16_t value; //! frequency (integer value)
 } si47x_frequency;
 
