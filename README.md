@@ -14,7 +14,7 @@ There is a facebook group called [__Si47XX for Radio Experimenters__](https://ww
 
 
 
-__Attention__: 
+## __Attention__: 
 * __The SI473 (SI473X) is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V converter. It is important to say that just power the Si47XX device with 3.3V is not enough. I mean, on an Arduino 5V board, just feeding the Si47XX device with the 3.3V of the Arduino output is not enough. You have to be aware that the Arduino that operates with 5V, the digital pins and the I2C bus will send 5V signals to the Si47XX device. That configuration can make the system unstable or damage the Si47XX device__.  
 * __This library has been successfully tested on Arduino Pro Mini 3.3V; Arduino UNO (using voltage converter); Arduino YÚN (using voltage converter); ESP32 (LOLIN32 WEMOS); Mega 2560 (using voltage converter); Genuino Micro/Atmega32u4 (using voltage converter) and Arduino DUE.__    
 
