@@ -116,7 +116,6 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
  *  
  * @param senPin 0 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to low (GND - 0V);
  *               1 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to high (+3.3V).
- *
  */
 void SI4735::setDeviceI2CAddress(uint8_t senPin) {
     deviceAddress = (senPin)? SI473X_ADDR_SEN_HIGH : SI473X_ADDR_SEN_LOW;
