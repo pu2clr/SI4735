@@ -320,12 +320,14 @@ void SI4735::getFirmware(void)
  *  
  * @brief Starts the Si473X device. 
  *
+ * @details Use this function to start the device up with the parameters shown below.
  * @details If the audio mode parameter is not entered, analog mode will be considered.
+ * @details You can use any Arduino digital pin. Be sure you are using less than 3.6V on Si47XX RST pin.   
  *  
- * @param uint8_t resetPin Digital Arduino Pin used to RESET command 
- * @param uint8_t interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled
- * @param uint8_t defaultFunction
- * @param uint8_t audioMode default SI473X_ANALOG_AUDIO (Analog Audio). Use SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO
+ * @param uint8_t resetPin Digital Arduino Pin used to RESET de Si47XX device. 
+ * @param uint8_t interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled.
+ * @param uint8_t defaultFunction is the mode you want the receiver starts.
+ * @param uint8_t audioMode default SI473X_ANALOG_AUDIO (Analog Audio). Use SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO.
  */
 void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode)
 {
@@ -368,10 +370,12 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, 
  * 
  * @brief  Starts the Si473X device.  
  * 
- * @details Use this setup if you are not using interrupt resource
+ * @details Use this setup if you are not using interrupt resource.
+ * @details If the audio mode parameter is not entered, analog mode will be considered.
+ * @details You can use any Arduino digital pin. Be sure you are using less than 3.6V on Si47XX RST pin.   
  * 
- * @param uint8_t resetPin Digital Arduino Pin used to RESET command 
- * @param uint8_t defaultFunction
+ * @param uint8_t resetPin Digital Arduino Pin used to RESET command. 
+ * @param uint8_t defaultFunction. 0 =  FM mode; 1 = AM 
  */
 void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
 {
