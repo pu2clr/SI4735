@@ -440,8 +440,6 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 
 ![Silicon Labs Schematic](./extras/images/silicon_labs_schematic_pag_19.png)
 
-
-<BR>
 <BR>
 
 ### Parts
