@@ -32,9 +32,9 @@ There is a facebook group called [__Si47XX for Radio Experimenters__](https://ww
    * [Tips to build](https://pu2clr.github.io/SI4735/#tips-to-build)
    * [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
    * [Photos (Tools and Accessories)](https://pu2clr.github.io/SI4735/#photos-tools-and-accessories)
-11. [References](https://pu2clr.github.io/SI4735/#references)
-12. [Examples](https://pu2clr.github.io/SI4735/examples)
-13. [Videos](https://pu2clr.github.io/SI4735/#videos) 
+10. [References](https://pu2clr.github.io/SI4735/#references)
+11. [Examples](https://pu2clr.github.io/SI4735/examples)
+12. [Videos](https://pu2clr.github.io/SI4735/#videos) 
     * [Project examples made by the author](https://pu2clr.github.io/SI4735/#project-examples-made-by-the-author)
     * [Third-party projects using this library](https://pu2clr.github.io/SI4735/#third-party-projects-using-this-library)
 
@@ -213,8 +213,9 @@ This is the easiest method to install this library.
 
 ![Installing from this repository](extras/images/install_lib_from_git_02.png)
 
-
-First, you have to download this library in zip format. [Click here](https://github.com/pu2clr/SI4735/archive/master.zip) to download. 
+First, you have to download this library in zip format. [Click here](https://github.com/pu2clr/SI4735/archive/master.zip) to download. Click here](https://github.com/pu2clr/SI4735) to go to github repository.
+ 
+You migh need some old version (release) of this library. If so, [check this link](https://github.com/pu2clr/SI4735/releases). 
 
 Unzip the SI4735.zip file in your Arduino Library folder. 
 
