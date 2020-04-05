@@ -695,7 +695,7 @@ _EnD_oF_dEf_TeXt_;
 Get the Radio Data System (RDS) Interrupt status.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-@see Si47XX PROGRAMMING GUIDE; AN332; pages 63
+@see Si47XX PROGRAMMING GUIDE; AN332; page 63
 @return RDSINT status  
 <br>
 _EnD_oF_dEf_TeXt_;
