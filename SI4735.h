@@ -190,8 +190,8 @@ typedef union {
         uint8_t CTSIEN : 1;  //! CTS Interrupt Enable (0 = CTS interrupt disabled; 1 = CTS interrupt enabled).
         // ARG2
         uint8_t OPMODE; //! Application Setting. See page 65
-    } arg;
-    uint8_t raw[2]; //! same arg memory position, so same content.
+    } arg; //! Refined powerup parameters 
+    uint8_t raw[2]; //! Raw powerup parameters data. Same arg memory position. So, same content.
 } si473x_powerup;
 
 /**
@@ -205,8 +205,8 @@ typedef union {
     {
         uint8_t FREQL; //! Tune Frequency High byte.
         uint8_t FREQH; //! Tune Frequency Low byte.
-    } raw;
-    uint16_t value;
+    } raw; //! Raw data that represents the frequency stored in the Si47XX device.
+    uint16_t value; //! frequency (integer value)
 } si47x_frequency;
 
 /**
