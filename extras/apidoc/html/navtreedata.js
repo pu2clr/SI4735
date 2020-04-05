@@ -22,7 +22,7 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-  [ "Si4735 Arduino Library", "index.html", [
+  [ "PU2CLR Si4735 Arduino Library", "index.html", [
     [ "SI47XX Arduino Library implementation", "index.html", null ],
     [ "Todo List", "todo.html", null ],
     [ "Deprecated List", "deprecated.html", null ],
