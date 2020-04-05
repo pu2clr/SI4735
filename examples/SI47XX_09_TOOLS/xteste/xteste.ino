@@ -11,5 +11,5 @@ void loop() {
     if (digitalRead(6) == LOW) r.setFM(6400, 10800, 10700, 10);
     if (digitalRead(7) == LOW) r.seekStationUp();
     if (digitalRead(8) == LOW) r.seekStationDown();
-    delay(300);
+    delay(150);
 }
