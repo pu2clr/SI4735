@@ -960,7 +960,7 @@ public:
 
     /**
      * @brief Get the Radio Data System (RDS) Interrupt status
-     * @see Si47XX PROGRAMMING GUIDE; AN332; pages 63
+     * @see Si47XX PROGRAMMING GUIDE; AN332; page 63
      * @return RDSINT status  
      */
     inline bool getRadioDataSystemInterrupt() { 
