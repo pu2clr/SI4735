@@ -172,13 +172,16 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Starts the Si473X device. </p>
+<p>Use this function to start the device up with the parameters shown below.</p>
 <p>If the audio mode parameter is not entered, analog mode will be considered.</p>
+<p>You can use any Arduino digital pin. Be sure you are using less than 3.6V on Si47XX RST pin. <br  />
+</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">uint8_t</td><td>resetPin Digital Arduino Pin used to RESET command </td></tr>
-    <tr><td class="paramname">uint8_t</td><td>interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled </td></tr>
-    <tr><td class="paramname">uint8_t</td><td>defaultFunction </td></tr>
-    <tr><td class="paramname">uint8_t</td><td>audioMode default SI473X_ANALOG_AUDIO (Analog Audio). Use SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO </td></tr>
+    <tr><td class="paramname">uint8_t</td><td>resetPin Digital Arduino Pin used to RESET de Si47XX device. </td></tr>
+    <tr><td class="paramname">uint8_t</td><td>interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled. </td></tr>
+    <tr><td class="paramname">uint8_t</td><td>defaultFunction is the mode you want the receiver starts. </td></tr>
+    <tr><td class="paramname">uint8_t</td><td>audioMode default SI473X_ANALOG_AUDIO (Analog Audio). Use SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO. </td></tr>
   </table>
   </dd>
 </dl>
@@ -215,11 +218,14 @@ Functions</h2></td></tr>
 
 <p>Starts the Si473X device. <br  />
  </p>
-<p>Use this setup if you are not using interrupt resource</p>
+<p>Use this setup if you are not using interrupt resource.</p>
+<p>If the audio mode parameter is not entered, analog mode will be considered.</p>
+<p>You can use any Arduino digital pin. Be sure you are using less than 3.6V on Si47XX RST pin. <br  />
+</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">uint8_t</td><td>resetPin Digital Arduino Pin used to RESET command </td></tr>
-    <tr><td class="paramname">uint8_t</td><td>defaultFunction </td></tr>
+    <tr><td class="paramname">uint8_t</td><td>resetPin Digital Arduino Pin used to RESET command. </td></tr>
+    <tr><td class="paramname">uint8_t</td><td>defaultFunction. 0 = FM mode; 1 = AM </td></tr>
   </table>
   </dd>
 </dl>
