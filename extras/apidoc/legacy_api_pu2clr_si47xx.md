@@ -1,17 +1,11 @@
 <meta name="google-site-verification" content="_wADvyP4vuP_aw0YTmu90mdAhz70vNwTF_pdAMMb0HY" />
 
-# Si4735 Library for Arduino
+# Si4735 Library for Arduino API Documentation
 
-This library can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735/wiki#mit-licence)  
 
-Contact: pu2clr@gmail.com
+This library can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735/wiki#mit-licence). Contact: pu2clr@gmail.com.
 
 There is a facebook group called [__Si47XX for Radio Experimenters__](https://www.facebook.com/groups/532613604253401/) where the purpose is exchanging experiences with projects based on Silicon Labs  SI47XX IC family. You will be welcome to the group [Si47XX for Radio Experimenters](https://www.facebook.com/groups/532613604253401/).
-
-
-__Attention__:
-* You might prefer read the library documentation [via this URL](https://pu2clr.github.io/SI4735/extras/apidoc/html/). 
-* This library has been successfully tested on Arduino Pro Mini 3.3V; Arduino UNO (using voltage converter); Arduino YÚN (using voltage converter); ESP32 (LOLIN32 WEMOS); Mega 2560 (using voltage converter); Genuino Micro/Atmega32u4 (using voltage converter) and Arduino DUE.   
 
 <BR>
 
@@ -26,8 +20,6 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <BR>
-<BR>
-
 
 ## Thanks
 
@@ -37,8 +29,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 * WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode;
 * All members of the Facebook groups ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) and ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/) for the  suggestions and corrections during the development of this project.
 
-
-<BR>
 <BR>
 
 ## Your support is important.
@@ -60,7 +50,6 @@ This library uses the I²C communication protocol and implements most of the fun
 9. [RDS support](https://github.com/pu2clr/SI4735/wiki#rds)(__under construction...__)
 10. [SSB (Single Side Band) patch support](https://github.com/pu2clr/SI4735/wiki#single-side-band-ssb-support)
 
-<BR>
 <BR>
 
 ## Library Installation
