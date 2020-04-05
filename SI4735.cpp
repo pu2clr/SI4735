@@ -252,10 +252,10 @@ void SI4735::radioPowerUp(void) {
 /**
  * @ingroup   group06 Si47XX device Power Up 
  * 
- * @deprecated Consider use radioPowerUp instead
- * 
  * @brief You have to call setPowerUp method before. 
- * 
+ * @details This function is still available only for legacy reasons. 
+ *          If you are using this function, please, replace it by radioPowerup().
+ * @deprecated Use radioPowerUp instead.
  * @see  SI4735::setPowerUp()
  * @see  Si47XX PROGRAMMING GUIDE; AN332; pages 64, 129
  */
