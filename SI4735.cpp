@@ -679,7 +679,9 @@ void SI4735::setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT)
     waitToSend();
 }
 
-/** @defgroup group10 Tools method */
+/** @defgroup group10 Tools method 
+ * @details A set of functions used to support other functions
+*/
 
 /**
  * @ingroup group10 Generic send property
