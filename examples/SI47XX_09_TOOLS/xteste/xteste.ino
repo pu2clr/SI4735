@@ -1,0 +1,15 @@
+#include <SI4735.h>
+SI4735 r;
+void setup() {
+    for (int i = 5; i <= 8; i++) pinMode(i, INPUT_PULLUP);
+    r.setup(12,0);
+    r.setFM(6400,10800,10700,10);
+    r.setVolume(50);
+}
+void loop() {
+    if (digitalRead(5) == LOW) r.setAM(520,1790,810,10);
+    if (digitalRead(6) == LOW) r.setFM(6400, 10800, 10700, 10);
+    if (digitalRead(7) == LOW) r.seekStationUp();
+    if (digitalRead(8) == LOW) r.seekStationDown();
+    delay(300);
+}
