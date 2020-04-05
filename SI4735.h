@@ -927,7 +927,6 @@ public:
     void reset(void); 
     void waitToSend(void); 
 
-    // for setup, the default is  SI473X_ANALOG_AUDIO
     void setup(uint8_t resetPin, uint8_t defaultFunction); 
     void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO); 
 
@@ -938,11 +937,9 @@ public:
 
     void setFrequency(uint16_t); 
 
-    // getStatus
     void getStatus(); 
     void getStatus(uint8_t, uint8_t);
 
-    // Status response
     uint16_t getFrequency(void); 
     uint16_t getCurrentFrequency(); 
 
@@ -1280,7 +1277,6 @@ public:
     inline uint8_t getFirmwareCMPMINOR() { return firmwareInfo.resp.CMPMINOR; }; //! RESP7 - Returns the Component Minor Revision (ASCII).
     inline uint8_t getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; };   //! RESP8 -  Returns the Chip Revision (ASCII).
 
-    // Volume control
     void setVolume(uint8_t volume);
     uint8_t getVolume();
     void volumeDown();
@@ -1288,11 +1284,9 @@ public:
     inline uint8_t getCurrentVolume() { return volume; }; //! Returns the current volume level.
     void setAudioMute( bool off); // if true mute the audio; else unmute
 
-    // Digital Audio setup
     void digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, uint8_t OFALL);
     void digitalOutputSampleRate(uint16_t DOSR);
 
-    // Receiver Mode
     void setAM();
     void setFM();
     void setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint16_t step);
@@ -1332,7 +1326,6 @@ public:
     void setFmStereoOn();
     void setFmStereoOff();
 
-    // RDS implementation
     void RdsInit();
     void setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t RDSSYNCFOUND, uint8_t RDSSYNCLOST, uint8_t RDSRECV);
     void getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY);
@@ -1361,13 +1354,9 @@ public:
 
     char *getRdsTime(void);
 
-    // Test
     void getNext2Block(char *);
     void getNext4Block(char *);
 
-    /*
-     * SSB 
-     */
     void ssbSetup();
     void setSSBBfo(int offset);
     void setSSBConfig(uint8_t AUDIOBW, uint8_t SBCUTFLT, uint8_t AVC_DIVIDER, uint8_t AVCEN, uint8_t SMUTESEL, uint8_t DSP_AFCDIS);
@@ -1380,9 +1369,6 @@ public:
     void setSSBDspAfc(uint8_t DSP_AFCDIS);
     void setSSBSoftMute(uint8_t SMUTESEL);
 
-    /*
-     * SSB PATCH
-     */
     si47x_firmware_query_library queryLibraryId();
     void patchPowerUp(); 
     bool downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size);

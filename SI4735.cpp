@@ -49,7 +49,6 @@ SI4735::SI4735()
 /**
  * @ingroup group05 Interrupt
  * @brief Interrupt handle
- * @test 1
  * @details If you setup interrupt, this function will be called whenever the Si4735 changes. 
  * 
  */
@@ -72,8 +71,7 @@ void SI4735::waitInterrupr(void)
  * 
  * @param uint8_t  resetPin MCU Mater (Arduino) reset pin
  * 
- * @return int16_t 0x11   if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error.  
- * @test Teste 2             
+ * @return int16_t 0x11   if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error.    
  */
 int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
     int16_t error;
