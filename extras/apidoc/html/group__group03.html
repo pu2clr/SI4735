@@ -347,25 +347,25 @@ raw[2]</td>
 <td class="fieldname">
 AMCHFLT: 4</td>
 <td class="fielddoc">
-</td></tr>
+Selects the bandwidth of the AM channel filter. </td></tr>
 <tr><td class="fieldtype">
 <a id="ae6741d3dc93d6502bb837ca874ee4f94"></a>uint8_t</td>
 <td class="fieldname">
 AMPLFLT: 1</td>
 <td class="fielddoc">
-</td></tr>
+Enables the AM Power Line Noise Rejection Filter. </td></tr>
 <tr><td class="fieldtype">
 <a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
 <td class="fieldname">
 DUMMY1: 4</td>
 <td class="fielddoc">
-Selects the bandwidth of the AM channel filter. </td></tr>
+</td></tr>
 <tr><td class="fieldtype">
 <a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
 <td class="fieldname">
 DUMMY2: 7</td>
 <td class="fielddoc">
-Enables the AM Power Line Noise Rejection Filter. </td></tr>
+</td></tr>
 </table>
 
 </div>
@@ -419,43 +419,43 @@ raw[2]</td>
 <td class="fieldname">
 AUDIOBW: 4</td>
 <td class="fielddoc">
-</td></tr>
+0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz </td></tr>
 <tr><td class="fieldtype">
 <a id="a911ed778d046d0d22bf2df2938c1f084"></a>uint8_t</td>
 <td class="fieldname">
 AVC_DIVIDER: 4</td>
 <td class="fielddoc">
-SSB side band cutoff filter for band passand low pass filter. </td></tr>
+set 0 for SSB mode; set 3 for SYNC mode; </td></tr>
 <tr><td class="fieldtype">
 <a id="a55576f7d4412f08280e49fba44ef707a"></a>uint8_t</td>
 <td class="fieldname">
 AVCEN: 1</td>
 <td class="fielddoc">
-set 0 for SSB mode; set 3 for SYNC mode; </td></tr>
+SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default);. </td></tr>
 <tr><td class="fieldtype">
 <a id="a5ff4a830553e8db4d36f8b3677e3d412"></a>uint8_t</td>
 <td class="fieldname">
 DSP_AFCDIS: 1</td>
 <td class="fielddoc">
-Always write 0;. </td></tr>
+0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. </td></tr>
 <tr><td class="fieldtype">
 <a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
 <td class="fieldname">
 DUMMY1: 1</td>
 <td class="fielddoc">
-SSB Soft-mute Based on RSSI or SNR. </td></tr>
+Always write 0;. </td></tr>
 <tr><td class="fieldtype">
 <a id="a5fd112c4d977a89cf8b7717ef0a12a9b"></a>uint8_t</td>
 <td class="fieldname">
 SBCUTFLT: 4</td>
 <td class="fielddoc">
-0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz </td></tr>
+SSB side band cutoff filter for band passand low pass filter. </td></tr>
 <tr><td class="fieldtype">
 <a id="aeb7815cb295d531065f797c39cf36da5"></a>uint8_t</td>
 <td class="fieldname">
 SMUTESEL: 1</td>
 <td class="fielddoc">
-SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default);. </td></tr>
+SSB Soft-mute Based on RSSI or SNR. </td></tr>
 </table>
 
 </div>
@@ -510,31 +510,31 @@ refined</td>
 <td class="fieldname">
 dummy: 8</td>
 <td class="fielddoc">
-Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge) </td></tr>
+Always 0. </td></tr>
 <tr><td class="fieldtype">
 <a id="abfdc1bd5a8f46739eef7fd4fa44ad600"></a>uint8_t</td>
 <td class="fieldname">
 OFALL: 1</td>
 <td class="fielddoc">
-Digital Output Mode (0000=I2S, 0110 = Left-justified, 1000 = MSB at second DCLK after DFS pulse, 1100 = MSB at first DCLK after DFS pulse). </td></tr>
+Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge) </td></tr>
 <tr><td class="fieldtype">
 <a id="a870fffeed608a381a3abc7e27b22a7ee"></a>uint8_t</td>
 <td class="fieldname">
 OMODE: 4</td>
 <td class="fielddoc">
-Digital Output Mono Mode (0=Use mono/stereo blend ). </td></tr>
+Digital Output Mode (0000=I2S, 0110 = Left-justified, 1000 = MSB at second DCLK after DFS pulse, 1100 = MSB at first DCLK after DFS pulse). </td></tr>
 <tr><td class="fieldtype">
 <a id="a61324adf2d131b4df8038991cbca0842"></a>uint8_t</td>
 <td class="fieldname">
 OMONO: 1</td>
 <td class="fielddoc">
-Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits). </td></tr>
+Digital Output Mono Mode (0=Use mono/stereo blend ). </td></tr>
 <tr><td class="fieldtype">
 <a id="a8e0cf30fb9cddc896d94167934615d42"></a>uint8_t</td>
 <td class="fieldname">
 OSIZE: 2</td>
 <td class="fielddoc">
-</td></tr>
+Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits). </td></tr>
 </table>
 
 </div>
