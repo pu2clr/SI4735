@@ -1330,7 +1330,16 @@ public:
     void setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t RDSSYNCFOUND, uint8_t RDSSYNCLOST, uint8_t RDSRECV);
     void getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY);
     void getRdsStatus();
-    inline bool getRdsReceived() { return currentRdsStatus.resp.RDSRECV; };           //!<  1 = FIFO filled to minimum number of groups
+
+    /**
+     * @brief Get the Rds Received FIFO
+     * @details if FIFO is 1, it means the minimum number of groups was filled
+     * @return true if minimum number of groups was filled.
+     */
+    inline bool getRdsReceived() { 
+        return currentRdsStatus.resp.RDSRECV; 
+    };           
+    
     inline bool getRdsSyncLost() { return currentRdsStatus.resp.RDSSYNCLOST; };       //!<  1 = Lost RDS synchronization
     inline bool getRdsSyncFound() { return currentRdsStatus.resp.RDSSYNCFOUND; };     //!<  1 = Found RDS synchronization
     inline bool getRdsNewBlockA() { return currentRdsStatus.resp.RDSNEWBLOCKA; };     //!<  1 = Valid Block A data has been received.
