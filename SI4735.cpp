@@ -10,7 +10,7 @@
  * If you need to build a prototype based on SI47XX device, see <https://pu2clr.github.io/SI4735/><br>
  * 
  * This larary has more than 20 examples. See <https://github.com/pu2clr/SI4735/tree/master/examples><br>
- * This library can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence).  
+ * This library can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://pu2clr.github.io/SI4735/#mit-license).  
  * Contact: pu2clr@gmail.com
  * 
  * @details This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs. 
