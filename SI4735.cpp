@@ -24,7 +24,23 @@
 #include <SI4735.h>
 
 /**
- * @brief Construct a new SI4735::SI4735 object
+ * @brief Construct a new SI4735::SI4735 
+ * 
+ * @details This class has a set of functions that can help you to build your receiver based on Si47XX IC family.
+ * @details This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs. 
+ * @details The main features of this library are listed below. 
+ * @details 1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://pu2clr.github.io/SI4735/#mit-license) to know more.   
+ * @details 2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
+ * @details 3. C++ Language and Object-oriented programming. You can easily extend the SI4735 class by adding more functionalities;
+ * @details 4. Available on Arduino IDE (Manage Libraries); 
+ * @details 5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested);
+ * @details 6. Simplifies projects based on SI4735;
+ * @details 7. I²C communication__ and Automatic I²C bus address detection; 
+ * @details 8. More than 100 [functions implemented](https://pu2clr.github.io/SI4735/#api-documentation). You can customize almost every feature available on Si47XX family. 
+ * @details 9. [RDS support](https://pu2clr.github.io/SI4735/#rds)(__under construction...__)
+ * @details 10.[SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#single-side-band-ssb-support) 
+ * @details 11. Digital Audio
+ * 
  * @details According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For write operations, the system controller next 
  * sends a data byte on SDIO, which is captured by the device on rising edges of SCLK. The device acknowledges 
  * each data byte by driving SDIO low for one cycle on the next falling edge of SCLK. 
