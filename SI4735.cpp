@@ -23,8 +23,8 @@
  * @details 6. Simplifies projects based on SI4735.
  * @details 7. I²C communication__ and Automatic I²C bus address detection. 
  * @details 8. More than 120 [functions implemented]. You can customize almost every feature available on Si47XX family. 
- * @details 9. [RDS support]
- * @details 10. [SSB (Single Side Band) patch support] 
+ * @details 9. RDS support.
+ * @details 10. SSB (Single Side Band) patch support. 
  * @details 11. Digital Audio.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332
