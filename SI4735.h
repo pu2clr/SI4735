@@ -1357,12 +1357,52 @@ public:
     inline bool getRdsSyncFound() { 
         return currentRdsStatus.resp.RDSSYNCFOUND; 
     };
-         
-    inline bool getRdsNewBlockA() { return currentRdsStatus.resp.RDSNEWBLOCKA; };     //!<  1 = Valid Block A data has been received.
-    inline bool getRdsNewBlockB() { return currentRdsStatus.resp.RDSNEWBLOCKB; };     //!<  1 = Valid Block B data has been received.
-    inline bool getRdsSync() { return currentRdsStatus.resp.RDSSYNC; };               //!<  1 = RDS currently synchronized.
-    inline bool getGroupLost() { return currentRdsStatus.resp.GRPLOST; };             //!<  1 = One or more RDS groups discarded due to FIFO overrun.
-    inline uint8_t getNumRdsFifoUsed() { return currentRdsStatus.resp.RDSFIFOUSED; }; 
+
+    /**
+     * @brief Get the Rds New Block A 
+     * 
+     * @details Returns true if valid Block A data has been received.
+     * @return true or false
+     */
+    inline bool getRdsNewBlockA() { 
+        return currentRdsStatus.resp.RDSNEWBLOCKA; 
+    };
+
+    /**
+     * @brief Get the Rds New Block B 
+     * @details Returns true if valid Block B data has been received.
+     * @return true or false
+     */
+    inline bool getRdsNewBlockB() { 
+        return currentRdsStatus.resp.RDSNEWBLOCKB; 
+    };
+
+    /**
+     * @brief Get the Rds Sync 
+     * @details Returns true if RDS currently synchronized.
+     * @return true or false
+     */
+    inline bool getRdsSync() { 
+        return currentRdsStatus.resp.RDSSYNC; 
+    };
+
+    /**
+     * @brief Get the Group Lost 
+     * @details Returns true if one or more RDS groups discarded due to FIFO overrun.
+     * @return true or false
+     */
+    inline bool getGroupLost() { 
+        return currentRdsStatus.resp.GRPLOST; 
+    };
+
+    /**
+     * @brief Get the Num Rds Fifo Used 
+     * @details Return the number of RDS FIFO used
+     * @return uint8_t Total RDS FIFO used
+     */
+    inline uint8_t getNumRdsFifoUsed() { 
+        return currentRdsStatus.resp.RDSFIFOUSED; 
+    }; 
 
     void setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t BLETHC, uint8_t BLETHD);
     uint16_t getRdsPI(void);
