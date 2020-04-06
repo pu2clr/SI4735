@@ -22,7 +22,7 @@
  * @details 5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested).
  * @details 6. Simplifies projects based on SI4735.
  * @details 7. I²C communication and Automatic I²C bus address detection. 
- * @details 8. More than 120 [functions implemented]. You can customize almost every feature available on Si47XX family. 
+ * @details 8. More than 120 functions implemented. You can customize almost every feature available on Si47XX family. 
  * @details 9. RDS support.
  * @details 10. SSB (Single Side Band) patch support. 
  * @details 11. Digital Audio.
