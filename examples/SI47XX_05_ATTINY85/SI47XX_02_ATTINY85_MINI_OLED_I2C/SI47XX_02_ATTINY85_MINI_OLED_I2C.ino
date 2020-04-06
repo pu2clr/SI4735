@@ -1,8 +1,11 @@
 /*
-   Test and validation of the SI4735 Arduino Library on ATtiny85.
-   It is a simple AM/FM radio implementation.
+  Test and validation of the SI4735 Arduino Library on ATtiny85.
+  It is a simple AM/FM radio implementation.
 
-   By Ricardo Lima Caratti, Jan 2020.
+  Prototype documentation : https://pu2clr.github.io/SI4735/
+  PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
+
+  By Ricardo Lima Caratti, Jan 2020.
 */
 
 #include <SI4735.h>

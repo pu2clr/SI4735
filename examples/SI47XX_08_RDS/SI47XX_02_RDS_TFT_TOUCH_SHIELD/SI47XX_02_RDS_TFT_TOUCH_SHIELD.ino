@@ -40,6 +40,9 @@
 
   Libraries used: SI4735; Adafruit_GFX; MCUFRIEND_kbv; FreeDefaultFonts; TouchScreen;
 
+  Prototype documentation: https://pu2clr.github.io/SI4735/
+  PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
+
   By Ricardo Lima Caratti, Feb 2020
 */
 

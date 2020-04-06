@@ -37,9 +37,10 @@
   This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
   Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
 
+  Prototype documentation : https://pu2clr.github.io/SI4735/
+  PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
   By Ricardo Lima Caratti, DEC 2019.
-  Last update: Jan 3, 2020.
 */
 
 #include <SI4735.h>

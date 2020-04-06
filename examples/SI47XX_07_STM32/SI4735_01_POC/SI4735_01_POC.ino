@@ -16,12 +16,10 @@
     | SDIO (pin 18)   |     PB7 (B7)  |
     | SCLK (pin 17)   |     PB6 (B6)  |
 
+  Prototype documentation: https://pu2clr.github.io/SI4735/
+  PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
-   I strongly recommend starting with this sketch.
-
-   Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic.png
-
-   By Ricardo Lima Caratti, Nov 2019.
+  By Ricardo Lima Caratti, 2020.
 */
 
 #include <SI4735.h>

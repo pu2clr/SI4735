@@ -25,7 +25,9 @@
     | SCLK (pin 17)   |     A5        |
 
 
-   Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic.png
+  Prototype documentation : https://pu2clr.github.io/SI4735/
+  PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
+  Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic.png
 
    By Ricardo Lima Caratti, Nov 2019.
 */

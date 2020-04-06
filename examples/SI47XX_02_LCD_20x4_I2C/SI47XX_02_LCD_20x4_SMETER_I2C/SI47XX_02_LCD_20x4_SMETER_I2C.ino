@@ -14,6 +14,8 @@
   pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. 
   If this occurs in your project, change the circuit to use external pull-up on pin 13.     
 
+  Prototype documentation : https://pu2clr.github.io/SI4735/
+  PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
   By Ricardo Lima Caratti, Nov 2019.
 */

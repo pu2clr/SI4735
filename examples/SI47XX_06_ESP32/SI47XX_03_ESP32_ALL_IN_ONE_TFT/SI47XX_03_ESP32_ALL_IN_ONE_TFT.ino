@@ -39,8 +39,10 @@
   RST (Screen reset)    GPIO4
   CS  or SS             GPIO5 VSPI SS (Slave Select or Chip Select)
 
+  Prototype documentation : https://pu2clr.github.io/SI4735/
+  PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
+
   By Ricardo Lima Caratti, DEC 2019.
-  Last update: Jan 2020.
 */
 
 #include <SI4735.h>

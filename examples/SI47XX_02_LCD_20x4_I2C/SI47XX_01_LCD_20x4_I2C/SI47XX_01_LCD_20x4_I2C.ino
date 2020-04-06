@@ -15,6 +15,8 @@
 
   This sketch has been successfully tested on Pro Mini 3.3V. 
 
+  Prototype documentation : https://pu2clr.github.io/SI4735/
+  PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
   Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png
 
   By Ricardo Lima Caratti, Nov 2019.

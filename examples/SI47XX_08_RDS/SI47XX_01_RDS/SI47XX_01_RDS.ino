@@ -1,6 +1,11 @@
 /*
   Under development...
   This sketch is an example of using the RDS functions impplemented byte the Si4735 Library for Arduino. 
+
+  Prototype documentation: https://pu2clr.github.io/SI4735/
+  PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
+
+  By Ricardo Lima Caratti
 */
 
 #include <SI4735.h>
