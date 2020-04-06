@@ -418,9 +418,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ga94cce3834f85fc127e8c2dab3a03e875"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets RDS Status.  <a href="group__group16.html#ga94cce3834f85fc127e8c2dab3a03e875">More...</a><br /></td></tr>
 <tr class="separator:ga94cce3834f85fc127e8c2dab3a03e875"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e8405ea5846fab586080a7be696178e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a6e8405ea5846fab586080a7be696178e">getRdsReceived</a> ()</td></tr>
+<tr class="memdesc:a6e8405ea5846fab586080a7be696178e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Rds Received FIFO.  <a href="class_s_i4735.html#a6e8405ea5846fab586080a7be696178e">More...</a><br /></td></tr>
 <tr class="separator:a6e8405ea5846fab586080a7be696178e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac283a8a89cc885c2740c65a7128ff7ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#ac283a8a89cc885c2740c65a7128ff7ef">getRdsSyncLost</a> ()</td></tr>
-<tr class="memdesc:ac283a8a89cc885c2740c65a7128ff7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">1 = FIFO filled to minimum number of groups  <a href="class_s_i4735.html#ac283a8a89cc885c2740c65a7128ff7ef">More...</a><br /></td></tr>
 <tr class="separator:ac283a8a89cc885c2740c65a7128ff7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78e906f12771490771c624be1777784d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a78e906f12771490771c624be1777784d">getRdsSyncFound</a> ()</td></tr>
 <tr class="memdesc:a78e906f12771490771c624be1777784d"><td class="mdescLeft">&#160;</td><td class="mdescRight">1 = Lost RDS synchronization  <a href="class_s_i4735.html#a78e906f12771490771c624be1777784d">More...</a><br /></td></tr>
@@ -1680,6 +1680,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Get the Rds Received FIFO. </p>
+<p>if FIFO is 1, it means the minimum number of groups was filled </p><dl class="section return"><dt>Returns</dt><dd>true if minimum number of groups was filled. </dd></dl>
+
 <p class="reference">Referenced by <a class="el" href="group__group16.html#gaf1e67b201799a9e8d7208a32a65656b5">getRdsPI()</a>, <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">getRdsText0A()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">getRdsText2A()</a>.</p>
 
 </div>
@@ -1760,8 +1763,6 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>1 = FIFO filled to minimum number of groups </p>
 
 </div>
 </div>
