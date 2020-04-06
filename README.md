@@ -278,7 +278,7 @@ The SI4735 class has a set of methods to setup filters on AM and SSB mode.
 
 Methods to setup the audio mode (Digital or Analog), volume, mute etc. 
 
-#### RDS
+### RDS
 
 This library implements some RDS features of the SI4735. All function to deal with RDS are documented [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/).
 
@@ -288,7 +288,7 @@ __The RDS functions have not yet been properly tested__.
 
 <BR>
 
-##### RDS Features implemented
+#### RDS Features implemented
 
 | Feature | Infoirmation type | Description |  
 | ---------- | --------------- | ---------- |
@@ -300,7 +300,7 @@ __The RDS functions have not yet been properly tested__.
 
 <BR>
 
-##### The table below shows the main group types implemented by this library
+#### The table below shows the main group types implemented by this library
 
 | Group Type | Description |
 | ---------- | ----------- |
@@ -316,7 +316,7 @@ __The RDS functions have not yet been properly tested__.
 
 <BR>
 
-##### RDS Program type description
+#### RDS Program type description
 
 
 | RDS/RBDS Code | European Program Type | North American Program Type |
@@ -356,13 +356,13 @@ __The RDS functions have not yet been properly tested__.
 
 
 
-#### SI4735 Patch Support for Single Side Band
+### SI4735 Patch Support for Single Side Band
 
 The SI4735 class implements a set of methods to apply patches and deal with SSB mode. All documentation about pathces can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/).
 
 __First of all, it is important to say that the SSB patch content is not part of this library__. The paches used here were made available by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. __In other words, this library only supports SSB patches, the patches themselves are not part of this library__.
 
-##### What does SSB patch means?
+#### What does SSB patch means?
 
 In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
 
@@ -582,9 +582,6 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 
 
 
-
-
-
 #### Protoboard
 
 The basic circuit built on protoboard is based on the “__SSOP Typical Application Schematic__”, suggested by the Silicon Labs Documentation (Si4730/31/34/35-D60-BROADCAST AM/FM/SW/LW RADIO RECEIVER; page 19). Two pull-up 4.7K resistors were added on I²C bus (It is an arbitrary value. Actually, this value may vary depending on your devices connected to the bus). Also, it is recomended to add two 4.7uF capacitors between the CI audio output  and audio amplifier. The photos below do not show these capacitors. See  [C7 and C8 on schematic](https://pu2clr.github.io/SI4735/#schematic).
@@ -603,7 +600,6 @@ The configuration above connected to Arduino Pro Mini is shown below.
 ![Mini Protoboard 02](./extras/images/SI4735_mini_protoboard_02.png)
 
 
-<BR>
 <BR>
 
 
