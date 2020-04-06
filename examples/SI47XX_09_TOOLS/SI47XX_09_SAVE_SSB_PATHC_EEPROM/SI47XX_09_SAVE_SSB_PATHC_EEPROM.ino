@@ -8,8 +8,7 @@
 */
 
 // under construction ...
-
-#include <SI4735.h>
+#include <Wire.h>
 #include "patch_init.h" // SSB patch for whole SSBRX initialization string
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
@@ -17,15 +16,20 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 //defines the EEPROM I2C addresss.
 #define EEPROM_I2C_ADDR 0x50 // You might need to change this value
 
-// EEPROM address type
+char buffer(80);
+
 typedef union {
   struct
   {
     uint8_t lowByte;
     uint8_t highByte;
   } raw;
-  uint16_t offset;
-} eeprom_offset;
+  uint16_t value;
+} bytes_to_word16; 
+
+
+// Interger to bytes representation 
+bytes_to_word16 size_value;
 
 const uint8_t content_id[] = "SI4735-D60-init";
 // const uint8_t content_id[] = "SI4735-D60-full";
@@ -36,12 +40,26 @@ void setup()
   Serial.begin(9600);
   while(!Serial);
 
-  Serial.println("Storing the patch file..");
+  showMsg("Storing the patch file..");
+  showMsgValue("Size of patch ID.....: %u bytes.", size_id);
+  showMsgValue("Size of patch content: %u bytes.", size_content);
+  uint32_t t1 =  millis();
   eepromWritePatch();
-  Serial.println("Finish.");
+  uint32_t t2 = millis();
+  showMsgValue("Finish! Elapsed time: %ul milliseconds.", t2-t1);
 
 }
 
+
+void showMsg(const char *msg) {
+  Serial.println(msg); 
+}
+
+void showMsgValue(const char *msg, uint16_t value) {
+  char buffer[80];
+  sprintf(buffer,msg,value);
+  Serial.println(buffer);
+}
 
 
 /**
@@ -52,12 +70,16 @@ void eepromWriteId() {
      eepromWriteBlock(EEPROM_I2C_ADDR,0,content_id,size_id);
 }
 
+void eepromWriteContentSize() {
+    
+}
+
 /**
  * Writes the patch 
  */
 void eepromWritePatch() {
   eepromWriteId();
-  eepromWriteBlock(EEPROM_I2C_ADDR, size_id, ssb_patch_content, size_content);
+  // eepromWriteBlock(EEPROM_I2C_ADDR, size_id, ssb_patch_content, size_content);
 } 
 
 
@@ -69,8 +91,8 @@ void eepromWritePatch() {
  */
 void eepromWrite(uint8_t i2c_address, uint16_t offset, uint8_t data)
 {
-  eeprom_offset eeprom;
-  eeprom.offset = offset;
+  bytes_to_word16 eeprom;
+  eeprom.value = offset;
   Wire.beginTransmission(i2c_address);
   // First, you have to tell where you want to save the data (offset is the position).
   Wire.write(eeprom.raw.highByte); // Most significant Byte
@@ -80,10 +102,10 @@ void eepromWrite(uint8_t i2c_address, uint16_t offset, uint8_t data)
   delay(5);
 }
 
-uint8_t * eepromWriteBlock(uint8_t i2c_address, uint16_t offset, uint8_t const * pData, uint8_t blockSize)
+void  eepromWriteBlock(uint8_t i2c_address, uint16_t offset, uint8_t const * pData, uint8_t blockSize)
 {
-  eeprom_offset eeprom;
-  eeprom.offset = offset;
+  bytes_to_word16 eeprom;
+  eeprom.value = offset;
 
   Wire.beginTransmission(i2c_address);
   Wire.write(eeprom.raw.highByte); // Most significant Byte
@@ -94,7 +116,7 @@ uint8_t * eepromWriteBlock(uint8_t i2c_address, uint16_t offset, uint8_t const *
  
   Wire.endTransmission();
   delay(5); 
-  return pData;
+
 }
 
 /*
@@ -105,13 +127,13 @@ uint8_t * eepromWriteBlock(uint8_t i2c_address, uint16_t offset, uint8_t const *
  */
 byte readEEPROM(uint8_t i2c_address, uint16_t offset)
 {
-  eeprom_offset eeprom;
-  eeprom.offset = offset;
+  bytes_to_word16 eeprom;
+  eeprom.value = offset;
   Wire.beginTransmission(i2c_address);
   Wire.write(eeprom.raw.highByte); // Most significant Byte
   Wire.write(eeprom.raw.lowByte);  // Less significant Byte
   Wire.endTransmission();
-  Wire.requestFrom(i2c_address, 1);
+  Wire.requestFrom((int) i2c_address, (int) 1);
   if (Wire.available())
     return Wire.read();
   else
