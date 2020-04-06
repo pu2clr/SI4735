@@ -692,6 +692,7 @@ void loop()
       }
       else if (currentMode == FM ) {
         band[bandIdx].currentStep = (band[bandIdx].currentStep == 10)? 100:10; 
+        si4735.setFrequencyStep(band[bandIdx].currentStep);
       }
       else
       {
