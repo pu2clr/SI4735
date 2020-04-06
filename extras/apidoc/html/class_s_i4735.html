@@ -101,7 +101,7 @@ $(document).ready(function(){initNavTree('class_s_i4735.html',''); initResizable
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a818c60896490631e4311452c99ff361f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a818c60896490631e4311452c99ff361f">SI4735</a> ()</td></tr>
-<tr class="memdesc:a818c60896490631e4311452c99ff361f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_s_i4735.html#a818c60896490631e4311452c99ff361f" title="Construct a new SI4735::SI4735 object.">SI4735::SI4735</a> object.  <a href="class_s_i4735.html#a818c60896490631e4311452c99ff361f">More...</a><br /></td></tr>
+<tr class="memdesc:a818c60896490631e4311452c99ff361f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_s_i4735.html#a818c60896490631e4311452c99ff361f" title="Construct a new SI4735::SI4735.">SI4735::SI4735</a>.  <a href="class_s_i4735.html#a818c60896490631e4311452c99ff361f">More...</a><br /></td></tr>
 <tr class="separator:a818c60896490631e4311452c99ff361f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadc6014674bd4d1ee3aab56c605926db1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group06.html#gadc6014674bd4d1ee3aab56c605926db1">reset</a> (void)</td></tr>
 <tr class="memdesc:gadc6014674bd4d1ee3aab56c605926db1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the SI473X <br  />
@@ -682,7 +682,26 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Construct a new <a class="el" href="class_s_i4735.html#a818c60896490631e4311452c99ff361f" title="Construct a new SI4735::SI4735 object.">SI4735::SI4735</a> object. </p>
+<p>Construct a new <a class="el" href="class_s_i4735.html#a818c60896490631e4311452c99ff361f" title="Construct a new SI4735::SI4735.">SI4735::SI4735</a>. </p>
+<p>This class has a set of functions that can help you to build your receiver based on Si47XX IC family.</p>
+<p>This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs.</p>
+<p>The main features of this library are listed below.</p>
+<ol type="1">
+<li>Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See <a href="https://pu2clr.github.io/SI4735/#mit-license">MIT License</a> to know more. <br  />
+</li>
+<li>Built Based on <a href="https://www.silabs.com/documents/public/application-notes/AN332.pdf">Si47XX PROGRAMMING GUIDE</a></li>
+<li>C++ Language and Object-oriented programming. You can easily extend the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> class by adding more functionalities;</li>
+<li>Available on Arduino IDE (Manage Libraries);</li>
+<li>Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See <a href="https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested">Boards where this library has been successfully tested</a>;</li>
+<li>Simplifies projects based on <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a>;</li>
+<li>I²C communication__ and Automatic I²C bus address detection;</li>
+<li>More than 100 <a href="https://pu2clr.github.io/SI4735/#api-documentation">functions implemented</a>. You can customize almost every feature available on Si47XX family.</li>
+<li><a href="https://pu2clr.github.io/SI4735/#rds">RDS support</a>(<b>under construction...</b>)</li>
+</ol>
+<p>10.<a href="https://pu2clr.github.io/SI4735/#single-side-band-ssb-support">SSB (Single Side Band) patch support</a></p>
+<ol type="1">
+<li>Digital Audio</li>
+</ol>
 <p>According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For write operations, the system controller next sends a data byte on SDIO, which is captured by the device on rising edges of SCLK. The device acknowledges each data byte by driving SDIO low for one cycle on the next falling edge of SCLK. The system controller may write up to 8 data bytes in a single 2-wire transaction. The first byte is a command, and the next seven bytes are arguments. Writing more than 8 bytes results in unpredictable device behavior". So, If you are extending this library, consider that restriction presented earlier.</p>
 <p>Some methods were implemented usin inline resource. Inline methods are implemented in <a class="el" href="_s_i4735_8h.html">SI4735.h</a> </p>
 
