@@ -1055,6 +1055,7 @@ public:
         return currentStatus.resp.MULT; 
     };
 
+
     /**
      * @brief Get the Antenna Tuning Capacitor value
      * 
