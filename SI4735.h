@@ -1384,15 +1384,30 @@ public:
     bool downloadPatch(int eeprom_i2c_address);
     void ssbPowerUp();
 
-    /* 
+    /** 
      * This functions below modify the clock frequency for I2C communication. 
      * 100KHz  is usually the baseline.
      * Use one of these funcition if you have problem on you default configuration. 
      */
 
-    inline void setI2CLowSpeedMode(void) { Wire.setClock(10000); };  //!<  Sets I2C buss to 10KHz
-    inline void setI2CStandardMode(void) { Wire.setClock(100000); }; //!<  Sets I2C buss to 100KHz
-    inline void setI2CFastMode(void) { Wire.setClock(400000); };     //!<  Sets I2C buss to 400KHz
+    /**
+     * @brief Sets I2C buss to 10KHz
+     */
+    inline void setI2CLowSpeedMode(void) { 
+        Wire.setClock(10000); 
+    };
+
+    /**
+     * @brief Sets I2C buss to 100KHz
+     */
+    inline void setI2CStandardMode(void) { Wire.setClock(100000); };
+
+    /**
+     * @brief Sets I2C buss to 400KHz
+     */
+    inline void setI2CFastMode(void) { 
+        Wire.setClock(400000); 
+    };
     
     /**
      * Sets the I2C bus to a given value.
