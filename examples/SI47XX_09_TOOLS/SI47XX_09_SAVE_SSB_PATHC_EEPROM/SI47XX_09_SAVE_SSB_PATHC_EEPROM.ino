@@ -4,12 +4,15 @@
 
   Under construction....
   
-  Ricardo Lima Caratti Dec, 2020    
+  Ricardo Lima Caratti 2020    
 */
 
 // under construction ...
 
 #include <SI4735.h>
+#include "patch_init.h" // SSB patch for whole SSBRX initialization string
+
+const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
 //defines the EEPROM I2C addresss.
 #define EEPROM_I2C_ADDR 0x50 // You might need to change this value
@@ -24,9 +27,39 @@ typedef union {
   uint16_t offset;
 } eeprom_offset;
 
+const uint8_t content_id[] = "SI4735-D60-init";
+// const uint8_t content_id[] = "SI4735-D60-full";
+const uint16_t size_id = sizeof content_id;
+
 void setup()
 {
+  Serial.begin(9600);
+  while(!Serial);
+
+  Serial.println("Storing the patch file..");
+  eepromWritePatch();
+  Serial.println("Finish.");
+
 }
+
+
+
+/**
+ * Writes an identification that will be check by the load SSB patch process 
+ * 
+ */
+void eepromWriteId() {
+     eepromWriteBlock(EEPROM_I2C_ADDR,0,content_id,size_id);
+}
+
+/**
+ * Writes the patch 
+ */
+void eepromWritePatch() {
+  eepromWriteId();
+  eepromWriteBlock(EEPROM_I2C_ADDR, size_id, ssb_patch_content, size_content);
+} 
+
 
 /*
  * Writes a data (byte) to the eepro at a given position (offset).
@@ -47,7 +80,7 @@ void eepromWrite(uint8_t i2c_address, uint16_t offset, uint8_t data)
   delay(5);
 }
 
-uint8_t * eepromWriteBlock(uint8_t i2c_address, uint16_t offset, uint8_t *pData, uint8_t blockSize)
+uint8_t * eepromWriteBlock(uint8_t i2c_address, uint16_t offset, uint8_t const * pData, uint8_t blockSize)
 {
   eeprom_offset eeprom;
   eeprom.offset = offset;
