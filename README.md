@@ -183,8 +183,8 @@ This library uses the I²C communication protocol and implements most of the fun
 6. Simplifies projects based on SI4735;
 7. __I²C communication__ and Automatic I²C bus address detection; 
 8. More than 120 functions implemented. You can customize almost every feature available on Si47XX family. 
-9. RDS support
-10. SSB (Single Side Band) patch support 
+9. [RDS support](https://pu2clr.github.io/SI4735/#rds)
+10. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band) 
 
 <BR>
 <BR>
