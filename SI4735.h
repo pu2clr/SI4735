@@ -8,10 +8,9 @@
  * @details You can see a complete documentation on <https://github.com/pu2clr/SI4735>
  * @details The are more than 20 examples on <https://github.com/pu2clr/SI4735/tree/master/examples>
  *   
- * @see https://github.com/pu2clr/SI4735
- * @see Si47XX PROGRAMMING GUIDE AN332 
- * @ref https://www.silabs.com/documents/public/application-notes/AN332.pdf
- * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE
+ * @see https://pu2clr.github.io/SI4735/
+ * @see Si47XX PROGRAMMING GUIDE AN332: https://www.silabs.com/documents/public/application-notes/AN332.pdf
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
  *  
  * @author PU2CLR - Ricardo Lima Caratti 
  * @date  2019-2020

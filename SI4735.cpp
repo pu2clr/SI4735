@@ -27,7 +27,8 @@
  * @details 10. SSB (Single Side Band) patch support. 
  * @details 11. Digital Audio.
  * 
- * @see Si47XX PROGRAMMING GUIDE; AN332
+ * @see https://pu2clr.github.io/SI4735/
+ * @see Si47XX PROGRAMMING GUIDE AN332: https://www.silabs.com/documents/public/application-notes/AN332.pdf
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
  * 
  * @author PU2CLR - Ricardo Lima Caratti 
