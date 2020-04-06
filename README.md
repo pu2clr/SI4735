@@ -182,9 +182,9 @@ This library uses the I²C communication protocol and implements most of the fun
 5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested);
 6. Simplifies projects based on SI4735;
 7. __I²C communication__ and Automatic I²C bus address detection; 
-8. More than 100 [functions implemented](https://pu2clr.github.io/SI4735/#api-documentation). You can customize almost every feature available on Si47XX family. 
-9. [RDS support](https://pu2clr.github.io/SI4735/#rds)(__under construction...__)
-10. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#single-side-band-ssb-support) 
+8. More than 120 functions implemented. You can customize almost every feature available on Si47XX family. 
+9. RDS support
+10. SSB (Single Side Band) patch support 
 
 <BR>
 <BR>
