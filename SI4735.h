@@ -14,7 +14,7 @@
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE
  *  
  * @author PU2CLR - Ricardo Lima Caratti 
- * @date Nov 2019
+ * @date  2019-2020
  */
 
 #include <Arduino.h>
@@ -1054,7 +1054,6 @@ public:
     inline uint8_t getStatusMULT() { 
         return currentStatus.resp.MULT; 
     };
-
 
     /**
      * @brief Get the Antenna Tuning Capacitor value

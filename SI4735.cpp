@@ -31,7 +31,7 @@
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
  * 
  * @author PU2CLR - Ricardo Lima Caratti 
- * @date Nov 2019
+ * @date  2019-2020
  * @copyright MIT Free Software model. See [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735#mit-licence). 
  */
 
