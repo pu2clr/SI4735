@@ -187,7 +187,6 @@ This library uses the I²C communication protocol and implements most of the fun
 10. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band) 
 
 <BR>
-<BR>
 
 ## Library Installation
 
