@@ -1338,10 +1338,26 @@ public:
      */
     inline bool getRdsReceived() { 
         return currentRdsStatus.resp.RDSRECV; 
-    };           
-    
-    inline bool getRdsSyncLost() { return currentRdsStatus.resp.RDSSYNCLOST; };       //!<  1 = Lost RDS synchronization
-    inline bool getRdsSyncFound() { return currentRdsStatus.resp.RDSSYNCFOUND; };     //!<  1 = Found RDS synchronization
+    };
+
+    /**
+     * @brief Get the Rds Sync Lost object
+     * @details returns true (1) if Lost RDS synchronization is detected. 
+     * @return true if Lost RDS synchronization detected. 
+     */
+    inline bool getRdsSyncLost() { 
+        return currentRdsStatus.resp.RDSSYNCLOST; 
+    };
+
+    /**
+     * @brief Get the Rds Sync Found 
+     * @details return true if found RDS synchronization
+     * @return true if found RDS synchronization
+     */
+    inline bool getRdsSyncFound() { 
+        return currentRdsStatus.resp.RDSSYNCFOUND; 
+    };
+         
     inline bool getRdsNewBlockA() { return currentRdsStatus.resp.RDSNEWBLOCKA; };     //!<  1 = Valid Block A data has been received.
     inline bool getRdsNewBlockB() { return currentRdsStatus.resp.RDSNEWBLOCKB; };     //!<  1 = Valid Block B data has been received.
     inline bool getRdsSync() { return currentRdsStatus.resp.RDSSYNC; };               //!<  1 = RDS currently synchronized.
