@@ -193,10 +193,6 @@ This library uses the I²C communication protocol and implements most of the fun
 
 You can install this library on your Arduino environment using different methods. The best ways to do that are described below.  
 
-| RDS on Arduino Pro Mini 3/3V | RDS on Arduino DUE with Touch Screen |
-| ---------------------------- | ------------------------------------ |
-| {% include videoRDS1.html %} | {% include videoRDS2.html %} |
-
 
 ### Installing via Arduino IDE
 
@@ -287,6 +283,17 @@ Methods to setup the audio mode (Digital or Analog), volume, mute etc.
 ### RDS
 
 This library implements some RDS features of the SI4735. All function to deal with RDS are documented [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/).
+
+
+#### RDS on Arduino Pro Mini 3/3V
+
+{% include videoRDS1.html %} 
+
+
+#### RDS on Arduino DUE with Touch Screen
+
+{% include videoRDS2.html %}
+
 
 The table below shows the features that this library implements.
 
