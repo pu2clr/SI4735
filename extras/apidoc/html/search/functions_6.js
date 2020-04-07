@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['patchpowerup_499',['patchPowerUp',['../group__group17.html#gafaabd6c73b7ad7c20ae959d5b75c1e71',1,'SI4735']]],
-  ['powerdown_500',['powerDown',['../group__group06.html#gaa554b3390fb6c5a4d6661b96afae73ae',1,'SI4735']]]
+  ['patchpowerup_503',['patchPowerUp',['../group__group17.html#gafaabd6c73b7ad7c20ae959d5b75c1e71',1,'SI4735']]],
+  ['powerdown_504',['powerDown',['../group__group06.html#gaa554b3390fb6c5a4d6661b96afae73ae',1,'SI4735']]]
 ];

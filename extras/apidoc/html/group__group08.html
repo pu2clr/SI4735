@@ -123,6 +123,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gae7ca2ffa6ad68ca69e4f35a3c40bbc3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#gae7ca2ffa6ad68ca69e4f35a3c40bbc3c">SI4735::isCurrentTuneFM</a> ()</td></tr>
 <tr class="memdesc:gae7ca2ffa6ad68ca69e4f35a3c40bbc3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the current function is FM (FM_TUNE_FREQ).  <a href="group__group08.html#gae7ca2ffa6ad68ca69e4f35a3c40bbc3c">More...</a><br /></td></tr>
 <tr class="separator:gae7ca2ffa6ad68ca69e4f35a3c40bbc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4714f08989f020110620781ae968b01b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga4714f08989f020110620781ae968b01b">SI4735::isCurrentTuneAM</a> ()</td></tr>
+<tr class="memdesc:ga4714f08989f020110620781ae968b01b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the current function is AM (AM_TUNE_FREQ).  <a href="group__group08.html#ga4714f08989f020110620781ae968b01b">More...</a><br /></td></tr>
+<tr class="separator:ga4714f08989f020110620781ae968b01b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6913873c511adb357fa7c02f2a8386d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga6913873c511adb357fa7c02f2a8386d7">SI4735::isCurrentTuneSSB</a> ()</td></tr>
+<tr class="memdesc:ga6913873c511adb357fa7c02f2a8386d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the current function is SSB (SSB_TUNE_FREQ).  <a href="group__group08.html#ga6913873c511adb357fa7c02f2a8386d7">More...</a><br /></td></tr>
+<tr class="separator:ga6913873c511adb357fa7c02f2a8386d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -166,6 +172,26 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ga4714f08989f020110620781ae968b01b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4714f08989f020110620781ae968b01b">&#9670;&nbsp;</a></span>isCurrentTuneAM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::isCurrentTuneAM </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if the current function is AM (AM_TUNE_FREQ). </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the current function is AM (AM_TUNE_FREQ). </dd></dl>
+
+</div>
+</div>
 <a id="gae7ca2ffa6ad68ca69e4f35a3c40bbc3c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gae7ca2ffa6ad68ca69e4f35a3c40bbc3c">&#9670;&nbsp;</a></span>isCurrentTuneFM()</h2>
 
@@ -183,6 +209,26 @@ Functions</h2></td></tr>
 
 <p>Returns true if the current function is FM (FM_TUNE_FREQ). </p>
 <dl class="section return"><dt>Returns</dt><dd>true if the current function is FM (FM_TUNE_FREQ). </dd></dl>
+
+</div>
+</div>
+<a id="ga6913873c511adb357fa7c02f2a8386d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6913873c511adb357fa7c02f2a8386d7">&#9670;&nbsp;</a></span>isCurrentTuneSSB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::isCurrentTuneSSB </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if the current function is SSB (SSB_TUNE_FREQ). </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the current function is SSB (SSB_TUNE_FREQ). </dd></dl>
 
 </div>
 </div>
@@ -250,8 +296,8 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets the radio to AM (LW/MW/SW) function. </p>
-<p>The example below sets the band from 550KHz to 1550KHz on AM mode. The band will start on 810KHz and step is 10KHz.</p>
-<div class="fragment"><div class="line">si4735.setAM(520, 1750, 810, 10);</div>
+<p>The example below sets the band from 550KHz to 1750KHz on AM mode. The band will start on 810KHz and step is 10KHz.</p>
+<div class="fragment"><div class="line">si4735.setAM(520, 1750, 810, 10); </div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906" title="Sets the radio to FM function.">setFM()</a> </dd>
 <dd>
 <a class="el" href="group__group17.html#ga7c48f2af416b1f89dbedbfbe9a637620">setSSB()</a></dd></dl>
