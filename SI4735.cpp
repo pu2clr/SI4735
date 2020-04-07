@@ -637,8 +637,6 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
  * si4735.setFM(6400, 10800, 10390, 10);
  * @endcode
  * 
- * @example ./examples/SI47XX_01_SERIAL_MONITOR/SI4735_01_POC.ino
- * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 70
  * @see setFM()
  * @see setFrequencyStep()
