@@ -496,9 +496,12 @@ void SI4735::setFrequency(uint16_t freq)
  * .
  * .
  * setAM(7000,7600,7100,5); 
- * setFrequencyStep(1); // the step will be 1KHz (you are usin AM mode)  
+ * setFrequencyStep(1); // the step will be 1KHz (you are usin AM or SSB mode)  
  * @endcode 
  * 
+ * @see setFM()
+ * @see setAM()
+ * @see setSSB()
  * 
  * @param step if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz
  *             For AM, 1 (1KHz) to 1000 (1MHz) are valid values.
