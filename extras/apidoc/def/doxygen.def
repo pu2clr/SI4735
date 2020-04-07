@@ -1962,7 +1962,7 @@ _EnD_oF_dEf_TeXt_;
 Sets the radio to AM (LW/MW/SW) function.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-The example below set the band from 550KHz to 1550KHz on AM mode. The band will start on 810KHz and step is 10KHz. 
+The example below sets the band from 550KHz to 1550KHz on AM mode. The band will start on 810KHz and step is 10KHz. 
 
 @code 
 si4735.setAM(520, 1750, 810, 10);
@@ -2026,12 +2026,12 @@ Defines the band range you want to use for the FM mode.
 
 
 
-The example below set the band from 64MHz to 108MHzKHz on FM mode. The band will start on 103.9MHz and step is 100KHz.
+The example below sets the band from 64MHz to 108MHzKHz on FM mode. The band will start on 103.9MHz and step is 100KHz.
 On FM mode, the step 10 means 100KHz.    
 <br>
 
 @code 
-si4735.setAM(6400, 10800, 10390, 10);
+si4735.setFM(6400, 10800, 10390, 10);
 @endcode
 
 @see Si47XX PROGRAMMING GUIDE; AN332; pages 70
