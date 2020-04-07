@@ -282,7 +282,7 @@ Methods to setup the audio mode (Digital or Analog), volume, mute etc.
 
 ### RDS
 
-This library implements some RDS features of the SI4735. All function to deal with RDS are documented [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/).
+This library implements some RDS features of the SI4735. All function to deal with RDS are documented [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/). Below you have some videos showing the RDS functionalities implemented by the PU2CLR Si4735 Arduino Library.
 
 
 #### RDS on Arduino DUE with Touch Screen
@@ -290,7 +290,7 @@ This library implements some RDS features of the SI4735. All function to deal wi
 {% include videoRDS2.html %}
 
 
-#### RDS on Arduino Pro Mini 3/3V
+#### RDS on Arduino Pro Mini 3.3V (8MHz)
 
 {% include videoRDS1.html %} 
 
