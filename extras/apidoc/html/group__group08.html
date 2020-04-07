@@ -250,7 +250,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets the radio to AM (LW/MW/SW) function. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#ga753390952a1f2c2a98343979f1f3daa0" title="Sets the radio to AM function. It means: LW MW and SW.">setAM()</a></dd></dl>
+<p>The example below set the band from 550KHz to 1550KHz on AM mode. The band will start on 810KHz and step is 10KHz.</p>
+<div class="fragment"><div class="line">si4735.setAM(520, 1750, 810, 10);</div>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#ga753390952a1f2c2a98343979f1f3daa0" title="Sets the radio to AM function. It means: LW MW and SW.">setAM()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fromFreq</td><td>minimum frequency for the band </td></tr>
@@ -329,7 +331,12 @@ Functions</h2></td></tr>
 
 <p>Sets the radio to FM function. </p>
 <p>Defines the band range you want to use for the FM mode.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906" title="Sets the radio to FM function.">setFM()</a></dd></dl>
+<p>The example below set the band from 64MHz to 108MHzKHz on FM mode. The band will start on 103.9MHz and step is 100KHz. On FM mode, the step 10 means 100KHz. <br  />
+</p>
+<div class="fragment"><div class="line">si4735.setAM(6400, 10800, 10390, 10);</div>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 70 </dd>
+<dd>
+<a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906" title="Sets the radio to FM function.">setFM()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fromFreq</td><td>minimum frequency for the band </td></tr>
