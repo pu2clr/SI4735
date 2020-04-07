@@ -21,8 +21,9 @@ The project aims to serve as a platform through which several developers can con
 
 ## Jim Reagan
 
-[Jim's Schematic](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Jim%20Reagan)
+[Documents](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Jim_Reagan)
 
+![Jim's Schematic](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects/Jim_Reagan/jim_reagan.png)
 
 ## PU2TMC
 
