@@ -621,7 +621,7 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
  * On FM mode, the step 10 means 100KHz.    
  * 
  * @code
- * si4735.setAM(6400, 10800, 10390, 10);
+ * si4735.setFM(6400, 10800, 10390, 10);
  * @endcode
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 70
