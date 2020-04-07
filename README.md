@@ -201,7 +201,7 @@ This is the easiest method to install this library.
 <BR>
 
 
-#### The video below shows how to install the PUCLR Arduino Library on your Arduino IDE. 
+#### The video below shows how to install the PU2CLR Arduino Library on your Arduino IDE. 
 
 {% include libinstalling.html %}
 
