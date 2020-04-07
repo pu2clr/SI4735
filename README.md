@@ -193,6 +193,11 @@ This library uses the I²C communication protocol and implements most of the fun
 
 You can install this library on your Arduino environment using different methods. The best ways to do that are described below.  
 
+| RDS on Arduino Pro Mini 3/3V | RDS on Arduino DUE with Touch Screen |
+| ---------------------------- | ------------------------------------ |
+| {% include videoRDS1.html %} | {% include videoRDS2.html %} |
+
+
 ### Installing via Arduino IDE
 
 This is the easiest method to install this library.
