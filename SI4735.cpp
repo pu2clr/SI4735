@@ -600,9 +600,8 @@ void SI4735::setFM()
  * si4735.setAM(520, 1750, 810, 10);
  * @endcode
  *  
- * @see setAM()
- * 
- * 
+ * @see setFM()
+ * @see setSSB()
  * 
  * @param fromFreq minimum frequency for the band
  * @param toFreq maximum frequency for the band
@@ -2248,10 +2247,11 @@ void SI4735::setSSBAudioBandwidth(uint8_t AUDIOBW)
  * 
  * @brief Set the radio to AM function. 
  * 
- * @details It means: LW MW and SW.
+ * @details Set the radio to SSB (LW/MW/SW) function. 
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14 
  * @see setAM()
+ * @see setFrequencyStep()
  * @see void SI4735::setFrequency(uint16_t freq)
  * 
  * @param usblsb upper or lower side band;  1 = LSB; 2 = USB
@@ -2272,9 +2272,12 @@ void SI4735::setSSB(uint8_t usblsb)
 /**
  * @ingroup group17 Patch and SSB support
  *  
- * @details Set the radio to SSB (LW/MW/SW) function. 
+ * @details Tunes the SSB (LSB or USB) receiver to a frequency between 520 and 30 MHz in 1 kHz steps. 
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14
+ * @see setAM()
+ * @see setFrequencyStep()
+ * @see void SI4735::setFrequency(uint16_t freq)
  * 
  * @param fromFreq minimum frequency for the band
  * @param toFreq maximum frequency for the band
