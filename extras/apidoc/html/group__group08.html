@@ -331,12 +331,14 @@ Functions</h2></td></tr>
 
 <p>Sets the radio to FM function. </p>
 <p>Defines the band range you want to use for the FM mode.</p>
-<p>The example below sets the band from 64MHz to 108MHzKHz on FM mode. The band will start on 103.9MHz and step is 100KHz. On FM mode, the step 10 means 100KHz. <br  />
+<p>The example below sets the band from 64MHz to 108MHzKHz on FM mode. The band will start on 103.9MHz and step is 100KHz. On FM mode, the step 10 means 100KHz. If you want a 1MHz step, use 100. <br  />
 </p>
 <div class="fragment"><div class="line">si4735.setFM(6400, 10800, 10390, 10);</div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 70 </dd>
 <dd>
-<a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906" title="Sets the radio to FM function.">setFM()</a></dd></dl>
+<a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906" title="Sets the radio to FM function.">setFM()</a> </dd>
+<dd>
+<a class="el" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c" title="Sets the current step value.">setFrequencyStep()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fromFreq</td><td>minimum frequency for the band </td></tr>
@@ -375,7 +377,7 @@ Functions</h2></td></tr>
 AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">uint16_t</td><td>freq Is the frequency to change. For example, FM =&gt; 10390 = 103.9 MHz; AM =&gt; 810 = 810 KHz. </td></tr>
+    <tr><td class="paramname">uint16_t</td><td>freq is the frequency to change. For example, FM =&gt; 10390 = 103.9 MHz; AM =&gt; 810 = 810 KHz. </td></tr>
   </table>
   </dd>
 </dl>
@@ -402,9 +404,16 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 
 <p>Sets the current step value. </p>
 <p>This function does not check the limits of the current band. Please, don't take a step bigger than your legs.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Example: </p><div class="fragment"><div class="line"><a class="code" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906">setFM</a>(6400,10800,10390,10);</div>
+<div class="line"><a class="code" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">setFrequencyStep</a>(100); <span class="comment">// the step will be 1MHz (you are using FM mode)</span></div>
+<div class="line">.</div>
+<div class="line">.</div>
+<div class="line">.</div>
+<div class="line">setAM(7000,7600,7100,5); </div>
+<div class="line"><a class="code" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">setFrequencyStep</a>(1); <span class="comment">// the step will be 1KHz (you are usin AM mode)  </span></div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">step</td><td>if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz For AM, 1 (1KHz) to 1000 (1MHz) are valid values. For FM 5 (50KHz) and 10 (100KHz) are valid values. <br  />
+    <tr><td class="paramname">step</td><td>if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz For AM, 1 (1KHz) to 1000 (1MHz) are valid values. For FM 5 (50KHz), 10 (100KHz) and 100 (1MHz) are valid values. <br  />
  </td></tr>
   </table>
   </dd>
@@ -444,6 +453,8 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="agroup__group08_html_gacd89e7b8adefcbc4e89f802acb915906"><div class="ttname"><a href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906">SI4735::setFM</a></div><div class="ttdeci">void setFM()</div><div class="ttdoc">Sets the radio to FM function.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:578</div></div>
+<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:507</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
