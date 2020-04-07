@@ -250,7 +250,7 @@ All data types defined in Si4735 Arduino Library are explained [here](https://pu
 
 This library was developed using the C++ language and the Object-oriented Programming approach. Methods are functions that belongs to the class, in this case SI4735 class. Click [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/) to go to API docummentation.
 
-All methods defined in Si4735 class are explained on [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/). The list below refer to the method groups implemented by the Si4735 class.   
+All methods defined in Si4735 class are explained [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/). The list below refer to the method groups implemented by the Si4735 class.   
 
 
 #### Si47XX device setup and startup
