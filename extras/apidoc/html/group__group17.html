@@ -413,8 +413,14 @@ struct <a class="el" href="group__group01.html#unionsi47x__firmware__query__libr
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the radio to SSB (LW/MW/SW) function.</p>
-<dl class="section see"><dt>See also</dt><dd>AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14</dd></dl>
+<p>Tunes the SSB (LSB or USB) receiver to a frequency between 520 and 30 MHz in 1 kHz steps.</p>
+<dl class="section see"><dt>See also</dt><dd>AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14 </dd>
+<dd>
+<a class="el" href="group__group08.html#ga753390952a1f2c2a98343979f1f3daa0" title="Sets the radio to AM function. It means: LW MW and SW.">setAM()</a> </dd>
+<dd>
+<a class="el" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c" title="Sets the current step value.">setFrequencyStep()</a> </dd>
+<dd>
+void <a class="el" href="group__group08.html#ga63d205f2d3169ba877a2bd2ee28d224f" title="Set the frequency to the corrent function of the Si4735 (FM, AM or SSB)">SI4735::setFrequency(uint16_t freq)</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fromFreq</td><td>minimum frequency for the band </td></tr>
@@ -447,10 +453,12 @@ struct <a class="el" href="group__group01.html#unionsi47x__firmware__query__libr
 </div><div class="memdoc">
 
 <p>Set the radio to AM function. </p>
-<p>It means: LW MW and SW.</p>
+<p>Set the radio to SSB (LW/MW/SW) function.</p>
 <dl class="section see"><dt>See also</dt><dd>AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14 </dd>
 <dd>
 <a class="el" href="group__group08.html#ga753390952a1f2c2a98343979f1f3daa0" title="Sets the radio to AM function. It means: LW MW and SW.">setAM()</a> </dd>
+<dd>
+<a class="el" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c" title="Sets the current step value.">setFrequencyStep()</a> </dd>
 <dd>
 void <a class="el" href="group__group08.html#ga63d205f2d3169ba877a2bd2ee28d224f" title="Set the frequency to the corrent function of the Si4735 (FM, AM or SSB)">SI4735::setFrequency(uint16_t freq)</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
