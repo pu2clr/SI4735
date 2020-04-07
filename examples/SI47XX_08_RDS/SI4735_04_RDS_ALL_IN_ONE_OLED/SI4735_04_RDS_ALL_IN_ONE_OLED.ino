@@ -259,6 +259,55 @@ void rotaryEncoder()
   }
 }
 
+/**
+    Prevents blinking and I2C trafic during the frequency display.
+    Erases the old digits if it has changed and print the new digit values.
+
+    TO DO
+*/
+/*
+void printValue(int col, int line, char *oldValue, char *newValue, uint16_t color, uint8_t space)
+{
+  int c = col;
+  char *pOld;
+  char *pNew;
+
+  pOld = oldValue;
+  pNew = newValue;
+
+  oled.setCursor(col, line);
+  // prints just changed digits
+  while (*pOld && *pNew)
+  {
+    if (*pOld != *pNew)
+    {
+      // TO DO
+    }
+    pOld++;
+    pNew++;
+    c += space;
+  }
+
+  // Is there anything else to erase?
+  while (*pOld)
+  {
+    // TO DO
+    pOld++;
+    c += space;
+  }
+
+  // Is there anything else to print?
+  while (*pNew)
+  {
+    // TO DO
+    pNew++;
+    c += space;
+  }
+
+  // Save the current content to be tested next time
+  strcpy(oldValue, newValue);
+}
+*/
 
 void clearLine4() {
   oled.setCursor(0, 2);
