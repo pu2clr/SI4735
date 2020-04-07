@@ -31,6 +31,4 @@ The project aims to serve as a platform through which several developers can con
 
 ## Gert Baak
 
-![Gert Baak schematic](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects)
-
-
+![Gert Baak schematic](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Gert_Baak/schematic_esp32_si4735_Gert_Baak.jpg)
