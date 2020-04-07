@@ -1,5 +1,6 @@
 var NAVTREEINDEX0 =
 {
+"_s_i4735_01__p_o_c_8ino-example.html":[6,0],
 "_s_i4735_8cpp.html":[5,0,0,0],
 "_s_i4735_8h.html":[5,0,0,1],
 "_s_i4735_8h.html#a0031abcfb4699f5db24b7a8c1ec7ba82":[5,0,0,1,8],
@@ -143,6 +144,7 @@ var NAVTREEINDEX0 =
 "class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e":[4,0,0,186],
 "class_s_i4735.html#a650490ab792c1853c97f600661ecdaa1":[4,0,0,160],
 "class_s_i4735.html#a667fead0c7b2658c2b932370ad4e4f88":[4,0,0,84],
+"class_s_i4735.html#a673bc4b17d564bb6e7f3e9a61d35fbb3":[4,0,0,112],
 "class_s_i4735.html#a69723840497ed693d6f9a4e840ab07c9":[4,0,0,78],
 "class_s_i4735.html#a6d521bb5c7ef7811e57c7128cb2106b3":[4,0,0,21],
 "class_s_i4735.html#a6e1e0e48d71e09debb07fc6dbe884829":[4,0,0,106],
@@ -202,6 +204,7 @@ var NAVTREEINDEX0 =
 "classes.html":[4,1],
 "deprecated.html":[2],
 "dir_3c9cfd4004874c83bd03942a202d17f2.html":[5,0,0],
+"examples.html":[6],
 "files.html":[5,0],
 "functions.html":[4,2,0],
 "functions.html":[4,2,0,0],
@@ -239,15 +242,12 @@ var NAVTREEINDEX0 =
 "group__group01.html#a22c9aef8785be330d7e1faf88bcfd4b1":[3,8,1,5],
 "group__group01.html#a29548a9c68843bb6aa86eabcd33a9633":[3,8,4,0],
 "group__group01.html#a328de8db27422fb20f1335f29e67b8ed":[3,8,14,1],
+"group__group01.html#a3651c40ccc4450f2fc89fa3139dedd5a":[3,8,11,3],
 "group__group01.html#a3651c40ccc4450f2fc89fa3139dedd5a":[3,8,7,2],
 "group__group01.html#a3651c40ccc4450f2fc89fa3139dedd5a":[3,8,13,4],
 "group__group01.html#a3651c40ccc4450f2fc89fa3139dedd5a":[3,8,15,2],
-"group__group01.html#a3651c40ccc4450f2fc89fa3139dedd5a":[3,8,11,3],
 "group__group01.html#a36b0ca295026d76ee15df50dc4991e90":[3,8,11,7],
 "group__group01.html#a3ab7055a80e6c432a1116bfb27181811":[3,8,13,9],
 "group__group01.html#a4163d039102268d1b6ac272a25006d7f":[3,8,11,1],
-"group__group01.html#a46ba89190297ccd0df7c8f8b5f72497f":[3,8,7,7],
-"group__group01.html#a4f37d8e1a484e1ac152858e71923f86c":[3,8,11,0],
-"group__group01.html#a5235c5b07b71d6dc4c76c275a091c63c":[3,8,14,0],
-"group__group01.html#a53d648e7e9d100d590e2f65ec7de079f":[3,8,11,8]
+"group__group01.html#a46ba89190297ccd0df7c8f8b5f72497f":[3,8,7,7]
 };

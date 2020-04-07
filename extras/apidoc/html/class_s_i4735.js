@@ -112,7 +112,7 @@ var class_s_i4735 =
     [ "setDeviceI2CAddress", "group__group05.html#ga748a4027f317972cb2fb1aed4865973b", null ],
     [ "setDeviceOtherI2CAddress", "group__group05.html#ga668008457910e916ebadf15bda2e5b29", null ],
     [ "setFM", "group__group08.html#gacd89e7b8adefcbc4e89f802acb915906", null ],
-    [ "setFM", "group__group08.html#ga673bc4b17d564bb6e7f3e9a61d35fbb3", null ],
+    [ "setFM", "class_s_i4735.html#a673bc4b17d564bb6e7f3e9a61d35fbb3", null ],
     [ "setFmBlendMonoThreshold", "group__group12.html#gadf4c5ec4473fd8486dd2ec7a19a10d24", null ],
     [ "setFmBlendMultiPathMonoThreshold", "group__group12.html#gacc9fd27b38f49f167facfcc4f6216c5e", null ],
     [ "setFmBlendMultiPathStereoThreshold", "group__group12.html#ga0ed776a193fb2fcff783d4a82ff714e5", null ],
