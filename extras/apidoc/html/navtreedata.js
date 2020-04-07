@@ -49,7 +49,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_s_i4735_01__p_o_c_8ino-example.html",
+"_2examples_2_s_i4735_01__p_o_c_2_s_i4735_01__p_o_c_8ino-example.html",
 "group__group01.html#a4f37d8e1a484e1ac152858e71923f86c",
 "group__group03.html#a7b8218655c25e1f8d75d92818ec24f20"
 ];

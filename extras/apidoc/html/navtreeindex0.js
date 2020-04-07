@@ -1,6 +1,6 @@
 var NAVTREEINDEX0 =
 {
-"_s_i4735_01__p_o_c_8ino-example.html":[6,0],
+"_2examples_2_s_i4735_01__p_o_c_2_s_i4735_01__p_o_c_8ino-example.html":[6,0],
 "_s_i4735_8cpp.html":[5,0,0,0],
 "_s_i4735_8h.html":[5,0,0,1],
 "_s_i4735_8h.html#a0031abcfb4699f5db24b7a8c1ec7ba82":[5,0,0,1,8],
