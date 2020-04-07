@@ -1303,8 +1303,11 @@ public:
 
     void frequencyUp(); 
     void frequencyDown(); 
-    bool isCurrentTuneFM(); 
-    void getFirmware(void); 
+    bool isCurrentTuneFM();
+    bool isCurrentTuneAM();
+    bool isCurrentTuneSSB();
+
+    void getFirmware(void);
 
     void seekStation(uint8_t SEEKUP, uint8_t WRAP); 
     void seekStationUp();                           

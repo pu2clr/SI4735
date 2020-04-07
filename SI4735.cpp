@@ -648,7 +648,6 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
  */
 void SI4735::setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step)
 {
-
     currentMinimumFrequency = fromFreq;
     currentMaximumFrequency = toFreq;
     currentStep = step;
@@ -674,6 +673,29 @@ bool SI4735::isCurrentTuneFM()
     return (currentTune == FM_TUNE_FREQ);
 }
 
+/**
+ * @ingroup group08 Check AM mode status
+ * 
+ * @brief Returns true if the current function is AM (AM_TUNE_FREQ).
+ * 
+ * @return true if the current function is AM (AM_TUNE_FREQ).
+ */
+bool SI4735::isCurrentTuneAM()
+{
+    return (currentTune == AM_TUNE_FREQ);
+}
+
+/**
+ * @ingroup group08 Check SSB mode status
+ * 
+ * @brief Returns true if the current function is SSB (SSB_TUNE_FREQ).
+ * 
+ * @return true if the current function is SSB (SSB_TUNE_FREQ).
+ */
+bool SI4735::isCurrentTuneSSB()
+{
+    return (currentTune == SSB_TUNE_FREQ);
+}
 
 /** @defgroup group09 Si47XX filter setup  */
 
