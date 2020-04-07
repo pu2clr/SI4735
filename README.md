@@ -206,7 +206,6 @@ This is the easiest method to install this library.
 {% include libinstalling.html %}
 
 
-
 ### Installing via this repository 
 
 ![Installing from this repository](extras/images/install_lib_from_git_01.png)
