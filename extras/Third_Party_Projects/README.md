@@ -26,8 +26,7 @@ The project aims to serve as a platform through which several developers can con
 
 ## PU2TMC
 
-[Artifacts](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Luiz_pu2tmc)
-
+[Documents](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Luiz_pu2tmc)
 
 ## Gert Baak
 
