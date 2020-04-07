@@ -449,7 +449,7 @@ void SI4735::setTuneFrequencyAntennaCapacitor(uint16_t capacitor)
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 70, 135
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13
  * 
- * @param uint16_t  freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz.
+ * @param uint16_t  freq is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz.
  */
 void SI4735::setFrequency(uint16_t freq)
 {
@@ -488,10 +488,21 @@ void SI4735::setFrequency(uint16_t freq)
  * @brief Sets the current step value. 
  * 
  * @details This function does not check the limits of the current band. Please, don't take a step bigger than your legs.
+ * @details Example:
+ * @code
+ * setFM(6400,10800,10390,10);
+ * setFrequencyStep(100); // the step will be 1MHz (you are using FM mode)
+ * .
+ * .
+ * .
+ * setAM(7000,7600,7100,5); 
+ * setFrequencyStep(1); // the step will be 1KHz (you are usin AM mode)  
+ * @endcode 
+ * 
  * 
  * @param step if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz
  *             For AM, 1 (1KHz) to 1000 (1MHz) are valid values.
- *             For FM 5 (50KHz) and 10 (100KHz) are valid values.  
+ *             For FM 5 (50KHz), 10 (100KHz) and 100 (1MHz) are valid values.  
  */
 void SI4735::setFrequencyStep(uint16_t step)
 {
@@ -618,7 +629,7 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
  * @details Defines the band range you want to use for the FM mode. 
  * 
  * @details The example below sets the band from 64MHz to 108MHzKHz on FM mode. The band will start on 103.9MHz and step is 100KHz.
- * On FM mode, the step 10 means 100KHz.    
+ * On FM mode, the step 10 means 100KHz. If you want a 1MHz step, use 100.     
  * 
  * @code
  * si4735.setFM(6400, 10800, 10390, 10);
@@ -626,6 +637,7 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 70
  * @see setFM()
+ * @see setFrequencyStep()
  * 
  * @param fromFreq minimum frequency for the band
  * @param toFreq maximum frequency for the band
