@@ -295,7 +295,9 @@ typedef union {
     } arg; //!<  Refined powerup parameters 
     uint8_t raw[2]; //!<  Raw powerup parameters data. Same arg memory position. So, same content.
 } si473x_powerup;
+```
 
+```cpp 
 /**
  * @ingroup group01
  * 
@@ -310,7 +312,9 @@ typedef union {
     } raw;             //!<  Raw data that represents the frequency stored in the Si47XX device.
     uint16_t value; //!<  frequency (integer value)
 } si47x_frequency;
+```
 
+```cpp 
 /**
  * @ingroup group01
  * @brief Antenna Tuning Capacitor data type manupulation 
@@ -323,7 +327,9 @@ typedef union {
     } raw;
     uint16_t value;
 } si47x_antenna_capacitor;
+```
 
+```cpp 
 /**
  * @ingroup group01
  * 
@@ -345,7 +351,9 @@ typedef union {
     } arg;
     uint8_t raw[5];
 } si47x_set_frequency;
+```
 
+```cpp 
 /** 
  * @ingroup group01 
  * 
@@ -363,7 +371,9 @@ typedef union {
     } arg;
     uint8_t raw;
 } si47x_seek;
+```
 
+```cpp 
 /**  
  * @ingroup group01
  * 
@@ -404,7 +414,9 @@ typedef union {
     } resp;
     uint8_t raw[8]; //!<  Check it
 } si47x_response_status;
+```
 
+```cpp 
 /**
  * @ingroup group01
  * 
@@ -437,7 +449,9 @@ typedef union {
     } resp;
     uint8_t raw[9];
 } si47x_firmware_information;
+```
 
+```cpp 
 /**
  * @ingroup group01
  * 
@@ -472,7 +486,9 @@ typedef union {
     } resp;
     uint8_t raw[8];
 } si47x_firmware_query_library;
+```
 
+```cpp 
 /**
  * @ingroup group01
  * 
@@ -491,7 +507,9 @@ typedef union {
     } arg;
     uint8_t raw;
 } si47x_tune_status;
+```
 
+```cpp 
 /**
  * @ingroup group01
  * 
@@ -507,7 +525,9 @@ typedef union {
     } raw;
     uint16_t value;
 } si47x_property;
+```
 
+```cpp 
 
 /** @defgroup group02 RDS Data types */
 /** @section group02 RDS Data types */
@@ -558,7 +578,9 @@ typedef union {
     } resp;
     uint8_t raw[8];
 } si47x_rqs_status;
+```
 
+```cpp 
 /**
  * @ingroup group02
  * 
@@ -577,7 +599,9 @@ typedef union {
     } arg;
     uint8_t raw;
 } si47x_rds_command;
+```
 
+```cpp 
 /**
  * @ingroup group02
  * 
@@ -631,7 +655,9 @@ typedef union {
     } resp;
     uint8_t raw[13];
 } si47x_rds_status;
+```
 
+```cpp 
 /**
  * @ingroup group02
  * 
@@ -654,7 +680,9 @@ typedef union {
     } refined;
     uint8_t raw[2];
 } si47x_rds_int_source;
+```
 
+```cpp 
 /**
  * @ingroup group02
  * 
@@ -683,7 +711,9 @@ typedef union {
     } arg;
     uint8_t raw[2];
 } si47x_rds_config;
+```
 
+```cpp 
 /**
  * @ingroup group02
  * 
@@ -700,7 +730,9 @@ typedef union {
         uint8_t lowValue;
     } raw;
 } si47x_rds_blocka;
+```
 
+```cpp 
 /**
  * @ingroup group02
  * 
@@ -755,8 +787,9 @@ typedef union {
         uint8_t highValue; // Most Significant byte first
     } raw;
 } si47x_rds_blockb;
+```
 
-
+```cpp 
 /**
  * @ingroup group02
  * 
@@ -781,7 +814,9 @@ typedef union {
     } refined;
     uint8_t raw[6];
 } si47x_rds_date_time;
+```
 
+```cpp 
 /** @defgroup group03 Receiver Status and Setup */
 /** @section group03 Receiver Status and Setup */
 
@@ -813,7 +848,9 @@ typedef union {
     } refined;
     uint8_t raw[3];
 } si47x_agc_status;
+```
 
+```cpp 
 /** 
  * @ingroup group03
  * 
@@ -834,7 +871,9 @@ typedef union {
     } arg;
     uint8_t raw[2];
 } si47x_agc_overrride;
+```
 
+```cpp 
 /** 
  * @ingroup group03
  * 
@@ -860,7 +899,9 @@ typedef union {
     } param;
     uint8_t raw[2];
 } si47x_bandwidth_config; // AM_CHANNEL_FILTER
+```
 
+```cpp 
 /** 
  * @ingroup group03
  * 
@@ -881,7 +922,9 @@ typedef union {
     } param;
     uint8_t raw[2];
 } si47x_ssb_mode;
+```
 
+```cpp 
 /**
  * @ingroup group03
  * 
@@ -901,7 +944,9 @@ typedef union {
     } refined; 
     uint16_t raw;
 } si4735_digital_output_format;
+```
 
+```cpp 
 /**
  * @ingroup group03
  * 
@@ -914,6 +959,7 @@ typedef union {
 typedef struct {
     uint16_t DOSR; // Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
 } si4735_digital_output_sample_rate; // Maybe not necessary 
+```
 
 
 <BR>
