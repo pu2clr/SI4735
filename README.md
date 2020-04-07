@@ -54,8 +54,6 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <BR>
-<BR>
-
 
 ## Thanks
 
@@ -65,16 +63,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 * WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode; 
 * All members of the Facebook groups ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) and ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/) for the  suggestions and corrections during the development of this project.
 
-
 <BR>
-<BR>
-
 
 ## Your support is important.
 
 If you would like to support this library development, consider joining this project via Github. Alternatively, make suggestions on features you would like available in this library. Thank you!
 
-<BR>
 <BR>
 
 ## About the SI4735  
@@ -104,8 +98,6 @@ The table below shows some radios based on SI47XX
 | RADIWOW | R-108 |  | [Review](https://www.hagensieker.com/wordpress/2019/05/08/radiwow-r-108-short-wave-radio-review/)|
 | C Crane |  CC Skywave |  |[Review](https://swling.com/blog/2014/12/review-of-the-c-crane-cc-skywave-portable-radio/) |
 
-
-<BR>
 <BR>
 
 ### Functional Block Diagram
@@ -115,7 +107,6 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 
 ![SI473x Block Diagram](extras/images/block_diagram.png)
 
-<BR>
 <BR>
 
 ### The main Si4735 features
@@ -135,10 +126,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 * I²C and SPI interface 
 * Great Programming Guide and additional documentation to deal with the device
 
-
 <BR>
-<BR>
-
 
 ## SI4735 Terminology
 
@@ -169,8 +157,6 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 | Firmware Upgrades | The Si473x-D60 contains on-chip program  RAM to accommodate minor changes to the firmware | 
 
 <BR>
-<BR>
-<BR>
 
 ## SI4735 Arduino Library Features
 
@@ -198,13 +184,28 @@ You can install this library on your Arduino environment using different methods
 
 This is the easiest method to install this library.
 
+#### The image below show the Arduino IDE Manage Libraries interface.
+
 ![Installing from Arduino IDE 01](extras/images/lib_install_01.png)
+
+
+
+#### The image below show the PU2CLR Si4735 Library finding process.
+
+
 
 <BR>
 
 ![Installing from Arduino IDE 02](extras/images/lib_install_02.png)
 
 <BR>
+
+
+#### The video below shows how to install the PUCLR Arduino Library on your Arduino IDE. 
+
+{% include libinstalling.html %}
+
+
 
 ### Installing via this repository 
 
