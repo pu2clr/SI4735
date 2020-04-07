@@ -285,14 +285,14 @@ Methods to setup the audio mode (Digital or Analog), volume, mute etc.
 This library implements some RDS features of the SI4735. All function to deal with RDS are documented [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/).
 
 
-#### RDS on Arduino Pro Mini 3/3V
-
-{% include videoRDS1.html %} 
-
-
 #### RDS on Arduino DUE with Touch Screen
 
 {% include videoRDS2.html %}
+
+
+#### RDS on Arduino Pro Mini 3/3V
+
+{% include videoRDS1.html %} 
 
 
 The table below shows the features that this library implements.
