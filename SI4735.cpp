@@ -580,7 +580,15 @@ void SI4735::setFM()
  * 
  * @brief Sets the radio to AM (LW/MW/SW) function. 
  * 
+ * @details The example below set the band from 550KHz to 1550KHz on AM mode. The band will start on 810KHz and step is 10KHz. 
+ * 
+ * @code
+ * si4735.setAM(520, 1750, 810, 10);
+ * @endcode
+ *  
  * @see setAM()
+ * 
+ * 
  * 
  * @param fromFreq minimum frequency for the band
  * @param toFreq maximum frequency for the band
@@ -609,6 +617,14 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
  * 
  * @details Defines the band range you want to use for the FM mode. 
  * 
+ * @details The example below set the band from 64MHz to 108MHzKHz on FM mode. The band will start on 103.9MHz and step is 100KHz.
+ * On FM mode, the step 10 means 100KHz.    
+ * 
+ * @code
+ * si4735.setAM(6400, 10800, 10390, 10);
+ * @endcode
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 70
  * @see setFM()
  * 
  * @param fromFreq minimum frequency for the band
