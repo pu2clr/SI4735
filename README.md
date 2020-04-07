@@ -653,8 +653,7 @@ The figure above shows the very basic shematic implementation (no Button or Enco
 
 Here you can see some experiments using this library. Watch them.
 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/oL8qyRglZ8I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% include video01.html %}
 
 ### Project examples made by the author
 
