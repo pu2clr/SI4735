@@ -22,7 +22,7 @@ long rdsElapsedTime = millis();
 const unsigned min_fm = 8400;
 const unsigned max_fm = 10900;
 
-// Setup some local FM Stations with SDR
+// Setup some local FM Stations with RDS service
 uint16_t rdsStations[] = {10390, 9550, 9290, 8090, 9130, 9070, 9910, 10230, 10430, 10570, 10650};
 const int maxStations = (sizeof rdsStations / sizeof(uint16_t)) - 1;
 int currentStation = 0;
@@ -75,7 +75,6 @@ void setup()
   si4735.setFrequency(fm_freq);
   delay(100);
   showHelp();
-
   showCurrenteStatus();
   si4735.setRdsConfig(1, 2, 2, 2, 2);
 }
@@ -107,6 +106,46 @@ void showCurrenteStatus()
   Serial.println("dBuV]");
   Serial.println("================================");
 }
+
+void showCurrenteRdsStatus() {
+  Serial.print("Sync Lost...: ");
+  Serial.println(si4735.getRdsSyncLost());
+
+  Serial.print("Sync Found..: ");
+  Serial.println(si4735.getRdsSyncFound());
+
+  Serial.print("Synchronized: ");
+  Serial.println(si4735.getRdsSync());
+
+  Serial.print("Groups Lost.: ");
+  Serial.println(si4735.getGroupLost());
+
+  Serial.print("FIFO Used...: ");
+  Serial.println(si4735.getNumRdsFifoUsed());
+
+  Serial.print("New Block A.: ");
+  Serial.println(si4735.getRdsNewBlockA());
+
+  Serial.print("New Block B.: ");
+  Serial.println(si4735.getRdsNewBlockB());
+
+  Serial.print("PI..........: ");
+  Serial.println(si4735.getRdsPI());
+
+  Serial.print("Version......: ");
+  Serial.println(si4735.getRdsVersionCode());
+
+  Serial.print("Flag A/B.....: ");
+  Serial.println(si4735.getRdsFlagAB());
+
+  int i = si4735.getRdsProgramType();
+  Serial.print("Program Type.: ");
+  Serial.print(i);
+
+  Serial.print("\nGroup Type...: ");
+  Serial.println(si4735.getRdsGroupType());
+}
+
 
 void showRdsText()
 {
@@ -166,61 +205,18 @@ void loop()
     }
   }
 
+  si4735.getRdsStatus(); // It needs to be called before any other RDS call function
+
   // Checks the RDS information each ELAPSED_TIME seconds
-  if ((millis() - rdsElapsedTime) > ELAPSED_TIME  && showRdsStatus )
+  // if ((millis() - rdsElapsedTime) > ELAPSED_TIME  && showRdsStatus )
+  if ( si4735.getRdsReceived() )
   {
-
-
     si4735.getRdsStatus(); // It needs to be called before any other RDS call function
 
     rdsMsg2A = si4735.getRdsText2A();
     rdsMsg2B = si4735.getRdsText2B();
     stationInfo = si4735.getRdsText0A();
     rdsTime = si4735.getRdsTime();
-
-    Serial.print("Frequência..: ");
-    Serial.println(String(fm_freq / 100.0, 2));
-
-    Serial.print("RDS Received: ");
-    Serial.println(si4735.getRdsReceived());
-
-    Serial.print("Sync Lost...: ");
-    Serial.println(si4735.getRdsSyncLost());
-
-    Serial.print("Sync Found..: ");
-    Serial.println(si4735.getRdsSyncFound());
-
-    Serial.print("Synchronized: ");
-    Serial.println(si4735.getRdsSync());
-
-    Serial.print("Groups Lost.: ");
-    Serial.println(si4735.getGroupLost());
-
-    Serial.print("FIFO Used...: ");
-    Serial.println(si4735.getNumRdsFifoUsed());
-
-    Serial.print("New Block A.: ");
-    Serial.println(si4735.getRdsNewBlockA());
-
-    Serial.print("New Block B.: ");
-    Serial.println(si4735.getRdsNewBlockB());
-
-    Serial.print("PI..........: ");
-    Serial.println(si4735.getRdsPI());
-
-    Serial.print("Version......: ");
-    Serial.println(si4735.getRdsVersionCode());
-
-    Serial.print("Flag A/B.....: ");
-    Serial.println(si4735.getRdsFlagAB());
-
-    int i = si4735.getRdsProgramType();
-    Serial.print("Program Type.: ");
-    Serial.print(i);
-    Serial.print(" - ");
-    // if (i < 32)
-    // Serial.print(String(tabProgramType[i]));
-    Serial.println(".");
 
     if ( stationInfo != NULL ) {
       Serial.print("\nTipo 0A.....: ");
@@ -242,15 +238,11 @@ void loop()
       Serial.print(rdsTime);
     }
 
-
-    Serial.print("\nGroup Type...: ");
-    Serial.println(si4735.getRdsGroupType());
-
     Serial.println("\n***********");
     delay(100);
 
     rdsElapsedTime = millis();
   }
 
-  delay(100);
+  delay(20);
 }
