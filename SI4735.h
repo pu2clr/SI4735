@@ -153,7 +153,10 @@
 #define FM_CURRENT_MODE 0
 #define AM_CURRENT_MODE 1
 #define SSB_CURRENT_MODE 2
+
+
 #define MAX_DELAY_AFTER_SET_FREQUENCY 30 // In ms - This value helps to improve the precision during of getting frequency value
+#define MAX_DELAY_AFTER_POWERUP 10       // In ms - Max delay you have to setup after a power up command.
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 
 /** @defgroup group01 SI473X data types 
@@ -882,6 +885,9 @@ protected:
 
     int16_t deviceAddress = SI473X_ADDR_SEN_LOW; //!<  current I2C buss address
 
+    uint16_t maxDelaySetFrequency = MAX_DELAY_AFTER_SET_FREQUENCY; // Max delay (ms) after set frequency command
+    uint16_t maxDelayAfterPouwerUp = MAX_DELAY_AFTER_POWERUP;      //  Max delay you have to setup after a power up command.
+
     uint8_t lastTextFlagAB;
     uint8_t resetPin; //!<  pin used on Arduino Board to RESET the Si47XX device
     uint8_t interruptPin; //!<  pin used on Arduino Board to control interrupt. If -1, interrupt is no used.
@@ -1475,6 +1481,15 @@ public:
      * @param value in Hz. For example: The values 500000 sets the bus to 500KHz.
      */
     inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); }; 
+
+
+    inline void setMaxDelayPowerUp(uint16_t ms) {
+        this->maxDelayAfterPouwerUp = ms;
+    }
+
+    inline void setMaxDelaySetFrequency(uint16_t ms) {
+        this->maxDelaySetFrequency = ms;
+    }
 
     void setDeviceI2CAddress(uint8_t senPin); 
     int16_t getDeviceI2CAddress(uint8_t resetPin); 

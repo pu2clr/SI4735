@@ -265,7 +265,7 @@ void SI4735::radioPowerUp(void) {
     // Delay at least 500 ms between powerup command and first tune command to wait for
     // the oscillator to stabilize if XOSCEN is set and crystal is used as the RCLK.
     waitToSend();
-    delay(10);
+    delay(maxDelayAfterPouwerUp);
 }
 
 /**
@@ -486,7 +486,7 @@ void SI4735::setFrequency(uint16_t freq)
     Wire.endTransmission();
     waitToSend();                // Wait for the si473x is ready.
     currentWorkFrequency = freq; // check it
-    delay(MAX_DELAY_AFTER_SET_FREQUENCY); // For some reason I need to delay here. 
+    delay(maxDelaySetFrequency); // For some reason I need to delay here. 
 }
 
 /** 
@@ -2427,7 +2427,7 @@ void SI4735::patchPowerUp()
     Wire.write(0b00110001);          // Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
     Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Output
     Wire.endTransmission();
-    delayMicroseconds(2500);
+    delay(maxDelayAfterPouwerUp);
 }
 
 /** 
