@@ -181,13 +181,13 @@ You can install this library on your Arduino environment using different methods
 
 This is the easiest method to install this library.
 
-#### The image below show the Arduino IDE Manage Libraries interface.
+#### The image below shows the Arduino IDE Manage Libraries interface.
 
 ![Installing from Arduino IDE 01](extras/images/lib_install_01.png)
 
 
 
-#### The image below show the PU2CLR Si4735 Library finding process.
+#### The image below shows the PU2CLR Si4735 Library finding process.
 
 
 
