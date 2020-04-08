@@ -259,56 +259,6 @@ void rotaryEncoder()
   }
 }
 
-/**
-    Prevents blinking and I2C trafic during the frequency display.
-    Erases the old digits if it has changed and print the new digit values.
-
-    TO DO
-*/
-/*
-void printValue(int col, int line, char *oldValue, char *newValue, uint16_t color, uint8_t space)
-{
-  int c = col;
-  char *pOld;
-  char *pNew;
-
-  pOld = oldValue;
-  pNew = newValue;
-
-  oled.setCursor(col, line);
-  // prints just changed digits
-  while (*pOld && *pNew)
-  {
-    if (*pOld != *pNew)
-    {
-      // TO DO
-    }
-    pOld++;
-    pNew++;
-    c += space;
-  }
-
-  // Is there anything else to erase?
-  while (*pOld)
-  {
-    // TO DO
-    pOld++;
-    c += space;
-  }
-
-  // Is there anything else to print?
-  while (*pNew)
-  {
-    // TO DO
-    pNew++;
-    c += space;
-  }
-
-  // Save the current content to be tested next time
-  strcpy(oldValue, newValue);
-}
-*/
-
 void clearLine4() {
   oled.setCursor(0, 2);
   oled.print("                    ");
@@ -792,12 +742,6 @@ void loop()
     elapsedButton = millis();
   }
 
-  // Show the current frequency only if it has changed
-  if (currentFrequency != previousFrequency)
-  {
-    previousFrequency = currentFrequency;
-    showFrequency();
-  }
 
   // Show RSSI status only if this condition has changed
   if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 9)
@@ -816,11 +760,16 @@ void loop()
   if ( currentMode == FM) {
     if ( currentFrequency != previousFrequency ) {
       clearLine4();
-      previousFrequency = currentFrequency;
     } 
     checkRDS();
   }
     
+  // Show the current frequency only if it has changed
+  if (currentFrequency != previousFrequency)
+  {
+    previousFrequency = currentFrequency;
+    showFrequency();
+  }
 
   delay(10);
 }
