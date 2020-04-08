@@ -814,13 +814,10 @@ void loop()
 
 
   if ( currentMode == FM) {
-    /*if ( currentFrequency != previousFrequency ) {
+    if ( currentFrequency != previousFrequency ) {
       clearLine4();
-      bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] =  bufferRdsTime[0] = rdsMsg[0] = stationName[0] = '\0';
-      showRDSMsg();
-      showRDSStation();
       previousFrequency = currentFrequency;
-    } */
+    } 
     checkRDS();
   }
     
