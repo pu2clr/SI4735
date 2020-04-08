@@ -405,7 +405,7 @@ This library has been written for the Arduino platform and has been successfully
 
 ### Arduino 5V and Si4735
 
-* __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO or anothe board, YOU HAVE TO USE A KIND OF 5V TO 3.3V CONVERTER. Also pay attention to the appropriated pinout of your board to select the correct interrupt (IRQ- if you are using), RST, SDIO and SCLK pins. The table below shows some Arduino board pinout.__ 
+* __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO or anothe board, YOU HAVE TO USE A KIND OF 5V-3.3V BIDIRECTIONAL CONVERTER. Also pay attention to the appropriated pinout of your board to select the correct interrupt (IRQ- if you are using), RST, SDIO and SCLK pins. The table below shows some Arduino board pinout.__ 
 
 <BR>
 
@@ -431,8 +431,6 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 
 
 ![Basic Schematic](./extras/images/basic_schematic.png)
-
-
 
 
 #### The picture below shows the SI4735-D60 pinout
