@@ -251,6 +251,8 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * | FUNC      | defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver |
  * | OPMODE    | SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011) |
  * 
+ * @see setMaxDelaySetFrequency()
+ * @see MAX_DELAY_AFTER_POWERUP 
  * @see  SI4735::setPowerUp()
  * @see  Si47XX PROGRAMMING GUIDE; AN332; pages 64, 129
  */
@@ -453,6 +455,8 @@ void SI4735::setTuneFrequencyAntennaCapacitor(uint16_t capacitor)
  * 
  * @details You have to call setup or setPowerUp before call setFrequency.
  * 
+ * @see maxDelaySetFrequency()
+ * @see MAX_DELAY_AFTER_SET_FREQUENCY
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 70, 135
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13
  * 
@@ -2415,7 +2419,9 @@ si47x_firmware_query_library SI4735::queryLibraryId()
  *  
  * @details Call queryLibraryId before call this method. Powerup the device by issuing the POWER_UP 
  * command with FUNC = 1 (AM/SW/LW Receive).
- *  
+ * 
+ * @see setMaxDelaySetFrequency()
+ * @see MAX_DELAY_AFTER_POWERUP 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7.
  */

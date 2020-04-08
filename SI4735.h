@@ -1480,13 +1480,30 @@ public:
      * 
      * @param value in Hz. For example: The values 500000 sets the bus to 500KHz.
      */
-    inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); }; 
+    inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); };
 
-
+    /**
+     * @brief Set the Max Delay Power Up 
+     * @details Sets the delay needed in ms after a powerup command (default is 10ms).
+     * @details Some external crystal might need more time to become stable (500 ms is the recommended).
+     * 
+     * @see MAX_DELAY_AFTER_POWERUP  
+     * @param ms delay in ms
+     */
     inline void setMaxDelayPowerUp(uint16_t ms) {
         this->maxDelayAfterPouwerUp = ms;
     }
 
+    /**
+     * @brief Set the Max Delay after Set Frequency 
+     * 
+     * @details After the set frequency command, the system need a time to get ready to the next set frequency (default value 30ms).
+     * @details Why the waitToSend() does not work in this case? No idea for while! 
+     * @details A low value makes the getFrequency command inaccurate. 
+     * 
+     * @see  MAX_DELAY_AFTER_POWERUP
+     * @param ms 
+     */
     inline void setMaxDelaySetFrequency(uint16_t ms) {
         this->maxDelaySetFrequency = ms;
     }
