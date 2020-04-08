@@ -38,7 +38,7 @@ There is a facebook group called [__Si47XX for Radio Experimenters__](https://ww
 13. [Videos](https://pu2clr.github.io/SI4735/#videos) 
     * [Project examples made by the author](https://pu2clr.github.io/SI4735/#project-examples-made-by-the-author)
     * [Third-party projects using this library](https://pu2clr.github.io/SI4735/#third-party-projects-using-this-library)
-14. [Commercial Receivers based on Si47XX Family]() 
+14. [Commercial Receivers based on Si47XX Family](https://pu2clr.github.io/SI4735/#commercial-receivers-based-on-si47xx-family) 
 
 
 ## MIT License 
