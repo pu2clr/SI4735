@@ -40,9 +40,6 @@ There is a facebook group called [__Si47XX for Radio Experimenters__](https://ww
     * [Third-party projects using this library](https://pu2clr.github.io/SI4735/#third-party-projects-using-this-library)
 
 
-
-
-
 ## MIT License 
 
 Copyright (c) 2019 Ricardo Lima Caratti
