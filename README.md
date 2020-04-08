@@ -86,7 +86,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 
 ### The main Si4735 features
 
-* FM band support (64–108 MHz)
+* FM (VHF) support (64–108 MHz)
 * AM (MW) band support (520–1710 kHz)
 * SW band support (2.3–26.1 MHz)
 * LW band support (153–279 kHz)
