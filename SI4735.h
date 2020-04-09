@@ -946,7 +946,6 @@ public:
     void getStatus(uint8_t, uint8_t);
 
     uint16_t getFrequency(void); 
-    uint16_t getCurrentFrequency(); 
 
     /** 
      * STATUS RESPONSE
@@ -1299,8 +1298,6 @@ public:
 
     void setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT);
 
-    void setFrequencyStep(uint16_t step);
-
     inline uint8_t getTuneFrequencyFast() { return currentFrequencyParams.arg.FAST; };                  //!<  Returns the FAST tuning status
     inline void setTuneFrequencyFast(uint8_t FAST) { currentFrequencyParams.arg.FAST = FAST; };         //!<  FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate
     inline uint8_t getTuneFrequencyFreeze() { return currentFrequencyParams.arg.FREEZE; };              //!<  Returns the FREEZE status
@@ -1483,6 +1480,7 @@ public:
     inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); };
 
     /**
+     * @ingroup group06 Si47XX device Power Up 
      * @brief Set the Max Delay Power Up 
      * @details Sets the delay needed in ms after a powerup command (default is 10ms).
      * @details Some external crystal might need more time to become stable (500 ms is the recommended).
@@ -1495,6 +1493,7 @@ public:
     }
 
     /**
+     * @ingroup   group08 Tune Frequency
      * @brief Set the Max Delay after Set Frequency 
      * 
      * @details After the set frequency command, the system need a time to get ready to the next set frequency (default value 30ms).
@@ -1506,6 +1505,52 @@ public:
      */
     inline void setMaxDelaySetFrequency(uint16_t ms) {
         this->maxDelaySetFrequency = ms;
+    }
+
+    /** 
+     * @ingroup group08 Tune Frequency step
+     * 
+     * @brief Sets the current step value. 
+     * 
+     * @details This function does not check the limits of the current band. Please, don't take a step bigger than your legs.
+     * @details Example:
+     * @code
+     * setFM(6400,10800,10390,10);
+     * setFrequencyStep(100); // the step will be 1MHz (you are using FM mode)
+     * .
+     * .
+     * .
+     * setAM(7000,7600,7100,5); 
+     * setFrequencyStep(1); // the step will be 1KHz (you are usin AM or SSB mode)  
+     * @endcode 
+     * 
+     * @see setFM()
+     * @see setAM()
+     * @see setSSB()
+     * 
+     * @param step if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz
+     *             For AM, 1 (1KHz) to 1000 (1MHz) are valid values.
+     *             For FM 5 (50KHz), 10 (100KHz) and 100 (1MHz) are valid values.  
+     */
+    inline void setFrequencyStep(uint16_t step)
+    {
+        currentStep = step;
+    }
+
+    /**
+     * @ingroup group14 Frequency 
+     * 
+     * @brief Gets the current frequency saved in memory. 
+     * 
+     * @details Unlike getFrequency, this method gets the current frequency recorded after the last setFrequency command. 
+     * @details This method avoids bus traffic and CI processing.
+     * @details However, you can not get others status information like RSSI.
+     * 
+     * @see getFrequency()
+     */
+    inline uint16_t getCurrentFrequency()
+    {
+        return currentWorkFrequency;
     }
 
     void setDeviceI2CAddress(uint8_t senPin); 

@@ -229,7 +229,7 @@ void setup()
 
 
   // Uncomment the lines below if you experience some unstable behaviour.
-  // si4735.setMaxDelayPowerUp(500);      // Time to the external crystal become stable (default is 10ms).
+  // si4735.setMaxDelayPowerUp(500);      // Time to the external crystal become stable after power up command (default is 10ms).
   // si4735.setMaxDelaySetFrequency(100); // Time needed to process the next frequency setup (default is 30 ms)
 
 

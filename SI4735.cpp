@@ -493,35 +493,6 @@ void SI4735::setFrequency(uint16_t freq)
     delay(maxDelaySetFrequency); // For some reason I need to delay here. 
 }
 
-/** 
- * @ingroup group08 Tune Frequency step
- * 
- * @brief Sets the current step value. 
- * 
- * @details This function does not check the limits of the current band. Please, don't take a step bigger than your legs.
- * @details Example:
- * @code
- * setFM(6400,10800,10390,10);
- * setFrequencyStep(100); // the step will be 1MHz (you are using FM mode)
- * .
- * .
- * .
- * setAM(7000,7600,7100,5); 
- * setFrequencyStep(1); // the step will be 1KHz (you are usin AM or SSB mode)  
- * @endcode 
- * 
- * @see setFM()
- * @see setAM()
- * @see setSSB()
- * 
- * @param step if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz
- *             For AM, 1 (1KHz) to 1000 (1MHz) are valid values.
- *             For FM 5 (50KHz), 10 (100KHz) and 100 (1MHz) are valid values.  
- */
-void SI4735::setFrequencyStep(uint16_t step)
-{
-    currentStep = step;
-}
 
 /**
  * @ingroup group08 Tune Frequency 
@@ -1100,22 +1071,6 @@ uint16_t SI4735::getFrequency()
 
     currentWorkFrequency = freq.value;
     return freq.value;
-}
-
-/**
- * @ingroup group14 Frequency 
- * 
- * @brief Gets the current frequency saved in memory. 
- * 
- * @details Unlike getFrequency, this method gets the current frequency recorded after the last setFrequency command. 
- * @details This method avoids bus traffic and CI processing.
- * @details However, you can not get others status information like RSSI.
- * 
- * @see getFrequency()
- */
-uint16_t SI4735::getCurrentFrequency()
-{
-    return currentWorkFrequency;
 }
 
 /**
