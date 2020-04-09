@@ -942,7 +942,6 @@ public:
 
     void setFrequency(uint16_t); 
 
-    void getStatus(); 
     void getStatus(uint8_t, uint8_t);
 
     uint16_t getFrequency(void); 
@@ -1534,7 +1533,7 @@ public:
      */
     inline void setFrequencyStep(uint16_t step)
     {
-        currentStep = step;
+        this->currentStep = step;
     }
 
     /**
@@ -1550,7 +1549,19 @@ public:
      */
     inline uint16_t getCurrentFrequency()
     {
-        return currentWorkFrequency;
+        return this->currentWorkFrequency;
+    }
+
+    /**
+     * @ingroup group14 Si47XX device Status 
+     * 
+     * @brief Gets the current status  of the Si4735 (AM or FM)
+     * 
+     * @see Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
+     */
+    inline void SI4735::getStatus()
+    {
+        getStatus(0, 1);
     }
 
     void setDeviceI2CAddress(uint8_t senPin); 

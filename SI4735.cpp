@@ -1109,17 +1109,6 @@ void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
     waitToSend();
 }
 
-/**
- * @ingroup group14 Si47XX device Status 
- * 
- * @brief Gets the current status  of the Si4735 (AM or FM)
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
- */
-void SI4735::getStatus()
-{
-    getStatus(0, 1);
-}
 
 /**
  * @ingroup group14 Si47XX AGC 
