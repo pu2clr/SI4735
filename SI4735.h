@@ -1559,7 +1559,7 @@ public:
      * 
      * @see Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
      */
-    inline void SI4735::getStatus()
+    inline void getStatus()
     {
         getStatus(0, 1);
     }
