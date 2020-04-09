@@ -64,7 +64,7 @@ var searchData=
   ['getrdsversioncode_153',['getRdsVersionCode',['../group__group16.html#gaf9b6cb614d1b01b11bb23c19e6deb8b9',1,'SI4735']]],
   ['getreceivedsignalstrengthindicator_154',['getReceivedSignalStrengthIndicator',['../class_s_i4735.html#aeeefd12b49dbc764e0f45fe208441482',1,'SI4735']]],
   ['getsignalqualityinterrupt_155',['getSignalQualityInterrupt',['../class_s_i4735.html#ad194137a6a712a599e3c26e5b6357594',1,'SI4735']]],
-  ['getstatus_156',['getStatus',['../group__group14.html#ga3cf856c44fcfffb3d81b22b1d09b881f',1,'SI4735::getStatus()'],['../group__group14.html#ga5c0f4036a7fbbd11a26f1f6f4579d3cd',1,'SI4735::getStatus(uint8_t, uint8_t)']]],
+  ['getstatus_156',['getStatus',['../group__group14.html#ga5c0f4036a7fbbd11a26f1f6f4579d3cd',1,'SI4735::getStatus(uint8_t, uint8_t)'],['../group__group14.html#ga3cf856c44fcfffb3d81b22b1d09b881f',1,'SI4735::getStatus()']]],
   ['getstatuscts_157',['getStatusCTS',['../class_s_i4735.html#afcb38f53b6eb71cadcefa0bb472ca943',1,'SI4735']]],
   ['getstatuserror_158',['getStatusError',['../class_s_i4735.html#a69723840497ed693d6f9a4e840ab07c9',1,'SI4735']]],
   ['getstatusmult_159',['getStatusMULT',['../class_s_i4735.html#a0f9b5438a6f92c8f2e538ee640f353ab',1,'SI4735']]],

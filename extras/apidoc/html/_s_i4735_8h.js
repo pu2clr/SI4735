@@ -66,6 +66,7 @@ var _s_i4735_8h =
     [ "GPIO_SET", "_s_i4735_8h.html#aee1a56baeb6b8457fb722fd36dad5bbf", null ],
     [ "GPO_IEN", "_s_i4735_8h.html#a16b9c6d556c2db79e8742267daf63c83", null ],
     [ "LSB_MODE", "_s_i4735_8h.html#a6c1cf039ba7ea7e5c0cce10943a18e3b", null ],
+    [ "MAX_DELAY_AFTER_POWERUP", "_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663", null ],
     [ "MAX_DELAY_AFTER_SET_FREQUENCY", "_s_i4735_8h.html#a3d77e4d0458eed0b6ba584c737e8df21", null ],
     [ "MIN_DELAY_WAIT_SEND_LOOP", "_s_i4735_8h.html#a166d7b31e78d530aba242e50dd903de4", null ],
     [ "POWER_DOWN", "_s_i4735_8h.html#aad04e0c9afdeec307d5b9cb2062d784d", null ],

@@ -93,6 +93,9 @@ $(document).ready(function(){initNavTree('group__group06.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gacfbec075648206fbe25834d998ed9e64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group06.html#gacfbec075648206fbe25834d998ed9e64">SI4735::setMaxDelayPowerUp</a> (uint16_t ms)</td></tr>
+<tr class="memdesc:gacfbec075648206fbe25834d998ed9e64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Max Delay Power Up.  <a href="group__group06.html#gacfbec075648206fbe25834d998ed9e64">More...</a><br /></td></tr>
+<tr class="separator:gacfbec075648206fbe25834d998ed9e64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadc6014674bd4d1ee3aab56c605926db1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group06.html#gadc6014674bd4d1ee3aab56c605926db1">SI4735::reset</a> (void)</td></tr>
 <tr class="memdesc:gadc6014674bd4d1ee3aab56c605926db1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the SI473X <br  />
   <a href="group__group06.html#gadc6014674bd4d1ee3aab56c605926db1">More...</a><br /></td></tr>
@@ -204,7 +207,11 @@ Si47XX PROGRAMMING GUIDE; AN332; pages 64, 129 </dd></dl>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">OPMODE </td><td class="markdownTableBodyNone">SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011)  </td></tr>
 </table>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group06.html#ga8bc001cb28dc8fbd88ba0fa7024eca39" title="Set the Power Up parameters for si473X.">SI4735::setPowerUp()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8" title="Set the Max Delay after Set Frequency.">setMaxDelaySetFrequency()</a> </dd>
+<dd>
+<a class="el" href="_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663">MAX_DELAY_AFTER_POWERUP</a> </dd>
+<dd>
+<a class="el" href="group__group06.html#ga8bc001cb28dc8fbd88ba0fa7024eca39" title="Set the Power Up parameters for si473X.">SI4735::setPowerUp()</a> </dd>
 <dd>
 Si47XX PROGRAMMING GUIDE; AN332; pages 64, 129 </dd></dl>
 
@@ -235,6 +242,44 @@ Si47XX PROGRAMMING GUIDE; AN332; pages 64, 129 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="group__group07.html#ga95fd37277dbb8b16b5ae7a996a5f9eba">SI4735::setup()</a>, and <a class="el" href="group__group17.html#ga6f045d3725a457116236ee92d41c4265">SI4735::ssbSetup()</a>.</p>
+
+</div>
+</div>
+<a id="gacfbec075648206fbe25834d998ed9e64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacfbec075648206fbe25834d998ed9e64">&#9670;&nbsp;</a></span>setMaxDelayPowerUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setMaxDelayPowerUp </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>ms</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the Max Delay Power Up. </p>
+<p>Sets the delay needed in ms after a powerup command (default is 10ms).</p>
+<p>Some external crystal might need more time to become stable (500 ms is the recommended).</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663">MAX_DELAY_AFTER_POWERUP</a> <br  />
+ </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ms</td><td>delay in ms </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

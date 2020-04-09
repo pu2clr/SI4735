@@ -93,18 +93,18 @@ $(document).ready(function(){initNavTree('group__group14.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga7e88bb573604d465536c13554d5c61f8"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group14.html#ga7e88bb573604d465536c13554d5c61f8">SI4735::getFrequency</a> (void)</td></tr>
-<tr class="memdesc:ga7e88bb573604d465536c13554d5c61f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current frequency of the Si4735 (AM or FM)  <a href="group__group14.html#ga7e88bb573604d465536c13554d5c61f8">More...</a><br /></td></tr>
-<tr class="separator:ga7e88bb573604d465536c13554d5c61f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8240278970ae8bf7283e14714b4329ad"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group14.html#ga8240278970ae8bf7283e14714b4329ad">SI4735::getCurrentFrequency</a> ()</td></tr>
 <tr class="memdesc:ga8240278970ae8bf7283e14714b4329ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current frequency saved in memory.  <a href="group__group14.html#ga8240278970ae8bf7283e14714b4329ad">More...</a><br /></td></tr>
 <tr class="separator:ga8240278970ae8bf7283e14714b4329ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3cf856c44fcfffb3d81b22b1d09b881f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group14.html#ga3cf856c44fcfffb3d81b22b1d09b881f">SI4735::getStatus</a> ()</td></tr>
+<tr class="memdesc:ga3cf856c44fcfffb3d81b22b1d09b881f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current status of the Si47XX (AM, FM or SSB)  <a href="group__group14.html#ga3cf856c44fcfffb3d81b22b1d09b881f">More...</a><br /></td></tr>
+<tr class="separator:ga3cf856c44fcfffb3d81b22b1d09b881f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7e88bb573604d465536c13554d5c61f8"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group14.html#ga7e88bb573604d465536c13554d5c61f8">SI4735::getFrequency</a> (void)</td></tr>
+<tr class="memdesc:ga7e88bb573604d465536c13554d5c61f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current frequency of the Si4735 (AM or FM)  <a href="group__group14.html#ga7e88bb573604d465536c13554d5c61f8">More...</a><br /></td></tr>
+<tr class="separator:ga7e88bb573604d465536c13554d5c61f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5c0f4036a7fbbd11a26f1f6f4579d3cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group14.html#ga5c0f4036a7fbbd11a26f1f6f4579d3cd">SI4735::getStatus</a> (uint8_t, uint8_t)</td></tr>
 <tr class="memdesc:ga5c0f4036a7fbbd11a26f1f6f4579d3cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current status of the Si4735 (AM or FM)  <a href="group__group14.html#ga5c0f4036a7fbbd11a26f1f6f4579d3cd">More...</a><br /></td></tr>
 <tr class="separator:ga5c0f4036a7fbbd11a26f1f6f4579d3cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3cf856c44fcfffb3d81b22b1d09b881f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group14.html#ga3cf856c44fcfffb3d81b22b1d09b881f">SI4735::getStatus</a> ()</td></tr>
-<tr class="memdesc:ga3cf856c44fcfffb3d81b22b1d09b881f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current status of the Si4735 (AM or FM)  <a href="group__group14.html#ga3cf856c44fcfffb3d81b22b1d09b881f">More...</a><br /></td></tr>
-<tr class="separator:ga3cf856c44fcfffb3d81b22b1d09b881f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaaae187575b9868ff427c063c3a6cca2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group14.html#gaaae187575b9868ff427c063c3a6cca2a">SI4735::getAutomaticGainControl</a> ()</td></tr>
 <tr class="memdesc:gaaae187575b9868ff427c063c3a6cca2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queries Automatic Gain Control STATUS.  <a href="group__group14.html#gaaae187575b9868ff427c063c3a6cca2a">More...</a><br /></td></tr>
 <tr class="separator:gaaae187575b9868ff427c063c3a6cca2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,6 +153,9 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">uint16_t SI4735::getCurrentFrequency </td>
@@ -161,6 +164,11 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Gets the current frequency saved in memory. </p>
@@ -256,6 +264,9 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void SI4735::getStatus </td>
@@ -264,9 +275,14 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Gets the current status of the Si4735 (AM or FM) </p>
+<p>Gets the current status of the Si47XX (AM, FM or SSB) </p>
 <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM) </dd></dl>
 
 </div>
