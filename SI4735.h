@@ -1483,6 +1483,7 @@ public:
      * @brief Set the Max Delay Power Up 
      * @details Sets the delay needed in ms after a powerup command (default is 10ms).
      * @details Some external crystal might need more time to become stable (500 ms is the recommended).
+     * @details Low values make the load SSB patch faster. However, it can make the system unstable.   
      * 
      * @see MAX_DELAY_AFTER_POWERUP  
      * @param ms delay in ms
