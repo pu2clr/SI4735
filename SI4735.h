@@ -1555,7 +1555,7 @@ public:
     /**
      * @ingroup group14 Si47XX device Status 
      * 
-     * @brief Gets the current status  of the Si4735 (AM or FM)
+     * @brief Gets the current status  of the Si47XX (AM, FM or SSB)
      * 
      * @see Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)
      */
