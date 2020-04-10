@@ -133,7 +133,7 @@ var class_s_i4735 =
     [ "setMaxDelayPowerUp", "group__group06.html#gacfbec075648206fbe25834d998ed9e64", null ],
     [ "setMaxDelaySetFrequency", "group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8", null ],
     [ "setPowerUp", "group__group06.html#ga8bc001cb28dc8fbd88ba0fa7024eca39", null ],
-    [ "setProperty", "class_s_i4735.html#a27549ef05fa62f60e4ac205c16b8f764", null ],
+    [ "setProperty", "group__group10.html#ga27549ef05fa62f60e4ac205c16b8f764", null ],
     [ "setRdsConfig", "group__group16.html#gad9718a85c79a311c26997bbda20f2351", null ],
     [ "setRdsIntSource", "group__group16.html#ga530e64d00d95b4ceb13ce33aa74c63cb", null ],
     [ "setSBBSidebandCutoffFilter", "group__group17.html#gae9d50b24642784943fefedbac944a8e8", null ],
