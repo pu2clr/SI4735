@@ -121,6 +121,11 @@ Data Structures</h2></td></tr>
 <tr class="separator:unionsi47x__seek"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structsi47x__seek_8arg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#structsi47x__seek_8arg">si47x_seek.arg</a></td></tr>
 <tr class="separator:structsi47x__seek_8arg"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:unionsi47x__status"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#unionsi47x__status">si47x_status</a></td></tr>
+<tr class="memdesc:unionsi47x__status"><td class="mdescLeft">&#160;</td><td class="mdescRight">Status response data representation.  <a href="group__group01.html#unionsi47x__status">More...</a><br /></td></tr>
+<tr class="separator:unionsi47x__status"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structsi47x__status_8refined"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#structsi47x__status_8refined">si47x_status.refined</a></td></tr>
+<tr class="separator:structsi47x__status_8refined"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:unionsi47x__response__status"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#unionsi47x__response__status">si47x_response_status</a></td></tr>
 <tr class="memdesc:unionsi47x__response__status"><td class="mdescLeft">&#160;</td><td class="mdescRight">Response status command.  <a href="group__group01.html#unionsi47x__response__status">More...</a><br /></td></tr>
 <tr class="separator:unionsi47x__response__status"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -526,6 +531,96 @@ Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band l
 
 </div>
 </div>
+<a name="unionsi47x__status" id="unionsi47x__status"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#unionsi47x__status">&#9670;&nbsp;</a></span>si47x_status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union si47x_status</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Status response data representation. </p>
+<p>Represents searching for a valid frequency data type. </p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a id="a8afecb26fbffbfa5a7d3d46d90becabc"></a>uint8_t</td>
+<td class="fieldname">
+raw</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="ae74a91730fe217f5cb29daf1ab3fde33"></a>struct <a class="el" href="group__group01.html#structsi47x__status_8refined">si47x_status</a></td>
+<td class="fieldname">
+refined</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="structsi47x__status_8refined" id="structsi47x__status_8refined"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#structsi47x__status_8refined">&#9670;&nbsp;</a></span>si47x_status.refined</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct si47x_status.refined</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"></div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
+<td class="fieldname">
+CTS: 1</td>
+<td class="fielddoc">
+0 = Wait before sending next command; 1 = Clear to send next command. </td></tr>
+<tr><td class="fieldtype">
+<a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY1: 1</td>
+<td class="fielddoc">
+Reserved (Values may vary). </td></tr>
+<tr><td class="fieldtype">
+<a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY2: 2</td>
+<td class="fielddoc">
+Reserved (Values may vary). </td></tr>
+<tr><td class="fieldtype">
+<a id="acd22bad976363fdd1bfbf6759fede482"></a>uint8_t</td>
+<td class="fieldname">
+ERR: 1</td>
+<td class="fielddoc">
+1 = Error. </td></tr>
+<tr><td class="fieldtype">
+<a id="a53d648e7e9d100d590e2f65ec7de079f"></a>uint8_t</td>
+<td class="fieldname">
+RDSINT: 1</td>
+<td class="fielddoc">
+1 = Radio data system interrupt has been triggered. </td></tr>
+<tr><td class="fieldtype">
+<a id="a8acf6c55c97050e7abd06c104012c77a"></a>uint8_t</td>
+<td class="fieldname">
+RSQINT: 1</td>
+<td class="fielddoc">
+1 = Received Signal Quality measurement has been triggered. </td></tr>
+<tr><td class="fieldtype">
+<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
+<td class="fieldname">
+STCINT: 1</td>
+<td class="fielddoc">
+1 = Tune complete has been triggered. </td></tr>
+</table>
+
+</div>
+</div>
 <a name="unionsi47x__response__status" id="unionsi47x__response__status"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#unionsi47x__response__status">&#9670;&nbsp;</a></span>si47x_response_status</h2>
 
@@ -549,7 +644,7 @@ raw[8]</td>
 <td class="fielddoc">
 Check it. </td></tr>
 <tr><td class="fieldtype">
-<a id="ab3395dbf4658a828c26e6d5cfcc3b18e"></a>struct <a class="el" href="group__group01.html#structsi47x__response__status_8resp">si47x_response_status</a></td>
+<a id="a0e7c279d251b7485e31e7c8922078977"></a>struct <a class="el" href="group__group01.html#structsi47x__response__status_8resp">si47x_response_status</a></td>
 <td class="fieldname">
 resp</td>
 <td class="fielddoc">
@@ -700,7 +795,7 @@ raw[9]</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a62ecd35a00b7a8bd4faaf82cd69d522e"></a>struct <a class="el" href="group__group01.html#structsi47x__firmware__information_8resp">si47x_firmware_information</a></td>
+<a id="af03ada523de06bc7dc13c2c6f6094bf8"></a>struct <a class="el" href="group__group01.html#structsi47x__firmware__information_8resp">si47x_firmware_information</a></td>
 <td class="fieldname">
 resp</td>
 <td class="fielddoc">
@@ -840,7 +935,7 @@ raw[8]</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a328de8db27422fb20f1335f29e67b8ed"></a>struct <a class="el" href="group__group01.html#structsi47x__firmware__query__library_8resp">si47x_firmware_query_library</a></td>
+<a id="a934481d2e03f0256e140f20bfec57ed4"></a>struct <a class="el" href="group__group01.html#structsi47x__firmware__query__library_8resp">si47x_firmware_query_library</a></td>
 <td class="fieldname">
 resp</td>
 <td class="fielddoc">
@@ -967,7 +1062,7 @@ STCINT: 1</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a6cb498a025a973418d27991eb3151489"></a>struct <a class="el" href="group__group01.html#structsi47x__tune__status_8arg">si47x_tune_status</a></td>
+<a id="a50a1bc191557d1981b29512afce8464b"></a>struct <a class="el" href="group__group01.html#structsi47x__tune__status_8arg">si47x_tune_status</a></td>
 <td class="fieldname">
 arg</td>
 <td class="fielddoc">
@@ -1033,7 +1128,7 @@ RESERVED2: 6</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="ae9ac96f5c6d10f227a6926f787232e27"></a>struct <a class="el" href="group__group01.html#structsi47x__property_8raw">si47x_property</a></td>
+<a id="aac022dcbfc890712ccd54befb8d7fe5c"></a>struct <a class="el" href="group__group01.html#structsi47x__property_8raw">si47x_property</a></td>
 <td class="fieldname">
 raw</td>
 <td class="fielddoc">

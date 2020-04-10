@@ -50,6 +50,8 @@ var annotated_dup =
     [ "si47x_set_frequency.arg", "group__group01.html#structsi47x__set__frequency_8arg", "group__group01_structsi47x__set__frequency_8arg" ],
     [ "si47x_ssb_mode", "group__group03.html#unionsi47x__ssb__mode", "group__group03_unionsi47x__ssb__mode" ],
     [ "si47x_ssb_mode.param", "group__group03.html#structsi47x__ssb__mode_8param", "group__group03_structsi47x__ssb__mode_8param" ],
+    [ "si47x_status", "group__group01.html#unionsi47x__status", "group__group01_unionsi47x__status" ],
+    [ "si47x_status.refined", "group__group01.html#structsi47x__status_8refined", "group__group01_structsi47x__status_8refined" ],
     [ "si47x_tune_status", "group__group01.html#unionsi47x__tune__status", "group__group01_unionsi47x__tune__status" ],
     [ "si47x_tune_status.arg", "group__group01.html#structsi47x__tune__status_8arg", "group__group01_structsi47x__tune__status_8arg" ]
 ];

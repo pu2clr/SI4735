@@ -52,9 +52,22 @@ var group__group01 =
       [ "SEEKUP", "group__group01.html#aed8a1fd68dec9364930b51d020ba07d6", null ],
       [ "WRAP", "group__group01.html#ae1c8555fcf0ea2bb648a6fd527d658c0", null ]
     ] ],
+    [ "si47x_status", "group__group01.html#unionsi47x__status", [
+      [ "raw", "group__group01.html#a8afecb26fbffbfa5a7d3d46d90becabc", null ],
+      [ "refined", "group__group01.html#ae74a91730fe217f5cb29daf1ab3fde33", null ]
+    ] ],
+    [ "si47x_status.refined", "group__group01.html#structsi47x__status_8refined", [
+      [ "CTS", "group__group01.html#ae16433ffd3adc248f0ce2608a95c3c76", null ],
+      [ "DUMMY1", "group__group01.html#a3651c40ccc4450f2fc89fa3139dedd5a", null ],
+      [ "DUMMY2", "group__group01.html#abece94c62273dc7ecfabc565b76dbbe5", null ],
+      [ "ERR", "group__group01.html#acd22bad976363fdd1bfbf6759fede482", null ],
+      [ "RDSINT", "group__group01.html#a53d648e7e9d100d590e2f65ec7de079f", null ],
+      [ "RSQINT", "group__group01.html#a8acf6c55c97050e7abd06c104012c77a", null ],
+      [ "STCINT", "group__group01.html#af8f21d801809287d578344911b65697c", null ]
+    ] ],
     [ "si47x_response_status", "group__group01.html#unionsi47x__response__status", [
       [ "raw", "group__group01.html#a9b236e03804629e73a4b19fddb72b4cd", null ],
-      [ "resp", "group__group01.html#ab3395dbf4658a828c26e6d5cfcc3b18e", null ]
+      [ "resp", "group__group01.html#a0e7c279d251b7485e31e7c8922078977", null ]
     ] ],
     [ "si47x_response_status.resp", "group__group01.html#structsi47x__response__status_8resp", [
       [ "AFCRL", "group__group01.html#a4f37d8e1a484e1ac152858e71923f86c", null ],
@@ -77,7 +90,7 @@ var group__group01 =
     ] ],
     [ "si47x_firmware_information", "group__group01.html#unionsi47x__firmware__information", [
       [ "raw", "group__group01.html#aa2ba7bbaa745c8ca18c83226246654e5", null ],
-      [ "resp", "group__group01.html#a62ecd35a00b7a8bd4faaf82cd69d522e", null ]
+      [ "resp", "group__group01.html#af03ada523de06bc7dc13c2c6f6094bf8", null ]
     ] ],
     [ "si47x_firmware_information.resp", "group__group01.html#structsi47x__firmware__information_8resp", [
       [ "CHIPREV", "group__group01.html#ab9dbe73951d365ea8a945760cec79a5e", null ],
@@ -98,7 +111,7 @@ var group__group01 =
     ] ],
     [ "si47x_firmware_query_library", "group__group01.html#unionsi47x__firmware__query__library", [
       [ "raw", "group__group01.html#a5235c5b07b71d6dc4c76c275a091c63c", null ],
-      [ "resp", "group__group01.html#a328de8db27422fb20f1335f29e67b8ed", null ]
+      [ "resp", "group__group01.html#a934481d2e03f0256e140f20bfec57ed4", null ]
     ] ],
     [ "si47x_firmware_query_library.resp", "group__group01.html#structsi47x__firmware__query__library_8resp", [
       [ "CHIPREV", "group__group01.html#ab9dbe73951d365ea8a945760cec79a5e", null ],
@@ -117,7 +130,7 @@ var group__group01 =
       [ "STCINT", "group__group01.html#af8f21d801809287d578344911b65697c", null ]
     ] ],
     [ "si47x_tune_status", "group__group01.html#unionsi47x__tune__status", [
-      [ "arg", "group__group01.html#a6cb498a025a973418d27991eb3151489", null ],
+      [ "arg", "group__group01.html#a50a1bc191557d1981b29512afce8464b", null ],
       [ "raw", "group__group01.html#aefcfcb9eaa95ed7d8ce1740ac7f9eb7e", null ]
     ] ],
     [ "si47x_tune_status.arg", "group__group01.html#structsi47x__tune__status_8arg", [
@@ -126,7 +139,7 @@ var group__group01 =
       [ "RESERVED2", "group__group01.html#a0b5885d29a74762639e4b55c51ce2d85", null ]
     ] ],
     [ "si47x_property", "group__group01.html#unionsi47x__property", [
-      [ "raw", "group__group01.html#ae9ac96f5c6d10f227a6926f787232e27", null ],
+      [ "raw", "group__group01.html#aac022dcbfc890712ccd54befb8d7fe5c", null ],
       [ "value", "group__group01.html#a7c04205c5a1798b35b738b2908853bfa", null ]
     ] ],
     [ "si47x_property.raw", "group__group01.html#structsi47x__property_8raw", [

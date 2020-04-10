@@ -53,6 +53,7 @@ var class_s_i4735 =
     [ "getNext2Block", "group__group16.html#gab1f4f137139b40fe386ca51586999e50", null ],
     [ "getNext4Block", "group__group16.html#gadb0a3c39aeacba0faf39aadd9465021f", null ],
     [ "getNumRdsFifoUsed", "class_s_i4735.html#a819c370ff03c52a527fbc85f9877f526", null ],
+    [ "getProperty", "group__group10.html#gace60b9db8033c689247dc1370be367b6", null ],
     [ "getRadioDataSystemInterrupt", "class_s_i4735.html#a97dc44d9927ea58730a18fb6baa6867f", null ],
     [ "getRdsFlagAB", "group__group16.html#ga05f76a0a0ebda813483f1df24e890904", null ],
     [ "getRdsGroupType", "group__group16.html#gaa35366e5cded7b864f7268a7e4a8dbe9", null ],
