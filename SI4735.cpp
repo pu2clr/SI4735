@@ -761,6 +761,45 @@ void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter)
     delayMicroseconds(550);
 }
 
+/**
+ * @ingroup group10 Generic get property
+ * 
+ * @brief Gets a property from the SI47XX
+ * 
+ * @details This method is used to get a given property from SI47XX
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 55, 69, 124 and  134.
+ */
+uint16_t SI4735::getProperty(uint16_t propertyValue)
+{
+    si47x_property property;
+    si47x_status status;
+
+    property.value = propertyValue;
+    waitToSend();
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(GET_PROPERTY);
+    Wire.write(0x00);
+    Wire.write(property.raw.byteHigh); // Send property - High byte - most significant first
+    Wire.write(property.raw.byteLow);  // Send property - Low byte - less significant after
+    Wire.endTransmission();
+
+    waitToSend();
+    Wire.requestFrom(deviceAddress, 2);
+    status.raw  = Wire.read();
+
+    // if error, return 0;    
+    if (status.refined.ERR == 1) return 0;
+
+    Wire.read(); // dummy
+
+    // gets the property value
+    property.raw.byteHigh = Wire.read();
+    property.raw.byteLow = Wire.read();
+
+    return property.value;
+}
+
 /** @defgroup group12 FM Mono Stereo audio setup */
 
 /**

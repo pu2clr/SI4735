@@ -19,22 +19,21 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-
 #define POWER_UP_FM 0  // FM
 #define POWER_UP_AM 1  // AM and SSB (if patch applyed)
 #define POWER_UP_WB 3  // Weather Band Receiver
 #define POWER_PATCH 15 //
 
 // SI473X commands (general)
-#define SI473X_ADDR_SEN_LOW   0x11  // SI473X I2C buss address when the SEN pin (16) is set to low 0V.
-#define SI473X_ADDR_SEN_HIGH  0x63  // SI473X I2C buss address when the SEN pin (16) is set to high +3.3V
+#define SI473X_ADDR_SEN_LOW 0x11  // SI473X I2C buss address when the SEN pin (16) is set to low 0V.
+#define SI473X_ADDR_SEN_HIGH 0x63 // SI473X I2C buss address when the SEN pin (16) is set to high +3.3V
 
-#define POWER_UP 0x01         // Power up device and mode selection.
-#define GET_REV 0x10          // Returns revision information on the device.
-#define POWER_DOWN 0x11       // Power down device.
-#define SET_PROPERTY 0x12     // Sets the value of a property.
-#define GET_PROPERTY 0x13     // Retrieves a property’s value.
-#define GET_INT_STATUS 0x14   // Read interrupt status bits.
+#define POWER_UP 0x01       // Power up device and mode selection.
+#define GET_REV 0x10        // Returns revision information on the device.
+#define POWER_DOWN 0x11     // Power down device.
+#define SET_PROPERTY 0x12   // Sets the value of a property.
+#define GET_PROPERTY 0x13   // Retrieves a property’s value.
+#define GET_INT_STATUS 0x14 // Read interrupt status bits.
 
 // FM
 #define FM_TUNE_FREQ 0x20
@@ -142,18 +141,16 @@
 #define LSB_MODE 1 // 01
 #define USB_MODE 2 // 10
 
-
 // Parameters
-#define SI473X_ANALOG_AUDIO   0b00000101  // Analog Audio Inputs
-#define SI473X_DIGITAL_AUDIO1 0b00001011  // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
-#define SI473X_DIGITAL_AUDIO2 0b10110000  // Digital audio outputs (DCLK, DFS, DIO)
-#define SI473X_DIGITAL_AUDIO3 0b10110101  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO)
+#define SI473X_ANALOG_AUDIO 0b00000101   // Analog Audio Inputs
+#define SI473X_DIGITAL_AUDIO1 0b00001011 // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
+#define SI473X_DIGITAL_AUDIO2 0b10110000 // Digital audio outputs (DCLK, DFS, DIO)
+#define SI473X_DIGITAL_AUDIO3 0b10110101 // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO)
 
 // Other parameters
 #define FM_CURRENT_MODE 0
 #define AM_CURRENT_MODE 1
 #define SSB_CURRENT_MODE 2
-
 
 #define MAX_DELAY_AFTER_SET_FREQUENCY 30 // In ms - This value helps to improve the precision during of getting frequency value
 #define MAX_DELAY_AFTER_POWERUP 10       // In ms - Max delay you have to setup after a power up command.
@@ -192,8 +189,8 @@ typedef union {
         uint8_t CTSIEN : 1;  //!<  CTS Interrupt Enable (0 = CTS interrupt disabled; 1 = CTS interrupt enabled).
         // ARG2
         uint8_t OPMODE; //!<  Application Setting. See page 65
-    } arg; //!<  Refined powerup parameters 
-    uint8_t raw[2]; //!<  Raw powerup parameters data. Same arg memory position. So, same content.
+    } arg;              //!<  Refined powerup parameters
+    uint8_t raw[2];     //!<  Raw powerup parameters data. Same arg memory position. So, same content.
 } si473x_powerup;
 
 /**
@@ -208,7 +205,7 @@ typedef union {
         uint8_t FREQL; //!<  Tune Frequency Low byte.
         uint8_t FREQH; //!<  Tune Frequency High byte.
     } raw;             //!<  Raw data that represents the frequency stored in the Si47XX device.
-    uint16_t value; //!<  frequency (integer value)
+    uint16_t value;    //!<  frequency (integer value)
 } si47x_frequency;
 
 /**
@@ -263,6 +260,27 @@ typedef union {
     } arg;
     uint8_t raw;
 } si47x_seek;
+
+/** 
+ * @ingroup group01 status response structure
+ * 
+ * @brief Status response data representation
+ * 
+ * @details Represents searching for a valid frequency data type.
+ */
+typedef union {
+    struct
+    {
+        uint8_t STCINT : 1; //!< 1 = Tune complete has been triggered.
+        uint8_t DUMMY1 : 1; //!< Reserved (Values may vary).
+        uint8_t RDSINT : 1; //!< 1 = Radio data system interrupt has been triggered.
+        uint8_t RSQINT : 1; //!< 1 = Received Signal Quality measurement has been triggered.
+        uint8_t DUMMY2 : 2; //!< Reserved (Values may vary).
+        uint8_t ERR : 1; //!< 1 = Error.
+        uint8_t CTS : 1; //!< 0 = Wait before sending next command; 1 = Clear to send next command.
+    } refined;
+    uint8_t raw;
+} si47x_status;
 
 /**  
  * @ingroup group01
@@ -407,7 +425,6 @@ typedef union {
     } raw;
     uint16_t value;
 } si47x_property;
-
 
 /** @defgroup group02 RDS Data types */
 /** @section group02 RDS Data types */
@@ -699,7 +716,7 @@ typedef union {
         uint8_t minute2 : 4;      // UTC Minutes - 4 bits  more significant  (void “Crosses boundary”)
         uint8_t hour1 : 4;        // UTC Hours - 4 bits less significant (void “Crosses boundary”)
         uint8_t hour2 : 1;        // UTC Hours - 4 bits more significant (void “Crosses boundary”)
-        uint32_t mjd : 17;         // Modified Julian Day Code
+        uint32_t mjd : 17;        // Modified Julian Day Code
     } refined;
     uint8_t raw[6];
 } si47x_rds_date_time;
@@ -814,13 +831,14 @@ typedef union {
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 195. 
  */
 typedef union {
-    struct {    
+    struct
+    {
         uint8_t OSIZE : 2; //!<  Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
         uint8_t OMONO : 1; //!<  Digital Output Mono Mode (0=Use mono/stereo blend ).
         uint8_t OMODE : 4; //!<  Digital Output Mode (0000=I2S, 0110 = Left-justified, 1000 = MSB at second DCLK after DFS pulse, 1100 = MSB at first DCLK after DFS pulse).
         uint8_t OFALL : 1; //!<  Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge)
         uint8_t dummy : 8; //!<  Always 0.
-    } refined; 
+    } refined;
     uint16_t raw;
 } si4735_digital_output_format;
 
@@ -833,11 +851,10 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 196. 
  */
-typedef struct {
-    uint16_t DOSR; // Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
-} si4735_digital_output_sample_rate; // Maybe not necessary 
-
-
+typedef struct
+{
+    uint16_t DOSR;                   // Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
+} si4735_digital_output_sample_rate; // Maybe not necessary
 
 volatile static bool data_from_si4735; /** @ingroup group04 store the interrupt status */
 
@@ -854,7 +871,6 @@ static void interrupt_hundler()
 {
     data_from_si4735 = true;
 };
-
 
 /********************************************************************** 
  * SI4735 Class definition
@@ -877,7 +893,7 @@ protected:
     char rds_buffer2A[65]; //!<  RDS Radio Text buffer - Program Information
     char rds_buffer2B[33]; //!<  RDS Radio Text buffer - Station Informaation
     char rds_buffer0A[9];  //!<  RDS Basic tuning and switching information (Type 0 groups)
-    char rds_time[20];     //!<  RDS date time received information  
+    char rds_time[20];     //!<  RDS date time received information
 
     int rdsTextAdress2A; //!<  rds_buffer2A current position
     int rdsTextAdress2B; //!<  rds_buffer2B current position
@@ -889,29 +905,29 @@ protected:
     uint16_t maxDelayAfterPouwerUp = MAX_DELAY_AFTER_POWERUP;      //  Max delay you have to setup after a power up command.
 
     uint8_t lastTextFlagAB;
-    uint8_t resetPin; //!<  pin used on Arduino Board to RESET the Si47XX device
+    uint8_t resetPin;     //!<  pin used on Arduino Board to RESET the Si47XX device
     uint8_t interruptPin; //!<  pin used on Arduino Board to control interrupt. If -1, interrupt is no used.
 
     uint8_t currentTune; //!<  tell the current tune (FM, AM or SSB)
 
     uint16_t currentMinimumFrequency; //!<  minimum frequency of the current band
-    uint16_t currentMaximumFrequency; //!<  maximum frequency of the current band 
-    uint16_t currentWorkFrequency; //!<  current frequency
+    uint16_t currentMaximumFrequency; //!<  maximum frequency of the current band
+    uint16_t currentWorkFrequency;    //!<  current frequency
 
     uint16_t currentStep; //!<  current steps
 
-    uint8_t lastMode = -1; //!<  Store the last mode used. 
+    uint8_t lastMode = -1; //!<  Store the last mode used.
 
     uint8_t currentAvcAmMaxGain = 48; //!<  Automatic Volume Control Gain for AM - Default 48
 
     si47x_frequency currentFrequency; //!<  data structure to get current frequency
-    si47x_set_frequency currentFrequencyParams; 
-    si47x_rqs_status currentRqsStatus; //!<  current Radio SIgnal Quality status 
-    si47x_response_status currentStatus; //!<  current device status
+    si47x_set_frequency currentFrequencyParams;
+    si47x_rqs_status currentRqsStatus;       //!<  current Radio SIgnal Quality status
+    si47x_response_status currentStatus;     //!<  current device status
     si47x_firmware_information firmwareInfo; //!<  firmware information
-    si47x_rds_status currentRdsStatus; //!<  current RDS status
-    si47x_agc_status currentAgcStatus; //!<  current AGC status
-    si47x_ssb_mode currentSSBMode; //!<  indicates if USB or LSB
+    si47x_rds_status currentRdsStatus;       //!<  current RDS status
+    si47x_agc_status currentAgcStatus;       //!<  current AGC status
+    si47x_ssb_mode currentSSBMode;           //!<  indicates if USB or LSB
 
     si473x_powerup powerUp;
 
@@ -919,32 +935,33 @@ protected:
 
     uint8_t currentSsbStatus;
 
-    void waitInterrupr(void); 
-    void sendProperty(uint16_t propertyValue, uint16_t param); 
-    void sendSSBModeProperty(); 
-    void disableFmDebug();  
-    void clearRdsBuffer2A(); 
-    void clearRdsBuffer2B(); 
-    void clearRdsBuffer0A(); 
+    void waitInterrupr(void);
+    void sendProperty(uint16_t propertyValue, uint16_t param);
+    uint16_t getProperty(uint16_t propertyValue);
+    void sendSSBModeProperty();
+    void disableFmDebug();
+    void clearRdsBuffer2A();
+    void clearRdsBuffer2B();
+    void clearRdsBuffer0A();
 
 public:
-    SI4735(); 
-    void reset(void); 
-    void waitToSend(void); 
+    SI4735();
+    void reset(void);
+    void waitToSend(void);
 
-    void setup(uint8_t resetPin, uint8_t defaultFunction); 
-    void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO); 
+    void setup(uint8_t resetPin, uint8_t defaultFunction);
+    void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO);
 
-    void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE); 
-    void radioPowerUp(void);    
-    void analogPowerUp(void);   
+    void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE);
+    void radioPowerUp(void);
+    void analogPowerUp(void);
     void powerDown(void);
 
-    void setFrequency(uint16_t); 
+    void setFrequency(uint16_t);
 
     void getStatus(uint8_t, uint8_t);
 
-    uint16_t getFrequency(void); 
+    uint16_t getFrequency(void);
 
     /** 
      * STATUS RESPONSE
@@ -957,8 +974,9 @@ public:
      * @see Si47XX PROGRAMMING GUIDE; AN332; pages 63            
      * @return RDSINT status
      */
-    inline bool getSignalQualityInterrupt() { 
-        return currentStatus.resp.RSQINT; 
+    inline bool getSignalQualityInterrupt()
+    {
+        return currentStatus.resp.RSQINT;
     };
 
     /**
@@ -966,8 +984,9 @@ public:
      * @see Si47XX PROGRAMMING GUIDE; AN332; page 63
      * @return RDSINT status  
      */
-    inline bool getRadioDataSystemInterrupt() { 
-        return currentStatus.resp.RDSINT; 
+    inline bool getRadioDataSystemInterrupt()
+    {
+        return currentStatus.resp.RDSINT;
     };
 
     /**
@@ -975,7 +994,8 @@ public:
      * @details Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
      * @return STCINT status  
      */
-    inline bool getTuneCompleteTriggered() { 
+    inline bool getTuneCompleteTriggered()
+    {
         return currentStatus.resp.STCINT;
     };
 
@@ -984,8 +1004,9 @@ public:
      * @details Return the Error flag (true or false) of status of the least Tune or Seek
      * @return Error flag 
      */
-    inline bool getStatusError() { 
-        return currentStatus.resp.ERR; 
+    inline bool getStatusError()
+    {
+        return currentStatus.resp.ERR;
     };
 
     /**
@@ -1000,8 +1021,9 @@ public:
      * 
      * @return true 
      */
-    inline bool getACFIndicator() {
-         return currentStatus.resp.AFCRL; 
+    inline bool getACFIndicator()
+    {
+        return currentStatus.resp.AFCRL;
     };
 
     /**
@@ -1011,8 +1033,9 @@ public:
      * 
      * @return BLTF 
      */
-    inline bool getBandLimit() { 
-        return currentStatus.resp.BLTF; 
+    inline bool getBandLimit()
+    {
+        return currentStatus.resp.BLTF;
     };
 
     /**
@@ -1023,8 +1046,9 @@ public:
      * @return true 
      * @return false 
      */
-    inline bool getStatusValid() { 
-        return currentStatus.resp.VALID; 
+    inline bool getStatusValid()
+    {
+        return currentStatus.resp.VALID;
     };
 
     /**
@@ -1032,8 +1056,9 @@ public:
      * 
      * @return uint8_t 
      */
-    inline uint8_t getReceivedSignalStrengthIndicator() { 
-        return currentStatus.resp.RSSI; 
+    inline uint8_t getReceivedSignalStrengthIndicator()
+    {
+        return currentStatus.resp.RSSI;
     };
 
     /**
@@ -1043,8 +1068,9 @@ public:
      * 
      * @return uint8_t 
      */
-    inline uint8_t getStatusSNR() { 
-        return currentStatus.resp.SNR; 
+    inline uint8_t getStatusSNR()
+    {
+        return currentStatus.resp.SNR;
     };
 
     /**
@@ -1054,8 +1080,9 @@ public:
      * 
      * @return uint8_t 
      */
-    inline uint8_t getStatusMULT() { 
-        return currentStatus.resp.MULT; 
+    inline uint8_t getStatusMULT()
+    {
+        return currentStatus.resp.MULT;
     };
 
     /**
@@ -1065,9 +1092,10 @@ public:
      * 
      * @return uint8_t capacitance 
      */
-    inline uint8_t getAntennaTuningCapacitor() { 
-        return currentStatus.resp.READANTCAP; 
-    }; 
+    inline uint8_t getAntennaTuningCapacitor()
+    {
+        return currentStatus.resp.READANTCAP;
+    };
 
     void getAutomaticGainControl(); //!<  Queries Automatic Gain Control STATUS
 
@@ -1075,7 +1103,8 @@ public:
      * @brief Sets the Avc Am Max Gain to 48dB
      * 
      */
-    inline void setAvcAmMaxGain() { 
+    inline void setAvcAmMaxGain()
+    {
         sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, ((currentAvcAmMaxGain = 48) * 340));
     };
 
@@ -1086,8 +1115,9 @@ public:
      * 
      * @return uint8_t Current AVC gain index value
      */
-    inline uint8_t getCurrentAvcAmMaxGain() {
-        return currentAvcAmMaxGain; 
+    inline uint8_t getCurrentAvcAmMaxGain()
+    {
+        return currentAvcAmMaxGain;
     };
 
     /**
@@ -1100,10 +1130,10 @@ public:
      * 
      * @param smattn Maximum attenuation to apply when in soft mute
      */
-    inline void setAmSoftMuteMaxAttenuation( uint8_t smattn = 0) {
+    inline void setAmSoftMuteMaxAttenuation(uint8_t smattn = 0)
+    {
         sendProperty(AM_SOFT_MUTE_MAX_ATTENUATION, smattn);
     };
-
 
     /**
      * @brief Sets the SSB Soft Mute Max Attenuation object
@@ -1113,7 +1143,8 @@ public:
      * 
      * @param smattn Maximum attenuation to apply when in soft mute.
      */
-    inline void setSsbSoftMuteMaxAttenuation( uint8_t smattn = 0) {
+    inline void setSsbSoftMuteMaxAttenuation(uint8_t smattn = 0)
+    {
         sendProperty(SSB_SOFT_MUTE_MAX_ATTENUATION, smattn);
     };
 
@@ -1122,8 +1153,9 @@ public:
      *
      * @return true if the AGC is enabled 
      */
-    inline bool isAgcEnabled() { 
-        return !currentAgcStatus.refined.AGCDIS; 
+    inline bool isAgcEnabled()
+    {
+        return !currentAgcStatus.refined.AGCDIS;
     };
 
     /**
@@ -1131,14 +1163,15 @@ public:
      * 
      * @return uint8_t The current AGC gain index.
      */
-    inline uint8_t getAgcGainIndex() { 
-        return currentAgcStatus.refined.AGCIDX; 
-    }; 
+    inline uint8_t getAgcGainIndex()
+    {
+        return currentAgcStatus.refined.AGCIDX;
+    };
 
-    void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX); 
+    void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX);
 
-    void getCurrentReceivedSignalQuality(uint8_t INTACK); 
-    void getCurrentReceivedSignalQuality(void);           
+    void getCurrentReceivedSignalQuality(uint8_t INTACK);
+    void getCurrentReceivedSignalQuality(void);
 
     // AM and FM
 
@@ -1147,8 +1180,9 @@ public:
      * 
      * @return uint8_t a value between 0 to 127
      */
-    inline uint8_t getCurrentRSSI() { 
-        return currentRqsStatus.resp.RSSI; 
+    inline uint8_t getCurrentRSSI()
+    {
+        return currentRqsStatus.resp.RSSI;
     };
 
     /**
@@ -1156,8 +1190,9 @@ public:
      * 
      * @return uint8_t SNR value in dB (0-127)
      */
-    inline uint8_t getCurrentSNR() { 
-        return currentRqsStatus.resp.SNR; 
+    inline uint8_t getCurrentSNR()
+    {
+        return currentRqsStatus.resp.SNR;
     };
 
     /**
@@ -1165,8 +1200,9 @@ public:
      * 
      * @return true if RSSI is low
      */
-    inline bool getCurrentRssiDetectLow() { 
-        return currentRqsStatus.resp.RSSIILINT; 
+    inline bool getCurrentRssiDetectLow()
+    {
+        return currentRqsStatus.resp.RSSIILINT;
     };
 
     /**
@@ -1174,8 +1210,9 @@ public:
      * 
      * @return true if RSSI detected is high
      */
-    inline bool getCurrentRssiDetectHigh() { 
-        return currentRqsStatus.resp.RSSIHINT; 
+    inline bool getCurrentRssiDetectHigh()
+    {
+        return currentRqsStatus.resp.RSSIHINT;
     };
 
     /**
@@ -1183,8 +1220,9 @@ public:
      * 
      * @return true if SNR detected is low
      */
-    inline bool getCurrentSnrDetectLow() { 
-        return currentRqsStatus.resp.SNRLINT; 
+    inline bool getCurrentSnrDetectLow()
+    {
+        return currentRqsStatus.resp.SNRLINT;
     };
 
     /**
@@ -1192,8 +1230,9 @@ public:
      * 
      * @return true  if SNR detect is high
      */
-    inline bool getCurrentSnrDetectHigh() { 
-        return currentRqsStatus.resp.SNRHINT; 
+    inline bool getCurrentSnrDetectHigh()
+    {
+        return currentRqsStatus.resp.SNRHINT;
     };
 
     /**
@@ -1201,8 +1240,9 @@ public:
      * 
      * @return true if the current channel is valid
      */
-    inline bool getCurrentValidChannel() { 
-        return currentRqsStatus.resp.VALID; 
+    inline bool getCurrentValidChannel()
+    {
+        return currentRqsStatus.resp.VALID;
     };
 
     /**
@@ -1210,8 +1250,9 @@ public:
      * 
      * @return true or false
      */
-    inline bool getCurrentAfcRailIndicator() { 
-        return currentRqsStatus.resp.AFCRL; 
+    inline bool getCurrentAfcRailIndicator()
+    {
+        return currentRqsStatus.resp.AFCRL;
     };
 
     /**
@@ -1221,10 +1262,10 @@ public:
      * 
      * @return true  if soft mute indicates is engaged.
      */
-    inline bool getCurrentSoftMuteIndicator() { 
-        return currentRqsStatus.resp.SMUTE; 
+    inline bool getCurrentSoftMuteIndicator()
+    {
+        return currentRqsStatus.resp.SMUTE;
     };
-
 
     // Just FM
 
@@ -1233,8 +1274,9 @@ public:
      * 
      * @return uint8_t value (0 to 100)
      */
-    inline uint8_t getCurrentStereoBlend() { 
-        return currentRqsStatus.resp.STBLEND; 
+    inline uint8_t getCurrentStereoBlend()
+    {
+        return currentRqsStatus.resp.STBLEND;
     };
 
     /**
@@ -1244,8 +1286,9 @@ public:
      * 
      * @return true if stereo pilot presence has detected
      */
-    inline bool getCurrentPilot() { 
-        return currentRqsStatus.resp.PILOT; 
+    inline bool getCurrentPilot()
+    {
+        return currentRqsStatus.resp.PILOT;
     };
 
     /**
@@ -1255,10 +1298,10 @@ public:
      * 
      * @return uint8_t value (0 to 100)
      */
-    inline uint8_t getCurrentMultipath() { 
-        return currentRqsStatus.resp.MULT; 
+    inline uint8_t getCurrentMultipath()
+    {
+        return currentRqsStatus.resp.MULT;
     };
-
 
     inline uint8_t getCurrentSignedFrequencyOffset() { return currentRqsStatus.resp.FREQOFF; }; //!<  Signed frequency offset (kHz).
     inline bool getCurrentMultipathDetectLow() { return currentRqsStatus.resp.MULTLINT; };      //!<  Multipath Detect Low.
@@ -1271,7 +1314,7 @@ public:
      * See Si47XX PROGRAMMING GUIDE; AN332; page 66
      */
 
-    inline uint8_t getFirmwarePN() { return firmwareInfo.resp.PN;};              //!<   RESP1 - Part Number (HEX)
+    inline uint8_t getFirmwarePN() { return firmwareInfo.resp.PN; };             //!<   RESP1 - Part Number (HEX)
     inline uint8_t getFirmwareFWMAJOR() { return firmwareInfo.resp.FWMAJOR; };   //!<  RESP2 - Returns the Firmware Major Revision (ASCII).
     inline uint8_t getFirmwareFWMINOR() { return firmwareInfo.resp.FWMINOR; };   //!<  RESP3 - Returns the Firmware Minor Revision (ASCII).
     inline uint8_t getFirmwarePATCHH() { return firmwareInfo.resp.PATCHH; };     //!<  RESP4 -  Returns the Patch ID High byte (HEX).
@@ -1285,7 +1328,7 @@ public:
     void volumeDown();
     void volumeUp();
     inline uint8_t getCurrentVolume() { return volume; }; //!<  Returns the current volume level.
-    void setAudioMute( bool off); // if true mute the audio; else unmute
+    void setAudioMute(bool off);                          // if true mute the audio; else unmute
 
     void digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, uint8_t OFALL);
     void digitalOutputSampleRate(uint16_t DOSR);
@@ -1303,30 +1346,30 @@ public:
     inline void setTuneFrequencyFreeze(uint8_t FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; //!<  Only FM. Freeze Metrics During Alternate Frequency Jump.
     void setTuneFrequencyAntennaCapacitor(uint16_t capacitor);
 
-    void frequencyUp(); 
-    void frequencyDown(); 
+    void frequencyUp();
+    void frequencyDown();
     bool isCurrentTuneFM();
     bool isCurrentTuneAM();
     bool isCurrentTuneSSB();
 
     void getFirmware(void);
 
-    void seekStation(uint8_t SEEKUP, uint8_t WRAP); 
-    void seekStationUp();                           
-    void seekStationDown();                         
-    void setSeekAmLimits(uint16_t bottom, uint16_t top); 
-    void setSeekAmSpacing(uint16_t spacing);            
-    void setSeekSrnThreshold(uint16_t value);            
-    void setSeekRssiThreshold(uint16_t value);           
+    void seekStation(uint8_t SEEKUP, uint8_t WRAP);
+    void seekStationUp();
+    void seekStationDown();
+    void setSeekAmLimits(uint16_t bottom, uint16_t top);
+    void setSeekAmSpacing(uint16_t spacing);
+    void setSeekSrnThreshold(uint16_t value);
+    void setSeekRssiThreshold(uint16_t value);
 
-    void setFmBlendStereoThreshold(uint8_t parameter); 
-    void setFmBlendMonoThreshold(uint8_t parameter);   
-    void setFmBlendRssiStereoThreshold(uint8_t parameter); 
-    void setFmBLendRssiMonoThreshold(uint8_t parameter);   
-    void setFmBlendSnrStereoThreshold(uint8_t parameter);  
-    void setFmBLendSnrMonoThreshold(uint8_t parameter);    
-    void setFmBlendMultiPathStereoThreshold(uint8_t parameter); 
-    void setFmBlendMultiPathMonoThreshold(uint8_t parameter);   
+    void setFmBlendStereoThreshold(uint8_t parameter);
+    void setFmBlendMonoThreshold(uint8_t parameter);
+    void setFmBlendRssiStereoThreshold(uint8_t parameter);
+    void setFmBLendRssiMonoThreshold(uint8_t parameter);
+    void setFmBlendSnrStereoThreshold(uint8_t parameter);
+    void setFmBLendSnrMonoThreshold(uint8_t parameter);
+    void setFmBlendMultiPathStereoThreshold(uint8_t parameter);
+    void setFmBlendMultiPathMonoThreshold(uint8_t parameter);
     void setFmStereoOn();
     void setFmStereoOff();
 
@@ -1340,8 +1383,9 @@ public:
      * @details if FIFO is 1, it means the minimum number of groups was filled
      * @return true if minimum number of groups was filled.
      */
-    inline bool getRdsReceived() { 
-        return currentRdsStatus.resp.RDSRECV; 
+    inline bool getRdsReceived()
+    {
+        return currentRdsStatus.resp.RDSRECV;
     };
 
     /**
@@ -1349,8 +1393,9 @@ public:
      * @details returns true (1) if Lost RDS synchronization is detected. 
      * @return true if Lost RDS synchronization detected. 
      */
-    inline bool getRdsSyncLost() { 
-        return currentRdsStatus.resp.RDSSYNCLOST; 
+    inline bool getRdsSyncLost()
+    {
+        return currentRdsStatus.resp.RDSSYNCLOST;
     };
 
     /**
@@ -1358,8 +1403,9 @@ public:
      * @details return true if found RDS synchronization
      * @return true if found RDS synchronization
      */
-    inline bool getRdsSyncFound() { 
-        return currentRdsStatus.resp.RDSSYNCFOUND; 
+    inline bool getRdsSyncFound()
+    {
+        return currentRdsStatus.resp.RDSSYNCFOUND;
     };
 
     /**
@@ -1368,8 +1414,9 @@ public:
      * @details Returns true if valid Block A data has been received.
      * @return true or false
      */
-    inline bool getRdsNewBlockA() { 
-        return currentRdsStatus.resp.RDSNEWBLOCKA; 
+    inline bool getRdsNewBlockA()
+    {
+        return currentRdsStatus.resp.RDSNEWBLOCKA;
     };
 
     /**
@@ -1377,8 +1424,9 @@ public:
      * @details Returns true if valid Block B data has been received.
      * @return true or false
      */
-    inline bool getRdsNewBlockB() { 
-        return currentRdsStatus.resp.RDSNEWBLOCKB; 
+    inline bool getRdsNewBlockB()
+    {
+        return currentRdsStatus.resp.RDSNEWBLOCKB;
     };
 
     /**
@@ -1386,8 +1434,9 @@ public:
      * @details Returns true if RDS currently synchronized.
      * @return true or false
      */
-    inline bool getRdsSync() { 
-        return currentRdsStatus.resp.RDSSYNC; 
+    inline bool getRdsSync()
+    {
+        return currentRdsStatus.resp.RDSSYNC;
     };
 
     /**
@@ -1395,8 +1444,9 @@ public:
      * @details Returns true if one or more RDS groups discarded due to FIFO overrun.
      * @return true or false
      */
-    inline bool getGroupLost() { 
-        return currentRdsStatus.resp.GRPLOST; 
+    inline bool getGroupLost()
+    {
+        return currentRdsStatus.resp.GRPLOST;
     };
 
     /**
@@ -1404,9 +1454,10 @@ public:
      * @details Return the number of RDS FIFO used
      * @return uint8_t Total RDS FIFO used
      */
-    inline uint8_t getNumRdsFifoUsed() { 
-        return currentRdsStatus.resp.RDSFIFOUSED; 
-    }; 
+    inline uint8_t getNumRdsFifoUsed()
+    {
+        return currentRdsStatus.resp.RDSFIFOUSED;
+    };
 
     void setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t BLETHC, uint8_t BLETHD);
     uint16_t getRdsPI(void);
@@ -1439,7 +1490,7 @@ public:
     void setSSBSoftMute(uint8_t SMUTESEL);
 
     si47x_firmware_query_library queryLibraryId();
-    void patchPowerUp(); 
+    void patchPowerUp();
     bool downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size);
     bool downloadPatch(int eeprom_i2c_address);
     void ssbPowerUp();
@@ -1453,8 +1504,9 @@ public:
     /**
      * @brief Sets I2C buss to 10KHz
      */
-    inline void setI2CLowSpeedMode(void) { 
-        Wire.setClock(10000); 
+    inline void setI2CLowSpeedMode(void)
+    {
+        Wire.setClock(10000);
     };
 
     /**
@@ -1465,10 +1517,11 @@ public:
     /**
      * @brief Sets I2C buss to 400KHz
      */
-    inline void setI2CFastMode(void) { 
-        Wire.setClock(400000); 
+    inline void setI2CFastMode(void)
+    {
+        Wire.setClock(400000);
     };
-    
+
     /**
      * Sets the I2C bus to a given value.
      * 
@@ -1488,7 +1541,8 @@ public:
      * @see MAX_DELAY_AFTER_POWERUP  
      * @param ms delay in ms
      */
-    inline void setMaxDelayPowerUp(uint16_t ms) {
+    inline void setMaxDelayPowerUp(uint16_t ms)
+    {
         this->maxDelayAfterPouwerUp = ms;
     }
 
@@ -1503,7 +1557,8 @@ public:
      * @see  MAX_DELAY_AFTER_POWERUP
      * @param ms 
      */
-    inline void setMaxDelaySetFrequency(uint16_t ms) {
+    inline void setMaxDelaySetFrequency(uint16_t ms)
+    {
         this->maxDelaySetFrequency = ms;
     }
 
@@ -1565,8 +1620,7 @@ public:
         getStatus(0, 1);
     }
 
-    void setDeviceI2CAddress(uint8_t senPin); 
-    int16_t getDeviceI2CAddress(uint8_t resetPin); 
-    void setDeviceOtherI2CAddress(uint8_t i2cAddr); 
-
+    void setDeviceI2CAddress(uint8_t senPin);
+    int16_t getDeviceI2CAddress(uint8_t resetPin);
+    void setDeviceOtherI2CAddress(uint8_t i2cAddr);
 };
