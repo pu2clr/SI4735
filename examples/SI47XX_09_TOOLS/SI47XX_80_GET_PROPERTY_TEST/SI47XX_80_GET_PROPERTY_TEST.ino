@@ -86,13 +86,25 @@ void showHelp()
 }
 
 
-void showProperties() {
-    Serial.print("Volume: ");
-    Serial.println(si4735.getProperty(RX_VOLUME)); 
 
-    Serial.print("AM_NB_DELAY");
-    Serial.println(si4735.getProperty(AM_NB_DELAY)); 
-   
+void showProperty(uint16_t property ) {
+
+     Serial.print("\n**************************************"); 
+     Serial.print("Property.:" );
+     Serial.print(property,HEX);
+     Serial.print(" -> ");   
+     Serial.print(si4735.getProperty(property),BIN); 
+     Serial.print(" -> ");   
+     Serial.println(si4735.getProperty(property),HEX); 
+     Serial.print(" -> ");   
+     Serial.print(si4735.getProperty(property));  
+    
+}
+
+void showProperties() {
+
+    showProperty(RX_VOLUME);
+    showProperty(AM_CHANNEL_FILTER); 
 }
 
 // Show current frequency
