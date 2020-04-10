@@ -936,8 +936,8 @@ protected:
     uint8_t currentSsbStatus;
 
     void waitInterrupr(void);
-    void sendProperty(uint16_t propertyValue, uint16_t param);
-    int32_t getProperty(uint16_t propertyValue);
+    void sendProperty(uint16_t propertyNumber, uint16_t param);
+
     void sendSSBModeProperty();
     void disableFmDebug();
     void clearRdsBuffer2A();
@@ -951,6 +951,22 @@ public:
 
     void setup(uint8_t resetPin, uint8_t defaultFunction);
     void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO);
+
+    int32_t getProperty(uint16_t propertyValue);
+
+    /**
+     * @brief Sets the a given Property 
+     * 
+     * @details Sets the Si47XX device with a given attribute
+     * 
+     * @see Si47XX PROGRAMMING GUIDE; AN332; pages 55, 69, 124 and  134.
+     * @param propertyNumber
+     * @param param  pamameter value 
+     */
+    inline void setProperty(uint16_t propertyNumber, uint16_t param) {
+        sendProperty(propertyNumber, param);
+    };
+
 
     void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE);
     void radioPowerUp(void);
