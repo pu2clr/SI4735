@@ -67,7 +67,6 @@ void setup()
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
   showStatus();
-  showProperties();
 }
 
 void showHelp()
@@ -89,15 +88,16 @@ void showHelp()
 
 void showProperty(uint16_t property ) {
 
-     Serial.print("\n**************************************"); 
+     Serial.print("\n**************************************\n"); 
      Serial.print("Property.:" );
      Serial.print(property,HEX);
      Serial.print(" -> ");   
      Serial.print(si4735.getProperty(property),BIN); 
      Serial.print(" -> ");   
-     Serial.println(si4735.getProperty(property),HEX); 
+     Serial.print(si4735.getProperty(property),HEX); 
      Serial.print(" -> ");   
-     Serial.print(si4735.getProperty(property));  
+     Serial.println(si4735.getProperty(property));  
+
     
 }
 
