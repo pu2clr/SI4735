@@ -85,7 +85,10 @@ void showHelp()
 }
 
 
-
+/**
+ *  setProperty and getProperty public methods should be used with caution. You have to know what are you doing.  
+ *  The masc parameter is used to extract the information from the returned value of getProperty.
+ */
 void showProperty(uint16_t property, uint16_t masc ) {
 
      Serial.print("\n**************************************\n"); 
@@ -97,13 +100,14 @@ void showProperty(uint16_t property, uint16_t masc ) {
      Serial.print(si4735.getProperty(property) & masc ,HEX); 
      Serial.print(" -> ");   
      Serial.println(si4735.getProperty(property) & masc);  
-
-    
 }
 
 void showProperties() {
     showProperty(RX_VOLUME, 0b1111111111111111);
     showProperty(AM_CHANNEL_FILTER, 0b0000000000001111); 
+
+    si4735.setProperty(AM_NB_RATE,0x40);
+    showProperty(AM_NB_RATE,0b1111111111111111);
 }
 
 // Show current frequency
