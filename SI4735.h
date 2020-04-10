@@ -955,10 +955,12 @@ public:
     int32_t getProperty(uint16_t propertyValue);
 
     /**
+     * @ingroup group10 Generic get property
+     * 
      * @brief Sets the a given Property 
      * 
      * @details Sets the Si47XX device with a given attribute. 
-     * @details You might need to use the bit operations or some bit field structure to set the right the values.
+     * @details You might need to use the bit operations or some bit field structure to set right the values.
      * 
      * @see Si47XX PROGRAMMING GUIDE; AN332; pages 55, 69, 124 and  134.
      * @param propertyNumber
