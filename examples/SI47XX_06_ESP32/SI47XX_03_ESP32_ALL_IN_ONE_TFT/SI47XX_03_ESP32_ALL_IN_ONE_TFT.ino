@@ -629,7 +629,7 @@ void loop()
         bwIdxAM++;
         if (bwIdxAM > 6)
           bwIdxAM = 0;
-        si4735.setBandwidth(bwIdxAM, 0);
+        si4735.setBandwidth(bwIdxAM, 1);
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
