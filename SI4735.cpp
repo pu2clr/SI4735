@@ -741,13 +741,17 @@ void SI4735::setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT)
  * @details This method is used for others to send generic properties and params to SI47XX
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 68, 124 and  133.
+ * 
+ * @param propertyNumber property number (example: RX_VOLUME)
+ * @param parameter   property value that will be seted
+ * 
  */
-void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter)
+void SI4735::sendProperty(uint16_t propertyNumber, uint16_t parameter)
 {
     si47x_property property;
     si47x_property param;
 
-    property.value = propertyValue;
+    property.value = propertyNumber;
     param.value = parameter;
     waitToSend();
     Wire.beginTransmission(deviceAddress);
@@ -769,13 +773,17 @@ void SI4735::sendProperty(uint16_t propertyValue, uint16_t parameter)
  * @details This method is used to get a given property from SI47XX
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 55, 69, 124 and  134.
+ * 
+ * @param propertyNumber property number (example: RX_VOLUME)
+ * 
+ * @return property value  (the content of the property)
  */
-uint16_t SI4735::getProperty(uint16_t propertyValue)
+int32_t SI4735::getProperty(uint16_t propertyNumber)
 {
     si47x_property property;
     si47x_status status;
 
-    property.value = propertyValue;
+    property.value = propertyNumber;
     waitToSend();
     Wire.beginTransmission(deviceAddress);
     Wire.write(GET_PROPERTY);
@@ -785,11 +793,11 @@ uint16_t SI4735::getProperty(uint16_t propertyValue)
     Wire.endTransmission();
 
     waitToSend();
-    Wire.requestFrom(deviceAddress, 2);
+    Wire.requestFrom(deviceAddress, 4);
     status.raw  = Wire.read();
 
     // if error, return 0;    
-    if (status.refined.ERR == 1) return 0;
+    if (status.refined.ERR == 1) return -1;
 
     Wire.read(); // dummy
 
@@ -799,6 +807,8 @@ uint16_t SI4735::getProperty(uint16_t propertyValue)
 
     return property.value;
 }
+
+
 
 /** @defgroup group12 FM Mono Stereo audio setup */
 

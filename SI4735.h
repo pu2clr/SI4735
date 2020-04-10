@@ -937,7 +937,7 @@ protected:
 
     void waitInterrupr(void);
     void sendProperty(uint16_t propertyValue, uint16_t param);
-    uint16_t getProperty(uint16_t propertyValue);
+    int32_t getProperty(uint16_t propertyValue);
     void sendSSBModeProperty();
     void disableFmDebug();
     void clearRdsBuffer2A();
