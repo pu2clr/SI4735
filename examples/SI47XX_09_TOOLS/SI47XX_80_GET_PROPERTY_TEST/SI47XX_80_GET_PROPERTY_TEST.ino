@@ -102,7 +102,6 @@ void showProperty(uint16_t property ) {
 }
 
 void showProperties() {
-
     showProperty(RX_VOLUME);
     showProperty(AM_CHANNEL_FILTER); 
 }
@@ -180,7 +179,7 @@ void loop()
       {
         if (bandwidthIdx > 6)
           bandwidthIdx = 0;
-        si4735.setBandwidth(bandwidthIdx, 1);
+        si4735.setBandwidth(bandwidthIdx, 0);
         Serial.print("Filter - Bandwidth: ");
         Serial.print(String(bandwitdth[bandwidthIdx]));
         Serial.println(" KHz");
