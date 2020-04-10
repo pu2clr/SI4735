@@ -86,24 +86,24 @@ void showHelp()
 
 
 
-void showProperty(uint16_t property ) {
+void showProperty(uint16_t property, uint16_t masc ) {
 
      Serial.print("\n**************************************\n"); 
      Serial.print("Property.:" );
      Serial.print(property,HEX);
      Serial.print(" -> ");   
-     Serial.print(si4735.getProperty(property),BIN); 
+     Serial.print(si4735.getProperty(property) & masc ,BIN); 
      Serial.print(" -> ");   
-     Serial.print(si4735.getProperty(property),HEX); 
+     Serial.print(si4735.getProperty(property) & masc ,HEX); 
      Serial.print(" -> ");   
-     Serial.println(si4735.getProperty(property));  
+     Serial.println(si4735.getProperty(property) & masc);  
 
     
 }
 
 void showProperties() {
-    showProperty(RX_VOLUME);
-    showProperty(AM_CHANNEL_FILTER); 
+    showProperty(RX_VOLUME, 0b1111111111111111);
+    showProperty(AM_CHANNEL_FILTER, 0b0000000000001111); 
 }
 
 // Show current frequency
@@ -179,7 +179,7 @@ void loop()
       {
         if (bandwidthIdx > 6)
           bandwidthIdx = 0;
-        si4735.setBandwidth(bandwidthIdx, 0);
+        si4735.setBandwidth(bandwidthIdx, 1);
         Serial.print("Filter - Bandwidth: ");
         Serial.print(String(bandwitdth[bandwidthIdx]));
         Serial.println(" KHz");

@@ -711,6 +711,8 @@ void SI4735::setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT)
     if (AMCHFLT > 6)
         return;
 
+    filter.raw[0] = filter.raw[1] = 0;
+
     property.value = AM_CHANNEL_FILTER;
 
     filter.param.AMCHFLT = AMCHFLT;
@@ -771,6 +773,7 @@ void SI4735::sendProperty(uint16_t propertyNumber, uint16_t parameter)
  * @brief Gets a property from the SI47XX
  * 
  * @details This method is used to get a given property from SI47XX
+ * @details You might need to extract set of bits information from the returned value to know the real value
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 55, 69, 124 and  134.
  * 
