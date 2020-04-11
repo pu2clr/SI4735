@@ -10,7 +10,6 @@
     | SDIO (pin 18)   |     A4        |
     | CLK (pin 17)   |     A5        |
 
-
   I strongly recommend starting with this sketch.
 
   Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic.png
