@@ -162,15 +162,15 @@ RDS Data types</h1>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a184e0892bc82522efe50c49836bb8cc5"></a>uint8_t</td>
-<td class="fieldname">
-raw[8]</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="a31596f0a021219ec4a2dbb2786ad4006"></a>struct <a class="el" href="group__group02.html#structsi47x__rqs__status_8resp">si47x_rqs_status</a></td>
 <td class="fieldname">
 resp</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a184e0892bc82522efe50c49836bb8cc5"></a>uint8_t</td>
+<td class="fieldname">
+raw[8]</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -191,21 +191,9 @@ resp</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a4f37d8e1a484e1ac152858e71923f86c"></a>uint8_t</td>
+<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
 <td class="fieldname">
-AFCRL: 1</td>
-<td class="fielddoc">
-AFC Rail Indicator. </td></tr>
-<tr><td class="fieldtype">
-<a id="a78a25db6cd73b193ba6c941df8584d35"></a>uint8_t</td>
-<td class="fieldname">
-BLENDINT: 1</td>
-<td class="fielddoc">
-Blend Detect Interrupt. </td></tr>
-<tr><td class="fieldtype">
-<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
-<td class="fieldname">
-CTS: 1</td>
+STCINT: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -214,66 +202,6 @@ CTS: 1</td>
 DUMMY1: 1</td>
 <td class="fielddoc">
 </td></tr>
-<tr><td class="fieldtype">
-<a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY2: 2</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a613aa5c14b3ccc6304a519292c482ed1"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY3: 1</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a9182569d693623e6b469099542b303e4"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY4: 1</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a1fc4251a40ec4352f10fc3ecb20f2c79"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY5: 4</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="acd22bad976363fdd1bfbf6759fede482"></a>uint8_t</td>
-<td class="fieldname">
-ERR: 1</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a0c144971635328e95870811948c9071a"></a>uint8_t</td>
-<td class="fieldname">
-FREQOFF</td>
-<td class="fielddoc">
-RESP7 - Signed frequency offset (kHz). </td></tr>
-<tr><td class="fieldtype">
-<a id="a36b0ca295026d76ee15df50dc4991e90"></a>uint8_t</td>
-<td class="fieldname">
-MULT</td>
-<td class="fielddoc">
-RESP6 - Contains the current multipath metric. (0 = no multipath; 100 = full multipath) </td></tr>
-<tr><td class="fieldtype">
-<a id="a6b4ed08de1237c36d005669ead7d8a50"></a>uint8_t</td>
-<td class="fieldname">
-MULTHINT: 1</td>
-<td class="fielddoc">
-Multipath Detect High. </td></tr>
-<tr><td class="fieldtype">
-<a id="af07f7e10faec4b062b389868532a8146"></a>uint8_t</td>
-<td class="fieldname">
-MULTLINT: 1</td>
-<td class="fielddoc">
-Multipath Detect Low. </td></tr>
-<tr><td class="fieldtype">
-<a id="aece6117f0bc60ec824fe5d441abdb288"></a>uint8_t</td>
-<td class="fieldname">
-PILOT: 1</td>
-<td class="fielddoc">
-Indicates stereo pilot presence. </td></tr>
 <tr><td class="fieldtype">
 <a id="a53d648e7e9d100d590e2f65ec7de079f"></a>uint8_t</td>
 <td class="fieldname">
@@ -287,17 +215,23 @@ RSQINT: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a6833f5d3374c1679bea428b50dbad9cc"></a>uint8_t</td>
+<a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
 <td class="fieldname">
-RSSI</td>
+DUMMY2: 2</td>
 <td class="fielddoc">
-RESP4 - Contains the current receive signal strength (0–127 dBμV). </td></tr>
+</td></tr>
 <tr><td class="fieldtype">
-<a id="a1c2886a1d02e462622c810dec48a7a8d"></a>uint8_t</td>
+<a id="acd22bad976363fdd1bfbf6759fede482"></a>uint8_t</td>
 <td class="fieldname">
-RSSIHINT: 1</td>
+ERR: 1</td>
 <td class="fielddoc">
-RSSI Detect High. </td></tr>
+</td></tr>
+<tr><td class="fieldtype">
+<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
+<td class="fieldname">
+CTS: 1</td>
+<td class="fielddoc">
+</td></tr>
 <tr><td class="fieldtype">
 <a id="a78e3f2f0b0c5b1dfd51e3c0d48ae18e3"></a>uint8_t</td>
 <td class="fieldname">
@@ -305,23 +239,11 @@ RSSIILINT: 1</td>
 <td class="fielddoc">
 RSSI Detect Low. </td></tr>
 <tr><td class="fieldtype">
-<a id="a018a3d212081bb86b34e6b8fbd88c4e2"></a>uint8_t</td>
+<a id="a1c2886a1d02e462622c810dec48a7a8d"></a>uint8_t</td>
 <td class="fieldname">
-SMUTE: 1</td>
+RSSIHINT: 1</td>
 <td class="fielddoc">
-Soft Mute Indicator. Indicates soft mute is engaged. </td></tr>
-<tr><td class="fieldtype">
-<a id="a8dc5367d65459f69d78eb03e93f7703f"></a>uint8_t</td>
-<td class="fieldname">
-SNR</td>
-<td class="fielddoc">
-RESP5 - Contains the current SNR metric (0–127 dB). </td></tr>
-<tr><td class="fieldtype">
-<a id="ae2e739596a7340b62844e12390115e6a"></a>uint8_t</td>
-<td class="fieldname">
-SNRHINT: 1</td>
-<td class="fielddoc">
-SNR Detect High. </td></tr>
+RSSI Detect High. </td></tr>
 <tr><td class="fieldtype">
 <a id="a97383bc737ce99a121985160e6ffa344"></a>uint8_t</td>
 <td class="fieldname">
@@ -329,23 +251,101 @@ SNRLINT: 1</td>
 <td class="fielddoc">
 SNR Detect Low. </td></tr>
 <tr><td class="fieldtype">
-<a id="aedcdb3b2f6ac6daf3bacf8bb54a92d28"></a>uint8_t</td>
+<a id="ae2e739596a7340b62844e12390115e6a"></a>uint8_t</td>
 <td class="fieldname">
-STBLEND: 7</td>
+SNRHINT: 1</td>
 <td class="fielddoc">
-Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono). </td></tr>
+SNR Detect High. </td></tr>
 <tr><td class="fieldtype">
-<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
+<a id="af07f7e10faec4b062b389868532a8146"></a>uint8_t</td>
 <td class="fieldname">
-STCINT: 1</td>
+MULTLINT: 1</td>
+<td class="fielddoc">
+Multipath Detect Low. </td></tr>
+<tr><td class="fieldtype">
+<a id="a6b4ed08de1237c36d005669ead7d8a50"></a>uint8_t</td>
+<td class="fieldname">
+MULTHINT: 1</td>
+<td class="fielddoc">
+Multipath Detect High. </td></tr>
+<tr><td class="fieldtype">
+<a id="a613aa5c14b3ccc6304a519292c482ed1"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY3: 1</td>
 <td class="fielddoc">
 </td></tr>
+<tr><td class="fieldtype">
+<a id="a78a25db6cd73b193ba6c941df8584d35"></a>uint8_t</td>
+<td class="fieldname">
+BLENDINT: 1</td>
+<td class="fielddoc">
+Blend Detect Interrupt. </td></tr>
 <tr><td class="fieldtype">
 <a id="ac9f1a6384b1c466d4612f513bd8e13ea"></a>uint8_t</td>
 <td class="fieldname">
 VALID: 1</td>
 <td class="fielddoc">
 Valid Channel. </td></tr>
+<tr><td class="fieldtype">
+<a id="a4f37d8e1a484e1ac152858e71923f86c"></a>uint8_t</td>
+<td class="fieldname">
+AFCRL: 1</td>
+<td class="fielddoc">
+AFC Rail Indicator. </td></tr>
+<tr><td class="fieldtype">
+<a id="a9182569d693623e6b469099542b303e4"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY4: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a018a3d212081bb86b34e6b8fbd88c4e2"></a>uint8_t</td>
+<td class="fieldname">
+SMUTE: 1</td>
+<td class="fielddoc">
+Soft Mute Indicator. Indicates soft mute is engaged. </td></tr>
+<tr><td class="fieldtype">
+<a id="a1fc4251a40ec4352f10fc3ecb20f2c79"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY5: 4</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="aedcdb3b2f6ac6daf3bacf8bb54a92d28"></a>uint8_t</td>
+<td class="fieldname">
+STBLEND: 7</td>
+<td class="fielddoc">
+Indicates amount of stereo blend in% (100 = full stereo, 0 = full mono). </td></tr>
+<tr><td class="fieldtype">
+<a id="aece6117f0bc60ec824fe5d441abdb288"></a>uint8_t</td>
+<td class="fieldname">
+PILOT: 1</td>
+<td class="fielddoc">
+Indicates stereo pilot presence. </td></tr>
+<tr><td class="fieldtype">
+<a id="a6833f5d3374c1679bea428b50dbad9cc"></a>uint8_t</td>
+<td class="fieldname">
+RSSI</td>
+<td class="fielddoc">
+RESP4 - Contains the current receive signal strength (0–127 dBμV). </td></tr>
+<tr><td class="fieldtype">
+<a id="a8dc5367d65459f69d78eb03e93f7703f"></a>uint8_t</td>
+<td class="fieldname">
+SNR</td>
+<td class="fielddoc">
+RESP5 - Contains the current SNR metric (0–127 dB). </td></tr>
+<tr><td class="fieldtype">
+<a id="a36b0ca295026d76ee15df50dc4991e90"></a>uint8_t</td>
+<td class="fieldname">
+MULT</td>
+<td class="fielddoc">
+RESP6 - Contains the current multipath metric. (0 = no multipath; 100 = full multipath) </td></tr>
+<tr><td class="fieldtype">
+<a id="a0c144971635328e95870811948c9071a"></a>uint8_t</td>
+<td class="fieldname">
+FREQOFF</td>
+<td class="fielddoc">
+RESP7 - Signed frequency offset (kHz). </td></tr>
 </table>
 
 </div>
@@ -397,12 +397,6 @@ raw</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a275876e34cf609db118f3d84b799a790"></a>uint8_t</td>
-<td class="fieldname">
-dummy: 5</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="aa1b4c5526f2abe4a5d02be4016a44020"></a>uint8_t</td>
 <td class="fieldname">
 INTACK: 1</td>
@@ -418,6 +412,12 @@ MTFIFO: 1</td>
 <a id="a0ad827114d7e2367674a05bbcdc53eda"></a>uint8_t</td>
 <td class="fieldname">
 STATUSONLY: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a275876e34cf609db118f3d84b799a790"></a>uint8_t</td>
+<td class="fieldname">
+dummy: 5</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -440,15 +440,15 @@ STATUSONLY: 1</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a526947c93583b28968de411b0206fdfb"></a>uint8_t</td>
-<td class="fieldname">
-raw[13]</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="a084f57261962c5948c23f64da1d499c7"></a>struct <a class="el" href="group__group02.html#structsi47x__rds__status_8resp">si47x_rds_status</a></td>
 <td class="fieldname">
 resp</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a526947c93583b28968de411b0206fdfb"></a>uint8_t</td>
+<td class="fieldname">
+raw[13]</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -469,29 +469,119 @@ resp</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="abe92870ea28d50ecdfd8f987836e103f"></a>uint8_t</td>
+<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
 <td class="fieldname">
-BLEA: 2</td>
+STCINT: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="aa4eb947cc07974dfc44c1da340b21c0f"></a>uint8_t</td>
+<a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
 <td class="fieldname">
-BLEB: 2</td>
+DUMMY1: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a8e74ab448e91f67eaabee7a52ab05fec"></a>uint8_t</td>
+<a id="a53d648e7e9d100d590e2f65ec7de079f"></a>uint8_t</td>
 <td class="fieldname">
-BLEC: 2</td>
+RDSINT: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a7d449b80d36bbc910ef88b6fcfe90364"></a>uint8_t</td>
+<a id="a8acf6c55c97050e7abd06c104012c77a"></a>uint8_t</td>
 <td class="fieldname">
-BLED: 2</td>
+RSQINT: 1</td>
 <td class="fielddoc">
 </td></tr>
+<tr><td class="fieldtype">
+<a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY2: 2</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="acd22bad976363fdd1bfbf6759fede482"></a>uint8_t</td>
+<td class="fieldname">
+ERR: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
+<td class="fieldname">
+CTS: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="aa75f4ec874d6a5f181b8e423950bfde0"></a>uint8_t</td>
+<td class="fieldname">
+RDSRECV: 1</td>
+<td class="fielddoc">
+RDS Received; 1 = FIFO filled to minimum number of groups set by RDSFIFOCNT. </td></tr>
+<tr><td class="fieldtype">
+<a id="a95a3b24fca811ec5f3f6572fe7da0bcf"></a>uint8_t</td>
+<td class="fieldname">
+RDSSYNCLOST: 1</td>
+<td class="fielddoc">
+RDS Sync Lost; 1 = Lost RDS synchronization. </td></tr>
+<tr><td class="fieldtype">
+<a id="a1cd218d6a523d2d9120d8ab8a9dd93c7"></a>uint8_t</td>
+<td class="fieldname">
+RDSSYNCFOUND: 1</td>
+<td class="fielddoc">
+RDS Sync Found; 1 = Found RDS synchronization. </td></tr>
+<tr><td class="fieldtype">
+<a id="a613aa5c14b3ccc6304a519292c482ed1"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY3: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="aa2d4c2b673c2842773854cdd6f28e033"></a>uint8_t</td>
+<td class="fieldname">
+RDSNEWBLOCKA: 1</td>
+<td class="fielddoc">
+RDS New Block A; 1 = Valid Block A data has been received. </td></tr>
+<tr><td class="fieldtype">
+<a id="a67434ed313bef4d6221df6a51971c994"></a>uint8_t</td>
+<td class="fieldname">
+RDSNEWBLOCKB: 1</td>
+<td class="fielddoc">
+RDS New Block B; 1 = Valid Block B data has been received. </td></tr>
+<tr><td class="fieldtype">
+<a id="a9182569d693623e6b469099542b303e4"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY4: 2</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a67a91dac9065974c1b69fea4ad395faf"></a>uint8_t</td>
+<td class="fieldname">
+RDSSYNC: 1</td>
+<td class="fielddoc">
+RDS Sync; 1 = RDS currently synchronized. </td></tr>
+<tr><td class="fieldtype">
+<a id="a1fc4251a40ec4352f10fc3ecb20f2c79"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY5: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a97eaf5b8af040d5cc1d1951e45846c72"></a>uint8_t</td>
+<td class="fieldname">
+GRPLOST: 1</td>
+<td class="fielddoc">
+Group Lost; 1 = One or more RDS groups discarded due to FIFO overrun. </td></tr>
+<tr><td class="fieldtype">
+<a id="ae47e340f9899842ec70c03024de8cf89"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY6: 5</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a4a3b791b8fe2bf1f76df87f754967f5e"></a>uint8_t</td>
+<td class="fieldname">
+RDSFIFOUSED</td>
+<td class="fielddoc">
+RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty). </td></tr>
 <tr><td class="fieldtype">
 <a id="a2843da4b952c7be9fb480c58a29ea378"></a>uint8_t</td>
 <td class="fieldname">
@@ -541,117 +631,27 @@ BLOCKDL</td>
 <td class="fielddoc">
 RESP11 - RDS Block D; LOW byte. </td></tr>
 <tr><td class="fieldtype">
-<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
+<a id="a7d449b80d36bbc910ef88b6fcfe90364"></a>uint8_t</td>
 <td class="fieldname">
-CTS: 1</td>
+BLED: 2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
+<a id="a8e74ab448e91f67eaabee7a52ab05fec"></a>uint8_t</td>
 <td class="fieldname">
-DUMMY1: 1</td>
+BLEC: 2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
+<a id="aa4eb947cc07974dfc44c1da340b21c0f"></a>uint8_t</td>
 <td class="fieldname">
-DUMMY2: 2</td>
+BLEB: 2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a613aa5c14b3ccc6304a519292c482ed1"></a>uint8_t</td>
+<a id="abe92870ea28d50ecdfd8f987836e103f"></a>uint8_t</td>
 <td class="fieldname">
-DUMMY3: 1</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a9182569d693623e6b469099542b303e4"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY4: 2</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a1fc4251a40ec4352f10fc3ecb20f2c79"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY5: 1</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="ae47e340f9899842ec70c03024de8cf89"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY6: 5</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="acd22bad976363fdd1bfbf6759fede482"></a>uint8_t</td>
-<td class="fieldname">
-ERR: 1</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a97eaf5b8af040d5cc1d1951e45846c72"></a>uint8_t</td>
-<td class="fieldname">
-GRPLOST: 1</td>
-<td class="fielddoc">
-Group Lost; 1 = One or more RDS groups discarded due to FIFO overrun. </td></tr>
-<tr><td class="fieldtype">
-<a id="a4a3b791b8fe2bf1f76df87f754967f5e"></a>uint8_t</td>
-<td class="fieldname">
-RDSFIFOUSED</td>
-<td class="fielddoc">
-RESP3 - RDS FIFO Used; Number of groups remaining in the RDS FIFO (0 if empty). </td></tr>
-<tr><td class="fieldtype">
-<a id="a53d648e7e9d100d590e2f65ec7de079f"></a>uint8_t</td>
-<td class="fieldname">
-RDSINT: 1</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="aa2d4c2b673c2842773854cdd6f28e033"></a>uint8_t</td>
-<td class="fieldname">
-RDSNEWBLOCKA: 1</td>
-<td class="fielddoc">
-RDS New Block A; 1 = Valid Block A data has been received. </td></tr>
-<tr><td class="fieldtype">
-<a id="a67434ed313bef4d6221df6a51971c994"></a>uint8_t</td>
-<td class="fieldname">
-RDSNEWBLOCKB: 1</td>
-<td class="fielddoc">
-RDS New Block B; 1 = Valid Block B data has been received. </td></tr>
-<tr><td class="fieldtype">
-<a id="aa75f4ec874d6a5f181b8e423950bfde0"></a>uint8_t</td>
-<td class="fieldname">
-RDSRECV: 1</td>
-<td class="fielddoc">
-RDS Received; 1 = FIFO filled to minimum number of groups set by RDSFIFOCNT. </td></tr>
-<tr><td class="fieldtype">
-<a id="a67a91dac9065974c1b69fea4ad395faf"></a>uint8_t</td>
-<td class="fieldname">
-RDSSYNC: 1</td>
-<td class="fielddoc">
-RDS Sync; 1 = RDS currently synchronized. </td></tr>
-<tr><td class="fieldtype">
-<a id="a1cd218d6a523d2d9120d8ab8a9dd93c7"></a>uint8_t</td>
-<td class="fieldname">
-RDSSYNCFOUND: 1</td>
-<td class="fielddoc">
-RDS Sync Found; 1 = Found RDS synchronization. </td></tr>
-<tr><td class="fieldtype">
-<a id="a95a3b24fca811ec5f3f6572fe7da0bcf"></a>uint8_t</td>
-<td class="fieldname">
-RDSSYNCLOST: 1</td>
-<td class="fielddoc">
-RDS Sync Lost; 1 = Lost RDS synchronization. </td></tr>
-<tr><td class="fieldtype">
-<a id="a8acf6c55c97050e7abd06c104012c77a"></a>uint8_t</td>
-<td class="fieldname">
-RSQINT: 1</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
-<td class="fieldname">
-STCINT: 1</td>
+BLEA: 2</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -676,15 +676,15 @@ also <a href="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipe
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="abfd03e295ce96a214407c2705d9b96c7"></a>uint8_t</td>
-<td class="fieldname">
-raw[2]</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="ac34c0a6027d778d04bee90c55a197b3d"></a>struct <a class="el" href="group__group02.html#structsi47x__rds__int__source_8refined">si47x_rds_int_source</a></td>
 <td class="fieldname">
 refined</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="abfd03e295ce96a214407c2705d9b96c7"></a>uint8_t</td>
+<td class="fieldname">
+raw[2]</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -705,23 +705,29 @@ refined</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
+<a id="aa75f4ec874d6a5f181b8e423950bfde0"></a>uint8_t</td>
+<td class="fieldname">
+RDSRECV: 1</td>
+<td class="fielddoc">
+If set, generate RDSINT when RDS FIFO has at least FM_RDS_INT_FIFO_COUNT entries. </td></tr>
+<tr><td class="fieldtype">
+<a id="a95a3b24fca811ec5f3f6572fe7da0bcf"></a>uint8_t</td>
+<td class="fieldname">
+RDSSYNCLOST: 1</td>
+<td class="fielddoc">
+If set, generate RDSINT when RDS loses synchronization. </td></tr>
+<tr><td class="fieldtype">
+<a id="a1cd218d6a523d2d9120d8ab8a9dd93c7"></a>uint8_t</td>
+<td class="fieldname">
+RDSSYNCFOUND: 1</td>
+<td class="fielddoc">
+f set, generate RDSINT when RDS gains synchronization. </td></tr>
+<tr><td class="fieldtype">
 <a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
 <td class="fieldname">
 DUMMY1: 1</td>
 <td class="fielddoc">
 Always write to 0. </td></tr>
-<tr><td class="fieldtype">
-<a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY2: 5</td>
-<td class="fielddoc">
-Reserved - Always write to 0. </td></tr>
-<tr><td class="fieldtype">
-<a id="a613aa5c14b3ccc6304a519292c482ed1"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY3: 5</td>
-<td class="fielddoc">
-Reserved - Always write to 0. </td></tr>
 <tr><td class="fieldtype">
 <a id="aa2d4c2b673c2842773854cdd6f28e033"></a>uint8_t</td>
 <td class="fieldname">
@@ -735,23 +741,17 @@ RDSNEWBLOCKB: 1</td>
 <td class="fielddoc">
 If set, generate an interrupt when Block B data is found or subsequently changed. </td></tr>
 <tr><td class="fieldtype">
-<a id="aa75f4ec874d6a5f181b8e423950bfde0"></a>uint8_t</td>
+<a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
 <td class="fieldname">
-RDSRECV: 1</td>
+DUMMY2: 5</td>
 <td class="fielddoc">
-If set, generate RDSINT when RDS FIFO has at least FM_RDS_INT_FIFO_COUNT entries. </td></tr>
+Reserved - Always write to 0. </td></tr>
 <tr><td class="fieldtype">
-<a id="a1cd218d6a523d2d9120d8ab8a9dd93c7"></a>uint8_t</td>
+<a id="a613aa5c14b3ccc6304a519292c482ed1"></a>uint8_t</td>
 <td class="fieldname">
-RDSSYNCFOUND: 1</td>
+DUMMY3: 5</td>
 <td class="fielddoc">
-f set, generate RDSINT when RDS gains synchronization. </td></tr>
-<tr><td class="fieldtype">
-<a id="a95a3b24fca811ec5f3f6572fe7da0bcf"></a>uint8_t</td>
-<td class="fieldname">
-RDSSYNCLOST: 1</td>
-<td class="fielddoc">
-If set, generate RDSINT when RDS loses synchronization. </td></tr>
+Reserved - Always write to 0. </td></tr>
 </table>
 
 </div>
@@ -802,29 +802,11 @@ raw[2]</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a955ffa2ef1f258071376294e01482059"></a>uint8_t</td>
+<a id="af06feb780d38d7dc59d42878a3353c7f"></a>uint8_t</td>
 <td class="fieldname">
-BLETHA: 2</td>
+RDSEN: 1</td>
 <td class="fielddoc">
-Block Error Threshold BLOCKA. </td></tr>
-<tr><td class="fieldtype">
-<a id="a659adbc2d25b37801235e309fb25737f"></a>uint8_t</td>
-<td class="fieldname">
-BLETHB: 2</td>
-<td class="fielddoc">
-Block Error Threshold BLOCKB. </td></tr>
-<tr><td class="fieldtype">
-<a id="a1246c30829bddc4264fe51b0abc00dbe"></a>uint8_t</td>
-<td class="fieldname">
-BLETHC: 2</td>
-<td class="fielddoc">
-Block Error Threshold BLOCKC. </td></tr>
-<tr><td class="fieldtype">
-<a id="a08e321d989e5154ff4e8a2b5d0fbb057"></a>uint8_t</td>
-<td class="fieldname">
-BLETHD: 2</td>
-<td class="fielddoc">
-Block Error Threshold BLOCKD. </td></tr>
+1 = RDS Processing Enable. </td></tr>
 <tr><td class="fieldtype">
 <a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
 <td class="fieldname">
@@ -832,11 +814,29 @@ DUMMY1: 7</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="af06feb780d38d7dc59d42878a3353c7f"></a>uint8_t</td>
+<a id="a08e321d989e5154ff4e8a2b5d0fbb057"></a>uint8_t</td>
 <td class="fieldname">
-RDSEN: 1</td>
+BLETHD: 2</td>
 <td class="fielddoc">
-1 = RDS Processing Enable. </td></tr>
+Block Error Threshold BLOCKD. </td></tr>
+<tr><td class="fieldtype">
+<a id="a1246c30829bddc4264fe51b0abc00dbe"></a>uint8_t</td>
+<td class="fieldname">
+BLETHC: 2</td>
+<td class="fielddoc">
+Block Error Threshold BLOCKC. </td></tr>
+<tr><td class="fieldtype">
+<a id="a659adbc2d25b37801235e309fb25737f"></a>uint8_t</td>
+<td class="fieldname">
+BLETHB: 2</td>
+<td class="fielddoc">
+Block Error Threshold BLOCKB. </td></tr>
+<tr><td class="fieldtype">
+<a id="a955ffa2ef1f258071376294e01482059"></a>uint8_t</td>
+<td class="fieldname">
+BLETHA: 2</td>
+<td class="fielddoc">
+Block Error Threshold BLOCKA. </td></tr>
 </table>
 
 </div>
@@ -856,15 +856,15 @@ RDSEN: 1</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="aa4f92682876f2135e67e91f96a119ed9"></a>struct <a class="el" href="group__group02.html#structsi47x__rds__blocka_8raw">si47x_rds_blocka</a></td>
-<td class="fieldname">
-raw</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="aacda675961915fd09d903fb1e1ee22c2"></a>struct <a class="el" href="group__group02.html#structsi47x__rds__blocka_8refined">si47x_rds_blocka</a></td>
 <td class="fieldname">
 refined</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="aa4f92682876f2135e67e91f96a119ed9"></a>struct <a class="el" href="group__group02.html#structsi47x__rds__blocka_8raw">si47x_rds_blocka</a></td>
+<td class="fieldname">
+raw</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -956,15 +956,15 @@ group2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a50f511ad00856315ddc10bab88c49785"></a>struct <a class="el" href="group__group02.html#structsi47x__rds__blockb_8raw">si47x_rds_blockb</a></td>
-<td class="fieldname">
-raw</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="a20e5c43e8f7bf97ed351125380e2fc54"></a>struct <a class="el" href="group__group02.html#structsi47x__rds__blockb_8refined">si47x_rds_blockb</a></td>
 <td class="fieldname">
 refined</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a50f511ad00856315ddc10bab88c49785"></a>struct <a class="el" href="group__group02.html#structsi47x__rds__blockb_8raw">si47x_rds_blockb</a></td>
+<td class="fieldname">
+raw</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -997,27 +997,21 @@ DI: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a19223bd3731a4215ead3ba6a1eb8bbe8"></a>uint16_t</td>
-<td class="fieldname">
-groupType: 4</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="a7a663caea1b722a63dc2868158ed584d"></a>uint16_t</td>
 <td class="fieldname">
 MS: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a264bd2c2ca8c895803767b0d39ff4a09"></a>uint16_t</td>
-<td class="fieldname">
-programType: 5</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="a890a10788493e3d572586e991cd43543"></a>uint16_t</td>
 <td class="fieldname">
 TA: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a264bd2c2ca8c895803767b0d39ff4a09"></a>uint16_t</td>
+<td class="fieldname">
+programType: 5</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -1030,6 +1024,12 @@ trafficProgramCode: 1</td>
 <a id="a20583dcf173525a78f726ef45329c5ae"></a>uint16_t</td>
 <td class="fieldname">
 versionCode: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a19223bd3731a4215ead3ba6a1eb8bbe8"></a>uint16_t</td>
+<td class="fieldname">
+groupType: 4</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -1056,21 +1056,15 @@ address: 4</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a19223bd3731a4215ead3ba6a1eb8bbe8"></a>uint16_t</td>
+<a id="a652bfdc159637b708ac6e6f92d7650bc"></a>uint16_t</td>
 <td class="fieldname">
-groupType: 4</td>
+textABFlag: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a264bd2c2ca8c895803767b0d39ff4a09"></a>uint16_t</td>
 <td class="fieldname">
 programType: 5</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a652bfdc159637b708ac6e6f92d7650bc"></a>uint16_t</td>
-<td class="fieldname">
-textABFlag: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -1083,6 +1077,12 @@ trafficProgramCode: 1</td>
 <a id="a20583dcf173525a78f726ef45329c5ae"></a>uint16_t</td>
 <td class="fieldname">
 versionCode: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a19223bd3731a4215ead3ba6a1eb8bbe8"></a>uint16_t</td>
+<td class="fieldname">
+groupType: 4</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -1109,21 +1109,15 @@ content: 4</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a19223bd3731a4215ead3ba6a1eb8bbe8"></a>uint16_t</td>
+<a id="a652bfdc159637b708ac6e6f92d7650bc"></a>uint16_t</td>
 <td class="fieldname">
-groupType: 4</td>
+textABFlag: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a264bd2c2ca8c895803767b0d39ff4a09"></a>uint16_t</td>
 <td class="fieldname">
 programType: 5</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a652bfdc159637b708ac6e6f92d7650bc"></a>uint16_t</td>
-<td class="fieldname">
-textABFlag: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -1136,6 +1130,12 @@ trafficProgramCode: 1</td>
 <a id="a20583dcf173525a78f726ef45329c5ae"></a>uint16_t</td>
 <td class="fieldname">
 versionCode: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a19223bd3731a4215ead3ba6a1eb8bbe8"></a>uint16_t</td>
+<td class="fieldname">
+groupType: 4</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -1156,15 +1156,15 @@ versionCode: 1</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="aaee469db16fdff1aa5439b776b3d5860"></a>uint8_t</td>
-<td class="fieldname">
-highValue</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="a72a22270b4e47acf046fad64a8720e4f"></a>uint8_t</td>
 <td class="fieldname">
 lowValue</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="aaee469db16fdff1aa5439b776b3d5860"></a>uint8_t</td>
+<td class="fieldname">
+highValue</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -1187,15 +1187,15 @@ lowValue</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a4632acc947ded9cc9577df163fabba69"></a>uint8_t</td>
-<td class="fieldname">
-raw[6]</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="ae9da4f26b68752616ea24e0969ecf5f4"></a>struct <a class="el" href="group__group02.html#structsi47x__rds__date__time_8refined">si47x_rds_date_time</a></td>
 <td class="fieldname">
 refined</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a4632acc947ded9cc9577df163fabba69"></a>uint8_t</td>
+<td class="fieldname">
+raw[6]</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -1216,15 +1216,15 @@ refined</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a0351524e66b386b6638dd47c0d00de65"></a>uint8_t</td>
+<a id="a7a86c157ee9713c34fbd7a1ee40f0c5a"></a>uint8_t</td>
 <td class="fieldname">
-hour1: 4</td>
+offset: 5</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a38034b153ffba397eebfcd07b4a50414"></a>uint8_t</td>
+<a id="a5ba6e404c489ff4f757e7c77cb9fa310"></a>uint8_t</td>
 <td class="fieldname">
-hour2: 1</td>
+offset_sense: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -1240,21 +1240,21 @@ minute2: 4</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
+<a id="a0351524e66b386b6638dd47c0d00de65"></a>uint8_t</td>
+<td class="fieldname">
+hour1: 4</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a38034b153ffba397eebfcd07b4a50414"></a>uint8_t</td>
+<td class="fieldname">
+hour2: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
 <a id="a7f7685b39180278dd0fa69f523c7bd24"></a>uint32_t</td>
 <td class="fieldname">
 mjd: 17</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a7a86c157ee9713c34fbd7a1ee40f0c5a"></a>uint8_t</td>
-<td class="fieldname">
-offset: 5</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a5ba6e404c489ff4f757e7c77cb9fa310"></a>uint8_t</td>
-<td class="fieldname">
-offset_sense: 1</td>
 <td class="fielddoc">
 </td></tr>
 </table>

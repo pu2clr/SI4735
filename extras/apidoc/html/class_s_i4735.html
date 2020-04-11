@@ -714,6 +714,153 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad194137a6a712a599e3c26e5b6357594"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad194137a6a712a599e3c26e5b6357594">&#9670;&nbsp;</a></span>getSignalQualityInterrupt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::getSignalQualityInterrupt </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Signal Quality Interrupt status. </p>
+<p>STATUS RESPONSE Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation </p><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 63 </dd>
+<dd>
+Si47XX PROGRAMMING GUIDE; AN332; pages 63 <br  />
+ </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>RDSINT status </dd></dl>
+
+</div>
+</div>
+<a id="a97dc44d9927ea58730a18fb6baa6867f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97dc44d9927ea58730a18fb6baa6867f">&#9670;&nbsp;</a></span>getRadioDataSystemInterrupt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::getRadioDataSystemInterrupt </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Radio Data System (RDS) Interrupt status. </p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 63 </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>RDSINT status <br  />
+ </dd></dl>
+
+</div>
+</div>
+<a id="a2cc659bddc5efc7695f2a6031c2edd4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cc659bddc5efc7695f2a6031c2edd4b">&#9670;&nbsp;</a></span>getTuneCompleteTriggered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::getTuneCompleteTriggered </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Tune Complete status. </p>
+<p>Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered. </p><dl class="section return"><dt>Returns</dt><dd>STCINT status <br  />
+ </dd></dl>
+
+</div>
+</div>
+<a id="a69723840497ed693d6f9a4e840ab07c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69723840497ed693d6f9a4e840ab07c9">&#9670;&nbsp;</a></span>getStatusError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::getStatusError </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Status Error. </p>
+<p>Return the Error flag (true or false) of status of the least Tune or Seek </p><dl class="section return"><dt>Returns</dt><dd>Error flag </dd></dl>
+
+</div>
+</div>
+<a id="afcb38f53b6eb71cadcefa0bb472ca943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcb38f53b6eb71cadcefa0bb472ca943">&#9670;&nbsp;</a></span>getStatusCTS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::getStatusCTS </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the Error flag Clear to Send. </p>
+<dl class="section return"><dt>Returns</dt><dd>CTS </dd></dl>
+
+</div>
+</div>
 <a id="ab8a51de592fd40fdd872039b3c70716f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab8a51de592fd40fdd872039b3c70716f">&#9670;&nbsp;</a></span>getACFIndicator()</h2>
 
@@ -739,63 +886,6 @@ Protected Attributes</h2></td></tr>
 
 <p>Returns true if the AFC rails (AFC Rail Indicator). </p>
 <dl class="section return"><dt>Returns</dt><dd>true </dd></dl>
-
-</div>
-</div>
-<a id="a4eceaf5745e87fcca6cf31c04c5635bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4eceaf5745e87fcca6cf31c04c5635bd">&#9670;&nbsp;</a></span>getAgcGainIndex()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::getAgcGainIndex </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the current AGC gain index. </p>
-<dl class="section return"><dt>Returns</dt><dd>uint8_t The current AGC gain index. </dd></dl>
-
-</div>
-</div>
-<a id="a3905d6551992b4dd51d13f05978d9081"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3905d6551992b4dd51d13f05978d9081">&#9670;&nbsp;</a></span>getAntennaTuningCapacitor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::getAntennaTuningCapacitor </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the Antenna Tuning Capacitor value. </p>
-<p>Returns the current antenna tuning capacitor value.</p>
-<dl class="section return"><dt>Returns</dt><dd>uint8_t capacitance </dd></dl>
 
 </div>
 </div>
@@ -828,8 +918,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="affe5cee9daf44677802a94f96d893c94"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affe5cee9daf44677802a94f96d893c94">&#9670;&nbsp;</a></span>getCurrentAfcRailIndicator()</h2>
+<a id="afb19da8a05320d7f38cca8325725edfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb19da8a05320d7f38cca8325725edfd">&#9670;&nbsp;</a></span>getStatusValid()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -838,7 +928,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SI4735::getCurrentAfcRailIndicator </td>
+          <td class="memname">bool SI4735::getStatusValid </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -851,8 +941,153 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>AFC Rail Indicator. </p>
-<dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
+<p>Gets the channel status. </p>
+<p>Returns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)</p>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
+<a id="aeeefd12b49dbc764e0f45fe208441482"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeefd12b49dbc764e0f45fe208441482">&#9670;&nbsp;</a></span>getReceivedSignalStrengthIndicator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getReceivedSignalStrengthIndicator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the value of Received Signal Strength Indicator (dBμV). </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t </dd></dl>
+
+</div>
+</div>
+<a id="ac0bd4daaa321ef8956dca4d1e4e5cd3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0bd4daaa321ef8956dca4d1e4e5cd3c">&#9670;&nbsp;</a></span>getStatusSNR()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getStatusSNR </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the SNR metric when tune is complete (dB) </p>
+<p>Returns the value of the SNR metric when tune is complete (dB).</p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t </dd></dl>
+
+</div>
+</div>
+<a id="a0f9b5438a6f92c8f2e538ee640f353ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f9b5438a6f92c8f2e538ee640f353ab">&#9670;&nbsp;</a></span>getStatusMULT()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getStatusMULT </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Status the M U L T. </p>
+<p>Returns the value containing the multipath metric when tune is complete.</p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t </dd></dl>
+
+</div>
+</div>
+<a id="a3905d6551992b4dd51d13f05978d9081"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3905d6551992b4dd51d13f05978d9081">&#9670;&nbsp;</a></span>getAntennaTuningCapacitor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getAntennaTuningCapacitor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Antenna Tuning Capacitor value. </p>
+<p>Returns the current antenna tuning capacitor value.</p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t capacitance </dd></dl>
+
+</div>
+</div>
+<a id="a6e1e0e48d71e09debb07fc6dbe884829"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e1e0e48d71e09debb07fc6dbe884829">&#9670;&nbsp;</a></span>setAvcAmMaxGain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setAvcAmMaxGain </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the Avc Am Max Gain to 48dB. </p>
 
 </div>
 </div>
@@ -884,8 +1119,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a16107a2f2e51cce5a7e2b1b303425118"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16107a2f2e51cce5a7e2b1b303425118">&#9670;&nbsp;</a></span>getCurrentBlendDetectInterrupt()</h2>
+<a id="a05bbe1546d61d7ca3591824445084e70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05bbe1546d61d7ca3591824445084e70">&#9670;&nbsp;</a></span>setAmSoftMuteMaxAttenuation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -894,7 +1129,80 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SI4735::getCurrentBlendDetectInterrupt </td>
+          <td class="memname">void SI4735::setAmSoftMuteMaxAttenuation </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>smattn</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the Am Soft Mute Max Attenuation. </p>
+<p>This function can be useful to disable Soft Mute. The value 0 disable soft mute.</p>
+<p>Specified in units of dB. Default maximum attenuation is 8 dB.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 158.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">smattn</td><td>Maximum attenuation to apply when in soft mute </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7f9f0eb9946d629e2e6d7e7901af86b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f9f0eb9946d629e2e6d7e7901af86b9">&#9670;&nbsp;</a></span>setSsbSoftMuteMaxAttenuation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setSsbSoftMuteMaxAttenuation </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>smattn</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the SSB Soft Mute Max Attenuation object. </p>
+<p>Sets maximum attenuation during soft mute (dB). Set to 0 to disable soft mute.</p>
+<p>Specified in units of dB. Default maximum attenuation is 8 dB.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">smattn</td><td>Maximum attenuation to apply when in soft mute. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aea08b7e553212cbe01bf6f4ec9e02de7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea08b7e553212cbe01bf6f4ec9e02de7">&#9670;&nbsp;</a></span>isAgcEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::isAgcEnabled </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -907,12 +1215,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Multipath Detect High. </p>
+<p>Checks if the AGC is enabled. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the AGC is enabled </dd></dl>
 
 </div>
 </div>
-<a id="a6d521bb5c7ef7811e57c7128cb2106b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d521bb5c7ef7811e57c7128cb2106b3">&#9670;&nbsp;</a></span>getCurrentMultipath()</h2>
+<a id="a4eceaf5745e87fcca6cf31c04c5635bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eceaf5745e87fcca6cf31c04c5635bd">&#9670;&nbsp;</a></span>getAgcGainIndex()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -921,7 +1230,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::getCurrentMultipath </td>
+          <td class="memname">uint8_t SI4735::getAgcGainIndex </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -934,92 +1243,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the current Multipath. </p>
-<p>Contains the current multipath metric. (0 = no multipath; 100 = full multipath)</p>
-<dl class="section return"><dt>Returns</dt><dd>uint8_t value (0 to 100) </dd></dl>
-
-</div>
-</div>
-<a id="a82d0865cf348deb0c9f81a2f12222fb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82d0865cf348deb0c9f81a2f12222fb0">&#9670;&nbsp;</a></span>getCurrentMultipathDetectHigh()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool SI4735::getCurrentMultipathDetectHigh </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Multipath Detect Low. </p>
-
-</div>
-</div>
-<a id="ad194a5c915620c6a1b8b3d6d7ed645d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad194a5c915620c6a1b8b3d6d7ed645d9">&#9670;&nbsp;</a></span>getCurrentMultipathDetectLow()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool SI4735::getCurrentMultipathDetectLow </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Signed frequency offset (kHz). </p>
-
-</div>
-</div>
-<a id="a127fa3d2f9b7d57169bbef95703fb4c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a127fa3d2f9b7d57169bbef95703fb4c9">&#9670;&nbsp;</a></span>getCurrentPilot()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool SI4735::getCurrentPilot </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Checks the current pilot. </p>
-<p>Indicates stereo pilot presence.</p>
-<dl class="section return"><dt>Returns</dt><dd>true if stereo pilot presence has detected </dd></dl>
+<p>Gets the current AGC gain index. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t The current AGC gain index. </dd></dl>
 
 </div>
 </div>
@@ -1051,8 +1276,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="adf11a66236392ca107b5d52a8747f838"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf11a66236392ca107b5d52a8747f838">&#9670;&nbsp;</a></span>getCurrentRssiDetectHigh()</h2>
+<a id="adb3fe55583dafeac7439a303b637d162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb3fe55583dafeac7439a303b637d162">&#9670;&nbsp;</a></span>getCurrentSNR()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1061,7 +1286,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SI4735::getCurrentRssiDetectHigh </td>
+          <td class="memname">uint8_t SI4735::getCurrentSNR </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1074,8 +1299,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Checks if RSSI detected is high. </p>
-<dl class="section return"><dt>Returns</dt><dd>true if RSSI detected is high </dd></dl>
+<p>Gets the current SNR metric (0–127 dB). </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t SNR value in dB (0-127) </dd></dl>
 
 </div>
 </div>
@@ -1107,8 +1332,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a2b3bfeca3b545f5741b1ed70a1dba077"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b3bfeca3b545f5741b1ed70a1dba077">&#9670;&nbsp;</a></span>getCurrentSignedFrequencyOffset()</h2>
+<a id="adf11a66236392ca107b5d52a8747f838"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf11a66236392ca107b5d52a8747f838">&#9670;&nbsp;</a></span>getCurrentRssiDetectHigh()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1117,7 +1342,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::getCurrentSignedFrequencyOffset </td>
+          <td class="memname">bool SI4735::getCurrentRssiDetectHigh </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1130,10 +1355,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Checks if RSSI detected is high. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if RSSI detected is high </dd></dl>
+
 </div>
 </div>
-<a id="adb3fe55583dafeac7439a303b637d162"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb3fe55583dafeac7439a303b637d162">&#9670;&nbsp;</a></span>getCurrentSNR()</h2>
+<a id="a1296592571c85b89ed59a4ee2324bd52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1296592571c85b89ed59a4ee2324bd52">&#9670;&nbsp;</a></span>getCurrentSnrDetectLow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1142,7 +1370,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::getCurrentSNR </td>
+          <td class="memname">bool SI4735::getCurrentSnrDetectLow </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1155,8 +1383,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the current SNR metric (0–127 dB). </p>
-<dl class="section return"><dt>Returns</dt><dd>uint8_t SNR value in dB (0-127) </dd></dl>
+<p>Checks if SNR detect is low. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if SNR detected is low </dd></dl>
 
 </div>
 </div>
@@ -1188,8 +1416,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a1296592571c85b89ed59a4ee2324bd52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1296592571c85b89ed59a4ee2324bd52">&#9670;&nbsp;</a></span>getCurrentSnrDetectLow()</h2>
+<a id="a5ce1abf8c9d53c027f6b0870efedda1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ce1abf8c9d53c027f6b0870efedda1b">&#9670;&nbsp;</a></span>getCurrentValidChannel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1198,7 +1426,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SI4735::getCurrentSnrDetectLow </td>
+          <td class="memname">bool SI4735::getCurrentValidChannel </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1211,8 +1439,36 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Checks if SNR detect is low. </p>
-<dl class="section return"><dt>Returns</dt><dd>true if SNR detected is low </dd></dl>
+<p>Checks if the current channel is valid. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the current channel is valid </dd></dl>
+
+</div>
+</div>
+<a id="affe5cee9daf44677802a94f96d893c94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affe5cee9daf44677802a94f96d893c94">&#9670;&nbsp;</a></span>getCurrentAfcRailIndicator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::getCurrentAfcRailIndicator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>AFC Rail Indicator. </p>
+<dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
 
 </div>
 </div>
@@ -1273,8 +1529,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a5ce1abf8c9d53c027f6b0870efedda1b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ce1abf8c9d53c027f6b0870efedda1b">&#9670;&nbsp;</a></span>getCurrentValidChannel()</h2>
+<a id="a127fa3d2f9b7d57169bbef95703fb4c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a127fa3d2f9b7d57169bbef95703fb4c9">&#9670;&nbsp;</a></span>getCurrentPilot()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1283,7 +1539,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SI4735::getCurrentValidChannel </td>
+          <td class="memname">bool SI4735::getCurrentPilot </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1296,13 +1552,14 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Checks if the current channel is valid. </p>
-<dl class="section return"><dt>Returns</dt><dd>true if the current channel is valid </dd></dl>
+<p>Checks the current pilot. </p>
+<p>Indicates stereo pilot presence.</p>
+<dl class="section return"><dt>Returns</dt><dd>true if stereo pilot presence has detected </dd></dl>
 
 </div>
 </div>
-<a id="a430b86ccfd4d6c89da9202a538e0cfc9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a430b86ccfd4d6c89da9202a538e0cfc9">&#9670;&nbsp;</a></span>getCurrentVolume()</h2>
+<a id="a6d521bb5c7ef7811e57c7128cb2106b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d521bb5c7ef7811e57c7128cb2106b3">&#9670;&nbsp;</a></span>getCurrentMultipath()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1311,7 +1568,36 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::getCurrentVolume </td>
+          <td class="memname">uint8_t SI4735::getCurrentMultipath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the current Multipath. </p>
+<p>Contains the current multipath metric. (0 = no multipath; 100 = full multipath)</p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t value (0 to 100) </dd></dl>
+
+</div>
+</div>
+<a id="a2b3bfeca3b545f5741b1ed70a1dba077"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b3bfeca3b545f5741b1ed70a1dba077">&#9670;&nbsp;</a></span>getCurrentSignedFrequencyOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getCurrentSignedFrequencyOffset </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1326,8 +1612,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="acd363d9111e4a57cf2e1167634bc1b5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd363d9111e4a57cf2e1167634bc1b5f">&#9670;&nbsp;</a></span>getFirmwareCHIPREV()</h2>
+<a id="ad194a5c915620c6a1b8b3d6d7ed645d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad194a5c915620c6a1b8b3d6d7ed645d9">&#9670;&nbsp;</a></span>getCurrentMultipathDetectLow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1336,7 +1622,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::getFirmwareCHIPREV </td>
+          <td class="memname">bool SI4735::getCurrentMultipathDetectLow </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1349,12 +1635,12 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>RESP7 - Returns the Component Minor Revision (ASCII). </p>
+<p>Signed frequency offset (kHz). </p>
 
 </div>
 </div>
-<a id="ab57870d69969e73265e9cffe2a73d868"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab57870d69969e73265e9cffe2a73d868">&#9670;&nbsp;</a></span>getFirmwareCMPMAJOR()</h2>
+<a id="a82d0865cf348deb0c9f81a2f12222fb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82d0865cf348deb0c9f81a2f12222fb0">&#9670;&nbsp;</a></span>getCurrentMultipathDetectHigh()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1363,7 +1649,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::getFirmwareCMPMAJOR </td>
+          <td class="memname">bool SI4735::getCurrentMultipathDetectHigh </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1376,12 +1662,12 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>RESP5 - Returns the Patch ID Low byte (HEX). </p>
+<p>Multipath Detect Low. </p>
 
 </div>
 </div>
-<a id="a883645d266a612ce07d71fdb2cd81e5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a883645d266a612ce07d71fdb2cd81e5f">&#9670;&nbsp;</a></span>getFirmwareCMPMINOR()</h2>
+<a id="a16107a2f2e51cce5a7e2b1b303425118"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16107a2f2e51cce5a7e2b1b303425118">&#9670;&nbsp;</a></span>getCurrentBlendDetectInterrupt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1390,7 +1676,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::getFirmwareCMPMINOR </td>
+          <td class="memname">bool SI4735::getCurrentBlendDetectInterrupt </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1403,7 +1689,34 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>RESP6 - Returns the Component Major Revision (ASCII). </p>
+<p>Multipath Detect High. </p>
+
+</div>
+</div>
+<a id="ab26fbd99452daaf18875ff1c3c35d081"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab26fbd99452daaf18875ff1c3c35d081">&#9670;&nbsp;</a></span>getFirmwarePN()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getFirmwarePN </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Blend Detect Interrupt. </p>
 
 </div>
 </div>
@@ -1515,8 +1828,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ab26fbd99452daaf18875ff1c3c35d081"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab26fbd99452daaf18875ff1c3c35d081">&#9670;&nbsp;</a></span>getFirmwarePN()</h2>
+<a id="ab57870d69969e73265e9cffe2a73d868"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab57870d69969e73265e9cffe2a73d868">&#9670;&nbsp;</a></span>getFirmwareCMPMAJOR()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1525,7 +1838,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::getFirmwarePN </td>
+          <td class="memname">uint8_t SI4735::getFirmwareCMPMAJOR </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1538,12 +1851,12 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Blend Detect Interrupt. </p>
+<p>RESP5 - Returns the Patch ID Low byte (HEX). </p>
 
 </div>
 </div>
-<a id="a8db437efc42a81466d8daf4dcc35c50c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8db437efc42a81466d8daf4dcc35c50c">&#9670;&nbsp;</a></span>getGroupLost()</h2>
+<a id="a883645d266a612ce07d71fdb2cd81e5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a883645d266a612ce07d71fdb2cd81e5f">&#9670;&nbsp;</a></span>getFirmwareCMPMINOR()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1552,7 +1865,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SI4735::getGroupLost </td>
+          <td class="memname">uint8_t SI4735::getFirmwareCMPMINOR </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1565,13 +1878,12 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the Group Lost. </p>
-<p>Returns true if one or more RDS groups discarded due to FIFO overrun. </p><dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
+<p>RESP6 - Returns the Component Major Revision (ASCII). </p>
 
 </div>
 </div>
-<a id="a819c370ff03c52a527fbc85f9877f526"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a819c370ff03c52a527fbc85f9877f526">&#9670;&nbsp;</a></span>getNumRdsFifoUsed()</h2>
+<a id="acd363d9111e4a57cf2e1167634bc1b5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd363d9111e4a57cf2e1167634bc1b5f">&#9670;&nbsp;</a></span>getFirmwareCHIPREV()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1580,7 +1892,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::getNumRdsFifoUsed </td>
+          <td class="memname">uint8_t SI4735::getFirmwareCHIPREV </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1593,13 +1905,12 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the Num Rds Fifo Used. </p>
-<p>Return the number of RDS FIFO used </p><dl class="section return"><dt>Returns</dt><dd>uint8_t Total RDS FIFO used </dd></dl>
+<p>RESP7 - Returns the Component Minor Revision (ASCII). </p>
 
 </div>
 </div>
-<a id="a97dc44d9927ea58730a18fb6baa6867f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97dc44d9927ea58730a18fb6baa6867f">&#9670;&nbsp;</a></span>getRadioDataSystemInterrupt()</h2>
+<a id="a430b86ccfd4d6c89da9202a538e0cfc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a430b86ccfd4d6c89da9202a538e0cfc9">&#9670;&nbsp;</a></span>getCurrentVolume()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1608,7 +1919,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SI4735::getRadioDataSystemInterrupt </td>
+          <td class="memname">uint8_t SI4735::getCurrentVolume </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1621,10 +1932,199 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the Radio Data System (RDS) Interrupt status. </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 63 </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>RDSINT status <br  />
- </dd></dl>
+</div>
+</div>
+<a id="a8c54bfc1fcf1dd989e697cc9b7094f59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c54bfc1fcf1dd989e697cc9b7094f59">&#9670;&nbsp;</a></span>getTuneFrequencyFast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getTuneFrequencyFast </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a51d816112d974f10306d9d001667395a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51d816112d974f10306d9d001667395a">&#9670;&nbsp;</a></span>setTuneFrequencyFast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setTuneFrequencyFast </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>FAST</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the FAST tuning status. </p>
+
+</div>
+</div>
+<a id="a667fead0c7b2658c2b932370ad4e4f88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a667fead0c7b2658c2b932370ad4e4f88">&#9670;&nbsp;</a></span>getTuneFrequencyFreeze()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getTuneFrequencyFreeze </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate. </p>
+
+</div>
+</div>
+<a id="aee22a5ce06d4948fad2365a7b62fbd8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee22a5ce06d4948fad2365a7b62fbd8d">&#9670;&nbsp;</a></span>setTuneFrequencyFreeze()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setTuneFrequencyFreeze </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>FREEZE</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the FREEZE status. </p>
+
+</div>
+</div>
+<a id="a6e8405ea5846fab586080a7be696178e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e8405ea5846fab586080a7be696178e">&#9670;&nbsp;</a></span>getRdsReceived()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::getRdsReceived </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Rds Received FIFO. </p>
+<p>if FIFO is 1, it means the minimum number of groups was filled </p><dl class="section return"><dt>Returns</dt><dd>true if minimum number of groups was filled. </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gaf1e67b201799a9e8d7208a32a65656b5">getRdsPI()</a>, <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">getRdsText0A()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">getRdsText2A()</a>.</p>
+
+</div>
+</div>
+<a id="ac283a8a89cc885c2740c65a7128ff7ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac283a8a89cc885c2740c65a7128ff7ef">&#9670;&nbsp;</a></span>getRdsSyncLost()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::getRdsSyncLost </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Rds Sync Lost object. </p>
+<p>returns true (1) if Lost RDS synchronization is detected. </p><dl class="section return"><dt>Returns</dt><dd>true if Lost RDS synchronization detected. </dd></dl>
+
+</div>
+</div>
+<a id="a78e906f12771490771c624be1777784d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78e906f12771490771c624be1777784d">&#9670;&nbsp;</a></span>getRdsSyncFound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::getRdsSyncFound </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Rds Sync Found. </p>
+<p>return true if found RDS synchronization </p><dl class="section return"><dt>Returns</dt><dd>true if found RDS synchronization </dd></dl>
 
 </div>
 </div>
@@ -1686,36 +2186,6 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a6e8405ea5846fab586080a7be696178e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e8405ea5846fab586080a7be696178e">&#9670;&nbsp;</a></span>getRdsReceived()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool SI4735::getRdsReceived </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the Rds Received FIFO. </p>
-<p>if FIFO is 1, it means the minimum number of groups was filled </p><dl class="section return"><dt>Returns</dt><dd>true if minimum number of groups was filled. </dd></dl>
-
-<p class="reference">Referenced by <a class="el" href="group__group16.html#gaf1e67b201799a9e8d7208a32a65656b5">getRdsPI()</a>, <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">getRdsText0A()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">getRdsText2A()</a>.</p>
-
-</div>
-</div>
 <a id="a6e899b37cbc3dcd0ab969724e4008f0f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6e899b37cbc3dcd0ab969724e4008f0f">&#9670;&nbsp;</a></span>getRdsSync()</h2>
 
@@ -1744,8 +2214,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a78e906f12771490771c624be1777784d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78e906f12771490771c624be1777784d">&#9670;&nbsp;</a></span>getRdsSyncFound()</h2>
+<a id="a8db437efc42a81466d8daf4dcc35c50c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8db437efc42a81466d8daf4dcc35c50c">&#9670;&nbsp;</a></span>getGroupLost()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1754,7 +2224,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SI4735::getRdsSyncFound </td>
+          <td class="memname">bool SI4735::getGroupLost </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1767,13 +2237,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the Rds Sync Found. </p>
-<p>return true if found RDS synchronization </p><dl class="section return"><dt>Returns</dt><dd>true if found RDS synchronization </dd></dl>
+<p>Get the Group Lost. </p>
+<p>Returns true if one or more RDS groups discarded due to FIFO overrun. </p><dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
 
 </div>
 </div>
-<a id="ac283a8a89cc885c2740c65a7128ff7ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac283a8a89cc885c2740c65a7128ff7ef">&#9670;&nbsp;</a></span>getRdsSyncLost()</h2>
+<a id="a819c370ff03c52a527fbc85f9877f526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a819c370ff03c52a527fbc85f9877f526">&#9670;&nbsp;</a></span>getNumRdsFifoUsed()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1782,7 +2252,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SI4735::getRdsSyncLost </td>
+          <td class="memname">uint8_t SI4735::getNumRdsFifoUsed </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1795,13 +2265,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the Rds Sync Lost object. </p>
-<p>returns true (1) if Lost RDS synchronization is detected. </p><dl class="section return"><dt>Returns</dt><dd>true if Lost RDS synchronization detected. </dd></dl>
+<p>Get the Num Rds Fifo Used. </p>
+<p>Return the number of RDS FIFO used </p><dl class="section return"><dt>Returns</dt><dd>uint8_t Total RDS FIFO used </dd></dl>
 
 </div>
 </div>
-<a id="aeeefd12b49dbc764e0f45fe208441482"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeeefd12b49dbc764e0f45fe208441482">&#9670;&nbsp;</a></span>getReceivedSignalStrengthIndicator()</h2>
+<a id="aecfcd50dbb3d95d66c8cdc77d52af63c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecfcd50dbb3d95d66c8cdc77d52af63c">&#9670;&nbsp;</a></span>setI2CLowSpeedMode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1810,8 +2280,9 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::getReceivedSignalStrengthIndicator </td>
+          <td class="memname">void SI4735::setI2CLowSpeedMode </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -1823,13 +2294,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns the value of Received Signal Strength Indicator (dBμV). </p>
-<dl class="section return"><dt>Returns</dt><dd>uint8_t </dd></dl>
+<p>Sets I2C buss to 10KHz. </p>
+<p>This functions below modify the clock frequency for I2C communication. 100KHz is usually the baseline. Use one of these funcition if you have problem on you default configuration. </p>
 
 </div>
 </div>
-<a id="ad194137a6a712a599e3c26e5b6357594"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad194137a6a712a599e3c26e5b6357594">&#9670;&nbsp;</a></span>getSignalQualityInterrupt()</h2>
+<a id="a00ade87631677b8cc88098d0b55cd5a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00ade87631677b8cc88098d0b55cd5a4">&#9670;&nbsp;</a></span>setI2CStandardMode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1838,8 +2309,9 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SI4735::getSignalQualityInterrupt </td>
+          <td class="memname">void SI4735::setI2CStandardMode </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -1851,330 +2323,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the Signal Quality Interrupt status. </p>
-<p>STATUS RESPONSE Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation </p><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 63 </dd>
-<dd>
-Si47XX PROGRAMMING GUIDE; AN332; pages 63 <br  />
- </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>RDSINT status </dd></dl>
-
-</div>
-</div>
-<a id="afcb38f53b6eb71cadcefa0bb472ca943"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afcb38f53b6eb71cadcefa0bb472ca943">&#9670;&nbsp;</a></span>getStatusCTS()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool SI4735::getStatusCTS </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the Error flag Clear to Send. </p>
-<dl class="section return"><dt>Returns</dt><dd>CTS </dd></dl>
-
-</div>
-</div>
-<a id="a69723840497ed693d6f9a4e840ab07c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69723840497ed693d6f9a4e840ab07c9">&#9670;&nbsp;</a></span>getStatusError()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool SI4735::getStatusError </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the Status Error. </p>
-<p>Return the Error flag (true or false) of status of the least Tune or Seek </p><dl class="section return"><dt>Returns</dt><dd>Error flag </dd></dl>
-
-</div>
-</div>
-<a id="a0f9b5438a6f92c8f2e538ee640f353ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f9b5438a6f92c8f2e538ee640f353ab">&#9670;&nbsp;</a></span>getStatusMULT()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::getStatusMULT </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the Status the M U L T. </p>
-<p>Returns the value containing the multipath metric when tune is complete.</p>
-<dl class="section return"><dt>Returns</dt><dd>uint8_t </dd></dl>
-
-</div>
-</div>
-<a id="ac0bd4daaa321ef8956dca4d1e4e5cd3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0bd4daaa321ef8956dca4d1e4e5cd3c">&#9670;&nbsp;</a></span>getStatusSNR()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::getStatusSNR </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the SNR metric when tune is complete (dB) </p>
-<p>Returns the value of the SNR metric when tune is complete (dB).</p>
-<dl class="section return"><dt>Returns</dt><dd>uint8_t </dd></dl>
-
-</div>
-</div>
-<a id="afb19da8a05320d7f38cca8325725edfd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb19da8a05320d7f38cca8325725edfd">&#9670;&nbsp;</a></span>getStatusValid()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool SI4735::getStatusValid </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the channel status. </p>
-<p>Returns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)</p>
-<dl class="section return"><dt>Returns</dt><dd>true </dd>
-<dd>
-false </dd></dl>
-
-</div>
-</div>
-<a id="a2cc659bddc5efc7695f2a6031c2edd4b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2cc659bddc5efc7695f2a6031c2edd4b">&#9670;&nbsp;</a></span>getTuneCompleteTriggered()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool SI4735::getTuneCompleteTriggered </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the Tune Complete status. </p>
-<p>Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered. </p><dl class="section return"><dt>Returns</dt><dd>STCINT status <br  />
- </dd></dl>
-
-</div>
-</div>
-<a id="a8c54bfc1fcf1dd989e697cc9b7094f59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c54bfc1fcf1dd989e697cc9b7094f59">&#9670;&nbsp;</a></span>getTuneFrequencyFast()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::getTuneFrequencyFast </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a667fead0c7b2658c2b932370ad4e4f88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a667fead0c7b2658c2b932370ad4e4f88">&#9670;&nbsp;</a></span>getTuneFrequencyFreeze()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::getTuneFrequencyFreeze </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate. </p>
-
-</div>
-</div>
-<a id="aea08b7e553212cbe01bf6f4ec9e02de7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea08b7e553212cbe01bf6f4ec9e02de7">&#9670;&nbsp;</a></span>isAgcEnabled()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool SI4735::isAgcEnabled </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Checks if the AGC is enabled. </p>
-<dl class="section return"><dt>Returns</dt><dd>true if the AGC is enabled </dd></dl>
-
-</div>
-</div>
-<a id="a05bbe1546d61d7ca3591824445084e70"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05bbe1546d61d7ca3591824445084e70">&#9670;&nbsp;</a></span>setAmSoftMuteMaxAttenuation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::setAmSoftMuteMaxAttenuation </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>smattn</em> = <code>0</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the Am Soft Mute Max Attenuation. </p>
-<p>This function can be useful to disable Soft Mute. The value 0 disable soft mute.</p>
-<p>Specified in units of dB. Default maximum attenuation is 8 dB.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 158.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">smattn</td><td>Maximum attenuation to apply when in soft mute </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a6e1e0e48d71e09debb07fc6dbe884829"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e1e0e48d71e09debb07fc6dbe884829">&#9670;&nbsp;</a></span>setAvcAmMaxGain()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::setAvcAmMaxGain </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the Avc Am Max Gain to 48dB. </p>
+<p>Sets I2C buss to 100KHz. </p>
 
 </div>
 </div>
@@ -2240,158 +2389,9 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="aecfcd50dbb3d95d66c8cdc77d52af63c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aecfcd50dbb3d95d66c8cdc77d52af63c">&#9670;&nbsp;</a></span>setI2CLowSpeedMode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::setI2CLowSpeedMode </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets I2C buss to 10KHz. </p>
-<p>This functions below modify the clock frequency for I2C communication. 100KHz is usually the baseline. Use one of these funcition if you have problem on you default configuration. </p>
-
-</div>
-</div>
-<a id="a00ade87631677b8cc88098d0b55cd5a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00ade87631677b8cc88098d0b55cd5a4">&#9670;&nbsp;</a></span>setI2CStandardMode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::setI2CStandardMode </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets I2C buss to 100KHz. </p>
-
-</div>
-</div>
-<a id="a7f9f0eb9946d629e2e6d7e7901af86b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f9f0eb9946d629e2e6d7e7901af86b9">&#9670;&nbsp;</a></span>setSsbSoftMuteMaxAttenuation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::setSsbSoftMuteMaxAttenuation </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>smattn</em> = <code>0</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the SSB Soft Mute Max Attenuation object. </p>
-<p>Sets maximum attenuation during soft mute (dB). Set to 0 to disable soft mute.</p>
-<p>Specified in units of dB. Default maximum attenuation is 8 dB.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">smattn</td><td>Maximum attenuation to apply when in soft mute. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a51d816112d974f10306d9d001667395a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51d816112d974f10306d9d001667395a">&#9670;&nbsp;</a></span>setTuneFrequencyFast()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::setTuneFrequencyFast </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>FAST</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the FAST tuning status. </p>
-
-</div>
-</div>
-<a id="aee22a5ce06d4948fad2365a7b62fbd8d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee22a5ce06d4948fad2365a7b62fbd8d">&#9670;&nbsp;</a></span>setTuneFrequencyFreeze()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::setTuneFrequencyFreeze </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>FREEZE</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the FREEZE status. </p>
-
-</div>
-</div>
 <h2 class="groupheader">Field Documentation</h2>
-<a id="adf2d1f37ec9edf95e14aecb3cdc7417d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf2d1f37ec9edf95e14aecb3cdc7417d">&#9670;&nbsp;</a></span>currentAgcStatus</h2>
+<a id="a0b40791484c47c0bf90d8dc255a20269"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b40791484c47c0bf90d8dc255a20269">&#9670;&nbsp;</a></span>rds_buffer2A</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2400,7 +2400,7 @@ false </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__group03.html#unionsi47x__agc__status">si47x_agc_status</a> SI4735::currentAgcStatus</td>
+          <td class="memname">char SI4735::rds_buffer2A[65]</td>
         </tr>
       </table>
   </td>
@@ -2410,7 +2410,447 @@ false </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p>current AGC status </p>
+<p>RDS Radio Text buffer - Program Information. </p>
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gac65c552004f5e5e646638e37a5a68213">clearRdsBuffer2A()</a>, <a class="el" href="group__group16.html#ga71cbaa3e0c103db7cee5969d162bec5d">getRdsText()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">getRdsText2A()</a>.</p>
+
+</div>
+</div>
+<a id="a7aa607f80e97d45ac7a80cdcbdeb09f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aa607f80e97d45ac7a80cdcbdeb09f9">&#9670;&nbsp;</a></span>rds_buffer2B</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char SI4735::rds_buffer2B[33]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RDS Radio Text buffer - Station Informaation. </p>
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gaed0988165057aa2880f41b88ac236cd7">clearRdsBuffer2B()</a>, and <a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">getRdsText2B()</a>.</p>
+
+</div>
+</div>
+<a id="ac24a8bbd39628c2981208cb452165a0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac24a8bbd39628c2981208cb452165a0e">&#9670;&nbsp;</a></span>rds_buffer0A</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char SI4735::rds_buffer0A[9]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RDS Basic tuning and switching information (Type 0 groups) </p>
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gadede134b96fd5650b87673ce413babb2">clearRdsBuffer0A()</a>, and <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">getRdsText0A()</a>.</p>
+
+</div>
+</div>
+<a id="a1746daa81b363880dd106fa430784bf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1746daa81b363880dd106fa430784bf8">&#9670;&nbsp;</a></span>rds_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char SI4735::rds_time[20]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RDS date time received information. </p>
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gaa8436bb156f3ac8321c65941be42fdba">getRdsTime()</a>.</p>
+
+</div>
+</div>
+<a id="a1c7ec3559a78c5ef1bda49cb0abdf1de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c7ec3559a78c5ef1bda49cb0abdf1de">&#9670;&nbsp;</a></span>rdsTextAdress2A</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SI4735::rdsTextAdress2A</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>rds_buffer2A current position </p>
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#ga71cbaa3e0c103db7cee5969d162bec5d">getRdsText()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">getRdsText2A()</a>.</p>
+
+</div>
+</div>
+<a id="adecc2478d73cd7d18e1f88fd70d1488d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adecc2478d73cd7d18e1f88fd70d1488d">&#9670;&nbsp;</a></span>rdsTextAdress2B</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SI4735::rdsTextAdress2B</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>rds_buffer2B current position </p>
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">getRdsText2B()</a>.</p>
+
+</div>
+</div>
+<a id="a11477d1eb13efb348395a4984b67f392"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11477d1eb13efb348395a4984b67f392">&#9670;&nbsp;</a></span>rdsTextAdress0A</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SI4735::rdsTextAdress0A</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>rds_buffer0A current position </p>
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">getRdsText0A()</a>.</p>
+
+</div>
+</div>
+<a id="a243ecc7d01fc0d0e9cabb4ed00b9e47d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a243ecc7d01fc0d0e9cabb4ed00b9e47d">&#9670;&nbsp;</a></span>deviceAddress</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t SI4735::deviceAddress = <a class="el" href="_s_i4735_8h.html#a501219f4a661e7aee098f263cba5d2a5">SI473X_ADDR_SEN_LOW</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>current I2C buss address </p>
+
+</div>
+</div>
+<a id="a5f101b95b6fc5127b9e9d92a21f44ab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f101b95b6fc5127b9e9d92a21f44ab6">&#9670;&nbsp;</a></span>maxDelaySetFrequency</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SI4735::maxDelaySetFrequency = <a class="el" href="_s_i4735_8h.html#a3d77e4d0458eed0b6ba584c737e8df21">MAX_DELAY_AFTER_SET_FREQUENCY</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ce25193b7f254c75967568967ba4d85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ce25193b7f254c75967568967ba4d85">&#9670;&nbsp;</a></span>maxDelayAfterPouwerUp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SI4735::maxDelayAfterPouwerUp = <a class="el" href="_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663">MAX_DELAY_AFTER_POWERUP</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abd965c0e49493bc2c7c37547d36dcc96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd965c0e49493bc2c7c37547d36dcc96">&#9670;&nbsp;</a></span>lastTextFlagAB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::lastTextFlagAB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6470177f747ef7eb8e7d02c76f72b19e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6470177f747ef7eb8e7d02c76f72b19e">&#9670;&nbsp;</a></span>resetPin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::resetPin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>pin used on Arduino Board to RESET the Si47XX device </p>
+
+</div>
+</div>
+<a id="af8f8123888060f858c74ba08a29ff38b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8f8123888060f858c74ba08a29ff38b">&#9670;&nbsp;</a></span>interruptPin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::interruptPin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>pin used on Arduino Board to control interrupt. If -1, interrupt is no used. </p>
+
+</div>
+</div>
+<a id="acc3d3a411d181e08846219661dbde1c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc3d3a411d181e08846219661dbde1c4">&#9670;&nbsp;</a></span>currentTune</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::currentTune</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>tell the current tune (FM, AM or SSB) </p>
+
+</div>
+</div>
+<a id="a4663c1c92d980472556368944cb2fc68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4663c1c92d980472556368944cb2fc68">&#9670;&nbsp;</a></span>currentMinimumFrequency</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SI4735::currentMinimumFrequency</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>minimum frequency of the current band </p>
+
+</div>
+</div>
+<a id="aa3d41ad3fdb9d821a721a8acfaf47670"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3d41ad3fdb9d821a721a8acfaf47670">&#9670;&nbsp;</a></span>currentMaximumFrequency</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SI4735::currentMaximumFrequency</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>maximum frequency of the current band </p>
+
+</div>
+</div>
+<a id="a9da4f3df9e5e6b0448eff15e12f690dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9da4f3df9e5e6b0448eff15e12f690dd">&#9670;&nbsp;</a></span>currentWorkFrequency</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SI4735::currentWorkFrequency</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>current frequency </p>
+
+</div>
+</div>
+<a id="ad72759f246cceb147bf031b72173b0ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad72759f246cceb147bf031b72173b0ca">&#9670;&nbsp;</a></span>currentStep</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SI4735::currentStep</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>current steps </p>
+
+</div>
+</div>
+<a id="a157e4ae8cd53396973584aa10888cd47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a157e4ae8cd53396973584aa10888cd47">&#9670;&nbsp;</a></span>lastMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::lastMode = -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Store the last mode used. </p>
 
 </div>
 </div>
@@ -2484,78 +2924,6 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="aa3d41ad3fdb9d821a721a8acfaf47670"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3d41ad3fdb9d821a721a8acfaf47670">&#9670;&nbsp;</a></span>currentMaximumFrequency</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t SI4735::currentMaximumFrequency</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>maximum frequency of the current band </p>
-
-</div>
-</div>
-<a id="a4663c1c92d980472556368944cb2fc68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4663c1c92d980472556368944cb2fc68">&#9670;&nbsp;</a></span>currentMinimumFrequency</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t SI4735::currentMinimumFrequency</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>minimum frequency of the current band </p>
-
-</div>
-</div>
-<a id="a42d5c6991d90ea1c8ae35b74f8bccc48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42d5c6991d90ea1c8ae35b74f8bccc48">&#9670;&nbsp;</a></span>currentRdsStatus</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__group02.html#unionsi47x__rds__status">si47x_rds_status</a> SI4735::currentRdsStatus</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>current RDS status </p>
-
-</div>
-</div>
 <a id="a9edd8cc9254695631795e7efc008eb28"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9edd8cc9254695631795e7efc008eb28">&#9670;&nbsp;</a></span>currentRqsStatus</h2>
 
@@ -2577,52 +2945,6 @@ false </dd></dl>
 </div><div class="memdoc">
 
 <p>current Radio SIgnal Quality status </p>
-
-</div>
-</div>
-<a id="a74ee9c99b1e092f7b1efa2f771f38324"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74ee9c99b1e092f7b1efa2f771f38324">&#9670;&nbsp;</a></span>currentSSBMode</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__group03.html#unionsi47x__ssb__mode">si47x_ssb_mode</a> SI4735::currentSSBMode</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>indicates if USB or LSB </p>
-
-</div>
-</div>
-<a id="a05730ca069db4be7c45a9c92f29d3b52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05730ca069db4be7c45a9c92f29d3b52">&#9670;&nbsp;</a></span>currentSsbStatus</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::currentSsbStatus</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -2650,102 +2972,6 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="ad72759f246cceb147bf031b72173b0ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad72759f246cceb147bf031b72173b0ca">&#9670;&nbsp;</a></span>currentStep</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t SI4735::currentStep</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>current steps </p>
-
-</div>
-</div>
-<a id="acc3d3a411d181e08846219661dbde1c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc3d3a411d181e08846219661dbde1c4">&#9670;&nbsp;</a></span>currentTune</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::currentTune</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>tell the current tune (FM, AM or SSB) </p>
-
-</div>
-</div>
-<a id="a9da4f3df9e5e6b0448eff15e12f690dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9da4f3df9e5e6b0448eff15e12f690dd">&#9670;&nbsp;</a></span>currentWorkFrequency</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t SI4735::currentWorkFrequency</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>current frequency </p>
-
-</div>
-</div>
-<a id="a243ecc7d01fc0d0e9cabb4ed00b9e47d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a243ecc7d01fc0d0e9cabb4ed00b9e47d">&#9670;&nbsp;</a></span>deviceAddress</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int16_t SI4735::deviceAddress = <a class="el" href="_s_i4735_8h.html#a501219f4a661e7aee098f263cba5d2a5">SI473X_ADDR_SEN_LOW</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>current I2C buss address </p>
-
-</div>
-</div>
 <a id="ad03d545e53a7ca2fe072a7b03d60910e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad03d545e53a7ca2fe072a7b03d60910e">&#9670;&nbsp;</a></span>firmwareInfo</h2>
 
@@ -2770,8 +2996,8 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="af8f8123888060f858c74ba08a29ff38b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8f8123888060f858c74ba08a29ff38b">&#9670;&nbsp;</a></span>interruptPin</h2>
+<a id="a42d5c6991d90ea1c8ae35b74f8bccc48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42d5c6991d90ea1c8ae35b74f8bccc48">&#9670;&nbsp;</a></span>currentRdsStatus</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2780,7 +3006,7 @@ false </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::interruptPin</td>
+          <td class="memname"><a class="el" href="group__group02.html#unionsi47x__rds__status">si47x_rds_status</a> SI4735::currentRdsStatus</td>
         </tr>
       </table>
   </td>
@@ -2790,12 +3016,12 @@ false </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p>pin used on Arduino Board to control interrupt. If -1, interrupt is no used. </p>
+<p>current RDS status </p>
 
 </div>
 </div>
-<a id="a157e4ae8cd53396973584aa10888cd47"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a157e4ae8cd53396973584aa10888cd47">&#9670;&nbsp;</a></span>lastMode</h2>
+<a id="adf2d1f37ec9edf95e14aecb3cdc7417d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf2d1f37ec9edf95e14aecb3cdc7417d">&#9670;&nbsp;</a></span>currentAgcStatus</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2804,7 +3030,7 @@ false </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::lastMode = -1</td>
+          <td class="memname"><a class="el" href="group__group03.html#unionsi47x__agc__status">si47x_agc_status</a> SI4735::currentAgcStatus</td>
         </tr>
       </table>
   </td>
@@ -2814,12 +3040,12 @@ false </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p>Store the last mode used. </p>
+<p>current AGC status </p>
 
 </div>
 </div>
-<a id="abd965c0e49493bc2c7c37547d36dcc96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd965c0e49493bc2c7c37547d36dcc96">&#9670;&nbsp;</a></span>lastTextFlagAB</h2>
+<a id="a74ee9c99b1e092f7b1efa2f771f38324"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74ee9c99b1e092f7b1efa2f771f38324">&#9670;&nbsp;</a></span>currentSSBMode</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2828,7 +3054,7 @@ false </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::lastTextFlagAB</td>
+          <td class="memname"><a class="el" href="group__group03.html#unionsi47x__ssb__mode">si47x_ssb_mode</a> SI4735::currentSSBMode</td>
         </tr>
       </table>
   </td>
@@ -2838,49 +3064,7 @@ false </dd></dl>
 </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a7ce25193b7f254c75967568967ba4d85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ce25193b7f254c75967568967ba4d85">&#9670;&nbsp;</a></span>maxDelayAfterPouwerUp</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t SI4735::maxDelayAfterPouwerUp = <a class="el" href="_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663">MAX_DELAY_AFTER_POWERUP</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5f101b95b6fc5127b9e9d92a21f44ab6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f101b95b6fc5127b9e9d92a21f44ab6">&#9670;&nbsp;</a></span>maxDelaySetFrequency</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t SI4735::maxDelaySetFrequency = <a class="el" href="_s_i4735_8h.html#a3d77e4d0458eed0b6ba584c737e8df21">MAX_DELAY_AFTER_SET_FREQUENCY</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>indicates if USB or LSB </p>
 
 </div>
 </div>
@@ -2906,212 +3090,6 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="ac24a8bbd39628c2981208cb452165a0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac24a8bbd39628c2981208cb452165a0e">&#9670;&nbsp;</a></span>rds_buffer0A</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char SI4735::rds_buffer0A[9]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>RDS Basic tuning and switching information (Type 0 groups) </p>
-
-<p class="reference">Referenced by <a class="el" href="group__group16.html#gadede134b96fd5650b87673ce413babb2">clearRdsBuffer0A()</a>, and <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">getRdsText0A()</a>.</p>
-
-</div>
-</div>
-<a id="a0b40791484c47c0bf90d8dc255a20269"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b40791484c47c0bf90d8dc255a20269">&#9670;&nbsp;</a></span>rds_buffer2A</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char SI4735::rds_buffer2A[65]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>RDS Radio Text buffer - Program Information. </p>
-
-<p class="reference">Referenced by <a class="el" href="group__group16.html#gac65c552004f5e5e646638e37a5a68213">clearRdsBuffer2A()</a>, <a class="el" href="group__group16.html#ga71cbaa3e0c103db7cee5969d162bec5d">getRdsText()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">getRdsText2A()</a>.</p>
-
-</div>
-</div>
-<a id="a7aa607f80e97d45ac7a80cdcbdeb09f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7aa607f80e97d45ac7a80cdcbdeb09f9">&#9670;&nbsp;</a></span>rds_buffer2B</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char SI4735::rds_buffer2B[33]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>RDS Radio Text buffer - Station Informaation. </p>
-
-<p class="reference">Referenced by <a class="el" href="group__group16.html#gaed0988165057aa2880f41b88ac236cd7">clearRdsBuffer2B()</a>, and <a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">getRdsText2B()</a>.</p>
-
-</div>
-</div>
-<a id="a1746daa81b363880dd106fa430784bf8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1746daa81b363880dd106fa430784bf8">&#9670;&nbsp;</a></span>rds_time</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char SI4735::rds_time[20]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>RDS date time received information. </p>
-
-<p class="reference">Referenced by <a class="el" href="group__group16.html#gaa8436bb156f3ac8321c65941be42fdba">getRdsTime()</a>.</p>
-
-</div>
-</div>
-<a id="a11477d1eb13efb348395a4984b67f392"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11477d1eb13efb348395a4984b67f392">&#9670;&nbsp;</a></span>rdsTextAdress0A</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int SI4735::rdsTextAdress0A</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>rds_buffer0A current position </p>
-
-<p class="reference">Referenced by <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">getRdsText0A()</a>.</p>
-
-</div>
-</div>
-<a id="a1c7ec3559a78c5ef1bda49cb0abdf1de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c7ec3559a78c5ef1bda49cb0abdf1de">&#9670;&nbsp;</a></span>rdsTextAdress2A</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int SI4735::rdsTextAdress2A</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>rds_buffer2A current position </p>
-
-<p class="reference">Referenced by <a class="el" href="group__group16.html#ga71cbaa3e0c103db7cee5969d162bec5d">getRdsText()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">getRdsText2A()</a>.</p>
-
-</div>
-</div>
-<a id="adecc2478d73cd7d18e1f88fd70d1488d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adecc2478d73cd7d18e1f88fd70d1488d">&#9670;&nbsp;</a></span>rdsTextAdress2B</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int SI4735::rdsTextAdress2B</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>rds_buffer2B current position </p>
-
-<p class="reference">Referenced by <a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">getRdsText2B()</a>.</p>
-
-</div>
-</div>
-<a id="a6470177f747ef7eb8e7d02c76f72b19e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6470177f747ef7eb8e7d02c76f72b19e">&#9670;&nbsp;</a></span>resetPin</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::resetPin</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>pin used on Arduino Board to RESET the Si47XX device </p>
-
-</div>
-</div>
 <a id="aa5220772c468fcfb69b5d16163de73fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa5220772c468fcfb69b5d16163de73fc">&#9670;&nbsp;</a></span>volume</h2>
 
@@ -3123,6 +3101,28 @@ false </dd></dl>
       <table class="memname">
         <tr>
           <td class="memname">uint8_t SI4735::volume = 32</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a05730ca069db4be7c45a9c92f29d3b52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05730ca069db4be7c45a9c92f29d3b52">&#9670;&nbsp;</a></span>currentSsbStatus</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::currentSsbStatus</td>
         </tr>
       </table>
   </td>

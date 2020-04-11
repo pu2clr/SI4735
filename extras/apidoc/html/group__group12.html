@@ -129,34 +129,31 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gae4683e9a9fc7a633305b18dae54fbd83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae4683e9a9fc7a633305b18dae54fbd83">&#9670;&nbsp;</a></span>disableFmDebug()</h2>
+<a id="gac598865516ca09db7dbfa6a84da7f179"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac598865516ca09db7dbfa6a84da7f179">&#9670;&nbsp;</a></span>setFmBlendStereoThreshold()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void SI4735::disableFmDebug </td>
+          <td class="memname">void SI4735::setFmBlendStereoThreshold </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>parameter</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>There is a debug feature that remains active in Si4704/05/3x-D60 firmware which can create periodic noise in audio. </p>
-<p>Silicon Labs recommends you disable this feature by sending the following bytes (shown here in hexadecimal form): 0x12 0x00 0xFF 0x00 0x00 0x00.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 299. </dd></dl>
-
-<p class="reference">Referenced by <a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906">SI4735::setFM()</a>.</p>
+<p>Sets RSSI threshold for stereo blend (Full stereo above threshold, blend below threshold). </p>
+<p>To force stereo, set this to 0. To force mono, set this to 127.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 90.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parameter</td><td>valid values: 0 to 127 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -179,91 +176,6 @@ Functions</h2></td></tr>
 <p>Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). </p>
 <p>To force stereo set this to 0. To force mono set this to 127. Default value is 30 dBμV.</p>
 <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 56.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">parameter</td><td>valid values: 0 to 127 </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="gacc9fd27b38f49f167facfcc4f6216c5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacc9fd27b38f49f167facfcc4f6216c5e">&#9670;&nbsp;</a></span>setFmBlendMultiPathMonoThreshold()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::setFmBlendMultiPathMonoThreshold </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>parameter</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets Multipath threshold for mono blend (Full mono above threshold, blend below threshold). </p>
-<p>To force stereo, set to 100. To force mono, set to 0. The default is 60.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 60.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">parameter</td><td>valid values: 0 to 100 </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ga0ed776a193fb2fcff783d4a82ff714e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0ed776a193fb2fcff783d4a82ff714e5">&#9670;&nbsp;</a></span>setFmBlendMultiPathStereoThreshold()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::setFmBlendMultiPathStereoThreshold </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>parameter</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets multipath threshold for stereo blend (Full stereo below threshold, blend above threshold). </p>
-<p>To force stereo, set this to 100. To force mono, set this to 0. Default value is 20.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 60.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">parameter</td><td>valid values: 0 to 100 </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ga1b134a94138b3bf993a5d3eb5f8ed5c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1b134a94138b3bf993a5d3eb5f8ed5c6">&#9670;&nbsp;</a></span>setFmBLendRssiMonoThreshold()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::setFmBLendRssiMonoThreshold </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>parameter</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). </p>
-<p>To force stereo, set this to 0. To force mono, set this to 127. Default value is 30 dBμV.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 59. <br  />
-</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parameter</td><td>valid values: 0 to 127 </td></tr>
@@ -301,14 +213,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gae2c30536e59f6691d990a2b9cf21f07e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae2c30536e59f6691d990a2b9cf21f07e">&#9670;&nbsp;</a></span>setFmBLendSnrMonoThreshold()</h2>
+<a id="ga1b134a94138b3bf993a5d3eb5f8ed5c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1b134a94138b3bf993a5d3eb5f8ed5c6">&#9670;&nbsp;</a></span>setFmBLendRssiMonoThreshold()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SI4735::setFmBLendSnrMonoThreshold </td>
+          <td class="memname">void SI4735::setFmBLendRssiMonoThreshold </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>parameter</em></td><td>)</td>
@@ -317,9 +229,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets SNR threshold for mono blend (Full mono below threshold, blend above threshold). </p>
-<p>To force stereo, set this to 0. To force mono, set this to 127. Default value is 14 dB.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 59.</dd></dl>
+<p>Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold). </p>
+<p>To force stereo, set this to 0. To force mono, set this to 127. Default value is 30 dBμV.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 59. <br  />
+</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parameter</td><td>valid values: 0 to 127 </td></tr>
@@ -358,14 +271,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gac598865516ca09db7dbfa6a84da7f179"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac598865516ca09db7dbfa6a84da7f179">&#9670;&nbsp;</a></span>setFmBlendStereoThreshold()</h2>
+<a id="gae2c30536e59f6691d990a2b9cf21f07e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae2c30536e59f6691d990a2b9cf21f07e">&#9670;&nbsp;</a></span>setFmBLendSnrMonoThreshold()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SI4735::setFmBlendStereoThreshold </td>
+          <td class="memname">void SI4735::setFmBLendSnrMonoThreshold </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>parameter</em></td><td>)</td>
@@ -374,12 +287,68 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets RSSI threshold for stereo blend (Full stereo above threshold, blend below threshold). </p>
-<p>To force stereo, set this to 0. To force mono, set this to 127.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 90.</dd></dl>
+<p>Sets SNR threshold for mono blend (Full mono below threshold, blend above threshold). </p>
+<p>To force stereo, set this to 0. To force mono, set this to 127. Default value is 14 dB.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 59.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parameter</td><td>valid values: 0 to 127 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0ed776a193fb2fcff783d4a82ff714e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0ed776a193fb2fcff783d4a82ff714e5">&#9670;&nbsp;</a></span>setFmBlendMultiPathStereoThreshold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setFmBlendMultiPathStereoThreshold </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>parameter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets multipath threshold for stereo blend (Full stereo below threshold, blend above threshold). </p>
+<p>To force stereo, set this to 100. To force mono, set this to 0. Default value is 20.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 60.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parameter</td><td>valid values: 0 to 100 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gacc9fd27b38f49f167facfcc4f6216c5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacc9fd27b38f49f167facfcc4f6216c5e">&#9670;&nbsp;</a></span>setFmBlendMultiPathMonoThreshold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setFmBlendMultiPathMonoThreshold </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>parameter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets Multipath threshold for mono blend (Full mono above threshold, blend below threshold). </p>
+<p>To force stereo, set to 100. To force mono, set to 0. The default is 60.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 60.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parameter</td><td>valid values: 0 to 100 </td></tr>
   </table>
   </dd>
 </dl>
@@ -425,6 +394,37 @@ Functions</h2></td></tr>
 <p>Turn Off Stereo operation. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd></dd></dl>
 <p>TO DO</p>
+
+</div>
+</div>
+<a id="gae4683e9a9fc7a633305b18dae54fbd83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae4683e9a9fc7a633305b18dae54fbd83">&#9670;&nbsp;</a></span>disableFmDebug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::disableFmDebug </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>There is a debug feature that remains active in Si4704/05/3x-D60 firmware which can create periodic noise in audio. </p>
+<p>Silicon Labs recommends you disable this feature by sending the following bytes (shown here in hexadecimal form): 0x12 0x00 0xFF 0x00 0x00 0x00.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 299. </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906">SI4735::setFM()</a>.</p>
 
 </div>
 </div>

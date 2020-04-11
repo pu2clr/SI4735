@@ -199,24 +199,31 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gacf79be50a01fe91abd498e5d42d83317"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacf79be50a01fe91abd498e5d42d83317">&#9670;&nbsp;</a></span>getVolume()</h2>
+<a id="ga3b7543657dfd36da962267bb8692b796"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3b7543657dfd36da962267bb8692b796">&#9670;&nbsp;</a></span>setVolume()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::getVolume </td>
+          <td class="memname">void SI4735::setVolume </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>volume</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the current volume level. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group13.html#ga3b7543657dfd36da962267bb8692b796" title="RESP8 - Returns the Chip Revision (ASCII).">setVolume()</a></dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>volume (domain: 0 - 63) </dd></dl>
+<p>RESP8 - Returns the Chip Revision (ASCII). </p>
+<p>Sets volume level (0 to 63)</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 170, 173 and 204</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uint8_t</td><td>volume (domain: 0 - 63) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -248,42 +255,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga3b7543657dfd36da962267bb8692b796"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3b7543657dfd36da962267bb8692b796">&#9670;&nbsp;</a></span>setVolume()</h2>
+<a id="gacf79be50a01fe91abd498e5d42d83317"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacf79be50a01fe91abd498e5d42d83317">&#9670;&nbsp;</a></span>getVolume()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SI4735::setVolume </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>volume</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>RESP8 - Returns the Chip Revision (ASCII). </p>
-<p>Sets volume level (0 to 63)</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 170, 173 and 204</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">uint8_t</td><td>volume (domain: 0 - 63) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ga23d49ab35895b76e0898405fac086c09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga23d49ab35895b76e0898405fac086c09">&#9670;&nbsp;</a></span>volumeDown()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::volumeDown </td>
+          <td class="memname">uint8_t SI4735::getVolume </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -291,9 +270,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Set sound volume level Down <br  />
- </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group13.html#ga3b7543657dfd36da962267bb8692b796" title="RESP8 - Returns the Chip Revision (ASCII).">setVolume()</a> </dd></dl>
+<p>Gets the current volume level. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group13.html#ga3b7543657dfd36da962267bb8692b796" title="RESP8 - Returns the Chip Revision (ASCII).">setVolume()</a></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>volume (domain: 0 - 63) </dd></dl>
 
 </div>
 </div>
@@ -313,6 +292,27 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Set sound volume level Up <br  />
+ </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group13.html#ga3b7543657dfd36da962267bb8692b796" title="RESP8 - Returns the Chip Revision (ASCII).">setVolume()</a> </dd></dl>
+
+</div>
+</div>
+<a id="ga23d49ab35895b76e0898405fac086c09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga23d49ab35895b76e0898405fac086c09">&#9670;&nbsp;</a></span>volumeDown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::volumeDown </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set sound volume level Down <br  />
  </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group13.html#ga3b7543657dfd36da962267bb8692b796" title="RESP8 - Returns the Chip Revision (ASCII).">setVolume()</a> </dd></dl>
 

@@ -204,29 +204,17 @@ Raw powerup parameters data. Same arg memory position. So, same content. </td></
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a70cc84d478cf749951dcd0abde88b0ce"></a>uint8_t</td>
-<td class="fieldname">
-CTSIEN: 1</td>
-<td class="fielddoc">
-CTS Interrupt Enable (0 = CTS interrupt disabled; 1 = CTS interrupt enabled). </td></tr>
-<tr><td class="fieldtype">
 <a id="a1e49c8ad07b69571bfcafaf18ac9fa5b"></a>uint8_t</td>
 <td class="fieldname">
 FUNC: 4</td>
 <td class="fielddoc">
 Function (0 = FM Receive; 1–14 = Reserved; 15 = Query Library ID) </td></tr>
 <tr><td class="fieldtype">
-<a id="a16e39ff0e3715799964f55ae2059869d"></a>uint8_t</td>
+<a id="a22c9aef8785be330d7e1faf88bcfd4b1"></a>uint8_t</td>
 <td class="fieldname">
-GPO2OEN: 1</td>
+XOSCEN: 1</td>
 <td class="fielddoc">
-GPO2 Output Enable (0 = GPO2 output disabled; 1 = GPO2 output enabled). </td></tr>
-<tr><td class="fieldtype">
-<a id="adc7ae7360da2a9886f674ed6943a2524"></a>uint8_t</td>
-<td class="fieldname">
-OPMODE</td>
-<td class="fielddoc">
-Application Setting. See page 65. </td></tr>
+Crystal Oscillator Enable (0 = crystal oscillator disabled; 1 = Use crystal oscillator and and OPMODE=ANALOG AUDIO) . </td></tr>
 <tr><td class="fieldtype">
 <a id="a63bc9a3997d66d835d9f3ec29451407d"></a>uint8_t</td>
 <td class="fieldname">
@@ -234,11 +222,23 @@ PATCH: 1</td>
 <td class="fielddoc">
 Patch Enable (0 = Boot normally; 1 = Copy non-volatile memory to RAM). </td></tr>
 <tr><td class="fieldtype">
-<a id="a22c9aef8785be330d7e1faf88bcfd4b1"></a>uint8_t</td>
+<a id="a16e39ff0e3715799964f55ae2059869d"></a>uint8_t</td>
 <td class="fieldname">
-XOSCEN: 1</td>
+GPO2OEN: 1</td>
 <td class="fielddoc">
-Crystal Oscillator Enable (0 = crystal oscillator disabled; 1 = Use crystal oscillator and and OPMODE=ANALOG AUDIO) . </td></tr>
+GPO2 Output Enable (0 = GPO2 output disabled; 1 = GPO2 output enabled). </td></tr>
+<tr><td class="fieldtype">
+<a id="a70cc84d478cf749951dcd0abde88b0ce"></a>uint8_t</td>
+<td class="fieldname">
+CTSIEN: 1</td>
+<td class="fielddoc">
+CTS Interrupt Enable (0 = CTS interrupt disabled; 1 = CTS interrupt enabled). </td></tr>
+<tr><td class="fieldtype">
+<a id="adc7ae7360da2a9886f674ed6943a2524"></a>uint8_t</td>
+<td class="fieldname">
+OPMODE</td>
+<td class="fielddoc">
+Application Setting. See page 65. </td></tr>
 </table>
 
 </div>
@@ -289,17 +289,17 @@ frequency (integer value) </td></tr>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a8836c6ec927c24305d2fd26a5aec2e2b"></a>uint8_t</td>
-<td class="fieldname">
-FREQH</td>
-<td class="fielddoc">
-Tune Frequency High byte. </td></tr>
-<tr><td class="fieldtype">
 <a id="a858dfb4be81dfbd057aa63aded06bf3d"></a>uint8_t</td>
 <td class="fieldname">
 FREQL</td>
 <td class="fielddoc">
 Tune Frequency Low byte. </td></tr>
+<tr><td class="fieldtype">
+<a id="a8836c6ec927c24305d2fd26a5aec2e2b"></a>uint8_t</td>
+<td class="fieldname">
+FREQH</td>
+<td class="fielddoc">
+Tune Frequency High byte. </td></tr>
 </table>
 
 </div>
@@ -348,17 +348,17 @@ value</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a5f437dbf77cdadcbb215ce5db44edbe6"></a>uint8_t</td>
-<td class="fieldname">
-ANTCAPH</td>
-<td class="fielddoc">
-Antenna Tuning Capacitor Low byte. </td></tr>
-<tr><td class="fieldtype">
 <a id="a0475bf71e813922e317ef7cb7b3df9fa"></a>uint8_t</td>
 <td class="fieldname">
 ANTCAPL</td>
 <td class="fielddoc">
 Antenna Tuning Capacitor High byte. </td></tr>
+<tr><td class="fieldtype">
+<a id="a5f437dbf77cdadcbb215ce5db44edbe6"></a>uint8_t</td>
+<td class="fieldname">
+ANTCAPH</td>
+<td class="fielddoc">
+Antenna Tuning Capacitor Low byte. </td></tr>
 </table>
 
 </div>
@@ -408,24 +408,6 @@ raw[5]</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a5f437dbf77cdadcbb215ce5db44edbe6"></a>uint8_t</td>
-<td class="fieldname">
-ANTCAPH</td>
-<td class="fielddoc">
-ARG4 - Antenna Tuning Capacitor High byte. </td></tr>
-<tr><td class="fieldtype">
-<a id="a0475bf71e813922e317ef7cb7b3df9fa"></a>uint8_t</td>
-<td class="fieldname">
-ANTCAPL</td>
-<td class="fielddoc">
-ARG5 - Antenna Tuning Capacitor Low byte. Note used for FM. </td></tr>
-<tr><td class="fieldtype">
-<a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY1: 4</td>
-<td class="fielddoc">
-Always set 0. </td></tr>
-<tr><td class="fieldtype">
 <a id="adca6e617f6fb54033deb311e7e7c93cc"></a>uint8_t</td>
 <td class="fieldname">
 FAST: 1</td>
@@ -437,6 +419,18 @@ ARG1 - FAST Tuning. If set, executes fast and invalidated tune. The tune status 
 FREEZE: 1</td>
 <td class="fielddoc">
 Valid only for FM (Must be 0 to AM) </td></tr>
+<tr><td class="fieldtype">
+<a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY1: 4</td>
+<td class="fielddoc">
+Always set 0. </td></tr>
+<tr><td class="fieldtype">
+<a id="a46ba89190297ccd0df7c8f8b5f72497f"></a>uint8_t</td>
+<td class="fieldname">
+USBLSB: 2</td>
+<td class="fielddoc">
+SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected. </td></tr>
 <tr><td class="fieldtype">
 <a id="a8836c6ec927c24305d2fd26a5aec2e2b"></a>uint8_t</td>
 <td class="fieldname">
@@ -450,11 +444,17 @@ FREQL</td>
 <td class="fielddoc">
 ARG3 - Tune Frequency Low byte. </td></tr>
 <tr><td class="fieldtype">
-<a id="a46ba89190297ccd0df7c8f8b5f72497f"></a>uint8_t</td>
+<a id="a5f437dbf77cdadcbb215ce5db44edbe6"></a>uint8_t</td>
 <td class="fieldname">
-USBLSB: 2</td>
+ANTCAPH</td>
 <td class="fielddoc">
-SSB Upper Side Band (USB) and Lower Side Band (LSB) Selection. 10 = USB is selected; 01 = LSB is selected. </td></tr>
+ARG4 - Antenna Tuning Capacitor High byte. </td></tr>
+<tr><td class="fieldtype">
+<a id="a0475bf71e813922e317ef7cb7b3df9fa"></a>uint8_t</td>
+<td class="fieldname">
+ANTCAPL</td>
+<td class="fielddoc">
+ARG5 - Antenna Tuning Capacitor Low byte. Note used for FM. </td></tr>
 </table>
 
 </div>
@@ -510,11 +510,11 @@ RESERVED1: 2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a0b5885d29a74762639e4b55c51ce2d85"></a>uint8_t</td>
+<a id="ae1c8555fcf0ea2bb648a6fd527d658c0"></a>uint8_t</td>
 <td class="fieldname">
-RESERVED2: 4</td>
+WRAP: 1</td>
 <td class="fielddoc">
-</td></tr>
+Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit. </td></tr>
 <tr><td class="fieldtype">
 <a id="aed8a1fd68dec9364930b51d020ba07d6"></a>uint8_t</td>
 <td class="fieldname">
@@ -522,11 +522,11 @@ SEEKUP: 1</td>
 <td class="fielddoc">
 Determines the direction of the search, either UP = 1, or DOWN = 0. </td></tr>
 <tr><td class="fieldtype">
-<a id="ae1c8555fcf0ea2bb648a6fd527d658c0"></a>uint8_t</td>
+<a id="a0b5885d29a74762639e4b55c51ce2d85"></a>uint8_t</td>
 <td class="fieldname">
-WRAP: 1</td>
+RESERVED2: 4</td>
 <td class="fielddoc">
-Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit. </td></tr>
+</td></tr>
 </table>
 
 </div>
@@ -547,15 +547,15 @@ Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band l
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a8afecb26fbffbfa5a7d3d46d90becabc"></a>uint8_t</td>
-<td class="fieldname">
-raw</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="ae74a91730fe217f5cb29daf1ab3fde33"></a>struct <a class="el" href="group__group01.html#structsi47x__status_8refined">si47x_status</a></td>
 <td class="fieldname">
 refined</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a8afecb26fbffbfa5a7d3d46d90becabc"></a>uint8_t</td>
+<td class="fieldname">
+raw</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -576,29 +576,17 @@ refined</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
+<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
 <td class="fieldname">
-CTS: 1</td>
+STCINT: 1</td>
 <td class="fielddoc">
-0 = Wait before sending next command; 1 = Clear to send next command. </td></tr>
+1 = Tune complete has been triggered. </td></tr>
 <tr><td class="fieldtype">
 <a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
 <td class="fieldname">
 DUMMY1: 1</td>
 <td class="fielddoc">
 Reserved (Values may vary). </td></tr>
-<tr><td class="fieldtype">
-<a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY2: 2</td>
-<td class="fielddoc">
-Reserved (Values may vary). </td></tr>
-<tr><td class="fieldtype">
-<a id="acd22bad976363fdd1bfbf6759fede482"></a>uint8_t</td>
-<td class="fieldname">
-ERR: 1</td>
-<td class="fielddoc">
-1 = Error. </td></tr>
 <tr><td class="fieldtype">
 <a id="a53d648e7e9d100d590e2f65ec7de079f"></a>uint8_t</td>
 <td class="fieldname">
@@ -612,11 +600,23 @@ RSQINT: 1</td>
 <td class="fielddoc">
 1 = Received Signal Quality measurement has been triggered. </td></tr>
 <tr><td class="fieldtype">
-<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
+<a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
 <td class="fieldname">
-STCINT: 1</td>
+DUMMY2: 2</td>
 <td class="fielddoc">
-1 = Tune complete has been triggered. </td></tr>
+Reserved (Values may vary). </td></tr>
+<tr><td class="fieldtype">
+<a id="acd22bad976363fdd1bfbf6759fede482"></a>uint8_t</td>
+<td class="fieldname">
+ERR: 1</td>
+<td class="fielddoc">
+1 = Error. </td></tr>
+<tr><td class="fieldtype">
+<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
+<td class="fieldname">
+CTS: 1</td>
+<td class="fielddoc">
+0 = Wait before sending next command; 1 = Clear to send next command. </td></tr>
 </table>
 
 </div>
@@ -638,17 +638,17 @@ STCINT: 1</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a9b236e03804629e73a4b19fddb72b4cd"></a>uint8_t</td>
-<td class="fieldname">
-raw[8]</td>
-<td class="fielddoc">
-Check it. </td></tr>
-<tr><td class="fieldtype">
 <a id="a0e7c279d251b7485e31e7c8922078977"></a>struct <a class="el" href="group__group01.html#structsi47x__response__status_8resp">si47x_response_status</a></td>
 <td class="fieldname">
 resp</td>
 <td class="fielddoc">
 </td></tr>
+<tr><td class="fieldtype">
+<a id="a9b236e03804629e73a4b19fddb72b4cd"></a>uint8_t</td>
+<td class="fieldname">
+raw[8]</td>
+<td class="fielddoc">
+Check it. </td></tr>
 </table>
 
 </div>
@@ -667,23 +667,11 @@ resp</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a4f37d8e1a484e1ac152858e71923f86c"></a>uint8_t</td>
+<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
 <td class="fieldname">
-AFCRL: 1</td>
+STCINT: 1</td>
 <td class="fielddoc">
-AFC Rail Indicator. </td></tr>
-<tr><td class="fieldtype">
-<a id="a4163d039102268d1b6ac272a25006d7f"></a>uint8_t</td>
-<td class="fieldname">
-BLTF: 1</td>
-<td class="fielddoc">
-Reports if a seek hit the band limit. </td></tr>
-<tr><td class="fieldtype">
-<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
-<td class="fieldname">
-CTS: 1</td>
-<td class="fielddoc">
-Clear to Send. </td></tr>
+Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered. </td></tr>
 <tr><td class="fieldtype">
 <a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
 <td class="fieldname">
@@ -691,15 +679,21 @@ DUMMY1: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
+<a id="a53d648e7e9d100d590e2f65ec7de079f"></a>uint8_t</td>
+<td class="fieldname">
+RDSINT: 1</td>
+<td class="fielddoc">
+Radio Data System (RDS) Interrup; 0 = interrupt has not been triggered. </td></tr>
+<tr><td class="fieldtype">
+<a id="a8acf6c55c97050e7abd06c104012c77a"></a>uint8_t</td>
+<td class="fieldname">
+RSQINT: 1</td>
+<td class="fielddoc">
+Received Signal Quality Interrupt; 0 = interrupt has not been triggered. </td></tr>
+<tr><td class="fieldtype">
 <a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
 <td class="fieldname">
 DUMMY2: 2</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a613aa5c14b3ccc6304a519292c482ed1"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY3: 5</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -709,23 +703,35 @@ ERR: 1</td>
 <td class="fielddoc">
 Error. 0 = No error 1 = Error. </td></tr>
 <tr><td class="fieldtype">
-<a id="a36b0ca295026d76ee15df50dc4991e90"></a>uint8_t</td>
+<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
 <td class="fieldname">
-MULT</td>
+CTS: 1</td>
 <td class="fielddoc">
-Contains the multipath metric when tune is complete. </td></tr>
+Clear to Send. </td></tr>
 <tr><td class="fieldtype">
-<a id="a53d648e7e9d100d590e2f65ec7de079f"></a>uint8_t</td>
+<a id="ac9f1a6384b1c466d4612f513bd8e13ea"></a>uint8_t</td>
 <td class="fieldname">
-RDSINT: 1</td>
+VALID: 1</td>
 <td class="fielddoc">
-Radio Data System (RDS) Interrup; 0 = interrupt has not been triggered. </td></tr>
+Valid Channel. </td></tr>
 <tr><td class="fieldtype">
-<a id="aa4c3e6fac8670fa0b36ba68ff185aa24"></a>uint8_t</td>
+<a id="a4f37d8e1a484e1ac152858e71923f86c"></a>uint8_t</td>
 <td class="fieldname">
-READANTCAP</td>
+AFCRL: 1</td>
 <td class="fielddoc">
-Contains the current antenna tuning capacitor value. </td></tr>
+AFC Rail Indicator. </td></tr>
+<tr><td class="fieldtype">
+<a id="a613aa5c14b3ccc6304a519292c482ed1"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY3: 5</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a4163d039102268d1b6ac272a25006d7f"></a>uint8_t</td>
+<td class="fieldname">
+BLTF: 1</td>
+<td class="fielddoc">
+Reports if a seek hit the band limit. </td></tr>
 <tr><td class="fieldtype">
 <a id="a0d093ad5e587811b66f0047303ec86a9"></a>uint8_t</td>
 <td class="fieldname">
@@ -739,12 +745,6 @@ READFREQL</td>
 <td class="fielddoc">
 Read Frequency Low byte. </td></tr>
 <tr><td class="fieldtype">
-<a id="a8acf6c55c97050e7abd06c104012c77a"></a>uint8_t</td>
-<td class="fieldname">
-RSQINT: 1</td>
-<td class="fielddoc">
-Received Signal Quality Interrupt; 0 = interrupt has not been triggered. </td></tr>
-<tr><td class="fieldtype">
 <a id="a6833f5d3374c1679bea428b50dbad9cc"></a>uint8_t</td>
 <td class="fieldname">
 RSSI</td>
@@ -757,17 +757,17 @@ SNR</td>
 <td class="fielddoc">
 This byte contains the SNR metric when tune is complete (dB). </td></tr>
 <tr><td class="fieldtype">
-<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
+<a id="a36b0ca295026d76ee15df50dc4991e90"></a>uint8_t</td>
 <td class="fieldname">
-STCINT: 1</td>
+MULT</td>
 <td class="fielddoc">
-Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered. </td></tr>
+Contains the multipath metric when tune is complete. </td></tr>
 <tr><td class="fieldtype">
-<a id="ac9f1a6384b1c466d4612f513bd8e13ea"></a>uint8_t</td>
+<a id="aa4c3e6fac8670fa0b36ba68ff185aa24"></a>uint8_t</td>
 <td class="fieldname">
-VALID: 1</td>
+READANTCAP</td>
 <td class="fielddoc">
-Valid Channel. </td></tr>
+Contains the current antenna tuning capacitor value. </td></tr>
 </table>
 
 </div>
@@ -789,15 +789,15 @@ Valid Channel. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="aa2ba7bbaa745c8ca18c83226246654e5"></a>uint8_t</td>
-<td class="fieldname">
-raw[9]</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="af03ada523de06bc7dc13c2c6f6094bf8"></a>struct <a class="el" href="group__group01.html#structsi47x__firmware__information_8resp">si47x_firmware_information</a></td>
 <td class="fieldname">
 resp</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="aa2ba7bbaa745c8ca18c83226246654e5"></a>uint8_t</td>
+<td class="fieldname">
+raw[9]</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -818,33 +818,27 @@ resp</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="ab9dbe73951d365ea8a945760cec79a5e"></a>uint8_t</td>
+<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
 <td class="fieldname">
-CHIPREV</td>
-<td class="fielddoc">
-RESP8 - Chip Revision (ASCII). </td></tr>
-<tr><td class="fieldtype">
-<a id="aab5038bb547e9aa4b543112de6904611"></a>uint8_t</td>
-<td class="fieldname">
-CMPMAJOR</td>
-<td class="fielddoc">
-RESP6 - Component Major Revision (ASCII). </td></tr>
-<tr><td class="fieldtype">
-<a id="a62c98580b8d5220cf351861ddd86fd07"></a>uint8_t</td>
-<td class="fieldname">
-CMPMINOR</td>
-<td class="fielddoc">
-RESP7 - Component Minor Revision (ASCII). </td></tr>
-<tr><td class="fieldtype">
-<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
-<td class="fieldname">
-CTS: 1</td>
+STCINT: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
 <td class="fieldname">
 DUMMY1: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a53d648e7e9d100d590e2f65ec7de079f"></a>uint8_t</td>
+<td class="fieldname">
+RDSINT: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a8acf6c55c97050e7abd06c104012c77a"></a>uint8_t</td>
+<td class="fieldname">
+RSQINT: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -859,6 +853,18 @@ DUMMY2: 2</td>
 ERR: 1</td>
 <td class="fielddoc">
 </td></tr>
+<tr><td class="fieldtype">
+<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
+<td class="fieldname">
+CTS: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a7b6166324dc52f374d908e03602b1daf"></a>uint8_t</td>
+<td class="fieldname">
+PN</td>
+<td class="fielddoc">
+RESP1 - Final 2 digits of Part Number (HEX). </td></tr>
 <tr><td class="fieldtype">
 <a id="a67c65213847ea2a824306b665bd2851f"></a>uint8_t</td>
 <td class="fieldname">
@@ -884,29 +890,23 @@ PATCHL</td>
 <td class="fielddoc">
 RESP5 - Patch ID Low byte (HEX). </td></tr>
 <tr><td class="fieldtype">
-<a id="a7b6166324dc52f374d908e03602b1daf"></a>uint8_t</td>
+<a id="aab5038bb547e9aa4b543112de6904611"></a>uint8_t</td>
 <td class="fieldname">
-PN</td>
+CMPMAJOR</td>
 <td class="fielddoc">
-RESP1 - Final 2 digits of Part Number (HEX). </td></tr>
+RESP6 - Component Major Revision (ASCII). </td></tr>
 <tr><td class="fieldtype">
-<a id="a53d648e7e9d100d590e2f65ec7de079f"></a>uint8_t</td>
+<a id="a62c98580b8d5220cf351861ddd86fd07"></a>uint8_t</td>
 <td class="fieldname">
-RDSINT: 1</td>
+CMPMINOR</td>
 <td class="fielddoc">
-</td></tr>
+RESP7 - Component Minor Revision (ASCII). </td></tr>
 <tr><td class="fieldtype">
-<a id="a8acf6c55c97050e7abd06c104012c77a"></a>uint8_t</td>
+<a id="ab9dbe73951d365ea8a945760cec79a5e"></a>uint8_t</td>
 <td class="fieldname">
-RSQINT: 1</td>
+CHIPREV</td>
 <td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
-<td class="fieldname">
-STCINT: 1</td>
-<td class="fielddoc">
-</td></tr>
+RESP8 - Chip Revision (ASCII). </td></tr>
 </table>
 
 </div>
@@ -929,15 +929,15 @@ STCINT: 1</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a5235c5b07b71d6dc4c76c275a091c63c"></a>uint8_t</td>
-<td class="fieldname">
-raw[8]</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="a934481d2e03f0256e140f20bfec57ed4"></a>struct <a class="el" href="group__group01.html#structsi47x__firmware__query__library_8resp">si47x_firmware_query_library</a></td>
 <td class="fieldname">
 resp</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a5235c5b07b71d6dc4c76c275a091c63c"></a>uint8_t</td>
+<td class="fieldname">
+raw[8]</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -958,21 +958,27 @@ resp</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="ab9dbe73951d365ea8a945760cec79a5e"></a>uint8_t</td>
+<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
 <td class="fieldname">
-CHIPREV</td>
-<td class="fielddoc">
-RESP6 - Chip Revision (ASCII). </td></tr>
-<tr><td class="fieldtype">
-<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
-<td class="fieldname">
-CTS: 1</td>
+STCINT: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
 <td class="fieldname">
 DUMMY1: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a53d648e7e9d100d590e2f65ec7de079f"></a>uint8_t</td>
+<td class="fieldname">
+RDSINT: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a8acf6c55c97050e7abd06c104012c77a"></a>uint8_t</td>
+<td class="fieldname">
+RSQINT: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -988,6 +994,18 @@ ERR: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
+<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
+<td class="fieldname">
+CTS: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a7b6166324dc52f374d908e03602b1daf"></a>uint8_t</td>
+<td class="fieldname">
+PN</td>
+<td class="fielddoc">
+RESP1 - Final 2 digits of Part Number (HEX). </td></tr>
+<tr><td class="fieldtype">
 <a id="a67c65213847ea2a824306b665bd2851f"></a>uint8_t</td>
 <td class="fieldname">
 FWMAJOR</td>
@@ -999,24 +1017,6 @@ RESP2 - Firmware Major Revision (ASCII). </td></tr>
 FWMINOR</td>
 <td class="fielddoc">
 RESP3 - Firmware Minor Revision (ASCII). </td></tr>
-<tr><td class="fieldtype">
-<a id="afb747a51a99db36a17a01f11e3cafbe5"></a>uint8_t</td>
-<td class="fieldname">
-LIBRARYID</td>
-<td class="fielddoc">
-RESP7 - Library Revision (HEX). </td></tr>
-<tr><td class="fieldtype">
-<a id="a7b6166324dc52f374d908e03602b1daf"></a>uint8_t</td>
-<td class="fieldname">
-PN</td>
-<td class="fielddoc">
-RESP1 - Final 2 digits of Part Number (HEX). </td></tr>
-<tr><td class="fieldtype">
-<a id="a53d648e7e9d100d590e2f65ec7de079f"></a>uint8_t</td>
-<td class="fieldname">
-RDSINT: 1</td>
-<td class="fielddoc">
-</td></tr>
 <tr><td class="fieldtype">
 <a id="ad8179a090910d4923b044cbce813c8ea"></a>uint8_t</td>
 <td class="fieldname">
@@ -1030,17 +1030,17 @@ RESERVED2</td>
 <td class="fielddoc">
 RESP5 - Reserved, various values. </td></tr>
 <tr><td class="fieldtype">
-<a id="a8acf6c55c97050e7abd06c104012c77a"></a>uint8_t</td>
+<a id="ab9dbe73951d365ea8a945760cec79a5e"></a>uint8_t</td>
 <td class="fieldname">
-RSQINT: 1</td>
+CHIPREV</td>
 <td class="fielddoc">
-</td></tr>
+RESP6 - Chip Revision (ASCII). </td></tr>
 <tr><td class="fieldtype">
-<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
+<a id="afb747a51a99db36a17a01f11e3cafbe5"></a>uint8_t</td>
 <td class="fieldname">
-STCINT: 1</td>
+LIBRARYID</td>
 <td class="fielddoc">
-</td></tr>
+RESP7 - Library Revision (HEX). </td></tr>
 </table>
 
 </div>
@@ -1091,17 +1091,17 @@ raw</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a2027c027133e22c8929e2874dc44dd36"></a>uint8_t</td>
-<td class="fieldname">
-CANCEL: 1</td>
-<td class="fielddoc">
-If set, aborts a seek currently in progress. </td></tr>
-<tr><td class="fieldtype">
 <a id="aa1b4c5526f2abe4a5d02be4016a44020"></a>uint8_t</td>
 <td class="fieldname">
 INTACK: 1</td>
 <td class="fielddoc">
 If set, clears the seek/tune complete interrupt status indicator. </td></tr>
+<tr><td class="fieldtype">
+<a id="a2027c027133e22c8929e2874dc44dd36"></a>uint8_t</td>
+<td class="fieldname">
+CANCEL: 1</td>
+<td class="fielddoc">
+If set, aborts a seek currently in progress. </td></tr>
 <tr><td class="fieldtype">
 <a id="a0b5885d29a74762639e4b55c51ce2d85"></a>uint8_t</td>
 <td class="fieldname">
@@ -1157,15 +1157,15 @@ value</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a7b280732d6c370d505d537b0ab9f7e30"></a>uint8_t</td>
-<td class="fieldname">
-byteHigh</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="a1f3859652867ab4a967c5caa3e2ab353"></a>uint8_t</td>
 <td class="fieldname">
 byteLow</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a7b280732d6c370d505d537b0ab9f7e30"></a>uint8_t</td>
+<td class="fieldname">
+byteHigh</td>
 <td class="fielddoc">
 </td></tr>
 </table>

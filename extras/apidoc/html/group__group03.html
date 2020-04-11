@@ -140,15 +140,15 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a2f03c32a90a7991f2433bf8a5291885d"></a>uint8_t</td>
-<td class="fieldname">
-raw[3]</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="aeb67183a7cb7793bdcab97e5fc3cf8ca"></a>struct <a class="el" href="group__group03.html#structsi47x__agc__status_8refined">si47x_agc_status</a></td>
 <td class="fieldname">
 refined</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a2f03c32a90a7991f2433bf8a5291885d"></a>uint8_t</td>
+<td class="fieldname">
+raw[3]</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -169,45 +169,15 @@ refined</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="aeaad2cabb6417746b2dd432eda476f55"></a>uint8_t</td>
+<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
 <td class="fieldname">
-AGCDIS: 1</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a26bd0af30c189325bd004e10593eb5cd"></a>uint8_t</td>
-<td class="fieldname">
-AGCIDX</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
-<td class="fieldname">
-CTS: 1</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="abd2103035a8021942390a78a431ba0c4"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY: 7</td>
+STCINT: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
 <td class="fieldname">
 DUMMY1: 1</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
-<td class="fieldname">
-DUMMY2: 2</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="acd22bad976363fdd1bfbf6759fede482"></a>uint8_t</td>
-<td class="fieldname">
-ERR: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -223,9 +193,39 @@ RSQINT: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="af8f21d801809287d578344911b65697c"></a>uint8_t</td>
+<a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
 <td class="fieldname">
-STCINT: 1</td>
+DUMMY2: 2</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="acd22bad976363fdd1bfbf6759fede482"></a>uint8_t</td>
+<td class="fieldname">
+ERR: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="ae16433ffd3adc248f0ce2608a95c3c76"></a>uint8_t</td>
+<td class="fieldname">
+CTS: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="aeaad2cabb6417746b2dd432eda476f55"></a>uint8_t</td>
+<td class="fieldname">
+AGCDIS: 1</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="abd2103035a8021942390a78a431ba0c4"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY: 7</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a26bd0af30c189325bd004e10593eb5cd"></a>uint8_t</td>
+<td class="fieldname">
+AGCIDX</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -283,15 +283,15 @@ AGCDIS: 1</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a26bd0af30c189325bd004e10593eb5cd"></a>uint8_t</td>
-<td class="fieldname">
-AGCIDX</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="abd2103035a8021942390a78a431ba0c4"></a>uint8_t</td>
 <td class="fieldname">
 DUMMY: 7</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a26bd0af30c189325bd004e10593eb5cd"></a>uint8_t</td>
+<td class="fieldname">
+AGCIDX</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -350,17 +350,17 @@ AMCHFLT: 4</td>
 <td class="fielddoc">
 Selects the bandwidth of the AM channel filter. </td></tr>
 <tr><td class="fieldtype">
-<a id="ae6741d3dc93d6502bb837ca874ee4f94"></a>uint8_t</td>
-<td class="fieldname">
-AMPLFLT: 1</td>
-<td class="fielddoc">
-Enables the AM Power Line Noise Rejection Filter. </td></tr>
-<tr><td class="fieldtype">
 <a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
 <td class="fieldname">
 DUMMY1: 4</td>
 <td class="fielddoc">
 </td></tr>
+<tr><td class="fieldtype">
+<a id="ae6741d3dc93d6502bb837ca874ee4f94"></a>uint8_t</td>
+<td class="fieldname">
+AMPLFLT: 1</td>
+<td class="fielddoc">
+Enables the AM Power Line Noise Rejection Filter. </td></tr>
 <tr><td class="fieldtype">
 <a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
 <td class="fieldname">
@@ -422,6 +422,12 @@ AUDIOBW: 4</td>
 <td class="fielddoc">
 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz </td></tr>
 <tr><td class="fieldtype">
+<a id="a5fd112c4d977a89cf8b7717ef0a12a9b"></a>uint8_t</td>
+<td class="fieldname">
+SBCUTFLT: 4</td>
+<td class="fielddoc">
+SSB side band cutoff filter for band passand low pass filter. </td></tr>
+<tr><td class="fieldtype">
 <a id="a911ed778d046d0d22bf2df2938c1f084"></a>uint8_t</td>
 <td class="fieldname">
 AVC_DIVIDER: 4</td>
@@ -434,11 +440,11 @@ AVCEN: 1</td>
 <td class="fielddoc">
 SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default);. </td></tr>
 <tr><td class="fieldtype">
-<a id="a5ff4a830553e8db4d36f8b3677e3d412"></a>uint8_t</td>
+<a id="aeb7815cb295d531065f797c39cf36da5"></a>uint8_t</td>
 <td class="fieldname">
-DSP_AFCDIS: 1</td>
+SMUTESEL: 1</td>
 <td class="fielddoc">
-0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. </td></tr>
+SSB Soft-mute Based on RSSI or SNR. </td></tr>
 <tr><td class="fieldtype">
 <a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
 <td class="fieldname">
@@ -446,17 +452,11 @@ DUMMY1: 1</td>
 <td class="fielddoc">
 Always write 0;. </td></tr>
 <tr><td class="fieldtype">
-<a id="a5fd112c4d977a89cf8b7717ef0a12a9b"></a>uint8_t</td>
+<a id="a5ff4a830553e8db4d36f8b3677e3d412"></a>uint8_t</td>
 <td class="fieldname">
-SBCUTFLT: 4</td>
+DSP_AFCDIS: 1</td>
 <td class="fielddoc">
-SSB side band cutoff filter for band passand low pass filter. </td></tr>
-<tr><td class="fieldtype">
-<a id="aeb7815cb295d531065f797c39cf36da5"></a>uint8_t</td>
-<td class="fieldname">
-SMUTESEL: 1</td>
-<td class="fielddoc">
-SSB Soft-mute Based on RSSI or SNR. </td></tr>
+0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable. </td></tr>
 </table>
 
 </div>
@@ -478,15 +478,15 @@ SSB Soft-mute Based on RSSI or SNR. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a0fa2c05d8877d3c680e904842993c33e"></a>uint16_t</td>
-<td class="fieldname">
-raw</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
 <a id="a2f29f0562d46943e665a08afbc1f74df"></a>struct <a class="el" href="group__group03.html#structsi4735__digital__output__format_8refined">si4735_digital_output_format</a></td>
 <td class="fieldname">
 refined</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a0fa2c05d8877d3c680e904842993c33e"></a>uint16_t</td>
+<td class="fieldname">
+raw</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -507,23 +507,11 @@ refined</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a275876e34cf609db118f3d84b799a790"></a>uint8_t</td>
+<a id="a8e0cf30fb9cddc896d94167934615d42"></a>uint8_t</td>
 <td class="fieldname">
-dummy: 8</td>
+OSIZE: 2</td>
 <td class="fielddoc">
-Always 0. </td></tr>
-<tr><td class="fieldtype">
-<a id="abfdc1bd5a8f46739eef7fd4fa44ad600"></a>uint8_t</td>
-<td class="fieldname">
-OFALL: 1</td>
-<td class="fielddoc">
-Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge) </td></tr>
-<tr><td class="fieldtype">
-<a id="a870fffeed608a381a3abc7e27b22a7ee"></a>uint8_t</td>
-<td class="fieldname">
-OMODE: 4</td>
-<td class="fielddoc">
-Digital Output Mode (0000=I2S, 0110 = Left-justified, 1000 = MSB at second DCLK after DFS pulse, 1100 = MSB at first DCLK after DFS pulse). </td></tr>
+Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits). </td></tr>
 <tr><td class="fieldtype">
 <a id="a61324adf2d131b4df8038991cbca0842"></a>uint8_t</td>
 <td class="fieldname">
@@ -531,11 +519,23 @@ OMONO: 1</td>
 <td class="fielddoc">
 Digital Output Mono Mode (0=Use mono/stereo blend ). </td></tr>
 <tr><td class="fieldtype">
-<a id="a8e0cf30fb9cddc896d94167934615d42"></a>uint8_t</td>
+<a id="a870fffeed608a381a3abc7e27b22a7ee"></a>uint8_t</td>
 <td class="fieldname">
-OSIZE: 2</td>
+OMODE: 4</td>
 <td class="fielddoc">
-Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits). </td></tr>
+Digital Output Mode (0000=I2S, 0110 = Left-justified, 1000 = MSB at second DCLK after DFS pulse, 1100 = MSB at first DCLK after DFS pulse). </td></tr>
+<tr><td class="fieldtype">
+<a id="abfdc1bd5a8f46739eef7fd4fa44ad600"></a>uint8_t</td>
+<td class="fieldname">
+OFALL: 1</td>
+<td class="fielddoc">
+Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge) </td></tr>
+<tr><td class="fieldtype">
+<a id="a275876e34cf609db118f3d84b799a790"></a>uint8_t</td>
+<td class="fieldname">
+dummy: 8</td>
+<td class="fielddoc">
+Always 0. </td></tr>
 </table>
 
 </div>

@@ -160,34 +160,29 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gadede134b96fd5650b87673ce413babb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gadede134b96fd5650b87673ce413babb2">&#9670;&nbsp;</a></span>clearRdsBuffer0A()</h2>
+<a id="gaffdba9ca9fb9bf5bb671ac3d448a7e89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaffdba9ca9fb9bf5bb671ac3d448a7e89">&#9670;&nbsp;</a></span>RdsInit()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void SI4735::clearRdsBuffer0A </td>
+          <td class="memname">void SI4735::RdsInit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Clear RDS buffer 0A (text) </p>
+<p>Starts the control member variables for RDS. </p>
+<p>RDS implementation</p>
+<p>This method is called by <a class="el" href="group__group16.html#gad9718a85c79a311c26997bbda20f2351" title="Sets RDS property.">setRdsConfig()</a></p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group16.html#gad9718a85c79a311c26997bbda20f2351" title="Sets RDS property.">setRdsConfig()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="class_s_i4735.html#ac24a8bbd39628c2981208cb452165a0e">SI4735::rds_buffer0A</a>.</p>
+<p class="reference">References <a class="el" href="group__group16.html#gadede134b96fd5650b87673ce413babb2">SI4735::clearRdsBuffer0A()</a>, <a class="el" href="group__group16.html#gac65c552004f5e5e646638e37a5a68213">SI4735::clearRdsBuffer2A()</a>, and <a class="el" href="group__group16.html#gaed0988165057aa2880f41b88ac236cd7">SI4735::clearRdsBuffer2B()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__group16.html#ga350a2033671a7620d4b9290a2347e185">SI4735::getRdsStatus()</a>, and <a class="el" href="group__group16.html#gaffdba9ca9fb9bf5bb671ac3d448a7e89">SI4735::RdsInit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gad9718a85c79a311c26997bbda20f2351">SI4735::setRdsConfig()</a>.</p>
 
 </div>
 </div>
@@ -253,406 +248,34 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gab1f4f137139b40fe386ca51586999e50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab1f4f137139b40fe386ca51586999e50">&#9670;&nbsp;</a></span>getNext2Block()</h2>
+<a id="gadede134b96fd5650b87673ce413babb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadede134b96fd5650b87673ce413babb2">&#9670;&nbsp;</a></span>clearRdsBuffer0A()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void SI4735::getNext2Block </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Process data received from group 2B. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">c</td><td>char array reference to the "group 2B" text </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="reference">Referenced by <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">SI4735::getRdsText0A()</a>, and <a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">SI4735::getRdsText2B()</a>.</p>
-
-</div>
-</div>
-<a id="gadb0a3c39aeacba0faf39aadd9465021f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gadb0a3c39aeacba0faf39aadd9465021f">&#9670;&nbsp;</a></span>getNext4Block()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::getNext4Block </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Process data received from group 2A. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">c</td><td>char array reference to the "group  2A" text </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="reference">Referenced by <a class="el" href="group__group16.html#ga71cbaa3e0c103db7cee5969d162bec5d">SI4735::getRdsText()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">SI4735::getRdsText2A()</a>.</p>
-
-</div>
-</div>
-<a id="ga05f76a0a0ebda813483f1df24e890904"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga05f76a0a0ebda813483f1df24e890904">&#9670;&nbsp;</a></span>getRdsFlagAB()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::getRdsFlagAB </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the current Text Flag A/B <br  />
- </p>
-<dl class="section return"><dt>Returns</dt><dd>uint8_t current Text Flag A/B <br  />
- </dd></dl>
-
-</div>
-</div>
-<a id="gaa35366e5cded7b864f7268a7e4a8dbe9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa35366e5cded7b864f7268a7e4a8dbe9">&#9670;&nbsp;</a></span>getRdsGroupType()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::getRdsGroupType </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the Group Type (extracted from the Block B) </p>
-<dl class="section return"><dt>Returns</dt><dd>BLOCKBL </dd></dl>
-
-</div>
-</div>
-<a id="gaf1e67b201799a9e8d7208a32a65656b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf1e67b201799a9e8d7208a32a65656b5">&#9670;&nbsp;</a></span>getRdsPI()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t SI4735::getRdsPI </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the programa type. </p>
-<p>Read the Block A content</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>BLOCKAL </dd></dl>
-
-<p class="reference">References <a class="el" href="class_s_i4735.html#a561a052a8c737302368274c774d8c129">SI4735::getRdsNewBlockA()</a>, and <a class="el" href="class_s_i4735.html#a6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived()</a>.</p>
-
-</div>
-</div>
-<a id="gac28fa3818d4f900c4f4ba6be10c1405b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac28fa3818d4f900c4f4ba6be10c1405b">&#9670;&nbsp;</a></span>getRdsProgramType()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::getRdsProgramType </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the Program Type (extracted from the Block B) </p>
-<dl class="section see"><dt>See also</dt><dd><a href="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipedia.org/wiki/Radio_Data_System</a></dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>program type (an integer betwenn 0 and 31) </dd></dl>
-
-</div>
-</div>
-<a id="ga94cce3834f85fc127e8c2dab3a03e875"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga94cce3834f85fc127e8c2dab3a03e875">&#9670;&nbsp;</a></span>getRdsStatus() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::getRdsStatus </td>
+          <td class="memname">void SI4735::clearRdsBuffer0A </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Gets RDS Status. </p>
-<p>Same result of calling getRdsStatus(0,0,0).</p>
-<p>Please, call <a class="el" href="group__group16.html#ga350a2033671a7620d4b9290a2347e185" title="Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS.">getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)</a> instead <a class="el" href="group__group16.html#ga94cce3834f85fc127e8c2dab3a03e875" title="Gets RDS Status.">getRdsStatus()</a> if you want other behaviour.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group16.html#ga350a2033671a7620d4b9290a2347e185" title="Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS.">SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)</a> </dd></dl>
+<p>Clear RDS buffer 0A (text) </p>
 
-</div>
-</div>
-<a id="ga350a2033671a7620d4b9290a2347e185"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga350a2033671a7620d4b9290a2347e185">&#9670;&nbsp;</a></span>getRdsStatus() <span class="overload">[2/2]</span></h2>
+<p class="reference">References <a class="el" href="class_s_i4735.html#ac24a8bbd39628c2981208cb452165a0e">SI4735::rds_buffer0A</a>.</p>
 
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::getRdsStatus </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>INTACK</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>MTFIFO</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>STATUSONLY</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS. </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 55 and 77</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">INTACK</td><td>Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT. </td></tr>
-    <tr><td class="paramname">MTFIFO</td><td>0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO. </td></tr>
-    <tr><td class="paramname">STATUSONLY</td><td>Determines if data should be removed from the RDS FIFO. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="reference">References <a class="el" href="group__group16.html#gadede134b96fd5650b87673ce413babb2">SI4735::clearRdsBuffer0A()</a>, <a class="el" href="group__group16.html#gac65c552004f5e5e646638e37a5a68213">SI4735::clearRdsBuffer2A()</a>, <a class="el" href="group__group16.html#gaed0988165057aa2880f41b88ac236cd7">SI4735::clearRdsBuffer2B()</a>, and <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">SI4735::waitToSend()</a>.</p>
-
-</div>
-</div>
-<a id="ga71cbaa3e0c103db7cee5969d162bec5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga71cbaa3e0c103db7cee5969d162bec5d">&#9670;&nbsp;</a></span>getRdsText()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char * SI4735::getRdsText </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the RDS Text when the message is of the Group Type 2 version A. </p>
-<dl class="section return"><dt>Returns</dt><dd>char* The string (char array) with the content (Text) received from group 2A </dd></dl>
-
-<p class="reference">References <a class="el" href="group__group16.html#gadb0a3c39aeacba0faf39aadd9465021f">SI4735::getNext4Block()</a>, <a class="el" href="class_s_i4735.html#a0b40791484c47c0bf90d8dc255a20269">SI4735::rds_buffer2A</a>, and <a class="el" href="class_s_i4735.html#a1c7ec3559a78c5ef1bda49cb0abdf1de">SI4735::rdsTextAdress2A</a>.</p>
-
-</div>
-</div>
-<a id="ga12d917629b78fffebac5ecf8f2936921"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga12d917629b78fffebac5ecf8f2936921">&#9670;&nbsp;</a></span>getRdsText0A()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char * SI4735::getRdsText0A </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the station name and other messages. </p>
-<dl class="section return"><dt>Returns</dt><dd>char* should return a string with the station name. However, some stations send other kind of messages </dd></dl>
-
-<p class="reference">References <a class="el" href="group__group16.html#gab1f4f137139b40fe386ca51586999e50">SI4735::getNext2Block()</a>, <a class="el" href="class_s_i4735.html#a6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived()</a>, <a class="el" href="class_s_i4735.html#ac24a8bbd39628c2981208cb452165a0e">SI4735::rds_buffer0A</a>, and <a class="el" href="class_s_i4735.html#a11477d1eb13efb348395a4984b67f392">SI4735::rdsTextAdress0A</a>.</p>
-
-</div>
-</div>
-<a id="gae54d0f5562ca7615c3b90bee00c29ab4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae54d0f5562ca7615c3b90bee00c29ab4">&#9670;&nbsp;</a></span>getRdsText2A()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char * SI4735::getRdsText2A </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the Text processed for the 2A group. </p>
-<dl class="section return"><dt>Returns</dt><dd>char* string with the Text of the group A2 <br  />
- </dd></dl>
-
-<p class="reference">References <a class="el" href="group__group16.html#gadb0a3c39aeacba0faf39aadd9465021f">SI4735::getNext4Block()</a>, <a class="el" href="class_s_i4735.html#a6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived()</a>, <a class="el" href="class_s_i4735.html#a0b40791484c47c0bf90d8dc255a20269">SI4735::rds_buffer2A</a>, and <a class="el" href="class_s_i4735.html#a1c7ec3559a78c5ef1bda49cb0abdf1de">SI4735::rdsTextAdress2A</a>.</p>
-
-</div>
-</div>
-<a id="ga806d5cfbbeb6ca1299ce20b1220fdb18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga806d5cfbbeb6ca1299ce20b1220fdb18">&#9670;&nbsp;</a></span>getRdsText2B()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char * SI4735::getRdsText2B </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the Text processed for the 2B group. </p>
-<dl class="section return"><dt>Returns</dt><dd>char* string with the Text of the group AB <br  />
- </dd></dl>
-
-<p class="reference">References <a class="el" href="group__group16.html#gab1f4f137139b40fe386ca51586999e50">SI4735::getNext2Block()</a>, <a class="el" href="class_s_i4735.html#a7aa607f80e97d45ac7a80cdcbdeb09f9">SI4735::rds_buffer2B</a>, and <a class="el" href="class_s_i4735.html#adecc2478d73cd7d18e1f88fd70d1488d">SI4735::rdsTextAdress2B</a>.</p>
-
-</div>
-</div>
-<a id="gab1ed04a109330e7e9206483c7cdf5ef9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab1ed04a109330e7e9206483c7cdf5ef9">&#9670;&nbsp;</a></span>getRdsTextSegmentAddress()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::getRdsTextSegmentAddress </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the address of the text segment. </p>
-<p>2A - Each text segment in version 2A groups consists of four characters. A messages of this group can be have up to 64 characters.</p>
-<p>2B - In version 2B groups, each text segment consists of only two characters. When the current RDS status is using this version, the maximum message length will be 32 characters.</p>
-<dl class="section return"><dt>Returns</dt><dd>uint8_t the address of the text segment. </dd></dl>
-
-</div>
-</div>
-<a id="gaa8436bb156f3ac8321c65941be42fdba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa8436bb156f3ac8321c65941be42fdba">&#9670;&nbsp;</a></span>getRdsTime()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char * SI4735::getRdsTime </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the RDS time and date when the Group type is 4. </p>
-<dl class="section return"><dt>Returns</dt><dd>char* a string with hh:mm +/- offset </dd></dl>
-
-<p class="reference">References <a class="el" href="class_s_i4735.html#a1746daa81b363880dd106fa430784bf8">SI4735::rds_time</a>.</p>
-
-</div>
-</div>
-<a id="gaf9b6cb614d1b01b11bb23c19e6deb8b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf9b6cb614d1b01b11bb23c19e6deb8b9">&#9670;&nbsp;</a></span>getRdsVersionCode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::getRdsVersionCode </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the version code (extracted from the Block B) </p>
-<dl class="section return"><dt>Returns</dt><dd>0=A or 1=B </dd></dl>
-
-</div>
-</div>
-<a id="gaffdba9ca9fb9bf5bb671ac3d448a7e89"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaffdba9ca9fb9bf5bb671ac3d448a7e89">&#9670;&nbsp;</a></span>RdsInit()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::RdsInit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Starts the control member variables for RDS. </p>
-<p>RDS implementation</p>
-<p>This method is called by <a class="el" href="group__group16.html#gad9718a85c79a311c26997bbda20f2351" title="Sets RDS property.">setRdsConfig()</a></p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group16.html#gad9718a85c79a311c26997bbda20f2351" title="Sets RDS property.">setRdsConfig()</a> </dd></dl>
-
-<p class="reference">References <a class="el" href="group__group16.html#gadede134b96fd5650b87673ce413babb2">SI4735::clearRdsBuffer0A()</a>, <a class="el" href="group__group16.html#gac65c552004f5e5e646638e37a5a68213">SI4735::clearRdsBuffer2A()</a>, and <a class="el" href="group__group16.html#gaed0988165057aa2880f41b88ac236cd7">SI4735::clearRdsBuffer2B()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="group__group16.html#gad9718a85c79a311c26997bbda20f2351">SI4735::setRdsConfig()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group16.html#ga350a2033671a7620d4b9290a2347e185">SI4735::getRdsStatus()</a>, and <a class="el" href="group__group16.html#gaffdba9ca9fb9bf5bb671ac3d448a7e89">SI4735::RdsInit()</a>.</p>
 
 </div>
 </div>
@@ -805,6 +428,383 @@ Functions</h2></td></tr>
 </dl>
 
 <p class="reference">References <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">SI4735::waitToSend()</a>.</p>
+
+</div>
+</div>
+<a id="ga350a2033671a7620d4b9290a2347e185"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga350a2033671a7620d4b9290a2347e185">&#9670;&nbsp;</a></span>getRdsStatus() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::getRdsStatus </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>INTACK</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>MTFIFO</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>STATUSONLY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS. </p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 55 and 77</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">INTACK</td><td>Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT. </td></tr>
+    <tr><td class="paramname">MTFIFO</td><td>0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO. </td></tr>
+    <tr><td class="paramname">STATUSONLY</td><td>Determines if data should be removed from the RDS FIFO. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="group__group16.html#gadede134b96fd5650b87673ce413babb2">SI4735::clearRdsBuffer0A()</a>, <a class="el" href="group__group16.html#gac65c552004f5e5e646638e37a5a68213">SI4735::clearRdsBuffer2A()</a>, <a class="el" href="group__group16.html#gaed0988165057aa2880f41b88ac236cd7">SI4735::clearRdsBuffer2B()</a>, and <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">SI4735::waitToSend()</a>.</p>
+
+</div>
+</div>
+<a id="ga94cce3834f85fc127e8c2dab3a03e875"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga94cce3834f85fc127e8c2dab3a03e875">&#9670;&nbsp;</a></span>getRdsStatus() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::getRdsStatus </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets RDS Status. </p>
+<p>Same result of calling getRdsStatus(0,0,0).</p>
+<p>Please, call <a class="el" href="group__group16.html#ga350a2033671a7620d4b9290a2347e185" title="Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS.">getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)</a> instead <a class="el" href="group__group16.html#ga94cce3834f85fc127e8c2dab3a03e875" title="Gets RDS Status.">getRdsStatus()</a> if you want other behaviour.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group16.html#ga350a2033671a7620d4b9290a2347e185" title="Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS.">SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)</a> </dd></dl>
+
+</div>
+</div>
+<a id="gaf1e67b201799a9e8d7208a32a65656b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf1e67b201799a9e8d7208a32a65656b5">&#9670;&nbsp;</a></span>getRdsPI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SI4735::getRdsPI </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the programa type. </p>
+<p>Read the Block A content</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>BLOCKAL </dd></dl>
+
+<p class="reference">References <a class="el" href="class_s_i4735.html#a561a052a8c737302368274c774d8c129">SI4735::getRdsNewBlockA()</a>, and <a class="el" href="class_s_i4735.html#a6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived()</a>.</p>
+
+</div>
+</div>
+<a id="gaa35366e5cded7b864f7268a7e4a8dbe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa35366e5cded7b864f7268a7e4a8dbe9">&#9670;&nbsp;</a></span>getRdsGroupType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getRdsGroupType </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the Group Type (extracted from the Block B) </p>
+<dl class="section return"><dt>Returns</dt><dd>BLOCKBL </dd></dl>
+
+</div>
+</div>
+<a id="ga05f76a0a0ebda813483f1df24e890904"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga05f76a0a0ebda813483f1df24e890904">&#9670;&nbsp;</a></span>getRdsFlagAB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getRdsFlagAB </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the current Text Flag A/B <br  />
+ </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t current Text Flag A/B <br  />
+ </dd></dl>
+
+</div>
+</div>
+<a id="gab1ed04a109330e7e9206483c7cdf5ef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab1ed04a109330e7e9206483c7cdf5ef9">&#9670;&nbsp;</a></span>getRdsTextSegmentAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getRdsTextSegmentAddress </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the address of the text segment. </p>
+<p>2A - Each text segment in version 2A groups consists of four characters. A messages of this group can be have up to 64 characters.</p>
+<p>2B - In version 2B groups, each text segment consists of only two characters. When the current RDS status is using this version, the maximum message length will be 32 characters.</p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t the address of the text segment. </dd></dl>
+
+</div>
+</div>
+<a id="gaf9b6cb614d1b01b11bb23c19e6deb8b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf9b6cb614d1b01b11bb23c19e6deb8b9">&#9670;&nbsp;</a></span>getRdsVersionCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getRdsVersionCode </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the version code (extracted from the Block B) </p>
+<dl class="section return"><dt>Returns</dt><dd>0=A or 1=B </dd></dl>
+
+</div>
+</div>
+<a id="gac28fa3818d4f900c4f4ba6be10c1405b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac28fa3818d4f900c4f4ba6be10c1405b">&#9670;&nbsp;</a></span>getRdsProgramType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getRdsProgramType </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the Program Type (extracted from the Block B) </p>
+<dl class="section see"><dt>See also</dt><dd><a href="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipedia.org/wiki/Radio_Data_System</a></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>program type (an integer betwenn 0 and 31) </dd></dl>
+
+</div>
+</div>
+<a id="gab1f4f137139b40fe386ca51586999e50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab1f4f137139b40fe386ca51586999e50">&#9670;&nbsp;</a></span>getNext2Block()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::getNext2Block </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Process data received from group 2B. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>char array reference to the "group 2B" text </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">SI4735::getRdsText0A()</a>, and <a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">SI4735::getRdsText2B()</a>.</p>
+
+</div>
+</div>
+<a id="gadb0a3c39aeacba0faf39aadd9465021f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadb0a3c39aeacba0faf39aadd9465021f">&#9670;&nbsp;</a></span>getNext4Block()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::getNext4Block </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Process data received from group 2A. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>char array reference to the "group  2A" text </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#ga71cbaa3e0c103db7cee5969d162bec5d">SI4735::getRdsText()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">SI4735::getRdsText2A()</a>.</p>
+
+</div>
+</div>
+<a id="ga71cbaa3e0c103db7cee5969d162bec5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga71cbaa3e0c103db7cee5969d162bec5d">&#9670;&nbsp;</a></span>getRdsText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * SI4735::getRdsText </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the RDS Text when the message is of the Group Type 2 version A. </p>
+<dl class="section return"><dt>Returns</dt><dd>char* The string (char array) with the content (Text) received from group 2A </dd></dl>
+
+<p class="reference">References <a class="el" href="group__group16.html#gadb0a3c39aeacba0faf39aadd9465021f">SI4735::getNext4Block()</a>, <a class="el" href="class_s_i4735.html#a0b40791484c47c0bf90d8dc255a20269">SI4735::rds_buffer2A</a>, and <a class="el" href="class_s_i4735.html#a1c7ec3559a78c5ef1bda49cb0abdf1de">SI4735::rdsTextAdress2A</a>.</p>
+
+</div>
+</div>
+<a id="ga12d917629b78fffebac5ecf8f2936921"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga12d917629b78fffebac5ecf8f2936921">&#9670;&nbsp;</a></span>getRdsText0A()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * SI4735::getRdsText0A </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the station name and other messages. </p>
+<dl class="section return"><dt>Returns</dt><dd>char* should return a string with the station name. However, some stations send other kind of messages </dd></dl>
+
+<p class="reference">References <a class="el" href="group__group16.html#gab1f4f137139b40fe386ca51586999e50">SI4735::getNext2Block()</a>, <a class="el" href="class_s_i4735.html#a6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived()</a>, <a class="el" href="class_s_i4735.html#ac24a8bbd39628c2981208cb452165a0e">SI4735::rds_buffer0A</a>, and <a class="el" href="class_s_i4735.html#a11477d1eb13efb348395a4984b67f392">SI4735::rdsTextAdress0A</a>.</p>
+
+</div>
+</div>
+<a id="gae54d0f5562ca7615c3b90bee00c29ab4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae54d0f5562ca7615c3b90bee00c29ab4">&#9670;&nbsp;</a></span>getRdsText2A()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * SI4735::getRdsText2A </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the Text processed for the 2A group. </p>
+<dl class="section return"><dt>Returns</dt><dd>char* string with the Text of the group A2 <br  />
+ </dd></dl>
+
+<p class="reference">References <a class="el" href="group__group16.html#gadb0a3c39aeacba0faf39aadd9465021f">SI4735::getNext4Block()</a>, <a class="el" href="class_s_i4735.html#a6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived()</a>, <a class="el" href="class_s_i4735.html#a0b40791484c47c0bf90d8dc255a20269">SI4735::rds_buffer2A</a>, and <a class="el" href="class_s_i4735.html#a1c7ec3559a78c5ef1bda49cb0abdf1de">SI4735::rdsTextAdress2A</a>.</p>
+
+</div>
+</div>
+<a id="ga806d5cfbbeb6ca1299ce20b1220fdb18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga806d5cfbbeb6ca1299ce20b1220fdb18">&#9670;&nbsp;</a></span>getRdsText2B()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * SI4735::getRdsText2B </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the Text processed for the 2B group. </p>
+<dl class="section return"><dt>Returns</dt><dd>char* string with the Text of the group AB <br  />
+ </dd></dl>
+
+<p class="reference">References <a class="el" href="group__group16.html#gab1f4f137139b40fe386ca51586999e50">SI4735::getNext2Block()</a>, <a class="el" href="class_s_i4735.html#a7aa607f80e97d45ac7a80cdcbdeb09f9">SI4735::rds_buffer2B</a>, and <a class="el" href="class_s_i4735.html#adecc2478d73cd7d18e1f88fd70d1488d">SI4735::rdsTextAdress2B</a>.</p>
+
+</div>
+</div>
+<a id="gaa8436bb156f3ac8321c65941be42fdba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa8436bb156f3ac8321c65941be42fdba">&#9670;&nbsp;</a></span>getRdsTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * SI4735::getRdsTime </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the RDS time and date when the Group type is 4. </p>
+<dl class="section return"><dt>Returns</dt><dd>char* a string with hh:mm +/- offset </dd></dl>
+
+<p class="reference">References <a class="el" href="class_s_i4735.html#a1746daa81b363880dd106fa430784bf8">SI4735::rds_time</a>.</p>
 
 </div>
 </div>
