@@ -1,23 +1,8 @@
 /*
-   Test and validation of the SI4735 Arduino Library.
-   It is a FM, MW and SW (1700KHz to 30000Khz)
-   
-   The main advantages of using this sketch are: 
-    1) It is a easy way to check if your circuit is working;
-    2) You do not need to connect any display device to make your radio works;
-    3) You do not need connect any push buttons or encoders to change volume and frequency;
-    4) The Arduino IDE is all you need to control the radio.  
-   
-   This sketch has been successfully tested on:
-    1) Pro Mini 3.3V; 
-    2) UNO (by using a voltage converter); 
-    3) Arduino Yún;
-    4) Arduino Mega (by using a voltage converter); and 
-    5) ESP32 (LOLIN32 WEMOS)
+    Checks the behaviour internal varactor.
 
+    The table below shows the Si4735 and Arduino Pro Mini pin connections
 
-    The table below shows the Si4735 and Arduino Pro Mini pin connections 
-    
     | Si4735 pin      |  Arduino Pin  |
     | ----------------| ------------  |
     | RESET (pin 15)  |     12        |
@@ -47,16 +32,17 @@ uint16_t previousFrequency;
 uint8_t bandwidthIdx = 0;
 const char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
+int capValue = 0;
 
 SI4735 si4735;
 
 void setup()
 {
   Serial.begin(9600);
-  while(!Serial);
+  while (!Serial);
 
   digitalWrite(RESET_PIN, HIGH);
-  
+
   Serial.println("AM and FM station tuning test.");
 
   showHelp();
@@ -132,81 +118,97 @@ void loop()
     char key = Serial.read();
     switch (key)
     {
-    case '+':
-      si4735.volumeUp();
-      break;
-    case '-':
-      si4735.volumeDown();
-      break;
-    case 'a':
-    case 'A':
-      si4735.setAM(520, 1750, 810, 10);
-      si4735.setSeekAmLimits(520, 1750);
-      si4735.setSeekAmSpacing(10); // spacing 50KHz
-      break;
-    case 'f':
-    case 'F':
-      si4735.setFM(8600, 10800, 10390, 10);
-      break;
-    case '1':
-      si4735.setAM(100, 30000, 9600, 5);
-      si4735.setSeekAmLimits(100, 30000);
-      si4735.setSeekAmSpacing(5); // spacing 50KHz
-      break;
-    case 'U':
-    case 'u':
-      si4735.frequencyUp();
-      break;
-    case 'D':
-    case 'd':
-      si4735.frequencyDown();
-      break;
-    case 'b':
-    case 'B':
-      if (si4735.isCurrentTuneFM())
-      {
-        Serial.println("Not valid for FM");
-      }
-      else
-      {
-        if (bandwidthIdx > 6)
-          bandwidthIdx = 0;
-        si4735.setBandwidth(bandwidthIdx, 1);
-        Serial.print("Filter - Bandwidth: ");
-        Serial.print(String(bandwitdth[bandwidthIdx]));
-        Serial.println(" KHz");
-        bandwidthIdx++;
-      }
-      break;
-    case 'S':
-      si4735.seekStationUp();
-      break;
-    case 's':
-      si4735.seekStationDown();
-      break;
-    case '0':
-      showStatus();
-      break;
-    case '4':
-      si4735.setFrequencyStep(1);
-      break;  
-    case '5':
-      si4735.setFrequencyStep(5);
-      break;    
-    case '6':
-      si4735.setFrequencyStep(10);
-      break;
-    case '7':
-      si4735.setFrequencyStep(100);
-      break;
-    case '8':
-      si4735.setFrequencyStep(1000);
-      break;
-    case '?':
-      showHelp();
-      break;
-    default:
-      break;
+      case '+':
+        si4735.volumeUp();
+        break;
+      case '-':
+        si4735.volumeDown();
+        break;
+      case 'a':
+      case 'A':
+        si4735.setAM(520, 1750, 810, 10);
+        si4735.setSeekAmLimits(520, 1750);
+        si4735.setSeekAmSpacing(10); // spacing 50KHz
+        capValue = 0 ;
+        si4735.setTuneFrequencyAntennaCapacitor(capValue);
+        break;
+      case 'f':
+      case 'F':
+        si4735.setFM(8600, 10800, 10390, 10);
+        break;
+      case '1':
+        si4735.setAM(100, 30000, 9600, 5);
+        si4735.setSeekAmLimits(100, 30000);
+        si4735.setSeekAmSpacing(5); // spacing 50KHz
+        break;
+      case 'U':
+      case 'u':
+        si4735.frequencyUp();
+        break;
+      case 'D':
+      case 'd':
+        si4735.frequencyDown();
+        break;
+      case 'b':
+      case 'B':
+        if (si4735.isCurrentTuneFM())
+        {
+          Serial.println("Not valid for FM");
+        }
+        else
+        {
+          if (bandwidthIdx > 6)
+            bandwidthIdx = 0;
+          si4735.setBandwidth(bandwidthIdx, 1);
+          Serial.print("Filter - Bandwidth: ");
+          Serial.print(String(bandwitdth[bandwidthIdx]));
+          Serial.println(" KHz");
+          bandwidthIdx++;
+        }
+        break;
+      case 'S':
+        si4735.seekStationUp();
+        break;
+      case 's':
+        si4735.seekStationDown();
+        break;
+      case '0':
+        showStatus();
+        break;
+      case '4':
+        si4735.setFrequencyStep(1);
+        break;
+      case '5':
+        si4735.setFrequencyStep(5);
+        break;
+      case '6':
+        si4735.setFrequencyStep(10);
+        break;
+      case '7':
+        si4735.setFrequencyStep(100);
+        break;
+      case '8':
+        si4735.setFrequencyStep(1000);
+        break;
+      case 'C':
+        capValue += 20;
+        si4735.setTuneFrequencyAntennaCapacitor(capValue);
+        Serial.print("Varactor: ");
+        Serial.println(capValue);
+        break;
+      case 'c':
+        if ( capValue >= 20 ) {
+          capValue -= 20;
+          si4735.setTuneFrequencyAntennaCapacitor(capValue);
+          Serial.print("Varactor: ");
+          Serial.println(capValue);
+        }
+        break;
+      case '?':
+        showHelp();
+        break;
+      default:
+        break;
     }
   }
   delay(100);
