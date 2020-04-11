@@ -8,7 +8,10 @@ This folder has some RDS examples.
 * __SI4735_04_RDS_ALL_IN_ONE_OLED__ sketch is very similar to the __SI47XX_03_RDS_TFT_ILI9225__. It uses __OLED__ display.  See the source code comments for more information.
 
 
+## The photo below shows the SI47XX_02_RDS_TFT_TOUCH_SHIELD version. 
+
 ![Photo radio TFT touch screen on Mega2560](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4735_SDR_01_TFT_TOUCH.png)
+
 
 ## RDS Terminology
 
