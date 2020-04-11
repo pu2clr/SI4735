@@ -268,6 +268,10 @@ This library implements some RDS features of the SI4735. All function to deal wi
 
 {% include videoRDS1.html %} 
 
+
+See RDS example implementations [here](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS).
+
+
 <BR>
 
 __The table below shows the features that this library implements__.
@@ -372,6 +376,9 @@ __ATTENTION__:
 The author of this project does not guarantee that procedures shown here will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here. __This library works with the I²C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60__. Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
 
 All methods/functions to deal with SSB on Si4735-D60 can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/).
+
+
+See SSB example implementations [here](https://github.com/pu2clr/SI4735/tree/master/examples).
 
 <BR>
 
