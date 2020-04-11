@@ -511,7 +511,7 @@ If you are using Arduino Mini Pro, ONU or similar, pay attention to the pin 13 a
 __Example:__
 
 ```cpp
- si4735. setMaxDelayPowerUp(500);
+ si4735.setMaxDelayPowerUp(500);
 ```
 
 
@@ -521,7 +521,7 @@ __Example:__
 __Example:__
 
 ```cpp
-si4735. setMaxDelaySetFrequency(50);
+si4735.setMaxDelaySetFrequency(50);
 ```
 
 
