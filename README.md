@@ -36,7 +36,7 @@ There is a facebook group called [__Si47XX for Radio Experimenters__](https://ww
    * [Schematic](https://pu2clr.github.io/SI4735/#schematic)
    * [Component Parts](https://pu2clr.github.io/SI4735/#parts)
    * [Tips to build](https://pu2clr.github.io/SI4735/#tips-to-build)
-   * [Most Frequent Problems]()
+   * [Most Frequent Problems](https://pu2clr.github.io/SI4735/#most-frequent-problems)
 10. [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
    * [Photos (Tools and Accessories)](https://pu2clr.github.io/SI4735/#photos-tools-and-accessories)
 11. [References](https://pu2clr.github.io/SI4735/#references)
