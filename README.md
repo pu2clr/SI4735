@@ -36,15 +36,16 @@ There is a facebook group called [__Si47XX for Radio Experimenters__](https://ww
    * [Schematic](https://pu2clr.github.io/SI4735/#schematic)
    * [Component Parts](https://pu2clr.github.io/SI4735/#parts)
    * [Tips to build](https://pu2clr.github.io/SI4735/#tips-to-build)
-   * [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
+   * [Most Frequent Problems]()
+10. [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
    * [Photos (Tools and Accessories)](https://pu2clr.github.io/SI4735/#photos-tools-and-accessories)
-10. [References](https://pu2clr.github.io/SI4735/#references)
-11. [Examples](https://pu2clr.github.io/SI4735/examples)
-12. [Third Party Projects](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects)
-13. [Videos](https://pu2clr.github.io/SI4735/#videos) 
+11. [References](https://pu2clr.github.io/SI4735/#references)
+12. [Examples](https://pu2clr.github.io/SI4735/examples)
+13. [Third Party Projects](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects)
+14. [Videos](https://pu2clr.github.io/SI4735/#videos) 
     * [Project examples made by the author](https://pu2clr.github.io/SI4735/#project-examples-made-by-the-author)
     * [Third-party projects using this library](https://pu2clr.github.io/SI4735/#third-party-projects-using-this-library)
-14. [Commercial Receivers based on Si47XX Family](https://pu2clr.github.io/SI4735/#commercial-receivers-based-on-si47xx-family) 
+15. [Commercial Receivers based on Si47XX Family](https://pu2clr.github.io/SI4735/#commercial-receivers-based-on-si47xx-family) 
 
 
 ## MIT License 
@@ -483,19 +484,57 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 * I²C bus devices are available in different speeds. If you are using an I²C display device, check if its speed is compatible with the Si47XX and also with the current speed used by the master MCU;
 * Using different voltage levels between I²C devices can be unsafe and can destroy parts connected on I²C bus, specially the Si47XX;
 * It is important to wire all your I²C devices on the same common ground. 
-* If you are using Arduino Mini Pro, ONU or similar, pay attention to the pin 13 and the use of internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, you can do: 
+* If you are using Arduino Mini Pro, ONU or similar, pay attention to the pin 13 and the use of internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, you can do: 
   *  Use the pin 14. This pin is the A0 (Analog). But you have to refer it by 14 to use it as digital pin; 
   *  Change the circuit and sketch to use external pull-up on pin 13;
   *  Remove the LED or resitor connected to the led from the board.   
 * Use only batteries to power your circuit. Receptions in LW, MW and SW can be seriously harmed by the use of power supplies connected to the grid. 
 * See some Shortwave antenna configuration on [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)  
 
-
-
 <BR>
 
+### Most Frequent Problems
 
-### Boards where this library has been successfully tested
+#### On FM mode, the receiver jump from a station to another station without any command.
+
+If you are using Arduino Mini Pro, ONU or similar, pay attention to the pin 13 and the use of internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, you can do: 
+  *  Use the pin 14 instead. This pin is the A0 (Analog). But you have to refer it by 14 to use it as digital pin; 
+  *  Change the circuit and sketch to use external pull-up on pin 13;
+  *  Remove the LED or resitor connected to the led from the Arduino Board.   
+
+#### When power up or moving the tuner on LW, MW or SW, the display show LW and 0 Khz
+
+<P>This problem can be a little complicated to solve. I have observed that very few times in my experiments. When I am powering the system using the computer USB and the computer is connected to the grid, it might occur. Please, test your system using only batteries.</P> 
+
+<P>This problem also can be caused by the external crystal. This crystal needs a minimum delay to become stable after a reset or power up command. Currently, this delay is 10ms. Try to increase that delay by using the method setMaxDelayPowerUp.</P>
+
+__Example:__
+
+```cpp
+ si4735. setMaxDelayPowerUp(500);
+```
+
+
+<P>Also, for some reason, the frequency switching needs a little delay (the default value is 30ms).  Try to increase that delay by using the method setMaxDelaySetFrequency.</P>
+
+
+__Example:__
+
+```cpp
+si4735. setMaxDelaySetFrequency(50);
+```
+
+
+#### I cannot tune satisfactorily any local station in LW, MW or SW
+
+* Please, use only batteries to power your system up on LW, MW or SW. 
+* Check your circuit on AMI pin of the Si47XX device.
+* Keep as far as possible from noise sources (LED light bulb, computers and any device connected to the power grid)
+* Try to find a suitable size for the antenna wire. Too long can be a big noise pickup. If too short, it may not be enough to pick up radio stations.
+ 
+<BR>
+
+## Boards where this library has been successfully tested
 
 
 This library can be useful to develop a cross-platform software. So far, it has been successfully tested on the architectures shown below.    
