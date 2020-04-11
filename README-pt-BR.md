@@ -13,10 +13,8 @@ Há grupo de discussão no facebook denominado [__Si47XX para radioescutas__](ht
 
 
 ### __Atenção__: 
-* __Esta Biblioteca ainda está em desevolvimento. Portanto, algumas funções e comportamentos podem ser alterados ao longo do desenvolvimento__.
 * __Esta documentação ainda está em construção e sujeita a alteração__. 
-* __O SI4735 é um componente que opera com 3.3V. Se você não estiver usando uma versão do Arduino que opera com esta tensão, você deve usar alguma estratégia de conversão de tensão (incluindo os pinos digitais e analógicos) para trabalar corretamente com o SI4735__. 
-
+* __O SI4735 é um componente que opera com 3.3V. Se você não estiver usando uma versão do Arduino que opera com esta tensão, você deve usar alguma estratégia de conversão bidirecional de tensão (incluindo os pinos digitais e analógicos) para trabalhar corretamente com o SI4735__. É importante ter em mente que só alimentar o CI Si47XX com 3.3V não é suficiente. É preciso também que os pinos no barramento I2C do CI, bem como os demais pinos de controle não recebam tensões superiores ao especificado pelo fabricante. 
 
 ## Sumário
 
@@ -27,14 +25,16 @@ Há grupo de discussão no facebook denominado [__Si47XX para radioescutas__](ht
 5. [Terminologia](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#terminologia)
 6. [Características desta Biblioteca](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#caracter%C3%ADsticas-desta-biblioteca)
 7. [Como instalar esta biblioteca](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#como-instalar-esta-biblioteca)
-8. [Requisitos de hardware e configuração](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#requisitos-de-hardware-e-configura%C3%A7%C3%A3o)
+8. [Utilizando Arduino para controlar o Si4735]()
+9. [Requisitos de hardware e configuração](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#requisitos-de-hardware-e-configura%C3%A7%C3%A3o)
    * [Esquema básico](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#esquema-b%C3%A1sico)
    * [Lista de componentes](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#lista-de-componentes)
+   * [Placas testadas com a Biblioteca Arduino para o SI4735]()
    * [Fotos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#fotos)
-9.  [Documentação das funções da Biblioteca](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#documenta%C3%A7%C3%A3o-das-fun%C3%A7%C3%B5es-da-biblioteca)
-10. [Referências](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#refer%C3%AAncias)
-11. [Exemplos](https://github.com/pu2clr/SI4735/tree/master/examples)
-12. [Vídeos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#v%C3%ADdeos) 
+10. [Documentação das funções da Biblioteca](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#documenta%C3%A7%C3%A3o-das-fun%C3%A7%C3%B5es-da-biblioteca)
+11. [Referências](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#refer%C3%AAncias)
+12. [Exemplos](https://github.com/pu2clr/SI4735/tree/master/examples)
+13. [Vídeos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#v%C3%ADdeos) 
 
 
 
@@ -58,8 +58,10 @@ ESTA BIBLIOTECA É FORNECIDA "TAL COMO ESTÁ", SEM QUALQUER TIPO DE GARANTIA, EX
 ## Agradecimentos
 
 * Gostaria de agradecer ao Sr. Francisco Scaramella pelas sugestões e contribuições no campo da eletrônica bem como nos testes elaborados com esta biblioteca. 
-
 * Gostaria de agradecer ao [Sr. Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) por deixar disponível em seu [repositório de projetos](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0) os arquivos de aplicação da atualização SSBRX para o Si4735. 
+* David Kellmer (USA) pelas correções sugeridas na documentação em inglês e também nos sketches exemplos; 
+* WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode; 
+* Todos os membros dos grupos do Facebook ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) e ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/).
 
 
 ## Sua participação é importante
@@ -67,12 +69,16 @@ ESTA BIBLIOTECA É FORNECIDA "TAL COMO ESTÁ", SEM QUALQUER TIPO DE GARANTIA, EX
 Se você tem interesse em fornecer suporte de desenvolvimento a esta biblioteca, junte-se a este projeto via Github. Se preferir, faça sugestões sobre funcionalidades que você gostaria que estivesse disponível nesta biblioteca.
 
 
-
 ## Sobre o SI4735 
 
-O SI4735 é um rádio DSP encapsulado em um CI. Possui ótimo desempenho em AM (LW / MW / SW) e FM. O SI4735 pode ser programado usando envio de comandos e tratamento de respostas. Você pode controlá-lo por meio de um micro controlador como o Arduino. Para fazer o SI4735 executar uma ação, o micro controlador precisa enviar um conjunto de bytes (comando e argumentos) que o dispositivo interpreta,  executando o comando solicitado. Uma vez executado o comando, o Si4735 é capaz de fornecer uma sequência de bytes (respostas) que podem ser tratados pelo micro controlador.  
+O SI4735 é um rádio DSP (Digital Signal Processing) encapsulado em um CI fabricado pela Silicon Labs que possui ótimo desempenho em AM e  SSB  ( Single Side Band)  nas faixas de LF, MF e HF, bem como em FM (estações comerciais locais). O SI4735 pode ser controlado por meio de um microcontrolador como o ATmega328, ATtiny85, ESP32 ou outro de sua preferência. Para fazer o SI4735 executar uma ação, o microcontrolador precisa enviar um conjunto de bytes (comando e argumentos) que o dispositivo interpreta e executa a ação desejada. Uma vez executado o comando, o Si4735 é capaz de fornecer uma sequência de bytes (respostas) que podem ser tratados pelo micro controlador.  Há centenas de comandos disponíveis que o Si4735 pode executar.  Via comandos, é possível mudar a frequência, o modo (AM ou  SSB), ler informações em tempo real como o RSSI, SNR, status de estéreo ou mono, aplicar filtros de largura de banda,  aplicar atenuações e muito mais. 
+
+A Silicon Labs descreve o Si4735 como um circuito integrado CMOS que encapsula um receptor capaz de demodular AM e FM. Contudo, é importante ressaltar que no caso específico da linha do CI Si4735-D60, é possível também demodular SSB e NBFM (Narrow Band FM) por meio de aplicações de patches (atualizações de firmware) sem que um único componente de hardware seja adicionado ao sistema.
+  
+O Si4735 possui entradas de RF onde será conectado um front-end e saídas analógica e digital de áudio.  Via comandos, é possível controlar o CI para interagir com um front-end do receptor bem como ajustar o volume (amplitude) da saída de áudio.  Descrever todas as possibilidades de configuração deste CI deixaria este artigo muito extenso. Para mais detalhes sobre as possibilidades deste dispositivo, recomenda-se a leitura do documento [AN332] referenciado no final deste artigo.
 
 
+O objetivo deste documento é fazer uma breve introdução ao Si4735  e orientar o leitor interessado em construir um receptor baseado neste CI usando a plataforma de desenvolvimento Arduino.  Não é objetivo deste documento discorrer sobre o Ambiente de Desenvolvimento Arduino em si. Tampouco, ensinar a programar neste ambiente. Diante disso, para melhor aproveitamento do conteúdo deste artigo, é importante que o leitor tenha algum conhecimento básico sobre o Arduino IDE, bem como em linguagem de programação C/C++. 
 
 ### Diagrama de Bloco do SI4735
 
@@ -82,6 +88,9 @@ A figura a seguir apresenta o diagrama de bloco do SI473X-D60. É importante obs
 ![SI473X Block Diagram](extras/images/block_diagram.png)
 
 * Fonte: Silicon Labs Si4730/31/34/35-D60 / BROADCAST AM/FM/SW/LW RADIO RECEIVER (página 21)
+
+
+Ainda em relação a figura anterior, é importante observar o destaque em vermelho inserido pelo autor deste documento chamando a atenção para as tensões de trabalho da interface de controle do SI4735. Embora a parte analógica do CI possa ser alimentada com uma tensão de 5V, a interface de controle (onde será conectado o Arduino ou similar) deve obedecer aos limites máximos e mínimos de 1.6 e 3.6V respectivamente.  Como será visto mais adiante, os esquemas apresentam a alimentação tanto da interface de controle (VD) como os demais componentes analógicos  do CI (VA) com uma tensão de 3.3V, já que esta tensão está perfeitamente aderente às duas faixas de tensão estabelecidas no diagrama de bloco.  Desta forma, não será preciso utilizar duas fontes distintas para alimentar o sistema. É provável, no entanto, que utilizar fontes separadas, uma para o subsistema e analógico e outro para o subsistema digital do CI resulte em algum benefício em relação a redução de ruídos causados pelo subsistema digital.  Contudo, o que pode ser afirmado no experimento deste artigo é que, utilizando somente uma fonte para alimentar tanto a parte analógica como a parte digital, os receptores exemplos funcionaram de forma satisfatória. 
 
 <BR>
 <BR>
@@ -101,6 +110,10 @@ A figura a seguir apresenta o diagrama de bloco do SI473X-D60. É importante obs
 * RDS/RBDS
 * Comunicação I2C e SPI. __Esta biblioteca faz uso somente do protocolo I2C__. 
 * Excelente guia de programação provido pela Silicon Labs.
+
+
+Os receptores apresentados neste documento, são exemplos de uso das funções da biblioteca. No entanto, boa parte destes exemplos, permitem a sintonia de estações em todas as faixas de HF nos modos AM e SSB além das estações locais em AM (MW) e FM.  Com isso, é possível, por exemplo, sintonizar rodadas de radioamadores em 40 metros no modo LSB (Lower Side Band),  QSO por voz e Código Morse (CW) em contestes nas faixas dos 20, 15 e 10 metros no modo USB(Upper Side Band). Em AM e USB é possível também escutar estações na faixa do cidadão. O receptor conta com filtros que permitem separar o sinal de estações adjacentes além de eliminar ruídos indesejáveis. Este recurso também facilita a escuta em CW. Com a ajuda de um computador, é possível também decodificar sinais na modalidade FT8, JT9, JT65, PSK e muito mais.  
+
 
 <BR>
 
@@ -152,7 +165,10 @@ Esta biblioteca usa o protocolo de comunicação I2C e implementa a maioria das 
 
 ## Como instalar esta biblioteca
 
-É possível instalar esta biblioteca usando diferentes abordagens. Recomendo as descritas a seguir.
+
+Em um contexto mais amplo, o Arduino pode ser entendido como um ambiente de desenvolvimento e prototipação de projetos eletrônicos.  Se tornou muito popular devido ao baixo custo de aquisição e a facilidade de uso.  Basicamente uma placa Arduino consiste em um microcontrolador com vários terminais de entrada e saída digitais e analógicas.  Para facilitar o processo de gravação de programas, em geral, uma placa Arduino conta também com uma interface serial ou USB (Universal Serial Bus) que permite a comunicação com um computador onde deve residir o programa __Arduino IDE__ (editor de código-fonte, compilador e ligador).   Atualmente o Ambiente Integrado de Desenvolvimento para Arduino (Arduino IDE)  foi muito além do seu objetivo inicial. Com este IDE, é possível programar para inúmeras plataformas de hardware, sendo as mais populares as plataformas baseadas no ATmega328P, Mega2560, ATtiny85, ARM, STM32 e ESP32.
+
+É possível instalar a biblioteca Arduino para o SI4735 ou correlato no ambiente de desenvolvimento do Arduino (IDE) usando diferentes abordagens. Recomendo as descritas a seguir.
 
 
 ### Instalação via Arduino IDE
@@ -190,6 +206,14 @@ Descompacte o arquivo SI4735.zip dentro da pasta Arduino Library.
 
 <BR>
 <BR>
+
+
+## Utilizando Arduino para controlar o Si4735
+
+Conforme dito anteriormente, há vários tipos de arquiteturas de microcontroladores  que podem ser utilizadas no Arduino IDE. Este documento, utilizará com base a placa  Arduino Pro Mini 3.3V (8MHz).  Porém, há vários outros exemplos apresentados nesta documentação com outras placas e processadores. O Arduino Pro Mini 3.3V  possui o microcontrolador ATmega328P, opera com uma tensão de 3.3V  e com o clock de 8MHz. As principais razões para utilizar esta placa Arduino são:  o baixo custo de aquisição, a simplicidade de montagem e a compatibilidade de tensão com o CI Si4735, evitando desta forma, componentes extras para efetuar a conversão de tensão entre os dois dispositivos (Arduino e Si4735).  
+
+O leitor mais experiente poderá optar por outro tipo de controlador suportado pelo ambiente de desenvolvimento Arduino bem como pela Biblioteca Arduino para o Si4735. Contudo, terá que ter alguns cuidados quanto à conversão de tensão bem como a disposição de pinos.
+
 
 
 ## Requisitos de hardware e configuração
@@ -270,6 +294,40 @@ __Veja "Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver Documentation":
 * Layout, and Design Guidelines.” Silicon Laboratories will evaluate schematics and layouts for qualified customers.
 * Pin 8 connects to the FM antenna interface, and pin 12 connects to the AM antenna interface.
 * Place Si473x-D60 as close as possible to antenna and keep the FMI and AMI traces as short as possible.
+
+
+
+### Placas testadas com a Biblioteca Arduino para o SI4735
+
+
+Esta biblioteca foi desenvolvida para funcionar em várias plataformas de Hardware. A tabela a seguir ilustra as plataformas em que esta biblioteca foi testada com sucesso.
+  
+
+![Silicon Labs Schematic](./extras/images/multiplatform_SI47XX_photo_05.png)
+
+
+
+| Board | Need voltage converter | I²C Pins | Used Reset Pin | Features |
+| ----- | ---------------------- | -------- | --------- | -----  |
+| Arduino Pro Mini 3.3V 8MHz | No | A4 and A5 | 12 | [More...](https://store.arduino.cc/usa/arduino-pro-mini) |
+| Mega 2560 Pro | Yes | 20 and 21 | 12 | [More...](https://store.arduino.cc/usa/mega-2560-r3)|
+| ESP WEMOS LOLIN32 | No |  21 and 22 [ˆ4] | 25 [ˆ5] | [More...](https://docs.platformio.org/en/latest/boards/espressif32/lolin32.html) |
+| ESP32 Dev Module | No | 21 and 22 [ˆ4] | 25 [ˆ5]| [More...](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf) |
+| Arduino UNO | Yes | A4 and A5 | 12 | [More...](https://store.arduino.cc/usa/arduino-uno-rev3) |
+| Arduino Yún / ATmega-32u4 | Yes | 2 and 3 | 12 | [More...](https://store.arduino.cc/usa/arduino-yun)|
+| ATtiny85 | No | 5 and 7 | 2 (D3) | [More...](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf)|
+| Arduino DUE | No | 2 and 3 |   12 | [More...](https://store.arduino.cc/usa/due) |
+| BlueDuino 3.3V (ATmega-32u4) | No | 2 and 3 | 10 | [More...](https://wiki.aprbrother.com/en/BlueDuino_rev2.html) |
+| Arduino Mini Pro | Yes | 2 and 3 |  10 | [More...](https://store.arduino.cc/usa/arduino-pro-mini) |
+| STM32F746G-DISCO | No | - | - | [More...](https://www.st.com/en/evaluation-tools/32f746gdiscovery.html?fbclid=IwAR2D9OwhInHQ8WYxeflJQ7QV2aNscFbfcbeblaFcYq0angJIjCKmkQBPTBc) |
+| STM32F103 Series  |  No | PB6 (SCL) and PB7(SDA) | PA12 | [More...](https://circuitdigest.com/microcontroller-projects/getting-started-with-stm32-development-board-stm32f103c8-using-arduino-ide) |
+
+* [ˆ4] It seams that in some ESP32 board, the I²C bus is not configured prorpelly by default. However, you can set almost any pin on ESP32 to setup I²C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. The code below shows that.
+* [^5] You can use the pin 12 too.  
+
+1. More about ESP boards on [ESPRESSOF Development Boards](https://www.espressif.com/en/products/hardware/development-boards).
+2. More about BlueDuino on [Seed](https://www.seeedstudio.com/Blueduino-Rev2-Arduino-compatible-pius-BLE-CC2540-p-2550.html).
+3. On [Arduino.cc](https://www.arduino.cc/) you can see the technical specification about many board. 
 
 
 
@@ -2162,14 +2220,15 @@ String SI4735::getRdsTime()
 
 ## Single Side Band (SSB) Support
 
-Esta função só foi testada somente no SI4735-D60. Para usar SSB com o SI4735, você deve carregar uma atualização (patch) no CI. No entanto, é importante salientar que a Silicon Labs só provê suporte a esse recurso para alguns clientes.  Até a presente data, há pouca documentação disponível na Internet sobre como aplicar os patches para SI4735. 
+Antes de tudo, é importante que o usuário desta biblioteca tenha em mente que o conteúdo do firmware de atualização para SSB não faz parte desta biblioteca. Esta biblioteca somente oferece funções que suportam a carga do firmware no dispositivo Si4735-D60, bem como implementa as funções para operação no modo SSB. Portanto, o autor desta biblioteca não encoraja nenhum usuário a comercializar o conteúdo do firmware SSB utilizando esta biblioteca. 
 
-O autor desta biblioteca não garante que os procedimentos sugeridos aqui funcionarão em seu ambiente de desenvolvimento. Dito isso, fica por sua conta e risco a execução dos procedimentos de aplicação da atualização (patch) do SI4735 bem como do uso das funções para SSB desenvolvidas aqui. Em outras palavras, o autor desta biblioteca não se responsabilizará por qualquer dano em seu dispositivo SI4735 ou qualquer outro dispositivo que você utilize com esta biblioteca. 
+Esta função foi testada somente no SI4735-D60. Para usar SSB com o SI4735, você deve carregar uma atualização (patch) no CI. No entanto, é importante salientar que a Silicon Labs só provê suporte a esse recurso para alguns clientes.  Até a presente data, há pouca documentação disponível na Internet sobre como aplicar os patches para SI4735. 
+
+O autor desta biblioteca não garante que os procedimentos sugeridos aqui funcionarão em seu ambiente de desenvolvimento. Dito isso, fica por sua conta e risco a execução dos procedimentos de aplicação da atualização (patch) do SI4735, bem como do uso das funções para SSB desenvolvidas aqui. Em outras palavras, o autor desta biblioteca não se responsabilizará por qualquer dano em seu dispositivo SI4735 ou qualquer outro dispositivo que você utilize com esta biblioteca. 
 
 Conforme dito anteriormente, há pouca documentação disponível na Internet sobre a aplicação de patch para o SI4735. O conteúdo deste tópico expõe o entendimento do autor desta biblioteca. Dito disso, algumas informações colocadas aqui podem não ser precisas. 
 
 É importante saber que o patch aplicado para o SI4735, fica armazenado na RAM interna do SI4735. Como a RAM é uma memória volátil, essa atualização deve ser carregada sempre que você retornar o sistema para o modo SSB. Isto é, se você mudar o modo de SSB para FM ou AM e depois retornar para o modo SSB, essa ação exigirá que você recarregue o patch novamente antes começar a operar com SSB. O mesmo vale para os comandos reset ou power down. 
-
 
 
 ### setSSBBfo
