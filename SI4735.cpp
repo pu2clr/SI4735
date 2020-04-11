@@ -1009,6 +1009,7 @@ void SI4735::digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, ui
     df.refined.OMONO = OMONO;
     df.refined.OMODE = OMODE;
     df.refined.OFALL = OFALL;
+    df.refined.dummy = 0;
     sendProperty(DIGITAL_OUTPUT_FORMAT, df.raw);
 }
 
