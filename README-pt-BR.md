@@ -239,11 +239,13 @@ __Se você usar uma versão 5V do Arduino, UNO por exemplo, utilize alguma estar
 
 ### Esquema básico
 
-O propósito do protótipo a seguir é testar a Biblioteca Arduino para o SI4735 (objeto deste projeto). Por tanto, não se trata de um rádio com o propósito de atender as demandas de usuários exigentes. É possível, no entanto, adicionar novos componentes ao circuito com o objetivo de melhorar a sensibilidade de recepção bem como a sua saída de áudio. 
+Os esquemas apresentados neste documento foram baseados no circuito proposto pela Silicon Labs no documento “Si4730/31/34/35-D60 - BROADCAST AM/FM/SW/LW RADIO RECEIVER; Application Schematic; página 19”.  Em conjunto ao circuito proposto pelo fabricante, encontra-se o módulo controlador (Arduino) incluindo pelo autor deste artigo. Também foram adicionados ao circuito proposto pela Silicon Labs, dois resistores “pull-up” ao barramento I²C  e dois capacitores na saída de áudio. 
 
-A imagem a seguir apresenta o esquema proposto pela Silicon Labs (denominado Application Schematic). Foi adicionado ao circuito, dois resistores “pull-up” ao barramento I2C e dois capacitores na saída de áudio. Esses adendos estão descritos com mais detalhes a seguir.  
+O esquema a seguir corresponde ao rádio mínimo. Nele, não há display, botões ou encoder conectados  ao circuito. O objetivo deste esquema mínimo é possibilitar o teste das conexões do Si4735 com o Arduino bem como o programa. Todo o controle do rádio poderá ser feito via o ambiente de programação Arduino IDE (Monitor Serial).  Recomenda-se fortemente que os primeiros passos sejam com o circuito mínimo e o sketch Arduino mínimo para garantir o sucesso da montagem bem como as suas evoluções. Esta abordagem parte do princípio que quanto menos componentes, seja de hardware ou de software, o experimentador utilizar,  menos componentes precisarão ser analisados em casa de falhas. 
 
 ![Basic Schematic](./extras/images/basic_schematic.png)
+
+Ainda em relação à figura anterior, o pino SEN (pino 16 do Si4735) poderá ser ligado ao terra (GND) ou ao +3.3V. No entanto, é importante ressaltar que  isso mudará o endereço do barramento I²C. Preferivelmente, coloque este pino conectado ao terra (a biblioteca Arduino que será usada neste experimento, utiliza esta configuração como padrão). Em relação às entradas de sinal de RF para FM e AM (LW, MW e SW), considere as recomendações do documento “Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES”. Para elaboração de teste em SW nos modos AM e SSB, foi utilizado com resultados satisfatórios, simplesmente um capacitor de 470nF na entrada AMI (pino 12). Embora não utilizado no experimento deste artigo, um circuito de proteção nas entradas de RF (ESD DIODE) é uma recomendação do fabricante  que não pode ser descartada em uma versão aprimorada do protótipo utilizado aqui.  
 
 
 __MAIS UMA VEZ É IMPORTANTE RESSALTAR QUE O SI4735 OPERA COM TENSÕES INFERIORES A 5V. PORTANTO, NÃO O UTILIZE CONECTADO A UM ARDUINO DE 5V SEM UMA ESTRATÉGIA DE CONVERSÃO DE TENSÃO.__
