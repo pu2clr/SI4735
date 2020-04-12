@@ -381,6 +381,11 @@ The author of this project does not guarantee that procedures shown here will wo
 All methods/functions to deal with SSB on Si4735-D60 can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/).
 
 
+{% include videoSSB.html %}
+
+
+<BR>
+
 See SSB example implementations [here](https://github.com/pu2clr/SI4735/tree/master/examples).
 
 <BR>
