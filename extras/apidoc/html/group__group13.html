@@ -93,6 +93,9 @@ $(document).ready(function(){initNavTree('group__group13.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gac6a538cefcb4beb5bd77a721f8dab019"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group13.html#gac6a538cefcb4beb5bd77a721f8dab019">SI4735::setAudioMode</a> (uint8_t audioMode)</td></tr>
+<tr class="memdesc:gac6a538cefcb4beb5bd77a721f8dab019"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current volume level.  <a href="group__group13.html#gac6a538cefcb4beb5bd77a721f8dab019">More...</a><br /></td></tr>
+<tr class="separator:gac6a538cefcb4beb5bd77a721f8dab019"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaea652d358b4b586b6d5964ceb8eb7c81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group13.html#gaea652d358b4b586b6d5964ceb8eb7c81">SI4735::digitalOutputFormat</a> (uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, uint8_t OFALL)</td></tr>
 <tr class="memdesc:gaea652d358b4b586b6d5964ceb8eb7c81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the digital audio output format.  <a href="group__group13.html#gaea652d358b4b586b6d5964ceb8eb7c81">More...</a><br /></td></tr>
 <tr class="separator:gaea652d358b4b586b6d5964ceb8eb7c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,7 +106,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga3b7543657dfd36da962267bb8692b796"><td class="mdescLeft">&#160;</td><td class="mdescRight">RESP8 - Returns the Chip Revision (ASCII).  <a href="group__group13.html#ga3b7543657dfd36da962267bb8692b796">More...</a><br /></td></tr>
 <tr class="separator:ga3b7543657dfd36da962267bb8692b796"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga12d4e173d096b1568e4209a63534d4f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group13.html#ga12d4e173d096b1568e4209a63534d4f6">SI4735::setAudioMute</a> (bool off)</td></tr>
-<tr class="memdesc:ga12d4e173d096b1568e4209a63534d4f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current volume level.  <a href="group__group13.html#ga12d4e173d096b1568e4209a63534d4f6">More...</a><br /></td></tr>
+<tr class="memdesc:ga12d4e173d096b1568e4209a63534d4f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the audio on or off.  <a href="group__group13.html#ga12d4e173d096b1568e4209a63534d4f6">More...</a><br /></td></tr>
 <tr class="separator:ga12d4e173d096b1568e4209a63534d4f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacf79be50a01fe91abd498e5d42d83317"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group13.html#gacf79be50a01fe91abd498e5d42d83317">SI4735::getVolume</a> ()</td></tr>
 <tr class="memdesc:gacf79be50a01fe91abd498e5d42d83317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current volume level.  <a href="group__group13.html#gacf79be50a01fe91abd498e5d42d83317">More...</a><br /></td></tr>
@@ -119,6 +122,54 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gac6a538cefcb4beb5bd77a721f8dab019"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac6a538cefcb4beb5bd77a721f8dab019">&#9670;&nbsp;</a></span>setAudioMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setAudioMode </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>audioMode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the current volume level. </p>
+<p>Sets the Audio Mode</p>
+<p>Sets the Si47XX device to use ANALOG or DIGITAL audio output. The valid values are:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Macro </th><th class="markdownTableHeadNone">Value (Binary) </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SI473X_ANALOG_AUDIO </td><td class="markdownTableBodyNone">0b00000101 </td><td class="markdownTableBodyNone">Analog Audio Inputs  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SI473X_DIGITAL_AUDIO1 </td><td class="markdownTableBodyNone">0b00001011 </td><td class="markdownTableBodyNone">Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SI473X_DIGITAL_AUDIO2 </td><td class="markdownTableBodyNone">0b10110000 </td><td class="markdownTableBodyNone">Digital audio outputs (DCLK, DFS, DIO)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SI473X_DIGITAL_AUDIO3 </td><td class="markdownTableBodyNone">0b10110101 </td><td class="markdownTableBodyNone">Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO)  </td></tr>
+</table>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">audioMode</td><td>One of the values options above </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="gaea652d358b4b586b6d5964ceb8eb7c81"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaea652d358b4b586b6d5964ceb8eb7c81">&#9670;&nbsp;</a></span>digitalOutputFormat()</h2>
 
@@ -243,8 +294,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the current volume level. </p>
-<p>Sets the audio on or off.</p>
+<p>Sets the audio on or off. </p>
 <dl class="section see"><dt>See also</dt><dd>See Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 171</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

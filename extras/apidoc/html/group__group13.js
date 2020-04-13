@@ -1,5 +1,6 @@
 var group__group13 =
 [
+    [ "setAudioMode", "group__group13.html#gac6a538cefcb4beb5bd77a721f8dab019", null ],
     [ "digitalOutputFormat", "group__group13.html#gaea652d358b4b586b6d5964ceb8eb7c81", null ],
     [ "digitalOutputSampleRate", "group__group13.html#ga1a404ca11fb32b457be2d7cfe484dd03", null ],
     [ "setVolume", "group__group13.html#ga3b7543657dfd36da962267bb8692b796", null ],

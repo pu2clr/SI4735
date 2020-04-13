@@ -73,9 +73,10 @@ var class_s_i4735 =
     [ "volumeDown", "group__group13.html#ga23d49ab35895b76e0898405fac086c09", null ],
     [ "volumeUp", "group__group13.html#ga5e3e8cf04ca99c6be2dbe15d72b4efa3", null ],
     [ "getCurrentVolume", "class_s_i4735.html#a430b86ccfd4d6c89da9202a538e0cfc9", null ],
-    [ "setAudioMute", "group__group13.html#ga12d4e173d096b1568e4209a63534d4f6", null ],
+    [ "setAudioMode", "group__group13.html#gac6a538cefcb4beb5bd77a721f8dab019", null ],
     [ "digitalOutputFormat", "group__group13.html#gaea652d358b4b586b6d5964ceb8eb7c81", null ],
     [ "digitalOutputSampleRate", "group__group13.html#ga1a404ca11fb32b457be2d7cfe484dd03", null ],
+    [ "setAudioMute", "group__group13.html#ga12d4e173d096b1568e4209a63534d4f6", null ],
     [ "setAM", "group__group08.html#ga753390952a1f2c2a98343979f1f3daa0", null ],
     [ "setFM", "group__group08.html#gacd89e7b8adefcbc4e89f802acb915906", null ],
     [ "setAM", "group__group08.html#ga43c5ea36995a3897820e0170d94c81f4", null ],
@@ -193,5 +194,6 @@ var class_s_i4735 =
     [ "currentSSBMode", "class_s_i4735.html#a74ee9c99b1e092f7b1efa2f771f38324", null ],
     [ "powerUp", "class_s_i4735.html#a1331b701088bda20bf0844e2e38be142", null ],
     [ "volume", "class_s_i4735.html#aa5220772c468fcfb69b5d16163de73fc", null ],
+    [ "currentAudioMode", "class_s_i4735.html#a46c6ea8c36a2c4c47ee9cac8dd314319", null ],
     [ "currentSsbStatus", "class_s_i4735.html#a05730ca069db4be7c45a9c92f29d3b52", null ]
 ];
