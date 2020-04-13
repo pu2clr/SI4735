@@ -7,7 +7,8 @@
   * Support to text message scrolling (50% done);
   * Support to UTC and local time handling (75% done); 
   * More control on refresh text message (50% done);
-* Write to and read from a eeprom,  Si4735 patches (SSB NBFM) (25% done)
+* NBFM support (0% done)
+* Write to and read from a eeprom,  Si4735 patches (SSB NBFM) (50% done)
 * Exemples
   * Finish all of them with the coment "Under construction...." (75% done)
   * ATtiny85 
@@ -24,13 +25,12 @@
 * Internal varicap of AMI and FMI (method setTuneFrequencyAntennaCapacitor )
   * Check if it is possible to interact with exteranl front-end (0% done);
 
-
 ## Things I need to build
 
 * Front-end
   * HF BPF controled by MCU (25% done);
   * RF Amplifier (0% done);
-* Back-end 
+* Audio output 
   * Audio Amplifier (0% done)
   
   
