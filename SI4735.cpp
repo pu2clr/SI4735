@@ -61,9 +61,7 @@ SI4735::SI4735()
     currentSsbStatus = 0;
 }
 
-
 /** @defgroup group05 Deal with Interrupt and I2C bus */
-
 
 /**
  * @ingroup group05 Interrupt
@@ -92,7 +90,8 @@ void SI4735::waitInterrupr(void)
  * 
  * @return int16_t 0x11   if the SEN pin of the Si47XX is low or 0x63 if the SEN pin of the Si47XX is HIGH or 0x0 if error.    
  */
-int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
+int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin)
+{
     int16_t error;
 
     pinMode(resetPin, OUTPUT);
@@ -104,21 +103,23 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
     Wire.begin();
     // check 0X11 I2C address
     Wire.beginTransmission(SI473X_ADDR_SEN_LOW);
-    error = Wire.endTransmission(); 
-    if ( error == 0 ) {
-      setDeviceI2CAddress(0);  
-      return SI473X_ADDR_SEN_LOW;
+    error = Wire.endTransmission();
+    if (error == 0)
+    {
+        setDeviceI2CAddress(0);
+        return SI473X_ADDR_SEN_LOW;
     }
 
     // check 0X63 I2C address
     Wire.beginTransmission(SI473X_ADDR_SEN_HIGH);
-    error = Wire.endTransmission();  
-    if ( error == 0 ) {
-      setDeviceI2CAddress(1);  
-      return SI473X_ADDR_SEN_HIGH;
-    }  
+    error = Wire.endTransmission();
+    if (error == 0)
+    {
+        setDeviceI2CAddress(1);
+        return SI473X_ADDR_SEN_HIGH;
+    }
 
-    // Did find the device   
+    // Did find the device
     return 0;
 }
 
@@ -136,8 +137,9 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin) {
  * @param senPin 0 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to low (GND - 0V);
  *               1 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to high (+3.3V).
  */
-void SI4735::setDeviceI2CAddress(uint8_t senPin) {
-    deviceAddress = (senPin)? SI473X_ADDR_SEN_HIGH : SI473X_ADDR_SEN_LOW;
+void SI4735::setDeviceI2CAddress(uint8_t senPin)
+{
+    deviceAddress = (senPin) ? SI473X_ADDR_SEN_HIGH : SI473X_ADDR_SEN_LOW;
 };
 
 /**
@@ -149,7 +151,8 @@ void SI4735::setDeviceI2CAddress(uint8_t senPin) {
  * 
  * @param uint8_t i2cAddr (example 0x10)
  */
-void SI4735::setDeviceOtherI2CAddress(uint8_t i2cAddr) {
+void SI4735::setDeviceOtherI2CAddress(uint8_t i2cAddr)
+{
     deviceAddress = i2cAddr;
 };
 
@@ -256,7 +259,8 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * @see  SI4735::setPowerUp()
  * @see  Si47XX PROGRAMMING GUIDE; AN332; pages 64, 129
  */
-void SI4735::radioPowerUp(void) {
+void SI4735::radioPowerUp(void)
+{
     // delayMicroseconds(1000);
     waitToSend();
     Wire.beginTransmission(deviceAddress);
@@ -367,6 +371,8 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, 
     digitalWrite(resetPin, HIGH);
 
     data_from_si4735 = false;
+
+    currentAudioMode = audioMode;
 
     // Set the initial SI473X behavior
     // CTSIEN   1 -> Interrupt anabled or disable;
@@ -490,9 +496,8 @@ void SI4735::setFrequency(uint16_t freq)
     Wire.endTransmission();
     waitToSend();                // Wait for the si473x is ready.
     currentWorkFrequency = freq; // check it
-    delay(maxDelaySetFrequency); // For some reason I need to delay here. 
+    delay(maxDelaySetFrequency); // For some reason I need to delay here.
 }
-
 
 /**
  * @ingroup group08 Tune Frequency 
@@ -540,14 +545,15 @@ void SI4735::frequencyDown()
  */
 void SI4735::setAM()
 {
-    // If you’re already using AM mode, it is not necessary to call powerDown and radioPowerUp. 
+    // If you’re already using AM mode, it is not necessary to call powerDown and radioPowerUp.
     // The other properties also should have the same value as the previous status.
-    if ( lastMode != AM_CURRENT_MODE ) {
+    if (lastMode != AM_CURRENT_MODE)
+    {
         powerDown();
-        setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
+        setPowerUp(1, 1, 0, 1, 1, currentAudioMode);
         radioPowerUp();
         setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain to 48
-        setVolume(volume); // Set to previus configured volume
+        setVolume(volume);                    // Set to previus configured volume
     }
     currentSsbStatus = 0;
     lastMode = AM_CURRENT_MODE;
@@ -563,7 +569,7 @@ void SI4735::setAM()
 void SI4735::setFM()
 {
     powerDown();
-    setPowerUp(1, 1, 0, 1, 0, SI473X_ANALOG_AUDIO);
+    setPowerUp(1, 1, 0, 1, 0, currentAudioMode);
     radioPowerUp();
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
@@ -797,10 +803,11 @@ int32_t SI4735::getProperty(uint16_t propertyNumber)
 
     waitToSend();
     Wire.requestFrom(deviceAddress, 4);
-    status.raw  = Wire.read();
+    status.raw = Wire.read();
 
-    // if error, return 0;    
-    if (status.refined.ERR == 1) return -1;
+    // if error, return 0;
+    if (status.refined.ERR == 1)
+        return -1;
 
     Wire.read(); // dummy
 
@@ -810,8 +817,6 @@ int32_t SI4735::getProperty(uint16_t propertyNumber)
 
     return property.value;
 }
-
-
 
 /** @defgroup group12 FM Mono Stereo audio setup */
 
@@ -1162,7 +1167,6 @@ void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
     waitToSend();
 }
 
-
 /**
  * @ingroup group14 Si47XX AGC 
  * 
@@ -1253,10 +1257,11 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
  * 
  * @param uint8_t gain  Select a value between 12 and 192.  Defaul value 48dB.
  */
-void SI4735::setAvcAmMaxGain( uint8_t gain) {
+void SI4735::setAvcAmMaxGain(uint8_t gain)
+{
     uint16_t aux;
-    aux = ( gain > 12 && gain < 193 )? (gain * 340) : (48 * 340);
-    currentAvcAmMaxGain =  gain;
+    aux = (gain > 12 && gain < 193) ? (gain * 340) : (48 * 340);
+    currentAvcAmMaxGain = gain;
     sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, aux);
 }
 
@@ -1274,40 +1279,40 @@ void SI4735::setAvcAmMaxGain( uint8_t gain) {
  *        0 = Interrupt status preserved; 
  *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
  */
-void  SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK) 
+void SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
 {
-        uint8_t arg;
-        uint8_t cmd;
-        int sizeResponse;
+    uint8_t arg;
+    uint8_t cmd;
+    int sizeResponse;
 
-        if (currentTune == FM_TUNE_FREQ)
-        { // FM TUNE
-            cmd = FM_RSQ_STATUS;
-            sizeResponse = 8; // Check it
-        }
-        else
-        { // AM TUNE
-            cmd = AM_RSQ_STATUS;
-            sizeResponse = 6; // Check it
-        }
+    if (currentTune == FM_TUNE_FREQ)
+    { // FM TUNE
+        cmd = FM_RSQ_STATUS;
+        sizeResponse = 8; // Check it
+    }
+    else
+    { // AM TUNE
+        cmd = AM_RSQ_STATUS;
+        sizeResponse = 6; // Check it
+    }
 
-        waitToSend();
+    waitToSend();
 
-        arg = INTACK;
-        Wire.beginTransmission(deviceAddress);
-        Wire.write(cmd);
-        Wire.write(arg); // send B00000001
-        Wire.endTransmission();
+    arg = INTACK;
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(cmd);
+    Wire.write(arg); // send B00000001
+    Wire.endTransmission();
 
-        // Check it
-        // do
-        //{
-            waitToSend();
-            Wire.requestFrom(deviceAddress, sizeResponse);
-            // Gets response information
-            for (uint8_t i = 0; i < sizeResponse; i++)
-                currentRqsStatus.raw[i] = Wire.read();
-        //} while (currentRqsStatus.resp.ERR); // Try again if error found
+    // Check it
+    // do
+    //{
+    waitToSend();
+    Wire.requestFrom(deviceAddress, sizeResponse);
+    // Gets response information
+    for (uint8_t i = 0; i < sizeResponse; i++)
+        currentRqsStatus.raw[i] = Wire.read();
+    //} while (currentRqsStatus.resp.ERR); // Try again if error found
 }
 
 /**
@@ -1572,7 +1577,7 @@ void SI4735::setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t
     Wire.endTransmission();
     delayMicroseconds(550);
 
-    RdsInit(); 
+    RdsInit();
 }
 
 /** 
@@ -2291,7 +2296,7 @@ void SI4735::setSSB(uint8_t usblsb)
     // Is it needed to load patch when switch to SSB?
     // powerDown();
     // It starts with the same AM parameters.
-    setPowerUp(1, 1, 0, 1, 1, SI473X_ANALOG_AUDIO);
+    setPowerUp(1, 1, 0, 1, 1, currentAudioMode);
     radioPowerUp();
     // ssbPowerUp(); // Not used for regular operation
     setVolume(volume); // Set to previus configured volume
@@ -2515,7 +2520,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
     uint8_t content;
     register int i, offset;
     // Send patch to the SI4735 device
-    for (offset = 0; offset < (int) ssb_patch_content_size; offset += 8)
+    for (offset = 0; offset < (int)ssb_patch_content_size; offset += 8)
     {
         Wire.beginTransmission(deviceAddress);
         for (i = 0; i < 8; i++)

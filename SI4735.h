@@ -933,6 +933,9 @@ protected:
 
     uint8_t volume = 32;
 
+    uint8_t currentAudioMode = SI473X_ANALOG_AUDIO; //!< current audio mode used (ANALOG or DIGITAL or both)
+
+
     uint8_t currentSsbStatus;
 
     void waitInterrupr(void);
@@ -1347,7 +1350,27 @@ public:
     void volumeDown();
     void volumeUp();
     inline uint8_t getCurrentVolume() { return volume; }; //!<  Returns the current volume level.
+
+    /**
+     * @brief Sets the Audio Mode 
+     * @details Sets the Si47XX device to use ANALOG or DIGITAL audio output. The valid values are: 
+     * 
+     * | Macro | Value (Binary) | Description |
+     * | ----- | ----- | ----------- | 
+     * | SI473X_ANALOG_AUDIO | 0b00000101 | Analog Audio Inputs |
+     * | SI473X_DIGITAL_AUDIO1 | 0b00001011 | Digital audio output (DCLK, LOUT/DFS, ROUT/DIO) |
+     * | SI473X_DIGITAL_AUDIO2  | 0b10110000 | Digital audio outputs (DCLK, DFS, DIO) |
+     * | SI473X_DIGITAL_AUDIO3 | 0b10110101 | Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO) |
+     * 
+     * @param audioMode One of the values options above
+     */
+    inline void setAudioMode(uint8_t audioMode) {
+        currentAudioMode = audioMode;
+    };
+
     void setAudioMute(bool off);                          // if true mute the audio; else unmute
+
+
 
     void digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, uint8_t OFALL);
     void digitalOutputSampleRate(uint16_t DOSR);
