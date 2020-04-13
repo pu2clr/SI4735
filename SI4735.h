@@ -1352,6 +1352,7 @@ public:
     inline uint8_t getCurrentVolume() { return volume; }; //!<  Returns the current volume level.
 
     /**
+     * @ingroup group13 Digital Audio setup
      * @brief Sets the Audio Mode 
      * @details Sets the Si47XX device to use ANALOG or DIGITAL audio output. The valid values are: 
      * 
@@ -1368,12 +1369,11 @@ public:
         currentAudioMode = audioMode;
     };
 
-    void setAudioMute(bool off);                          // if true mute the audio; else unmute
-
-
-
+ 
     void digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, uint8_t OFALL);
     void digitalOutputSampleRate(uint16_t DOSR);
+
+    void setAudioMute(bool off); // if true mute the audio; else unmute
 
     void setAM();
     void setFM();
