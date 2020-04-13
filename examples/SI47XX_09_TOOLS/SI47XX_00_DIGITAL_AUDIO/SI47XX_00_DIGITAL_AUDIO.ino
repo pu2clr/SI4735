@@ -211,6 +211,9 @@ void loop()
     case '8':
       si4735.setFrequencyStep(1000);
       break;
+    case 'X':
+      si4735.setAudioMode(SI473X_ANALOG_AUDIO);
+      break;     
     case '?':
       showHelp();
       break;
