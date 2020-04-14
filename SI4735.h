@@ -1353,8 +1353,11 @@ public:
 
     /**
      * @ingroup group13 Digital Audio setup
-     * @brief Sets the Audio Mode 
-     * @details Sets the Si47XX device to use ANALOG or DIGITAL audio output. The valid values are: 
+     * @brief Sets the Audio Mode. See table below. 
+     * @details If you want to change the audio mode, call this function before call setAM(), setFM() or setSSB(). 
+     * @details Sets the Si47XX device to use ANALOG or DIGITAL audio output. The table below show the valid values. 
+     * @details This function will only take effect after calling setAM(), setFM() or setSSB().
+     * 
      * 
      * | Macro | Value (Binary) | Description |
      * | ----- | ----- | ----------- | 
@@ -1362,6 +1365,8 @@ public:
      * | SI473X_DIGITAL_AUDIO1 | 0b00001011 | Digital audio output (DCLK, LOUT/DFS, ROUT/DIO) |
      * | SI473X_DIGITAL_AUDIO2  | 0b10110000 | Digital audio outputs (DCLK, DFS, DIO) |
      * | SI473X_DIGITAL_AUDIO3 | 0b10110101 | Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO) |
+     * 
+     * @see setAM(), setFM(), setSSB().
      * 
      * @param audioMode One of the values options above
      */

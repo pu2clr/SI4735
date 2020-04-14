@@ -147,8 +147,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the current volume level. </p>
-<p>Sets the Audio Mode</p>
-<p>Sets the Si47XX device to use ANALOG or DIGITAL audio output. The valid values are:</p>
+<p>Sets the Audio Mode. See table below.</p>
+<p>If you want to change the audio mode, call this function before call <a class="el" href="group__group08.html#ga753390952a1f2c2a98343979f1f3daa0" title="Sets the radio to AM function. It means: LW MW and SW.">setAM()</a>, <a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906" title="Sets the radio to FM function.">setFM()</a> or <a class="el" href="group__group17.html#ga7c48f2af416b1f89dbedbfbe9a637620">setSSB()</a>.</p>
+<p>Sets the Si47XX device to use ANALOG or DIGITAL audio output. The table below show the valid values.</p>
+<p>This function will only take effect after calling <a class="el" href="group__group08.html#ga753390952a1f2c2a98343979f1f3daa0" title="Sets the radio to AM function. It means: LW MW and SW.">setAM()</a>, <a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906" title="Sets the radio to FM function.">setFM()</a> or <a class="el" href="group__group17.html#ga7c48f2af416b1f89dbedbfbe9a637620">setSSB()</a>.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Macro </th><th class="markdownTableHeadNone">Value (Binary) </th><th class="markdownTableHeadNone">Description  </th></tr>
@@ -161,6 +163,7 @@ Functions</h2></td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">SI473X_DIGITAL_AUDIO3 </td><td class="markdownTableBodyNone">0b10110101 </td><td class="markdownTableBodyNone">Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO)  </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#ga753390952a1f2c2a98343979f1f3daa0" title="Sets the radio to AM function. It means: LW MW and SW.">setAM()</a>, <a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906" title="Sets the radio to FM function.">setFM()</a>, <a class="el" href="group__group17.html#ga7c48f2af416b1f89dbedbfbe9a637620">setSSB()</a>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">audioMode</td><td>One of the values options above </td></tr>
