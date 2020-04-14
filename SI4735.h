@@ -1367,7 +1367,6 @@ public:
      * | SI473X_DIGITAL_AUDIO3 | 0b10110101 | Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO) |
      * 
      * @see setAM(), setFM(), setSSB().
-     * 
      * @param audioMode One of the values options above
      */
     inline void setAudioMode(uint8_t audioMode) {
