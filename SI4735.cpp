@@ -78,6 +78,36 @@ void SI4735::waitInterrupr(void)
 /**
  * @ingroup group05 Interrupt
  * 
+ * @brief Updates bits 6:0 of the status byte.
+ * 
+ * @details This command should be called after any command that sets the STCINT or RSQINT bits. 
+ * @details When polling this command should be periodically called to monitor the STATUS byte, and when using interrupts, this command should be called after the interrupt is set to update the STATUS byte.
+ * @details The CTS bit (and optional interrupt) is set when it is safe to send the next command.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 135 
+ * @see si47x_status
+ * @see waitToSend
+ * 
+ * @return si47x_status the bit data structure with the status response
+ */
+si47x_status SI4735::getInterruptStatus()
+{
+    si47x_status status;
+
+    waitToSend();
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(GET_INT_STATUS);
+    Wire.endTransmission();
+
+    Wire.requestFrom(deviceAddress, 1);
+    status.raw = Wire.read();
+
+    return status;
+}
+
+    /**
+ * @ingroup group05 Interrupt
+ * 
  * @brief Enables output for GPO1, 2, and 3. 
  * 
  * @details GPO1, 2, and 3 can be configured for output (Hi-Z or active drive) by setting the GPO1OEN, GPO2OEN, and GPO3OEN bit. 
@@ -90,13 +120,14 @@ void SI4735::waitInterrupr(void)
  * | GPO2OEN             | Output Disabled (Hi-Z) (default) | Output Enabled |
  * | GPO3OEN             | Output Disabled (Hi-Z) (default) | Output Enabled |
  * 
- * @see Si47XX PROGRAMMING GUIDE; AN332; page 82 and 144
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 82 and 144
  * 
  * @param GPO1OEN 
  * @param GPO2OEN 
  * @param GPO3OEN 
  */
-void SI4735::gpioCTL(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN)
+    void
+    SI4735::setGpioCtl(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN)
 {
     si473x_gpio gpio;
 
@@ -129,13 +160,13 @@ void SI4735::gpioCTL(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN)
  * | GPO2LEVEL            |  Output low (default) | Output high |
  * | GPO3LEVEL            |  Output low (default) | Output high |
  * 
- * @see Si47XX PROGRAMMING GUIDE; AN332; page 83 and 145
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 83 and 145
  * 
  * @param GPO1LEVEL
  * @param GPO2LEVEL
  * @param GPO3LEVEL
  */
-void SI4735::setGPIO(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL)
+void SI4735::setGpio(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL)
 {
     si473x_gpio gpio;
 
@@ -151,6 +182,42 @@ void SI4735::setGPIO(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL)
     Wire.write(GPIO_SET);
     Wire.write(gpio.raw); 
     Wire.endTransmission();
+}
+
+/**
+ * @ingroup group05 Interrupt
+ * 
+ * @brief Configures the sources for the GPO2/INT interrupt pin.
+ * 
+ * @details Valid sources are the lower 8 bits of the STATUS byte, including CTS, ERR, RSQINT, and STCINT bits. 
+ * @details The corresponding bit is set before the interrupt occurs. The CTS bit (and optional interrupt) is set when it is safe to send the next command. 
+ * @details The CTS interrupt enable (CTSIEN) can be set with this property and the POWER_UP command.
+ * @details The state of the CTSIEN bit set during the POWER_UP command can be read by reading this property and modified by writing this property. 
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 146 
+ *  
+ * @param STCIEN Seek/Tune Complete Interrupt Enable (0 or 1).
+ * @param RSQIEN RSQ Interrupt Enable (0 or 1).
+ * @param ERRIEN ERR Interrupt Enable (0 or 1).
+ * @param CTSIEN CTS Interrupt Enable (0 or 1).
+ * @param STCREP STC Interrupt Repeat (0 or 1).
+ * @param RSQREP RSQ Interrupt Repeat(0 or 1).
+ */
+void SI4735::setGpioIen(uint8_t STCIEN, uint8_t RSQIEN, uint8_t ERRIEN, uint8_t CTSIEN, uint8_t STCREP, uint8_t RSQREP)
+{
+    si473x_gpio_ien gpio;
+
+    gpio.arg.DUMMY1 = gpio.arg.DUMMY2 = gpio.arg.DUMMY3 = gpio.arg.DUMMY4 = 0;
+
+    gpio.arg.STCIEN = STCIEN;
+    gpio.arg.RSQIEN = RSQIEN;
+    gpio.arg.ERRIEN = ERRIEN;
+    gpio.arg.CTSIEN = CTSIEN;
+    gpio.arg.STCREP = STCREP;
+    gpio.arg.RSQREP = RSQREP;
+
+    sendProperty(GPO_IEN, gpio.raw);
+
 }
 
 /** 

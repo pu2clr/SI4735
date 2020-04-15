@@ -217,6 +217,34 @@ typedef union {
 /**
  * @ingroup group01
  * 
+ * @brief Data type for Configuring the sources for the GPO2/INT interrupt pin
+ * 
+ * @details Valid sources are the lower 8 bits of the STATUS byte, including CTS, ERR, RSQINT, and STCINT bits.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 146
+ */
+typedef union {
+    struct
+    {
+        uint8_t STCIEN : 1;  //!< Seek/Tune Complete Interrupt Enable (0 or 1).
+        uint8_t DUMMY1 : 2;  //!< Always write 0.
+        uint8_t RSQIEN : 1;  //!< RSQ Interrupt Enable (0 or 1).
+        uint8_t DUMMY2 : 2;  //!< Always write 0.
+        uint8_t ERRIEN : 1;  //!< ERR Interrupt Enable (0 or 1).
+        uint8_t CTSIEN : 1;  //!< CTS Interrupt Enable (0 or 1).
+        uint8_t STCREP : 1;  //!< STC Interrupt Repeat (0 or 1).
+        uint8_t DUMMY3 : 2;  //!< Always write 0.
+        uint8_t RSQREP : 1;  //!< RSQ Interrupt Repeat (0 or 1).
+        uint8_t DUMMY4 : 4;  //!< Always write 0.
+    } arg;                   
+    uint16_t raw;
+} si473x_gpio_ien;
+
+
+
+/**
+ * @ingroup group01
+ * 
  * @brief Represents how the  frequency is stored in the si4735.
  * @details It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH)  
  */
@@ -960,8 +988,11 @@ protected:
     uint8_t currentSsbStatus;
 
     void waitInterrupr(void);
-    void gpioCTL(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN);
-    void setGPIO(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL);
+    si47x_status getInterruptStatus();
+
+    void setGpioCtl(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN);
+    void setGpio(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL);
+    void setGpioIen(uint8_t STCIEN, uint8_t RSQIEN, uint8_t ERRIEN, uint8_t CTSIEN, uint8_t STCREP, uint8_t RSQREP);
 
     void sendProperty(uint16_t propertyNumber, uint16_t param);
 
