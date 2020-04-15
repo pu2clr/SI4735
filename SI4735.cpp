@@ -1299,6 +1299,7 @@ void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
 
     status.arg.INTACK = INTACK;
     status.arg.CANCEL = CANCEL;
+    status.arg.RESERVED2 = 0;
 
     Wire.beginTransmission(deviceAddress);
     Wire.write(cmd);
@@ -1503,6 +1504,8 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
 
     seek.arg.SEEKUP = SEEKUP;
     seek.arg.WRAP = WRAP;
+    seek.arg.RESERVED1 = 0;
+    seek.arg.RESERVED2 = 0;
 
     Wire.beginTransmission(deviceAddress);
     Wire.write(seek_start);
