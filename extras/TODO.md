@@ -24,6 +24,7 @@
 * Check the circuit with VA and VD powered with different sources (0% done);
 * Internal varicap of AMI and FMI (method setTuneFrequencyAntennaCapacitor )
   * Check if it is possible to interact with exteranl front-end (0% done);
+* Adjust and test the interrupt setup of the Si47XX device (75% done)
 
 ## Things I need to build
 
