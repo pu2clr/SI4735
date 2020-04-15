@@ -76,7 +76,7 @@ void SI4735::waitInterrupr(void)
 }
 
 /**
- * @defgroup group05 Deal with Interrupt and I2C bus
+ * @ingroup group05 Interrupt
  * 
  * @brief Enables output for GPO1, 2, and 3. 
  * 
@@ -110,12 +110,12 @@ void SI4735::gpioCTL(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN)
  
     Wire.beginTransmission(deviceAddress);
     Wire.write(GPIO_CTL);
-    Wire.write(gpio.raw); // Content of ARG1
+    Wire.write(gpio.raw); 
     Wire.endTransmission();
 }
 
 /**
- * @defgroup group05 Deal with Interrupt and I2C bus
+ * @ingroup group05 Interrupt
  * 
  * @brief Sets the output level (high or low) for GPO1, 2, and 3.  
  * 
@@ -146,10 +146,10 @@ void SI4735::setGPIO(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL)
     gpio.arg.DUMMY2 = 0;
 
     waitToSend();
-    
+
     Wire.beginTransmission(deviceAddress);
     Wire.write(GPIO_SET);
-    Wire.write(gpio.raw); // Content of ARG1
+    Wire.write(gpio.raw); 
     Wire.endTransmission();
 }
 
@@ -160,8 +160,7 @@ void SI4735::setGPIO(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL)
  * 
  * @details Scans for two possible addresses for the Si47XX (0x11 or 0x63).
  * @details This function also sets the system to the found I2C bus address of Si47XX.
- * @details You do not need to use this function if the SEN PIN is configured to ground (GND). 
- * The default I2C address is 0x11.
+ * @details You do not need to use this function if the SEN PIN is configured to ground (GND). The default I2C address is 0x11.
  * @details Use this function if you do not know how the SEN pin is configured.
  * 
  * @param uint8_t  resetPin MCU Mater (Arduino) reset pin
