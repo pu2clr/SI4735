@@ -90,15 +90,19 @@ $(document).ready(function(){initNavTree('group__group05.html',''); initResizabl
 <div class="title">Deal with Interrupt and I2C bus</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Enables output for GPO1, 2, and 3.  
-<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gad2e95c88de0dfa58ff7aa36988071421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gad2e95c88de0dfa58ff7aa36988071421">SI4735::waitInterrupr</a> (void)</td></tr>
 <tr class="memdesc:gad2e95c88de0dfa58ff7aa36988071421"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt handle.  <a href="group__group05.html#gad2e95c88de0dfa58ff7aa36988071421">More...</a><br /></td></tr>
 <tr class="separator:gad2e95c88de0dfa58ff7aa36988071421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeb275be245856042ab899239c7591174"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gaeb275be245856042ab899239c7591174">SI4735::gpioCTL</a> (uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN)</td></tr>
+<tr class="memdesc:gaeb275be245856042ab899239c7591174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables output for GPO1, 2, and 3.  <a href="group__group05.html#gaeb275be245856042ab899239c7591174">More...</a><br /></td></tr>
+<tr class="separator:gaeb275be245856042ab899239c7591174"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7d45e2bd9f824652e1665b45ff19b8ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga7d45e2bd9f824652e1665b45ff19b8ca">SI4735::setGPIO</a> (uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL)</td></tr>
+<tr class="memdesc:ga7d45e2bd9f824652e1665b45ff19b8ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the output level (high or low) for GPO1, 2, and 3. <br  />
+  <a href="group__group05.html#ga7d45e2bd9f824652e1665b45ff19b8ca">More...</a><br /></td></tr>
+<tr class="separator:ga7d45e2bd9f824652e1665b45ff19b8ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8eddbfb3e62786aa4843d4bcd25da2b9"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9">SI4735::getDeviceI2CAddress</a> (uint8_t <a class="el" href="class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e">resetPin</a>)</td></tr>
 <tr class="memdesc:ga8eddbfb3e62786aa4843d4bcd25da2b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C bus address setup.  <a href="group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9">More...</a><br /></td></tr>
 <tr class="separator:ga8eddbfb3e62786aa4843d4bcd25da2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,53 +114,6 @@ Functions</h2></td></tr>
 <tr class="separator:ga668008457910e916ebadf15bda2e5b29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>Enables output for GPO1, 2, and 3. </p>
-<p>Sets the output level (high or low) for GPO1, 2, and 3. <br  />
-</p>
-<p>GPO1, 2, and 3 can be configured for output (Hi-Z or active drive) by setting the GPO1OEN, GPO2OEN, and GPO3OEN bit.</p>
-<p>The state (high or low) of GPO1, 2, and 3 is set with the GPIO_SET command.</p>
-<p>To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">GPIO Output Enable </th><th class="markdownTableHeadNone">value 0 </th><th class="markdownTableHeadNone">value 1  </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">GPO1OEN </td><td class="markdownTableBodyNone">Output Disabled (Hi-Z) (default) </td><td class="markdownTableBodyNone">Output Enabled  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">GPO2OEN </td><td class="markdownTableBodyNone">Output Disabled (Hi-Z) (default) </td><td class="markdownTableBodyNone">Output Enabled  </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">GPO3OEN </td><td class="markdownTableBodyNone">Output Disabled (Hi-Z) (default) </td><td class="markdownTableBodyNone">Output Enabled  </td></tr>
-</table>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 82 and 144</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">GPO1OEN</td><td></td></tr>
-    <tr><td class="paramname">GPO2OEN</td><td></td></tr>
-    <tr><td class="paramname">GPO3OEN</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<p>GPO1, 2, and 3 can be configured for output by setting the GPO1OEN, GPO2OEN, and GPO3OEN bit in the GPIO_CTL command.</p>
-<p>To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.</p>
-<p>To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">GPIO Output Enable </th><th class="markdownTableHeadNone">value 0 </th><th class="markdownTableHeadNone">value 1  </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">GPO1LEVEL </td><td class="markdownTableBodyNone">Output low (default) </td><td class="markdownTableBodyNone">Output high  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">GPO2LEVEL </td><td class="markdownTableBodyNone">Output low (default) </td><td class="markdownTableBodyNone">Output high  </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">GPO3LEVEL </td><td class="markdownTableBodyNone">Output low (default) </td><td class="markdownTableBodyNone">Output high  </td></tr>
-</table>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 83 and 145</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">GPO1LEVEL</td><td></td></tr>
-    <tr><td class="paramname">GPO2LEVEL</td><td></td></tr>
-    <tr><td class="paramname">GPO3LEVEL</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gad2e95c88de0dfa58ff7aa36988071421"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gad2e95c88de0dfa58ff7aa36988071421">&#9670;&nbsp;</a></span>waitInterrupr()</h2>
@@ -184,6 +141,143 @@ Functions</h2></td></tr>
 
 <p>Interrupt handle. </p>
 <p>If you setup interrupt, this function will be called whenever the Si4735 changes. </p>
+
+</div>
+</div>
+<a id="gaeb275be245856042ab899239c7591174"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeb275be245856042ab899239c7591174">&#9670;&nbsp;</a></span>gpioCTL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::gpioCTL </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>GPO1OEN</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>GPO2OEN</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>GPO3OEN</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enables output for GPO1, 2, and 3. </p>
+<p>GPO1, 2, and 3 can be configured for output (Hi-Z or active drive) by setting the GPO1OEN, GPO2OEN, and GPO3OEN bit.</p>
+<p>The state (high or low) of GPO1, 2, and 3 is set with the GPIO_SET command.</p>
+<p>To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">GPIO Output Enable </th><th class="markdownTableHeadNone">value 0 </th><th class="markdownTableHeadNone">value 1  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">GPO1OEN </td><td class="markdownTableBodyNone">Output Disabled (Hi-Z) (default) </td><td class="markdownTableBodyNone">Output Enabled  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">GPO2OEN </td><td class="markdownTableBodyNone">Output Disabled (Hi-Z) (default) </td><td class="markdownTableBodyNone">Output Enabled  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">GPO3OEN </td><td class="markdownTableBodyNone">Output Disabled (Hi-Z) (default) </td><td class="markdownTableBodyNone">Output Enabled  </td></tr>
+</table>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 82 and 144</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GPO1OEN</td><td></td></tr>
+    <tr><td class="paramname">GPO2OEN</td><td></td></tr>
+    <tr><td class="paramname">GPO3OEN</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">SI4735::waitToSend()</a>.</p>
+
+</div>
+</div>
+<a id="ga7d45e2bd9f824652e1665b45ff19b8ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7d45e2bd9f824652e1665b45ff19b8ca">&#9670;&nbsp;</a></span>setGPIO()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setGPIO </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>GPO1LEVEL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>GPO2LEVEL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>GPO3LEVEL</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the output level (high or low) for GPO1, 2, and 3. <br  />
+ </p>
+<p>GPO1, 2, and 3 can be configured for output by setting the GPO1OEN, GPO2OEN, and GPO3OEN bit in the GPIO_CTL command.</p>
+<p>To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.</p>
+<p>To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">GPIO Output Enable </th><th class="markdownTableHeadNone">value 0 </th><th class="markdownTableHeadNone">value 1  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">GPO1LEVEL </td><td class="markdownTableBodyNone">Output low (default) </td><td class="markdownTableBodyNone">Output high  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">GPO2LEVEL </td><td class="markdownTableBodyNone">Output low (default) </td><td class="markdownTableBodyNone">Output high  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">GPO3LEVEL </td><td class="markdownTableBodyNone">Output low (default) </td><td class="markdownTableBodyNone">Output high  </td></tr>
+</table>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 83 and 145</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GPO1LEVEL</td><td></td></tr>
+    <tr><td class="paramname">GPO2LEVEL</td><td></td></tr>
+    <tr><td class="paramname">GPO3LEVEL</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">SI4735::waitToSend()</a>.</p>
 
 </div>
 </div>

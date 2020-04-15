@@ -72,5 +72,5 @@ var searchData=
   ['gettunefrequencyfast_516',['getTuneFrequencyFast',['../class_s_i4735.html#a8c54bfc1fcf1dd989e697cc9b7094f59',1,'SI4735']]],
   ['gettunefrequencyfreeze_517',['getTuneFrequencyFreeze',['../class_s_i4735.html#a667fead0c7b2658c2b932370ad4e4f88',1,'SI4735']]],
   ['getvolume_518',['getVolume',['../group__group13.html#gacf79be50a01fe91abd498e5d42d83317',1,'SI4735']]],
-  ['gpioctl_519',['gpioCTL',['../class_s_i4735.html#aeb275be245856042ab899239c7591174',1,'SI4735']]]
+  ['gpioctl_519',['gpioCTL',['../group__group05.html#gaeb275be245856042ab899239c7591174',1,'SI4735']]]
 ];

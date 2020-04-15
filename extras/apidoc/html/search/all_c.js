@@ -34,7 +34,7 @@ var searchData=
   ['setfmstereoon_250',['setFmStereoOn',['../group__group12.html#ga52c7b7b1f0ed9121b0e64516b2bd2a55',1,'SI4735']]],
   ['setfrequency_251',['setFrequency',['../group__group08.html#ga63d205f2d3169ba877a2bd2ee28d224f',1,'SI4735']]],
   ['setfrequencystep_252',['setFrequencyStep',['../group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c',1,'SI4735']]],
-  ['setgpio_253',['setGPIO',['../class_s_i4735.html#a7d45e2bd9f824652e1665b45ff19b8ca',1,'SI4735']]],
+  ['setgpio_253',['setGPIO',['../group__group05.html#ga7d45e2bd9f824652e1665b45ff19b8ca',1,'SI4735']]],
   ['seti2cfastmode_254',['setI2CFastMode',['../class_s_i4735.html#a7bb3214f70381cf26bb93f96729d641e',1,'SI4735']]],
   ['seti2cfastmodecustom_255',['setI2CFastModeCustom',['../class_s_i4735.html#a7433b4e80fd3b501efeae7973d29c985',1,'SI4735']]],
   ['seti2clowspeedmode_256',['setI2CLowSpeedMode',['../class_s_i4735.html#aecfcd50dbb3d95d66c8cdc77d52af63c',1,'SI4735']]],
