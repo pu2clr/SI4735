@@ -4,6 +4,8 @@ var annotated_dup =
     [ "si4735_digital_output_format", "group__group03.html#unionsi4735__digital__output__format", "group__group03_unionsi4735__digital__output__format" ],
     [ "si4735_digital_output_format.refined", "group__group03.html#structsi4735__digital__output__format_8refined", "group__group03_structsi4735__digital__output__format_8refined" ],
     [ "si4735_digital_output_sample_rate", "group__group03.html#structsi4735__digital__output__sample__rate", "group__group03_structsi4735__digital__output__sample__rate" ],
+    [ "si473x_gpio", "group__group01.html#unionsi473x__gpio", "group__group01_unionsi473x__gpio" ],
+    [ "si473x_gpio.arg", "group__group01.html#structsi473x__gpio_8arg", "group__group01_structsi473x__gpio_8arg" ],
     [ "si473x_powerup", "group__group01.html#unionsi473x__powerup", "group__group01_unionsi473x__powerup" ],
     [ "si473x_powerup.arg", "group__group01.html#structsi473x__powerup_8arg", "group__group01_structsi473x__powerup_8arg" ],
     [ "si47x_agc_overrride", "group__group03.html#unionsi47x__agc__overrride", "group__group03_unionsi47x__agc__overrride" ],

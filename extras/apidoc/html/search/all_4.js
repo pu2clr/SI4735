@@ -77,7 +77,8 @@ var searchData=
   ['getvolume_167',['getVolume',['../group__group13.html#gacf79be50a01fe91abd498e5d42d83317',1,'SI4735']]],
   ['gpio_5fctl_168',['GPIO_CTL',['../_s_i4735_8h.html#ac4ede73dbac84ceab4a5bc876104bc20',1,'SI4735.h']]],
   ['gpio_5fset_169',['GPIO_SET',['../_s_i4735_8h.html#aee1a56baeb6b8457fb722fd36dad5bbf',1,'SI4735.h']]],
-  ['gpo_5fien_170',['GPO_IEN',['../_s_i4735_8h.html#a16b9c6d556c2db79e8742267daf63c83',1,'SI4735.h']]],
-  ['group0_171',['group0',['../group__group02.html#a51896140e0fb20e1799704bb92db0f7e',1,'si47x_rds_blockb']]],
-  ['group2_172',['group2',['../group__group02.html#a827f7f6c799f6b43336aa4e597d56de7',1,'si47x_rds_blockb']]]
+  ['gpioctl_170',['gpioCTL',['../class_s_i4735.html#aeb275be245856042ab899239c7591174',1,'SI4735']]],
+  ['gpo_5fien_171',['GPO_IEN',['../_s_i4735_8h.html#a16b9c6d556c2db79e8742267daf63c83',1,'SI4735.h']]],
+  ['group0_172',['group0',['../group__group02.html#a2906df40d807f8333e156afed5ed116e',1,'si47x_rds_blockb']]],
+  ['group2_173',['group2',['../group__group02.html#a7b0e1b6ef1ff16ba6d9e87903705374f',1,'si47x_rds_blockb']]]
 ];

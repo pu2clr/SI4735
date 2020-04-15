@@ -578,6 +578,10 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:gad2e95c88de0dfa58ff7aa36988071421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gad2e95c88de0dfa58ff7aa36988071421">waitInterrupr</a> (void)</td></tr>
 <tr class="memdesc:gad2e95c88de0dfa58ff7aa36988071421"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt handle.  <a href="group__group05.html#gad2e95c88de0dfa58ff7aa36988071421">More...</a><br /></td></tr>
 <tr class="separator:gad2e95c88de0dfa58ff7aa36988071421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb275be245856042ab899239c7591174"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#aeb275be245856042ab899239c7591174">gpioCTL</a> (uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN)</td></tr>
+<tr class="separator:aeb275be245856042ab899239c7591174"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d45e2bd9f824652e1665b45ff19b8ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a7d45e2bd9f824652e1665b45ff19b8ca">setGPIO</a> (uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL)</td></tr>
+<tr class="separator:a7d45e2bd9f824652e1665b45ff19b8ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4d65660ec2b60d7486165ed8a7a92015"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group10.html#ga4d65660ec2b60d7486165ed8a7a92015">sendProperty</a> (uint16_t propertyNumber, uint16_t param)</td></tr>
 <tr class="memdesc:ga4d65660ec2b60d7486165ed8a7a92015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends (sets) property to the SI47XX.  <a href="group__group10.html#ga4d65660ec2b60d7486165ed8a7a92015">More...</a><br /></td></tr>
 <tr class="separator:ga4d65660ec2b60d7486165ed8a7a92015"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -720,6 +724,94 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aeb275be245856042ab899239c7591174"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb275be245856042ab899239c7591174">&#9670;&nbsp;</a></span>gpioCTL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::gpioCTL </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>GPO1OEN</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>GPO2OEN</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>GPO3OEN</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">waitToSend()</a>.</p>
+
+</div>
+</div>
+<a id="a7d45e2bd9f824652e1665b45ff19b8ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d45e2bd9f824652e1665b45ff19b8ca">&#9670;&nbsp;</a></span>setGPIO()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setGPIO </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>GPO1LEVEL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>GPO2LEVEL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>GPO3LEVEL</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">waitToSend()</a>.</p>
+
+</div>
+</div>
 <a id="ad194137a6a712a599e3c26e5b6357594"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad194137a6a712a599e3c26e5b6357594">&#9670;&nbsp;</a></span>getSignalQualityInterrupt()</h2>
 

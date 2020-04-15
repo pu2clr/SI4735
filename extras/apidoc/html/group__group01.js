@@ -12,8 +12,19 @@ var group__group01 =
       [ "CTSIEN", "group__group01.html#a70cc84d478cf749951dcd0abde88b0ce", null ],
       [ "OPMODE", "group__group01.html#adc7ae7360da2a9886f674ed6943a2524", null ]
     ] ],
+    [ "si473x_gpio", "group__group01.html#unionsi473x__gpio", [
+      [ "arg", "group__group01.html#af785eeee072dbe5d532fc7e76cd9e8eb", null ],
+      [ "raw", "group__group01.html#ae560f6b01049205986b273a5c491081d", null ]
+    ] ],
+    [ "si473x_gpio.arg", "group__group01.html#structsi473x__gpio_8arg", [
+      [ "DUMMY1", "group__group01.html#a3651c40ccc4450f2fc89fa3139dedd5a", null ],
+      [ "GPO1OEN", "group__group01.html#a9e8c8440a0de220ec3e67ac942bc93ae", null ],
+      [ "GPO2OEN", "group__group01.html#a16e39ff0e3715799964f55ae2059869d", null ],
+      [ "GPO3OEN", "group__group01.html#a9192331445de77eec6c569dd39215683", null ],
+      [ "DUMMY2", "group__group01.html#abece94c62273dc7ecfabc565b76dbbe5", null ]
+    ] ],
     [ "si47x_frequency", "group__group01.html#unionsi47x__frequency", [
-      [ "raw", "group__group01.html#a1a992fcfef59a6c6b1612e006264840f", null ],
+      [ "raw", "group__group01.html#a3d4cc611c60b9893304c35ed7ca9663c", null ],
       [ "value", "group__group01.html#aad12ac434ec9907e90a3f6b95377ca76", null ]
     ] ],
     [ "si47x_frequency.raw", "group__group01.html#structsi47x__frequency_8raw", [
@@ -21,7 +32,7 @@ var group__group01 =
       [ "FREQH", "group__group01.html#a8836c6ec927c24305d2fd26a5aec2e2b", null ]
     ] ],
     [ "si47x_antenna_capacitor", "group__group01.html#unionsi47x__antenna__capacitor", [
-      [ "raw", "group__group01.html#a29548a9c68843bb6aa86eabcd33a9633", null ],
+      [ "raw", "group__group01.html#a7ce708de852721ede2d3c49326f305fe", null ],
       [ "value", "group__group01.html#aa59f9604df88a98b91295b0a9c009bbd", null ]
     ] ],
     [ "si47x_antenna_capacitor.raw", "group__group01.html#structsi47x__antenna__capacitor_8raw", [
@@ -29,7 +40,7 @@ var group__group01 =
       [ "ANTCAPH", "group__group01.html#a5f437dbf77cdadcbb215ce5db44edbe6", null ]
     ] ],
     [ "si47x_set_frequency", "group__group01.html#unionsi47x__set__frequency", [
-      [ "arg", "group__group01.html#aa3e4a9050e218540a247ebd988f5bc65", null ],
+      [ "arg", "group__group01.html#a34575f9b5804efe1458a9da9c8e4ff16", null ],
       [ "raw", "group__group01.html#a57e2bfb6b0c9c0fb7d6ffac131824b8a", null ]
     ] ],
     [ "si47x_set_frequency.arg", "group__group01.html#structsi47x__set__frequency_8arg", [
@@ -43,7 +54,7 @@ var group__group01 =
       [ "ANTCAPL", "group__group01.html#a0475bf71e813922e317ef7cb7b3df9fa", null ]
     ] ],
     [ "si47x_seek", "group__group01.html#unionsi47x__seek", [
-      [ "arg", "group__group01.html#a83a4a1f6952444528689d02324cc460f", null ],
+      [ "arg", "group__group01.html#a80859589e33d46d325deb98b8e165865", null ],
       [ "raw", "group__group01.html#a894bfdc90f00f3064991edc0c439e66a", null ]
     ] ],
     [ "si47x_seek.arg", "group__group01.html#structsi47x__seek_8arg", [
@@ -53,7 +64,7 @@ var group__group01 =
       [ "RESERVED2", "group__group01.html#a0b5885d29a74762639e4b55c51ce2d85", null ]
     ] ],
     [ "si47x_status", "group__group01.html#unionsi47x__status", [
-      [ "refined", "group__group01.html#ae74a91730fe217f5cb29daf1ab3fde33", null ],
+      [ "refined", "group__group01.html#ae4dbf1dce9fe154de96774328b5c45e2", null ],
       [ "raw", "group__group01.html#a8afecb26fbffbfa5a7d3d46d90becabc", null ]
     ] ],
     [ "si47x_status.refined", "group__group01.html#structsi47x__status_8refined", [
@@ -66,7 +77,7 @@ var group__group01 =
       [ "CTS", "group__group01.html#ae16433ffd3adc248f0ce2608a95c3c76", null ]
     ] ],
     [ "si47x_response_status", "group__group01.html#unionsi47x__response__status", [
-      [ "resp", "group__group01.html#a0e7c279d251b7485e31e7c8922078977", null ],
+      [ "resp", "group__group01.html#a6efd0744fb44ab34062e523fa7e11f90", null ],
       [ "raw", "group__group01.html#a9b236e03804629e73a4b19fddb72b4cd", null ]
     ] ],
     [ "si47x_response_status.resp", "group__group01.html#structsi47x__response__status_8resp", [
@@ -89,7 +100,7 @@ var group__group01 =
       [ "READANTCAP", "group__group01.html#aa4c3e6fac8670fa0b36ba68ff185aa24", null ]
     ] ],
     [ "si47x_firmware_information", "group__group01.html#unionsi47x__firmware__information", [
-      [ "resp", "group__group01.html#af03ada523de06bc7dc13c2c6f6094bf8", null ],
+      [ "resp", "group__group01.html#ad398ff1bd2e0ee98606894a0a72e11fa", null ],
       [ "raw", "group__group01.html#aa2ba7bbaa745c8ca18c83226246654e5", null ]
     ] ],
     [ "si47x_firmware_information.resp", "group__group01.html#structsi47x__firmware__information_8resp", [
@@ -110,7 +121,7 @@ var group__group01 =
       [ "CHIPREV", "group__group01.html#ab9dbe73951d365ea8a945760cec79a5e", null ]
     ] ],
     [ "si47x_firmware_query_library", "group__group01.html#unionsi47x__firmware__query__library", [
-      [ "resp", "group__group01.html#a934481d2e03f0256e140f20bfec57ed4", null ],
+      [ "resp", "group__group01.html#a00fd2397559ee1f6c02e1cd931a293c7", null ],
       [ "raw", "group__group01.html#a5235c5b07b71d6dc4c76c275a091c63c", null ]
     ] ],
     [ "si47x_firmware_query_library.resp", "group__group01.html#structsi47x__firmware__query__library_8resp", [
@@ -130,7 +141,7 @@ var group__group01 =
       [ "LIBRARYID", "group__group01.html#afb747a51a99db36a17a01f11e3cafbe5", null ]
     ] ],
     [ "si47x_tune_status", "group__group01.html#unionsi47x__tune__status", [
-      [ "arg", "group__group01.html#a50a1bc191557d1981b29512afce8464b", null ],
+      [ "arg", "group__group01.html#adaf1684102d0fc45f483d15492105f0e", null ],
       [ "raw", "group__group01.html#aefcfcb9eaa95ed7d8ce1740ac7f9eb7e", null ]
     ] ],
     [ "si47x_tune_status.arg", "group__group01.html#structsi47x__tune__status_8arg", [
@@ -139,7 +150,7 @@ var group__group01 =
       [ "RESERVED2", "group__group01.html#a0b5885d29a74762639e4b55c51ce2d85", null ]
     ] ],
     [ "si47x_property", "group__group01.html#unionsi47x__property", [
-      [ "raw", "group__group01.html#aac022dcbfc890712ccd54befb8d7fe5c", null ],
+      [ "raw", "group__group01.html#a890afd8c5c2202eaa4029911a2e5ebdd", null ],
       [ "value", "group__group01.html#a7c04205c5a1798b35b738b2908853bfa", null ]
     ] ],
     [ "si47x_property.raw", "group__group01.html#structsi47x__property_8raw", [

@@ -101,6 +101,11 @@ Data Structures</h2></td></tr>
 <tr class="separator:unionsi473x__powerup"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structsi473x__powerup_8arg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#structsi473x__powerup_8arg">si473x_powerup.arg</a></td></tr>
 <tr class="separator:structsi473x__powerup_8arg"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:unionsi473x__gpio"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#unionsi473x__gpio">si473x_gpio</a></td></tr>
+<tr class="memdesc:unionsi473x__gpio"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data type for Enables output for GPO1, GPO2 and GPO3.  <a href="group__group01.html#unionsi473x__gpio">More...</a><br /></td></tr>
+<tr class="separator:unionsi473x__gpio"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structsi473x__gpio_8arg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#structsi473x__gpio_8arg">si473x_gpio.arg</a></td></tr>
+<tr class="separator:structsi473x__gpio_8arg"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:unionsi47x__frequency"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#unionsi47x__frequency">si47x_frequency</a></td></tr>
 <tr class="memdesc:unionsi47x__frequency"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents how the frequency is stored in the si4735.  <a href="group__group01.html#unionsi47x__frequency">More...</a><br /></td></tr>
 <tr class="separator:unionsi47x__frequency"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -243,6 +248,85 @@ Application Setting. See page 65. </td></tr>
 
 </div>
 </div>
+<a name="unionsi473x__gpio" id="unionsi473x__gpio"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#unionsi473x__gpio">&#9670;&nbsp;</a></span>si473x_gpio</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union si473x_gpio</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Data type for Enables output for GPO1, GPO2 and GPO3. </p>
+<p>GPO1, 2, and 3 can be configured for output (Hi-Z or active drive) by setting the GPO1OEN, GPO2OEN, and GPO3OEN bit.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 82 and 144 </dd></dl>
+</div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a id="af785eeee072dbe5d532fc7e76cd9e8eb"></a>struct <a class="el" href="group__group01.html#structsi473x__gpio_8arg">si473x_gpio</a></td>
+<td class="fieldname">
+arg</td>
+<td class="fielddoc">
+Refined powerup parameters. </td></tr>
+<tr><td class="fieldtype">
+<a id="ae560f6b01049205986b273a5c491081d"></a>uint8_t</td>
+<td class="fieldname">
+raw</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="structsi473x__gpio_8arg" id="structsi473x__gpio_8arg"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#structsi473x__gpio_8arg">&#9670;&nbsp;</a></span>si473x_gpio.arg</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct si473x_gpio.arg</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"></div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a id="a3651c40ccc4450f2fc89fa3139dedd5a"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY1: 1</td>
+<td class="fielddoc">
+Always write 0. </td></tr>
+<tr><td class="fieldtype">
+<a id="a9e8c8440a0de220ec3e67ac942bc93ae"></a>uint8_t</td>
+<td class="fieldname">
+GPO1OEN: 1</td>
+<td class="fielddoc">
+GPO1 Output Enable. </td></tr>
+<tr><td class="fieldtype">
+<a id="a16e39ff0e3715799964f55ae2059869d"></a>uint8_t</td>
+<td class="fieldname">
+GPO2OEN: 1</td>
+<td class="fielddoc">
+GPO2 Output Enable. </td></tr>
+<tr><td class="fieldtype">
+<a id="a9192331445de77eec6c569dd39215683"></a>uint8_t</td>
+<td class="fieldname">
+GPO3OEN: 1</td>
+<td class="fielddoc">
+GPO3 Output Enable. </td></tr>
+<tr><td class="fieldtype">
+<a id="abece94c62273dc7ecfabc565b76dbbe5"></a>uint8_t</td>
+<td class="fieldname">
+DUMMY2: 4</td>
+<td class="fielddoc">
+Always write 0. </td></tr>
+</table>
+
+</div>
+</div>
 <a name="unionsi47x__frequency" id="unionsi47x__frequency"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#unionsi47x__frequency">&#9670;&nbsp;</a></span>si47x_frequency</h2>
 
@@ -260,7 +344,7 @@ Application Setting. See page 65. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a1a992fcfef59a6c6b1612e006264840f"></a>struct <a class="el" href="group__group01.html#structsi47x__frequency_8raw">si47x_frequency</a></td>
+<a id="a3d4cc611c60b9893304c35ed7ca9663c"></a>struct <a class="el" href="group__group01.html#structsi47x__frequency_8raw">si47x_frequency</a></td>
 <td class="fieldname">
 raw</td>
 <td class="fielddoc">
@@ -319,7 +403,7 @@ Tune Frequency High byte. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a29548a9c68843bb6aa86eabcd33a9633"></a>struct <a class="el" href="group__group01.html#structsi47x__antenna__capacitor_8raw">si47x_antenna_capacitor</a></td>
+<a id="a7ce708de852721ede2d3c49326f305fe"></a>struct <a class="el" href="group__group01.html#structsi47x__antenna__capacitor_8raw">si47x_antenna_capacitor</a></td>
 <td class="fieldname">
 raw</td>
 <td class="fielddoc">
@@ -379,7 +463,7 @@ Antenna Tuning Capacitor Low byte. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="aa3e4a9050e218540a247ebd988f5bc65"></a>struct <a class="el" href="group__group01.html#structsi47x__set__frequency_8arg">si47x_set_frequency</a></td>
+<a id="a34575f9b5804efe1458a9da9c8e4ff16"></a>struct <a class="el" href="group__group01.html#structsi47x__set__frequency_8arg">si47x_set_frequency</a></td>
 <td class="fieldname">
 arg</td>
 <td class="fielddoc">
@@ -475,7 +559,7 @@ ARG5 - Antenna Tuning Capacitor Low byte. Note used for FM. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a83a4a1f6952444528689d02324cc460f"></a>struct <a class="el" href="group__group01.html#structsi47x__seek_8arg">si47x_seek</a></td>
+<a id="a80859589e33d46d325deb98b8e165865"></a>struct <a class="el" href="group__group01.html#structsi47x__seek_8arg">si47x_seek</a></td>
 <td class="fieldname">
 arg</td>
 <td class="fielddoc">
@@ -547,7 +631,7 @@ RESERVED2: 4</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="ae74a91730fe217f5cb29daf1ab3fde33"></a>struct <a class="el" href="group__group01.html#structsi47x__status_8refined">si47x_status</a></td>
+<a id="ae4dbf1dce9fe154de96774328b5c45e2"></a>struct <a class="el" href="group__group01.html#structsi47x__status_8refined">si47x_status</a></td>
 <td class="fieldname">
 refined</td>
 <td class="fielddoc">
@@ -638,7 +722,7 @@ CTS: 1</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a0e7c279d251b7485e31e7c8922078977"></a>struct <a class="el" href="group__group01.html#structsi47x__response__status_8resp">si47x_response_status</a></td>
+<a id="a6efd0744fb44ab34062e523fa7e11f90"></a>struct <a class="el" href="group__group01.html#structsi47x__response__status_8resp">si47x_response_status</a></td>
 <td class="fieldname">
 resp</td>
 <td class="fielddoc">
@@ -789,7 +873,7 @@ Contains the current antenna tuning capacitor value. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="af03ada523de06bc7dc13c2c6f6094bf8"></a>struct <a class="el" href="group__group01.html#structsi47x__firmware__information_8resp">si47x_firmware_information</a></td>
+<a id="ad398ff1bd2e0ee98606894a0a72e11fa"></a>struct <a class="el" href="group__group01.html#structsi47x__firmware__information_8resp">si47x_firmware_information</a></td>
 <td class="fieldname">
 resp</td>
 <td class="fielddoc">
@@ -929,7 +1013,7 @@ RESP8 - Chip Revision (ASCII). </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a934481d2e03f0256e140f20bfec57ed4"></a>struct <a class="el" href="group__group01.html#structsi47x__firmware__query__library_8resp">si47x_firmware_query_library</a></td>
+<a id="a00fd2397559ee1f6c02e1cd931a293c7"></a>struct <a class="el" href="group__group01.html#structsi47x__firmware__query__library_8resp">si47x_firmware_query_library</a></td>
 <td class="fieldname">
 resp</td>
 <td class="fielddoc">
@@ -1062,7 +1146,7 @@ RESP7 - Library Revision (HEX). </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a50a1bc191557d1981b29512afce8464b"></a>struct <a class="el" href="group__group01.html#structsi47x__tune__status_8arg">si47x_tune_status</a></td>
+<a id="adaf1684102d0fc45f483d15492105f0e"></a>struct <a class="el" href="group__group01.html#structsi47x__tune__status_8arg">si47x_tune_status</a></td>
 <td class="fieldname">
 arg</td>
 <td class="fielddoc">
@@ -1128,7 +1212,7 @@ RESERVED2: 6</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="aac022dcbfc890712ccd54befb8d7fe5c"></a>struct <a class="el" href="group__group01.html#structsi47x__property_8raw">si47x_property</a></td>
+<a id="a890afd8c5c2202eaa4029911a2e5ebdd"></a>struct <a class="el" href="group__group01.html#structsi47x__property_8raw">si47x_property</a></td>
 <td class="fieldname">
 raw</td>
 <td class="fielddoc">

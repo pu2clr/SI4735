@@ -90,6 +90,9 @@ $(document).ready(function(){initNavTree('group__group05.html',''); initResizabl
 <div class="title">Deal with Interrupt and I2C bus</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Enables output for GPO1, 2, and 3.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -107,6 +110,53 @@ Functions</h2></td></tr>
 <tr class="separator:ga668008457910e916ebadf15bda2e5b29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Enables output for GPO1, 2, and 3. </p>
+<p>Sets the output level (high or low) for GPO1, 2, and 3. <br  />
+</p>
+<p>GPO1, 2, and 3 can be configured for output (Hi-Z or active drive) by setting the GPO1OEN, GPO2OEN, and GPO3OEN bit.</p>
+<p>The state (high or low) of GPO1, 2, and 3 is set with the GPIO_SET command.</p>
+<p>To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">GPIO Output Enable </th><th class="markdownTableHeadNone">value 0 </th><th class="markdownTableHeadNone">value 1  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">GPO1OEN </td><td class="markdownTableBodyNone">Output Disabled (Hi-Z) (default) </td><td class="markdownTableBodyNone">Output Enabled  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">GPO2OEN </td><td class="markdownTableBodyNone">Output Disabled (Hi-Z) (default) </td><td class="markdownTableBodyNone">Output Enabled  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">GPO3OEN </td><td class="markdownTableBodyNone">Output Disabled (Hi-Z) (default) </td><td class="markdownTableBodyNone">Output Enabled  </td></tr>
+</table>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 82 and 144</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GPO1OEN</td><td></td></tr>
+    <tr><td class="paramname">GPO2OEN</td><td></td></tr>
+    <tr><td class="paramname">GPO3OEN</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>GPO1, 2, and 3 can be configured for output by setting the GPO1OEN, GPO2OEN, and GPO3OEN bit in the GPIO_CTL command.</p>
+<p>To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.</p>
+<p>To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">GPIO Output Enable </th><th class="markdownTableHeadNone">value 0 </th><th class="markdownTableHeadNone">value 1  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">GPO1LEVEL </td><td class="markdownTableBodyNone">Output low (default) </td><td class="markdownTableBodyNone">Output high  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">GPO2LEVEL </td><td class="markdownTableBodyNone">Output low (default) </td><td class="markdownTableBodyNone">Output high  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">GPO3LEVEL </td><td class="markdownTableBodyNone">Output low (default) </td><td class="markdownTableBodyNone">Output high  </td></tr>
+</table>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 83 and 145</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GPO1LEVEL</td><td></td></tr>
+    <tr><td class="paramname">GPO2LEVEL</td><td></td></tr>
+    <tr><td class="paramname">GPO3LEVEL</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gad2e95c88de0dfa58ff7aa36988071421"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gad2e95c88de0dfa58ff7aa36988071421">&#9670;&nbsp;</a></span>waitInterrupr()</h2>
