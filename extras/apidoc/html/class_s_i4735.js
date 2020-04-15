@@ -2,8 +2,10 @@ var class_s_i4735 =
 [
     [ "SI4735", "class_s_i4735.html#a818c60896490631e4311452c99ff361f", null ],
     [ "waitInterrupr", "group__group05.html#gad2e95c88de0dfa58ff7aa36988071421", null ],
-    [ "gpioCTL", "group__group05.html#gaeb275be245856042ab899239c7591174", null ],
-    [ "setGPIO", "group__group05.html#ga7d45e2bd9f824652e1665b45ff19b8ca", null ],
+    [ "getInterruptStatus", "group__group05.html#gaf361734168c913803e7e2dfbf4fe0c55", null ],
+    [ "setGpioCtl", "group__group05.html#ga0d615c1fcfeb570effc97e8b7e959106", null ],
+    [ "setGpio", "group__group05.html#ga5e5018897af1edc1ca8507af3d3bfc5e", null ],
+    [ "setGpioIen", "group__group05.html#ga6806bca795400959f36e8202e36cd94c", null ],
     [ "sendProperty", "group__group10.html#ga4d65660ec2b60d7486165ed8a7a92015", null ],
     [ "sendSSBModeProperty", "group__group17.html#gae1d866bfc4cb37c4268c8942b4b4d062", null ],
     [ "disableFmDebug", "group__group12.html#gae4683e9a9fc7a633305b18dae54fbd83", null ],

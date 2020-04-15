@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['param_188',['param',['../group__group03.html#aa2070acb617691d3128fe88cbacac68d',1,'si47x_bandwidth_config::param()'],['../group__group03.html#af356476d5712bfd4626f905befcc21c2',1,'si47x_ssb_mode::param()']]],
+  ['param_188',['param',['../group__group03.html#adc78f2cf172c060ce156a35450ac2134',1,'si47x_bandwidth_config::param()'],['../group__group03.html#a8f2415270b023a24064dc81d7ed5bb74',1,'si47x_ssb_mode::param()']]],
   ['patchpowerup_189',['patchPowerUp',['../group__group17.html#gafaabd6c73b7ad7c20ae959d5b75c1e71',1,'SI4735']]],
   ['power_5fdown_190',['POWER_DOWN',['../_s_i4735_8h.html#aad04e0c9afdeec307d5b9cb2062d784d',1,'SI4735.h']]],
   ['power_5fpatch_191',['POWER_PATCH',['../_s_i4735_8h.html#a2e49c8fada1fbb8a01ad5a0adad2b559',1,'SI4735.h']]],

@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['si473x_20data_20types_749',['SI473X data types',['../group__group01.html',1,'']]],
-  ['si47xx_20device_20information_20and_20start_20up_750',['Si47XX device information and start up',['../group__group07.html',1,'']]],
-  ['si47xx_20device_20mode_2c_20band_20and_20frequency_20setup_751',['Si47XX device Mode, Band and Frequency setup',['../group__group08.html',1,'']]],
-  ['si47xx_20filter_20setup_752',['Si47XX filter setup',['../group__group09.html',1,'']]],
-  ['si4735_2dd60_20single_20side_20band_20_28ssb_29_20support_753',['Si4735-D60 Single Side Band (SSB) support',['../group__group17.html',1,'']]]
+  ['si473x_20data_20types_757',['SI473X data types',['../group__group01.html',1,'']]],
+  ['si47xx_20device_20information_20and_20start_20up_758',['Si47XX device information and start up',['../group__group07.html',1,'']]],
+  ['si47xx_20device_20mode_2c_20band_20and_20frequency_20setup_759',['Si47XX device Mode, Band and Frequency setup',['../group__group08.html',1,'']]],
+  ['si47xx_20filter_20setup_760',['Si47XX filter setup',['../group__group09.html',1,'']]],
+  ['si4735_2dd60_20single_20side_20band_20_28ssb_29_20support_761',['Si4735-D60 Single Side Band (SSB) support',['../group__group17.html',1,'']]]
 ];

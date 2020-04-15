@@ -1,7 +1,7 @@
 var group__group03 =
 [
     [ "si47x_agc_status", "group__group03.html#unionsi47x__agc__status", [
-      [ "refined", "group__group03.html#ab71151c7c991333168b90f03b22f8b2c", null ],
+      [ "refined", "group__group03.html#a7b740364af15fb3218e210a9ce1fe86b", null ],
       [ "raw", "group__group03.html#a2f03c32a90a7991f2433bf8a5291885d", null ]
     ] ],
     [ "si47x_agc_status.refined", "group__group03.html#structsi47x__agc__status_8refined", [
@@ -17,7 +17,7 @@ var group__group03 =
       [ "AGCIDX", "group__group03.html#a26bd0af30c189325bd004e10593eb5cd", null ]
     ] ],
     [ "si47x_agc_overrride", "group__group03.html#unionsi47x__agc__overrride", [
-      [ "arg", "group__group03.html#a25b346943a0228b35aabe966d5817da5", null ],
+      [ "arg", "group__group03.html#a6e59c439331e3addf2f3979fddf54036", null ],
       [ "raw", "group__group03.html#a7b8218655c25e1f8d75d92818ec24f20", null ]
     ] ],
     [ "si47x_agc_overrride.arg", "group__group03.html#structsi47x__agc__overrride_8arg", [
@@ -26,7 +26,7 @@ var group__group03 =
       [ "AGCIDX", "group__group03.html#a26bd0af30c189325bd004e10593eb5cd", null ]
     ] ],
     [ "si47x_bandwidth_config", "group__group03.html#unionsi47x__bandwidth__config", [
-      [ "param", "group__group03.html#aa2070acb617691d3128fe88cbacac68d", null ],
+      [ "param", "group__group03.html#adc78f2cf172c060ce156a35450ac2134", null ],
       [ "raw", "group__group03.html#aa8fd81f2f62788fac6c3cce7b1ea765d", null ]
     ] ],
     [ "si47x_bandwidth_config.param", "group__group03.html#structsi47x__bandwidth__config_8param", [
@@ -36,7 +36,7 @@ var group__group03 =
       [ "DUMMY2", "group__group03.html#abece94c62273dc7ecfabc565b76dbbe5", null ]
     ] ],
     [ "si47x_ssb_mode", "group__group03.html#unionsi47x__ssb__mode", [
-      [ "param", "group__group03.html#af356476d5712bfd4626f905befcc21c2", null ],
+      [ "param", "group__group03.html#a8f2415270b023a24064dc81d7ed5bb74", null ],
       [ "raw", "group__group03.html#ac57630fdfe3cf7069f8483a50a41c501", null ]
     ] ],
     [ "si47x_ssb_mode.param", "group__group03.html#structsi47x__ssb__mode_8param", [
@@ -49,7 +49,7 @@ var group__group03 =
       [ "DSP_AFCDIS", "group__group03.html#a5ff4a830553e8db4d36f8b3677e3d412", null ]
     ] ],
     [ "si4735_digital_output_format", "group__group03.html#unionsi4735__digital__output__format", [
-      [ "refined", "group__group03.html#ad9d0b6d28abc25f5b73b754ce7a4371a", null ],
+      [ "refined", "group__group03.html#a35ccd17683cd73a68c47e8351f8f7520", null ],
       [ "raw", "group__group03.html#a0fa2c05d8877d3c680e904842993c33e", null ]
     ] ],
     [ "si4735_digital_output_format.refined", "group__group03.html#structsi4735__digital__output__format_8refined", [

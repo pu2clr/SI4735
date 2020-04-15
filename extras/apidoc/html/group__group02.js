@@ -1,7 +1,7 @@
 var group__group02 =
 [
     [ "si47x_rqs_status", "group__group02.html#unionsi47x__rqs__status", [
-      [ "resp", "group__group02.html#aa0cbe878fa3906a95862c05258113b14", null ],
+      [ "resp", "group__group02.html#af86aa3d6afe48037aa0a364388d29d57", null ],
       [ "raw", "group__group02.html#a184e0892bc82522efe50c49836bb8cc5", null ]
     ] ],
     [ "si47x_rqs_status.resp", "group__group02.html#structsi47x__rqs__status_8resp", [
@@ -33,7 +33,7 @@ var group__group02 =
       [ "FREQOFF", "group__group02.html#a0c144971635328e95870811948c9071a", null ]
     ] ],
     [ "si47x_rds_command", "group__group02.html#unionsi47x__rds__command", [
-      [ "arg", "group__group02.html#a8d7a73d88209014aec0b3d2afad29e99", null ],
+      [ "arg", "group__group02.html#a0e8b45dd88845a6fa05c7cc9a3e88197", null ],
       [ "raw", "group__group02.html#a3c151920e2f167bfa7c47193a20ecb58", null ]
     ] ],
     [ "si47x_rds_command.arg", "group__group02.html#structsi47x__rds__command_8arg", [
@@ -43,7 +43,7 @@ var group__group02 =
       [ "dummy", "group__group02.html#a275876e34cf609db118f3d84b799a790", null ]
     ] ],
     [ "si47x_rds_status", "group__group02.html#unionsi47x__rds__status", [
-      [ "resp", "group__group02.html#ab4a2c9900765b8eef8fda90c4d602763", null ],
+      [ "resp", "group__group02.html#ab56e9d309c505da542bd9fe64c765948", null ],
       [ "raw", "group__group02.html#a526947c93583b28968de411b0206fdfb", null ]
     ] ],
     [ "si47x_rds_status.resp", "group__group02.html#structsi47x__rds__status_8resp", [
@@ -80,7 +80,7 @@ var group__group02 =
       [ "BLEA", "group__group02.html#abe92870ea28d50ecdfd8f987836e103f", null ]
     ] ],
     [ "si47x_rds_int_source", "group__group02.html#unionsi47x__rds__int__source", [
-      [ "refined", "group__group02.html#a965a5b4df871634ea0db1d7812d61e88", null ],
+      [ "refined", "group__group02.html#aca287b88234a84b4f3210ea155b814b8", null ],
       [ "raw", "group__group02.html#abfd03e295ce96a214407c2705d9b96c7", null ]
     ] ],
     [ "si47x_rds_int_source.refined", "group__group02.html#structsi47x__rds__int__source_8refined", [
@@ -94,7 +94,7 @@ var group__group02 =
       [ "DUMMY3", "group__group02.html#a613aa5c14b3ccc6304a519292c482ed1", null ]
     ] ],
     [ "si47x_rds_config", "group__group02.html#unionsi47x__rds__config", [
-      [ "arg", "group__group02.html#a9c5a6c450646f04a01125686c0a43e5c", null ],
+      [ "arg", "group__group02.html#ae4672dc74089b7ebdfcbc073f113ec61", null ],
       [ "raw", "group__group02.html#ace0fc779a1af19098b03178fcbaafffe", null ]
     ] ],
     [ "si47x_rds_config.arg", "group__group02.html#structsi47x__rds__config_8arg", [
@@ -106,8 +106,8 @@ var group__group02 =
       [ "BLETHA", "group__group02.html#a955ffa2ef1f258071376294e01482059", null ]
     ] ],
     [ "si47x_rds_blocka", "group__group02.html#unionsi47x__rds__blocka", [
-      [ "refined", "group__group02.html#a5eda7bb7face5845fea3b479288029a5", null ],
-      [ "raw", "group__group02.html#a59902899306fbf0ad1b7e091dca2cc35", null ]
+      [ "refined", "group__group02.html#aa4c2a9fbae026e643467c35779259061", null ],
+      [ "raw", "group__group02.html#ade8be88f35ffe415f3a01eab00cc4bfa", null ]
     ] ],
     [ "si47x_rds_blocka.refined", "group__group02.html#structsi47x__rds__blocka_8refined", [
       [ "pi", "group__group02.html#a72ab8af56bddab33b269c5964b26620a", null ]
@@ -117,10 +117,10 @@ var group__group02 =
       [ "lowValue", "group__group02.html#a72a22270b4e47acf046fad64a8720e4f", null ]
     ] ],
     [ "si47x_rds_blockb", "group__group02.html#unionsi47x__rds__blockb", [
-      [ "group0", "group__group02.html#a2906df40d807f8333e156afed5ed116e", null ],
-      [ "group2", "group__group02.html#a7b0e1b6ef1ff16ba6d9e87903705374f", null ],
-      [ "refined", "group__group02.html#ab54b2d59f9412f2c5a8098836368e67e", null ],
-      [ "raw", "group__group02.html#a7939382a183667c4d3d70e49743ee005", null ]
+      [ "group0", "group__group02.html#affbc7c03d40ea38d7b6f3cbf51c86be4", null ],
+      [ "group2", "group__group02.html#ad6cec2eafdda2b1706482498fce7bf08", null ],
+      [ "refined", "group__group02.html#a70c9cec56ad505c229ec84e915dd5b8b", null ],
+      [ "raw", "group__group02.html#a5659426420d3a3583ebb633a5b3ef873", null ]
     ] ],
     [ "si47x_rds_blockb.group0", "group__group02.html#structsi47x__rds__blockb_8group0", [
       [ "address", "group__group02.html#a884d9804999fc47a3c2694e49ad2536a", null ],
@@ -153,7 +153,7 @@ var group__group02 =
       [ "highValue", "group__group02.html#aaee469db16fdff1aa5439b776b3d5860", null ]
     ] ],
     [ "si47x_rds_date_time", "group__group02.html#unionsi47x__rds__date__time", [
-      [ "refined", "group__group02.html#a3433cde645cbebe1c9591cf2c0e4bd81", null ],
+      [ "refined", "group__group02.html#a614026be0bca0398d647492f60ffdf70", null ],
       [ "raw", "group__group02.html#a4632acc947ded9cc9577df163fabba69", null ]
     ] ],
     [ "si47x_rds_date_time.refined", "group__group02.html#structsi47x__rds__date__time_8refined", [
