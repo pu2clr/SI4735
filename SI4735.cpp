@@ -208,7 +208,6 @@ void SI4735::setGpioIen(uint8_t STCIEN, uint8_t RSQIEN, uint8_t ERRIEN, uint8_t 
     si473x_gpio_ien gpio;
 
     gpio.arg.DUMMY1 = gpio.arg.DUMMY2 = gpio.arg.DUMMY3 = gpio.arg.DUMMY4 = 0;
-
     gpio.arg.STCIEN = STCIEN;
     gpio.arg.RSQIEN = RSQIEN;
     gpio.arg.ERRIEN = ERRIEN;
@@ -681,6 +680,8 @@ void SI4735::frequencyDown()
 /**
  * @ingroup group08 Set mode and Band
  * 
+ * @todo Adjust the power up parameters
+ * 
  * @brief Sets the radio to AM function. It means: LW MW and SW.
  * 
  * @details Define the band range you want to use for the AM mode. 
@@ -694,7 +695,8 @@ void SI4735::setAM()
     if (lastMode != AM_CURRENT_MODE)
     {
         powerDown();
-        setPowerUp(1, 1, 0, 1, 1, currentAudioMode);
+        // setPowerUp(1, 1, 0, 1, 1, currentAudioMode);
+        setPowerUp(this->interruptPin, 0, 0, 1, 1, currentAudioMode);
         radioPowerUp();
         setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain to 48
         setVolume(volume);                    // Set to previus configured volume
@@ -706,6 +708,8 @@ void SI4735::setAM()
 /**
  * @ingroup group08 Set mode and Band
  * 
+ * @todo Adjust the power up parameters
+ * 
  * @brief Sets the radio to FM function
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 64. 
@@ -713,7 +717,8 @@ void SI4735::setAM()
 void SI4735::setFM()
 {
     powerDown();
-    setPowerUp(1, 1, 0, 1, 0, currentAudioMode);
+    // setPowerUp(1, 1, 0, 1, 0, currentAudioMode);
+    setPowerUp(this->interruptPin, 0, 0, 1, 0, currentAudioMode);
     radioPowerUp();
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
@@ -2426,6 +2431,8 @@ void SI4735::setSSBAudioBandwidth(uint8_t AUDIOBW)
  * 
  * @brief Set the radio to AM function. 
  * 
+ * @todo Adjust the power up parameters
+ * 
  * @details Set the radio to SSB (LW/MW/SW) function. 
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14 
@@ -2440,7 +2447,8 @@ void SI4735::setSSB(uint8_t usblsb)
     // Is it needed to load patch when switch to SSB?
     // powerDown();
     // It starts with the same AM parameters.
-    setPowerUp(1, 1, 0, 1, 1, currentAudioMode);
+    // setPowerUp(1, 1, 0, 1, 1, currentAudioMode);
+    setPowerUp(this->interruptPin, 0, 0, 1, 1, currentAudioMode);
     radioPowerUp();
     // ssbPowerUp(); // Not used for regular operation
     setVolume(volume); // Set to previus configured volume
