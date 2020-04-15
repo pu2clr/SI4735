@@ -196,6 +196,27 @@ typedef union {
 /**
  * @ingroup group01
  * 
+ * @brief Data type for Enables output for GPO1, GPO2 and GPO3
+ * 
+ * @details GPO1, 2, and 3 can be configured for output (Hi-Z or active drive) by setting the GPO1OEN, GPO2OEN, and GPO3OEN bit. 
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 82 and 144
+ */
+typedef union {
+    struct
+    {
+        uint8_t DUMMY1 : 1;  //!< Always write 0.
+        uint8_t GPO1OEN : 1; //!< GPO1 Output Enable.
+        uint8_t GPO2OEN : 1; //!< GPO2 Output Enable.
+        uint8_t GPO3OEN : 1; //!< GPO3 Output Enable.
+        uint8_t DUMMY2 : 4;  //!< Always write 0.
+    } arg;              //!<  Refined powerup parameters
+    uint8_t raw;    
+} si473x_gpio;
+
+/**
+ * @ingroup group01
+ * 
  * @brief Represents how the  frequency is stored in the si4735.
  * @details It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH)  
  */
@@ -939,6 +960,9 @@ protected:
     uint8_t currentSsbStatus;
 
     void waitInterrupr(void);
+    void gpioCTL(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN);
+    void setGPIO(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL);
+
     void sendProperty(uint16_t propertyNumber, uint16_t param);
 
     void sendSSBModeProperty();

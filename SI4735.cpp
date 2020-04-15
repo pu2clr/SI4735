@@ -75,6 +75,84 @@ void SI4735::waitInterrupr(void)
         ;
 }
 
+/**
+ * @defgroup group05 Deal with Interrupt and I2C bus
+ * 
+ * @brief Enables output for GPO1, 2, and 3. 
+ * 
+ * @details GPO1, 2, and 3 can be configured for output (Hi-Z or active drive) by setting the GPO1OEN, GPO2OEN, and GPO3OEN bit. 
+ * @details The state (high or low) of GPO1, 2, and 3 is set with the GPIO_SET command. 
+ * @details To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.
+ * 
+ * | GPIO Output Enable  | value 0 | value 1 |
+ * | ---- ---------------| ------- | ------- | 
+ * | GPO1OEN             | Output Disabled (Hi-Z) (default) | Output Enabled |
+ * | GPO2OEN             | Output Disabled (Hi-Z) (default) | Output Enabled |
+ * | GPO3OEN             | Output Disabled (Hi-Z) (default) | Output Enabled |
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 82 and 144
+ * 
+ * @param GPO1OEN 
+ * @param GPO2OEN 
+ * @param GPO3OEN 
+ */
+void SI4735::gpioCTL(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN)
+{
+    si473x_gpio gpio;
+
+    gpio.arg.GPO1OEN = GPO1OEN;
+    gpio.arg.GPO2OEN = GPO2OEN;
+    gpio.arg.GPO3OEN = GPO3OEN;
+    gpio.arg.DUMMY1 = 0;
+    gpio.arg.DUMMY2 = 0;
+
+    waitToSend();
+ 
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(GPIO_CTL);
+    Wire.write(gpio.raw); // Content of ARG1
+    Wire.endTransmission();
+}
+
+/**
+ * @defgroup group05 Deal with Interrupt and I2C bus
+ * 
+ * @brief Sets the output level (high or low) for GPO1, 2, and 3.  
+ * 
+ * @details GPO1, 2, and 3 can be configured for output by setting the GPO1OEN, GPO2OEN, and GPO3OEN bit in the GPIO_CTL command. 
+ * @details To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.
+ * @details To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.
+ * 
+ * | GPIO Output Enable  | value 0 | value 1 |
+ * | ---- ---------------| ------- | ------- | 
+ * | GPO1LEVEL            |  Output low (default) | Output high |
+ * | GPO2LEVEL            |  Output low (default) | Output high |
+ * | GPO3LEVEL            |  Output low (default) | Output high |
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 83 and 145
+ * 
+ * @param GPO1LEVEL
+ * @param GPO2LEVEL
+ * @param GPO3LEVEL
+ */
+void SI4735::setGPIO(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL)
+{
+    si473x_gpio gpio;
+
+    gpio.arg.GPO1OEN = GPO1LEVEL;
+    gpio.arg.GPO2OEN = GPO2LEVEL;
+    gpio.arg.GPO3OEN = GPO3LEVEL;
+    gpio.arg.DUMMY1 = 0;
+    gpio.arg.DUMMY2 = 0;
+
+    waitToSend();
+    
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(GPIO_SET);
+    Wire.write(gpio.raw); // Content of ARG1
+    Wire.endTransmission();
+}
+
 /** 
  * @ingroup group05 I2C bus address
  * 
