@@ -2814,6 +2814,18 @@ void SI4735::setMcuControl(bool value)
     // TO DO
 }
 
+/**
+ * @ingroup group18 MCU Wake up pin
+ * @todo 
+ * @brief   Sets pin used to wake the MCU up. 
+ * @details The MCU should have a pin used to contol its condition. 
+ * 
+ * @param pin MCU pin used to control the MCU
+ */
+void SI4735::setMcuWakeUpPin(uint8_t pin)
+{
+    // TO DO
+}
 
 /**
  * @ingroup group18 MCU control enable
@@ -2829,4 +2841,16 @@ void SI4735::setMcuSleepTime(uint32_t timeInterval)
     // TO DO
 }
 
-
+/**
+ * @ingroup group18 MCU control enable
+ * @todo 
+ * @brief Sets the Mcu Clock Speed if the platform supports this resource
+ * 
+ * @details If the MCU platform support, this function sets the CPU clock speed. 
+ * 
+ * @param param CPU parameter
+ */
+void SI4735::setMcuSpeed(uint32_t clock)
+{
+    // TO DO
+}

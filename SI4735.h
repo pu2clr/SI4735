@@ -1728,5 +1728,6 @@ public:
 
     void setMcuControl(bool value);
     void setMcuSleepTime(uint32_t timeInterval);
-
+    void setMcuSpeed(uint32_t clock);
+    void setMcuWakeUpPin(uint8_t pin);
 };
