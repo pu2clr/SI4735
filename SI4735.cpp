@@ -510,8 +510,8 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, 
         interruptEnable = 1;
     }
 
-    pinMode(resetPin, OUTPUT);
-    digitalWrite(resetPin, HIGH);
+    // pinMode(resetPin, OUTPUT);
+    // digitalWrite(resetPin, HIGH);
 
     data_from_si4735 = false;
 
