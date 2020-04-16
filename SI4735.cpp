@@ -2793,3 +2793,40 @@ bool SI4735::downloadPatch(int eeprom_i2c_address)
     delayMicroseconds(250);
     return true;
 }
+
+/**
+ * @defgroup group18 MCU Configuration
+ * 
+ * @brief Sets some MCU configurations (Arduino, DUE, SMT32, ESP32 etc);
+ * 
+ */
+
+/**
+ * @ingroup group18 MCU control enable
+ * @todo 
+ * @brief Enables MCU control resource
+ * @details If enabled, the user can make, for example, the MCU sleep or wake up among other things. 
+ * 
+ * @param value If true, Enable MCU control; If false (default), disable the MCU control; 
+ */
+void SI4735::setMcuControl(bool value)
+{
+    // TO DO
+}
+
+
+/**
+ * @ingroup group18 MCU control enable
+ * @todo 
+ * @brief Sets the Mcu Sleep Time 
+ * 
+ * @details Sets the time (in ms) that the MCU should sleep until wake up to process something. 
+ * 
+ * @param timeInterval Time in ms that the MCU will sleep.
+ */
+void SI4735::setMcuSleepTime(uint32_t timeInterval)
+{
+    // TO DO
+}
+
+

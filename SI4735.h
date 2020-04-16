@@ -1725,4 +1725,8 @@ public:
     void setDeviceI2CAddress(uint8_t senPin);
     int16_t getDeviceI2CAddress(uint8_t resetPin);
     void setDeviceOtherI2CAddress(uint8_t i2cAddr);
+
+    void setMcuControl(bool value);
+    void setMcuSleepTime(uint32_t timeInterval);
+
 };
