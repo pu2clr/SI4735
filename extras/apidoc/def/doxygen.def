@@ -4874,11 +4874,67 @@ _EnD_oF_dEf_TeXt_;
 Sets the Mcu Sleep Time.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
- \xrefitem todo 7.
+ \xrefitem todo 8.
 
 Sets the time (in ms) that the MCU should sleep until wake up to process something. 
 
 @param timeInterval Time in ms that the MCU will sleep.
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group18_1gaccea2de23adfa3b55bbb8932f240ed8c';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'setMcuSpeed';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint32_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'clock';
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '1731';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Sets the Mcu Clock Speed if the platform supports this resource.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+ \xrefitem todo 9.
+
+If the MCU platform support, this function sets the CPU clock speed. 
+
+@param param CPU parameter
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group18_1ga666489368d463fb99923bf3134e89626';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'setMcuWakeUpPin';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'pin';
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '1732';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Sets pin used to wake the MCU up.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+ \xrefitem todo 7.
+
+The MCU should have a pin used to contol its condition. 
+
+@param pin MCU pin used to control the MCU
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
   }; /* cp-section */

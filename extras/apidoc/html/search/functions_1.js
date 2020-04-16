@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['clearrdsbuffer0a_448',['clearRdsBuffer0A',['../group__group16.html#gadede134b96fd5650b87673ce413babb2',1,'SI4735']]],
-  ['clearrdsbuffer2a_449',['clearRdsBuffer2A',['../group__group16.html#gac65c552004f5e5e646638e37a5a68213',1,'SI4735']]],
-  ['clearrdsbuffer2b_450',['clearRdsBuffer2B',['../group__group16.html#gaed0988165057aa2880f41b88ac236cd7',1,'SI4735']]]
+  ['clearrdsbuffer0a_450',['clearRdsBuffer0A',['../group__group16.html#gadede134b96fd5650b87673ce413babb2',1,'SI4735']]],
+  ['clearrdsbuffer2a_451',['clearRdsBuffer2A',['../group__group16.html#gac65c552004f5e5e646638e37a5a68213',1,'SI4735']]],
+  ['clearrdsbuffer2b_452',['clearRdsBuffer2B',['../group__group16.html#gaed0988165057aa2880f41b88ac236cd7',1,'SI4735']]]
 ];
