@@ -1741,6 +1741,7 @@ public:
      */
     inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); };
 
+    // MCU control. Virtual
     virtual void setMcuControl(bool value);
     virtual void setMcuWakeUpPin(uint8_t pin);
     virtual void mcuWakeUp();
