@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['waitinterrupr_610',['waitInterrupr',['../group__group05.html#gad2e95c88de0dfa58ff7aa36988071421',1,'SI4735']]],
-  ['waittosend_611',['waitToSend',['../group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0',1,'SI4735']]]
+  ['volumedown_613',['volumeDown',['../group__group13.html#ga23d49ab35895b76e0898405fac086c09',1,'SI4735']]],
+  ['volumeup_614',['volumeUp',['../group__group13.html#ga5e3e8cf04ca99c6be2dbe15d72b4efa3',1,'SI4735']]]
 ];

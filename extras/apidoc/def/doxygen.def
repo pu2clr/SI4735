@@ -14,7 +14,7 @@ class = {
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'SI4735';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1007';
+      sec-mem-desc-line = '1012';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Construct a new SI4735::SI4735.
 _EnD_oF_dEf_TeXt_;
@@ -53,7 +53,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1008';
+      sec-mem-desc-line = '1013';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Reset the SI473X  
 <br>
@@ -87,7 +87,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1009';
+      sec-mem-desc-line = '1014';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1).  
 <br>
@@ -240,7 +240,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'defaultFunction';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1011';
+      sec-mem-desc-line = '1016';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Starts the Si473X device.  
 <br>
@@ -296,7 +296,7 @@ SI473X_ANALOG_AUDIO
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1012';
+      sec-mem-desc-line = '1017';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Starts the Si473X device.
 _EnD_oF_dEf_TeXt_;
@@ -348,7 +348,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-defname = 'propertyNumber';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1014';
+      sec-mem-desc-line = '1019';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets a property from the SI47XX.
 _EnD_oF_dEf_TeXt_;
@@ -392,7 +392,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'param';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1028';
+      sec-mem-desc-line = '1033';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the a given Property.
 _EnD_oF_dEf_TeXt_;
@@ -453,7 +453,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'OPMODE';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1033';
+      sec-mem-desc-line = '1038';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set the Power Up parameters for si473X.
 _EnD_oF_dEf_TeXt_;
@@ -485,7 +485,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1034';
+      sec-mem-desc-line = '1039';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Powerup the Si47XX.
 _EnD_oF_dEf_TeXt_;
@@ -555,7 +555,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1035';
+      sec-mem-desc-line = '1040';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 You have to call setPowerUp method before.
 _EnD_oF_dEf_TeXt_;
@@ -586,7 +586,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1036';
+      sec-mem-desc-line = '1041';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Moves the device from powerup to powerdown mode.
 _EnD_oF_dEf_TeXt_;
@@ -633,7 +633,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-defname = 'freq';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1038';
+      sec-mem-desc-line = '1043';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set the frequency to the corrent function of the Si4735 (FM, AM or SSB)
 _EnD_oF_dEf_TeXt_;
@@ -675,7 +675,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-defname = 'CANCEL';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1040';
+      sec-mem-desc-line = '1045';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current status  of the Si4735 (AM or FM)
 _EnD_oF_dEf_TeXt_;
@@ -706,7 +706,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1042';
+      sec-mem-desc-line = '1047';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current frequency of the Si4735 (AM or FM)
 _EnD_oF_dEf_TeXt_;
@@ -731,7 +731,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getSignalQualityInterrupt';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1055';
+      sec-mem-desc-line = '1060';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Signal Quality Interrupt status.
 _EnD_oF_dEf_TeXt_;
@@ -754,7 +754,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getRadioDataSystemInterrupt';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1065';
+      sec-mem-desc-line = '1070';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Radio Data System (RDS) Interrupt status.
 _EnD_oF_dEf_TeXt_;
@@ -774,7 +774,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getTuneCompleteTriggered';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1075';
+      sec-mem-desc-line = '1080';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Tune Complete status.
 _EnD_oF_dEf_TeXt_;
@@ -794,7 +794,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getStatusError';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1085';
+      sec-mem-desc-line = '1090';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Status Error.
 _EnD_oF_dEf_TeXt_;
@@ -813,7 +813,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getStatusCTS';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1095';
+      sec-mem-desc-line = '1100';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the Error flag Clear to Send.
 _EnD_oF_dEf_TeXt_;
@@ -831,7 +831,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getACFIndicator';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1102';
+      sec-mem-desc-line = '1107';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns true if the AFC rails (AFC Rail Indicator).
 _EnD_oF_dEf_TeXt_;
@@ -849,7 +849,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getBandLimit';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1114';
+      sec-mem-desc-line = '1119';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns true if a seek hit the band limit.
 _EnD_oF_dEf_TeXt_;
@@ -869,7 +869,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getStatusValid';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1127';
+      sec-mem-desc-line = '1132';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the channel status.
 _EnD_oF_dEf_TeXt_;
@@ -890,7 +890,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getReceivedSignalStrengthIndicator';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1137';
+      sec-mem-desc-line = '1142';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns the value of  Received Signal Strength Indicator (dBμV).
 _EnD_oF_dEf_TeXt_;
@@ -908,7 +908,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getStatusSNR';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1149';
+      sec-mem-desc-line = '1154';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the SNR metric when tune is complete (dB)
 _EnD_oF_dEf_TeXt_;
@@ -928,7 +928,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getStatusMULT';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1161';
+      sec-mem-desc-line = '1166';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Status the M U L T.
 _EnD_oF_dEf_TeXt_;
@@ -948,7 +948,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getAntennaTuningCapacitor';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1173';
+      sec-mem-desc-line = '1178';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Antenna Tuning Capacitor value.
 _EnD_oF_dEf_TeXt_;
@@ -968,7 +968,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getAutomaticGainControl';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1178';
+      sec-mem-desc-line = '1183';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Queries Automatic Gain Control STATUS.
 _EnD_oF_dEf_TeXt_;
@@ -994,7 +994,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'setAvcAmMaxGain';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1184';
+      sec-mem-desc-line = '1189';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the Avc Am Max Gain to 48dB.
 _EnD_oF_dEf_TeXt_;
@@ -1018,7 +1018,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'gain';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1189';
+      sec-mem-desc-line = '1194';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the maximum gain for automatic volume control.
 _EnD_oF_dEf_TeXt_;
@@ -1041,7 +1041,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentAvcAmMaxGain';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1196';
+      sec-mem-desc-line = '1201';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the current Avc Am Max Gain.
 _EnD_oF_dEf_TeXt_;
@@ -1068,7 +1068,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1211';
+      sec-mem-desc-line = '1216';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the Am Soft Mute Max Attenuation.
 _EnD_oF_dEf_TeXt_;
@@ -1102,7 +1102,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1224';
+      sec-mem-desc-line = '1229';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the SSB Soft Mute Max Attenuation object.
 _EnD_oF_dEf_TeXt_;
@@ -1125,7 +1125,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'isAgcEnabled';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1234';
+      sec-mem-desc-line = '1239';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Checks if the AGC is enabled.
 _EnD_oF_dEf_TeXt_;
@@ -1143,7 +1143,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getAgcGainIndex';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1244';
+      sec-mem-desc-line = '1249';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current AGC gain index.
 _EnD_oF_dEf_TeXt_;
@@ -1173,7 +1173,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'AGCIDX';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1249';
+      sec-mem-desc-line = '1254';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Automatic Gain Control setup.
 _EnD_oF_dEf_TeXt_;
@@ -1213,7 +1213,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'INTACK';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1251';
+      sec-mem-desc-line = '1256';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Queries the status of the Received Signal Quality (RSQ) of the current channel.
 _EnD_oF_dEf_TeXt_;
@@ -1248,7 +1248,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1252';
+      sec-mem-desc-line = '1257';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Queries the status of the Received Signal Quality (RSQ) of the current channel (FM_RSQ_STATUS)
 _EnD_oF_dEf_TeXt_;
@@ -1270,7 +1270,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentRSSI';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1261';
+      sec-mem-desc-line = '1266';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the current receive signal strength (0–127 dBμV)
 _EnD_oF_dEf_TeXt_;
@@ -1288,7 +1288,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentSNR';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1271';
+      sec-mem-desc-line = '1276';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current SNR metric (0–127 dB).
 _EnD_oF_dEf_TeXt_;
@@ -1306,7 +1306,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentRssiDetectLow';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1281';
+      sec-mem-desc-line = '1286';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Checks if RSSI detected is LOW.
 _EnD_oF_dEf_TeXt_;
@@ -1324,7 +1324,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentRssiDetectHigh';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1291';
+      sec-mem-desc-line = '1296';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Checks if RSSI detected is high.
 _EnD_oF_dEf_TeXt_;
@@ -1342,7 +1342,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentSnrDetectLow';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1301';
+      sec-mem-desc-line = '1306';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Checks if SNR detect is low.
 _EnD_oF_dEf_TeXt_;
@@ -1360,7 +1360,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentSnrDetectHigh';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1311';
+      sec-mem-desc-line = '1316';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Checks if SNR detect is high.
 _EnD_oF_dEf_TeXt_;
@@ -1378,7 +1378,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentValidChannel';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1321';
+      sec-mem-desc-line = '1326';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Checks if the current channel is valid.
 _EnD_oF_dEf_TeXt_;
@@ -1396,7 +1396,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentAfcRailIndicator';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1331';
+      sec-mem-desc-line = '1336';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 AFC Rail Indicator.
 _EnD_oF_dEf_TeXt_;
@@ -1414,7 +1414,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentSoftMuteIndicator';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1343';
+      sec-mem-desc-line = '1348';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Soft Mute Indicator.
 _EnD_oF_dEf_TeXt_;
@@ -1434,7 +1434,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentStereoBlend';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1355';
+      sec-mem-desc-line = '1360';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the value of the amount of stereo blend in % (100 = full stereo, 0 = full mono).
 _EnD_oF_dEf_TeXt_;
@@ -1452,7 +1452,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentPilot';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1367';
+      sec-mem-desc-line = '1372';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Checks the current pilot.
 _EnD_oF_dEf_TeXt_;
@@ -1472,7 +1472,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentMultipath';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1379';
+      sec-mem-desc-line = '1384';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current Multipath.
 _EnD_oF_dEf_TeXt_;
@@ -1492,7 +1492,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentSignedFrequencyOffset';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1384';
+      sec-mem-desc-line = '1389';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -1510,7 +1510,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentMultipathDetectLow';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1385';
+      sec-mem-desc-line = '1390';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Signed frequency offset (kHz).
 _EnD_oF_dEf_TeXt_;
@@ -1528,7 +1528,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentMultipathDetectHigh';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1386';
+      sec-mem-desc-line = '1391';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Multipath Detect Low.
 _EnD_oF_dEf_TeXt_;
@@ -1546,7 +1546,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentBlendDetectInterrupt';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1387';
+      sec-mem-desc-line = '1392';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Multipath Detect High.
 _EnD_oF_dEf_TeXt_;
@@ -1564,7 +1564,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getFirmwarePN';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1395';
+      sec-mem-desc-line = '1400';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Blend Detect Interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -1582,7 +1582,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getFirmwareFWMAJOR';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1396';
+      sec-mem-desc-line = '1401';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 RESP1 - Part Number (HEX)
 _EnD_oF_dEf_TeXt_;
@@ -1600,7 +1600,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getFirmwareFWMINOR';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1397';
+      sec-mem-desc-line = '1402';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 RESP2 - Returns the Firmware Major Revision (ASCII).
 _EnD_oF_dEf_TeXt_;
@@ -1618,7 +1618,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getFirmwarePATCHH';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1398';
+      sec-mem-desc-line = '1403';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 RESP3 - Returns the Firmware Minor Revision (ASCII).
 _EnD_oF_dEf_TeXt_;
@@ -1636,7 +1636,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getFirmwarePATCHL';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1399';
+      sec-mem-desc-line = '1404';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 RESP4 -  Returns the Patch ID High byte (HEX).
 _EnD_oF_dEf_TeXt_;
@@ -1654,7 +1654,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getFirmwareCMPMAJOR';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1400';
+      sec-mem-desc-line = '1405';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 RESP5 - Returns the Patch ID Low byte (HEX).
 _EnD_oF_dEf_TeXt_;
@@ -1672,7 +1672,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getFirmwareCMPMINOR';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1401';
+      sec-mem-desc-line = '1406';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 RESP6 -  Returns the Component Major Revision (ASCII).
 _EnD_oF_dEf_TeXt_;
@@ -1690,7 +1690,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getFirmwareCHIPREV';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1402';
+      sec-mem-desc-line = '1407';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 RESP7 - Returns the Component Minor Revision (ASCII).
 _EnD_oF_dEf_TeXt_;
@@ -1714,7 +1714,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'volume';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1404';
+      sec-mem-desc-line = '1409';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 RESP8 -  Returns the Chip Revision (ASCII).
 _EnD_oF_dEf_TeXt_;
@@ -1736,7 +1736,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getVolume';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1405';
+      sec-mem-desc-line = '1410';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current volume level.
 _EnD_oF_dEf_TeXt_;
@@ -1756,7 +1756,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'volumeDown';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1406';
+      sec-mem-desc-line = '1411';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set sound volume level Down   
 <br>
@@ -1775,7 +1775,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'volumeUp';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1407';
+      sec-mem-desc-line = '1412';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set sound volume level Up   
 <br>
@@ -1794,7 +1794,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentVolume';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1408';
+      sec-mem-desc-line = '1413';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -1818,7 +1818,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'audioMode';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1428';
+      sec-mem-desc-line = '1433';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns the current volume level.
 _EnD_oF_dEf_TeXt_;
@@ -1880,7 +1880,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'OFALL';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1433';
+      sec-mem-desc-line = '1438';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Configures the digital audio output format.
 _EnD_oF_dEf_TeXt_;
@@ -1911,7 +1911,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'DOSR';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1434';
+      sec-mem-desc-line = '1439';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Enables digital audio output and configures digital audio output sample rate in samples per second (sps).
 _EnD_oF_dEf_TeXt_;
@@ -1937,7 +1937,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'off';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1436';
+      sec-mem-desc-line = '1441';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the audio on or off.
 _EnD_oF_dEf_TeXt_;
@@ -1957,7 +1957,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'setAM';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1438';
+      sec-mem-desc-line = '1443';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the radio to AM function. It means: LW MW and SW.
 _EnD_oF_dEf_TeXt_;
@@ -1996,7 +1996,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'setFM';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1439';
+      sec-mem-desc-line = '1444';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the radio to FM function.
 _EnD_oF_dEf_TeXt_;
@@ -2061,7 +2061,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'step';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1440';
+      sec-mem-desc-line = '1445';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the radio to AM (LW/MW/SW) function.
 _EnD_oF_dEf_TeXt_;
@@ -2120,7 +2120,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'step';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1441';
+      sec-mem-desc-line = '1446';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the radio to FM function.
 _EnD_oF_dEf_TeXt_;
@@ -2175,7 +2175,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'AMPLFLT';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1443';
+      sec-mem-desc-line = '1448';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Selects the bandwidth of the channel filter for AM reception.
 _EnD_oF_dEf_TeXt_;
@@ -2211,7 +2211,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getTuneFrequencyFast';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1445';
+      sec-mem-desc-line = '1450';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2235,7 +2235,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'FAST';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1446';
+      sec-mem-desc-line = '1451';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns the FAST tuning status.
 _EnD_oF_dEf_TeXt_;
@@ -2253,7 +2253,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getTuneFrequencyFreeze';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1447';
+      sec-mem-desc-line = '1452';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate.
 _EnD_oF_dEf_TeXt_;
@@ -2277,7 +2277,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'FREEZE';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1448';
+      sec-mem-desc-line = '1453';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns the FREEZE status.
 _EnD_oF_dEf_TeXt_;
@@ -2301,7 +2301,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'capacitor';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1449';
+      sec-mem-desc-line = '1454';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Only FM. Freeze Metrics During Alternate Frequency Jump.
 _EnD_oF_dEf_TeXt_;
@@ -2338,7 +2338,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'frequencyUp';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1451';
+      sec-mem-desc-line = '1456';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Increments the current frequency on current band/function by using the current step.
 _EnD_oF_dEf_TeXt_;
@@ -2356,7 +2356,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'frequencyDown';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1452';
+      sec-mem-desc-line = '1457';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Decrements the current frequency on current band/function by using the current step.
 _EnD_oF_dEf_TeXt_;
@@ -2374,7 +2374,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'isCurrentTuneFM';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1453';
+      sec-mem-desc-line = '1458';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns true if the current function is FM (FM_TUNE_FREQ).
 _EnD_oF_dEf_TeXt_;
@@ -2392,7 +2392,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'isCurrentTuneAM';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1454';
+      sec-mem-desc-line = '1459';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns true if the current function is AM (AM_TUNE_FREQ).
 _EnD_oF_dEf_TeXt_;
@@ -2410,7 +2410,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'isCurrentTuneSSB';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1455';
+      sec-mem-desc-line = '1460';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns true if the current function is SSB (SSB_TUNE_FREQ).
 _EnD_oF_dEf_TeXt_;
@@ -2433,7 +2433,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1457';
+      sec-mem-desc-line = '1462';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets firmware information.
 _EnD_oF_dEf_TeXt_;
@@ -2476,7 +2476,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'WRAP';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1459';
+      sec-mem-desc-line = '1464';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Look for a station (Automatic tune)
 _EnD_oF_dEf_TeXt_;
@@ -2502,7 +2502,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'seekStationUp';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1460';
+      sec-mem-desc-line = '1465';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Search for the next station.
 _EnD_oF_dEf_TeXt_;
@@ -2520,7 +2520,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'seekStationDown';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1461';
+      sec-mem-desc-line = '1466';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Search the previous station.
 _EnD_oF_dEf_TeXt_;
@@ -2550,7 +2550,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'top';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1462';
+      sec-mem-desc-line = '1467';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the bottom frequency and top frequency of the AM band for seek. Default is 520 to 1710.
 _EnD_oF_dEf_TeXt_;
@@ -2577,7 +2577,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'spacing';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1463';
+      sec-mem-desc-line = '1468';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Selects frequency spacingfor AM seek. Default is 10 kHz spacing.
 _EnD_oF_dEf_TeXt_;
@@ -2603,7 +2603,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1464';
+      sec-mem-desc-line = '1469';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the SNR threshold for a valid AM Seek/Tune.
 _EnD_oF_dEf_TeXt_;
@@ -2629,7 +2629,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1465';
+      sec-mem-desc-line = '1470';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the RSSI threshold for a valid AM Seek/Tune.
 _EnD_oF_dEf_TeXt_;
@@ -2655,7 +2655,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'parameter';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1467';
+      sec-mem-desc-line = '1472';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets RSSI threshold for stereo blend (Full stereo above threshold, blend below threshold).
 _EnD_oF_dEf_TeXt_;
@@ -2683,7 +2683,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'parameter';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1468';
+      sec-mem-desc-line = '1473';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold).
 _EnD_oF_dEf_TeXt_;
@@ -2711,7 +2711,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'parameter';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1469';
+      sec-mem-desc-line = '1474';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets RSSI threshold for stereo blend. (Full stereo above threshold, blend below threshold.)
 _EnD_oF_dEf_TeXt_;
@@ -2739,7 +2739,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'parameter';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1470';
+      sec-mem-desc-line = '1475';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold).
 _EnD_oF_dEf_TeXt_;
@@ -2768,7 +2768,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'parameter';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1471';
+      sec-mem-desc-line = '1476';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets SNR threshold for stereo blend (Full stereo above threshold, blend below threshold).
 _EnD_oF_dEf_TeXt_;
@@ -2797,7 +2797,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'parameter';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1472';
+      sec-mem-desc-line = '1477';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets SNR threshold for mono blend (Full mono below threshold, blend above threshold).
 _EnD_oF_dEf_TeXt_;
@@ -2825,7 +2825,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'parameter';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1473';
+      sec-mem-desc-line = '1478';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets multipath threshold for stereo blend (Full stereo below threshold, blend above threshold).
 _EnD_oF_dEf_TeXt_;
@@ -2853,7 +2853,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'parameter';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1474';
+      sec-mem-desc-line = '1479';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets Multipath threshold for mono blend (Full mono above threshold, blend below threshold).
 _EnD_oF_dEf_TeXt_;
@@ -2875,7 +2875,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'setFmStereoOn';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1475';
+      sec-mem-desc-line = '1480';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Turn Off Stereo operation.
 _EnD_oF_dEf_TeXt_;
@@ -2893,7 +2893,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'setFmStereoOff';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1476';
+      sec-mem-desc-line = '1481';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Turn Off Stereo operation.
 _EnD_oF_dEf_TeXt_;
@@ -2911,7 +2911,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'RdsInit';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1478';
+      sec-mem-desc-line = '1483';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Starts the control member variables for RDS.
 _EnD_oF_dEf_TeXt_;
@@ -2986,7 +2986,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'RDSRECV';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1479';
+      sec-mem-desc-line = '1484';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Configures interrupt related to RDS.
 _EnD_oF_dEf_TeXt_;
@@ -3035,7 +3035,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'STATUSONLY';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1480';
+      sec-mem-desc-line = '1485';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS.
 _EnD_oF_dEf_TeXt_;
@@ -3077,7 +3077,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getRdsStatus';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1481';
+      sec-mem-desc-line = '1486';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets RDS Status.
 _EnD_oF_dEf_TeXt_;
@@ -3101,7 +3101,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getRdsReceived';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1488';
+      sec-mem-desc-line = '1493';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Rds Received FIFO.
 _EnD_oF_dEf_TeXt_;
@@ -3135,7 +3135,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getRdsSyncLost';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1498';
+      sec-mem-desc-line = '1503';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Rds Sync Lost object.
 _EnD_oF_dEf_TeXt_;
@@ -3154,7 +3154,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getRdsSyncFound';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1508';
+      sec-mem-desc-line = '1513';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Rds Sync Found.
 _EnD_oF_dEf_TeXt_;
@@ -3173,7 +3173,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getRdsNewBlockA';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1519';
+      sec-mem-desc-line = '1524';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Rds New Block A.
 _EnD_oF_dEf_TeXt_;
@@ -3197,7 +3197,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getRdsNewBlockB';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1529';
+      sec-mem-desc-line = '1534';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Rds New Block B.
 _EnD_oF_dEf_TeXt_;
@@ -3216,7 +3216,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getRdsSync';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1539';
+      sec-mem-desc-line = '1544';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Rds Sync.
 _EnD_oF_dEf_TeXt_;
@@ -3235,7 +3235,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getGroupLost';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1549';
+      sec-mem-desc-line = '1554';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Group Lost.
 _EnD_oF_dEf_TeXt_;
@@ -3254,7 +3254,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getNumRdsFifoUsed';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1559';
+      sec-mem-desc-line = '1564';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the Num Rds Fifo Used.
 _EnD_oF_dEf_TeXt_;
@@ -3303,7 +3303,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'BLETHD';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1564';
+      sec-mem-desc-line = '1569';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets RDS property.
 _EnD_oF_dEf_TeXt_;
@@ -3372,7 +3372,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1565';
+      sec-mem-desc-line = '1570';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns the programa type.
 _EnD_oF_dEf_TeXt_;
@@ -3385,12 +3385,12 @@ Read the Block A content
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1a561a052a8c737302368274c774d8c129';
-        sec-mem-ref-line = '1519';
+        sec-mem-ref-line = '1524';
         sec-mem-ref-name = 'getRdsNewBlockA';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1a6e8405ea5846fab586080a7be696178e';
-        sec-mem-ref-line = '1488';
+        sec-mem-ref-line = '1493';
         sec-mem-ref-name = 'getRdsReceived';
     };
     }; /* sec-member */
@@ -3409,7 +3409,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1566';
+      sec-mem-desc-line = '1571';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns the Group Type (extracted from the Block B)
 _EnD_oF_dEf_TeXt_;
@@ -3432,7 +3432,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1567';
+      sec-mem-desc-line = '1572';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns the current Text Flag A/B  
 <br>
@@ -3457,7 +3457,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1568';
+      sec-mem-desc-line = '1573';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the version code (extracted from the Block B)
 _EnD_oF_dEf_TeXt_;
@@ -3480,7 +3480,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1569';
+      sec-mem-desc-line = '1574';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns the Program Type (extracted from the Block B)
 _EnD_oF_dEf_TeXt_;
@@ -3505,7 +3505,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1570';
+      sec-mem-desc-line = '1575';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Returns the address of the text segment.
 _EnD_oF_dEf_TeXt_;
@@ -3535,7 +3535,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1572';
+      sec-mem-desc-line = '1577';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the RDS Text when the message is of the Group Type 2 version A.
 _EnD_oF_dEf_TeXt_;
@@ -3573,7 +3573,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1573';
+      sec-mem-desc-line = '1578';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the station name and other messages.
 _EnD_oF_dEf_TeXt_;
@@ -3588,7 +3588,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1a6e8405ea5846fab586080a7be696178e';
-        sec-mem-ref-line = '1488';
+        sec-mem-ref-line = '1493';
         sec-mem-ref-name = 'getRdsReceived';
     };
       sec-mem-referenceto = {
@@ -3617,7 +3617,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1574';
+      sec-mem-desc-line = '1579';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the Text processed for the 2A group.
 _EnD_oF_dEf_TeXt_;
@@ -3632,7 +3632,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1a6e8405ea5846fab586080a7be696178e';
-        sec-mem-ref-line = '1488';
+        sec-mem-ref-line = '1493';
         sec-mem-ref-name = 'getRdsReceived';
     };
       sec-mem-referenceto = {
@@ -3661,7 +3661,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1575';
+      sec-mem-desc-line = '1580';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the Text processed for the 2B group.
 _EnD_oF_dEf_TeXt_;
@@ -3700,7 +3700,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1577';
+      sec-mem-desc-line = '1582';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the RDS time and date when the Group type is 4.
 _EnD_oF_dEf_TeXt_;
@@ -3729,7 +3729,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-defname = 'c';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1579';
+      sec-mem-desc-line = '1584';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Process data received from group 2B.
 _EnD_oF_dEf_TeXt_;
@@ -3763,7 +3763,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-defname = 'c';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1580';
+      sec-mem-desc-line = '1585';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Process data received from group 2A.
 _EnD_oF_dEf_TeXt_;
@@ -3791,7 +3791,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'ssbSetup';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1582';
+      sec-mem-desc-line = '1587';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Starts the Si473X device on SSB (same AM Mode).
 _EnD_oF_dEf_TeXt_;
@@ -3820,7 +3820,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'offset';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1583';
+      sec-mem-desc-line = '1588';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the SSB Beat Frequency Offset (BFO).
 _EnD_oF_dEf_TeXt_;
@@ -3881,7 +3881,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'DSP_AFCDIS';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1584';
+      sec-mem-desc-line = '1589';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the SSB receiver mode.
 _EnD_oF_dEf_TeXt_;
@@ -3962,7 +3962,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'usblsb';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1585';
+      sec-mem-desc-line = '1590';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -4001,7 +4001,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'usblsb';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1586';
+      sec-mem-desc-line = '1591';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set the radio to AM function.
 _EnD_oF_dEf_TeXt_;
@@ -4041,7 +4041,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'AUDIOBW';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1587';
+      sec-mem-desc-line = '1592';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 SSB Audio Bandwidth for SSB mode.
 _EnD_oF_dEf_TeXt_;
@@ -4101,7 +4101,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'AVCEN';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1588';
+      sec-mem-desc-line = '1593';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets SSB Automatic Volume Control (AVC) for SSB mode.
 _EnD_oF_dEf_TeXt_;
@@ -4132,7 +4132,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'SBCUTFLT';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1589';
+      sec-mem-desc-line = '1594';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets SBB Sideband Cutoff Filter for band pass and low pass filters.
 _EnD_oF_dEf_TeXt_;
@@ -4169,7 +4169,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'AVC_DIVIDER';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1590';
+      sec-mem-desc-line = '1595';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets AVC Divider.
 _EnD_oF_dEf_TeXt_;
@@ -4201,7 +4201,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'DSP_AFCDIS';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1591';
+      sec-mem-desc-line = '1596';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets DSP AFC disable or enable.
 _EnD_oF_dEf_TeXt_;
@@ -4232,7 +4232,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'SMUTESEL';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1592';
+      sec-mem-desc-line = '1597';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets SSB Soft-mute Based on RSSI or SNR Selection:
 _EnD_oF_dEf_TeXt_;
@@ -4257,7 +4257,7 @@ si47x_firmware_query_library
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'queryLibraryId';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1594';
+      sec-mem-desc-line = '1599';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Query the library information of the Si47XX device.
 _EnD_oF_dEf_TeXt_;
@@ -4315,7 +4315,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'patchPowerUp';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1595';
+      sec-mem-desc-line = '1600';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 This method can be used to prepare the device to apply SSBRX patch.
 _EnD_oF_dEf_TeXt_;
@@ -4356,7 +4356,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'ssb_patch_content_size';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1596';
+      sec-mem-desc-line = '1601';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Transfers the content of a patch stored in a array of bytes to the SI4735 device.
 _EnD_oF_dEf_TeXt_;
@@ -4420,7 +4420,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'eeprom_i2c_address';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1597';
+      sec-mem-desc-line = '1602';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Transfers the content of a patch stored in a eeprom to the SI4735 device.
 _EnD_oF_dEf_TeXt_;
@@ -4450,7 +4450,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'ssbPowerUp';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1598';
+      sec-mem-desc-line = '1603';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 This function can be useful for debug and test.
 _EnD_oF_dEf_TeXt_;
@@ -4462,108 +4462,6 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-ref-line = '330';
         sec-mem-ref-name = 'waitToSend';
     };
-    }; /* sec-member */
-    sec-member = {
-      sec-mem-kind = 'function';
-      sec-mem-id   = 'class_s_i4735_1aecfcd50dbb3d95d66c8cdc77d52af63c';
-      sec-mem-virt = normal;
-      sec-mem-prot = public;
-      sec-mem-type = <<_EnD_oF_dEf_TeXt_
-void
-_EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'setI2CLowSpeedMode';
-      sec-mem-param = {
-        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
-void
-_EnD_oF_dEf_TeXt_;
-      }; /*        sec-mem-param--param */
-      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1609';
-      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Sets I2C buss to 10KHz.
-_EnD_oF_dEf_TeXt_;
-      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-This functions below modify the clock frequency for I2C communication. 
-100KHz  is usually the baseline.
-Use one of these funcition if you have problem on you default configuration. 
-_EnD_oF_dEf_TeXt_;
-    }; /* sec-member */
-    sec-member = {
-      sec-mem-kind = 'function';
-      sec-mem-id   = 'class_s_i4735_1a00ade87631677b8cc88098d0b55cd5a4';
-      sec-mem-virt = normal;
-      sec-mem-prot = public;
-      sec-mem-type = <<_EnD_oF_dEf_TeXt_
-void
-_EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'setI2CStandardMode';
-      sec-mem-param = {
-        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
-void
-_EnD_oF_dEf_TeXt_;
-      }; /*        sec-mem-param--param */
-      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1617';
-      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Sets I2C buss to 100KHz.
-_EnD_oF_dEf_TeXt_;
-      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* sec-member */
-    sec-member = {
-      sec-mem-kind = 'function';
-      sec-mem-id   = 'class_s_i4735_1a7bb3214f70381cf26bb93f96729d641e';
-      sec-mem-virt = normal;
-      sec-mem-prot = public;
-      sec-mem-type = <<_EnD_oF_dEf_TeXt_
-void
-_EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'setI2CFastMode';
-      sec-mem-param = {
-        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
-void
-_EnD_oF_dEf_TeXt_;
-      }; /*        sec-mem-param--param */
-      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1622';
-      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Sets I2C buss to 400KHz.
-_EnD_oF_dEf_TeXt_;
-      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* sec-member */
-    sec-member = {
-      sec-mem-kind = 'function';
-      sec-mem-id   = 'class_s_i4735_1a7433b4e80fd3b501efeae7973d29c985';
-      sec-mem-virt = normal;
-      sec-mem-prot = public;
-      sec-mem-type = <<_EnD_oF_dEf_TeXt_
-void
-_EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'setI2CFastModeCustom';
-      sec-mem-param = {
-        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
-long
-_EnD_oF_dEf_TeXt_;
-        sec-mem-param-declname = 'value';
-        sec-mem-param-defval = <<_EnD_oF_dEf_TeXt_
-500000
-_EnD_oF_dEf_TeXt_;
-      }; /*        sec-mem-param--param */
-      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1634';
-      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-Sets the I2C bus to a given value.
-
-ATTENTION: use this function with cation
-
-@param value in Hz. For example: The values 500000 sets the bus to 500KHz.
-_EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
@@ -4581,7 +4479,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'ms';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1646';
+      sec-mem-desc-line = '1615';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set the Max Delay Power Up.
 _EnD_oF_dEf_TeXt_;
@@ -4616,7 +4514,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'ms';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1662';
+      sec-mem-desc-line = '1631';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set the Max Delay after Set Frequency.
 _EnD_oF_dEf_TeXt_;
@@ -4649,7 +4547,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'step';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1692';
+      sec-mem-desc-line = '1661';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the current step value.
 _EnD_oF_dEf_TeXt_;
@@ -4688,7 +4586,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentFrequency';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1708';
+      sec-mem-desc-line = '1677';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current frequency saved in memory.
 _EnD_oF_dEf_TeXt_;
@@ -4714,7 +4612,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getStatus';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1720';
+      sec-mem-desc-line = '1689';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current status  of the Si47XX (AM, FM or SSB)
 _EnD_oF_dEf_TeXt_;
@@ -4738,7 +4636,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'senPin';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1725';
+      sec-mem-desc-line = '1695';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the I2C Bus Address.
 _EnD_oF_dEf_TeXt_;
@@ -4777,7 +4675,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'resetPin';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1726';
+      sec-mem-desc-line = '1696';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 I2C bus address setup.
 _EnD_oF_dEf_TeXt_;
@@ -4815,7 +4713,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'i2cAddr';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1727';
+      sec-mem-desc-line = '1697';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the onther I2C Bus Address (for Si470X)
 _EnD_oF_dEf_TeXt_;
@@ -4823,6 +4721,108 @@ _EnD_oF_dEf_TeXt_;
 You can set another I2C address different of 0x11  and 0x63
 
 @param uint8_t i2cAddr (example 0x10)
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group18_1gaecfcd50dbb3d95d66c8cdc77d52af63c';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'setI2CLowSpeedMode';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '1711';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Sets I2C buss to 10KHz.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+The functions below modify the clock frequency for I2C communication. 
+100KHz  is usually the baseline.
+Use one of these funcition if you have problem on you default configuration. 
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group18_1ga00ade87631677b8cc88098d0b55cd5a4';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'setI2CStandardMode';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '1721';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Sets I2C buss to 100KHz.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+<br>
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group18_1ga7bb3214f70381cf26bb93f96729d641e';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'setI2CFastMode';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '1728';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Sets I2C buss to 400KHz.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group18_1ga7433b4e80fd3b501efeae7973d29c985';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'setI2CFastModeCustom';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+long
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'value';
+        sec-mem-param-defval = <<_EnD_oF_dEf_TeXt_
+500000
+_EnD_oF_dEf_TeXt_;
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '1742';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Sets the I2C bus to a given value.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+<br>
+
+ATTENTION: use this function with cation
+
+@param value in Hz. For example: The values 500000 sets the bus to 500KHz.
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -4841,7 +4841,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1729';
+      sec-mem-desc-line = '1745';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Enables MCU control resource.
 _EnD_oF_dEf_TeXt_;
@@ -4852,62 +4852,11 @@ If enabled, the user can make, for example, the MCU sleep or wake up among other
 
 @param value If true, Enable MCU control; If false (default), disable the MCU control; 
 _EnD_oF_dEf_TeXt_;
-    }; /* sec-member */
-    sec-member = {
-      sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group18_1ga055d404cd89955109b460b2a90fa9617';
-      sec-mem-virt = normal;
-      sec-mem-prot = public;
-      sec-mem-type = <<_EnD_oF_dEf_TeXt_
-void
-_EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'setMcuSleepTime';
-      sec-mem-param = {
-        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
-uint32_t
-_EnD_oF_dEf_TeXt_;
-        sec-mem-param-declname = 'timeInterval';
-      }; /*        sec-mem-param--param */
-      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1730';
-      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Sets the Mcu Sleep Time.
-_EnD_oF_dEf_TeXt_;
-      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
- \xrefitem todo 8.
-
-Sets the time (in ms) that the MCU should sleep until wake up to process something. 
-
-@param timeInterval Time in ms that the MCU will sleep.
-_EnD_oF_dEf_TeXt_;
-    }; /* sec-member */
-    sec-member = {
-      sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group18_1gaccea2de23adfa3b55bbb8932f240ed8c';
-      sec-mem-virt = normal;
-      sec-mem-prot = public;
-      sec-mem-type = <<_EnD_oF_dEf_TeXt_
-void
-_EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'setMcuSpeed';
-      sec-mem-param = {
-        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
-uint32_t
-_EnD_oF_dEf_TeXt_;
-        sec-mem-param-declname = 'clock';
-      }; /*        sec-mem-param--param */
-      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1731';
-      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Sets the Mcu Clock Speed if the platform supports this resource.
-_EnD_oF_dEf_TeXt_;
-      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
- \xrefitem todo 9.
-
-If the MCU platform support, this function sets the CPU clock speed. 
-
-@param param CPU parameter
-_EnD_oF_dEf_TeXt_;
+      sec-mem-referenceto = {
+        sec-mem-ref-id = '_s_i4735_8h_1afbbc15c116148d811587802f1d53e0be';
+        sec-mem-ref-line = '990';
+        sec-mem-ref-name = 'controlMcu';
+    };
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
@@ -4925,7 +4874,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'pin';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1732';
+      sec-mem-desc-line = '1746';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets pin used to wake the MCU up.
 _EnD_oF_dEf_TeXt_;
@@ -4935,6 +4884,74 @@ _EnD_oF_dEf_TeXt_;
 The MCU should have a pin used to contol its condition. 
 
 @param pin MCU pin used to control the MCU
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group18_1gaa9e3f102e06a9f438c0e3de3a6be4ff9';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'mcuWakeUp';
+      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '1747';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Wakes the MCU up.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+ \xrefitem todo 8.
+
+Make the MCU works again
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group18_1ga87b0dd0b7d9059a91d88d3970cc8e1dc';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'mcuSleepDown';
+      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '1748';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Sleeps the MCU Down.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+ \xrefitem todo 9.
+
+Make the MCU sleeps
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group18_1gaad6a00ac6424667ce62400149f82173d';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'setMcuClockSpeed';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint32_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'clock';
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '1749';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Sets the Mcu Clock Speed if the platform supports this resource.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+ \xrefitem todo 10.
+
+If the MCU platform support, this function sets the CPU clock speed. 
+
+@param param CPU parameter
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
   }; /* cp-section */
@@ -4955,7 +4972,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '991';
+      sec-mem-desc-line = '996';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Interrupt handle.
 _EnD_oF_dEf_TeXt_;
@@ -4973,7 +4990,7 @@ si47x_status
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getInterruptStatus';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '992';
+      sec-mem-desc-line = '997';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Updates bits 6:0 of the status byte.
 _EnD_oF_dEf_TeXt_;
@@ -5026,7 +5043,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'GPO3OEN';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '994';
+      sec-mem-desc-line = '999';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Enables output for GPO1, 2, and 3.
 _EnD_oF_dEf_TeXt_;
@@ -5085,7 +5102,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'GPO3LEVEL';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '995';
+      sec-mem-desc-line = '1000';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the output level (high or low) for GPO1, 2, and 3.  
 <br>
@@ -5163,7 +5180,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'RSQREP';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '996';
+      sec-mem-desc-line = '1001';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Configures the sources for the GPO2/INT interrupt pin.
 _EnD_oF_dEf_TeXt_;
@@ -5212,7 +5229,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-defname = 'parameter';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '998';
+      sec-mem-desc-line = '1003';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sends (sets) property to the SI47XX.
 _EnD_oF_dEf_TeXt_;
@@ -5240,7 +5257,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'sendSSBModeProperty';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1000';
+      sec-mem-desc-line = '1005';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Just send the property SSB_MOD to the device.  Internal use (privete method).
 _EnD_oF_dEf_TeXt_;
@@ -5298,7 +5315,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'disableFmDebug';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1001';
+      sec-mem-desc-line = '1006';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 There is a debug feature that remains active in Si4704/05/3x-D60 firmware which can create periodic noise in audio.
 _EnD_oF_dEf_TeXt_;
@@ -5324,7 +5341,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'clearRdsBuffer2A';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1002';
+      sec-mem-desc-line = '1007';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Clear RDS buffer 2A (text)
 _EnD_oF_dEf_TeXt_;
@@ -5357,7 +5374,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'clearRdsBuffer2B';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1003';
+      sec-mem-desc-line = '1008';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Clear RDS buffer 2B (text)
 _EnD_oF_dEf_TeXt_;
@@ -5390,7 +5407,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'clearRdsBuffer0A';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1004';
+      sec-mem-desc-line = '1009';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Clear RDS buffer 0A (text)
 _EnD_oF_dEf_TeXt_;
@@ -6065,7 +6082,69 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'currentSsbStatus';
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '989';
+      sec-mem-desc-line = '987';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'variable';
+      sec-mem-id   = 'class_s_i4735_1afbbc15c116148d811587802f1d53e0be';
+      sec-mem-virt = normal;
+      sec-mem-prot = protected;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+bool
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'controlMcu';
+      sec-mem-initializer = <<_EnD_oF_dEf_TeXt_
+= false
+_EnD_oF_dEf_TeXt_;
+      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '990';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      sec-mem-referencedby = {
+        sec-mem-ref-id = '_s_i4735_8cpp_1ga24effe79ef38a239c1d49a58df318cf8';
+        sec-mem-ref-line = '2812';
+        sec-mem-ref-name = 'setMcuControl';
+    };
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'variable';
+      sec-mem-id   = 'class_s_i4735_1aff22e7035d3f375858b736ffe6dd39a2';
+      sec-mem-virt = normal;
+      sec-mem-prot = protected;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'controlMcuPin';
+      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '991';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'variable';
+      sec-mem-id   = 'class_s_i4735_1aa96f5ca761cb70b78e06e9929b536dc0';
+      sec-mem-virt = normal;
+      sec-mem-prot = protected;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+uint32_t
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'controlMcuClock';
+      sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '992';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
