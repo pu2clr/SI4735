@@ -196,7 +196,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   // si4735.setup(RESET_PIN, 1);
-  si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO);
+  si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO);
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
