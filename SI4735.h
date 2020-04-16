@@ -984,9 +984,14 @@ protected:
     uint8_t volume = 32;
 
     uint8_t currentAudioMode = SI473X_ANALOG_AUDIO; //!< current audio mode used (ANALOG or DIGITAL or both)
-
-
     uint8_t currentSsbStatus;
+
+
+    bool controlMcu = false;
+    uint8_t controlMcuPin;
+    uint32_t controlMcuClock;
+
+
 
     void waitInterrupr(void);
     si47x_status getInterruptStatus();
@@ -1597,42 +1602,6 @@ public:
     bool downloadPatch(int eeprom_i2c_address);
     void ssbPowerUp();
 
-    /** 
-     * This functions below modify the clock frequency for I2C communication. 
-     * 100KHz  is usually the baseline.
-     * Use one of these funcition if you have problem on you default configuration. 
-     */
-
-    /**
-     * @brief Sets I2C buss to 10KHz
-     */
-    inline void setI2CLowSpeedMode(void)
-    {
-        Wire.setClock(10000);
-    };
-
-    /**
-     * @brief Sets I2C buss to 100KHz
-     */
-    inline void setI2CStandardMode(void) { Wire.setClock(100000); };
-
-    /**
-     * @brief Sets I2C buss to 400KHz
-     */
-    inline void setI2CFastMode(void)
-    {
-        Wire.setClock(400000);
-    };
-
-    /**
-     * Sets the I2C bus to a given value.
-     * 
-     * ATTENTION: use this function with cation
-     * 
-     * @param value in Hz. For example: The values 500000 sets the bus to 500KHz.
-     */
-    inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); };
-
     /**
      * @ingroup group06 Si47XX device Power Up 
      * @brief Set the Max Delay Power Up 
@@ -1722,12 +1691,61 @@ public:
         getStatus(0, 1);
     }
 
+
     void setDeviceI2CAddress(uint8_t senPin);
     int16_t getDeviceI2CAddress(uint8_t resetPin);
     void setDeviceOtherI2CAddress(uint8_t i2cAddr);
 
+
+
+    /******************************************************************************* 
+     * The functions below modify the clock frequency for I2C communication. 
+     * 100KHz  is usually the baseline.
+     * Use one of these funcition if you have problem on you default configuration. 
+     *******************************************************************************/
+
+    /**
+     * @ingroup group18 MCU I2C Speed 
+     * @brief Sets I2C buss to 10KHz
+     */
+    inline void setI2CLowSpeedMode(void)
+    {
+        Wire.setClock(10000);
+    };
+
+    /**
+     * @ingroup group18 MCU I2C Speed  
+     * 
+     * @brief Sets I2C buss to 100KHz
+     */
+    inline void setI2CStandardMode(void) { Wire.setClock(100000); };
+
+    /**
+     * @ingroup group18 MCU I2C Speed 
+     * 
+     * @brief Sets I2C buss to 400KHz
+     */
+    inline void setI2CFastMode(void)
+    {
+        Wire.setClock(400000);
+    };
+
+    /**
+     * @ingroup group18 MCU I2C Speed  
+     * 
+     * @brief Sets the I2C bus to a given value.
+     * 
+     * ATTENTION: use this function with cation
+     * 
+     * @param value in Hz. For example: The values 500000 sets the bus to 500KHz.
+     */
+    inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); };
+
+
     void setMcuControl(bool value);
-    void setMcuSleepTime(uint32_t timeInterval);
-    void setMcuSpeed(uint32_t clock);
     void setMcuWakeUpPin(uint8_t pin);
+    void mcuWakeUp();
+    void mcuSleepDown();
+    void setMcuClockSpeed(uint32_t clock);
+  
 };

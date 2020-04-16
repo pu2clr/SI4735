@@ -2811,7 +2811,7 @@ bool SI4735::downloadPatch(int eeprom_i2c_address)
  */
 void SI4735::setMcuControl(bool value)
 {
-    // TO DO
+    controlMcu = value;
 }
 
 /**
@@ -2824,25 +2824,36 @@ void SI4735::setMcuControl(bool value)
  */
 void SI4735::setMcuWakeUpPin(uint8_t pin)
 {
-    // TO DO
+    controlMcuPin = pin;
 }
 
 /**
- * @ingroup group18 MCU control enable
+ * @ingroup group18 MCU Wake Up
  * @todo 
- * @brief Sets the Mcu Sleep Time 
+ * @brief Wakes the MCU up
  * 
- * @details Sets the time (in ms) that the MCU should sleep until wake up to process something. 
- * 
- * @param timeInterval Time in ms that the MCU will sleep.
+ * @details Make the MCU works again
  */
-void SI4735::setMcuSleepTime(uint32_t timeInterval)
+void SI4735::mcuWakeUp()
 {
     // TO DO
 }
 
 /**
- * @ingroup group18 MCU control enable
+ * @ingroup group18 MCU Sleep
+ * @todo 
+ * @brief Sleeps the MCU Down
+ * 
+ * @details Make the MCU sleeps
+ * 
+ */
+void SI4735::mcuSleepDown()
+{
+    // TO DO
+}
+
+/**
+ * @ingroup group18 MCU Clock Speed
  * @todo 
  * @brief Sets the Mcu Clock Speed if the platform supports this resource
  * 
@@ -2850,7 +2861,7 @@ void SI4735::setMcuSleepTime(uint32_t timeInterval)
  * 
  * @param param CPU parameter
  */
-void SI4735::setMcuSpeed(uint32_t clock)
+void SI4735::setMcuClockSpeed(uint32_t clock)
 {
-    // TO DO
+   controlMcuClock =  clock;
 }
