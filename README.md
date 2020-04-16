@@ -122,12 +122,12 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 | IDE  | Integrated Development Environment|    
 | I²C  | [I²C - Inter-Integrated Circuit](https://pt.wikipedia.org/wiki/I²C)|  
 | I²S  | Serial bus interface used for connecting digital audio devices 
-|Sketch|Name that Arduino environment uses for a program|
-|interrupt|In this context, it is a Arduino Resource. Allows important tasks to be performed regardless of the flow of your program|
-|C++| A object-oriented programming (OOP) language. It is a superset of the C language with an additional concept of "classes." |
-|programming guide| In this context it refers to [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)|
+| Sketch |Name that Arduino environment uses for a program|
+| Interrupt |In this context, it is a Arduino Resource. Allows important tasks to be performed regardless of the flow of your program|
+| C++ | A object-oriented programming (OOP) language. It is a superset of the C language with an additional concept of "classes." |
+| programming guide | In this context it refers to [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)|
 | LNA | Low Noise Amplifier |
-|POC| Proof of Concept|
+| POC | Proof of Concept|
 | SEN | Serial enable pin, active low; used as device select in 3-wire and SPI operation and address selection in 2-wire operation| 
 | CTS | Clear to send |
 | STC | Seek/Tune Complete |
