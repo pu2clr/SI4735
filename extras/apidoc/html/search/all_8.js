@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['max_5fdelay_5fafter_5fpowerup_183',['MAX_DELAY_AFTER_POWERUP',['../_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663',1,'SI4735.h']]],
-  ['max_5fdelay_5fafter_5fset_5ffrequency_184',['MAX_DELAY_AFTER_SET_FREQUENCY',['../_s_i4735_8h.html#a3d77e4d0458eed0b6ba584c737e8df21',1,'SI4735.h']]],
-  ['maxdelayafterpouwerup_185',['maxDelayAfterPouwerUp',['../class_s_i4735.html#a7ce25193b7f254c75967568967ba4d85',1,'SI4735']]],
-  ['maxdelaysetfrequency_186',['maxDelaySetFrequency',['../class_s_i4735.html#a5f101b95b6fc5127b9e9d92a21f44ab6',1,'SI4735']]],
-  ['min_5fdelay_5fwait_5fsend_5floop_187',['MIN_DELAY_WAIT_SEND_LOOP',['../_s_i4735_8h.html#a166d7b31e78d530aba242e50dd903de4',1,'SI4735.h']]]
+  ['mcu_20configuration_183',['MCU Configuration',['../group__group18.html',1,'']]],
+  ['max_5fdelay_5fafter_5fpowerup_184',['MAX_DELAY_AFTER_POWERUP',['../_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663',1,'SI4735.h']]],
+  ['max_5fdelay_5fafter_5fset_5ffrequency_185',['MAX_DELAY_AFTER_SET_FREQUENCY',['../_s_i4735_8h.html#a3d77e4d0458eed0b6ba584c737e8df21',1,'SI4735.h']]],
+  ['maxdelayafterpouwerup_186',['maxDelayAfterPouwerUp',['../class_s_i4735.html#a7ce25193b7f254c75967568967ba4d85',1,'SI4735']]],
+  ['maxdelaysetfrequency_187',['maxDelaySetFrequency',['../class_s_i4735.html#a5f101b95b6fc5127b9e9d92a21f44ab6',1,'SI4735']]],
+  ['min_5fdelay_5fwait_5fsend_5floop_188',['MIN_DELAY_WAIT_SEND_LOOP',['../_s_i4735_8h.html#a166d7b31e78d530aba242e50dd903de4',1,'SI4735.h']]]
 ];

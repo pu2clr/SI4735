@@ -168,6 +168,8 @@ var class_s_i4735 =
     [ "setDeviceI2CAddress", "group__group05.html#ga748a4027f317972cb2fb1aed4865973b", null ],
     [ "getDeviceI2CAddress", "group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9", null ],
     [ "setDeviceOtherI2CAddress", "group__group05.html#ga668008457910e916ebadf15bda2e5b29", null ],
+    [ "setMcuControl", "group__group18.html#ga24effe79ef38a239c1d49a58df318cf8", null ],
+    [ "setMcuSleepTime", "group__group18.html#ga055d404cd89955109b460b2a90fa9617", null ],
     [ "rds_buffer2A", "class_s_i4735.html#a0b40791484c47c0bf90d8dc255a20269", null ],
     [ "rds_buffer2B", "class_s_i4735.html#a7aa607f80e97d45ac7a80cdcbdeb09f9", null ],
     [ "rds_buffer0A", "class_s_i4735.html#ac24a8bbd39628c2981208cb452165a0e", null ],

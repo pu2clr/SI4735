@@ -6,6 +6,7 @@ var modules =
     [ "FM RDS/DBDS", "group__group16.html", "group__group16" ],
     [ "Frequency and Si47XX device status", "group__group14.html", "group__group14" ],
     [ "Host and slave MCU setup", "group__group06.html", "group__group06" ],
+    [ "MCU Configuration", "group__group18.html", "group__group18" ],
     [ "RDS Data types", "group__group02.html", "group__group02" ],
     [ "Receiver Status and Setup", "group__group03.html", "group__group03" ],
     [ "SI473X data types", "group__group01.html", "group__group01" ],
