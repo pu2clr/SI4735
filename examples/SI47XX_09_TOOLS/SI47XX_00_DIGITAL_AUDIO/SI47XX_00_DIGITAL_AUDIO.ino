@@ -74,7 +74,12 @@ void setup()
 
   delay(500);
   // Starts the system using DIGITAL AUDIO setup.
-  si4735.setup(RESET_PIN, -1, FM_FUNCTION, SI473X_DIGITAL_AUDIO1);
+
+  // Use SI473X_DIGITAL_AUDIO1       - Digital audio output (SI47XX pins: 3/DCLK, 24/LOUT/DFS, 23/ROUT/DIO)
+  // Use SI473X_DIGITAL_AUDIO2       - Digital audio output (SI47XX pins: 3/DCLK, 2/DFS, 1/DIO)
+  // Use SI473X_ANALOG_DIGITAL_AUDIO - Analog and digital audio outputs (24/LOUT/ 23/ROUT and 3/DCLK, 2/DFS, 1/DIO)
+  
+  si4735.setup(RESET_PIN, -1, FM_FUNCTION, SI473X_DIGITAL_AUDIO2);
 
   // 2 -> Digital Output Audio Sample Precision is 24 bits
   // 0 -> Output Mono Mode 
