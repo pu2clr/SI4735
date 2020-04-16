@@ -115,8 +115,13 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 | Term | Description |
 | ---- | ----- |
 | API  | Application Programming Interface (API). In this context, it is an interface that you can use to simplify the implementation and maintenance of your software (Arduino sketch) | 
-|Arduino Libraries|Libraries are files written in C or C++ (.c, .cpp) which provide your sketches with extra functionality. The SI4735 Library provides extra functionalities to make easier the Arduino deal with Si4735 device| 
-|IDE   |Integrated Development Environment|      
+| Arduino Libraries|Libraries are files written in C or C++ (.c, .cpp) which provide your sketches with extra functionality. The SI4735 Library provides extra functionalities to make easier the Arduino deal with Si4735 device| 
+| DFS  | I²S - digital frame synchronization input |
+| DIN  | I²S - digital data input |
+| DCLK | I²S - digital bit synchronization input clock |
+| IDE  | Integrated Development Environment|    
+| I²C  | [I²C - Inter-Integrated Circuit](https://pt.wikipedia.org/wiki/I²C)|  
+| I²S  | Serial bus interface used for connecting digital audio devices 
 |Sketch|Name that Arduino environment uses for a program|
 |interrupt|In this context, it is a Arduino Resource. Allows important tasks to be performed regardless of the flow of your program|
 |C++| A object-oriented programming (OOP) language. It is a superset of the C language with an additional concept of "classes." |
@@ -134,7 +139,6 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 | Attack | attack-time delay -  the time needed for a receiver to respond to an incoming signal |
 | SDIO | Serial data in/data out pin|
 | SCLK | Serial clock pin |
-| I²C | [I²C - Inter-Integrated Circuit](https://pt.wikipedia.org/wiki/I²C)|
 | Soft Mute | Resource used to attenuate the audiooutputs and minimize audible noise in very weak signalconditions | 
 | Firmware Upgrades | The Si473x-D60 contains on-chip program  RAM to accommodate minor changes to the firmware | 
 
