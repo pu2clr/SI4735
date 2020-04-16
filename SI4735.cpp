@@ -2807,6 +2807,8 @@ bool SI4735::downloadPatch(int eeprom_i2c_address)
  * @brief Enables MCU control resource
  * @details If enabled, the user can make, for example, the MCU sleep or wake up among other things. 
  * 
+ * ATTENTION: This function is virtual and should be implemented in derived class  
+ * 
  * @param value If true, Enable MCU control; If false (default), disable the MCU control; 
  */
 void SI4735::setMcuControl(bool value)
@@ -2819,6 +2821,8 @@ void SI4735::setMcuControl(bool value)
  * @todo 
  * @brief   Sets pin used to wake the MCU up. 
  * @details The MCU should have a pin used to contol its condition. 
+ * 
+ * ATTENTION: This function is virtual and should be implemented in derived class  
  * 
  * @param pin MCU pin used to control the MCU
  */
@@ -2833,6 +2837,9 @@ void SI4735::setMcuWakeUpPin(uint8_t pin)
  * @brief Wakes the MCU up
  * 
  * @details Make the MCU works again
+ * 
+ * ATTENTION: This function is virtual and should be implemented in derived class  
+ * 
  */
 void SI4735::mcuWakeUp()
 {
@@ -2844,7 +2851,9 @@ void SI4735::mcuWakeUp()
  * @todo 
  * @brief Sleeps the MCU Down
  * 
- * @details Make the MCU sleeps
+ * @details Make the MCU sleeps.
+ * 
+ * ATTENTION: This function is virtual and should be implemented in derived class  
  * 
  */
 void SI4735::mcuSleepDown()
@@ -2856,8 +2865,9 @@ void SI4735::mcuSleepDown()
  * @ingroup group18 MCU Clock Speed
  * @todo 
  * @brief Sets the Mcu Clock Speed if the platform supports this resource
- * 
  * @details If the MCU platform support, this function sets the CPU clock speed. 
+ * ATTENTION: This function is virtual and should be implemented in derived class  
+ * 
  * 
  * @param param CPU parameter
  */
