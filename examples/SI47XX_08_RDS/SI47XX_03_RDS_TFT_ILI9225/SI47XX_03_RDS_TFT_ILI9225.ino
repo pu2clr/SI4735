@@ -196,7 +196,9 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   // si4735.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
-  si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+  // si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode. 
+  si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode. 
+  
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
