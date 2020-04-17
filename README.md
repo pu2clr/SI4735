@@ -541,6 +541,27 @@ si4735.setMaxDelaySetFrequency(50);
 * Keep as far as possible from noise sources (LED light bulb, computers and any device connected to the power grid)
 * Try to find a suitable size for the antenna wire. Too long can be a big noise pickup. If too short, it may not be enough to pick up radio stations.
  
+
+##### When the receiver starts or when I switch from FM to AM and vice-versa, I have loud click on the speaker  
+
+Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some commands or actions.
+This problem occurs during the transition from the receiver's power down to power up. Every time the user changes the mode (FM to AM or AM to FM) the power down and power up commands are required by the Si47XX devices. So far, the author of this library have not find an internal solution to solve this problem. However, it is possible to solve this problem adding an extra __mute__ circuit and control it by the controler (Atmega, ESP32, STM32 etc). The schematic belows show this approach. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <BR>
 
 ## Boards where this library has been successfully tested
