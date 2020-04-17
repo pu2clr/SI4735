@@ -74,7 +74,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
 #define BAND_BUTTON_UP 6   // Next band
 #define BAND_BUTTON_DOWN 7 // Previous band
-#define HARD_MUTE 14      // Pin A0 - Switch AGC ON/OF
+#define HARD_MUTE 14      // Pin A0 - Mute the output audio via extra circuit.
 #define STEP_SWITCH 15     // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 #define BFO_SWITCH 16      // Pin A3 - Used to select the enconder control (BFO or VFO)
 
