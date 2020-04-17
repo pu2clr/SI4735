@@ -551,6 +551,48 @@ The schematic belows shows this approach.
 
 ![Mute circuit](https://github.com/pu2clr/SI4735/blob/master/extras/images/mute_circuit_schematic.png)
 
+When the D14 is HIGH the Si47XX output audio will be drained to the ground. In this condition, no audio will be transferred to the amplifier input and, consequently, to the speaker.
+
+When the D14 is LOW, the most of signal audio output from the Si47XX will be transfered to the amplifier input. 
+
+```cpp
+
+#define HARD_MUTE 14      // Pin A0 - Switch AGC ON/OF
+
+void setup() {
+  .
+  .
+  pinMode(HARD_MUTE, OUTPUT);
+  .
+  .
+  
+  hardMuteOn(); // Mutes the audio output.
+
+  si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts on FM mode and ANALOG audio mode. 
+
+  .
+  .
+  hardMuteOff();
+} 
+
+/**
+ * Mute the audio. Use it before setting Am or FM modes (setAM() or setFM())
+ */
+void hardMuteOn() {
+  digitalWrite(HARD_MUTE, HIGH);
+}
+
+/**
+ * Unmute the audio. Use it after setting Am or FM modes (setAM() or setFM())
+ */
+void hardMuteOff() {
+  digitalWrite(HARD_MUTE, LOW);
+}
+
+```
+.
+.
+.
 
 <BR>
 
