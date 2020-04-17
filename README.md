@@ -545,7 +545,8 @@ si4735.setMaxDelaySetFrequency(50);
 ##### When the receiver starts or when I switch from FM to AM and vice-versa, I have loud click on the speaker  
 
 Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some commands or actions.
-This problem occurs during the transition from the receiver's power down to power up. Every time the user changes the mode (FM to AM or AM to FM) the power down and power up commands are required by the Si47XX devices. So far, the author of this library have not find an internal solution to solve this problem (internal mute or volume commends do not work). However, it is possible to solve this problem by adding an extra __mute__ circuit and control it by the controler (Atmega, ESP32, STM32 etc). 
+This problem occurs during the transition from the receiver's power down to power up. Every time the user changes the mode (FM to AM or AM to FM) the power down and power up commands are required by the Si47XX devices. So far, the author of this library have not find an internal solution to solve this problem (internal mute or volume commends do not work). 
+However, it is possible to solve this problem by adding an extra __mute__ circuit and control it by the controler (Atmega, ESP32, STM32 etc). 
 
 The schematic belows shows this approach. 
 
