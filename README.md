@@ -549,7 +549,7 @@ This problem occurs during the transition from the receiver's power down to powe
 
 The schematic belows shows this approach. 
 
-![Mute circuit](https://github.com/pu2clr/SI4735/blob/master/extras/images/mute_circuit_schematic.png)
+![Mute circuit](./extras/images/mute_circuit_schematic.png)
 
 When the D14 is HIGH the Si47XX output audio will be drained to the ground. In this condition, no audio will be transferred to the amplifier input and, consequently, to the speaker.
 
