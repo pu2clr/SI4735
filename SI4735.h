@@ -988,7 +988,8 @@ protected:
 
 
     bool controlMcu = false;
-    uint8_t controlMcuPin;
+    int8_t controlMcuPin;
+    int8_t audioMuteMcuPin = -1;
     uint32_t controlMcuClock;
 
 
@@ -1747,5 +1748,42 @@ public:
     virtual void mcuWakeUp();
     virtual void mcuSleepDown();
     virtual void setMcuClockSpeed(uint32_t clock);
+
+    // void setAudioMuteMcuPin(uint8_t pin);
+    // void setHardwareAudioMute(bool on);
+
+    /**
+     * @ingroup group18 MCU External Audio Mute  
+     * 
+     * @brief Sets the Audio Mute Mcu Pin
+     * @details This function sets the mcu digital pin you want to use to control the external audio mute circuit.
+     * @details Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some SI47XX commands.  
+     * @details This problem occurs during the transition from the power down to power up. 
+     * @details Every time the user changes the mode (FM to AM or AM to FM) the power down and power up commands are required by the Si47XX devices.
+     * @details If you have a extra circuit in your receiver to mute the audio on amplifier input, you can configure a MCU pin to control it by using this function.
+     * 
+     * @see setHardwareAudioMute
+     * @param pin if 0 ou greater sets the MCU digital pin will be used to control de external circuit.  
+     */
+    inline void setAudioMuteMcuPin(uint8_t pin)
+    {
+        audioMuteMcuPin = pin;
+        pinMode(audioMuteMcuPin, OUTPUT);
+    };
+
+    /**
+     * @ingroup group18 MCU External Audio Mute 
+     * 
+     * @brief Sets the Hardware Audio Mute
+     * @details Turns the Hardware audio mute on or off
+     * 
+     * @see setAudioMuteMcuPin
+     * 
+     * @param on  True or false
+     */
+    inline void setHardwareAudioMute(bool on) {
+        digitalWrite(audioMuteMcuPin, on);
+    }
+
   
 };

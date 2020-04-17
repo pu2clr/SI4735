@@ -310,12 +310,16 @@ void SI4735::setDeviceOtherI2CAddress(uint8_t i2cAddr)
  */
 void SI4735::reset()
 {
+    setHardwareAudioMute(true); // If you are using external citcuit to mute, it turns the audio mute
+
     pinMode(resetPin, OUTPUT);
     delay(10);
     digitalWrite(resetPin, LOW);
     delay(10);
     digitalWrite(resetPin, HIGH);
     delay(10);
+
+    setHardwareAudioMute(false); // If you are using external citcuit to mute, it turns the audio unmute
 }
 
 /**
@@ -415,6 +419,9 @@ void SI4735::radioPowerUp(void)
     // the oscillator to stabilize if XOSCEN is set and crystal is used as the RCLK.
     waitToSend();
     delay(maxDelayAfterPouwerUp);
+
+    // Turns the external mute circuit off
+    if (audioMuteMcuPin >= 0) setHardwareAudioMute(false);
 }
 
 /**
@@ -444,6 +451,9 @@ void SI4735::analogPowerUp(void)
  */
 void SI4735::powerDown(void)
 {
+    // Turns the external mute circuit on 
+    if ( audioMuteMcuPin >= 0 ) setHardwareAudioMute(true);
+
     waitToSend();
     Wire.beginTransmission(deviceAddress);
     Wire.write(POWER_DOWN);
