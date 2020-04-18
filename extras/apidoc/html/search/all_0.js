@@ -38,5 +38,6 @@ var searchData=
   ['am_5ftune_5fstatus_35',['AM_TUNE_STATUS',['../_s_i4735_8h.html#ae08ea65cd9de522d012b7867da9ded6b',1,'SI4735.h']]],
   ['analogpowerup_36',['analogPowerUp',['../group__group06.html#ga412f51386c47a17cf04fd0a3c3078726',1,'SI4735']]],
   ['arg_37',['arg',['../group__group01.html#a1d76ab95c8f37f3ee9f2266e0a818455',1,'si473x_powerup::arg()'],['../group__group01.html#af785eeee072dbe5d532fc7e76cd9e8eb',1,'si473x_gpio::arg()'],['../group__group01.html#a41278f2e60bae96f74a825b4a741e273',1,'si473x_gpio_ien::arg()'],['../group__group01.html#aa5c0dc3dd7bde96cd11ed795d89951d6',1,'si47x_set_frequency::arg()'],['../group__group01.html#aedf91f573575f3ceb1297159f0535bf8',1,'si47x_seek::arg()'],['../group__group01.html#a78bd3a3ad2369186f0195223f408311d',1,'si47x_tune_status::arg()'],['../group__group02.html#a0e8b45dd88845a6fa05c7cc9a3e88197',1,'si47x_rds_command::arg()'],['../group__group02.html#ae4672dc74089b7ebdfcbc073f113ec61',1,'si47x_rds_config::arg()'],['../group__group03.html#a6e59c439331e3addf2f3979fddf54036',1,'si47x_agc_overrride::arg()']]],
-  ['audio_20setup_38',['Audio setup',['../group__group13.html',1,'']]]
+  ['audiomutemcupin_38',['audioMuteMcuPin',['../class_s_i4735.html#a1a521eccd64f760a6f6a1ae55c20f2b9',1,'SI4735']]],
+  ['audio_20setup_39',['Audio setup',['../group__group13.html',1,'']]]
 ];

@@ -588,6 +588,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:gaad6a00ac6424667ce62400149f82173d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group18.html#gaad6a00ac6424667ce62400149f82173d">setMcuClockSpeed</a> (uint32_t clock)</td></tr>
 <tr class="memdesc:gaad6a00ac6424667ce62400149f82173d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Mcu Clock Speed if the platform supports this resource.  <a href="group__group18.html#gaad6a00ac6424667ce62400149f82173d">More...</a><br /></td></tr>
 <tr class="separator:gaad6a00ac6424667ce62400149f82173d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0a4b4ffbb7e3f2555a16e194eecfc6a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group18.html#ga0a4b4ffbb7e3f2555a16e194eecfc6a1">setAudioMuteMcuPin</a> (int8_t pin)</td></tr>
+<tr class="memdesc:ga0a4b4ffbb7e3f2555a16e194eecfc6a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Audio Mute Mcu Pin.  <a href="group__group18.html#ga0a4b4ffbb7e3f2555a16e194eecfc6a1">More...</a><br /></td></tr>
+<tr class="separator:ga0a4b4ffbb7e3f2555a16e194eecfc6a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga54a3a0f412aa6318df0046d478bd134f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group18.html#ga54a3a0f412aa6318df0046d478bd134f">setHardwareAudioMute</a> (bool on)</td></tr>
+<tr class="memdesc:ga54a3a0f412aa6318df0046d478bd134f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Hardware Audio Mute.  <a href="group__group18.html#ga54a3a0f412aa6318df0046d478bd134f">More...</a><br /></td></tr>
+<tr class="separator:ga54a3a0f412aa6318df0046d478bd134f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -719,8 +725,10 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a05730ca069db4be7c45a9c92f29d3b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbbc15c116148d811587802f1d53e0be"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#afbbc15c116148d811587802f1d53e0be">controlMcu</a> = false</td></tr>
 <tr class="separator:afbbc15c116148d811587802f1d53e0be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff22e7035d3f375858b736ffe6dd39a2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#aff22e7035d3f375858b736ffe6dd39a2">controlMcuPin</a></td></tr>
-<tr class="separator:aff22e7035d3f375858b736ffe6dd39a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a007744bc0ac5bd3f0f8ab24257c3a16c"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a007744bc0ac5bd3f0f8ab24257c3a16c">controlMcuPin</a></td></tr>
+<tr class="separator:a007744bc0ac5bd3f0f8ab24257c3a16c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a521eccd64f760a6f6a1ae55c20f2b9"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a1a521eccd64f760a6f6a1ae55c20f2b9">audioMuteMcuPin</a> = -1</td></tr>
+<tr class="separator:a1a521eccd64f760a6f6a1ae55c20f2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa96f5ca761cb70b78e06e9929b536dc0"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#aa96f5ca761cb70b78e06e9929b536dc0">controlMcuClock</a></td></tr>
 <tr class="separator:aa96f5ca761cb70b78e06e9929b536dc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -3104,8 +3112,8 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="aff22e7035d3f375858b736ffe6dd39a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff22e7035d3f375858b736ffe6dd39a2">&#9670;&nbsp;</a></span>controlMcuPin</h2>
+<a id="a007744bc0ac5bd3f0f8ab24257c3a16c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a007744bc0ac5bd3f0f8ab24257c3a16c">&#9670;&nbsp;</a></span>controlMcuPin</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3114,7 +3122,29 @@ false </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::controlMcuPin</td>
+          <td class="memname">int8_t SI4735::controlMcuPin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1a521eccd64f760a6f6a1ae55c20f2b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a521eccd64f760a6f6a1ae55c20f2b9">&#9670;&nbsp;</a></span>audioMuteMcuPin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t SI4735::audioMuteMcuPin = -1</td>
         </tr>
       </table>
   </td>

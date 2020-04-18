@@ -173,6 +173,8 @@ var class_s_i4735 =
     [ "mcuWakeUp", "group__group18.html#gaa9e3f102e06a9f438c0e3de3a6be4ff9", null ],
     [ "mcuSleepDown", "group__group18.html#ga87b0dd0b7d9059a91d88d3970cc8e1dc", null ],
     [ "setMcuClockSpeed", "group__group18.html#gaad6a00ac6424667ce62400149f82173d", null ],
+    [ "setAudioMuteMcuPin", "group__group18.html#ga0a4b4ffbb7e3f2555a16e194eecfc6a1", null ],
+    [ "setHardwareAudioMute", "group__group18.html#ga54a3a0f412aa6318df0046d478bd134f", null ],
     [ "rds_buffer2A", "class_s_i4735.html#a0b40791484c47c0bf90d8dc255a20269", null ],
     [ "rds_buffer2B", "class_s_i4735.html#a7aa607f80e97d45ac7a80cdcbdeb09f9", null ],
     [ "rds_buffer0A", "class_s_i4735.html#ac24a8bbd39628c2981208cb452165a0e", null ],
@@ -206,6 +208,7 @@ var class_s_i4735 =
     [ "currentAudioMode", "class_s_i4735.html#a46c6ea8c36a2c4c47ee9cac8dd314319", null ],
     [ "currentSsbStatus", "class_s_i4735.html#a05730ca069db4be7c45a9c92f29d3b52", null ],
     [ "controlMcu", "class_s_i4735.html#afbbc15c116148d811587802f1d53e0be", null ],
-    [ "controlMcuPin", "class_s_i4735.html#aff22e7035d3f375858b736ffe6dd39a2", null ],
+    [ "controlMcuPin", "class_s_i4735.html#a007744bc0ac5bd3f0f8ab24257c3a16c", null ],
+    [ "audioMuteMcuPin", "class_s_i4735.html#a1a521eccd64f760a6f6a1ae55c20f2b9", null ],
     [ "controlMcuClock", "class_s_i4735.html#aa96f5ca761cb70b78e06e9929b536dc0", null ]
 ];
