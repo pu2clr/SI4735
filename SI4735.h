@@ -1765,7 +1765,7 @@ public:
      * @see setHardwareAudioMute
      * @param pin if 0 ou greater sets the MCU digital pin will be used to control de external circuit.  
      */
-    inline void setAudioMuteMcuPin(uint8_t pin)
+    inline void setAudioMuteMcuPin(int8_t pin)
     {
         audioMuteMcuPin = pin;
         pinMode(audioMuteMcuPin, OUTPUT);

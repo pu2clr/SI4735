@@ -189,7 +189,6 @@ void setup()
   pinMode(HARD_MUTE, OUTPUT);
 
   delay(50);
-  hardMuteOn();
   
   // Use this initializer if using a 1.8" TFT screen:
   tft.begin();
@@ -201,6 +200,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
+  si4735.setAudioMuteMcuPin(HARD_MUTE);
   // si4735.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
   // si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode. 
   si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode. 
@@ -211,20 +211,7 @@ void setup()
   si4735.setVolume(volume);
   showStatus();
 
-  hardMuteOff();
 }
-
-void hardMuteOn() {
-  digitalWrite(HARD_MUTE, HIGH);
-}
-
-void hardMuteOff() {
-  digitalWrite(HARD_MUTE, LOW);
-}
-
-
-
-
 
 
 /*
@@ -578,8 +565,7 @@ void loadSSB()
 void useBand()
 {
 
-  hardMuteOn();
-  
+ 
   showBFOTemplate(COLOR_BLACK);
   tft.fillRectangle(3, 90,  tft.maxX() -5, 120, COLOR_BLACK);
 
@@ -618,8 +604,7 @@ void useBand()
   clearBFO();
   tft.fillRectangle(153, 3, 216, 20, COLOR_BLACK);  // Clear Step field
   showStatus();
-  
-  hardMuteOff();
+
 }
 
 void loop()

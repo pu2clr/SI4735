@@ -311,14 +311,13 @@ void SI4735::setDeviceOtherI2CAddress(uint8_t i2cAddr)
 void SI4735::reset()
 {
     setHardwareAudioMute(true); // If you are using external citcuit to mute, it turns the audio mute
-
+    delay(10);
     pinMode(resetPin, OUTPUT);
     delay(10);
     digitalWrite(resetPin, LOW);
-    delay(10);
+    delay(20);
     digitalWrite(resetPin, HIGH);
     delay(10);
-
     setHardwareAudioMute(false); // If you are using external citcuit to mute, it turns the audio unmute
 }
 
