@@ -185,9 +185,6 @@ void setup()
   pinMode(STEP_SWITCH, INPUT_PULLUP);
   pinMode(MODE_SWITCH, INPUT_PULLUP);
 
-
-  pinMode(HARD_MUTE, OUTPUT);
-
   delay(50);
   
   // Use this initializer if using a 1.8" TFT screen:
