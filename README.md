@@ -502,16 +502,16 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 
 <BR>
 
-### Most Frequent Problems
+## Most Frequent Problems
 
-#### On FM mode, the receiver jump from a station to another station without any action.
+### On FM mode, the receiver jump from a station to another station without any action.
 
 If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 and the use of internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, you can do: 
   *  Use the pin 14 instead. This pin is the A0 (Analog). But you have to refer it by 14 to use it as digital pin; 
   *  Change the circuit and sketch to use external pull-up on pin 13;
   *  Remove the LED or resitor connected to the led from the Arduino Board.   
 
-#### When power up or moving the tuner on LW, MW or SW, the display show LW and 0 Khz
+### When power up or moving the tuner on LW, MW or SW, the display show LW and 0 Khz
 
 <P>This problem can be a little complicated to solve. I have observed that very few times in my experiments. When I am powering the system using the computer USB and the computer is connected to the grid, it might occur. Please, test your system using only batteries.</P> 
 
@@ -534,7 +534,7 @@ si4735.setMaxDelaySetFrequency(50);
 ```
 
 
-#### I cannot tune satisfactorily any local station in LW, MW or SW
+### I cannot tune satisfactorily any local station in LW, MW or SW
 
 * Please, use only batteries to power your system up on LW, MW or SW. 
 * Check your circuit on AMI pin of the Si47XX device.
@@ -542,7 +542,7 @@ si4735.setMaxDelaySetFrequency(50);
 * Try to find a suitable size for the antenna wire. Too long can be a big noise pickup. If too short, it may not be enough to pick up radio stations.
  
 
-##### When the receiver starts or when I switch from FM to AM and vice-versa, I have loud click on the speaker  
+#### When the receiver starts or when I switch from FM to AM and vice-versa, I have loud click on the speaker  
 
 Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some commands or actions.
 This problem occurs during the transition from the receiver's power down to power up. Every time the user changes the mode (FM to AM or AM to FM) the power down and power up commands are required by the Si47XX devices. So far, the author of this library have not find an internal solution to solve this problem (internal mute or volume commends do not work). 
