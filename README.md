@@ -558,42 +558,25 @@ When the D14 is LOW, the most of signal audio output from the Si47XX will be tra
 
 ```cpp
 
-#define HARD_MUTE 14      // Pin A0 - Switch AGC ON/OF
+#include <SI4735.h>
+#define AUDIO_MUTE 14      // Pin A0 - Switch AGC ON/OF
+
+Si4735 r;
 
 void setup() {
   .
-  .
-  pinMode(HARD_MUTE, OUTPUT);
-  .
-  .
   
-  hardMuteOn(); // Mutes the audio output.
+  // It is all you have to do to control a external audio mute circuit if you have one. 
+  r.setAudioMuteMcuPin(AUDIO_MUTE); // Tells the system to control an external audio mute circuit. 
 
-  si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts on FM mode and ANALOG audio mode. 
+  r.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts on FM mode and ANALOG audio mode. 
 
   .
   .
-  hardMuteOff();
+
 } 
-
-/**
- * Mute the audio. Use it before setting Am or FM modes (setAM() or setFM())
- */
-void hardMuteOn() {
-  digitalWrite(HARD_MUTE, HIGH);
-}
-
-/**
- * Unmute the audio. Use it after setting Am or FM modes (setAM() or setFM())
- */
-void hardMuteOff() {
-  digitalWrite(HARD_MUTE, LOW);
-}
-
 ```
-.
-.
-.
+
 
 <BR>
 
