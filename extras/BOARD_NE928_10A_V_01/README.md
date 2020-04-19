@@ -37,8 +37,6 @@ Unlike the PL102B, a very similar board based on Si4730 and also supported by th
 
 
 
-
-
 ## The Si473X I2C address 
 
 This board comes with the SEN pin connected to +V. So the I2C buss address is 0x63
@@ -60,4 +58,9 @@ The table below shows the query result of Firmware Information command.
 
 
 
+## Video
+
+{% include NE928.html %}
+
+[NE928-10A V:01 board working with "Si4735 Arduino Library](https://youtu.be/An7Iq_BLxJY)
 
