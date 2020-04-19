@@ -580,6 +580,8 @@ void setup() {
 } 
 ```
 
+{% include audiomute.html %}
+
 <BR>
 
 ## Boards where this library has been successfully tested
