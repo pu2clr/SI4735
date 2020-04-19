@@ -74,9 +74,11 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
 #define BAND_BUTTON_UP 6   // Next band
 #define BAND_BUTTON_DOWN 7 // Previous band
-#define HARD_MUTE 14       // Pin A0 - Mute and unmute the output audio via extra circuit.
+#define AGC_SWITCH 14      // Pin A0 - Switch AGC ON/OF
 #define STEP_SWITCH 15     // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 #define BFO_SWITCH 16      // Pin A3 - Used to select the enconder control (BFO or VFO)
+
+#define AUDIO_CIRCUIT_MUTE 0 // 
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
@@ -150,7 +152,7 @@ typedef struct
    Band table
 */
 Band band[] = {
-  {"FM ", FM_BAND_TYPE, 6400, 10800, 10570, 10},
+  {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
   {"LW ", LW_BAND_TYPE, 100, 510, 300, 1},
   {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
   {"SW1", SW_BAND_TYPE, 1700, 30000, 7100,  1}, // ALL SW1 (from 1.7 to 30MHz)
@@ -181,12 +183,10 @@ void setup()
   pinMode(BAND_BUTTON_UP, INPUT_PULLUP);
   pinMode(BAND_BUTTON_DOWN, INPUT_PULLUP);
   pinMode(BFO_SWITCH, INPUT_PULLUP);
-
+  pinMode(AGC_SWITCH, INPUT_PULLUP);
   pinMode(STEP_SWITCH, INPUT_PULLUP);
   pinMode(MODE_SWITCH, INPUT_PULLUP);
 
-  delay(50);
-  
   // Use this initializer if using a 1.8" TFT screen:
   tft.begin();
   tft.setOrientation(1);
@@ -197,9 +197,8 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  si4735.setAudioMuteMcuPin(HARD_MUTE); // Used activate and deactivate the external audio mute circuit.
+  si4735.setAudioMuteMcuPin(AUDIO_CIRCUIT_MUTE);
 
-  
   // si4735.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
   // si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode. 
   si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode. 
@@ -209,9 +208,7 @@ void setup()
   useBand();
   si4735.setVolume(volume);
   showStatus();
-
 }
-
 
 /*
    Shows the static content on  display
@@ -563,8 +560,6 @@ void loadSSB()
 */
 void useBand()
 {
-
- 
   showBFOTemplate(COLOR_BLACK);
   tft.fillRectangle(3, 90,  tft.maxX() -5, 120, COLOR_BLACK);
 
@@ -603,7 +598,6 @@ void useBand()
   clearBFO();
   tft.fillRectangle(153, 3, 216, 20, COLOR_BLACK);  // Clear Step field
   showStatus();
-
 }
 
 void loop()
@@ -687,6 +681,13 @@ void loop()
       } */
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       showFrequency();
+    }
+    else if (digitalRead(AGC_SWITCH) == LOW)
+    {
+      disableAgc = !disableAgc;
+      // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
+      si4735.setAutomaticGainControl(disableAgc, 1);
+      showStatus();
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
     {
