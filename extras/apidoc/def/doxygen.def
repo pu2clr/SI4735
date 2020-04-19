@@ -4873,12 +4873,12 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  \xrefitem todo 6.
 
-If enabled, the user can make, for example, the MCU sleep or wake up among other things. 
+If enabled, the user can make, for example, the MCU sleep or do something when it wakes up. 
 
 ATTENTION: This function is virtual and should be implemented in derived class  
 <br>
 
-@param value If true, Enable MCU control; If false (default), disable the MCU control; 
+@param value If true, Enable MCU control; If false (default), no MCU control. 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1afbbc15c116148d811587802f1d53e0be';
@@ -4929,12 +4929,12 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '1748';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Wakes the MCU up.
+Sets the pin that controls some  MCU features.  You might do something with that.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  \xrefitem todo 8.
 
-Make the MCU works again
+You might want to do something when MCU wakes up. 
 
 ATTENTION: This function is virtual and should be implemented in derived class  
 <br>
@@ -4952,12 +4952,12 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '1749';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Sleeps the MCU Down.
+You might want to do something when MCU wakes up.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  \xrefitem todo 9.
 
-Make the MCU sleeps.
+You can handle something after MCU wakes up.
 
 ATTENTION: This function is virtual and should be implemented in derived class  
 <br>

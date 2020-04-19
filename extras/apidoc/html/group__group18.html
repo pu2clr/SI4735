@@ -121,10 +121,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga666489368d463fb99923bf3134e89626"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets pin used to wake the MCU up.  <a href="group__group18.html#ga666489368d463fb99923bf3134e89626">More...</a><br /></td></tr>
 <tr class="separator:ga666489368d463fb99923bf3134e89626"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa9e3f102e06a9f438c0e3de3a6be4ff9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group18.html#gaa9e3f102e06a9f438c0e3de3a6be4ff9">SI4735::mcuWakeUp</a> ()</td></tr>
-<tr class="memdesc:gaa9e3f102e06a9f438c0e3de3a6be4ff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wakes the MCU up.  <a href="group__group18.html#gaa9e3f102e06a9f438c0e3de3a6be4ff9">More...</a><br /></td></tr>
+<tr class="memdesc:gaa9e3f102e06a9f438c0e3de3a6be4ff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pin that controls some MCU features. You might do something with that.  <a href="group__group18.html#gaa9e3f102e06a9f438c0e3de3a6be4ff9">More...</a><br /></td></tr>
 <tr class="separator:gaa9e3f102e06a9f438c0e3de3a6be4ff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga87b0dd0b7d9059a91d88d3970cc8e1dc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group18.html#ga87b0dd0b7d9059a91d88d3970cc8e1dc">SI4735::mcuSleepDown</a> ()</td></tr>
-<tr class="memdesc:ga87b0dd0b7d9059a91d88d3970cc8e1dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleeps the MCU Down.  <a href="group__group18.html#ga87b0dd0b7d9059a91d88d3970cc8e1dc">More...</a><br /></td></tr>
+<tr class="memdesc:ga87b0dd0b7d9059a91d88d3970cc8e1dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">You might want to do something when MCU wakes up.  <a href="group__group18.html#ga87b0dd0b7d9059a91d88d3970cc8e1dc">More...</a><br /></td></tr>
 <tr class="separator:ga87b0dd0b7d9059a91d88d3970cc8e1dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaad6a00ac6424667ce62400149f82173d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group18.html#gaad6a00ac6424667ce62400149f82173d">SI4735::setMcuClockSpeed</a> (uint32_t clock)</td></tr>
 <tr class="memdesc:gaad6a00ac6424667ce62400149f82173d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Mcu Clock Speed if the platform supports this resource.  <a href="group__group18.html#gaad6a00ac6424667ce62400149f82173d">More...</a><br /></td></tr>
@@ -365,12 +365,12 @@ Functions</h2></td></tr>
 
 <p>Enables MCU control resource. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd></dd></dl>
-<p>If enabled, the user can make, for example, the MCU sleep or wake up among other things.</p>
+<p>If enabled, the user can make, for example, the MCU sleep or do something when it wakes up.</p>
 <p>ATTENTION: This function is virtual and should be implemented in derived class <br  />
 </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>If true, Enable MCU control; If false (default), disable the MCU control; </td></tr>
+    <tr><td class="paramname">value</td><td>If true, Enable MCU control; If false (default), no MCU control. </td></tr>
   </table>
   </dd>
 </dl>
@@ -440,9 +440,9 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Wakes the MCU up. </p>
+<p>Sets the pin that controls some MCU features. You might do something with that. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd></dd></dl>
-<p>Make the MCU works again</p>
+<p>You might want to do something when MCU wakes up.</p>
 <p>ATTENTION: This function is virtual and should be implemented in derived class <br  />
  </p>
 
@@ -471,9 +471,9 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Sleeps the MCU Down. </p>
+<p>You might want to do something when MCU wakes up. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd></dd></dl>
-<p>Make the MCU sleeps.</p>
+<p>You can handle something after MCU wakes up.</p>
 <p>ATTENTION: This function is virtual and should be implemented in derived class <br  />
  </p>
 
@@ -504,7 +504,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets the Mcu Clock Speed if the platform supports this resource. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd></dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>See how to adjust the clock speed of the MCU </dd></dl>
 <p>If the MCU platform support, this function sets the CPU clock speed. ATTENTION: This function is virtual and should be implemented in derived class <br  />
 </p>
 <dl class="params"><dt>Parameters</dt><dd>
