@@ -17,7 +17,6 @@ Unlike the PL102B, a very similar board based on Si4730 and also supported by th
 ![Si4730 label ](./NE928_Si4730_04.jpg)
 
 
-
 ## Arduino Pro Mini 3.3V (8MHz) connection
 
 
@@ -33,8 +32,6 @@ Unlike the PL102B, a very similar board based on Si4730 and also supported by th
 
 * [SI4735_01_POC.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR/SI4735_01_POC)
 * [SI47XX_01_OLED_I2C.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C/SI47XX_01_OLED_I2C)
-
-
 
 
 ## The Si473X I2C address 
@@ -55,7 +52,6 @@ The table below shows the query result of Firmware Information command.
 | Component Major Revision | 50 |
 | Component Minor Revision | 48 |
 | Chip Revision | 66 |
-
 
 
 ## Video
