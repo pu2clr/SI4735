@@ -152,7 +152,7 @@ typedef struct
    Band table
 */
 Band band[] = {
-  {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
+  {"FM ", FM_BAND_TYPE, 6400, 10800, 10570, 10},
   {"LW ", LW_BAND_TYPE, 100, 510, 300, 1},
   {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
   {"SW1", SW_BAND_TYPE, 1700, 30000, 7100,  1}, // ALL SW1 (from 1.7 to 30MHz)
