@@ -49,7 +49,7 @@ There is a facebook group called [__Si47XX for Radio Experimenters__](https://ww
     * [ESP32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32)
     * [STM32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32) 
     * [FM RDS/RBDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS)
-    * [Extra - BOARD NE928-10A-V-01 ](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/README.md)
+    * [Extra - BOARD NE928-10A-V-01 ](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/)
     * [Tools](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_TOOLS)
 14. [Third Party Projects](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects)
 15. [Videos](https://pu2clr.github.io/SI4735/#videos) 
