@@ -1,7 +1,7 @@
 # About the board NE928-10A V:01 
 
-This board is an AM (MW) and FM receiver. It is based on Si4730. The Si4735 Arduino Library is compatible with it.
-Unlike the PL102B, a very similar board based on Si4730 and also supported by the Si4735 Arduino Library, the NE928-10A does not support SW. Actually, judging by the SIlicon Labs the board PL102B or any board based on SI4730 device should not support SW. However, some tests with PL102B and SI4730-D60  have been received SW stations with sucess.
+This board is an AM (MW) and FM receiver. It is based on Si4730. The PU2CLR Si4735 Arduino Library is compatible with it.
+Unlike the PL102B, a very similar board based on Si4730 and also supported by the Si4735 Arduino Library, the NE928-10A does not support SW. Actually, judging by the Silicon Labs, the board PL102B or any board based on SI4730 device should not support SW. However, some tests with PL102B and SI4730-D60 have been received SW stations with success. It is iportante to say the author of this document does not guarantee that his experiments with boards based on the SI4730-D60 will work on SW.
 
 The photos bellow show the NE928-10A V:01.
 
