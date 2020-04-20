@@ -593,7 +593,7 @@ void setup() {
 {% include audiomute.html %}
 
 
-Some low power audio amplifiers also implement mute circuit that can be controlled externally. You can find the resource on __KA8602B, MC34119, PAM8403__ and __HT82V739__ devices.
+Some low power audio amplifiers also implement mute circuit that can be controlled externally. You can find this resource on __[LM4906](http://www.ti.com/lit/ds/symlink/lm4906.pdf), KA8602B, MC34119, PAM8403__ and __HT82V739__ devices.
 
 
 
