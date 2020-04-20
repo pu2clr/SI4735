@@ -1,5 +1,5 @@
 /*
-  This sketch uses the mcufriend TFT touct Display Shield.
+  This sketch uses the mcufriend TFT touch Display Shield.
   You can use it on Mega2560 or DUE. 
   It is a RDS example. 
 
