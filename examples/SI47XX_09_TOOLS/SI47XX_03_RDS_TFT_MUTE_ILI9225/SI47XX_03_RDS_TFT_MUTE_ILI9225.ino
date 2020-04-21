@@ -78,7 +78,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define STEP_SWITCH 15     // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 #define BFO_SWITCH 16      // Pin A3 - Used to select the enconder control (BFO or VFO)
 
-#define AUDIO_CIRCUIT_MUTE 0 // 
+#define AUDIO_CIRCUIT_MUTE 1 // 
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
@@ -176,10 +176,7 @@ SI4735 si4735;
 
 void setup()
 {
-  
-   si4735.setAudioMuteMcuPin(AUDIO_CIRCUIT_MUTE);
-   si4735.setHardwareAudioMute(true);
-    
+   
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
@@ -196,6 +193,8 @@ void setup()
   tft.setOrientation(1);
   tft.clear();
   showTemplate();
+
+  si4735.setAudioMuteMcuPin(AUDIO_CIRCUIT_MUTE);
 
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
