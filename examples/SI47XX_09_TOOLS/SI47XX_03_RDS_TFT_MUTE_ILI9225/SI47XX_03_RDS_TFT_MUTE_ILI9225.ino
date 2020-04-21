@@ -176,6 +176,10 @@ SI4735 si4735;
 
 void setup()
 {
+  
+   si4735.setAudioMuteMcuPin(AUDIO_CIRCUIT_MUTE);
+   si4735.setHardwareAudioMute(true);
+    
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
@@ -196,8 +200,6 @@ void setup()
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
-
-  si4735.setAudioMuteMcuPin(AUDIO_CIRCUIT_MUTE);
 
   // si4735.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
   // si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode. 
