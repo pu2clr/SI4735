@@ -1783,7 +1783,7 @@ public:
      */
     inline void setHardwareAudioMute(bool on) {
         digitalWrite(audioMuteMcuPin, on);
-        delayMicroseconds(2500);
+        delayMicroseconds(300);
     }
 
   

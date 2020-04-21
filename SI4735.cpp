@@ -315,7 +315,7 @@ void SI4735::reset()
     pinMode(resetPin, OUTPUT);
     delay(10);
     digitalWrite(resetPin, LOW);
-    delay(50);
+    delay(10);
     digitalWrite(resetPin, HIGH);
     delay(10);
 
