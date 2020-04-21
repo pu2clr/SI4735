@@ -318,9 +318,6 @@ void SI4735::reset()
     delay(10);
     digitalWrite(resetPin, HIGH);
     delay(10);
-
-    if (audioMuteMcuPin >= 0)
-        setHardwareAudioMute(false); // If you are using external citcuit to mute, it turns the audio unmute
 }
 
 /**
