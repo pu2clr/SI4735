@@ -127,6 +127,6 @@ void setup() {
 
 ## Example SI47XX_03_ESP32_ALL_IN_ONE_TFT
 
-Still under construction this sketch will show how to use TDT with ESP32, Si4735 device and Si4735 Arduino Library.
+Still under construction this sketch will show how to use TFT with ESP32, Si4735 device and Si4735 Arduino Library.
 
 
