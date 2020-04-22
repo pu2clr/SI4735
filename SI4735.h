@@ -332,8 +332,8 @@ typedef union {
  * @see  @see Si47XX PROGRAMMING GUIDE; AN332; pages 72 and 137
  */
 typedef struct  {
-   uint8_t ARG1; // Always 0.
    uint8_t ARG2; // Always 0.
+   uint8_t ARG3; // Always 0.
    uint8_t ANTCAPH;
    uint8_t ANTCAPL;
 } si47x_seek_am_complement;

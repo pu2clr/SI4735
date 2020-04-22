@@ -1507,7 +1507,7 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
     si47x_seek_am_complement seek_am_complement;
 
     // Check which FUNCTION (AM or FM) is working now
-     uint8_t seek_start = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
+     uint8_t seek_start_cmd = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
 
     waitToSend();
 
@@ -1517,18 +1517,18 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
     seek.arg.RESERVED2 = 0;
 
     Wire.beginTransmission(deviceAddress);
-    Wire.write(seek_start);
-    Wire.write(seek.raw);
-    
-    if (seek_start == AM_SEEK_START) // Sets AM congigurations
+    Wire.write(seek_start_cmd);
+    Wire.write(seek.raw); // ARG1
+
+    if (seek_start_cmd == AM_SEEK_START) // Sets additional configuration for AM mode
     {
-        seek_am_complement.ARG1 = seek_am_complement.ARG2 = 0;
+        seek_am_complement.ARG2 = seek_am_complement.ARG3 = 0;
         seek_am_complement.ANTCAPH = 0;
         seek_am_complement.ANTCAPL = (currentWorkFrequency > 1800)? 1:0; // if SW = 1
-        Wire.write(seek_am_complement.ARG1); // Always 0
-        Wire.write(seek_am_complement.ARG2); // Always 0
-        Wire.write(seek_am_complement.ANTCAPH); // Tuning Capacitor: The tuning capacitor value
-        Wire.write(seek_am_complement.ANTCAPL); // will be selected automatically.
+        Wire.write(seek_am_complement.ARG2); // ARG2 - Always 0 
+        Wire.write(seek_am_complement.ARG3); // ARG3 - Always 0
+        Wire.write(seek_am_complement.ANTCAPH); // ARG4 - Tuning Capacitor: The tuning capacitor value
+        Wire.write(seek_am_complement.ANTCAPL); // ARG5 - will be selected automatically.
     }
 
     Wire.endTransmission();
