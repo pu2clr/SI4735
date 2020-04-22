@@ -308,10 +308,6 @@ void SI4735::setDeviceOtherI2CAddress(uint8_t i2cAddr)
  */
 void SI4735::reset()
 {
-    if (audioMuteMcuPin >= 0)
-       setHardwareAudioMute(true); // If you are using external citcuit to mute, it turns the audio mute
-
-    delay(10);
     pinMode(resetPin, OUTPUT);
     delay(10);
     digitalWrite(resetPin, LOW);
@@ -534,7 +530,11 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, 
     // OPMODE   SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO.
     setPowerUp(interruptEnable, 0, 0, 1, defaultFunction, audioMode);
 
+    if (audioMuteMcuPin >= 0)
+        setHardwareAudioMute(true); // If you are using external citcuit to mute the audio, it turns the audio mute
+
     reset();
+
     radioPowerUp();
     setVolume(30); // Default volume level.
     getFirmware();
