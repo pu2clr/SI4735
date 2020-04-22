@@ -191,7 +191,6 @@ void setup()
   // Use this initializer if using a 1.8" TFT screen:
   tft.begin();
   tft.setOrientation(1);
-  tft.clear();
   showTemplate();
 
   si4735.setAudioMuteMcuPin(AUDIO_CIRCUIT_MUTE);
@@ -216,6 +215,9 @@ void setup()
 */
 void showTemplate()
 {
+
+  tft.clear();
+
   int maxY1 = tft.maxY() - 1;
   int maxX1 = tft.maxX() - 1;
 
@@ -239,6 +241,10 @@ void showTemplate()
   tft.drawRectangle(45, 163,  maxX1 - 2, 169, COLOR_YELLOW);
 
   tft.drawText(5, 130, text_message, COLOR_YELLOW);
+  
+  tft.setBacklightBrightness(120);
+
+  tft.setDisplay(true);
 }
 
 
