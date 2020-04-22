@@ -1470,8 +1470,8 @@ public:
     void getFirmware(void);
 
     void seekStation(uint8_t SEEKUP, uint8_t WRAP);
-    void seekStationUp();
-    void seekStationDown();
+    void seekStationUp(uint8_t WRAP);
+    void seekStationDown(uint8_t WRAP);
 
     // AM Seek property configurations
     void setSeekAmLimits(uint16_t bottom, uint16_t top);

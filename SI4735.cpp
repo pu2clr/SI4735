@@ -1537,10 +1537,11 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
  * @brief Search for the next station 
  * 
  * @see seekStation(uint8_t SEEKUP, uint8_t WRAP)
+ * @param WRAP Default 1. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
-void SI4735::seekStationUp()
+void SI4735::seekStationUp(uint8_t WRAP = 1)
 {
-    seekStation(1, 1);
+    seekStation(1, WRAP);
     delay(50);
     getFrequency();
 }
@@ -1551,10 +1552,11 @@ void SI4735::seekStationUp()
  * @brief Search the previous station
  * 
  * @see seekStation(uint8_t SEEKUP, uint8_t WRAP)
+ * @param WRAP Default 1. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
-void SI4735::seekStationDown()
+void SI4735::seekStationDown(uint8_t WRAP = 1)
 {
-    seekStation(0, 1);
+    seekStation(0, WRAP);
     delay(50);
     getFrequency();
 }
