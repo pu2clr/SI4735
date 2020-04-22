@@ -1504,9 +1504,10 @@ void SI4735::getCurrentReceivedSignalQuality(void)
 void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
 {
     si47x_seek seek;
+    si47x_seek_am_complement seek_am_complement;
 
     // Check which FUNCTION (AM or FM) is working now
-    uint8_t seek_start = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
+     uint8_t seek_start = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
 
     waitToSend();
 
@@ -1521,10 +1522,13 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
 
     if (seek_start == AM_SEEK_START)
     {
-        Wire.write(0x00); // Always 0
-        Wire.write(0x00); // Always 0
-        Wire.write(0x00); // Tuning Capacitor: The tuning capacitor value
-        Wire.write(0x00); //                   will be selected automatically.
+        seek_am_complement.arg.ARG1 = seek_am_complement.arg.ARG2 = 0;
+        seek_am_complement.arg.ANTCAPH = 0;
+        seek_am_complement.arg.ANTCAPL = (currentWorkFrequency > 1800)? 1:0; // if SW = 1
+        Wire.write(seek_am_complement.arg.ARG1); // Always 0
+        Wire.write(seek_am_complement.arg.ARG2); // Always 0
+        Wire.write(seek_am_complement.arg.ANTCAPH); // Tuning Capacitor: The tuning capacitor value
+        Wire.write(seek_am_complement.arg.ANTCAPL); // will be selected automatically.
     }
 
     Wire.endTransmission();
