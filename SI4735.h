@@ -1469,7 +1469,7 @@ public:
 
     void getFirmware(void);
 
-    void seekStation(uint8_t SEEKUP, uint8_t WRAP);
+    void seekStation(uint8_t SEEKUP, uint8_t WRAP); // See WRAP parameter 
     void seekStationUp(uint8_t WRAP = 1);
     void seekStationDown(uint8_t WRAP =  1);
 

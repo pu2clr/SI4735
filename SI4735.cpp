@@ -1593,6 +1593,7 @@ void SI4735::setSeekFmLimits(uint16_t bottom, uint16_t top)
     sendProperty(FM_SEEK_BAND_TOP, top);
 }
 
+
 /**
  * @ingroup group15 Seek 
  * 
