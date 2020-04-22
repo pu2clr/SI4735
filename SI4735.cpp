@@ -4,7 +4,7 @@
  * This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
  * Arduino development environment.  It works with I2C protocol and can provide an easier interface for controlling the SI47XX CI family.<br>
  * 
- * This library was built based on [Si47XX PROGRAMMING GUIDE-AN332](https://www.silabs.com/documents/public/application-notes/AN332.pdf) document from Silicon Labs. 
+ * This seep was built based on [Si47XX PROGRAMMING GUIDE-AN332](https://www.silabs.com/documents/public/application-notes/AN332.pdf) document from Silicon Labs. 
  * It also can be used on **all members of the SI473X family** respecting, of course, the features available for each IC version. 
  * These functionalities can be seen in the comparison matrix shown in table 1 (Product Family Function); pages 2 and 3 of the programming guide.
  * If you need to build a prototype based on SI47XX device, see <https://pu2clr.github.io/SI4735/><br>
@@ -1566,13 +1566,29 @@ void SI4735::seekStationDown()
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 127, 161, and 162
  * 
- * @param uint16_t bottom - the bottom of the AM band for seek
- * @param uint16_t    top - the top of the AM band for seek
+ * @param uint16_t bottom - the bottom of the AM (MW/SW) mode for seek
+ * @param uint16_t    top - the top of the AM (MW/SW) mode for seek
  */
 void SI4735::setSeekAmLimits(uint16_t bottom, uint16_t top)
 {
     sendProperty(AM_SEEK_BAND_BOTTOM, bottom);
     sendProperty(AM_SEEK_BAND_TOP, top);
+}
+
+/**
+ * @ingroup group15 Seek 
+ * 
+ * @brief Sets the bottom frequency and top frequency of the FM band for seek. Default is 8750 to 10790.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; pages 100 and  101
+ * 
+ * @param uint16_t bottom - the bottom of the FM(VHF) mode for seek
+ * @param uint16_t    top - the top of the FM(VHF) mode for seek
+ */
+void SI4735::setSeekFmLimits(uint16_t bottom, uint16_t top)
+{
+    sendProperty(FM_SEEK_BAND_BOTTOM, bottom);
+    sendProperty(FM_SEEK_BAND_TOP, top);
 }
 
 /**
@@ -1592,15 +1608,45 @@ void SI4735::setSeekAmSpacing(uint16_t spacing)
 /**
  * @ingroup group15 Seek 
  * 
+ * @brief Selects frequency spacingfor FM seek. Default is 100 kHz kHz spacing. There are only 3 valid values: 5, 10, and 20.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 101
+ * 
+ * @param uint16_t spacing - step in KHz
+ */
+void SI4735::setSeekFmSpacing(uint16_t spacing)
+{
+    sendProperty(FM_SEEK_FREQ_SPACING, spacing);
+}
+
+
+
+/**
+ * @ingroup group15 Seek 
+ * 
  * @brief Sets the SNR threshold for a valid AM Seek/Tune. 
  * 
  * @details If the value is zero then SNR threshold is not considered when doing a seek. Default value is 5 dB.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 127
  */
-void SI4735::setSeekSrnThreshold(uint16_t value)
+void SI4735::setSeekAmSrnThreshold(uint16_t value)
 {
     sendProperty(AM_SEEK_SNR_THRESHOLD, value);
+}
+
+/**
+ * @ingroup group15 Seek 
+ * 
+ * @brief Sets the SNR threshold for a valid FM Seek/Tune. 
+ * 
+ * @details SNR Threshold which determines if a valid channel has been found during Seek/Tune. Specified in units of dB in 1 dB steps (0–127). Default is 3 dB
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 102
+ */
+void SI4735::setSeekFmSrnThreshold(uint16_t value)
+{
+    sendProperty(FM_SEEK_TUNE_SNR_THRESHOLD, value);
 }
 
 /**
@@ -1612,10 +1658,25 @@ void SI4735::setSeekSrnThreshold(uint16_t value)
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 127
  */
-void SI4735::setSeekRssiThreshold(uint16_t value)
+void SI4735::setSeekAmRssiThreshold(uint16_t value)
 {
     sendProperty(AM_SEEK_RSSI_THRESHOLD, value);
 }
+
+/**
+ * @ingroup group15 Seek 
+ * 
+ * @brief Sets the RSSI threshold for a valid FM Seek/Tune.
+ * 
+ * @details RSSI threshold which determines if a valid channel has been found during seek/tune. Specified in units of dBμV in 1 dBμV steps (0–127). Default is 20 dBμV.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332; page 102
+ */
+void SI4735::setSeekFmRssiThreshold(uint16_t value)
+{
+    sendProperty(FM_SEEK_TUNE_RSSI_THRESHOLD, value);
+}
+
 
 /** @defgroup group16 FM RDS/DBDS */
 

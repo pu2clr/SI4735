@@ -59,6 +59,13 @@
 #define FM_BLEND_MULTIPATH_STEREO_THRESHOLD 0x1808
 #define FM_BLEND_MULTIPATH_MONO_THRESHOLD 0x1809
 
+// FM SEEK Properties
+#define FM_SEEK_BAND_BOTTOM 0x1400          // Sets the bottom of the FM band for seek
+#define FM_SEEK_BAND_TOP 0x1401             // Sets the top of the FM band for seek
+#define FM_SEEK_FREQ_SPACING 0x1402         // Selects frequency spacing for FM seek
+#define FM_SEEK_TUNE_SNR_THRESHOLD 0x1403   // Sets the SNR threshold for a valid FM Seek/Tune
+#define FM_SEEK_TUNE_RSSI_THRESHOLD 0x1404  // Sets the RSSI threshold for a valid FM Seek/Tune
+
 // AM command
 #define AM_TUNE_FREQ 0x40    // Tunes to a given AM frequency.
 #define AM_SEEK_START 0x41   // Begins searching for a valid AM frequency.
@@ -1465,10 +1472,18 @@ public:
     void seekStation(uint8_t SEEKUP, uint8_t WRAP);
     void seekStationUp();
     void seekStationDown();
+
+    // AM Seek property configurations
     void setSeekAmLimits(uint16_t bottom, uint16_t top);
     void setSeekAmSpacing(uint16_t spacing);
-    void setSeekSrnThreshold(uint16_t value);
-    void setSeekRssiThreshold(uint16_t value);
+    void setSeekAmSrnThreshold(uint16_t value);
+    void setSeekAmRssiThreshold(uint16_t value);
+
+    // FM Seek property configurations
+    void setSeekFmLimits(uint16_t bottom, uint16_t top);
+    void setSeekFmSpacing(uint16_t spacing);
+    void setSeekFmSrnThreshold(uint16_t value);
+    void setSeekFmRssiThreshold(uint16_t value);
 
     void setFmBlendStereoThreshold(uint8_t parameter);
     void setFmBlendMonoThreshold(uint8_t parameter);
