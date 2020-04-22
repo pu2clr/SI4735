@@ -146,14 +146,16 @@ void loop()
       break;
     case 'f':
     case 'F':
-      si4735.setFM(8600, 10800, 10390, 10);
+      si4735.setFM(8600, 10800, 10390, 50);
+      si4735.setSeekAmRssiThreshold(0);
+      si4735.setSeekAmSrnThreshold(5);
       break;
     case '1':
       si4735.setAM(100, 30000, 9600, 5);
       si4735.setSeekAmLimits(100, 30000);
-      si4735.setSeekAmSpacing(5); // spacing 50KHz
-      si4735.setSeekAmRssiThreshold(60);
-      si4735.setSeekAmSrnThreshold(0);
+      si4735.setSeekAmSpacing(50); // spacing 50KHz
+      si4735.setSeekAmRssiThreshold(0);
+      si4735.setSeekAmSrnThreshold(5);
       break;
     case 'U':
     case 'u':
