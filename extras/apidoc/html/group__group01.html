@@ -127,8 +127,11 @@ Data Structures</h2></td></tr>
 <tr class="memitem:structsi47x__set__frequency_8arg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#structsi47x__set__frequency_8arg">si47x_set_frequency.arg</a></td></tr>
 <tr class="separator:structsi47x__set__frequency_8arg"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:unionsi47x__seek"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#unionsi47x__seek">si47x_seek</a></td></tr>
-<tr class="memdesc:unionsi47x__seek"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seek frequency (automatic tuning)  <a href="group__group01.html#unionsi47x__seek">More...</a><br /></td></tr>
+<tr class="memdesc:unionsi47x__seek"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seek frequency (automatic tuning). ARG1.  <a href="group__group01.html#unionsi47x__seek">More...</a><br /></td></tr>
 <tr class="separator:unionsi47x__seek"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structsi47x__seek__am__complement"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#structsi47x__seek__am__complement">si47x_seek_am_complement</a></td></tr>
+<tr class="memdesc:structsi47x__seek__am__complement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seek frequency (automatic tuning) AM complement (ARG2, ARG3, ARG4 and ARG5)  <a href="group__group01.html#structsi47x__seek__am__complement">More...</a><br /></td></tr>
+<tr class="separator:structsi47x__seek__am__complement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structsi47x__seek_8arg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#structsi47x__seek_8arg">si47x_seek.arg</a></td></tr>
 <tr class="separator:structsi47x__seek_8arg"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:unionsi47x__status"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#unionsi47x__status">si47x_status</a></td></tr>
@@ -668,8 +671,12 @@ ARG5 - Antenna Tuning Capacitor Low byte. Note used for FM. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p>Seek frequency (automatic tuning) </p>
-<p>Represents searching for a valid frequency data type. </p>
+<div class="textblock"><p>Seek frequency (automatic tuning). ARG1. </p>
+<p>Represents searching for a valid frequency data type AM and FM.</p>
+<p>When AM, the searching data have to be complemented by <a class="el" href="group__group01.html#structsi47x__seek__am__complement" title="Seek frequency (automatic tuning) AM complement (ARG2, ARG3, ARG4 and ARG5)">si47x_seek_am_complement</a>.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 72 and 137 </dd>
+<dd>
+<a class="el" href="group__group01.html#structsi47x__seek__am__complement" title="Seek frequency (automatic tuning) AM complement (ARG2, ARG3, ARG4 and ARG5)">si47x_seek_am_complement</a> </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -682,6 +689,52 @@ arg</td>
 <a id="a894bfdc90f00f3064991edc0c439e66a"></a>uint8_t</td>
 <td class="fieldname">
 raw</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="structsi47x__seek__am__complement" id="structsi47x__seek__am__complement"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#structsi47x__seek__am__complement">&#9670;&nbsp;</a></span>si47x_seek_am_complement</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct si47x_seek_am_complement</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Seek frequency (automatic tuning) AM complement (ARG2, ARG3, ARG4 and ARG5) </p>
+<p>Represents AM complement searching information for a valid frequency data type.</p>
+<dl class="section see"><dt>See also</dt><dd></dd>
+<dd>
+Si47XX PROGRAMMING GUIDE; AN332; pages 72 and 137 </dd></dl>
+</div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a id="a55b8606c703c038e1d4360893451711c"></a>uint8_t</td>
+<td class="fieldname">
+ARG2</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a9fb726b115307ae7455d2dddba2d7d36"></a>uint8_t</td>
+<td class="fieldname">
+ARG3</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="adc4349d375ca2c36518618625f48e4b8"></a>uint8_t</td>
+<td class="fieldname">
+ANTCAPH</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="acd74666ecda0448b052a5ad1e9ade2d2"></a>uint8_t</td>
+<td class="fieldname">
+ANTCAPL</td>
 <td class="fielddoc">
 </td></tr>
 </table>
