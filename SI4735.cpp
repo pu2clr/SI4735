@@ -1519,16 +1519,16 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
     Wire.beginTransmission(deviceAddress);
     Wire.write(seek_start);
     Wire.write(seek.raw);
-
-    if (seek_start == AM_SEEK_START)
+    
+    if (seek_start == AM_SEEK_START) // Sets AM congigurations
     {
-        seek_am_complement.arg.ARG1 = seek_am_complement.arg.ARG2 = 0;
-        seek_am_complement.arg.ANTCAPH = 0;
-        seek_am_complement.arg.ANTCAPL = (currentWorkFrequency > 1800)? 1:0; // if SW = 1
-        Wire.write(seek_am_complement.arg.ARG1); // Always 0
-        Wire.write(seek_am_complement.arg.ARG2); // Always 0
-        Wire.write(seek_am_complement.arg.ANTCAPH); // Tuning Capacitor: The tuning capacitor value
-        Wire.write(seek_am_complement.arg.ANTCAPL); // will be selected automatically.
+        seek_am_complement.ARG1 = seek_am_complement.ARG2 = 0;
+        seek_am_complement.ANTCAPH = 0;
+        seek_am_complement.ANTCAPL = (currentWorkFrequency > 1800)? 1:0; // if SW = 1
+        Wire.write(seek_am_complement.ARG1); // Always 0
+        Wire.write(seek_am_complement.ARG2); // Always 0
+        Wire.write(seek_am_complement.ANTCAPH); // Tuning Capacitor: The tuning capacitor value
+        Wire.write(seek_am_complement.ANTCAPL); // will be selected automatically.
     }
 
     Wire.endTransmission();

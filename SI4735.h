@@ -305,9 +305,11 @@ typedef union {
  * 
  * @brief Seek frequency (automatic tuning). ARG1
  * 
- * @details Represents searching for a valid frequency data type.
+ * @details Represents searching for a valid frequency data type AM and FM.
+ * @details When AM, the searching data have to be complemented by si47x_seek_am_complement.
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 72 and 137
+ * @see si47x_seek_am_complement
  */
 typedef union {
     struct
@@ -325,20 +327,17 @@ typedef union {
  * 
  * @brief Seek frequency (automatic tuning) AM complement (ARG2, ARG3, ARG4 and ARG5)
  * 
- * @details Represents searching for a valid frequency data type. AM complements.
+ * @details Represents AM complement searching information for a valid frequency data type.
  * 
  * @see  @see Si47XX PROGRAMMING GUIDE; AN332; pages 72 and 137
  */
-typedef union {
-    struct
-    {
-        uint8_t ARG1; // Always 0.
-        uint8_t ARG2; // Always 0.
-        uint8_t ANTCAPH;
-        uint8_t ANTCAPL;
-    } arg;
-    uint8_t raw[4];
+typedef struct  {
+   uint8_t ARG1; // Always 0.
+   uint8_t ARG2; // Always 0.
+   uint8_t ANTCAPH;
+   uint8_t ANTCAPL;
 } si47x_seek_am_complement;
+
 
 /** 
  * @ingroup group01 status response structure
