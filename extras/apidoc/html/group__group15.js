@@ -1,8 +1,8 @@
 var group__group15 =
 [
     [ "seekStation", "group__group15.html#ga3280b98b8331f00b4d0158ef1b076533", null ],
-    [ "seekStationUp", "group__group15.html#gaad5211e3fff28141473442f59008e415", null ],
-    [ "seekStationDown", "group__group15.html#ga1eeaa09670cdbdc7ddd724c940d2506b", null ],
+    [ "seekStationUp", "group__group15.html#gae286ce344e53a8bddcdb4a9e2aa7a154", null ],
+    [ "seekStationDown", "group__group15.html#ga5fed37f01d4900caff7ec2251009c28f", null ],
     [ "setSeekAmLimits", "group__group15.html#ga6b901d5cd729364dbda6e5b811dc9ec2", null ],
     [ "setSeekFmLimits", "group__group15.html#gaf66b9851297e6884d70a7e40dd1367c4", null ],
     [ "setSeekAmSpacing", "group__group15.html#ga6f8218c0bbdcb75ea54bc8af2a60dcc6", null ],

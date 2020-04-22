@@ -1,8 +1,8 @@
 var searchData=
 [
   ['seekstation_560',['seekStation',['../group__group15.html#ga3280b98b8331f00b4d0158ef1b076533',1,'SI4735']]],
-  ['seekstationdown_561',['seekStationDown',['../group__group15.html#ga1eeaa09670cdbdc7ddd724c940d2506b',1,'SI4735']]],
-  ['seekstationup_562',['seekStationUp',['../group__group15.html#gaad5211e3fff28141473442f59008e415',1,'SI4735']]],
+  ['seekstationdown_561',['seekStationDown',['../group__group15.html#ga5fed37f01d4900caff7ec2251009c28f',1,'SI4735']]],
+  ['seekstationup_562',['seekStationUp',['../group__group15.html#gae286ce344e53a8bddcdb4a9e2aa7a154',1,'SI4735']]],
   ['sendproperty_563',['sendProperty',['../group__group10.html#ga4d65660ec2b60d7486165ed8a7a92015',1,'SI4735']]],
   ['sendssbmodeproperty_564',['sendSSBModeProperty',['../group__group17.html#gae1d866bfc4cb37c4268c8942b4b4d062',1,'SI4735']]],
   ['setam_565',['setAM',['../group__group08.html#ga753390952a1f2c2a98343979f1f3daa0',1,'SI4735::setAM()'],['../group__group08.html#ga43c5ea36995a3897820e0170d94c81f4',1,'SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint16_t step)']]],

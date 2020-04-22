@@ -151,7 +151,9 @@ void loop()
     case '1':
       si4735.setAM(100, 30000, 9600, 5);
       si4735.setSeekAmLimits(100, 30000);
-      si4735.setSeekAmSpacing(5); // spacing 50KHz
+      si4735.setSeekAmSpacing(10); // spacing 50KHz
+      // si4735.setSeekAmRssiThreshold(50);
+      // si4735.setSeekAmSrnThreshold(20);
       break;
     case 'U':
     case 'u':
@@ -179,10 +181,10 @@ void loop()
       }
       break;
     case 'S':
-      si4735.seekStationUp();
+      si4735.seekStationUp(0);
       break;
     case 's':
-      si4735.seekStationDown();
+      si4735.seekStationDown(0);
       break;
     case '0':
       showStatus();

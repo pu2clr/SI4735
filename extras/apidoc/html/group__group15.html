@@ -96,12 +96,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga3280b98b8331f00b4d0158ef1b076533"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#ga3280b98b8331f00b4d0158ef1b076533">SI4735::seekStation</a> (uint8_t SEEKUP, uint8_t WRAP)</td></tr>
 <tr class="memdesc:ga3280b98b8331f00b4d0158ef1b076533"><td class="mdescLeft">&#160;</td><td class="mdescRight">Look for a station (Automatic tune)  <a href="group__group15.html#ga3280b98b8331f00b4d0158ef1b076533">More...</a><br /></td></tr>
 <tr class="separator:ga3280b98b8331f00b4d0158ef1b076533"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaad5211e3fff28141473442f59008e415"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#gaad5211e3fff28141473442f59008e415">SI4735::seekStationUp</a> ()</td></tr>
-<tr class="memdesc:gaad5211e3fff28141473442f59008e415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for the next station.  <a href="group__group15.html#gaad5211e3fff28141473442f59008e415">More...</a><br /></td></tr>
-<tr class="separator:gaad5211e3fff28141473442f59008e415"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1eeaa09670cdbdc7ddd724c940d2506b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#ga1eeaa09670cdbdc7ddd724c940d2506b">SI4735::seekStationDown</a> ()</td></tr>
-<tr class="memdesc:ga1eeaa09670cdbdc7ddd724c940d2506b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search the previous station.  <a href="group__group15.html#ga1eeaa09670cdbdc7ddd724c940d2506b">More...</a><br /></td></tr>
-<tr class="separator:ga1eeaa09670cdbdc7ddd724c940d2506b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae286ce344e53a8bddcdb4a9e2aa7a154"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#gae286ce344e53a8bddcdb4a9e2aa7a154">SI4735::seekStationUp</a> (uint8_t WRAP=1)</td></tr>
+<tr class="memdesc:gae286ce344e53a8bddcdb4a9e2aa7a154"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for the next station.  <a href="group__group15.html#gae286ce344e53a8bddcdb4a9e2aa7a154">More...</a><br /></td></tr>
+<tr class="separator:gae286ce344e53a8bddcdb4a9e2aa7a154"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5fed37f01d4900caff7ec2251009c28f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#ga5fed37f01d4900caff7ec2251009c28f">SI4735::seekStationDown</a> (uint8_t WRAP=1)</td></tr>
+<tr class="memdesc:ga5fed37f01d4900caff7ec2251009c28f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search the previous station.  <a href="group__group15.html#ga5fed37f01d4900caff7ec2251009c28f">More...</a><br /></td></tr>
+<tr class="separator:ga5fed37f01d4900caff7ec2251009c28f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6b901d5cd729364dbda6e5b811dc9ec2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#ga6b901d5cd729364dbda6e5b811dc9ec2">SI4735::setSeekAmLimits</a> (uint16_t bottom, uint16_t top)</td></tr>
 <tr class="memdesc:ga6b901d5cd729364dbda6e5b811dc9ec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the bottom frequency and top frequency of the AM band for seek. Default is 520 to 1710.  <a href="group__group15.html#ga6b901d5cd729364dbda6e5b811dc9ec2">More...</a><br /></td></tr>
 <tr class="separator:ga6b901d5cd729364dbda6e5b811dc9ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,8 +169,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gaad5211e3fff28141473442f59008e415"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaad5211e3fff28141473442f59008e415">&#9670;&nbsp;</a></span>seekStationUp()</h2>
+<a id="gae286ce344e53a8bddcdb4a9e2aa7a154"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae286ce344e53a8bddcdb4a9e2aa7a154">&#9670;&nbsp;</a></span>seekStationUp()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -178,7 +178,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void SI4735::seekStationUp </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>WRAP</em> = <code>1</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -186,11 +187,17 @@ Functions</h2></td></tr>
 
 <p>Search for the next station. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group15.html#ga3280b98b8331f00b4d0158ef1b076533" title="Look for a station (Automatic tune)">seekStation(uint8_t SEEKUP, uint8_t WRAP)</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">WRAP</td><td>Default 1. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="ga1eeaa09670cdbdc7ddd724c940d2506b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1eeaa09670cdbdc7ddd724c940d2506b">&#9670;&nbsp;</a></span>seekStationDown()</h2>
+<a id="ga5fed37f01d4900caff7ec2251009c28f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5fed37f01d4900caff7ec2251009c28f">&#9670;&nbsp;</a></span>seekStationDown()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,7 +205,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void SI4735::seekStationDown </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>WRAP</em> = <code>1</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -206,6 +214,12 @@ Functions</h2></td></tr>
 
 <p>Search the previous station. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group15.html#ga3280b98b8331f00b4d0158ef1b076533" title="Look for a station (Automatic tune)">seekStation(uint8_t SEEKUP, uint8_t WRAP)</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">WRAP</td><td>Default 1. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
