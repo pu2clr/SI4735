@@ -6,6 +6,9 @@
   For this reason, it is necessary change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
+  Features:   FM/RDS; AM; SSB; LW/MW/SW; two super band (from 1.7 to 30 MHz); external mute circuit control; 
+              AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB 
+
   Wire up on Arduino UNO, Pro mini
   | Device name               | Device Pin / Description  |  Arduino Pin  |
   | ----------------          | --------------------      | ------------  |
@@ -77,6 +80,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define AGC_SWITCH 14      // Pin A0 - Switch AGC ON/OF
 #define STEP_SWITCH 15     // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 #define BFO_SWITCH 16      // Pin A3 - Used to select the enconder control (BFO or VFO)
+#define AUDIO_MUTE 1       // External AUDIO MUTE circuit control
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
@@ -190,6 +194,10 @@ void setup()
   pinMode(AGC_SWITCH, INPUT_PULLUP);
   pinMode(STEP_SWITCH, INPUT_PULLUP);
   pinMode(MODE_SWITCH, INPUT_PULLUP);
+
+
+  // Comment the line below if you do not have external audio mute circuit
+  si4735.setAudioMuteMcuPin(AUDIO_MUTE);
 
   // Use this initializer if using a 1.8" TFT screen:
   tft.begin();
