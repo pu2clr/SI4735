@@ -8,14 +8,15 @@ This is an Arduino library for the SI47XX, BROADCAST AM/FM/SW RADIO RECEIVER IC 
 
 This library can be freely distributed using the MIT Free Software model. See [Copyright (c) 2019 Ricardo Lima Caratti](https://pu2clr.github.io/SI4735/#mit-license). Contact: __pu2clr@gmail.com__.
 
+
+{% include repository.html %}
+
 There is a facebook group called [__Si47XX for Radio Experimenters__](https://www.facebook.com/groups/532613604253401/) where the purpose is exchanging experiences with projects based on Silicon Labs  SI47XX IC family. You will be welcome to the group [Si47XX for Radio Experimenters](https://www.facebook.com/groups/532613604253401/).
 
 ## __Attention__: 
 * __The SI473 (SI47XX) is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V bidirectional converter. It is important to say that just power the Si47XX device with 3.3V is not enough. I mean, on an Arduino 5V board, just feeding the Si47XX device with the 3.3V of the Arduino output is not enough. You have to be aware that the Arduino that operates with 5V, the digital pins and the I2C bus will send 5V signals to the Si47XX device. That configuration can make the system unstable or damage the Si47XX device__.  
 * __This library has been successfully tested on Arduino Pro Mini 3.3V; Arduino UNO (using voltage converter); Arduino YÚN (using voltage converter); ESP32 (LOLIN32 WEMOS); STM32;  Mega 2560 (using voltage converter); Genuino Micro/Atmega32u4 (using voltage converter) and Arduino DUE.__    
 
-
-{% include repository.html %}
 
 
 ## Summary
@@ -165,9 +166,10 @@ This library uses the I²C communication protocol and implements most of the fun
 5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested);
 6. Simplifies projects based on SI4735;
 7. __I²C communication__ and Automatic I²C bus address detection; 
-8. More than 120 functions implemented. You can customize almost every feature available on Si47XX family. 
-9. [RDS support](https://pu2clr.github.io/SI4735/#rds)
-10. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band) 
+8. More than 120 functions implemented. You can customize almost every feature available on Si47XX family; 
+9. [More than 20 examples to guide the user](https://github.com/pu2clr/SI4735/tree/master/examples);
+10. [RDS support](https://pu2clr.github.io/SI4735/#rds)
+11. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band). 
 
 <BR>
 
