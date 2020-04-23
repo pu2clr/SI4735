@@ -120,7 +120,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 
 <BR>
 
-## SI4735 Terminology
+## This project Terminology
 
 | Term | Description |
 | ---- | ----- |
