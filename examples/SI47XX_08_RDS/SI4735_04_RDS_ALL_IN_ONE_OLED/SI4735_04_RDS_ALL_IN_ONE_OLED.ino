@@ -137,9 +137,11 @@ const char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 uint8_t bwIdxAM = 1;
 const char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
+// Atenuação and AGC
 uint8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 uint8_t agcNdx = 0;
+
 /*
    Band data structure
 */
@@ -358,7 +360,7 @@ void showStatus()
     oled.print("AGC ON");
   } else {
     oled.print("ATT: ");
-    oled.print(agcNdx);
+    oled.print(agcIdx);
   }
 
   showRSSI();
