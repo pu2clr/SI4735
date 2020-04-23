@@ -8,7 +8,6 @@ This is an Arduino library for the SI47XX, BROADCAST AM/FM/SW RADIO RECEIVER IC 
 
 This library can be freely distributed using the MIT Free Software model. See [Copyright (c) 2019 Ricardo Lima Caratti](https://pu2clr.github.io/SI4735/#mit-license). Contact: __pu2clr@gmail.com__.
 
-
 {% include repository.html %}
 
 There is a facebook group called [__Si47XX for Radio Experimenters__](https://www.facebook.com/groups/532613604253401/) where the purpose is exchanging experiences with projects based on Silicon Labs  SI47XX IC family. You will be welcome to the group [Si47XX for Radio Experimenters](https://www.facebook.com/groups/532613604253401/).
