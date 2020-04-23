@@ -24,7 +24,7 @@ There is a facebook group called [__Si47XX for Radio Experimenters__](https://ww
 2. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
 3. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
 4. [About the SI4735](https://pu2clr.github.io/SI4735/#about-the-si4735)
-5. [Terminology](https://pu2clr.github.io/SI4735/#si4735-terminology)
+5. [Terminology](https://github.com/pu2clr/SI4735#this-project-terminology)
 6. [Labrary Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
 7. [Library Installation](https://pu2clr.github.io/SI4735/#library-installation)
 8. [API Documentation](https://pu2clr.github.io/SI4735/#api-documentation)
