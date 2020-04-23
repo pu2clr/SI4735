@@ -360,7 +360,7 @@ void showStatus()
     oled.print("AGC ON");
   } else {
     oled.print("ATT: ");
-    oled.print(agcIdx);
+    oled.print(agcNdx);
   }
 
   showRSSI();
@@ -595,7 +595,7 @@ void useBand()
     {
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      si4735.setAutomaticGainControl(1, 0);
+      si4735.setAutomaticGainControl(disableAgc, agcNdx);
       si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
       bfoOn = false;
     }
