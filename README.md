@@ -1,6 +1,6 @@
 <meta name="google-site-verification" content="_wADvyP4vuP_aw0YTmu90mdAhz70vNwTF_pdAMMb0HY" />
 
-# [PU2CLR Si4735 Library for Arduino](https://pu2clr.github.io/SI4735/)
+# [PU2CLR SI4735 Library for Arduino](https://pu2clr.github.io/SI4735/)
 
 [Documentação em Português](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md)
 
