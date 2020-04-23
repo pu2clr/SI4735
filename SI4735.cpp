@@ -1372,7 +1372,7 @@ void SI4735::getAutomaticGainControl()
  * 
  * @details If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 
  * (minimum attenuation) and 26 (maximum attenuation).
- * @details If AM/SSB, Overrides the AM AGC setting by disabling the AGC and forcing the gain index that ranges between 0 
+ * @details If AM/SSB, Overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0 
  * (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation).
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 
@@ -1387,7 +1387,7 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
 
     uint8_t cmd;
 
-    cmd = (currentTune == FM_TUNE_FREQ) ? FM_AGC_OVERRIDE : AM_AGC_OVERRIDE;
+    cmd = (currentTune == FM_TUNE_FREQ) ? FM_AGC_OVERRIDE : AM_AGC_OVERRIDE; // AM_AGC_OVERRIDE = SSB_AGC_OVERRIDE = 0x48
 
     agc.arg.AGCDIS = AGCDIS;
     agc.arg.AGCIDX = AGCIDX;
