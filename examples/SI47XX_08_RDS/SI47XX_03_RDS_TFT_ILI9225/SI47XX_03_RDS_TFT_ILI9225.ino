@@ -93,9 +93,15 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define CLEAR_BUFFER(x)  (x[0] = '\0');
 
 bool bfoOn = false;
-bool disableAgc = true;
 bool ssbLoaded = false;
 bool fmStereo = true;
+
+
+// Atenuação and AGC
+uint8_t agcIdx = 0;
+uint8_t disableAgc = 0;
+uint8_t agcNdx = 0;
+
 
 int currentBFO = 0;
 
@@ -358,7 +364,7 @@ void showStatus()
 
   // AGC
   si4735.getAutomaticGainControl();
-  sprintf(bufferDisplay, "AGC %s", (si4735.isAgcEnabled()) ? "ON  " : "OFF");
+  sprintf(bufferDisplay, "%s %2d", (si4735.isAgcEnabled()) ? "AGC" : "ATT", agcNdx);
   printValue(65, 60, bufferAGC, bufferDisplay, COLOR_CYAN, 6);
 
   showFilter(); 
@@ -576,13 +582,14 @@ void useBand()
     {
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
       si4735.setSSBAutomaticVolumeControl(1);
+      si4735.setAutomaticGainControl(disableAgc, agcNdx);
       si4735.setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
     }
     else
     {
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      si4735.setAutomaticGainControl(1, 0);
+      si4735.setAutomaticGainControl(disableAgc, agcNdx);
       si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
       bfoOn = false;
     }
@@ -680,9 +687,29 @@ void loop()
     }
     else if (digitalRead(AGC_SWITCH) == LOW)
     {
-      disableAgc = !disableAgc;
-      // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
-      si4735.setAutomaticGainControl(disableAgc, 1);
+      if (agcIdx == 0)
+      {
+        disableAgc = 0; // Turns AGC ON
+        agcNdx = 0;
+        agcIdx = 1;
+      } else if (agcIdx == 1)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 0;     // Sets minimum attenuation
+        agcIdx = 2;
+      } else if (agcIdx == 2)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 10;    // Increases the attenuation AM/SSB AGC Index  = 10
+        agcIdx = 3;
+      } else if (agcIdx == 3)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 30;    // Increases the attenuation AM/SSB AGC Index  = 30
+        agcIdx = 0;
+      } 
+      // Sets AGC on/off and gain
+      si4735.setAutomaticGainControl(disableAgc, agcNdx);
       showStatus();
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
