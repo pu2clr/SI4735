@@ -1202,7 +1202,7 @@ If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a 
 (minimum attenuation) and 26 (maximum attenuation).
 
 
-If AM/SSB, Overrides the AM AGC setting by disabling the AGC and forcing the gain index that ranges between 0 
+If AM/SSB, Overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0 
 (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation).
 
 @see Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 
