@@ -18,6 +18,8 @@ var class_s_i4735 =
     [ "setup", "group__group07.html#ga95fd37277dbb8b16b5ae7a996a5f9eba", null ],
     [ "getProperty", "group__group10.html#gace60b9db8033c689247dc1370be367b6", null ],
     [ "setProperty", "group__group10.html#ga27549ef05fa62f60e4ac205c16b8f764", null ],
+    [ "sendCommand", "group__group10.html#ga3d2342264b36bd524ccbaf898e4d219b", null ],
+    [ "getCommandResponse", "group__group10.html#gab4c50abd500f55427a4d1d2273b45e3a", null ],
     [ "setPowerUp", "group__group06.html#ga8bc001cb28dc8fbd88ba0fa7024eca39", null ],
     [ "radioPowerUp", "group__group06.html#ga3e228da65641f4dcf4253262e19bde9b", null ],
     [ "analogPowerUp", "group__group06.html#ga412f51386c47a17cf04fd0a3c3078726", null ],
