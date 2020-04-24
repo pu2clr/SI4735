@@ -952,7 +952,7 @@ void SI4735::sendCommand(uint8_t cmd, int parameter_size, const uint8_t * parame
     for (byte i = 0; i < parameter_size; i++)
         Wire.write(parameter[i]);
     Wire.endTransmission();
-};
+}
 
 /**
  * @ingroup group10 Generic Command and Response
@@ -970,7 +970,7 @@ void SI4735::getCommandResponse(int response_size, uint8_t *response) {
     // Gets response information
     for (byte i = 0; i < response_size; i++)
         response[i] = Wire.read();
-};
+}
 
 /**
  * @ingroup group10 Generic get property
