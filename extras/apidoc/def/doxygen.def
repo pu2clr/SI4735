@@ -506,7 +506,7 @@ Returns with the command response.
 <br>
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-After a command is executed by the device, you can get the result (response) of the command by calling thi method.
+After a command is executed by the device, you can get the result (response) of the command by calling this method.
 
 @see sendCommand, setProperty
 
