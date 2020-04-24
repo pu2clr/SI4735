@@ -906,10 +906,10 @@ void SI4735::setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT)
  * @details This method is used for others to send generic properties and params to SI47XX
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 68, 124 and  133.
+ * @see setProperty, sendCommand, getProperty, getCommandResponse
  * 
  * @param propertyNumber property number (example: RX_VOLUME)
  * @param parameter   property value that will be seted
- * 
  */
 void SI4735::sendProperty(uint16_t propertyNumber, uint16_t parameter)
 {
@@ -975,12 +975,13 @@ void SI4735::getCommandResponse(int response_size, uint8_t *response) {
 /**
  * @ingroup group10 Generic get property
  * 
- * @brief Gets a property from the SI47XX
+ * @brief Gets a given property from the SI47XX
  * 
  * @details This method is used to get a given property from SI47XX
  * @details You might need to extract set of bits information from the returned value to know the real value
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 55, 69, 124 and  134.
+ * @see sendProperty, setProperty, sendCommand, getCommandResponse
  * 
  * @param propertyNumber property number (example: RX_VOLUME)
  * 
