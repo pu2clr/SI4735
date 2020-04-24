@@ -931,6 +931,48 @@ void SI4735::sendProperty(uint16_t propertyNumber, uint16_t parameter)
 }
 
 /**
+ * @ingroup group10 Generic Command and Response
+ * @brief Sends a given command to the SI47XX devices. 
+ * @details This function can be useful when you want to execute a SI47XX device command and it was not implemented by this library.
+ * @details In this case you have to check the  AN332-Si47XX PROGRAMMING GUIDE to know how the command works. 
+ * @details Also, you need to work with bit operators to compose the parameters of the command [ &(and), ˆ(xor), |(or) etc ].   
+ *
+ * @see getCommandResponse, setProperty
+ *  
+ * @param cmd command number (see AN332-Si47XX PROGRAMMING GUIDE)
+ * @param parameter_size Parameter size in bytes. Tell the number of argument used by the command.
+ * @param parameter unsigned byte array with the arguments of the command  
+ */
+void SI4735::sendCommand(uint8_t cmd, int parameter_size, const uint8_t * parameter) {
+    waitToSend();
+    Wire.beginTransmission(deviceAddress);
+    // Sends the command to the device
+    Wire.write(cmd);
+    // Sends the argments (parameters) of the command
+    for (byte i = 0; i < parameter_size; i++)
+        Wire.write(parameter[i]);
+    Wire.endTransmission();
+};
+
+/**
+ * @ingroup group10 Generic Command and Response
+ * @brief   Returns with the command response.  
+ * @details After a command is executed by the device, you can get the result (response) of the command by calling thi method.
+ * 
+ * @see sendCommand, setProperty
+ * 
+ * @param response_size  num of bytes returned by the command.
+ * @param response  byte array where the response will be stored.     
+ */
+void SI4735::getCommandResponse(int response_size, uint8_t *response) {
+    // Asks the device to return a given number o bytes response
+    Wire.requestFrom(deviceAddress, response_size); 
+    // Gets response information
+    for (byte i = 0; i < response_size; i++)
+        response[i] = Wire.read();
+};
+
+/**
  * @ingroup group10 Generic get property
  * 
  * @brief Gets a property from the SI47XX

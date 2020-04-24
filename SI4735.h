@@ -1063,6 +1063,9 @@ public:
         sendProperty(propertyNumber, param);
     };
 
+    void sendCommand(uint8_t cmd, int parameter_size, const uint8_t *parameter);
+    void getCommandResponse(int num_of_bytes, uint8_t *response);
+
 
     void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE);
     void radioPowerUp(void);
