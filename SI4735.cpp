@@ -957,7 +957,7 @@ void SI4735::sendCommand(uint8_t cmd, int parameter_size, const uint8_t * parame
 /**
  * @ingroup group10 Generic Command and Response
  * @brief   Returns with the command response.  
- * @details After a command is executed by the device, you can get the result (response) of the command by calling thi method.
+ * @details After a command is executed by the device, you can get the result (response) of the command by calling this method.
  * 
  * @see sendCommand, setProperty
  * 
