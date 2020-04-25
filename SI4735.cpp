@@ -973,6 +973,25 @@ void SI4735::getCommandResponse(int response_size, uint8_t *response) {
 }
 
 /**
+ * @ingroup group10 Generic Command and Response
+ * @brief Gets the first byte response. 
+ * @details In this context status is the first response byte for any SI47XX command. See si47x_status structure. 
+ * @details This function can be useful to check, for example, the success or failure of a command. 
+ * 
+ * @see si47x_status
+ * 
+ * @return si47x_status 
+ */
+si47x_status SI4735::getStatusResponse(){
+    si47x_status status;
+
+    Wire.requestFrom(deviceAddress, 1);
+    status.raw = Wire.read();
+
+    return status;
+}
+
+/**
  * @ingroup group10 Generic get property
  * 
  * @brief Gets a given property from the SI47XX
@@ -987,7 +1006,8 @@ void SI4735::getCommandResponse(int response_size, uint8_t *response) {
  * 
  * @return property value  (the content of the property)
  */
-int32_t SI4735::getProperty(uint16_t propertyNumber)
+int32_t
+    SI4735::getProperty(uint16_t propertyNumber)
 {
     si47x_property property;
     si47x_status status;
@@ -1591,6 +1611,7 @@ void SI4735::seekStationUp(uint8_t WRAP)
     seekStation(1, WRAP);
     delay(50);
     getFrequency();
+   
 }
 
 /**
