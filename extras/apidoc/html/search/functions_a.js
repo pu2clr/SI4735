@@ -1,9 +1,9 @@
 var searchData=
 [
   ['seekstation_572',['seekStation',['../group__group15.html#ga3280b98b8331f00b4d0158ef1b076533',1,'SI4735']]],
-  ['seekstationdown_573',['seekStationDown',['../group__group15.html#ga5fed37f01d4900caff7ec2251009c28f',1,'SI4735']]],
+  ['seekstationdown_573',['seekStationDown',['../group__group15.html#ga1eeaa09670cdbdc7ddd724c940d2506b',1,'SI4735']]],
   ['seekstationprogress_574',['seekStationProgress',['../group__group15.html#ga80b69a4edfacf274a8a8033e860453ce',1,'SI4735']]],
-  ['seekstationup_575',['seekStationUp',['../group__group15.html#gae286ce344e53a8bddcdb4a9e2aa7a154',1,'SI4735']]],
+  ['seekstationup_575',['seekStationUp',['../group__group15.html#gaad5211e3fff28141473442f59008e415',1,'SI4735']]],
   ['sendcommand_576',['sendCommand',['../group__group10.html#ga3d2342264b36bd524ccbaf898e4d219b',1,'SI4735']]],
   ['sendproperty_577',['sendProperty',['../group__group10.html#ga4d65660ec2b60d7486165ed8a7a92015',1,'SI4735']]],
   ['sendssbmodeproperty_578',['sendSSBModeProperty',['../group__group17.html#gae1d866bfc4cb37c4268c8942b4b4d062',1,'SI4735']]],
