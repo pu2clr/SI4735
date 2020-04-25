@@ -160,6 +160,9 @@
 #define AM_CURRENT_MODE 1
 #define SSB_CURRENT_MODE 2
 
+#define SEEK_UP 1
+#define SEEK_DOWN 0
+
 #define MAX_DELAY_AFTER_SET_FREQUENCY 30 // In ms - This value helps to improve the precision during of getting frequency value
 #define MAX_DELAY_AFTER_POWERUP 10       // In ms - Max delay you have to setup after a power up command.
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
@@ -1503,7 +1506,7 @@ public:
     */
     inline void seekStationUp()
     {
-        seekStationProgress(NULL, 1);
+        seekStationProgress(NULL, SEEK_UP);
     };
 
     /**
@@ -1516,7 +1519,7 @@ public:
     */
     inline void seekStationDown()
     {
-        seekStationProgress(NULL, 0);
+        seekStationProgress(NULL, SEEK_DOWN);
     };
     
     void seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down);
