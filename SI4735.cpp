@@ -1606,7 +1606,7 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
  * 
  * @brief Search for the next station 
  * 
- * @see seekStation(uint8_t SEEKUP, uint8_t WRAP)
+ * @see seekStation, seekStationProgress, setSeekAmLimits, setSeekAmLimits setSeekFmLimits 
  * @param WRAP Default 1. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
 void SI4735::seekStationUp(uint8_t WRAP)
@@ -1625,7 +1625,7 @@ void SI4735::seekStationUp(uint8_t WRAP)
  * 
  * @brief Search the previous station
  * 
- * @see seekStation(uint8_t SEEKUP, uint8_t WRAP)
+ * @see seekStation, seekStationProgress, setSeekAmLimits, setSeekAmLimits setSeekFmLimits 
  * @param WRAP Default 1. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
  */
 void SI4735::seekStationDown(uint8_t WRAP)
@@ -1681,7 +1681,6 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
             showFunc(freq.value);
     } while (!currentStatus.resp.VALID &&  !currentStatus.resp.BLTF);
 }
-
 
 
 /**

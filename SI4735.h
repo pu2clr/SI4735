@@ -1495,11 +1495,10 @@ public:
     bool isCurrentTuneSSB();
 
     void getFirmware(void);
-
+    // Seek  
     void seekStation(uint8_t SEEKUP, uint8_t WRAP); // See WRAP parameter 
     void seekStationUp(uint8_t WRAP = 1);
     void seekStationDown(uint8_t WRAP =  1);
-
     void seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down);
 
     // AM Seek property configurations
