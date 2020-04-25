@@ -502,7 +502,7 @@ void showFrequency()
 
 // Will be used by seekStationProgress 
 void showFrequencySeek(uint16_t freq) {
-  currentFrequency = freq;
+  previousFrequency =  currentFrequency = freq;
   showFrequency();
 }
 
