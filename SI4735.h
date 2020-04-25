@@ -60,11 +60,11 @@
 #define FM_BLEND_MULTIPATH_MONO_THRESHOLD 0x1809
 
 // FM SEEK Properties
-#define FM_SEEK_BAND_BOTTOM 0x1400          // Sets the bottom of the FM band for seek
-#define FM_SEEK_BAND_TOP 0x1401             // Sets the top of the FM band for seek
-#define FM_SEEK_FREQ_SPACING 0x1402         // Selects frequency spacing for FM seek
-#define FM_SEEK_TUNE_SNR_THRESHOLD 0x1403   // Sets the SNR threshold for a valid FM Seek/Tune
-#define FM_SEEK_TUNE_RSSI_THRESHOLD 0x1404  // Sets the RSSI threshold for a valid FM Seek/Tune
+#define FM_SEEK_BAND_BOTTOM 0x1400         // Sets the bottom of the FM band for seek
+#define FM_SEEK_BAND_TOP 0x1401            // Sets the top of the FM band for seek
+#define FM_SEEK_FREQ_SPACING 0x1402        // Selects frequency spacing for FM seek
+#define FM_SEEK_TUNE_SNR_THRESHOLD 0x1403  // Sets the SNR threshold for a valid FM Seek/Tune
+#define FM_SEEK_TUNE_RSSI_THRESHOLD 0x1404 // Sets the RSSI threshold for a valid FM Seek/Tune
 
 // AM command
 #define AM_TUNE_FREQ 0x40    // Tunes to a given AM frequency.
@@ -149,11 +149,11 @@
 #define USB_MODE 2 // 10
 
 // Parameters
-#define SI473X_RDS_OUTPUT_ONLY 0b00000000       // RDS output only (no audio outputs) Si4749 only
-#define SI473X_ANALOG_AUDIO 0b00000101          // Analog Audio Inputs
-#define SI473X_DIGITAL_AUDIO1 0b00001011        // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
-#define SI473X_DIGITAL_AUDIO2 0b10110000        // Digital audio outputs (DCLK, DFS, DIO)
-#define SI473X_ANALOG_DIGITAL_AUDIO 0b10110101  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO)
+#define SI473X_RDS_OUTPUT_ONLY 0b00000000      // RDS output only (no audio outputs) Si4749 only
+#define SI473X_ANALOG_AUDIO 0b00000101         // Analog Audio Inputs
+#define SI473X_DIGITAL_AUDIO1 0b00001011       // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
+#define SI473X_DIGITAL_AUDIO2 0b10110000       // Digital audio outputs (DCLK, DFS, DIO)
+#define SI473X_ANALOG_DIGITAL_AUDIO 0b10110101 // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO)
 
 // Other parameters
 #define FM_CURRENT_MODE 0
@@ -218,8 +218,8 @@ typedef union {
         uint8_t GPO2OEN : 1; //!< GPO2 Output Enable.
         uint8_t GPO3OEN : 1; //!< GPO3 Output Enable.
         uint8_t DUMMY2 : 4;  //!< Always write 0.
-    } arg;              //!<  Refined powerup parameters
-    uint8_t raw;    
+    } arg;                   //!<  Refined powerup parameters
+    uint8_t raw;
 } si473x_gpio;
 
 /**
@@ -234,21 +234,19 @@ typedef union {
 typedef union {
     struct
     {
-        uint8_t STCIEN : 1;  //!< Seek/Tune Complete Interrupt Enable (0 or 1).
-        uint8_t DUMMY1 : 2;  //!< Always write 0.
-        uint8_t RSQIEN : 1;  //!< RSQ Interrupt Enable (0 or 1).
-        uint8_t DUMMY2 : 2;  //!< Always write 0.
-        uint8_t ERRIEN : 1;  //!< ERR Interrupt Enable (0 or 1).
-        uint8_t CTSIEN : 1;  //!< CTS Interrupt Enable (0 or 1).
-        uint8_t STCREP : 1;  //!< STC Interrupt Repeat (0 or 1).
-        uint8_t DUMMY3 : 2;  //!< Always write 0.
-        uint8_t RSQREP : 1;  //!< RSQ Interrupt Repeat (0 or 1).
-        uint8_t DUMMY4 : 4;  //!< Always write 0.
-    } arg;                   
+        uint8_t STCIEN : 1; //!< Seek/Tune Complete Interrupt Enable (0 or 1).
+        uint8_t DUMMY1 : 2; //!< Always write 0.
+        uint8_t RSQIEN : 1; //!< RSQ Interrupt Enable (0 or 1).
+        uint8_t DUMMY2 : 2; //!< Always write 0.
+        uint8_t ERRIEN : 1; //!< ERR Interrupt Enable (0 or 1).
+        uint8_t CTSIEN : 1; //!< CTS Interrupt Enable (0 or 1).
+        uint8_t STCREP : 1; //!< STC Interrupt Repeat (0 or 1).
+        uint8_t DUMMY3 : 2; //!< Always write 0.
+        uint8_t RSQREP : 1; //!< RSQ Interrupt Repeat (0 or 1).
+        uint8_t DUMMY4 : 4; //!< Always write 0.
+    } arg;
     uint16_t raw;
 } si473x_gpio_ien;
-
-
 
 /**
  * @ingroup group01
@@ -331,13 +329,13 @@ typedef union {
  * 
  * @see  @see Si47XX PROGRAMMING GUIDE; AN332; pages 72 and 137
  */
-typedef struct  {
-   uint8_t ARG2; // Always 0.
-   uint8_t ARG3; // Always 0.
-   uint8_t ANTCAPH;
-   uint8_t ANTCAPL;
+typedef struct
+{
+    uint8_t ARG2; // Always 0.
+    uint8_t ARG3; // Always 0.
+    uint8_t ANTCAPH;
+    uint8_t ANTCAPL;
 } si47x_seek_am_complement;
-
 
 /** 
  * @ingroup group01 status response structure
@@ -354,8 +352,8 @@ typedef union {
         uint8_t RDSINT : 1; //!< 1 = Radio data system interrupt has been triggered.
         uint8_t RSQINT : 1; //!< 1 = Received Signal Quality measurement has been triggered.
         uint8_t DUMMY2 : 2; //!< Reserved (Values may vary).
-        uint8_t ERR : 1; //!< 1 = Error.
-        uint8_t CTS : 1; //!< 0 = Wait before sending next command; 1 = Clear to send next command.
+        uint8_t ERR : 1;    //!< 1 = Error.
+        uint8_t CTS : 1;    //!< 0 = Wait before sending next command; 1 = Clear to send next command.
     } refined;
     uint8_t raw;
 } si47x_status;
@@ -1014,13 +1012,10 @@ protected:
     uint8_t currentAudioMode = SI473X_ANALOG_AUDIO; //!< current audio mode used (ANALOG or DIGITAL or both)
     uint8_t currentSsbStatus;
 
-
     bool controlMcu = false;
     int8_t controlMcuPin;
     int8_t audioMuteMcuPin = -1;
     uint32_t controlMcuClock;
-
-
 
     void waitInterrupr(void);
     si47x_status getInterruptStatus();
@@ -1061,14 +1056,14 @@ public:
      * @param propertyNumber
      * @param param  pamameter value 
      */
-    inline void setProperty(uint16_t propertyNumber, uint16_t param) {
+    inline void setProperty(uint16_t propertyNumber, uint16_t param)
+    {
         sendProperty(propertyNumber, param);
     };
 
     void sendCommand(uint8_t cmd, int parameter_size, const uint8_t *parameter);
     void getCommandResponse(int num_of_bytes, uint8_t *response);
     si47x_status getStatusResponse();
-
 
     void setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE);
     void radioPowerUp(void);
@@ -1465,11 +1460,11 @@ public:
      * @see setAM(), setFM(), setSSB().
      * @param audioMode One of the values options above
      */
-    inline void setAudioMode(uint8_t audioMode) {
+    inline void setAudioMode(uint8_t audioMode)
+    {
         currentAudioMode = audioMode;
     };
 
- 
     void digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, uint8_t OFALL);
     void digitalOutputSampleRate(uint16_t DOSR);
 
@@ -1495,10 +1490,35 @@ public:
     bool isCurrentTuneSSB();
 
     void getFirmware(void);
-    // Seek  
-    void seekStation(uint8_t SEEKUP, uint8_t WRAP); // See WRAP parameter 
-    void seekStationUp(uint8_t WRAP = 1);
-    void seekStationDown(uint8_t WRAP =  1);
+
+
+    void seekStation(uint8_t SEEKUP, uint8_t WRAP); // See WRAP parameter
+    /**
+    * @ingroup group15 Seek 
+    * 
+    * @brief Search for the next station 
+    * 
+    * @see seekStation, seekStationProgress, setSeekAmLimits, setSeekAmLimits setSeekFmLimits 
+    * @param WRAP Default 1. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
+    */
+    inline void seekStationUp()
+    {
+        seekStationProgress(NULL, 1);
+    };
+
+    /**
+    * @ingroup group15 Seek 
+    * 
+    * @brief Search the previous station
+    * 
+    * @see seekStation, seekStationProgress, setSeekAmLimits, setSeekAmLimits setSeekFmLimits 
+    * @param WRAP Default 1. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
+    */
+    inline void seekStationDown()
+    {
+        seekStationProgress(NULL, 0);
+    };
+    
     void seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down);
 
     // AM Seek property configurations
@@ -1735,12 +1755,9 @@ public:
         getStatus(0, 1);
     }
 
-
     void setDeviceI2CAddress(uint8_t senPin);
     int16_t getDeviceI2CAddress(uint8_t resetPin);
     void setDeviceOtherI2CAddress(uint8_t i2cAddr);
-
-
 
     /******************************************************************************* 
      * The functions below modify the clock frequency for I2C communication. 
@@ -1824,10 +1841,9 @@ public:
      * 
      * @param on  True or false
      */
-    inline void setHardwareAudioMute(bool on) {
+    inline void setHardwareAudioMute(bool on)
+    {
         digitalWrite(audioMuteMcuPin, on);
         delayMicroseconds(300);
     }
-
-  
 };

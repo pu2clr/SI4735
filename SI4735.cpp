@@ -1603,44 +1603,6 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
 
 /**
  * @ingroup group15 Seek 
- * 
- * @brief Search for the next station 
- * 
- * @see seekStation, seekStationProgress, setSeekAmLimits, setSeekAmLimits setSeekFmLimits 
- * @param WRAP Default 1. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
- */
-void SI4735::seekStationUp(uint8_t WRAP)
-{
-    do
-    {
-        seekStation(1, WRAP);
-        getStatus(0, 0);
-        delay(100);
-    } while (!currentStatus.resp.VALID && !currentStatus.resp.BLTF);
-    getFrequency();
-}
-
-/**
- * @ingroup group15 Seek 
- * 
- * @brief Search the previous station
- * 
- * @see seekStation, seekStationProgress, setSeekAmLimits, setSeekAmLimits setSeekFmLimits 
- * @param WRAP Default 1. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
- */
-void SI4735::seekStationDown(uint8_t WRAP)
-{
-    do
-    {
-        seekStation(0, WRAP);
-        getStatus(0, 0);
-        delay(100);
-    } while (!currentStatus.resp.VALID && !currentStatus.resp.BLTF);
-    getFrequency();
-}
-
-/**
- * @ingroup group15 Seek 
  * @brief Searchs the next station showing the progress 
  * @details Seek up or down a station and call a function defined by the user to show the frequency. 
  * @details The code below shows an example using the Serial Monitor. You might want to implement a function that shows the frequency on your display device. 
