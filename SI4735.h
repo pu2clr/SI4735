@@ -1496,9 +1496,10 @@ public:
     /**
     * @ingroup group15 Seek 
     * 
-    * @brief Search for the next station 
-    * 
-    * @see seekStation, seekStationProgress, setSeekAmLimits, setSeekAmLimits setSeekFmLimits 
+    * @brief Search for the next station
+    * @details Seek a station up. Stop when a station is found or the frequency has reached the upper limit  
+    * @see seekStation, seekStationProgress, setSeekAmLimits setSeekFmLimits 
+    * @see Si47XX PROGRAMMING GUIDE; AN332; pages 124, 137, 139, 278
     */
     inline void seekStationUp()
     {
@@ -1509,8 +1510,9 @@ public:
     * @ingroup group15 Seek 
     * 
     * @brief Search the previous station
-    * 
-    * @see seekStation, seekStationProgress, setSeekAmLimits, setSeekAmLimits setSeekFmLimits 
+    * @details Seek a station up. Stop when a station is found or the frequency has reached the lower limit  
+    * @see seekStation, seekStationProgress, setSeekAmLimits, setSeekFmLimits
+    * @see Si47XX PROGRAMMING GUIDE; AN332; pages 124, 137, 139, 278 
     */
     inline void seekStationDown()
     {
