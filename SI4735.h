@@ -1499,7 +1499,6 @@ public:
     * @brief Search for the next station 
     * 
     * @see seekStation, seekStationProgress, setSeekAmLimits, setSeekAmLimits setSeekFmLimits 
-    * @param WRAP Default 1. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
     */
     inline void seekStationUp()
     {
@@ -1512,7 +1511,6 @@ public:
     * @brief Search the previous station
     * 
     * @see seekStation, seekStationProgress, setSeekAmLimits, setSeekAmLimits setSeekFmLimits 
-    * @param WRAP Default 1. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
     */
     inline void seekStationDown()
     {
