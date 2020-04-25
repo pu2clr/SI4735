@@ -1622,7 +1622,6 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
  *  receiver.seekStationProgress(showFrequency,0); // Seek Down
  * 
  * }
- * 
  * @endcode
  * 
  * @see seekStation, seekStationUp, seekStationDown, getStatus   
