@@ -105,7 +105,7 @@ si47x_status SI4735::getInterruptStatus()
     return status;
 }
 
-    /**
+/**
  * @ingroup group05 Interrupt
  * 
  * @brief Enables output for GPO1, 2, and 3. 
@@ -126,8 +126,7 @@ si47x_status SI4735::getInterruptStatus()
  * @param GPO2OEN 
  * @param GPO3OEN 
  */
-    void
-    SI4735::setGpioCtl(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN)
+void SI4735::setGpioCtl(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN)
 {
     si473x_gpio gpio;
 
@@ -138,10 +137,10 @@ si47x_status SI4735::getInterruptStatus()
     gpio.arg.DUMMY2 = 0;
 
     waitToSend();
- 
+
     Wire.beginTransmission(deviceAddress);
     Wire.write(GPIO_CTL);
-    Wire.write(gpio.raw); 
+    Wire.write(gpio.raw);
     Wire.endTransmission();
 }
 
@@ -180,7 +179,7 @@ void SI4735::setGpio(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL)
 
     Wire.beginTransmission(deviceAddress);
     Wire.write(GPIO_SET);
-    Wire.write(gpio.raw); 
+    Wire.write(gpio.raw);
     Wire.endTransmission();
 }
 
@@ -216,7 +215,6 @@ void SI4735::setGpioIen(uint8_t STCIEN, uint8_t RSQIEN, uint8_t ERRIEN, uint8_t 
     gpio.arg.RSQREP = RSQREP;
 
     sendProperty(GPO_IEN, gpio.raw);
-
 }
 
 /** 
@@ -415,7 +413,8 @@ void SI4735::radioPowerUp(void)
     delay(maxDelayAfterPouwerUp);
 
     // Turns the external mute circuit off
-    if (audioMuteMcuPin >= 0) setHardwareAudioMute(false);
+    if (audioMuteMcuPin >= 0)
+        setHardwareAudioMute(false);
 }
 
 /**
@@ -445,8 +444,9 @@ void SI4735::analogPowerUp(void)
  */
 void SI4735::powerDown(void)
 {
-    // Turns the external mute circuit on 
-    if ( audioMuteMcuPin >= 0 ) setHardwareAudioMute(true);
+    // Turns the external mute circuit on
+    if (audioMuteMcuPin >= 0)
+        setHardwareAudioMute(true);
 
     waitToSend();
     Wire.beginTransmission(deviceAddress);
@@ -943,7 +943,8 @@ void SI4735::sendProperty(uint16_t propertyNumber, uint16_t parameter)
  * @param parameter_size Parameter size in bytes. Tell the number of argument used by the command.
  * @param parameter unsigned byte array with the arguments of the command  
  */
-void SI4735::sendCommand(uint8_t cmd, int parameter_size, const uint8_t * parameter) {
+void SI4735::sendCommand(uint8_t cmd, int parameter_size, const uint8_t *parameter)
+{
     waitToSend();
     Wire.beginTransmission(deviceAddress);
     // Sends the command to the device
@@ -964,9 +965,10 @@ void SI4735::sendCommand(uint8_t cmd, int parameter_size, const uint8_t * parame
  * @param response_size  num of bytes returned by the command.
  * @param response  byte array where the response will be stored.     
  */
-void SI4735::getCommandResponse(int response_size, uint8_t *response) {
+void SI4735::getCommandResponse(int response_size, uint8_t *response)
+{
     // Asks the device to return a given number o bytes response
-    Wire.requestFrom(deviceAddress, response_size); 
+    Wire.requestFrom(deviceAddress, response_size);
     // Gets response information
     for (byte i = 0; i < response_size; i++)
         response[i] = Wire.read();
@@ -982,7 +984,8 @@ void SI4735::getCommandResponse(int response_size, uint8_t *response) {
  * 
  * @return si47x_status 
  */
-si47x_status SI4735::getStatusResponse(){
+si47x_status SI4735::getStatusResponse()
+{
     si47x_status status;
 
     Wire.requestFrom(deviceAddress, 1);
@@ -1007,7 +1010,7 @@ si47x_status SI4735::getStatusResponse(){
  * @return property value  (the content of the property)
  */
 int32_t
-    SI4735::getProperty(uint16_t propertyNumber)
+SI4735::getProperty(uint16_t propertyNumber)
 {
     si47x_property property;
     si47x_status status;
@@ -1570,7 +1573,7 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
     si47x_seek_am_complement seek_am_complement;
 
     // Check which FUNCTION (AM or FM) is working now
-     uint8_t seek_start_cmd = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
+    uint8_t seek_start_cmd = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
 
     waitToSend();
 
@@ -1587,15 +1590,15 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
     {
         seek_am_complement.ARG2 = seek_am_complement.ARG3 = 0;
         seek_am_complement.ANTCAPH = 0;
-        seek_am_complement.ANTCAPL = (currentWorkFrequency > 1800)? 1:0; // if SW = 1
-        Wire.write(seek_am_complement.ARG2); // ARG2 - Always 0 
-        Wire.write(seek_am_complement.ARG3); // ARG3 - Always 0
-        Wire.write(seek_am_complement.ANTCAPH); // ARG4 - Tuning Capacitor: The tuning capacitor value
-        Wire.write(seek_am_complement.ANTCAPL); // ARG5 - will be selected automatically.
+        seek_am_complement.ANTCAPL = (currentWorkFrequency > 1800) ? 1 : 0; // if SW = 1
+        Wire.write(seek_am_complement.ARG2);                                // ARG2 - Always 0
+        Wire.write(seek_am_complement.ARG3);                                // ARG3 - Always 0
+        Wire.write(seek_am_complement.ANTCAPH);                             // ARG4 - Tuning Capacitor: The tuning capacitor value
+        Wire.write(seek_am_complement.ANTCAPL);                             // ARG5 - will be selected automatically.
     }
 
     Wire.endTransmission();
-    delay(100);
+    delay(MAX_DELAY_AFTER_SET_FREQUENCY);
 }
 
 /**
@@ -1608,10 +1611,13 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
  */
 void SI4735::seekStationUp(uint8_t WRAP)
 {
-    seekStation(1, WRAP);
-    delay(50);
+    do
+    {
+        seekStation(1, WRAP);
+        getStatus(0, 0);
+        delay(100);
+    } while (!currentStatus.resp.VALID && !currentStatus.resp.BLTF);
     getFrequency();
-   
 }
 
 /**
@@ -1624,10 +1630,59 @@ void SI4735::seekStationUp(uint8_t WRAP)
  */
 void SI4735::seekStationDown(uint8_t WRAP)
 {
-    seekStation(0, WRAP);
-    delay(50);
+    do
+    {
+        seekStation(0, WRAP);
+        getStatus(0, 0);
+        delay(100);
+    } while (!currentStatus.resp.VALID && !currentStatus.resp.BLTF);
     getFrequency();
 }
+
+/**
+ * @ingroup group15 Seek 
+ * @brief Searchs the next station showing the progress 
+ * @details Seek up or down a station and call a function defined by the user to show the frequency. 
+ * @details The code below shows an example using the Serial Monitor. You might want to implement a function that shows the frequency on your display device. 
+ * @details Also, you have to declare the frequency parameter that will be used by the function to show the frequency value. 
+ * @code
+ * void showFrequency( uint16_t freq ) {
+ *    Serial.print(freq); 
+ *    Serial.println("MHz ");
+ * }
+ * 
+ * void loop() {
+ * 
+ *  receiver.seekStationProgress(showFrequency,1); // Seek Up
+ *  .
+ *  .
+ *  .
+ *  receiver.seekStationProgress(showFrequency,0); // Seek Down
+ * 
+ * }
+ * 
+ * @endcode
+ * 
+ * @see seekStation, seekStationUp, seekStationDown, getStatus   
+ * @param showFunc  show frequency function - point to function thet you have to implemented to show the frequency. Set NULL if you do not want to show the progress. 
+ * @param up_down   if up_down = 1 then Seek station up; if up_down = 0 seek station down
+ */
+void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
+{
+    si47x_frequency freq;
+    do
+    {
+        seekStation(up_down, 0);
+        getStatus(0,0);
+        delay(MAX_DELAY_AFTER_SET_FREQUENCY * 3);
+        freq.raw.FREQH = currentStatus.resp.READFREQH;
+        freq.raw.FREQL = currentStatus.resp.READFREQL;
+        if (showFunc != NULL)
+            showFunc(freq.value);
+    } while (!currentStatus.resp.VALID &&  !currentStatus.resp.BLTF);
+}
+
+
 
 /**
  * @ingroup group15 Seek 
@@ -1661,7 +1716,6 @@ void SI4735::setSeekFmLimits(uint16_t bottom, uint16_t top)
     sendProperty(FM_SEEK_BAND_TOP, top);
 }
 
-
 /**
  * @ingroup group15 Seek 
  * 
@@ -1689,8 +1743,6 @@ void SI4735::setSeekFmSpacing(uint16_t spacing)
 {
     sendProperty(FM_SEEK_FREQ_SPACING, spacing);
 }
-
-
 
 /**
  * @ingroup group15 Seek 
@@ -1747,7 +1799,6 @@ void SI4735::setSeekFmRssiThreshold(uint16_t value)
 {
     sendProperty(FM_SEEK_TUNE_RSSI_THRESHOLD, value);
 }
-
 
 /** @defgroup group16 FM RDS/DBDS */
 
@@ -3013,5 +3064,5 @@ void SI4735::mcuSleepDown()
  */
 void SI4735::setMcuClockSpeed(uint32_t clock)
 {
-   controlMcuClock =  clock;
+    controlMcuClock = clock;
 }

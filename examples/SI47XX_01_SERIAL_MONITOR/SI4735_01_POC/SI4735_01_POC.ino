@@ -101,7 +101,8 @@ void showHelp()
 // Show current frequency
 void showStatus()
 {
-  si4735.getStatus();
+  // si4735.getStatus();
+  previousFrequency = currentFrequency = si4735.getFrequency();
   si4735.getCurrentReceivedSignalQuality();
   Serial.print("You are tuned on ");
   if (si4735.isCurrentTuneFM())
@@ -124,6 +125,22 @@ void showStatus()
   Serial.println("dBuV]");
 }
 
+void showFrequency( uint16_t freq ) {
+
+  if (si4735.isCurrentTuneFM())
+  {
+    Serial.print(String(freq / 100.0, 2));
+    Serial.println("MHz ");
+  }
+  else
+  {
+    Serial.print(freq);
+    Serial.println("KHz");
+  }
+  
+}
+
+
 // Main
 void loop()
 {
@@ -142,20 +159,18 @@ void loop()
     case 'A':
       si4735.setAM(520, 1750, 810, 10);
       si4735.setSeekAmLimits(520, 1750);
-      si4735.setSeekAmSpacing(10); // spacing 50KHz
+      si4735.setSeekAmSpacing(10); // spacing 10KHz
       break;
     case 'f':
     case 'F':
       si4735.setFM(8600, 10800, 10390, 50);
       si4735.setSeekAmRssiThreshold(0);
-      si4735.setSeekAmSrnThreshold(5);
+      si4735.setSeekAmSrnThreshold(10);
       break;
     case '1':
-      si4735.setAM(100, 30000, 9600, 5);
-      si4735.setSeekAmLimits(100, 30000);
-      si4735.setSeekAmSpacing(50); // spacing 50KHz
-      si4735.setSeekAmRssiThreshold(0);
-      si4735.setSeekAmSrnThreshold(5);
+      si4735.setAM(100, 30000, 7200, 5);
+      si4735.setSeekAmLimits(7100, 7500);   // Range for seeking.
+      si4735.setSeekAmSpacing(1); // spacing 1KHz
       break;
     case 'U':
     case 'u':
@@ -183,10 +198,12 @@ void loop()
       }
       break;
     case 'S':
-      si4735.seekStationUp(0);
+      si4735.seekStationProgress(showFrequency,1);
+      // si4735.seekStationUp();
       break;
     case 's':
-      si4735.seekStationDown(0);
+      si4735.seekStationProgress(showFrequency,0);
+      // si4735.seekStationDown();
       break;
     case '0':
       showStatus();
