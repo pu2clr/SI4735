@@ -107,10 +107,10 @@ void loop()
       si47xx.frequencyDown();
       break;
     case 'S':
-      si47xx.seekStationProgress(showFrequency,1); // Seek up and call showFrequency to show progress 
+      si47xx.seekStationProgress(showFrequency,SEEK_UP); // Seek up and call showFrequency to show progress 
       break;
     case 's':
-      si47xx.seekStationProgress(showFrequency,0); // // Seek down and call showFrequency to show progress 
+      si47xx.seekStationProgress(showFrequency,SEEK_DOWN); // // Seek down and call showFrequency to show progress 
       break;
     case '>':
       si47xx.seekStationUp();

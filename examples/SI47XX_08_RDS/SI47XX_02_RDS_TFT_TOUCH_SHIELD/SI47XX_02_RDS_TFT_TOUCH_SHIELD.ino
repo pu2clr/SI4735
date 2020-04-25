@@ -858,7 +858,7 @@ void loop(void)
   {
     // bSeekUp.drawButton(true);
     if (currentMode == FM) {
-      si4735.seekStationProgress(showFrequencySeek,1);
+      si4735.seekStationProgress(showFrequencySeek, SEEK_UP);
       // si4735.seekStationUp();
       delay(15);
       currentFrequency = si4735.getFrequency();
@@ -872,7 +872,7 @@ void loop(void)
   {
     // bSeekUp.drawButton(true);
     if (currentMode == FM) {
-      si4735.seekStationProgress(showFrequencySeek, 0);
+      si4735.seekStationProgress(showFrequencySeek, SEEK_DOWN);
       // si4735.seekStationDown();
       delay(15);
       currentFrequency = si4735.getFrequency();
