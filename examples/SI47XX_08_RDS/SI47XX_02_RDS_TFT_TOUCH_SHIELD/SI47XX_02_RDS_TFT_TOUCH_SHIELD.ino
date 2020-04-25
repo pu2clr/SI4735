@@ -496,6 +496,11 @@ void showFrequency()
   strcpy(bufferFreq, buffer);
 }
 
+// Will be used by seekStationProgress 
+void showFrequencySeek(uint8_t freq) {
+  currentFrequency = freq;
+  showFrequency();
+}
 
 char bufferBW[15];
 char bufferAGC[10];
@@ -853,7 +858,7 @@ void loop(void)
   {
     // bSeekUp.drawButton(true);
     if (currentMode == FM) {
-      si4735.seekStationUp();
+      si4735.seekStationProgress(showFrequencySeek,1);
       delay(15);
       currentFrequency = si4735.getFrequency();
     }
@@ -866,7 +871,7 @@ void loop(void)
   {
     // bSeekUp.drawButton(true);
     if (currentMode == FM) {
-      si4735.seekStationDown();
+      si4735.seekStationProgress(showFrequencySeek, 0);
       delay(15);
       currentFrequency = si4735.getFrequency();
     }
