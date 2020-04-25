@@ -1510,7 +1510,7 @@ public:
     * @ingroup group15 Seek 
     * 
     * @brief Search the previous station
-    * @details Seek a station up. Stop when a station is found or the frequency has reached the lower limit  
+    * @details Seek a station Down. Stop when a station is found or the frequency has reached the lower limit  
     * @see seekStation, seekStationProgress, setSeekAmLimits, setSeekFmLimits
     * @see Si47XX PROGRAMMING GUIDE; AN332; pages 124, 137, 139, 278 
     */
