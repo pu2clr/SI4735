@@ -110,6 +110,8 @@ var _s_i4735_8h =
     [ "FM_CURRENT_MODE", "_s_i4735_8h.html#aca16710d5708c296b0aee577ac4dbe12", null ],
     [ "AM_CURRENT_MODE", "_s_i4735_8h.html#a3c1a90b99ac7623ed1c7375c419f91db", null ],
     [ "SSB_CURRENT_MODE", "_s_i4735_8h.html#ad884de6a9db83f089883aaf52e5efc77", null ],
+    [ "SEEK_UP", "_s_i4735_8h.html#a6af70605e17fdcdeea166d59672d2a54", null ],
+    [ "SEEK_DOWN", "_s_i4735_8h.html#a73871eb4fd3cf8830e9e23b44c0d9e71", null ],
     [ "MAX_DELAY_AFTER_SET_FREQUENCY", "_s_i4735_8h.html#a3d77e4d0458eed0b6ba584c737e8df21", null ],
     [ "MAX_DELAY_AFTER_POWERUP", "_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663", null ],
     [ "MIN_DELAY_WAIT_SEND_LOOP", "_s_i4735_8h.html#a166d7b31e78d530aba242e50dd903de4", null ]
