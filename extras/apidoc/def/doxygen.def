@@ -2676,7 +2676,7 @@ _EnD_oF_dEf_TeXt_;
 Search the previous station.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-Seek a station up. Stop when a station is found or the frequency has reached the lower limit  
+Seek a station Down. Stop when a station is found or the frequency has reached the lower limit  
 <br>
 @see seekStation, seekStationProgress, setSeekAmLimits, setSeekFmLimits
 @see Si47XX PROGRAMMING GUIDE; AN332; pages 124, 137, 139, 278 
