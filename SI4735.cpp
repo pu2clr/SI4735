@@ -1643,7 +1643,6 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
     } while (!currentStatus.resp.VALID &&  !currentStatus.resp.BLTF);
 }
 
-
 /**
  * @ingroup group15 Seek 
  * 
