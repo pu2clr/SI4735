@@ -1,7 +1,7 @@
 /*
   This sketch uses the mcufriend TFT touch Display Shield.
-  You can use it on Mega2560 or DUE. 
-  It is a RDS example. 
+  You can use it on Mega2560 or DUE.
+  It is a RDS example.
 
   Features:
   1) This sketch has been successfully tested on Arduino Mega2560 and Arduino DUE;
@@ -219,7 +219,7 @@ void setup(void)
 
 
   si4735.setAudioMuteMcuPin(AUDIO_MUTE_CIRCUIT);
-  
+
 
   uint16_t ID = tft.readID();
 
@@ -255,7 +255,7 @@ void setup(void)
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   si4735.setup(RESET_PIN, 1);
-  
+
   // Set up the radio for the current band (see index table variable bandIdx )
   delay(100);
   useBand();
@@ -291,9 +291,9 @@ void rotaryEncoder()
 #if defined(ARDUINO_SAM_DUE)
 /*
   dtostrf - Emulation for dtostrf function from avr-libc
-  
-  The function below wil be compiled just on Arduino DUE board. 
-  
+
+  The function below wil be compiled just on Arduino DUE board.
+
   Copyright (c) 2015 Arduino LLC.  All rights reserved.
   See: https://github.com/arduino/ArduinoCore-samd/blob/master/cores/arduino/avr/dtostrf.c
 */
@@ -341,7 +341,7 @@ void printText(int col, int line, int sizeText, char *oldValue, char *newValue, 
   pNew = newValue;
 
   tft.setTextSize(sizeText);
-  
+
   // prints just changed digits
   while (*pOld && *pNew)
   {
@@ -500,7 +500,7 @@ void showFrequency()
   strcpy(bufferFreq, buffer);
 }
 
-// Will be used by seekStationProgress 
+// Will be used by seekStationProgress
 void showFrequencySeek(uint16_t freq) {
   previousFrequency =  currentFrequency = freq;
   showFrequency();
@@ -539,7 +539,7 @@ void showStatus()
   }
 
   showText(70, 85, 1, NULL, BLACK, bufferAGC);
-  
+
   si4735.getAutomaticGainControl();
   sprintf(buffer, "AGC %s", (si4735.isAgcEnabled()) ? "ON" : "OFF");
   strcpy(bufferAGC, buffer);
@@ -613,23 +613,23 @@ char bufferRdsTime[32];
 
 void showRDSMsg() {
   if (strcmp(bufferRdsMsg, rdsMsg) == 0) return;
-  printText(55, 85,1,bufferRdsMsg, rdsMsg, GREEN, 6);
-  delay(250); 
+  printText(55, 85, 1, bufferRdsMsg, rdsMsg, GREEN, 6);
+  delay(250);
 }
 
 
 void showRDSStation() {
   if (strcmp(bufferStatioName, stationName) == 0 ) return;
-  printText(55, 60,1,bufferStatioName, stationName, GREEN, 6);
-  delay(250); 
+  printText(55, 60, 1, bufferStatioName, stationName, GREEN, 6);
+  delay(250);
 }
 
 void showRDSTime() {
 
   if (strcmp(bufferRdsTime, rdsTime) == 0 ) return;
-  printText(150, 60,1,bufferRdsTime, rdsTime, GREEN, 6);
-  delay(250); 
-  
+  printText(150, 60, 1, bufferRdsTime, rdsTime, GREEN, 6);
+  delay(250);
+
 }
 
 void checkRDS() {
@@ -733,16 +733,23 @@ void useBand()
     currentMode = FM;
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+    si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
+    si4735.setSeekFmSpacing(10);
     bfoOn = ssbLoaded = false;
-    si4735.setRdsConfig(1, 2, 2, 2, 2);    
+    si4735.setRdsConfig(1, 2, 2, 2, 2);
   }
   else
   {
-    if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
+    if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) {
       si4735.setTuneFrequencyAntennaCapacitor(0);
+      si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
+      si4735.setSeekAmSpacing(10); // spacing 10KHz
+    }
     else {
       lastSwBand =  bandIdx;
       si4735.setTuneFrequencyAntennaCapacitor(1);
+      si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
+      si4735.setSeekAmSpacing(1); // spacing 1KHz
     }
 
     if (ssbLoaded)
@@ -757,8 +764,6 @@ void useBand()
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
       si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
-      si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
-      si4735.setSeekAmSpacing(5);
       bfoOn = false;
     }
   }
@@ -860,13 +865,9 @@ void loop(void)
 
   if (bSeekUp.justPressed())
   {
-    // bSeekUp.drawButton(true);
-    if (currentMode == FM) {
-      si4735.seekStationProgress(showFrequencySeek, SEEK_UP);
-      // si4735.seekStationUp();
-      delay(15);
-      currentFrequency = si4735.getFrequency();
-    }
+
+    si4735.seekStationProgress(showFrequencySeek, SEEK_UP);
+    currentFrequency = si4735.getFrequency();
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     showStatus();
   }
@@ -874,13 +875,8 @@ void loop(void)
 
   if (bSeekDown.justPressed())
   {
-    // bSeekUp.drawButton(true);
-    if (currentMode == FM) {
-      si4735.seekStationProgress(showFrequencySeek, SEEK_DOWN);
-      // si4735.seekStationDown();
-      delay(15);
-      currentFrequency = si4735.getFrequency();
-    }
+    si4735.seekStationProgress(showFrequencySeek, SEEK_DOWN);
+    currentFrequency = si4735.getFrequency();
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     showStatus();
   }
