@@ -61,6 +61,7 @@
 
 #define RESET_PIN 22            // Mega2560 digital Pin used to RESET
 #define ENCODER_PUSH_BUTTON 23  // Used to switch BFO and VFO or other function  
+#define AUDIO_MUTE_CIRCUIT 24   // If you have an external mute circuit, use this pin to connect it.
 
 // Enconder PINs (interrupt pins used on DUE. All Digital DUE Pins can be used as interrupt)
 #define ENCODER_PIN_A 18
@@ -216,6 +217,10 @@ void setup(void)
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
 
+
+  si4735.setAudioMuteMcuPin(AUDIO_MUTE_CIRCUIT);
+  
+
   uint16_t ID = tft.readID();
 
   if (ID == 0xD3D3)
@@ -223,7 +228,6 @@ void setup(void)
   tft.begin(ID);
   tft.setRotation(0); //PORTRAIT
   tft.fillScreen(BLACK);
-
 
   // tft.setFont(&FreeSans12pt7b);
   showText(55, 30, 2, NULL, GREEN, "SI4735");
