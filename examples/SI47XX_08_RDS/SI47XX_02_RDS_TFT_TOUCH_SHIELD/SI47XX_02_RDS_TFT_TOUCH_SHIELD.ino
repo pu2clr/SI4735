@@ -90,10 +90,17 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 bool bfoOn = false;
 bool audioMute = false;
-bool disableAgc = true;
+
 bool ssbLoaded = false;
 bool fmStereo = true;
 bool touch = false;
+
+
+// AGC and attenuation control 
+uint8_t agcIdx = 0;
+uint8_t disableAgc = 0;
+uint8_t agcNdx = 0;
+
 
 int currentBFO = 0;
 int previousBFO = 0;
@@ -404,7 +411,7 @@ void showTemplate() {
   bFM.initButton(&tft, 30, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"FM", 1);
   bMW.initButton(&tft, 90, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"MW", 1);
   bSW.initButton(&tft, 150, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"SW", 1);
-  bAGC.initButton(&tft, 210, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"AGC", 1);
+  bAGC.initButton(&tft, 210, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"ATT", 1);
   bAM.initButton(&tft, 30, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"AM", 1);
   bLSB.initButton(&tft, 90, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"LSB", 1);
   bUSB.initButton(&tft, 150, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"USB", 1);
@@ -541,7 +548,11 @@ void showStatus()
   showText(70, 85, 1, NULL, BLACK, bufferAGC);
 
   si4735.getAutomaticGainControl();
-  sprintf(buffer, "AGC %s", (si4735.isAgcEnabled()) ? "ON" : "OFF");
+  if ( agcNdx == 0  && agcIdx == 0)
+      strcpy(buffer, "AGC ON");
+  else {
+    sprintf(buffer, "ATT: %2d", agcNdx);    
+  }
   strcpy(bufferAGC, buffer);
 
   if (currentMode == LSB || currentMode == USB)
@@ -740,16 +751,13 @@ void useBand()
   }
   else
   {
+   
     if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) {
       si4735.setTuneFrequencyAntennaCapacitor(0);
-      si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
-      si4735.setSeekAmSpacing(10); // spacing 10KHz
     }
     else {
       lastSwBand =  bandIdx;
       si4735.setTuneFrequencyAntennaCapacitor(1);
-      si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
-      si4735.setSeekAmSpacing(1); // spacing 1KHz
     }
 
     if (ssbLoaded)
@@ -762,12 +770,20 @@ void useBand()
     {
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      si4735.setAutomaticGainControl(1, 0);
       si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
       bfoOn = false;
     }
+
+    // Sets the seeking limits and space.
+    si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
+    si4735.setSeekAmSpacing( (band[bandIdx].currentStep > 10)?10:band[bandIdx].currentStep ); // Max 10KHz for spacing 
+    
   }
   delay(100);
+
+  // Sets AGC or attenuation control 
+  si4735.setAutomaticGainControl(disableAgc, agcNdx); 
+     
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
   showStatus();
@@ -867,8 +883,8 @@ void loop(void)
   {
 
     si4735.seekStationProgress(showFrequencySeek, SEEK_UP);
-    currentFrequency = si4735.getFrequency();
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+    currentFrequency = si4735.getFrequency();
     showStatus();
   }
 
@@ -876,8 +892,8 @@ void loop(void)
   if (bSeekDown.justPressed())
   {
     si4735.seekStationProgress(showFrequencySeek, SEEK_DOWN);
-    currentFrequency = si4735.getFrequency();
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+    currentFrequency = si4735.getFrequency();
     showStatus();
   }
 
@@ -996,12 +1012,62 @@ void loop(void)
     }
   }
 
-
+  // AGC and attenuation control
   if (bAGC.justPressed())
   {
-    disableAgc = !disableAgc;
-    // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
-    si4735.setAutomaticGainControl(disableAgc, 1);
+      if (agcIdx == 0)
+      {
+        disableAgc = 0; // Turns AGC ON
+        agcNdx = 0;
+        agcIdx = 1;
+      } else if (agcIdx == 1)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 0;     // Sets minimum attenuation
+        agcIdx = 2;
+      } else if (agcIdx == 2)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 5;    // Increases the attenuation AM/SSB AGC Index  = 10
+        agcIdx = 3;
+      } else if (agcIdx == 3)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 10;    // Increases the attenuation AM/SSB AGC Index  = 30
+        agcIdx = 4;
+      } else if (agcIdx == 4)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 15;    // Increases the attenuation AM/SSB AGC Index  = 30
+        agcIdx = 5;
+      } else if (agcIdx == 5)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 20;    // Increases the attenuation AM/SSB AGC Index  = 30
+        agcIdx = 6;
+      } else if (agcIdx == 6)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 25;    // Increases the attenuation AM/SSB AGC Index  = 30
+        agcIdx = 7;
+      } else if (agcIdx == 7)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 30;    // Increases the attenuation AM/SSB AGC Index  = 30
+        agcIdx = 8;
+      }else if (agcIdx == 8)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 35;    // Increases the attenuation AM/SSB AGC Index  = 30
+        agcIdx = 9;
+      } else if (agcIdx == 9)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 0;    // Increases the attenuation AM/SSB AGC Index  = 30
+        agcIdx = 0;
+      }
+      // Sets AGC on/off and gain
+      si4735.setAutomaticGainControl(disableAgc, agcNdx);
     showStatus();
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   }
@@ -1063,6 +1129,7 @@ void loop(void)
           currentStep = 1;
         si4735.setFrequencyStep(currentStep);
         band[bandIdx].currentStep = currentStep;
+        si4735.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
         showStatus();
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.

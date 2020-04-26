@@ -101,7 +101,7 @@ bool ssbLoaded = false;
 bool fmStereo = true;
 
 
-// Atenuação and AGC
+// AGC and attenuation control
 uint8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 uint8_t agcNdx = 0;
