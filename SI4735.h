@@ -166,7 +166,7 @@
 #define MAX_DELAY_AFTER_SET_FREQUENCY 30 // In ms - This value helps to improve the precision during of getting frequency value
 #define MAX_DELAY_AFTER_POWERUP 10       // In ms - Max delay you have to setup after a power up command.
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
-
+#define MAX_SEEK_TIME 8000               // defines the maximum seeking time 8s is default.    
 /** @defgroup group01 SI473X data types 
  * @section group01 SI473X data types 
  *  
@@ -982,6 +982,7 @@ protected:
 
     uint16_t maxDelaySetFrequency = MAX_DELAY_AFTER_SET_FREQUENCY; // Max delay (ms) after set frequency command
     uint16_t maxDelayAfterPouwerUp = MAX_DELAY_AFTER_POWERUP;      //  Max delay you have to setup after a power up command.
+    long maxSeekTime = MAX_SEEK_TIME; // defines the maximum seeking time  
 
     uint8_t lastTextFlagAB;
     uint8_t resetPin;     //!<  pin used on Arduino Board to RESET the Si47XX device
@@ -1496,6 +1497,19 @@ public:
 
 
     void seekStation(uint8_t SEEKUP, uint8_t WRAP); // See WRAP parameter
+
+    /**
+     * @ingroup group15 Seek 
+     * @brief Sets the maximum time in milliseconds for seeking. The default value is 8000ms (8s).
+     * @details Depending on the bandwidth, your reception conditions or step configuration, the seek process can take a long time.
+     * @details This function sets a time limit for seeking process and back the control to the system if the time runs out.
+     * 
+     * @param time_in_ms time in milliseconds. 
+     */
+    inline void setMaxSeekTime(long time_in_ms) {
+        this->maxSeekTime = time_in_ms;
+    };
+
     /**
     * @ingroup group15 Seek 
     * 
