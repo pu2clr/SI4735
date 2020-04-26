@@ -114,5 +114,6 @@ var _s_i4735_8h =
     [ "SEEK_DOWN", "_s_i4735_8h.html#a73871eb4fd3cf8830e9e23b44c0d9e71", null ],
     [ "MAX_DELAY_AFTER_SET_FREQUENCY", "_s_i4735_8h.html#a3d77e4d0458eed0b6ba584c737e8df21", null ],
     [ "MAX_DELAY_AFTER_POWERUP", "_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663", null ],
-    [ "MIN_DELAY_WAIT_SEND_LOOP", "_s_i4735_8h.html#a166d7b31e78d530aba242e50dd903de4", null ]
+    [ "MIN_DELAY_WAIT_SEND_LOOP", "_s_i4735_8h.html#a166d7b31e78d530aba242e50dd903de4", null ],
+    [ "MAX_SEEK_TIME", "_s_i4735_8h.html#acc98e8d3badddd21bc528451bb718f82", null ]
 ];

@@ -1,5 +1,6 @@
 var group__group15 =
 [
+    [ "setMaxSeekTime", "group__group15.html#gaed67e2cee4e20551f3d522eea45fb7f5", null ],
     [ "seekStationUp", "group__group15.html#gaad5211e3fff28141473442f59008e415", null ],
     [ "seekStationDown", "group__group15.html#ga1eeaa09670cdbdc7ddd724c940d2506b", null ],
     [ "seekStation", "group__group15.html#ga3280b98b8331f00b4d0158ef1b076533", null ],

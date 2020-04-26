@@ -93,6 +93,9 @@ $(document).ready(function(){initNavTree('group__group15.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gaed67e2cee4e20551f3d522eea45fb7f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#gaed67e2cee4e20551f3d522eea45fb7f5">SI4735::setMaxSeekTime</a> (long time_in_ms)</td></tr>
+<tr class="memdesc:gaed67e2cee4e20551f3d522eea45fb7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the maximum time in milliseconds for seeking. The default value is 8000ms (8s).  <a href="group__group15.html#gaed67e2cee4e20551f3d522eea45fb7f5">More...</a><br /></td></tr>
+<tr class="separator:gaed67e2cee4e20551f3d522eea45fb7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaad5211e3fff28141473442f59008e415"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#gaad5211e3fff28141473442f59008e415">SI4735::seekStationUp</a> ()</td></tr>
 <tr class="memdesc:gaad5211e3fff28141473442f59008e415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for the next station.  <a href="group__group15.html#gaad5211e3fff28141473442f59008e415">More...</a><br /></td></tr>
 <tr class="separator:gaad5211e3fff28141473442f59008e415"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,6 +135,44 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gaed67e2cee4e20551f3d522eea45fb7f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaed67e2cee4e20551f3d522eea45fb7f5">&#9670;&nbsp;</a></span>setMaxSeekTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setMaxSeekTime </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>time_in_ms</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the maximum time in milliseconds for seeking. The default value is 8000ms (8s). </p>
+<p>Depending on the bandwidth, your reception conditions or step configuration, the seek process can take a long time.</p>
+<p>This function sets a time limit for seeking process and back the control to the system if the time runs out.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time_in_ms</td><td>time in milliseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="class_s_i4735.html#ab88276cc1b9d2f50dc89ee92acf61218">SI4735::maxSeekTime</a>.</p>
+
+</div>
+</div>
 <a id="gaad5211e3fff28141473442f59008e415"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaad5211e3fff28141473442f59008e415">&#9670;&nbsp;</a></span>seekStationUp()</h2>
 

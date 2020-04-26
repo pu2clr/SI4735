@@ -373,6 +373,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ga3280b98b8331f00b4d0158ef1b076533"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#ga3280b98b8331f00b4d0158ef1b076533">seekStation</a> (uint8_t SEEKUP, uint8_t WRAP)</td></tr>
 <tr class="memdesc:ga3280b98b8331f00b4d0158ef1b076533"><td class="mdescLeft">&#160;</td><td class="mdescRight">Look for a station (Automatic tune)  <a href="group__group15.html#ga3280b98b8331f00b4d0158ef1b076533">More...</a><br /></td></tr>
 <tr class="separator:ga3280b98b8331f00b4d0158ef1b076533"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed67e2cee4e20551f3d522eea45fb7f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#gaed67e2cee4e20551f3d522eea45fb7f5">setMaxSeekTime</a> (long time_in_ms)</td></tr>
+<tr class="memdesc:gaed67e2cee4e20551f3d522eea45fb7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the maximum time in milliseconds for seeking. The default value is 8000ms (8s).  <a href="group__group15.html#gaed67e2cee4e20551f3d522eea45fb7f5">More...</a><br /></td></tr>
+<tr class="separator:gaed67e2cee4e20551f3d522eea45fb7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaad5211e3fff28141473442f59008e415"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#gaad5211e3fff28141473442f59008e415">seekStationUp</a> ()</td></tr>
 <tr class="memdesc:gaad5211e3fff28141473442f59008e415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for the next station.  <a href="group__group15.html#gaad5211e3fff28141473442f59008e415">More...</a><br /></td></tr>
 <tr class="separator:gaad5211e3fff28141473442f59008e415"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -687,6 +690,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a5f101b95b6fc5127b9e9d92a21f44ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ce25193b7f254c75967568967ba4d85"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a7ce25193b7f254c75967568967ba4d85">maxDelayAfterPouwerUp</a> = <a class="el" href="_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663">MAX_DELAY_AFTER_POWERUP</a></td></tr>
 <tr class="separator:a7ce25193b7f254c75967568967ba4d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab88276cc1b9d2f50dc89ee92acf61218"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#ab88276cc1b9d2f50dc89ee92acf61218">maxSeekTime</a> = <a class="el" href="_s_i4735_8h.html#acc98e8d3badddd21bc528451bb718f82">MAX_SEEK_TIME</a></td></tr>
+<tr class="separator:ab88276cc1b9d2f50dc89ee92acf61218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd965c0e49493bc2c7c37547d36dcc96"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#abd965c0e49493bc2c7c37547d36dcc96">lastTextFlagAB</a></td></tr>
 <tr class="separator:abd965c0e49493bc2c7c37547d36dcc96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6470177f747ef7eb8e7d02c76f72b19e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e">resetPin</a></td></tr>
@@ -2592,6 +2597,30 @@ false </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab88276cc1b9d2f50dc89ee92acf61218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab88276cc1b9d2f50dc89ee92acf61218">&#9670;&nbsp;</a></span>maxSeekTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long SI4735::maxSeekTime = <a class="el" href="_s_i4735_8h.html#acc98e8d3badddd21bc528451bb718f82">MAX_SEEK_TIME</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="group__group15.html#gaed67e2cee4e20551f3d522eea45fb7f5">setMaxSeekTime()</a>.</p>
 
 </div>
 </div>
