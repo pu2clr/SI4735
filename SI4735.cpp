@@ -1272,7 +1272,6 @@ void SI4735::setVolume(uint8_t volume)
 
 /**
  * @ingroup group13 Audio volume
- * 
  * @brief Sets the audio on or off. 
  * @details Useful to mute the audio output of the SI47XX device. This function does not work to reduce the pop in the speaker at start the system up.
  * @details If you want to remove the loud click or pop in the speaker at start, power down and power up commands, use setHardwareAudioMute with a external mute circuit. 
