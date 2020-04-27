@@ -1604,9 +1604,11 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
 
 /**
  * @ingroup group15 Seek 
- * @brief Searchs the next station showing the progress 
+ * @brief Seeks a station up or down.
  * @details Seek up or down a station and call a function defined by the user to show the frequency. 
- * @details The code below shows an example using the Serial Monitor. You might want to implement a function that shows the frequency on your display device. 
+ * @details The first parameter of this function is a name of your function that you have to implement to show the current frequency. 
+ * @details If you do not want to show the seeking progress,  you can set NULL instead the name of the function.   
+ * @details The code below shows an example using ta function the shows the current frequency on he Serial Monitor. You might want to implement a function that shows the frequency on your display device. 
  * @details Also, you have to declare the frequency parameter that will be used by the function to show the frequency value. 
  * @details __This function does not work on SSB mode__. 
  * @code
@@ -1627,8 +1629,8 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
  * @endcode
  * 
  * @see seekStation, seekStationUp, seekStationDown, getStatus   
- * @param showFunc  show frequency function - point to function thet you have to implemented to show the frequency. Set NULL if you do not want to show the progress. 
- * @param up_down   if up_down = 1 then Seek station up; if up_down = 0 seek station down
+ * @param showFunc  function that you have to implement to show the frequency during the seeking process. Set NULL if you do not want to show the progress. 
+ * @param up_down   set up_down = 1 for seeking station up; set up_down = 0 for seeking station down
  */
 void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
 {
@@ -1638,7 +1640,6 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
     // seek command does not work for SSB 
     if (lastMode == SSB_CURRENT_MODE)
         return;
-
     do
     {
         seekStation(up_down, 0);
