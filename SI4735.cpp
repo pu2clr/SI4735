@@ -1561,7 +1561,8 @@ void SI4735::getCurrentReceivedSignalQuality(void)
  * @ingroup group15 Seek 
  * 
  * @brief Look for a station (Automatic tune)
- * 
+ * @details Starts a seek process for a channel that meets the RSSI and SNR criteria for AM.  
+ * @details __This function does not work on SSB mode__.  
  * @see Si47XX PROGRAMMING GUIDE; AN332; pages 55, 72, 125 and 137
  * 
  * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
@@ -1607,6 +1608,7 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
  * @details Seek up or down a station and call a function defined by the user to show the frequency. 
  * @details The code below shows an example using the Serial Monitor. You might want to implement a function that shows the frequency on your display device. 
  * @details Also, you have to declare the frequency parameter that will be used by the function to show the frequency value. 
+ * @details __This function does not work on SSB mode__. 
  * @code
  * void showFrequency( uint16_t freq ) {
  *    Serial.print(freq); 
@@ -1632,6 +1634,11 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
 {
     si47x_frequency freq;
     long elapsed_seek = millis();
+
+    // seek command does not work for SSB 
+    if (lastMode == SSB_CURRENT_MODE)
+        return;
+
     do
     {
         seekStation(up_down, 0);
