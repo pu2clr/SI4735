@@ -690,8 +690,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a5f101b95b6fc5127b9e9d92a21f44ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ce25193b7f254c75967568967ba4d85"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a7ce25193b7f254c75967568967ba4d85">maxDelayAfterPouwerUp</a> = <a class="el" href="_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663">MAX_DELAY_AFTER_POWERUP</a></td></tr>
 <tr class="separator:a7ce25193b7f254c75967568967ba4d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab88276cc1b9d2f50dc89ee92acf61218"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#ab88276cc1b9d2f50dc89ee92acf61218">maxSeekTime</a> = <a class="el" href="_s_i4735_8h.html#acc98e8d3badddd21bc528451bb718f82">MAX_SEEK_TIME</a></td></tr>
-<tr class="separator:ab88276cc1b9d2f50dc89ee92acf61218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad656f75a444c174797f6e7a8bf6e6ee2"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#ad656f75a444c174797f6e7a8bf6e6ee2">maxSeekTime</a> = <a class="el" href="_s_i4735_8h.html#acc98e8d3badddd21bc528451bb718f82">MAX_SEEK_TIME</a></td></tr>
+<tr class="separator:ad656f75a444c174797f6e7a8bf6e6ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd965c0e49493bc2c7c37547d36dcc96"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#abd965c0e49493bc2c7c37547d36dcc96">lastTextFlagAB</a></td></tr>
 <tr class="separator:abd965c0e49493bc2c7c37547d36dcc96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6470177f747ef7eb8e7d02c76f72b19e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e">resetPin</a></td></tr>
@@ -1224,7 +1224,7 @@ false </dd></dl>
 
 <p>Sets the Am Soft Mute Max Attenuation. </p>
 <p>This function can be useful to disable Soft Mute. The value 0 disable soft mute.</p>
-<p>Specified in units of dB. Default maximum attenuation is 8 dB.</p>
+<p>Specified in units of dB. Default maximum attenuation is 8 dB. It works for AM and SSB.</p>
 <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 158.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1262,7 +1262,8 @@ false </dd></dl>
 <p>Sets the SSB Soft Mute Max Attenuation object. </p>
 <p>Sets maximum attenuation during soft mute (dB). Set to 0 to disable soft mute.</p>
 <p>Specified in units of dB. Default maximum attenuation is 8 dB.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>You can use setAmSoftMuteMaxAttenuation instead. Same AM property values. <br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">smattn</td><td>Maximum attenuation to apply when in soft mute. </td></tr>
   </table>
@@ -2600,8 +2601,8 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="ab88276cc1b9d2f50dc89ee92acf61218"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab88276cc1b9d2f50dc89ee92acf61218">&#9670;&nbsp;</a></span>maxSeekTime</h2>
+<a id="ad656f75a444c174797f6e7a8bf6e6ee2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad656f75a444c174797f6e7a8bf6e6ee2">&#9670;&nbsp;</a></span>maxSeekTime</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2610,7 +2611,7 @@ false </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">long SI4735::maxSeekTime = <a class="el" href="_s_i4735_8h.html#acc98e8d3badddd21bc528451bb718f82">MAX_SEEK_TIME</a></td>
+          <td class="memname">unsigned long SI4735::maxSeekTime = <a class="el" href="_s_i4735_8h.html#acc98e8d3badddd21bc528451bb718f82">MAX_SEEK_TIME</a></td>
         </tr>
       </table>
   </td>
