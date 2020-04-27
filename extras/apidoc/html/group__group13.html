@@ -298,7 +298,11 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets the audio on or off. </p>
-<dl class="section see"><dt>See also</dt><dd>See Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 171</dd></dl>
+<p>Useful to mute the audio output of the SI47XX device. This function does not work to reduce the pop in the speaker at start the system up.</p>
+<p>If you want to remove the loud click or pop in the speaker at start, power down and power up commands use setHardwareAudioMute with a external mute circuit.</p>
+<dl class="section see"><dt>See also</dt><dd>See Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 171 </dd>
+<dd>
+<a class="el" href="group__group18.html#ga54a3a0f412aa6318df0046d478bd134f" title="Sets the Hardware Audio Mute.">setHardwareAudioMute</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>if true, mute the audio; if false unmute the audio. </td></tr>
