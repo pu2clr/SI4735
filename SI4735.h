@@ -980,6 +980,7 @@ protected:
 
     int16_t deviceAddress = SI473X_ADDR_SEN_LOW; //!<  current I2C buss address
 
+    // Delays 
     uint16_t maxDelaySetFrequency = MAX_DELAY_AFTER_SET_FREQUENCY; // Max delay (ms) after set frequency command
     uint16_t maxDelayAfterPouwerUp = MAX_DELAY_AFTER_POWERUP;      //  Max delay you have to setup after a power up command.
     unsigned long maxSeekTime = MAX_SEEK_TIME; // defines the maximum seeking time  
