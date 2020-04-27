@@ -861,7 +861,6 @@ void loop(void)
     si4735.volumeUp();
     delay(MIN_ELAPSED_TIME);
   }
-
   
   if (bVolumeDown.justPressed())
   {
