@@ -982,7 +982,7 @@ protected:
 
     uint16_t maxDelaySetFrequency = MAX_DELAY_AFTER_SET_FREQUENCY; // Max delay (ms) after set frequency command
     uint16_t maxDelayAfterPouwerUp = MAX_DELAY_AFTER_POWERUP;      //  Max delay you have to setup after a power up command.
-    long maxSeekTime = MAX_SEEK_TIME; // defines the maximum seeking time  
+    unsigned long maxSeekTime = MAX_SEEK_TIME; // defines the maximum seeking time  
 
     uint8_t lastTextFlagAB;
     uint8_t resetPin;     //!<  pin used on Arduino Board to RESET the Si47XX device

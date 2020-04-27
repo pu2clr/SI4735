@@ -160,11 +160,11 @@ typedef struct
    Band table
 */
 Band band[] = {
-  {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
-  {"LW ", LW_BAND_TYPE, 100, 510, 300, 1},
-  {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
-  {"SW1", SW_BAND_TYPE, 1700, 30000, 7100,  1}, // ALL SW1 (from 1.7 to 30MHz)
-  {"SW2", SW_BAND_TYPE, 1700, 30000, 14200, 1}  // ALL SW2 (from 1.7 to 30MHz) 
+    {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
+    {"LW ", LW_BAND_TYPE, 100, 510, 300, 1},
+    {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
+    {"SW1", SW_BAND_TYPE, 1700, 30000, 7100, 1},  // ALL SW1 (from 1.7 to 30MHz)
+    {"SW2", SW_BAND_TYPE, 1700, 30000, 14200, 1} // ALL SW2 (from 1.7 to 30MHz)
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
@@ -374,18 +374,15 @@ void showStatus()
   si4735.getAutomaticGainControl();
   sprintf(bufferDisplay, "%s %2d", (si4735.isAgcEnabled()) ? "AGC" : "ATT", agcNdx);
   printValue(65, 60, bufferAGC, bufferDisplay, COLOR_CYAN, 6);
-
   showFilter(); 
 }
 
 
 void showFilter() {
-
   // Bandwidth
   if (currentMode == LSB || currentMode == USB || currentMode == AM) {
     char * bw;
- 
-    tft.drawText(150, 60, bufferStereo, COLOR_BLACK); // Erase Stereo/Mono information
+     tft.drawText(150, 60, bufferStereo, COLOR_BLACK); // Erase Stereo/Mono information
 
     if (currentMode == AM) {
       bw = (char *) bandwitdthAM[bwIdxAM];
@@ -398,7 +395,6 @@ void showFilter() {
     sprintf(bufferDisplay, "BW: %s KHz", bw);
     printValue(124, 45, bufferBW, bufferDisplay, COLOR_CYAN, 6);
   }
-   
 }
 
 char *rdsMsg;
@@ -408,14 +404,12 @@ char bufferStatioName[50];
 char bufferRdsMsg[100];
 char bufferRdsTime[32];
 
-
 void showRDSMsg() {
   rdsMsg[35] = bufferRdsMsg[35] = '\0'; 
   if (strcmp(bufferRdsMsg, rdsMsg) == 0) return;
   printValue(5, 90, bufferRdsMsg, rdsMsg, COLOR_GREEN, 6);
   delay(250); 
 }
-
 
 void showRDSStation() {
   if (strcmp(bufferStatioName, stationName) == 0 ) return;
@@ -424,17 +418,13 @@ void showRDSStation() {
 }
 
 void showRDSTime() {
-
   if (strcmp(bufferRdsTime, rdsTime) == 0 ) return;
   printValue(80, 110, bufferRdsTime, rdsTime, COLOR_GREEN, 6);
   delay(250); 
-  
 }
 
 void checkRDS() {
-
   tft.setFont(Terminal6x8);
-  
   si4735.getRdsStatus();
   if (si4735.getRdsReceived()) {
     if (si4735.getRdsSync() && si4735.getRdsSyncFound() ) {
@@ -481,16 +471,9 @@ void showRSSI()
 void showBFOTemplate(uint16_t color)
 {
   tft.setFont(Terminal6x8);
-
   tft.drawText(150, 60, bufferStereo, COLOR_BLACK);
-
   tft.drawText(124, 55, "BFO.:", color);
   tft.drawText(124, 65, "Stp.:", color);
-
-  //tft.fillRectangle(160,55, 218,67,COLOR_BLACK);
-  // tft.drawText(160, 55, bufferBFO, COLOR_BLACK);
-  // tft.drawText(160, 65, bufferStepBFO, COLOR_BLACK);
-  // showBFO();
 }
 
 void clearBFO() {
