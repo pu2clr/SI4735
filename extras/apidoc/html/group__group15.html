@@ -262,7 +262,10 @@ Si47XX PROGRAMMING GUIDE; AN332; pages 124, 137, 139, 278 </dd></dl>
 </div><div class="memdoc">
 
 <p>Look for a station (Automatic tune) </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 55, 72, 125 and 137</dd></dl>
+<p>Starts a seek process for a channel that meets the RSSI and SNR criteria for AM. <br  />
+</p>
+<p><b>This function does not work on SSB mode</b>. <br  />
+ </p><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 55, 72, 125 and 137</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">SEEKUP</td><td>Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. </td></tr>
@@ -304,7 +307,8 @@ Si47XX PROGRAMMING GUIDE; AN332; pages 124, 137, 139, 278 </dd></dl>
 <p>Searchs the next station showing the progress. </p>
 <p>Seek up or down a station and call a function defined by the user to show the frequency.</p>
 <p>The code below shows an example using the Serial Monitor. You might want to implement a function that shows the frequency on your display device.</p>
-<p>Also, you have to declare the frequency parameter that will be used by the function to show the frequency value. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> showFrequency( uint16_t freq ) {</div>
+<p>Also, you have to declare the frequency parameter that will be used by the function to show the frequency value.</p>
+<p><b>This function does not work on SSB mode</b>. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> showFrequency( uint16_t freq ) {</div>
 <div class="line">   Serial.print(freq); </div>
 <div class="line">   Serial.println(<span class="stringliteral">&quot;MHz &quot;</span>);</div>
 <div class="line">}</div>
