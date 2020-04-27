@@ -590,16 +590,14 @@ void useBand()
     {
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
       si4735.setSSBAutomaticVolumeControl(1);
-      si4735.setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
     }
     else
     {
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
       bfoOn = false;
     }
-    
+    si4735.setAmSoftMuteMaxAttenuation(0); // Disable Soft Mute for AM or SSB
     si4735.setAutomaticGainControl(disableAgc, agcNdx);
   }
   delay(100);

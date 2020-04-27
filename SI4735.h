@@ -1241,7 +1241,7 @@ public:
      * @brief Sets the Am Soft Mute Max Attenuation 
      * 
      * @details This function can be useful to disable Soft Mute. The value 0 disable soft mute.
-     * @details Specified in units of dB. Default maximum attenuation is 8 dB.
+     * @details Specified in units of dB. Default maximum attenuation is 8 dB. It works for AM and SSB.
      * 
      * @see Si47XX PROGRAMMING GUIDE; AN332; page 158. 
      * 
@@ -1257,7 +1257,7 @@ public:
      * 
      * @details Sets maximum attenuation during soft mute (dB). Set to 0 to disable soft mute. 
      * @details Specified in units of dB. Default maximum attenuation is 8 dB.
-     * 
+     * @details You can use setAmSoftMuteMaxAttenuation instead. Same AM property values.  
      * @param smattn Maximum attenuation to apply when in soft mute.
      */
     inline void setSsbSoftMuteMaxAttenuation(uint8_t smattn = 0)
