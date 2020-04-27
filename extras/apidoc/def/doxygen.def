@@ -6124,7 +6124,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '981';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-current I2C buss address
+Stores the current I2C buss address.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -6145,7 +6145,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '984';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Stores the maximum delay after set frequency command (in ms).
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -6166,7 +6166,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '985';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Stores the maximum delay you have to setup after a power up command (in ms).
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -6187,7 +6187,8 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '986';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Stores the maximum time (ms) for a seeking process. Defines the maximum seeking time.  
+<br>
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -6336,7 +6337,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '998';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-current steps
+Stores the current step used to increment or decrement the frequency.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -6357,7 +6358,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '1000';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Store the last mode used.
+Stores the last mode used.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -6378,7 +6379,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '1002';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Automatic Volume Control Gain for AM - Default 48.
+Stores the current Automatic Volume Control Gain for AM. Default value is 48.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -6561,7 +6562,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '1015';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Stores the current vlume setup (0-63).
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -6582,7 +6583,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '1017';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-current audio mode used (ANALOG or DIGITAL or both)
+Current audio mode used (ANALOG or DIGITAL or both)
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
