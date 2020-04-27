@@ -978,12 +978,12 @@ protected:
     int rdsTextAdress2B; //!<  rds_buffer2B current position
     int rdsTextAdress0A; //!<  rds_buffer0A current position
 
-    int16_t deviceAddress = SI473X_ADDR_SEN_LOW; //!<  current I2C buss address
+    int16_t deviceAddress = SI473X_ADDR_SEN_LOW; //!<  Stores the current I2C buss address.
 
     // Delays 
-    uint16_t maxDelaySetFrequency = MAX_DELAY_AFTER_SET_FREQUENCY; // Max delay (ms) after set frequency command
-    uint16_t maxDelayAfterPouwerUp = MAX_DELAY_AFTER_POWERUP;      //  Max delay you have to setup after a power up command.
-    unsigned long maxSeekTime = MAX_SEEK_TIME; // defines the maximum seeking time  
+    uint16_t maxDelaySetFrequency = MAX_DELAY_AFTER_SET_FREQUENCY; //!< Stores the maximum delay after set frequency command (in ms).
+    uint16_t maxDelayAfterPouwerUp = MAX_DELAY_AFTER_POWERUP;      //!< Stores the maximum delay you have to setup after a power up command (in ms).
+    unsigned long maxSeekTime = MAX_SEEK_TIME; //!< Stores the maximum time (ms) for a seeking process. Defines the maximum seeking time.  
 
     uint8_t lastTextFlagAB;
     uint8_t resetPin;     //!<  pin used on Arduino Board to RESET the Si47XX device
@@ -995,11 +995,11 @@ protected:
     uint16_t currentMaximumFrequency; //!<  maximum frequency of the current band
     uint16_t currentWorkFrequency;    //!<  current frequency
 
-    uint16_t currentStep; //!<  current steps
+    uint16_t currentStep; //!<  Stores the current step used to increment or decrement the frequency.
 
-    uint8_t lastMode = -1; //!<  Store the last mode used.
+    uint8_t lastMode = -1; //!<  Stores the last mode used.
 
-    uint8_t currentAvcAmMaxGain = 48; //!<  Automatic Volume Control Gain for AM - Default 48
+    uint8_t currentAvcAmMaxGain = 48; //!<  Stores the current Automatic Volume Control Gain for AM. Default value is 48.
 
     si47x_frequency currentFrequency; //!<  data structure to get current frequency
     si47x_set_frequency currentFrequencyParams;
@@ -1012,10 +1012,10 @@ protected:
 
     si473x_powerup powerUp;
 
-    uint8_t volume = 32;
+    uint8_t volume = 32;   //!< Stores the current vlume setup (0-63). 
 
-    uint8_t currentAudioMode = SI473X_ANALOG_AUDIO; //!< current audio mode used (ANALOG or DIGITAL or both)
-    uint8_t currentSsbStatus;
+    uint8_t currentAudioMode = SI473X_ANALOG_AUDIO; //!< Current audio mode used (ANALOG or DIGITAL or both)
+    uint8_t currentSsbStatus; 
 
     bool controlMcu = false;
     int8_t controlMcuPin;
