@@ -854,9 +854,7 @@ void loop(void)
     bandDown();
   }
 
-  // if (bVolumeUp.justReleased())
-  //   bVolumeUp.drawButton(true);
-
+  // Volume
   if (bVolumeUp.justPressed())
   {
     // bVolumeUp.drawButton(true);
@@ -864,9 +862,7 @@ void loop(void)
     delay(MIN_ELAPSED_TIME);
   }
 
-  // if (bVolumeDown.justReleased())
-  //   bVolumeDown.drawButton(true);
-
+  
   if (bVolumeDown.justPressed())
   {
     // bVolumeDown.drawButton(true);
@@ -874,9 +870,7 @@ void loop(void)
     delay(MIN_ELAPSED_TIME);
   }
 
-  // if (bSeekUp.justReleased())
-  //   bSeekUp.drawButton(true);
-
+  // SEEK
   if (bSeekUp.justPressed())
   {
       si4735.seekStationProgress(showFrequencySeek, SEEK_UP);
@@ -893,6 +887,7 @@ void loop(void)
       showStatus();
   }
 
+  // Mute
   if (bAudioMute.justPressed())
   {
     audioMute = !audioMute;
