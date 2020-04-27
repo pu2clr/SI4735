@@ -1505,6 +1505,8 @@ public:
      * @details Depending on the bandwidth, your reception conditions or step configuration, the seek process can take a long time.
      * @details This function sets a time limit for seeking process and back the control to the system if the time runs out.
      * 
+     * @addindex Seek
+     * 
      * @param time_in_ms time in milliseconds. 
      */
     inline void setMaxSeekTime(long time_in_ms) {
