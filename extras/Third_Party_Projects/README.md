@@ -10,6 +10,8 @@ The project aims to serve as a platform through which several developers can con
 [Read more...](https://davidmartinsengineering.wordpress.com/si4735-radio-kit/)
 
 
+<BR>
+
 ## David's videos 
 
 * [SI4735 Radio KIT prototype](https://youtu.be/ENqokz09xvU)
@@ -19,18 +21,24 @@ The project aims to serve as a platform through which several developers can con
 
 
 
+<BR>
+
 ## Jim Reagan
 
 [Documents](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Jim_Reagan)
 
 ![Jim Schematic](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects/Jim_Reagan/jim_reagan.png)
 
+<BR>
+
 ## PU2TMC
 
 [Documents](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Luiz_pu2tmc)
 
-## Gert Baak
 
+<BR>
+
+## Gert Baak
 
 [Great interface by Gert Baak](https://youtu.be/hRHSzFr_lQE)
 
@@ -38,6 +46,8 @@ The project aims to serve as a platform through which several developers can con
 
 [Schematic and source code on Gert's repository](https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino)
 
+
+<BR>
 
 ## Felix Angga
 
