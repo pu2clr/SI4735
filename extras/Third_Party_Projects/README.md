@@ -32,7 +32,6 @@ The project aims to serve as a platform through which several developers can con
 ## Gert Baak
 
 
-
 [Great interface by Gert Baak](https://youtu.be/hRHSzFr_lQE)
 
 {% include gertbaak.html %}
