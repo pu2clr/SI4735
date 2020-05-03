@@ -174,7 +174,6 @@ This library uses the I²C communication protocol and implements most of the fun
 10. [RDS support](https://pu2clr.github.io/SI4735/#rds)
 11. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band). 
 
-
 {% include libhistory.html %}
 
 
