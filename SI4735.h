@@ -166,13 +166,13 @@
 #define MAX_DELAY_AFTER_SET_FREQUENCY 30 // In ms - This value helps to improve the precision during of getting frequency value
 #define MAX_DELAY_AFTER_POWERUP 10       // In ms - Max delay you have to setup after a power up command.
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
-#define MAX_SEEK_TIME 8000               // defines the maximum seeking time 8s is default.    
+#define MAX_SEEK_TIME 8000               // defines the maximum seeking time 8s is default.
 /** @defgroup group01 SI473X data types 
  * @section group01 SI473X data types 
  *  
  * @brief SI473X data representation
  * 
- * @details The goal here is separate data from code. 
+ * @details The goal of this approach is separating data from code. 
  * The Si47XX family works with many internal data that can be represented by data structure 
  * or defined data type in C/C++. These C/C++ resources have been used widely here.  
  * This aproach made the library easier to build and maintain.  Each data structure created 
