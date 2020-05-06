@@ -179,7 +179,6 @@ This library uses the I²C communication protocol and implements most of the fun
 
 {% include libhistory.html %}
 
-
 <BR>
 
 ## Library Installation
