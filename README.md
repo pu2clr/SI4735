@@ -162,7 +162,8 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 
 ## SI4735 Arduino Library Features
 
-This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs. The main features of this library are listed below.
+This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs. This library also has primitive functions that make it easier for you to implement commands that may not have been implemented yet. See __setProperty, getProperty and sendCommand, getCommandResponse and getStatusResponse__ functions. It is worth noting, however, that this library is constantly improving. Check the API documentation before implementing a new function. It is likely that your demand is already implemented. [See the API documentation for this library](https://pu2clr.github.io/SI4735/extras/apidoc/html/). The main features of this library are listed below.
+
 
 1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://pu2clr.github.io/SI4735/#mit-license) to know more.   
 2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
@@ -171,7 +172,7 @@ This library uses the I²C communication protocol and implements most of the fun
 5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested);
 6. Simplifies projects based on SI4735;
 7. __I²C communication__ and Automatic I²C bus address detection; 
-8. More than 120 functions implemented. You can customize almost every feature available on Si47XX family; 
+8. [More than __120__ functions implemented](https://pu2clr.github.io/SI4735/extras/apidoc/html/). You can customize almost every feature available on Si47XX family; 
 9. [More than 20 examples to guide the user](https://github.com/pu2clr/SI4735/tree/master/examples);
 10. [RDS support](https://pu2clr.github.io/SI4735/#rds)
 11. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band). 
