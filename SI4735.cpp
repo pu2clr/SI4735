@@ -1772,7 +1772,7 @@ void SI4735::setSeekFmRssiThreshold(uint16_t value)
     sendProperty(FM_SEEK_TUNE_RSSI_THRESHOLD, value);
 }
 
-/** @defgroup group16 FM RDS/DBDS */
+/** @defgroup group16 FM RDS/RBDS */
 
 /*******************************************************************************
  * RDS implementation 
