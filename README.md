@@ -231,9 +231,6 @@ After, unzip the SI4735-master.zip file in your Arduino Library folder.
 With that approach, you will have the __most current version__ of the library. However, __it may not be the most stable version__. This is because the current version is always in development. [Prefer releases](https://github.com/pu2clr/SI4735/releases).
 Do you need some old version (release) of this library?  If yes, [check here](https://github.com/pu2clr/SI4735/releases). 
 
-See more 
-[![arduino-library-badge](https://www.ardu-badge.com/badge/MyLibrary.svg?)](https://www.ardu-badge.com/PU2CLR%20SI4735)
-
 <BR>
 
 ## API Documentation 
