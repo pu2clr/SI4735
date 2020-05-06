@@ -221,15 +221,15 @@ This is the easiest method to install this library.
 
 ![Installing from this repository](extras/images/install_lib_from_git_02.png)
 
-First, you have to download this library in zip format. [Click here](https://github.com/pu2clr/SI4735/archive/master.zip) to download the Arduino Library. [Click here](https://github.com/pu2clr/SI4735) to go to github repository.
- 
-You might need some old version (release) of this library. If so, [check this link](https://github.com/pu2clr/SI4735/releases). 
-
-Unzip the SI4735.zip file in your Arduino Library folder. 
+First, you have to [download](https://github.com/pu2clr/SI4735/archive/master.zip) this library in zip format. 
+After, unzip the SI4735-master.zip file in your Arduino Library folder. 
 
 * On __Windows__: "My Documents\Arduino\libraries"
 * On __MAC OS__: ˜/Documents/Arduino/libraries
 * On __Linux__: ˜/Documents/Arduino/libraries
+
+With that approach, you will have the __most current version__ of the library. However, __it may not be the most stable version__. This is because the current version is always in development. [Prefer releases](https://github.com/pu2clr/SI4735/releases).
+Do you need some old version (release) of this library?  If yes, [check here](https://github.com/pu2clr/SI4735/releases). 
 
 See more 
 [![arduino-library-badge](https://www.ardu-badge.com/badge/MyLibrary.svg?)](https://www.ardu-badge.com/PU2CLR%20SI4735)
