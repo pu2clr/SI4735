@@ -252,7 +252,7 @@ All data types defined in Si4735 Arduino Library are explained [here](https://pu
 
 ### Public methods 
 
-This library was developed using the C++ language and the Object-oriented Programming approach. Methods are functions that belongs to the class, in this case SI4735 class. Click [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/) to go to API docummentation.
+This library was developed using the C++ language and the Object-oriented Programming approach. Methods are functions that belongs to the class, in this case SI4735 class. Click [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group01.html) to go to API docummentation.
 
 All methods defined in Si4735 class are explained [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/). The list below refer to the method groups implemented by the Si4735 class.   
 
@@ -285,7 +285,7 @@ Methods to setup the audio mode (Digital or Analog), volume, mute etc.
 
 ### RDS
 
-This library implements some RDS features of the SI4735. All function to deal with RDS are documented [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/). Below you have some videos showing the RDS functionalities implemented by the PU2CLR Si4735 Arduino Library.
+This library implements some RDS features of the SI4735. All function to deal with RDS are documented [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group16.html). Below you have some videos showing the RDS functionalities implemented by the PU2CLR Si4735 Arduino Library.
 
 {% include videoRDS2.html %}
 
@@ -372,7 +372,7 @@ __The table below shows the features that this library implements__.
 
 ### SI4735 Patch Support for Single Side Band
 
-The SI4735 class implements a set of methods to apply patches and deal with SSB mode. All documentation about pathces can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/).
+The SI4735 class implements a set of methods to apply patches and deal with SSB mode. All documentation about pathces can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html).
 
 __First of all, it is important to say that the SSB patch content is not part of this library__. The paches used here were made available by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. __In other words, this library only supports SSB patches, the patches themselves are not part of this library__.
 
@@ -403,7 +403,7 @@ The author of this project does not guarantee that procedures shown here will wo
 
 All methods/functions to deal with SSB on Si4735-D60 can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html).
 
-This library implements many SSB examples. See 
+This library implements many SSB examples. See the table below. 
 
 | SSB sketch | SSB sketch | SSB sketch |
 | ------ | ------ | ------ |
