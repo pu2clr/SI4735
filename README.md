@@ -19,12 +19,12 @@ Contact: __pu2clr@gmail.com__.
 1. [SI4735 Library construction history](https://pu2clr.github.io/SI4735/#si4735-library-construction-history)
 2. [Labrary Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
 3. [License Copyright](https://pu2clr.github.io/SI4735/#mit-license)
-4. [Groups and Forums](https://pu2clr.github.io/SI4735/#groups-and-forums)
-5. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
-6. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
-7. [About the SI4735](https://pu2clr.github.io/SI4735/#about-the-si4735)
-8. [Terminology](https://github.com/pu2clr/SI4735#terminology)
-9. [Library Installation](https://pu2clr.github.io/SI4735/#library-installation)
+4. [Library Installation](https://pu2clr.github.io/SI4735/#library-installation)
+5. [Groups and Forums](https://pu2clr.github.io/SI4735/#groups-and-forums)
+6. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
+7. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
+8. [About the SI4735](https://pu2clr.github.io/SI4735/#about-the-si4735)
+9. [Terminology](https://github.com/pu2clr/SI4735#terminology)
 10. [API Documentation](https://pu2clr.github.io/SI4735/#api-documentation)
    * [About Class, Methods(functions) and custom data type structures](https://pu2clr.github.io/SI4735/#defined-data-types-and-structures)
    * [PU2CLR SI4735 Arduino Library methods (functions)](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
@@ -111,6 +111,58 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 <BR>
 
+## Library Installation
+
+You can install this library on your Arduino environment using different methods. The best ways to do that are described below.  
+
+
+### Installing via Arduino IDE
+
+This is the easiest method to install this library.
+
+#### The image below shows the Arduino IDE Manage Libraries interface.
+
+![Installing from Arduino IDE 01](extras/images/lib_install_01.png)
+
+
+
+#### The image below shows the PU2CLR Si4735 Library finding process.
+
+
+
+<BR>
+
+![Installing from Arduino IDE 02](extras/images/lib_install_02.png)
+
+<BR>
+
+
+#### The video below shows how to install the PU2CLR Arduino Library on your Arduino IDE. 
+
+{% include libinstalling.html %}
+
+
+### Installing via this repository 
+
+![Installing from this repository](extras/images/install_lib_from_git_01.png)
+
+<BR>
+
+![Installing from this repository](extras/images/install_lib_from_git_02.png)
+
+First, you have to [download](https://github.com/pu2clr/SI4735/archive/master.zip) this library in zip format. 
+After, unzip the SI4735-master.zip file in your Arduino Library folder. 
+
+* On __Windows__: "My Documents\Arduino\libraries"
+* On __MAC OS__: ˜/Documents/Arduino/libraries
+* On __Linux__: ˜/Documents/Arduino/libraries
+
+With that approach, you will have the __most current version__ of the library. However, __it may not be the most stable version__. This is because the current version is always in development. [Prefer releases](https://github.com/pu2clr/SI4735/releases).
+Do you need some old version (release) of this library?  If yes, [check here](https://github.com/pu2clr/SI4735/releases). 
+
+<BR>
+
+
 ## Thanks
 
 * I would like to thank Mr Francisco Scaramella  for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library;
@@ -140,7 +192,6 @@ The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance o
 ### Functional Block Diagram
 
 The image below shows the SI473X-D60 block diagram. It was extracted from Silicon Labs Si4730/31/34/35-D60 / BROADCAST AM/FM/SW/LW RADIO RECEIVER (page 21). __Note that the author of this Library highlights in red the pin operating voltages that can be connected to the Arduino__. Be aware of the operating voltage of the Arduino pins you will use in your project. Preferably use an Arduino with 3.3V operating voltage. If you are not using a 3.3V version of Arduino, you must use a kind of 5V to 3.3V converter on RST, SCLK, SDIO and SEN (depending on your project). 
-
 
 ![SI473x Block Diagram](extras/images/block_diagram.png)
 
@@ -196,59 +247,6 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 | SCLK | Serial clock pin |
 | Soft Mute | Resource used to attenuate the audiooutputs and minimize audible noise in very weak signalconditions | 
 | Firmware Upgrades | The Si473x-D60 contains on-chip program  RAM to accommodate minor changes to the firmware | 
-
-<BR>
-
-
-
-## Library Installation
-
-You can install this library on your Arduino environment using different methods. The best ways to do that are described below.  
-
-
-### Installing via Arduino IDE
-
-This is the easiest method to install this library.
-
-#### The image below shows the Arduino IDE Manage Libraries interface.
-
-![Installing from Arduino IDE 01](extras/images/lib_install_01.png)
-
-
-
-#### The image below shows the PU2CLR Si4735 Library finding process.
-
-
-
-<BR>
-
-![Installing from Arduino IDE 02](extras/images/lib_install_02.png)
-
-<BR>
-
-
-#### The video below shows how to install the PU2CLR Arduino Library on your Arduino IDE. 
-
-{% include libinstalling.html %}
-
-
-### Installing via this repository 
-
-![Installing from this repository](extras/images/install_lib_from_git_01.png)
-
-<BR>
-
-![Installing from this repository](extras/images/install_lib_from_git_02.png)
-
-First, you have to [download](https://github.com/pu2clr/SI4735/archive/master.zip) this library in zip format. 
-After, unzip the SI4735-master.zip file in your Arduino Library folder. 
-
-* On __Windows__: "My Documents\Arduino\libraries"
-* On __MAC OS__: ˜/Documents/Arduino/libraries
-* On __Linux__: ˜/Documents/Arduino/libraries
-
-With that approach, you will have the __most current version__ of the library. However, __it may not be the most stable version__. This is because the current version is always in development. [Prefer releases](https://github.com/pu2clr/SI4735/releases).
-Do you need some old version (release) of this library?  If yes, [check here](https://github.com/pu2clr/SI4735/releases). 
 
 <BR>
 
