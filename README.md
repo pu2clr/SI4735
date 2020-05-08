@@ -457,7 +457,7 @@ class MyCustomSI4735 : public SI4735 { // extending the original class SI4735
     }
 };
 
-MyCustomSI4735 radio; // your custom class based on SI4735 class
+MyCustomSI4735 radio; // the instance of your custom class based on SI4735 class
 
 void setup()
 {
