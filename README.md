@@ -479,7 +479,7 @@ void loop() {
 }
 ```
 
-If you use that approach, all you have to do is downloading the current version of PU2CLR SI4735 Arduino Library. Instead of using PU2CLR SI4735 Arduino Library class directly, you can use your own class that extends the original class.  This way, you always have the current version of the library customized for your needs. This way, no extra work will be need when you update the PU2CLR SI4735 Arduino Library. In other words, your custom code will be always sincronized with the PU2CLR SI4735 Arduino Library code.
+If you use that approach, all you have to do is downloading the current version of PU2CLR SI4735 Arduino Library. Instead of using PU2CLR SI4735 Arduino Library class directly, you can use your own class that extends the original class.  This way, you always have the current version of the library customized for your needs. So, no extra work will be needed when you update the PU2CLR SI4735 Arduino Library. In other words, your custom code will be always sincronized with the PU2CLR SI4735 Arduino Library code.
 
 See also:
 * [How to use C++ Classes in Arduino IDE without creating a Library](https://www.radishlogic.com/arduino/use-c-class-arduino-ide-without-creating-library/?fbclid=IwAR07yO6OvyUlAa4d28N7VTWtY2vHjlUbtkxKiO7LJKOUkPou1bh8Lvwg8rA)
