@@ -36,7 +36,7 @@ You can also be a member of __group.io__ [SI47XX for hobbyists](https://groups.i
    * [PU2CLR SI4735 Arduino Library methods (functions)](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
    * [RDS support](https://pu2clr.github.io/SI4735/#rds)
    * [SSB support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band)
-   * [Customizing PU2CLR Arduino Library]()
+   * [Customizing PU2CLR Arduino Library](https://pu2clr.github.io/SI4735/#customizing-pu2clr-arduino-library``)
 9.  [Hardware Requirements and Setup](https://pu2clr.github.io/SI4735/#hardware-requirements-and-setup)
    * [Schematic](https://pu2clr.github.io/SI4735/#schematic)
    * [Component Parts](https://pu2clr.github.io/SI4735/#parts)
@@ -416,12 +416,9 @@ This library implements many SSB examples. See the table below.
 
 {% include videoSSB.html %}
 
-
-<BR>
-
 See SSB example implementations [here](https://github.com/pu2clr/SI4735/tree/master/examples).
 
-
+<BR>
 
 ### Customizing PU2CLR Arduino Library
 
