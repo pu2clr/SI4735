@@ -41,7 +41,7 @@ You can also be a member of __group.io__ [SI47XX for hobbyists](https://groups.i
    * [RDS support](https://pu2clr.github.io/SI4735/#rds)
    * [SSB support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band)
    * [Customizing PU2CLR Arduino Library](https://pu2clr.github.io/SI4735/#customizing-pu2clr-arduino-library)
-9.  [Hardware Requirements and Setup](https://pu2clr.github.io/SI4735/#hardware-requirements-and-setup)
+9. [Hardware Requirements and Setup](https://pu2clr.github.io/SI4735/#hardware-requirements-and-setup)
    * [Schematic](https://pu2clr.github.io/SI4735/#schematic)
    * [Component Parts](https://pu2clr.github.io/SI4735/#parts)
    * [Tips to build](https://pu2clr.github.io/SI4735/#tips-to-build)
