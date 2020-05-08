@@ -413,7 +413,6 @@ This library implements many SSB examples. See the table below.
 | [SI4735_02_POC_SSB.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32/SI4735_02_POC_SSB) | [SI47XX_03_RDS_TFT_ILI9225](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS/SI47XX_03_RDS_TFT_ILI9225) | [ 	SI47XX_02_RDS_TFT_TOUCH_SHIELD](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD) |
 | [SI4735_04_RDS_ALL_IN_ONE_OLED](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS/SI4735_04_RDS_ALL_IN_ONE_OLED) |  |  | 
 
-
 {% include videoSSB.html %}
 
 See SSB example implementations [here](https://github.com/pu2clr/SI4735/tree/master/examples).
