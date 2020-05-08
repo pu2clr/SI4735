@@ -481,7 +481,9 @@ void loop() {
 
 If you use that approach, all you have to do is downloading the current version of PU2CLR SI4735 Arduino Library. Instead of using PU2CLR SI4735 Arduino Library class directly, you can use your own class that extends the original class.  This way, you always have the current version of the library customized for your needs. This way, no extra work will be need when you update the PU2CLR SI4735 Arduino Library. In other words, your custom code will be always sincronized with the PU2CLR SI4735 Arduino Library code.
 
-See also [How to use C++ Classes in Arduino IDE without creating a Library](https://www.radishlogic.com/arduino/use-c-class-arduino-ide-without-creating-library/?fbclid=IwAR07yO6OvyUlAa4d28N7VTWtY2vHjlUbtkxKiO7LJKOUkPou1bh8Lvwg8rA)
+See also:
+* [How to use C++ Classes in Arduino IDE without creating a Library](https://www.radishlogic.com/arduino/use-c-class-arduino-ide-without-creating-library/?fbclid=IwAR07yO6OvyUlAa4d28N7VTWtY2vHjlUbtkxKiO7LJKOUkPou1bh8Lvwg8rA)
+* [Arduino the Object Oriented way](https://paulmurraycbr.github.io/ArduinoTheOOWay.html)
 
 <BR>
 
@@ -842,6 +844,7 @@ The figure above shows the very basic shematic implementation (no Button or Enco
       * [Noises on the I²C BUS](https://electronics.stackexchange.com/questions/292032/noises-on-the-i2c-bus)
 16. ["Multi-Band Receiver On A Chip Controlled By Arduino" commented by Tom Nardi on Hackaday](https://hackaday.com/2020/03/02/multi-band-receiver-on-a-chip-controlled-by-arduino/) 
 17. [How to use C++ Classes in Arduino IDE without creating a Library](https://www.radishlogic.com/arduino/use-c-class-arduino-ide-without-creating-library/?fbclid=IwAR07yO6OvyUlAa4d28N7VTWtY2vHjlUbtkxKiO7LJKOUkPou1bh8Lvwg8rA)
+18. [Arduino the Object Oriented way](https://paulmurraycbr.github.io/ArduinoTheOOWay.html)
 
 
 ## Videos
