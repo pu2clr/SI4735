@@ -17,13 +17,13 @@ Contact: __pu2clr@gmail.com__.
 ## Summary
 
 1. [SI4735 Library construction history](https://pu2clr.github.io/SI4735/#si4735-library-construction-history)
-2. [Groups and Forums](https://pu2clr.github.io/SI4735/#groups-and-forums)
+2. [Labrary Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
 3. [License Copyright](https://pu2clr.github.io/SI4735/#mit-license)
-4. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
-5. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
-6. [About the SI4735](https://pu2clr.github.io/SI4735/#about-the-si4735)
-7. [Terminology](https://github.com/pu2clr/SI4735#terminology)
-8. [Labrary Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
+4. [Groups and Forums](https://pu2clr.github.io/SI4735/#groups-and-forums)
+5. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
+6. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
+7. [About the SI4735](https://pu2clr.github.io/SI4735/#about-the-si4735)
+8. [Terminology](https://github.com/pu2clr/SI4735#terminology)
 9. [Library Installation](https://pu2clr.github.io/SI4735/#library-installation)
 10. [API Documentation](https://pu2clr.github.io/SI4735/#api-documentation)
    * [About Class, Methods(functions) and custom data type structures](https://pu2clr.github.io/SI4735/#defined-data-types-and-structures)
@@ -35,11 +35,11 @@ Contact: __pu2clr@gmail.com__.
    * [Schematic](https://pu2clr.github.io/SI4735/#schematic)
    * [Component Parts](https://pu2clr.github.io/SI4735/#parts)
    * [Tips to build](https://pu2clr.github.io/SI4735/#tips-to-build)
-11. [Most Frequent Problems](https://pu2clr.github.io/SI4735/#most-frequent-problems)
-12. [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
-13. [Photos (Tools and Accessories)](https://pu2clr.github.io/SI4735/#photos-tools-and-accessories)
-14. [References](https://pu2clr.github.io/SI4735/#references)
-15. [Examples](https://pu2clr.github.io/SI4735/examples)
+12. [Most Frequent Problems](https://pu2clr.github.io/SI4735/#most-frequent-problems)
+13. [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
+14. [Photos (Tools and Accessories)](https://pu2clr.github.io/SI4735/#photos-tools-and-accessories)
+15. [References](https://pu2clr.github.io/SI4735/#references)
+16. [Examples](https://pu2clr.github.io/SI4735/examples)
     * [Using Arduino Serial Monitor](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR) 
     * [LCD20x4, Encoder and buttons](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_02_LCD_20x4_I2C)
     * [OLED, Encoder and button](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C)
@@ -50,11 +50,11 @@ Contact: __pu2clr@gmail.com__.
     * [FM RDS/RBDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS)
     * [Extra - BOARD NE928-10A-V-01 ](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/)
     * [Tools](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_TOOLS)
-16. [Third Party Projects](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects)
-17. [Videos](https://pu2clr.github.io/SI4735/#videos) 
+17. [Third Party Projects](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects)
+18. [Videos](https://pu2clr.github.io/SI4735/#videos) 
     * [Project examples made by the author](https://pu2clr.github.io/SI4735/#project-examples-made-by-the-author)
     * [Third-party projects using this library](https://pu2clr.github.io/SI4735/#third-party-projects-using-this-library)
-18. [Commercial Receivers based on Si47XX Family](https://pu2clr.github.io/SI4735/#commercial-receivers-based-on-si47xx-family) 
+19. [Commercial Receivers based on Si47XX Family](https://pu2clr.github.io/SI4735/#commercial-receivers-based-on-si47xx-family) 
 
 
 ## Attention
@@ -71,6 +71,25 @@ With this library, more than 20 examples were developed using various types of d
 I don't have the exact numbers, but judging by the groups created around the SI47XX devices, I estimate that there are hundreds of experimenters using the PU2CLR Si4735 Arduino Library today.  I developed this library to be in the public domain. If you are an experimenter, a radio enthusiast and want to try the SI473X devices, then this library is for you.  The following video is a little joke that shows the trajectory of the construction of this library.
 
 {% include libhistory.html %}
+
+## SI4735 Arduino Library Features
+
+This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs. This library also has primitive functions that make it easier for you to implement commands that may not have been implemented yet. See __setProperty, getProperty and sendCommand, getCommandResponse and getStatusResponse__ functions. It is worth noting, however, that this library is constantly improving. Check the API documentation before implementing a new function. It is likely that your demand is already implemented. [See the API documentation for this library](https://pu2clr.github.io/SI4735/extras/apidoc/html/). The main features of this library are listed below.
+
+
+1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://pu2clr.github.io/SI4735/#mit-license) to know more.   
+2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
+3. C++ Language and Object-oriented programming. You can easily extend the SI4735 class by adding more functionalities;
+4. Available on Arduino IDE (Manage Libraries); 
+5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, ARM Cortex, STM32, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested);
+6. Simplifies projects based on SI4735;
+7. __I²C communication__ and Automatic I²C bus address detection; 
+8. [More than __120__ functions implemented](https://pu2clr.github.io/SI4735/extras/apidoc/html/). You can customize almost every feature available on Si47XX family; 
+9. [More than 20 examples to guide the user](https://github.com/pu2clr/SI4735/tree/master/examples);
+10. [RDS support](https://pu2clr.github.io/SI4735/#rds)
+11. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band). 
+
+<BR>
 
 ## Groups and Forums 
 
@@ -180,24 +199,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 
 <BR>
 
-## SI4735 Arduino Library Features
 
-This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs. This library also has primitive functions that make it easier for you to implement commands that may not have been implemented yet. See __setProperty, getProperty and sendCommand, getCommandResponse and getStatusResponse__ functions. It is worth noting, however, that this library is constantly improving. Check the API documentation before implementing a new function. It is likely that your demand is already implemented. [See the API documentation for this library](https://pu2clr.github.io/SI4735/extras/apidoc/html/). The main features of this library are listed below.
-
-
-1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://pu2clr.github.io/SI4735/#mit-license) to know more.   
-2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
-3. C++ Language and Object-oriented programming. You can easily extend the SI4735 class by adding more functionalities;
-4. Available on Arduino IDE (Manage Libraries); 
-5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, ARM Cortex, STM32, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested);
-6. Simplifies projects based on SI4735;
-7. __I²C communication__ and Automatic I²C bus address detection; 
-8. [More than __120__ functions implemented](https://pu2clr.github.io/SI4735/extras/apidoc/html/). You can customize almost every feature available on Si47XX family; 
-9. [More than 20 examples to guide the user](https://github.com/pu2clr/SI4735/tree/master/examples);
-10. [RDS support](https://pu2clr.github.io/SI4735/#rds)
-11. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band). 
-
-<BR>
 
 ## Library Installation
 
