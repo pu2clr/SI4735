@@ -47,9 +47,9 @@ You can also be a member of __group.io__ [SI47XX for hobbyists](https://groups.i
    * [Tips to build](https://pu2clr.github.io/SI4735/#tips-to-build)
 10. [Most Frequent Problems](https://pu2clr.github.io/SI4735/#most-frequent-problems)
 11. [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
-   * [Photos (Tools and Accessories)](https://pu2clr.github.io/SI4735/#photos-tools-and-accessories)
-12. [References](https://pu2clr.github.io/SI4735/#references)
-13. [Examples](https://pu2clr.github.io/SI4735/examples)
+12. [Photos (Tools and Accessories)](https://pu2clr.github.io/SI4735/#photos-tools-and-accessories)
+13. [References](https://pu2clr.github.io/SI4735/#references)
+14. [Examples](https://pu2clr.github.io/SI4735/examples)
     * [Using Arduino Serial Monitor](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR) 
     * [LCD20x4, Encoder and buttons](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_02_LCD_20x4_I2C)
     * [OLED, Encoder and button](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C)
@@ -60,11 +60,11 @@ You can also be a member of __group.io__ [SI47XX for hobbyists](https://groups.i
     * [FM RDS/RBDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS)
     * [Extra - BOARD NE928-10A-V-01 ](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/)
     * [Tools](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_TOOLS)
-14. [Third Party Projects](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects)
-15. [Videos](https://pu2clr.github.io/SI4735/#videos) 
+15. [Third Party Projects](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects)
+16. [Videos](https://pu2clr.github.io/SI4735/#videos) 
     * [Project examples made by the author](https://pu2clr.github.io/SI4735/#project-examples-made-by-the-author)
     * [Third-party projects using this library](https://pu2clr.github.io/SI4735/#third-party-projects-using-this-library)
-16. [Commercial Receivers based on Si47XX Family](https://pu2clr.github.io/SI4735/#commercial-receivers-based-on-si47xx-family) 
+17. [Commercial Receivers based on Si47XX Family](https://pu2clr.github.io/SI4735/#commercial-receivers-based-on-si47xx-family) 
 
 
 ## MIT License 
