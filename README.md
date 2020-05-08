@@ -28,28 +28,29 @@ You can also be a member of __group.io__ [SI47XX for hobbyists](https://groups.i
 
 ## Summary
 
-1. [License Copyright](https://pu2clr.github.io/SI4735/#mit-license)
-2. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
-3. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
-4. [About the SI4735](https://pu2clr.github.io/SI4735/#about-the-si4735)
-5. [Terminology](https://github.com/pu2clr/SI4735#terminology)
-6. [Labrary Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
-7. [Library Installation](https://pu2clr.github.io/SI4735/#library-installation)
-8. [API Documentation](https://pu2clr.github.io/SI4735/#api-documentation)
+1. [SI4735 Library construction history]()
+2. [License Copyright](https://pu2clr.github.io/SI4735/#mit-license)
+3. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
+4. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
+5. [About the SI4735](https://pu2clr.github.io/SI4735/#about-the-si4735)
+6. [Terminology](https://github.com/pu2clr/SI4735#terminology)
+7. [Labrary Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
+8. [Library Installation](https://pu2clr.github.io/SI4735/#library-installation)
+9. [API Documentation](https://pu2clr.github.io/SI4735/#api-documentation)
    * [About Class, Methods(functions) and custom data type structures](https://pu2clr.github.io/SI4735/#defined-data-types-and-structures)
    * [PU2CLR SI4735 Arduino Library methods (functions)](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
    * [RDS support](https://pu2clr.github.io/SI4735/#rds)
    * [SSB support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band)
    * [Customizing PU2CLR Arduino Library](https://pu2clr.github.io/SI4735/#customizing-pu2clr-arduino-library)
-9. [Hardware Requirements and Setup](https://pu2clr.github.io/SI4735/#hardware-requirements-and-setup)
+10. [Hardware Requirements and Setup](https://pu2clr.github.io/SI4735/#hardware-requirements-and-setup)
    * [Schematic](https://pu2clr.github.io/SI4735/#schematic)
    * [Component Parts](https://pu2clr.github.io/SI4735/#parts)
    * [Tips to build](https://pu2clr.github.io/SI4735/#tips-to-build)
-10. [Most Frequent Problems](https://pu2clr.github.io/SI4735/#most-frequent-problems)
-11. [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
-12. [Photos (Tools and Accessories)](https://pu2clr.github.io/SI4735/#photos-tools-and-accessories)
-13. [References](https://pu2clr.github.io/SI4735/#references)
-14. [Examples](https://pu2clr.github.io/SI4735/examples)
+11. [Most Frequent Problems](https://pu2clr.github.io/SI4735/#most-frequent-problems)
+12. [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
+13. [Photos (Tools and Accessories)](https://pu2clr.github.io/SI4735/#photos-tools-and-accessories)
+14. [References](https://pu2clr.github.io/SI4735/#references)
+15. [Examples](https://pu2clr.github.io/SI4735/examples)
     * [Using Arduino Serial Monitor](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR) 
     * [LCD20x4, Encoder and buttons](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_02_LCD_20x4_I2C)
     * [OLED, Encoder and button](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C)
@@ -60,11 +61,20 @@ You can also be a member of __group.io__ [SI47XX for hobbyists](https://groups.i
     * [FM RDS/RBDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS)
     * [Extra - BOARD NE928-10A-V-01 ](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/)
     * [Tools](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_TOOLS)
-15. [Third Party Projects](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects)
-16. [Videos](https://pu2clr.github.io/SI4735/#videos) 
+16. [Third Party Projects](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects)
+17. [Videos](https://pu2clr.github.io/SI4735/#videos) 
     * [Project examples made by the author](https://pu2clr.github.io/SI4735/#project-examples-made-by-the-author)
     * [Third-party projects using this library](https://pu2clr.github.io/SI4735/#third-party-projects-using-this-library)
-17. [Commercial Receivers based on Si47XX Family](https://pu2clr.github.io/SI4735/#commercial-receivers-based-on-si47xx-family) 
+18. [Commercial Receivers based on Si47XX Family](https://pu2clr.github.io/SI4735/#commercial-receivers-based-on-si47xx-family) 
+
+
+## SI4735 Library construction history
+
+I started my work on building an Arduino library for SI375 in early November 2019. The initial idea was to build a receiver using an Arduino Board and some parts that had the features offered by the SI4735 device from Silicon Labs. Checking some videos on Youtube, I realized that this receiver could go far beyond the initial proposal, __including listening to radio amateur stations (mode SSB)__. Via internet, I also realized that there was a great demand for experimenters who would like to see the SI4735 device working on SSB mode. So, instead of developing a simple receiver based on the SI4735, __I decided to develop a library for Arduino platform that would provide full support, not only to the SI4735 device as well as the entire Silicon Labs IC SI473X family__.
+
+I don't have the exact numbers, but judging by the groups created around the SI47XX devices, I estimate that there are hundreds of experimenters using the PU2CLR Si4735 Arduino Library today.  I developed this library to be in the public domain. If you are an experimenter, a radio enthusiast and want to try the SI473X, then this library is for you.  The following video tells the story of the construction of this library.
+
+{% include libhistory.html %}
 
 
 ## MIT License 
@@ -181,8 +191,6 @@ This library uses the I²C communication protocol and implements most of the fun
 9. [More than 20 examples to guide the user](https://github.com/pu2clr/SI4735/tree/master/examples);
 10. [RDS support](https://pu2clr.github.io/SI4735/#rds)
 11. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band). 
-
-{% include libhistory.html %}
 
 <BR>
 
