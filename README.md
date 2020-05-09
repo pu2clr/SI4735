@@ -2,7 +2,7 @@
 
 # [PU2CLR SI4735 Library for Arduino](https://pu2clr.github.io/SI4735/)
 
-[Se você estiver entendendo este texto, talvez queira ler este documento em Português](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md)
+[Se você estiver entendendo este texto, talvez queira ler este documento em Português](https://pu2clr.github.io/SI4735/README-pt-BR.md)
 
 # Preface
 
