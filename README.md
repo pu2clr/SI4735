@@ -683,17 +683,17 @@ si4735.setMaxDelaySetFrequency(50);
 
 ### When the receiver starts or when I switches it from FM to AM and vice-versa, I have loud click in the speaker  
 
-Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some Si47XX device commands.
-This problem occurs during the receiver transition from the power down to power up. Also, every time the user changes the mode (FM to AM or AM to FM) the power down and power up sequence is required by the Si47XX devices. So far, the author of this library have not found an internal solution to solve the loud popping of the speaker. It is important to say that internal SI47XX mute or volume commands do not work. 
-However, it is possible to solve this problem by adding an extra __mute__ circuit and control it by the controller (Atmega, ESP32, STM32, ATtiny85 etc). 
+Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some Si47XX device commands. This problem occurs during the receiver transition from the power down to power up internal commands. Also, every time the user changes the mode (FM to AM or AM to FM) the sequence power down and power up internal commands is required by the Si47XX devices. 
+
+The SI47XX devices have about 0,7 V DC  (DC bias) component in the analog audio output pins (SI4735-D60 pins 23 and 24). When the device goes to power down mode, the voltage on the audio pins drops to 0V.  The device do it internally and there is not a way to avoid that. When the device goes to power up, that audio pins suddenly goes to the  0,7V DC again. This transition causes the loud pop in the speaker. So far, the author of this library have not found an internal solution to solve the loud popping of the speaker. It is important to say that internal SI47XX mute or volume commands do not work. However, it is possible to solve this problem by adding an extra __mute__ circuit and control it by the MCU (Atmega, ESP32, STM32, ATtiny85 etc). 
 
 The schematic below shows this approach.
 
 ![Mute circuit](./extras/images/mute_circuit_schematic.png)
 
-When the D14 is HIGH the Si47XX output audio will be drained to the ground. At this condition, no audio will be transferred to the amplifier input and, consequently, to the speaker. So, no loud click in the speaker. 
+Considering that you are using tme MCU based on Atmega328, when the D14 is HIGH the Si47XX output audio will be drained to the ground. At this condition, no audio will be transferred to the amplifier input and, consequently, to the speaker. So, no loud click in the speaker. 
 
-When the D14 is LOW, the most of signal audio output from the Si47XX will be transfered to the amplifier input. 
+When the D14 is LOW, the most of signal audio output from the Si47XX will be transfered to the input of the amplifier. 
 
 The code below shows all you have to do in your sketch to implement this resource.
 
@@ -722,7 +722,7 @@ void setup() {
 {% include audiomute.html %}
 
 
-Some low power audio amplifiers also implement mute circuit that can be controlled externally. You can find this resource on __[LM4906](http://www.ti.com/lit/ds/symlink/lm4906.pdf), [LM4863](https://www.ti.com/lit/ds/symlink/lm4863.pdf?ts=1588602798363), KA8602B, MC34119, PAM8403__ and __HT82V739__ devices.
+Some low power audio amplifiers IC also implement mute circuit that can be controlled externally. You can find this resource on __[LM4906](http://www.ti.com/lit/ds/symlink/lm4906.pdf), [LM4863](https://www.ti.com/lit/ds/symlink/lm4863.pdf?ts=1588602798363), KA8602B, MC34119, PAM8403__ and __HT82V739__ devices.
 
 
 [Go to summary](https://pu2clr.github.io/SI4735/#summary)
