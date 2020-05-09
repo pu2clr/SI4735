@@ -71,7 +71,7 @@ I started my work on building an Arduino library for SI375 in early November 201
 
 With this library, more than 20 examples were developed using various types of displays. [These examples can assist the experimenter in building their own receiver](https://github.com/pu2clr/SI4735/tree/master/examples).
 
-I don't have the exact numbers, but judging by the groups created around the SI47XX devices, I estimate that there are hundreds of experimenters using the PU2CLR Si4735 Arduino Library today.  I developed this library to be in the public domain. If you are an experimenter, a radio enthusiast and want to try the SI473X devices, then this library is for you.  The following video is a little joke that shows the trajectory of the construction of this library.
+Judging by the groups created around the SI47XX devices, I estimate that this library is currently being used by hundreds of experimenters. If you are an experimenter or a radio enthusiast and want to try the SI473X devices, then this library is for you.  The following video is a little joke that shows the trajectory of the construction of this library.
 
 {% include libhistory.html %}
 
