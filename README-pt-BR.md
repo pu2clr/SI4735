@@ -50,7 +50,7 @@ Os Direitos Autorais e as permissões supracitadas devem ser incluídos em todas
 
 IMPORTANTE:
 
-ESTA BIBLIOTECA É FORNECIDA "TAL COMO ESTÁ", SEM QUALQUER TIPO DE GARANTIA, EXPRESSA OU IMPLÍCITA. EM NENHUM CASO O AUTOR OU TITULAR DOS DIREITOS AUTORAIS SERÁ RESPONSÁVEL POR QUALQUER REIVINDICAÇÃO, DANOS OU OUTRA RESPONSABILIDADE.
+ESTA BIBLIOTECA É FORNECIDA "TAL COMO ESTÁ", SEM QUALQUER TIPO DE GARANTIA, EXPRESSA OU IMPLÍCITA. EM NENHUM CASO O AUTOR OU TITULAR DOS DIREITOS AUTORAIS SERÃO RESPONSÁVEIS POR QUALQUER REIVINDICAÇÃO, DANOS OU OUTRA RESPONSABILIDADE.
 
 <BR>
 <BR>
@@ -61,6 +61,8 @@ ESTA BIBLIOTECA É FORNECIDA "TAL COMO ESTÁ", SEM QUALQUER TIPO DE GARANTIA, EX
 * Gostaria de agradecer ao [Sr. Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) por deixar disponível em seu [repositório de projetos](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0) os arquivos de aplicação da atualização SSBRX para o Si4735. 
 * David Kellmer (USA) pelas correções sugeridas na documentação em inglês e também nos sketches exemplos; 
 * WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode; 
+* Jim Reagan, W0CHL, por constibuições com projetos em eletrônica;
+* Gert Baak, PE0MGB, por sugestões de melhorias na biblioteca;  
 * Todos os membros dos grupos do Facebook ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) e ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/).
 
 
