@@ -6,7 +6,7 @@
 
 # Preface
 
-This document is aimed at the Arduino developers, radio experimenters, hobbyists and anyone interested in building a receiver based on the Si47XX IC family from Silicon Labs.  This project is about an Arduino library for the SI47XX BROADCAST AM/FM/SW RADIO RECEIVER.  This library is intended to provide an easier interface for controlling the SI47XX by using Arduino platform. __The communication used by this library is I²C__. This library was built based on [“__Si47XX PROGRAMMING GUIDE; AN332__ ”](https://www.silabs.com/documents/public/application-notes/AN332.pdf). It also can be used on __all members of the SI473X family__ respecting, of course, the features available for each IC version. Please, read the [summary](https://pu2clr.github.io/SI4735/#summary) carefully.
+This document is aimed at the Arduino developers, radio experimenters, hobbyists and anyone interested in building a receiver based on the Si47XX IC family from Silicon Labs.  This project is about an Arduino library for the SI47XX BROADCAST AM/FM/SW RADIO RECEIVER.  This library is intended to provide an easier interface for controlling the SI47XX by using Arduino platform. __The communication used by this library is I²C__. This library was built based on [“__Si47XX PROGRAMMING GUIDE; AN332__ ”](https://www.silabs.com/documents/public/application-notes/AN332.pdf). It also can be used on __all members of the SI473X family__ respecting, of course, the features available in each IC version. Please, follow the [summary below](https://pu2clr.github.io/SI4735/#summary) to get the most out of this document.
 
 This library can be freely distributed using the MIT Free Software model. 
 
