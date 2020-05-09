@@ -673,7 +673,7 @@ si4735.setMaxDelaySetFrequency(50);
 ```
 
 
-### I cannot tune satisfactorily any local station in LW, MW or SW
+### I cannot tune satisfactorily any station on LW, MW or SW
 
 * Please, use only batteries to power your system up on LW, MW or SW. 
 * Check your circuit on AMI pin of the Si47XX device.
