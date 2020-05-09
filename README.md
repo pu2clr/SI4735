@@ -468,20 +468,21 @@ The best way to customize the PU2CLR SI4735 Arduino Library for your needs is ex
 #include <SI4735.h>
 class MyCustomSI4735 : public SI4735 { // extending the original class SI4735
   public:
-    // New function / methods
+    // New functions / methods
     int methodA() {    // some SI47XX command that PU2CLR SI4735 Arduino Library does not implement
       return 0;
     }
 
-    int methodB() {    // anotherSI47XX command that PU2CLR SI4735 Arduino Library does not implement
+    int methodB() {    // another SI47XX command that PU2CLR SI4735 Arduino Library does not implement
       return 1;
     }
 
     // Overwriting existent methods
     void setTuneFrequencyAntennaCapacitor(uint16_t capacitor) { 
-      // your setTuneFrequencyAntennaCapacitor code that will replace the original setTuneFrequencyAntennaCapacitor code 
-      currentFrequencyParams.arg.ANTCAPH = 0;           // Just an example
-      currentFrequencyParams.arg.ANTCAPL = capacitor;   // Just an example
+      // Here, your setTuneFrequencyAntennaCapacitor code that will replace the original code 
+      // Tip: currentFrequencyParams is a protected member of SI4735 class and can be referred in your code
+      currentFrequencyParams.arg.ANTCAPH = 0;         // it is just an example 
+      currentFrequencyParams.arg.ANTCAPL = capacitor; // it is just an example 
       return;
     }
 
@@ -501,10 +502,9 @@ void setup()
 {
   Serial.begin(9600);
   while (!Serial);
-  digitalWrite(12, HIGH);
-  Serial.println("AM and FM station tuning test.");
-  radio.setup(RESET_PIN, 0);
-  radio.setFM(8400, 10800, 10390, 10);
+  Serial.println("Customizing Si4735 class example.");
+  radio.setup(12, 0); // Arduino pin 12 as reset and FM mode (0)
+  radio.setFM(8400, 10800, 10390, 10); 
   // Setting the tune capacitor with your code instead Si4735 library code.
   radio.setTuneFrequencyAntennaCapacitor(100);
   // Calling new functions implemented by you.
@@ -518,6 +518,7 @@ void loop() {
 ```
 
 If you use that approach, all you have to do is downloading the current version of PU2CLR SI4735 Arduino Library. Instead of using PU2CLR SI4735 Arduino Library class directly, you can use your own class that extends the original class.  This way, you always have the current version of the library customized for your needs. So, no extra work will be needed when you update the PU2CLR SI4735 Arduino Library. In other words, your custom code will be always sincronized with the PU2CLR SI4735 Arduino Library code.
+
 
 See also:
 * [How to use C++ Classes in Arduino IDE without creating a Library](https://www.radishlogic.com/arduino/use-c-class-arduino-ide-without-creating-library/?fbclid=IwAR07yO6OvyUlAa4d28N7VTWtY2vHjlUbtkxKiO7LJKOUkPou1bh8Lvwg8rA)
