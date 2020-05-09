@@ -530,7 +530,7 @@ See also:
 
 ## Hardware Requirements and Setup
 
-This library has been written for the Arduino platform and has been successfully tested on many platforms. See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
+This library has been written for the Arduino platform and has been successfully tested on many boards. See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
 
 
 ### Arduino 5V and Si4735
