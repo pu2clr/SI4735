@@ -10,7 +10,7 @@ This document is aimed at the Arduino developers, radio experimenters, hobbyists
 
 This library can be freely distributed using the MIT Free Software model. 
 
-See [Copyright (c) 2019 Ricardo Lima Caratti](https://pu2clr.github.io/SI4735/#mit-license). 
+Copyright (c) 2019 Ricardo Lima Caratti](https://pu2clr.github.io/SI4735/#mit-license). 
 
 Contact: __pu2clr@gmail.com__.
 
