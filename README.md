@@ -14,7 +14,6 @@ This library can be freely distributed using the MIT Free Software model.
 
 Contact: __pu2clr@gmail.com__.
 
-{% include repository.html %}
 
 ## Summary
 
