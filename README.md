@@ -66,12 +66,13 @@ Contact: __pu2clr@gmail.com__.
 
 ## SI4735 Library construction history
 
-I started my work on building an Arduino library for SI375 in early November 2019. The initial idea was to build a receiver using an Arduino Board and some parts that had the features offered by the SI4735 device from Silicon Labs. Checking some videos on Youtube, I realized that this receiver could go far beyond the initial proposal, __including listening to amateur radio and citizens band stations on SSB mode__. Via forums and websites, I also realized that there was a great demand for experimenters who would like to see the SI4735 device working on SSB mode. So, instead of developing a simple receiver based on the SI4735, __I decided to develop a library for Arduino platform that would provide full support, not only to the SI4735 device as well as the entire Silicon Labs IC SI473X family__.
+I started my work on building an Arduino library for SI375 in early November 2019. The initial idea was to build a receiver by using an Arduino board, few components and the SI4735 device from Silicon Labs. Checking some videos on Youtube, I realized that the receiver besed on Si4735-D60 could go far beyond the initial proposal, __including listening to amateur radio and citizens band stations on SSB mode__. Via forums and websites, I also realized that there was a great demand for experimenters who would like to see the SI4735 device working on SSB mode. So, instead of developing a simple receiver based on the SI4735, __I decided to develop a library for Arduino platform that would provide full support to the SI4735 and all SI473X device family as well__.
 
-With this library, more than 20 examples were developed using various types of displays. [These examples can assist the experimenter in building their own receiver](https://github.com/pu2clr/SI4735/tree/master/examples).
+With this library, more than 20 examples were developed using various display types. [These examples can assist the experimenter in building their own receiver](https://github.com/pu2clr/SI4735/tree/master/examples).
 
 Judging by the groups created around the SI47XX devices, I estimate that this library is currently being used by hundreds of experimenters. If you are an experimenter or a radio enthusiast and want to try the SI473X devices, then this library is for you.  
-The following video is a little joke that shows the trajectory of the construction of this library. __"PU2CLR Si4735 Arduino Library.  It is open source. It is Free. It is for you"__.
+
+The following video is a little joke that shows the trajectory of the construction of this library. __"PU2CLR SI4735 Arduino Library. IT IS OPEN SOURCE IT IS FREE. IT IS FOR YOU"__.
 
 {% include libhistory.html %}
 
