@@ -40,7 +40,7 @@ Contato: pu2clr@gmail.com
 
 ## Grupos de discussão e foruns
 
-Há grupo de discussão no facebook denominado [__Si47XX para radioescutas__](https://www.facebook.com/groups/1121785218031286/) onde o propósito é trocar experiências com projetos baseados na família de CI SI47XX da Silicon Labs. Você será bem-vindo ao grupo [Si47XX para radioescuta](https://www.facebook.com/groups/1121785218031286/). 
+Há um grupo de discussão no facebook denominado [__Si47XX para radioescutas__](https://www.facebook.com/groups/1121785218031286/) onde o propósito é trocar experiências com projetos baseados na família de CI SI47XX da Silicon Labs. Você será bem-vindo ao grupo [Si47XX para radioescuta](https://www.facebook.com/groups/1121785218031286/). 
 
 Há também um seleto grupo na plataforma __group.io_ denominado [SI47XX for hobbyists](https://groups.io/g/si47xx). Se você se sentir confortável com o idioma inglês, também será bem-vindo neste grupo.
 
