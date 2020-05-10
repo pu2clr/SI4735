@@ -106,6 +106,7 @@ There is a __Facebook__ group called [__Si47XX for Radio Experimenters__](https:
 You can also be a member of __group.io__ [SI47XX for hobbyists](https://groups.io/g/si47xx)
 {% include groupio.html %}
 
+[Follow a project using this library on hackaday.io](https://hackaday.io/project/170145-si4735-ssb-receiver-controlled-by-arduino)
 
 ## MIT License 
 
@@ -137,10 +138,7 @@ This is the easiest method to install this library.
 ![Installing from Arduino IDE 01](extras/images/lib_install_01.png)
 
 
-
 #### The image below shows the PU2CLR Si4735 Library finding process.
-
-
 
 <BR>
 
@@ -148,11 +146,9 @@ This is the easiest method to install this library.
 
 <BR>
 
-
 #### The video below shows how to install the PU2CLR Arduino Library on your Arduino IDE. 
 
 {% include libinstalling.html %}
-
 
 ### Installing via this repository 
 
@@ -172,16 +168,15 @@ After, unzip the SI4735-master.zip file in your Arduino Library folder.
 With that approach, you will have the __most current version__ of the library. However, __it may not be the most stable version__. This is because the current version is always in development. [Prefer releases](https://github.com/pu2clr/SI4735/releases).
 Do you need some old version (release) of this library?  If yes, [check here](https://github.com/pu2clr/SI4735/releases). 
 
-
 [Go to summary](https://pu2clr.github.io/SI4735/#summary)
 
 <BR>
 
-
 ## Thanks
 
-* I would like to thank Mr Francisco Scaramella  for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library;
+* Mr. Tom Nardi for his great article ["Multi-Band Receiver On A Chip Controlled By Arduino"](https://hackaday.com/2020/03/02/multi-band-receiver-on-a-chip-controlled-by-arduino/) on Hackaday website;
 * I would like to thank [Mr Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) for making available the SSBRX patches for SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0);
+* I would like to thank Mr Francisco Scaramella  for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library;
 * David Kellmer (USA) for suggesting corrections on the documentation and sketches; 
 * WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode; 
 * Jim Reagan, W0CHL, for contributions on circuit design;
@@ -199,8 +194,6 @@ If you would like to support this library development, consider joining this pro
 ## About the SI4735  
 
 The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance on AM (LW/MW/SW) and local FM station. The SI4735 can be programmed by using commands and responses. You can contron it via a microcontroller like Arduino. To make the SI4735 perform an action, the microccontroller have to send a set of bytes (command and arguments) that the device interpret it and executes the given command.
-
-
 
 <BR>
 
@@ -228,7 +221,6 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 * Digital audio out
 * I²C and SPI interface 
 * Great Programming Guide and additional documentation to deal with the device
-
 
 [Go to summary](https://pu2clr.github.io/SI4735/#summary)
 
@@ -287,7 +279,6 @@ The Si47XX family works with many internal data that can be represented by data 
 
 All data types defined in Si4735 Arduino Library are explained [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
 
-
 ### Public methods 
 
 This library was developed using the C++ language and the Object-oriented Programming approach. Methods are functions that belongs to the class, in this case SI4735 class. Click [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group01.html) to go to API docummentation.
@@ -332,7 +323,6 @@ This library implements some RDS features of the SI4735. All function to deal wi
 
 
 See RDS example implementations [here](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS).
-
 
 <BR>
 
