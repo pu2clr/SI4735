@@ -2,19 +2,13 @@
 
 Esta é uma biblioteca para o ambiente de desenvolvimento Arduino que implementa as funções para a linha de CI SI4735, BROADCAST AM / FM / SW RADIO RECEPTOR da Silicon Labs. Esta biblioteca tem o propósito de fornecer uma interface de programação mais amigável aos projetistas de rádios baseados na família SI47XX. __A comunicação usada por esta biblioteca é I2C__. Consulte as [Características desta Biblioteca](https://github.com/pu2clr/SI4735/blob/master/) para mais detalhes. 
 
-Esta biblioteca foi construída com bases no documento [“__Si47XX PROGRAMMING GUIDE; AN332__”](https://www.silabs.com/documents/public/application-notes/AN332.pdf) (guia de programação da própria Silicon Labs). Portanto, ela poderá ser usada em todos os integrantes da família SI47XX, respeitando, é claro, as funcionalidades disponíveis para cada versão do CI. Essas funcionalidades podem ser conferidas na matriz de comparação exposta na tebela 1 (__Product Family Function__); páginas 2 e 3 do referido guia. 
+Esta biblioteca foi construída com base nos documentos [“__AN332 Si47XX PROGRAMMING GUIDE__”](https://www.silabs.com/documents/public/application-notes/AN332.pdf) e  __AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES__. Assim, esta biblioteca poderá ser utilizada em todos os integrantes da família SI47XX, respeitando, é claro, as funcionalidades disponíveis para cada versão do CI.  Siga o [sumário abaixo](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#sum%C3%A1rio) para tirar melhor proveito deste documento.
 
 Esta biblioteca pode ser livrimente copiada e distribuída. O modelo de licença utilizado é o do MIT, cujos termos podem ser lidos no documento [__license.txt__](./license.txt). 
 [Copyright (c) 2019 Ricardo Lima Caratti](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#mit-licence)  
 
 Contato: pu2clr@gmail.com
 
-Há grupo de discussão no facebook denominado [__Si47XX para radioescutas__](https://www.facebook.com/groups/1121785218031286/) onde o propósito é trocar experiências com projetos baseados na família de CI SI47XX da Silicon Labs. Você será bem-vindo ao grupo [Si47XX para radioescuta](https://www.facebook.com/groups/1121785218031286/). 
-
-
-### __Atenção__: 
-* __Esta documentação ainda está em construção e sujeita a alteração__. 
-* __O SI4735 é um componente que opera com 3.3V. Se você não estiver usando uma versão do Arduino que opera com esta tensão, você deve usar alguma estratégia de conversão bidirecional de tensão (incluindo os pinos digitais e analógicos) para trabalhar corretamente com o SI4735__. É importante ter em mente que só alimentar o CI Si47XX com 3.3V não é suficiente. É preciso também que os pinos no barramento I2C do CI, bem como os demais pinos de controle não recebam tensões superiores ao especificado pelo fabricante. 
 
 ## Sumário
 
@@ -36,6 +30,19 @@ Há grupo de discussão no facebook denominado [__Si47XX para radioescutas__](ht
 12. [Exemplos](https://github.com/pu2clr/SI4735/tree/master/examples)
 13. [Vídeos](https://github.com/pu2clr/SI4735/blob/master/README-pt-BR.md#v%C3%ADdeos) 
 
+
+# Atenção
+
+* __Esta documentação ainda está em construção e sujeita a alteração__. 
+* __O SI4735 é um componente que opera com 3.3V. Se você não estiver usando uma versão do Arduino que opera com esta tensão, você deve usar alguma estratégia de conversão bidirecional de tensão (incluindo os pinos digitais e analógicos) para trabalhar corretamente com o SI4735__. É importante ter em mente que só alimentar o CI Si47XX com 3.3V não é suficiente. É preciso também que os pinos no barramento I2C do CI, bem como os demais pinos de controle não recebam tensões superiores ao especificado pelo fabricante. 
+* As funcionalidades de cada integrante da família SI47XX podem ser conferidas na matriz de comparação exposta na tebela 1 (__Product Family Function__); páginas 2 e 3 do referido guia. 
+
+
+## Grupos de discussão e foruns
+
+Há grupo de discussão no facebook denominado [__Si47XX para radioescutas__](https://www.facebook.com/groups/1121785218031286/) onde o propósito é trocar experiências com projetos baseados na família de CI SI47XX da Silicon Labs. Você será bem-vindo ao grupo [Si47XX para radioescuta](https://www.facebook.com/groups/1121785218031286/). 
+
+Há também um seleto grupo na plataforma __group.io_ denominado [SI47XX for hobbyists](https://groups.io/g/si47xx). Se você se sentir confortável com o idioma inglês, também será bem-vindo neste grupo.
 
 
 ## Licença e Direito Autorais
@@ -104,12 +111,12 @@ Ainda em relação a figura anterior, é importante observar o destaque em verme
 * AM(MW) - 520–1710 kHz
 * SW - A faixa de Frequência descrita no manual da Silicon Labs é 2.3–26.1 MHz. Na realidade, este CI vai mais longe que isso segundo testes realizados durante o desenvolvimento desta biblioteca. Contudo, é importante ressaltar que algumas características de recepção não foram avaliadas em frequências superiores à especificada pelo fabricante. Por exemplo, sensibilidade.   
 * LW - 153–279 kHz
-* Possibilita atualização de Firmware. Isso inclui a possibilidade de ajustes no CI para recepção em SSB.
-* Advanced AM/FM seek tuning
+* Possibilita atualização de Firmware. Isso inclui a possibilidade de ajustes no CI para recepção em SSB;
+* Busca automática de estações oara os modos AM (LW, MW e SW) e FM;
 * Controle Automático de Frequência (Automatic frequency control - AFC)
 * Controle Automático de Ganho (Automatic gain control - AGC)
-* AM/FM/SW/LW digital tuning
-* RDS/RBDS
+* Sintonia digital em AM/FM/SW/LW 
+* RDS/RBDS;
 * Comunicação I2C e SPI. __Esta biblioteca faz uso somente do protocolo I2C__. 
 * Excelente guia de programação provido pela Silicon Labs.
 
@@ -290,15 +297,12 @@ A tabela a seguir apresenta a lista de componentes utilizados para construir o p
 
 __Recomendações da Silicon Labs para serem consideradas durante a montagem do rádio__ 
 __Veja "Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver Documentation":
-* Place C1 close to VA and C4 close to VD pin.
-* All grounds connect directly to GND plane on PCB.
-* Pins 6 and 7 are no connects, leave floating.
-* Pins 10 and 11 are unused. Tie these pins to GND.
-* To ensure proper operation and receiver performance, follow the guidelines in “AN383: Si47xx Antenna, Schematic,
-* Layout, and Design Guidelines.” Silicon Laboratories will evaluate schematics and layouts for qualified customers.
-* Pin 8 connects to the FM antenna interface, and pin 12 connects to the AM antenna interface.
-* Place Si473x-D60 as close as possible to antenna and keep the FMI and AMI traces as short as possible.
-
+* Coloque C1 o mais próximo possível de VA pin e C4 o mais próximo possível de VD pin.
+* Conecte todos os pinos GND diretamente ao plano de terra da placa.
+* Os pinos 6 e 7 não são conectados em lugar algum. 
+* Os pinos 10 e 11 devem ser conectados ao terra.
+* Siga as orientações do guia “AN383: Si47xx Antenna, Schematic" para configuração do front-end do receptor.
+* Conecte o dispositivo SI47XX o mais próximo possível das entradas FMI e AMI.
 
 
 ### Placas testadas com a Biblioteca Arduino para o SI4735
