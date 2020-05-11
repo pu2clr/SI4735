@@ -1526,9 +1526,6 @@ public:
 
     void frequencyUp();
     void frequencyDown();
-    bool isCurrentTuneFM();
-    bool isCurrentTuneAM();
-    bool isCurrentTuneSSB();
 
     void getFirmware(void);
 
