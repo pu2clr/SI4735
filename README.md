@@ -76,7 +76,6 @@ The following video is a little joke that shows the trajectory of the constructi
 
 {% include libhistory.html %}
 
-[[embed url=https://www.youtube.com/watch?v=aB02Qry5-bU]]
 
 [Go to summary](https://pu2clr.github.io/SI4735/#summary)
 
