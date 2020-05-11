@@ -1487,7 +1487,7 @@ public:
      * 
      * @return true if the current function is FM (FM_TUNE_FREQ).
      */
-    inline bool SI4735::isCurrentTuneFM()
+    inline bool isCurrentTuneFM()
     {
         return (currentTune == FM_TUNE_FREQ);
     }
@@ -1499,7 +1499,7 @@ public:
      * 
      * @return true if the current function is AM (AM_TUNE_FREQ).
      */
-    inline bool SI4735::isCurrentTuneAM()
+    inline bool isCurrentTuneAM()
     {
         return (currentTune == AM_TUNE_FREQ);
     }
@@ -1511,7 +1511,7 @@ public:
      * 
      * @return true if the current function is SSB (SSB_TUNE_FREQ).
      */
-    inline bool SI4735::isCurrentTuneSSB()
+    inline bool isCurrentTuneSSB()
     {
         return (currentTune == SSB_TUNE_FREQ);
     }
