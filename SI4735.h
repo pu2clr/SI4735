@@ -1480,6 +1480,42 @@ public:
     void setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint16_t step);
     void setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step);
 
+    /**
+     * @ingroup group08 Check FM mode status
+     * 
+     * @brief Returns true if the current function is FM (FM_TUNE_FREQ).
+     * 
+     * @return true if the current function is FM (FM_TUNE_FREQ).
+     */
+    inline bool SI4735::isCurrentTuneFM()
+    {
+        return (currentTune == FM_TUNE_FREQ);
+    }
+
+    /**
+     * @ingroup group08 Check AM mode status
+     * 
+     * @brief Returns true if the current function is AM (AM_TUNE_FREQ).
+     * 
+     * @return true if the current function is AM (AM_TUNE_FREQ).
+     */
+    inline bool SI4735::isCurrentTuneAM()
+    {
+        return (currentTune == AM_TUNE_FREQ);
+    }
+
+    /**
+     * @ingroup group08 Check SSB mode status
+     * 
+     * @brief Returns true if the current function is SSB (SSB_TUNE_FREQ).
+     * 
+     * @return true if the current function is SSB (SSB_TUNE_FREQ).
+     */
+    inline bool SI4735::isCurrentTuneSSB()
+    {
+        return (currentTune == SSB_TUNE_FREQ);
+    }
+
     void setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT);
 
     inline uint8_t getTuneFrequencyFast() { return currentFrequencyParams.arg.FAST; };                  //!<  Returns the FAST tuning status
