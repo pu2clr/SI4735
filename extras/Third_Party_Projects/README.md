@@ -69,13 +69,13 @@ The project aims to serve as a platform through which several developers can con
 This Project was made by Rolf.  It was based on [Jim Reagan’s](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects#jim-reagan) project.  Rolf added to Jim’s project the external mute control feature.  This feature is supported by PU2CLR Si4735 Arduino Library and can minimize the loud clicking and popping in the speaker. 
 
 
-![Photo 01](https://github.com/pu2clr/SI4735/blob/master/extras/Third_Party_Projects/Rolf/Parts.JPG)
+![Photo 01](![Jim Schematic](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects/Rolf/Parts.JPG)
 
 
-![Photo Project 01](https://github.com/pu2clr/SI4735/blob/master/extras/Third_Party_Projects/Rolf/photo_1.jpg)
+![Photo Project 01]((https://pu2clr.github.io/SI4735/extras/Third_Party_Projects/Rolf/photo_1.jpg)
 
 
-![Photo Project 02](https://github.com/pu2clr/SI4735/blob/master/extras/Third_Party_Projects/Rolf/photo_2.jpg)
+![Photo Project 02]((https://pu2clr.github.io/SI4735/extras/Third_Party_Projects/Rolf/photo_2.jpg)
 
 
 The [See Rolf's Geber](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Rolf) friles. 
