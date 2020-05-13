@@ -274,6 +274,52 @@ This library has tow documentation sources:
 
 If you prefer, you can also read the documentation directly from the [SI4735.cpp](https://pu2clr.github.io/SI4735/SI4735.cpp) and [SI4735.h](https://pu2clr.github.io/SI4735/SI4735.h). These files are also well documented. 
 
+### Main functions 
+
+| Method / Function               | Description |
+| ------------------                | ----------- | 
+| setup                             | Use this function to start the device up with the parameters shown below. |
+| getStatus                         | Used to get the current status of the Si4735. |
+| getCurrentRSSI                    | Get the current receive signal strength (0–127 dBμV). |
+| getCurrentSNR                     | Gets the current SNR metric (0–127 dB). |
+| getFrequency                      | Gets the current frequency of the Si4735. |
+| frequencyUp                       | Increments the current frequency on current band/function by using the current step. |
+| frequencyDown                     | Decrements the current frequency on current band/function by using the current step. |
+| setFrequencyStep                  | Sets the current step value. |
+| setVolume                         | Sets volume level (0 to 63). |
+| setFM                             | Sets the radio to FM function. |
+| isCurrentTuneFM                   | Returns true if the current function is FM (FM_TUNE_FREQ). |  
+| getCurrentPilot                   | Checks the current pilot. Indicates stereo pilot presence. | 
+| setAM                             | Sets the radio to AM function. It means: LW MW and SW. |
+| setAmSoftMuteMaxAttenuation       | Sets the Am Soft Mute Max Attenuation. |
+| setAutomaticGainControl           | Automatic Gain Control setup. |
+| getAutomaticGainControl           | Queries Automatic Gain Control STATUS. |
+| setBandwidth                      | Selects the bandwidth of the channel filter for AM reception. |
+| isAgcEnabled                      | Checks if the AGC is enabled (returns true if enabled). |
+| setRdsConfig                      | Sets RDS property. |
+| getRdsStatus                      | Gets the RDS status. Store the status in currentRdsStatus member. COMMAND FM_RDS_STATUS. |
+| getRdsReceived                    | Get the Rds Received FIFO. |
+| getRdsSync                        | Get the Rds Sync. Returns true if RDS currently synchronized. |
+| getRdsSyncFound                   | Get the Rds Sync Found. Returns true if found RDS synchronization. |
+| getRdsText2A                      | Gets the Text processed for the 2A group. |
+| getRdsText2B                      | Gets the Text processed for the 2B group. |
+| getRdsText0A                      | Gets the station name and other messages. |
+| getRdsTime                        | Gets the RDS time and date when the Group type is 4. | 
+| reset                             | Reset the SI473X.  |
+| queryLibraryId                    | Queries the library information of the Si47XX device. | 
+| patchPowerUp                      | This method can be used to prepare the device to apply SSBRX patch. |
+| setSSBConfig                      | Sets the SSB receiver mode. |
+| setSSB                            | Tunes the SSB (LSB or USB) receiver to a frequency between 520 and 30 MHz in 1 kHz steps.|
+| setSSBAutomaticVolumeControl      | Sets SSB Automatic Volume Control (AVC) for SSB mode. |
+| setSSBBfo                         | Sets the SSB Beat Frequency Offset (BFO). |
+| setSSBAudioBandwidth              | SSB Audio Bandwidth for SSB mode. |
+| setSBBSidebandCutoffFilter        | Sets SBB Sideband Cutoff Filter for band pass and low pass filters. |
+| setTuneFrequencyAntennaCapacitor  | Only FM. Freeze Metrics During Alternate Frequency Jump. |
+| setI2CFastModeCustom              | Sets the I2C bus to a given value. |
+| setI2CStandardMode                | Sets I2C buss to 100KHz. |
+| setAudioMuteMcuPin                | This function sets the mcu digital pin you want to use to control the external audio mute circuit. | 
+
+
 ### Defined Data Types and Structures
 
 The Si47XX family works with many internal data that can be represented by data structure or defined data type in C/C++. These C/C++ resources have been used widely here. This aproach made the library easier to build and maintain. Each data structure created here has its reference (name of the document and page on which it was based). In other words, to make the SI47XX device easier to deal, some defined data types were created to handle  byte and bits to process  commands, properties and responses. __The goal of this approach is separating data from code__. 
