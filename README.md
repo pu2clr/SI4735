@@ -274,6 +274,51 @@ This library has tow documentation sources:
 
 If you prefer, you can also read the documentation directly from the [SI4735.cpp](https://pu2clr.github.io/SI4735/SI4735.cpp) and [SI4735.h](https://pu2clr.github.io/SI4735/SI4735.h). These files are also well documented. 
 
+### Main functions 
+
+| Method / Function               | Description |
+| ------------------                | ----------- | 
+| setup                             | Use this function to start the device up with the parameters shown below. |
+| getStatus                         | Used to get the current status of the Si4735. |
+| getCurrentRSSI                    | |
+| getCurrentSNR                     | |
+| getFrequency                      | Gets the current frequency of the Si4735. |
+| frequencyUp                       | |
+| frequencyDown                     | |
+| setFrequencyStep                  | |
+| setVolume                         | Sets volume level (0 to 63). |
+| setFM                             | |
+| isCurrentTuneFM                   | Returns true if the current function is FM (FM_TUNE_FREQ). |  
+| getCurrentPilot                   | | 
+| setAM                             | |
+| setAmSoftMuteMaxAttenuation       | |
+| setAutomaticGainControl           | |
+| getAutomaticGainControl           | Queries Automatic Gain Control STATUS. |
+| setBandwidth                      | |
+| isAgcEnabled                      | Checks if the AGC is enabled (returns true if enabled). |
+| setRdsConfig                      | |
+| getRdsStatus                      | Gets the RDS status. Store the status in currentRdsStatus member. COMMAND FM_RDS_STATUS. |
+| getRdsReceived                    | |
+| getRdsSync                        | |
+| getRdsSyncFound                   | |
+| getRdsText2A                      | |
+| getRdsText0A                      | |
+| getRdsTime                        | | 
+| reset                             | |
+| queryLibraryId                    | | 
+| patchPowerUp                      | |
+| setSSBConfig                      | |
+| setSSB                            | |
+| setSSBAutomaticVolumeControl      | |
+| setSSBBfo                         | |
+| setSSBAudioBandwidth              | |
+| setSBBSidebandCutoffFilter        | |
+| setTuneFrequencyAntennaCapacitor  | |
+| setI2CFastModeCustom              | |
+| setI2CStandardMode                | |
+| setAudioMuteMcuPin                | This function sets the mcu digital pin you want to use to control the external audio mute circuit. | 
+
+
 ### Defined Data Types and Structures
 
 The Si47XX family works with many internal data that can be represented by data structure or defined data type in C/C++. These C/C++ resources have been used widely here. This aproach made the library easier to build and maintain. Each data structure created here has its reference (name of the document and page on which it was based). In other words, to make the SI47XX device easier to deal, some defined data types were created to handle  byte and bits to process  commands, properties and responses. __The goal of this approach is separating data from code__. 
