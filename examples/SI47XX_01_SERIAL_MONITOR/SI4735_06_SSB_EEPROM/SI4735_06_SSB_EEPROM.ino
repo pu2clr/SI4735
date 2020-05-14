@@ -146,6 +146,7 @@ void showSeparator()
 
 void showHelp()
 {
+  /*
   showSeparator();
   Serial.println("Type: ");
   Serial.println("U to frequency up or D to frequency down");
@@ -158,6 +159,7 @@ void showHelp()
   Serial.println("s to switch the BFO increment and decrement step");
   Serial.println("X Shows the current status");
   Serial.println("H to show this help");
+  */
 }
 
 // Show current frequency
@@ -272,7 +274,9 @@ void loadSSB()
   si4735.patchPowerUp();
   delay(100);
   eep = si4735.downloadPatchFromEeprom(EEPROM_I2C_ADDR);
+  Serial.println("\n");
   Serial.println(eep.refined.patch_id);
+  Serial.println(eep.refined.patch_size);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)

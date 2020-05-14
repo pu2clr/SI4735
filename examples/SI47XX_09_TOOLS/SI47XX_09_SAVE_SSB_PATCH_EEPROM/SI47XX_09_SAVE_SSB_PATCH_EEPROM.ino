@@ -49,7 +49,7 @@ void setup()
   showMsgValue("Size of patch ID.....: %u bytes.", size_id);
   showMsgValue("Size of patch content: %u bytes.", size_content);
   uint32_t t1 =  millis();
-  eepromWritePatch();
+  // eepromWritePatch();
   // clearEeprom();
   uint32_t t2 = millis();
   showMsgValue("Finish! Elapsed time: %ul milliseconds.", t2 - t1);

@@ -2864,7 +2864,7 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
 {
     si4735_eeprom_patch_header eep;
     const int header_size = sizeof eep;
-    uint8_t buffer[8];
+    uint8_t bufferAux[8];
     int offset;
     int i;
 
@@ -2878,7 +2878,7 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
     for (int i = 0; i < header_size; i++)
         eep.raw[i] = Wire.read();
 
-    Serial.println(eep.refined.patch_size);
+    // Serial.println(eep.refined.patch_size);
 
         // Transferring patch from EEPROM to SI4735 device
         offset = header_size;
@@ -2892,7 +2892,8 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
         delay(5);
         
         Wire.requestFrom(eeprom_i2c_address, 8);
-        for ( int j = 0; j < 8; j++ ) buffer[j] = Wire.read();
+        for ( int j = 0; j < 8; j++ )
+            bufferAux[j] = Wire.read();
 
         /*
         if (i < 80 || i > 8000) {
@@ -2902,23 +2903,33 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
             Serial.print("-");
 
             for (int j = 0; j < 8; j++) {
-                Serial.print(buffer[j], HEX);
+                Serial.print(bufferAux[j], HEX);
                 Serial.print(" ");
             }
             v++;
 
         }
         */
-       
+
         delay(5);
         // Stores patch content into SI4735 device
         Wire.beginTransmission(deviceAddress);
-        for (int j = 0; j < 8; j++) Wire.write(buffer[j]);
+        for (int j = 0; j < 8; j++)
+            Wire.write(bufferAux[j]);
         Wire.endTransmission();
 
-        delayMicroseconds(MIN_DELAY_WAIT_SEND_LOOP); // Need check the minimum value
-        
+        // delayMicroseconds(MIN_DELAY_WAIT_SEND_LOOP); // Need check the minimum value
+        delay(5);
         offset += 8; // Start processing the next 8 bytes 
+    }
+
+    Serial.print("\n");
+    Serial.print("-");
+
+    for (int j = 0; j < 8; j++)
+    {
+        Serial.print(bufferAux[j], HEX);
+        Serial.print(" ");
     }
 
     delay(50);
