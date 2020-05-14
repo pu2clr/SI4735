@@ -102,10 +102,10 @@ typedef struct
 } Band;
 
 Band band[] = {
-    {1800, 2000, 1900, 1, LSB},
+    {520, 2000, 810, 1, LSB},
     {3500, 4000, 3700, 1, LSB},
     {7000, 7500, 7100, 1, LSB},
-    {10000, 10500, 10050, 1, USB},
+    {11700, 12000, 11940, 1, USB},
     {14000, 14300, 14200, 1, USB},
     {18000, 18300, 18100, 1, USB},
     {21000, 21400, 21200, 1, USB},
@@ -114,8 +114,8 @@ Band band[] = {
     {28000, 28500, 28400, 1, USB}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int currentFreqIdx = 9;
-
+// int currentFreqIdx = 9;
+int currentFreqIdx = 0;
 uint8_t currentAGCAtt = 0;
 
 uint8_t rssi = 0;

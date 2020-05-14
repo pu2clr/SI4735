@@ -806,7 +806,6 @@ void SI4735::setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
     setFrequency(currentWorkFrequency);
 }
 
-
 /** @defgroup group09 Si47XX filter setup  */
 
 /**
@@ -1604,7 +1603,7 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
     si47x_frequency freq;
     long elapsed_seek = millis();
 
-    // seek command does not work for SSB 
+    // seek command does not work for SSB
     if (lastMode == SSB_CURRENT_MODE)
         return;
     do
@@ -2848,7 +2847,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 
 /**
  * @ingroup group17 Patch and SSB support
- * @todo 
+ * @todo Under construction
  * @brief Transfers the content of a patch stored in a eeprom to the SI4735 device.
  * 
  * @details TO USE THIS METHOD YOU HAVE TO HAVE A EEPROM WRITEN WITH THE PATCH CONTENT
@@ -2871,71 +2870,50 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
     // Gets the EEPROM patch header information
     Wire.beginTransmission(eeprom_i2c_address);
     Wire.write(0x00); // offset Most significant Byte
-    Wire.write(0x00);  // offset Less significant Byte
+    Wire.write(0x00); // offset Less significant Byte
     Wire.endTransmission();
     delay(5);
     Wire.requestFrom(eeprom_i2c_address, header_size);
     for (int i = 0; i < header_size; i++)
         eep.raw[i] = Wire.read();
 
-    // Serial.println(eep.refined.patch_size);
-
-        // Transferring patch from EEPROM to SI4735 device
-        offset = header_size;
-    for (i = 0; i < (int) eep.refined.patch_size; i += 8)
+    // Transferring patch from EEPROM to SI4735 device
+    offset = header_size;
+    for (i = 0; i < (int)eep.refined.patch_size; i += 8)
     {
         // Reads patch content from EEPROM
         Wire.beginTransmission(eeprom_i2c_address);
-        Wire.write((int)offset >> 8);         // header_size >> 8 wil be always 0 in this case
-        Wire.write((int)offset & 0XFF);       // offset Less significant Byte
+        Wire.write((int)offset >> 8);   // header_size >> 8 wil be always 0 in this case
+        Wire.write((int)offset & 0XFF); // offset Less significant Byte
         Wire.endTransmission();
-        delay(5);
-        
+        delay(1);
+
         Wire.requestFrom(eeprom_i2c_address, 8);
-        for ( int j = 0; j < 8; j++ )
+        for (int j = 0; j < 8; j++)
             bufferAux[j] = Wire.read();
 
         /*
-        if (i < 80 || i > 8000) {
-            static int v = 1;
-            Serial.print("\n");
-            Serial.print(v);
-            Serial.print("-");
-
+        if (i < 41 || i > (eep.refined.patch_size - 41)  ) {
+            Serial.print("\n->");
             for (int j = 0; j < 8; j++) {
                 Serial.print(bufferAux[j], HEX);
                 Serial.print(" ");
             }
-            v++;
-
         }
         */
 
-        delay(5);
         // Stores patch content into SI4735 device
         Wire.beginTransmission(deviceAddress);
         for (int j = 0; j < 8; j++)
             Wire.write(bufferAux[j]);
         Wire.endTransmission();
-
-        // delayMicroseconds(MIN_DELAY_WAIT_SEND_LOOP); // Need check the minimum value
-        delay(5);
-        offset += 8; // Start processing the next 8 bytes 
-    }
-
-    Serial.print("\n");
-    Serial.print("-");
-
-    for (int j = 0; j < 8; j++)
-    {
-        Serial.print(bufferAux[j], HEX);
-        Serial.print(" ");
+        delayMicroseconds(MIN_DELAY_WAIT_SEND_LOOP); // Need check the minimum value
+        offset += 8; // Start processing the next 8 bytes
     }
 
     delay(50);
     return eep;
 }
-
 
 /**
  * @defgroup group18 MCU Configuration
