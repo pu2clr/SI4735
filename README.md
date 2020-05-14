@@ -450,7 +450,7 @@ __The table below shows the features that this library implements__.
 
 The SI4735 class implements a set of methods to apply patches and deal with SSB mode. All documentation about pathces can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html).
 
-The SSB patches used in some examples of this library were tested only on SI4735-D60.  __The updates used in the examples are unlikely to work on other SI47XX devices__.
+The SSB patches used in some examples of this library were tested only on SI4735-D60.  __The updates used in that examples are unlikely to work on other SI47XX devices__.
 
 __First of all, it is important to say that the SSB patch content is not part of this library__. The paches used here were made available by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. __In other words, this library only supports SSB patches, the patches themselves are not part of this library__.
 
