@@ -133,7 +133,7 @@ void setup()
   // si4735.setI2CLowSpeedMode();     //  10000 (10KHz)
   // si4735.setI2CStandardMode();        // 100000 (100KHz)
   si4735.setI2CFastMode();         // 400000 (400KHz)
-  // si4735.setI2CFastModeCustom(500000); // It is not safe and can crash.
+  // si4735.setI2CFastModeCustom(500000); // -> It is not safe and can crash.
   delay(10);
   Serial.println("SSB patch is loading...");
   et1 = millis();
