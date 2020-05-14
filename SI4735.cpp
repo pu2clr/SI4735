@@ -2848,7 +2848,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 
 /**
  * @ingroup group17 Patch and SSB support
- *  
+ * @todo 
  * @brief Transfers the content of a patch stored in a eeprom to the SI4735 device.
  * 
  * @details TO USE THIS METHOD YOU HAVE TO HAVE A EEPROM WRITEN WITH THE PATCH CONTENT
@@ -2860,67 +2860,71 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
  * @param eeprom_i2c_address 
  * @return false if an error is found.
  */
-bool SI4735::downloadPatch(int eeprom_i2c_address)
+si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_address)
 {
-    int ssb_patch_content_size;
-    uint8_t cmd_status;
-    int i, offset;
-    uint8_t eepromPage[8];
+    si4735_eeprom_patch_header eep;
+    const int header_size = sizeof eep;
+    uint8_t buffer[8];
+    int offset;
+    int i;
 
-    union {
-        struct
-        {
-            uint8_t lowByte;
-            uint8_t highByte;
-        } raw;
-        uint16_t value;
-    } eeprom;
-
-    // The first two bytes are the size of the patches
-    // Set the position in the eeprom to read the size of the patch content
+    // Gets the EEPROM patch header information
     Wire.beginTransmission(eeprom_i2c_address);
-    Wire.write(0); // writes the most significant byte
-    Wire.write(0); // writes the less significant byte
+    Wire.write(0x00); // offset Most significant Byte
+    Wire.write(0x00);  // offset Less significant Byte
     Wire.endTransmission();
-    Wire.requestFrom(eeprom_i2c_address, 2);
-    eeprom.raw.highByte = Wire.read();
-    eeprom.raw.lowByte = Wire.read();
+    delay(5);
+    Wire.requestFrom(eeprom_i2c_address, header_size);
+    for (int i = 0; i < header_size; i++)
+        eep.raw[i] = Wire.read();
 
-    ssb_patch_content_size = eeprom.value;
+    Serial.println(eep.refined.patch_size);
 
-    // the patch content starts on position 2 (the first two bytes are the size of the patch)
-    for (offset = 2; offset < ssb_patch_content_size; offset += 8)
+        // Transferring patch from EEPROM to SI4735 device
+        offset = header_size;
+    for (i = 0; i < (int) eep.refined.patch_size; i += 8)
     {
-        // Set the position in the eeprom to read next 8 bytes
-        eeprom.value = offset;
+        // Reads patch content from EEPROM
         Wire.beginTransmission(eeprom_i2c_address);
-        Wire.write(eeprom.raw.highByte); // writes the most significant byte
-        Wire.write(eeprom.raw.lowByte);  // writes the less significant byte
+        Wire.write((int)offset >> 8);         // header_size >> 8 wil be always 0 in this case
+        Wire.write((int)offset & 0XFF);       // offset Less significant Byte
         Wire.endTransmission();
-
-        // Reads the next 8 bytes from eeprom
+        delay(5);
+        
         Wire.requestFrom(eeprom_i2c_address, 8);
-        for (i = 0; i < 8; i++)
-            eepromPage[i] = Wire.read();
+        for ( int j = 0; j < 8; j++ ) buffer[j] = Wire.read();
 
-        // sends the page (8 bytes) to the SI4735
+        /*
+        if (i < 80 || i > 8000) {
+            static int v = 1;
+            Serial.print("\n");
+            Serial.print(v);
+            Serial.print("-");
+
+            for (int j = 0; j < 8; j++) {
+                Serial.print(buffer[j], HEX);
+                Serial.print(" ");
+            }
+            v++;
+
+        }
+        */
+       
+        delay(5);
+        // Stores patch content into SI4735 device
         Wire.beginTransmission(deviceAddress);
-        for (i = 0; i < 8; i++)
-            Wire.write(eepromPage[i]);
+        for (int j = 0; j < 8; j++) Wire.write(buffer[j]);
         Wire.endTransmission();
 
-        waitToSend();
-
-        Wire.requestFrom(deviceAddress, 1);
-        cmd_status = Wire.read();
-        // The SI4735 issues a status after each 8 byte transfered.
-        // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
-        if (cmd_status != 0x80)
-            return false;
+        delayMicroseconds(MIN_DELAY_WAIT_SEND_LOOP); // Need check the minimum value
+        
+        offset += 8; // Start processing the next 8 bytes 
     }
-    delayMicroseconds(250);
-    return true;
+
+    delay(50);
+    return eep;
 }
+
 
 /**
  * @defgroup group18 MCU Configuration
