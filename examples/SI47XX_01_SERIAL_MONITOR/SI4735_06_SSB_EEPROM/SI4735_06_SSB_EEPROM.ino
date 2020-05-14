@@ -275,6 +275,7 @@ void loadSSB()
   delay(100);
   eep = si4735.downloadPatchFromEeprom(EEPROM_I2C_ADDR);
   Serial.println("\n");
+  
   Serial.println(eep.refined.patch_id);
   Serial.println(eep.refined.patch_size);
   // Parameters
