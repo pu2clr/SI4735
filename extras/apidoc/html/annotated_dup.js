@@ -4,6 +4,8 @@ var annotated_dup =
     [ "si4735_digital_output_format", "group__group03.html#unionsi4735__digital__output__format", "group__group03_unionsi4735__digital__output__format" ],
     [ "si4735_digital_output_format.refined", "group__group03.html#structsi4735__digital__output__format_8refined", "group__group03_structsi4735__digital__output__format_8refined" ],
     [ "si4735_digital_output_sample_rate", "group__group03.html#structsi4735__digital__output__sample__rate", "group__group03_structsi4735__digital__output__sample__rate" ],
+    [ "si4735_eeprom_patch_header", "group__group03.html#unionsi4735__eeprom__patch__header", "group__group03_unionsi4735__eeprom__patch__header" ],
+    [ "si4735_eeprom_patch_header.refined", "group__group03.html#structsi4735__eeprom__patch__header_8refined", "group__group03_structsi4735__eeprom__patch__header_8refined" ],
     [ "si473x_gpio", "group__group01.html#unionsi473x__gpio", "group__group01_unionsi473x__gpio" ],
     [ "si473x_gpio.arg", "group__group01.html#structsi473x__gpio_8arg", "group__group01_structsi473x__gpio_8arg" ],
     [ "si473x_gpio_ien", "group__group01.html#unionsi473x__gpio__ien", "group__group01_unionsi473x__gpio__ien" ],

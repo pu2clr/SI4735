@@ -163,7 +163,7 @@ var class_s_i4735 =
     [ "queryLibraryId", "group__group17.html#gadfc2c82524918224cf19fec5b7fcf6d1", null ],
     [ "patchPowerUp", "group__group17.html#gafaabd6c73b7ad7c20ae959d5b75c1e71", null ],
     [ "downloadPatch", "group__group17.html#gafd1343bd8b4f0c290ef81c418222036c", null ],
-    [ "downloadPatch", "group__group17.html#gaa99cdde8dd65eb92f2ada159cc215c98", null ],
+    [ "downloadPatchFromEeprom", "group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6", null ],
     [ "ssbPowerUp", "group__group17.html#ga0fcfd8e487c594707b3f2aaa71a86d68", null ],
     [ "setMaxDelayPowerUp", "group__group06.html#gacfbec075648206fbe25834d998ed9e64", null ],
     [ "setMaxDelaySetFrequency", "group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8", null ],

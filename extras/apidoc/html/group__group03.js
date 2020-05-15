@@ -59,6 +59,16 @@ var group__group03 =
       [ "OFALL", "group__group03.html#abfdc1bd5a8f46739eef7fd4fa44ad600", null ],
       [ "dummy", "group__group03.html#a275876e34cf609db118f3d84b799a790", null ]
     ] ],
+    [ "si4735_eeprom_patch_header", "group__group03.html#unionsi4735__eeprom__patch__header", [
+      [ "refined", "group__group03.html#a4707ab771c6fd6fc0bbb07b1fa4dfce9", null ],
+      [ "raw", "group__group03.html#a94433975a0b1ff748a66a19e4125dc5e", null ]
+    ] ],
+    [ "si4735_eeprom_patch_header.refined", "group__group03.html#structsi4735__eeprom__patch__header_8refined", [
+      [ "reserved", "group__group03.html#a327e0f8ef808c5d8c6072a07f0a26d26", null ],
+      [ "status", "group__group03.html#a824abc0aadb3f2d4a53b915f10a2a60b", null ],
+      [ "patch_id", "group__group03.html#a6672901531915ba41508c09a77f77a8d", null ],
+      [ "patch_size", "group__group03.html#ac951249c14ef40b4436af008145347a9", null ]
+    ] ],
     [ "si4735_digital_output_sample_rate", "group__group03.html#structsi4735__digital__output__sample__rate", [
       [ "DOSR", "group__group03.html#a9988ba829a46409f23d7cb9bb0f156d9", null ]
     ] ]

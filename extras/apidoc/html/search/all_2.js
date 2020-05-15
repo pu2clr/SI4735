@@ -8,6 +8,7 @@ var searchData=
   ['digitaloutputsamplerate_70',['digitalOutputSampleRate',['../group__group13.html#ga1a404ca11fb32b457be2d7cfe484dd03',1,'SI4735']]],
   ['disablefmdebug_71',['disableFmDebug',['../group__group12.html#gae4683e9a9fc7a633305b18dae54fbd83',1,'SI4735']]],
   ['dosr_72',['DOSR',['../group__group03.html#a9988ba829a46409f23d7cb9bb0f156d9',1,'si4735_digital_output_sample_rate']]],
-  ['downloadpatch_73',['downloadPatch',['../group__group17.html#gafd1343bd8b4f0c290ef81c418222036c',1,'SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size)'],['../group__group17.html#gaa99cdde8dd65eb92f2ada159cc215c98',1,'SI4735::downloadPatch(int eeprom_i2c_address)']]],
-  ['deal_20with_20interrupt_20and_20i2c_20bus_74',['Deal with Interrupt and I2C bus',['../group__group05.html',1,'']]]
+  ['downloadpatch_73',['downloadPatch',['../group__group17.html#gafd1343bd8b4f0c290ef81c418222036c',1,'SI4735']]],
+  ['downloadpatchfromeeprom_74',['downloadPatchFromEeprom',['../group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6',1,'SI4735']]],
+  ['deal_20with_20interrupt_20and_20i2c_20bus_75',['Deal with Interrupt and I2C bus',['../group__group05.html',1,'']]]
 ];

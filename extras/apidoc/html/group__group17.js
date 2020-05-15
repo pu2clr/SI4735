@@ -16,5 +16,5 @@ var group__group17 =
     [ "ssbSetup", "group__group17.html#ga6f045d3725a457116236ee92d41c4265", null ],
     [ "ssbPowerUp", "group__group17.html#ga0fcfd8e487c594707b3f2aaa71a86d68", null ],
     [ "downloadPatch", "group__group17.html#gafd1343bd8b4f0c290ef81c418222036c", null ],
-    [ "downloadPatch", "group__group17.html#gaa99cdde8dd65eb92f2ada159cc215c98", null ]
+    [ "downloadPatchFromEeprom", "group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6", null ]
 ];
