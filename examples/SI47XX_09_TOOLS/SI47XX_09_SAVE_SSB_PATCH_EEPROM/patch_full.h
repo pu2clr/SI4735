@@ -10,7 +10,6 @@
  * If you are not using C/C++ or if you want to load the files directly to the SI4735, you must convert 
  * the values to numeric values of the hexadecimal constants. For example: 0x15 = 21 (00010101); 
  * 0x16 = 22 (00010110); 0x01 = 1 (00000001); 0xFF = 255 (11111111); 
- *  
  */
 // SSB patch for whole SSBRX full download
 const PROGMEM uint8_t ssb_patch_content[] =

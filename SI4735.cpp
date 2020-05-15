@@ -2901,7 +2901,7 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
         // The SI4735 issues a status after each 8 byte transfered.Just the bit 7(CTS)should be seted.if bit 6(ERR)is seted, the system halts.
         if (cmd_status != 0x80)
         {
-            strcpy(eep.refined.patch_id, "error!");
+            strcpy((char *) eep.refined.patch_id, "error!");
             return eep;
         }
         offset += 8;                                 // Start processing the next 8 bytes

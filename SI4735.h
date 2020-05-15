@@ -931,8 +931,9 @@ typedef union {
 typedef union {
     struct
     {
-        uint8_t status[14];
-        char patch_id[16];
+        uint8_t reserved[8];   // Not used
+        uint8_t status[8];     // Note used  
+        uint8_t patch_id[14];
         uint16_t patch_size;
     } refined;
     uint8_t raw[32];
