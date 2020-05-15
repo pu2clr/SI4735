@@ -931,10 +931,10 @@ typedef union {
 typedef union {
     struct
     {
-        uint8_t reserved[8];   // Not used
+        uint8_t reserved[8];   // Not used  
         uint8_t status[8];     // Note used  
-        uint8_t patch_id[14];
-        uint16_t patch_size;
+        uint8_t patch_id[14];  // Patch name
+        uint16_t patch_size;   // Patch size (in bytes)
     } refined;
     uint8_t raw[32];
 } si4735_eeprom_patch_header;
