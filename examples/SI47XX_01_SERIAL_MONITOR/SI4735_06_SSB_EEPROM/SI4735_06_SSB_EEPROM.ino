@@ -1,14 +1,12 @@
 /*
 
- Under construction.... 
-  
  Test and validation of the SI4735 Arduino Library with SSB patch stored in an external EEPROM.
  This example will transfer the SSB patch content stored in an EEPROM to SI4735-D60.
- To run this sketch you must have a external I2C EEPROM device configured with your Arduino and the Si4735 device.
+ To run this sketch you must have a external I2C EEPROM device configured with your Arduino and the Si4735 device via i2C bus.
  The EEPROM must have the patch content written (generated) by the sketch  SI47XX_09_SAVE_SSB_PATCH_EEPROM (see folder SI47XX_09_TOOLS)
+ Link: https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM
 
  This sketch has been successfully tested on tested on Arduino Pro Mini 3.3V; 
-
 
  The main advantages of using this sketch are: 
  1) It is a easy way to check if your circuit is working;
@@ -116,11 +114,6 @@ void setup()
 
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
-  // Testing I2C clock speed and SSB behaviour
-  // si4735.setI2CLowSpeedMode();     //  10000 (10KHz)
-  // si4735.setI2CStandardMode();     // 100000 (100KHz)
-  // si4735.setI2CFastMode();           // 400000 (400KHz)
-  // si4735.setI2CFastModeCustom(500000); // -> It is not safe and can crash.
   delay(10);
   Serial.println("SSB patch is loading...");
   et1 = millis();
@@ -273,11 +266,11 @@ void loadSSB()
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
   si4735.patchPowerUp();
   delay(50);
-  eep = si4735.downloadPatchFromEeprom(EEPROM_I2C_ADDR);
-  Serial.println("\n");
-  
-  Serial.println(eep.refined.patch_id);
-  Serial.println(eep.refined.patch_size);
+  eep = si4735.downloadPatchFromEeprom(EEPROM_I2C_ADDR);  
+  Serial.print("\nPatch name: ");
+  Serial.print((char *) eep.refined.patch_id);
+  Serial.print("\nPatch Size: ");
+  Serial.print(eep.refined.patch_size);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)

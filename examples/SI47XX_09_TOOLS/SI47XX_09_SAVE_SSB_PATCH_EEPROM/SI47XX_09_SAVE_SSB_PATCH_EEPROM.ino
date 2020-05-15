@@ -137,7 +137,7 @@ void checkPatch()
   // Showing information read from eeprom.
 
   showMsgText("Stored patch status. ..: %s", eep.refined.status);
-  showMsgText("Stored patch name......: %s.", eep.refined.patch_id);
+  showMsgText("Stored patch name......: %s", eep.refined.patch_id);
   showMsgValue("Stored patch size......: %u bytes.", eep.refined.patch_size);
 
   showMsg("Showing the stored first 8 lines of content patch.");
