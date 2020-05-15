@@ -119,7 +119,7 @@ void setup()
   et1 = millis();
   loadSSB();
   et2 = millis();
-  Serial.print("SSB patch was loaded in: ");
+  Serial.print("\nSSB patch was loaded in: ");
   Serial.print( (et2 - et1) );
   Serial.println("ms");
   delay(100);
