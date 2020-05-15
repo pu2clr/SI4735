@@ -81,8 +81,6 @@ void showMsgText(const char *msg, uint8_t *text)
 
 void eepromWritePatch()
 {
-  int nBlk = size_content / 8;
-  int nOffset;
   uint8_t content[8];
 
   eepromWriteBlock(EEPROM_I2C_ADDR, 16, &(eep.raw[16]), header_size - 16); 
