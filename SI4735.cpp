@@ -2871,10 +2871,13 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
     Wire.write(0x00); // offset Less significant Byte
     Wire.endTransmission();
     delay(5);
+
     // The first two bytes of the header will be ignored.
-    Wire.requestFrom(eeprom_i2c_address, header_size);
-    for (int i = 0; i < header_size; i++)
-        eep.raw[i] = Wire.read();
+    for (int k = 0; k < header_size; k += 8) {
+        Wire.requestFrom(eeprom_i2c_address, 8);
+        for (int i = k; i < (k+8); i++)
+            eep.raw[i] = Wire.read();
+    }
 
     // Transferring patch from EEPROM to SI4735 device
     offset = header_size;
