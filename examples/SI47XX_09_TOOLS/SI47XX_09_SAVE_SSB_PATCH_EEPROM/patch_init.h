@@ -1,18 +1,3 @@
-/*
- * This file was adapted to C/C++ from  the original file (amrx_6_0_1_ssbrx_patch_init_0xA902.csg) made available by 
- * Mr Vadim Afonkin on his Dropbox repository (https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0).  
- * 
- * I would like to thank [Mr Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) for making available the SSBRX patches for 
- * SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0).  
- * 
- * It is important to know that the patch content of the original file is in const hexadecimal representation. 
- * Actally, the original file is in ASCII format.  
- * If you are not using C/C++ or if you want to load the files directly to the SI4735, you must convert 
- * the values to numeric values of the hexadecimal constants. For example: 0x15 = 21 (00010101); 
- * 0x16 = 22 (00010110); 0x01 = 1 (00000001); 0xFF = 255 (11111111); 
- * 
- */
-
 // SSB patch for whole SSBRX initialization string
 const PROGMEM uint8_t ssb_patch_content[] =
 	{0x15, 0x00, 0x03, 0x74, 0x0B, 0xD4, 0x84, 0x60,

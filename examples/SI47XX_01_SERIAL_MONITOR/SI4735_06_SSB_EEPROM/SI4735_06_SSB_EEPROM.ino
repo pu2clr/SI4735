@@ -272,7 +272,7 @@ void loadSSB()
   si4735_eeprom_patch_header eep;
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
   si4735.patchPowerUp();
-  delay(100);
+  delay(50);
   eep = si4735.downloadPatchFromEeprom(EEPROM_I2C_ADDR);
   Serial.println("\n");
   

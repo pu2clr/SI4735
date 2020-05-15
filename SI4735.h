@@ -929,13 +929,14 @@ typedef union {
  * @details The sketch SI47XX_09_SAVE_SSB_PATCH_EEPROM can be found on Examples/SI47XX_TOOLS folder   
  */
 typedef union {
-    struct {
-         uint8_t  DUMMY[10];
-         char     patch_id[16];
-         uint16_t patch_size;
+    struct
+    {
+        uint8_t status[14];
+        char patch_id[16];
+        uint16_t patch_size;
     } refined;
-    uint8_t raw[28];
-} si4735_eeprom_patch_header; 
+    uint8_t raw[32];
+} si4735_eeprom_patch_header;
 
 /**
  * @ingroup group03

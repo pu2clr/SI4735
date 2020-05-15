@@ -2832,11 +2832,11 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
         /*
         waitToSend();
         uint8_t cmd_status;
-        Uncomment the lines below if you want to check erro.
+        // Uncomment the lines below if you want to check erro.
         Wire.requestFrom(deviceAddress, 1);
         cmd_status = Wire.read();
-        The SI4735 issues a status after each 8 byte transfered.
-        Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
+        // The SI4735 issues a status after each 8 byte transfered.
+        // Just the bit 7 (CTS) should be seted. if bit 6 (ERR) is seted, the system halts.
         if (cmd_status != 0x80)
            return false;
         */
@@ -2847,15 +2847,13 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 
 /**
  * @ingroup group17 Patch and SSB support
- * @todo Under construction
  * @brief Transfers the content of a patch stored in a eeprom to the SI4735 device.
- * 
  * @details TO USE THIS METHOD YOU HAVE TO HAVE A EEPROM WRITEN WITH THE PATCH CONTENT
- * 
- * ATTENTION: Under construction...
+ * @details This library has a tools to store the patch content in a eeprom.
+ * @details See the sketch example [SI47XX_09_SAVE_SSB_PATCH_EEPROM](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM) on folder SI47XX_09_TOOLS.
  * 
  * @see the sketch write_ssb_patch_eeprom.ino (TO DO)
- * 
+ * @ref https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM
  * @param eeprom_i2c_address 
  * @return false if an error is found.
  */
@@ -2864,8 +2862,7 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
     si4735_eeprom_patch_header eep;
     const int header_size = sizeof eep;
     uint8_t bufferAux[8];
-    int offset;
-    int i;
+    int offset, i;
 
     // Gets the EEPROM patch header information
     Wire.beginTransmission(eeprom_i2c_address);
@@ -2886,29 +2883,28 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
         Wire.write((int)offset >> 8);   // header_size >> 8 wil be always 0 in this case
         Wire.write((int)offset & 0XFF); // offset Less significant Byte
         Wire.endTransmission();
-        delay(1);
 
         Wire.requestFrom(eeprom_i2c_address, 8);
         for (int j = 0; j < 8; j++)
+        {
             bufferAux[j] = Wire.read();
-
-        /*
-        if (i < 41 || i > (eep.refined.patch_size - 41)  ) {
-            Serial.print("\n->");
-            for (int j = 0; j < 8; j++) {
-                Serial.print(bufferAux[j], HEX);
-                Serial.print(" ");
-            }
         }
-        */
 
-        // Stores patch content into SI4735 device
         Wire.beginTransmission(deviceAddress);
-        for (int j = 0; j < 8; j++)
-            Wire.write(bufferAux[j]);
+        Wire.write(bufferAux, 8);
         Wire.endTransmission();
-        delayMicroseconds(MIN_DELAY_WAIT_SEND_LOOP); // Need check the minimum value
-        offset += 8; // Start processing the next 8 bytes
+
+        waitToSend();
+        uint8_t cmd_status;
+        Wire.requestFrom(deviceAddress, 1);
+        cmd_status = Wire.read();
+        // The SI4735 issues a status after each 8 byte transfered.Just the bit 7(CTS)should be seted.if bit 6(ERR)is seted, the system halts.
+        if (cmd_status != 0x80)
+        {
+            strcpy(eep.refined.patch_id, "error!");
+            return eep;
+        }
+        offset += 8;                                 // Start processing the next 8 bytes
     }
 
     delay(50);
