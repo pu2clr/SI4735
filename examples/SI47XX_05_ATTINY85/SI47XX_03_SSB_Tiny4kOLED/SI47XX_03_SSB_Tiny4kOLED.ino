@@ -91,8 +91,7 @@ void loadSSB()
   oled.print((char *) eep.refined.patch_id);
   oled.setCursor(0, 2);
   oled.print(eep.refined.patch_size);
- 
-  // Parameters
+   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
   // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
