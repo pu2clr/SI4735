@@ -513,6 +513,8 @@ __Attention__: The full ssb patch needs about 16KB on eeprom.  __All data that y
 
 __The EEPROM device used for testing was the AT24C256 Serial I2C Interface__
 
+[Watch the video: ATtiny85 working with SI4735-D60 and SSB](https://www.youtube.com/watch?v=Dnk5tp0o880) 
+
 {% include eeprom.html %} 
 
 <BR>
