@@ -507,7 +507,9 @@ The example [SI4735_06_SSB_EEPROM](https://github.com/pu2clr/SI4735/tree/master/
 
 The example [SI47XX_03_SSB_Tiny4kOLED](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85/SI47XX_03_SSB_Tiny4kOLED) implements this functionality on an ATtiny85.
 
-To store the patch content into an EEPROM, [see folder SI47XX_09_TOOLS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM). 
+To store the SSB patch content into an EEPROM, [see folder SI47XX_09_SAVE_SSB_PATCH_EEPROM](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM). 
+
+__Attention__: The full ssb patch needs about 16KB on eeprom.  __All data that you have stored before into eeprom will be lost after the execution of the sketch SI47XX_09_SAVE_SSB_PATCH_EEPROM__.  
 
 
 <BR>
