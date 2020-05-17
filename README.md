@@ -276,7 +276,7 @@ If you prefer, you can also read the documentation directly from the [SI4735.cpp
 
 ### Main functions 
 
-This library has more than 120 functions. The table below shows the mains functions used in a regular receiver. 
+This library has more than 120 functions. The table below shows the mains functions used in a regular receiver. Full details on the functions shown below can be read on [https://pu2clr.github.io/SI4735/extras/apidoc/html/](https://pu2clr.github.io/SI4735/extras/apidoc/html/).
 
 | Method / Function               | Description |
 | ------------------                | ----------- | 
@@ -310,6 +310,8 @@ This library has more than 120 functions. The table below shows the mains functi
 | reset                             | Reset the SI473X.  |
 | queryLibraryId                    | Queries the library information of the Si47XX device. | 
 | patchPowerUp                      | This method can be used to prepare the device to apply SSBRX patch. |
+| downloadPatch                     | Transfers the content of a SSB patch stored in a array of bytes to the SI4735 device. |
+| downloadPatchFromEeprom           | Transfers the content of a SSB patch stored in an eeprom to the SI4735 device. |
 | setSSBConfig                      | Sets the SSB receiver mode. |
 | setSSB                            | Tunes the SSB (LSB or USB) receiver to a frequency between 520 and 30 MHz in 1 kHz steps.|
 | setSSBAutomaticVolumeControl      | Sets SSB Automatic Volume Control (AVC) for SSB mode. |
