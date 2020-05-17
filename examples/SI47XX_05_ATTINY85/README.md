@@ -18,7 +18,7 @@ See [ATTiny Core - 1634, x313, x4, x41, x5, x61, x7, x8 and 828 for Arduino](htt
 See also [ATtiny85 pinout](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf).
 
 
-## SI47XX 03 - SI47XX_03_SSB_Tiny4kOLED -  Loading SI4735-D50 SSB patch from an external EEPROM 
+## SI47XX 03 - SI47XX_03_SSB_Tiny4kOLED -  Loading SI4735-D60 SSB patch from an external EEPROM 
 
 This example shows the use of the external EEPROM. 
 It will transfer the SSB patch content stored in an EEPROM to SI4735-D60.
