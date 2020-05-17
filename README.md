@@ -513,6 +513,8 @@ __Attention__: The full ssb patch needs about 16KB on eeprom.  __All data that y
 
 __The EEPROM device used for testing was the AT24C256 Serial I2C Interface__
 
+{% include eemprom.html %} 
+
 <BR>
 
 ### Customizing PU2CLR Arduino Library
