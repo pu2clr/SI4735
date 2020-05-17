@@ -511,6 +511,7 @@ To store the SSB patch content into an EEPROM, [see folder SI47XX_09_SAVE_SSB_PA
 
 __Attention__: The full ssb patch needs about 16KB on eeprom.  __All data that you have stored before into eeprom will be lost after the execution of the sketch SI47XX_09_SAVE_SSB_PATCH_EEPROM__.  
 
+__The EEPROM device used for testing was the AT24C256 Serial I2C Interface__
 
 <BR>
 
