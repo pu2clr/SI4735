@@ -24,7 +24,9 @@ The table below shows the Si4735 and STM32F103C8 pin connections
 
 
 
-### Board Manager tested
+### Board Manager 
+
+One of the two Boards Manager URLs below can be used. 
 
 * Option 1: https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json
 * Option 2: http://dan.drown.org/stm32duino/package_STM32duino_index.json
@@ -32,6 +34,8 @@ The table below shows the Si4735 and STM32F103C8 pin connections
 
 
 ### Arduino IDE setup 
+
+The instruction below shows the use of the first option above.  
 
 On __File__ menu, go to __Arduino Preferences__ and add the URL __https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json__ in __Aditional Boards Manager URLs__ text box. 
 
@@ -46,6 +50,7 @@ After, go to __Tools__, select Board and click on __Boards Manager...__ Then, in
 Finally, select the right STM32 board you are using. 
 
 ![Arduino Boards Manager](https://github.com/pu2clr/SI4735/blob/master/extras/images/STM32_03.png)
+
 
 
 ## Video
