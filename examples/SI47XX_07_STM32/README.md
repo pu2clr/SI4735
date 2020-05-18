@@ -1,7 +1,9 @@
 # STM32 Si4735 Arduino Library Support 
 
 Test and validation of the SI4735 Arduino Library.
-The examples of this folder are using the STM32F103 Series. 
+The examples of this folder are using the STM32F103 Series. See references below to know how to setup STM32 on Arduino IDE. 
+
+## STM32 setup on Arduino IDE
 
 
 The table below shows the Si4735 and STM32F103C8 pin connections 
@@ -13,9 +15,6 @@ The table below shows the Si4735 and STM32F103C8 pin connections
 | SCLK (pin 17)   |     PB6 (B6)  |
 
 
-## STM32 setup on Arduino IDE
-
-
 ### References
 
 
@@ -23,6 +22,7 @@ The table below shows the Si4735 and STM32F103C8 pin connections
 [STM32CubeProgrammer software description](https://www.st.com/resource/en/user_manual/dm00403500-stm32cubeprogrammer-software-description-stmicroelectronics.pdf)
 [Getting Started With Stm32 Using Arduino IDE](https://www.instructables.com/id/Getting-Started-With-Stm32-Using-Arduino-IDE/)
 [Getting Started with STM32 using Arduino IDE: Blinking LED](https://circuitdigest.com/microcontroller-projects/getting-started-with-stm32-development-board-stm32f103c8-using-arduino-ide)
+
 
 
 ### Board Manager tested
