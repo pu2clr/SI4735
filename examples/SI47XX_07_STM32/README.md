@@ -31,6 +31,23 @@ The table below shows the Si4735 and STM32F103C8 pin connections
 
 
 
+### Arduino IDE setup 
+
+On __File__ menu, go to __Arduino Preferences__ and add the URL __https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json__ in __Aditional Boards Manager URLs__ text box. 
+
+![Arduino Preferences](https://github.com/pu2clr/SI4735/blob/master/extras/images/STM32_00.png)
+
+
+After, go to __Tools__, select Board and click on __Boards Manager...__ Then, install the board __STM32 Cores__. 
+
+![Arduino Boards Manager](https://github.com/pu2clr/SI4735/blob/master/extras/images/STM32_02.png)
+
+
+Finally, select the right STM32 board you are using. 
+
+![Arduino Boards Manager](https://github.com/pu2clr/SI4735/blob/master/extras/images/STM32_03.png)
+
+
 ## Video
 
 ![Si4735 Arduino Library and Bluepill STM32F103 ](https://youtu.be/v4o5_lKKATc)

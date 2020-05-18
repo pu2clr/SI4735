@@ -39,8 +39,6 @@ void setup()
   // Switching to AM mode
   delay(5000);
   si4735.setAM(520, 1700, 810, 10);
-  
-  si4735.setVolume(60);
 }
 
 // Main
