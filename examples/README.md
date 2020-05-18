@@ -44,6 +44,23 @@ By using the examples of this folder, you will do not need any external device t
 
 
 
+## STM32 setup on Arduino IDE
+
+
+### References
+
+
+[Arduino core support for STM32 based boards](https://github.com/stm32duino/Arduino_Core_STM32)
+[STM32CubeProgrammer software description](https://www.st.com/resource/en/user_manual/dm00403500-stm32cubeprogrammer-software-description-stmicroelectronics.pdf)
+[Getting Started With Stm32 Using Arduino IDE](https://www.instructables.com/id/Getting-Started-With-Stm32-Using-Arduino-IDE/)
+[Getting Started with STM32 using Arduino IDE: Blinking LED](https://circuitdigest.com/microcontroller-projects/getting-started-with-stm32-development-board-stm32f103c8-using-arduino-ide)
+
+
+### Board Manager tested
+
+* Option 1: https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json
+* Option 2: http://dan.drown.org/stm32duino/package_STM32duino_index.json
+
 
 [Back to the main page](https://pu2clr.github.io/SI4735/)
 
