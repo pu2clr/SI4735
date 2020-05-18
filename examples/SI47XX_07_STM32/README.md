@@ -3,8 +3,6 @@
 Test and validation of the SI4735 Arduino Library.
 The examples of this folder are using the STM32F103 Series. See references below to know how to setup STM32 on Arduino IDE. 
 
-## STM32 setup on Arduino IDE
-
 
 The table below shows the Si4735 and STM32F103C8 pin connections 
     
@@ -15,7 +13,8 @@ The table below shows the Si4735 and STM32F103C8 pin connections
 | SCLK (pin 17)   |     PB6 (B6)  |
 
 
-### References
+
+## STM32 setup on Arduino IDE
 
 
 [Arduino core support for STM32 based boards](https://github.com/stm32duino/Arduino_Core_STM32)
