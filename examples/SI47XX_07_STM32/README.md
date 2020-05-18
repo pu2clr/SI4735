@@ -43,12 +43,12 @@ On __File__ menu, go to __Arduino Preferences__ and add the URL __https://github
 
 After, go to __Tools__, select Board and click on __Boards Manager...__ Then, install the board __STM32 Cores__. 
 
-![Arduino Boards Manager](https://github.com/pu2clr/SI4735/blob/master/extras/images/STM32_02.png)
+![Arduino Boards Manager](https://github.com/pu2clr/SI4735/blob/master/extras/images/STM32_01.png)
 
 
 Finally, select the right STM32 board you are using. 
 
-![Arduino Boards Manager](https://github.com/pu2clr/SI4735/blob/master/extras/images/STM32_03.png)
+![Arduino Boards Manager](https://github.com/pu2clr/SI4735/blob/master/extras/images/STM32_02.png)
 
 
 
