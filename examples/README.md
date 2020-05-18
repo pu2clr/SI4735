@@ -43,7 +43,6 @@ By using the examples of this folder, you will do not need any external device t
 | [SI47XX_08_RDS/SI47XX_03_RDS_TFT_ILI9225](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS/SI47XX_03_RDS_TFT_ILI9225) | FM/RDS AM and SSB receiver. This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220). It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the  regular comercial stations |
 
 
-
 [Back to the main page](https://pu2clr.github.io/SI4735/)
 
 
