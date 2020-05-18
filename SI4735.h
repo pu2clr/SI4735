@@ -169,8 +169,8 @@
 #define MAX_SEEK_TIME 8000               // defines the maximum seeking time 8s is default.
 
 
-/** @defgroup group01 SI473X data types 
- * @section group01 SI473X data types 
+/** @defgroup group01 Defined Data Types 
+ * @section group01 Data Types 
  *  
  * @brief SI473X data representation
  * 

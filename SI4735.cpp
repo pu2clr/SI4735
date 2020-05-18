@@ -333,7 +333,7 @@ void SI4735::waitToSend()
 }
 
 /**
- * @ingroup group06 Si47XX device Power Up parameters 
+ * @ingroup group06 Device Power Up parameters 
  *  
  * @brief Set the Power Up parameters for si473X. 
  * 
@@ -377,7 +377,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
 }
 
 /**
- * @ingroup group06 Si47XX device Power Up 
+ * @ingroup group06 Device Power Up 
  * 
  * @brief Powerup the Si47XX
  * 
@@ -418,7 +418,7 @@ void SI4735::radioPowerUp(void)
 }
 
 /**
- * @ingroup   group06 Si47XX device Power Up 
+ * @ingroup   group06 Device Power Up 
  * 
  * @brief You have to call setPowerUp method before. 
  * @details This function is still available only for legacy reasons. 
@@ -433,7 +433,7 @@ void SI4735::analogPowerUp(void)
 }
 
 /** 
- * @ingroup   group06 Si47XX device Power Down 
+ * @ingroup   group06 Device Power Down 
  * 
  * @brief Moves the device from powerup to powerdown mode.
  * 
@@ -455,7 +455,7 @@ void SI4735::powerDown(void)
     delayMicroseconds(2500);
 }
 
-/** @defgroup group07 Si47XX device information and start up */
+/** @defgroup group07 Device Information and Start up */
 
 /**
  * @ingroup   group07 Firmware Information 
@@ -558,7 +558,7 @@ void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
     delay(250);
 }
 
-/** @defgroup group08 Si47XX device Mode, Band and Frequency setup */
+/** @defgroup group08 Device Mode, Band and Frequency setup */
 
 /**
  * @ingroup   group08 Internal Antenna Tuning capacitor
@@ -806,7 +806,7 @@ void SI4735::setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
     setFrequency(currentWorkFrequency);
 }
 
-/** @defgroup group09 Si47XX filter setup  */
+/** @defgroup group09 Filter setup  */
 
 /**
  * @ingroup group09 Set bandwidth
@@ -1293,7 +1293,7 @@ void SI4735::volumeDown()
     setVolume(volume);
 }
 
-/** @defgroup group14 Frequency and Si47XX device status */
+/** @defgroup group14 Frequency and Device status */
 
 /*******************************************************************************
  * Device Status Information
@@ -1358,7 +1358,7 @@ void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
 }
 
 /**
- * @ingroup group14 Si47XX AGC 
+ * @ingroup group14 AGC 
  * 
  * @brief Queries Automatic Gain Control STATUS
  * 
@@ -1398,7 +1398,7 @@ void SI4735::getAutomaticGainControl()
 }
 
 /** 
- * @ingroup group14 Si47XX AGC 
+ * @ingroup group14 AGC 
  * 
  * @brief Automatic Gain Control setup 
  * 
@@ -1436,7 +1436,7 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
 }
 
 /**
- * @ingroup group14 Si47XX Automatic Volume Control
+ * @ingroup group14 Automatic Volume Control
  * 
  * @brief Sets the maximum gain for automatic volume control.
  *  
@@ -1456,7 +1456,7 @@ void SI4735::setAvcAmMaxGain(uint8_t gain)
 }
 
 /**
- * @ingroup group14 Si47XX Received Signal Quality
+ * @ingroup group14 Received Signal Quality
  * 
  * @brief Queries the status of the Received Signal Quality (RSQ) of the current channel.
  * 
@@ -1506,7 +1506,7 @@ void SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
 }
 
 /**
- * @ingroup group14 Si47XX Received Signal Quality
+ * @ingroup group14 Received Signal Quality
  * 
  * @brief Queries the status of the Received Signal Quality (RSQ) of the current channel (FM_RSQ_STATUS)
  * 
