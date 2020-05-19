@@ -41,7 +41,7 @@
   |                           | A                         |       2       |
   |                           | B                         |       3       |
 
-  Prototype documentation : https://pu2clr.github.io/SI4735/
+  Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
   By PU2CLR, Ricardo,  Feb  2020.

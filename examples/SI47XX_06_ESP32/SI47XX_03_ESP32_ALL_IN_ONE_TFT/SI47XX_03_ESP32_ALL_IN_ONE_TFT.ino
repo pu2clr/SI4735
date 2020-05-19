@@ -1,6 +1,6 @@
 /*
   
-  Under construction......
+  ATTENTION: Under construction......
   
   SI4735 all in one with SSB Support on ESP32
 
@@ -13,6 +13,15 @@
   6) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
   7) BFO Control; and
   8) Frequency step switch (1, 5 and 10KHz).
+
+  ABOUT SSB PATCH:  
+  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
+
+  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
+  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
+  content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
+
+  Read more about SSB patch documentation on https://pu2clr.github.io/SI4735/
 
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
