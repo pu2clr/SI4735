@@ -320,7 +320,7 @@ This library has more than 120 functions. The table below shows the mains functi
 | setSBBSidebandCutoffFilter        | Sets SBB Sideband Cutoff Filter for band pass and low pass filters. |
 | setTuneFrequencyAntennaCapacitor  | Only FM. Freeze Metrics During Alternate Frequency Jump. |
 | setI2CFastModeCustom              | Sets the I2C bus to a given value. |
-| setI2CStandardMode                | Sets I2C buss to 100KHz. |
+| setI2CStandardMode                | Sets I2C bus to 100KHz. |
 | setAudioMuteMcuPin                | This function sets the mcu digital pin you want to use to control the external audio mute circuit. | 
 
 
