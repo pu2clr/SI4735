@@ -1864,7 +1864,6 @@ public:
      * @ingroup group18 MCU I2C Speed  
      * 
      * @brief Sets the I2C bus to a given value.
-     * 
      * ATTENTION: use this function with cation
      * 
      * @param value in Hz. For example: The values 500000 sets the bus to 500KHz.
