@@ -402,7 +402,6 @@ void showFrequency()
   printValue(0, 0, oldMode, bandMode, 7);
   printValue(0, 0, oldUnit, unit, 7);
 
-
   oled.display(); 
 }
 
