@@ -3,8 +3,8 @@
 
   This sketch has been successfully tested on STM32F103 Bluepill
 
-  The table below shows the Si4735 and STM32F103C8 pin connections 
-    
+  The table below shows the Si4735 and STM32F103C8 pin connections
+
   | Si4735 pin      |  Arduino Pin  |
   | ----------------| ------------  |
   | RESET (pin 15)  |     PA12      |
@@ -17,11 +17,11 @@
   together with this sketch) and Library Adafruit libraries to control the OLED.
 
 
-  ABOUT SSB PATCH:  
+  ABOUT SSB PATCH:
   This sketch will download a SSB patch to your SI4735 device (patch_init.h or patch_full.h). It will take about 8KB or 15KB of the Arduino memory.
 
-  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
-  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
+  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr.
+  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches
   content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
 
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
@@ -49,7 +49,7 @@
   Encoder with push button;
   Seven bush buttons;
   OLED Display with I2C device;
-  STM32F103 Bluepill 
+  STM32F103 Bluepill
   SI4735-D60 circuit (see documentation)
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
@@ -66,8 +66,8 @@
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.
-// #include "patch_init.h" // SSB patch for whole SSBRX initialization string
-#include "patch_full.h"    // SSB patch for whole SSBRX full download
+#include "patch_init.h" // SSB patch for whole SSBRX initialization string
+// #include "patch_full.h"    // SSB patch for whole SSBRX full download
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
@@ -121,7 +121,20 @@ bool disableAgc = true;
 bool ssbLoaded = false;
 bool fmStereo = true;
 
-char displayBuffer[30];
+char displayBuffer[20];
+char oldFreq[20];
+char oldMode[10];
+char oldUnit[10];
+char oldStep[10];
+char oldBandwitdt[20];
+char oldStereo[10];
+char oldRssi[20];
+char oldSnr[20];
+char oldBfo[15];
+char oldStepBfo[10];
+char oldVolume[10];
+
+
 
 int currentBFO = 0;
 
@@ -215,48 +228,69 @@ void setup()
   oled.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   oled.clearDisplay();
   oled.setTextColor(SSD1306_WHITE);
- 
+
   // Splash - Change it for your introduction text.
   oled.setTextSize(1); // Draw 2X-scale text
   oled.setCursor(40, 0);
   oled.print("SI4735");
   oled.setCursor(20, 10);
   oled.print("Arduino Library");
-  oled.display(); 
+  oled.display();
   delay(500);
   oled.setCursor(15, 20);
   oled.print("All in One Radio");
-  oled.display(); 
+  oled.display();
   delay(500);
   oled.setCursor(30, 35);
   oled.print("SMT32 - OLED");
   oled.setCursor(10, 50);
   oled.print("V1.1.6 - By PU2CLR");
-  
-  oled.display(); 
+
+  oled.display();
   delay(2000);
   // end Splash
-  
+
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
 
   si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
-  
+
   si4735.setI2CFastMode();               // Recommended (400 KHz)
 
   si4735.setup(RESET_PIN, FM_BAND_TYPE);
 
-  delay(300);  
+  delay(300);
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
 
   currentFrequency = previousFrequency = si4735.getFrequency();
 
   si4735.setVolume(volume);
-  oled.clearDisplay();
+
   showStatus();
+}
+
+
+inline void clearBuffer(char *p) {
+  p[0] = '\0';
+}
+
+
+void resetBuffer() {
+  clearBuffer(displayBuffer);
+  clearBuffer(oldFreq);
+  clearBuffer(oldMode);
+  clearBuffer(oldUnit);
+  clearBuffer(oldStep);
+  clearBuffer(oldBandwitdt);
+  clearBuffer(oldStereo);
+  clearBuffer(oldRssi);
+  clearBuffer(oldSnr);
+  clearBuffer(oldBfo);
+  clearBuffer(oldStepBfo);
+  clearBuffer(oldVolume);
 }
 
 // Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
@@ -276,25 +310,12 @@ void rotaryEncoder()
   }
 }
 
-
-void clearLine4() {
-  // oled.fillRect(0, 20, oled.width(), 10, SSD1306_BLACK);
-  // oled.display(); 
-}
-
-
-
-void showTemplate() {
-
-}
-
-
 /*
     Writes just the changed information on Display
     Prevents blinking an display and also noise.
     Erases the old digits if it has changed and print the new digit values.
 */
-void printValue(int col, int line, char *oldValue, char *newValue, int space) {
+void printValue(int col, int line, char *oldValue, char *newValue, int space, int textSize ) {
   int c = col;
   char * pOld;
   char * pNew;
@@ -302,10 +323,7 @@ void printValue(int col, int line, char *oldValue, char *newValue, int space) {
   pOld = oldValue;
   pNew = newValue;
 
-  oled.setCursor(38, 0);
-  oled.write(newValue[0]);
-  oled.write(oldValue[0]);
-  
+  oled.setTextSize(textSize);
 
   // prints just changed digits
   while (*pOld && *pNew)
@@ -317,7 +335,7 @@ void printValue(int col, int line, char *oldValue, char *newValue, int space) {
       oled.write(*pOld);
       oled.setTextColor(SSD1306_WHITE);
       oled.setCursor(c, line);
-      oled.write(*pNew);      
+      oled.write(*pNew);
     }
     pOld++;
     pNew++;
@@ -338,7 +356,7 @@ void printValue(int col, int line, char *oldValue, char *newValue, int space) {
   oled.setTextColor(SSD1306_WHITE);
   while (*pNew)
   {
-    oled.setCursor(c,line);
+    oled.setCursor(c, line);
     oled.write(*pNew);
     pNew++;
     c += space;
@@ -349,10 +367,6 @@ void printValue(int col, int line, char *oldValue, char *newValue, int space) {
 }
 
 
-// Show current frequency
-char oldFreq[20];
-char oldMode[10];
-char oldUnit[10];
 
 void showFrequency()
 {
@@ -361,7 +375,9 @@ void showFrequency()
   char * unit;
   char * bandMode;
 
-  sprintf(tmp,"%5u", currentFrequency);
+  byte textSize;
+
+  sprintf(tmp, "%5u", currentFrequency);
 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
@@ -376,33 +392,29 @@ void showFrequency()
   }
   else
   {
-    freq[0] = tmp[0];
-    freq[1] = tmp[1];
-    freq[2] = tmp[2];
-    freq[3] = tmp[3];
-    freq[4] = tmp[4];
-    freq[5] = '\0';
+    freq[0] = ' ';
+    freq[1] = tmp[0];
+    freq[2] = tmp[1];
+    freq[3] = tmp[2];
+    freq[4] = tmp[3];
+    freq[5] = tmp[4];
+    freq[6] = '\0';
     unit = "KHz";
   }
 
-  if ( !bfoOn ) {
-    strcpy(displayBuffer, freq);
-  }
-  else {
-    sprintf(displayBuffer, ">%s<", freq);
-  }
+  textSize = ( !bfoOn ) ? 2 : 1;
 
-  printValue(38, 0, oldFreq, displayBuffer, 7);
+  printValue(23, 0, oldFreq, freq, 12, textSize);
 
   if (currentFrequency < 520 )
     bandMode = "LW  ";
   else
     bandMode = (char *) bandModeDesc[currentMode];
 
-  printValue(0, 0, oldMode, bandMode, 7);
-  printValue(0, 0, oldUnit, unit, 7);
+  printValue(0, 0, oldMode, bandMode, 7, 1);
+  printValue(99, 0, oldUnit, unit, 7, 1);
 
-  oled.display(); 
+  oled.display();
 }
 
 /*
@@ -411,6 +423,33 @@ void showFrequency()
 void showStatus()
 {
 
+  char step[10];
+  char bandwitdt[20];
+
+
+  oled.clearDisplay();
+  resetBuffer();
+
+  showFrequency();
+
+  sprintf(step, "%3.3u", currentStep);
+  printValue(95, 20, oldStep, step, 7, 1);
+
+  if (currentMode == LSB || currentMode == USB)
+  {
+    sprintf(bandwitdt, "BW:%sKHz", bandwitdthSSB[bwIdxSSB]);
+    printValue(0, 30, oldBandwitdt, bandwitdt, 7, 1);
+    showBFO();
+  }
+  else if (currentMode == AM)
+  {
+    sprintf(bandwitdt, "BW:%sKHz", bandwitdthAM[bwIdxAM]);
+    printValue(0, 30, oldBandwitdt, bandwitdt, 7, 1);
+  }
+
+  showVolume();
+
+  oled.display();
 }
 
 /* *******************************
@@ -418,7 +457,22 @@ void showStatus()
 */
 void showRSSI()
 {
+  char sRssi[20];
+  char sSnr[20];
+  char stereo[10];
 
+  if ( currentMode == FM) {
+    sprintf(stereo, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
+    printValue(0, 20, oldStereo, stereo, 7, 1);
+  }
+
+  sprintf(sRssi, "RSSI:%idBuV", rssi);
+  printValue(0, 55, oldRssi, sRssi, 6, 1);
+
+  sprintf(sSnr, "SNR:%idB", snr);
+  printValue(78, 55, oldSnr, sSnr, 6, 1);
+
+  oled.display();
 }
 
 /*
@@ -426,6 +480,7 @@ void showRSSI()
 */
 void showVolume()
 {
+
 
 }
 
@@ -435,6 +490,25 @@ void showVolume()
 */
 void showBFO()
 {
+
+  char bfo[15];
+  char stepBfo[10];
+  char flag;
+
+  if (currentBFO > 0)
+    flag = '+';
+  else if (currentBFO < 0)
+    flag = '-';
+  else
+    flag = ' ';
+
+  sprintf(bfo, "BFO: %c%4.4uHz", flag, abs(currentBFO));
+  printValue(0, 43, oldBfo, bfo, 6, 1);
+
+  sprintf(stepBfo, "St:%3.3u", currentBFOStep);
+  printValue(80, 43, oldStepBfo, stepBfo, 6, 1);
+
+  oled.display();
 
 }
 
@@ -504,12 +578,12 @@ void loadSSB()
   si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
   delay(25);
   ssbLoaded = true;
-  // oled.clear();
+  showStatus();
 }
 
 /*
    Switch the radio to current band.
-   The bandIdx variable points to the current band. 
+   The bandIdx variable points to the current band.
    This function change to the band referenced by bandIdx (see table band).
 */
 void useBand()
@@ -549,6 +623,7 @@ void useBand()
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
+  resetBuffer();
   showStatus();
 }
 
@@ -602,6 +677,7 @@ void loop()
           bwIdxAM = 0;
         si4735.setBandwidth(bwIdxAM, 1);
       }
+      resetBuffer();
       showStatus();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
@@ -635,6 +711,7 @@ void loop()
         delay(30);
         currentFrequency = si4735.getFrequency();
       }
+      showFrequency();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(AGC_SWITCH) == LOW)
@@ -646,32 +723,34 @@ void loop()
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
     {
-      if ( currentMode == FM) {
-        fmStereo = !fmStereo;
-        if ( fmStereo )
-          si4735.setFmStereoOn();
-        else
-          si4735.setFmStereoOff(); // It is not working so far.
-      } else {
+      // This command should work only for SSB mode
+      if (bfoOn && (currentMode == LSB || currentMode == USB))
+      {
+        currentBFOStep = (currentBFOStep == 25) ? 10 : 25;
+        showBFO();
+      }
+      else
+      {
+        if ( currentMode != FM ) {
 
-        // This command should work only for SSB mode
-        if (bfoOn && (currentMode == LSB || currentMode == USB))
-        {
-          currentBFOStep = (currentBFOStep == 25) ? 10 : 25;
-          showBFO();
-        }
-        else
-        {
           if (currentStep == 1)
             currentStep = 5;
           else if (currentStep == 5)
             currentStep = 10;
+          else if ( currentStep == 10 )
+            currentStep = 50;
           else
             currentStep = 1;
-          si4735.setFrequencyStep(currentStep);
-          band[bandIdx].currentStep = currentStep;
-          showStatus();
+
+        } else {
+          if (currentStep == 10)
+            currentStep = 100;
+          else
+            currentStep = 10;
         }
+        si4735.setFrequencyStep(currentStep);
+        band[bandIdx].currentStep = currentStep;
+        showStatus();
         delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       }
     }
