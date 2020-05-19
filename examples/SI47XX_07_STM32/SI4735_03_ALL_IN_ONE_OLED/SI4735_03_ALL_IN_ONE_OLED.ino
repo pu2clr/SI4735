@@ -1,7 +1,7 @@
 /*
   SI4735 all in one with SSB Support
 
-  This sketch has been successfully tested on STM32F103
+  This sketch has been successfully tested on STM32F103 Bluepill
 
   The table below shows the Si4735 and STM32F103C8 pin connections 
     
@@ -14,22 +14,21 @@
   This sketch uses I2C OLED/I2C, buttons and  Encoder.
 
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
-  together with this sketch) and Tiny4kOLED Library (look for this library on Tools->Manage Libraries). 
-
-  ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:
-  This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal
-  pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. 
-  If this occurs in your project, change the circuit to use external pull-up on pin 13.     
+  together with this sketch) and Library Adafruit libraries to control the OLED.
 
 
   ABOUT SSB PATCH:  
-  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
+  This sketch will download a SSB patch to your SI4735 device (patch_init.h or patch_full.h). It will take about 8KB or 15KB of the Arduino memory.
+
+  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
+  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
+  content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
 
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of
   this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
   Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device.
-  Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by
+  Patches to the SI4735 are binary format stored in some place (eeprom, sd-card) and have to be transferred to the internal RAM of the device by
   the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
   Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
 
@@ -50,6 +49,8 @@
   Encoder with push button;
   Seven bush buttons;
   OLED Display with I2C device;
+  STM32F103 Bluepill 
+  SI4735-D60 circuit (see documentation)
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/

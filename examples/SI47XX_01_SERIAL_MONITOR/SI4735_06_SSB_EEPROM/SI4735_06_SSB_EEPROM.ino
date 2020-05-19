@@ -6,6 +6,19 @@
  The EEPROM must have the patch content written (generated) by the sketch  SI47XX_09_SAVE_SSB_PATCH_EEPROM (see folder SI47XX_09_TOOLS)
  Link: https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM
 
+
+ First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
+ Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
+ content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
+
+ In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
+ There is little information available about patching the SI4735. The following information is the understanding of the author of
+ this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
+ Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device.
+ Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by
+ the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
+ Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
+
  This sketch has been successfully tested on tested on Arduino Pro Mini 3.3V; 
 
  The main advantages of using this sketch are: 

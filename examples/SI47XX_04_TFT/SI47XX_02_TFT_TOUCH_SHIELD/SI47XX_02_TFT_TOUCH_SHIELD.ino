@@ -2,6 +2,10 @@
   This sketch uses the mcufriend TFT touch Display Shield.
   You can use it on Mega2560 and Arduino DUE
 
+  It is a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the
+  regular comercial stations. If you are using the same circuit used on examples with OLED and LCD,
+  you have to change some buttons wire up. 
+
   Features:
   1) This sketch has been successfully tested on Arduino Mega2560 and DUE;
   2) It uses the touch screen interface provided by mcufriend TFT;
@@ -10,7 +14,6 @@
   5) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
   6) BFO Control; and
   7) Frequency step switch (1, 5 and 10KHz).
-
 
   Wire up
 
@@ -23,19 +26,15 @@
   ENCODER PUSH BUTTON     23
   RESET                   22
 
-  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
-  In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
-  There is little information available about patching the SI4735. The following information is the understanding of the author of
-  this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
-  Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device.
-  Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by
-  the host MCU (in this case the Arduino Mega2560). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
-  Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
 
-  ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment.
-  Given this, it is at your own risk to continue with the procedures suggested here.
-  This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
-  Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
+  ABOUT SSB PATCH:  
+  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
+
+  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
+  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
+  content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
+  
+  Read more about SSB patch documentation on https://pu2clr.github.io/SI4735/
 
   Libraries used: SI4735; Adafruit_GFX; MCUFRIEND_kbv; FreeDefaultFonts; TouchScreen;
 

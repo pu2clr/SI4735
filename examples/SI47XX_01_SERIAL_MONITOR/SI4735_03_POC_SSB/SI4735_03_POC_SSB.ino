@@ -29,6 +29,10 @@
 
 This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.
 
+First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
+Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
+content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
+
 In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
 There is little information available about patching the SI4735. The following information is the understanding of the author of
 this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
