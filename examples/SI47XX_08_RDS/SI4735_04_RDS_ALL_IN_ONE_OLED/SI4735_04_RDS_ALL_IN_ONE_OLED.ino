@@ -233,7 +233,7 @@ void setup()
   // si4735.setMaxDelayPowerUp(500);      // Time to the external crystal become stable after power up command (default is 10ms).
   // si4735.setMaxDelaySetFrequency(100); // Time needed to process the next frequency setup (default is 30 ms)
 
-  si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C buss address and set it.  Returns 0 if error
+  si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
   si4735.setup(RESET_PIN, FM_BAND_TYPE);
 

@@ -25,8 +25,8 @@
 #define POWER_PATCH 15 //
 
 // SI473X commands (general)
-#define SI473X_ADDR_SEN_LOW 0x11  // SI473X I2C buss address when the SEN pin (16) is set to low 0V.
-#define SI473X_ADDR_SEN_HIGH 0x63 // SI473X I2C buss address when the SEN pin (16) is set to high +3.3V
+#define SI473X_ADDR_SEN_LOW 0x11  // SI473X I2C bus address when the SEN pin (16) is set to low 0V.
+#define SI473X_ADDR_SEN_HIGH 0x63 // SI473X I2C bus address when the SEN pin (16) is set to high +3.3V
 
 #define POWER_UP 0x01       // Power up device and mode selection.
 #define GET_REV 0x10        // Returns revision information on the device.
@@ -994,7 +994,7 @@ protected:
     int rdsTextAdress2B; //!<  rds_buffer2B current position
     int rdsTextAdress0A; //!<  rds_buffer0A current position
 
-    int16_t deviceAddress = SI473X_ADDR_SEN_LOW; //!<  Stores the current I2C buss address.
+    int16_t deviceAddress = SI473X_ADDR_SEN_LOW; //!<  Stores the current I2C bus address.
 
     // Delays 
     uint16_t maxDelaySetFrequency = MAX_DELAY_AFTER_SET_FREQUENCY; //!< Stores the maximum delay after set frequency command (in ms).
@@ -1836,7 +1836,7 @@ public:
 
     /**
      * @ingroup group18 MCU I2C Speed 
-     * @brief Sets I2C buss to 10KHz
+     * @brief Sets I2C bus to 10KHz
      */
     inline void setI2CLowSpeedMode(void)
     {
@@ -1846,14 +1846,14 @@ public:
     /**
      * @ingroup group18 MCU I2C Speed  
      * 
-     * @brief Sets I2C buss to 100KHz
+     * @brief Sets I2C bus to 100KHz
      */
     inline void setI2CStandardMode(void) { Wire.setClock(100000); };
 
     /**
      * @ingroup group18 MCU I2C Speed 
      * 
-     * @brief Sets I2C buss to 400KHz
+     * @brief Sets I2C bus to 400KHz
      */
     inline void setI2CFastMode(void)
     {

@@ -225,7 +225,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
 
-  si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C buss address and set it.  Returns 0 if error
+  si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
   // Uncomment the lines below if you experience some unstable behaviour.
   // si4735.setMaxDelayPowerUp(500);      // Time to the external crystal become stable (default is 10ms).

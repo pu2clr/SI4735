@@ -242,7 +242,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
 
-  si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C buss address and set it.  Returns 0 if error
+  si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
   si4735.setup(RESET_PIN, FM_BAND_TYPE);
 
