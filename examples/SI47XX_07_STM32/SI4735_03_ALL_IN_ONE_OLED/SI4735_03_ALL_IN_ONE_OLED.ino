@@ -3,13 +3,13 @@
 
   This sketch has been successfully tested on STM32F103
 
- The table below shows the Si4735 and STM32F103C8 pin connections 
+  The table below shows the Si4735 and STM32F103C8 pin connections 
     
- | Si4735 pin      |  Arduino Pin  |
- | ----------------| ------------  |
- | RESET (pin 15)  |     PA12      |
- | SDIO (pin 18)   |     PB7 (B7)  |
- | SCLK (pin 17)   |     PB6 (B6)  |
+  | Si4735 pin      |  Arduino Pin  |
+  | ----------------| ------------  |
+  | RESET (pin 15)  |     PA12      |
+  | SDIO (pin 18)   |     PB7 (B7)  |
+  | SCLK (pin 17)   |     PB6 (B6)  |
 
   This sketch uses I2C OLED/I2C, buttons and  Encoder.
 
@@ -239,7 +239,9 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
 
-  si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C buss address and set it.  Returns 0 if error
+  si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
+  
+  si4735.setI2CFastMode();               // Recommended
 
   si4735.setup(RESET_PIN, FM_BAND_TYPE);
 
@@ -372,7 +374,7 @@ void showStatus()
   oled.setCursor(0, 10);
   oled.print((si4735.isAgcEnabled()) ? "AGC ON " : "AGC OFF");
 
-  showRSSI();
+  // showRSSI();
   showVolume();
   oled.display(); 
 }
@@ -502,11 +504,9 @@ void loadSSB()
   si4735.queryLibraryId(); // Is it really necessary here?  Just powerDown() maigh work!
   si4735.patchPowerUp();
   delay(50);
-  si4735.setI2CFastMode(); // Recommended
+  // You might wnat to improve the I2C bus speed.
   si4735.downloadPatch(ssb_patch_content, size_content);
-  si4735.setI2CFastModeCustom(50000)(); // goes back to default (100KHz)
   // clearLine4();
-
   // delay(50);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
@@ -725,7 +725,7 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
-  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 9)
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 10)
   {
     si4735.getCurrentReceivedSignalQuality();
     int aux = si4735.getCurrentRSSI();
@@ -737,6 +737,5 @@ void loop()
     }
     elapsedRSSI = millis();
   }
-
   delay(10);
 }
