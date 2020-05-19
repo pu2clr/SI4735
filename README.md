@@ -45,7 +45,7 @@ Contact: __pu2clr@gmail.com__.
     * [LCD20x4, Encoder and buttons](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_02_LCD_20x4_I2C)
     * [OLED, Encoder and button](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C)
     * [TFT and touch screen](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT)
-    * [ATTINY85 with OLED and LCD16x2](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85)
+    * [ATTINY85](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85)
     * [ESP32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32)
     * [STM32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32) 
     * [FM RDS/RBDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS)

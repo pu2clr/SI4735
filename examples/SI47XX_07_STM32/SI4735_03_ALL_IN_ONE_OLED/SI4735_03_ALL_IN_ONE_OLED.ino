@@ -65,8 +65,8 @@
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.
-#include "patch_init.h" // SSB patch for whole SSBRX initialization string
-// #include "patch_full.h"    // SSB patch for whole SSBRX full download
+// #include "patch_init.h" // SSB patch for whole SSBRX initialization string
+#include "patch_full.h"    // SSB patch for whole SSBRX full download
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
@@ -504,7 +504,7 @@ void loadSSB()
   delay(50);
   si4735.setI2CFastMode(); // Recommended
   si4735.downloadPatch(ssb_patch_content, size_content);
-  si4735.setI2CStandardMode(); // goes back to default (100KHz)
+  si4735.setI2CFastModeCustom(50000)(); // goes back to default (100KHz)
   // clearLine4();
 
   // delay(50);
