@@ -38,7 +38,7 @@ The photos bellow show the NE928-10A V:01.
 
 ## The Si473X I2C address 
 
-This board comes with the SEN pin connected to +V. So the I2C buss address is 0x63
+This board comes with the SEN pin connected to +V. So the I2C bus address is 0x63
 
 
 ## Firmware information 
