@@ -116,9 +116,13 @@ const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
 bool bfoOn = false;
-bool disableAgc = true;
 bool ssbLoaded = false;
 bool fmStereo = true;
+
+// AGC and attenuation control
+uint8_t agcIdx = 0;
+uint8_t disableAgc = 0;
+uint8_t agcNdx = 0;
 
 char displayBuffer[20];
 char oldFreq[20];
@@ -126,7 +130,7 @@ char oldMode[10];
 char oldUnit[10];
 char oldStep[10];
 char oldBandwitdt[20];
-char oldStereo[10];
+char oldExtraSignalInfo[15];
 char oldRssi[20];
 char oldSnr[20];
 char oldBfo[15];
@@ -263,7 +267,7 @@ void setup()
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
 
-  currentFrequency = previousFrequency = si4735.getFrequency();
+  currentFrequency = si4735.getFrequency();
 
   si4735.setVolume(volume);
 
@@ -283,7 +287,7 @@ void resetBuffer() {
   clearBuffer(oldUnit);
   clearBuffer(oldStep);
   clearBuffer(oldBandwitdt);
-  clearBuffer(oldStereo);
+  clearBuffer(oldExtraSignalInfo);
   clearBuffer(oldRssi);
   clearBuffer(oldSnr);
   clearBuffer(oldBfo);
@@ -408,7 +412,7 @@ void showFrequency()
     bandMode = (char *) bandModeDesc[currentMode];
 
   printValue(0, 0, oldMode, bandMode, 7, 1);
-  printValue(99, 0, oldUnit, unit, 7, 1);
+  printValue(105, 0, oldUnit, unit, 7, 1);
 
   oled.display();
 }
@@ -426,10 +430,13 @@ void showStatus()
   oled.clearDisplay();
   resetBuffer();
 
+  oled.drawLine(0,17,130,17, SSD1306_WHITE ); 
+  oled.drawLine(0,52,130,52, SSD1306_WHITE );
+  
   showFrequency();
 
   sprintf(step, "%3.3u", currentStep);
-  printValue(95, 20, oldStep, step, 7, 1);
+  printValue(105, 20, oldStep, step, 7, 1);
 
   if (currentMode == LSB || currentMode == USB)
   {
@@ -456,18 +463,27 @@ void showRSSI()
 {
   char sRssi[20];
   char sSnr[20];
-  char stereo[10];
+  char extraSignalInfo[15];
 
   if ( currentMode == FM) {
-    sprintf(stereo, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
-    printValue(0, 20, oldStereo, stereo, 7, 1);
+    sprintf(extraSignalInfo, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
+    printValue(0, 20, oldExtraSignalInfo, extraSignalInfo, 7, 1);
+  } else {
+     // AGC and Attenuation
+     si4735.getAutomaticGainControl();
+     if ( si4735.isAgcEnabled() ) {
+      strcpy(extraSignalInfo, "AGC ON");
+     } else {
+      sprintf(extraSignalInfo, "ATT %2d", agcNdx);      
+     }
+     printValue(0, 20, oldExtraSignalInfo, extraSignalInfo, 7, 1);
   }
 
   sprintf(sRssi, "RSSI:%idBuV", rssi);
-  printValue(0, 55, oldRssi, sRssi, 6, 1);
+  printValue(0, 56, oldRssi, sRssi, 6, 1);
 
   sprintf(sSnr, "SNR:%idB", snr);
-  printValue(78, 55, oldSnr, sSnr, 6, 1);
+  printValue(78, 56, oldSnr, sSnr, 6, 1);
 
   oled.display();
 }
@@ -478,8 +494,9 @@ void showRSSI()
 void showVolume()
 {
   char sVolume[10];
-  sprintf(sVolume, "V:%2.2u", si4735.getCurrentVolume());
-  printValue(80, 30, oldVolume, sVolume, 6, 1);
+  sprintf(sVolume, "V%2.2u", si4735.getCurrentVolume());
+  printValue(105, 30, oldVolume, sVolume, 6, 1);
+  oled.display();
 }
 
 /*
@@ -503,8 +520,8 @@ void showBFO()
   sprintf(bfo, "BFO: %c%4.4uHz", flag, abs(currentBFO));
   printValue(0, 43, oldBfo, bfo, 6, 1);
 
-  sprintf(stepBfo, "St:%3.3u", currentBFOStep);
-  printValue(80, 43, oldStepBfo, stepBfo, 6, 1);
+  sprintf(stepBfo, "%3.3u", currentBFOStep);
+  printValue(105, 43, oldStepBfo, stepBfo, 6, 1);
 
   oled.display();
 
@@ -555,9 +572,6 @@ void bandDown()
 */
 void loadSSB()
 {
-  // oled.setCursor(0, 2);
-  // oled.print("  Switching to SSB  ");
-
   si4735.reset();
   si4735.queryLibraryId(); // Is it really necessary here?  Just powerDown() maigh work!
   si4735.patchPowerUp();
@@ -606,17 +620,15 @@ void useBand()
     {
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
       si4735.setSSBAutomaticVolumeControl(1);
-      si4735.setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
     }
     else
     {
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      si4735.setAutomaticGainControl(1, 0);
-      si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
       bfoOn = false;
     }
-
+    si4735.setAmSoftMuteMaxAttenuation(0); // Disable Soft Mute for AM or SSB
+    si4735.setAutomaticGainControl(disableAgc, agcNdx);
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
@@ -625,6 +637,174 @@ void useBand()
   showStatus();
 }
 
+
+/*
+ * Button Mode Switch FM, AM, LSB and USB
+ */
+void modeSwitchButton() {
+  if (currentMode != FM)
+  {
+    if (currentMode == AM)
+    {
+      // If you were in AM mode, it is necessary to load SSB patch (avery time)
+      loadSSB();
+      currentMode = LSB;
+    }
+    else if (currentMode == LSB)
+    {
+      currentMode = USB;
+    }
+    else if (currentMode == USB)
+    {
+      currentMode = AM;
+      ssbLoaded = false;
+      bfoOn = false;
+    }
+    // Nothing to do if you are in FM mode
+    band[bandIdx].currentFreq = currentFrequency;
+    band[bandIdx].currentStep = currentStep;
+    useBand();
+  }
+}
+
+/*
+ * Button bandwitdth on AM and SSB modes
+ */
+void bandwitdthButton() {
+  if (currentMode == LSB || currentMode == USB)
+  {
+    bwIdxSSB++;
+    if (bwIdxSSB > 5)
+      bwIdxSSB = 0;
+    si4735.setSSBAudioBandwidth(bwIdxSSB);
+    // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+    if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
+      si4735.setSBBSidebandCutoffFilter(0);
+    else
+      si4735.setSBBSidebandCutoffFilter(1);
+  }
+  else if (currentMode == AM)
+  {
+    bwIdxAM++;
+    if (bwIdxAM > 6)
+      bwIdxAM = 0;
+    si4735.setBandwidth(bwIdxAM, 1);
+  }
+  resetBuffer();
+  showStatus();
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+}
+
+/*
+ * Button BFO switch. Makes the encoder control the VFO or BFO
+ */
+void bfoSwitchButton() {
+  if (currentMode == LSB || currentMode == USB)
+  {
+    bfoOn = !bfoOn;
+    if (bfoOn)
+      showBFO();
+    showStatus();
+  }
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  showFrequency();
+
+}
+
+/*
+ * Button Step. KHz if you are controlling the VFO. If you are controlling the BFO the step changed will be the BFO in Hz
+ */
+void stepButton() {
+
+  // This command should work only for SSB mode
+  if (bfoOn && (currentMode == LSB || currentMode == USB))
+  {
+    currentBFOStep = (currentBFOStep == 25) ? 10 : 25;
+    showBFO();
+  }
+  else
+  {
+    if (currentMode != FM)
+    {
+      if (currentStep == 1)
+        currentStep = 5;
+      else if (currentStep == 5)
+        currentStep = 10;
+      else if (currentStep == 10)
+        currentStep = 50;
+      else
+        currentStep = 1;
+    }
+    else
+    {
+      if (currentStep == 10)
+        currentStep = 100;
+      else
+        currentStep = 10;
+    }
+    si4735.setFrequencyStep(currentStep);
+    band[bandIdx].currentStep = currentStep;
+    showStatus();
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  }
+
+}
+
+/*
+ * Button - AGC and attenuation 
+ */
+void attenuationButton() {
+
+      if (agcIdx == 0)
+      {
+        disableAgc = 0; // Turns AGC ON
+        agcNdx = 0;
+        agcIdx = 1;
+      } else if (agcIdx == 1)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 0;     // Sets minimum attenuation
+        agcIdx = 2;
+      } else if (agcIdx == 2)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 10;    // Increases the attenuation AM/SSB AGC Index  = 10
+        agcIdx = 3;
+      } else if (agcIdx == 3)
+      {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 15;    // Increases the attenuation AM/SSB AGC Index  = 30
+        agcIdx = 4;
+      } else if (agcIdx == 4) {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 25;    // Increases the attenuation AM/SSB AGC Index  = 30
+        agcIdx = 5;        
+      } else if (agcIdx == 5) {
+        disableAgc = 1; // Turns AGC OFF
+        agcNdx = 35;    // Increases the attenuation AM/SSB AGC Index  = 30
+        agcIdx = 0;        
+      }      
+      // Sets AGC on/off and gain
+      si4735.setAutomaticGainControl(disableAgc, agcNdx);
+      showStatus();
+}
+
+
+/*
+ * Button - Volume control
+ */
+void volumeButton ( byte d) {
+
+  if ( d == 1 )  
+    si4735.volumeUp();
+  else
+    si4735.volumeDown();
+
+  volume = si4735.getVolume();
+  showVolume();
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+
+}
 
 void loop()
 {
@@ -643,9 +823,9 @@ void loop()
         si4735.frequencyUp();
       else
         si4735.frequencyDown();
-
       // Show the current frequency only if it has changed
       currentFrequency = si4735.getFrequency();
+      showFrequency();
     }
     encoderCount = 0;
   }
@@ -655,136 +835,24 @@ void loop()
   {
     // check if some button is pressed
     if (digitalRead(BANDWIDTH_BUTTON) == LOW)
-    {
-      if (currentMode == LSB || currentMode == USB)
-      {
-        bwIdxSSB++;
-        if (bwIdxSSB > 5)
-          bwIdxSSB = 0;
-        si4735.setSSBAudioBandwidth(bwIdxSSB);
-        // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-        if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
-          si4735.setSBBSidebandCutoffFilter(0);
-        else
-          si4735.setSBBSidebandCutoffFilter(1);
-      }
-      else if (currentMode == AM)
-      {
-        bwIdxAM++;
-        if (bwIdxAM > 6)
-          bwIdxAM = 0;
-        si4735.setBandwidth(bwIdxAM, 1);
-      }
-      resetBuffer();
-      showStatus();
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-    }
+      bandwitdthButton();
     else if (digitalRead(BAND_BUTTON_UP) == LOW)
       bandUp();
     else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
       bandDown();
     else if (digitalRead(VOL_UP) == LOW)
-    {
-      si4735.volumeUp();
-      volume = si4735.getVolume();
-      showVolume();
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-    }
+      volumeButton(1);
     else if (digitalRead(VOL_DOWN) == LOW)
-    {
-      si4735.volumeDown();
-      volume = si4735.getVolume();
-      showVolume();
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-    }
+      volumeButton(-1);
     else if (digitalRead(BFO_SWITCH) == LOW)
-    {
-      if (currentMode == LSB || currentMode == USB) {
-        bfoOn = !bfoOn;
-        if (bfoOn)
-          showBFO();
-        showStatus();
-      } else if (currentMode == FM) {
-        si4735.seekStationUp();
-        delay(30);
-        currentFrequency = si4735.getFrequency();
-      }
-      showFrequency();
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-    }
+      bfoSwitchButton();
     else if (digitalRead(AGC_SWITCH) == LOW)
-    {
-      disableAgc = !disableAgc;
-      // siwtch on/off ACG; AGC Index = 0. It means Minimum attenuation (max gain)
-      si4735.setAutomaticGainControl(disableAgc, 1);
-      showStatus();
-    }
+      attenuationButton(); 
     else if (digitalRead(STEP_SWITCH) == LOW)
-    {
-      // This command should work only for SSB mode
-      if (bfoOn && (currentMode == LSB || currentMode == USB))
-      {
-        currentBFOStep = (currentBFOStep == 25) ? 10 : 25;
-        showBFO();
-      }
-      else
-      {
-        if ( currentMode != FM ) {
-
-          if (currentStep == 1)
-            currentStep = 5;
-          else if (currentStep == 5)
-            currentStep = 10;
-          else if ( currentStep == 10 )
-            currentStep = 50;
-          else
-            currentStep = 1;
-
-        } else {
-          if (currentStep == 10)
-            currentStep = 100;
-          else
-            currentStep = 10;
-        }
-        si4735.setFrequencyStep(currentStep);
-        band[bandIdx].currentStep = currentStep;
-        showStatus();
-        delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-      }
-    }
+      stepButton();  
     else if (digitalRead(MODE_SWITCH) == LOW)
-    {
-      if (currentMode != FM ) {
-        if (currentMode == AM)
-        {
-          // If you were in AM mode, it is necessary to load SSB patch (avery time)
-          loadSSB();
-          currentMode = LSB;
-        }
-        else if (currentMode == LSB)
-        {
-          currentMode = USB;
-        }
-        else if (currentMode == USB)
-        {
-          currentMode = AM;
-          ssbLoaded = false;
-          bfoOn = false;
-        }
-        // Nothing to do if you are in FM mode
-        band[bandIdx].currentFreq = currentFrequency;
-        band[bandIdx].currentStep = currentStep;
-        useBand();
-      }
-    }
+      modeSwitchButton();
     elapsedButton = millis();
-  }
-
-  // Show the current frequency only if it has changed
-  if (currentFrequency != previousFrequency)
-  {
-    previousFrequency = currentFrequency;
-    showFrequency();
   }
 
   // Show RSSI status only if this condition has changed
