@@ -1,6 +1,6 @@
 /*
    Test and validation of the SI4735 Arduino Library.
-   It is a FM, MW and SW (1700KHz to 30000Khz)
+   It is a FM, MW and SW (up to 30000Khz)
    
    The main advantages of using this sketch are: 
     1) It is a easy way to check if your circuit is working;

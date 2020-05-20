@@ -1,9 +1,9 @@
 /*
-   Test and validation of the SI4735 Arduino Library.
+   Test and validation of the SI4735 Arduino Library and your circuit.
    This sketch just check if your STM32 Board and Si47XX Device is working 
 
    No interface is available here. 
-   If your prototype is working, you will hear the receiver in your speaker. 
+   If your prototype is working, you will hear the receiver in the speaker. 
 
    The table below shows the Si4735 and STM32F103C8 pin connections 
     
