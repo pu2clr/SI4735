@@ -16,7 +16,6 @@
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
   together with this sketch) and Library Adafruit libraries to control the OLED.
 
-
   ABOUT SSB PATCH:
   This sketch will download a SSB patch to your SI4735 device (patch_init.h or patch_full.h). It will take about 8KB or 15KB of the Arduino memory.
 
@@ -133,7 +132,6 @@ char oldSnr[20];
 char oldBfo[15];
 char oldStepBfo[10];
 char oldVolume[10];
-
 
 
 int currentBFO = 0;
@@ -448,6 +446,7 @@ void showStatus()
   }
 
   showVolume();
+  showRSSI();
 
   oled.display();
 }
@@ -480,8 +479,9 @@ void showRSSI()
 */
 void showVolume()
 {
-
-
+  char sVolume[10];
+  sprintf(sVolume, "V:%2.2u", si4735.getCurrentVolume());
+  printValue(80, 30, oldVolume, sVolume, 6, 1);
 }
 
 /*
