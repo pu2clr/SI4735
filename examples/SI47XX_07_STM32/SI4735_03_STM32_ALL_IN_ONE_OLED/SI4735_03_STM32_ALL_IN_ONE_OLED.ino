@@ -339,7 +339,6 @@ void printValue(int col, int line, char *oldValue, char *newValue, int space, in
     pNew++;
     c += space;
   }
-
   // Is there anything else to erase?
   oled.setTextColor(SSD1306_BLACK);
   while (*pOld)
@@ -349,7 +348,6 @@ void printValue(int col, int line, char *oldValue, char *newValue, int space, in
     pOld++;
     c += space;
   }
-
   // Is there anything else to print?
   oled.setTextColor(SSD1306_WHITE);
   while (*pNew)
