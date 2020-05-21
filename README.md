@@ -326,6 +326,8 @@ This library has more than 120 functions. The table below shows the mains functi
 | setI2CStandardMode                | Sets I2C bus to 100KHz. |
 | setAudioMuteMcuPin                | This function sets the mcu digital pin you want to use to control the external audio mute circuit. | 
 
+[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+
 
 ### Defined Data Types and Structures
 
@@ -450,6 +452,7 @@ __The table below shows the features that this library implements__.
 | 30 | Alarm Test | Emergency Test |
 | 31 | Alarm | Emergency |
 
+[Go to summary](https://pu2clr.github.io/SI4735/#summary)
 
 
 ### SI4735 Patch Support for Single Side Band
@@ -889,6 +892,8 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 |![IC SI4730 soldering on adapter](./extras/images/soldering_01.jpg)|![SIC SI4730 soldering on adapter](./extras/images/soldering_02.jpg)|
 |![SI4735 on adapter 01](./extras/images/si4735_on_adapter_01.png)|![SI4735 on adapter 03](./extras/images/si4735_on_adapter_03.png)|
 
+
+[Go to summary](https://pu2clr.github.io/SI4735/#summary)
 
 
 #### Protoboard
