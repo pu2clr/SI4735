@@ -746,6 +746,7 @@ void useBand()
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
+    // Define here the best criteria to find a FM station during the seeking process 
     si4735.setSeekAmRssiThreshold(0);
     si4735.setSeekFmSrnThreshold(3);
     
