@@ -745,8 +745,10 @@ void useBand()
     currentMode = FM;
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-    si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
-    si4735.setSeekFmSpacing(10);
+    si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
+    si4735.setSeekAmRssiThreshold(0);
+    si4735.setSeekFmSrnThreshold(3);
+    
     bfoOn = ssbLoaded = false;
     si4735.setRdsConfig(1, 2, 2, 2, 2);
   }

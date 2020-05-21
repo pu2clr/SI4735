@@ -1702,6 +1702,8 @@ void SI4735::setSeekAmSrnThreshold(uint16_t value)
  * @details SNR Threshold which determines if a valid channel has been found during Seek/Tune. Specified in units of dB in 1 dB steps (0–127). Default is 3 dB
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332; page 102
+ * 
+ * @param value between 0 and 127.
  */
 void SI4735::setSeekFmSrnThreshold(uint16_t value)
 {
