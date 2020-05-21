@@ -1002,6 +1002,7 @@ Here you can see some experiments using this library. Watch them.
 * [SI4735 KIT. First SSB test](https://youtu.be/bZW6NiOEGSQ)
 * [SI4735 KIT - First FM test](https://youtu.be/LudpuwJSajU)
 * [Great interface by Gert Baak](https://youtu.be/hRHSzFr_lQE)
+* [si4735 betatest radio](https://youtu.be/Gkh1zHn8NgE)
 
 [Go to summary](https://pu2clr.github.io/SI4735/#summary)
 
