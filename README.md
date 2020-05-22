@@ -725,7 +725,8 @@ It has been observed in several tests. Some tips:
 5. Check the pull-up resistors connected to the pins 17 (SCLK / SCL) and 18 (SDIO / SDA) of the SI47XX device;
 6. Check the voltage on SI47XX pin 15 (RST).  It should be 3.3V. All digital pins of your Arduino board should have 3.3V. If it is greater than 3.3V, probably you are using an 5V board; 
 7. If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version; 
-8. Check the external crystal and its capacitors connections. 
+8. Do not try to power an ATmega328 Arduino Board designed to work with 5V and 16MHz with a 3.3V supply. That configuration will make your system unstable. See [ATmega328P Datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf);  
+9. Check the external crystal and its capacitors connections. 
 
 __Attention__: The pins numbers above is considering Si473x-D60(SSOP) package.
 
