@@ -718,11 +718,14 @@ Depending on your setup, the system can hang at the beginning.
 
 It has been observed in several tests. Some tips:
 
-* Avoid using the computer connected to the mains during testing. The electrical grid can disturb the communication between the Arduino based board and the SI47XX device;
-* The RESET pin is not configured properly. Check the connection of the SI47XX pin 15 (RST) and the Arduino based board;
-* If the SI47XX pin 16 (SEN) is grounded, the I2C bus address must be 0x11, otherwise it must be 0x63 (the default I2C bus address is 0x11). Preferably, keep this pin grounded.
-* Check if the pins 17 (SCLK / SCL) and 18 (SDIO / SDA) of the SI47XX device are correctly connected to the Arduino board pins. 
-* Check the external crystal and its capacitors connections. 
+1. Avoid using the computer connected to the mains during testing. The electrical grid can disturb the communication between the Arduino based board and the SI47XX device;
+2. The RESET pin is not configured properly. Check the connection of the SI47XX pin 15 (RST) and the Arduino based board;
+3. If the SI47XX pin 16 (SEN) is grounded, the I2C bus address must be 0x11, otherwise it must be 0x63 (the default I2C bus address is 0x11). Preferably, keep this pin grounded;
+4. Check if the pins 17 (SCLK / SCL) and 18 (SDIO / SDA) of the SI47XX device are correctly connected to the Arduino board pins;
+5. Check the pull-up resistors connected to the pins 17 (SCLK / SCL) and 18 (SDIO / SDA) of the SI47XX device;
+6. Check the voltage on SI47XX pin 15 (RST).  It should be 3.3V. All digital pins of your Arduino board should have 3.3V. If it is greater than 3.3V, probably you are using an 5V board; 
+7. If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version; 
+8. Check the external crystal and its capacitors connections. 
 
 __Attention__: The pins numbers above is considering Si473x-D60(SSOP) package.
 
@@ -735,11 +738,14 @@ If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 a
   *  Change the circuit and sketch to use external pull-up on pin 13; or
   *  Remove the LED or the resitor connected to the LED from the Arduino Board.   
 
-### When power up or moving the tuner on LW, MW or SW, the display show LW and 0 Khz
+### After power up or try to tune the receiver, the display shows LW and 0 Khz
 
-<P>This problem can be a little complicated to solve. I have observed that very few times in my experiments. When I am powering the system using the computer USB and the computer is connected to the grid, it might occur. Please, test your system using only batteries.</P> 
+This problem can be a little complicated to solve. I have observed that very few times in my experiments. When I am powering the system using the computer USB and the computer is connected to the grid, it might occur. __Please, test your system using only batteries__.
 
-<P>This problem also can be caused by the external crystal. This crystal needs a minimum delay to become stable after a reset or power up command. Currently, this delay is 10ms. Try to increase that delay by using the method setMaxDelayPowerUp.</P>
+If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version.
+
+This problem also can be caused by the external crystal. This crystal needs a minimum delay to become stable after a reset or power up command. Currently, this delay is 10ms. Try to increase that delay by using the method setMaxDelayPowerUp.
+
 
 __Example:__
 
