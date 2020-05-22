@@ -768,9 +768,9 @@ si4735.setMaxDelaySetFrequency(50);
 
 ### I cannot tune satisfactorily any station on LW, MW or SW
 
-* Please, use only batteries to power your system up on LW, MW or SW. 
-* Check your circuit on AMI pin of the Si47XX device.
-* Keep as far as possible from noise sources (LED light bulb, computers and any device connected to the power grid)
+* Please, use only batteries to power your system up on LW, MW or SW; 
+* Check your circuit on AMI pin of the Si47XX device;
+* Keep as far as possible from noise sources (LED light bulb, computers and any device connected to the power grid);
 * Try to find a suitable size for the antenna wire. Too long can be a big noise pickup. If too short, it may not be enough to pick up radio stations.
  
 
