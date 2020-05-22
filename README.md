@@ -730,10 +730,10 @@ __Attention__: The pins numbers above is considering Si473x-D60(SSOP) package.
 
 ### On FM mode, the receiver jump from a station to another station without any action.
 
-If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 and the use of internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, you can do: 
+If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 and the use of internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, do one of the following:
   *  Use the pin 14 instead. This pin is the A0 (Analog). But you have to refer it by 14 to use it as digital pin; 
-  *  Change the circuit and sketch to use external pull-up on pin 13;
-  *  Remove the LED or resitor connected to the led from the Arduino Board.   
+  *  Change the circuit and sketch to use external pull-up on pin 13; or
+  *  Remove the LED or the resitor connected to the led from the Arduino Board.   
 
 ### When power up or moving the tuner on LW, MW or SW, the display show LW and 0 Khz
 
