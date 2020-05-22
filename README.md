@@ -712,6 +712,22 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 
 ## Most Frequent Problems
 
+### The system does not start.
+
+Depending on your setup, the system can hang at the beginning. 
+
+It has been observed in several tests. Some tips:
+
+* Avoid using the computer connected to the mains during testing. The electrical grid can disturb the communication between the Arduino based board and the SI47XX device;
+* The RESET pin is not configured properly. Check the connection of the SI47XX pin 15 (RST) and the Arduino based board;
+* If the SI47XX pin 16 (SEN) is grounded, the I2C bus address must be 0x11, otherwise it must be 0x63 (the default I2C bus address is 0x11). Preferably, keep this pin grounded.
+* Check if the pins 17 (SCLK / SCL) and 18 (SDIO / SDA) of the SI47XX device are correctly connected to the Arduino board pins. 
+* Check the external crystal and its capacitors connections. 
+
+__Attention__: The pins numbers above is considering Si473x-D60(SSOP) package.
+
+
+
 ### On FM mode, the receiver jump from a station to another station without any action.
 
 If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 and the use of internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, you can do: 
