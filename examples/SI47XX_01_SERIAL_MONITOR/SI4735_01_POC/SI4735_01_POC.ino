@@ -2,6 +2,8 @@
    Test and validation of the SI4735 Arduino Library.
    It is a FM, MW and SW (1700KHz to 30000Khz)
    
+   ATTENTION:  Please, avoid using the computer connected to the mains during testing.
+
    The main advantages of using this sketch are: 
     1) It is a easy way to check if your circuit is working;
     2) You do not need to connect any display device to make your radio works;

@@ -2,6 +2,8 @@
 
   Test and validation of the SI4735 Arduino Library with SSB support.
 
+  ATTENTION:  Please, avoid using the computer connected to the mains during testing.
+
   The table below shows the Si4735 and STM32F103C8 pin connections 
     
   | Si4735 pin      |  Arduino Pin  |

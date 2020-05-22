@@ -4,6 +4,8 @@
  This example shows you how to setup the radio on SW/SSB by using the Si4735 Arduino Library.
  It uses the Serial Monitor to get the commands and show the information. 
 
+ ATTENTION:  Please, avoid using the computer connected to the mains during testing. 
+
  This sketch has been successfully tested on:
  1) Tested on Arduino Pro Mini 3.3V; 
  2) UNO (by using a voltage converter); 
