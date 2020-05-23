@@ -184,6 +184,9 @@ Do you need some old version (release) of this library?  If yes, [check here](ht
 * Gert Baak, PE0MGB, for library improvements suggestions;  
 * All members of the Facebook groups ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) and ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/) for the  suggestions and corrections during the development of this project.
 
+
+[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+
 <BR>
 
 ## Your support is important.
