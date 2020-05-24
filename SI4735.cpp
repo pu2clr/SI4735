@@ -1609,9 +1609,9 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
     do
     {
         seekStation(up_down, 0);
-        delay(MAX_DELAY_AFTER_SET_FREQUENCY * 2);
+        delay(maxDelaySetFrequency << 2);
         getStatus(0, 0);
-        delay(MAX_DELAY_AFTER_SET_FREQUENCY * 2);
+        delay(maxDelaySetFrequency << 2);
         freq.raw.FREQH = currentStatus.resp.READFREQH;
         freq.raw.FREQL = currentStatus.resp.READFREQL;
         currentWorkFrequency = freq.value;

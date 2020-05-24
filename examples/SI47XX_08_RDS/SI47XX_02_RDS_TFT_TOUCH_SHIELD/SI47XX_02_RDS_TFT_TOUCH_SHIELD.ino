@@ -747,6 +747,7 @@ void useBand()
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     // Define here the best criteria to find a FM station during the seeking process 
+    // si4735.setSeekFmSpacing(10); // frequency spacing for FM seek (5, 10 or 20. They mean 50, 100 or 200 KHz)
     si4735.setSeekAmRssiThreshold(0);
     si4735.setSeekFmSrnThreshold(3);
     
