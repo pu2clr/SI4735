@@ -965,7 +965,7 @@ The figure above shows the very basic shematic implementation (no Button or Enco
 11. [Using RDS/RBDS with the Si4701/03](https://www.silabs.com/documents/public/application-notes/AN243.pdf)
 12. [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
 13. __Other implementations using Si4735 and Arduino__
-    * [This is a git fork of [Michael Kennedy's]](https://pu2clr.github.io/FlyingLotus1983/Si4735)  
+    * [This is a git fork of [Michael Kennedy's]](https://github.com/FlyingLotus1983/Si4735)  
     * [Arduino Si4735 radio library](https://sourceforge.net/projects/arduino-si4735/)
     * [SI4735 AM & FM Receiver Shield](https://www.sparkfun.com/products/retired/10342)
     * [Si4735 Digital AM/FM Radio Receiver](https://os.mbed.com/users/bwilson30/notebook/si4735-digital-amfm-radio-receiver/)
