@@ -38,8 +38,8 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 | ----------------          | --------------------      | ------------  |
 | __Display TFT__           |                           |               |                    
 |                           | RST (RESET)               |      8        |  
-|                           | RS                        |      9        |
-|                           | CS                        |     10        |
+|                           | RS  or DC                 |      9        |
+|                           | CS  or SS                 |     10        |
 |                           | SDI                       |     11        | 
 |                           | CLK                       |     13        | 
 | __Si4735__                |                           |               |
