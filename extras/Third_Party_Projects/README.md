@@ -40,6 +40,7 @@ The project aims to serve as a platform through which several developers can con
 
 ## Gert Baak
 
+[Gert's Repository - SI4735-Radio-ESP32-2.8 inch TFT Touchscreen-Arduino](https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino?fbclid=IwAR3TQd2j4HxAFvpcGkbXiPuDly8m2OnGclTDiqthnkbqqe2fN1McP2m3WSI)
 
 | Gert's interface | Gert's interface |
 | ---------------- | ---------------- | 
@@ -51,7 +52,7 @@ The project aims to serve as a platform through which several developers can con
 
 {% include gertbaak.html %}
 
-[Schematic and source code on Gert's repository](https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino)
+[Gert's Github Repository - SI4735-Radio-ESP32-2.8 inch TFT Touchscreen-Arduino](https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino?fbclid=IwAR3TQd2j4HxAFvpcGkbXiPuDly8m2OnGclTDiqthnkbqqe2fN1McP2m3WSI)
 
 
 <BR>
