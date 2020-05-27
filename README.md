@@ -862,13 +862,13 @@ The table below shows the some boards where this library has been successfully t
 
 The table below shows some SI473X chips and Si4730 based-boards where the PU2CLR SI4735 Arduino Library has been successfully tested. 
 
-| SI473X board / IC   | FM | AM | SSB | LW | MW | SW | Tested | 
-| -----------------   | -- | -- | --- | -- | -- | -- | ------ | 
-| SI4735-D60          |  X | X  |  X  |  X |  X |  X |   Yes  |
-| Si4735-B20          |  X | X  |     |  X |  X |  X |   Yes  |   
-| SI4730-D60          |  X | X  |     |    |  X | X* |   Yes  |
-| NE928-10A SI4730    |  X | X  |     |    |    |    |   Yes  | 
-| PL102BA V2.11 10628 |  X | X  |     |    |  X |  X |   Yes  |
+| SI473X board / IC   | FM | RDS | AM | SSB | LW | MW | SW | Tested | 
+| -----------------   | -- | --- | -- | --- | -- | -- | -- | ------ | 
+| SI4735-D60          |  X | X   | X  |  X  |  X |  X |  X |   Yes  |
+| Si4735-B20          |  X | X   | X  |     |  X |  X |  X |   Yes  |   
+| SI4730-D60          |  X | X   | X  |     |  X | X* |    |   Yes  |
+| NE928-10A SI4730    |  X |     | X  |     |    |    |    |   Yes  | 
+| PL102BA V2.11 10628 |  X | X   | X  |     |  X |  X |    |   Yes  |
 
 * Although the SI4730-D60 does not officially support SW, several tests performed during the development of this library, as well as tests performed by other experimenters, it was observed excellent performance of this IC on HF/SW band. See "Si47XX PROGRAMMING GUIDE; pages 2 and 3; Table 1 - Product Family Function" for more details.  
   
