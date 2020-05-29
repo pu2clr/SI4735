@@ -314,7 +314,7 @@ void rotaryEncoder()
 
 /*
     Writes just the changed information on Display
-    Prevents blinking an display and also noise.
+    Prevents blinking on display and also noise.
     Erases the old digits if it has changed and print the new digit values.
 */
 void printValue(int col, int line, char *oldValue, char *newValue, int space, int textSize ) {
