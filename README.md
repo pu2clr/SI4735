@@ -191,7 +191,8 @@ Do you need some old version (release) of this library?  If yes, [check here](ht
 
 ## Your support is important.
 
-If you would like to support this library development, consider joining this project via Github. Alternatively, make suggestions on features you would like available in this library. Thank you!
+If you would like to support this library development, consider joining this project via Github. Alternatively, make suggestions on new features and report errors if you find them. Thank you!
+
 
 <BR>
 
