@@ -1,5 +1,7 @@
 # Examples
 
+__This project is about a library to control the SI47XX devices and the focus of this project is the library and its functionalities. Please, don't ask me to assist you in your: displays, encoders, buttons or something else out the library scope. Thanks.__
+
 [This folder](https://github.com/pu2clr/SI4735/tree/master/examples) has more than 20 examples that might help you to use the Si4735 Arduino Library in your project. If you find some error or problem during your implementation, please let me know. 
 
 
