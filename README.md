@@ -14,7 +14,7 @@ This library can be freely distributed using the MIT Free Software model.
 
 Contact: __pu2clr@gmail.com__.
 
-## Summary
+## Contents
 
 1. [SI4735 Library construction history](https://pu2clr.github.io/SI4735/#si4735-library-construction-history)
 2. [Labrary Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
@@ -62,6 +62,8 @@ Contact: __pu2clr@gmail.com__.
 * __The SI473 (SI47XX) is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V bidirectional converter. It is important to say that just power the Si47XX device with 3.3V from Arduino board is not enough. You have to be aware that the Arduino that operates with 5V, the digital pins and the I2C bus will send 5V signals to the Si47XX device. That configuration can make the system unstable or damage the Si47XX device__.  
 * __This library has been successfully tested on many boards including:  ESP32; STM32; Mega 2560;  DUE; ATmega328 and Atmega32u4 based boards; ATtiny85 and more__. See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested).  
 * __The Si47XX IC family  functionalities__ can be seen in the comparison matrix shown in table 1 (__Product Family Function__); pages 2 and 3 of the [“Si47XX PROGRAMMING GUIDE; AN332”](https://www.silabs.com/documents/public/application-notes/AN332.pdf).
+
+
 
 
 ## SI4735 Library construction history
