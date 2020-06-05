@@ -23,6 +23,7 @@
   ENCODER_B               19        - On Arduino DUE all Digital pin can be used with Interrupt
   RESET                   22
   ENCODER PUSH BUTTON     23
+  AUDIO MUTE CIRCUIT      24        - Optional external audio mute circuit (avoid click/pop in the speaker)
 
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
