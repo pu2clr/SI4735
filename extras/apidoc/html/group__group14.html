@@ -178,7 +178,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the current status of the Si47XX (AM, FM or SSB) </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM) </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 (FM) and 139 (AM) </dd></dl>
 
 </div>
 </div>
@@ -201,7 +201,7 @@ Functions</h2></td></tr>
 <p>Gets the current frequency of the Si4735 (AM or FM) </p>
 <p>Device Status Information</p>
 <p>The method status do it an more. See getStatus below.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM) </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 (FM) and 139 (AM) </dd></dl>
 
 </div>
 </div>
@@ -232,7 +232,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the current status of the Si4735 (AM or FM) </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 73 (FM) and 139 (AM)</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 (FM) and 139 (AM)</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">uint8_t</td><td>INTACK Seek/Tune Interrupt Clear. If set, clears the seek/tune complete interrupt status indicator; </td></tr>
@@ -262,7 +262,7 @@ Functions</h2></td></tr>
 
 <p>Queries Automatic Gain Control STATUS. </p>
 <p>After call this method, you can call isAgcEnabled to know the AGC status and getAgcGainIndex to know the gain index value.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; For FM page 80; for AM page 142. </dd>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); For FM page 80; for AM page 142. </dd>
 <dd>
 AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. </dd></dl>
 
@@ -299,7 +299,7 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 <p>Automatic Gain Control setup. </p>
 <p>If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 (minimum attenuation) and 26 (maximum attenuation).</p>
 <p>If AM/SSB, Overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0 (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation).</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); For FM page 81; for AM page 143</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">uint8_t</td><td>AGCDIS This param selects whether the AGC is enabled or disabled (0 = AGC enabled; 1 = AGC disabled); </td></tr>
@@ -330,7 +330,7 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 
 <p>Sets the maximum gain for automatic volume control. </p>
 <p>If no parameter is sent, it will be consider 48dB.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 152 </dd>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 152 </dd>
 <dd>
 <a class="el" href="class_s_i4735.html#a6e1e0e48d71e09debb07fc6dbe884829" title="Sets the Avc Am Max Gain to 48dB.">setAvcAmMaxGain()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -360,7 +360,7 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 
 <p>Queries the status of the Received Signal Quality (RSQ) of the current channel. </p>
 <p>This method sould be called berore call <a class="el" href="class_s_i4735.html#a4f5abf562ec00767a3b84f74eba5ac4d" title="Get the current receive signal strength (0–127 dBμV)">getCurrentRSSI()</a>, <a class="el" href="class_s_i4735.html#adb3fe55583dafeac7439a303b637d162" title="Gets the current SNR metric (0–127 dB).">getCurrentSNR()</a> etc. Command FM_RSQ_STATUS</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 75 and 141</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">INTACK</td><td>Interrupt Acknowledge. 0 = Interrupt status preserved; 1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT. </td></tr>
@@ -389,7 +389,7 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 </div><div class="memdoc">
 
 <p>Queries the status of the Received Signal Quality (RSQ) of the current channel (FM_RSQ_STATUS) </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 75 and 141</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 75 and 141</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">INTACK</td><td>Interrupt Acknowledge. 0 = Interrupt status preserved; 1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT. </td></tr>

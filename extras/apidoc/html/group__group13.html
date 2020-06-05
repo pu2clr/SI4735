@@ -213,7 +213,7 @@ Functions</h2></td></tr>
 
 <p>Configures the digital audio output format. </p>
 <p>Options: DCLK edge, data format, force mono, and sample precision.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 195.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 195.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">uint8_t</td><td>OSIZE Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits). </td></tr>
@@ -243,7 +243,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enables digital audio output and configures digital audio output sample rate in samples per second (sps). </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 196.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 196.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">uint16_t</td><td>DOSR Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output). </td></tr>
@@ -271,7 +271,7 @@ Functions</h2></td></tr>
 
 <p>RESP8 - Returns the Chip Revision (ASCII). </p>
 <p>Sets volume level (0 to 63)</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 170, 173 and 204</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 62, 123, 170, 173 and 204</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">uint8_t</td><td>volume (domain: 0 - 63) </td></tr>
@@ -300,7 +300,7 @@ Functions</h2></td></tr>
 <p>Sets the audio on or off. </p>
 <p>Useful to mute the audio output of the SI47XX device. This function does not work to reduce the pop in the speaker at start the system up.</p>
 <p>If you want to remove the loud click or pop in the speaker at start, power down and power up commands, use setHardwareAudioMute with a external mute circuit.</p>
-<dl class="section see"><dt>See also</dt><dd>See Si47XX PROGRAMMING GUIDE; AN332; pages 62, 123, 171 </dd>
+<dl class="section see"><dt>See also</dt><dd>See Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 62, 123, 171 </dd>
 <dd>
 <a class="el" href="group__group18.html#ga54a3a0f412aa6318df0046d478bd134f" title="Sets the Hardware Audio Mute.">setHardwareAudioMute</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>

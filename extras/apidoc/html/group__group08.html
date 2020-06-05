@@ -325,7 +325,7 @@ Functions</h2></td></tr>
 <p>Selects the tuning capacitor value.</p>
 <p>On FM mode, The Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the antenna input. This selects the value of the antenna tuning capacitor manually, or automatically if set to zero. The valid range is 0 to 191. Automatic capacitor tuning is recommended. Whentunedmanually,thevaractorisoffsetbyfourcodes. Forexample,if the varactor is set to a value of 5 manually, when read back the value will be 1. The four codes (1pf) delta accounts for the capacitance at the chip.</p>
 <p>on AM mode, If the value is set to anything other than 0, the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. ANTCAP manual range is 1–6143. Automatic capacitor tuning is recommended. In SW mode, ANTCAPH[15:8] (high byte) needs to be set to 0 and ANTCAPL[7:0] (low byte) needs to be set to 1.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 71 and 136</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 71 and 136</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">capacitor</td><td>If zero, the tuning capacitor value is selected automatically. If the value is set to anything other than 0: AM - the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. ANTCAP manual range is 1–6143; FM - the valid range is 0 to 191. <br  />
@@ -358,7 +358,7 @@ Functions</h2></td></tr>
 <dd>
 <a class="el" href="_s_i4735_8h.html#a3d77e4d0458eed0b6ba584c737e8df21">MAX_DELAY_AFTER_SET_FREQUENCY</a> </dd>
 <dd>
-Si47XX PROGRAMMING GUIDE; AN332; pages 70, 135 </dd>
+Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 70, 135 </dd>
 <dd>
 AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -430,7 +430,7 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 <p>Sets the radio to AM function. It means: LW MW and SW. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Adjust the power up parameters</dd></dl>
 <p>Define the band range you want to use for the AM mode.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 129. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 129. </dd></dl>
 
 <p class="reference">References <a class="el" href="group__group06.html#gaa554b3390fb6c5a4d6661b96afae73ae">SI4735::powerDown()</a>, and <a class="el" href="group__group06.html#ga3e228da65641f4dcf4253262e19bde9b">SI4735::radioPowerUp()</a>.</p>
 
@@ -455,7 +455,7 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 
 <p>Sets the radio to FM function. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Adjust the power up parameters</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 64. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 64. </dd></dl>
 
 <p class="reference">References <a class="el" href="group__group12.html#gae4683e9a9fc7a633305b18dae54fbd83">SI4735::disableFmDebug()</a>, <a class="el" href="group__group06.html#gaa554b3390fb6c5a4d6661b96afae73ae">SI4735::powerDown()</a>, and <a class="el" href="group__group06.html#ga3e228da65641f4dcf4253262e19bde9b">SI4735::radioPowerUp()</a>.</p>
 
@@ -564,7 +564,7 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 <p>The example below sets the band from 64MHz to 108MHzKHz on FM mode. The band will start on 103.9MHz and step is 100KHz. On FM mode, the step 10 means 100KHz. If you want a 1MHz step, use 100. <br  />
 </p>
 <div class="fragment"><div class="line">si4735.setFM(6400, 10800, 10390, 10);</div>
-</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 70 </dd>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 70 </dd>
 <dd>
 <a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906" title="Sets the radio to FM function.">setFM()</a> </dd>
 <dd>
@@ -586,8 +586,8 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup__group08_html_gacd89e7b8adefcbc4e89f802acb915906"><div class="ttname"><a href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906">SI4735::setFM</a></div><div class="ttdeci">void setFM()</div><div class="ttdoc">Sets the radio to FM function.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:725</div></div>
-<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1794</div></div>
+<div class="ttc" id="agroup__group08_html_gacd89e7b8adefcbc4e89f802acb915906"><div class="ttname"><a href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906">SI4735::setFM</a></div><div class="ttdeci">void setFM()</div><div class="ttdoc">Sets the radio to FM function.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:726</div></div>
+<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1793</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

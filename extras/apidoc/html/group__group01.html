@@ -260,7 +260,7 @@ Data Types</h1>
       </table>
 </div><div class="memdoc">
 <div class="textblock"><p>Power Up arguments data type. </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 65 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64 and 65 </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -345,7 +345,7 @@ Application Setting. See page 65. </td></tr>
 </div><div class="memdoc">
 <div class="textblock"><p>Data type for Enables output for GPO1, GPO2 and GPO3. </p>
 <p>GPO1, 2, and 3 can be configured for output (Hi-Z or active drive) by setting the GPO1OEN, GPO2OEN, and GPO3OEN bit.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 82 and 144 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 82 and 144 </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -377,7 +377,7 @@ raw</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Data type for Configuring the sources for the GPO2/INT interrupt pin. </p>
 <p>Valid sources are the lower 8 bits of the STATUS byte, including CTS, ERR, RSQINT, and STCINT bits.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 146 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 146 </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -652,7 +652,7 @@ Antenna Tuning Capacitor Low byte. </td></tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock"><p>AM Tune frequency data type command (AM_TUNE_FREQ command) </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 135 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 135 </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -750,7 +750,7 @@ ARG5 - Antenna Tuning Capacitor Low byte. Note used for FM. </td></tr>
 <div class="textblock"><p>Seek frequency (automatic tuning). ARG1. </p>
 <p>Represents searching for a valid frequency data type AM and FM.</p>
 <p>When AM, the searching data have to be complemented by <a class="el" href="group__group01.html#structsi47x__seek__am__complement" title="Seek frequency (automatic tuning) AM complement (ARG2, ARG3, ARG4 and ARG5)">si47x_seek_am_complement</a>.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 72 and 137 </dd>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 72 and 137 </dd>
 <dd>
 <a class="el" href="group__group01.html#structsi47x__seek__am__complement" title="Seek frequency (automatic tuning) AM complement (ARG2, ARG3, ARG4 and ARG5)">si47x_seek_am_complement</a> </dd></dl>
 </div><table class="fieldtable">
@@ -786,7 +786,7 @@ raw</td>
 <p>Represents AM complement searching information for a valid frequency data type.</p>
 <dl class="section see"><dt>See also</dt><dd></dd>
 <dd>
-Si47XX PROGRAMMING GUIDE; AN332; pages 72 and 137 </dd></dl>
+Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 72 and 137 </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1112,7 +1112,7 @@ Contains the current antenna tuning capacitor value. </td></tr>
 </div><div class="memdoc">
 <div class="textblock"><p>Data representation for Firmware Information (GET_REV) </p>
 <p>The part number, chip revision, firmware revision, patch revision and component revision numbers.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 66 and 131 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 66 and 131 </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1252,7 +1252,7 @@ RESP8 - Chip Revision (ASCII). </td></tr>
 <div class="textblock"><p>Firmware Query Library ID response. </p>
 <p>Used to represent the response of a power up command with FUNC = 15 (patch)</p>
 <p>To confirm that the patch is compatible with the internal device library revision, the library revision should be confirmed by issuing the POWER_UP command with Function = 15 (query library ID)</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 12 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 12 </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1385,7 +1385,7 @@ RESP7 - Library Revision (HEX). </td></tr>
 </div><div class="memdoc">
 <div class="textblock"><p>Seek station status. </p>
 <p>Status of FM_TUNE_FREQ or FM_SEEK_START commands or Status of AM_TUNE_FREQ or AM_SEEK_START commands.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 73 and 139 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 and 139 </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1512,7 +1512,7 @@ byteHigh</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Radio Signal Quality data representation. </p>
 <p>Data type for status information about the received signal quality (FM_RSQ_STATUS and AM_RSQ_STATUS)</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 75 and </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 75 and </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1716,7 +1716,7 @@ RESP7 - Signed frequency offset (kHz). </td></tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock"><p>Data type for RDS Status command and response information. </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78 </dd>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 77 and 78 </dd>
 <dd>
 Also <a href="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipedia.org/wiki/Radio_Data_System</a> </dd></dl>
 </div><table class="fieldtable">
@@ -1790,7 +1790,7 @@ dummy: 5</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock"><p>Response data type for current channel and reads an entry from the RDS FIFO. </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 77 and 78 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 77 and 78 </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -2024,7 +2024,7 @@ BLEA: 2</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock"><p>FM_RDS_INT_SOURCE property data type. </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 103 </dd>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 103 </dd>
 <dd>
 also <a href="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipedia.org/wiki/Radio_Data_System</a> </dd></dl>
 </div><table class="fieldtable">
@@ -2123,7 +2123,7 @@ Reserved - Always write to 0. </td></tr>
 </div><div class="memdoc">
 <div class="textblock"><p>Data type for FM_RDS_CONFIG Property. </p>
 <p>IMPORTANT: all block errors must be less than or equal the associated block error threshold for the group to be stored in the RDS FIFO. 0 = No errors; 1 = 1–2 bit errors detected and corrected; 2 = 3–5 bit errors detected and corrected; 3 = Uncorrectable. Recommended Block Error Threshold options: 2,2,2,2 = No group stored if any errors are uncorrected. 3,3,3,3 = Group stored regardless of errors. 0,0,0,0 = No group stored containing corrected or uncorrected errors. 3,2,3,3 = Group stored with corrected errors on B, regardless of errors on A, C, or D.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 58 and 104 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 58 and 104 </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -2292,7 +2292,7 @@ lowValue</td>
 <p>For GCC on System-V ABI on 386-compatible (32-bit processors), the following stands:</p>
 <p>1) Bit-fields are allocated from right to left (least to most significant). 2) A bit-field must entirely reside in a storage unit appropriate for its declared type. Thus a bit-field never crosses its unit boundary. 3) Bit-fields may share a storage unit with other struct/union members, including members that are not bit-fields. Of course, struct members occupy different parts of the storage unit. 4) Unnamed bit-fields' types do not affect the alignment of a structure or union, although individual bit-fields' member offsets obey the alignment constraints. <br  />
 </p>
-<dl class="section see"><dt>See also</dt><dd>also Si47XX PROGRAMMING GUIDE; AN332; pages 78 and 79 </dd>
+<dl class="section see"><dt>See also</dt><dd>also Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 78 and 79 </dd>
 <dd>
 also <a href="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipedia.org/wiki/Radio_Data_System</a> </dd></dl>
 </div><table class="fieldtable">
@@ -2627,7 +2627,7 @@ mjd: 17</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock"><p>AGC data types FM / AM and SSB structure to AGC</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; For FM page 80; for AM page 142 </dd>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); For FM page 80; for AM page 142 </dd>
 <dd>
 AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. </dd></dl>
 </div><table class="fieldtable">
@@ -2737,7 +2737,7 @@ AGCIDX</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock"><p>If FM, Overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 (minimum attenuation) and 26 (maximum attenuation). If AM, overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; For FM page 81; for AM page 143 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); For FM page 81; for AM page 143 </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -2804,7 +2804,7 @@ AGCIDX</td>
 </div><div class="memdoc">
 <div class="textblock"><p>The bandwidth of the AM channel filter data type AMCHFLT values: 0 = 6 kHz Bandwidth <br  />
  1 = 4 kHz Bandwidth 2 = 3 kHz Bandwidth 3 = 2 kHz Bandwidth 4 = 1 kHz Bandwidth 5 = 1.8 kHz Bandwidth 6 = 2.5 kHz Bandwidth, gradual roll off 7–15 = Reserved (Do not use)</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 125 and 151 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 125 and 151 </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -2967,7 +2967,7 @@ DSP_AFCDIS: 1</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Digital audio output format data structure (Property 0x0102. DIGITAL_OUTPUT_FORMAT). </p>
 <p>Used to configure: DCLK edge, data format, force mono, and sample precision.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 195. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 195. </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -3121,7 +3121,7 @@ patch_size</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Digital audio output sample structure (Property 0x0104. DIGITAL_OUTPUT_SAMPLE_RATE). </p>
 <p>Used to enable digital audio output and to configure the digital audio output sample rate in samples per second (sps).</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 196. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 196. </dd></dl>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">

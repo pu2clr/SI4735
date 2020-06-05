@@ -608,8 +608,8 @@ void <a class="el" href="group__group08.html#ga63d205f2d3169ba877a2bd2ee28d224f"
 <p>The first command that is sent to the device is the POWER_UP command to confirm that the patch is compatible with the internal device library revision.</p>
 <p>The device moves into the powerup mode, returns the reply, and moves into the powerdown mode.</p>
 <p>The POWER_UP command is sent to the device again to configure the mode of the device and additionally is used to start the patching process.</p>
-<p>When applying the patch, the PATCH bit in ARG1 of the POWER_UP command must be set to 1 to begin the patching process. [AN332 page 219].</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220. </dd>
+<p>When applying the patch, the PATCH bit in ARG1 of the POWER_UP command must be set to 1 to begin the patching process. [AN332 (REV 1.0) page 219].</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64 and 215-220. </dd>
 <dd>
 struct <a class="el" href="group__group01.html#unionsi47x__firmware__query__library" title="Firmware Query Library ID response.">si47x_firmware_query_library</a></dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>a struct <a class="el" href="group__group01.html#unionsi47x__firmware__query__library" title="Firmware Query Library ID response.">si47x_firmware_query_library</a> (see it in <a class="el" href="_s_i4735_8h.html">SI4735.h</a>) </dd></dl>
@@ -639,7 +639,7 @@ struct <a class="el" href="group__group01.html#unionsi47x__firmware__query__libr
 <dd>
 <a class="el" href="_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663">MAX_DELAY_AFTER_POWERUP</a> </dd>
 <dd>
-Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220 and </dd>
+Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64 and 215-220 and </dd>
 <dd>
 AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7. </dd></dl>
 
@@ -733,7 +733,7 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM 
 <div class="line">     0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x9D, 0x29};   </div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> size_content_full = <span class="keyword">sizeof</span> ssb_patch_content_full;</div>
-</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 64 and 215-220. <br  />
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; ;AN332 (REV 1.0) pages 64 and 215-220. <br  />
 </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

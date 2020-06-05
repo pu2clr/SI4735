@@ -177,7 +177,7 @@ Functions</h2></td></tr>
 <p>This command should be called after any command that sets the STCINT or RSQINT bits.</p>
 <p>When polling this command should be periodically called to monitor the STATUS byte, and when using interrupts, this command should be called after the interrupt is set to update the STATUS byte.</p>
 <p>The CTS bit (and optional interrupt) is set when it is safe to send the next command.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 135 </dd>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 135 </dd>
 <dd>
 <a class="el" href="group__group01.html#unionsi47x__status" title="Status response data representation.">si47x_status</a> </dd>
 <dd>
@@ -242,7 +242,7 @@ Functions</h2></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">GPO3OEN </td><td class="markdownTableBodyNone">Output Disabled (Hi-Z) (default) </td><td class="markdownTableBodyNone">Output Enabled  </td></tr>
 </table>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 82 and 144</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 82 and 144</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">GPO1OEN</td><td></td></tr>
@@ -311,7 +311,7 @@ Functions</h2></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">GPO3LEVEL </td><td class="markdownTableBodyNone">Output low (default) </td><td class="markdownTableBodyNone">Output high  </td></tr>
 </table>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 83 and 145</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 83 and 145</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">GPO1LEVEL</td><td></td></tr>
@@ -388,7 +388,7 @@ Functions</h2></td></tr>
 <p>The corresponding bit is set before the interrupt occurs. The CTS bit (and optional interrupt) is set when it is safe to send the next command.</p>
 <p>The CTS interrupt enable (CTSIEN) can be set with this property and the POWER_UP command.</p>
 <p>The state of the CTSIEN bit set during the POWER_UP command can be read by reading this property and modified by writing this property.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 146</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 146</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">STCIEN</td><td>Seek/Tune Complete Interrupt Enable (0 or 1). </td></tr>

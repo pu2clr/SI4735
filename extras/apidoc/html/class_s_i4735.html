@@ -770,7 +770,7 @@ Protected Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> Class. </p>
 <p><a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> Class definition</p>
-<p>This class implements all functions to help you to control the Si47XX devices. This library was built based on “Si47XX PROGRAMMING GUIDE; AN332 ”. It also can be used on all members of the SI473X family respecting, of course, the features available for each IC version. These functionalities can be seen in the comparison matrix shown in table 1 (Product Family Function); pages 2 and 3 of the programming guide.</p>
+<p>This class implements all functions to help you to control the Si47XX devices. This library was built based on “Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0)”. It also can be used on all members of the SI473X family respecting, of course, the features available for each IC version. These functionalities can be seen in the comparison matrix shown in table 1 (Product Family Function); pages 2 and 3 of the programming guide.</p>
 <dl class="section author"><dt>Author</dt><dd>PU2CLR - Ricardo Lima Caratti </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a818c60896490631e4311452c99ff361f"></a>
@@ -793,7 +793,7 @@ Protected Attributes</h2></td></tr>
 <p>This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs.</p>
 <p>Currently you have more than 120 functions implemented to control the Si47XX devices. These functions are listed and documented here.</p>
 <p>Some methods were implemented using inline resource. Inline methods are implemented in <a class="el" href="_s_i4735_8h.html">SI4735.h</a></p>
-<p>IMPORTANT: According to Si47XX PROGRAMMING GUIDE; AN332; page 207, "For write operations, the system controller next sends a data byte on SDIO, which is captured by the device on rising edges of SCLK. The device acknowledges each data byte by driving SDIO low for one cycle on the next falling edge of SCLK. The system controller may write up to 8 data bytes in a single 2-wire transaction. The first byte is a command, and the next seven bytes are arguments. Writing more than 8 bytes results in unpredictable device behavior". So, If you are extending this library, consider that restriction presented earlier. </p>
+<p>IMPORTANT: According to Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 207, "For write operations, the system controller next sends a data byte on SDIO, which is captured by the device on rising edges of SCLK. The device acknowledges each data byte by driving SDIO low for one cycle on the next falling edge of SCLK. The system controller may write up to 8 data bytes in a single 2-wire transaction. The first byte is a command, and the next seven bytes are arguments. Writing more than 8 bytes results in unpredictable device behavior". So, If you are extending this library, consider that restriction presented earlier. </p>
 
 </div>
 </div>
@@ -822,9 +822,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the Signal Quality Interrupt status. </p>
-<p>STATUS RESPONSE Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation </p><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; pages 63 </dd>
+<p>STATUS RESPONSE Set of methods to get current status information. Call them after getStatus or getFrequency or seekStation </p><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 63 </dd>
 <dd>
-Si47XX PROGRAMMING GUIDE; AN332; pages 63 <br  />
+Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 63 <br  />
  </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>RDSINT status </dd></dl>
 
@@ -854,7 +854,7 @@ Si47XX PROGRAMMING GUIDE; AN332; pages 63 <br  />
 </div><div class="memdoc">
 
 <p>Get the Radio Data System (RDS) Interrupt status. </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 63 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 63 </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>RDSINT status <br  />
  </dd></dl>
 
@@ -1230,7 +1230,7 @@ false </dd></dl>
 <p>Sets the Am Soft Mute Max Attenuation. </p>
 <p>This function can be useful to disable Soft Mute. The value 0 disable soft mute.</p>
 <p>Specified in units of dB. Default maximum attenuation is 8 dB. It works for AM and SSB.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332; page 158.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 158.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">smattn</td><td>Maximum attenuation to apply when in soft mute </td></tr>
