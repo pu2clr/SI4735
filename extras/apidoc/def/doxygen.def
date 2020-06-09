@@ -68,12 +68,12 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga5ac4e4465f33d988885c6b3ec86276bd';
-        sec-mem-ref-line = '552';
+        sec-mem-ref-line = '554';
         sec-mem-ref-name = 'setup';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga6f045d3725a457116236ee92d41c4265';
-        sec-mem-ref-line = '2783';
+        sec-mem-ref-line = '2785';
         sec-mem-ref-name = 'ssbSetup';
     };
     }; /* sec-member */
@@ -104,17 +104,17 @@ This function should be used before sending any command to a SI47XX device.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaaae187575b9868ff427c063c3a6cca2a';
-        sec-mem-ref-line = '1422';
+        sec-mem-ref-line = '1424';
         sec-mem-ref-name = 'getAutomaticGainControl';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gabf59183da13c72384093fc238c3114cf';
-        sec-mem-ref-line = '1523';
+        sec-mem-ref-line = '1525';
         sec-mem-ref-name = 'getCurrentReceivedSignalQuality';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga2fbc7e2187a7c645879623100dbc8502';
-        sec-mem-ref-line = '519';
+        sec-mem-ref-line = '475';
         sec-mem-ref-name = 'getFirmware';
     };
       sec-mem-referencedby = {
@@ -124,72 +124,72 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gace60b9db8033c689247dc1370be367b6';
-        sec-mem-ref-line = '1028';
+        sec-mem-ref-line = '1030';
         sec-mem-ref-name = 'getProperty';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga350a2033671a7620d4b9290a2347e185';
-        sec-mem-ref-line = '1972';
+        sec-mem-ref-line = '1974';
         sec-mem-ref-name = 'getRdsStatus';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga5c0f4036a7fbbd11a26f1f6f4579d3cd';
-        sec-mem-ref-line = '1384';
+        sec-mem-ref-line = '1386';
         sec-mem-ref-name = 'getStatus';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gafaabd6c73b7ad7c20ae959d5b75c1e71';
-        sec-mem-ref-line = '2765';
+        sec-mem-ref-line = '2767';
         sec-mem-ref-name = 'patchPowerUp';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaa554b3390fb6c5a4d6661b96afae73ae';
-        sec-mem-ref-line = '495';
+        sec-mem-ref-line = '453';
         sec-mem-ref-name = 'powerDown';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadfc2c82524918224cf19fec5b7fcf6d1';
-        sec-mem-ref-line = '2724';
+        sec-mem-ref-line = '2726';
         sec-mem-ref-name = 'queryLibraryId';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga3e228da65641f4dcf4253262e19bde9b';
-        sec-mem-ref-line = '451';
+        sec-mem-ref-line = '409';
         sec-mem-ref-name = 'radioPowerUp';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga3280b98b8331f00b4d0158ef1b076533';
-        sec-mem-ref-line = '1588';
+        sec-mem-ref-line = '1590';
         sec-mem-ref-name = 'seekStation';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga3d2342264b36bd524ccbaf898e4d219b';
-        sec-mem-ref-line = '961';
+        sec-mem-ref-line = '963';
         sec-mem-ref-name = 'sendCommand';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga4d65660ec2b60d7486165ed8a7a92015';
-        sec-mem-ref-line = '929';
+        sec-mem-ref-line = '931';
         sec-mem-ref-name = 'sendProperty';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2681';
+        sec-mem-ref-line = '2683';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga27c22f5671ce3229e925e5fbe93ba0a6';
-        sec-mem-ref-line = '1467';
+        sec-mem-ref-line = '1469';
         sec-mem-ref-name = 'setAutomaticGainControl';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga8755743a36d2d4662c8db918d02ee4e1';
-        sec-mem-ref-line = '881';
+        sec-mem-ref-line = '883';
         sec-mem-ref-name = 'setBandwidth';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga63d205f2d3169ba877a2bd2ee28d224f';
-        sec-mem-ref-line = '673';
+        sec-mem-ref-line = '675';
         sec-mem-ref-name = 'setFrequency';
     };
       sec-mem-referencedby = {
@@ -204,22 +204,22 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gad9718a85c79a311c26997bbda20f2351';
-        sec-mem-ref-line = '1884';
+        sec-mem-ref-line = '1886';
         sec-mem-ref-name = 'setRdsConfig';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga530e64d00d95b4ceb13ce33aa74c63cb';
-        sec-mem-ref-line = '1930';
+        sec-mem-ref-line = '1932';
         sec-mem-ref-name = 'setRdsIntSource';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga55cf9a091d314a1aa21552f2254f756f';
-        sec-mem-ref-line = '2437';
+        sec-mem-ref-line = '2439';
         sec-mem-ref-name = 'setSSBBfo';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga0fcfd8e487c594707b3f2aaa71a86d68';
-        sec-mem-ref-line = '2795';
+        sec-mem-ref-line = '2797';
         sec-mem-ref-name = 'ssbPowerUp';
     };
     }; /* sec-member */
@@ -332,12 +332,12 @@ You can use any Arduino digital pin. Be sure you are using less than 3.6V on Si4
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga2fbc7e2187a7c645879623100dbc8502';
-        sec-mem-ref-line = '519';
+        sec-mem-ref-line = '475';
         sec-mem-ref-name = 'getFirmware';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga3e228da65641f4dcf4253262e19bde9b';
-        sec-mem-ref-line = '451';
+        sec-mem-ref-line = '409';
         sec-mem-ref-name = 'radioPowerUp';
     };
       sec-mem-referenceto = {
@@ -353,7 +353,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group06_1gaead75aee878a798853a2692c6f7f0a96';
+      sec-mem-id   = 'group__group07_1gaead75aee878a798853a2692c6f7f0a96';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -401,7 +401,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group06_1ga02bd2e75a55021f065f867dea96cceb8';
+      sec-mem-id   = 'group__group07_1ga02bd2e75a55021f065f867dea96cceb8';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -634,7 +634,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group06_1ga8bc001cb28dc8fbd88ba0fa7024eca39';
+      sec-mem-id   = 'group__group07_1ga8bc001cb28dc8fbd88ba0fa7024eca39';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -707,7 +707,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group06_1ga3e228da65641f4dcf4253262e19bde9b';
+      sec-mem-id   = 'group__group07_1ga3e228da65641f4dcf4253262e19bde9b';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -756,33 +756,33 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga412f51386c47a17cf04fd0a3c3078726';
-        sec-mem-ref-line = '480';
+        sec-mem-ref-line = '438';
         sec-mem-ref-name = 'analogPowerUp';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga753390952a1f2c2a98343979f1f3daa0';
-        sec-mem-ref-line = '750';
+        sec-mem-ref-line = '752';
         sec-mem-ref-name = 'setAM';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gacd89e7b8adefcbc4e89f802acb915906';
-        sec-mem-ref-line = '776';
+        sec-mem-ref-line = '778';
         sec-mem-ref-name = 'setFM';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga3e907ddf560a0c8286fa55768701b3da';
-        sec-mem-ref-line = '2628';
+        sec-mem-ref-line = '2630';
         sec-mem-ref-name = 'setSSB';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga5ac4e4465f33d988885c6b3ec86276bd';
-        sec-mem-ref-line = '552';
+        sec-mem-ref-line = '554';
         sec-mem-ref-name = 'setup';
     };
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group06_1ga412f51386c47a17cf04fd0a3c3078726';
+      sec-mem-id   = 'group__group07_1ga412f51386c47a17cf04fd0a3c3078726';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -807,13 +807,13 @@ This function is still available only for legacy reasons.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga3e228da65641f4dcf4253262e19bde9b';
-        sec-mem-ref-line = '451';
+        sec-mem-ref-line = '409';
         sec-mem-ref-name = 'radioPowerUp';
     };
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group06_1gaa554b3390fb6c5a4d6661b96afae73ae';
+      sec-mem-id   = 'group__group07_1gaa554b3390fb6c5a4d6661b96afae73ae';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -848,17 +848,17 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadfc2c82524918224cf19fec5b7fcf6d1';
-        sec-mem-ref-line = '2724';
+        sec-mem-ref-line = '2726';
         sec-mem-ref-name = 'queryLibraryId';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga753390952a1f2c2a98343979f1f3daa0';
-        sec-mem-ref-line = '750';
+        sec-mem-ref-line = '752';
         sec-mem-ref-name = 'setAM';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gacd89e7b8adefcbc4e89f802acb915906';
-        sec-mem-ref-line = '776';
+        sec-mem-ref-line = '778';
         sec-mem-ref-name = 'setFM';
     };
     }; /* sec-member */
@@ -2226,17 +2226,17 @@ Define the band range you want to use for the AM mode.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaa554b3390fb6c5a4d6661b96afae73ae';
-        sec-mem-ref-line = '495';
+        sec-mem-ref-line = '453';
         sec-mem-ref-name = 'powerDown';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga3e228da65641f4dcf4253262e19bde9b';
-        sec-mem-ref-line = '451';
+        sec-mem-ref-line = '409';
         sec-mem-ref-name = 'radioPowerUp';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga43c5ea36995a3897820e0170d94c81f4';
-        sec-mem-ref-line = '807';
+        sec-mem-ref-line = '809';
         sec-mem-ref-name = 'setAM';
     };
     }; /* sec-member */
@@ -2261,22 +2261,22 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae4683e9a9fc7a633305b18dae54fbd83';
-        sec-mem-ref-line = '1219';
+        sec-mem-ref-line = '1221';
         sec-mem-ref-name = 'disableFmDebug';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaa554b3390fb6c5a4d6661b96afae73ae';
-        sec-mem-ref-line = '495';
+        sec-mem-ref-line = '453';
         sec-mem-ref-name = 'powerDown';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga3e228da65641f4dcf4253262e19bde9b';
-        sec-mem-ref-line = '451';
+        sec-mem-ref-line = '409';
         sec-mem-ref-name = 'radioPowerUp';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga673bc4b17d564bb6e7f3e9a61d35fbb3';
-        sec-mem-ref-line = '845';
+        sec-mem-ref-line = '847';
         sec-mem-ref-name = 'setFM';
     };
     }; /* sec-member */
@@ -2336,7 +2336,7 @@ si4735.setAM(520, 1750, 810, 10);
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga753390952a1f2c2a98343979f1f3daa0';
-        sec-mem-ref-line = '750';
+        sec-mem-ref-line = '752';
         sec-mem-ref-name = 'setAM';
     };
     }; /* sec-member */
@@ -2403,7 +2403,7 @@ si4735.setFM(6400, 10800, 10390, 10);
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gacd89e7b8adefcbc4e89f802acb915906';
-        sec-mem-ref-line = '776';
+        sec-mem-ref-line = '778';
         sec-mem-ref-name = 'setFM';
     };
     }; /* sec-member */
@@ -2704,7 +2704,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga5ac4e4465f33d988885c6b3ec86276bd';
-        sec-mem-ref-line = '552';
+        sec-mem-ref-line = '554';
         sec-mem-ref-name = 'setup';
     };
     }; /* sec-member */
@@ -3409,22 +3409,22 @@ This method is called by setRdsConfig()
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadede134b96fd5650b87673ce413babb2';
-        sec-mem-ref-line = '1844';
+        sec-mem-ref-line = '1846';
         sec-mem-ref-name = 'clearRdsBuffer0A';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gac65c552004f5e5e646638e37a5a68213';
-        sec-mem-ref-line = '1821';
+        sec-mem-ref-line = '1823';
         sec-mem-ref-name = 'clearRdsBuffer2A';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaed0988165057aa2880f41b88ac236cd7';
-        sec-mem-ref-line = '1833';
+        sec-mem-ref-line = '1835';
         sec-mem-ref-name = 'clearRdsBuffer2B';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gad9718a85c79a311c26997bbda20f2351';
-        sec-mem-ref-line = '1884';
+        sec-mem-ref-line = '1886';
         sec-mem-ref-name = 'setRdsConfig';
     };
     }; /* sec-member */
@@ -3530,17 +3530,17 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadede134b96fd5650b87673ce413babb2';
-        sec-mem-ref-line = '1844';
+        sec-mem-ref-line = '1846';
         sec-mem-ref-name = 'clearRdsBuffer0A';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gac65c552004f5e5e646638e37a5a68213';
-        sec-mem-ref-line = '1821';
+        sec-mem-ref-line = '1823';
         sec-mem-ref-name = 'clearRdsBuffer2A';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaed0988165057aa2880f41b88ac236cd7';
-        sec-mem-ref-line = '1833';
+        sec-mem-ref-line = '1835';
         sec-mem-ref-name = 'clearRdsBuffer2B';
     };
       sec-mem-referenceto = {
@@ -3593,17 +3593,17 @@ if FIFO is 1, it means the minimum number of groups was filled
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaf1e67b201799a9e8d7208a32a65656b5';
-        sec-mem-ref-line = '2039';
+        sec-mem-ref-line = '2041';
         sec-mem-ref-name = 'getRdsPI';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga12d917629b78fffebac5ecf8f2936921';
-        sec-mem-ref-line = '2239';
+        sec-mem-ref-line = '2241';
         sec-mem-ref-name = 'getRdsText0A';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae54d0f5562ca7615c3b90bee00c29ab4';
-        sec-mem-ref-line = '2272';
+        sec-mem-ref-line = '2274';
         sec-mem-ref-name = 'getRdsText2A';
     };
     }; /* sec-member */
@@ -3665,7 +3665,7 @@ Returns true if valid Block A data has been received.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaf1e67b201799a9e8d7208a32a65656b5';
-        sec-mem-ref-line = '2039';
+        sec-mem-ref-line = '2041';
         sec-mem-ref-name = 'getRdsPI';
     };
     }; /* sec-member */
@@ -3830,7 +3830,7 @@ Recommended Block Error Threshold options:
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaffdba9ca9fb9bf5bb671ac3d448a7e89';
-        sec-mem-ref-line = '1807';
+        sec-mem-ref-line = '1809';
         sec-mem-ref-name = 'RdsInit';
     };
       sec-mem-referenceto = {
@@ -4026,7 +4026,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadb0a3c39aeacba0faf39aadd9465021f';
-        sec-mem-ref-line = '2180';
+        sec-mem-ref-line = '2182';
         sec-mem-ref-name = 'getNext4Block';
     };
       sec-mem-referenceto = {
@@ -4065,7 +4065,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gab1f4f137139b40fe386ca51586999e50';
-        sec-mem-ref-line = '2146';
+        sec-mem-ref-line = '2148';
         sec-mem-ref-name = 'getNext2Block';
     };
       sec-mem-referenceto = {
@@ -4109,7 +4109,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadb0a3c39aeacba0faf39aadd9465021f';
-        sec-mem-ref-line = '2180';
+        sec-mem-ref-line = '2182';
         sec-mem-ref-name = 'getNext4Block';
     };
       sec-mem-referenceto = {
@@ -4153,7 +4153,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gab1f4f137139b40fe386ca51586999e50';
-        sec-mem-ref-line = '2146';
+        sec-mem-ref-line = '2148';
         sec-mem-ref-name = 'getNext2Block';
     };
       sec-mem-referenceto = {
@@ -4220,12 +4220,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga12d917629b78fffebac5ecf8f2936921';
-        sec-mem-ref-line = '2239';
+        sec-mem-ref-line = '2241';
         sec-mem-ref-name = 'getRdsText0A';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga806d5cfbbeb6ca1299ce20b1220fdb18';
-        sec-mem-ref-line = '2305';
+        sec-mem-ref-line = '2307';
         sec-mem-ref-name = 'getRdsText2B';
     };
     }; /* sec-member */
@@ -4254,12 +4254,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga71cbaa3e0c103db7cee5969d162bec5d';
-        sec-mem-ref-line = '2215';
+        sec-mem-ref-line = '2217';
         sec-mem-ref-name = 'getRdsText';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae54d0f5562ca7615c3b90bee00c29ab4';
-        sec-mem-ref-line = '2272';
+        sec-mem-ref-line = '2274';
         sec-mem-ref-name = 'getRdsText2A';
     };
     }; /* sec-member */
@@ -4399,7 +4399,7 @@ You can use this method for:
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2681';
+        sec-mem-ref-line = '2683';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -4503,7 +4503,7 @@ Set the radio to SSB (LW/MW/SW) function.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga3e228da65641f4dcf4253262e19bde9b';
-        sec-mem-ref-line = '451';
+        sec-mem-ref-line = '409';
         sec-mem-ref-name = 'radioPowerUp';
     };
     }; /* sec-member */
@@ -4563,7 +4563,7 @@ to enable the band pass filter for better high- cut performance on the wanted si
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2681';
+        sec-mem-ref-line = '2683';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -4594,7 +4594,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2681';
+        sec-mem-ref-line = '2683';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -4631,7 +4631,7 @@ Other values = not allowed.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2681';
+        sec-mem-ref-line = '2683';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -4663,7 +4663,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2681';
+        sec-mem-ref-line = '2683';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -4694,7 +4694,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2681';
+        sec-mem-ref-line = '2683';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -4725,7 +4725,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2681';
+        sec-mem-ref-line = '2683';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -4778,7 +4778,7 @@ set to 1 to begin the patching process. [AN332 (REV 1.0) page 219].
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaa554b3390fb6c5a4d6661b96afae73ae';
-        sec-mem-ref-line = '495';
+        sec-mem-ref-line = '453';
         sec-mem-ref-name = 'powerDown';
     };
       sec-mem-referenceto = {
@@ -5527,17 +5527,17 @@ Turns the Hardware audio mute on or off
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaa554b3390fb6c5a4d6661b96afae73ae';
-        sec-mem-ref-line = '495';
+        sec-mem-ref-line = '453';
         sec-mem-ref-name = 'powerDown';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga3e228da65641f4dcf4253262e19bde9b';
-        sec-mem-ref-line = '451';
+        sec-mem-ref-line = '409';
         sec-mem-ref-name = 'radioPowerUp';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga5ac4e4465f33d988885c6b3ec86276bd';
-        sec-mem-ref-line = '552';
+        sec-mem-ref-line = '554';
         sec-mem-ref-name = 'setup';
     };
     }; /* sec-member */
@@ -5859,37 +5859,37 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae9d50b24642784943fefedbac944a8e8';
-        sec-mem-ref-line = '2575';
+        sec-mem-ref-line = '2577';
         sec-mem-ref-name = 'setSBBSidebandCutoffFilter';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga6b2ad4d027463262350134490d16bf32';
-        sec-mem-ref-line = '2605';
+        sec-mem-ref-line = '2607';
         sec-mem-ref-name = 'setSSBAudioBandwidth';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gacacf1dac4c0ec170d1da629dd1fd30cb';
-        sec-mem-ref-line = '2541';
+        sec-mem-ref-line = '2543';
         sec-mem-ref-name = 'setSSBAutomaticVolumeControl';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gafc5e87c50a1eba6de9504c114cc1cb70';
-        sec-mem-ref-line = '2556';
+        sec-mem-ref-line = '2558';
         sec-mem-ref-name = 'setSSBAvcDivider';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga9224e7d4ef14c887da96dbefd2dcefd3';
-        sec-mem-ref-line = '2486';
+        sec-mem-ref-line = '2488';
         sec-mem-ref-name = 'setSSBConfig';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga6cde26a5abf759a628012d1457d85c72';
-        sec-mem-ref-line = '2511';
+        sec-mem-ref-line = '2513';
         sec-mem-ref-name = 'setSSBDspAfc';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga91251dfc2ff9488aaef3aa1a528097d9';
-        sec-mem-ref-line = '2526';
+        sec-mem-ref-line = '2528';
         sec-mem-ref-name = 'setSSBSoftMute';
     };
     }; /* sec-member */
@@ -5915,7 +5915,7 @@ Silicon Labs recommends you disable this feature by sending the following bytes 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gacd89e7b8adefcbc4e89f802acb915906';
-        sec-mem-ref-line = '776';
+        sec-mem-ref-line = '778';
         sec-mem-ref-name = 'setFM';
     };
     }; /* sec-member */
@@ -5943,12 +5943,12 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga350a2033671a7620d4b9290a2347e185';
-        sec-mem-ref-line = '1972';
+        sec-mem-ref-line = '1974';
         sec-mem-ref-name = 'getRdsStatus';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaffdba9ca9fb9bf5bb671ac3d448a7e89';
-        sec-mem-ref-line = '1807';
+        sec-mem-ref-line = '1809';
         sec-mem-ref-name = 'RdsInit';
     };
     }; /* sec-member */
@@ -5976,12 +5976,12 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga350a2033671a7620d4b9290a2347e185';
-        sec-mem-ref-line = '1972';
+        sec-mem-ref-line = '1974';
         sec-mem-ref-name = 'getRdsStatus';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaffdba9ca9fb9bf5bb671ac3d448a7e89';
-        sec-mem-ref-line = '1807';
+        sec-mem-ref-line = '1809';
         sec-mem-ref-name = 'RdsInit';
     };
     }; /* sec-member */
@@ -6009,12 +6009,12 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga350a2033671a7620d4b9290a2347e185';
-        sec-mem-ref-line = '1972';
+        sec-mem-ref-line = '1974';
         sec-mem-ref-name = 'getRdsStatus';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaffdba9ca9fb9bf5bb671ac3d448a7e89';
-        sec-mem-ref-line = '1807';
+        sec-mem-ref-line = '1809';
         sec-mem-ref-name = 'RdsInit';
     };
     }; /* sec-member */
@@ -6040,17 +6040,17 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gac65c552004f5e5e646638e37a5a68213';
-        sec-mem-ref-line = '1821';
+        sec-mem-ref-line = '1823';
         sec-mem-ref-name = 'clearRdsBuffer2A';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga71cbaa3e0c103db7cee5969d162bec5d';
-        sec-mem-ref-line = '2215';
+        sec-mem-ref-line = '2217';
         sec-mem-ref-name = 'getRdsText';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae54d0f5562ca7615c3b90bee00c29ab4';
-        sec-mem-ref-line = '2272';
+        sec-mem-ref-line = '2274';
         sec-mem-ref-name = 'getRdsText2A';
     };
     }; /* sec-member */
@@ -6073,12 +6073,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaed0988165057aa2880f41b88ac236cd7';
-        sec-mem-ref-line = '1833';
+        sec-mem-ref-line = '1835';
         sec-mem-ref-name = 'clearRdsBuffer2B';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga806d5cfbbeb6ca1299ce20b1220fdb18';
-        sec-mem-ref-line = '2305';
+        sec-mem-ref-line = '2307';
         sec-mem-ref-name = 'getRdsText2B';
     };
     }; /* sec-member */
@@ -6101,12 +6101,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadede134b96fd5650b87673ce413babb2';
-        sec-mem-ref-line = '1844';
+        sec-mem-ref-line = '1846';
         sec-mem-ref-name = 'clearRdsBuffer0A';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga12d917629b78fffebac5ecf8f2936921';
-        sec-mem-ref-line = '2239';
+        sec-mem-ref-line = '2241';
         sec-mem-ref-name = 'getRdsText0A';
     };
     }; /* sec-member */
@@ -6129,7 +6129,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaa8436bb156f3ac8321c65941be42fdba';
-        sec-mem-ref-line = '2338';
+        sec-mem-ref-line = '2340';
         sec-mem-ref-name = 'getRdsTime';
     };
     }; /* sec-member */
@@ -6152,12 +6152,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga71cbaa3e0c103db7cee5969d162bec5d';
-        sec-mem-ref-line = '2215';
+        sec-mem-ref-line = '2217';
         sec-mem-ref-name = 'getRdsText';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae54d0f5562ca7615c3b90bee00c29ab4';
-        sec-mem-ref-line = '2272';
+        sec-mem-ref-line = '2274';
         sec-mem-ref-name = 'getRdsText2A';
     };
     }; /* sec-member */
@@ -6180,7 +6180,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga806d5cfbbeb6ca1299ce20b1220fdb18';
-        sec-mem-ref-line = '2305';
+        sec-mem-ref-line = '2307';
         sec-mem-ref-name = 'getRdsText2B';
     };
     }; /* sec-member */
@@ -6203,7 +6203,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga12d917629b78fffebac5ecf8f2936921';
-        sec-mem-ref-line = '2239';
+        sec-mem-ref-line = '2241';
         sec-mem-ref-name = 'getRdsText0A';
     };
     }; /* sec-member */
@@ -6727,7 +6727,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga24effe79ef38a239c1d49a58df318cf8';
-        sec-mem-ref-line = '2989';
+        sec-mem-ref-line = '2991';
         sec-mem-ref-name = 'setMcuControl';
     };
     }; /* sec-member */

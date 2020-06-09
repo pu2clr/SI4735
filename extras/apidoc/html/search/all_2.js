@@ -10,8 +10,7 @@ var searchData=
   ['dosr_72',['DOSR',['../group__group01.html#a9988ba829a46409f23d7cb9bb0f156d9',1,'si4735_digital_output_sample_rate']]],
   ['downloadpatch_73',['downloadPatch',['../group__group17.html#gafd1343bd8b4f0c290ef81c418222036c',1,'SI4735']]],
   ['downloadpatchfromeeprom_74',['downloadPatchFromEeprom',['../group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6',1,'SI4735']]],
-  ['defined_20data_20types_75',['Defined Data Types',['../group__group01.html',1,'']]],
-  ['deal_20with_20interrupt_20and_20i2c_20bus_76',['Deal with Interrupt and I2C bus',['../group__group05.html',1,'']]],
-  ['device_20information_20and_20start_20up_77',['Device Information and Start up',['../group__group07.html',1,'']]],
-  ['device_20mode_2c_20band_20and_20frequency_20setup_78',['Device Mode, Band and Frequency setup',['../group__group08.html',1,'']]]
+  ['deal_20with_20interrupt_20and_20i2c_20bus_75',['Deal with Interrupt and I2C bus',['../group__group05.html',1,'']]],
+  ['device_20setup_20and_20start_20up_76',['Device Setup and Start up',['../group__group07.html',1,'']]],
+  ['device_20mode_2c_20band_20and_20frequency_20setup_77',['Device Mode, Band and Frequency setup',['../group__group08.html',1,'']]]
 ];
