@@ -211,68 +211,6 @@ Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 SI4735 si4735;
 
-void setup()
-{
-  // Encoder pins
-  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
-  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
-
-  pinMode(BANDWIDTH_BUTTON, INPUT_PULLUP);
-  pinMode(BAND_BUTTON_UP, INPUT_PULLUP);
-  pinMode(BAND_BUTTON_DOWN, INPUT_PULLUP);
-  pinMode(VOL_UP, INPUT_PULLUP);
-  pinMode(VOL_DOWN, INPUT_PULLUP);
-  pinMode(BFO_SWITCH, INPUT_PULLUP);
-  pinMode(AGC_SWITCH, INPUT_PULLUP);
-  pinMode(STEP_SWITCH, INPUT_PULLUP);
-  pinMode(MODE_SWITCH, INPUT_PULLUP);
-
-  oled.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-  oled.clearDisplay();
-  oled.setTextColor(SSD1306_WHITE);
-
-  // Splash - Change it for your introduction text.
-  oled.setTextSize(1); // Draw 2X-scale text
-  oled.setCursor(40, 0);
-  oled.print("SI4735");
-  oled.setCursor(20, 10);
-  oled.print("Arduino Library");
-  oled.display();
-  delay(500);
-  oled.setCursor(15, 20);
-  oled.print("All in One Radio");
-  oled.display();
-  delay(500);
-  oled.setCursor(30, 35);
-  oled.print("SMT32 - OLED");
-  oled.setCursor(10, 50);
-  oled.print("V1.1.6 - By PU2CLR");
-
-  oled.display();
-  delay(2000);
-  // end Splash
-
-  // Encoder interrupt
-  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
-
-
-  si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
-
-  si4735.setI2CFastMode();               // Recommended (400 KHz)
-
-  si4735.setup(RESET_PIN, FM_BAND_TYPE);
-
-  delay(300);
-  // Set up the radio for the current band (see index table variable bandIdx )
-  useBand();
-
-  currentFrequency = si4735.getFrequency();
-
-  si4735.setVolume(volume);
-
-  showStatus();
-}
 
 
 inline void clearBuffer(char *p) {
@@ -366,6 +304,44 @@ void printValue(int col, int line, char *oldValue, char *newValue, int space, in
   strcpy(oldValue, newValue);
 }
 
+/*
+   Shows the volume level on LCD
+*/
+void showVolume()
+{
+  char sVolume[10];
+  sprintf(sVolume, "V%2.2u", si4735.getCurrentVolume());
+  printValue(105, 30, oldVolume, sVolume, 6, 1);
+  oled.display();
+}
+
+/*
+   Shows the BFO current status.
+   Must be called only on SSB mode (LSB or USB)
+*/
+void showBFO()
+{
+
+  char bfo[15];
+  char stepBfo[10];
+  char flag;
+
+  if (currentBFO > 0)
+    flag = '+';
+  else if (currentBFO < 0)
+    flag = '-';
+  else
+    flag = ' ';
+
+  sprintf(bfo, "BFO: %c%4.4uHz", flag, abs(currentBFO));
+  printValue(0, 43, oldBfo, bfo, 6, 1);
+
+  sprintf(stepBfo, "%3.3u", currentBFOStep);
+  printValue(105, 43, oldStepBfo, stepBfo, 6, 1);
+
+  oled.display();
+
+}
 
 
 void showFrequency()
@@ -417,6 +393,40 @@ void showFrequency()
   oled.display();
 }
 
+/* *******************************
+   Shows RSSI status
+*/
+void showRSSI()
+{
+  char sRssi[20];
+  char sSnr[20];
+  char extraSignalInfo[15];
+
+  if ( currentMode == FM) {
+    sprintf(extraSignalInfo, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
+    printValue(0, 20, oldExtraSignalInfo, extraSignalInfo, 7, 1);
+  } else {
+     // AGC and Attenuation
+     si4735.getAutomaticGainControl();
+     if ( si4735.isAgcEnabled() ) {
+      strcpy(extraSignalInfo, "AGC ON");
+     } else {
+      sprintf(extraSignalInfo, "ATT %2d", agcNdx);      
+     }
+     printValue(0, 20, oldExtraSignalInfo, extraSignalInfo, 7, 1);
+  }
+
+  sprintf(sRssi, "RSSI:%idBuV", rssi);
+  printValue(0, 56, oldRssi, sRssi, 6, 1);
+
+  sprintf(sSnr, "SNR:%idB", snr);
+  printValue(78, 56, oldSnr, sSnr, 6, 1);
+
+  oled.display();
+}
+
+
+
 /*
     Show some basic information on display
 */
@@ -456,76 +466,50 @@ void showStatus()
   oled.display();
 }
 
-/* *******************************
-   Shows RSSI status
+/*
+   Switch the radio to current band.
+   The bandIdx variable points to the current band.
+   This function change to the band referenced by bandIdx (see table band).
 */
-void showRSSI()
+void useBand()
 {
-  char sRssi[20];
-  char sSnr[20];
-  char extraSignalInfo[15];
+  // clearLine4();
+  if (band[bandIdx].bandType == FM_BAND_TYPE)
+  {
+    currentMode = FM;
+    si4735.setTuneFrequencyAntennaCapacitor(0);
+    si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+    bfoOn = ssbLoaded = false;
 
-  if ( currentMode == FM) {
-    sprintf(extraSignalInfo, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
-    printValue(0, 20, oldExtraSignalInfo, extraSignalInfo, 7, 1);
-  } else {
-     // AGC and Attenuation
-     si4735.getAutomaticGainControl();
-     if ( si4735.isAgcEnabled() ) {
-      strcpy(extraSignalInfo, "AGC ON");
-     } else {
-      sprintf(extraSignalInfo, "ATT %2d", agcNdx);      
-     }
-     printValue(0, 20, oldExtraSignalInfo, extraSignalInfo, 7, 1);
   }
-
-  sprintf(sRssi, "RSSI:%idBuV", rssi);
-  printValue(0, 56, oldRssi, sRssi, 6, 1);
-
-  sprintf(sSnr, "SNR:%idB", snr);
-  printValue(78, 56, oldSnr, sSnr, 6, 1);
-
-  oled.display();
-}
-
-/*
-   Shows the volume level on LCD
-*/
-void showVolume()
-{
-  char sVolume[10];
-  sprintf(sVolume, "V%2.2u", si4735.getCurrentVolume());
-  printValue(105, 30, oldVolume, sVolume, 6, 1);
-  oled.display();
-}
-
-/*
-   Shows the BFO current status.
-   Must be called only on SSB mode (LSB or USB)
-*/
-void showBFO()
-{
-
-  char bfo[15];
-  char stepBfo[10];
-  char flag;
-
-  if (currentBFO > 0)
-    flag = '+';
-  else if (currentBFO < 0)
-    flag = '-';
   else
-    flag = ' ';
+  {
+    if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
+      si4735.setTuneFrequencyAntennaCapacitor(0);
+    else
+      si4735.setTuneFrequencyAntennaCapacitor(1);
 
-  sprintf(bfo, "BFO: %c%4.4uHz", flag, abs(currentBFO));
-  printValue(0, 43, oldBfo, bfo, 6, 1);
-
-  sprintf(stepBfo, "%3.3u", currentBFOStep);
-  printValue(105, 43, oldStepBfo, stepBfo, 6, 1);
-
-  oled.display();
-
+    if (ssbLoaded)
+    {
+      si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
+      si4735.setSSBAutomaticVolumeControl(1);
+    }
+    else
+    {
+      currentMode = AM;
+      si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+      bfoOn = false;
+    }
+    si4735.setAmSoftMuteMaxAttenuation(0); // Disable Soft Mute for AM or SSB
+    si4735.setAutomaticGainControl(disableAgc, agcNdx);
+  }
+  delay(100);
+  currentFrequency = band[bandIdx].currentFreq;
+  currentStep = band[bandIdx].currentStep;
+  resetBuffer();
+  showStatus();
 }
+
 
 /*
    Goes to the next band (see Band table)
@@ -593,49 +577,6 @@ void loadSSB()
   showStatus();
 }
 
-/*
-   Switch the radio to current band.
-   The bandIdx variable points to the current band.
-   This function change to the band referenced by bandIdx (see table band).
-*/
-void useBand()
-{
-  // clearLine4();
-  if (band[bandIdx].bandType == FM_BAND_TYPE)
-  {
-    currentMode = FM;
-    si4735.setTuneFrequencyAntennaCapacitor(0);
-    si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-    bfoOn = ssbLoaded = false;
-
-  }
-  else
-  {
-    if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
-      si4735.setTuneFrequencyAntennaCapacitor(0);
-    else
-      si4735.setTuneFrequencyAntennaCapacitor(1);
-
-    if (ssbLoaded)
-    {
-      si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
-      si4735.setSSBAutomaticVolumeControl(1);
-    }
-    else
-    {
-      currentMode = AM;
-      si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      bfoOn = false;
-    }
-    si4735.setAmSoftMuteMaxAttenuation(0); // Disable Soft Mute for AM or SSB
-    si4735.setAutomaticGainControl(disableAgc, agcNdx);
-  }
-  delay(100);
-  currentFrequency = band[bandIdx].currentFreq;
-  currentStep = band[bandIdx].currentStep;
-  resetBuffer();
-  showStatus();
-}
 
 
 /*
@@ -805,6 +746,71 @@ void volumeButton ( byte d) {
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 
 }
+
+
+void setup()
+{
+  // Encoder pins
+  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
+
+  pinMode(BANDWIDTH_BUTTON, INPUT_PULLUP);
+  pinMode(BAND_BUTTON_UP, INPUT_PULLUP);
+  pinMode(BAND_BUTTON_DOWN, INPUT_PULLUP);
+  pinMode(VOL_UP, INPUT_PULLUP);
+  pinMode(VOL_DOWN, INPUT_PULLUP);
+  pinMode(BFO_SWITCH, INPUT_PULLUP);
+  pinMode(AGC_SWITCH, INPUT_PULLUP);
+  pinMode(STEP_SWITCH, INPUT_PULLUP);
+  pinMode(MODE_SWITCH, INPUT_PULLUP);
+
+  oled.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  oled.clearDisplay();
+  oled.setTextColor(SSD1306_WHITE);
+
+  // Splash - Change it for your introduction text.
+  oled.setTextSize(1); // Draw 2X-scale text
+  oled.setCursor(40, 0);
+  oled.print("SI4735");
+  oled.setCursor(20, 10);
+  oled.print("Arduino Library");
+  oled.display();
+  delay(500);
+  oled.setCursor(15, 20);
+  oled.print("All in One Radio");
+  oled.display();
+  delay(500);
+  oled.setCursor(30, 35);
+  oled.print("SMT32 - OLED");
+  oled.setCursor(10, 50);
+  oled.print("V1.1.6 - By PU2CLR");
+
+  oled.display();
+  delay(2000);
+  // end Splash
+
+  // Encoder interrupt
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
+
+
+  si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
+
+  si4735.setI2CFastMode();               // Recommended (400 KHz)
+
+  si4735.setup(RESET_PIN, FM_BAND_TYPE);
+
+  delay(300);
+  // Set up the radio for the current band (see index table variable bandIdx )
+  useBand();
+
+  currentFrequency = si4735.getFrequency();
+
+  si4735.setVolume(volume);
+
+  showStatus();
+}
+
 
 void loop()
 {

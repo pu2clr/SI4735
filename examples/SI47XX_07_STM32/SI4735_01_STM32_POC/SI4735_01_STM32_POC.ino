@@ -39,39 +39,6 @@ const char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 SI4735 si4735;
 
-void setup()
-{
-  Serial.begin(9600);
-  while(!Serial);
-
-  digitalWrite(RESET_PIN, HIGH);
-  
-  Serial.println("AM and FM station tuning test.");
-
-  showHelp();
-
-  // Look for the Si47XX I2C bus address
-  int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
-  if ( si4735Addr == 0 ) {
-    Serial.println("Si473X not found!");
-    Serial.flush();
-    while (1);
-  } else {
-    Serial.print("The Si473X I2C address is 0x");
-    Serial.println(si4735Addr, HEX);
-  }
-
-
-  delay(500);
-  si4735.setup(RESET_PIN, FM_FUNCTION);
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
-  si4735.setFM(8400, 10800, 10390, 10);
-  delay(500);
-  currentFrequency = previousFrequency = si4735.getFrequency();
-  si4735.setVolume(45);
-  showStatus();
-}
-
 void showHelp()
 {
 
@@ -112,6 +79,42 @@ void showStatus()
   Serial.print(si4735.getCurrentRSSI());
   Serial.println("dBuV]");
 }
+
+
+
+void setup()
+{
+  Serial.begin(9600);
+  while(!Serial);
+
+  digitalWrite(RESET_PIN, HIGH);
+  
+  Serial.println("AM and FM station tuning test.");
+
+  showHelp();
+
+  // Look for the Si47XX I2C bus address
+  int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
+  if ( si4735Addr == 0 ) {
+    Serial.println("Si473X not found!");
+    Serial.flush();
+    while (1);
+  } else {
+    Serial.print("The Si473X I2C address is 0x");
+    Serial.println(si4735Addr, HEX);
+  }
+
+
+  delay(500);
+  si4735.setup(RESET_PIN, FM_FUNCTION);
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  si4735.setFM(8400, 10800, 10390, 10);
+  delay(500);
+  currentFrequency = previousFrequency = si4735.getFrequency();
+  si4735.setVolume(45);
+  showStatus();
+}
+
 
 // Main
 void loop()

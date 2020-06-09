@@ -94,54 +94,6 @@ uint8_t rssi = 0;
 
 SI4735 si4735;
 
-void setup()
-{
-
-  Serial.begin(9600);
-  while(!Serial);
-
-  
-  Serial.println("Si4735 Arduino Library");
-  Serial.println("SSB TEST");
-  Serial.println("By PU2CLR");
-
-
-  // Gets and sets the Si47XX I2C bus address
-  int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
-  if ( si4735Addr == 0 ) {
-    Serial.println("Si473X not found!");
-    Serial.flush();
-    while (1);
-  } else {
-    Serial.print("The Si473X I2C address is 0x");
-    Serial.println(si4735Addr, HEX);
-  }
-
-
-  si4735.setup(RESET_PIN, AM_FUNCTION);
-
-  // Testing I2C clock speed and SSB behaviour
-  // si4735.setI2CLowSpeedMode();     //  10000 (10KHz)
-  // si4735.setI2CStandardMode();        // 100000 (100KHz)
-  si4735.setI2CFastMode();         // 400000 (400KHz)
-  // si4735.setI2CFastModeCustom(500000); // It is not safe and can crash.
-  delay(10);
-  Serial.println("SSB patch is loading...");
-  et1 = millis();
-  loadSSB();
-  et2 = millis();
-  Serial.print("SSB patch was loaded in: ");
-  Serial.print( (et2 - et1) );
-  Serial.println("ms");
-  delay(100);
-  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
-  delay(100);
-  currentFrequency = si4735.getFrequency();
-  si4735.setVolume(60);
-  showHelp();
-  showStatus();
-}
 
 void showSeparator()
 {
@@ -288,6 +240,56 @@ void loadSSB()
 /*
    Main
 */
+
+void setup()
+{
+
+  Serial.begin(9600);
+  while(!Serial);
+
+  
+  Serial.println("Si4735 Arduino Library");
+  Serial.println("SSB TEST");
+  Serial.println("By PU2CLR");
+
+
+  // Gets and sets the Si47XX I2C bus address
+  int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
+  if ( si4735Addr == 0 ) {
+    Serial.println("Si473X not found!");
+    Serial.flush();
+    while (1);
+  } else {
+    Serial.print("The Si473X I2C address is 0x");
+    Serial.println(si4735Addr, HEX);
+  }
+
+
+  si4735.setup(RESET_PIN, AM_FUNCTION);
+
+  // Testing I2C clock speed and SSB behaviour
+  // si4735.setI2CLowSpeedMode();     //  10000 (10KHz)
+  // si4735.setI2CStandardMode();        // 100000 (100KHz)
+  si4735.setI2CFastMode();         // 400000 (400KHz)
+  // si4735.setI2CFastModeCustom(500000); // It is not safe and can crash.
+  delay(10);
+  Serial.println("SSB patch is loading...");
+  et1 = millis();
+  loadSSB();
+  et2 = millis();
+  Serial.print("SSB patch was loaded in: ");
+  Serial.print( (et2 - et1) );
+  Serial.println("ms");
+  delay(100);
+  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
+  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
+  delay(100);
+  currentFrequency = si4735.getFrequency();
+  si4735.setVolume(60);
+  showHelp();
+  showStatus();
+}
+
 void loop()
 {
   // Check if exist some command to execute
