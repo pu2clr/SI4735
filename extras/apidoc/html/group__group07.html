@@ -96,9 +96,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga2fbc7e2187a7c645879623100dbc8502"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#ga2fbc7e2187a7c645879623100dbc8502">SI4735::getFirmware</a> (void)</td></tr>
 <tr class="memdesc:ga2fbc7e2187a7c645879623100dbc8502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets firmware information.  <a href="group__group07.html#ga2fbc7e2187a7c645879623100dbc8502">More...</a><br /></td></tr>
 <tr class="separator:ga2fbc7e2187a7c645879623100dbc8502"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga95fd37277dbb8b16b5ae7a996a5f9eba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#ga95fd37277dbb8b16b5ae7a996a5f9eba">SI4735::setup</a> (uint8_t <a class="el" href="class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e">resetPin</a>, int <a class="el" href="class_s_i4735.html#af8f8123888060f858c74ba08a29ff38b">interruptPin</a>, uint8_t defaultFunction, uint8_t audioMode=<a class="el" href="_s_i4735_8h.html#afd6b0255af56b3deee67ef1fe14d2fd6">SI473X_ANALOG_AUDIO</a>)</td></tr>
-<tr class="memdesc:ga95fd37277dbb8b16b5ae7a996a5f9eba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the Si473X device.  <a href="group__group07.html#ga95fd37277dbb8b16b5ae7a996a5f9eba">More...</a><br /></td></tr>
-<tr class="separator:ga95fd37277dbb8b16b5ae7a996a5f9eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5ac4e4465f33d988885c6b3ec86276bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#ga5ac4e4465f33d988885c6b3ec86276bd">SI4735::setup</a> (uint8_t <a class="el" href="class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e">resetPin</a>, int <a class="el" href="class_s_i4735.html#af8f8123888060f858c74ba08a29ff38b">interruptPin</a>, uint8_t defaultFunction, uint8_t audioMode=<a class="el" href="_s_i4735_8h.html#afd6b0255af56b3deee67ef1fe14d2fd6">SI473X_ANALOG_AUDIO</a>, uint8_t clockType=<a class="el" href="_s_i4735_8h.html#a33a17dceb88b2b05d8032714a1998368">XOSCEN_CRYSTAL</a>)</td></tr>
+<tr class="memdesc:ga5ac4e4465f33d988885c6b3ec86276bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the Si473X device.  <a href="group__group07.html#ga5ac4e4465f33d988885c6b3ec86276bd">More...</a><br /></td></tr>
+<tr class="separator:ga5ac4e4465f33d988885c6b3ec86276bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga944ed704e2175a6cf660ad65ca5bbad5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#ga944ed704e2175a6cf660ad65ca5bbad5">SI4735::setup</a> (uint8_t <a class="el" href="class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e">resetPin</a>, uint8_t defaultFunction)</td></tr>
 <tr class="memdesc:ga944ed704e2175a6cf660ad65ca5bbad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the Si473X device. <br  />
   <a href="group__group07.html#ga944ed704e2175a6cf660ad65ca5bbad5">More...</a><br /></td></tr>
@@ -130,12 +130,12 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">SI4735::waitToSend()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__group07.html#ga95fd37277dbb8b16b5ae7a996a5f9eba">SI4735::setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group07.html#ga5ac4e4465f33d988885c6b3ec86276bd">SI4735::setup()</a>.</p>
 
 </div>
 </div>
-<a id="ga95fd37277dbb8b16b5ae7a996a5f9eba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga95fd37277dbb8b16b5ae7a996a5f9eba">&#9670;&nbsp;</a></span>setup() <span class="overload">[1/2]</span></h2>
+<a id="ga5ac4e4465f33d988885c6b3ec86276bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5ac4e4465f33d988885c6b3ec86276bd">&#9670;&nbsp;</a></span>setup() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,7 +162,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>audioMode</em> = <code><a class="el" href="_s_i4735_8h.html#afd6b0255af56b3deee67ef1fe14d2fd6">SI473X_ANALOG_AUDIO</a></code>&#160;</td>
+          <td class="paramname"><em>audioMode</em> = <code><a class="el" href="_s_i4735_8h.html#afd6b0255af56b3deee67ef1fe14d2fd6">SI473X_ANALOG_AUDIO</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>clockType</em> = <code><a class="el" href="_s_i4735_8h.html#a33a17dceb88b2b05d8032714a1998368">XOSCEN_CRYSTAL</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -179,10 +185,11 @@ Functions</h2></td></tr>
 </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">uint8_t</td><td>resetPin Digital Arduino Pin used to RESET de Si47XX device. </td></tr>
-    <tr><td class="paramname">uint8_t</td><td>interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled. </td></tr>
-    <tr><td class="paramname">uint8_t</td><td>defaultFunction is the mode you want the receiver starts. </td></tr>
-    <tr><td class="paramname">uint8_t</td><td>audioMode default SI473X_ANALOG_AUDIO (Analog Audio). Use SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO. </td></tr>
+    <tr><td class="paramname">resetPin</td><td>Digital Arduino Pin used to RESET de Si47XX device. </td></tr>
+    <tr><td class="paramname">interruptPin</td><td>interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled. </td></tr>
+    <tr><td class="paramname">defaultFunction</td><td>is the mode you want the receiver starts. </td></tr>
+    <tr><td class="paramname">audioMode</td><td>default SI473X_ANALOG_AUDIO (Analog Audio). Use SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO. </td></tr>
+    <tr><td class="paramname">clockType</td><td>0 = Use external RCLK (crystal oscillator disabled); 1 = Use crystal oscillator </td></tr>
   </table>
   </dd>
 </dl>

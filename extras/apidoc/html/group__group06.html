@@ -104,6 +104,12 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga7b45c1b22c3c1a3f2326bee913d1e1e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1). <br  />
   <a href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">More...</a><br /></td></tr>
 <tr class="separator:ga7b45c1b22c3c1a3f2326bee913d1e1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaead75aee878a798853a2692c6f7f0a96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group06.html#gaead75aee878a798853a2692c6f7f0a96">SI4735::setRefClock</a> (uint8_t refclk)</td></tr>
+<tr class="memdesc:gaead75aee878a798853a2692c6f7f0a96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the frequency of the REFCLK from the output of the prescaler.  <a href="group__group06.html#gaead75aee878a798853a2692c6f7f0a96">More...</a><br /></td></tr>
+<tr class="separator:gaead75aee878a798853a2692c6f7f0a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga02bd2e75a55021f065f867dea96cceb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group06.html#ga02bd2e75a55021f065f867dea96cceb8">SI4735::setRefClockPrescaler</a> (uint8_t prescale)</td></tr>
+<tr class="memdesc:ga02bd2e75a55021f065f867dea96cceb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the number used by the prescaler to divide the external RCLK down to the internal REFCLK.  <a href="group__group06.html#ga02bd2e75a55021f065f867dea96cceb8">More...</a><br /></td></tr>
+<tr class="separator:ga02bd2e75a55021f065f867dea96cceb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8bc001cb28dc8fbd88ba0fa7024eca39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group06.html#ga8bc001cb28dc8fbd88ba0fa7024eca39">SI4735::setPowerUp</a> (uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t XOSCEN, uint8_t FUNC, uint8_t OPMODE)</td></tr>
 <tr class="memdesc:ga8bc001cb28dc8fbd88ba0fa7024eca39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Power Up parameters for si473X.  <a href="group__group06.html#ga8bc001cb28dc8fbd88ba0fa7024eca39">More...</a><br /></td></tr>
 <tr class="separator:ga8bc001cb28dc8fbd88ba0fa7024eca39"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,7 +185,7 @@ Functions</h2></td></tr>
  </p>
 <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9">SI4735::getDeviceI2CAddress()</a>, <a class="el" href="group__group07.html#ga95fd37277dbb8b16b5ae7a996a5f9eba">SI4735::setup()</a>, and <a class="el" href="group__group17.html#ga6f045d3725a457116236ee92d41c4265">SI4735::ssbSetup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9">SI4735::getDeviceI2CAddress()</a>, <a class="el" href="group__group07.html#ga5ac4e4465f33d988885c6b3ec86276bd">SI4735::setup()</a>, and <a class="el" href="group__group17.html#ga6f045d3725a457116236ee92d41c4265">SI4735::ssbSetup()</a>.</p>
 
 </div>
 </div>
@@ -205,6 +211,90 @@ Functions</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 63, 128 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="group__group14.html#gaaae187575b9868ff427c063c3a6cca2a">SI4735::getAutomaticGainControl()</a>, <a class="el" href="group__group14.html#gabf59183da13c72384093fc238c3114cf">SI4735::getCurrentReceivedSignalQuality()</a>, <a class="el" href="group__group07.html#ga2fbc7e2187a7c645879623100dbc8502">SI4735::getFirmware()</a>, <a class="el" href="group__group05.html#gaf361734168c913803e7e2dfbf4fe0c55">SI4735::getInterruptStatus()</a>, <a class="el" href="group__group10.html#gace60b9db8033c689247dc1370be367b6">SI4735::getProperty()</a>, <a class="el" href="group__group16.html#ga350a2033671a7620d4b9290a2347e185">SI4735::getRdsStatus()</a>, <a class="el" href="group__group14.html#ga5c0f4036a7fbbd11a26f1f6f4579d3cd">SI4735::getStatus()</a>, <a class="el" href="group__group17.html#gafaabd6c73b7ad7c20ae959d5b75c1e71">SI4735::patchPowerUp()</a>, <a class="el" href="group__group06.html#gaa554b3390fb6c5a4d6661b96afae73ae">SI4735::powerDown()</a>, <a class="el" href="group__group17.html#gadfc2c82524918224cf19fec5b7fcf6d1">SI4735::queryLibraryId()</a>, <a class="el" href="group__group06.html#ga3e228da65641f4dcf4253262e19bde9b">SI4735::radioPowerUp()</a>, <a class="el" href="group__group15.html#ga3280b98b8331f00b4d0158ef1b076533">SI4735::seekStation()</a>, <a class="el" href="group__group10.html#ga3d2342264b36bd524ccbaf898e4d219b">SI4735::sendCommand()</a>, <a class="el" href="group__group10.html#ga4d65660ec2b60d7486165ed8a7a92015">SI4735::sendProperty()</a>, <a class="el" href="group__group17.html#gae1d866bfc4cb37c4268c8942b4b4d062">SI4735::sendSSBModeProperty()</a>, <a class="el" href="group__group14.html#ga27c22f5671ce3229e925e5fbe93ba0a6">SI4735::setAutomaticGainControl()</a>, <a class="el" href="group__group09.html#ga8755743a36d2d4662c8db918d02ee4e1">SI4735::setBandwidth()</a>, <a class="el" href="group__group08.html#ga63d205f2d3169ba877a2bd2ee28d224f">SI4735::setFrequency()</a>, <a class="el" href="group__group05.html#ga5e5018897af1edc1ca8507af3d3bfc5e">SI4735::setGpio()</a>, <a class="el" href="group__group05.html#ga0d615c1fcfeb570effc97e8b7e959106">SI4735::setGpioCtl()</a>, <a class="el" href="group__group16.html#gad9718a85c79a311c26997bbda20f2351">SI4735::setRdsConfig()</a>, <a class="el" href="group__group16.html#ga530e64d00d95b4ceb13ce33aa74c63cb">SI4735::setRdsIntSource()</a>, <a class="el" href="group__group17.html#ga55cf9a091d314a1aa21552f2254f756f">SI4735::setSSBBfo()</a>, and <a class="el" href="group__group17.html#ga0fcfd8e487c594707b3f2aaa71a86d68">SI4735::ssbPowerUp()</a>.</p>
+
+</div>
+</div>
+<a id="gaead75aee878a798853a2692c6f7f0a96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaead75aee878a798853a2692c6f7f0a96">&#9670;&nbsp;</a></span>setRefClock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setRefClock </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>refclk</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the frequency of the REFCLK from the output of the prescaler. </p>
+<p>The REFCLK range is 31130 to 34406 Hz (32768 ±5% Hz) in 1 Hz steps, or 0 (to disable AFC). For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz REFCLK.</p>
+<p>The reference clock frequency property would then need to be set to 32500 Hz.</p>
+<p>RCLK frequencies between 31130 Hz and 40 MHz are supported, however, there are gaps in frequency coverage for prescaler values ranging from 1 to 10, or frequencies up to 311300 Hz. See table below.</p>
+<p>Table REFCLK Prescaler </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Prescaler </th><th class="markdownTableHeadNone">RCLK Low (Hz) </th><th class="markdownTableHeadNone">RCLK High (Hz)  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">31130 </td><td class="markdownTableBodyNone">34406  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">62260 </td><td class="markdownTableBodyNone">68812  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">93390 </td><td class="markdownTableBodyNone">103218  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">124520 </td><td class="markdownTableBodyNone">137624  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">5 </td><td class="markdownTableBodyNone">155650 </td><td class="markdownTableBodyNone">172030  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">6 </td><td class="markdownTableBodyNone">186780 </td><td class="markdownTableBodyNone">206436  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">7 </td><td class="markdownTableBodyNone">217910 </td><td class="markdownTableBodyNone">240842  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">8 </td><td class="markdownTableBodyNone">249040 </td><td class="markdownTableBodyNone">275248  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">9 </td><td class="markdownTableBodyNone">280170 </td><td class="markdownTableBodyNone">309654  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">10 </td><td class="markdownTableBodyNone">311300 </td><td class="markdownTableBodyNone">344060  </td></tr>
+</table>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">refclk</td><td>The allowed REFCLK frequency range is between 31130 and 34406 Hz (32768 ±5%), or 0 (to disable AFC). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga02bd2e75a55021f065f867dea96cceb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga02bd2e75a55021f065f867dea96cceb8">&#9670;&nbsp;</a></span>setRefClockPrescaler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setRefClockPrescaler </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>prescale</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the number used by the prescaler to divide the external RCLK down to the internal REFCLK. </p>
+<p>The range may be between 1 and 4095 in 1 unit steps.</p>
+<p>For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz. The reference clock frequency property would then need to be set to 32500 Hz.</p>
+<p>ATTENTION this function considers you are using the RCLK pin as clock source. It will not work if you are using DCLK pin as clock source.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prescale</td><td>between 1 and 4095 in 1 unit steps. Default is 1. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -323,7 +413,7 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129 </dd></dl>
 
 <p class="reference">References <a class="el" href="group__group18.html#ga54a3a0f412aa6318df0046d478bd134f">SI4735::setHardwareAudioMute()</a>, and <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">SI4735::waitToSend()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__group06.html#ga412f51386c47a17cf04fd0a3c3078726">SI4735::analogPowerUp()</a>, <a class="el" href="group__group08.html#ga753390952a1f2c2a98343979f1f3daa0">SI4735::setAM()</a>, <a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906">SI4735::setFM()</a>, <a class="el" href="group__group17.html#ga3e907ddf560a0c8286fa55768701b3da">SI4735::setSSB()</a>, and <a class="el" href="group__group07.html#ga95fd37277dbb8b16b5ae7a996a5f9eba">SI4735::setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group06.html#ga412f51386c47a17cf04fd0a3c3078726">SI4735::analogPowerUp()</a>, <a class="el" href="group__group08.html#ga753390952a1f2c2a98343979f1f3daa0">SI4735::setAM()</a>, <a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906">SI4735::setFM()</a>, <a class="el" href="group__group17.html#ga3e907ddf560a0c8286fa55768701b3da">SI4735::setSSB()</a>, and <a class="el" href="group__group07.html#ga5ac4e4465f33d988885c6b3ec86276bd">SI4735::setup()</a>.</p>
 
 </div>
 </div>

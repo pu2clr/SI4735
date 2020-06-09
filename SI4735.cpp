@@ -333,52 +333,12 @@ void SI4735::waitToSend()
     } while (!(Wire.read() & B10000000));
 }
 
-/**
- * @brief Sets the frequency of the REFCLK from the output of the prescaler
- * @details The REFCLK range is 31130 to 34406 Hz (32768 ±5% Hz) in 1 Hz steps, or 0 (to disable AFC). For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz REFCLK.
- * @details The reference clock frequency property would then need to be set to 32500 Hz. 
- * @details RCLK frequencies between 31130 Hz and 40 MHz are supported, however, there are gaps in frequency coverage for prescaler values ranging from 1 to 10, or frequencies up to 311300 Hz. See table below.
- * 
- * Table REFCLK Prescaler
- * | Prescaler  | RCLK Low (Hz) | RCLK High (Hz)   |
- * | ---------- | ------------- | ---------------- | 
- * |    1       |   31130       |   34406          |
- * |    2       |   62260       |   68812          |
- * |    3       |   93390       |  103218          |
- * |    4       |  124520       |  137624          |
- * |    5       |  155650       |  172030          | 
- * |    6       |  186780       |  206436          |
- * |    7       |  217910       |  240842          | 
- * |    8       |  249040       |  275248          | 
- * |    9       |  280170       |  309654          | 
- * |   10       |  311300       |  344060          |       
- *  
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35
- * 
- * @param refclk The allowed REFCLK frequency range is between 31130 and 34406 Hz (32768 ±5%), or 0 (to disable AFC).
- */
-void SI4735::setRefClock(uint8_t refclk)
-{
-    sendProperty(REFCLK_FREQ, refclk);
-}
+
+
+/** @defgroup group07 Device Setup and Start up */
 
 /**
- * @brief Sets the number used by the prescaler to divide the external RCLK down to the internal REFCLK. 
- * @details The range may be between 1 and 4095 in 1 unit steps. 
- * @details For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz. The reference clock frequency property would then need to be set to 32500 Hz. 
- * @details ATTENTION this function considers you are using the RCLK pin as clock source. It will not work if you are using DCLK pin as clock source.
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35
- * 
- * @param prescale  between 1 and 4095 in 1 unit steps. Default is 1. 
- */
-void SI4735::setRefClockPrescaler(uint8_t prescale)
-{
-    sendProperty(REFCLK_PRESCALE, prescale);
-}
-
-/**
- * @ingroup group06 Device Power Up parameters 
+ * @ingroup group07 Device Power Up parameters 
  *  
  * @brief Set the Power Up parameters for si473X. 
  * 
@@ -425,7 +385,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
 }
 
 /**
- * @ingroup group06 Device Power Up 
+ * @ingroup group07 Device Power Up 
  * 
  * @brief Powerup the Si47XX
  * 
@@ -466,7 +426,7 @@ void SI4735::radioPowerUp(void)
 }
 
 /**
- * @ingroup   group06 Device Power Up 
+ * @ingroup group07 Device Power Up 
  * 
  * @brief You have to call setPowerUp method before. 
  * @details This function is still available only for legacy reasons. 
@@ -481,7 +441,7 @@ void SI4735::analogPowerUp(void)
 }
 
 /** 
- * @ingroup   group06 Device Power Down 
+ * @ingroup group07 Device Power Down 
  * 
  * @brief Moves the device from powerup to powerdown mode.
  * 
@@ -503,10 +463,8 @@ void SI4735::powerDown(void)
     delayMicroseconds(2500);
 }
 
-/** @defgroup group07 Device Information and Start up */
-
 /**
- * @ingroup   group07 Firmware Information 
+ * @ingroup group07 Firmware Information 
  * 
  * @brief Gets firmware information 
  * @details The firmware information will be stored in firmwareInfo member variable 
@@ -530,6 +488,52 @@ void SI4735::getFirmware(void)
         for (int i = 0; i < 9; i++)
             firmwareInfo.raw[i] = Wire.read();
     } while (firmwareInfo.resp.ERR);
+}
+
+/**
+ * @ingroup group07 
+ * @brief Sets the frequency of the REFCLK from the output of the prescaler
+ * @details The REFCLK range is 31130 to 34406 Hz (32768 ±5% Hz) in 1 Hz steps, or 0 (to disable AFC). For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz REFCLK.
+ * @details The reference clock frequency property would then need to be set to 32500 Hz. 
+ * @details RCLK frequencies between 31130 Hz and 40 MHz are supported, however, there are gaps in frequency coverage for prescaler values ranging from 1 to 10, or frequencies up to 311300 Hz. See table below.
+ * 
+ * Table REFCLK Prescaler
+ * | Prescaler  | RCLK Low (Hz) | RCLK High (Hz)   |
+ * | ---------- | ------------- | ---------------- | 
+ * |    1       |   31130       |   34406          |
+ * |    2       |   62260       |   68812          |
+ * |    3       |   93390       |  103218          |
+ * |    4       |  124520       |  137624          |
+ * |    5       |  155650       |  172030          | 
+ * |    6       |  186780       |  206436          |
+ * |    7       |  217910       |  240842          | 
+ * |    8       |  249040       |  275248          | 
+ * |    9       |  280170       |  309654          | 
+ * |   10       |  311300       |  344060          |       
+ *  
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35
+ * 
+ * @param refclk The allowed REFCLK frequency range is between 31130 and 34406 Hz (32768 ±5%), or 0 (to disable AFC).
+ */
+void SI4735::setRefClock(uint8_t refclk)
+{
+    sendProperty(REFCLK_FREQ, refclk);
+}
+
+/**
+ * @ingroup group07
+ * @brief Sets the number used by the prescaler to divide the external RCLK down to the internal REFCLK. 
+ * @details The range may be between 1 and 4095 in 1 unit steps. 
+ * @details For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz. The reference clock frequency property would then need to be set to 32500 Hz. 
+ * @details ATTENTION this function considers you are using the RCLK pin as clock source. It will not work if you are using DCLK pin as clock source.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35
+ * 
+ * @param prescale  between 1 and 4095 in 1 unit steps. Default is 1. 
+ */
+void SI4735::setRefClockPrescaler(uint8_t prescale)
+{
+    sendProperty(REFCLK_PRESCALE, prescale);
 }
 
 /** 

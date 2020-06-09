@@ -172,7 +172,7 @@
 #define XOSCEN_CRYSTAL 1
 #define XOSCEN_RCLK    0 
 
-/** @defgroup group01 Defined Data Types 
+/** @defgroup group01 Union, Struct and Defined Data Types 
  * @section group01 Data Types 
  *  
  * @brief SI473X data representation
