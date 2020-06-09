@@ -260,13 +260,17 @@ Functions</h2></td></tr>
 
 <p>Set the Power Up parameters for si473X. </p>
 <p>Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()</p>
+<p>About the parameter XOSCEN:</p>
+<p>0 = Use external RCLK (crystal oscillator disabled);</p>
+<p>1 = Use crystal oscillator (RCLK and GPO3/DCLK with external 32.768 kHz crystal and OPMODE = 01010000).</p>
 <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 65 and 129</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">uint8_t</td><td>CTSIEN sets Interrupt anabled or disabled (1 = anabled and 0 = disabled ) </td></tr>
     <tr><td class="paramname">uint8_t</td><td>GPO2OEN sets GP02 Si473X pin enabled (1 = anabled and 0 = disabled ) </td></tr>
     <tr><td class="paramname">uint8_t</td><td>PATCH Used for firmware patch updates. Use it always 0 here. </td></tr>
-    <tr><td class="paramname">uint8_t</td><td>XOSCEN sets external Crystal enabled or disabled </td></tr>
+    <tr><td class="paramname">uint8_t</td><td>XOSCEN sets external Crystal enabled or disabled. 0 = Use external RCLK (crystal oscillator disabled); 1 = Use crystal oscillator <br  />
+ </td></tr>
     <tr><td class="paramname">uint8_t</td><td>FUNC sets the receiver function have to be used [0 = FM Receive; 1 = AM (LW/MW/SW) and SSB (if SSB patch apllied)] </td></tr>
     <tr><td class="paramname">uint8_t</td><td>OPMODE set the kind of audio mode you want to use. </td></tr>
   </table>
@@ -303,7 +307,7 @@ Functions</h2></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">PATCH </td><td class="markdownTableBodyNone">Boot normally or patch  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">XOSCEN </td><td class="markdownTableBodyNone">Use external crystal oscillator  </td></tr>
+<td class="markdownTableBodyNone">XOSCEN </td><td class="markdownTableBodyNone">Use external crystal oscillator. 1 = Use crystal oscillator; (crystal oscillator disabled)  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">FUNC </td><td class="markdownTableBodyNone">defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver  </td></tr>
 <tr class="markdownTableRowEven">
