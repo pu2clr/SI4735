@@ -339,13 +339,16 @@ void SI4735::waitToSend()
  * @brief Set the Power Up parameters for si473X. 
  * 
  * @details Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()
+ * @details About the parameter XOSCEN: 
+ * @details     0 = Use external RCLK (crystal oscillator disabled);
+ * @details     1 = Use crystal oscillator (RCLK and GPO3/DCLK with external 32.768 kHz crystal and OPMODE = 01010000). 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 65 and 129
  * 
  * @param uint8_t CTSIEN sets Interrupt anabled or disabled (1 = anabled and 0 = disabled )
  * @param uint8_t GPO2OEN sets GP02 Si473X pin enabled (1 = anabled and 0 = disabled )
  * @param uint8_t PATCH  Used for firmware patch updates. Use it always 0 here. 
- * @param uint8_t XOSCEN sets external Crystal enabled or disabled 
+ * @param uint8_t XOSCEN sets external Crystal enabled or disabled. 0 = Use external RCLK (crystal oscillator disabled); 1 = Use crystal oscillator  
  * @param uint8_t FUNC sets the receiver function have to be used [0 = FM Receive; 1 = AM (LW/MW/SW) and SSB (if SSB patch apllied)]
  * @param uint8_t OPMODE set the kind of audio mode you want to use.
  */
@@ -390,7 +393,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * | CTSIEN    | Interrupt anabled or disabled |
  * | GPO2OEN   | GPO2 Output Enable or disabled |
  * | PATCH     | Boot normally or patch |
- * | XOSCEN    | Use external crystal oscillator |
+ * | XOSCEN    | Use external crystal oscillator. 1 = Use crystal oscillator;  (crystal oscillator disabled) |
  * | FUNC      | defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver |
  * | OPMODE    | SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011) |
  * 
