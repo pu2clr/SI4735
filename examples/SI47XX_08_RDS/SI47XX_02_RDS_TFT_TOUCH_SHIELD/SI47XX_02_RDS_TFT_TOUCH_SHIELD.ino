@@ -874,7 +874,7 @@ void loop(void)
     delay(MIN_ELAPSED_TIME);
   }
 
-  // SEEK
+  // SEEK Test
   if (bSeekUp.justPressed())
   {
       si4735.seekStationProgress(showFrequencySeek, SEEK_UP);
