@@ -48,30 +48,6 @@ const char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 SI4735 si4735;
 
-void setup()
-{
-  Serial.begin(9600);
-  while(!Serial);
-
-  digitalWrite(RESET_PIN, HIGH);
-  
-  Serial.println("AM and FM station tuning test.");
-
-  showHelp();
-
-  // The line below may be necessary to setup I2C pins on ESP32
-  Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
-
-  delay(500);
-  si4735.setup(RESET_PIN, FM_FUNCTION);
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
-  si4735.setFM(8400, 10800, 10390, 10);
-  delay(500);
-  currentFrequency = previousFrequency = si4735.getFrequency();
-  si4735.setVolume(45);
-  showStatus();
-}
-
 void showHelp()
 {
 
@@ -123,6 +99,32 @@ int readX(int pin) {
   for (int i = 0; i < 50; i++ )
     val += touchRead(pin);
   return (val / 50);  
+}
+
+
+
+void setup()
+{
+  Serial.begin(9600);
+  while(!Serial);
+
+  digitalWrite(RESET_PIN, HIGH);
+  
+  Serial.println("AM and FM station tuning test.");
+
+  showHelp();
+
+  // The line below may be necessary to setup I2C pins on ESP32
+  Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
+
+  delay(500);
+  si4735.setup(RESET_PIN, FM_FUNCTION);
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  si4735.setFM(8400, 10800, 10390, 10);
+  delay(500);
+  currentFrequency = previousFrequency = si4735.getFrequency();
+  si4735.setVolume(45);
+  showStatus();
 }
 
 
