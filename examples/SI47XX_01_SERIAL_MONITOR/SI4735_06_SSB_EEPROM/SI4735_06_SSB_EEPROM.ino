@@ -102,6 +102,49 @@ uint8_t rssi = 0;
 
 SI4735 si4735;
 
+void setup()
+{
+
+  Serial.begin(9600);
+  while(!Serial);
+
+  
+  Serial.println("Si4735 Arduino Library");
+  Serial.println("SSB TEST");
+  Serial.println("By PU2CLR");
+
+
+  // Gets and sets the Si47XX I2C bus address
+  int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
+  if ( si4735Addr == 0 ) {
+    Serial.println("Si473X not found!");
+    Serial.flush();
+    while (1);
+  } else {
+    Serial.print("The Si473X I2C address is 0x");
+    Serial.println(si4735Addr, HEX);
+  }
+
+  si4735.setup(RESET_PIN, AM_FUNCTION);
+
+  delay(10);
+  Serial.println("SSB patch is loading...");
+  et1 = millis();
+  loadSSB();
+  et2 = millis();
+  Serial.print("\nSSB patch was loaded in: ");
+  Serial.print( (et2 - et1) );
+  Serial.println("ms");
+  delay(100);
+  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
+  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
+  delay(100);
+  currentFrequency = si4735.getFrequency();
+  si4735.setVolume(60);
+  showHelp();
+  showStatus();
+}
+
 void showSeparator()
 {
   Serial.println("\n**************************");
@@ -124,8 +167,6 @@ void showHelp()
   Serial.println("H to show this help");
   */
 }
-
-
 
 // Show current frequency
 void showFrequency()
@@ -167,6 +208,26 @@ void showStatus()
   showFrequency();
 }
 
+void showBFO()
+{
+  String bfo;
+  
+  if (currentBFO > 0)
+    bfo = "+" + String(currentBFO);
+  else
+    bfo = String(currentBFO);
+
+  showSeparator();
+
+  Serial.print("BFO: ");
+  Serial.print(bfo);
+  Serial.print("Hz ");
+  
+  Serial.print(" | Step: ");
+  Serial.print(currentBFOStep);
+  Serial.print("Hz ");  
+
+}
 
 void bandUp()
 {
@@ -233,51 +294,9 @@ void loadSSB()
   si4735.setSSBConfig(bandwidthIdx, 1, 0, 1, 0, 1);
 }
 
-
-void setup()
-{
-
-  Serial.begin(9600);
-  while(!Serial);
-
-  
-  Serial.println("Si4735 Arduino Library");
-  Serial.println("SSB TEST");
-  Serial.println("By PU2CLR");
-
-
-  // Gets and sets the Si47XX I2C bus address
-  int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
-  if ( si4735Addr == 0 ) {
-    Serial.println("Si473X not found!");
-    Serial.flush();
-    while (1);
-  } else {
-    Serial.print("The Si473X I2C address is 0x");
-    Serial.println(si4735Addr, HEX);
-  }
-
-  si4735.setup(RESET_PIN, AM_FUNCTION);
-
-  delay(10);
-  Serial.println("SSB patch is loading...");
-  et1 = millis();
-  loadSSB();
-  et2 = millis();
-  Serial.print("\nSSB patch was loaded in: ");
-  Serial.print( (et2 - et1) );
-  Serial.println("ms");
-  delay(100);
-  si4735.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
-  si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
-  delay(100);
-  currentFrequency = si4735.getFrequency();
-  si4735.setVolume(60);
-  showHelp();
-  showStatus();
-}
-
-
+/*
+   Main
+*/
 void loop()
 {
   // Check if exist some command to execute
