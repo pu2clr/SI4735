@@ -1592,8 +1592,8 @@ public:
         seekStationProgress(NULL, SEEK_DOWN);
     };
 
-    void SI4735::seekNextStation();
-    void SI4735::seekPreviousStation();
+    void seekNextStation();
+    void seekPreviousStation();
 
     void seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down);
 

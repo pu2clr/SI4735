@@ -878,6 +878,7 @@ void loop(void)
   if (bSeekUp.justPressed())
   {
       si4735.seekStationProgress(showFrequencySeek, SEEK_UP);
+      // si4735.seekNextStation(); // This method does not show the progress
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       currentFrequency = si4735.getFrequency();
       showStatus();
@@ -886,6 +887,7 @@ void loop(void)
   if (bSeekDown.justPressed())
   {
       si4735.seekStationProgress(showFrequencySeek, SEEK_DOWN);
+      // si4735.seekPreviousStation(); // This method does not show the progress
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       currentFrequency = si4735.getFrequency();
       showStatus();
