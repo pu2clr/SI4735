@@ -9,7 +9,7 @@ void setup() {
 void loop() {
     if (digitalRead(5) == LOW) r.setAM(520,1790,810,10);
     if (digitalRead(6) == LOW) r.setFM(6400, 10800, 10750, 10);
-    if (digitalRead(7) == LOW) r.seekStationUp();
-    if (digitalRead(8) == LOW) r.seekStationDown();
+    if (digitalRead(7) == LOW) r.seekNextStation();
+    if (digitalRead(8) == LOW) r.seekPreviousStation();
     delay(150);
 }

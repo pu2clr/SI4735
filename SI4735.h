@@ -169,8 +169,10 @@
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 #define MAX_SEEK_TIME 8000               // defines the maximum seeking time 8s is default.
 
+#define XOSCEN_CRYSTAL 1
+#define XOSCEN_RCLK    0 
 
-/** @defgroup group01 Defined Data Types 
+/** @defgroup group01 Union, Struct and Defined Data Types 
  * @section group01 Data Types 
  *  
  * @brief SI473X data representation
@@ -1058,7 +1060,10 @@ public:
     void waitToSend(void);
 
     void setup(uint8_t resetPin, uint8_t defaultFunction);
-    void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO);
+    void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO, uint8_t clockType = XOSCEN_CRYSTAL);
+
+    void setRefClock(uint8_t refclk);
+    void setRefClockPrescaler(uint8_t prescale);
 
     int32_t getProperty(uint16_t propertyValue);
 
@@ -1586,7 +1591,10 @@ public:
     {
         seekStationProgress(NULL, SEEK_DOWN);
     };
-    
+
+    void seekNextStation();
+    void seekPreviousStation();
+
     void seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down);
 
     // AM Seek property configurations

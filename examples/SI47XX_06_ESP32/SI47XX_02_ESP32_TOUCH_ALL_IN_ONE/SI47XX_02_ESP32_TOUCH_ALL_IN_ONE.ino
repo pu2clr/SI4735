@@ -189,53 +189,6 @@ Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 LiquidCrystal_I2C display(0x27, 20, 4); // please check the address of your I2C device
 SI4735 si4735;
 
-void setup()
-{
-
-  Serial.begin(9600);
-  while (!Serial);
-
-  // Encoder pins
-  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
-  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
-
-  display.init();
-
-  delay(500);
-
-  // Splash - Change it for your introduction text.
-  display.backlight();
-  display.setCursor(3, 0);
-  display.print("SI4735 on ESP32");
-  display.setCursor(2, 1);
-  display.print("Arduino Library");
-  delay(500);
-  display.setCursor(1, 2);
-  display.print("All in One Radio");
-  delay(500);
-  display.setCursor(4, 3);
-  display.print("By PU2CLR");
-  delay(2000);
-  // end Splash
-  display.clear();
-
-  // Encoder interrupt
-  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
-
-  // The line below may be necessary to setup I2C pins on ESP32
-  Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
-  
-  si4735.setup(RESET_PIN, 1);
-
-  // Set up the radio for the current band (see index table variable bandIdx )
-  useBand();
-  currentFrequency = previousFrequency = si4735.getFrequency();
-
-  si4735.setVolume(volume);
-  display.clear();
-  showStatus();
-}
 
 int  touchX( int pin) {
   int val;
@@ -267,6 +220,71 @@ void clearLine4() {
   display.setCursor(0, 2);
   display.print("                    ");
 }
+
+/* *******************************
+   Shows RSSI status
+*/
+void showRSSI()
+{
+  int bars = ((rssi / 10.0) / 2.0) + 1;
+
+  display.setCursor(13, 3);
+  display.print("       ");
+  display.setCursor(13, 3);
+  display.print("S:");
+  if ( bars > 5 )  {
+    bars = 5;
+  }
+  for (int i = 0; i < bars; i++)
+    display.print(">");
+
+  if ( currentMode == FM) {
+    display.setCursor(0, 3);
+    display.print((si4735.getCurrentPilot()) ? "STEREO   " : "MONO     ");
+  }
+
+}
+
+/*
+   Shows the volume level on LCD
+*/
+void showVolume()
+{
+  display.setCursor(10, 3);
+  display.print("  ");
+  display.setCursor(10, 3);
+  display.print(si4735.getCurrentVolume());
+}
+
+/*
+   Shows the BFO current status.
+   Must be called only on SSB mode (LSB or USB)
+*/
+void showBFO()
+{
+
+  String bfo;
+
+  if (currentBFO > 0)
+    bfo = "+" + String(currentBFO);
+  else
+    bfo = String(currentBFO);
+
+  display.setCursor(0, 2);
+  display.print("         ");
+  display.setCursor(0, 2);
+  display.print("BFO:");
+  display.print(bfo);
+  display.print("Hz ");
+
+  display.setCursor(13, 2);
+  display.print("       ");
+  display.setCursor(13, 2);
+  display.print("St: ");
+  display.print(currentBFOStep);
+}
+
+
 
 // Show current frequency
 
@@ -360,107 +378,6 @@ void showStatus()
   showVolume();
 }
 
-/* *******************************
-   Shows RSSI status
-*/
-void showRSSI()
-{
-  int bars = ((rssi / 10.0) / 2.0) + 1;
-
-  display.setCursor(13, 3);
-  display.print("       ");
-  display.setCursor(13, 3);
-  display.print("S:");
-  if ( bars > 5 )  {
-    bars = 5;
-  }
-  for (int i = 0; i < bars; i++)
-    display.print(">");
-
-  if ( currentMode == FM) {
-    display.setCursor(0, 3);
-    display.print((si4735.getCurrentPilot()) ? "STEREO   " : "MONO     ");
-  }
-
-}
-
-/*
-   Shows the volume level on LCD
-*/
-void showVolume()
-{
-  display.setCursor(10, 3);
-  display.print("  ");
-  display.setCursor(10, 3);
-  display.print(si4735.getCurrentVolume());
-}
-
-/*
-   Shows the BFO current status.
-   Must be called only on SSB mode (LSB or USB)
-*/
-void showBFO()
-{
-
-  String bfo;
-
-  if (currentBFO > 0)
-    bfo = "+" + String(currentBFO);
-  else
-    bfo = String(currentBFO);
-
-  display.setCursor(0, 2);
-  display.print("         ");
-  display.setCursor(0, 2);
-  display.print("BFO:");
-  display.print(bfo);
-  display.print("Hz ");
-
-  display.setCursor(13, 2);
-  display.print("       ");
-  display.setCursor(13, 2);
-  display.print("St: ");
-  display.print(currentBFOStep);
-}
-
-/*
-   Goes to the next band (see Band table)
-*/
-void bandUp()
-{
-  // save the current frequency for the band
-  band[bandIdx].currentFreq = currentFrequency;
-  band[bandIdx].currentStep = currentStep;
-
-  if (bandIdx < lastBand)
-  {
-    bandIdx++;
-  }
-  else
-  {
-    bandIdx = 0;
-  }
-  useBand();
-}
-
-/*
-   Goes to the previous band (see Band table)
-*/
-void bandDown()
-{
-  // save the current frequency for the band
-  band[bandIdx].currentFreq = currentFrequency;
-  band[bandIdx].currentStep = currentStep;
-  if (bandIdx > 0)
-  {
-    bandIdx--;
-  }
-  else
-  {
-    bandIdx = lastBand;
-  }
-  useBand();
-}
 
 /*
    This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
@@ -533,6 +450,94 @@ void useBand()
 
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
+  showStatus();
+}
+
+/*
+   Goes to the next band (see Band table)
+*/
+void bandUp()
+{
+  // save the current frequency for the band
+  band[bandIdx].currentFreq = currentFrequency;
+  band[bandIdx].currentStep = currentStep;
+
+  if (bandIdx < lastBand)
+  {
+    bandIdx++;
+  }
+  else
+  {
+    bandIdx = 0;
+  }
+  useBand();
+}
+
+/*
+   Goes to the previous band (see Band table)
+*/
+void bandDown()
+{
+  // save the current frequency for the band
+  band[bandIdx].currentFreq = currentFrequency;
+  band[bandIdx].currentStep = currentStep;
+  if (bandIdx > 0)
+  {
+    bandIdx--;
+  }
+  else
+  {
+    bandIdx = lastBand;
+  }
+  useBand();
+}
+
+
+void setup()
+{
+
+  Serial.begin(9600);
+  while (!Serial);
+
+  // Encoder pins
+  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
+
+  display.init();
+
+  delay(500);
+
+  // Splash - Change it for your introduction text.
+  display.backlight();
+  display.setCursor(3, 0);
+  display.print("SI4735 on ESP32");
+  display.setCursor(2, 1);
+  display.print("Arduino Library");
+  delay(500);
+  display.setCursor(1, 2);
+  display.print("All in One Radio");
+  delay(500);
+  display.setCursor(4, 3);
+  display.print("By PU2CLR");
+  delay(2000);
+  // end Splash
+  display.clear();
+
+  // Encoder interrupt
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
+
+  // The line below may be necessary to setup I2C pins on ESP32
+  Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
+  
+  si4735.setup(RESET_PIN, 1);
+
+  // Set up the radio for the current band (see index table variable bandIdx )
+  useBand();
+  currentFrequency = previousFrequency = si4735.getFrequency();
+
+  si4735.setVolume(volume);
+  display.clear();
   showStatus();
 }
 

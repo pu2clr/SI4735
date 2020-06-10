@@ -333,19 +333,26 @@ void SI4735::waitToSend()
     } while (!(Wire.read() & B10000000));
 }
 
+
+
+/** @defgroup group07 Device Setup and Start up */
+
 /**
- * @ingroup group06 Device Power Up parameters 
+ * @ingroup group07 Device Power Up parameters 
  *  
  * @brief Set the Power Up parameters for si473X. 
  * 
  * @details Use this method to chenge the defaul behavior of the Si473X. Use it before PowerUp()
+ * @details About the parameter XOSCEN: 
+ * @details     0 = Use external RCLK (crystal oscillator disabled);
+ * @details     1 = Use crystal oscillator (RCLK and GPO3/DCLK with external 32.768 kHz crystal and OPMODE = 01010000). 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 65 and 129
  * 
  * @param uint8_t CTSIEN sets Interrupt anabled or disabled (1 = anabled and 0 = disabled )
  * @param uint8_t GPO2OEN sets GP02 Si473X pin enabled (1 = anabled and 0 = disabled )
  * @param uint8_t PATCH  Used for firmware patch updates. Use it always 0 here. 
- * @param uint8_t XOSCEN sets external Crystal enabled or disabled 
+ * @param uint8_t XOSCEN sets external Crystal enabled or disabled. 0 = Use external RCLK (crystal oscillator disabled); 1 = Use crystal oscillator  
  * @param uint8_t FUNC sets the receiver function have to be used [0 = FM Receive; 1 = AM (LW/MW/SW) and SSB (if SSB patch apllied)]
  * @param uint8_t OPMODE set the kind of audio mode you want to use.
  */
@@ -378,7 +385,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
 }
 
 /**
- * @ingroup group06 Device Power Up 
+ * @ingroup group07 Device Power Up 
  * 
  * @brief Powerup the Si47XX
  * 
@@ -390,7 +397,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * | CTSIEN    | Interrupt anabled or disabled |
  * | GPO2OEN   | GPO2 Output Enable or disabled |
  * | PATCH     | Boot normally or patch |
- * | XOSCEN    | Use external crystal oscillator |
+ * | XOSCEN    | Use external crystal oscillator. 1 = Use crystal oscillator;  (crystal oscillator disabled) |
  * | FUNC      | defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver |
  * | OPMODE    | SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011) |
  * 
@@ -419,7 +426,7 @@ void SI4735::radioPowerUp(void)
 }
 
 /**
- * @ingroup   group06 Device Power Up 
+ * @ingroup group07 Device Power Up 
  * 
  * @brief You have to call setPowerUp method before. 
  * @details This function is still available only for legacy reasons. 
@@ -434,7 +441,7 @@ void SI4735::analogPowerUp(void)
 }
 
 /** 
- * @ingroup   group06 Device Power Down 
+ * @ingroup group07 Device Power Down 
  * 
  * @brief Moves the device from powerup to powerdown mode.
  * 
@@ -456,10 +463,8 @@ void SI4735::powerDown(void)
     delayMicroseconds(2500);
 }
 
-/** @defgroup group07 Device Information and Start up */
-
 /**
- * @ingroup   group07 Firmware Information 
+ * @ingroup group07 Firmware Information 
  * 
  * @brief Gets firmware information 
  * @details The firmware information will be stored in firmwareInfo member variable 
@@ -485,6 +490,52 @@ void SI4735::getFirmware(void)
     } while (firmwareInfo.resp.ERR);
 }
 
+/**
+ * @ingroup group07 
+ * @brief Sets the frequency of the REFCLK from the output of the prescaler
+ * @details The REFCLK range is 31130 to 34406 Hz (32768 ±5% Hz) in 1 Hz steps, or 0 (to disable AFC). For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz REFCLK.
+ * @details The reference clock frequency property would then need to be set to 32500 Hz. 
+ * @details RCLK frequencies between 31130 Hz and 40 MHz are supported, however, there are gaps in frequency coverage for prescaler values ranging from 1 to 10, or frequencies up to 311300 Hz. See table below.
+ * 
+ * Table REFCLK Prescaler
+ * | Prescaler  | RCLK Low (Hz) | RCLK High (Hz)   |
+ * | ---------- | ------------- | ---------------- | 
+ * |    1       |   31130       |   34406          |
+ * |    2       |   62260       |   68812          |
+ * |    3       |   93390       |  103218          |
+ * |    4       |  124520       |  137624          |
+ * |    5       |  155650       |  172030          | 
+ * |    6       |  186780       |  206436          |
+ * |    7       |  217910       |  240842          | 
+ * |    8       |  249040       |  275248          | 
+ * |    9       |  280170       |  309654          | 
+ * |   10       |  311300       |  344060          |       
+ *  
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35
+ * 
+ * @param refclk The allowed REFCLK frequency range is between 31130 and 34406 Hz (32768 ±5%), or 0 (to disable AFC).
+ */
+void SI4735::setRefClock(uint8_t refclk)
+{
+    sendProperty(REFCLK_FREQ, refclk);
+}
+
+/**
+ * @ingroup group07
+ * @brief Sets the number used by the prescaler to divide the external RCLK down to the internal REFCLK. 
+ * @details The range may be between 1 and 4095 in 1 unit steps. 
+ * @details For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz. The reference clock frequency property would then need to be set to 32500 Hz. 
+ * @details ATTENTION this function considers you are using the RCLK pin as clock source. It will not work if you are using DCLK pin as clock source.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35
+ * 
+ * @param prescale  between 1 and 4095 in 1 unit steps. Default is 1. 
+ */
+void SI4735::setRefClockPrescaler(uint8_t prescale)
+{
+    sendProperty(REFCLK_PRESCALE, prescale);
+}
+
 /** 
  * @ingroup   group07 Device start up 
  *  
@@ -494,12 +545,13 @@ void SI4735::getFirmware(void)
  * @details If the audio mode parameter is not entered, analog mode will be considered.
  * @details You can use any Arduino digital pin. Be sure you are using less than 3.6V on Si47XX RST pin.   
  *  
- * @param uint8_t resetPin Digital Arduino Pin used to RESET de Si47XX device. 
- * @param uint8_t interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled.
- * @param uint8_t defaultFunction is the mode you want the receiver starts.
- * @param uint8_t audioMode default SI473X_ANALOG_AUDIO (Analog Audio). Use SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO.
+ * @param resetPin Digital Arduino Pin used to RESET de Si47XX device. 
+ * @param interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled.
+ * @param defaultFunction is the mode you want the receiver starts.
+ * @param audioMode default SI473X_ANALOG_AUDIO (Analog Audio). Use SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO.
+ * @param clockType 0 = Use external RCLK (crystal oscillator disabled); 1 = Use crystal oscillator 
  */
-void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode)
+void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode, uint8_t clockType)
 {
     uint8_t interruptEnable = 0;
     Wire.begin();
@@ -523,13 +575,13 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, 
     currentAudioMode = audioMode;
 
     // Set the initial SI473X behavior
-    // CTSIEN   1 -> Interrupt anabled or disable;
+    // CTSIEN   interruptEnable -> Interrupt anabled or disable;
     // GPO2OEN  1 -> GPO2 Output Enable;
     // PATCH    0 -> Boot normally;
-    // XOSCEN   1 -> Use external crystal oscillator;
+    // XOSCEN   clockType -> Use external crystal oscillator (XOSCEN_CRYSTAL) or reference clock (XOSCEN_RCLK);
     // FUNC     defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
     // OPMODE   SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO.
-    setPowerUp(interruptEnable, 0, 0, 1, defaultFunction, audioMode);
+    setPowerUp(interruptEnable, 0, 0, clockType, defaultFunction, audioMode);
 
     if (audioMuteMcuPin >= 0)
         setHardwareAudioMute(true); // If you are using external citcuit to mute the audio, it turns the audio mute
@@ -555,7 +607,7 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, 
  */
 void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
 {
-    setup(resetPin, -1, defaultFunction);
+    setup(resetPin, -1, defaultFunction, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL);
     delay(250);
 }
 
@@ -1567,6 +1619,37 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
 
     Wire.endTransmission();
     delay(MAX_DELAY_AFTER_SET_FREQUENCY);
+}
+
+/**
+ * @ingroup group15 Seek 
+ * 
+ * @brief Search for the next station.
+ * @details Like seekStationUp this function goes to a next station.  
+ * @details The main difference is the method used to look for a station.
+ * 
+ * @see seekStation, seekStationUp, seekStationDown, seekPreviousStation, seekStationProgress
+ */
+void SI4735::seekNextStation()
+{
+    seekStation(1, 1);
+    delay(maxDelaySetFrequency);
+    getFrequency();
+}
+
+/**
+ * @ingroup group15 Seek 
+ * 
+ * @brief Search the previous station
+ * @details Like seekStationDown this function goes to a previous station.  
+ * @details The main difference is the method used to look for a station.
+ * @see seekStation, seekStationUp, seekStationDown, seekPreviousStation, seekStationProgress
+ */
+void SI4735::seekPreviousStation()
+{
+    seekStation(0, 1);
+    delay(maxDelaySetFrequency);
+    getFrequency();
 }
 
 /**
