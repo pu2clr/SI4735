@@ -105,6 +105,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga3280b98b8331f00b4d0158ef1b076533"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#ga3280b98b8331f00b4d0158ef1b076533">SI4735::seekStation</a> (uint8_t SEEKUP, uint8_t WRAP)</td></tr>
 <tr class="memdesc:ga3280b98b8331f00b4d0158ef1b076533"><td class="mdescLeft">&#160;</td><td class="mdescRight">Look for a station (Automatic tune)  <a href="group__group15.html#ga3280b98b8331f00b4d0158ef1b076533">More...</a><br /></td></tr>
 <tr class="separator:ga3280b98b8331f00b4d0158ef1b076533"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab91e6e91f8273104ff970e9a808c4d2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#gab91e6e91f8273104ff970e9a808c4d2f">SI4735::seekNextStation</a> ()</td></tr>
+<tr class="memdesc:gab91e6e91f8273104ff970e9a808c4d2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for the next station.  <a href="group__group15.html#gab91e6e91f8273104ff970e9a808c4d2f">More...</a><br /></td></tr>
+<tr class="separator:gab91e6e91f8273104ff970e9a808c4d2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad32c990d0c9184bb405f11560c4dae7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#gad32c990d0c9184bb405f11560c4dae7e">SI4735::seekPreviousStation</a> ()</td></tr>
+<tr class="memdesc:gad32c990d0c9184bb405f11560c4dae7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search the previous station.  <a href="group__group15.html#gad32c990d0c9184bb405f11560c4dae7e">More...</a><br /></td></tr>
+<tr class="separator:gad32c990d0c9184bb405f11560c4dae7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga80b69a4edfacf274a8a8033e860453ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group15.html#ga80b69a4edfacf274a8a8033e860453ce">SI4735::seekStationProgress</a> (void(*showFunc)(uint16_t f), uint8_t up_down)</td></tr>
 <tr class="memdesc:ga80b69a4edfacf274a8a8033e860453ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeks a station up or down.  <a href="group__group15.html#ga80b69a4edfacf274a8a8033e860453ce">More...</a><br /></td></tr>
 <tr class="separator:ga80b69a4edfacf274a8a8033e860453ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -276,6 +282,51 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 124, 137, 139, 278 </dd></dl>
 </dl>
 
 <p class="reference">References <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">SI4735::waitToSend()</a>.</p>
+
+</div>
+</div>
+<a id="gab91e6e91f8273104ff970e9a808c4d2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab91e6e91f8273104ff970e9a808c4d2f">&#9670;&nbsp;</a></span>seekNextStation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::seekNextStation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Search for the next station. </p>
+<p>Like seekStationUp this function goes to a next station. <br  />
+</p>
+<p>The main difference is the method used to look for a station.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group15.html#ga3280b98b8331f00b4d0158ef1b076533" title="Look for a station (Automatic tune)">seekStation</a>, <a class="el" href="group__group15.html#gaad5211e3fff28141473442f59008e415" title="Search for the next station.">seekStationUp</a>, <a class="el" href="group__group15.html#ga1eeaa09670cdbdc7ddd724c940d2506b" title="Search the previous station.">seekStationDown</a>, <a class="el" href="group__group15.html#gad32c990d0c9184bb405f11560c4dae7e" title="Search the previous station.">seekPreviousStation</a>, <a class="el" href="group__group15.html#ga80b69a4edfacf274a8a8033e860453ce" title="Seeks a station up or down.">seekStationProgress</a> </dd></dl>
+
+</div>
+</div>
+<a id="gad32c990d0c9184bb405f11560c4dae7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad32c990d0c9184bb405f11560c4dae7e">&#9670;&nbsp;</a></span>seekPreviousStation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::seekPreviousStation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Search the previous station. </p>
+<p>Like seekStationDown this function goes to a previous station. <br  />
+</p>
+<p>The main difference is the method used to look for a station. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group15.html#ga3280b98b8331f00b4d0158ef1b076533" title="Look for a station (Automatic tune)">seekStation</a>, <a class="el" href="group__group15.html#gaad5211e3fff28141473442f59008e415" title="Search for the next station.">seekStationUp</a>, <a class="el" href="group__group15.html#ga1eeaa09670cdbdc7ddd724c940d2506b" title="Search the previous station.">seekStationDown</a>, <a class="el" href="group__group15.html#gad32c990d0c9184bb405f11560c4dae7e" title="Search the previous station.">seekPreviousStation</a>, <a class="el" href="group__group15.html#ga80b69a4edfacf274a8a8033e860453ce" title="Seeks a station up or down.">seekStationProgress</a> </dd></dl>
 
 </div>
 </div>

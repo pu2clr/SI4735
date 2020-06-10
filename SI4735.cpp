@@ -1628,7 +1628,7 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
  * @details Like seekStationUp this function goes to a next station.  
  * @details The main difference is the method used to look for a station.
  * 
- * @see seekStation, seekStatioUp, seekPreviousStation
+ * @see seekStation, seekStationUp, seekStationDown, seekPreviousStation, seekStationProgress
  */
 void SI4735::seekNextStation()
 {
@@ -1643,7 +1643,7 @@ void SI4735::seekNextStation()
  * @brief Search the previous station
  * @details Like seekStationDown this function goes to a previous station.  
  * @details The main difference is the method used to look for a station.
- * @see seekStation, seekStatioDown, seekNextStation
+ * @see seekStation, seekStationUp, seekStationDown, seekPreviousStation, seekStationProgress
  */
 void SI4735::seekPreviousStation()
 {

@@ -106,6 +106,8 @@ var class_s_i4735 =
     [ "setMaxSeekTime", "group__group15.html#gaed67e2cee4e20551f3d522eea45fb7f5", null ],
     [ "seekStationUp", "group__group15.html#gaad5211e3fff28141473442f59008e415", null ],
     [ "seekStationDown", "group__group15.html#ga1eeaa09670cdbdc7ddd724c940d2506b", null ],
+    [ "seekNextStation", "group__group15.html#gab91e6e91f8273104ff970e9a808c4d2f", null ],
+    [ "seekPreviousStation", "group__group15.html#gad32c990d0c9184bb405f11560c4dae7e", null ],
     [ "seekStationProgress", "group__group15.html#ga80b69a4edfacf274a8a8033e860453ce", null ],
     [ "setSeekAmLimits", "group__group15.html#ga6b901d5cd729364dbda6e5b811dc9ec2", null ],
     [ "setSeekAmSpacing", "group__group15.html#ga6f8218c0bbdcb75ea54bc8af2a60dcc6", null ],
