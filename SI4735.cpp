@@ -530,7 +530,7 @@ void SI4735::setRefClock(uint8_t refclk)
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35
  * 
  * @param prescale  Prescaler for Reference Clock value; Between 1 and 4095 in 1 unit steps. Default is 1. 
- * @param rclk_sel  0 = RCLK pin is clock source; 1 = DCLK pin is clock source
+ * @param rclk_sel  0 = RCLK pin is clock source (default); 1 = DCLK pin is clock source
  */
 void SI4735::setRefClockPrescaler(uint16_t prescale, uint8_t rclk_sel)
 {
