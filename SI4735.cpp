@@ -515,7 +515,7 @@ void SI4735::getFirmware(void)
  * 
  * @param refclk The allowed REFCLK frequency range is between 31130 and 34406 Hz (32768 ±5%), or 0 (to disable AFC).
  */
-void SI4735::setRefClock(uint8_t refclk)
+void SI4735::setRefClock(uint16_t refclk)
 {
     sendProperty(REFCLK_FREQ, refclk);
 }
