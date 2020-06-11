@@ -1063,7 +1063,7 @@ public:
     void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO, uint8_t clockType = XOSCEN_CRYSTAL);
 
     void setRefClock(uint8_t refclk);
-    void setRefClockPrescaler(uint8_t prescale);
+    void setRefClockPrescaler(uint16_t prescale, uint8_t rclk_sel = 0);
 
     int32_t getProperty(uint16_t propertyValue);
 

@@ -525,15 +525,16 @@ void SI4735::setRefClock(uint8_t refclk)
  * @brief Sets the number used by the prescaler to divide the external RCLK down to the internal REFCLK. 
  * @details The range may be between 1 and 4095 in 1 unit steps. 
  * @details For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz. The reference clock frequency property would then need to be set to 32500 Hz. 
- * @details ATTENTION this function considers you are using the RCLK pin as clock source. It will not work if you are using DCLK pin as clock source.
+ * @details ATTENTION by default, this function considers you are using the RCLK pin as clock source. 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35
  * 
- * @param prescale  between 1 and 4095 in 1 unit steps. Default is 1. 
+ * @param prescale  Prescaler for Reference Clock value; Between 1 and 4095 in 1 unit steps. Default is 1. 
+ * @param rclk_sel  0 = RCLK pin is clock source; 1 = DCLK pin is clock source
  */
-void SI4735::setRefClockPrescaler(uint8_t prescale)
+void SI4735::setRefClockPrescaler(uint16_t prescale, uint8_t rclk_sel)
 {
-    sendProperty(REFCLK_PRESCALE, prescale);
+    sendProperty(REFCLK_PRESCALE, prescale | (rclk_sel << 13)); // Sets the D12 to rclk_sel
 }
 
 /** 
