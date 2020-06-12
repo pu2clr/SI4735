@@ -6,7 +6,7 @@
   For this reason, it is necessary change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
-  Features:   FM/RDS; AM; SSB; LW/MW/SW; two super band (from 1.7 to 30 MHz); external mute circuit control; 
+  Features:   FM/RDS; AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; 
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB 
 
   Wire up on Arduino UNO, Pro mini
@@ -161,10 +161,9 @@ typedef struct
 */
 Band band[] = {
     {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
-    {"LW ", LW_BAND_TYPE, 100, 510, 300, 1},
     {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
-    {"SW1", SW_BAND_TYPE, 1700, 30000, 7100, 1},  // ALL SW1 (from 1.7 to 30MHz)
-    {"SW2", SW_BAND_TYPE, 1700, 30000, 14200, 1} // ALL SW2 (from 1.7 to 30MHz)
+    {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1},  // ALL SW1 (from 150Khz to 30MHz)
+    {"SW2", SW_BAND_TYPE, 150, 30000, 14200, 1} // ALL SW2 (from 150KHz to 30MHz)
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
@@ -213,7 +212,6 @@ void setup()
   // si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode. 
   si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode. 
   
-
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
   si4735.setVolume(volume);
@@ -400,8 +398,8 @@ void showFilter() {
 char *rdsMsg;
 char *stationName;
 char *rdsTime;
-char bufferStatioName[50];
-char bufferRdsMsg[100];
+char bufferStatioName[40];
+char bufferRdsMsg[40];
 char bufferRdsTime[32];
 
 void showRDSMsg() {
