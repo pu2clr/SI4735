@@ -95,8 +95,10 @@ This library uses the I²C communication protocol and implements most of the fun
 7. __I²C communication protocol__ and Automatic I²C bus address detection; 
 8. [More than __120__ functions implemented](https://pu2clr.github.io/SI4735/extras/apidoc/html/). You can customize almost every feature available on Si47XX family; 
 9. [More than 20 examples to guide the user](https://github.com/pu2clr/SI4735/tree/master/examples);
-10. [RDS support](https://pu2clr.github.io/SI4735/#rds)
-11. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band). 
+10. [RDS support](https://pu2clr.github.io/SI4735/#rds);
+11. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band);
+12. Clock reference selection (crystal or external clock reference);
+13. FM Receive de-emphasis to 50 or 75 μs selection. 
 
 [Go to summary](https://pu2clr.github.io/SI4735/#summary)
 

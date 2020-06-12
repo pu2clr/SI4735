@@ -591,6 +591,7 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, 
     // XOSCEN   clockType -> Use external crystal oscillator (XOSCEN_CRYSTAL) or reference clock (XOSCEN_RCLK);
     // FUNC     defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
     // OPMODE   SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO.
+
     setPowerUp(this->currentInterruptEnable, 0, 0, clockType, defaultFunction, audioMode);
 
     if (audioMuteMcuPin >= 0)
