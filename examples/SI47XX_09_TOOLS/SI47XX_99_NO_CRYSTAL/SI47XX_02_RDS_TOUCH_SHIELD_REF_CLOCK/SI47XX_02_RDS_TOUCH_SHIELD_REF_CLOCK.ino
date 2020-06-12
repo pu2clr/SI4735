@@ -259,11 +259,11 @@ void setup(void)
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  // si4735.setRefClock(32768);
-  // si4735.setRefClockPrescaler(1);   // will work with 32768  
-
   si4735.setRefClock(32768);
-  si4735.setRefClockPrescaler(2);   // will work with 65536  
+  si4735.setRefClockPrescaler(1);   // will work with 32768  
+
+  // si4735.setRefClock(32768);
+  // si4735.setRefClockPrescaler(2);   // will work with 65536  
   
   // si4735.setRefClock(32768);
   // si4735.setRefClockPrescaler(100); // will work with 13107200 => 13,107200 MHz
