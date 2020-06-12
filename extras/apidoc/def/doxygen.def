@@ -6555,7 +6555,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '1020';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Stores the current clock type used (Crystal or REF CLOCK)
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -6576,7 +6576,8 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/OneDrive/Radioamador/Projetos/Arduino/RadioDSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '1021';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+If you are using interrupt, this variable stores 1.  
+<br>
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
