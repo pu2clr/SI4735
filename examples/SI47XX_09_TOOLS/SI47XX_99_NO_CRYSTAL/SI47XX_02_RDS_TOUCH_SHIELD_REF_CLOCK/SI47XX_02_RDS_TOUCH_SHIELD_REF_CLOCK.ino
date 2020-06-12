@@ -262,14 +262,22 @@ void setup(void)
   // si4735.setRefClock(32768);
   // si4735.setRefClockPrescaler(1);   // will work with 32768  
 
-  si4735.setRefClock(32768);
-  si4735.setRefClockPrescaler(2);   // will work with 65536  
-  
   // si4735.setRefClock(32768);
-  // si4735.setRefClockPrescaler(100); // will work with 13107200 => 13,107200 MHz
+  // si4735.setRefClockPrescaler(2);   // will work with 65536  
 
   // si4735.setRefClock(32768);
-  // si4735.setRefClockPrescaler(366);   //   will work with 11,993088 MHz 
+  // si4735.setRefClockPrescaler(10);   // will work with 327680  
+
+
+  // si4735.setRefClock(32768);
+  // si4735.setRefClockPrescaler(100);   // will work with 3276800  
+
+  
+  //  si4735.setRefClock(32768);
+  //  si4735.setRefClockPrescaler(400); // will work with 13107200 => 13,107200 MHz
+
+   si4735.setRefClock(32500);
+   si4735.setRefClockPrescaler(400);   //   will work with 13000000 => 13Mhz 
 
   si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
 
@@ -760,7 +768,7 @@ void useBand()
     currentMode = FM;
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-    si4735.setFMDeEmphasis(1); // 1 = 50 μs. Used in Europe, Australia, Japan;
+    si4735.setFMDeEmphasis(1); // 1 = 50 μs. Used in Europe, Australia, Japan; 2 = USA
     si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     // Define here the best criteria to find a FM station during the seeking process 
     // si4735.setSeekFmSpacing(10); // frequency spacing for FM seek (5, 10 or 20. They mean 50, 100 or 200 KHz)

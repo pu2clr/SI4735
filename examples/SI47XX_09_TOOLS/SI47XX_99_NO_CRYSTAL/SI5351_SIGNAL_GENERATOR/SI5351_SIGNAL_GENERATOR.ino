@@ -75,10 +75,12 @@ typedef struct
 // Band database. You can change the band ranges if you need.
 // The unit of frequency here is 0.01Hz (1/100 Hz). See Etherkit Library at https://github.com/etherkit/Si5351Arduino
 Band band[] = {
-    {"CLK0", 3276800LLU, 99900000LLU, 0LU, "KHz", 100000.0f, 3, 0, 9, 0, NULL}, 
-    {"CLK1", 6553600LLU, 1999000000LLU, 0LU, "KHz", 100000.0f, 3, 0, 9, 0, NULL},  
-    {"CLK2", 1300000000LLU, 2000000000LLU, 0LU, "KHz", 100000.0f, 3, 0, 9, 0, NULL},     
-    {"CLK3", 1310720000LLU, 4000000000LLU, 0LU, "KHz", 100000.0f, 3, 0, 9, 0, NULL}};
+    {"CLK0", 3276800LLU, 99900000LLU, 0LU, "Hz", 100.0f, 0, 0, 9, 0, NULL}, 
+    {"CLK1", 6553600LLU, 1999000000LLU, 0LU, "Hz", 100.0f, 0, 0, 9, 0, NULL},
+    {"CLK2", 32768000LLU, 99900000LLU, 0LU, "Hz", 100.0f, 0, 0, 9, 0, NULL},   
+    {"CLK2", 327680000LLU, 99900000LLU, 0LU, "Hz", 100.0f, 0, 0, 9, 0, NULL},   
+    {"CLK3", 1300000000LLU, 2000000000LLU, 0LU, "Hz", 100.0f, 0, 0, 9, 0, NULL},     
+    {"CLK4", 1310720000LLU, 4000000000LLU, 0LU, "Hz", 100.0f, 0, 0, 9, 0, NULL}};
 
 // Calculate the last element position (index) of the array band
 const int lastBand = (sizeof band / sizeof(Band)) - 1; // For this case will be 26.
