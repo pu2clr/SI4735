@@ -341,6 +341,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ga673bc4b17d564bb6e7f3e9a61d35fbb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga673bc4b17d564bb6e7f3e9a61d35fbb3">setFM</a> (uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step)</td></tr>
 <tr class="memdesc:ga673bc4b17d564bb6e7f3e9a61d35fbb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the radio to FM function.  <a href="group__group08.html#ga673bc4b17d564bb6e7f3e9a61d35fbb3">More...</a><br /></td></tr>
 <tr class="separator:ga673bc4b17d564bb6e7f3e9a61d35fbb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a305b3c87d5151d3fede17d725c04d95a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a305b3c87d5151d3fede17d725c04d95a">setFMDeEmphasis</a> (uint8_t parameter)</td></tr>
+<tr class="memdesc:a305b3c87d5151d3fede17d725c04d95a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the FM Receive de-emphasis to 50 or 75 μs.  <a href="class_s_i4735.html#a305b3c87d5151d3fede17d725c04d95a">More...</a><br /></td></tr>
+<tr class="separator:a305b3c87d5151d3fede17d725c04d95a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae7ca2ffa6ad68ca69e4f35a3c40bbc3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#gae7ca2ffa6ad68ca69e4f35a3c40bbc3c">isCurrentTuneFM</a> ()</td></tr>
 <tr class="memdesc:gae7ca2ffa6ad68ca69e4f35a3c40bbc3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the current function is FM (FM_TUNE_FREQ).  <a href="group__group08.html#gae7ca2ffa6ad68ca69e4f35a3c40bbc3c">More...</a><br /></td></tr>
 <tr class="separator:gae7ca2ffa6ad68ca69e4f35a3c40bbc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -741,9 +744,17 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a1ed7daaa2bd7f4619d50815e2ab5e520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the current clock type used (Crystal or REF CLOCK)  <a href="class_s_i4735.html#a1ed7daaa2bd7f4619d50815e2ab5e520">More...</a><br /></td></tr>
 <tr class="separator:a1ed7daaa2bd7f4619d50815e2ab5e520"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63a9825e57470b5b679401bb24f6d802"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a63a9825e57470b5b679401bb24f6d802">currentInterruptEnable</a> = 0</td></tr>
-<tr class="memdesc:a63a9825e57470b5b679401bb24f6d802"><td class="mdescLeft">&#160;</td><td class="mdescRight">If you are using interrupt, this variable stores 1. <br  />
-  <a href="class_s_i4735.html#a63a9825e57470b5b679401bb24f6d802">More...</a><br /></td></tr>
+<tr class="memdesc:a63a9825e57470b5b679401bb24f6d802"><td class="mdescLeft">&#160;</td><td class="mdescRight">If you are using interrupt, this variable stores 1.  <a href="class_s_i4735.html#a63a9825e57470b5b679401bb24f6d802">More...</a><br /></td></tr>
 <tr class="separator:a63a9825e57470b5b679401bb24f6d802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27aa16267153f881845b57818a58053e"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a27aa16267153f881845b57818a58053e">refClock</a> = 31768</td></tr>
+<tr class="memdesc:a27aa16267153f881845b57818a58053e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frequency of Reference Clock in Hz.  <a href="class_s_i4735.html#a27aa16267153f881845b57818a58053e">More...</a><br /></td></tr>
+<tr class="separator:a27aa16267153f881845b57818a58053e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a9b7b8edceaf2bba16766c29af3b0a2"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a9a9b7b8edceaf2bba16766c29af3b0a2">refClockPrescale</a> = 1</td></tr>
+<tr class="memdesc:a9a9b7b8edceaf2bba16766c29af3b0a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prescaler for Reference Clock (divider).  <a href="class_s_i4735.html#a9a9b7b8edceaf2bba16766c29af3b0a2">More...</a><br /></td></tr>
+<tr class="separator:a9a9b7b8edceaf2bba16766c29af3b0a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57f9da1eec6479f905f34e83f69eb3b6"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a57f9da1eec6479f905f34e83f69eb3b6">refClockSourcePin</a> = 0</td></tr>
+<tr class="memdesc:a57f9da1eec6479f905f34e83f69eb3b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">0 = RCLK pin is clock source; 1 = DCLK pin is clock source.  <a href="class_s_i4735.html#a57f9da1eec6479f905f34e83f69eb3b6">More...</a><br /></td></tr>
+<tr class="separator:a57f9da1eec6479f905f34e83f69eb3b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4439c40db789f02371ea0fb9b22650c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__group01.html#unionsi47x__frequency">si47x_frequency</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a4439c40db789f02371ea0fb9b22650c5">currentFrequency</a></td></tr>
 <tr class="memdesc:a4439c40db789f02371ea0fb9b22650c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">data structure to get current frequency  <a href="class_s_i4735.html#a4439c40db789f02371ea0fb9b22650c5">More...</a><br /></td></tr>
 <tr class="separator:a4439c40db789f02371ea0fb9b22650c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2038,6 +2049,41 @@ false </dd></dl>
 
 </div>
 </div>
+<a id="a305b3c87d5151d3fede17d725c04d95a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a305b3c87d5151d3fede17d725c04d95a">&#9670;&nbsp;</a></span>setFMDeEmphasis()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setFMDeEmphasis </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>parameter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the FM Receive de-emphasis to 50 or 75 μs. </p>
+<p>valid parameters are 1 = 50 μs. Used in Europe, Australia, Japan; 2 = 75 μs. Used in USA (default)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parameter</td><td>1 or 2 (default 1 - USA) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a8c54bfc1fcf1dd989e697cc9b7094f59"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8c54bfc1fcf1dd989e697cc9b7094f59">&#9670;&nbsp;</a></span>getTuneFrequencyFast()</h2>
 
@@ -2938,8 +2984,79 @@ false </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p>If you are using interrupt, this variable stores 1. <br  />
- </p>
+<p>If you are using interrupt, this variable stores 1. </p>
+
+</div>
+</div>
+<a id="a27aa16267153f881845b57818a58053e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27aa16267153f881845b57818a58053e">&#9670;&nbsp;</a></span>refClock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SI4735::refClock = 31768</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Frequency of Reference Clock in Hz. </p>
+
+</div>
+</div>
+<a id="a9a9b7b8edceaf2bba16766c29af3b0a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a9b7b8edceaf2bba16766c29af3b0a2">&#9670;&nbsp;</a></span>refClockPrescale</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SI4735::refClockPrescale = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prescaler for Reference Clock (divider). </p>
+
+</div>
+</div>
+<a id="a57f9da1eec6479f905f34e83f69eb3b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57f9da1eec6479f905f34e83f69eb3b6">&#9670;&nbsp;</a></span>refClockSourcePin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::refClockSourcePin = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>0 = RCLK pin is clock source; 1 = DCLK pin is clock source. </p>
 
 </div>
 </div>

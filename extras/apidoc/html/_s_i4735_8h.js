@@ -24,6 +24,7 @@ var _s_i4735_8h =
     [ "FM_RDS_INT_FIFO_COUNT", "_s_i4735_8h.html#afdc3800cf259f4c1acb254d1ad61f21b", null ],
     [ "FM_RDS_CONFIG", "_s_i4735_8h.html#afbaa25e11748b1bd64456d3eae79fdee", null ],
     [ "FM_RDS_CONFIDENCE", "_s_i4735_8h.html#a6651f2bcc216c9b0950999f70bf2be44", null ],
+    [ "FM_DEEMPHASIS", "_s_i4735_8h.html#a9fe700fb45d6e08e177da6fdc208fa05", null ],
     [ "FM_BLEND_STEREO_THRESHOLD", "_s_i4735_8h.html#a83ad68095d43d1a6d7b27941ef5b7f42", null ],
     [ "FM_BLEND_MONO_THRESHOLD", "_s_i4735_8h.html#a8cad5bb93cc48ad53d80ccbb35228cbd", null ],
     [ "FM_BLEND_RSSI_STEREO_THRESHOLD", "_s_i4735_8h.html#abf0ee031cf6bb27b0211709117cfcaf0", null ],
