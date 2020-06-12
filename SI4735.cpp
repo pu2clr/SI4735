@@ -423,6 +423,13 @@ void SI4735::radioPowerUp(void)
     // Turns the external mute circuit off
     if (audioMuteMcuPin >= 0)
         setHardwareAudioMute(false);
+
+    if (this->currentClockType == 0)
+    {
+        setRefClock(this->refClock);
+        setRefClockPrescaler(this->refClockPrescale, this->refClockSourcePin);
+    }
+
 }
 
 /**
@@ -518,6 +525,7 @@ void SI4735::getFirmware(void)
 void SI4735::setRefClock(uint16_t refclk)
 {
     sendProperty(REFCLK_FREQ, refclk);
+    this->refClock = refclk;
 }
 
 /**
@@ -534,7 +542,9 @@ void SI4735::setRefClock(uint16_t refclk)
  */
 void SI4735::setRefClockPrescaler(uint16_t prescale, uint8_t rclk_sel)
 {
-    sendProperty(REFCLK_PRESCALE, prescale | (rclk_sel << 13)); // Sets the D12 to rclk_sel
+    sendProperty(REFCLK_PRESCALE, prescale ); //| (rclk_sel << 13)); // Sets the D12 to rclk_sel
+    this->refClockPrescale = prescale;
+    this->refClockSourcePin = rclk_sel;
 }
 
 /** 
@@ -755,7 +765,7 @@ void SI4735::setAM()
     if (lastMode != AM_CURRENT_MODE)
     {
         powerDown();
-        setPowerUp(this->currentInterruptEnable, 0, 0, this->currentClockType, 1, currentAudioMode);
+        setPowerUp(this->currentInterruptEnable, 0, 0, this->currentClockType, AM_CURRENT_MODE, currentAudioMode);
         radioPowerUp();
         setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain to 48
         setVolume(volume);                    // Set to previus configured volume
@@ -776,7 +786,7 @@ void SI4735::setAM()
 void SI4735::setFM()
 {
     powerDown();
-    setPowerUp(this->currentInterruptEnable, 0, 0, this->currentClockType, 0, currentAudioMode);
+    setPowerUp(this->currentInterruptEnable, 0, 0, this->currentClockType, FM_CURRENT_MODE, currentAudioMode);
     radioPowerUp();
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;

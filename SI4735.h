@@ -170,8 +170,8 @@
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 #define MAX_SEEK_TIME 8000               // defines the maximum seeking time 8s is default.
 
-#define XOSCEN_CRYSTAL 1
-#define XOSCEN_RCLK    0 
+#define XOSCEN_CRYSTAL 1                 // Use crystal oscillator
+#define XOSCEN_RCLK 0                    // Use external RCLK (crystal oscillator disabled).
 
 /** @defgroup group01 Union, Struct and Defined Data Types 
  * @section group01 Data Types 
@@ -1019,7 +1019,11 @@ protected:
 
     uint8_t currentAvcAmMaxGain = 48; //!<  Stores the current Automatic Volume Control Gain for AM. Default value is 48.
     uint8_t currentClockType = XOSCEN_CRYSTAL; //!< Stores the current clock type used (Crystal or REF CLOCK)
-    uint8_t currentInterruptEnable = 0;        //!< If you are using interrupt, this variable stores 1.  
+    uint8_t currentInterruptEnable = 0;        //!< If you are using interrupt, this variable stores 1.
+
+    uint16_t refClock = 31768;                  //!< Frequency of Reference Clock in Hz.
+    uint16_t refClockPrescale = 1;              //!< Prescaler for Reference Clock (divider).
+    uint8_t refClockSourcePin = 0;              //!< 0 = RCLK pin is clock source; 1 = DCLK pin is clock source.
 
     si47x_frequency currentFrequency; //!<  data structure to get current frequency
     si47x_set_frequency currentFrequencyParams;
@@ -1029,6 +1033,7 @@ protected:
     si47x_rds_status currentRdsStatus;       //!<  current RDS status
     si47x_agc_status currentAgcStatus;       //!<  current AGC status
     si47x_ssb_mode currentSSBMode;           //!<  indicates if USB or LSB
+
 
     si473x_powerup powerUp;
 
@@ -1760,7 +1765,7 @@ public:
      * @ingroup group06 Si47XX device Power Up 
      * @brief Set the Max Delay Power Up 
      * @details Sets the delay needed in ms after a powerup command (default is 10ms).
-     * @details Some external crystal might need more time to become stable (500 ms is the recommended).
+     * @details Some crystal oscillator might need more time to become stable (500 ms is the recommended).
      * @details Low values make the load SSB patch faster. However, it can make the system unstable.   
      * 
      * @see MAX_DELAY_AFTER_POWERUP  
