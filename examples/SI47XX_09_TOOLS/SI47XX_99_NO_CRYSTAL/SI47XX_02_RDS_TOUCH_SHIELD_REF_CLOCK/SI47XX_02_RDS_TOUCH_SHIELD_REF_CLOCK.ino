@@ -263,8 +263,8 @@ void setup(void)
   si4735.setRefClock(32768);
   si4735.setRefClockPrescaler(1,0);
   
-  // si4735.setRefClock(32500);
-  // si4735.setRefClockPrescaler(400);
+  // si4735.setRefClock(65536);
+  // si4735.setRefClockPrescaler(2);
   // si4735.setMaxDelaySetFrequency(500);
 
   si4735.setup(RESET_PIN, -1, POWER_UP_AM, SI473X_ANALOG_AUDIO, 0);
@@ -755,11 +755,12 @@ void useBand()
     currentMode = FM;
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+    si4735.setFMDeEmphasis(1);
     si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     // Define here the best criteria to find a FM station during the seeking process 
     // si4735.setSeekFmSpacing(10); // frequency spacing for FM seek (5, 10 or 20. They mean 50, 100 or 200 KHz)
-    si4735.setSeekAmRssiThreshold(0);
-    si4735.setSeekFmSrnThreshold(3);
+    // si4735.setSeekAmRssiThreshold(0);
+    // si4735.setSeekFmSrnThreshold(3);
     
     bfoOn = ssbLoaded = false;
     si4735.setRdsConfig(1, 2, 2, 2, 2);

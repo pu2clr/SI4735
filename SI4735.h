@@ -51,6 +51,7 @@
 #define FM_RDS_CONFIG 0x1502
 #define FM_RDS_CONFIDENCE 0x1503
 
+#define FM_DEEMPHASIS 0x1100
 #define FM_BLEND_STEREO_THRESHOLD 0x1105
 #define FM_BLEND_MONO_THRESHOLD 0x1106
 #define FM_BLEND_RSSI_STEREO_THRESHOLD 0x1800
@@ -1501,6 +1502,17 @@ public:
     void setFM();
     void setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint16_t step);
     void setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step);
+
+    /**
+     * @brief Sets the FM Receive de-emphasis to 50 or 75 μs. 
+     * @details valid parameters are 1 = 50 μs. Used in Europe, Australia, Japan; 2 = 75 μs. Used in USA (default)
+     * 
+     * @param parameter 1 or 2 (default 1 - USA)
+     */
+    inline void setFMDeEmphasis(uint8_t parameter)
+    {
+        sendProperty(FM_DEEMPHASIS, parameter);
+    };
 
     /**
      * @ingroup group08 Check FM mode status

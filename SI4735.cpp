@@ -856,6 +856,8 @@ void SI4735::setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
     setFrequency(currentWorkFrequency);
 }
 
+
+
 /** @defgroup group09 Filter setup  */
 
 /**
@@ -1615,7 +1617,7 @@ void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
     }
 
     Wire.endTransmission();
-    delay(MAX_DELAY_AFTER_SET_FREQUENCY);
+    delay(MAX_DELAY_AFTER_SET_FREQUENCY << 2);
 }
 
 /**
@@ -1690,9 +1692,9 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
     do
     {
         seekStation(up_down, 0);
-        delay(maxDelaySetFrequency << 2);
+        delay(maxDelaySetFrequency);
         getStatus(0, 0);
-        delay(maxDelaySetFrequency << 2);
+        delay(maxDelaySetFrequency);
         freq.raw.FREQH = currentStatus.resp.READFREQH;
         freq.raw.FREQL = currentStatus.resp.READFREQL;
         currentWorkFrequency = freq.value;

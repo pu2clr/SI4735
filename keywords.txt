@@ -117,6 +117,7 @@ setFmBlendMultiPathStereoThreshold	KEYWORD2
 setFmBlendRssiStereoThreshold	KEYWORD2
 setFmBlendSnrStereoThreshold	KEYWORD2
 setFmBlendStereoThreshold	KEYWORD2
+setFMDeEmphasis KEYWORD2
 setFmStereoOff	KEYWORD2
 setFmStereoOn	KEYWORD2
 setFrequency	KEYWORD2
