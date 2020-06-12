@@ -260,11 +260,16 @@ void setup(void)
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   // si4735.setRefClock(32768);
-  // si4735.setRefClockPrescaler(2);  // will work with 65536  
+  // si4735.setRefClockPrescaler(1);   // will work with 32768  
+
+  // si4735.setRefClock(32768);
+  // si4735.setRefClockPrescaler(2);   // will work with 65536  
   
+  // si4735.setRefClock(32768);
+  // si4735.setRefClockPrescaler(100); // will work with 13107200 => 13,107200 MHz
+
   si4735.setRefClock(32768);
-  si4735.setRefClockPrescaler(100); //     will work with 13107200 
-  // si4735.setMaxDelaySetFrequency(500);
+  si4735.setRefClockPrescaler(366);   //   will work with 11,993088 MHz 
 
   si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
   
