@@ -1017,8 +1017,8 @@ protected:
     uint8_t lastMode = -1; //!<  Stores the last mode used.
 
     uint8_t currentAvcAmMaxGain = 48; //!<  Stores the current Automatic Volume Control Gain for AM. Default value is 48.
-    uint8_t currentClockType = XOSCEN_CRYSTAL;
-    uint8_t currentInterruptEnable = 0;
+    uint8_t currentClockType = XOSCEN_CRYSTAL; //!< Stores the current clock type used (Crystal or REF CLOCK)
+    uint8_t currentInterruptEnable = 0;        //!< If you are using interrupt, this variable stores 1.  
 
     si47x_frequency currentFrequency; //!<  data structure to get current frequency
     si47x_set_frequency currentFrequencyParams;
