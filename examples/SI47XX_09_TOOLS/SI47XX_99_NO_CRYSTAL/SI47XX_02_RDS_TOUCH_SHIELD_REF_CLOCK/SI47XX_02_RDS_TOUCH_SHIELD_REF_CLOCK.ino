@@ -260,13 +260,13 @@ void setup(void)
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   // si4735.setRefClock(32768);
-  // si4735.setRefClockPrescaler(2,0);  // will work with 65536  
+  // si4735.setRefClockPrescaler(2);  // will work with 65536  
   
-  // si4735.setRefClock(32768);
-  // si4735.setRefClockPrescaler(400); //     will work with 13107200 
+  si4735.setRefClock(32768);
+  si4735.setRefClockPrescaler(100); //     will work with 13107200 
   // si4735.setMaxDelaySetFrequency(500);
 
-  si4735.setup(RESET_PIN, -1, POWER_UP_AM, SI473X_ANALOG_AUDIO, 0);
+  si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
   
 
   // Set up the radio for the current band (see index table variable bandIdx )

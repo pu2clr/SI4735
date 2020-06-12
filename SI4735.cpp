@@ -368,7 +368,9 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
     // Set the current tuning frequancy mode 0X20 = FM and 0x40 = AM (LW/MW/SW)
     // See See Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 55 and 124
 
-    if (FUNC == 0)
+    this->currentClockType = XOSCEN;
+
+        if (FUNC == 0)
     {
         currentTune = FM_TUNE_FREQ;
         currentFrequencyParams.arg.FREEZE = 1;
@@ -569,7 +571,6 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, 
 
     this->resetPin = resetPin;
     this->interruptPin = interruptPin;
-    this->currentClockType = clockType;
 
     // Arduino interrupt setup (you have to know which Arduino Pins can deal with interrupt).
     if (interruptPin >= 0)
