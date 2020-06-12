@@ -108,12 +108,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga2fbc7e2187a7c645879623100dbc8502"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#ga2fbc7e2187a7c645879623100dbc8502">SI4735::getFirmware</a> (void)</td></tr>
 <tr class="memdesc:ga2fbc7e2187a7c645879623100dbc8502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets firmware information.  <a href="group__group07.html#ga2fbc7e2187a7c645879623100dbc8502">More...</a><br /></td></tr>
 <tr class="separator:ga2fbc7e2187a7c645879623100dbc8502"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaead75aee878a798853a2692c6f7f0a96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#gaead75aee878a798853a2692c6f7f0a96">SI4735::setRefClock</a> (uint8_t refclk)</td></tr>
-<tr class="memdesc:gaead75aee878a798853a2692c6f7f0a96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the frequency of the REFCLK from the output of the prescaler.  <a href="group__group07.html#gaead75aee878a798853a2692c6f7f0a96">More...</a><br /></td></tr>
-<tr class="separator:gaead75aee878a798853a2692c6f7f0a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga02bd2e75a55021f065f867dea96cceb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#ga02bd2e75a55021f065f867dea96cceb8">SI4735::setRefClockPrescaler</a> (uint8_t prescale)</td></tr>
-<tr class="memdesc:ga02bd2e75a55021f065f867dea96cceb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the number used by the prescaler to divide the external RCLK down to the internal REFCLK.  <a href="group__group07.html#ga02bd2e75a55021f065f867dea96cceb8">More...</a><br /></td></tr>
-<tr class="separator:ga02bd2e75a55021f065f867dea96cceb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga56d6eebe36f8178efc080e6e134e0b9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#ga56d6eebe36f8178efc080e6e134e0b9b">SI4735::setRefClock</a> (uint16_t refclk)</td></tr>
+<tr class="memdesc:ga56d6eebe36f8178efc080e6e134e0b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the frequency of the REFCLK from the output of the prescaler.  <a href="group__group07.html#ga56d6eebe36f8178efc080e6e134e0b9b">More...</a><br /></td></tr>
+<tr class="separator:ga56d6eebe36f8178efc080e6e134e0b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadafdd29bf1d22e43199abc4c2ac7b231"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#gadafdd29bf1d22e43199abc4c2ac7b231">SI4735::setRefClockPrescaler</a> (uint16_t prescale, uint8_t rclk_sel=0)</td></tr>
+<tr class="memdesc:gadafdd29bf1d22e43199abc4c2ac7b231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the number used by the prescaler to divide the external RCLK down to the internal REFCLK.  <a href="group__group07.html#gadafdd29bf1d22e43199abc4c2ac7b231">More...</a><br /></td></tr>
+<tr class="separator:gadafdd29bf1d22e43199abc4c2ac7b231"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5ac4e4465f33d988885c6b3ec86276bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#ga5ac4e4465f33d988885c6b3ec86276bd">SI4735::setup</a> (uint8_t <a class="el" href="class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e">resetPin</a>, int <a class="el" href="class_s_i4735.html#af8f8123888060f858c74ba08a29ff38b">interruptPin</a>, uint8_t defaultFunction, uint8_t audioMode=<a class="el" href="_s_i4735_8h.html#afd6b0255af56b3deee67ef1fe14d2fd6">SI473X_ANALOG_AUDIO</a>, uint8_t clockType=<a class="el" href="_s_i4735_8h.html#a33a17dceb88b2b05d8032714a1998368">XOSCEN_CRYSTAL</a>)</td></tr>
 <tr class="memdesc:ga5ac4e4465f33d988885c6b3ec86276bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the Si473X device.  <a href="group__group07.html#ga5ac4e4465f33d988885c6b3ec86276bd">More...</a><br /></td></tr>
 <tr class="separator:ga5ac4e4465f33d988885c6b3ec86276bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -325,8 +325,8 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129 </dd></dl>
 
 </div>
 </div>
-<a id="gaead75aee878a798853a2692c6f7f0a96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaead75aee878a798853a2692c6f7f0a96">&#9670;&nbsp;</a></span>setRefClock()</h2>
+<a id="ga56d6eebe36f8178efc080e6e134e0b9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga56d6eebe36f8178efc080e6e134e0b9b">&#9670;&nbsp;</a></span>setRefClock()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -334,7 +334,7 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129 </dd></dl>
         <tr>
           <td class="memname">void SI4735::setRefClock </td>
           <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramtype">uint16_t&#160;</td>
           <td class="paramname"><em>refclk</em></td><td>)</td>
           <td></td>
         </tr>
@@ -379,8 +379,8 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129 </dd></dl>
 
 </div>
 </div>
-<a id="ga02bd2e75a55021f065f867dea96cceb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga02bd2e75a55021f065f867dea96cceb8">&#9670;&nbsp;</a></span>setRefClockPrescaler()</h2>
+<a id="gadafdd29bf1d22e43199abc4c2ac7b231"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadafdd29bf1d22e43199abc4c2ac7b231">&#9670;&nbsp;</a></span>setRefClockPrescaler()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -388,9 +388,19 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129 </dd></dl>
         <tr>
           <td class="memname">void SI4735::setRefClockPrescaler </td>
           <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>prescale</em></td><td>)</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>prescale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>rclk_sel</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -398,11 +408,12 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129 </dd></dl>
 <p>Sets the number used by the prescaler to divide the external RCLK down to the internal REFCLK. </p>
 <p>The range may be between 1 and 4095 in 1 unit steps.</p>
 <p>For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz. The reference clock frequency property would then need to be set to 32500 Hz.</p>
-<p>ATTENTION this function considers you are using the RCLK pin as clock source. It will not work if you are using DCLK pin as clock source.</p>
+<p>ATTENTION by default, this function considers you are using the RCLK pin as clock source.</p>
 <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">prescale</td><td>between 1 and 4095 in 1 unit steps. Default is 1. </td></tr>
+    <tr><td class="paramname">prescale</td><td>Prescaler for Reference Clock value; Between 1 and 4095 in 1 unit steps. Default is 1. </td></tr>
+    <tr><td class="paramname">rclk_sel</td><td>0 = RCLK pin is clock source (default); 1 = DCLK pin is clock source </td></tr>
   </table>
   </dd>
 </dl>
