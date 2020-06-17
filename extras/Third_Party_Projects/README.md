@@ -79,7 +79,7 @@ This Project was made by Rolf.  It was based on [Jim Reagan’s](https://github.
 ![Photo Project 02](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects/Rolf/photo_2.jpg)
 
 
-The [See Rolf's Geber](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Rolf) friles. 
+The [See Rolf's Geber](https://github.com/pu2clr/SI4735/tree/master/extras/Third_Party_Projects/Rolf) files. 
 
 
 See [Rolf's Github reposotory]().
