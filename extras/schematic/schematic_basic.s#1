@@ -1054,6 +1054,30 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </device>
 </devices>
 </deviceset>
+<deviceset name="2.2KOHM" urn="urn:adsk.eagle:component:39698/1" prefix="R" library_version="1">
+<description>&lt;h3&gt;2.2kΩ resistor&lt;/h3&gt;
+&lt;p&gt;A resistor is a passive two-terminal electrical component that implements electrical resistance as a circuit element. Resistors act to reduce current flow, and, at the same time, act to lower voltage levels within circuits. - Wikipedia&lt;/p&gt;</description>
+<gates>
+<gate name="G$1" symbol="RESISTOR" x="0" y="0"/>
+</gates>
+<devices>
+<device name="-0603-1/10W-1%" package="0603">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:39650/1"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="RES-08272"/>
+<attribute name="VALUE" value="2.2k"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 <library name="supply2" urn="urn:adsk.eagle:library:372">
@@ -3859,6 +3883,103 @@ for power line</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="ngspice-simulation" urn="urn:adsk.eagle:library:527439">
+<description>SPICE compatible library parts</description>
+<packages>
+</packages>
+<symbols>
+<symbol name="L" urn="urn:adsk.eagle:symbol:527456/4" library_version="18">
+<description>INDUCTOR</description>
+<pin name="1" x="-5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
+<pin name="2" x="7.62" y="0" visible="off" length="short" direction="pas" swaplevel="1" rot="R180"/>
+<text x="-2.54" y="2.54" size="1.778" layer="95">&gt;NAME</text>
+<text x="-2.54" y="-5.08" size="1.778" layer="97">&gt;SPICEMODEL</text>
+<text x="-2.54" y="-2.54" size="1.778" layer="96">&gt;VALUE</text>
+<text x="-2.54" y="-7.62" size="1.778" layer="97">&gt;SPICEEXTRA</text>
+<wire x1="-2.54" y1="0" x2="0" y2="0" width="0.254" layer="94" curve="-180"/>
+<wire x1="0" y1="0" x2="2.54" y2="0" width="0.254" layer="94" curve="-180"/>
+<wire x1="2.54" y1="0" x2="5.08" y2="0" width="0.254" layer="94" curve="-180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="L" urn="urn:adsk.eagle:component:527476/7" prefix="L" uservalue="yes" library_version="18">
+<description>INDUCTOR</description>
+<gates>
+<gate name="G$1" symbol="L" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name="">
+<attribute name="_EXTERNAL_" value="" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+<spice>
+<pinmapping spiceprefix="L">
+<pinmap gate="G$1" pin="1" pinorder="1"/>
+<pinmap gate="G$1" pin="2" pinorder="2"/>
+</pinmapping>
+</spice>
+</deviceset>
+</devicesets>
+</library>
+<library name="discrete" urn="urn:adsk.eagle:library:211">
+<description>Discrete devices (Antenna, Arrrester, Thermistor)</description>
+<packages>
+<package name="PAD-01" urn="urn:adsk.eagle:footprint:12919/1" library_version="2">
+<description>&lt;b&gt;PAD&lt;/b&gt;</description>
+<circle x="0" y="0" radius="0.889" width="0.762" layer="51"/>
+<pad name="1" x="0" y="0" drill="1.3208" diameter="2.54" shape="octagon"/>
+<text x="-1.27" y="1.524" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+<text x="-1.27" y="3.048" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+</package>
+</packages>
+<packages3d>
+<package3d name="PAD-01" urn="urn:adsk.eagle:package:12928/1" type="box" library_version="2">
+<description>PAD</description>
+<packageinstances>
+<packageinstance name="PAD-01"/>
+</packageinstances>
+</package3d>
+</packages3d>
+<symbols>
+<symbol name="ANTENNA" urn="urn:adsk.eagle:symbol:12918/1" library_version="2">
+<wire x1="-2.54" y1="0" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="2.54" y1="0" x2="0" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="-2.54" x2="-2.54" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="0" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="2.54" y2="0" width="0.254" layer="94"/>
+<text x="-2.54" y="1.27" size="1.778" layer="95">&gt;NAME</text>
+<text x="2.54" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="1" x="0" y="-5.08" visible="off" length="short" direction="out" rot="R90"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="ANTENNA" urn="urn:adsk.eagle:component:12934/2" prefix="ANT" uservalue="yes" library_version="2">
+<description>&lt;b&gt;Antenna&lt;/b&gt;</description>
+<gates>
+<gate name="A" symbol="ANTENNA" x="0" y="10.16"/>
+</gates>
+<devices>
+<device name="" package="PAD-01">
+<connects>
+<connect gate="A" pin="1" pad="1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:12928/1"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="POPULARITY" value="11" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -3872,20 +3993,29 @@ for power line</description>
 <part name="B1" library="SparkFun-Boards" library_urn="urn:adsk.eagle:library:509" deviceset="ARDUINO_PRO_MINI" device="" package3d_urn="urn:adsk.eagle:package:37322/1"/>
 <part name="U1" library="si4735" deviceset="SI4735-D60-GU" device=""/>
 <part name="GND1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="R1" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="4.7KOHM" device="-0603-1/10W-1%" package3d_urn="urn:adsk.eagle:package:39650/1" value="4.7k"/>
-<part name="R2" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="4.7KOHM" device="-0603-1/10W-1%" package3d_urn="urn:adsk.eagle:package:39650/1" value="4.7k"/>
+<part name="R4" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="4.7KOHM" device="-0603-1/10W-1%" package3d_urn="urn:adsk.eagle:package:39650/1" value="4.7k"/>
+<part name="R5" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="4.7KOHM" device="-0603-1/10W-1%" package3d_urn="urn:adsk.eagle:package:39650/1" value="4.7k"/>
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 <part name="C1" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="22NF/22,000PF" device="-0603-50V-10%" package3d_urn="urn:adsk.eagle:package:37414/1" value="22nF"/>
 <part name="Y1" library="SparkFun-Clocks" library_urn="urn:adsk.eagle:library:511" deviceset="CRYSTAL" device="PTH-2X6" package3d_urn="urn:adsk.eagle:package:37514/1"/>
 <part name="GND3" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="C2" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="22PF" device="-0603-50V-5%" package3d_urn="urn:adsk.eagle:package:37414/1" value="22pF"/>
-<part name="C3" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="22PF" device="-0603-50V-5%" package3d_urn="urn:adsk.eagle:package:37414/1" value="22pF"/>
-<part name="C4" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="4.7UF" device="-1206-16V-(+80/-20%)" package3d_urn="urn:adsk.eagle:package:37426/1" value="4.7uF"/>
-<part name="C5" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="4.7UF" device="-1206-16V-(+80/-20%)" package3d_urn="urn:adsk.eagle:package:37426/1" value="4.7uF"/>
+<part name="C6" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="22PF" device="-0603-50V-5%" package3d_urn="urn:adsk.eagle:package:37414/1" value="22pF"/>
+<part name="C5" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="22PF" device="-0603-50V-5%" package3d_urn="urn:adsk.eagle:package:37414/1" value="22pF"/>
+<part name="C8" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="4.7UF" device="-1206-16V-(+80/-20%)" package3d_urn="urn:adsk.eagle:package:37426/1" value="4.7uF"/>
+<part name="C7" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="4.7UF" device="-1206-16V-(+80/-20%)" package3d_urn="urn:adsk.eagle:package:37426/1" value="4.7uF"/>
 <part name="J1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="AUDIO_JACK_2.5MM" device="SPECIAL_POGO_PINS" package3d_urn="urn:adsk.eagle:package:38005/1"/>
 <part name="GND4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="C6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1" value="100nF"/>
+<part name="C4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1" value="100nF"/>
+<part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1"/>
+<part name="L1" library="ngspice-simulation" library_urn="urn:adsk.eagle:library:527439" deviceset="L" device=""/>
+<part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1"/>
+<part name="FM" library="discrete" library_urn="urn:adsk.eagle:library:211" deviceset="ANTENNA" device="" package3d_urn="urn:adsk.eagle:package:12928/1"/>
+<part name="AM" library="discrete" library_urn="urn:adsk.eagle:library:211" deviceset="ANTENNA" device="" package3d_urn="urn:adsk.eagle:package:12928/1"/>
+<part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="R3" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="2.2KOHM" device="-0603-1/10W-1%" package3d_urn="urn:adsk.eagle:package:39650/1" value="2.2k"/>
+<part name="GND6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3903,11 +4033,11 @@ for power line</description>
 <instance part="GND1" gate="1" x="43.18" y="86.36" smashed="yes">
 <attribute name="VALUE" x="40.64" y="83.82" size="1.778" layer="96"/>
 </instance>
-<instance part="R1" gate="G$1" x="55.88" y="68.58" smashed="yes" rot="R90">
+<instance part="R4" gate="G$1" x="55.88" y="68.58" smashed="yes" rot="R90">
 <attribute name="NAME" x="54.356" y="68.58" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
 <attribute name="VALUE" x="57.404" y="68.58" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
 </instance>
-<instance part="R2" gate="G$1" x="66.04" y="68.58" smashed="yes" rot="R90">
+<instance part="R5" gate="G$1" x="66.04" y="68.58" smashed="yes" rot="R90">
 <attribute name="NAME" x="61.976" y="68.58" size="1.778" layer="95" font="vector" rot="R270" align="bottom-center"/>
 <attribute name="VALUE" x="70.104" y="68.58" size="1.778" layer="96" font="vector" rot="R270" align="top-center"/>
 </instance>
@@ -3928,19 +4058,19 @@ for power line</description>
 <instance part="GND3" gate="1" x="-2.54" y="132.08" smashed="yes">
 <attribute name="VALUE" x="-5.08" y="129.54" size="1.778" layer="96"/>
 </instance>
-<instance part="C2" gate="G$1" x="7.62" y="137.16" smashed="yes">
+<instance part="C6" gate="G$1" x="7.62" y="137.16" smashed="yes">
 <attribute name="NAME" x="9.144" y="140.081" size="1.778" layer="95" font="vector"/>
 <attribute name="VALUE" x="9.144" y="135.001" size="1.778" layer="96" font="vector"/>
 </instance>
-<instance part="C3" gate="G$1" x="-15.24" y="137.16" smashed="yes">
+<instance part="C5" gate="G$1" x="-15.24" y="137.16" smashed="yes">
 <attribute name="NAME" x="-13.716" y="140.081" size="1.778" layer="95" font="vector"/>
 <attribute name="VALUE" x="-13.716" y="135.001" size="1.778" layer="96" font="vector"/>
 </instance>
-<instance part="C4" gate="G$1" x="43.18" y="127" smashed="yes">
+<instance part="C8" gate="G$1" x="43.18" y="127" smashed="yes">
 <attribute name="NAME" x="44.704" y="129.921" size="1.778" layer="95" font="vector"/>
 <attribute name="VALUE" x="44.704" y="124.841" size="1.778" layer="96" font="vector"/>
 </instance>
-<instance part="C5" gate="G$1" x="33.02" y="127" smashed="yes">
+<instance part="C7" gate="G$1" x="33.02" y="127" smashed="yes">
 <attribute name="NAME" x="34.544" y="129.921" size="1.778" layer="95" font="vector"/>
 <attribute name="VALUE" x="34.544" y="124.841" size="1.778" layer="96" font="vector"/>
 </instance>
@@ -3951,9 +4081,42 @@ for power line</description>
 <instance part="GND4" gate="1" x="53.34" y="134.62" smashed="yes">
 <attribute name="VALUE" x="50.8" y="132.08" size="1.778" layer="96"/>
 </instance>
-<instance part="C6" gate="G$1" x="55.88" y="127" smashed="yes">
+<instance part="C4" gate="G$1" x="55.88" y="127" smashed="yes">
 <attribute name="NAME" x="57.404" y="127.381" size="1.778" layer="95"/>
 <attribute name="VALUE" x="57.404" y="122.301" size="1.778" layer="96"/>
+</instance>
+<instance part="C3" gate="G$1" x="-30.48" y="73.66" smashed="yes">
+<attribute name="NAME" x="-28.956" y="74.041" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-28.956" y="68.961" size="1.778" layer="96"/>
+</instance>
+<instance part="L1" gate="G$1" x="-30.48" y="60.96" smashed="yes" rot="R90">
+<attribute name="NAME" x="-33.02" y="58.42" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="-27.94" y="58.42" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="C2" gate="G$1" x="-55.88" y="109.22" smashed="yes">
+<attribute name="NAME" x="-54.356" y="109.601" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-54.356" y="104.521" size="1.778" layer="96"/>
+</instance>
+<instance part="FM" gate="A" x="-73.66" y="119.38" smashed="yes">
+<attribute name="NAME" x="-76.2" y="120.65" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-71.12" y="114.3" size="1.778" layer="96"/>
+</instance>
+<instance part="AM" gate="A" x="-12.7" y="76.2" smashed="yes">
+<attribute name="NAME" x="-15.24" y="77.47" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-10.16" y="71.12" size="1.778" layer="96"/>
+</instance>
+<instance part="GND5" gate="1" x="-58.42" y="76.2" smashed="yes">
+<attribute name="VALUE" x="-60.96" y="73.66" size="1.778" layer="96"/>
+</instance>
+<instance part="R3" gate="G$1" x="-27.94" y="142.24" smashed="yes">
+<attribute name="NAME" x="-27.94" y="143.764" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="-27.94" y="140.716" size="1.778" layer="96" font="vector" align="top-center"/>
+</instance>
+<instance part="GND6" gate="1" x="104.14" y="116.84" smashed="yes" rot="R90">
+<attribute name="VALUE" x="106.68" y="114.3" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="SUPPLY2" gate="G$1" x="104.14" y="109.22" smashed="yes" rot="R270">
+<attribute name="VALUE" x="107.315" y="111.125" size="1.778" layer="96" rot="R270"/>
 </instance>
 </instances>
 <busses>
@@ -3984,19 +4147,19 @@ for power line</description>
 <junction x="33.02" y="96.52"/>
 </segment>
 <segment>
-<pinref part="R1" gate="G$1" pin="1"/>
+<pinref part="R4" gate="G$1" pin="1"/>
 <pinref part="GND2" gate="1" pin="GND"/>
 <wire x1="55.88" y1="63.5" x2="60.96" y2="63.5" width="0.1524" layer="91"/>
 <wire x1="60.96" y1="63.5" x2="60.96" y2="58.42" width="0.1524" layer="91"/>
-<pinref part="R2" gate="G$1" pin="1"/>
+<pinref part="R5" gate="G$1" pin="1"/>
 <wire x1="66.04" y1="63.5" x2="60.96" y2="63.5" width="0.1524" layer="91"/>
 <junction x="60.96" y="63.5"/>
 </segment>
 <segment>
-<pinref part="C3" gate="G$1" pin="2"/>
+<pinref part="C5" gate="G$1" pin="2"/>
 <pinref part="GND3" gate="1" pin="GND"/>
 <wire x1="-15.24" y1="134.62" x2="-2.54" y2="134.62" width="0.1524" layer="91"/>
-<pinref part="C2" gate="G$1" pin="2"/>
+<pinref part="C6" gate="G$1" pin="2"/>
 <wire x1="7.62" y1="134.62" x2="-2.54" y2="134.62" width="0.1524" layer="91"/>
 <junction x="-2.54" y="134.62"/>
 </segment>
@@ -4008,13 +4171,29 @@ for power line</description>
 <junction x="53.34" y="137.16"/>
 <wire x1="53.34" y1="137.16" x2="58.42" y2="137.16" width="0.1524" layer="91"/>
 <wire x1="58.42" y1="137.16" x2="58.42" y2="129.54" width="0.1524" layer="91"/>
-<pinref part="C6" gate="G$1" pin="1"/>
+<pinref part="C4" gate="G$1" pin="1"/>
 <wire x1="58.42" y1="129.54" x2="55.88" y2="129.54" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="RFGND"/>
+<wire x1="-33.02" y1="96.52" x2="-38.1" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="-38.1" y1="96.52" x2="-38.1" y2="78.74" width="0.1524" layer="91"/>
+<pinref part="L1" gate="G$1" pin="1"/>
+<wire x1="-38.1" y1="78.74" x2="-38.1" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="-38.1" y1="55.88" x2="-30.48" y2="55.88" width="0.1524" layer="91"/>
+<pinref part="GND5" gate="1" pin="GND"/>
+<wire x1="-58.42" y1="78.74" x2="-38.1" y2="78.74" width="0.1524" layer="91"/>
+<junction x="-38.1" y="78.74"/>
+</segment>
+<segment>
+<pinref part="B1" gate="G$1" pin="GND@2"/>
+<pinref part="GND6" gate="1" pin="GND"/>
+<wire x1="88.9" y1="116.84" x2="101.6" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SDA" class="0">
 <segment>
-<pinref part="R2" gate="G$1" pin="2"/>
+<pinref part="R5" gate="G$1" pin="2"/>
 <pinref part="B1" gate="G$1" pin="A5"/>
 <wire x1="66.04" y1="83.82" x2="66.04" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="U1" gate="A" pin="SDIO"/>
@@ -4026,7 +4205,7 @@ for power line</description>
 </net>
 <net name="N$2" class="0">
 <segment>
-<pinref part="R1" gate="G$1" pin="2"/>
+<pinref part="R4" gate="G$1" pin="2"/>
 <wire x1="55.88" y1="73.66" x2="55.88" y2="86.36" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="A4"/>
 <wire x1="55.88" y1="86.36" x2="66.04" y2="86.36" width="0.1524" layer="91"/>
@@ -4048,10 +4227,16 @@ for power line</description>
 <wire x1="45.72" y1="114.3" x2="48.26" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="48.26" y1="114.3" x2="48.26" y2="109.22" width="0.1524" layer="91"/>
 <junction x="48.26" y="109.22"/>
-<pinref part="C6" gate="G$1" pin="2"/>
+<pinref part="C4" gate="G$1" pin="2"/>
 <wire x1="55.88" y1="121.92" x2="55.88" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="55.88" y1="114.3" x2="48.26" y2="114.3" width="0.1524" layer="91"/>
 <junction x="48.26" y="114.3"/>
+</segment>
+<segment>
+<pinref part="B1" gate="G$1" pin="VCC"/>
+<wire x1="88.9" y1="111.76" x2="101.6" y2="111.76" width="0.1524" layer="91"/>
+<pinref part="SUPPLY2" gate="G$1" pin="VCC"/>
+<wire x1="101.6" y1="111.76" x2="101.6" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -4065,7 +4250,7 @@ for power line</description>
 <net name="N$3" class="0">
 <segment>
 <pinref part="Y1" gate="G$1" pin="2"/>
-<pinref part="C2" gate="G$1" pin="1"/>
+<pinref part="C6" gate="G$1" pin="1"/>
 <wire x1="0" y1="142.24" x2="7.62" y2="142.24" width="0.1524" layer="91"/>
 <pinref part="U1" gate="A" pin="RCLK"/>
 <wire x1="33.02" y1="104.14" x2="60.96" y2="104.14" width="0.1524" layer="91"/>
@@ -4076,20 +4261,17 @@ for power line</description>
 </net>
 <net name="N$5" class="0">
 <segment>
-<pinref part="Y1" gate="G$1" pin="1"/>
-<pinref part="C3" gate="G$1" pin="1"/>
-<wire x1="-5.08" y1="142.24" x2="-15.24" y2="142.24" width="0.1524" layer="91"/>
 <pinref part="U1" gate="A" pin="GPO3/[DCLK]"/>
 <wire x1="-33.02" y1="111.76" x2="-38.1" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="111.76" x2="-38.1" y2="142.24" width="0.1524" layer="91"/>
-<wire x1="-38.1" y1="142.24" x2="-15.24" y2="142.24" width="0.1524" layer="91"/>
-<junction x="-15.24" y="142.24"/>
+<wire x1="-38.1" y1="142.24" x2="-33.02" y2="142.24" width="0.1524" layer="91"/>
+<pinref part="R3" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$6" class="0">
 <segment>
 <pinref part="U1" gate="A" pin="LOUT/[DFS]"/>
-<pinref part="C5" gate="G$1" pin="2"/>
+<pinref part="C7" gate="G$1" pin="2"/>
 <wire x1="33.02" y1="116.84" x2="33.02" y2="124.46" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -4099,14 +4281,14 @@ for power line</description>
 <wire x1="33.02" y1="114.3" x2="35.56" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="35.56" y1="114.3" x2="35.56" y2="121.92" width="0.1524" layer="91"/>
 <wire x1="35.56" y1="121.92" x2="43.18" y2="121.92" width="0.1524" layer="91"/>
-<pinref part="C4" gate="G$1" pin="2"/>
+<pinref part="C8" gate="G$1" pin="2"/>
 <wire x1="43.18" y1="121.92" x2="43.18" y2="124.46" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$8" class="0">
 <segment>
 <pinref part="J1" gate="G$1" pin="LEFT"/>
-<pinref part="C5" gate="G$1" pin="1"/>
+<pinref part="C7" gate="G$1" pin="1"/>
 <wire x1="30.48" y1="134.62" x2="33.02" y2="134.62" width="0.1524" layer="91"/>
 <wire x1="33.02" y1="134.62" x2="33.02" y2="132.08" width="0.1524" layer="91"/>
 </segment>
@@ -4114,9 +4296,53 @@ for power line</description>
 <net name="N$9" class="0">
 <segment>
 <pinref part="J1" gate="G$1" pin="RIGHT"/>
-<pinref part="C4" gate="G$1" pin="1"/>
+<pinref part="C8" gate="G$1" pin="1"/>
 <wire x1="30.48" y1="137.16" x2="43.18" y2="137.16" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="137.16" x2="43.18" y2="132.08" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$10" class="0">
+<segment>
+<pinref part="L1" gate="G$1" pin="2"/>
+<pinref part="C3" gate="G$1" pin="2"/>
+<junction x="-30.48" y="68.58"/>
+<pinref part="AM" gate="A" pin="1"/>
+<wire x1="-12.7" y1="71.12" x2="-12.7" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="-12.7" y1="68.58" x2="-30.48" y2="68.58" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$12" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="AMI"/>
+<wire x1="-33.02" y1="88.9" x2="-33.02" y2="76.2" width="0.1524" layer="91"/>
+<pinref part="C3" gate="G$1" pin="1"/>
+<wire x1="-33.02" y1="76.2" x2="-30.48" y2="76.2" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$13" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="FMI"/>
+<wire x1="-33.02" y1="99.06" x2="-55.88" y2="99.06" width="0.1524" layer="91"/>
+<pinref part="C2" gate="G$1" pin="2"/>
+<wire x1="-55.88" y1="99.06" x2="-55.88" y2="104.14" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$14" class="0">
+<segment>
+<pinref part="C2" gate="G$1" pin="1"/>
+<wire x1="-55.88" y1="111.76" x2="-73.66" y2="111.76" width="0.1524" layer="91"/>
+<pinref part="FM" gate="A" pin="1"/>
+<wire x1="-73.66" y1="111.76" x2="-73.66" y2="114.3" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$11" class="0">
+<segment>
+<pinref part="C5" gate="G$1" pin="1"/>
+<pinref part="Y1" gate="G$1" pin="1"/>
+<wire x1="-5.08" y1="142.24" x2="-15.24" y2="142.24" width="0.1524" layer="91"/>
+<junction x="-15.24" y="142.24"/>
+<wire x1="-22.86" y1="142.24" x2="-15.24" y2="142.24" width="0.1524" layer="91"/>
+<pinref part="R3" gate="G$1" pin="2"/>
 </segment>
 </net>
 </nets>
@@ -4139,6 +4365,12 @@ will not be understood (or retained) with this version.
 Since Version 8.3, EAGLE supports the association of 3D packages
 with devices in libraries, schematics, and board files. Those 3D
 packages will not be understood (or retained) with this version.
+</note>
+<note version="8.4" severity="warning">
+Since Version 8.4, EAGLE supports properties for SPICE simulation. 
+Probes in schematics and SPICE mapping objects found in parts and library devices
+will not be understood with this version. Update EAGLE to the latest version
+for full support of SPICE simulation. 
 </note>
 </compatibility>
 </eagle>
