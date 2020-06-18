@@ -65,7 +65,7 @@ The ESP32 board has enough RAM memory to support all SSB patch and a nice TFT Di
 You can use the same schematic used on Arduino family. 
 However, you have pay attention to the new configuration pins on ESP32. See tables bellow. The circuit below shows a generic setup for ESP32. __It is very important to consider the pinout of your ESP32 board__.
 
-![Schematic for I2C display device]()
+![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_esp32_eagle.png)
 
 
 
