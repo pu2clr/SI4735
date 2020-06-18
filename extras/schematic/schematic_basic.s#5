@@ -3985,7 +3985,7 @@ for power line</description>
 <part name="C4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1" value="100nF"/>
 <part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1"/>
 <part name="L1" library="ngspice-simulation" library_urn="urn:adsk.eagle:library:527439" deviceset="L" device=""/>
-<part name="CX2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1"/>
+<part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1"/>
 <part name="FM" library="discrete" library_urn="urn:adsk.eagle:library:211" deviceset="ANTENNA" device="" package3d_urn="urn:adsk.eagle:package:12928/1"/>
 <part name="AM" library="discrete" library_urn="urn:adsk.eagle:library:211" deviceset="ANTENNA" device="" package3d_urn="urn:adsk.eagle:package:12928/1"/>
 <part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
@@ -4066,7 +4066,7 @@ for power line</description>
 <attribute name="NAME" x="-33.02" y="58.42" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-27.94" y="58.42" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="CX2" gate="G$1" x="-55.88" y="109.22" smashed="yes">
+<instance part="C2" gate="G$1" x="-55.88" y="109.22" smashed="yes">
 <attribute name="NAME" x="-54.356" y="109.601" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-54.356" y="104.521" size="1.778" layer="96"/>
 </instance>
@@ -4278,13 +4278,13 @@ for power line</description>
 <segment>
 <pinref part="U1" gate="A" pin="FMI"/>
 <wire x1="-33.02" y1="99.06" x2="-55.88" y2="99.06" width="0.1524" layer="91"/>
-<pinref part="CX2" gate="G$1" pin="2"/>
+<pinref part="C2" gate="G$1" pin="2"/>
 <wire x1="-55.88" y1="99.06" x2="-55.88" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$14" class="0">
 <segment>
-<pinref part="CX2" gate="G$1" pin="1"/>
+<pinref part="C2" gate="G$1" pin="1"/>
 <wire x1="-55.88" y1="111.76" x2="-73.66" y2="111.76" width="0.1524" layer="91"/>
 <pinref part="FM" gate="A" pin="1"/>
 <wire x1="-73.66" y1="111.76" x2="-73.66" y2="114.3" width="0.1524" layer="91"/>

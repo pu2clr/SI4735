@@ -3983,7 +3983,7 @@ for power line</description>
 <part name="J1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="AUDIO_JACK_2.5MM" device="SPECIAL_POGO_PINS" package3d_urn="urn:adsk.eagle:package:38005/1"/>
 <part name="GND4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="C4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1" value="100nF"/>
-<part name="CX1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1"/>
+<part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1"/>
 <part name="L1" library="ngspice-simulation" library_urn="urn:adsk.eagle:library:527439" deviceset="L" device=""/>
 <part name="CX2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1"/>
 <part name="FM" library="discrete" library_urn="urn:adsk.eagle:library:211" deviceset="ANTENNA" device="" package3d_urn="urn:adsk.eagle:package:12928/1"/>
@@ -4058,7 +4058,7 @@ for power line</description>
 <attribute name="NAME" x="57.404" y="127.381" size="1.778" layer="95"/>
 <attribute name="VALUE" x="57.404" y="122.301" size="1.778" layer="96"/>
 </instance>
-<instance part="CX1" gate="G$1" x="-30.48" y="73.66" smashed="yes">
+<instance part="C3" gate="G$1" x="-30.48" y="73.66" smashed="yes">
 <attribute name="NAME" x="-28.956" y="74.041" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-28.956" y="68.961" size="1.778" layer="96"/>
 </instance>
@@ -4259,7 +4259,7 @@ for power line</description>
 <net name="N$10" class="0">
 <segment>
 <pinref part="L1" gate="G$1" pin="2"/>
-<pinref part="CX1" gate="G$1" pin="2"/>
+<pinref part="C3" gate="G$1" pin="2"/>
 <junction x="-30.48" y="68.58"/>
 <pinref part="AM" gate="A" pin="1"/>
 <wire x1="-12.7" y1="71.12" x2="-12.7" y2="68.58" width="0.1524" layer="91"/>
@@ -4270,7 +4270,7 @@ for power line</description>
 <segment>
 <pinref part="U1" gate="A" pin="AMI"/>
 <wire x1="-33.02" y1="88.9" x2="-33.02" y2="76.2" width="0.1524" layer="91"/>
-<pinref part="CX1" gate="G$1" pin="1"/>
+<pinref part="C3" gate="G$1" pin="1"/>
 <wire x1="-33.02" y1="76.2" x2="-30.48" y2="76.2" width="0.1524" layer="91"/>
 </segment>
 </net>

@@ -4016,6 +4016,7 @@ for power line</description>
 <part name="R3" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="2.2KOHM" device="-0603-1/10W-1%" package3d_urn="urn:adsk.eagle:package:39650/1" value="2.2k"/>
 <part name="GND6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
+<part name="GND7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4118,6 +4119,9 @@ for power line</description>
 <instance part="SUPPLY2" gate="G$1" x="104.14" y="109.22" smashed="yes" rot="R270">
 <attribute name="VALUE" x="107.315" y="111.125" size="1.778" layer="96" rot="R270"/>
 </instance>
+<instance part="GND7" gate="1" x="-58.42" y="86.36" smashed="yes">
+<attribute name="VALUE" x="-60.96" y="83.82" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -4189,6 +4193,16 @@ for power line</description>
 <pinref part="B1" gate="G$1" pin="GND@2"/>
 <pinref part="GND6" gate="1" pin="GND"/>
 <wire x1="88.9" y1="116.84" x2="101.6" y2="116.84" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="NC_4"/>
+<pinref part="U1" gate="A" pin="NC"/>
+<wire x1="-33.02" y1="93.98" x2="-33.02" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="-33.02" y1="91.44" x2="-58.42" y2="91.44" width="0.1524" layer="91"/>
+<junction x="-33.02" y="91.44"/>
+<pinref part="GND7" gate="1" pin="GND"/>
+<wire x1="-58.42" y1="91.44" x2="-58.42" y2="88.9" width="0.1524" layer="91"/>
+<junction x="-33.02" y="93.98"/>
 </segment>
 </net>
 <net name="SDA" class="0">

@@ -4083,7 +4083,7 @@ for power line</description>
 </instance>
 <instance part="C4" gate="G$1" x="55.88" y="127" smashed="yes">
 <attribute name="NAME" x="57.404" y="127.381" size="1.778" layer="95"/>
-<attribute name="VALUE" x="57.404" y="122.301" size="1.778" layer="96"/>
+<attribute name="VALUE" x="49.784" y="122.301" size="1.778" layer="96"/>
 </instance>
 <instance part="C3" gate="G$1" x="-30.48" y="73.66" smashed="yes">
 <attribute name="NAME" x="-28.956" y="74.041" size="1.778" layer="95"/>
