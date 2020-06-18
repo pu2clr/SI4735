@@ -33,7 +33,7 @@ Contact: __pu2clr@gmail.com__.
    * [EEPROM support](https://pu2clr.github.io/SI4735/#eeprom-support)
    * [Customizing PU2CLR Arduino Library](https://pu2clr.github.io/SI4735/#customizing-pu2clr-arduino-library)
 11. [Hardware Requirements and Setup](https://pu2clr.github.io/SI4735/#hardware-requirements-and-setup)
-12. [SCHEMATIC](https://pu2clr.github.io/SI4735/#schematic)
+12. [__SCHEMATIC__](https://pu2clr.github.io/SI4735/#schematic)
    * [Component Parts](https://pu2clr.github.io/SI4735/#parts)
    * [Tips to build](https://pu2clr.github.io/SI4735/#tips-to-build)
 13. [Most Frequent Problems](https://pu2clr.github.io/SI4735/#most-frequent-problems)
