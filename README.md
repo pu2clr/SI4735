@@ -640,6 +640,10 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 
 ![Basic Schematic](./extras/images/basic_schematic.png)
 
+<BR>
+
+![Basic Schematic](./extras/images/basic_schematic_eagle.png)
+
 
 #### The picture below shows the SI4735-D60 pinout
 
@@ -656,6 +660,8 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 #### The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
 
 ![Silicon Labs Schematic](./extras/images/silicon_labs_schematic_pag_19.png)
+
+
 
 <BR>
 
