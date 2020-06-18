@@ -22,9 +22,9 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 
 | Si4735    | Function              |ESP LOLIN32 WEMOS (GPIO) |
 |-----------| ----------------------|-------------------------|
-| pin 15    |   RESET               |   22                    |  
-| pin 18    |   SDIO                |   20 (SDA)              |
-| pin 17    |   SCLK                |   21 (SCL)              |
+| pin 15    |   RESET               |   25 (GPIO25)           |  
+| pin 18    |   SDIO                |   21 (SDA / GPIO21)     |
+| pin 17    |   SCLK                |   22 (SCL / GPIO22)     |
 
 
 
@@ -88,9 +88,9 @@ However, you have pay attention to the new configuration pins on ESP32. See tabl
 
 | Encoder   | Function              |ESP LOLIN32 WEMOS (GPIO) |
 |-----------| ----------------------|-------------------------|
-| A         |  interrupt            |   16                    |
-| B         |  interrupt            |   17                    |
-| BUTTON    |  ENCODER PUSH BUTTON  |   23                    |  
+| A         |  interrupt            |   16  (GPIO16)          |
+| B         |  interrupt            |   17  (GPIO17)          |
+| BUTTON    |  ENCODER PUSH BUTTON  |   23  (GPIO23)          |  
 
 
 

@@ -13,16 +13,15 @@
 
   | Si4735    | Function              |ESP LOLIN32 WEMOS (GPIO) |
   |-----------| ----------------------|-------------------------|
-  | pin 15    |   RESET               |   22                    |  
-  | pin 18    |   SDIO                |   20 (SDA)              |
-  | pin 17    |   SCLK                |   21 (SCL)              |
+  | pin 15    |   RESET               |   25 (GPIO25)           |  
+  | pin 18    |   SDIO                |   21 (SDA / GPIO21)     |
+  | pin 17    |   SCLK                |   22 (SCL / GPIO22)     |
 
   | Encoder   | Function              |ESP LOLIN32 WEMOS (GPIO) |
   |-----------| ----------------------|-------------------------|
-  | A         |                       |   18                    |
-  | B         |                       |   19                    |
-  | BUTTON    |  ENCODER PUSH BUTTON  |   23                    |  
-
+  | A         |  interrupt            |   16  (GPIO16)          |
+  | B         |  interrupt            |   17  (GPIO17)          |
+  | BUTTON    |  ENCODER PUSH BUTTON  |   23  (GPIO23)          |  
 
   ABOUT SSB PATCH:  
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.

@@ -16,6 +16,13 @@
     4) Arduino Mega (by using a voltage converter); and 
     5) ESP32 (LOLIN32 WEMOS)
 
+  | Si4735    | Function              |ESP LOLIN32 WEMOS (GPIO) |
+  |-----------| ----------------------|-------------------------|
+  | pin 15    |   RESET               |   25 (GPIO25)           |  
+  | pin 18    |   SDIO                |   21 (SDA / GPIO21)     |
+  | pin 17    |   SCLK                |   22 (SCL / GPIO22)     |
+
+
    I strongly recommend starting with this sketch.
 
    Prototype documentation : https://pu2clr.github.io/SI4735/
