@@ -7279,6 +7279,8 @@ In this library the device names are the same as the pin names of the symbols, t
 <part name="R4" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="0207/5V" package3d_urn="urn:adsk.eagle:package:23502/1" value="4.7K"/>
 <part name="GND4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
+<part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="GND6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7344,6 +7346,12 @@ In this library the device names are the same as the pin names of the symbols, t
 <instance part="SUPPLY1" gate="G$1" x="119.38" y="17.78" smashed="yes" rot="R270">
 <attribute name="VALUE" x="122.555" y="19.685" size="1.778" layer="96" rot="R270"/>
 </instance>
+<instance part="GND5" gate="1" x="78.74" y="50.8" smashed="yes">
+<attribute name="VALUE" x="76.2" y="48.26" size="1.778" layer="96"/>
+</instance>
+<instance part="GND6" gate="1" x="-2.54" y="55.88" smashed="yes">
+<attribute name="VALUE" x="-5.08" y="53.34" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -7388,6 +7396,25 @@ In this library the device names are the same as the pin names of the symbols, t
 <pinref part="B1" gate="G$1" pin="GND@2"/>
 <pinref part="GND4" gate="1" pin="GND"/>
 <wire x1="116.84" y1="25.4" x2="106.68" y2="25.4" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="NC_4"/>
+<pinref part="GND6" gate="1" pin="GND"/>
+<wire x1="7.62" y1="58.42" x2="-2.54" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="U1" gate="A" pin="NC"/>
+<junction x="7.62" y="58.42"/>
+<wire x1="7.62" y1="60.96" x2="7.62" y2="58.42" width="0.1524" layer="91"/>
+<junction x="7.62" y="60.96"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="GND"/>
+<wire x1="73.66" y1="58.42" x2="78.74" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="GND5" gate="1" pin="GND"/>
+<wire x1="78.74" y1="58.42" x2="78.74" y2="55.88" width="0.1524" layer="91"/>
+<pinref part="U1" gate="A" pin="GND_2"/>
+<wire x1="78.74" y1="55.88" x2="78.74" y2="53.34" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="55.88" x2="78.74" y2="55.88" width="0.1524" layer="91"/>
+<junction x="78.74" y="55.88"/>
 </segment>
 </net>
 <net name="N$5" class="0">
