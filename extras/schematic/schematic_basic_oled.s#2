@@ -4351,8 +4351,7 @@ Mors</description>
 <part name="GND7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="U$1" library="diy-modules" deviceset="DISPLAY-OLED-128X64-I2C" device=""/>
 <part name="SUPPLY3" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
-<part name="RE1" library="rotary-encoder" deviceset="62P*X" device="" technology="16-H"/>
-<part name="S199" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2"/>
+<part name="BFO" library="rotary-encoder" deviceset="62P*X" device="" technology="16-H"/>
 <part name="S1" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2" value="AVC"/>
 <part name="S2" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2" value="Bandwidth"/>
 <part name="S3" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2" value="Band Up"/>
@@ -4456,11 +4455,11 @@ Mors</description>
 <attribute name="NAME" x="-114.3" y="194.564" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="-114.3" y="191.516" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="GND6" gate="1" x="71.12" y="208.28" smashed="yes" rot="R90">
-<attribute name="VALUE" x="73.66" y="205.74" size="1.778" layer="96" rot="R90"/>
+<instance part="GND6" gate="1" x="45.72" y="180.34" smashed="yes" rot="R90">
+<attribute name="VALUE" x="48.26" y="177.8" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="SUPPLY2" gate="G$1" x="71.12" y="193.04" smashed="yes" rot="R270">
-<attribute name="VALUE" x="74.295" y="194.945" size="1.778" layer="96" rot="R270"/>
+<instance part="SUPPLY2" gate="G$1" x="43.18" y="162.56" smashed="yes" rot="R270">
+<attribute name="VALUE" x="46.355" y="164.465" size="1.778" layer="96" rot="R270"/>
 </instance>
 <instance part="GND7" gate="1" x="-144.78" y="137.16" smashed="yes">
 <attribute name="VALUE" x="-147.32" y="134.62" size="1.778" layer="96"/>
@@ -4472,17 +4471,13 @@ Mors</description>
 <instance part="SUPPLY3" gate="G$1" x="7.62" y="119.38" smashed="yes">
 <attribute name="VALUE" x="5.715" y="122.555" size="1.778" layer="96"/>
 </instance>
-<instance part="RE1" gate="A" x="22.86" y="193.04" smashed="yes" rot="R180">
+<instance part="BFO" gate="A" x="22.86" y="193.04" smashed="yes" rot="R180">
 <attribute name="NAME" x="20.32" y="203.2" size="1.27" layer="95" rot="R180"/>
 <attribute name="VALUE" x="13.97" y="199.39" size="1.27" layer="96" rot="R180"/>
 </instance>
-<instance part="RE1" gate="SW" x="20.32" y="218.44" smashed="yes">
+<instance part="BFO" gate="SW" x="20.32" y="218.44" smashed="yes">
 <attribute name="NAME" x="17.272" y="220.726" size="1.778" layer="95"/>
 <attribute name="VALUE" x="16.51" y="212.852" size="1.778" layer="96"/>
-</instance>
-<instance part="S199" gate="1" x="53.34" y="228.6" smashed="yes">
-<attribute name="NAME" x="55.88" y="224.79" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="58.42" y="224.79" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="S1" gate="1" x="-71.12" y="226.06" smashed="yes">
 <attribute name="NAME" x="-73.66" y="217.17" size="1.778" layer="95" rot="R90"/>
@@ -4608,13 +4603,18 @@ Mors</description>
 <junction x="-40.64" y="236.22"/>
 <wire x1="-30.48" y1="236.22" x2="12.7" y2="236.22" width="0.1524" layer="91"/>
 <junction x="-30.48" y="236.22"/>
-<pinref part="S199" gate="1" pin="2"/>
-<wire x1="12.7" y1="236.22" x2="53.34" y2="236.22" width="0.1524" layer="91"/>
-<wire x1="53.34" y1="236.22" x2="53.34" y2="233.68" width="0.1524" layer="91"/>
-<pinref part="RE1" gate="SW" pin="D"/>
+<pinref part="BFO" gate="SW" pin="D"/>
 <wire x1="15.24" y1="215.9" x2="12.7" y2="215.9" width="0.1524" layer="91"/>
 <wire x1="12.7" y1="215.9" x2="12.7" y2="236.22" width="0.1524" layer="91"/>
-<junction x="12.7" y="236.22"/>
+</segment>
+<segment>
+<pinref part="GND6" gate="1" pin="GND"/>
+<pinref part="BFO" gate="A" pin="V+"/>
+<wire x1="43.18" y1="180.34" x2="22.86" y2="180.34" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="GND@2"/>
+<wire x1="38.1" y1="167.64" x2="43.18" y2="167.64" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="167.64" x2="43.18" y2="180.34" width="0.1524" layer="91"/>
+<junction x="43.18" y="180.34"/>
 </segment>
 </net>
 <net name="SDA" class="0">
@@ -4676,6 +4676,11 @@ Mors</description>
 <pinref part="U$1" gate="G$1" pin="VCC"/>
 <pinref part="SUPPLY3" gate="G$1" pin="VCC"/>
 <junction x="7.62" y="116.84"/>
+</segment>
+<segment>
+<pinref part="B1" gate="G$1" pin="VCC"/>
+<pinref part="SUPPLY2" gate="G$1" pin="VCC"/>
+<wire x1="38.1" y1="162.56" x2="40.64" y2="162.56" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -4786,7 +4791,7 @@ Mors</description>
 </net>
 <net name="N$15" class="0">
 <segment>
-<pinref part="RE1" gate="A" pin="A"/>
+<pinref part="BFO" gate="A" pin="A"/>
 <wire x1="10.16" y1="190.5" x2="7.62" y2="190.5" width="0.1524" layer="91"/>
 <wire x1="7.62" y1="190.5" x2="7.62" y2="160.02" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="2"/>
@@ -4795,7 +4800,7 @@ Mors</description>
 </net>
 <net name="N$16" class="0">
 <segment>
-<pinref part="RE1" gate="A" pin="B"/>
+<pinref part="BFO" gate="A" pin="B"/>
 <wire x1="10.16" y1="195.58" x2="2.54" y2="195.58" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="*3"/>
 <wire x1="2.54" y1="195.58" x2="2.54" y2="157.48" width="0.1524" layer="91"/>
@@ -4874,15 +4879,13 @@ Mors</description>
 </net>
 <net name="N$23" class="0">
 <segment>
-<pinref part="S199" gate="1" pin="1"/>
 <pinref part="B1" gate="G$1" pin="*10"/>
-<wire x1="53.34" y1="223.52" x2="53.34" y2="142.24" width="0.1524" layer="91"/>
 <wire x1="53.34" y1="142.24" x2="38.1" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$24" class="0">
 <segment>
-<pinref part="RE1" gate="SW" pin="E"/>
+<pinref part="BFO" gate="SW" pin="E"/>
 <wire x1="27.94" y1="215.9" x2="50.8" y2="215.9" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="215.9" x2="50.8" y2="149.86" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="13"/>

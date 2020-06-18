@@ -4327,7 +4327,6 @@ Mors</description>
 <part name="GND1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="R4" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="4.7KOHM" device="-0603-1/10W-1%" package3d_urn="urn:adsk.eagle:package:39650/1" value="4.7k"/>
 <part name="R5" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="4.7KOHM" device="-0603-1/10W-1%" package3d_urn="urn:adsk.eagle:package:39650/1" value="4.7k"/>
-<part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 <part name="C1" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="22NF/22,000PF" device="-0603-50V-10%" package3d_urn="urn:adsk.eagle:package:37414/1" value="22nF"/>
 <part name="Y1" library="SparkFun-Clocks" library_urn="urn:adsk.eagle:library:511" deviceset="CRYSTAL" device="PTH-2X6" package3d_urn="urn:adsk.eagle:package:37514/1"/>
@@ -4359,6 +4358,7 @@ Mors</description>
 <part name="S5" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2" value="Vol Up"/>
 <part name="S6" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2" value="Vol Down"/>
 <part name="GND8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="SUPPLY4" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4383,9 +4383,6 @@ Mors</description>
 <instance part="R5" gate="G$1" x="-12.7" y="121.92" smashed="yes" rot="R90">
 <attribute name="NAME" x="-16.764" y="121.92" size="1.778" layer="95" font="vector" rot="R270" align="bottom-center"/>
 <attribute name="VALUE" x="-8.636" y="121.92" size="1.778" layer="96" font="vector" rot="R270" align="top-center"/>
-</instance>
-<instance part="GND2" gate="1" x="-17.78" y="109.22" smashed="yes">
-<attribute name="VALUE" x="-20.32" y="106.68" size="1.778" layer="96"/>
 </instance>
 <instance part="SUPPLY1" gate="G$1" x="-35.56" y="160.02" smashed="yes" rot="R270">
 <attribute name="VALUE" x="-32.385" y="159.385" size="1.778" layer="96"/>
@@ -4506,6 +4503,9 @@ Mors</description>
 <instance part="GND8" gate="1" x="-101.6" y="233.68" smashed="yes">
 <attribute name="VALUE" x="-104.14" y="231.14" size="1.778" layer="96"/>
 </instance>
+<instance part="SUPPLY4" gate="G$1" x="-17.78" y="101.6" smashed="yes" rot="R180">
+<attribute name="VALUE" x="-15.875" y="98.425" size="1.778" layer="96" rot="R180"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -4524,17 +4524,6 @@ Mors</description>
 <junction x="-53.34" y="139.7"/>
 <junction x="-53.34" y="142.24"/>
 <junction x="-53.34" y="147.32"/>
-</segment>
-<segment>
-<pinref part="R4" gate="G$1" pin="1"/>
-<pinref part="GND2" gate="1" pin="GND"/>
-<wire x1="-22.86" y1="116.84" x2="-17.78" y2="116.84" width="0.1524" layer="91"/>
-<wire x1="-17.78" y1="116.84" x2="-17.78" y2="111.76" width="0.1524" layer="91"/>
-<pinref part="R5" gate="G$1" pin="1"/>
-<wire x1="-12.7" y1="116.84" x2="-17.78" y2="116.84" width="0.1524" layer="91"/>
-<junction x="-17.78" y="116.84"/>
-<pinref part="U$1" gate="G$1" pin="GND"/>
-<wire x1="5.08" y1="116.84" x2="-17.78" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="C5" gate="G$1" pin="2"/>
@@ -4683,6 +4672,18 @@ Mors</description>
 <pinref part="B1" gate="G$1" pin="VCC"/>
 <pinref part="SUPPLY2" gate="G$1" pin="VCC"/>
 <wire x1="38.1" y1="162.56" x2="40.64" y2="162.56" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R4" gate="G$1" pin="1"/>
+<wire x1="-22.86" y1="116.84" x2="-17.78" y2="116.84" width="0.1524" layer="91"/>
+<wire x1="-17.78" y1="116.84" x2="-17.78" y2="111.76" width="0.1524" layer="91"/>
+<pinref part="R5" gate="G$1" pin="1"/>
+<wire x1="-12.7" y1="116.84" x2="-17.78" y2="116.84" width="0.1524" layer="91"/>
+<junction x="-17.78" y="116.84"/>
+<pinref part="U$1" gate="G$1" pin="GND"/>
+<wire x1="5.08" y1="116.84" x2="-17.78" y2="116.84" width="0.1524" layer="91"/>
+<pinref part="SUPPLY4" gate="G$1" pin="VCC"/>
+<wire x1="-17.78" y1="104.14" x2="-17.78" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">

@@ -4357,8 +4357,8 @@ Mors</description>
 <part name="S2" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2" value="Bandwidth"/>
 <part name="S3" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2" value="Band Up"/>
 <part name="S4" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2" value="Band Down"/>
-<part name="S6" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2"/>
-<part name="S7" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2"/>
+<part name="S5" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2" value="Vol Up"/>
+<part name="S6" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2" value="Vol Down"/>
 <part name="GND8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 </parts>
 <sheets>
@@ -4500,13 +4500,13 @@ Mors</description>
 <attribute name="NAME" x="-50.8" y="217.17" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-50.8" y="222.25" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="S6" gate="1" x="-40.64" y="226.06" smashed="yes">
-<attribute name="NAME" x="-38.1" y="222.25" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="-35.56" y="222.25" size="1.778" layer="96" rot="R90"/>
+<instance part="S5" gate="1" x="-40.64" y="226.06" smashed="yes">
+<attribute name="NAME" x="-43.18" y="217.17" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="-43.18" y="222.25" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="S7" gate="1" x="-30.48" y="226.06" smashed="yes">
-<attribute name="NAME" x="-27.94" y="222.25" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="-25.4" y="222.25" size="1.778" layer="96" rot="R90"/>
+<instance part="S6" gate="1" x="-30.48" y="226.06" smashed="yes">
+<attribute name="NAME" x="-33.02" y="219.71" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="-33.02" y="224.79" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="GND8" gate="1" x="-101.6" y="233.68" smashed="yes">
 <attribute name="VALUE" x="-104.14" y="231.14" size="1.778" layer="96"/>
@@ -4598,11 +4598,11 @@ Mors</description>
 <wire x1="-48.26" y1="231.14" x2="-48.26" y2="236.22" width="0.1524" layer="91"/>
 <wire x1="-48.26" y1="236.22" x2="-55.88" y2="236.22" width="0.1524" layer="91"/>
 <junction x="-55.88" y="236.22"/>
-<pinref part="S6" gate="1" pin="2"/>
+<pinref part="S5" gate="1" pin="2"/>
 <wire x1="-40.64" y1="231.14" x2="-40.64" y2="236.22" width="0.1524" layer="91"/>
 <wire x1="-40.64" y1="236.22" x2="-48.26" y2="236.22" width="0.1524" layer="91"/>
 <junction x="-48.26" y="236.22"/>
-<pinref part="S7" gate="1" pin="2"/>
+<pinref part="S6" gate="1" pin="2"/>
 <wire x1="-30.48" y1="231.14" x2="-30.48" y2="236.22" width="0.1524" layer="91"/>
 <wire x1="-30.48" y1="236.22" x2="-40.64" y2="236.22" width="0.1524" layer="91"/>
 <junction x="-40.64" y="236.22"/>
@@ -4815,7 +4815,7 @@ Mors</description>
 </net>
 <net name="N$17" class="0">
 <segment>
-<pinref part="S7" gate="1" pin="1"/>
+<pinref part="S6" gate="1" pin="1"/>
 <wire x1="-30.48" y1="220.98" x2="0" y2="220.98" width="0.1524" layer="91"/>
 <wire x1="0" y1="220.98" x2="0" y2="154.94" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="4"/>
@@ -4824,7 +4824,7 @@ Mors</description>
 </net>
 <net name="N$18" class="0">
 <segment>
-<pinref part="S6" gate="1" pin="1"/>
+<pinref part="S5" gate="1" pin="1"/>
 <wire x1="-40.64" y1="220.98" x2="-40.64" y2="218.44" width="0.1524" layer="91"/>
 <wire x1="-40.64" y1="218.44" x2="-2.54" y2="218.44" width="0.1524" layer="91"/>
 <wire x1="-2.54" y1="218.44" x2="-2.54" y2="152.4" width="0.1524" layer="91"/>
