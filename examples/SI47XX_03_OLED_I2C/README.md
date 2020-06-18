@@ -32,6 +32,11 @@ The schematic below is a sugestion to connect a I2C Display (OLED or LCD 20x4 or
 
 ![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_i2c.png)
 
+<BR>
+
+![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_i2c.png)
+
+
 __Pay attention to the your I2C device voltage. The system can become unstable if you are using a wrong voltage__.
 
 
