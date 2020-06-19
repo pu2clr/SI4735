@@ -211,6 +211,5 @@ void loop()
       break;
     }
   } // end bluetooth control
-
    delay(2);
 }
