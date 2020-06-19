@@ -55,22 +55,23 @@ typedef struct {
   uint16_t   currentStep;
 } Band;
 
-
-Band band[] = {{"60m",4700, 5200, 4850, 5},
-  {"49m",5700, 6200, 6000, 5},
-  {"41m",7100, 7600, 7300, 5},
-  {"31m",9300, 10000, 9600, 5},
-  {"25m",11400, 12200, 11940, 5},
-  {"22m",13500, 13900, 13600, 5},
-  {"19m",15000, 15800, 15200, 5},
-  {"16m",17400, 17900, 17600, 5},
-  {"13m",21400, 21800, 21500, 5},
-  {"11m",25600, 27500, 27220, 1}
-};
+Band band[] = {
+    {"FM", 8400, 10800, 10650, 10},
+    {"AM", 570, 1710, 810, 10},
+    {"60m", 4700, 5200, 4850, 5},
+    {"49m", 5700, 6200, 6000, 5},
+    {"41m", 7100, 7600, 7300, 5},
+    {"31m", 9300, 10000, 9600, 5},
+    {"25m", 11400, 12200, 11940, 5},
+    {"22m", 13500, 13900, 13600, 5},
+    {"19m", 15000, 15800, 15200, 5},
+    {"16m", 17400, 17900, 17600, 5},
+    {"13m", 21400, 21800, 21500, 5},
+    {"11m", 25600, 27500, 27220, 1}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int  currentFreqIdx = 3; // Default SW band is 31M
-
+int  idxFreq = 0; // Default SW band is 31M
+int lastSw = 2;
 uint16_t currentFrequency;
 
 
@@ -81,34 +82,12 @@ SI4735 si4735;
 
 void setup()
 {
-  // Serial.begin(9600);
-  // while(!Serial);
-
-  showHelp();
-  
-  // ble.begin(57600);
   ble.begin(9600);
-  
-  // Serial.println("TESTE");
  
-  // gets and sets the Si47XX I2C bus address.
-  int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
-  if ( si4735Addr == 0 ) {
-    // Serial.println("Si473X not found!");
-    // Serial.flush();
-    while (1);
-  } else {
-    // Serial.print("The Si473X I2C address is 0x");
-    // Serial.println(si4735Addr, HEX);
-  }
-
-
-  delay(500);
-
   si4735.setup(RESET_PIN, FM_FUNCTION);
 
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
-  si4735.setFM(8400, 10800,  10390, 10);
+  si4735.setFM(band[idxFreq].minimumFreq, band[idxFreq].maximumFreq,  band[idxFreq].currentFreq, band[idxFreq].currentStep);
 
   delay(500);
 
@@ -117,52 +96,26 @@ void setup()
   showStatus();
 }
 
-// Instructions
-void showHelp() {
-  // Serial.println("Type F to FM; A to MW; and 1 or 2 to SW");
-  // Serial.println("Type U to increase and D to decrease the frequency");
-  // Serial.println("==================================================");
-  delay(1000);
-}
 
 // Show current frequency and status
 void showStatus()
 {
   String sFreq;  
-  band[currentFreqIdx].currentFreq = currentFrequency = si4735.getFrequency();
-  // Serial.print("You are tuned on ");
+  String sUnit;
+
+  band[idxFreq].currentFreq = currentFrequency = si4735.getFrequency();
+
   if (si4735.isCurrentTuneFM() ) {
     sFreq = String(currentFrequency / 100.0, 2);
-    // Serial.print(sFreq);
-    // Serial.print("MHz ");
-    // Serial.print((si4735.getCurrentPilot()) ? "STEREO" : "MONO");
+    sUnit = "MHz";
   } else {
-    // Serial.print(currentFrequency);
-    // Serial.print("KHz");
     sFreq = String(currentFrequency); 
+    sUnit = "KHz";
   }
 
-  // si4735.getCurrentReceivedSignalQuality();
-  // Serial.print(" [SNR:" );
-  // Serial.print(si4735.getCurrentSNR());
-  // Serial.print("dB");
-
-  // Serial.print(" RSSI:" );
-  // Serial.print(si4735.getCurrentRSSI());
-  // Serial.println("dBuV]");
-
-  ble.print(sFreq + " MHz\n");
+  ble.print(sFreq + " " + sUnit + "\n");
 
 }
-
-
-
-void showBandName() {
-  // Serial.println("Band: ");
-  // Serial.println(band[currentFreqIdx].freqName);
-  // Serial.println("*******");  
-}
-
 
 
 // Send VFO/BFO database to mobile device
@@ -175,42 +128,21 @@ void sendDatabase()
   // Building Json string to send to the mobile device
 
   // Bands table
-  for (i = 0; i < lastBand; i++)
+  for (i = 0; i < lastBand -1 ; i++)
   {
     jsonStr.concat("{\"name\":\"");
-    jsonStr.concat("TESTE");
+    jsonStr.concat(band[i].freqName);
     jsonStr.concat("\", \"unt\":\"");
-    jsonStr.concat("TESTE");
+    jsonStr.concat("KHz");
     jsonStr.concat("\"},");
   }
   jsonStr.concat("{\"name\":\"");
-  jsonStr.concat("BAND");
+  jsonStr.concat(band[i].freqName);
   jsonStr.concat("\", \"unt\":\"");
-  jsonStr.concat("MHZ");
+  jsonStr.concat("KHz");
   jsonStr.concat("\"}]}\n"); // '\n' means the and of the message
   // Send json Band table to the mobile device
   ble.print(jsonStr);
-  // Serial.println(jsonStr);
-
-  /**
-  // Steps table
-  jsonStr = "#S{\"steps\":[";;
-  for (i = 0; i < lastStepVFO; i++) {
-    jsonStr.concat("{\"name\":\"");
-    jsonStr.concat(step[i].name);
-    jsonStr.concat("\",\"value\":");
-    jsonStr.concat(step[i].value);
-    jsonStr.concat("},");
-  } */
-  jsonStr.concat("{\"name\":\"");
-  jsonStr.concat("TESTE");
-  jsonStr.concat("\",\"value\":");
-  jsonStr.concat("TESTE");
-  jsonStr.concat("}]}\n");
-  // Send json Step table to the mobile device 
-  // Serial.println(jsonStr);
-  ble.print(jsonStr);
-
 }
 
 // Process a long message sent by the Smartphone (message started with '#')
@@ -220,7 +152,6 @@ void processMessage()
   // Serial.println(buffer);
   // TO DO
 }
-
 
 
 // Main
@@ -245,16 +176,25 @@ void loop()
       // sendDatabase(); // Send VFO/BFO information (Bands, Steps and current status) to mobile device
       break;
     case 'm':
-        si4735.setAM(520, 1710, 810, 10);
-        showStatus();    
+      idxFreq = 1;
+      si4735.setAM(band[idxFreq].minimumFreq, band[idxFreq].maximumFreq, band[idxFreq].currentFreq, band[idxFreq].currentStep);
+      showStatus();    
       break;
     case 's':
-      // changeBand(findByBandName("SW")); // find the next SW band in the table and return the array intex position
-        si4735.setAM(7100, 7500, 7205, 5);
-        showStatus();
+      if (idxFreq > lastBand) 
+         idxFreq = 2; 
+      else if ( idxFreq < 2) 
+         idxFreq = lastSw;
+      else 
+         idxFreq++;
+
+      lastSw = idxFreq;      
+      si4735.setAM(band[idxFreq].minimumFreq, band[idxFreq].maximumFreq, band[idxFreq].currentFreq, band[idxFreq].currentStep);
+      showStatus();
       break;
     case 'f':
-      si4735.setFM(8400, 10800,  10650, 10);
+      idxFreq = 0;
+      si4735.setFM(band[idxFreq].minimumFreq, band[idxFreq].maximumFreq,  band[idxFreq].currentFreq, band[idxFreq].currentStep);
       showStatus();
       break;
     case 'v':
