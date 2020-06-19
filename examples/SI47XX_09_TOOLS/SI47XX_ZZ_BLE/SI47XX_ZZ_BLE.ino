@@ -197,11 +197,11 @@ void loop()
       si4735.setFM(band[idxFreq].minimumFreq, band[idxFreq].maximumFreq,  band[idxFreq].currentFreq, band[idxFreq].currentStep);
       showStatus();
       break;
-    case 'v':
-      // changeBand(findByBandName("VHF")); // find the next VHF band in the table and return the array intex position
+    case '>':
+      si4735.volumeUp();
       break;
-    case 'a':
-      // changeBand(findByBandName("AIR")); // find the next AIR band in the table and return the array intex position
+    case '<':
+      si4735.volumeDown();
       break; 
     case '#':
       // Follow the protocol
