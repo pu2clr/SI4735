@@ -19,7 +19,7 @@ The screenshot below shows the screen of the mobile application.
 
 <BR> 
 
-![HM10 - Mobile Application Screenshot](https://github.com/pu2clr/SI4735/blob/master/extras/images/mobile_0001.png)
+![Mobile Application Screenshot](https://github.com/pu2clr/SI4735/blob/master/extras/images/mobile_0001.png)
 
 <BR> 
 
@@ -51,7 +51,7 @@ The Arduino sketch of this example uses the [SoftwareSerial](https://github.com/
 
 The photo below shows the Arduino, SI4735 and the Bluetooth devices connections. 
 
-![HM10 - Mobile Application Screenshot](https://github.com/pu2clr/SI4735/blob/master/extras/images/iPHONE_01.png)
+![HM10 - Mobile Application Screenshot](https://github.com/pu2clr/SI4735/blob/master/extras/images/iPHONE_REMOTE_CONTROL_01.png)
 
 
 
