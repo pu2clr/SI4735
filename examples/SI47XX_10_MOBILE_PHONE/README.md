@@ -15,7 +15,7 @@ The video below shows you this example working.
 
 This example uses an old iPhone 5C. However, you can use your current iOs or Android device to run it. Thanks to Cordova development environment, you can do it with no code changes.
 
-The screenshot below shows the screen of the mobile application. 
+The screenshot below shows the mobile application interface. 
 
 <BR> 
 
