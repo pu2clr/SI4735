@@ -27,7 +27,7 @@ The Bluetooth 4.0 used here is the HM10 (TinySine). It is very similar to the fa
 
 ## Bluetooth Arduino Library 
 
-The Arduino sketch of this example uses the [SoftwareSerial](https://github.com/PaulStoffregen/SoftwareSerial). You have to download and install this library on your Arduino enviroment.    
+The Arduino sketch of this example uses the [SoftwareSerial](https://github.com/PaulStoffregen/SoftwareSerial) library. You have to download and install this library on your Arduino enviroment.    
 
 
 ## Compile and deploy this mobile application example
