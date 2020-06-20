@@ -2,7 +2,23 @@
 
 This example shows a way to use your smartphone as a remote control. In order to follow the steps presented here, I am assuming that you have some knowledge in development for mobile devices. Also, you will need to be familiar with the Javascript programming language.
 
-The development environment used for this example is the [Apache Cordova](https://cordova.apache.org/docs/en/latest/guide/overview/index.html). Cordova provides an easy way to develop for iOS and Android.
+The development environment used for this example is the [Apache Cordova](https://cordova.apache.org/docs/en/latest/guide/overview/index.html). Cordova is a open-source mobile development framework that allows you to develop cross-platform applications. That means you can code once and deploy the application in many system, including iOS and Android. 
+Cordova provides an easy way to develop for iOS and Android.
+
+
+### Bluetooth (HM10 - HMSOft TineSine)
+
+The Bluetooth 4.0 used here is the HM10 (TinySine). It is very similar to the famous HC-05. The photos below show the HM10 Bluetooth. This kind of Bluetooth works well on iOs and Android based device.
+
+![HM10 - HMSOft TineSine 01](https://github.com/pu2clr/SI4735/blob/master/extras/images/BT01BLE.png)
+
+![HM10 - HMSOft TineSine 02](https://github.com/pu2clr/SI4735/blob/master/extras/images/BT02BLE.png)
+
+
+#### HM10 Documentation
+
+* [HM-10 Bluetooth 4 BLE Modules - Martyn Currey](http://www.martyncurrey.com/hm-10-bluetooth-4ble-modules/)
+* [BLE CENTRAL - HM-10 BLE Module](http://blog.blecentral.com/2015/05/05/hm-10-peripheral/)
 
 
 ## Compile and deploy this mobile application example
@@ -17,7 +33,7 @@ For iOS (iPhone or iPad), is recommended to install [Xcode](https://developer.ap
 ### Cordova 
 
 This applications was build using the [Apache Cordova](https://cordova.apache.org/docs/en/latest/guide/overview/index.html). 
-[Apache Cordova](https://cordova.apache.org/docs/en/latest/guide/overview/index.html) is an open-source tool to develop cross-platform mobile application. Click [here](https://cordova.apache.org/docs/en/latest/guide/overview/index.html) to see more about Apache Cordova.
+[Apache Cordova](https://cordova.apache.org/docs/en/latest/guide/overview/index.html). Click [here](https://cordova.apache.org/docs/en/latest/guide/overview/index.html) to see more about Apache Cordova.
 
 ### Install Cordova
 
@@ -47,9 +63,7 @@ Compile and run the application
 
 ## Videos 
 
-- [VFO and BFO project test with an inexpencive radio based on CD2003GP](https://youtu.be/_KgBc6vYWLg)
-- [Testing the VFO with a CD2003GM HOMEBREW FM RECEIVER](https://youtu.be/JfgRjDK8LTE)
-- [VFO and BFO remote control with iPhone via Bluetooth](https://youtu.be/7gBRUmsrCus)
+- [Si4735 receiver prototype controlled by iPhone via Bluetooth](https://youtu.be/Yc9DHl7yQZ0)
 
 
 
