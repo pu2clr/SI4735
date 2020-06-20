@@ -11,6 +11,18 @@ The video below shows you this example working.
 [Si4735 receiver prototype controlled by iPhone via Bluetooth](https://youtu.be/Yc9DHl7yQZ0)
 
 
+### Mobile device
+
+This example uses an old iPhone 5C. However, you can use your current iOs or Android device to run it. Thanks to Cordova development environment, you can do it with no code changes.
+
+The screenshot below shows the screen of the mobile application. 
+
+<BR> 
+
+![HM10 - Mobile Application Screenshot](https://github.com/pu2clr/SI4735/blob/master/extras/images/mobile_0001.png)
+
+<BR> 
+
 ### Arduino Shield Bluetooth (HM10 - HMSOft TineSine)
 
 The Bluetooth 4.0 used here is the HM10 (TinySine). It is very similar to the famous HC-05. The photos below show the HM10 Bluetooth. This kind of Bluetooth works well on iOs and Android based device. __You also can use the HC-05 Bluetooth device. However, the HC-05 will not work on iOS devices__. 
