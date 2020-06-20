@@ -47,6 +47,14 @@ The Bluetooth 4.0 used here is the HM10 (TinySine). It is very similar to the fa
 The Arduino sketch of this example uses the [SoftwareSerial](https://github.com/PaulStoffregen/SoftwareSerial) library. You have to download and install this library on your Arduino enviroment.    
 
 
+## The prototype
+
+The photo below shows the Arduino, SI4735 and the Bluetooth devices connections. 
+
+![HM10 - Mobile Application Screenshot](https://github.com/pu2clr/SI4735/blob/master/extras/images/iPHONE_01.png)
+
+
+
 ## Compile and deploy this mobile application example
 
 Copy this example folder to a local folder and follow the steps bellow
