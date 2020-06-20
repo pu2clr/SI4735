@@ -6,7 +6,7 @@ The development environment used for this example is the [Apache Cordova](https:
 Cordova provides an easy way to develop for iOS and Android.
 
 
-The video below will show you this example working. 
+The video below shows you this example working. 
 
 [Si4735 receiver prototype controlled by iPhone via Bluetooth](https://youtu.be/Yc9DHl7yQZ0)
 
