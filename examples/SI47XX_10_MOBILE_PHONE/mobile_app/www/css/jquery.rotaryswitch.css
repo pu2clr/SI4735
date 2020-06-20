@@ -1,0 +1,98 @@
+
+.rotaryswitchPlugin {
+  position: relative;
+  width: 51px;
+  height: 51px;
+  cursor: pointer;
+  background: url(theme/darkSmallBackground.png) no-repeat;
+}
+ @media only screen and (-moz-min-device-pixel-ratio: 2),  only screen and (-o-min-device-pixel-ratio: 2/1),  only screen and (-webkit-min-device-pixel-ratio: 2),  only screen and (min-device-pixel-ratio: 2) {
+ .rotaryswitchPlugin {
+ background-image: url(theme/darkSmallBackground@2x.png);
+ background-size: 100% 100%;
+}
+}
+
+.rotaryswitchPlugin .switch {
+  width: 100%;
+  height: 100%;
+  background: url(theme/darkSmallFront.png) no-repeat;
+}
+ @media only screen and (-moz-min-device-pixel-ratio: 2),  only screen and (-o-min-device-pixel-ratio: 2/1),  only screen and (-webkit-min-device-pixel-ratio: 2),  only screen and (min-device-pixel-ratio: 2) {
+ .rotaryswitchPlugin .switch {
+ background-image: url(theme/darkSmallFront@2x.png);
+ background-size: 100% 100%;
+}
+}
+
+.rotaryswitchPlugin .mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -1px 0 0 0;
+  width: 1px;
+  height: 3px;
+  background-color: #0e0e0e;
+}
+
+.rotaryswitchPlugin input {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -60px;
+  width: 100%;
+  border: none;
+  z-index: 100;
+  text-align: left;
+  background: none;
+  font: normal 18px/18px verdana;
+  color: #0e0e0e;
+}
+
+.rotaryswitchPlugin.big {
+  width: 170px;
+  height: 170px;
+  background: url(theme/darkBigBackground.png) no-repeat;
+}
+ @media only screen and (-moz-min-device-pixel-ratio: 2),  only screen and (-o-min-device-pixel-ratio: 2/1),  only screen and (-webkit-min-device-pixel-ratio: 2),  only screen and (min-device-pixel-ratio: 2) {
+ .rotaryswitchPlugin.big {
+ background-image: url(theme/darkBigBackground@2x.png);
+ background-size: 100% 100%;
+}
+}
+
+.rotaryswitchPlugin.big .switch { background: url(theme/darkBigFront.png) no-repeat; }
+ @media only screen and (-moz-min-device-pixel-ratio: 2),  only screen and (-o-min-device-pixel-ratio: 2/1),  only screen and (-webkit-min-device-pixel-ratio: 2),  only screen and (min-device-pixel-ratio: 2) {
+ .rotaryswitchPlugin.big .switch {
+ background-image: url(theme/darkBigFront@2x.png);
+ background-size: 100% 100%;
+}
+}
+
+.rotaryswitchPlugin.big .mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -10px 0 0 -2px;
+  width: 4px;
+  height: 20px;
+  background-color: #c3c3c2;
+}
+
+.rotaryswitchPlugin input {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -60px;
+  width: 100%;
+  border: none;
+  z-index: 100;
+  text-align: left;
+  background: none;
+  font: normal 18px/18px verdana;
+  color: #0e0e0e;
+}
+
+.rotaryswitchPlugin.big.light { background: url(theme/lightBigBackground.png) no-repeat; }
+
+.rotaryswitchPlugin.big.light .switch { background: url(theme/lightBigFront.png) no-repeat; }
