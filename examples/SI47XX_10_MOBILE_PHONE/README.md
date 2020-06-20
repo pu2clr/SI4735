@@ -8,7 +8,7 @@ Cordova provides an easy way to develop for iOS and Android.
 
 ### Bluetooth (HM10 - HMSOft TineSine)
 
-The Bluetooth 4.0 used here is the HM10 (TinySine). It is very similar to the famous HC-05. The photos below show the HM10 Bluetooth. This kind of Bluetooth works well on iOs and Android based device.
+The Bluetooth 4.0 used here is the HM10 (TinySine). It is very similar to the famous HC-05. The photos below show the HM10 Bluetooth. This kind of Bluetooth works well on iOs and Android based device. __You also can use the HC-05 Bluetooth device. However, the HC-05 will not work on iOS devices__. 
 
 ![HM10 - HMSOft TineSine 01](https://github.com/pu2clr/SI4735/blob/master/extras/images/BT01BLE.png)
 
