@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.com.pu2clr.vfocontrol" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>VFO Control</name>
+<widget id="br.com.pu2clr.si4735" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Si4735 Control</name>
     <description>
-        Mobile remote control for the VFO
+        Mobile remote control for the Si4735
     </description>
-    <author email="pu2clr@gmail.com" href="https://github.com/pu2clr/VFO_BFO_OLED_ARDUINO/tree/master/Experiments/VFO_RADIO_CD2003GP">
-        Ricardo Lima Caratti - PUCLR
+    <author email="pu2clr@gmail.com" href="https://pu2clr.github.io/SI4735/">
+        Ricardo Lima Caratti - PU2CLR
     </author>
     <content src="index.html" />
     <access origin="*" />
