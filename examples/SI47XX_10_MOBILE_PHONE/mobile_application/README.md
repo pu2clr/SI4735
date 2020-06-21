@@ -28,6 +28,8 @@ This applications was build using the [Apache Cordova](https://cordova.apache.or
 
 ### Install Cordova
 
+    Cordova runs on Node.js.  Please, before installing Cordova, you have to configure the [Node.js](https://nodejs.org/en/). 
+
     $ npm install cordova -g
 
 
@@ -42,8 +44,12 @@ This applications was build using the [Apache Cordova](https://cordova.apache.or
 
 Compile and run the application
 
-    $ cordova run android --device
 
+    $ cordova run --device android 
+
+    or
+
+    $ cordova run --device ios
 
 
 ## Useful commands    
