@@ -1,37 +1,20 @@
 /*
-   Test and validation of the SI4735 Arduino Library.
-   This example shows how can setup the radio on SW by using the Si4735 Arduino Library.
-   This sketch divides the HF spectrum in many bands. See band table.
+  It is a receiver SI4735 based on the SI473X device controlled by Smartphone via Bluetooth. 
+  This sketch must be used in conjunction with the mobile application in this repository: https://github.com/pu2clr/bluetooth_remote_control.  
+  The table below shows the Si4735 and Arduino Pro Mini pin connections 
    
-   ATTENTION:  Please, avoid using the computer connected to the mains during testing.
-
-   The main advantages of using this sketch are:
-    1) It is a easy way to check if your circuit is working;
-    2) You do not need to connect any display device to make your radio works;
-    3) You do not need connect any push buttons or encoders to change volume and frequency;
-    4) The Arduino IDE is all you need to control the radio.
-
-   This sketch has been successfully tested on:
-    1) Pro Mini 3.3V; 
-    2) UNO (by using a voltage converter); 
-    3) Arduino Yún;
-    4) Arduino Mega (by using a voltage converter); and 
-    5) ESP32 (LOLIN32 WEMOS)
-
-    The table below shows the Si4735 and Arduino Pro Mini pin connections 
-    
-    | Si4735 pin      |  Arduino Pin  |
-    | ----------------| ------------  |
-    | RESET (pin 15)  |     12        |
-    | SDIO (pin 18)   |     A4        |
-    | SCLK (pin 17)   |     A5        |
-
+  | Si4735 pin      |  Arduino Pin  |
+  | ----------------| ------------  |
+  | RESET (pin 15)  |     12        |
+  | SDIO (pin 18)   |     A4        |
+  | SCLK (pin 17)   |     A5        |
 
   Prototype documentation : https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
   Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic.png
+  Bluetooth remote control documentation: https://github.com/pu2clr/bluetooth_remote_control
 
-   By Ricardo Lima Caratti, Nov 2019.
+  By Ricardo Lima Caratti, Nov 2020.
 */
 
 #include <SI4735.h>
