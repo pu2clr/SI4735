@@ -6,7 +6,7 @@
 
 # Preface
 
-This document is aimed at the Arduino developers, radio experimenters, hobbyists and anyone interested in building a receiver based on the Si47XX IC family from Silicon Labs.  This project is about an Arduino library for the SI47XX BROADCAST AM/FM/SW RADIO RECEIVER.  This library is intended to provide an easier interface for controlling the SI47XX by using Arduino platform. __The communication protocol used by this library is the I²C__. This library was built based on ["AN332 Si47XX PROGRAMMING GUIDE REV 1.0"](https://www.silabs.com/documents/public/application-notes/AN332.pdf) and __AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES__. It also can be used on __all members of the SI473X family__ respecting, of course, the features available in each IC version. Please, follow the [summary below](https://pu2clr.github.io/SI4735/#summary) to get the most out of this document.
+This document is aimed at the Arduino developers, radio experimenters, hobbyists and anyone interested in building a receiver based on the Si47XX IC family from Silicon Labs.  This project is about an Arduino library for the SI47XX BROADCAST AM/FM/SW RADIO RECEIVER.  This library is intended to provide an easier interface for controlling the SI47XX by using Arduino platform. __The communication protocol used by this library is the I²C__. This library was built based on ["AN332 Si47XX PROGRAMMING GUIDE REV 1.0"](https://www.silabs.com/documents/public/application-notes/AN332.pdf) and __AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES__. It also can be used on __all members of the SI473X family__ respecting, of course, the features available in each IC version. Please, follow the [contents below](https://pu2clr.github.io/SI4735/#contents) to get the most out of this document.
 
 This library can be freely distributed using the MIT Free Software model. 
 
@@ -80,7 +80,7 @@ The following video is a little joke that shows the trajectory of the constructi
 {% include libhistory.html %}
 
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 ## SI4735 Arduino Library Features
 
@@ -101,7 +101,7 @@ This library uses the I²C communication protocol and implements most of the fun
 12. Clock reference selection (crystal or external clock reference);
 13. FM Receive de-emphasis to 50 or 75 μs selection. 
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
@@ -126,7 +126,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 <BR>
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
@@ -174,7 +174,7 @@ After, unzip the SI4735-master.zip file in your Arduino Library folder.
 With that approach, you will have the __most current version__ of the library. However, __it may not be the most stable version__. This is because the current version is always in development. [Prefer releases](https://github.com/pu2clr/SI4735/releases).
 Do you need some old version (release) of this library?  If yes, [check here](https://github.com/pu2clr/SI4735/releases). 
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
@@ -190,7 +190,7 @@ Do you need some old version (release) of this library?  If yes, [check here](ht
 * All members of the Facebook groups ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) and ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/) for the  suggestions and corrections during the development of this project.
 
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
@@ -232,7 +232,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 * I²C and SPI interface 
 * Great Programming Guide and additional documentation to deal with the device
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
@@ -268,7 +268,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 | Soft Mute | Resource used to attenuate the audiooutputs and minimize audible noise in very weak signalconditions | 
 | Firmware Upgrades | The Si473x-D60 contains on-chip program  RAM to accommodate minor changes to the firmware | 
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
@@ -335,7 +335,7 @@ This library has more than 120 functions. The table below shows the mains functi
 | setI2CStandardMode                | Sets I2C bus to 100KHz. |
 | setAudioMuteMcuPin                | This function sets the mcu digital pin you want to use to control the external audio mute circuit. | 
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 
 ### Defined Data Types and Structures
@@ -461,7 +461,7 @@ __The table below shows the features that this library implements__.
 | 30 | Alarm Test | Emergency Test |
 | 31 | Alarm | Emergency |
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 
 ### SI4735 Patch Support for Single Side Band
@@ -512,7 +512,7 @@ This library implements many SSB examples. See the table below.
 
 See SSB example implementations [here](https://github.com/pu2clr/SI4735/tree/master/examples).
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
@@ -603,7 +603,7 @@ See also:
 * [How to use C++ Classes in Arduino IDE without creating a Library](https://www.radishlogic.com/arduino/use-c-class-arduino-ide-without-creating-library/?fbclid=IwAR07yO6OvyUlAa4d28N7VTWtY2vHjlUbtkxKiO7LJKOUkPou1bh8Lvwg8rA)
 * [Arduino the Object Oriented way](https://paulmurraycbr.github.io/ArduinoTheOOWay.html)
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
@@ -698,7 +698,7 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 * Pin 8 connects to the FM antenna interface, and pin 12 connects to the AM antenna interface.
 * Place Si473x-D60 as close as possible to antenna and keep the FMI and AMI traces as short as possible.
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
@@ -721,7 +721,7 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 * Use only batteries to power your circuit. Receptions in LW, MW and SW can be seriously harmed by the use of power supplies connected to the grid. 
 * See some Shortwave antenna configuration on [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)  
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
@@ -837,7 +837,7 @@ void setup() {
 Some low power audio amplifiers IC also implement mute circuit that can be controlled externally. You can find this resource on __[LM4906](http://www.ti.com/lit/ds/symlink/lm4906.pdf), [LM4863](https://www.ti.com/lit/ds/symlink/lm4863.pdf?ts=1588602798363), KA8602B, MC34119, PAM8403__ and __HT82V739__ devices.
 
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
@@ -898,7 +898,7 @@ The table below shows some SI473X chips and Si4730 based-boards where the PU2CLR
 {% include videocross.html %}
 
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
@@ -954,7 +954,7 @@ It was a bit hard to solder the kind of CI on adapter. However, by using a elect
 |![SI4735 on adapter 01](./extras/images/si4735_on_adapter_01.png)|![SI4735 on adapter 03](./extras/images/si4735_on_adapter_03.png)|
 
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 
 #### Protoboard
@@ -1027,7 +1027,7 @@ The figure above shows the very basic shematic implementation (no Button or Enco
     * [Arduino Object Oriented Programming (OOP)](https://roboticsbackend.com/arduino-object-oriented-programming-oop/)
     * [Writing a Library for Arduino](https://www.arduino.cc/en/Hacking/LibraryTutorial)
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 ## Videos
 
@@ -1065,7 +1065,7 @@ Here you can see some experiments using this library. Watch them.
 * [Great interface by Gert Baak](https://youtu.be/hRHSzFr_lQE)
 * [si4735 betatest radio](https://youtu.be/Gkh1zHn8NgE)
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 ## Commercial Receivers based on Si47XX Family
 
@@ -1088,5 +1088,5 @@ The table below shows some radios based on SI47XX
 | RADIWOW | R-108 |  | [Review](https://www.hagensieker.com/wordpress/2019/05/08/radiwow-r-108-short-wave-radio-review/)|
 | C Crane |  CC Skywave |  |[Review](https://swling.com/blog/2014/12/review-of-the-c-crane-cc-skywave-portable-radio/) |
 
-[Go to summary](https://pu2clr.github.io/SI4735/#summary)
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
