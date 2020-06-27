@@ -1246,6 +1246,7 @@ public:
     void getAutomaticGainControl(); //!<  Queries Automatic Gain Control STATUS
 
     /**
+     * @ingroup group17
      * @brief Sets the Avc Am Max Gain to 48dB
      * 
      */
@@ -1267,6 +1268,7 @@ public:
     };
 
     /**
+     * @ingroup group17
      * @brief Sets the Am Soft Mute Max Attenuation 
      * 
      * @details This function can be useful to disable Soft Mute. The value 0 disable soft mute.
@@ -1282,6 +1284,7 @@ public:
     };
 
     /**
+     * @ingroup group17
      * @brief Sets the SSB Soft Mute Max Attenuation object
      * 
      * @details Sets maximum attenuation during soft mute (dB). Set to 0 to disable soft mute. 
