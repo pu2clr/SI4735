@@ -2817,20 +2817,6 @@ void SI4735::patchPowerUp()
     delay(maxDelayAfterPouwerUp);
 }
 
-/** 
- * @ingroup group17 Patch and SSB support
- * 
- * @brief Starts the Si473X device on SSB (same AM Mode). 
- * 
- * @details Same SI4735::setup optimized to improve loading patch performance 
- */
-void SI4735::ssbSetup()
-{
-    // setPowerUp(powerUp.arg.CTSIEN, 0, 0, 1, 1, SI473X_ANALOG_AUDIO);
-    reset();
-    // radioPowerUp();
-}
-
 /**
  * @ingroup group17 Patch and SSB support
  * 

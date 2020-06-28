@@ -140,6 +140,8 @@ char bufferAGC[15];
 char bufferBand[15];
 char bufferStereo[15];
 
+
+
 /*
    Band data structure
 */
@@ -234,8 +236,8 @@ void showTemplate()
   tft.drawLine(60, 40, 60, 80, COLOR_YELLOW);            // Mode Block
   tft.drawLine(120, 40, 120, 80, COLOR_YELLOW);          // Band name
 
-  tft.drawText(5, 150, "SNR.:", COLOR_RED);
-  tft.drawText(5, 163, "RSSI:", COLOR_RED);
+  tft.drawText(5, 150, F("SNR.:"), COLOR_RED);
+  tft.drawText(5, 163, F("RSSI:"), COLOR_RED);
 
   tft.drawLine(0, 145, maxX1, 145, COLOR_YELLOW);
 
@@ -251,8 +253,8 @@ void showTemplate()
     Prevents blinking during the frequency display.
     Erases the old digits if it has changed and print the new digit values.
 */
-void printValue(int col, int line, char *oldValue, char *newValue, uint16_t color, uint8_t space) {
-  int c = col;
+void printValue(byte col, byte line, char *oldValue, char *newValue, uint16_t color, uint8_t space) {
+  byte c = col;
   char * pOld;
   char * pNew;
 
@@ -773,7 +775,6 @@ void loop()
     }
     checkRDS();
   }
-
 
   delay(10);
 }

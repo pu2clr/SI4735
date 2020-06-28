@@ -1815,7 +1815,6 @@ public:
     void getNext2Block(char *);
     void getNext4Block(char *);
 
-    void ssbSetup();
     void setSSBBfo(int offset);
     void setSSBConfig(uint8_t AUDIOBW, uint8_t SBCUTFLT, uint8_t AVC_DIVIDER, uint8_t AVCEN, uint8_t SMUTESEL, uint8_t DSP_AFCDIS);
     void setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint16_t step, uint8_t usblsb);
