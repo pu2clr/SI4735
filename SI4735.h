@@ -1116,6 +1116,7 @@ public:
      */
 
     /**
+     * @ingroup group08
      * @brief Get the Signal Quality Interrupt status
      * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 63            
      * @return RDSINT status
@@ -1126,6 +1127,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Get the Radio Data System (RDS) Interrupt status
      * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 63
      * @return RDSINT status  
@@ -1136,6 +1138,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Get the Tune Complete status
      * @details Seek/Tune Complete Interrupt; 1 = Tune complete has been triggered.
      * @return STCINT status  
@@ -1146,6 +1149,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Get the Status Error 
      * @details Return the Error flag (true or false) of status of the least Tune or Seek
      * @return Error flag 
@@ -1156,6 +1160,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Gets the Error flag Clear to Send
      * 
      * @return CTS 
@@ -1163,6 +1168,7 @@ public:
     inline bool getStatusCTS() { return currentStatus.resp.CTS; };
 
     /**
+     * @ingroup group08
      * @brief Returns true if the AFC rails (AFC Rail Indicator).
      * 
      * @return true 
@@ -1173,6 +1179,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Returns true if a seek hit the band limit 
      * 
      * @details (WRAP = 0 in FM_START_SEEK) or wrapped to the original frequency(WRAP = 1).
@@ -1185,6 +1192,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Gets the channel status
      * 
      * @details Returns true if the channel is currently valid as determined by the seek/tune properties (0x1403, 0x1404, 0x1108)
@@ -1198,6 +1206,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Returns the value of  Received Signal Strength Indicator (dBμV).
      * 
      * @return uint8_t 
@@ -1208,6 +1217,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Gets the SNR metric when tune is complete (dB)
      * 
      * @details Returns the value  of the SNR metric when tune is complete (dB).
@@ -1220,6 +1230,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Get the Status the M U L T 
      * 
      * @details Returns the value containing the multipath metric when tune is complete.
@@ -1232,6 +1243,7 @@ public:
     };
 
     /**
+     * @ingroup group17
      * @brief Get the Antenna Tuning Capacitor value
      * 
      * @details Returns the current antenna tuning capacitor value.
@@ -1258,6 +1270,7 @@ public:
     void setAvcAmMaxGain(uint8_t gain); //!<  Sets the maximum gain for automatic volume control.
 
     /**
+     * @ingroup group17
      * @brief Get the current Avc Am Max Gain 
      * 
      * @return uint8_t Current AVC gain index value
@@ -1298,6 +1311,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Checks if the AGC is enabled
      *
      * @return true if the AGC is enabled 
@@ -1308,6 +1322,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Gets the current AGC gain index
      * 
      * @return uint8_t The current AGC gain index.
@@ -1325,6 +1340,7 @@ public:
     // AM and FM
 
     /**
+     * @ingroup group08
      * @brief Get the current receive signal strength (0–127 dBμV)
      * 
      * @return uint8_t a value between 0 to 127
@@ -1335,6 +1351,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Gets the current SNR metric (0–127 dB).
      * 
      * @return uint8_t SNR value in dB (0-127)
@@ -1345,6 +1362,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Checks if RSSI detected is LOW. 
      * 
      * @return true if RSSI is low
@@ -1355,6 +1373,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Checks if RSSI detected is high 
      * 
      * @return true if RSSI detected is high
@@ -1365,6 +1384,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Checks if SNR detect is low
      * 
      * @return true if SNR detected is low
@@ -1375,6 +1395,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Checks if SNR detect is high
      * 
      * @return true  if SNR detect is high
@@ -1385,6 +1406,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Checks if the current channel is valid
      * 
      * @return true if the current channel is valid
@@ -1395,6 +1417,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief AFC Rail Indicator
      * 
      * @return true or false
@@ -1405,6 +1428,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Soft Mute Indicator. 
      * 
      * @details Indicates soft mute is engaged.
@@ -1419,6 +1443,7 @@ public:
     // Just FM
 
     /**
+     * @ingroup group08
      * @brief Gets the value of the amount of stereo blend in % (100 = full stereo, 0 = full mono).
      * 
      * @return uint8_t value (0 to 100)
@@ -1429,6 +1454,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Checks the current pilot 
      * 
      * @details Indicates stereo pilot presence.
@@ -1441,6 +1467,7 @@ public:
     };
 
     /**
+     * @ingroup group08
      * @brief Gets the current Multipath
      *  
      * @details Contains the current multipath metric. (0 = no multipath; 100 = full multipath)
@@ -1477,6 +1504,20 @@ public:
     void volumeDown();
     void volumeUp();
     inline uint8_t getCurrentVolume() { return volume; }; //!<  Returns the current volume level.
+    /**
+     * @ingroup group13 Audio volume
+     * @brief Set the Volume Up
+     * @details Same volumeUp()
+     * @see volumeUp
+     */
+    inline void setVolumeUp() {volumeUp();};
+    /**
+     * @ingroup group13 Audio volume
+     * @brief Set the Volume Down 
+     * @details Same volumeDown()
+     * @return voi 
+     */
+    inline voi setVolumeDown() {volumeDown();};
 
     /**
      * @ingroup group13 Digital Audio setup
