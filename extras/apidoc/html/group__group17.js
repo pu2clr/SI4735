@@ -18,7 +18,6 @@ var group__group17 =
     [ "sendSSBModeProperty", "group__group17.html#gae1d866bfc4cb37c4268c8942b4b4d062", null ],
     [ "queryLibraryId", "group__group17.html#gadfc2c82524918224cf19fec5b7fcf6d1", null ],
     [ "patchPowerUp", "group__group17.html#gafaabd6c73b7ad7c20ae959d5b75c1e71", null ],
-    [ "ssbSetup", "group__group17.html#ga6f045d3725a457116236ee92d41c4265", null ],
     [ "ssbPowerUp", "group__group17.html#ga0fcfd8e487c594707b3f2aaa71a86d68", null ],
     [ "downloadPatch", "group__group17.html#gafd1343bd8b4f0c290ef81c418222036c", null ],
     [ "downloadPatchFromEeprom", "group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6", null ]

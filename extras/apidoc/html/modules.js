@@ -9,7 +9,6 @@ var modules =
     [ "Filter setup", "group__group09.html", "group__group09" ],
     [ "Frequency and Device status", "group__group14.html", "group__group14" ],
     [ "Host and slave MCU setup", "group__group06.html", "group__group06" ],
-    [ "MCU Configuration", "group__group18.html", "group__group18" ],
     [ "Si4735-D60 Single Side Band (SSB) support", "group__group17.html", "group__group17" ],
     [ "Tools method", "group__group10.html", "group__group10" ],
     [ "Tune", "group__group15.html", "group__group15" ],
