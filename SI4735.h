@@ -1519,6 +1519,7 @@ public:
      * @see volumeUp
      */
 
+      
     inline void setVolumeUp() {volumeUp();};
     /**
      * @ingroup group13 Audio volume
@@ -1526,7 +1527,7 @@ public:
      * @details Same volumeDown()
      * @return voi 
      */
-    inline voi setVolumeDown() {volumeDown();};
+    inline void setVolumeDown() {volumeDown();};
 
     /**
      * @ingroup group13 Digital Audio setup

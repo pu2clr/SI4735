@@ -41,10 +41,8 @@
 */
 
 #include <SI4735.h>
-
 #include <SPI.h>
 #include "TFT_22_ILI9225.h" //   // See https://github.com/Nkawu/TFT_22_ILI9225/wiki
-
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.
@@ -132,8 +130,7 @@ uint8_t currentMode = FM;
 
 uint16_t currentStep = 1;
 
-
-char bufferDisplay[255]; // Useful to handle string
+char bufferDisplay[70]; // Useful to handle string
 char bufferFreq[15];
 char bufferBFO[15];
 char bufferStepVFO[15];
@@ -370,7 +367,7 @@ void showStatus()
 
   // AGC
   si4735.getAutomaticGainControl();
-  sprintf(bufferDisplay, "%s %2d", (si4735.isAgcEnabled()) ? "AGC" : "ATT", agcNdx);
+  sprintf(bufferDisplay, "%s %2d", (si4735.isAgcEnabled()) ? F("AGC") : F("ATT"), agcNdx);
   printValue(65, 60, bufferAGC, bufferDisplay, COLOR_CYAN, 6);
   showFilter(); 
 }
@@ -448,7 +445,7 @@ void showRSSI()
   tft.setFont(Terminal6x8);
   if (currentMode == FM)
   {
-    sprintf(bufferDisplay, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
+    sprintf(bufferDisplay, "%s", (si4735.getCurrentPilot()) ? F("STEREO") : F("MONO"));
     printValue(150, 60, bufferStereo, bufferDisplay, COLOR_CYAN, 7);
   }
 
