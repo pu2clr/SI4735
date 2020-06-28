@@ -141,7 +141,6 @@ char bufferBand[15];
 char bufferStereo[15];
 
 
-
 /*
    Band data structure
 */
