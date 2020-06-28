@@ -1625,7 +1625,7 @@ public:
      * @details Same frequencyUp
      * @see frequencyUp
      */
-    inline setFrequencyUp() {frequencyUp();};
+    inline void setFrequencyUp() {frequencyUp();};
 
     /**
      * @ingroup   group08 Tune Frequency 
@@ -1633,7 +1633,7 @@ public:
      * @details same frequencyDown
      * @see frequencyDown
      */
-    inline setFrequencyDown() {frequencyDown();};
+    inline void setFrequencyDown() {frequencyDown();};
 
 
 
