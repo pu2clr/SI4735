@@ -1619,6 +1619,24 @@ public:
     void frequencyUp();
     void frequencyDown();
 
+    /**
+     * @ingroup group08 Tune Frequency 
+     * @brief Set the FrequencyUp 
+     * @details Same frequencyUp
+     * @see frequencyUp
+     */
+    inline setFrequencyUp() {frequencyUp();};
+
+    /**
+     * @ingroup   group08 Tune Frequency 
+     * @brief Set the Frequency Down 
+     * @details same frequencyDown
+     * @see frequencyDown
+     */
+    inline setFrequencyDown() {frequencyDown();};
+
+
+
     void getFirmware(void);
 
 
