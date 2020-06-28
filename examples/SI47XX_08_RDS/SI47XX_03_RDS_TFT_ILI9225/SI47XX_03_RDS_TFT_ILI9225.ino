@@ -6,8 +6,8 @@
   For this reason, it is necessary change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
-  Features:   FM/RDS; AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; 
-              AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB 
+  Features:   FM/RDS; AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control;
+              AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
 
   Wire up on Arduino UNO, Pro mini
   | Device name               | Device Pin / Description  |  Arduino Pin  |
@@ -130,7 +130,7 @@ uint8_t currentMode = FM;
 
 uint16_t currentStep = 1;
 
-char bufferDisplay[70]; // Useful to handle string
+char bufferDisplay[100]; // Useful to handle string
 char bufferFreq[15];
 char bufferBFO[15];
 char bufferStepVFO[15];
@@ -159,16 +159,16 @@ typedef struct
    Band table
 */
 Band band[] = {
-    {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
-    {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
-    {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1},  // ALL SW1 (from 150Khz to 30MHz)
-    {"SW2", SW_BAND_TYPE, 150, 30000, 14200, 1} // ALL SW2 (from 150KHz to 30MHz)
+  {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
+  {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
+  {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1},  // ALL SW1 (from 150Khz to 30MHz)
+  {"SW2", SW_BAND_TYPE, 150, 30000, 14200, 1} // ALL SW2 (from 150KHz to 30MHz)
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
 
-const char * const text_message  = "DIY: github.com/pu2clr/SI4735";
+// const char * const text_message  = "DIY: github.com/pu2clr/SI4735";
 
 uint8_t rssi = 0;
 uint8_t snr = 0;
@@ -208,9 +208,9 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   // si4735.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
-  // si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode. 
-  si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode. 
-  
+  // si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+  si4735.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
+
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
   si4735.setVolume(volume);
@@ -236,15 +236,15 @@ void showTemplate()
   tft.drawLine(60, 40, 60, 80, COLOR_YELLOW);            // Mode Block
   tft.drawLine(120, 40, 120, 80, COLOR_YELLOW);          // Band name
 
-  tft.drawText(5, 150, F("SNR.:"), COLOR_RED);
-  tft.drawText(5, 163, F("RSSI:"), COLOR_RED);
+  tft.drawText(5, 150, "SNR.:", COLOR_RED);
+  tft.drawText(5, 163, "RSSI:", COLOR_RED);
 
   tft.drawLine(0, 145, maxX1, 145, COLOR_YELLOW);
 
   tft.drawRectangle(45, 150,  maxX1 - 2, 156, COLOR_YELLOW);
   tft.drawRectangle(45, 163,  maxX1 - 2, 169, COLOR_YELLOW);
 
-  tft.drawText(5, 130, text_message, COLOR_YELLOW);
+  // tft.drawText(5, 130, text_message, COLOR_YELLOW);
 }
 
 
@@ -311,24 +311,41 @@ void rotaryEncoder()
 */
 void showFrequency()
 {
-  float freq;
   uint16_t color;
-
+  char tmp[15];
+  
+  // It is better than use dtostrf or String to save space.   
+  
+  sprintf(tmp,"%5.5u", currentFrequency);
   tft.setFont(Trebuchet_MS16x21);
 
   if (si4735.isCurrentTuneFM())
   {
-    freq = currentFrequency / 100.0;
-    dtostrf(freq, 3, 1, bufferDisplay);
+    bufferDisplay[0] = tmp[0];
+    bufferDisplay[1] = tmp[1];
+    bufferDisplay[2] = tmp[2];
+    bufferDisplay[3] = '.';
+    bufferDisplay[4] = tmp[3];
+    bufferDisplay[5] = '\0';
   }
   else
   {
-    freq = currentFrequency / 1000.0;
-    if (currentFrequency < 1000)
-      sprintf(bufferDisplay, "%3d", currentFrequency);
-    else
-      dtostrf(freq, 2, 3, bufferDisplay);
+    if ( currentFrequency  < 1000 ) {
+       bufferDisplay[0] = tmp[2] ;
+       bufferDisplay[1] = tmp[3];
+       bufferDisplay[2] = tmp[4];
+       bufferDisplay[3] = '\0';
+    } else {
+      bufferDisplay[0] = tmp[0] ;
+      bufferDisplay[1] = tmp[1];
+      bufferDisplay[2] = '.';
+      bufferDisplay[3] = tmp[2];
+      bufferDisplay[4] = tmp[3];
+      bufferDisplay[5] = tmp[4];
+      bufferDisplay[6] = '\0';
+    }
   }
+
   color = (bfoOn) ? COLOR_CYAN : COLOR_YELLOW;
   printValue(10, 10, bufferFreq, bufferDisplay, color, 20);
 }
@@ -369,9 +386,9 @@ void showStatus()
 
   // AGC
   si4735.getAutomaticGainControl();
-  sprintf(bufferDisplay, "%s %2d", (si4735.isAgcEnabled()) ? F("AGC") : F("ATT"), agcNdx);
+  sprintf(bufferDisplay, "%s %2d", (si4735.isAgcEnabled()) ? "AGC" : "ATT", agcNdx);
   printValue(65, 60, bufferAGC, bufferDisplay, COLOR_CYAN, 6);
-  showFilter(); 
+  showFilter();
 }
 
 
@@ -379,7 +396,7 @@ void showFilter() {
   // Bandwidth
   if (currentMode == LSB || currentMode == USB || currentMode == AM) {
     char * bw;
-     tft.drawText(150, 60, bufferStereo, COLOR_BLACK); // Erase Stereo/Mono information
+    tft.drawText(150, 60, bufferStereo, COLOR_BLACK); // Erase Stereo/Mono information
 
     if (currentMode == AM) {
       bw = (char *) bandwitdthAM[bwIdxAM];
@@ -402,22 +419,22 @@ char bufferRdsMsg[40];
 char bufferRdsTime[32];
 
 void showRDSMsg() {
-  rdsMsg[35] = bufferRdsMsg[35] = '\0'; 
+  rdsMsg[35] = bufferRdsMsg[35] = '\0';
   if (strcmp(bufferRdsMsg, rdsMsg) == 0) return;
   printValue(5, 90, bufferRdsMsg, rdsMsg, COLOR_GREEN, 6);
-  delay(250); 
+  delay(250);
 }
 
 void showRDSStation() {
   if (strcmp(bufferStatioName, stationName) == 0 ) return;
-  printValue(5, 110,bufferStatioName, stationName, COLOR_GREEN, 6);
-  delay(250); 
+  printValue(5, 110, bufferStatioName, stationName, COLOR_GREEN, 6);
+  delay(250);
 }
 
 void showRDSTime() {
   if (strcmp(bufferRdsTime, rdsTime) == 0 ) return;
   printValue(80, 110, bufferRdsTime, rdsTime, COLOR_GREEN, 6);
-  delay(250); 
+  delay(250);
 }
 
 void checkRDS() {
@@ -447,7 +464,7 @@ void showRSSI()
   tft.setFont(Terminal6x8);
   if (currentMode == FM)
   {
-    sprintf(bufferDisplay, "%s", (si4735.getCurrentPilot()) ? F("STEREO") : F("MONO"));
+    sprintf(bufferDisplay, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
     printValue(150, 60, bufferStereo, bufferDisplay, COLOR_CYAN, 7);
   }
 
@@ -474,7 +491,7 @@ void showBFOTemplate(uint16_t color)
 }
 
 void clearBFO() {
-  tft.fillRectangle(124,52, 218,79,COLOR_BLACK); // Clear All BFO area
+  tft.fillRectangle(124, 52, 218, 79, COLOR_BLACK); // Clear All BFO area
   CLEAR_BUFFER(bufferBFO);
   CLEAR_BUFFER(bufferStepBFO);
 }
@@ -490,33 +507,20 @@ void showBFO()
   printValue(160, 65, bufferStepBFO, bufferDisplay, COLOR_CYAN, 7);
 }
 
-/*
-   Goes to the next band (see Band table)
-*/
-void bandUp()
-{
-  // save the current frequency for the band
+
+/**
+ * Sets Band up (1) or down (!1)
+ */
+void setBand(uint8_t up_down) {
   band[bandIdx].currentFreq = currentFrequency;
-  band[bandIdx].currentStep = currentStep;
-
-  bandIdx = (bandIdx < lastBand) ? (bandIdx + 1) : 0;
-
+  band[bandIdx].currentStep = currentStep;      
+  if ( up_down == 1) 
+    bandIdx = (bandIdx < lastBand) ? (bandIdx + 1) : 0;
+  else
+    bandIdx = (bandIdx > 0) ? (bandIdx - 1) : lastBand;
   useBand();
 }
 
-/*
-   Goes to the previous band (see Band table)
-*/
-void bandDown()
-{
-  // save the current frequency for the band
-  band[bandIdx].currentFreq = currentFrequency;
-  band[bandIdx].currentStep = currentStep;
-
-  bandIdx = (bandIdx > 0) ? (bandIdx - 1) : lastBand;
-
-  useBand();
-}
 
 /*
    This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
@@ -551,7 +555,7 @@ void loadSSB()
 void useBand()
 {
   showBFOTemplate(COLOR_BLACK);
-  tft.fillRectangle(3, 90,  tft.maxX() -5, 120, COLOR_BLACK);
+  tft.fillRectangle(3, 90,  tft.maxX() - 5, 120, COLOR_BLACK);
 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
@@ -611,145 +615,146 @@ void loop()
     }
     showFrequency();
     encoderCount = 0;
-  }
-
-  // Check button commands
-  if ((millis() - elapsedButton) > MIN_ELAPSED_TIME)
-  {
-    // check if some button is pressed
-    if (digitalRead(BANDWIDTH_BUTTON) == LOW)
+  } else {
+    if ((millis() - elapsedButton) > MIN_ELAPSED_TIME)
     {
-      if (currentMode == LSB || currentMode == USB)
+      // check if some button is pressed
+      if (digitalRead(BANDWIDTH_BUTTON) == LOW)
       {
-        bwIdxSSB++;
-        if (bwIdxSSB > 5)
-          bwIdxSSB = 0;
-        si4735.setSSBAudioBandwidth(bwIdxSSB);
-        // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-        if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
-          si4735.setSBBSidebandCutoffFilter(0);
-        else
-          si4735.setSBBSidebandCutoffFilter(1);
-      }
-      else if (currentMode == AM)
-      {
-        bwIdxAM++;
-        if (bwIdxAM > 6)
-          bwIdxAM = 0;
-        si4735.setBandwidth(bwIdxAM, 1);
-      }
-      showStatus();
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-    }
-    else if (digitalRead(BAND_BUTTON_UP) == LOW)
-      bandUp();
-    else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
-      bandDown();
-    else if (digitalRead(BFO_SWITCH) == LOW)
-    {
-      if (currentMode == LSB || currentMode == USB)
-      {
-        bfoOn = !bfoOn;
-        if (bfoOn)
+        if (currentMode == LSB || currentMode == USB)
         {
-          showBFOTemplate(COLOR_CYAN);
-          showStatus();
-          showBFO();
+          bwIdxSSB++;
+          if (bwIdxSSB > 5)
+            bwIdxSSB = 0;
+          si4735.setSSBAudioBandwidth(bwIdxSSB);
+          // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+          if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
+            si4735.setSBBSidebandCutoffFilter(0);
+          else
+            si4735.setSBBSidebandCutoffFilter(1);
         }
-        else
+        else if (currentMode == AM)
         {
-          showBFOTemplate(COLOR_BLACK);
-          clearBFO();
+          bwIdxAM++;
+          if (bwIdxAM > 6)
+            bwIdxAM = 0;
+          si4735.setBandwidth(bwIdxAM, 1);
         }
-        CLEAR_BUFFER(bufferFreq);
-      } 
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-      showFrequency();
-    }
-    else if (digitalRead(AGC_SWITCH) == LOW)
-    {
-      if (agcIdx == 0)
-      {
-        disableAgc = 0; // Turns AGC ON
-        agcNdx = 0;
-        agcIdx = 1;
-      } else if (agcIdx == 1)
-      {
-        disableAgc = 1; // Turns AGC OFF
-        agcNdx = 0;     // Sets minimum attenuation
-        agcIdx = 2;
-      } else if (agcIdx == 2)
-      {
-        disableAgc = 1; // Turns AGC OFF
-        agcNdx = 10;    // Increases the attenuation AM/SSB AGC Index  = 10
-        agcIdx = 3;
-      } else if (agcIdx == 3)
-      {
-        disableAgc = 1; // Turns AGC OFF
-        agcNdx = 30;    // Increases the attenuation AM/SSB AGC Index  = 30
-        agcIdx = 0;
-      } 
-      // Sets AGC on/off and gain
-      si4735.setAutomaticGainControl(disableAgc, agcNdx);
-      showStatus();
-    }
-    else if (digitalRead(STEP_SWITCH) == LOW)
-    {
-      // This command should work only for SSB mode
-      if (bfoOn && (currentMode == LSB || currentMode == USB))
-      {
-        currentBFOStep = (currentBFOStep == 25) ? 10 : 25;
-        showBFO();
+        showStatus();
+        // delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       }
-      else if (currentMode == FM ) {
-        band[bandIdx].currentStep = (band[bandIdx].currentStep == 10)? 100:10; 
-        si4735.setFrequencyStep(band[bandIdx].currentStep);
-      }
-      else
+      else if (digitalRead(BAND_BUTTON_UP) == LOW)
+        setBand(1);
+      else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
+        setBand(-1);
+      else if (digitalRead(BFO_SWITCH) == LOW)
       {
-        if (currentStep == 1)
-          currentStep = 5;
-        else if (currentStep == 5)
-          currentStep = 10;
-        else if (currentStep == 10)
-          currentStep = 50;
-        else if ( currentStep == 50 &&  bandIdx > 2 )  // If band index is not VHF(FM), LW (AM) and MW(AM) you can use 500KHz Step.
-          currentStep = 500;
-        else
-          currentStep = 1;
-        si4735.setFrequencyStep(currentStep);
-        band[bandIdx].currentStep = currentStep;
+        if (currentMode == LSB || currentMode == USB)
+        {
+          bfoOn = !bfoOn;
+          if (bfoOn)
+          {
+            showBFOTemplate(COLOR_CYAN);
+            showStatus();
+            showBFO();
+          }
+          else
+          {
+            showBFOTemplate(COLOR_BLACK);
+            clearBFO();
+          }
+          CLEAR_BUFFER(bufferFreq);
+        }
+        // delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+        showFrequency();
+      }
+      else if (digitalRead(AGC_SWITCH) == LOW)
+      {
+        if (agcIdx == 0)
+        {
+          disableAgc = 0; // Turns AGC ON
+          agcNdx = 0;
+          agcIdx = 1;
+        } else if (agcIdx == 1)
+        {
+          disableAgc = 1; // Turns AGC OFF
+          agcNdx = 0;     // Sets minimum attenuation
+          agcIdx = 2;
+        } else if (agcIdx == 2)
+        {
+          disableAgc = 1; // Turns AGC OFF
+          agcNdx = 10;    // Increases the attenuation AM/SSB AGC Index  = 10
+          agcIdx = 3;
+        } else if (agcIdx == 3)
+        {
+          disableAgc = 1; // Turns AGC OFF
+          agcNdx = 30;    // Increases the attenuation AM/SSB AGC Index  = 30
+          agcIdx = 0;
+        }
+        // Sets AGC on/off and gain
+        si4735.setAutomaticGainControl(disableAgc, agcNdx);
         showStatus();
       }
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-    }
-    else if (digitalRead(MODE_SWITCH) == LOW)
-    {
-      if (currentMode != FM)
+      else if (digitalRead(STEP_SWITCH) == LOW)
       {
-        if (currentMode == AM)
+        // This command should work only for SSB mode
+        if (bfoOn && (currentMode == LSB || currentMode == USB))
         {
-          // If you were in AM mode, it is necessary to load SSB patch (avery time)
-          loadSSB();
-          currentMode = LSB;
+          currentBFOStep = (currentBFOStep == 25) ? 10 : 25;
+          showBFO();
         }
-        else if (currentMode == LSB)
+        else if (currentMode == FM ) {
+          band[bandIdx].currentStep = (band[bandIdx].currentStep == 10) ? 100 : 10;
+          si4735.setFrequencyStep(band[bandIdx].currentStep);
+        }
+        else
         {
-          currentMode = USB;
+          if (currentStep == 1)
+            currentStep = 5;
+          else if (currentStep == 5)
+            currentStep = 10;
+          else if (currentStep == 10)
+            currentStep = 50;
+          else if ( currentStep == 50 &&  bandIdx > 2 )  // If band index is not VHF(FM), LW (AM) and MW(AM) you can use 500KHz Step.
+            currentStep = 500;
+          else
+            currentStep = 1;
+          si4735.setFrequencyStep(currentStep);
+          band[bandIdx].currentStep = currentStep;
+          showStatus();
         }
-        else if (currentMode == USB)
-        {
-          currentMode = AM;
-          bfoOn = ssbLoaded = false;
-        }
-        // Nothing to do if you are in FM mode
-        band[bandIdx].currentFreq = currentFrequency;
-        band[bandIdx].currentStep = currentStep;
-        useBand();
+        // delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       }
+      else if (digitalRead(MODE_SWITCH) == LOW)
+      {
+        if (currentMode != FM)
+        {
+          if (currentMode == AM)
+          {
+            // If you were in AM mode, it is necessary to load SSB patch (avery time)
+            loadSSB();
+            currentMode = LSB;
+          }
+          else if (currentMode == LSB)
+          {
+            currentMode = USB;
+          }
+          else if (currentMode == USB)
+          {
+            currentMode = AM;
+            bfoOn = ssbLoaded = false;
+          }
+          // Nothing to do if you are in FM mode
+          band[bandIdx].currentFreq = currentFrequency;
+          band[bandIdx].currentStep = currentStep;
+          useBand();
+        }
+      }
+      elapsedButton = millis();
+      delay(MIN_ELAPSED_TIME);
     }
-    elapsedButton = millis();
   }
+
 
   // Show RSSI status only if this condition has changed
   if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
@@ -767,7 +772,7 @@ void loop()
 
   if ( currentMode == FM) {
     if ( currentFrequency != previousFrequency ) {
-      tft.fillRectangle(3, 90,  tft.maxX() -5, 120, COLOR_BLACK);
+      tft.fillRectangle(3, 90,  tft.maxX() - 5, 120, COLOR_BLACK);
       bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] =  bufferRdsTime[0] = rdsMsg[0] = stationName[0] = '\0';
       showRDSMsg();
       showRDSStation();

@@ -1040,12 +1040,9 @@ protected:
     uint8_t volume = 32;   //!< Stores the current vlume setup (0-63). 
 
     uint8_t currentAudioMode = SI473X_ANALOG_AUDIO; //!< Current audio mode used (ANALOG or DIGITAL or both)
-    uint8_t currentSsbStatus; 
-
-    bool controlMcu = false;
-    int8_t controlMcuPin;
+    uint8_t currentSsbStatus;
     int8_t audioMuteMcuPin = -1;
-    uint32_t controlMcuClock;
+
 
     void waitInterrupr(void);
     si47x_status getInterruptStatus();
@@ -1967,15 +1964,6 @@ public:
      */
     inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); };
 
-    // MCU control. Virtual
-    virtual void setMcuControl(bool value);
-    virtual void setMcuWakeUpPin(uint8_t pin);
-    virtual void mcuWakeUp();
-    virtual void mcuSleepDown();
-    virtual void setMcuClockSpeed(uint32_t clock);
-
-    // void setAudioMuteMcuPin(uint8_t pin);
-    // void setHardwareAudioMute(bool on);
 
     /**
      * @ingroup group18 MCU External Audio Mute  
