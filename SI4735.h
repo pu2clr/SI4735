@@ -1503,13 +1503,22 @@ public:
     uint8_t getVolume();
     void volumeDown();
     void volumeUp();
-    inline uint8_t getCurrentVolume() { return volume; }; //!<  Returns the current volume level.
+
+    /**
+     * @ingroup group13 Audio volume
+     * @brief Get the Current Volume 
+     * @details Returns the current volume level.
+     * @return uint8_t 
+     */
+    inline uint8_t getCurrentVolume() { return volume; }; 
+
     /**
      * @ingroup group13 Audio volume
      * @brief Set the Volume Up
      * @details Same volumeUp()
      * @see volumeUp
      */
+
     inline void setVolumeUp() {volumeUp();};
     /**
      * @ingroup group13 Audio volume
