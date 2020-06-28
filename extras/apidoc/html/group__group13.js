@@ -1,5 +1,6 @@
 var group__group13 =
 [
+    [ "getCurrentVolume", "group__group13.html#ga430b86ccfd4d6c89da9202a538e0cfc9", null ],
     [ "setVolumeUp", "group__group13.html#gae0e23a0a2cbc24ee16b03866ee587102", null ],
     [ "setVolumeDown", "group__group13.html#ga27345cccf9ceb42236fd871c1d6f1e0a", null ],
     [ "setAudioMode", "group__group13.html#gac6a538cefcb4beb5bd77a721f8dab019", null ],

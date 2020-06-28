@@ -28,7 +28,7 @@ var searchData=
   ['getcurrentsoftmuteindicator_138',['getCurrentSoftMuteIndicator',['../group__group08.html#ga76e8485292878c1294e5910601f4575f',1,'SI4735']]],
   ['getcurrentstereoblend_139',['getCurrentStereoBlend',['../group__group08.html#gacaafab62dd411dc9b79f9fb96e8c8832',1,'SI4735']]],
   ['getcurrentvalidchannel_140',['getCurrentValidChannel',['../group__group08.html#ga5ce1abf8c9d53c027f6b0870efedda1b',1,'SI4735']]],
-  ['getcurrentvolume_141',['getCurrentVolume',['../class_s_i4735.html#a430b86ccfd4d6c89da9202a538e0cfc9',1,'SI4735']]],
+  ['getcurrentvolume_141',['getCurrentVolume',['../group__group13.html#ga430b86ccfd4d6c89da9202a538e0cfc9',1,'SI4735']]],
   ['getdevicei2caddress_142',['getDeviceI2CAddress',['../group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9',1,'SI4735']]],
   ['getfirmware_143',['getFirmware',['../group__group07.html#ga2fbc7e2187a7c645879623100dbc8502',1,'SI4735']]],
   ['getfirmwarechiprev_144',['getFirmwareCHIPREV',['../class_s_i4735.html#acd363d9111e4a57cf2e1167634bc1b5f',1,'SI4735']]],

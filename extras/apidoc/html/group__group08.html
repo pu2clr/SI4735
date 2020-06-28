@@ -176,6 +176,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga6913873c511adb357fa7c02f2a8386d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga6913873c511adb357fa7c02f2a8386d7">SI4735::isCurrentTuneSSB</a> ()</td></tr>
 <tr class="memdesc:ga6913873c511adb357fa7c02f2a8386d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the current function is SSB (SSB_TUNE_FREQ).  <a href="group__group08.html#ga6913873c511adb357fa7c02f2a8386d7">More...</a><br /></td></tr>
 <tr class="separator:ga6913873c511adb357fa7c02f2a8386d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafe9017af0f740f4f714e8bcbb2d7b4f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#gafe9017af0f740f4f714e8bcbb2d7b4f9">SI4735::setFrequencyUp</a> ()</td></tr>
+<tr class="memdesc:gafe9017af0f740f4f714e8bcbb2d7b4f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the FrequencyUp.  <a href="group__group08.html#gafe9017af0f740f4f714e8bcbb2d7b4f9">More...</a><br /></td></tr>
+<tr class="separator:gafe9017af0f740f4f714e8bcbb2d7b4f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadf0d354731ee4f1752e3e97c87b7dea2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#gadf0d354731ee4f1752e3e97c87b7dea2">SI4735::setFrequencyDown</a> ()</td></tr>
+<tr class="memdesc:gadf0d354731ee4f1752e3e97c87b7dea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Frequency Down.  <a href="group__group08.html#gadf0d354731ee4f1752e3e97c87b7dea2">More...</a><br /></td></tr>
+<tr class="separator:gadf0d354731ee4f1752e3e97c87b7dea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7bf47d3aab5952fa8895bd9094256dd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8">SI4735::setMaxDelaySetFrequency</a> (uint16_t ms)</td></tr>
 <tr class="memdesc:ga7bf47d3aab5952fa8895bd9094256dd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Max Delay after Set Frequency.  <a href="group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8">More...</a><br /></td></tr>
 <tr class="separator:ga7bf47d3aab5952fa8895bd9094256dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1009,6 +1015,66 @@ false </dd></dl>
 
 </div>
 </div>
+<a id="gafe9017af0f740f4f714e8bcbb2d7b4f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafe9017af0f740f4f714e8bcbb2d7b4f9">&#9670;&nbsp;</a></span>setFrequencyUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SI4735::setFrequencyUp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the FrequencyUp. </p>
+<p>Same frequencyUp </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#gac0fcfd64dcf30b11d4dc219d9f7fc5d9" title="Increments the current frequency on current band/function by using the current step.">frequencyUp</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="group__group08.html#gac0fcfd64dcf30b11d4dc219d9f7fc5d9">SI4735::frequencyUp()</a>.</p>
+
+</div>
+</div>
+<a id="gadf0d354731ee4f1752e3e97c87b7dea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadf0d354731ee4f1752e3e97c87b7dea2">&#9670;&nbsp;</a></span>setFrequencyDown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SI4735::setFrequencyDown </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the Frequency Down. </p>
+<p>same frequencyDown </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#ga93fff524a6f900ac91eb1222ce73f9ba" title="Decrements the current frequency on current band/function by using the current step.">frequencyDown</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="group__group08.html#ga93fff524a6f900ac91eb1222ce73f9ba">SI4735::frequencyDown()</a>.</p>
+
+</div>
+</div>
 <a id="ga7bf47d3aab5952fa8895bd9094256dd8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga7bf47d3aab5952fa8895bd9094256dd8">&#9670;&nbsp;</a></span>setMaxDelaySetFrequency()</h2>
 
@@ -1180,6 +1246,8 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 <p>Increments the current frequency on current band/function by using the current step. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c" title="Sets the current step value.">setFrequencyStep()</a> </dd></dl>
 
+<p class="reference">Referenced by <a class="el" href="group__group08.html#gafe9017af0f740f4f714e8bcbb2d7b4f9">SI4735::setFrequencyUp()</a>.</p>
+
 </div>
 </div>
 <a id="ga93fff524a6f900ac91eb1222ce73f9ba"></a>
@@ -1199,6 +1267,8 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 
 <p>Decrements the current frequency on current band/function by using the current step. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c" title="Sets the current step value.">setFrequencyStep()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="group__group08.html#gadf0d354731ee4f1752e3e97c87b7dea2">SI4735::setFrequencyDown()</a>.</p>
 
 </div>
 </div>
@@ -1377,7 +1447,7 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__group08_html_gacd89e7b8adefcbc4e89f802acb915906"><div class="ttname"><a href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906">SI4735::setFM</a></div><div class="ttdeci">void setFM()</div><div class="ttdoc">Sets the radio to FM function.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:788</div></div>
-<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1864</div></div>
+<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1891</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
