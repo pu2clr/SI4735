@@ -6,7 +6,7 @@
   For this reason, it is necessary change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
-  Features:   FM/RDS; AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control;
+  Features:   FM/RDS; AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
 
   Wire up on Arduino UNO, Pro mini
@@ -106,6 +106,8 @@ uint8_t agcNdx = 0;
 
 
 int currentBFO = 0;
+uint8_t seekDirection = 1;
+
 
 long elapsedRSSI = millis();
 long elapsedButton = millis();
@@ -160,7 +162,7 @@ typedef struct
 Band band[] = {
   {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
   {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
-  {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1},  // ALL SW1 (from 150Khz to 30MHz)
+  {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1}, // ALL SW1 (from 150Khz to 30MHz)
   {"SW2", SW_BAND_TYPE, 150, 30000, 14200, 1} // ALL SW2 (from 150KHz to 30MHz)
 };
 
@@ -347,6 +349,14 @@ void showFrequency()
 
   color = (bfoOn) ? COLOR_CYAN : COLOR_YELLOW;
   printValue(10, 10, bufferFreq, bufferDisplay, color, 20);
+}
+
+
+// Will be used by seekStationProgress
+void showFrequencySeek(uint16_t freq)
+{
+  previousFrequency = currentFrequency = freq;
+  showFrequency();
 }
 
 /*
@@ -561,6 +571,7 @@ void useBand()
     currentMode = FM;
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+    si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     bfoOn = ssbLoaded = false;
     si4735.setRdsConfig(1, 2, 2, 2, 2);
   }
@@ -580,8 +591,11 @@ void useBand()
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       bfoOn = false;
     }
-    si4735.setAmSoftMuteMaxAttenuation(0); // Disable Soft Mute for AM or SSB
+    si4735.setAmSoftMuteMaxAttenuation(4); // Disable Soft Mute for AM or SSB
     si4735.setAutomaticGainControl(disableAgc, agcNdx);
+    si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
+    si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10KHz for spacing
+
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
@@ -605,10 +619,14 @@ void loop()
     }
     else
     {
-      if (encoderCount == 1)
+      if (encoderCount == 1) {
         si4735.frequencyUp();
-      else
+        seekDirection = 1;
+      }
+      else {
         si4735.frequencyDown();
+        seekDirection = 0;
+      }
       // Show the current frequency only if it has changed
       currentFrequency = si4735.getFrequency();
     }
@@ -663,6 +681,8 @@ void loop()
             clearBFO();
           }
           CLEAR_BUFFER(bufferFreq);
+        } else {
+          si4735.seekStationProgress(showFrequencySeek, seekDirection);
         }
         // delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
         showFrequency();
