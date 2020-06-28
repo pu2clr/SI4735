@@ -1,5 +1,10 @@
 var group__group17 =
 [
+    [ "getAntennaTuningCapacitor", "group__group17.html#ga3905d6551992b4dd51d13f05978d9081", null ],
+    [ "setAvcAmMaxGain", "group__group17.html#ga6e1e0e48d71e09debb07fc6dbe884829", null ],
+    [ "getCurrentAvcAmMaxGain", "group__group17.html#ga27dd7dfd46583eb5be91cfc9461807ff", null ],
+    [ "setAmSoftMuteMaxAttenuation", "group__group17.html#ga05bbe1546d61d7ca3591824445084e70", null ],
+    [ "setSsbSoftMuteMaxAttenuation", "group__group17.html#ga7f9f0eb9946d629e2e6d7e7901af86b9", null ],
     [ "setSSBBfo", "group__group17.html#ga55cf9a091d314a1aa21552f2254f756f", null ],
     [ "setSSBConfig", "group__group17.html#ga9224e7d4ef14c887da96dbefd2dcefd3", null ],
     [ "setSSBDspAfc", "group__group17.html#ga6cde26a5abf759a628012d1457d85c72", null ],
