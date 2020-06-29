@@ -1,4 +1,7 @@
 /*
+
+  Under construction....... 
+
   SI4735 all in one with SSB Support
 
   This sketch has been successfully tested on Arduino Pro Mini 3.3V 8MHz 
@@ -217,15 +220,15 @@ void setup()
   // Splash - Change it for your introduction text.
   oled.setTextSize(1); // Draw 2X-scale text
   oled.setCursor(40, 0);
-  oled.print(F("SI4735"));
+  oled.print("SI4735");
   oled.setCursor(20, 10);
-  oled.print(F("Arduino Library"));
+  oled.print("Arduino Library");
   oled.display();
   delay(500);
   oled.setCursor(15, 20);
-  oled.print(F("All in One Radio"));
+  oled.print("All in One Radio");
   oled.display();
-  oled.print(F("V1.2.0 - By PU2CLR"));
+  oled.print("V1.2.0 - By PU2CLR");
 
   oled.display();
   delay(2000);
@@ -352,7 +355,7 @@ void showFrequency()
     freq[4] = tmp[3];
     freq[5] = tmp[4];
     freq[6] = '\0';
-    unit = "MHz";
+    unit = (char *) "MHz";
   }
   else
   {
@@ -363,7 +366,7 @@ void showFrequency()
     freq[4] = tmp[3];
     freq[5] = tmp[4];
     freq[6] = '\0';
-    unit = "KHz";
+    unit = (char *) "KHz";
   }
 
   textSize = ( !bfoOn ) ? 2 : 1;
@@ -371,7 +374,7 @@ void showFrequency()
   printValue(23, 0, oldFreq, freq, 12, textSize);
 
   if (currentFrequency < 520 )
-    bandMode = "LW  ";
+    bandMode = (char *) "LW  ";
   else
     bandMode = (char *) bandModeDesc[currentMode];
 
@@ -591,7 +594,8 @@ void useBand()
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       bfoOn = false;
     }
-    si4735.setAmSoftMuteMaxAttenuation(0); // Disable Soft Mute for AM or SSB
+    // Try change this value and check the result.
+    si4735.setAmSoftMuteMaxAttenuation(0); // It can be from 0 to 8.  0 = Disable Soft Mute for AM or SSB
     si4735.setAutomaticGainControl(disableAgc, agcNdx);
   }
   delay(100);
@@ -717,7 +721,7 @@ void stepButton() {
  * Button - AGC and attenuation 
  */
 void attenuationButton() {
-
+  
       if (agcIdx == 0)
       {
         disableAgc = 0; // Turns AGC ON
@@ -751,7 +755,6 @@ void attenuationButton() {
       si4735.setAutomaticGainControl(disableAgc, agcNdx);
       showStatus();
 }
-
 
 /*
  * Button - Volume control

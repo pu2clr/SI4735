@@ -169,7 +169,7 @@ Band band[] = {
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
 
-// const char * const text_message  = "DIY: github.com/pu2clr/SI4735";
+const char * const text_message  = "DIY: github.com/pu2clr/SI4735";
 
 uint8_t rssi = 0;
 uint8_t snr = 0;
@@ -245,7 +245,7 @@ void showTemplate()
   tft.drawRectangle(45, 150,  maxX1 - 2, 156, COLOR_YELLOW);
   tft.drawRectangle(45, 163,  maxX1 - 2, 169, COLOR_YELLOW);
 
-  // tft.drawText(5, 130, text_message, COLOR_YELLOW);
+  tft.drawText(5, 130, text_message, COLOR_YELLOW);
 }
 
 
@@ -594,9 +594,8 @@ void useBand()
     }
     si4735.setAmSoftMuteMaxAttenuation(0); // Disable Soft Mute for AM or SSB
     si4735.setAutomaticGainControl(disableAgc, agcNdx);
-    si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
+    si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
     si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10KHz for spacing
-
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
@@ -684,6 +683,7 @@ void loop()
           CLEAR_BUFFER(bufferFreq);
         } else {
           si4735.seekStationProgress(showFrequencySeek, seekDirection);
+          currentFrequency = si4735.getFrequency();
         }
         // delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
         showFrequency();
@@ -746,6 +746,7 @@ void loop()
             currentStep = 1;
           si4735.setFrequencyStep(currentStep);
           band[bandIdx].currentStep = currentStep;
+          si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
           showStatus();
         }
         // delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
