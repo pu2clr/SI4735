@@ -318,7 +318,6 @@ void showFrequency()
   // It is better than use dtostrf or String to save space.   
   
   sprintf(tmp,"%5.5u", currentFrequency);
-  tft.setFont(Trebuchet_MS16x21);
 
   if (si4735.isCurrentTuneFM())
   {
@@ -348,6 +347,7 @@ void showFrequency()
   }
 
   color = (bfoOn) ? COLOR_CYAN : COLOR_YELLOW;
+  tft.setFont(Trebuchet_MS16x21);
   printValue(10, 10, bufferFreq, bufferDisplay, color, 20);
 }
 
