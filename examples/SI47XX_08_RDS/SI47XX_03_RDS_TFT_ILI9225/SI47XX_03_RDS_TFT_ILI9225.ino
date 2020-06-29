@@ -352,10 +352,11 @@ void showFrequency()
 }
 
 
-// Will be used by seekStationProgress
+// Will be used by seekStationProgress function. 
+// This Si4735 library method calls the function below during seek process informing the current seek frequency.    
 void showFrequencySeek(uint16_t freq)
 {
-  previousFrequency = currentFrequency = freq;
+  currentFrequency = freq;
   showFrequency();
 }
 
@@ -591,7 +592,7 @@ void useBand()
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       bfoOn = false;
     }
-    si4735.setAmSoftMuteMaxAttenuation(4); // Disable Soft Mute for AM or SSB
+    si4735.setAmSoftMuteMaxAttenuation(0); // Disable Soft Mute for AM or SSB
     si4735.setAutomaticGainControl(disableAgc, agcNdx);
     si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
     si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10KHz for spacing
@@ -705,6 +706,11 @@ void loop()
           agcNdx = 10;    // Increases the attenuation AM/SSB AGC Index  = 10
           agcIdx = 3;
         } else if (agcIdx == 3)
+        { 
+          disableAgc = 1; // Turns AGC OFF
+          agcNdx = 20;    // Increases the attenuation AM/SSB AGC Index  = 30
+          agcIdx = 4;          
+        } else if (agcIdx == 4)
         {
           disableAgc = 1; // Turns AGC OFF
           agcNdx = 30;    // Increases the attenuation AM/SSB AGC Index  = 30
@@ -734,7 +740,7 @@ void loop()
             currentStep = 10;
           else if (currentStep == 10)
             currentStep = 50;
-          else if ( currentStep == 50 &&  bandIdx > 2 )  // If band index is not VHF(FM), LW (AM) and MW(AM) you can use 500KHz Step.
+          else if ( currentStep == 50 &&  bandIdx > 1 )  // If band index is not VHF(FM), LW (AM) and MW(AM) you can use 500KHz Step.
             currentStep = 500;
           else
             currentStep = 1;
