@@ -2,7 +2,8 @@
   
   ATTENTION: Under construction......
   
-  SI4735 all in one with SSB Support on ESP32
+  SI4735 all in one with SSB Support on ESP32.
+  The display used here is the ST7735. 
 
   Features:
   1) This sketch has been successfully tested on ESP LOLIN32 (WEMOS);
@@ -37,16 +38,18 @@
   This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
   Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
 
-  ESP32 Dev Mode wire up
-  LCD SCREEN          NODEMCU ESP32
-  VCC                   3v3
-  GND                   GND
-  LED                   3V
-  SCL (SPI Clock)       GPIO18 VSPI SCK (SPI Clock)
-  SDA (SPI Data)        GPIO23 VSPI MOSI (MOSI, Data to Screen)
-  RS or DC              GPIO2 (In some boards it is labelled as DC)
-  RST (Screen reset)    GPIO4
-  CS  or SS             GPIO5 VSPI SS (Slave Select or Chip Select)
+  ESP32 Dev Mode wire up 
+  
+  | LCD SCREEN           | NODEMCU ESP32 PIN                           |
+  | -------------------  | ------------------------------------------- |
+  |      VCC             |     3.3V                                    |
+  |      GND             |     GND                                     |
+  |      LED             |     3.3V                                    |
+  |   SCL (SPI Clock)    | GPIO18 / VSPI SCK (SPI Clock)               |
+  |   SDA (SPI Data)     | GPIO23 / VSPI MOSI (MOSI, Data to Screen)   |
+  |   RS or DC           | GPIO2 (In some boards it is labelled as DC) |
+  |   RST (Screen reset) | GPIO4                                       |
+  |   CS  or SS          | GPIO5 VSPI SS (Slave Select or Chip Select) |
 
   Prototype documentation : https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
@@ -55,9 +58,10 @@
 */
 
 #include <SI4735.h>
-
 #include <Adafruit_GFX.h>    // Core graphics library
 #include <Adafruit_ST7735.h> // Hardware-specific library for ST7735
+#include "Serif_plain_14.h" 
+#include "DSEG7_Classic_Mini_Regular_30.h"
 #include <SPI.h>
 #include "Rotary.h"
 
@@ -146,14 +150,7 @@ const char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
-
-char buffer[100]; // Useful to handle string 
-char oldFreq[10];
-char olsRssi[10];
-char oldVol[10];
-char oldStereo[10];
-char oldBfo[10];
-char oldFilter[10];
+char buffer[64]; // Useful to handle string 
 
 
 /*
@@ -288,24 +285,25 @@ int  touchX( int pin) {
 }
 
 
+/*
+   Shows a text on a given position; with a given size and font, and with a given color
 
+   @param int x column
+   @param int y line
+   @param int sz font size
+   @param const GFXfont *f font type
+   @param uint16_t color
+   @param char * msg message
+*/
 void showText(int x, int y, int sz, const GFXfont *f, uint16_t color, const char *msg)
 {
-
+  tft.setFont(f);
+  tft.setCursor(x, y);
+  tft.setTextColor(color);
+  tft.setTextSize(sz);
+  tft.print(msg);
 }
 
-void showTemplate()
-{
-
-  int maxX1 = tft.width() - 2;
-  int maxY1 = tft.height() - 5;
-
-  tft.fillScreen(COLOR_BLACK);
-
-  tft.drawRect(2, 2, maxX1, maxY1, COLOR_YELLOW);
-  tft.drawLine(2, 40, maxX1, 40, COLOR_YELLOW);
-  tft.drawLine(2, 60, maxX1, 60, COLOR_YELLOW);
-}
 
 /* 
  *  Reads encoder via interrupt
@@ -327,71 +325,21 @@ void rotaryEncoder()
   }
 }
 
-/*
-  Prevents blinking during the frequency display.
-  Erases the old digits if it has changed and print the new digit values.
-*/
-void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space, uint16_t color)
-{
-  int c = col;
-  char *pOld;
-  char *pNew;
-
-  pOld = oldValue;
-  pNew = newValue;
-
-  // prints just changed digits
-  while (*pOld && *pNew)
-  {
-    if (*pOld != *pNew)
-    {
-      // Erases olde value
-      tft.setTextColor(COLOR_BLACK);
-      tft.setCursor(c, line);
-      tft.print(*pOld);
-      // Writes new value
-      tft.setTextColor(color);
-      tft.setCursor(c, line);
-      tft.print(*pNew);
-    }
-    pOld++;
-    pNew++;
-    c += space;
-  }
-
-  // Is there anything else to erase?
-  tft.setTextColor(COLOR_BLACK);
-  while (*pOld)
-  {
-    tft.setCursor(c, line);
-    tft.print(*pOld);
-    pOld++;
-    c += space;
-  }
-
-  // Is there anything else to print?
-  tft.setTextColor(color);
-  while (*pNew)
-  {
-    tft.setCursor(c, line);
-    tft.print(*pNew);
-    pNew++;
-    c += space;
-  }
-
-  // Save the current content to be tested next time
-  strcpy(oldValue, newValue);
-}
 
 /*
  * Shows frequency information on Display
  */
 
+char bufferFreq[10];
  
 void showFrequency()
 {
   float freq;
   uint16_t color;
+
+  // Clear the frequency field
+  // tft.fillRect(2, 2, 150, 38, ST77XX_BLACK);
+  showText(10, 10, 3, NULL, ST77XX_BLACK, bufferFreq);
 
   if (si4735.isCurrentTuneFM())
   {
@@ -407,12 +355,9 @@ void showFrequency()
       dtostrf(freq, 2, 3, buffer);
   }
   color = (bfoOn) ? ST77XX_CYAN : ST77XX_YELLOW;
-  tft.setFont(&DSEG7_Classic_Mini_Regular_30);
-  tft.setTextSize(1);
-  printValue(0, 35, oldFreq, buffer, 23, ST77XX_YELLOW);
-  // printValue(80, 35, &oldFreq[4], &freq[4], 23, COLOR_YELLOW);
-  // tft.setCursor(78, 35);
-  // tft.print('.');
+  showText(10, 10, 3, NULL, color, buffer);
+  tft.setFont(NULL); // default font
+  strcpy(bufferFreq, buffer);
 }
 
 /*

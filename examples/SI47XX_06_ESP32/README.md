@@ -69,8 +69,6 @@ However, you have pay attention to the new configuration pins on ESP32. See tabl
 ![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_esp32_eagle.png)
 
 
-
-
 ### ESP-LOLIN32-WEMOS touch capacitive 
 
 | GPIO   | Used as  | Constant number (#define)| Function Description | 
@@ -133,5 +131,20 @@ void setup() {
 ## Example SI47XX_03_ESP32_ALL_IN_ONE_TFT
 
 Still under construction this sketch will show how to use TFT with ESP32, Si4735 device and Si4735 Arduino Library.
+
+
+
+### ESP32 and TFT  wire up 
+  
+|  LCD SCREEN           | NODEMCU ESP32 PIN                          |
+| -------------------  | ------------------------------------------- |
+|      VCC             |     3.3V                                    |
+|      GND             |     GND                                     |
+|      LED             |     3.3V                                    |
+|   SCL (SPI Clock)    | GPIO18 / VSPI SCK (SPI Clock)               |
+|   SDA (SPI Data)     | GPIO23 / VSPI MOSI (MOSI, Data to Screen)   |
+|   RS or DC           | GPIO2 (In some boards it is labelled as DC) |
+|   RST (Screen reset) | GPIO4                                       |
+|   CS  or SS          | GPIO5 VSPI SS (Slave Select or Chip Select) |
 
 
