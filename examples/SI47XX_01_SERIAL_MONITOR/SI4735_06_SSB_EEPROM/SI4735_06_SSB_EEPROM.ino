@@ -3,8 +3,8 @@
  Test and validation of the SI4735 Arduino Library with SSB patch stored in an external EEPROM.
  This example will transfer the SSB patch content stored in an EEPROM to SI4735-D60.
  To run this sketch you must have a external I2C EEPROM device configured with your Arduino and the Si4735 device via i2C bus.
- The EEPROM must have the patch content written (generated) by the sketch  SI47XX_09_SAVE_SSB_PATCH_EEPROM (see folder SI47XX_09_TOOLS)
- Link: https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM
+ The EEPROM must have the patch content written (generated) by the sketch  SI47XX_09_SAVE_SSB_PATCH_EEPROM (see folder examples/TOOLS)
+ Link: https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM
 
 
  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
