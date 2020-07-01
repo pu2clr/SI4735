@@ -428,6 +428,8 @@ char bufferStatioName[40];
 char bufferRdsMsg[40];
 char bufferRdsTime[32];
 
+long stationNameElapsed = millis();
+
 void showRDSMsg() {
   rdsMsg[35] = bufferRdsMsg[35] = '\0';
   if (strcmp(bufferRdsMsg, rdsMsg) == 0) return;
@@ -435,16 +437,19 @@ void showRDSMsg() {
   delay(250);
 }
 
+/**
+ * TODO: process RDS Dynamic PS or Scrolling PS
+ */
 void showRDSStation() {
-  if (strcmp(bufferStatioName, stationName) == 0 ) return;
+  if (strncmp(bufferStatioName, stationName,3) == 0 ) return;
   printValue(5, 110, bufferStatioName, stationName, COLOR_GREEN, 6);
-  delay(250);
+  // for( int i = 0; i < 8; i++ ) stationName[i] = '\0';
 }
 
 void showRDSTime() {
   if (strcmp(bufferRdsTime, rdsTime) == 0 ) return;
-  printValue(80, 110, bufferRdsTime, rdsTime, COLOR_GREEN, 6);
-  delay(250);
+  printValue(100, 110, bufferRdsTime, rdsTime, COLOR_GREEN, 6);
+  delay(100);
 }
 
 void checkRDS() {
@@ -456,7 +461,12 @@ void checkRDS() {
       stationName = si4735.getRdsText0A();
       rdsTime = si4735.getRdsTime();
       if ( rdsMsg != NULL )   showRDSMsg();
-      if ( stationName != NULL )   showRDSStation();
+      
+      if ( (millis() - stationNameElapsed) > 2000 ) {
+        if ( stationName != NULL && si4735.getRdsNewBlockA() )   showRDSStation();
+        stationNameElapsed = millis();
+      }
+      
       if ( rdsTime != NULL ) showRDSTime();
     }
   }

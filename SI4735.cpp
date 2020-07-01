@@ -333,8 +333,6 @@ void SI4735::waitToSend()
     } while (!(Wire.read() & B10000000));
 }
 
-
-
 /** @defgroup group07 Device Setup and Start up */
 
 /**
@@ -370,7 +368,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
 
     this->currentClockType = XOSCEN;
 
-        if (FUNC == 0)
+    if (FUNC == 0)
     {
         currentTune = FM_TUNE_FREQ;
         currentFrequencyParams.arg.FREEZE = 1;
@@ -431,7 +429,6 @@ void SI4735::radioPowerUp(void)
         setRefClock(this->refClock);
         setRefClockPrescaler(this->refClockPrescale, this->refClockSourcePin);
     }
-
 }
 
 /**
@@ -544,7 +541,7 @@ void SI4735::setRefClock(uint16_t refclk)
  */
 void SI4735::setRefClockPrescaler(uint16_t prescale, uint8_t rclk_sel)
 {
-    sendProperty(REFCLK_PRESCALE, prescale ); //| (rclk_sel << 13)); // Sets the D12 to rclk_sel
+    sendProperty(REFCLK_PRESCALE, prescale); //| (rclk_sel << 13)); // Sets the D12 to rclk_sel
     this->refClockPrescale = prescale;
     this->refClockSourcePin = rclk_sel;
 }
@@ -867,8 +864,6 @@ void SI4735::setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
     currentWorkFrequency = initialFreq;
     setFrequency(currentWorkFrequency);
 }
-
-
 
 /** @defgroup group09 Filter setup  */
 
@@ -2274,7 +2269,7 @@ char *SI4735::getRdsText(void)
 
 /**
  * @ingroup group16 RDS status 
- * 
+ * @todo RDS Dynamic PS or Scrolling PS 
  * @brief Gets the station name and other messages. 
  * 
  * @return char* should return a string with the station name. 
@@ -2832,12 +2827,12 @@ void SI4735::ssbPowerUp()
     Wire.endTransmission();
     delayMicroseconds(2500);
 
-    powerUp.arg.CTSIEN = this->currentInterruptEnable;  // 1 -> Interrupt anabled;
-    powerUp.arg.GPO2OEN = 0;                            // 1 -> GPO2 Output Enable;
-    powerUp.arg.PATCH = 0;                              // 0 -> Boot normally;
-    powerUp.arg.XOSCEN = this->currentClockType;        // 1 -> Use external crystal oscillator;
-    powerUp.arg.FUNC = 1;                               // 0 = FM Receive; 1 = AM/SSB (LW/MW/SW) Receiver.
-    powerUp.arg.OPMODE = 0b00000101;                    // 0x5 = 00000101 = Analog audio outputs (LOUT/ROUT).
+    powerUp.arg.CTSIEN = this->currentInterruptEnable; // 1 -> Interrupt anabled;
+    powerUp.arg.GPO2OEN = 0;                           // 1 -> GPO2 Output Enable;
+    powerUp.arg.PATCH = 0;                             // 0 -> Boot normally;
+    powerUp.arg.XOSCEN = this->currentClockType;       // 1 -> Use external crystal oscillator;
+    powerUp.arg.FUNC = 1;                              // 0 = FM Receive; 1 = AM/SSB (LW/MW/SW) Receiver.
+    powerUp.arg.OPMODE = 0b00000101;                   // 0x5 = 00000101 = Analog audio outputs (LOUT/ROUT).
 }
 
 /**
@@ -2956,9 +2951,10 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
     delay(5);
 
     // The first two bytes of the header will be ignored.
-    for (int k = 0; k < header_size; k += 8) {
+    for (int k = 0; k < header_size; k += 8)
+    {
         Wire.requestFrom(eeprom_i2c_address, 8);
-        for (int i = k; i < (k+8); i++)
+        for (int i = k; i < (k + 8); i++)
             eep.raw[i] = Wire.read();
     }
 
@@ -2989,13 +2985,12 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
         // The SI4735 issues a status after each 8 byte transfered.Just the bit 7(CTS)should be seted.if bit 6(ERR)is seted, the system halts.
         if (cmd_status != 0x80)
         {
-            strcpy((char *) eep.refined.patch_id, "error!");
+            strcpy((char *)eep.refined.patch_id, "error!");
             return eep;
         }
-        offset += 8;                                 // Start processing the next 8 bytes
+        offset += 8; // Start processing the next 8 bytes
     }
 
     delay(50);
     return eep;
 }
-

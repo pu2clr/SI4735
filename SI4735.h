@@ -1515,8 +1515,6 @@ public:
      * @details Same volumeUp()
      * @see volumeUp
      */
-
-      
     inline void setVolumeUp() {volumeUp();};
     /**
      * @ingroup group13 Audio volume
@@ -1714,6 +1712,7 @@ public:
     void getRdsStatus();
 
     /**
+     * @ingroup group16 RDS
      * @brief Get the Rds Received FIFO
      * @details if FIFO is 1, it means the minimum number of groups was filled
      * @return true if minimum number of groups was filled.
@@ -1724,6 +1723,7 @@ public:
     };
 
     /**
+     * @ingroup group16 RDS
      * @brief Get the Rds Sync Lost object
      * @details returns true (1) if Lost RDS synchronization is detected. 
      * @return true if Lost RDS synchronization detected. 
@@ -1734,6 +1734,7 @@ public:
     };
 
     /**
+     * @ingroup group16 RDS
      * @brief Get the Rds Sync Found 
      * @details return true if found RDS synchronization
      * @return true if found RDS synchronization
@@ -1744,6 +1745,7 @@ public:
     };
 
     /**
+     * @ingroup group16 RDS
      * @brief Get the Rds New Block A 
      * 
      * @details Returns true if valid Block A data has been received.
@@ -1755,6 +1757,7 @@ public:
     };
 
     /**
+     * @ingroup group16 RDS
      * @brief Get the Rds New Block B 
      * @details Returns true if valid Block B data has been received.
      * @return true or false
@@ -1765,6 +1768,7 @@ public:
     };
 
     /**
+     * @ingroup group16 RDS
      * @brief Get the Rds Sync 
      * @details Returns true if RDS currently synchronized.
      * @return true or false
@@ -1775,6 +1779,7 @@ public:
     };
 
     /**
+     * @ingroup group16 RDS
      * @brief Get the Group Lost 
      * @details Returns true if one or more RDS groups discarded due to FIFO overrun.
      * @return true or false
@@ -1783,6 +1788,7 @@ public:
     {
         return currentRdsStatus.resp.GRPLOST;
     };
+
 
     /**
      * @brief Get the Num Rds Fifo Used 
