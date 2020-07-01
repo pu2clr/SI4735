@@ -1,5 +1,12 @@
 var group__group16 =
 [
+    [ "getRdsReceived", "group__group16.html#ga6e8405ea5846fab586080a7be696178e", null ],
+    [ "getRdsSyncLost", "group__group16.html#gac283a8a89cc885c2740c65a7128ff7ef", null ],
+    [ "getRdsSyncFound", "group__group16.html#ga78e906f12771490771c624be1777784d", null ],
+    [ "getRdsNewBlockA", "group__group16.html#ga561a052a8c737302368274c774d8c129", null ],
+    [ "getRdsNewBlockB", "group__group16.html#gaff740d85cc04c257f53c7e910bd45fcf", null ],
+    [ "getRdsSync", "group__group16.html#ga6e899b37cbc3dcd0ab969724e4008f0f", null ],
+    [ "getGroupLost", "group__group16.html#ga8db437efc42a81466d8daf4dcc35c50c", null ],
     [ "RdsInit", "group__group16.html#gaffdba9ca9fb9bf5bb671ac3d448a7e89", null ],
     [ "clearRdsBuffer2A", "group__group16.html#gac65c552004f5e5e646638e37a5a68213", null ],
     [ "clearRdsBuffer2B", "group__group16.html#gaed0988165057aa2880f41b88ac236cd7", null ],
