@@ -1832,6 +1832,7 @@ public:
     si47x_firmware_query_library queryLibraryId();
     void patchPowerUp();
     bool downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size);
+    void loadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, uint8_t ssb_audiobw = 1);
     si4735_eeprom_patch_header downloadPatchFromEeprom(int eeprom_i2c_address);
     void ssbPowerUp();
 

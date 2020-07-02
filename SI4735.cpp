@@ -2924,6 +2924,32 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 }
 
 /**
+ * @brief Loads a given SSB patch content
+ * @details Configures the Si4735-D60 device to work with SSB. 
+ * 
+ * @param ssb_patch_content        point to patch content array 
+ * @param ssb_patch_content_size   size of patch content 
+ * @param ssb_audiobw              SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz.
+ */
+void SI4735::loadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, uint8_t ssb_audiobw)
+{
+    reset();
+    queryLibraryId(); 
+    patchPowerUp();
+    delay(50);
+    downloadPatch(ssb_patch_content, ssb_patch_content_size);
+    // Parameters
+    // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+    // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
+    // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
+    // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
+    // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
+    // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
+    setSSBConfig(ssb_audiobw, 1, 0, 0, 0, 1);
+    delay(25);
+}
+
+/**
  * @ingroup group17 Patch and SSB support
  * @brief Transfers the content of a patch stored in an eeprom to the SI4735 device.
  * @details To used this method, you will need an eeprom with the patch content stored into it. 
@@ -2936,7 +2962,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
  * @param eeprom_i2c_address 
  * @return false if an error is found.
  */
-si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_address)
+    si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_address)
 {
     si4735_eeprom_patch_header eep;
     const int header_size = sizeof eep;
