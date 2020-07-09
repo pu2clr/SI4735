@@ -1639,7 +1639,7 @@ public:
     void seekStation(uint8_t SEEKUP, uint8_t WRAP); // See WRAP parameter
 
     /**
-     * @ingroup group15 Seek 
+     * @ingroup group08 Seek 
      * @brief Sets the maximum time in milliseconds for seeking. The default value is 8000ms (8s).
      * @details Depending on the bandwidth, your reception conditions or step configuration, the seek process can take a long time.
      * @details This function sets a time limit for seeking process and back the control to the system if the time runs out.
@@ -1653,7 +1653,7 @@ public:
     };
 
     /**
-    * @ingroup group15 Seek 
+    * @ingroup group08 Seek 
     * 
     * @brief Search for the next station
     * @details Seek a station up. Stop when a station is found or the frequency has reached the upper limit  
@@ -1666,7 +1666,7 @@ public:
     };
 
     /**
-    * @ingroup group15 Seek 
+    * @ingroup group08 Seek 
     * 
     * @brief Search the previous station
     * @details Seek a station Down. Stop when a station is found or the frequency has reached the lower limit  
@@ -1898,7 +1898,7 @@ public:
     }
 
     /**
-     * @ingroup group14 Frequency 
+     * @ingroup group08 Frequency 
      * 
      * @brief Gets the current frequency saved in memory. 
      * 
@@ -1914,7 +1914,7 @@ public:
     }
 
     /**
-     * @ingroup group14 Si47XX device Status 
+     * @ingroup group08 Si47XX device Status 
      * 
      * @brief Gets the current status  of the Si47XX (AM, FM or SSB)
      * 

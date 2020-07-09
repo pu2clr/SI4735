@@ -619,7 +619,7 @@ void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
     delay(250);
 }
 
-/** @defgroup group08 Device Mode, Band and Frequency setup */
+/** @defgroup group08 Tune, Device Mode and Filter setup */
 
 /**
  * @ingroup   group08 Internal Antenna Tuning capacitor
@@ -865,10 +865,10 @@ void SI4735::setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
     setFrequency(currentWorkFrequency);
 }
 
-/** @defgroup group09 Filter setup  */
+/** @defgroup group08 Tune */
 
 /**
- * @ingroup group09 Set bandwidth
+ * @ingroup group08 Set bandwidth
  * 
  * @brief Selects the bandwidth of the channel filter for AM reception. 
  * 
@@ -915,6 +915,474 @@ void SI4735::setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT)
     Wire.write(filter.raw[0]);         // AMPLFLT
     Wire.endTransmission();
     waitToSend();
+}
+
+/**
+ * @ingroup group08 Frequency 
+ * 
+ * @brief Gets the current frequency of the Si4735 (AM or FM)
+ * 
+ * @details The method status do it an more. See getStatus below. 
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 (FM) and 139 (AM)
+ */
+uint16_t SI4735::getFrequency()
+{
+    si47x_frequency freq;
+    getStatus(0, 1);
+
+    freq.raw.FREQL = currentStatus.resp.READFREQL;
+    freq.raw.FREQH = currentStatus.resp.READFREQH;
+
+    currentWorkFrequency = freq.value;
+    return freq.value;
+}
+
+/**
+ * @ingroup group08 Frequency 
+ * 
+ * @brief Gets the current status  of the Si4735 (AM or FM)
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 (FM) and 139 (AM)
+ * 
+ * @param uint8_t INTACK Seek/Tune Interrupt Clear. If set, clears the seek/tune complete interrupt status indicator;
+ * @param uint8_t CANCEL Cancel seek. If set, aborts a seek currently in progress;
+ */
+void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
+{
+    si47x_tune_status status;
+    uint8_t cmd = (currentTune == FM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
+
+    waitToSend();
+
+    status.arg.INTACK = INTACK;
+    status.arg.CANCEL = CANCEL;
+    status.arg.RESERVED2 = 0;
+
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(cmd);
+    Wire.write(status.raw);
+    Wire.endTransmission();
+    // Reads the current status (including current frequency).
+    do
+    {
+        waitToSend();
+        Wire.requestFrom(deviceAddress, 8); // Check it
+        // Gets response information
+        for (uint8_t i = 0; i < 8; i++)
+            currentStatus.raw[i] = Wire.read();
+    } while (currentStatus.resp.ERR); // If error, try it again
+    waitToSend();
+}
+
+/**
+ * @ingroup group08 AGC 
+ * 
+ * @brief Queries Automatic Gain Control STATUS
+ * 
+ * @details After call this method, you can call isAgcEnabled to know the AGC status and getAgcGainIndex to know the gain index value.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); For FM page 80; for AM page 142.
+ * @see AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
+ * 
+ */
+void SI4735::getAutomaticGainControl()
+{
+    uint8_t cmd;
+
+    if (currentTune == FM_TUNE_FREQ)
+    { // FM TUNE
+        cmd = FM_AGC_STATUS;
+    }
+    else
+    { // AM TUNE - SAME COMMAND used on SSB mode
+        cmd = AM_AGC_STATUS;
+    }
+
+    waitToSend();
+
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(cmd);
+    Wire.endTransmission();
+
+    do
+    {
+        waitToSend();
+        Wire.requestFrom(deviceAddress, 3);
+        currentAgcStatus.raw[0] = Wire.read(); // STATUS response
+        currentAgcStatus.raw[1] = Wire.read(); // RESP 1
+        currentAgcStatus.raw[2] = Wire.read(); // RESP 2
+    } while (currentAgcStatus.refined.ERR);    // If error, try get AGC status again.
+}
+
+/** 
+ * @ingroup group08 AGC 
+ * 
+ * @brief Automatic Gain Control setup 
+ * 
+ * @details If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 
+ * (minimum attenuation) and 26 (maximum attenuation).
+ * @details If AM/SSB, Overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0 
+ * (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation).
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); For FM page 81; for AM page 143 
+ * 
+ * @param uint8_t AGCDIS This param selects whether the AGC is enabled or disabled (0 = AGC enabled; 1 = AGC disabled);
+ * @param uint8_t AGCIDX AGC Index (0 = Minimum attenuation (max gain); 1 – 36 = Intermediate attenuation); 
+ *                if >greater than 36 - Maximum attenuation (min gain) ).
+ */
+void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
+{
+    si47x_agc_overrride agc;
+
+    uint8_t cmd;
+
+    cmd = (currentTune == FM_TUNE_FREQ) ? FM_AGC_OVERRIDE : AM_AGC_OVERRIDE; // AM_AGC_OVERRIDE = SSB_AGC_OVERRIDE = 0x48
+
+    agc.arg.AGCDIS = AGCDIS;
+    agc.arg.AGCIDX = AGCIDX;
+
+    waitToSend();
+
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(cmd);
+    Wire.write(agc.raw[0]);
+    Wire.write(agc.raw[1]);
+    Wire.endTransmission();
+
+    waitToSend();
+}
+
+/**
+ * @ingroup group08 Automatic Volume Control
+ * 
+ * @brief Sets the maximum gain for automatic volume control.
+ *  
+ * @details If no parameter is sent, it will be consider 48dB.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 152
+ * @see setAvcAmMaxGain()
+ * 
+ * @param uint8_t gain  Select a value between 12 and 192.  Defaul value 48dB.
+ */
+void SI4735::setAvcAmMaxGain(uint8_t gain)
+{
+    uint16_t aux;
+    aux = (gain > 12 && gain < 193) ? (gain * 340) : (48 * 340);
+    currentAvcAmMaxGain = gain;
+    sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, aux);
+}
+
+/**
+ * @ingroup group08 Received Signal Quality
+ * 
+ * @brief Queries the status of the Received Signal Quality (RSQ) of the current channel.
+ * 
+ * @details This method sould be called berore call getCurrentRSSI(), getCurrentSNR() etc.
+ * Command FM_RSQ_STATUS
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 75 and 141
+ * 
+ * @param INTACK Interrupt Acknowledge. 
+ *        0 = Interrupt status preserved; 
+ *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
+ */
+void SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
+{
+    uint8_t arg;
+    uint8_t cmd;
+    int sizeResponse;
+
+    if (currentTune == FM_TUNE_FREQ)
+    { // FM TUNE
+        cmd = FM_RSQ_STATUS;
+        sizeResponse = 8; // Check it
+    }
+    else
+    { // AM TUNE
+        cmd = AM_RSQ_STATUS;
+        sizeResponse = 6; // Check it
+    }
+
+    waitToSend();
+
+    arg = INTACK;
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(cmd);
+    Wire.write(arg); // send B00000001
+    Wire.endTransmission();
+
+    // Check it
+    // do
+    //{
+    waitToSend();
+    Wire.requestFrom(deviceAddress, sizeResponse);
+    // Gets response information
+    for (uint8_t i = 0; i < sizeResponse; i++)
+        currentRqsStatus.raw[i] = Wire.read();
+    //} while (currentRqsStatus.resp.ERR); // Try again if error found
+}
+
+/**
+ * @ingroup group08 Received Signal Quality
+ * 
+ * @brief Queries the status of the Received Signal Quality (RSQ) of the current channel (FM_RSQ_STATUS)
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 75 and 141
+ * 
+ * @param INTACK Interrupt Acknowledge. 
+ *        0 = Interrupt status preserved; 
+ *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
+ */
+void SI4735::getCurrentReceivedSignalQuality(void)
+{
+    getCurrentReceivedSignalQuality(0);
+}
+
+/**
+ * @ingroup group08 Seek 
+ * 
+ * @brief Look for a station (Automatic tune)
+ * @details Starts a seek process for a channel that meets the RSSI and SNR criteria for AM.  
+ * @details __This function does not work on SSB mode__.  
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 55, 72, 125 and 137
+ * 
+ * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
+ * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
+ */
+void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
+{
+    si47x_seek seek;
+    si47x_seek_am_complement seek_am_complement;
+
+    // Check which FUNCTION (AM or FM) is working now
+    uint8_t seek_start_cmd = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
+
+    waitToSend();
+
+    seek.arg.SEEKUP = SEEKUP;
+    seek.arg.WRAP = WRAP;
+    seek.arg.RESERVED1 = 0;
+    seek.arg.RESERVED2 = 0;
+
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(seek_start_cmd);
+    Wire.write(seek.raw); // ARG1
+
+    if (seek_start_cmd == AM_SEEK_START) // Sets additional configuration for AM mode
+    {
+        seek_am_complement.ARG2 = seek_am_complement.ARG3 = 0;
+        seek_am_complement.ANTCAPH = 0;
+        seek_am_complement.ANTCAPL = (currentWorkFrequency > 1800) ? 1 : 0; // if SW = 1
+        Wire.write(seek_am_complement.ARG2);                                // ARG2 - Always 0
+        Wire.write(seek_am_complement.ARG3);                                // ARG3 - Always 0
+        Wire.write(seek_am_complement.ANTCAPH);                             // ARG4 - Tuning Capacitor: The tuning capacitor value
+        Wire.write(seek_am_complement.ANTCAPL);                             // ARG5 - will be selected automatically.
+    }
+
+    Wire.endTransmission();
+    delay(MAX_DELAY_AFTER_SET_FREQUENCY << 2);
+}
+
+/**
+ * @ingroup group08 Seek 
+ * 
+ * @brief Search for the next station.
+ * @details Like seekStationUp this function goes to a next station.  
+ * @details The main difference is the method used to look for a station.
+ * 
+ * @see seekStation, seekStationUp, seekStationDown, seekPreviousStation, seekStationProgress
+ */
+void SI4735::seekNextStation()
+{
+    seekStation(1, 1);
+    delay(maxDelaySetFrequency);
+    getFrequency();
+}
+
+/**
+ * @ingroup group08 Seek 
+ * 
+ * @brief Search the previous station
+ * @details Like seekStationDown this function goes to a previous station.  
+ * @details The main difference is the method used to look for a station.
+ * @see seekStation, seekStationUp, seekStationDown, seekPreviousStation, seekStationProgress
+ */
+void SI4735::seekPreviousStation()
+{
+    seekStation(0, 1);
+    delay(maxDelaySetFrequency);
+    getFrequency();
+}
+
+/**
+ * @ingroup group08 Seek 
+ * @brief Seeks a station up or down.
+ * @details Seek up or down a station and call a function defined by the user to show the frequency. 
+ * @details The first parameter of this function is a name of your function that you have to implement to show the current frequency. 
+ * @details If you do not want to show the seeking progress,  you can set NULL instead the name of the function.   
+ * @details The code below shows an example using ta function the shows the current frequency on he Serial Monitor. You might want to implement a function that shows the frequency on your display device. 
+ * @details Also, you have to declare the frequency parameter that will be used by the function to show the frequency value. 
+ * @details __This function does not work on SSB mode__. 
+ * @code
+ * void showFrequency( uint16_t freq ) {
+ *    Serial.print(freq); 
+ *    Serial.println("MHz ");
+ * }
+ * 
+ * void loop() {
+ * 
+ *  receiver.seekStationProgress(showFrequency,1); // Seek Up
+ *  .
+ *  .
+ *  .
+ *  receiver.seekStationProgress(showFrequency,0); // Seek Down
+ * 
+ * }
+ * @endcode
+ * 
+ * @see seekStation, seekStationUp, seekStationDown, getStatus   
+ * @param showFunc  function that you have to implement to show the frequency during the seeking process. Set NULL if you do not want to show the progress. 
+ * @param up_down   set up_down = 1 for seeking station up; set up_down = 0 for seeking station down
+ */
+void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
+{
+    si47x_frequency freq;
+    long elapsed_seek = millis();
+
+    // seek command does not work for SSB
+    if (lastMode == SSB_CURRENT_MODE)
+        return;
+    do
+    {
+        seekStation(up_down, 0);
+        delay(maxDelaySetFrequency);
+        getStatus(0, 0);
+        delay(maxDelaySetFrequency);
+        freq.raw.FREQH = currentStatus.resp.READFREQH;
+        freq.raw.FREQL = currentStatus.resp.READFREQL;
+        currentWorkFrequency = freq.value;
+        if (showFunc != NULL)
+            showFunc(freq.value);
+    } while (!currentStatus.resp.VALID && !currentStatus.resp.BLTF && (millis() - elapsed_seek) < maxSeekTime);
+}
+
+/**
+ * @ingroup group08 Seek 
+ * 
+ * @brief Sets the bottom frequency and top frequency of the AM band for seek. Default is 520 to 1710.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 127, 161, and 162
+ * 
+ * @param uint16_t bottom - the bottom of the AM (MW/SW) mode for seek
+ * @param uint16_t    top - the top of the AM (MW/SW) mode for seek
+ */
+void SI4735::setSeekAmLimits(uint16_t bottom, uint16_t top)
+{
+    sendProperty(AM_SEEK_BAND_BOTTOM, bottom);
+    sendProperty(AM_SEEK_BAND_TOP, top);
+}
+
+/**
+ * @ingroup group08 Seek 
+ * 
+ * @brief Sets the bottom frequency and top frequency of the FM band for seek. Default is 8750 to 10790.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 100 and  101
+ * 
+ * @param uint16_t bottom - the bottom of the FM(VHF) mode for seek
+ * @param uint16_t    top - the top of the FM(VHF) mode for seek
+ */
+void SI4735::setSeekFmLimits(uint16_t bottom, uint16_t top)
+{
+    sendProperty(FM_SEEK_BAND_BOTTOM, bottom);
+    sendProperty(FM_SEEK_BAND_TOP, top);
+}
+
+/**
+ * @ingroup group08 Seek 
+ * 
+ * @brief Selects frequency spacingfor AM seek. Default is 10 kHz spacing.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 163, 229 and 283
+ * 
+ * @param uint16_t spacing - step in KHz
+ */
+void SI4735::setSeekAmSpacing(uint16_t spacing)
+{
+    sendProperty(AM_SEEK_FREQ_SPACING, spacing);
+}
+
+/**
+ * @ingroup group08 Seek 
+ * 
+ * @brief Selects frequency spacingfor FM seek. Default is 100 kHz kHz spacing. There are only 3 valid values: 5, 10, and 20.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 101
+ * 
+ * @param uint16_t spacing - step in KHz
+ */
+void SI4735::setSeekFmSpacing(uint16_t spacing)
+{
+    sendProperty(FM_SEEK_FREQ_SPACING, spacing);
+}
+
+/**
+ * @ingroup group08 Seek 
+ * 
+ * @brief Sets the SNR threshold for a valid AM Seek/Tune. 
+ * 
+ * @details If the value is zero then SNR threshold is not considered when doing a seek. Default value is 5 dB.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE;  (REV 1.0); page 127
+ */
+void SI4735::setSeekAmSrnThreshold(uint16_t value)
+{
+    sendProperty(AM_SEEK_SNR_THRESHOLD, value);
+}
+
+/**
+ * @ingroup group08 Seek 
+ * 
+ * @brief Sets the SNR threshold for a valid FM Seek/Tune. 
+ * 
+ * @details SNR Threshold which determines if a valid channel has been found during Seek/Tune. Specified in units of dB in 1 dB steps (0–127). Default is 3 dB
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 102
+ * 
+ * @param value between 0 and 127.
+ */
+void SI4735::setSeekFmSrnThreshold(uint16_t value)
+{
+    sendProperty(FM_SEEK_TUNE_SNR_THRESHOLD, value);
+}
+
+/**
+ * @ingroup group08 Seek 
+ * 
+ * @brief Sets the RSSI threshold for a valid AM Seek/Tune. 
+ * 
+ * @details If the value is zero then RSSI threshold is not considered when doing a seek. Default value is 25 dBμV.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 127
+ */
+void SI4735::setSeekAmRssiThreshold(uint16_t value)
+{
+    sendProperty(AM_SEEK_RSSI_THRESHOLD, value);
+}
+
+/**
+ * @ingroup group08 Seek 
+ * 
+ * @brief Sets the RSSI threshold for a valid FM Seek/Tune.
+ * 
+ * @details RSSI threshold which determines if a valid channel has been found during seek/tune. Specified in units of dBμV in 1 dBμV steps (0–127). Default is 20 dBμV.
+ * 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 102
+ */
+void SI4735::setSeekFmRssiThreshold(uint16_t value)
+{
+    sendProperty(FM_SEEK_TUNE_RSSI_THRESHOLD, value);
 }
 
 /** @defgroup group10 Tools method 
@@ -1352,481 +1820,6 @@ void SI4735::volumeDown()
     setVolume(volume);
 }
 
-/** @defgroup group14 Frequency and Device status */
-
-/*******************************************************************************
- * Device Status Information
- ******************************************************************************/
-
-/**
- * @ingroup group14 Frequency 
- * 
- * @brief Gets the current frequency of the Si4735 (AM or FM)
- * 
- * @details The method status do it an more. See getStatus below. 
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 (FM) and 139 (AM)
- */
-uint16_t SI4735::getFrequency()
-{
-    si47x_frequency freq;
-    getStatus(0, 1);
-
-    freq.raw.FREQL = currentStatus.resp.READFREQL;
-    freq.raw.FREQH = currentStatus.resp.READFREQH;
-
-    currentWorkFrequency = freq.value;
-    return freq.value;
-}
-
-/**
- * @ingroup group14 Frequency 
- * 
- * @brief Gets the current status  of the Si4735 (AM or FM)
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 (FM) and 139 (AM)
- * 
- * @param uint8_t INTACK Seek/Tune Interrupt Clear. If set, clears the seek/tune complete interrupt status indicator;
- * @param uint8_t CANCEL Cancel seek. If set, aborts a seek currently in progress;
- */
-void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
-{
-    si47x_tune_status status;
-    uint8_t cmd = (currentTune == FM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
-
-    waitToSend();
-
-    status.arg.INTACK = INTACK;
-    status.arg.CANCEL = CANCEL;
-    status.arg.RESERVED2 = 0;
-
-    Wire.beginTransmission(deviceAddress);
-    Wire.write(cmd);
-    Wire.write(status.raw);
-    Wire.endTransmission();
-    // Reads the current status (including current frequency).
-    do
-    {
-        waitToSend();
-        Wire.requestFrom(deviceAddress, 8); // Check it
-        // Gets response information
-        for (uint8_t i = 0; i < 8; i++)
-            currentStatus.raw[i] = Wire.read();
-    } while (currentStatus.resp.ERR); // If error, try it again
-    waitToSend();
-}
-
-/**
- * @ingroup group14 AGC 
- * 
- * @brief Queries Automatic Gain Control STATUS
- * 
- * @details After call this method, you can call isAgcEnabled to know the AGC status and getAgcGainIndex to know the gain index value.
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); For FM page 80; for AM page 142.
- * @see AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
- * 
- */
-void SI4735::getAutomaticGainControl()
-{
-    uint8_t cmd;
-
-    if (currentTune == FM_TUNE_FREQ)
-    { // FM TUNE
-        cmd = FM_AGC_STATUS;
-    }
-    else
-    { // AM TUNE - SAME COMMAND used on SSB mode
-        cmd = AM_AGC_STATUS;
-    }
-
-    waitToSend();
-
-    Wire.beginTransmission(deviceAddress);
-    Wire.write(cmd);
-    Wire.endTransmission();
-
-    do
-    {
-        waitToSend();
-        Wire.requestFrom(deviceAddress, 3);
-        currentAgcStatus.raw[0] = Wire.read(); // STATUS response
-        currentAgcStatus.raw[1] = Wire.read(); // RESP 1
-        currentAgcStatus.raw[2] = Wire.read(); // RESP 2
-    } while (currentAgcStatus.refined.ERR);    // If error, try get AGC status again.
-}
-
-/** 
- * @ingroup group14 AGC 
- * 
- * @brief Automatic Gain Control setup 
- * 
- * @details If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0 
- * (minimum attenuation) and 26 (maximum attenuation).
- * @details If AM/SSB, Overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0 
- * (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation).
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); For FM page 81; for AM page 143 
- * 
- * @param uint8_t AGCDIS This param selects whether the AGC is enabled or disabled (0 = AGC enabled; 1 = AGC disabled);
- * @param uint8_t AGCIDX AGC Index (0 = Minimum attenuation (max gain); 1 – 36 = Intermediate attenuation); 
- *                if >greater than 36 - Maximum attenuation (min gain) ).
- */
-void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
-{
-    si47x_agc_overrride agc;
-
-    uint8_t cmd;
-
-    cmd = (currentTune == FM_TUNE_FREQ) ? FM_AGC_OVERRIDE : AM_AGC_OVERRIDE; // AM_AGC_OVERRIDE = SSB_AGC_OVERRIDE = 0x48
-
-    agc.arg.AGCDIS = AGCDIS;
-    agc.arg.AGCIDX = AGCIDX;
-
-    waitToSend();
-
-    Wire.beginTransmission(deviceAddress);
-    Wire.write(cmd);
-    Wire.write(agc.raw[0]);
-    Wire.write(agc.raw[1]);
-    Wire.endTransmission();
-
-    waitToSend();
-}
-
-/**
- * @ingroup group14 Automatic Volume Control
- * 
- * @brief Sets the maximum gain for automatic volume control.
- *  
- * @details If no parameter is sent, it will be consider 48dB.
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 152
- * @see setAvcAmMaxGain()
- * 
- * @param uint8_t gain  Select a value between 12 and 192.  Defaul value 48dB.
- */
-void SI4735::setAvcAmMaxGain(uint8_t gain)
-{
-    uint16_t aux;
-    aux = (gain > 12 && gain < 193) ? (gain * 340) : (48 * 340);
-    currentAvcAmMaxGain = gain;
-    sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, aux);
-}
-
-/**
- * @ingroup group14 Received Signal Quality
- * 
- * @brief Queries the status of the Received Signal Quality (RSQ) of the current channel.
- * 
- * @details This method sould be called berore call getCurrentRSSI(), getCurrentSNR() etc.
- * Command FM_RSQ_STATUS
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 75 and 141
- * 
- * @param INTACK Interrupt Acknowledge. 
- *        0 = Interrupt status preserved; 
- *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
- */
-void SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
-{
-    uint8_t arg;
-    uint8_t cmd;
-    int sizeResponse;
-
-    if (currentTune == FM_TUNE_FREQ)
-    { // FM TUNE
-        cmd = FM_RSQ_STATUS;
-        sizeResponse = 8; // Check it
-    }
-    else
-    { // AM TUNE
-        cmd = AM_RSQ_STATUS;
-        sizeResponse = 6; // Check it
-    }
-
-    waitToSend();
-
-    arg = INTACK;
-    Wire.beginTransmission(deviceAddress);
-    Wire.write(cmd);
-    Wire.write(arg); // send B00000001
-    Wire.endTransmission();
-
-    // Check it
-    // do
-    //{
-    waitToSend();
-    Wire.requestFrom(deviceAddress, sizeResponse);
-    // Gets response information
-    for (uint8_t i = 0; i < sizeResponse; i++)
-        currentRqsStatus.raw[i] = Wire.read();
-    //} while (currentRqsStatus.resp.ERR); // Try again if error found
-}
-
-/**
- * @ingroup group14 Received Signal Quality
- * 
- * @brief Queries the status of the Received Signal Quality (RSQ) of the current channel (FM_RSQ_STATUS)
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 75 and 141
- * 
- * @param INTACK Interrupt Acknowledge. 
- *        0 = Interrupt status preserved; 
- *        1 = Clears RSQINT, BLENDINT, SNRHINT, SNRLINT, RSSIHINT, RSSILINT, MULTHINT, MULTLINT.
- */
-void SI4735::getCurrentReceivedSignalQuality(void)
-{
-    getCurrentReceivedSignalQuality(0);
-}
-
-/** @defgroup group15 Tune */
-
-/**
- * @ingroup group15 Seek 
- * 
- * @brief Look for a station (Automatic tune)
- * @details Starts a seek process for a channel that meets the RSSI and SNR criteria for AM.  
- * @details __This function does not work on SSB mode__.  
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 55, 72, 125 and 137
- * 
- * @param SEEKUP Seek Up/Down. Determines the direction of the search, either UP = 1, or DOWN = 0. 
- * @param Wrap/Halt. Determines whether the seek should Wrap = 1, or Halt = 0 when it hits the band limit.
- */
-void SI4735::seekStation(uint8_t SEEKUP, uint8_t WRAP)
-{
-    si47x_seek seek;
-    si47x_seek_am_complement seek_am_complement;
-
-    // Check which FUNCTION (AM or FM) is working now
-    uint8_t seek_start_cmd = (currentTune == FM_TUNE_FREQ) ? FM_SEEK_START : AM_SEEK_START;
-
-    waitToSend();
-
-    seek.arg.SEEKUP = SEEKUP;
-    seek.arg.WRAP = WRAP;
-    seek.arg.RESERVED1 = 0;
-    seek.arg.RESERVED2 = 0;
-
-    Wire.beginTransmission(deviceAddress);
-    Wire.write(seek_start_cmd);
-    Wire.write(seek.raw); // ARG1
-
-    if (seek_start_cmd == AM_SEEK_START) // Sets additional configuration for AM mode
-    {
-        seek_am_complement.ARG2 = seek_am_complement.ARG3 = 0;
-        seek_am_complement.ANTCAPH = 0;
-        seek_am_complement.ANTCAPL = (currentWorkFrequency > 1800) ? 1 : 0; // if SW = 1
-        Wire.write(seek_am_complement.ARG2);                                // ARG2 - Always 0
-        Wire.write(seek_am_complement.ARG3);                                // ARG3 - Always 0
-        Wire.write(seek_am_complement.ANTCAPH);                             // ARG4 - Tuning Capacitor: The tuning capacitor value
-        Wire.write(seek_am_complement.ANTCAPL);                             // ARG5 - will be selected automatically.
-    }
-
-    Wire.endTransmission();
-    delay(MAX_DELAY_AFTER_SET_FREQUENCY << 2);
-}
-
-/**
- * @ingroup group15 Seek 
- * 
- * @brief Search for the next station.
- * @details Like seekStationUp this function goes to a next station.  
- * @details The main difference is the method used to look for a station.
- * 
- * @see seekStation, seekStationUp, seekStationDown, seekPreviousStation, seekStationProgress
- */
-void SI4735::seekNextStation()
-{
-    seekStation(1, 1);
-    delay(maxDelaySetFrequency);
-    getFrequency();
-}
-
-/**
- * @ingroup group15 Seek 
- * 
- * @brief Search the previous station
- * @details Like seekStationDown this function goes to a previous station.  
- * @details The main difference is the method used to look for a station.
- * @see seekStation, seekStationUp, seekStationDown, seekPreviousStation, seekStationProgress
- */
-void SI4735::seekPreviousStation()
-{
-    seekStation(0, 1);
-    delay(maxDelaySetFrequency);
-    getFrequency();
-}
-
-/**
- * @ingroup group15 Seek 
- * @brief Seeks a station up or down.
- * @details Seek up or down a station and call a function defined by the user to show the frequency. 
- * @details The first parameter of this function is a name of your function that you have to implement to show the current frequency. 
- * @details If you do not want to show the seeking progress,  you can set NULL instead the name of the function.   
- * @details The code below shows an example using ta function the shows the current frequency on he Serial Monitor. You might want to implement a function that shows the frequency on your display device. 
- * @details Also, you have to declare the frequency parameter that will be used by the function to show the frequency value. 
- * @details __This function does not work on SSB mode__. 
- * @code
- * void showFrequency( uint16_t freq ) {
- *    Serial.print(freq); 
- *    Serial.println("MHz ");
- * }
- * 
- * void loop() {
- * 
- *  receiver.seekStationProgress(showFrequency,1); // Seek Up
- *  .
- *  .
- *  .
- *  receiver.seekStationProgress(showFrequency,0); // Seek Down
- * 
- * }
- * @endcode
- * 
- * @see seekStation, seekStationUp, seekStationDown, getStatus   
- * @param showFunc  function that you have to implement to show the frequency during the seeking process. Set NULL if you do not want to show the progress. 
- * @param up_down   set up_down = 1 for seeking station up; set up_down = 0 for seeking station down
- */
-void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
-{
-    si47x_frequency freq;
-    long elapsed_seek = millis();
-
-    // seek command does not work for SSB
-    if (lastMode == SSB_CURRENT_MODE)
-        return;
-    do
-    {
-        seekStation(up_down, 0);
-        delay(maxDelaySetFrequency);
-        getStatus(0, 0);
-        delay(maxDelaySetFrequency);
-        freq.raw.FREQH = currentStatus.resp.READFREQH;
-        freq.raw.FREQL = currentStatus.resp.READFREQL;
-        currentWorkFrequency = freq.value;
-        if (showFunc != NULL)
-            showFunc(freq.value);
-    } while (!currentStatus.resp.VALID && !currentStatus.resp.BLTF && (millis() - elapsed_seek) < maxSeekTime);
-}
-
-/**
- * @ingroup group15 Seek 
- * 
- * @brief Sets the bottom frequency and top frequency of the AM band for seek. Default is 520 to 1710.
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 127, 161, and 162
- * 
- * @param uint16_t bottom - the bottom of the AM (MW/SW) mode for seek
- * @param uint16_t    top - the top of the AM (MW/SW) mode for seek
- */
-void SI4735::setSeekAmLimits(uint16_t bottom, uint16_t top)
-{
-    sendProperty(AM_SEEK_BAND_BOTTOM, bottom);
-    sendProperty(AM_SEEK_BAND_TOP, top);
-}
-
-/**
- * @ingroup group15 Seek 
- * 
- * @brief Sets the bottom frequency and top frequency of the FM band for seek. Default is 8750 to 10790.
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 100 and  101
- * 
- * @param uint16_t bottom - the bottom of the FM(VHF) mode for seek
- * @param uint16_t    top - the top of the FM(VHF) mode for seek
- */
-void SI4735::setSeekFmLimits(uint16_t bottom, uint16_t top)
-{
-    sendProperty(FM_SEEK_BAND_BOTTOM, bottom);
-    sendProperty(FM_SEEK_BAND_TOP, top);
-}
-
-/**
- * @ingroup group15 Seek 
- * 
- * @brief Selects frequency spacingfor AM seek. Default is 10 kHz spacing.
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 163, 229 and 283
- * 
- * @param uint16_t spacing - step in KHz
- */
-void SI4735::setSeekAmSpacing(uint16_t spacing)
-{
-    sendProperty(AM_SEEK_FREQ_SPACING, spacing);
-}
-
-/**
- * @ingroup group15 Seek 
- * 
- * @brief Selects frequency spacingfor FM seek. Default is 100 kHz kHz spacing. There are only 3 valid values: 5, 10, and 20.
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 101
- * 
- * @param uint16_t spacing - step in KHz
- */
-void SI4735::setSeekFmSpacing(uint16_t spacing)
-{
-    sendProperty(FM_SEEK_FREQ_SPACING, spacing);
-}
-
-/**
- * @ingroup group15 Seek 
- * 
- * @brief Sets the SNR threshold for a valid AM Seek/Tune. 
- * 
- * @details If the value is zero then SNR threshold is not considered when doing a seek. Default value is 5 dB.
- * 
- * @see Si47XX PROGRAMMING GUIDE;  (REV 1.0); page 127
- */
-void SI4735::setSeekAmSrnThreshold(uint16_t value)
-{
-    sendProperty(AM_SEEK_SNR_THRESHOLD, value);
-}
-
-/**
- * @ingroup group15 Seek 
- * 
- * @brief Sets the SNR threshold for a valid FM Seek/Tune. 
- * 
- * @details SNR Threshold which determines if a valid channel has been found during Seek/Tune. Specified in units of dB in 1 dB steps (0–127). Default is 3 dB
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 102
- * 
- * @param value between 0 and 127.
- */
-void SI4735::setSeekFmSrnThreshold(uint16_t value)
-{
-    sendProperty(FM_SEEK_TUNE_SNR_THRESHOLD, value);
-}
-
-/**
- * @ingroup group15 Seek 
- * 
- * @brief Sets the RSSI threshold for a valid AM Seek/Tune. 
- * 
- * @details If the value is zero then RSSI threshold is not considered when doing a seek. Default value is 25 dBμV.
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 127
- */
-void SI4735::setSeekAmRssiThreshold(uint16_t value)
-{
-    sendProperty(AM_SEEK_RSSI_THRESHOLD, value);
-}
-
-/**
- * @ingroup group15 Seek 
- * 
- * @brief Sets the RSSI threshold for a valid FM Seek/Tune.
- * 
- * @details RSSI threshold which determines if a valid channel has been found during seek/tune. Specified in units of dBμV in 1 dBμV steps (0–127). Default is 20 dBμV.
- * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 102
- */
-void SI4735::setSeekFmRssiThreshold(uint16_t value)
-{
-    sendProperty(FM_SEEK_TUNE_RSSI_THRESHOLD, value);
-}
 
 /** @defgroup group16 FM RDS/RBDS */
 
