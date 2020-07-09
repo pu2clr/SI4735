@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['patchpowerup_580',['patchPowerUp',['../group__group17.html#gafaabd6c73b7ad7c20ae959d5b75c1e71',1,'SI4735']]],
-  ['powerdown_581',['powerDown',['../group__group07.html#gaa554b3390fb6c5a4d6661b96afae73ae',1,'SI4735']]]
+  ['loadpatch_581',['loadPatch',['../group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5',1,'SI4735']]]
 ];

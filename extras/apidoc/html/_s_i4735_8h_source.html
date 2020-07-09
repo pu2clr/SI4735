@@ -24,6 +24,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_si5735.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PU2CLR Si4735 Arduino Library
    &#160;<span id="projectnumber">2.0.0</span>
@@ -1921,180 +1922,181 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="line"><a name="l01832"></a><span class="lineno"> 1832</span>&#160;    si47x_firmware_query_library <a class="code" href="group__group17.html#gadfc2c82524918224cf19fec5b7fcf6d1">queryLibraryId</a>();</div>
 <div class="line"><a name="l01833"></a><span class="lineno"> 1833</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__group17.html#gafaabd6c73b7ad7c20ae959d5b75c1e71">patchPowerUp</a>();</div>
 <div class="line"><a name="l01834"></a><span class="lineno"> 1834</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="group__group17.html#gafd1343bd8b4f0c290ef81c418222036c">downloadPatch</a>(<span class="keyword">const</span> uint8_t *ssb_patch_content, <span class="keyword">const</span> uint16_t ssb_patch_content_size);</div>
-<div class="line"><a name="l01835"></a><span class="lineno"> 1835</span>&#160;    si4735_eeprom_patch_header <a class="code" href="group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6">downloadPatchFromEeprom</a>(<span class="keywordtype">int</span> eeprom_i2c_address);</div>
-<div class="line"><a name="l01836"></a><span class="lineno"> 1836</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__group17.html#ga0fcfd8e487c594707b3f2aaa71a86d68">ssbPowerUp</a>();</div>
-<div class="line"><a name="l01837"></a><span class="lineno"> 1837</span>&#160; </div>
-<div class="line"><a name="l01838"></a><span class="lineno"> 1838</span>&#160;    <span class="comment">/**</span></div>
-<div class="line"><a name="l01839"></a><span class="lineno"> 1839</span>&#160;<span class="comment">     * @ingroup group06 Si47XX device Power Up </span></div>
-<div class="line"><a name="l01840"></a><span class="lineno"> 1840</span>&#160;<span class="comment">     * @brief Set the Max Delay Power Up </span></div>
-<div class="line"><a name="l01841"></a><span class="lineno"> 1841</span>&#160;<span class="comment">     * @details Sets the delay needed in ms after a powerup command (default is 10ms).</span></div>
-<div class="line"><a name="l01842"></a><span class="lineno"> 1842</span>&#160;<span class="comment">     * @details Some crystal oscillator might need more time to become stable (500 ms is the recommended).</span></div>
-<div class="line"><a name="l01843"></a><span class="lineno"> 1843</span>&#160;<span class="comment">     * @details Low values make the load SSB patch faster. However, it can make the system unstable.   </span></div>
-<div class="line"><a name="l01844"></a><span class="lineno"> 1844</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01845"></a><span class="lineno"> 1845</span>&#160;<span class="comment">     * @see MAX_DELAY_AFTER_POWERUP  </span></div>
-<div class="line"><a name="l01846"></a><span class="lineno"> 1846</span>&#160;<span class="comment">     * @param ms delay in ms</span></div>
-<div class="line"><a name="l01847"></a><span class="lineno"> 1847</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l01848"></a><span class="lineno"><a class="line" href="group__group06.html#gacfbec075648206fbe25834d998ed9e64"> 1848</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__group06.html#gacfbec075648206fbe25834d998ed9e64">setMaxDelayPowerUp</a>(uint16_t ms)</div>
-<div class="line"><a name="l01849"></a><span class="lineno"> 1849</span>&#160;    {</div>
-<div class="line"><a name="l01850"></a><span class="lineno"> 1850</span>&#160;        <span class="keyword">this</span>-&gt;maxDelayAfterPouwerUp = ms;</div>
-<div class="line"><a name="l01851"></a><span class="lineno"> 1851</span>&#160;    }</div>
-<div class="line"><a name="l01852"></a><span class="lineno"> 1852</span>&#160; </div>
-<div class="line"><a name="l01853"></a><span class="lineno"> 1853</span>&#160;    <span class="comment">/**</span></div>
-<div class="line"><a name="l01854"></a><span class="lineno"> 1854</span>&#160;<span class="comment">     * @ingroup   group08 Tune Frequency</span></div>
-<div class="line"><a name="l01855"></a><span class="lineno"> 1855</span>&#160;<span class="comment">     * @brief Set the Max Delay after Set Frequency </span></div>
-<div class="line"><a name="l01856"></a><span class="lineno"> 1856</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01857"></a><span class="lineno"> 1857</span>&#160;<span class="comment">     * @details After the set frequency command, the system need a time to get ready to the next set frequency (default value 30ms).</span></div>
-<div class="line"><a name="l01858"></a><span class="lineno"> 1858</span>&#160;<span class="comment">     * @details Why the waitToSend() does not work in this case? No idea for while! </span></div>
-<div class="line"><a name="l01859"></a><span class="lineno"> 1859</span>&#160;<span class="comment">     * @details A low value makes the getFrequency command inaccurate. </span></div>
-<div class="line"><a name="l01860"></a><span class="lineno"> 1860</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01861"></a><span class="lineno"> 1861</span>&#160;<span class="comment">     * @see  MAX_DELAY_AFTER_POWERUP</span></div>
-<div class="line"><a name="l01862"></a><span class="lineno"> 1862</span>&#160;<span class="comment">     * @param ms </span></div>
-<div class="line"><a name="l01863"></a><span class="lineno"> 1863</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l01864"></a><span class="lineno"><a class="line" href="group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8"> 1864</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8">setMaxDelaySetFrequency</a>(uint16_t ms)</div>
-<div class="line"><a name="l01865"></a><span class="lineno"> 1865</span>&#160;    {</div>
-<div class="line"><a name="l01866"></a><span class="lineno"> 1866</span>&#160;        <span class="keyword">this</span>-&gt;maxDelaySetFrequency = ms;</div>
-<div class="line"><a name="l01867"></a><span class="lineno"> 1867</span>&#160;    }</div>
-<div class="line"><a name="l01868"></a><span class="lineno"> 1868</span>&#160; </div>
-<div class="line"><a name="l01869"></a><span class="lineno"> 1869</span>&#160;    <span class="comment">/** </span></div>
-<div class="line"><a name="l01870"></a><span class="lineno"> 1870</span>&#160;<span class="comment">     * @ingroup group08 Tune Frequency step</span></div>
-<div class="line"><a name="l01871"></a><span class="lineno"> 1871</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01872"></a><span class="lineno"> 1872</span>&#160;<span class="comment">     * @brief Sets the current step value. </span></div>
-<div class="line"><a name="l01873"></a><span class="lineno"> 1873</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01874"></a><span class="lineno"> 1874</span>&#160;<span class="comment">     * @details This function does not check the limits of the current band. Please, don&#39;t take a step bigger than your legs.</span></div>
-<div class="line"><a name="l01875"></a><span class="lineno"> 1875</span>&#160;<span class="comment">     * @details Example:</span></div>
-<div class="line"><a name="l01876"></a><span class="lineno"> 1876</span>&#160;<span class="comment">     * @code</span></div>
-<div class="line"><a name="l01877"></a><span class="lineno"> 1877</span>&#160;<span class="comment">     * setFM(6400,10800,10390,10);</span></div>
-<div class="line"><a name="l01878"></a><span class="lineno"> 1878</span>&#160;<span class="comment">     * setFrequencyStep(100); // the step will be 1MHz (you are using FM mode)</span></div>
-<div class="line"><a name="l01879"></a><span class="lineno"> 1879</span>&#160;<span class="comment">     * .</span></div>
+<div class="line"><a name="l01835"></a><span class="lineno"> 1835</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5">loadPatch</a>(<span class="keyword">const</span> uint8_t *ssb_patch_content, <span class="keyword">const</span> uint16_t ssb_patch_content_size, uint8_t ssb_audiobw = 1);</div>
+<div class="line"><a name="l01836"></a><span class="lineno"> 1836</span>&#160;    si4735_eeprom_patch_header <a class="code" href="group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6">downloadPatchFromEeprom</a>(<span class="keywordtype">int</span> eeprom_i2c_address);</div>
+<div class="line"><a name="l01837"></a><span class="lineno"> 1837</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__group17.html#ga0fcfd8e487c594707b3f2aaa71a86d68">ssbPowerUp</a>();</div>
+<div class="line"><a name="l01838"></a><span class="lineno"> 1838</span>&#160; </div>
+<div class="line"><a name="l01839"></a><span class="lineno"> 1839</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l01840"></a><span class="lineno"> 1840</span>&#160;<span class="comment">     * @ingroup group06 Si47XX device Power Up </span></div>
+<div class="line"><a name="l01841"></a><span class="lineno"> 1841</span>&#160;<span class="comment">     * @brief Set the Max Delay Power Up </span></div>
+<div class="line"><a name="l01842"></a><span class="lineno"> 1842</span>&#160;<span class="comment">     * @details Sets the delay needed in ms after a powerup command (default is 10ms).</span></div>
+<div class="line"><a name="l01843"></a><span class="lineno"> 1843</span>&#160;<span class="comment">     * @details Some crystal oscillator might need more time to become stable (500 ms is the recommended).</span></div>
+<div class="line"><a name="l01844"></a><span class="lineno"> 1844</span>&#160;<span class="comment">     * @details Low values make the load SSB patch faster. However, it can make the system unstable.   </span></div>
+<div class="line"><a name="l01845"></a><span class="lineno"> 1845</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01846"></a><span class="lineno"> 1846</span>&#160;<span class="comment">     * @see MAX_DELAY_AFTER_POWERUP  </span></div>
+<div class="line"><a name="l01847"></a><span class="lineno"> 1847</span>&#160;<span class="comment">     * @param ms delay in ms</span></div>
+<div class="line"><a name="l01848"></a><span class="lineno"> 1848</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l01849"></a><span class="lineno"><a class="line" href="group__group06.html#gacfbec075648206fbe25834d998ed9e64"> 1849</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__group06.html#gacfbec075648206fbe25834d998ed9e64">setMaxDelayPowerUp</a>(uint16_t ms)</div>
+<div class="line"><a name="l01850"></a><span class="lineno"> 1850</span>&#160;    {</div>
+<div class="line"><a name="l01851"></a><span class="lineno"> 1851</span>&#160;        <span class="keyword">this</span>-&gt;maxDelayAfterPouwerUp = ms;</div>
+<div class="line"><a name="l01852"></a><span class="lineno"> 1852</span>&#160;    }</div>
+<div class="line"><a name="l01853"></a><span class="lineno"> 1853</span>&#160; </div>
+<div class="line"><a name="l01854"></a><span class="lineno"> 1854</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l01855"></a><span class="lineno"> 1855</span>&#160;<span class="comment">     * @ingroup   group08 Tune Frequency</span></div>
+<div class="line"><a name="l01856"></a><span class="lineno"> 1856</span>&#160;<span class="comment">     * @brief Set the Max Delay after Set Frequency </span></div>
+<div class="line"><a name="l01857"></a><span class="lineno"> 1857</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01858"></a><span class="lineno"> 1858</span>&#160;<span class="comment">     * @details After the set frequency command, the system need a time to get ready to the next set frequency (default value 30ms).</span></div>
+<div class="line"><a name="l01859"></a><span class="lineno"> 1859</span>&#160;<span class="comment">     * @details Why the waitToSend() does not work in this case? No idea for while! </span></div>
+<div class="line"><a name="l01860"></a><span class="lineno"> 1860</span>&#160;<span class="comment">     * @details A low value makes the getFrequency command inaccurate. </span></div>
+<div class="line"><a name="l01861"></a><span class="lineno"> 1861</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01862"></a><span class="lineno"> 1862</span>&#160;<span class="comment">     * @see  MAX_DELAY_AFTER_POWERUP</span></div>
+<div class="line"><a name="l01863"></a><span class="lineno"> 1863</span>&#160;<span class="comment">     * @param ms </span></div>
+<div class="line"><a name="l01864"></a><span class="lineno"> 1864</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l01865"></a><span class="lineno"><a class="line" href="group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8"> 1865</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8">setMaxDelaySetFrequency</a>(uint16_t ms)</div>
+<div class="line"><a name="l01866"></a><span class="lineno"> 1866</span>&#160;    {</div>
+<div class="line"><a name="l01867"></a><span class="lineno"> 1867</span>&#160;        <span class="keyword">this</span>-&gt;maxDelaySetFrequency = ms;</div>
+<div class="line"><a name="l01868"></a><span class="lineno"> 1868</span>&#160;    }</div>
+<div class="line"><a name="l01869"></a><span class="lineno"> 1869</span>&#160; </div>
+<div class="line"><a name="l01870"></a><span class="lineno"> 1870</span>&#160;    <span class="comment">/** </span></div>
+<div class="line"><a name="l01871"></a><span class="lineno"> 1871</span>&#160;<span class="comment">     * @ingroup group08 Tune Frequency step</span></div>
+<div class="line"><a name="l01872"></a><span class="lineno"> 1872</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01873"></a><span class="lineno"> 1873</span>&#160;<span class="comment">     * @brief Sets the current step value. </span></div>
+<div class="line"><a name="l01874"></a><span class="lineno"> 1874</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01875"></a><span class="lineno"> 1875</span>&#160;<span class="comment">     * @details This function does not check the limits of the current band. Please, don&#39;t take a step bigger than your legs.</span></div>
+<div class="line"><a name="l01876"></a><span class="lineno"> 1876</span>&#160;<span class="comment">     * @details Example:</span></div>
+<div class="line"><a name="l01877"></a><span class="lineno"> 1877</span>&#160;<span class="comment">     * @code</span></div>
+<div class="line"><a name="l01878"></a><span class="lineno"> 1878</span>&#160;<span class="comment">     * setFM(6400,10800,10390,10);</span></div>
+<div class="line"><a name="l01879"></a><span class="lineno"> 1879</span>&#160;<span class="comment">     * setFrequencyStep(100); // the step will be 1MHz (you are using FM mode)</span></div>
 <div class="line"><a name="l01880"></a><span class="lineno"> 1880</span>&#160;<span class="comment">     * .</span></div>
 <div class="line"><a name="l01881"></a><span class="lineno"> 1881</span>&#160;<span class="comment">     * .</span></div>
-<div class="line"><a name="l01882"></a><span class="lineno"> 1882</span>&#160;<span class="comment">     * setAM(7000,7600,7100,5); </span></div>
-<div class="line"><a name="l01883"></a><span class="lineno"> 1883</span>&#160;<span class="comment">     * setFrequencyStep(1); // the step will be 1KHz (you are usin AM or SSB mode)  </span></div>
-<div class="line"><a name="l01884"></a><span class="lineno"> 1884</span>&#160;<span class="comment">     * @endcode </span></div>
-<div class="line"><a name="l01885"></a><span class="lineno"> 1885</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01886"></a><span class="lineno"> 1886</span>&#160;<span class="comment">     * @see setFM()</span></div>
-<div class="line"><a name="l01887"></a><span class="lineno"> 1887</span>&#160;<span class="comment">     * @see setAM()</span></div>
-<div class="line"><a name="l01888"></a><span class="lineno"> 1888</span>&#160;<span class="comment">     * @see setSSB()</span></div>
-<div class="line"><a name="l01889"></a><span class="lineno"> 1889</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01890"></a><span class="lineno"> 1890</span>&#160;<span class="comment">     * @param step if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz</span></div>
-<div class="line"><a name="l01891"></a><span class="lineno"> 1891</span>&#160;<span class="comment">     *             For AM, 1 (1KHz) to 1000 (1MHz) are valid values.</span></div>
-<div class="line"><a name="l01892"></a><span class="lineno"> 1892</span>&#160;<span class="comment">     *             For FM 5 (50KHz), 10 (100KHz) and 100 (1MHz) are valid values.  </span></div>
-<div class="line"><a name="l01893"></a><span class="lineno"> 1893</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l01894"></a><span class="lineno"><a class="line" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c"> 1894</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">setFrequencyStep</a>(uint16_t step)</div>
-<div class="line"><a name="l01895"></a><span class="lineno"> 1895</span>&#160;    {</div>
-<div class="line"><a name="l01896"></a><span class="lineno"> 1896</span>&#160;        <span class="keyword">this</span>-&gt;currentStep = step;</div>
-<div class="line"><a name="l01897"></a><span class="lineno"> 1897</span>&#160;    }</div>
-<div class="line"><a name="l01898"></a><span class="lineno"> 1898</span>&#160; </div>
-<div class="line"><a name="l01899"></a><span class="lineno"> 1899</span>&#160;    <span class="comment">/**</span></div>
-<div class="line"><a name="l01900"></a><span class="lineno"> 1900</span>&#160;<span class="comment">     * @ingroup group14 Frequency </span></div>
-<div class="line"><a name="l01901"></a><span class="lineno"> 1901</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01902"></a><span class="lineno"> 1902</span>&#160;<span class="comment">     * @brief Gets the current frequency saved in memory. </span></div>
-<div class="line"><a name="l01903"></a><span class="lineno"> 1903</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01904"></a><span class="lineno"> 1904</span>&#160;<span class="comment">     * @details Unlike getFrequency, this method gets the current frequency recorded after the last setFrequency command. </span></div>
-<div class="line"><a name="l01905"></a><span class="lineno"> 1905</span>&#160;<span class="comment">     * @details This method avoids bus traffic and CI processing.</span></div>
-<div class="line"><a name="l01906"></a><span class="lineno"> 1906</span>&#160;<span class="comment">     * @details However, you can not get others status information like RSSI.</span></div>
-<div class="line"><a name="l01907"></a><span class="lineno"> 1907</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01908"></a><span class="lineno"> 1908</span>&#160;<span class="comment">     * @see getFrequency()</span></div>
-<div class="line"><a name="l01909"></a><span class="lineno"> 1909</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l01910"></a><span class="lineno"><a class="line" href="group__group14.html#ga8240278970ae8bf7283e14714b4329ad"> 1910</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="group__group14.html#ga8240278970ae8bf7283e14714b4329ad">uint16_t</a> <a class="code" href="group__group14.html#ga8240278970ae8bf7283e14714b4329ad">getCurrentFrequency</a>()</div>
-<div class="line"><a name="l01911"></a><span class="lineno"> 1911</span>&#160;    {</div>
-<div class="line"><a name="l01912"></a><span class="lineno"> 1912</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>-&gt;currentWorkFrequency;</div>
-<div class="line"><a name="l01913"></a><span class="lineno"> 1913</span>&#160;    }</div>
-<div class="line"><a name="l01914"></a><span class="lineno"> 1914</span>&#160; </div>
-<div class="line"><a name="l01915"></a><span class="lineno"> 1915</span>&#160;    <span class="comment">/**</span></div>
-<div class="line"><a name="l01916"></a><span class="lineno"> 1916</span>&#160;<span class="comment">     * @ingroup group14 Si47XX device Status </span></div>
-<div class="line"><a name="l01917"></a><span class="lineno"> 1917</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01918"></a><span class="lineno"> 1918</span>&#160;<span class="comment">     * @brief Gets the current status  of the Si47XX (AM, FM or SSB)</span></div>
-<div class="line"><a name="l01919"></a><span class="lineno"> 1919</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01920"></a><span class="lineno"> 1920</span>&#160;<span class="comment">     * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 (FM) and 139 (AM)</span></div>
-<div class="line"><a name="l01921"></a><span class="lineno"> 1921</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l01922"></a><span class="lineno"><a class="line" href="group__group14.html#ga3cf856c44fcfffb3d81b22b1d09b881f"> 1922</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__group14.html#ga3cf856c44fcfffb3d81b22b1d09b881f">getStatus</a>()</div>
-<div class="line"><a name="l01923"></a><span class="lineno"> 1923</span>&#160;    {</div>
-<div class="line"><a name="l01924"></a><span class="lineno"> 1924</span>&#160;        getStatus(0, 1);</div>
-<div class="line"><a name="l01925"></a><span class="lineno"> 1925</span>&#160;    }</div>
-<div class="line"><a name="l01926"></a><span class="lineno"> 1926</span>&#160; </div>
-<div class="line"><a name="l01927"></a><span class="lineno"> 1927</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__group05.html#ga748a4027f317972cb2fb1aed4865973b">setDeviceI2CAddress</a>(uint8_t senPin);</div>
-<div class="line"><a name="l01928"></a><span class="lineno"> 1928</span>&#160;    <a class="code" href="group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9">int16_t</a> <a class="code" href="group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9">getDeviceI2CAddress</a>(<a class="code" href="group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9">uint8_t</a> <a class="code" href="group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9">resetPin</a>);</div>
-<div class="line"><a name="l01929"></a><span class="lineno"> 1929</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__group05.html#ga668008457910e916ebadf15bda2e5b29">setDeviceOtherI2CAddress</a>(uint8_t i2cAddr);</div>
-<div class="line"><a name="l01930"></a><span class="lineno"> 1930</span>&#160; </div>
-<div class="line"><a name="l01931"></a><span class="lineno"> 1931</span>&#160;    <span class="comment">/******************************************************************************* </span></div>
-<div class="line"><a name="l01932"></a><span class="lineno"> 1932</span>&#160;<span class="comment">     * The functions below modify the clock frequency for I2C communication. </span></div>
-<div class="line"><a name="l01933"></a><span class="lineno"> 1933</span>&#160;<span class="comment">     * 100KHz  is usually the baseline.</span></div>
-<div class="line"><a name="l01934"></a><span class="lineno"> 1934</span>&#160;<span class="comment">     * Use one of these funcition if you have problem on you default configuration. </span></div>
-<div class="line"><a name="l01935"></a><span class="lineno"> 1935</span>&#160;<span class="comment">     *******************************************************************************/</span></div>
-<div class="line"><a name="l01936"></a><span class="lineno"> 1936</span>&#160; </div>
-<div class="line"><a name="l01937"></a><span class="lineno"> 1937</span>&#160;    <span class="comment">/**</span></div>
-<div class="line"><a name="l01938"></a><span class="lineno"> 1938</span>&#160;<span class="comment">     * @ingroup group18 MCU I2C Speed </span></div>
-<div class="line"><a name="l01939"></a><span class="lineno"> 1939</span>&#160;<span class="comment">     * @brief Sets I2C bus to 10KHz</span></div>
-<div class="line"><a name="l01940"></a><span class="lineno"> 1940</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l01941"></a><span class="lineno"><a class="line" href="class_s_i4735.html#aecfcd50dbb3d95d66c8cdc77d52af63c"> 1941</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_s_i4735.html#aecfcd50dbb3d95d66c8cdc77d52af63c">setI2CLowSpeedMode</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l01942"></a><span class="lineno"> 1942</span>&#160;    {</div>
-<div class="line"><a name="l01943"></a><span class="lineno"> 1943</span>&#160;        Wire.setClock(10000);</div>
-<div class="line"><a name="l01944"></a><span class="lineno"> 1944</span>&#160;    };</div>
-<div class="line"><a name="l01945"></a><span class="lineno"> 1945</span>&#160; </div>
-<div class="line"><a name="l01946"></a><span class="lineno"> 1946</span>&#160;    <span class="comment">/**</span></div>
-<div class="line"><a name="l01947"></a><span class="lineno"> 1947</span>&#160;<span class="comment">     * @ingroup group18 MCU I2C Speed  </span></div>
-<div class="line"><a name="l01948"></a><span class="lineno"> 1948</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01949"></a><span class="lineno"> 1949</span>&#160;<span class="comment">     * @brief Sets I2C bus to 100KHz</span></div>
-<div class="line"><a name="l01950"></a><span class="lineno"> 1950</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l01951"></a><span class="lineno"><a class="line" href="class_s_i4735.html#a00ade87631677b8cc88098d0b55cd5a4"> 1951</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_s_i4735.html#a00ade87631677b8cc88098d0b55cd5a4">setI2CStandardMode</a>(<span class="keywordtype">void</span>) { Wire.setClock(100000); };</div>
-<div class="line"><a name="l01952"></a><span class="lineno"> 1952</span>&#160; </div>
-<div class="line"><a name="l01953"></a><span class="lineno"> 1953</span>&#160;    <span class="comment">/**</span></div>
-<div class="line"><a name="l01954"></a><span class="lineno"> 1954</span>&#160;<span class="comment">     * @ingroup group18 MCU I2C Speed </span></div>
-<div class="line"><a name="l01955"></a><span class="lineno"> 1955</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01956"></a><span class="lineno"> 1956</span>&#160;<span class="comment">     * @brief Sets I2C bus to 400KHz</span></div>
-<div class="line"><a name="l01957"></a><span class="lineno"> 1957</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l01958"></a><span class="lineno"><a class="line" href="class_s_i4735.html#a7bb3214f70381cf26bb93f96729d641e"> 1958</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_s_i4735.html#a7bb3214f70381cf26bb93f96729d641e">setI2CFastMode</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l01959"></a><span class="lineno"> 1959</span>&#160;    {</div>
-<div class="line"><a name="l01960"></a><span class="lineno"> 1960</span>&#160;        Wire.setClock(400000);</div>
-<div class="line"><a name="l01961"></a><span class="lineno"> 1961</span>&#160;    };</div>
-<div class="line"><a name="l01962"></a><span class="lineno"> 1962</span>&#160; </div>
-<div class="line"><a name="l01963"></a><span class="lineno"> 1963</span>&#160;    <span class="comment">/**</span></div>
-<div class="line"><a name="l01964"></a><span class="lineno"> 1964</span>&#160;<span class="comment">     * @ingroup group18 MCU I2C Speed  </span></div>
-<div class="line"><a name="l01965"></a><span class="lineno"> 1965</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01966"></a><span class="lineno"> 1966</span>&#160;<span class="comment">     * @brief Sets the I2C bus to a given value.</span></div>
-<div class="line"><a name="l01967"></a><span class="lineno"> 1967</span>&#160;<span class="comment">     * ATTENTION: use this function with cation</span></div>
-<div class="line"><a name="l01968"></a><span class="lineno"> 1968</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01969"></a><span class="lineno"> 1969</span>&#160;<span class="comment">     * @param value in Hz. For example: The values 500000 sets the bus to 500KHz.</span></div>
-<div class="line"><a name="l01970"></a><span class="lineno"> 1970</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l01971"></a><span class="lineno"><a class="line" href="class_s_i4735.html#a7433b4e80fd3b501efeae7973d29c985"> 1971</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_s_i4735.html#a7433b4e80fd3b501efeae7973d29c985">setI2CFastModeCustom</a>(<span class="keywordtype">long</span> value = 500000) { Wire.setClock(value); };</div>
-<div class="line"><a name="l01972"></a><span class="lineno"> 1972</span>&#160; </div>
+<div class="line"><a name="l01882"></a><span class="lineno"> 1882</span>&#160;<span class="comment">     * .</span></div>
+<div class="line"><a name="l01883"></a><span class="lineno"> 1883</span>&#160;<span class="comment">     * setAM(7000,7600,7100,5); </span></div>
+<div class="line"><a name="l01884"></a><span class="lineno"> 1884</span>&#160;<span class="comment">     * setFrequencyStep(1); // the step will be 1KHz (you are usin AM or SSB mode)  </span></div>
+<div class="line"><a name="l01885"></a><span class="lineno"> 1885</span>&#160;<span class="comment">     * @endcode </span></div>
+<div class="line"><a name="l01886"></a><span class="lineno"> 1886</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01887"></a><span class="lineno"> 1887</span>&#160;<span class="comment">     * @see setFM()</span></div>
+<div class="line"><a name="l01888"></a><span class="lineno"> 1888</span>&#160;<span class="comment">     * @see setAM()</span></div>
+<div class="line"><a name="l01889"></a><span class="lineno"> 1889</span>&#160;<span class="comment">     * @see setSSB()</span></div>
+<div class="line"><a name="l01890"></a><span class="lineno"> 1890</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01891"></a><span class="lineno"> 1891</span>&#160;<span class="comment">     * @param step if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz</span></div>
+<div class="line"><a name="l01892"></a><span class="lineno"> 1892</span>&#160;<span class="comment">     *             For AM, 1 (1KHz) to 1000 (1MHz) are valid values.</span></div>
+<div class="line"><a name="l01893"></a><span class="lineno"> 1893</span>&#160;<span class="comment">     *             For FM 5 (50KHz), 10 (100KHz) and 100 (1MHz) are valid values.  </span></div>
+<div class="line"><a name="l01894"></a><span class="lineno"> 1894</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l01895"></a><span class="lineno"><a class="line" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c"> 1895</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">setFrequencyStep</a>(uint16_t step)</div>
+<div class="line"><a name="l01896"></a><span class="lineno"> 1896</span>&#160;    {</div>
+<div class="line"><a name="l01897"></a><span class="lineno"> 1897</span>&#160;        <span class="keyword">this</span>-&gt;currentStep = step;</div>
+<div class="line"><a name="l01898"></a><span class="lineno"> 1898</span>&#160;    }</div>
+<div class="line"><a name="l01899"></a><span class="lineno"> 1899</span>&#160; </div>
+<div class="line"><a name="l01900"></a><span class="lineno"> 1900</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l01901"></a><span class="lineno"> 1901</span>&#160;<span class="comment">     * @ingroup group14 Frequency </span></div>
+<div class="line"><a name="l01902"></a><span class="lineno"> 1902</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01903"></a><span class="lineno"> 1903</span>&#160;<span class="comment">     * @brief Gets the current frequency saved in memory. </span></div>
+<div class="line"><a name="l01904"></a><span class="lineno"> 1904</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01905"></a><span class="lineno"> 1905</span>&#160;<span class="comment">     * @details Unlike getFrequency, this method gets the current frequency recorded after the last setFrequency command. </span></div>
+<div class="line"><a name="l01906"></a><span class="lineno"> 1906</span>&#160;<span class="comment">     * @details This method avoids bus traffic and CI processing.</span></div>
+<div class="line"><a name="l01907"></a><span class="lineno"> 1907</span>&#160;<span class="comment">     * @details However, you can not get others status information like RSSI.</span></div>
+<div class="line"><a name="l01908"></a><span class="lineno"> 1908</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01909"></a><span class="lineno"> 1909</span>&#160;<span class="comment">     * @see getFrequency()</span></div>
+<div class="line"><a name="l01910"></a><span class="lineno"> 1910</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l01911"></a><span class="lineno"><a class="line" href="group__group14.html#ga8240278970ae8bf7283e14714b4329ad"> 1911</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="group__group14.html#ga8240278970ae8bf7283e14714b4329ad">uint16_t</a> <a class="code" href="group__group14.html#ga8240278970ae8bf7283e14714b4329ad">getCurrentFrequency</a>()</div>
+<div class="line"><a name="l01912"></a><span class="lineno"> 1912</span>&#160;    {</div>
+<div class="line"><a name="l01913"></a><span class="lineno"> 1913</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>-&gt;currentWorkFrequency;</div>
+<div class="line"><a name="l01914"></a><span class="lineno"> 1914</span>&#160;    }</div>
+<div class="line"><a name="l01915"></a><span class="lineno"> 1915</span>&#160; </div>
+<div class="line"><a name="l01916"></a><span class="lineno"> 1916</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l01917"></a><span class="lineno"> 1917</span>&#160;<span class="comment">     * @ingroup group14 Si47XX device Status </span></div>
+<div class="line"><a name="l01918"></a><span class="lineno"> 1918</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01919"></a><span class="lineno"> 1919</span>&#160;<span class="comment">     * @brief Gets the current status  of the Si47XX (AM, FM or SSB)</span></div>
+<div class="line"><a name="l01920"></a><span class="lineno"> 1920</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01921"></a><span class="lineno"> 1921</span>&#160;<span class="comment">     * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 (FM) and 139 (AM)</span></div>
+<div class="line"><a name="l01922"></a><span class="lineno"> 1922</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l01923"></a><span class="lineno"><a class="line" href="group__group14.html#ga3cf856c44fcfffb3d81b22b1d09b881f"> 1923</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__group14.html#ga3cf856c44fcfffb3d81b22b1d09b881f">getStatus</a>()</div>
+<div class="line"><a name="l01924"></a><span class="lineno"> 1924</span>&#160;    {</div>
+<div class="line"><a name="l01925"></a><span class="lineno"> 1925</span>&#160;        getStatus(0, 1);</div>
+<div class="line"><a name="l01926"></a><span class="lineno"> 1926</span>&#160;    }</div>
+<div class="line"><a name="l01927"></a><span class="lineno"> 1927</span>&#160; </div>
+<div class="line"><a name="l01928"></a><span class="lineno"> 1928</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__group05.html#ga748a4027f317972cb2fb1aed4865973b">setDeviceI2CAddress</a>(uint8_t senPin);</div>
+<div class="line"><a name="l01929"></a><span class="lineno"> 1929</span>&#160;    <a class="code" href="group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9">int16_t</a> <a class="code" href="group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9">getDeviceI2CAddress</a>(<a class="code" href="group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9">uint8_t</a> <a class="code" href="group__group05.html#ga8eddbfb3e62786aa4843d4bcd25da2b9">resetPin</a>);</div>
+<div class="line"><a name="l01930"></a><span class="lineno"> 1930</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__group05.html#ga668008457910e916ebadf15bda2e5b29">setDeviceOtherI2CAddress</a>(uint8_t i2cAddr);</div>
+<div class="line"><a name="l01931"></a><span class="lineno"> 1931</span>&#160; </div>
+<div class="line"><a name="l01932"></a><span class="lineno"> 1932</span>&#160;    <span class="comment">/******************************************************************************* </span></div>
+<div class="line"><a name="l01933"></a><span class="lineno"> 1933</span>&#160;<span class="comment">     * The functions below modify the clock frequency for I2C communication. </span></div>
+<div class="line"><a name="l01934"></a><span class="lineno"> 1934</span>&#160;<span class="comment">     * 100KHz  is usually the baseline.</span></div>
+<div class="line"><a name="l01935"></a><span class="lineno"> 1935</span>&#160;<span class="comment">     * Use one of these funcition if you have problem on you default configuration. </span></div>
+<div class="line"><a name="l01936"></a><span class="lineno"> 1936</span>&#160;<span class="comment">     *******************************************************************************/</span></div>
+<div class="line"><a name="l01937"></a><span class="lineno"> 1937</span>&#160; </div>
+<div class="line"><a name="l01938"></a><span class="lineno"> 1938</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l01939"></a><span class="lineno"> 1939</span>&#160;<span class="comment">     * @ingroup group18 MCU I2C Speed </span></div>
+<div class="line"><a name="l01940"></a><span class="lineno"> 1940</span>&#160;<span class="comment">     * @brief Sets I2C bus to 10KHz</span></div>
+<div class="line"><a name="l01941"></a><span class="lineno"> 1941</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l01942"></a><span class="lineno"><a class="line" href="class_s_i4735.html#aecfcd50dbb3d95d66c8cdc77d52af63c"> 1942</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_s_i4735.html#aecfcd50dbb3d95d66c8cdc77d52af63c">setI2CLowSpeedMode</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l01943"></a><span class="lineno"> 1943</span>&#160;    {</div>
+<div class="line"><a name="l01944"></a><span class="lineno"> 1944</span>&#160;        Wire.setClock(10000);</div>
+<div class="line"><a name="l01945"></a><span class="lineno"> 1945</span>&#160;    };</div>
+<div class="line"><a name="l01946"></a><span class="lineno"> 1946</span>&#160; </div>
+<div class="line"><a name="l01947"></a><span class="lineno"> 1947</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l01948"></a><span class="lineno"> 1948</span>&#160;<span class="comment">     * @ingroup group18 MCU I2C Speed  </span></div>
+<div class="line"><a name="l01949"></a><span class="lineno"> 1949</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01950"></a><span class="lineno"> 1950</span>&#160;<span class="comment">     * @brief Sets I2C bus to 100KHz</span></div>
+<div class="line"><a name="l01951"></a><span class="lineno"> 1951</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l01952"></a><span class="lineno"><a class="line" href="class_s_i4735.html#a00ade87631677b8cc88098d0b55cd5a4"> 1952</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_s_i4735.html#a00ade87631677b8cc88098d0b55cd5a4">setI2CStandardMode</a>(<span class="keywordtype">void</span>) { Wire.setClock(100000); };</div>
+<div class="line"><a name="l01953"></a><span class="lineno"> 1953</span>&#160; </div>
+<div class="line"><a name="l01954"></a><span class="lineno"> 1954</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l01955"></a><span class="lineno"> 1955</span>&#160;<span class="comment">     * @ingroup group18 MCU I2C Speed </span></div>
+<div class="line"><a name="l01956"></a><span class="lineno"> 1956</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01957"></a><span class="lineno"> 1957</span>&#160;<span class="comment">     * @brief Sets I2C bus to 400KHz</span></div>
+<div class="line"><a name="l01958"></a><span class="lineno"> 1958</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l01959"></a><span class="lineno"><a class="line" href="class_s_i4735.html#a7bb3214f70381cf26bb93f96729d641e"> 1959</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_s_i4735.html#a7bb3214f70381cf26bb93f96729d641e">setI2CFastMode</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l01960"></a><span class="lineno"> 1960</span>&#160;    {</div>
+<div class="line"><a name="l01961"></a><span class="lineno"> 1961</span>&#160;        Wire.setClock(400000);</div>
+<div class="line"><a name="l01962"></a><span class="lineno"> 1962</span>&#160;    };</div>
+<div class="line"><a name="l01963"></a><span class="lineno"> 1963</span>&#160; </div>
+<div class="line"><a name="l01964"></a><span class="lineno"> 1964</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l01965"></a><span class="lineno"> 1965</span>&#160;<span class="comment">     * @ingroup group18 MCU I2C Speed  </span></div>
+<div class="line"><a name="l01966"></a><span class="lineno"> 1966</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01967"></a><span class="lineno"> 1967</span>&#160;<span class="comment">     * @brief Sets the I2C bus to a given value.</span></div>
+<div class="line"><a name="l01968"></a><span class="lineno"> 1968</span>&#160;<span class="comment">     * ATTENTION: use this function with cation</span></div>
+<div class="line"><a name="l01969"></a><span class="lineno"> 1969</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01970"></a><span class="lineno"> 1970</span>&#160;<span class="comment">     * @param value in Hz. For example: The values 500000 sets the bus to 500KHz.</span></div>
+<div class="line"><a name="l01971"></a><span class="lineno"> 1971</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l01972"></a><span class="lineno"><a class="line" href="class_s_i4735.html#a7433b4e80fd3b501efeae7973d29c985"> 1972</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_s_i4735.html#a7433b4e80fd3b501efeae7973d29c985">setI2CFastModeCustom</a>(<span class="keywordtype">long</span> value = 500000) { Wire.setClock(value); };</div>
 <div class="line"><a name="l01973"></a><span class="lineno"> 1973</span>&#160; </div>
-<div class="line"><a name="l01974"></a><span class="lineno"> 1974</span>&#160;    <span class="comment">/**</span></div>
-<div class="line"><a name="l01975"></a><span class="lineno"> 1975</span>&#160;<span class="comment">     * @ingroup group18 MCU External Audio Mute  </span></div>
-<div class="line"><a name="l01976"></a><span class="lineno"> 1976</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01977"></a><span class="lineno"> 1977</span>&#160;<span class="comment">     * @brief Sets the Audio Mute Mcu Pin</span></div>
-<div class="line"><a name="l01978"></a><span class="lineno"> 1978</span>&#160;<span class="comment">     * @details This function sets the mcu digital pin you want to use to control the external audio mute circuit.</span></div>
-<div class="line"><a name="l01979"></a><span class="lineno"> 1979</span>&#160;<span class="comment">     * @details Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some SI47XX commands.  </span></div>
-<div class="line"><a name="l01980"></a><span class="lineno"> 1980</span>&#160;<span class="comment">     * @details This problem occurs during the transition from the power down to power up. </span></div>
-<div class="line"><a name="l01981"></a><span class="lineno"> 1981</span>&#160;<span class="comment">     * @details Every time the user changes the mode (FM to AM or AM to FM) the power down and power up commands are required by the Si47XX devices.</span></div>
-<div class="line"><a name="l01982"></a><span class="lineno"> 1982</span>&#160;<span class="comment">     * @details If you have a extra circuit in your receiver to mute the audio on amplifier input, you can configure a MCU pin to control it by using this function.</span></div>
-<div class="line"><a name="l01983"></a><span class="lineno"> 1983</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01984"></a><span class="lineno"> 1984</span>&#160;<span class="comment">     * @see setHardwareAudioMute</span></div>
-<div class="line"><a name="l01985"></a><span class="lineno"> 1985</span>&#160;<span class="comment">     * @param pin if 0 ou greater sets the MCU digital pin will be used to control de external circuit.  </span></div>
-<div class="line"><a name="l01986"></a><span class="lineno"> 1986</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l01987"></a><span class="lineno"><a class="line" href="class_s_i4735.html#a0a4b4ffbb7e3f2555a16e194eecfc6a1"> 1987</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_s_i4735.html#a0a4b4ffbb7e3f2555a16e194eecfc6a1">setAudioMuteMcuPin</a>(int8_t pin)</div>
-<div class="line"><a name="l01988"></a><span class="lineno"> 1988</span>&#160;    {</div>
-<div class="line"><a name="l01989"></a><span class="lineno"> 1989</span>&#160;        audioMuteMcuPin = pin;</div>
-<div class="line"><a name="l01990"></a><span class="lineno"> 1990</span>&#160;        pinMode(audioMuteMcuPin, OUTPUT);</div>
-<div class="line"><a name="l01991"></a><span class="lineno"> 1991</span>&#160;    };</div>
-<div class="line"><a name="l01992"></a><span class="lineno"> 1992</span>&#160; </div>
-<div class="line"><a name="l01993"></a><span class="lineno"> 1993</span>&#160;    <span class="comment">/**</span></div>
-<div class="line"><a name="l01994"></a><span class="lineno"> 1994</span>&#160;<span class="comment">     * @ingroup group18 MCU External Audio Mute </span></div>
-<div class="line"><a name="l01995"></a><span class="lineno"> 1995</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01996"></a><span class="lineno"> 1996</span>&#160;<span class="comment">     * @brief Sets the Hardware Audio Mute</span></div>
-<div class="line"><a name="l01997"></a><span class="lineno"> 1997</span>&#160;<span class="comment">     * @details Turns the Hardware audio mute on or off</span></div>
-<div class="line"><a name="l01998"></a><span class="lineno"> 1998</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l01999"></a><span class="lineno"> 1999</span>&#160;<span class="comment">     * @see setAudioMuteMcuPin</span></div>
-<div class="line"><a name="l02000"></a><span class="lineno"> 2000</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l02001"></a><span class="lineno"> 2001</span>&#160;<span class="comment">     * @param on  True or false</span></div>
-<div class="line"><a name="l02002"></a><span class="lineno"> 2002</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l02003"></a><span class="lineno"><a class="line" href="class_s_i4735.html#a54a3a0f412aa6318df0046d478bd134f"> 2003</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_s_i4735.html#a54a3a0f412aa6318df0046d478bd134f">setHardwareAudioMute</a>(<span class="keywordtype">bool</span> on)</div>
-<div class="line"><a name="l02004"></a><span class="lineno"> 2004</span>&#160;    {</div>
-<div class="line"><a name="l02005"></a><span class="lineno"> 2005</span>&#160;        digitalWrite(audioMuteMcuPin, on);</div>
-<div class="line"><a name="l02006"></a><span class="lineno"> 2006</span>&#160;        delayMicroseconds(300);</div>
-<div class="line"><a name="l02007"></a><span class="lineno"> 2007</span>&#160;    }</div>
-<div class="line"><a name="l02008"></a><span class="lineno"> 2008</span>&#160;};</div>
+<div class="line"><a name="l01974"></a><span class="lineno"> 1974</span>&#160; </div>
+<div class="line"><a name="l01975"></a><span class="lineno"> 1975</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l01976"></a><span class="lineno"> 1976</span>&#160;<span class="comment">     * @ingroup group18 MCU External Audio Mute  </span></div>
+<div class="line"><a name="l01977"></a><span class="lineno"> 1977</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01978"></a><span class="lineno"> 1978</span>&#160;<span class="comment">     * @brief Sets the Audio Mute Mcu Pin</span></div>
+<div class="line"><a name="l01979"></a><span class="lineno"> 1979</span>&#160;<span class="comment">     * @details This function sets the mcu digital pin you want to use to control the external audio mute circuit.</span></div>
+<div class="line"><a name="l01980"></a><span class="lineno"> 1980</span>&#160;<span class="comment">     * @details Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some SI47XX commands.  </span></div>
+<div class="line"><a name="l01981"></a><span class="lineno"> 1981</span>&#160;<span class="comment">     * @details This problem occurs during the transition from the power down to power up. </span></div>
+<div class="line"><a name="l01982"></a><span class="lineno"> 1982</span>&#160;<span class="comment">     * @details Every time the user changes the mode (FM to AM or AM to FM) the power down and power up commands are required by the Si47XX devices.</span></div>
+<div class="line"><a name="l01983"></a><span class="lineno"> 1983</span>&#160;<span class="comment">     * @details If you have a extra circuit in your receiver to mute the audio on amplifier input, you can configure a MCU pin to control it by using this function.</span></div>
+<div class="line"><a name="l01984"></a><span class="lineno"> 1984</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01985"></a><span class="lineno"> 1985</span>&#160;<span class="comment">     * @see setHardwareAudioMute</span></div>
+<div class="line"><a name="l01986"></a><span class="lineno"> 1986</span>&#160;<span class="comment">     * @param pin if 0 ou greater sets the MCU digital pin will be used to control de external circuit.  </span></div>
+<div class="line"><a name="l01987"></a><span class="lineno"> 1987</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l01988"></a><span class="lineno"><a class="line" href="class_s_i4735.html#a0a4b4ffbb7e3f2555a16e194eecfc6a1"> 1988</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_s_i4735.html#a0a4b4ffbb7e3f2555a16e194eecfc6a1">setAudioMuteMcuPin</a>(int8_t pin)</div>
+<div class="line"><a name="l01989"></a><span class="lineno"> 1989</span>&#160;    {</div>
+<div class="line"><a name="l01990"></a><span class="lineno"> 1990</span>&#160;        audioMuteMcuPin = pin;</div>
+<div class="line"><a name="l01991"></a><span class="lineno"> 1991</span>&#160;        pinMode(audioMuteMcuPin, OUTPUT);</div>
+<div class="line"><a name="l01992"></a><span class="lineno"> 1992</span>&#160;    };</div>
+<div class="line"><a name="l01993"></a><span class="lineno"> 1993</span>&#160; </div>
+<div class="line"><a name="l01994"></a><span class="lineno"> 1994</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l01995"></a><span class="lineno"> 1995</span>&#160;<span class="comment">     * @ingroup group18 MCU External Audio Mute </span></div>
+<div class="line"><a name="l01996"></a><span class="lineno"> 1996</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l01997"></a><span class="lineno"> 1997</span>&#160;<span class="comment">     * @brief Sets the Hardware Audio Mute</span></div>
+<div class="line"><a name="l01998"></a><span class="lineno"> 1998</span>&#160;<span class="comment">     * @details Turns the Hardware audio mute on or off</span></div>
+<div class="line"><a name="l01999"></a><span class="lineno"> 1999</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l02000"></a><span class="lineno"> 2000</span>&#160;<span class="comment">     * @see setAudioMuteMcuPin</span></div>
+<div class="line"><a name="l02001"></a><span class="lineno"> 2001</span>&#160;<span class="comment">     * </span></div>
+<div class="line"><a name="l02002"></a><span class="lineno"> 2002</span>&#160;<span class="comment">     * @param on  True or false</span></div>
+<div class="line"><a name="l02003"></a><span class="lineno"> 2003</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l02004"></a><span class="lineno"><a class="line" href="class_s_i4735.html#a54a3a0f412aa6318df0046d478bd134f"> 2004</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_s_i4735.html#a54a3a0f412aa6318df0046d478bd134f">setHardwareAudioMute</a>(<span class="keywordtype">bool</span> on)</div>
+<div class="line"><a name="l02005"></a><span class="lineno"> 2005</span>&#160;    {</div>
+<div class="line"><a name="l02006"></a><span class="lineno"> 2006</span>&#160;        digitalWrite(audioMuteMcuPin, on);</div>
+<div class="line"><a name="l02007"></a><span class="lineno"> 2007</span>&#160;        delayMicroseconds(300);</div>
+<div class="line"><a name="l02008"></a><span class="lineno"> 2008</span>&#160;    }</div>
+<div class="line"><a name="l02009"></a><span class="lineno"> 2009</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__group05_html_ga6806bca795400959f36e8202e36cd94c"><div class="ttname"><a href="group__group05.html#ga6806bca795400959f36e8202e36cd94c">SI4735::setGpioIen</a></div><div class="ttdeci">void setGpioIen(uint8_t STCIEN, uint8_t RSQIEN, uint8_t ERRIEN, uint8_t CTSIEN, uint8_t STCREP, uint8_t RSQREP)</div><div class="ttdoc">Configures the sources for the GPO2/INT interrupt pin.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:206</div></div>
@@ -2108,7 +2110,7 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="ttc" id="a_s_i4735_8h_html_abf0ee031cf6bb27b0211709117cfcaf0"><div class="ttname"><a href="_s_i4735_8h.html#abf0ee031cf6bb27b0211709117cfcaf0">FM_BLEND_RSSI_STEREO_THRESHOLD</a></div><div class="ttdeci">#define FM_BLEND_RSSI_STEREO_THRESHOLD</div><div class="ttdef"><b>Definition:</b> SI4735.h:57</div></div>
 <div class="ttc" id="agroup__group17_html_gafd1343bd8b4f0c290ef81c418222036c"><div class="ttname"><a href="group__group17.html#gafd1343bd8b4f0c290ef81c418222036c">SI4735::downloadPatch</a></div><div class="ttdeci">bool downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size)</div><div class="ttdoc">Transfers the content of a patch stored in a array of bytes to the SI4735 device.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:2878</div></div>
 <div class="ttc" id="aclass_s_i4735_html_a4439c40db789f02371ea0fb9b22650c5"><div class="ttname"><a href="class_s_i4735.html#a4439c40db789f02371ea0fb9b22650c5">SI4735::currentFrequency</a></div><div class="ttdeci">si47x_frequency currentFrequency</div><div class="ttdoc">data structure to get current frequency</div><div class="ttdef"><b>Definition:</b> SI4735.h:1028</div></div>
-<div class="ttc" id="agroup__group06_html_gacfbec075648206fbe25834d998ed9e64"><div class="ttname"><a href="group__group06.html#gacfbec075648206fbe25834d998ed9e64">SI4735::setMaxDelayPowerUp</a></div><div class="ttdeci">void setMaxDelayPowerUp(uint16_t ms)</div><div class="ttdoc">Set the Max Delay Power Up.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1848</div></div>
+<div class="ttc" id="agroup__group06_html_gacfbec075648206fbe25834d998ed9e64"><div class="ttname"><a href="group__group06.html#gacfbec075648206fbe25834d998ed9e64">SI4735::setMaxDelayPowerUp</a></div><div class="ttdeci">void setMaxDelayPowerUp(uint16_t ms)</div><div class="ttdoc">Set the Max Delay Power Up.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1849</div></div>
 <div class="ttc" id="agroup__group08_html_gae7ca2ffa6ad68ca69e4f35a3c40bbc3c"><div class="ttname"><a href="group__group08.html#gae7ca2ffa6ad68ca69e4f35a3c40bbc3c">SI4735::isCurrentTuneFM</a></div><div class="ttdeci">bool isCurrentTuneFM()</div><div class="ttdoc">Returns true if the current function is FM (FM_TUNE_FREQ).</div><div class="ttdef"><b>Definition:</b> SI4735.h:1578</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_a1c2be0c09ef2120b4e7b6d050a4a7735"><div class="ttname"><a href="_s_i4735_8h.html#a1c2be0c09ef2120b4e7b6d050a4a7735">FM_TUNE_STATUS</a></div><div class="ttdeci">#define FM_TUNE_STATUS</div><div class="ttdef"><b>Definition:</b> SI4735.h:42</div></div>
 <div class="ttc" id="agroup__group17_html_gafaabd6c73b7ad7c20ae959d5b75c1e71"><div class="ttname"><a href="group__group17.html#gafaabd6c73b7ad7c20ae959d5b75c1e71">SI4735::patchPowerUp</a></div><div class="ttdeci">void patchPowerUp()</div><div class="ttdoc">This method can be used to prepare the device to apply SSBRX patch.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:2804</div></div>
@@ -2140,7 +2142,7 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group13_html_gacf79be50a01fe91abd498e5d42d83317"><div class="ttname"><a href="group__group13.html#gacf79be50a01fe91abd498e5d42d83317">SI4735::getVolume</a></div><div class="ttdeci">uint8_t getVolume()</div><div class="ttdoc">Gets the current volume level.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:1322</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_a5c3e83244b4ab4a76d9c5c1ed86f3a54"><div class="ttname"><a href="_s_i4735_8h.html#a5c3e83244b4ab4a76d9c5c1ed86f3a54">AM_TUNE_FREQ</a></div><div class="ttdeci">#define AM_TUNE_FREQ</div><div class="ttdef"><b>Definition:</b> SI4735.h:72</div></div>
 <div class="ttc" id="aclass_s_i4735_html_a7aa607f80e97d45ac7a80cdcbdeb09f9"><div class="ttname"><a href="class_s_i4735.html#a7aa607f80e97d45ac7a80cdcbdeb09f9">SI4735::rds_buffer2B</a></div><div class="ttdeci">char rds_buffer2B[33]</div><div class="ttdoc">RDS Radio Text buffer - Station Informaation.</div><div class="ttdef"><b>Definition:</b> SI4735.h:991</div></div>
-<div class="ttc" id="aclass_s_i4735_html_a54a3a0f412aa6318df0046d478bd134f"><div class="ttname"><a href="class_s_i4735.html#a54a3a0f412aa6318df0046d478bd134f">SI4735::setHardwareAudioMute</a></div><div class="ttdeci">void setHardwareAudioMute(bool on)</div><div class="ttdoc">Sets the Hardware Audio Mute.</div><div class="ttdef"><b>Definition:</b> SI4735.h:2003</div></div>
+<div class="ttc" id="aclass_s_i4735_html_a54a3a0f412aa6318df0046d478bd134f"><div class="ttname"><a href="class_s_i4735.html#a54a3a0f412aa6318df0046d478bd134f">SI4735::setHardwareAudioMute</a></div><div class="ttdeci">void setHardwareAudioMute(bool on)</div><div class="ttdoc">Sets the Hardware Audio Mute.</div><div class="ttdef"><b>Definition:</b> SI4735.h:2004</div></div>
 <div class="ttc" id="agroup__group13_html_ga11be65552224d4ad3e41d83a5ff1172b"><div class="ttname"><a href="group__group13.html#ga11be65552224d4ad3e41d83a5ff1172b">SI4735::setVolumeDown</a></div><div class="ttdeci">void setVolumeDown()</div><div class="ttdoc">Set the Volume Down.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1525</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_a33a17dceb88b2b05d8032714a1998368"><div class="ttname"><a href="_s_i4735_8h.html#a33a17dceb88b2b05d8032714a1998368">XOSCEN_CRYSTAL</a></div><div class="ttdeci">#define XOSCEN_CRYSTAL</div><div class="ttdef"><b>Definition:</b> SI4735.h:173</div></div>
 <div class="ttc" id="agroup__group16_html_gaf1e67b201799a9e8d7208a32a65656b5"><div class="ttname"><a href="group__group16.html#gaf1e67b201799a9e8d7208a32a65656b5">SI4735::getRdsPI</a></div><div class="ttdeci">uint16_t getRdsPI(void)</div><div class="ttdoc">Returns the programa type.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:2078</div></div>
@@ -2156,7 +2158,7 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group08_html_ga7940c833a294a018e4f5a7c7b7d8443d"><div class="ttname"><a href="group__group08.html#ga7940c833a294a018e4f5a7c7b7d8443d">SI4735::setFrequencyUp</a></div><div class="ttdeci">void setFrequencyUp()</div><div class="ttdoc">Set the FrequencyUp.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1624</div></div>
 <div class="ttc" id="agroup__group08_html_gaec3c71a3252dd6660e5bceebc0d1f988"><div class="ttname"><a href="group__group08.html#gaec3c71a3252dd6660e5bceebc0d1f988">SI4735::getCurrentSnrDetectHigh</a></div><div class="ttdeci">bool getCurrentSnrDetectHigh()</div><div class="ttdoc">Checks if SNR detect is high.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1400</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_ac37ef03bb47367289779f5f9bc00b18f"><div class="ttname"><a href="_s_i4735_8h.html#ac37ef03bb47367289779f5f9bc00b18f">FM_RDS_STATUS</a></div><div class="ttdeci">#define FM_RDS_STATUS</div><div class="ttdef"><b>Definition:</b> SI4735.h:46</div></div>
-<div class="ttc" id="agroup__group14_html_ga3cf856c44fcfffb3d81b22b1d09b881f"><div class="ttname"><a href="group__group14.html#ga3cf856c44fcfffb3d81b22b1d09b881f">SI4735::getStatus</a></div><div class="ttdeci">void getStatus()</div><div class="ttdoc">Gets the current status of the Si47XX (AM, FM or SSB)</div><div class="ttdef"><b>Definition:</b> SI4735.h:1922</div></div>
+<div class="ttc" id="agroup__group14_html_ga3cf856c44fcfffb3d81b22b1d09b881f"><div class="ttname"><a href="group__group14.html#ga3cf856c44fcfffb3d81b22b1d09b881f">SI4735::getStatus</a></div><div class="ttdeci">void getStatus()</div><div class="ttdoc">Gets the current status of the Si47XX (AM, FM or SSB)</div><div class="ttdef"><b>Definition:</b> SI4735.h:1923</div></div>
 <div class="ttc" id="agroup__group01_html_a57e2bfb6b0c9c0fb7d6ffac131824b8a"><div class="ttname"><a href="group__group01.html#a57e2bfb6b0c9c0fb7d6ffac131824b8a">si47x_set_frequency::raw</a></div><div class="ttdeci">uint8_t raw[5]</div><div class="ttdef"><b>Definition:</b> SI4735.h:307</div></div>
 <div class="ttc" id="aclass_s_i4735_html_a9edd8cc9254695631795e7efc008eb28"><div class="ttname"><a href="class_s_i4735.html#a9edd8cc9254695631795e7efc008eb28">SI4735::currentRqsStatus</a></div><div class="ttdeci">si47x_rqs_status currentRqsStatus</div><div class="ttdoc">current Radio SIgnal Quality status</div><div class="ttdef"><b>Definition:</b> SI4735.h:1030</div></div>
 <div class="ttc" id="agroup__group01_html_abfd03e295ce96a214407c2705d9b96c7"><div class="ttname"><a href="group__group01.html#abfd03e295ce96a214407c2705d9b96c7">si47x_rds_int_source::raw</a></div><div class="ttdeci">uint8_t raw[2]</div><div class="ttdef"><b>Definition:</b> SI4735.h:654</div></div>
@@ -2188,7 +2190,7 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group16_html_ga6e8405ea5846fab586080a7be696178e"><div class="ttname"><a href="group__group16.html#ga6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived</a></div><div class="ttdeci">bool getRdsReceived()</div><div class="ttdoc">Get the Rds Received FIFO.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1720</div></div>
 <div class="ttc" id="agroup__group08_html_gac0fcfd64dcf30b11d4dc219d9f7fc5d9"><div class="ttname"><a href="group__group08.html#gac0fcfd64dcf30b11d4dc219d9f7fc5d9">SI4735::frequencyUp</a></div><div class="ttdeci">void frequencyUp()</div><div class="ttdoc">Increments the current frequency on current band/function by using the current step.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:721</div></div>
 <div class="ttc" id="aclass_s_i4735_html_a42d5c6991d90ea1c8ae35b74f8bccc48"><div class="ttname"><a href="class_s_i4735.html#a42d5c6991d90ea1c8ae35b74f8bccc48">SI4735::currentRdsStatus</a></div><div class="ttdeci">si47x_rds_status currentRdsStatus</div><div class="ttdoc">current RDS status</div><div class="ttdef"><b>Definition:</b> SI4735.h:1033</div></div>
-<div class="ttc" id="aclass_s_i4735_html_a0a4b4ffbb7e3f2555a16e194eecfc6a1"><div class="ttname"><a href="class_s_i4735.html#a0a4b4ffbb7e3f2555a16e194eecfc6a1">SI4735::setAudioMuteMcuPin</a></div><div class="ttdeci">void setAudioMuteMcuPin(int8_t pin)</div><div class="ttdoc">Sets the Audio Mute Mcu Pin.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1987</div></div>
+<div class="ttc" id="aclass_s_i4735_html_a0a4b4ffbb7e3f2555a16e194eecfc6a1"><div class="ttname"><a href="class_s_i4735.html#a0a4b4ffbb7e3f2555a16e194eecfc6a1">SI4735::setAudioMuteMcuPin</a></div><div class="ttdeci">void setAudioMuteMcuPin(int8_t pin)</div><div class="ttdoc">Sets the Audio Mute Mcu Pin.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1988</div></div>
 <div class="ttc" id="aclass_s_i4735_html_a2b3bfeca3b545f5741b1ed70a1dba077"><div class="ttname"><a href="class_s_i4735.html#a2b3bfeca3b545f5741b1ed70a1dba077">SI4735::getCurrentSignedFrequencyOffset</a></div><div class="ttdeci">uint8_t getCurrentSignedFrequencyOffset()</div><div class="ttdef"><b>Definition:</b> SI4735.h:1479</div></div>
 <div class="ttc" id="agroup__group10_html_ga3d2342264b36bd524ccbaf898e4d219b"><div class="ttname"><a href="group__group10.html#ga3d2342264b36bd524ccbaf898e4d219b">SI4735::sendCommand</a></div><div class="ttdeci">void sendCommand(uint8_t cmd, int parameter_size, const uint8_t *parameter)</div><div class="ttdoc">Sends a given command to the SI47XX devices.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:969</div></div>
 <div class="ttc" id="aclass_s_i4735_html_a74ee9c99b1e092f7b1efa2f771f38324"><div class="ttname"><a href="class_s_i4735.html#a74ee9c99b1e092f7b1efa2f771f38324">SI4735::currentSSBMode</a></div><div class="ttdeci">si47x_ssb_mode currentSSBMode</div><div class="ttdoc">indicates if USB or LSB</div><div class="ttdef"><b>Definition:</b> SI4735.h:1035</div></div>
@@ -2209,7 +2211,7 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group01_html_adc4349d375ca2c36518618625f48e4b8"><div class="ttname"><a href="group__group01.html#adc4349d375ca2c36518618625f48e4b8">si47x_seek_am_complement::ANTCAPH</a></div><div class="ttdeci">uint8_t ANTCAPH</div><div class="ttdef"><b>Definition:</b> SI4735.h:345</div></div>
 <div class="ttc" id="agroup__group17_html_ga3905d6551992b4dd51d13f05978d9081"><div class="ttname"><a href="group__group17.html#ga3905d6551992b4dd51d13f05978d9081">SI4735::getAntennaTuningCapacitor</a></div><div class="ttdeci">uint8_t getAntennaTuningCapacitor()</div><div class="ttdoc">Get the Antenna Tuning Capacitor value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1250</div></div>
 <div class="ttc" id="aclass_s_i4735_html_a243ecc7d01fc0d0e9cabb4ed00b9e47d"><div class="ttname"><a href="class_s_i4735.html#a243ecc7d01fc0d0e9cabb4ed00b9e47d">SI4735::deviceAddress</a></div><div class="ttdeci">int16_t deviceAddress</div><div class="ttdoc">Stores the current I2C bus address.</div><div class="ttdef"><b>Definition:</b> SI4735.h:999</div></div>
-<div class="ttc" id="agroup__group08_html_ga7bf47d3aab5952fa8895bd9094256dd8"><div class="ttname"><a href="group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8">SI4735::setMaxDelaySetFrequency</a></div><div class="ttdeci">void setMaxDelaySetFrequency(uint16_t ms)</div><div class="ttdoc">Set the Max Delay after Set Frequency.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1864</div></div>
+<div class="ttc" id="agroup__group08_html_ga7bf47d3aab5952fa8895bd9094256dd8"><div class="ttname"><a href="group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8">SI4735::setMaxDelaySetFrequency</a></div><div class="ttdeci">void setMaxDelaySetFrequency(uint16_t ms)</div><div class="ttdoc">Set the Max Delay after Set Frequency.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1865</div></div>
 <div class="ttc" id="agroup__group17_html_ga9224e7d4ef14c887da96dbefd2dcefd3"><div class="ttname"><a href="group__group17.html#ga9224e7d4ef14c887da96dbefd2dcefd3">SI4735::setSSBConfig</a></div><div class="ttdeci">void setSSBConfig(uint8_t AUDIOBW, uint8_t SBCUTFLT, uint8_t AVC_DIVIDER, uint8_t AVCEN, uint8_t SMUTESEL, uint8_t DSP_AFCDIS)</div><div class="ttdoc">Sets the SSB receiver mode.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:2525</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_ab74735968edb90553a802c24ff568614"><div class="ttname"><a href="_s_i4735_8h.html#ab74735968edb90553a802c24ff568614">SSB_TUNE_FREQ</a></div><div class="ttdeci">#define SSB_TUNE_FREQ</div><div class="ttdef"><b>Definition:</b> SI4735.h:83</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_a8c9168f6aa8868f2595020555380514a"><div class="ttname"><a href="_s_i4735_8h.html#a8c9168f6aa8868f2595020555380514a">DIGITAL_OUTPUT_SAMPLE_RATE</a></div><div class="ttdeci">#define DIGITAL_OUTPUT_SAMPLE_RATE</div><div class="ttdef"><b>Definition:</b> SI4735.h:92</div></div>
@@ -2218,7 +2220,7 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="ttc" id="aclass_s_i4735_html_ab26fbd99452daaf18875ff1c3c35d081"><div class="ttname"><a href="class_s_i4735.html#ab26fbd99452daaf18875ff1c3c35d081">SI4735::getFirmwarePN</a></div><div class="ttdeci">uint8_t getFirmwarePN()</div><div class="ttdoc">Blend Detect Interrupt.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1490</div></div>
 <div class="ttc" id="agroup__group17_html_ga0fcfd8e487c594707b3f2aaa71a86d68"><div class="ttname"><a href="group__group17.html#ga0fcfd8e487c594707b3f2aaa71a86d68">SI4735::ssbPowerUp</a></div><div class="ttdeci">void ssbPowerUp()</div><div class="ttdoc">This function can be useful for debug and test.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:2820</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_a921cafdf244d2d7db9eeffa524e11663"><div class="ttname"><a href="_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663">MAX_DELAY_AFTER_POWERUP</a></div><div class="ttdeci">#define MAX_DELAY_AFTER_POWERUP</div><div class="ttdef"><b>Definition:</b> SI4735.h:169</div></div>
-<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1894</div></div>
+<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1895</div></div>
 <div class="ttc" id="agroup__group16_html_gac65c552004f5e5e646638e37a5a68213"><div class="ttname"><a href="group__group16.html#gac65c552004f5e5e646638e37a5a68213">SI4735::clearRdsBuffer2A</a></div><div class="ttdeci">void clearRdsBuffer2A()</div><div class="ttdoc">Clear RDS buffer 2A (text)</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:1860</div></div>
 <div class="ttc" id="agroup__group15_html_gaad5211e3fff28141473442f59008e415"><div class="ttname"><a href="group__group15.html#gaad5211e3fff28141473442f59008e415">SI4735::seekStationUp</a></div><div class="ttdeci">void seekStationUp()</div><div class="ttdoc">Search for the next station.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1663</div></div>
 <div class="ttc" id="aclass_s_i4735_html_aee22a5ce06d4948fad2365a7b62fbd8d"><div class="ttname"><a href="class_s_i4735.html#aee22a5ce06d4948fad2365a7b62fbd8d">SI4735::setTuneFrequencyFreeze</a></div><div class="ttdeci">void setTuneFrequencyFreeze(uint8_t FREEZE)</div><div class="ttdoc">Returns the FREEZE status.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1612</div></div>
@@ -2226,6 +2228,7 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group16_html_ga561a052a8c737302368274c774d8c129"><div class="ttname"><a href="group__group16.html#ga561a052a8c737302368274c774d8c129">SI4735::getRdsNewBlockA</a></div><div class="ttdeci">bool getRdsNewBlockA()</div><div class="ttdoc">Get the Rds New Block A.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1754</div></div>
 <div class="ttc" id="agroup__group08_html_gac0bd4daaa321ef8956dca4d1e4e5cd3c"><div class="ttname"><a href="group__group08.html#gac0bd4daaa321ef8956dca4d1e4e5cd3c">SI4735::getStatusSNR</a></div><div class="ttdeci">uint8_t getStatusSNR()</div><div class="ttdoc">Gets the SNR metric when tune is complete (dB)</div><div class="ttdef"><b>Definition:</b> SI4735.h:1224</div></div>
 <div class="ttc" id="aclass_s_i4735_html_ab57870d69969e73265e9cffe2a73d868"><div class="ttname"><a href="class_s_i4735.html#ab57870d69969e73265e9cffe2a73d868">SI4735::getFirmwareCMPMAJOR</a></div><div class="ttdeci">uint8_t getFirmwareCMPMAJOR()</div><div class="ttdoc">RESP5 - Returns the Patch ID Low byte (HEX).</div><div class="ttdef"><b>Definition:</b> SI4735.h:1495</div></div>
+<div class="ttc" id="agroup__group17_html_ga591bbfe4dbd39a6de29a37935a6abee5"><div class="ttname"><a href="group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5">SI4735::loadPatch</a></div><div class="ttdeci">void loadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, uint8_t ssb_audiobw=1)</div><div class="ttdoc">Loads a given SSB patch content.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:2935</div></div>
 <div class="ttc" id="agroup__group12_html_gadf4c5ec4473fd8486dd2ec7a19a10d24"><div class="ttname"><a href="group__group12.html#gadf4c5ec4473fd8486dd2ec7a19a10d24">SI4735::setFmBlendMonoThreshold</a></div><div class="ttdeci">void setFmBlendMonoThreshold(uint8_t parameter)</div><div class="ttdoc">Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold).</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:1096</div></div>
 <div class="ttc" id="aclass_s_i4735_html_a4663c1c92d980472556368944cb2fc68"><div class="ttname"><a href="class_s_i4735.html#a4663c1c92d980472556368944cb2fc68">SI4735::currentMinimumFrequency</a></div><div class="ttdeci">uint16_t currentMinimumFrequency</div><div class="ttdoc">minimum frequency of the current band</div><div class="ttdef"><b>Definition:</b> SI4735.h:1012</div></div>
 <div class="ttc" id="aclass_s_i4735_html_aa5220772c468fcfb69b5d16163de73fc"><div class="ttname"><a href="class_s_i4735.html#aa5220772c468fcfb69b5d16163de73fc">SI4735::volume</a></div><div class="ttdeci">uint8_t volume</div><div class="ttdoc">Stores the current vlume setup (0-63).</div><div class="ttdef"><b>Definition:</b> SI4735.h:1040</div></div>
@@ -2301,7 +2304,7 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group01_html_a9fb726b115307ae7455d2dddba2d7d36"><div class="ttname"><a href="group__group01.html#a9fb726b115307ae7455d2dddba2d7d36">si47x_seek_am_complement::ARG3</a></div><div class="ttdeci">uint8_t ARG3</div><div class="ttdef"><b>Definition:</b> SI4735.h:344</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_a92cfecd26935c8864d65bbdc6031acb0"><div class="ttname"><a href="_s_i4735_8h.html#a92cfecd26935c8864d65bbdc6031acb0">SET_PROPERTY</a></div><div class="ttdeci">#define SET_PROPERTY</div><div class="ttdef"><b>Definition:</b> SI4735.h:35</div></div>
 <div class="ttc" id="agroup__group16_html_gaf9b6cb614d1b01b11bb23c19e6deb8b9"><div class="ttname"><a href="group__group16.html#gaf9b6cb614d1b01b11bb23c19e6deb8b9">SI4735::getRdsVersionCode</a></div><div class="ttdeci">uint8_t getRdsVersionCode(void)</div><div class="ttdoc">Gets the version code (extracted from the Block B)</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:2149</div></div>
-<div class="ttc" id="agroup__group14_html_ga8240278970ae8bf7283e14714b4329ad"><div class="ttname"><a href="group__group14.html#ga8240278970ae8bf7283e14714b4329ad">SI4735::getCurrentFrequency</a></div><div class="ttdeci">uint16_t getCurrentFrequency()</div><div class="ttdoc">Gets the current frequency saved in memory.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1910</div></div>
+<div class="ttc" id="agroup__group14_html_ga8240278970ae8bf7283e14714b4329ad"><div class="ttname"><a href="group__group14.html#ga8240278970ae8bf7283e14714b4329ad">SI4735::getCurrentFrequency</a></div><div class="ttdeci">uint16_t getCurrentFrequency()</div><div class="ttdoc">Gets the current frequency saved in memory.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1911</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_ac5a0322f265c6a26f2eaa67b137a4e1e"><div class="ttname"><a href="_s_i4735_8h.html#ac5a0322f265c6a26f2eaa67b137a4e1e">FM_SEEK_FREQ_SPACING</a></div><div class="ttdeci">#define FM_SEEK_FREQ_SPACING</div><div class="ttdef"><b>Definition:</b> SI4735.h:67</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_a95851f3d5c99cdbb6ec4c605868dea8d"><div class="ttname"><a href="_s_i4735_8h.html#a95851f3d5c99cdbb6ec4c605868dea8d">FM_BLEND_SNR_STEREO_THRESHOLD</a></div><div class="ttdeci">#define FM_BLEND_SNR_STEREO_THRESHOLD</div><div class="ttdef"><b>Definition:</b> SI4735.h:59</div></div>
 <div class="ttc" id="aclass_s_i4735_html_a82d0865cf348deb0c9f81a2f12222fb0"><div class="ttname"><a href="class_s_i4735.html#a82d0865cf348deb0c9f81a2f12222fb0">SI4735::getCurrentMultipathDetectHigh</a></div><div class="ttdeci">bool getCurrentMultipathDetectHigh()</div><div class="ttdoc">Multipath Detect Low.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1481</div></div>
@@ -2339,7 +2342,7 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group01_html_aa2ba7bbaa745c8ca18c83226246654e5"><div class="ttname"><a href="group__group01.html#aa2ba7bbaa745c8ca18c83226246654e5">si47x_firmware_information::raw</a></div><div class="ttdeci">uint8_t raw[9]</div><div class="ttdef"><b>Definition:</b> SI4735.h:441</div></div>
 <div class="ttc" id="agroup__group12_html_gae4683e9a9fc7a633305b18dae54fbd83"><div class="ttname"><a href="group__group12.html#gae4683e9a9fc7a633305b18dae54fbd83">SI4735::disableFmDebug</a></div><div class="ttdeci">void disableFmDebug()</div><div class="ttdoc">There is a debug feature that remains active in Si4704/05/3x-D60 firmware which can create periodic n...</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:1227</div></div>
 <div class="ttc" id="aclass_s_i4735_html_ad72759f246cceb147bf031b72173b0ca"><div class="ttname"><a href="class_s_i4735.html#ad72759f246cceb147bf031b72173b0ca">SI4735::currentStep</a></div><div class="ttdeci">uint16_t currentStep</div><div class="ttdoc">Stores the current step used to increment or decrement the frequency.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1016</div></div>
-<div class="ttc" id="agroup__group17_html_ga7751b076ce0bcb62eade4f92cd8d93a6"><div class="ttname"><a href="group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6">SI4735::downloadPatchFromEeprom</a></div><div class="ttdeci">si4735_eeprom_patch_header downloadPatchFromEeprom(int eeprom_i2c_address)</div><div class="ttdoc">Transfers the content of a patch stored in an eeprom to the SI4735 device.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:2939</div></div>
+<div class="ttc" id="agroup__group17_html_ga7751b076ce0bcb62eade4f92cd8d93a6"><div class="ttname"><a href="group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6">SI4735::downloadPatchFromEeprom</a></div><div class="ttdeci">si4735_eeprom_patch_header downloadPatchFromEeprom(int eeprom_i2c_address)</div><div class="ttdoc">Transfers the content of a patch stored in an eeprom to the SI4735 device.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:2966</div></div>
 <div class="ttc" id="agroup__group01_html_a5235c5b07b71d6dc4c76c275a091c63c"><div class="ttname"><a href="group__group01.html#a5235c5b07b71d6dc4c76c275a091c63c">si47x_firmware_query_library::raw</a></div><div class="ttdeci">uint8_t raw[8]</div><div class="ttdef"><b>Definition:</b> SI4735.h:476</div></div>
 <div class="ttc" id="aclass_s_i4735_html_abd965c0e49493bc2c7c37547d36dcc96"><div class="ttname"><a href="class_s_i4735.html#abd965c0e49493bc2c7c37547d36dcc96">SI4735::lastTextFlagAB</a></div><div class="ttdeci">uint8_t lastTextFlagAB</div><div class="ttdef"><b>Definition:</b> SI4735.h:1006</div></div>
 <div class="ttc" id="aclass_s_i4735_html_a46c6ea8c36a2c4c47ee9cac8dd314319"><div class="ttname"><a href="class_s_i4735.html#a46c6ea8c36a2c4c47ee9cac8dd314319">SI4735::currentAudioMode</a></div><div class="ttdeci">uint8_t currentAudioMode</div><div class="ttdoc">Current audio mode used (ANALOG or DIGITAL or both)</div><div class="ttdef"><b>Definition:</b> SI4735.h:1042</div></div>
@@ -2348,7 +2351,7 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group14_html_ga98d12da4b801493a350ecf770f4f2d8b"><div class="ttname"><a href="group__group14.html#ga98d12da4b801493a350ecf770f4f2d8b">SI4735::setAvcAmMaxGain</a></div><div class="ttdeci">void setAvcAmMaxGain(uint8_t gain)</div><div class="ttdoc">Sets the maximum gain for automatic volume control.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:1509</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_a6af70605e17fdcdeea166d59672d2a54"><div class="ttname"><a href="_s_i4735_8h.html#a6af70605e17fdcdeea166d59672d2a54">SEEK_UP</a></div><div class="ttdeci">#define SEEK_UP</div><div class="ttdef"><b>Definition:</b> SI4735.h:165</div></div>
 <div class="ttc" id="agroup__group12_html_ga1b134a94138b3bf993a5d3eb5f8ed5c6"><div class="ttname"><a href="group__group12.html#ga1b134a94138b3bf993a5d3eb5f8ed5c6">SI4735::setFmBLendRssiMonoThreshold</a></div><div class="ttdeci">void setFmBLendRssiMonoThreshold(uint8_t parameter)</div><div class="ttdoc">Sets RSSI threshold for mono blend (Full mono below threshold, blend above threshold).</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:1128</div></div>
-<div class="ttc" id="aclass_s_i4735_html_a7bb3214f70381cf26bb93f96729d641e"><div class="ttname"><a href="class_s_i4735.html#a7bb3214f70381cf26bb93f96729d641e">SI4735::setI2CFastMode</a></div><div class="ttdeci">void setI2CFastMode(void)</div><div class="ttdoc">Sets I2C bus to 400KHz.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1958</div></div>
+<div class="ttc" id="aclass_s_i4735_html_a7bb3214f70381cf26bb93f96729d641e"><div class="ttname"><a href="class_s_i4735.html#a7bb3214f70381cf26bb93f96729d641e">SI4735::setI2CFastMode</a></div><div class="ttdeci">void setI2CFastMode(void)</div><div class="ttdoc">Sets I2C bus to 400KHz.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1959</div></div>
 <div class="ttc" id="agroup__group16_html_ga530e64d00d95b4ceb13ce33aa74c63cb"><div class="ttname"><a href="group__group16.html#ga530e64d00d95b4ceb13ce33aa74c63cb">SI4735::setRdsIntSource</a></div><div class="ttdeci">void setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t RDSSYNCFOUND, uint8_t RDSSYNCLOST, uint8_t RDSRECV)</div><div class="ttdoc">Configures interrupt related to RDS.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:1969</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_a54146d0cab2573ea21cf4e95d2317fcb"><div class="ttname"><a href="_s_i4735_8h.html#a54146d0cab2573ea21cf4e95d2317fcb">AM_RSQ_STATUS</a></div><div class="ttdeci">#define AM_RSQ_STATUS</div><div class="ttdef"><b>Definition:</b> SI4735.h:75</div></div>
 <div class="ttc" id="aclass_s_i4735_html_a1331b701088bda20bf0844e2e38be142"><div class="ttname"><a href="class_s_i4735.html#a1331b701088bda20bf0844e2e38be142">SI4735::powerUp</a></div><div class="ttdeci">si473x_powerup powerUp</div><div class="ttdef"><b>Definition:</b> SI4735.h:1038</div></div>
@@ -2360,9 +2363,9 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group14_html_ga27c22f5671ce3229e925e5fbe93ba0a6"><div class="ttname"><a href="group__group14.html#ga27c22f5671ce3229e925e5fbe93ba0a6">SI4735::setAutomaticGainControl</a></div><div class="ttdeci">void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)</div><div class="ttdoc">Automatic Gain Control setup.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:1475</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_a9b58aeaeabdad7b1525ccc31f5d0d201"><div class="ttname"><a href="_s_i4735_8h.html#a9b58aeaeabdad7b1525ccc31f5d0d201">FM_RSQ_STATUS</a></div><div class="ttdeci">#define FM_RSQ_STATUS</div><div class="ttdef"><b>Definition:</b> SI4735.h:45</div></div>
 <div class="ttc" id="aclass_s_i4735_html_a11477d1eb13efb348395a4984b67f392"><div class="ttname"><a href="class_s_i4735.html#a11477d1eb13efb348395a4984b67f392">SI4735::rdsTextAdress0A</a></div><div class="ttdeci">int rdsTextAdress0A</div><div class="ttdoc">rds_buffer0A current position</div><div class="ttdef"><b>Definition:</b> SI4735.h:997</div></div>
-<div class="ttc" id="aclass_s_i4735_html_a00ade87631677b8cc88098d0b55cd5a4"><div class="ttname"><a href="class_s_i4735.html#a00ade87631677b8cc88098d0b55cd5a4">SI4735::setI2CStandardMode</a></div><div class="ttdeci">void setI2CStandardMode(void)</div><div class="ttdoc">Sets I2C bus to 100KHz.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1951</div></div>
+<div class="ttc" id="aclass_s_i4735_html_a00ade87631677b8cc88098d0b55cd5a4"><div class="ttname"><a href="class_s_i4735.html#a00ade87631677b8cc88098d0b55cd5a4">SI4735::setI2CStandardMode</a></div><div class="ttdeci">void setI2CStandardMode(void)</div><div class="ttdoc">Sets I2C bus to 100KHz.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1952</div></div>
 <div class="ttc" id="agroup__group08_html_gafb19da8a05320d7f38cca8325725edfd"><div class="ttname"><a href="group__group08.html#gafb19da8a05320d7f38cca8325725edfd">SI4735::getStatusValid</a></div><div class="ttdeci">bool getStatusValid()</div><div class="ttdoc">Gets the channel status.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1200</div></div>
-<div class="ttc" id="aclass_s_i4735_html_aecfcd50dbb3d95d66c8cdc77d52af63c"><div class="ttname"><a href="class_s_i4735.html#aecfcd50dbb3d95d66c8cdc77d52af63c">SI4735::setI2CLowSpeedMode</a></div><div class="ttdeci">void setI2CLowSpeedMode(void)</div><div class="ttdoc">Sets I2C bus to 10KHz.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1941</div></div>
+<div class="ttc" id="aclass_s_i4735_html_aecfcd50dbb3d95d66c8cdc77d52af63c"><div class="ttname"><a href="class_s_i4735.html#aecfcd50dbb3d95d66c8cdc77d52af63c">SI4735::setI2CLowSpeedMode</a></div><div class="ttdeci">void setI2CLowSpeedMode(void)</div><div class="ttdoc">Sets I2C bus to 10KHz.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1942</div></div>
 <div class="ttc" id="agroup__group15_html_ga1eeaa09670cdbdc7ddd724c940d2506b"><div class="ttname"><a href="group__group15.html#ga1eeaa09670cdbdc7ddd724c940d2506b">SI4735::seekStationDown</a></div><div class="ttdeci">void seekStationDown()</div><div class="ttdoc">Search the previous station.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1676</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_a805bf3e7373f81190388810992fa17ae"><div class="ttname"><a href="_s_i4735_8h.html#a805bf3e7373f81190388810992fa17ae">FM_AGC_OVERRIDE</a></div><div class="ttdeci">#define FM_AGC_OVERRIDE</div><div class="ttdef"><b>Definition:</b> SI4735.h:44</div></div>
 <div class="ttc" id="agroup__group01_html_a7c04205c5a1798b35b738b2908853bfa"><div class="ttname"><a href="group__group01.html#a7c04205c5a1798b35b738b2908853bfa">si47x_property::value</a></div><div class="ttdeci">uint16_t value</div><div class="ttdef"><b>Definition:</b> SI4735.h:511</div></div>
@@ -2396,7 +2399,7 @@ $(document).ready(function(){initNavTree('_s_i4735_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group17_html_gae1d866bfc4cb37c4268c8942b4b4d062"><div class="ttname"><a href="group__group17.html#gae1d866bfc4cb37c4268c8942b4b4d062">SI4735::sendSSBModeProperty</a></div><div class="ttdeci">void sendSSBModeProperty()</div><div class="ttdoc">Just send the property SSB_MOD to the device. Internal use (privete method).</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:2720</div></div>
 <div class="ttc" id="agroup__group12_html_gac598865516ca09db7dbfa6a84da7f179"><div class="ttname"><a href="group__group12.html#gac598865516ca09db7dbfa6a84da7f179">SI4735::setFmBlendStereoThreshold</a></div><div class="ttdeci">void setFmBlendStereoThreshold(uint8_t parameter)</div><div class="ttdoc">Sets RSSI threshold for stereo blend (Full stereo above threshold, blend below threshold).</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:1080</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_a4a220091c92c619ac986d574a616b2cb"><div class="ttname"><a href="_s_i4735_8h.html#a4a220091c92c619ac986d574a616b2cb">AM_CHANNEL_FILTER</a></div><div class="ttdeci">#define AM_CHANNEL_FILTER</div><div class="ttdef"><b>Definition:</b> SI4735.h:96</div></div>
-<div class="ttc" id="aclass_s_i4735_html_a7433b4e80fd3b501efeae7973d29c985"><div class="ttname"><a href="class_s_i4735.html#a7433b4e80fd3b501efeae7973d29c985">SI4735::setI2CFastModeCustom</a></div><div class="ttdeci">void setI2CFastModeCustom(long value=500000)</div><div class="ttdoc">Sets the I2C bus to a given value. ATTENTION: use this function with cation.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1971</div></div>
+<div class="ttc" id="aclass_s_i4735_html_a7433b4e80fd3b501efeae7973d29c985"><div class="ttname"><a href="class_s_i4735.html#a7433b4e80fd3b501efeae7973d29c985">SI4735::setI2CFastModeCustom</a></div><div class="ttdeci">void setI2CFastModeCustom(long value=500000)</div><div class="ttdoc">Sets the I2C bus to a given value. ATTENTION: use this function with cation.</div><div class="ttdef"><b>Definition:</b> SI4735.h:1972</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_afd6b0255af56b3deee67ef1fe14d2fd6"><div class="ttname"><a href="_s_i4735_8h.html#afd6b0255af56b3deee67ef1fe14d2fd6">SI473X_ANALOG_AUDIO</a></div><div class="ttdeci">#define SI473X_ANALOG_AUDIO</div><div class="ttdef"><b>Definition:</b> SI4735.h:155</div></div>
 <div class="ttc" id="agroup__group17_html_ga6cde26a5abf759a628012d1457d85c72"><div class="ttname"><a href="group__group17.html#ga6cde26a5abf759a628012d1457d85c72">SI4735::setSSBDspAfc</a></div><div class="ttdeci">void setSSBDspAfc(uint8_t DSP_AFCDIS)</div><div class="ttdoc">Sets DSP AFC disable or enable.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:2550</div></div>
 <div class="ttc" id="a_s_i4735_8h_html_ac4ede73dbac84ceab4a5bc876104bc20"><div class="ttname"><a href="_s_i4735_8h.html#ac4ede73dbac84ceab4a5bc876104bc20">GPIO_CTL</a></div><div class="ttdeci">#define GPIO_CTL</div><div class="ttdef"><b>Definition:</b> SI4735.h:78</div></div>

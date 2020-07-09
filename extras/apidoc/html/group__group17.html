@@ -24,6 +24,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_si5735.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PU2CLR Si4735 Arduino Library
    &#160;<span id="projectnumber">2.0.0</span>
@@ -157,6 +158,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gafd1343bd8b4f0c290ef81c418222036c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#gafd1343bd8b4f0c290ef81c418222036c">SI4735::downloadPatch</a> (const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size)</td></tr>
 <tr class="memdesc:gafd1343bd8b4f0c290ef81c418222036c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers the content of a patch stored in a array of bytes to the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> device.  <a href="group__group17.html#gafd1343bd8b4f0c290ef81c418222036c">More...</a><br /></td></tr>
 <tr class="separator:gafd1343bd8b4f0c290ef81c418222036c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga591bbfe4dbd39a6de29a37935a6abee5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5">SI4735::loadPatch</a> (const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, uint8_t ssb_audiobw=1)</td></tr>
+<tr class="memdesc:ga591bbfe4dbd39a6de29a37935a6abee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a given SSB patch content.  <a href="group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5">More...</a><br /></td></tr>
+<tr class="separator:ga591bbfe4dbd39a6de29a37935a6abee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7751b076ce0bcb62eade4f92cd8d93a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__group01.html#unionsi4735__eeprom__patch__header">si4735_eeprom_patch_header</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6">SI4735::downloadPatchFromEeprom</a> (int eeprom_i2c_address)</td></tr>
 <tr class="memdesc:ga7751b076ce0bcb62eade4f92cd8d93a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers the content of a patch stored in an eeprom to the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> device.  <a href="group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6">More...</a><br /></td></tr>
 <tr class="separator:ga7751b076ce0bcb62eade4f92cd8d93a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -785,6 +789,8 @@ struct <a class="el" href="group__group01.html#unionsi47x__firmware__query__libr
 
 <p class="reference">References <a class="el" href="group__group07.html#gaa554b3390fb6c5a4d6661b96afae73ae">SI4735::powerDown()</a>, and <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">SI4735::waitToSend()</a>.</p>
 
+<p class="reference">Referenced by <a class="el" href="group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5">SI4735::loadPatch()</a>.</p>
+
 </div>
 </div>
 <a id="gafaabd6c73b7ad7c20ae959d5b75c1e71"></a>
@@ -813,6 +819,8 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64 and 215-220 and </dd>
 AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 7. </dd></dl>
 
 <p class="reference">References <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">SI4735::waitToSend()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5">SI4735::loadPatch()</a>.</p>
 
 </div>
 </div>
@@ -890,6 +898,53 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if an error is found. </dd></dl>
+
+</div>
+</div>
+<a id="ga591bbfe4dbd39a6de29a37935a6abee5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga591bbfe4dbd39a6de29a37935a6abee5">&#9670;&nbsp;</a></span>loadPatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::loadPatch </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>ssb_patch_content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>ssb_patch_content_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>ssb_audiobw</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Loads a given SSB patch content. </p>
+<p>Configures the Si4735-D60 device to work with SSB.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ssb_patch_content</td><td>point to patch content array </td></tr>
+    <tr><td class="paramname">ssb_patch_content_size</td><td>size of patch content </td></tr>
+    <tr><td class="paramname">ssb_audiobw</td><td>SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="group__group17.html#gafaabd6c73b7ad7c20ae959d5b75c1e71">SI4735::patchPowerUp()</a>, <a class="el" href="group__group17.html#gadfc2c82524918224cf19fec5b7fcf6d1">SI4735::queryLibraryId()</a>, and <a class="el" href="group__group06.html#gadc6014674bd4d1ee3aab56c605926db1">SI4735::reset()</a>.</p>
 
 </div>
 </div>

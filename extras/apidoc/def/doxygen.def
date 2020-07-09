@@ -67,6 +67,11 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-ref-name = 'getDeviceI2CAddress';
     };
       sec-mem-referencedby = {
+        sec-mem-ref-id = '_s_i4735_8cpp_1ga591bbfe4dbd39a6de29a37935a6abee5';
+        sec-mem-ref-line = '2935';
+        sec-mem-ref-name = 'loadPatch';
+    };
+      sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga5ac4e4465f33d988885c6b3ec86276bd';
         sec-mem-ref-line = '564';
         sec-mem-ref-name = 'setup';
@@ -342,7 +347,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1a54a3a0f412aa6318df0046d478bd134f';
-        sec-mem-ref-line = '2003';
+        sec-mem-ref-line = '2004';
         sec-mem-ref-name = 'setHardwareAudioMute';
     };
     }; /* sec-member */
@@ -751,7 +756,7 @@ Parameters you have to set up with setPowerUp
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1a54a3a0f412aa6318df0046d478bd134f';
-        sec-mem-ref-line = '2003';
+        sec-mem-ref-line = '2004';
         sec-mem-ref-name = 'setHardwareAudioMute';
     };
       sec-mem-referenceto = {
@@ -843,7 +848,7 @@ After Power Down command, only the Power Up command is accepted.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1a54a3a0f412aa6318df0046d478bd134f';
-        sec-mem-ref-line = '2003';
+        sec-mem-ref-line = '2004';
         sec-mem-ref-name = 'setHardwareAudioMute';
     };
       sec-mem-referenceto = {
@@ -4956,6 +4961,11 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-ref-line = '327';
         sec-mem-ref-name = 'waitToSend';
     };
+      sec-mem-referencedby = {
+        sec-mem-ref-id = '_s_i4735_8cpp_1ga591bbfe4dbd39a6de29a37935a6abee5';
+        sec-mem-ref-line = '2935';
+        sec-mem-ref-name = 'loadPatch';
+    };
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
@@ -4984,6 +4994,11 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-ref-id = '_s_i4735_8cpp_1ga7b45c1b22c3c1a3f2326bee913d1e1e0';
         sec-mem-ref-line = '327';
         sec-mem-ref-name = 'waitToSend';
+    };
+      sec-mem-referencedby = {
+        sec-mem-ref-id = '_s_i4735_8cpp_1ga591bbfe4dbd39a6de29a37935a6abee5';
+        sec-mem-ref-line = '2935';
+        sec-mem-ref-name = 'loadPatch';
     };
     }; /* sec-member */
     sec-member = {
@@ -5058,6 +5073,64 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group17_1ga591bbfe4dbd39a6de29a37935a6abee5';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'loadPatch';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+const uint8_t *
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'ssb_patch_content';
+      }; /*        sec-mem-param--param */
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+const uint16_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'ssb_patch_content_size';
+      }; /*        sec-mem-param--param */
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'ssb_audiobw';
+        sec-mem-param-defval = <<_EnD_oF_dEf_TeXt_
+1
+_EnD_oF_dEf_TeXt_;
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
+      sec-mem-desc-line = '1835';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Loads a given SSB patch content.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+Configures the Si4735-D60 device to work with SSB. 
+
+@param ssb_patch_content        point to patch content array 
+@param ssb_patch_content_size   size of patch content 
+@param ssb_audiobw              SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-referenceto = {
+        sec-mem-ref-id = '_s_i4735_8cpp_1gafaabd6c73b7ad7c20ae959d5b75c1e71';
+        sec-mem-ref-line = '2804';
+        sec-mem-ref-name = 'patchPowerUp';
+    };
+      sec-mem-referenceto = {
+        sec-mem-ref-id = '_s_i4735_8cpp_1gadfc2c82524918224cf19fec5b7fcf6d1';
+        sec-mem-ref-line = '2763';
+        sec-mem-ref-name = 'queryLibraryId';
+    };
+      sec-mem-referenceto = {
+        sec-mem-ref-id = '_s_i4735_8cpp_1gadc6014674bd4d1ee3aab56c605926db1';
+        sec-mem-ref-line = '308';
+        sec-mem-ref-name = 'reset';
+    };
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
       sec-mem-id   = 'group__group17_1ga7751b076ce0bcb62eade4f92cd8d93a6';
       sec-mem-virt = normal;
       sec-mem-prot = public;
@@ -5072,7 +5145,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'eeprom_i2c_address';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1835';
+      sec-mem-desc-line = '1836';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Transfers the content of a patch stored in an eeprom to the SI4735 device.
 _EnD_oF_dEf_TeXt_;
@@ -5100,7 +5173,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'ssbPowerUp';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1836';
+      sec-mem-desc-line = '1837';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 This function can be useful for debug and test.
 _EnD_oF_dEf_TeXt_;
@@ -5129,7 +5202,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'ms';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1848';
+      sec-mem-desc-line = '1849';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set the Max Delay Power Up.
 _EnD_oF_dEf_TeXt_;
@@ -5164,7 +5237,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'ms';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1864';
+      sec-mem-desc-line = '1865';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set the Max Delay after Set Frequency.
 _EnD_oF_dEf_TeXt_;
@@ -5197,7 +5270,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'step';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1894';
+      sec-mem-desc-line = '1895';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the current step value.
 _EnD_oF_dEf_TeXt_;
@@ -5236,7 +5309,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getCurrentFrequency';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1910';
+      sec-mem-desc-line = '1911';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current frequency saved in memory.
 _EnD_oF_dEf_TeXt_;
@@ -5262,7 +5335,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getStatus';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1922';
+      sec-mem-desc-line = '1923';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current status  of the Si47XX (AM, FM or SSB)
 _EnD_oF_dEf_TeXt_;
@@ -5286,7 +5359,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'senPin';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1927';
+      sec-mem-desc-line = '1928';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the I2C Bus Address.
 _EnD_oF_dEf_TeXt_;
@@ -5325,7 +5398,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'resetPin';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1928';
+      sec-mem-desc-line = '1929';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 I2C bus address setup.
 _EnD_oF_dEf_TeXt_;
@@ -5368,7 +5441,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'i2cAddr';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1929';
+      sec-mem-desc-line = '1930';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the onther I2C Bus Address (for Si470X)
 _EnD_oF_dEf_TeXt_;
@@ -5393,7 +5466,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1941';
+      sec-mem-desc-line = '1942';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets I2C bus to 10KHz.
 _EnD_oF_dEf_TeXt_;
@@ -5418,7 +5491,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1951';
+      sec-mem-desc-line = '1952';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets I2C bus to 100KHz.
 _EnD_oF_dEf_TeXt_;
@@ -5441,7 +5514,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1958';
+      sec-mem-desc-line = '1959';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets I2C bus to 400KHz.
 _EnD_oF_dEf_TeXt_;
@@ -5468,7 +5541,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1971';
+      sec-mem-desc-line = '1972';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the I2C bus to a given value.
 ATTENTION: use this function with cation.
@@ -5495,7 +5568,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'pin';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '1987';
+      sec-mem-desc-line = '1988';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the Audio Mute Mcu Pin.
 _EnD_oF_dEf_TeXt_;
@@ -5540,7 +5613,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'on';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
-      sec-mem-desc-line = '2003';
+      sec-mem-desc-line = '2004';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the Hardware Audio Mute.
 _EnD_oF_dEf_TeXt_;
