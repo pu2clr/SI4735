@@ -2924,6 +2924,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 }
 
 /**
+ * @ingroup group17 Patch and SSB support
  * @brief Loads a given SSB patch content
  * @details Configures the Si4735-D60 device to work with SSB. 
  * 
