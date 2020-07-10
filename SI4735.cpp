@@ -1820,8 +1820,10 @@ void SI4735::volumeDown()
     setVolume(volume);
 }
 
-
-/** @defgroup group16 FM RDS/RBDS */
+/**
+ * @defgroup group16 FM RDS/RBDS
+ * @todo RDS Dynamic PS or Scrolling PS support  
+ */
 
 /*******************************************************************************
  * RDS implementation 
