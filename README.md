@@ -25,7 +25,7 @@ Contact: __pu2clr@gmail.com__.
 7. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
 8. [About the SI4735](https://pu2clr.github.io/SI4735/#about-the-si4735)
 9. [Terminology](https://github.com/pu2clr/SI4735#terminology)
-10. [Documentation](https://pu2clr.github.io/SI4735/#api-documentation)
+10. [Documentation](https://pu2clr.github.io/SI4735/#documentation)
    * [API Documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) 
    * [About Class, Methods(functions) and custom data type structures](https://pu2clr.github.io/SI4735/#defined-data-types-and-structures)
    * [PU2CLR SI4735 Arduino Library methods (functions)](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
@@ -273,7 +273,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 
 <BR>
 
-## API Documentation 
+## Documentation 
 
 {% include apidoc.html %}
 
