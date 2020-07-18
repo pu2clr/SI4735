@@ -111,6 +111,7 @@ This library uses the I²C communication protocol and implements most of the fun
 There is a __Facebook__ group called [__Si47XX for Radio Experimenters__](https://www.facebook.com/groups/532613604253401/) where the purpose is exchanging experiences with projects based on Silicon Labs  SI47XX IC family. You will be welcome to the group [Si47XX for Radio Experimenters](https://www.facebook.com/groups/532613604253401/).
 
 You can also be a member of __group.io__ [SI47XX for hobbyists](https://groups.io/g/si47xx)
+
 {% include groupio.html %}
 
 [Follow a project using this library on hackaday.io](https://hackaday.io/project/170145-si4735-ssb-receiver-controlled-by-arduino)
