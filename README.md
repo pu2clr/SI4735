@@ -805,7 +805,7 @@ The schematic below shows this approach.
 
 ![Mute circuit](./extras/images/mute_circuit_eagle.png)
 
-Considering that you are using tme MCU based on Atmega328, when the D14 is HIGH the Si47XX output audio will be drained to the ground. At this condition, no audio will be transferred to the amplifier input and, consequently, to the speaker. So, no loud click in the speaker. 
+Considering that you are using a MCU based on Atmega328, when the D14 is HIGH the Si47XX output audio will be drained to the ground. At this condition, no audio will be transferred to the amplifier input and, consequently, to the speaker. So, no loud click in the speaker. 
 
 When the D14 is LOW, the most of signal audio output from the Si47XX will be transfered to the input of the amplifier. 
 

@@ -171,7 +171,7 @@ void loop()
       break;
     case '1':
       si4735.setAM(100, 30000, 7200, 5);
-      si4735.setSeekAmLimits(7100, 7500);   // Range for seeking.
+      si4735.setSeekAmLimits(100, 30000x`);   // Range for seeking.
       si4735.setSeekAmSpacing(1); // spacing 1KHz
       break;
     case 'U':

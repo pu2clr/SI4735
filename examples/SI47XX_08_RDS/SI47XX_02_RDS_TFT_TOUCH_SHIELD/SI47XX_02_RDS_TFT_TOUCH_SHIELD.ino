@@ -798,6 +798,141 @@ void useBand()
   showStatus();
 }
 
+void switchAgc() {
+
+  if (agcIdx == 0)
+  {
+    disableAgc = 0; // Turns AGC ON
+    agcNdx = 0;
+    agcIdx = 1;
+  }
+  else if (agcIdx == 1)
+  {
+    disableAgc = 1; // Turns AGC OFF
+    agcNdx = 0;     // Sets minimum attenuation
+    agcIdx = 2;
+  }
+  else if (agcIdx == 2)
+  {
+    disableAgc = 1; // Turns AGC OFF
+    agcNdx = 5;     // Increases the attenuation AM/SSB AGC Index  = 10
+    agcIdx = 3;
+  }
+  else if (agcIdx == 3)
+  {
+    disableAgc = 1; // Turns AGC OFF
+    agcNdx = 10;    // Increases the attenuation AM/SSB AGC Index  = 30
+    agcIdx = 4;
+  }
+  else if (agcIdx == 4)
+  {
+    disableAgc = 1; // Turns AGC OFF
+    agcNdx = 15;    // Increases the attenuation AM/SSB AGC Index  = 30
+    agcIdx = 5;
+  }
+  else if (agcIdx == 5)
+  {
+    disableAgc = 1; // Turns AGC OFF
+    agcNdx = 20;    // Increases the attenuation AM/SSB AGC Index  = 30
+    agcIdx = 6;
+  }
+  else if (agcIdx == 6)
+  {
+    disableAgc = 1; // Turns AGC OFF
+    agcNdx = 25;    // Increases the attenuation AM/SSB AGC Index  = 30
+    agcIdx = 7;
+  }
+  else if (agcIdx == 7)
+  {
+    disableAgc = 1; // Turns AGC OFF
+    agcNdx = 30;    // Increases the attenuation AM/SSB AGC Index  = 30
+    agcIdx = 8;
+  }
+  else if (agcIdx == 8)
+  {
+    disableAgc = 1; // Turns AGC OFF
+    agcNdx = 35;    // Increases the attenuation AM/SSB AGC Index  = 30
+    agcIdx = 9;
+  }
+  else if (agcIdx == 9)
+  {
+    disableAgc = 1; // Turns AGC OFF
+    agcNdx = 0;     // Increases the attenuation AM/SSB AGC Index  = 30
+    agcIdx = 0;
+  }
+  // Sets AGC on/off and gain
+  si4735.setAutomaticGainControl(disableAgc, agcNdx);
+  showStatus();
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+
+}
+
+void switchFilter() {
+  if (currentMode == LSB || currentMode == USB)
+  {
+    bwIdxSSB++;
+    if (bwIdxSSB > 5)
+      bwIdxSSB = 0;
+    si4735.setSSBAudioBandwidth(bwIdxSSB);
+    // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+    if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
+      si4735.setSBBSidebandCutoffFilter(0);
+    else
+      si4735.setSBBSidebandCutoffFilter(1);
+  }
+  else if (currentMode == AM)
+  {
+    bwIdxAM++;
+    if (bwIdxAM > 6)
+      bwIdxAM = 0;
+    si4735.setBandwidth(bwIdxAM, 1);
+  }
+  showStatus();
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+}
+
+
+void switchStep() {
+  if (currentMode == FM)
+  {
+    fmStereo = !fmStereo;
+    if (fmStereo)
+      si4735.setFmStereoOn();
+    else
+      si4735.setFmStereoOff(); // It is not working so far.
+  }
+  else
+  {
+
+    // This command should work only for SSB mode
+    if (bfoOn && (currentMode == LSB || currentMode == USB))
+    {
+      currentBFOStep = (currentBFOStep == 25) ? 10 : 25;
+      showBFO();
+    }
+    else
+    {
+      if (currentStep == 1)
+        currentStep = 5;
+      else if (currentStep == 5)
+        currentStep = 10;
+      else if (currentStep == 10)
+        currentStep = 100;
+      else if (currentStep == 100 && bandIdx == lastBand)
+        currentStep = 500;
+      else
+        currentStep = 1;
+      si4735.setFrequencyStep(currentStep);
+      band[bandIdx].currentStep = currentStep;
+      si4735.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
+      showStatus();
+    }
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  }
+}
+
+
+
 /* two buttons are quite simple
 */
 void loop(void)
@@ -843,23 +978,11 @@ void loop(void)
     encoderCount = 0;
   }
 
-  // if (bNextBand.justReleased())
-  //   bNextBand.drawButton(true);
-
-  // if (bPreviousBand.justReleased())
-  //   bPreviousBand.drawButton(true);
-
   if (bNextBand.justPressed())
-  {
-    // bNextBand.drawButton(true);
     bandUp();
-  }
 
   if (bPreviousBand.justPressed())
-  {
-    // bPreviousBand.drawButton(true);
     bandDown();
-  }
 
   // Volume
   if (bVolumeUp.justPressed())
@@ -985,135 +1108,17 @@ void loop(void)
   // AGC and attenuation control
   if (bAGC.justPressed())
   {
-    if (agcIdx == 0)
-    {
-      disableAgc = 0; // Turns AGC ON
-      agcNdx = 0;
-      agcIdx = 1;
-    }
-    else if (agcIdx == 1)
-    {
-      disableAgc = 1; // Turns AGC OFF
-      agcNdx = 0;     // Sets minimum attenuation
-      agcIdx = 2;
-    }
-    else if (agcIdx == 2)
-    {
-      disableAgc = 1; // Turns AGC OFF
-      agcNdx = 5;     // Increases the attenuation AM/SSB AGC Index  = 10
-      agcIdx = 3;
-    }
-    else if (agcIdx == 3)
-    {
-      disableAgc = 1; // Turns AGC OFF
-      agcNdx = 10;    // Increases the attenuation AM/SSB AGC Index  = 30
-      agcIdx = 4;
-    }
-    else if (agcIdx == 4)
-    {
-      disableAgc = 1; // Turns AGC OFF
-      agcNdx = 15;    // Increases the attenuation AM/SSB AGC Index  = 30
-      agcIdx = 5;
-    }
-    else if (agcIdx == 5)
-    {
-      disableAgc = 1; // Turns AGC OFF
-      agcNdx = 20;    // Increases the attenuation AM/SSB AGC Index  = 30
-      agcIdx = 6;
-    }
-    else if (agcIdx == 6)
-    {
-      disableAgc = 1; // Turns AGC OFF
-      agcNdx = 25;    // Increases the attenuation AM/SSB AGC Index  = 30
-      agcIdx = 7;
-    }
-    else if (agcIdx == 7)
-    {
-      disableAgc = 1; // Turns AGC OFF
-      agcNdx = 30;    // Increases the attenuation AM/SSB AGC Index  = 30
-      agcIdx = 8;
-    }
-    else if (agcIdx == 8)
-    {
-      disableAgc = 1; // Turns AGC OFF
-      agcNdx = 35;    // Increases the attenuation AM/SSB AGC Index  = 30
-      agcIdx = 9;
-    }
-    else if (agcIdx == 9)
-    {
-      disableAgc = 1; // Turns AGC OFF
-      agcNdx = 0;     // Increases the attenuation AM/SSB AGC Index  = 30
-      agcIdx = 0;
-    }
-    // Sets AGC on/off and gain
-    si4735.setAutomaticGainControl(disableAgc, agcNdx);
-    showStatus();
-    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+    switchAgc();
   }
 
   if (bFilter.justPressed())
   {
-    if (currentMode == LSB || currentMode == USB)
-    {
-      bwIdxSSB++;
-      if (bwIdxSSB > 5)
-        bwIdxSSB = 0;
-      si4735.setSSBAudioBandwidth(bwIdxSSB);
-      // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-      if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
-        si4735.setSBBSidebandCutoffFilter(0);
-      else
-        si4735.setSBBSidebandCutoffFilter(1);
-    }
-    else if (currentMode == AM)
-    {
-      bwIdxAM++;
-      if (bwIdxAM > 6)
-        bwIdxAM = 0;
-      si4735.setBandwidth(bwIdxAM, 1);
-    }
-    showStatus();
-    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+    switchFilter();
   }
 
   if (bStep.justPressed())
   {
-    if (currentMode == FM)
-    {
-      fmStereo = !fmStereo;
-      if (fmStereo)
-        si4735.setFmStereoOn();
-      else
-        si4735.setFmStereoOff(); // It is not working so far.
-    }
-    else
-    {
-
-      // This command should work only for SSB mode
-      if (bfoOn && (currentMode == LSB || currentMode == USB))
-      {
-        currentBFOStep = (currentBFOStep == 25) ? 10 : 25;
-        showBFO();
-      }
-      else
-      {
-        if (currentStep == 1)
-          currentStep = 5;
-        else if (currentStep == 5)
-          currentStep = 10;
-        else if (currentStep == 10)
-          currentStep = 100;
-        else if (currentStep == 100 && bandIdx == lastBand)
-          currentStep = 500;
-        else
-          currentStep = 1;
-        si4735.setFrequencyStep(currentStep);
-        band[bandIdx].currentStep = currentStep;
-        si4735.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
-        showStatus();
-      }
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-    }
+    switchStep();
   }
 
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
