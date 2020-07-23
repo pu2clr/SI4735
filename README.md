@@ -872,7 +872,7 @@ The table below shows the some boards where this library has been successfully t
 * [ˆ4] It seams that in some ESP32 board, the I²C bus is not configured prorpelly by default. However, you can set almost any pin on ESP32 to setup I²C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. The code below shows that.
 * [^5] You can use the pin 12 too.  
 
-1. More about ESP boards on [ESPRESSOF Development Boards](https://www.espressif.com/en/products/hardware/development-boards).
+1. More about ESP boards on [ESPRESSIF Development Boards](https://www.espressif.com/en/products/hardware/development-boards).
 2. More about BlueDuino on [Seed](https://www.seeedstudio.com/Blueduino-Rev2-Arduino-compatible-pius-BLE-CC2540-p-2550.html).
 3. On [Arduino.cc](https://www.arduino.cc/) you can see the technical specification about many board. 
 

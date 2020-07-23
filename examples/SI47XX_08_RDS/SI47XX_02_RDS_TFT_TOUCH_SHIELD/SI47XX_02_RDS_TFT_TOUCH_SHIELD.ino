@@ -780,7 +780,7 @@ void useBand()
     {
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
+      si4735.setAmSoftMuteMaxAttenuation(5); // // Disable Soft Mute for AM
       bfoOn = false;
     }
 
@@ -1133,7 +1133,7 @@ void loop(void)
       }
       showStatus();
     }
-    delay(100);
+    delay(250);
   }
 
   // Show RSSI status only if this condition has changed
