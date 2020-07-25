@@ -171,8 +171,9 @@ void loop()
       break;
     case '1':
       si4735.setAM(100, 30000, 7200, 5);
-      si4735.setSeekAmLimits(100, 30000x`);   // Range for seeking.
+      si4735.setSeekAmLimits(100, 30000);   // Range for seeking.
       si4735.setSeekAmSpacing(1); // spacing 1KHz
+      Serial.println("\nALL - LW/MW/SW");
       break;
     case 'U':
     case 'u':
@@ -212,18 +213,23 @@ void loop()
       break;
     case '4':
       si4735.setFrequencyStep(1);
+      Serial.println("\nStep 1");
       break;  
     case '5':
       si4735.setFrequencyStep(5);
+      Serial.println("\nStep 5");
       break;    
     case '6':
       si4735.setFrequencyStep(10);
+      Serial.println("\nStep 10");
       break;
     case '7':
       si4735.setFrequencyStep(100);
+      Serial.println("\nStep 100");      
       break;
     case '8':
       si4735.setFrequencyStep(1000);
+      Serial.println("\nStep 1000");    
       break;
     case '?':
       showHelp();

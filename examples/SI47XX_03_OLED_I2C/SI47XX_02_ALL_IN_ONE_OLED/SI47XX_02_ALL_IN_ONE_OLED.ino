@@ -133,6 +133,8 @@ uint16_t previousFrequency;
 uint8_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
+uint8_t seekDirection = 1;
+
 uint8_t bwIdxSSB = 2;
 const char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
@@ -319,6 +321,13 @@ void showFrequency()
 
   oled.setCursor(95, 0);
   oled.print(unit);
+}
+
+// Will be used by seekStationProgress
+void showFrequencySeek(uint16_t freq)
+{
+  previousFrequency = currentFrequency = freq;
+  showFrequency();
 }
 
 /*
@@ -534,6 +543,10 @@ void useBand()
     }
     // Change this value (between 0 to 8); If 0, no Softmute;
     si4735.setSsbSoftMuteMaxAttenuation(4); // Work on AM and SSB -> 0 = Disable Soft Mute for SSB; 1 to 8 Softmute
+    // Sets the seeking limits and space.
+    si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
+    si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10KHz for spacing
+
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
@@ -555,10 +568,14 @@ void loop()
     }
     else
     {
-      if (encoderCount == 1)
+      if (encoderCount == 1) {
         si4735.frequencyUp();
-      else
+        seekDirection = 1;
+      }
+      else {
         si4735.frequencyDown();
+        seekDirection = 0;
+      }
 
       // Show the current frequency only if it has changed
       currentFrequency = si4735.getFrequency();
@@ -619,10 +636,11 @@ void loop()
         if (bfoOn)
           showBFO();
         showStatus();
-      } else if (currentMode == FM) {
-        si4735.seekStationUp();
-        delay(30);
+      } else {
+        si4735.seekStationProgress(showFrequencySeek, seekDirection);
+        delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
         currentFrequency = si4735.getFrequency();
+        showStatus();
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
