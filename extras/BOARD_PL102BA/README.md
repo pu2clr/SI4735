@@ -30,11 +30,22 @@ The __PU2CLR SI4735 Arduino Library__ works very well with "NE928 10A V01" (just
 ![Si4730-D60 label](./SI4730_3160DE02639_01.jpg)
 
 
+## IC SI4730-D60 SSOP version
+
+Alternatively, you can buy only the SI4730-D60 (SSOP version) on eBay or AliExpress and build your own board. The photos below show that. 
+
+
+![Si4730-D60 SSOP 01](../images/soldering_01.jpg)
+
+
+![Si4730-D60 SSOP 02](./SI4730_D60GU_01.jpg)
+
+
 ## Arduino Pro Mini 3.3V (8MHz) connection
 
 
-|  board NE928-10A V:01 |  Arduino Pro Mini |
-| --------------------- | ----------------- |
+|  PL102BA-S V:2.1 10628 / SI4730-D60 |  Arduino Pro Mini |
+| ----------------------------------- | ----------------- |
 | GND  | GND | 
 | VA   | VCC |
 | SDA  | A4  |
