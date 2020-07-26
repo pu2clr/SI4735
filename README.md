@@ -1050,7 +1050,8 @@ Here you can see some experiments using this library. Watch them.
 * [How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s)
 * [SI4735 Arduino Library working with ATtiny85](https://youtu.be/U9Xpqh3K4e0)
 * [NE928-10A V:01 board working with "Si4735 Arduino Library"](https://youtu.be/An7Iq_BLxJY)
-* [Si4735 Arduino Library and Blepill STM32F103](https://youtu.be/v4o5_lKKATc)
+* [SI4730-D60 labeled "PL102BA-S V:2.1 10628"](https://youtu.be/lRYE854EOrk)
+* [Si4735 Arduino Library and Bluepill STM32F103](https://youtu.be/v4o5_lKKATc)
 
 ### Third-party projects using this library
 
