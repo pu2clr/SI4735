@@ -1,4 +1,4 @@
-# About the breakout board based on SI4730-D60 labeled "PL102BA-S V:2.1 10628" 
+# About the board based on SI4730-D60 labeled "PL102BA-S V:2.1 10628" 
 
 At first glance, the Si4730-D60 was manufactured to work only in FM and AM (MW) modes. There is nothing explicit in Silicon Labs manuals to suggest that this device works on LW or SW and also has FM/RDS functions. However, some hobbyists discovered this "secret" long time before "PU2CLR SI4735 Arduino Library" was released. 
 
