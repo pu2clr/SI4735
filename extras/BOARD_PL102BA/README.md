@@ -49,9 +49,12 @@ Any sketch found on [Examples](https://pu2clr.github.io/SI4735/examples/). Remem
 
 ## The Si473X I2C address 
 
-This board comes with the SEN pin connected to +V. So the I2C bus address is 0x63
+The "PL102BA-S V:2.1 10628" comes with the SEN pin connected to +V. So, the I2C bus address is 0x63. 
+Some examples in this library detect the bus address automatically. However, you should be aware of this if your assembly does not work at first.
 
 ## Video
+
+The video below shows some tests made with SI4730-D60 and the breakout "PL102BA-S V:2.1 10628"  
 
 {% include PL102BA.html %}
 
