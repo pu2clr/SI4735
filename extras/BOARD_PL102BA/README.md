@@ -5,7 +5,7 @@ At first glance, the Si4730-D60 was manufactured to work only in FM and AM (MW) 
 
 If you are not interested in the SSB mode available on the SI4735-D60, the SI4730-D60/"PL102BA-S V:2.1 10628" can be an excellent alternative.
 
-__It is important to note that there is another breakout board labeled "NE928 10A V01" also sold on eBay and AliExpress very similar to the "PL102BA-S V:2.1 10628"  which is also based on the SI4730. However, it DOES NOT WORK on LW and SW__. So, if you want LW, SW and FM/RDS features, please, check the breakout label before buying it. The breakout label is "PL102BA-S V:2.1 10628" or the CHIP ID/label is "3160 DE02 639". See photos below.  
+__It is important to note that there is another breakout board labeled ["NE928 10A V01"](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/) also sold on eBay and AliExpress very similar to the "PL102BA-S V:2.1 10628"  which is also based on the SI4730. However, it DOES NOT WORK on LW and SW__. So, if you want LW, SW and FM/RDS features, please, check the breakout label before buying it. The right breakout label is "PL102BA-S V:2.1 10628". Check also the CHIP ID lebaled "3160 DE02 639". See photos below. __Summarizing, the IC have to be SI4730-D60 if you want LW, SW and FM/RDS support__.
 
 To know more about "NE928 10A V01" (just AM/MW and FM) see [About the board NE928-10A V:01](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/).
 
