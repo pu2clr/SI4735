@@ -9,7 +9,7 @@ __It is important to note that there is another breakout board labeled "NE928 10
 
 To know more about "NE928 10A V01" (just AM/MW and FM) see [About the board NE928-10A V:01](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/).
 
-The __PU2CLR SI4735 Arduino Library__ works very well with "NE928 10A V01" (just AM/MW and FM) and "PL102BA-S V:2.1 10628 (all band AM and FM + RDS/RBDS). Any Arduino sketch used for the SI4735 can be used for the SI4730-D60/"PL102BA-S V:2.1 10628". Of course, functions that deal with SSB mode will not work with these devices.
+The __PU2CLR SI4735 Arduino Library__ works very well with "NE928 10A V01" (just AM/MW and FM) and "PL102BA-S V:2.1 10628 (all band AM and FM + RDS/RBDS). Any Arduino sketch used for the SI4735 can be used for the SI4730-D60/"PL102BA-S V:2.1 10628". Of course, functions that deal with SSB mode will not work with this devices.
 
 
 ## The photos bellow show the SI4730-D60 based board labeled "PL102BA-S V:2.1 10628" 
@@ -25,7 +25,7 @@ The __PU2CLR SI4735 Arduino Library__ works very well with "NE928 10A V01" (just
 ![PL102BA-S V:2.1 10628 label](./PL102BA_02.png)
 
 
-## IC SI4730-D60 QFN  ID/Label "3160 DE02 639" (Si4730-D60)
+## IC SI4730-D60 QFN  ID/Label "3160 DE02 639"
 
 ![Si4730-D60 label](./SI4730_3160DE02639_01.jpg)
 
@@ -44,8 +44,7 @@ The __PU2CLR SI4735 Arduino Library__ works very well with "NE928 10A V01" (just
 
 ### Recommended sketches
 
-* [SI4735_01_POC.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR/SI4735_01_POC)
-* [SI47XX_01_OLED_I2C.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C/SI47XX_01_OLED_I2C)
+Any sketch found on [Examples](https://pu2clr.github.io/SI4735/examples/). Remember: the SI4730-D60 does not have support to SSB patches.
 
 
 ## The Si473X I2C address 
