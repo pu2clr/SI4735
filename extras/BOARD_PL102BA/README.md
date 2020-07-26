@@ -38,8 +38,15 @@ Alternatively, you can buy only the SI4730-D60 (SSOP version) on eBay or AliExpr
 ![Si4730-D60 SSOP 01](../images/soldering_01.jpg)
 
 
+<BR>
+
 ![Si4730-D60 SSOP 02](./SI4730_D60GU_01.jpg)
 
+<BR>
+
+![Si4730-D60 SSOP 01](../images/SI4730_on_adapterA.png)
+
+<BR>
 
 ## Arduino Pro Mini 3.3V (8MHz) connection
 
