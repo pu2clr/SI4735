@@ -50,6 +50,7 @@ Contact: __pu2clr@gmail.com__.
     * [ESP32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32)
     * [STM32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32) 
     * [FM RDS/RBDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS)
+    * [About the breakout board based on SI4730-D60 labeled "PL102BA-S V:2.1 10628" ](https://pu2clr.github.io/SI4735/extras/BOARD_FL102BA)
     * [SI4730 - BOARD NE928-10A-V-01 ](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/)
     * [Mobile Device as Remote Control to the SI4735 prototype](https://github.com/pu2clr/bluetooth_remote_control)
     * [Tools](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS)
