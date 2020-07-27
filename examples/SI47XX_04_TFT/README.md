@@ -130,10 +130,9 @@ const int TS_LEFT=155,TS_RT=831,TS_TOP=158,TS_BOT=892;
 
 See more on [MCUFRIEND_kbv documentation](https://github.com/prenticedavid/MCUFRIEND_kbv/blob/master/extras/mcufriend_how_to.txt)
 
-The videos below can help you to to setup your display. 
+The video below can help you to to setup your display. 
 
 1. [Setting up 2.4 Inch TFT LCD Arduino Shield ILI9341 HX8347 from Banggood](https://youtu.be/mGevO10I-pU)
-2. ["TFT Touch Display Tutorial | MCUFriend | SdevElectronics"](https://youtu.be/54Atezwe_hI)
 
 
 ### Features:
