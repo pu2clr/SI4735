@@ -80,7 +80,7 @@ This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on M
 
 ### Touch screen calibration process
 
-The Arduino library used to control the TFT shield from mcufriend or equivalent, is the MCUFRIEND_kbv. Please, install this library before start working with SI47XX_02_RDS_TFT_TOUCH_SHIELD sketch.
+The Arduino library used to control the TFT shield from mcufriend or equivalent, is the __MCUFRIEND_kbv__. Please, install this library before start working with SI47XX_02_RDS_TFT_TOUCH_SHIELD sketch.
 
 All toutch screen needs to be calibrated to work properly. To do that, use the __TouchScreen_Calibr_native.ino__ that comes with MCUFRIEND_kbv library. Read the TouchScreen_Calibr_native.ino and check the XP, XM , YP and YM pins configuration. You might need to change the XP, XM , YP and YM values in the TouchScreen_Calibr_native.ino depending on the display you are using (try first with no changes). In the __TouchScreen_Calibr_native.ino__ sketch, check the corresponding code lines as shown below.
 
