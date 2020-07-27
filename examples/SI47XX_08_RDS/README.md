@@ -80,10 +80,9 @@ This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on M
 
 ### Touch screen calibration process
 
-The Arduino library used to control the TFT shield from mcufriend or equivalent, is the __MCUFRIEND_kbv__. Please, install this library before start working with SI47XX_02_RDS_TFT_TOUCH_SHIELD sketch.
+The Arduino library used to control the TFT shield from mcufriend or equivalent, is the MCUFRIEND_kbv. Please, install this library before start working with SI47XX_02_TFT_TOUCH_SHIELD sketch.
 
-All toutch screen needs to be calibrated to work properly. To do that, use the __TouchScreen_Calibr_native.ino__ that comes with MCUFRIEND_kbv library. Read the TouchScreen_Calibr_native.ino and check the XP, XM , YP and YM pins configuration. You might need to change the XP, XM , YP and YM values in the TouchScreen_Calibr_native.ino depending on the display you are using (try first with no changes). In the __TouchScreen_Calibr_native.ino__ sketch, check the corresponding code lines as shown below.
-
+All toutch screen needs to be calibrated to work properly. To do that, use the __TouchScreen_Calibr_native.ino__ that comes with MCUFRIEND_kbv library. Read the TouchScreen_Calibr_native.ino and check the XP, XM , YP and YM pins configuration. You might need to change the XP, XM , YP and YM values in the TouchScreen_Calibr_native.ino depending on the display you are using.  In the __TouchScreen_Calibr_native.ino__ sketch, check the corresponding code lines as shown below.
 
 ```cpp
 // MCUFRIEND UNO shield shares pins with the TFT.
@@ -138,8 +137,12 @@ const int XP=7,XM=A1,YP=A2,YM=6; //240x320 ID=0x2053
 const int TS_LEFT=155,TS_RT=831,TS_TOP=158,TS_BOT=892;
 ```
 
-
 See more on [MCUFRIEND_kbv documentation](https://github.com/prenticedavid/MCUFRIEND_kbv/blob/master/extras/mcufriend_how_to.txt)
+
+The videos below can help you to to setup your display. 
+
+1. [Setting up 2.4 Inch TFT LCD Arduino Shield ILI9341 HX8347 from Banggood](https://youtu.be/mGevO10I-pU)
+2. ["TFT Touch Display Tutorial | MCUFriend | SdevElectronics"](https://youtu.be/54Atezwe_hI)
 
 
 # About RDS  
