@@ -25,6 +25,12 @@
   ENCODER PUSH BUTTON     23
   AUDIO MUTE CIRCUIT      24        - Optional external audio mute circuit (avoid click/pop in the speaker)
 
+  ATTENTION: Your toutch screen needs to be calibrated to work properly. 
+             To do that, use the TouchScreen_Calibr_native.ino that comes with MCUFRIEND_kbv library.
+             Read the TouchScreen_Calibr_native.ino and check the XP, XM , YP and YM pins configuration.
+             You might need to change the XP, XM , YP and YM values in the TouchScreen_Calibr_native.ino 
+             depending on the display you are using.
+
   This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of
@@ -178,10 +184,16 @@ SI4735 si4735;
 
 // ALL Touch panels and wiring is DIFFERENT
 // copy-paste results from TouchScreen_Calibr_native.ino
+// ATTENTION: if you do not get success at first, check and change the XP, XM , YP and YM pins.
+// Read TouchScreen_Calibr_native.ino  (MCUFRIEND shield shares pins with the TFT). 
 
-// TFT Touch shield 1 (old)
-const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
-const int TS_LEFT = 170, TS_RT = 827, TS_TOP = 130, TS_BOT = 868;
+// TFT Touch shield  (my old and original MFUFIEND toutch screen)
+// const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
+// const int TS_LEFT = 170, TS_RT = 827, TS_TOP = 130, TS_BOT = 868;
+
+// TFT Touch shield 2 (my new kind of mcufriend toutch screen)
+const int XP=7,XM=A1,YP=A2,YM=6; //240x320 ID=0x2053
+const int TS_LEFT=155,TS_RT=831,TS_TOP=158,TS_BOT=892;
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 320);
 Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC;
