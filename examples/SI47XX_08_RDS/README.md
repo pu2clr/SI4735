@@ -7,11 +7,6 @@ This folder has examples of using the TFT  display. If you plan to use the touch
 * __SI4735_04_RDS_ALL_IN_ONE_OLED__ sketch is very similar to the __SI47XX_03_RDS_TFT_ILI9225__. It uses __OLED__ display.  See the source code comments for more information.
 
 
-## The photo below shows the SI47XX_02_RDS_TFT_TOUCH_SHIELD version. 
-
-![Photo radio TFT touch screen on Mega2560](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4735_SDR_01_TFT_TOUCH.png)
-
-
 
 ## SI47XX_03_RDS_TFT_ILI9225 
 
@@ -76,6 +71,11 @@ This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on M
   | A               |                         |   18              |
   | B               |                         |   19              |
   | BUTTON          |  ENCODER PUSH BUTTON    |   23              |  
+
+
+### The photo below shows the SI47XX_02_RDS_TFT_TOUCH_SHIELD version. 
+
+![Photo radio TFT touch screen on Mega2560](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4735_SDR_01_TFT_TOUCH.png)
 
 
 ### Touch screen calibration process
