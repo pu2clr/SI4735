@@ -1,11 +1,126 @@
-# SI473X RDS  
+# PU2CLR SI4735 Arduino Library TFT and touch screen examples
 
-This folder has some RDS examples. 
+This folder has examples of using the TFT  display. If you plan to use the touch screen version, I recommend reading the touch calibration process carefully. Otherwise, your touch will not work properly. See below. 
 
-* __SI47XX_01_RDS__ is an Arduino sketch that uses the Serial Monitor. No display, button or encoder are been used as interface.
-* __SI47XX_02_RDS_TFT_TOUCH_SHIELD__ sketch uses the mcufriend TFT touct Display Shield. You can use it on Mega2560 or DUE. It is also an "all in one receiver" (FM, AM and SSB - LW, MW and SW). See the source code comments for more information. 
-* __SI47XX_03_RDS_TFT_ILI9225__ sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220).  It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the regular comercial FM stations. See the source code comments for more information.
+* __SI47XX_03_RDS_TFT_ILI9225__ sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220).  It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the regular comercial FM stations. See the source code comments for more information;
+* __SI47XX_02_RDS_TFT_TOUCH_SHIELD__ sketch uses the mcufriend TFT touct Display Shield. You can use it on Mega2560 or DUE. It is also an "all in one receiver" (FM, AM and SSB - LW, MW and SW). See the source code comments for more information. __You will need to calibrate your touch screen. See below__;
 * __SI4735_04_RDS_ALL_IN_ONE_OLED__ sketch is very similar to the __SI47XX_03_RDS_TFT_ILI9225__. It uses __OLED__ display.  See the source code comments for more information.
+
+## SI47XX_03_RDS_TFT_ILI9225 
+
+This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a [SPI TFT from MICROYUM (2" - 176 x 220)](https://github.com/Nkawu/TFT_22_ILI9225/wiki) based on ILI9225 driver. It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the regular commercial stations. 
+
+1. Encoder to tune stations;
+2. Band selection via push buttons
+3. AM, FM and SSB;
+4. LW, MW and SW;
+5. FM/RDS/RBDS;
+6. Bandwidth filter;
+7. BFO Control; 
+8. VFO/BFO switching via encoder push button;
+9. 12 SW bands + one from (1.7MHz to 30MHz). 
+10. Frequency step switch (1, 5, 10, 100 and 500KHz KHz);
+
+
+### Wire up and functions
+
+The table below show the pins wire up for this example on Arduino Pro Mini.
+
+| Device name               | Device Pin / Description  |  Arduino Pin  |
+| ----------------          | --------------------      | ------------  |
+| __Display TFT__           |                           |               |                    
+|                           | RST (RESET)               |      8        |  
+|                           | RS  or DC                 |      9        |
+|                           | CS  or SS                 |     10        |
+|                           | SDI                       |     11        | 
+|                           | CLK                       |     13        | 
+| __Si4735__                |                           |               |
+|                           | RESET (pin 15)            |     12        |
+|                           | SDIO (pin 18)             |     A4        |
+|                           | SCLK (pin 17)             |     A5        |
+| __Buttons__               |                           |               | 
+|                           | Switch MODE (AM/LSB/AM)   |      4        |
+|                           | Banddwith                 |      5        | 
+|                           | Next band                 |      6        |
+|                           | Previous band             |      7        |
+|                           | AGC ON/OF                 |     14 / A0   |
+|                           | Frequency Step            |     15 / A1   | 
+|                           | VFO/VFO Switch            |     16 / A3   |
+| __Encoder__               |                           |               |
+|                           | A                         |       2       |
+|                           | B                         |       3       |
+
+
+
+## SI47XX_02_RDS_TFT_TOUCH_SHIELD
+
+This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on Mega2560 and Arduino DUE. See the table bellow to right wire up the Mega/DUE to the devices (Si4735 and encoder). 
+
+
+### Touch screen calibration process
+
+The Arduino library used to control the TFT shield from mcufriend or equivalent, is the MCUFRIEND_kbv. Please, install this library before start working with SI47XX_02_TFT_TOUCH_SHIELD sketch.
+
+All toutch screen needs to be calibrated to work properly. To do that, use the __TouchScreen_Calibr_native.ino__ that comes with MCUFRIEND_kbv library. Read the TouchScreen_Calibr_native.ino and check the XP, XM , YP and YM pins configuration. You might need to change the XP, XM , YP and YM values in the TouchScreen_Calibr_native.ino depending on the display you are using. In the __TouchScreen_Calibr_native.ino__ sketch, check the corresponding code lines as shown below.
+
+
+```cpp
+// MCUFRIEND UNO shield shares pins with the TFT.
+#if defined(ESP32)
+int XP = 27, YP = 4, XM = 15, YM = 14;  //most common configuration
+#else
+// int XP = 6, YP = A1, XM = A2, YM = 7;  //most common configuration
+int XP = 7, YP = A2, XM = A1, YM = 6;  //most common configuration
+#endif
+//#include <TouchScreen.h>         //Adafruit Library
+//TouchScreen ts(XP, YP, XM, YM, 300);   //re-initialised after diagnose
+//TSPoint tp;                            //global point
+#include "TouchScreen_kbv.h"         //my hacked version
+TouchScreen_kbv ts(XP, YP, XM, YM, 300);   //re-initialised after diagnose
+TSPoint_kbv tp;                            //global point
+```
+
+__In some TFT devices, it is necessary to change the XP, YP, XM and YM pins setup__.
+
+Follow the instructions provided by the calibration sketch. During the calibration process, the __TouchScreen_Calibr_native.ino__ will give you, via Serial Monitor, the information like shown below. 
+
+cx=184 cy=874 cz=291 LEFT, BOT, Pressure
+cx=494 cy=187 cz=595 MIDW, TOP, Pressure
+cx=497 cy=872 cz=367 MIDW, BOT, Pressure
+cx=800 cy=180 cz=671 RT, TOP, Pressure
+cx=802 cy=524 cz=589 RT, MIDH, Pressure
+cx=809 cy=865 cz=515 RT, BOT, Pressure
+MCUFRIEND_kbv ID=0x2053  240 x 320
+
+```cpp
+const int XP=7,XM=A1,YP=A2,YM=6; //240x320 ID=0x2053
+const int TS_LEFT=155,TS_RT=831,TS_TOP=158,TS_BOT=892;
+```
+
+PORTRAIT CALIBRATION     240 x 320
+x = map(p.x, LEFT=155, RT=831, 0, 240)
+y = map(p.y, TOP=158, BOT=892, 0, 320)
+Touch Pin Wiring XP=7 XM=A1 YP=A2 YM=6
+LANDSCAPE CALIBRATION    320 x 240
+x = map(p.y, LEFT=158, RT=892, 0, 320)
+y = map(p.x, TOP=831, BOT=155, 0, 240)
+
+Finally, you must copy and paste the two lines highlighted above to the SI47XX_02_TFT_TOUCH_SHIELD sketch. The following code illustrates this action.
+
+```cpp
+MCUFRIEND_kbv tft;
+SI4735 si4735;
+
+// ALL Touch panels and wiring is DIFFERENT
+// copy-paste results from TouchScreen_Calibr_native.ino
+const int XP=7,XM=A1,YP=A2,YM=6; //240x320 ID=0x2053
+const int TS_LEFT=155,TS_RT=831,TS_TOP=158,TS_BOT=892;
+```
+
+
+# About RDS  
+
+
 
 
 ## The photo below shows the SI47XX_02_RDS_TFT_TOUCH_SHIELD version. 

@@ -3,7 +3,7 @@
 This folder has some examples of using the TFT. If you want to use the touch screen version, I recommend reading the touch calibration process carefully. See [SI47XX_02_TFT_TOUCH_SHIELD](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT#si47xx_02_tft_touch_shield) below. 
 
 
-__Folder [SI47XX_08_RDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS)) has almost the same examples found here. The main difference is the RDS support. Also, SI47XX_08_RDS is updated more frequently. I recomend you to use the [SI47XX_08_RDS folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS) instead__.   
+__Folder [SI47XX_08_RDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS) has almost the same examples found here. The main difference is the RDS support. Also, SI47XX_08_RDS is updated more frequently. I recomend you to use the [SI47XX_08_RDS folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS) instead__.   
 
 
 ![Si4735 and TFT Projects](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4735_TFT_PROJECTS.png)
