@@ -1,10 +1,17 @@
 # PU2CLR SI4735 Arduino Library TFT and touch screen examples
 
-This folder has examples of using the TFT  display. If you plan to use the touch screen version, I recommend reading the touch calibration process carefully. Otherwise, your touch will not work properly. See below. 
+This folder has examples of using the TFT  display. If you plan to use the touch screen version, I recommend reading the touch calibration process carefully. Otherwise, your touch will not work properly. See below the [SI47XX_02_RDS_TFT_TOUCH_SHIELD](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS#si47xx_02_rds_tft_touch_shield) sketch details. 
 
 * __SI47XX_03_RDS_TFT_ILI9225__ sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220).  It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the regular comercial FM stations. See the source code comments for more information;
-* __SI47XX_02_RDS_TFT_TOUCH_SHIELD__ sketch uses the mcufriend TFT touct Display Shield. You can use it on Mega2560 or DUE. It is also an "all in one receiver" (FM, AM and SSB - LW, MW and SW). See the source code comments for more information. __You will need to calibrate your touch screen. See below__;
+* __SI47XX_02_RDS_TFT_TOUCH_SHIELD__ sketch uses the mcufriend TFT touct Display Shield. You can use it on Mega2560 or DUE. It is also an "all in one receiver" (FM, AM and SSB - LW, MW and SW). See the source code comments for more information. __You will need to calibrate your touch screen before. [See how](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS#si47xx_02_rds_tft_touch_shield)__;
 * __SI4735_04_RDS_ALL_IN_ONE_OLED__ sketch is very similar to the __SI47XX_03_RDS_TFT_ILI9225__. It uses __OLED__ display.  See the source code comments for more information.
+
+
+## The photo below shows the SI47XX_02_RDS_TFT_TOUCH_SHIELD version. 
+
+![Photo radio TFT touch screen on Mega2560](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4735_SDR_01_TFT_TOUCH.png)
+
+
 
 ## SI47XX_03_RDS_TFT_ILI9225 
 
@@ -56,12 +63,26 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 
 This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on Mega2560 and Arduino DUE. See the table bellow to right wire up the Mega/DUE to the devices (Si4735 and encoder). 
 
+### Wire up
+
+
+  |Device name      | Function                |  MEGA/DUE Pin     |
+  |-----------      | ----------------------  |  -------------    |
+  | __Si4735__      |                         |                   |
+  | pin 15          |   RESET                 |   22              |  
+  | pin 18          |   SDIO                  |   20 (SDA)        |
+  | pin 17          |   SCLK                  |   21 (SCL)        |
+  | __Encoder__     |                         |                   |
+  | A               |                         |   18              |
+  | B               |                         |   19              |
+  | BUTTON          |  ENCODER PUSH BUTTON    |   23              |  
+
 
 ### Touch screen calibration process
 
-The Arduino library used to control the TFT shield from mcufriend or equivalent, is the MCUFRIEND_kbv. Please, install this library before start working with SI47XX_02_TFT_TOUCH_SHIELD sketch.
+The Arduino library used to control the TFT shield from mcufriend or equivalent, is the MCUFRIEND_kbv. Please, install this library before start working with SI47XX_02_RDS_TFT_TOUCH_SHIELD sketch.
 
-All toutch screen needs to be calibrated to work properly. To do that, use the __TouchScreen_Calibr_native.ino__ that comes with MCUFRIEND_kbv library. Read the TouchScreen_Calibr_native.ino and check the XP, XM , YP and YM pins configuration. You might need to change the XP, XM , YP and YM values in the TouchScreen_Calibr_native.ino depending on the display you are using. In the __TouchScreen_Calibr_native.ino__ sketch, check the corresponding code lines as shown below.
+All toutch screen needs to be calibrated to work properly. To do that, use the __TouchScreen_Calibr_native.ino__ that comes with MCUFRIEND_kbv library. Read the TouchScreen_Calibr_native.ino and check the XP, XM , YP and YM pins configuration. You might need to change the XP, XM , YP and YM values in the TouchScreen_Calibr_native.ino depending on the display you are using (try first with no changes). In the __TouchScreen_Calibr_native.ino__ sketch, check the corresponding code lines as shown below.
 
 
 ```cpp
@@ -82,7 +103,7 @@ TSPoint_kbv tp;                            //global point
 
 __In some TFT devices, it is necessary to change the XP, YP, XM and YM pins setup__.
 
-Follow the instructions provided by the calibration sketch. During the calibration process, the __TouchScreen_Calibr_native.ino__ will give you, via Serial Monitor, the information like shown below. 
+Follow the instructions provided by the calibration sketch. During the calibration process, the __TouchScreen_Calibr_native.ino__ will give you, via Serial Monitor, the information similar to the shown below. 
 
 cx=184 cy=874 cz=291 LEFT, BOT, Pressure
 cx=494 cy=187 cz=595 MIDW, TOP, Pressure
@@ -105,7 +126,7 @@ LANDSCAPE CALIBRATION    320 x 240
 x = map(p.y, LEFT=158, RT=892, 0, 320)
 y = map(p.x, TOP=831, BOT=155, 0, 240)
 
-Finally, you must copy and paste the two lines highlighted above to the SI47XX_02_TFT_TOUCH_SHIELD sketch. The following code illustrates this action.
+__Finally, you must copy and paste the two lines highlighted above to the SI47XX_02_RDS_TFT_TOUCH_SHIELD sketch. The following code illustrates this action__.
 
 ```cpp
 MCUFRIEND_kbv tft;
@@ -120,12 +141,6 @@ const int TS_LEFT=155,TS_RT=831,TS_TOP=158,TS_BOT=892;
 
 # About RDS  
 
-
-
-
-## The photo below shows the SI47XX_02_RDS_TFT_TOUCH_SHIELD version. 
-
-![Photo radio TFT touch screen on Mega2560](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4735_SDR_01_TFT_TOUCH.png)
 
 
 ## RDS Terminology
