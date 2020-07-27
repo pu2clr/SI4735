@@ -128,6 +128,8 @@ const int XP=7,XM=A1,YP=A2,YM=6; //240x320 ID=0x2053
 const int TS_LEFT=155,TS_RT=831,TS_TOP=158,TS_BOT=892;
 ```
 
+See more on [MCUFRIEND_kbv documentation](https://github.com/prenticedavid/MCUFRIEND_kbv/blob/master/extras/mcufriend_how_to.txt)
+
 ### Features:
 
 1. Encoder to tune stations;

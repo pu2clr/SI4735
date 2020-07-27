@@ -139,6 +139,9 @@ const int TS_LEFT=155,TS_RT=831,TS_TOP=158,TS_BOT=892;
 ```
 
 
+See more on [MCUFRIEND_kbv documentation](https://github.com/prenticedavid/MCUFRIEND_kbv/blob/master/extras/mcufriend_how_to.txt)
+
+
 # About RDS  
 
 
@@ -218,3 +221,5 @@ Source: [Wikipedia, Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_
 1. [Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
 2. [Specification of the radio data system (RDS) for VHF/FM sound broadcasting in the frequency range from 87,5 to 108,0 MHz](http://www.interactive-radio-system.com/docs/EN50067_RDS_Standard.pdf)
 3. [https://github.com/FlyingLotus1983/Si4735](https://github.com/FlyingLotus1983/Si4735)
+4. [MCUFRIEND_kbv Arduino Library](https://github.com/prenticedavid/MCUFRIEND_kbv)
+
