@@ -1,63 +1,52 @@
 /*
-  Under construction.....
-  
-  SI4735 all in one with SSB Support
+  This sketch support the board "SI4735 KIT FM, AM, SW, LW, SSB" from DVE (David Martins Engineering).  
 
-  This sketch has been successfully tested on:
-  1) Pro Mini 3.3V;
-  2) UNO (by using a voltage converter);
-  3) Arduino Yún (by using a voltage converter);
-  4) Arduino Micro (see the operating voltage of your Micro);
-  5) Arduino Mega (by using a voltage converter); and
 
   This sketch uses I2C OLED/I2C, buttons and  Encoder.
-
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
   together with this sketch) and Tiny4kOLED Library (look for this library on Tools->Manage Libraries). 
 
-  ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:
+  OLED I2C bus address is 0x3D
+  THE ENCODER PUSH BUTTON is connected to the Arduino Nano pin 13. The inboard led connected to this pin was removed from Arduino Nano board.
+  
+  ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Nano Board:
   This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. 
-  If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage 
-  caused by the LED circuit. If this occurs in your project you can do:
-  1. use the pin 14. This pin is the A0 (Analog). But you have to refer it by 14 to use it as a digital pin (just change 13 by 14 on the sketch examples); 
-  2. change the circuit and sketch to use external pull-up on pin 13;
-  3. remove the LED or resitor connected to the led from the board (caution). 
+  If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage. 
+  For this reason, the LED was removed. 
+
 
   ABOUT SSB PATCH:  
-  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
+  This sketch will download a SSB patch to your SI4735 device (see file patch_init.h). It will take about 8KB from the Arduino Nano memory.
 
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of
-  this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
+  this sketch and PU2SI4735 Arduino Library. It is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
   Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device.
   Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by
   the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
   Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
 
-  ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment.
-  Given this, it is at your own risk to continue with the procedures suggested here.
-  This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
-  Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
+  Finally, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by 
+  Mr. Vadim Afonkin on his Dropbox repository. This library only supports SSB patches. The patches themselves are not part of this library. 
+  It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. 
 
-  Features of this sketch:
+  Features of this sketch and receiver:
 
-  1) FM, AM (MW and SW) and SSB (LSB and USB);
+  1) FM/RDS, AM (MW and SW) and SSB (LSB and USB);
   2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
-  3) 22 commercial and ham radio bands pre configured;
+  3) Many commercial and ham radio bands pre configured;
   4) BFO Control; and
   5) Frequency step switch (1, 5 and 10KHz);
 
-  Main Parts:
-  Encoder with push button;
-  Seven bush buttons;
-  OLED Display with I2C device;
-  Arduino Pro mini 3.3V;
-
-  Prototype documentation: https://pu2clr.github.io/SI4735/
+  DVE KIT: https://davidmartinsengineering.wordpress.com/si4735-radio-kit/
+  Library documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
-  By Ricardo Lima Caratti, Nov 2019.
+  Circuit design by David Martins Engineering;
+  Sketch written by Ricardo Lima Caratti, Jul 2020.
 */
+
+#define SSD1306    0x3D  // The OLED bus address for this KIt is 0x3D
 
 #include <SI4735.h>
 #include <Tiny4kOLED.h>
@@ -81,20 +70,20 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define RESET_PIN 12
 
 // Enconder PINs
-#define ENCODER_PIN_A 3
-#define ENCODER_PIN_B 2
+#define ENCODER_PIN_A 2
+#define ENCODER_PIN_B 3
 
 // Buttons controllers
 #define MODE_SWITCH 4      // Switch MODE (Am/LSB/USB)
 #define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
-#define BAND_BUTTON_UP 8   // Next band
-#define BAND_BUTTON_DOWN 9 // Previous band
+#define BAND_BUTTON_UP 9   // Next band
+#define BAND_BUTTON_DOWN 8 // Previous band
 #define AGC_SWITCH 11      // Switch AGC ON/OF
 #define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
-// #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
-#define BFO_SWITCH 14 // A0 (Alternative to the pin 13). Used to select the enconder control (BFO or VFO)
+#define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
+// #define BFO_SWITCH 14 // A0 (Alternative to the pin 13). Used to select the enconder control (BFO or VFO)
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
@@ -212,17 +201,18 @@ void setup()
   oled.setFont(FONT6X8);
 
   // Splash - Change it for your introduction text.
-  oled.setCursor(40, 0);
-  oled.print("SI4735");
-  oled.setCursor(20, 1);
+  oled.setCursor(19, 0);
+  oled.print("PU2CLR SI4735");
+  oled.setCursor(15, 1);
   oled.print("Arduino Library");
   delay(500);
-  oled.setCursor(15, 2);
-  oled.print("All in One Radio");
+  oled.setCursor(10, 2);
+  oled.print("DVE KIT All in One");
   delay(500);
-  oled.setCursor(10, 3);
-  oled.print("V1.1.5 - By PU2CLR");
-  delay(5000);
+  oled.setCursor(38, 3);
+  oled.print("Receiver");
+
+  delay(4000);
   // end Splash
 
   // Encoder interrupt
@@ -437,17 +427,8 @@ void showBFO()
 char *rdsMsg;
 char *stationName;
 char *rdsTime;
-char bufferStatioName[50];
-char bufferRdsMsg[100];
-char bufferRdsTime[32];
-
-void showRDSMsg()
-{
-  rdsMsg[35] = bufferRdsMsg[35] = '\0';
-  if (strcmp(bufferRdsMsg, rdsMsg) == 0)
-    return;
-  delay(250);
-}
+char bufferStatioName[20];
+long rdsElapsed = millis();
 
 void showRDSStation()
 {
@@ -460,14 +441,6 @@ void showRDSStation()
   delay(250);
 }
 
-void showRDSTime()
-{
-
-  if (strcmp(bufferRdsTime, rdsTime) == 0)
-    return;
-  // printValue(80, 110, bufferRdsTime, rdsTime, COLOR_GREEN, 6);
-  delay(250);
-}
 
 void checkRDS()
 {
@@ -481,11 +454,10 @@ void checkRDS()
     {
       rdsMsg = si4735.getRdsText2A();
       stationName = si4735.getRdsText0A();
-      rdsTime = si4735.getRdsTime();
-      // if ( rdsMsg != NULL )   showRDSMsg();
-      if (stationName != NULL)
+      if (stationName != NULL && (millis() - rdsElapsed) > 100 ) {
         showRDSStation();
-      // if ( rdsTime != NULL ) showRDSTime();
+        rdsElapsed = millis();
+      }
     }
   }
 }
@@ -596,7 +568,7 @@ void useBand()
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(disableAgc, agcNdx);
-      si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
+      si4735.setAmSoftMuteMaxAttenuation(6); // // Disable Soft Mute for AM
       bfoOn = false;
     }
   }
