@@ -1,3 +1,5 @@
 {
-    "board": "arduino:sam:arduino_due_x"
+    "board": "arduino:sam:arduino_due_x",
+    "port": "/dev/tty.usbmodem14201",
+    "sketch": "examples/UNDER_CONSTRUCTION/SI47XX_00_RDS_TFT_TOUCH_SHIELD_35/SI47XX_00_RDS_TFT_TOUCH_SHIELD_35.ino"
 }
