@@ -147,7 +147,8 @@ Band band[] = {
     {"80m ", SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
     {"60m ", SW_BAND_TYPE, 4500, 5500, 4850, 5},
     {"49m ", SW_BAND_TYPE, 5600, 6300, 6000, 5},
-    {"41m ", SW_BAND_TYPE, 6800, 7800, 7100, 5}, // 40 meters
+    {"40m ", SW_BAND_TYPE, 6800, 7200, 7100, 1}, // 40 meters
+    {"41m ", SW_BAND_TYPE, 7200, 7900, 7205, 5}, // 41 meters
     {"31m ", SW_BAND_TYPE, 9200, 10000, 9600, 5},
     {"30m ", SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
     {"25m ", SW_BAND_TYPE, 11200, 12500, 11940, 5},
@@ -186,6 +187,9 @@ uint8_t currentMode = FM;
 char buffer[255];
 char bufferFreq[10];
 char bufferStereo[10];
+char bufferBFO[15];
+char bufferStep[15];
+char bufferUnit[10];
 
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 MCUFRIEND_kbv tft;
@@ -258,10 +262,11 @@ void setup(void)
   tft.fillScreen(BLACK);
 
   // tft.setFont(&FreeSans12pt7b);
-  showText(55, 30, 2, NULL, GREEN, "SI4735");
-  showText(55, 90, 2, NULL, YELLOW, "Arduino");
-  showText(55, 160, 2, NULL, YELLOW, "Library");
-  showText(55, 240, 2, NULL, WHITE, "By PU2CLR");
+  showText(75, 30, 3, NULL, GREEN, "SI4735");
+  showText(75, 90, 3, NULL, YELLOW, "Arduino");
+  showText(75, 160, 3, NULL, YELLOW, "Library");
+  showText(70, 240, 3, NULL, WHITE, "By PU2CLR");
+  showText(50, 340, 1, NULL, WHITE, "https://pu2clr.github.io/SI4735/");
   int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
   if (si4735Addr == 0)
   {
@@ -274,9 +279,9 @@ void setup(void)
   else
   {
     sprintf(buffer, "The Si473X I2C address is 0x%x ", si4735Addr);
-    showText(25, 290, 1, NULL, RED, buffer);
+    showText(55, 440, 1, NULL, RED, buffer);
   }
-  delay(3000);
+  delay(5000);
 
   tft.fillScreen(BLACK);
 
@@ -316,26 +321,6 @@ void rotaryEncoder()
     }
   }
 }
-
-#if defined(ARDUINO_SAM_DUE)
-/*
-  dtostrf - Emulation for dtostrf function from avr-libc
-
-  The function below wil be compiled just on Arduino DUE board.
-
-  Copyright (c) 2015 Arduino LLC.  All rights reserved.
-  See: https://github.com/arduino/ArduinoCore-samd/blob/master/cores/arduino/avr/dtostrf.c
-*/
-char *dtostrf(double val, signed char width, unsigned char prec, char *sout)
-{
-  asm(".global _printf_float");
-
-  char fmt[20];
-  sprintf(fmt, "%%%d.%df", width, prec);
-  sprintf(sout, fmt, val);
-  return sout;
-}
-#endif
 
 /*
    Shows a text on a given position; with a given size and font, and with a given color
@@ -415,33 +400,40 @@ void printText(int col, int line, int sizeText, char *oldValue, const char *newV
 void showTemplate()
 {
 
-  // Area used to show the frequency
-  tft.drawRect(0, 0, tft.width(), 50, WHITE);
-  
+  int w = tft.width();
 
-  tft.drawRect(0, 100, tft.width(), 210, CYAN);
+  // Area used to show the frequency
+  tft.drawRect(0, 0, w, 50, WHITE);
+
+  tft.drawRect(0, 100, w, 270, CYAN);
   tft.setFont(NULL);
   
-  bPreviousBand.initButton(&tft, 30, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"Band-", 1);
-  bNextBand.initButton(&tft, 90, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"Band+", 1);
-  bVolumeDown.initButton(&tft, 150, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"Vol-", 1);
-  bVolumeUp.initButton(&tft, 210, 120, 40, 30, WHITE, CYAN, BLACK, (char *)"Vol+", 1);
-  bSeekDown.initButton(&tft, 30, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"Seek-", 1);
-  bSeekUp.initButton(&tft, 90, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"Seek+", 1);
-  bAudioMute.initButton(&tft, 150, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"Mute", 1);
-  bStep.initButton(&tft, 210, 160, 40, 30, WHITE, CYAN, BLACK, (char *)"Step", 1);
-  bFM.initButton(&tft, 30, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"FM", 1);
-  bMW.initButton(&tft, 90, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"MW", 1);
-  bSW.initButton(&tft, 150, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"SW", 1);
-  bAGC.initButton(&tft, 210, 200, 40, 30, WHITE, CYAN, BLACK, (char *)"ATT", 1);
-  bAM.initButton(&tft, 30, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"AM", 1);
-  bLSB.initButton(&tft, 90, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"LSB", 1);
-  bUSB.initButton(&tft, 150, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"USB", 1);
-  bFilter.initButton(&tft, 210, 240, 40, 30, WHITE, CYAN, BLACK, (char *)"|Y|", 1);
-  bSoftMute.initButton(&tft, 30, 280, 40, 30, WHITE, CYAN, BLACK, (char *)"SMu", 1);
-  
-  
+  bPreviousBand.initButton(&tft, 45, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Band-", 1);
+  bNextBand.initButton(&tft, 120, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Band+", 1);
+  bVolumeDown.initButton(&tft, 195, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Vol-", 1);
+  bVolumeUp.initButton(&tft, 270, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Vol+", 1);
 
+  bSeekDown.initButton(&tft, 45, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"Seek-", 1);
+  bSeekUp.initButton(&tft, 120, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"Seek+", 1);
+  bAudioMute.initButton(&tft, 195, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"Mute", 1);
+  bStep.initButton(&tft, 270, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"Step", 1);
+
+
+
+  bFM.initButton(&tft, 45, 235, 60, 40, WHITE, CYAN, BLACK, (char *)"FM", 1);
+  bMW.initButton(&tft, 120, 235, 60, 40, WHITE, CYAN, BLACK, (char *)"MW", 1);
+  bSW.initButton(&tft, 195, 235, 60, 40, WHITE, CYAN, BLACK, (char *)"SW", 1);
+  bAGC.initButton(&tft, 270, 235, 60, 40, WHITE, CYAN, BLACK, (char *)"ATT", 1);
+
+
+  bAM.initButton(&tft, 45, 285, 60, 40, WHITE, CYAN, BLACK, (char *)"AM", 1);
+  bLSB.initButton(&tft, 120, 285, 60, 40, WHITE, CYAN, BLACK, (char *)"LSB", 1);
+  bUSB.initButton(&tft, 195, 285, 60, 40, WHITE, CYAN, BLACK, (char *)"USB", 1);
+  bFilter.initButton(&tft, 270, 285, 60, 40, WHITE, CYAN, BLACK, (char *)"|Y|", 1);
+
+  bSoftMute.initButton(&tft, 45, 335, 60, 40, WHITE, CYAN, BLACK, (char *)"SMute", 1);
+  
+  
   // Exibe os botões (teclado touch)
   bNextBand.drawButton(true);
   bPreviousBand.drawButton(true);
@@ -461,12 +453,11 @@ void showTemplate()
   bAGC.drawButton(true);
   bSoftMute.drawButton(true);
 
+  showText(0, 392, 1, NULL, GREEN, "RSSI");
+  tft.drawRect(30, 388, (w - 32), 12, CYAN);
 
-  showText(0, 330, 1, NULL, YELLOW, "PU2CLR-Si4535 Arduino Library-Example");
-  showText(0, 345, 1, NULL, YELLOW, "DIY - You can make it better.");
-
-  showText(0, 362, 1, NULL, GREEN, "RSSI");
-  tft.drawRect(30, 358, 210, 12, CYAN);
+  showText(0, 450, 1, NULL, YELLOW, "PU2CLR-Si4535 Arduino Library-Example");
+  showText(0, 465, 1, NULL, YELLOW, "DIY - You can do it better.");
 
   tft.setFont(NULL);
 }
@@ -543,8 +534,16 @@ void showFrequency()
     sprintf(sFreq, "%5d", currentFrequency);
     tft.drawChar(139, 37, '.', BLACK, BLACK, 1);
   }
+
   color = (bfoOn) ? CYAN : YELLOW;
+    
   showFrequencyValue(50, 37, bufferFreq, sFreq, color, 30, 1);
+
+  if (currentMode == LSB || currentMode == USB)
+  {
+    showBFO();
+  }
+
   tft.setFont(NULL); // default font
 
 }
@@ -565,37 +564,32 @@ void showStatus()
 {
   si4735.getStatus();
   si4735.getCurrentReceivedSignalQuality();
+
   // SRN
+
+  // tft.fillRect(195, 2, 93, 36, BLACK);
+
   si4735.getFrequency();
   showFrequency();
 
-  tft.fillRect(195, 2, 83, 36, BLACK);
-  
   if (si4735.isCurrentTuneFM())
   {
-    showText(240, 30, 2, NULL, WHITE, "MHz");
+    printText(250, 30, 2, bufferUnit, "MHz", WHITE, 12);
+    printText(200, 4, 2, bufferBFO, "      ", BLACK, 11);
   }
   else
   {
-    sprintf(buffer, "Step:%2d", currentStep);
-    showText(240, 10, 1, NULL, WHITE, buffer);
-    showText(240, 30, 2, NULL, WHITE, "KHz");
+    printText(250, 30, 2, bufferUnit, "KHz", WHITE, 12);
   }
 
   tft.fillRect(0, 60, 250, 36, BLACK);
 
+  printText(5, 5, 2, bufferBandName, band[bandIdx].bandName, CYAN, 11);
   if (band[bandIdx].bandType == SW_BAND_TYPE)
   {
-    // sprintf(buffer, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
-    // showText(5, 5, 2, NULL, RED, band[bandIdx].bandName);
-    // showText(5, 30, 2, NULL, RED, bandModeDesc[currentMode]);
-
-    printText(5, 5, 2, bufferBandName, band[bandIdx].bandName,BLUE,11);
-    printText(5, 30, 2, bufferMode, bandModeDesc[currentMode], BLUE, 11);
-  }
-  else
-  {
-    printText(5, 5, 2, bufferBandName, band[bandIdx].bandName, BLUE, 11);
+    printText(5, 30, 2, bufferMode, bandModeDesc[currentMode], CYAN, 11);
+  } else {
+    printText(5, 30, 2, bufferMode, "    ", BLACK, 11);
   }
 
   showText(70, 85, 1, NULL, BLACK, bufferAGC);
@@ -625,6 +619,7 @@ void showStatus()
     showText(5, 85, 1, NULL, GREEN, buffer);
     strcpy(bufferBW, buffer);
     showText(70, 85, 1, NULL, GREEN, bufferAGC);
+    printText(200, 4, 2, bufferBFO, "      ", BLACK, 11);
   }
   tft.setFont(NULL);
 }
@@ -632,27 +627,29 @@ void showStatus()
 void showRSSI()
 {
 
+  int w = tft.width();
   int signalLevel;
 
   if (currentMode == FM)
   {
-    showText(5, 85, 1, NULL, BLACK, bufferStereo);
     sprintf(buffer, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
-    showText(5, 85, 1, NULL, GREEN, buffer);
-    strcpy(bufferStereo, buffer);
+    printText(240, 10, 1, bufferStereo, buffer, GREEN, 11);
+  } else {
+    sprintf(buffer, "%s", "      ");
+    printText(240, 10, 1, bufferStereo, buffer, BLACK, 11);
   }
 
-  signalLevel = map(rssi, 0, 63, 0, 208);
-  tft.fillRect(30, 360, 209, 8, BLACK);
-  tft.fillRect(30, 360, signalLevel, 8, (signalLevel > 25) ? CYAN : RED);
+
+  signalLevel = map(rssi, 0, 63, 0, w - 34);
+  tft.fillRect(30, 390, w-34, 8, BLACK);
+  tft.fillRect(30, 390, signalLevel, 8, (signalLevel > 25) ? YELLOW : RED);
 }
 
-char bufferBFO[15];
-char bufferStep[15];
 
 void showBFO()
 {
 
+  /*
   showText(150, 60, 1, NULL, BLACK, bufferBFO);
   showText(150, 77, 1, NULL, BLACK, bufferStep);
 
@@ -663,6 +660,10 @@ void showBFO()
   sprintf(buffer, "Step:%2d", currentBFOStep);
   showText(150, 77, 1, NULL, GREEN, buffer);
   strcpy(bufferStep, buffer);
+  */
+
+  sprintf(buffer, "%c%d", (currentBFO>=0)?'+':'-',abs(currentBFO));
+  printText(200, 4, 2, bufferBFO, buffer, YELLOW, 11);
 }
 
 char *rdsMsg;
@@ -676,7 +677,7 @@ void showRDSMsg()
 {
   if (strcmp(bufferRdsMsg, rdsMsg) == 0)
     return;
-  printText(55, 85, 1, bufferRdsMsg, rdsMsg, GREEN, 6);
+  printText(5, 85, 1, bufferRdsMsg, rdsMsg, GREEN, 6);
   delay(250);
 }
 
@@ -684,7 +685,7 @@ void showRDSStation()
 {
   if (strcmp(bufferStatioName, stationName) == 0)
     return;
-  printText(55, 60, 1, bufferStatioName, stationName, GREEN, 6);
+  printText(5, 60, 1, bufferStatioName, stationName, GREEN, 6);
   delay(250);
 }
 
@@ -828,6 +829,7 @@ void useBand()
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
       si4735.setSSBAutomaticVolumeControl(1);
       si4735.setSsbSoftMuteMaxAttenuation(softMuteIdx); // Disable Soft Mute for SSB
+      showBFO();
     }
     else
     {
@@ -1106,6 +1108,7 @@ void loop(void)
       band[bandIdx].currentFreq = currentFrequency;
       band[bandIdx].currentStep = currentStep;
       useBand();
+      showFrequency();
     }
   }
 
@@ -1120,6 +1123,7 @@ void loop(void)
       currentMode = FM;
       bandIdx = 0;
       useBand();
+      showFrequency();
     }
   }
 

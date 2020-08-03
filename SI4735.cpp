@@ -25,7 +25,7 @@
  * @details 7. I²C communication and Automatic I²C bus address detection. 
  * @details 8. More than 120 functions implemented. You can customize almost every feature available on Si47XX family. 
  * @details 9. RDS support.
- * @details 10. SSB (Single Side Band) patch support. 
+ * @details 10. SSB (Single Side Band) patch support (SI4735-D60 and SI4732-A10). 
  * @details 11. Digital Audio.
  * 
  * Some texts were extracted directly from the Silicon Labs documentation. The name of the Silicon Labs document and pages are described in the source code comments.
@@ -2424,12 +2424,12 @@ char *SI4735::getRdsTime()
  * It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes.
  * In other words, this library only supports SSB patches, the patches themselves are not part of this library.  
  * 
- * @details This implementation was tested only on Si4735-D60 device. 
+ * @details This implementation was tested only on Si4735-D60  and SI4732-A10 devices. 
  * @details SSB modulation is a refinement of amplitude modulation that one of the side band and the carrier are suppressed.
  * 
  * @details What does SSB patch means?
- * In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
- * There is little information available about patching the SI4735.
+ * In this context, a patch is a piece of software used to change the behavior of the SI4735-D60/SI4732-A10 device.
+ * There is little information available about patching the SI4735-D60/SI4732-A10.
  *  
  * The following information is the understanding of the author of this project and 
  * it is not necessarily correct. 
@@ -2444,7 +2444,7 @@ char *SI4735::getRdsTime()
  * again to the device each time after turn on the system or reset the device.
  * 
  * I would like to thank Mr Vadim Afonkin for making available the SSBRX patches for 
- * SI4735-D60 on his Dropbox repository. On this repository you have two files, 
+ * SI4735-D60/SI4732-A10 on his Dropbox repository. On this repository you have two files, 
  * amrx_6_0_1_ssbrx_patch_full_0x9D29.csg and amrx_6_0_1_ssbrx_patch_init_0xA902.csg. 
  * It is important to know that the patch content of the original files is constant 
  * hexadecimal representation used by the language C/C++. Actally, the original files 
@@ -2457,9 +2457,9 @@ char *SI4735::getRdsTime()
  * @details ATTENTION: The author of this project does not guarantee that procedures shown 
  * here will work in your development environment. Given this, it is at your own risk 
  * to continue with the procedures suggested here. This library works with the I²C 
- * communication protocol and it is designed to apply a SSB extension PATCH to CI 
- * SI4735-D60. Once again, the author disclaims any liability for any damage this 
- * procedure may cause to your SI4735 or other devices that you are using.
+ * communication protocol and it is designed to apply a SSB extension PATCH to  
+ * SI4735-D60 and SI4732-A10 devices. Once again, the author disclaims any liability for any damage this 
+ * procedure may cause to your SI4735-D60 or SI4732-A10 or other devices that you are using.
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5 
  */
 
@@ -2744,7 +2744,7 @@ void SI4735::sendSSBModeProperty()
  * 
  * @details Used to confirm if the patch is compatible with the internal device library revision.
  * 
- * @details You have to call this function if you are applying a patch on SI47XX (SI4735-D60).
+ * @details You have to call this function if you are applying a patch on SI47XX (SI4735-D60/SI4732-A10).
  * @details The first command that is sent to the device is the POWER_UP command to confirm 
  * that the patch is compatible with the internal device library revision. 
  * @details The device moves into the powerup mode, returns the reply, and moves into the 
@@ -2925,7 +2925,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 /**
  * @ingroup group17 Patch and SSB support
  * @brief Loads a given SSB patch content
- * @details Configures the Si4735-D60 device to work with SSB. 
+ * @details Configures the Si4735-D60/SI4732-A10 device to work with SSB. 
  * 
  * @param ssb_patch_content        point to patch content array 
  * @param ssb_patch_content_size   size of patch content 
