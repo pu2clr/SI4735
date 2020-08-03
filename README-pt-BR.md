@@ -2233,15 +2233,15 @@ String SI4735::getRdsTime()
 
 ## Single Side Band (SSB) Support
 
-Antes de tudo, é importante que o usuário desta biblioteca tenha em mente que o conteúdo do firmware de atualização para SSB não faz parte desta biblioteca. Esta biblioteca somente oferece funções que suportam a carga do firmware no dispositivo Si4735-D60, bem como implementa as funções para operação no modo SSB. Portanto, o autor desta biblioteca não encoraja nenhum usuário a comercializar o conteúdo do firmware SSB utilizando esta biblioteca. 
+Antes de tudo, é importante que o usuário desta biblioteca tenha em mente que o conteúdo do firmware de atualização para SSB não faz parte desta biblioteca. Esta biblioteca somente oferece funções que suportam a carga do firmware nos dispositivos Si4735-D60 e SI4732-A10, bem como implementa as funções para operação no modo SSB. Portanto, o autor desta biblioteca não encoraja nenhum usuário a comercializar o conteúdo do firmware SSB utilizando esta biblioteca. 
 
-Esta função foi testada somente no SI4735-D60. Para usar SSB com o SI4735, você deve carregar uma atualização (patch) no CI. No entanto, é importante salientar que a Silicon Labs só provê suporte a esse recurso para alguns clientes.  Até a presente data, há pouca documentação disponível na Internet sobre como aplicar os patches para SI4735. 
+Esta função foi testada no SI4735-D60 e no SI4732-A10. Para usar SSB com o SI4735-D60 or SI4732-A10, você deve carregar uma atualização (patch) no CI. No entanto, é importante salientar que a Silicon Labs só provê suporte a esse recurso para alguns clientes.  Até a presente data, há pouca documentação disponível na Internet sobre como aplicar os patches para SI4735-D60/Si4732-A10. 
 
-O autor desta biblioteca não garante que os procedimentos sugeridos aqui funcionarão em seu ambiente de desenvolvimento. Dito isso, fica por sua conta e risco a execução dos procedimentos de aplicação da atualização (patch) do SI4735, bem como do uso das funções para SSB desenvolvidas aqui. Em outras palavras, o autor desta biblioteca não se responsabilizará por qualquer dano em seu dispositivo SI4735 ou qualquer outro dispositivo que você utilize com esta biblioteca. 
+O autor desta biblioteca não garante que os procedimentos sugeridos aqui funcionarão em seu ambiente de desenvolvimento. Dito isso, fica por sua conta e risco a execução dos procedimentos de aplicação da atualização (patch) do SI4735-D60/Si4732-A10, bem como do uso das funções para SSB desenvolvidas aqui. Em outras palavras, o autor desta biblioteca não se responsabilizará por qualquer dano em seu dispositivo SI4735 ou qualquer outro dispositivo que você utilize com esta biblioteca. 
 
 Conforme dito anteriormente, há pouca documentação disponível na Internet sobre a aplicação de patch para o SI4735. O conteúdo deste tópico expõe o entendimento do autor desta biblioteca. Dito disso, algumas informações colocadas aqui podem não ser precisas. 
 
-É importante saber que o patch aplicado para o SI4735, fica armazenado na RAM interna do SI4735. Como a RAM é uma memória volátil, essa atualização deve ser carregada sempre que você retornar o sistema para o modo SSB. Isto é, se você mudar o modo de SSB para FM ou AM e depois retornar para o modo SSB, essa ação exigirá que você recarregue o patch novamente antes começar a operar com SSB. O mesmo vale para os comandos reset ou power down. 
+É importante saber que o patch aplicado para o SI4735-D60/Si4732-A10, fica armazenado na RAM interna do SI4735-D60/Si4732-A10. Como a RAM é uma memória volátil, essa atualização deve ser carregada sempre que você retornar o sistema para o modo SSB. Isto é, se você mudar o modo de SSB para FM ou AM e depois retornar para o modo SSB, essa ação exigirá que você recarregue o patch novamente antes começar a operar com SSB. O mesmo vale para os comandos reset ou power down. 
 
 
 ### setSSBBfo
