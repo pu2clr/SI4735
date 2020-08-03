@@ -1,13 +1,14 @@
 /*
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220).
   It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the
-  regular comercial stations. If you are using the same circuit used on examples with OLED and LCD,
+  regular comercial stations. The SSB support works on SI4735-D60 and SI4732-A10 devices. 
+  If you are using the same circuit used on examples with OLED and LCD,
   you have to change some buttons wire up. This TFT device takes five pins from Arduino.
   For this reason, it is necessary change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
   ABOUT SSB PATCH:  
-  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
+  This sketch will download a SSB patch to your SI4735-D60 or SI4732-A10 devices (patch_init.h). It will take about 8KB of the Arduino memory.
 
   First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
   Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 

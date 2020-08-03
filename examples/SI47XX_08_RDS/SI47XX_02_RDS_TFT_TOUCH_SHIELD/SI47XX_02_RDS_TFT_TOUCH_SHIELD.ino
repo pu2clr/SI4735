@@ -3,6 +3,8 @@
   You can use it on Mega2560 or DUE.
   It is a RDS example.
 
+  It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
+
   Features:
   1) This sketch has been successfully tested on Arduino Mega2560 and Arduino DUE;
   2) It uses the touch screen interface provided by mcufriend TFT;
@@ -31,7 +33,7 @@
              You might need to change the XP, XM , YP and YM values in the TouchScreen_Calibr_native.ino 
              depending on the display you are using.
 
-  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of memory.
+  This sketch will download a SSB patch to your SI4735-D60 or SI4732-A10 devices (patch_init.h). It will take about 8KB of memory.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of
   this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.

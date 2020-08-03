@@ -1,12 +1,13 @@
 /*
 
   Test and validation of the SI4735 Arduino Library with SSB support.
+  It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
 
   ATTENTION:  Please, avoid using the computer connected to the mains during testing.
 
-  The table below shows the Si4735 and STM32F103C8 pin connections 
+  The table below shows the Si4735-D60 and STM32F103C8 pin connections 
     
-  | Si4735 pin      |  Arduino Pin  |
+  | Si4735-D60 pin  |  Arduino Pin  |
   | ----------------| ------------  |
   | RESET (pin 15)  |     PA12      |
   | SDIO (pin 18)   |     PB7 (B7)  |

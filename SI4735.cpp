@@ -664,6 +664,8 @@ void SI4735::setTuneFrequencyAntennaCapacitor(uint16_t capacitor)
             currentFrequencyParams.arg.ANTCAPL = cap.raw.ANTCAPL;
         }
     }
+    // Tune the device again with the current frequency.
+    this->setFrequency(this->currentWorkFrequency);
 }
 
 /**

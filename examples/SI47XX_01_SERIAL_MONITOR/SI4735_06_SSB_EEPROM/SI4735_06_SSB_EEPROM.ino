@@ -1,7 +1,10 @@
 /*
 
  Test and validation of the SI4735 Arduino Library with SSB patch stored in an external EEPROM.
- This example will transfer the SSB patch content stored in an EEPROM to SI4735-D60.
+ SSB support has been successfully tested on SI4735-D60 and Si4732-A10 devices.
+
+ This example will transfer the SSB patch content stored in an EEPROM to SI4735-D60 or SI4732-A10.
+
  To run this sketch you must have a external I2C EEPROM device configured with your Arduino and the Si4735 device via i2C bus.
  The EEPROM must have the patch content written (generated) by the sketch  SI47XX_09_SAVE_SSB_PATCH_EEPROM (see folder examples/TOOLS)
  Link: https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM
@@ -12,7 +15,7 @@
  content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
 
  In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
- There is little information available about patching the SI4735. The following information is the understanding of the author of
+ There is little information available about patching the SI4735-D60/SI4732-A10. The following information is the understanding of the author of
  this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
  Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device.
  Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by
@@ -27,9 +30,9 @@
  3) You do not need connect any push buttons or encoders to change volume and frequency;
  4) The Arduino IDE is all you need to control the radio.  
 
- The table below shows the Si4735 and Arduino Pro Mini pin connections 
+ The table below shows the Si4735-D60 and Arduino Pro Mini pin connections 
     
-    | Si4735 pin      |  Arduino Pin  |
+    | Si4735-D60 pin  |  Arduino Pin  |
     | ----------------| ------------  |
     | RESET (pin 15)  |     12        |
     | SDIO (pin 18)   |     A4        |

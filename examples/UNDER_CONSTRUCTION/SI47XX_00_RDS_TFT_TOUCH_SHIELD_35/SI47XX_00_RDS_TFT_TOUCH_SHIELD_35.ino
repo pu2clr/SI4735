@@ -102,6 +102,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 bool bfoOn = false;
 bool audioMute = false;
+bool bAntenna = false;
 
 bool ssbLoaded = false;
 bool fmStereo = true;
@@ -111,6 +112,8 @@ bool touch = false;
 uint8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 uint8_t agcNdx = 0;
+
+uint16_t antennaIdx = 0;
 
 uint8_t softMuteIdx = 0;
 
@@ -187,6 +190,7 @@ uint8_t currentMode = FM;
 char buffer[255];
 char bufferFreq[10];
 char bufferStereo[10];
+char bufferCapacitor[10];
 char bufferBFO[15];
 char bufferStep[15];
 char bufferUnit[10];
@@ -215,7 +219,7 @@ const int TS_LEFT=149,TS_RT=846,TS_TOP=120,TS_BOT=918;
 
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 480);
-Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC, bSoftMute;
+Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC, bSoftMute, bCapAmi, bCapAuto;
 
 int pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -432,8 +436,9 @@ void showTemplate()
   bFilter.initButton(&tft, 270, 285, 60, 40, WHITE, CYAN, BLACK, (char *)"|Y|", 1);
 
   bSoftMute.initButton(&tft, 45, 335, 60, 40, WHITE, CYAN, BLACK, (char *)"SMute", 1);
-  
-  
+  bCapAmi.initButton(&tft, 120, 335, 60, 40, WHITE, CYAN, BLACK, (char *)"AntM", 1);
+  bCapAuto.initButton(&tft, 195, 335, 60, 40, WHITE, CYAN, BLACK, (char *)"AntA", 1);
+
   // Exibe os botões (teclado touch)
   bNextBand.drawButton(true);
   bPreviousBand.drawButton(true);
@@ -452,6 +457,8 @@ void showTemplate()
   bFilter.drawButton(true);
   bAGC.drawButton(true);
   bSoftMute.drawButton(true);
+  bCapAmi.drawButton(true);
+  bCapAuto.drawButton(true);
 
   showText(0, 392, 1, NULL, GREEN, "RSSI");
   tft.drawRect(30, 388, (w - 32), 12, CYAN);
@@ -545,7 +552,7 @@ void showFrequency()
   }
 
   tft.setFont(NULL); // default font
-
+  showCapacitor();
 }
 
 // Will be used by seekStationProgress
@@ -664,6 +671,14 @@ void showBFO()
 
   sprintf(buffer, "%c%d", (currentBFO>=0)?'+':'-',abs(currentBFO));
   printText(200, 4, 2, bufferBFO, buffer, YELLOW, 11);
+}
+
+// Internal tuning capacitor test
+void showCapacitor() {
+
+  sprintf(buffer, "%d", antennaIdx);
+  printText(10, 430, 2, bufferCapacitor, buffer, YELLOW, 11);
+  
 }
 
 char *rdsMsg;
@@ -813,15 +828,16 @@ void useBand()
   }
   else
   {
-
     if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
     {
-      si4735.setTuneFrequencyAntennaCapacitor(0);
+      antennaIdx = 0;
+      si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
     }
     else
     {
+      antennaIdx = 1;
       lastSwBand = bandIdx;
-      si4735.setTuneFrequencyAntennaCapacitor(1);
+      si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
     }
 
     if (ssbLoaded)
@@ -1010,6 +1026,8 @@ void loop(void)
   bFilter.press(down && bFilter.contains(pixel_x, pixel_y));
   bAGC.press(down && bAGC.contains(pixel_x, pixel_y));
   bSoftMute.press(down && bSoftMute.contains(pixel_x, pixel_y));
+  bCapAmi.press(down && bCapAmi.contains(pixel_x, pixel_y));
+  bCapAuto.press(down && bCapAuto.contains(pixel_x, pixel_y));
 
   // Check if the encoder has moved.
   if (encoderCount != 0)
@@ -1019,6 +1037,11 @@ void loop(void)
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
       si4735.setSSBBfo(currentBFO);
       showBFO();
+    }
+    else if ( bAntenna ) {
+      antennaIdx = (encoderCount == 1) ? (antennaIdx + currentStep) : (antennaIdx - currentStep);
+      si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
+      showCapacitor();
     }
     else
     {
@@ -1096,7 +1119,20 @@ void loop(void)
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   }
 
-  
+  if (bCapAmi.justPressed())
+  {
+    bAntenna = !bAntenna;  
+    showCapacitor();
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  }
+
+  if (bCapAuto.justPressed())
+  {
+    antennaIdx = (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)? 0:1;
+    si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
+    showCapacitor();
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  }
 
   if (bAM.justPressed())
   {

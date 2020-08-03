@@ -1,6 +1,7 @@
 /*
   This sketch uses the mcufriend TFT touch Display Shield.
   You can use it on Mega2560 and Arduino DUE
+  The SSB support works on SI4735-D60 and SI4732-A10 devices. 
 
   It is a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the
   regular comercial stations. If you are using the same circuit used on examples with OLED and LCD,
@@ -28,7 +29,7 @@
 
 
   ABOUT SSB PATCH:  
-  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
+  This sketch will download a SSB patch to your SI4735-D60 or Si4732-A10 devices (patch_init.h). It will take about 8KB of the Arduino memory.
 
   First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
   Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 

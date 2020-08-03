@@ -52,7 +52,7 @@ __Pay attention to the your I2C device voltage. The system can become unstable i
 
   __This sketch has been successfully tested on Pro Mini 3.3V.__ 
 
-  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 9KB from Arduino Flash Memory.   
+  This sketch will download a SSB patch to your SI4735-D60/SI4732-A10 device (patch_init.h). It will take about 9KB from Arduino Flash Memory.   
     
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of 
@@ -64,7 +64,7 @@ __Pay attention to the your I2C device voltage. The system can become unstable i
 
   ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment. 
   Given this, it is at your own risk to continue with the procedures suggested here. 
-  This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60. 
+  This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60 and SI4732-A10. 
   Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.  
 
   Features of this sketch: 

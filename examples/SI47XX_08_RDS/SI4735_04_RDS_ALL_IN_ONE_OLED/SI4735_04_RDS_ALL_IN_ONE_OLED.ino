@@ -2,6 +2,7 @@
   Under construction.....
   
   SI4735 all in one with SSB Support
+  It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
 
   This sketch has been successfully tested on:
   1) Pro Mini 3.3V;
@@ -24,7 +25,7 @@
   3. remove the LED or resitor connected to the led from the board (caution). 
 
   ABOUT SSB PATCH:  
-  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
+  This sketch will download a SSB patch to your SI4735-D60 or SI4732-A10 devices (patch_init.h). It will take about 8KB of the Arduino memory.
 
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735. The following information is the understanding of the author of

@@ -31,10 +31,12 @@ The main advantages of using this sketch are:
 ### SI4735_02_POC_STM32_SSB
 
 This sketch will help you to test and validation of your circuit and the SI4735 Arduino Library with SSB support.
+It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
 
 ### SI4735_03_STM32_ALL_IN_ONE_OLED
 
 This sketch implements a FM, AM and SSB receiver. It uses OLED, Encoder and button to control the receiver.
+It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
 
 
 ## STM32 setup on Arduino IDE

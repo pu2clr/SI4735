@@ -1,6 +1,7 @@
 /*
   SI4735 all in one with SSB Support on ESP32
-
+  It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
+  
   Features:
   1) This sketch has been successfully tested on ESP LOLIN32 (WEMOS);
   2) It uses the capacitive touch ESP32 resource;
@@ -24,7 +25,7 @@
   | BUTTON    |  ENCODER PUSH BUTTON  |   23  (GPIO23)          |  
 
   ABOUT SSB PATCH:  
-  This sketch will download a SSB patch to your SI4735 device (patch_init.h). It will take about 8KB of the Arduino memory.
+  This sketch will download a SSB patch to your SI4735-D60 or SI4732-A10 devices (patch_init.h). It will take about 8KB of the Arduino memory.
 
   First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
   Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 

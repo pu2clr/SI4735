@@ -9,6 +9,8 @@
   Features:   FM/RDS; AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
 
+  It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
+
   Wire up on Arduino UNO, Pro mini
   | Device name               | Device Pin / Description  |  Arduino Pin  |
   | ----------------          | --------------------      | ------------  |

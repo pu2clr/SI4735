@@ -1,6 +1,8 @@
 /*
 
  Test and validation of the SI4735 Arduino Library with SSB support.
+ SSB support has been successfully tested on SI4735-D60 and Si4732-A10 devices.
+
  This example shows you how to setup the radio on SW/SSB by using the Si4735 Arduino Library.
  It uses the Serial Monitor to get the commands and show the information. 
 
@@ -14,6 +16,8 @@
  5) Arduino DUE; and 
  6) ESP32 (LOLIN32 WEMOS)
 
+ For SSB use SI4735-D60 or SI4732-A10.
+
  The main advantages of using this sketch are: 
  1) It is a easy way to check if your circuit is working;
  2) You do not need to connect any display device to make your radio works;
@@ -22,7 +26,7 @@
 
  The table below shows the Si4735 and Arduino Pro Mini pin connections 
     
-    | Si4735 pin      |  Arduino Pin  |
+    | Si4735-D60 pin  |  Arduino Pin  |
     | ----------------| ------------  |
     | RESET (pin 15)  |     12        |
     | SDIO (pin 18)   |     A4        |
