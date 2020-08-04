@@ -653,23 +653,19 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 ![Basic Schematic Eagle version](./extras/images/basic_schematic_eagle.png)
 
 
-#### The picture below shows the SI4735-D60 pinout
+#### The picture below shows the SI4735-D60/SI4730-D60 pinout (SSOP)
 
 ![Si4735-D60 pinout](./extras/images/Si4735-D60-pinout.png)
 
-
-
-#### The picture below shows the SI4732-A10 pinout
-
+#### The picture below shows the SI4732-A10 pinout (16L SOIC Package)
 
 ![Si4732-A10 pinout](./extras/images/SI4732_A10_pinout.png)
 
-
-
+* The SI4735-D60 and SI4732-A10 have SSB patch support
 * __See some Shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
 
 * __Pay attention to the appropriated Arduino pinout to select the correct interrupt (IRQ), RST, SDIO and SCLK pins. The previous table shows some Arduino board pinout__.  
-* __The Si473X SEN pin (16 on SSOP version and 6 on QFN version) when connected to the ground, the I²C bus address is 0x11. When this pin is connected to +3.3V, the I²C bus address is 0x63__. See the functions [getDeviceI2CAddress](https://pu2clr.github.io/SI4735/#getdevicei2caddress) and [setDeviceI2CAddress](https://pu2clr.github.io/SI4735/#setdevicei2caddress) to correct setup. If you follow the schematic used in this project, you do not need to do anything (the default I²C bus address is 0x11). If you do not know how this pin is configured on the board, use [getDeviceI2CAddress](https://pu2clr.github.io/SI4735/#getdevicei2caddress).  
+* __Be sure about the pinout of your device and Arduino connections. For example: the Si4735-D60/Si4730_D60 SEN pin (16 on SSOP version and 6 on QFN version) when connected to the ground, the I²C bus address is 0x11. When this pin is connected to +3.3V, the I²C bus address is 0x63__. See the functions [getDeviceI2CAddress](https://pu2clr.github.io/SI4735/#getdevicei2caddress) and [setDeviceI2CAddress](https://pu2clr.github.io/SI4735/#setdevicei2caddress) to correct setup. If you follow the schematic used in this project, you do not need to do anything (the default I²C bus address is 0x11). If you do not know how this pin is configured on the board, use [getDeviceI2CAddress](https://pu2clr.github.io/SI4735/#getdevicei2caddress).  
 
 <BR>
 
