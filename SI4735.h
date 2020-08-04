@@ -401,9 +401,9 @@ typedef union {
         // RESP5
         uint8_t SNR; //!<  This byte contains the SNR metric when tune is complete (dB).
         // RESP6
-        uint8_t MULT; //!<  Contains the multipath metric when tune is complete
+        uint8_t MULT; //!<  If FM, contains the multipath metric when tune is complete; IF AM READANTCAPH (tuning capacitor value high byte)
         // RESP7
-        uint8_t READANTCAP; //!<  Contains the current antenna tuning capacitor value
+        uint8_t READANTCAP; //!<  If FM, contains the current antenna tuning capacitor value; IF AM READANTCAPL (tuning capacitor value low byte)
     } resp;
     uint8_t raw[8]; //!<  Check it
 } si47x_response_status;
@@ -1245,11 +1245,26 @@ public:
      * 
      * @details Returns the current antenna tuning capacitor value.
      * 
+     * 
      * @return uint8_t capacitance 
      */
-    inline uint8_t getAntennaTuningCapacitor()
+    inline uint16_t getAntennaTuningCapacitor()
     {
-        return currentStatus.resp.READANTCAP;
+        union { 
+            struct {
+                uint8_t low;
+                uint8_t high;
+            } row;
+            uint16_t value;
+        } cap;
+
+        if (currentTune == FM_TUNE_FREQ) {
+            return currentStatus.resp.READANTCAP;
+        } else {
+            cap.row.low = currentStatus.resp.READANTCAP;
+            cap.row.high = currentStatus.resp.MULT;
+            return cap.value;
+        }
     };
 
     void getAutomaticGainControl(); //!<  Queries Automatic Gain Control STATUS

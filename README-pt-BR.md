@@ -1631,7 +1631,7 @@ inline byte SI4735::getStatusMULT()
  * Read Antenna Tuning Capacitor (Si4704/05/06/2x only). 
  * Returns a byte that contains the current antenna tuning capacitor value.
  */
-inline byte SI4735::getAntennaTuningCapacitor()
+inline uint16_t SI4735::getAntennaTuningCapacitor()
 ```
 
 
