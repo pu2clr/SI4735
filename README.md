@@ -648,12 +648,22 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 
 <BR>
 
-![Basic Schematic](./extras/images/basic_schematic_eagle.png)
+#### Eagle version
+
+![Basic Schematic Eagle version](./extras/images/basic_schematic_eagle.png)
 
 
 #### The picture below shows the SI4735-D60 pinout
 
 ![Si4735-D60 pinout](./extras/images/Si4735-D60-pinout.png)
+
+
+
+#### The picture below shows the SI4732-A10 pinout
+
+
+![Si4732-A10 pinout](./extras/images/SI4732_A10_pinout.png)
+
 
 
 * __See some Shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
