@@ -192,6 +192,7 @@ Do you need some old version (release) of this library?  If yes, [check here](ht
 * WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode; 
 * Jim Reagan, W0CHL, for contributions on circuit design;
 * Gert Baak, PE0MGB, for library improvements suggestions;  
+* Diego Stanfield for testing the SI4732-A10 with SSB;
 * All members of the Facebook groups ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) and ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/) for the  suggestions and corrections during the development of this project.
 
 
