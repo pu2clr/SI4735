@@ -2,7 +2,7 @@ var searchData=
 [
   ['getacfindicator_499',['getACFIndicator',['../group__group08.html#gab8a51de592fd40fdd872039b3c70716f',1,'SI4735']]],
   ['getagcgainindex_500',['getAgcGainIndex',['../group__group08.html#ga4eceaf5745e87fcca6cf31c04c5635bd',1,'SI4735']]],
-  ['getantennatuningcapacitor_501',['getAntennaTuningCapacitor',['../group__group17.html#ga3905d6551992b4dd51d13f05978d9081',1,'SI4735']]],
+  ['getantennatuningcapacitor_501',['getAntennaTuningCapacitor',['../group__group17.html#ga5a10cea82279f48a13d40298cf79e6ce',1,'SI4735']]],
   ['getautomaticgaincontrol_502',['getAutomaticGainControl',['../group__group08.html#gaaae187575b9868ff427c063c3a6cca2a',1,'SI4735']]],
   ['getbandlimit_503',['getBandLimit',['../group__group08.html#ga19e96565a2dec7ec68469f45c8d3e084',1,'SI4735']]],
   ['getcommandresponse_504',['getCommandResponse',['../group__group10.html#gab4c50abd500f55427a4d1d2273b45e3a',1,'SI4735']]],

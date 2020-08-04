@@ -41,7 +41,7 @@ var class_s_i4735 =
     [ "getReceivedSignalStrengthIndicator", "group__group08.html#gaeeefd12b49dbc764e0f45fe208441482", null ],
     [ "getStatusSNR", "group__group08.html#gac0bd4daaa321ef8956dca4d1e4e5cd3c", null ],
     [ "getStatusMULT", "group__group08.html#ga0f9b5438a6f92c8f2e538ee640f353ab", null ],
-    [ "getAntennaTuningCapacitor", "group__group17.html#ga3905d6551992b4dd51d13f05978d9081", null ],
+    [ "getAntennaTuningCapacitor", "group__group17.html#ga5a10cea82279f48a13d40298cf79e6ce", null ],
     [ "getAutomaticGainControl", "group__group08.html#gaaae187575b9868ff427c063c3a6cca2a", null ],
     [ "setAvcAmMaxGain", "group__group17.html#ga6e1e0e48d71e09debb07fc6dbe884829", null ],
     [ "setAvcAmMaxGain", "group__group08.html#ga98d12da4b801493a350ecf770f4f2d8b", null ],

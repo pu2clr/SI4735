@@ -1242,27 +1242,21 @@ public:
     /**
      * @ingroup group17
      * @brief Get the Antenna Tuning Capacitor value
+     * @details Returns the current antenna tuning capacitor value. The tuning capacitance is 95 fF x READANTCAP + 7 pF.
+     * @details ON AM or SSB mode, the MULT attribute sotores the high byte of READANTCAP and the attribute READANTCAP by itself stores the low byte.
      * 
-     * @details Returns the current antenna tuning capacitor value.
-     * 
-     * 
+     * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 74,74, 140 and 141.
      * @return uint8_t capacitance 
      */
     inline uint16_t getAntennaTuningCapacitor()
     {
-        union { 
-            struct {
-                uint8_t low;
-                uint8_t high;
-            } row;
-            uint16_t value;
-        } cap;
+        si47x_property cap;
 
         if (currentTune == FM_TUNE_FREQ) {
             return currentStatus.resp.READANTCAP;
         } else {
-            cap.row.low = currentStatus.resp.READANTCAP;
-            cap.row.high = currentStatus.resp.MULT;
+            cap.raw.byteLow = currentStatus.resp.READANTCAP; // On AM it is the low byte the READANTCAP value
+            cap.raw.byteHigh = currentStatus.resp.MULT; // On AM it is the high byte the READANTCAP value
             return cap.value;
         }
     };

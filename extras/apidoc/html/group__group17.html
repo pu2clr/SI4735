@@ -99,9 +99,9 @@ $(document).ready(function(){initNavTree('group__group17.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga3905d6551992b4dd51d13f05978d9081"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga3905d6551992b4dd51d13f05978d9081">SI4735::getAntennaTuningCapacitor</a> ()</td></tr>
-<tr class="memdesc:ga3905d6551992b4dd51d13f05978d9081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Antenna Tuning Capacitor value.  <a href="group__group17.html#ga3905d6551992b4dd51d13f05978d9081">More...</a><br /></td></tr>
-<tr class="separator:ga3905d6551992b4dd51d13f05978d9081"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5a10cea82279f48a13d40298cf79e6ce"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga5a10cea82279f48a13d40298cf79e6ce">SI4735::getAntennaTuningCapacitor</a> ()</td></tr>
+<tr class="memdesc:ga5a10cea82279f48a13d40298cf79e6ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Antenna Tuning Capacitor value.  <a href="group__group17.html#ga5a10cea82279f48a13d40298cf79e6ce">More...</a><br /></td></tr>
+<tr class="separator:ga5a10cea82279f48a13d40298cf79e6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6e1e0e48d71e09debb07fc6dbe884829"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga6e1e0e48d71e09debb07fc6dbe884829">SI4735::setAvcAmMaxGain</a> ()</td></tr>
 <tr class="memdesc:ga6e1e0e48d71e09debb07fc6dbe884829"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Avc Am Max Gain to 48dB.  <a href="group__group17.html#ga6e1e0e48d71e09debb07fc6dbe884829">More...</a><br /></td></tr>
 <tr class="separator:ga6e1e0e48d71e09debb07fc6dbe884829"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,16 +170,17 @@ Functions</h2></td></tr>
  <br  />
  First of all, it is important to say that the SSB patch content <b>is not part of this library</b>. The paches used here were made available by Mr. Vadim Afonkin on his <a href="https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0">Dropbox repository</a>. It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library. <br  />
  </p>
-<p>This implementation was tested only on Si4735-D60 device.</p>
+<p>This implementation was tested only on Si4735-D60 and SI4732-A10 devices.</p>
 <p>SSB modulation is a refinement of amplitude modulation that one of the side band and the carrier are suppressed.</p>
-<p>What does SSB patch means? In this context, a patch is a piece of software used to change the behavior of the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> device. There is little information available about patching the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a>.</p>
+<p>What does SSB patch means? In this context, a patch is a piece of software used to change the behavior of the SI4735-D60/SI4732-A10 device. There is little information available about patching the SI4735-D60/SI4732-A10.</p>
 <p>The following information is the understanding of the author of this project and it is not necessarily correct.</p>
 <p>A patch is executed internally (run by internal MCU) of the device. Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device. Patches to the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> are distributed in binary form and have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino boards). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system. Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.</p>
-<p>I would like to thank Mr Vadim Afonkin for making available the SSBRX patches for SI4735-D60 on his Dropbox repository. On this repository you have two files, amrx_6_0_1_ssbrx_patch_full_0x9D29.csg and amrx_6_0_1_ssbrx_patch_init_0xA902.csg. It is important to know that the patch content of the original files is constant hexadecimal representation used by the language C/C++. Actally, the original files are in ASCII format (not in binary format). If you are not using C/C++ or if you want to load the files directly to the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a>, you must convert the values to numeric value of the hexadecimal constants. For example: 0x15 = 21 (00010101); 0x16 = 22 (00010110); 0x01 = 1 (00000001); 0xFF = 255 (11111111);</p>
-<p>ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here. This library works with the I²C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60. Once again, the author disclaims any liability for any damage this procedure may cause to your <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> or other devices that you are using. </p><dl class="section see"><dt>See also</dt><dd>AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5 </dd></dl>
+<p>I would like to thank Mr Vadim Afonkin for making available the SSBRX patches for SI4735-D60/SI4732-A10 on his Dropbox repository. On this repository you have two files, amrx_6_0_1_ssbrx_patch_full_0x9D29.csg and amrx_6_0_1_ssbrx_patch_init_0xA902.csg. It is important to know that the patch content of the original files is constant hexadecimal representation used by the language C/C++. Actally, the original files are in ASCII format (not in binary format). If you are not using C/C++ or if you want to load the files directly to the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a>, you must convert the values to numeric value of the hexadecimal constants. For example: 0x15 = 21 (00010101); 0x16 = 22 (00010110); 0x01 = 1 (00000001); 0xFF = 255 (11111111);</p>
+<p>ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment. Given this, it is at your own risk to continue with the procedures suggested here. This library works with the I²C communication protocol and it is designed to apply a SSB extension PATCH to <br  />
+ SI4735-D60 and SI4732-A10 devices. Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735-D60 or SI4732-A10 or other devices that you are using. </p><dl class="section see"><dt>See also</dt><dd>AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5 </dd></dl>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga3905d6551992b4dd51d13f05978d9081"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3905d6551992b4dd51d13f05978d9081">&#9670;&nbsp;</a></span>getAntennaTuningCapacitor()</h2>
+<a id="ga5a10cea82279f48a13d40298cf79e6ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5a10cea82279f48a13d40298cf79e6ce">&#9670;&nbsp;</a></span>getAntennaTuningCapacitor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -188,7 +189,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::getAntennaTuningCapacitor </td>
+          <td class="memname">uint16_t SI4735::getAntennaTuningCapacitor </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -202,7 +203,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the Antenna Tuning Capacitor value. </p>
-<p>Returns the current antenna tuning capacitor value.</p>
+<p>Returns the current antenna tuning capacitor value. The tuning capacitance is 95 fF x READANTCAP + 7 pF.</p>
+<p>ON AM or SSB mode, the MULT attribute sotores the high byte of READANTCAP and the attribute READANTCAP by itself stores the low byte.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 74,74, 140 and 141. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>uint8_t capacitance </dd></dl>
 
 </div>
@@ -777,7 +780,7 @@ void <a class="el" href="group__group08.html#ga63d205f2d3169ba877a2bd2ee28d224f"
 <p>Query the library information of the Si47XX device. </p>
 <p>SI47XX PATCH RESOURCES</p>
 <p>Used to confirm if the patch is compatible with the internal device library revision.</p>
-<p>You have to call this function if you are applying a patch on SI47XX (SI4735-D60).</p>
+<p>You have to call this function if you are applying a patch on SI47XX (SI4735-D60/SI4732-A10).</p>
 <p>The first command that is sent to the device is the POWER_UP command to confirm that the patch is compatible with the internal device library revision.</p>
 <p>The device moves into the powerup mode, returns the reply, and moves into the powerdown mode.</p>
 <p>The POWER_UP command is sent to the device again to configure the mode of the device and additionally is used to start the patching process.</p>
@@ -934,7 +937,7 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM 
 </div><div class="memdoc">
 
 <p>Loads a given SSB patch content. </p>
-<p>Configures the Si4735-D60 device to work with SSB.</p>
+<p>Configures the Si4735-D60/SI4732-A10 device to work with SSB.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ssb_patch_content</td><td>point to patch content array </td></tr>
