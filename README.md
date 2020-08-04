@@ -661,6 +661,13 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 
 ![Si4732-A10 pinout](./extras/images/SI4732_A10_pinout.png)
 
+
+#### The picture below shows the SI473X pinout (QFN)
+
+![Si4735-D60 pinout](./extras/images/SI4735_D50_QFN.png)
+
+
+
 * The SI4735-D60 and SI4732-A10 have SSB patch support
 * __See some Shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
 
