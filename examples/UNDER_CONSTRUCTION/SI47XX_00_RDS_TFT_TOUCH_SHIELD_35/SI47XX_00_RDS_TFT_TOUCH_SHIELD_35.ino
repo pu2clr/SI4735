@@ -101,11 +101,13 @@
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
-bool bfoOn = false;
-bool audioMute = false;
-bool bAntenna = false;
-bool bVolume = false;  // if true, the encoder will control the volume.
-bool bAgcAtt = false;
+bool cmdBFO = false;
+bool cmdAudioMute = false;
+bool cmdAntenna = false;
+bool cmdVolume = false;  // if true, the encoder will control the volume.
+bool cmdAgcAtt = false;
+bool cmdFilter = false;
+bool cmdStep = false;
 
 
 bool ssbLoaded = false;
@@ -178,16 +180,21 @@ const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
 int lastSwBand = 7; // Saves the last SW band used
 
+
+int tabStep[] = {1,5,10,50,100,500,1000};
+const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
+int idxStep = 0;
+
 uint16_t currentFrequency;
 uint16_t previousFrequency;
 uint8_t bandwidthIdx = 0;
 uint16_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
-uint8_t bwIdxSSB = 2;
+int8_t bwIdxSSB = 2;
 const char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
-uint8_t bwIdxAM = 1;
+int8_t bwIdxAM = 1;
 const char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
@@ -229,7 +236,6 @@ SI4735 si4735;
 // TFT 3.5" MCUFRIEND
 const int XP=7,XM=A1,YP=A2,YM=6; //320x480 ID=0x6814
 const int TS_LEFT=149,TS_RT=846,TS_TOP=120,TS_BOT=918;
-
 
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 480);
@@ -339,6 +345,21 @@ void rotaryEncoder()
     }
   }
 }
+
+/**
+ * Disable all commands
+ * 
+ */
+void disableCommands() {
+    cmdBFO = false;
+    cmdAudioMute = false;
+    cmdAntenna = false;
+    cmdVolume = false;  // if true, the encoder will control the volume.
+    cmdAgcAtt = false;
+    cmdFilter = false;
+    cmdStep = false;
+}
+
 
 /*
    Shows a text on a given position; with a given size and font, and with a given color
@@ -560,7 +581,7 @@ void showFrequency()
     tft.drawChar(139, 37, '.', BLACK, BLACK, 1);
   }
 
-  color = (bfoOn) ? CYAN : YELLOW;
+  color = (cmdBFO) ? CYAN : YELLOW;
     
   showFrequencyValue(50, 37, bufferFreq, sFreq, color, 30, 1);
 
@@ -602,6 +623,15 @@ void clearFrequencyArea() {
   tft.fillRect(2, 2, tft.width() - 4, 46, BLACK);
 }
 
+
+int getStepIndex(int st) {
+  for (int i = 0; i < lastStep; i++) {
+    if ( st == tabStep[i] ) return i;
+  }
+  return 0;
+}
+
+
 /**
  * Clears buffer control variable
  * 
@@ -618,6 +648,8 @@ void clearBuffer()
   bufferUnit[0] = '\0';
   bufferCapacitorRead[0] = '\0';
   bufferVolume[0] = '\0';
+  bufferStep[0] = '\0';
+
 }
 
 /**
@@ -660,6 +692,7 @@ void showStatus()
 
   showBandwitdth();
   showAgcAtt();
+  showStep();
 
 }
 
@@ -729,6 +762,15 @@ void showRSSI()
   tft.fillRect(30, 390, signalLevel, 8, (signalLevel > 25) ? YELLOW : RED);
 }
 
+void showStep() {
+
+  char sStep[15];
+  tft.setFont(NULL); // default font
+
+  sprintf(sStep, "Step: %4d",currentStep);
+  printText(240, 60, 1, bufferStep, sStep, GREEN, 7);
+
+}
 
 void showBFO()
 {
@@ -746,7 +788,7 @@ void showVolume()
   char sVolume[15];
 
   sprintf(sVolume, "Vol: %2.2d",si4735.getVolume());
-  printText(250, 85, 1, bufferVolume, sVolume, GREEN, 7);
+  printText(260, 85, 1, bufferVolume, sVolume, GREEN, 7);
 }
 
 // Internal tuning capacitor test
@@ -886,7 +928,7 @@ void loadSSB()
 */
 void useBand()
 {
-  bAntenna = false;
+  cmdAntenna = false;
 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
@@ -900,7 +942,7 @@ void useBand()
     // si4735.setSeekAmRssiThreshold(0);
     // si4735.setSeekFmSrnThreshold(3);
     
-    bfoOn = ssbLoaded = false;
+    cmdBFO = ssbLoaded = false;
     si4735.setRdsConfig(1, 2, 2, 2, 2);
   }
   else
@@ -929,7 +971,7 @@ void useBand()
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAmSoftMuteMaxAttenuation(softMuteIdx); // // Disable Soft Mute for AM
-      bfoOn = false;
+      cmdBFO = false;
     }
 
     // Sets the seeking limits and space.
@@ -943,6 +985,8 @@ void useBand()
 
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
+  idxStep = getStepIndex(currentStep);
+
   showStatus();
 }
 
@@ -1008,12 +1052,16 @@ void switchAgc(int8_t v) {
   elapsedCommand = millis();
 }
 
-void switchFilter() {
+void switchFilter(uint8_t v) {
   if (currentMode == LSB || currentMode == USB)
   {
-    bwIdxSSB++;
+    bwIdxSSB = ( v == 1)? bwIdxSSB+1:bwIdxSSB-1;
+
     if (bwIdxSSB > 5)
-      bwIdxSSB = 0;
+       bwIdxSSB = 0;
+    else if ( bwIdxSSB < 0 ) 
+      bwIdxSSB = 5;
+
     si4735.setSSBAudioBandwidth(bwIdxSSB);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
     if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
@@ -1023,53 +1071,46 @@ void switchFilter() {
   }
   else if (currentMode == AM)
   {
-    bwIdxAM++;
+    bwIdxAM = ( v == 1)? bwIdxAM+1:bwIdxAM-1;
+
     if (bwIdxAM > 6)
       bwIdxAM = 0;
+    else if ( bwIdxAM < 0) 
+      bwIdxAM = 6;  
+      
     si4735.setBandwidth(bwIdxAM, 1);
   }
   showBandwitdth();
+  elapsedCommand = millis();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
 
-void switchStep() {
-  if (currentMode == FM)
-  {
-    fmStereo = !fmStereo;
-    if (fmStereo)
-      si4735.setFmStereoOn();
-    else
-      si4735.setFmStereoOff(); // It is not working so far.
-  }
-  else
-  {
+void switchStep(int8_t v) {
 
-    // This command should work only for SSB mode
-    if (bfoOn && (currentMode == LSB || currentMode == USB))
+   // This command should work only for SSB mode
+    if (cmdBFO && (currentMode == LSB || currentMode == USB))
     {
       currentBFOStep = (currentBFOStep == 25) ? 10 : 25;
       showBFO();
     }
     else
     {
-      if (currentStep == 1)
-        currentStep = 5;
-      else if (currentStep == 5)
-        currentStep = 10;
-      else if (currentStep == 10)
-        currentStep = 100;
-      else if (currentStep == 100 && bandIdx == lastBand)
-        currentStep = 500;
-      else
-        currentStep = 1;
+      idxStep = ( v == 1 )? idxStep + 1 : idxStep - 1;
+      if ( idxStep > lastStep) 
+         idxStep = 0;
+      else if ( idxStep < 0 )
+         idxStep = lastStep;   
+
+      currentStep = tabStep[idxStep];
+
       si4735.setFrequencyStep(currentStep);
       band[bandIdx].currentStep = currentStep;
       si4735.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
-      showStatus();
+      showStep();
     }
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  }
+    elapsedCommand = millis();
 }
 
 /**
@@ -1093,8 +1134,8 @@ void doBFO() {
   bufferFreq[0] = '\0';
   if (currentMode == LSB || currentMode == USB)
   {
-    bfoOn = !bfoOn;
-    if (bfoOn)
+    cmdBFO = !cmdBFO;
+    if (cmdBFO)
     {
       bBFO.initButton(&tft, 195, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"VFO", 1);
       showBFO();
@@ -1134,21 +1175,27 @@ void loop(void)
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
-    if (bfoOn)
+    if (cmdBFO)
     {
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
       si4735.setSSBBfo(currentBFO);
       showBFO();
     }
-    else if (bVolume)
+    else if (cmdVolume)
     {
       doVolume(encoderCount);
     }
-    else if (bAgcAtt)
+    else if (cmdAgcAtt)
     {
       switchAgc(encoderCount);
     }
-    else if ( bAntenna ) {
+    else if (cmdFilter) {
+      switchFilter(encoderCount);
+    } 
+    else if (cmdStep) {
+      switchStep(encoderCount);
+    }
+    else if ( cmdAntenna ) {
       antennaIdx = (encoderCount == 1) ? (antennaIdx + currentStep) : (antennaIdx - currentStep);
       si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
       showCapacitor();
@@ -1176,17 +1223,17 @@ void loop(void)
   // Volume
   if (bVolumeLevel.justPressed())
   {
-    audioMute = false;
-    si4735.setAudioMute(audioMute);
-    bVolume = true;
+    disableCommands();
+    si4735.setAudioMute(cmdAudioMute);
+    cmdVolume = true;
     delay(MIN_ELAPSED_TIME);
   }
 
   // Mute
   if (bAudioMute.justPressed())
   {
-    audioMute = !audioMute;
-    si4735.setAudioMute(audioMute);
+    cmdAudioMute = !cmdAudioMute;
+    si4735.setAudioMute(cmdAudioMute);
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   }
 
@@ -1231,18 +1278,18 @@ void loop(void)
 
   if (bCapAmi.justPressed())
   {
-    bAntenna = !bAntenna;  
+    cmdAntenna = !cmdAntenna;  
     showCapacitor();
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   }
 
   if (bCapAuto.justPressed())
   {
+    disableCommands();
     antennaIdx = (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)? 0:1;
     si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
     showCapacitor();
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-    bAntenna = false;
   }
 
   if (bAM.justPressed())
@@ -1251,7 +1298,7 @@ void loop(void)
     {
       currentMode = AM;
       ssbLoaded = false;
-      bfoOn = false;
+      cmdBFO = false;
       band[bandIdx].currentFreq = currentFrequency;
       band[bandIdx].currentStep = currentStep;
       useBand();
@@ -1266,7 +1313,7 @@ void loop(void)
       band[bandIdx].currentFreq = currentFrequency;
       band[bandIdx].currentStep = currentStep;
       ssbLoaded = false;
-      bfoOn = false;
+      cmdBFO = false;
       currentMode = FM;
       bandIdx = 0;
       useBand();
@@ -1279,7 +1326,7 @@ void loop(void)
     band[bandIdx].currentFreq = currentFrequency;
     band[bandIdx].currentStep = currentStep;
     ssbLoaded = false;
-    bfoOn = false;
+    cmdBFO = false;
     currentMode = AM;
     bandIdx = 2; // See Band table
     useBand();
@@ -1290,7 +1337,7 @@ void loop(void)
     band[bandIdx].currentFreq = currentFrequency;
     band[bandIdx].currentStep = currentStep;
     ssbLoaded = false;
-    bfoOn = false;
+    cmdBFO = false;
     currentMode = AM;
     bandIdx = lastSwBand; // See Band table
     useBand();
@@ -1329,19 +1376,24 @@ void loop(void)
   // AGC and attenuation control
   if (bAGC.justPressed())
   {
-    bAgcAtt = true;
-    bVolume = false;
+    disableCommands();
+    cmdAgcAtt = true;
     delay(MIN_ELAPSED_TIME);
   }
 
   if (bFilter.justPressed())
   {
-    switchFilter();
+    disableCommands();
+    cmdFilter =  true;
+    delay(MIN_ELAPSED_TIME);
   }
 
   if (bStep.justPressed())
   {
-    switchStep();
+    // switchStep();
+    disableCommands();
+    cmdStep = true;
+    delay(MIN_ELAPSED_TIME);
   }
 
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
@@ -1380,9 +1432,7 @@ void loop(void)
 
   // Disable commands control
   if ( (millis() - elapsedCommand) > ELAPSED_COMMAND ) {
-    bVolume = false;
-    bAntenna = false;
-    bAgcAtt = false;
+    disableCommands();
     elapsedCommand = millis();
   }
 
