@@ -89,6 +89,7 @@
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
+#define ELAPSED_COMMAND 2000  // time to turn off the last command 
 #define DEFAULT_VOLUME 45 // change it for your favorite sound volume
 
 #define FM 0
@@ -103,6 +104,9 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 bool bfoOn = false;
 bool audioMute = false;
 bool bAntenna = false;
+bool bVolume = false;  // if true, the encoder will control the volume.
+bool bAgcAtt = false;
+
 
 bool ssbLoaded = false;
 bool fmStereo = true;
@@ -123,6 +127,8 @@ int previousBFO = 0;
 long elapsedRSSI = millis();
 long elapsedButton = millis();
 long elapsedFrequency = millis();
+
+long elapsedCommand = millis();
 
 uint8_t rssi = 0;
 
@@ -195,6 +201,7 @@ char bufferCapacitorRead[10];
 char bufferBFO[15];
 char bufferStep[15];
 char bufferUnit[10];
+char bufferVolume[10];
 
 char bufferAGC[15];
 char bufferBW[20];
@@ -226,7 +233,7 @@ const int TS_LEFT=149,TS_RT=846,TS_TOP=120,TS_BOT=918;
 
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 480);
-Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeUp, bVolumeDown, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC, bSoftMute, bCapAmi, bCapAuto;
+Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeLevel, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC, bSoftMute, bCapAmi, bCapAuto, bBFO;
 
 int pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -421,12 +428,13 @@ void showTemplate()
   
   bPreviousBand.initButton(&tft, 45, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Band-", 1);
   bNextBand.initButton(&tft, 120, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Band+", 1);
-  bVolumeDown.initButton(&tft, 195, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Vol-", 1);
-  bVolumeUp.initButton(&tft, 270, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Vol+", 1);
+  bVolumeLevel.initButton(&tft, 195, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Vol", 1);
+
+  bAudioMute.initButton(&tft, 270, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Mute", 1);
 
   bSeekDown.initButton(&tft, 45, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"Seek-", 1);
   bSeekUp.initButton(&tft, 120, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"Seek+", 1);
-  bAudioMute.initButton(&tft, 195, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"Mute", 1);
+  bBFO.initButton(&tft, 195, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"BFO", 1);
   bStep.initButton(&tft, 270, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"Step", 1);
 
 
@@ -449,12 +457,12 @@ void showTemplate()
   // Exibe os botões (teclado touch)
   bNextBand.drawButton(true);
   bPreviousBand.drawButton(true);
-  bVolumeUp.drawButton(true);
-  bVolumeDown.drawButton(true);
+  bVolumeLevel.drawButton(true);
+  bAudioMute.drawButton(true);
   bSeekUp.drawButton(true);
   bSeekDown.drawButton(true);
   bStep.drawButton(true);
-  bAudioMute.drawButton(true);
+  bBFO.drawButton(true);
   bFM.drawButton(true);
   bMW.drawButton(true);
   bSW.drawButton(true);
@@ -608,6 +616,8 @@ void clearBuffer()
   bufferBFO[0] = '\0';
   bufferFreq[0] = '\0';
   bufferUnit[0] = '\0';
+  bufferCapacitorRead[0] = '\0';
+  bufferVolume[0] = '\0';
 }
 
 /**
@@ -625,6 +635,8 @@ void showStatus()
 
   si4735.getFrequency();
   showFrequency();
+
+  showVolume();
 
   tft.setFont(NULL); // default font
   printText(5, 5, 2, bufferBandName, band[bandIdx].bandName, CYAN, 11);
@@ -648,6 +660,7 @@ void showStatus()
 
   showBandwitdth();
   showAgcAtt();
+
 }
 
 
@@ -724,13 +737,27 @@ void showBFO()
   printText(200, 4, 2, bufferBFO, buffer, YELLOW, 11);
 }
 
+/**
+ * Shows the current volume level
+ * 
+ */
+void showVolume()
+{
+  char sVolume[15];
+
+  sprintf(sVolume, "Vol: %2.2d",si4735.getVolume());
+  printText(250, 85, 1, bufferVolume, sVolume, GREEN, 7);
+}
+
 // Internal tuning capacitor test
 void showCapacitor() {
+  /*
   uint16_t capValue = si4735.getAntennaTuningCapacitor();
   sprintf(buffer, "%d", antennaIdx);
   printText(10, 430, 2, bufferCapacitor, buffer, YELLOW, 11);
   sprintf(buffer, "%d", capValue);
   printText(100, 430, 2, bufferCapacitorRead, buffer, YELLOW, 11);
+  */
 }
 
 char *rdsMsg;
@@ -784,10 +811,6 @@ void checkRDS()
         showRDSTime();
     }
   }
-}
-
-void showVolume()
-{
 }
 
 /*
@@ -923,63 +946,56 @@ void useBand()
   showStatus();
 }
 
-void switchAgc() {
+void switchAgc(int8_t v) {
+
+  agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
 
   if (agcIdx == 0)
   {
     disableAgc = 0; // Turns AGC ON
     agcNdx = 0;
-    agcIdx = 1;
   }
   else if (agcIdx == 1)
   {
     disableAgc = 1; // Turns AGC OFF
     agcNdx = 0;     // Sets minimum attenuation
-    agcIdx = 2;
   }
   else if (agcIdx == 2)
   {
     disableAgc = 1; // Turns AGC OFF
     agcNdx = 5;     // Increases the attenuation AM/SSB AGC Index  = 10
-    agcIdx = 3;
   }
   else if (agcIdx == 3)
   {
     disableAgc = 1; // Turns AGC OFF
     agcNdx = 10;    // Increases the attenuation AM/SSB AGC Index  = 30
-    agcIdx = 4;
   }
   else if (agcIdx == 4)
   {
     disableAgc = 1; // Turns AGC OFF
     agcNdx = 15;    // Increases the attenuation AM/SSB AGC Index  = 30
-    agcIdx = 5;
   }
   else if (agcIdx == 5)
   {
     disableAgc = 1; // Turns AGC OFF
     agcNdx = 20;    // Increases the attenuation AM/SSB AGC Index  = 30
-    agcIdx = 6;
   }
   else if (agcIdx == 6)
   {
     disableAgc = 1; // Turns AGC OFF
     agcNdx = 25;    // Increases the attenuation AM/SSB AGC Index  = 30
-    agcIdx = 7;
   }
   else if (agcIdx == 7)
   {
     disableAgc = 1; // Turns AGC OFF
     agcNdx = 30;    // Increases the attenuation AM/SSB AGC Index  = 30
-    agcIdx = 8;
   }
   else if (agcIdx == 8)
   {
     disableAgc = 1; // Turns AGC OFF
     agcNdx = 35;    // Increases the attenuation AM/SSB AGC Index  = 30
-    agcIdx = 9;
   }
-  else if (agcIdx == 9)
+  else if (agcIdx >= 9)
   {
     disableAgc = 1; // Turns AGC OFF
     agcNdx = 0;     // Increases the attenuation AM/SSB AGC Index  = 30
@@ -989,7 +1005,7 @@ void switchAgc() {
   si4735.setAutomaticGainControl(disableAgc, agcNdx);
   showAgcAtt();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-
+  elapsedCommand = millis();
 }
 
 void switchFilter() {
@@ -1056,7 +1072,39 @@ void switchStep() {
   }
 }
 
+/**
+ * @brief Proccess the volume level
+ * 
+ * @param v 1 = Up; !1 = down
+ */
+void doVolume(int8_t v) {
 
+  if ( v == 1) 
+    si4735.volumeUp();
+   else
+    si4735.volumeDown();
+
+  showVolume();
+  elapsedCommand = millis();
+}
+
+
+void doBFO() {
+  bufferFreq[0] = '\0';
+  if (currentMode == LSB || currentMode == USB)
+  {
+    bfoOn = !bfoOn;
+    if (bfoOn)
+    {
+      bBFO.initButton(&tft, 195, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"VFO", 1);
+      showBFO();
+    } else {
+      bBFO.initButton(&tft, 195, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"BFO", 1);
+    }
+    bBFO.drawButton(true);
+    showStatus();
+  }
+}
 
 /* two buttons are quite simple
 */
@@ -1065,8 +1113,8 @@ void loop(void)
   bool down = Touch_getXY();
   bNextBand.press(down && bNextBand.contains(pixel_x, pixel_y));
   bPreviousBand.press(down && bPreviousBand.contains(pixel_x, pixel_y));
-  bVolumeUp.press(down && bVolumeUp.contains(pixel_x, pixel_y));
-  bVolumeDown.press(down && bVolumeDown.contains(pixel_x, pixel_y));
+  bVolumeLevel.press(down && bVolumeLevel.contains(pixel_x, pixel_y));
+  bBFO.press(down && bBFO.contains(pixel_x, pixel_y));
   bSeekUp.press(down && bSeekUp.contains(pixel_x, pixel_y));
   bSeekDown.press(down && bSeekDown.contains(pixel_x, pixel_y));
   bStep.press(down && bStep.contains(pixel_x, pixel_y));
@@ -1092,11 +1140,19 @@ void loop(void)
       si4735.setSSBBfo(currentBFO);
       showBFO();
     }
+    else if (bVolume)
+    {
+      doVolume(encoderCount);
+    }
+    else if (bAgcAtt)
+    {
+      switchAgc(encoderCount);
+    }
     else if ( bAntenna ) {
       antennaIdx = (encoderCount == 1) ? (antennaIdx + currentStep) : (antennaIdx - currentStep);
       si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
       showCapacitor();
-    }
+    } 
     else
     {
       if (encoderCount == 1)
@@ -1118,17 +1174,25 @@ void loop(void)
     bandDown();
 
   // Volume
-  if (bVolumeUp.justPressed())
+  if (bVolumeLevel.justPressed())
   {
-    // bVolumeUp.drawButton(true);
-    si4735.volumeUp();
+    audioMute = false;
+    si4735.setAudioMute(audioMute);
+    bVolume = true;
     delay(MIN_ELAPSED_TIME);
   }
-  
-  if (bVolumeDown.justPressed())
+
+  // Mute
+  if (bAudioMute.justPressed())
   {
-    // bVolumeDown.drawButton(true);
-    si4735.volumeDown();
+    audioMute = !audioMute;
+    si4735.setAudioMute(audioMute);
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  }
+
+  if (bBFO.justPressed())
+  {
+    doBFO();
     delay(MIN_ELAPSED_TIME);
   }
 
@@ -1151,16 +1215,8 @@ void loop(void)
       showStatus();
   }
 
-  // Mute
-  if (bAudioMute.justPressed())
-  {
-    audioMute = !audioMute;
-    si4735.setAudioMute(audioMute);
-    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  }
 
-
-  // Mute
+  // SMute
   if (bSoftMute.justPressed())
   {
     if (softMuteIdx >= 8) 
@@ -1273,7 +1329,9 @@ void loop(void)
   // AGC and attenuation control
   if (bAGC.justPressed())
   {
-    switchAgc();
+    bAgcAtt = true;
+    bVolume = false;
+    delay(MIN_ELAPSED_TIME);
   }
 
   if (bFilter.justPressed())
@@ -1288,16 +1346,7 @@ void loop(void)
 
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
-    bufferFreq[0] = '\0';
-    if (currentMode == LSB || currentMode == USB)
-    {
-      bfoOn = !bfoOn;
-      if (bfoOn)
-      {
-        showBFO();
-      }
-      showStatus();
-    }
+    doBFO();
     delay(250);
   }
 
@@ -1319,12 +1368,22 @@ void loop(void)
     if (currentFrequency != previousFrequency)
     {
       clearStatusArea();
+      bufferVolume[0] = '\0';
+      showVolume();
       bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] = bufferRdsTime[0] = rdsMsg[0] = stationName[0] = '\0';
       showRDSMsg();
       showRDSStation();
       previousFrequency = currentFrequency;
     }
     checkRDS();
+  }
+
+  // Disable commands control
+  if ( (millis() - elapsedCommand) > ELAPSED_COMMAND ) {
+    bVolume = false;
+    bAntenna = false;
+    bAgcAtt = false;
+    elapsedCommand = millis();
   }
 
   delay(20);
