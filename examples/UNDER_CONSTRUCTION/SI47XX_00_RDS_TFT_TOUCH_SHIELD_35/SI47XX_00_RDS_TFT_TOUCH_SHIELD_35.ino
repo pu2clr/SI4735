@@ -191,9 +191,16 @@ char buffer[255];
 char bufferFreq[10];
 char bufferStereo[10];
 char bufferCapacitor[10];
+char bufferCapacitorRead[10];
 char bufferBFO[15];
 char bufferStep[15];
 char bufferUnit[10];
+
+char bufferAGC[15];
+char bufferBW[20];
+char bufferMode[15];
+char bufferBandName[15];
+
 
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 MCUFRIEND_kbv tft;
@@ -515,9 +522,12 @@ void showFrequencyValue(int col, int line, char *oldValue, char *newValue, uint1
   strcpy(oldValue, newValue);
 }
 
+/**
+ * Shows the current frequency
+ * 
+ */
 void showFrequency()
 {
-  float freq;
   uint16_t color;
 
   char aux[15];
@@ -555,82 +565,136 @@ void showFrequency()
   showCapacitor();
 }
 
-// Will be used by seekStationProgress
+/**
+ * Shows the frequency during seek process
+ * 
+ */
 void showFrequencySeek(uint16_t freq)
 {
   previousFrequency = currentFrequency = freq;
   showFrequency();
 }
 
-char bufferBW[15];
-char bufferAGC[10];
-char bufferMode[10];
-char bufferBandName[10];
 
+
+/**
+ * Clears status area
+ * 
+ */
+void clearStatusArea() {
+  tft.fillRect(0, 60, tft.width(), 36, BLACK); // Clear all status area
+}
+
+
+/**
+ * Clears frequency area
+ * 
+ */
+void clearFrequencyArea() {
+  tft.fillRect(2, 2, tft.width() - 4, 46, BLACK);
+}
+
+/**
+ * Clears buffer control variable
+ * 
+ */
+void clearBuffer()
+{
+  bufferAGC[0] = '\0';
+  bufferBW[0] = '\0';
+  bufferMode[0] = '\0';
+  bufferBandName[0] = '\0';
+  bufferMode[0] = '\0';
+  bufferBFO[0] = '\0';
+  bufferFreq[0] = '\0';
+  bufferUnit[0] = '\0';
+}
+
+/**
+ * Soows status
+ * 
+ */
 void showStatus()
 {
+  clearBuffer();
+  clearFrequencyArea();
+  clearStatusArea();
+
   si4735.getStatus();
   si4735.getCurrentReceivedSignalQuality();
-
-  // SRN
-
-  // tft.fillRect(195, 2, 93, 36, BLACK);
 
   si4735.getFrequency();
   showFrequency();
 
-  if (si4735.isCurrentTuneFM())
-  {
-    printText(250, 30, 2, bufferUnit, "MHz", WHITE, 12);
-    printText(200, 4, 2, bufferBFO, "      ", BLACK, 11);
-  }
-  else
-  {
-    printText(250, 30, 2, bufferUnit, "KHz", WHITE, 12);
-  }
-
-  tft.fillRect(0, 60, 250, 36, BLACK);
-
+  tft.setFont(NULL); // default font
   printText(5, 5, 2, bufferBandName, band[bandIdx].bandName, CYAN, 11);
+
   if (band[bandIdx].bandType == SW_BAND_TYPE)
   {
     printText(5, 30, 2, bufferMode, bandModeDesc[currentMode], CYAN, 11);
-  } else {
+  }
+  else
+  {
     printText(5, 30, 2, bufferMode, "    ", BLACK, 11);
   }
 
-  showText(70, 85, 1, NULL, BLACK, bufferAGC);
-
-  si4735.getAutomaticGainControl();
-  if (agcNdx == 0 && agcIdx == 0)
-    strcpy(buffer, "AGC ON");
-  else
+  if (si4735.isCurrentTuneFM())
   {
-    sprintf(buffer, "ATT: %2d", agcNdx);
+    printText(250, 30, 2, bufferUnit, "MHz", WHITE, 12);
+    return;
   }
-  strcpy(bufferAGC, buffer);
 
+  printText(250, 30, 2, bufferUnit, "KHz", WHITE, 12);
+
+  showBandwitdth();
+  showAgcAtt();
+}
+
+
+/**
+ * SHow bandwitdth on AM or SSB mode
+ * 
+ */
+void showBandwitdth()
+{
+  char bw[20];
+
+  tft.setFont(NULL);
   if (currentMode == LSB || currentMode == USB)
   {
-    showText(5, 85, 1, NULL, BLACK, bufferBW);
-    sprintf(buffer, "BW:%s KHz", bandwitdthSSB[bwIdxSSB]);
-    showText(5, 85, 1, NULL, GREEN, buffer);
-    strcpy(bufferBW, buffer);
+    sprintf(bw, "BW:%s KHz", bandwitdthSSB[bwIdxSSB]);
+    printText(5, 85, 1, bufferBW, bw, GREEN, 7);
     showBFO();
-    showText(70, 85, 1, NULL, GREEN, bufferAGC);
   }
   else if (currentMode == AM)
   {
-    showText(5, 85, 1, NULL, BLACK, bufferBW);
-    sprintf(buffer, "BW:%s KHz", bandwitdthAM[bwIdxAM]);
-    showText(5, 85, 1, NULL, GREEN, buffer);
-    strcpy(bufferBW, buffer);
-    showText(70, 85, 1, NULL, GREEN, bufferAGC);
-    printText(200, 4, 2, bufferBFO, "      ", BLACK, 11);
+    sprintf(bw, "BW:%s KHz", bandwitdthAM[bwIdxAM]);
+    printText(5, 85, 1, bufferBW, bw, GREEN, 7);
   }
-  tft.setFont(NULL);
 }
 
+/**
+ * Shows AGC and Attenuation status
+ * 
+ */
+void showAgcAtt() {
+  char sAgc[15];
+  
+  si4735.getAutomaticGainControl();
+  if (agcNdx == 0 && agcIdx == 0)
+    strcpy(sAgc, "AGC ON");
+  else
+  {
+    sprintf(sAgc, "ATT: %2d", agcNdx);
+  }
+  tft.setFont(NULL);
+  printText(90, 85, 1, bufferAGC, sAgc, GREEN, 7);
+}
+
+/**
+ * Shows RSSI level
+ * 
+ */
 void showRSSI()
 {
 
@@ -655,30 +719,18 @@ void showRSSI()
 
 void showBFO()
 {
-
-  /*
-  showText(150, 60, 1, NULL, BLACK, bufferBFO);
-  showText(150, 77, 1, NULL, BLACK, bufferStep);
-
-  sprintf(buffer, "BFO.:%+d", currentBFO);
-  showText(150, 60, 1, NULL, GREEN, buffer);
-  strcpy(bufferBFO, buffer);
-  tft.fillRect(128, 78, 110, 18, BLACK);
-  sprintf(buffer, "Step:%2d", currentBFOStep);
-  showText(150, 77, 1, NULL, GREEN, buffer);
-  strcpy(bufferStep, buffer);
-  */
-
+  tft.setFont(NULL); // default font
   sprintf(buffer, "%c%d", (currentBFO>=0)?'+':'-',abs(currentBFO));
   printText(200, 4, 2, bufferBFO, buffer, YELLOW, 11);
 }
 
 // Internal tuning capacitor test
 void showCapacitor() {
-
+  uint16_t capValue = si4735.getAntennaTuningCapacitor();
   sprintf(buffer, "%d", antennaIdx);
   printText(10, 430, 2, bufferCapacitor, buffer, YELLOW, 11);
-  
+  sprintf(buffer, "%d", capValue);
+  printText(100, 430, 2, bufferCapacitorRead, buffer, YELLOW, 11);
 }
 
 char *rdsMsg;
@@ -811,6 +863,8 @@ void loadSSB()
 */
 void useBand()
 {
+  bAntenna = false;
+
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -933,7 +987,7 @@ void switchAgc() {
   }
   // Sets AGC on/off and gain
   si4735.setAutomaticGainControl(disableAgc, agcNdx);
-  showStatus();
+  showAgcAtt();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 
 }
@@ -958,7 +1012,7 @@ void switchFilter() {
       bwIdxAM = 0;
     si4735.setBandwidth(bwIdxAM, 1);
   }
-  showStatus();
+  showBandwitdth();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
@@ -1132,6 +1186,7 @@ void loop(void)
     si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
     showCapacitor();
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+    bAntenna = false;
   }
 
   if (bAM.justPressed())
@@ -1263,7 +1318,7 @@ void loop(void)
   {
     if (currentFrequency != previousFrequency)
     {
-      tft.fillRect(54, 59, 250, 36, BLACK);
+      clearStatusArea();
       bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] = bufferRdsTime[0] = rdsMsg[0] = stationName[0] = '\0';
       showRDSMsg();
       showRDSStation();

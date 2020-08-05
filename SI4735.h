@@ -170,8 +170,8 @@
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 #define MAX_SEEK_TIME 8000               // defines the maximum seeking time 8s is default.
 
-#define XOSCEN_CRYSTAL 1                 // Use crystal oscillator
-#define XOSCEN_RCLK 0                    // Use external RCLK (crystal oscillator disabled).
+#define XOSCEN_CRYSTAL 1 // Use crystal oscillator
+#define XOSCEN_RCLK 0    // Use external RCLK (crystal oscillator disabled).
 
 /** @defgroup group01 Union, Struct and Defined Data Types 
  * @section group01 Data Types 
@@ -195,7 +195,8 @@
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64 and 65
  */
-typedef union {
+typedef union
+{
     struct
     {
         // ARG1
@@ -219,7 +220,8 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 82 and 144
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t DUMMY1 : 1;  //!< Always write 0.
@@ -240,7 +242,8 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 146
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t STCIEN : 1; //!< Seek/Tune Complete Interrupt Enable (0 or 1).
@@ -263,7 +266,8 @@ typedef union {
  * @brief Represents how the  frequency is stored in the si4735.
  * @details It helps to convert frequency in uint16_t to two bytes (uint8_t) (FREQL and FREQH)  
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t FREQL; //!<  Tune Frequency Low byte.
@@ -276,7 +280,8 @@ typedef union {
  * @ingroup group01
  * @brief Antenna Tuning Capacitor data type manupulation 
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t ANTCAPL; //!<  Antenna Tuning Capacitor High byte
@@ -292,7 +297,8 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 135
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t FAST : 1;   //!<  ARG1 - FAST Tuning. If set, executes fast and invalidated tune. The tune status will not be accurate.
@@ -318,7 +324,8 @@ typedef union {
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 72 and 137
  * @see si47x_seek_am_complement
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t RESERVED1 : 2;
@@ -353,7 +360,8 @@ typedef struct
  * 
  * @details Represents searching for a valid frequency data type.
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t STCINT : 1; //!< 1 = Tune complete has been triggered.
@@ -376,7 +384,8 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; pages 73 and 
  */
-typedef union {
+typedef union
+{
     struct
     {
         // Status
@@ -417,7 +426,8 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 66 and 131 
  */
-typedef union {
+typedef union
+{
     struct
     {
         // status ("RESP0")
@@ -453,7 +463,8 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 12 
  */
-typedef union {
+typedef union
+{
     struct
     {
         // status ("RESP0")
@@ -485,7 +496,8 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 and 139
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t INTACK : 1; //!<  If set, clears the seek/tune complete interrupt status indicator.
@@ -502,7 +514,8 @@ typedef union {
  * 
  * @details Property Data type (help to deal with SET_PROPERTY command on si473X)
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t byteLow;
@@ -520,7 +533,8 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 75 and 
  */
-typedef union {
+typedef union
+{
     struct
     {
         // status ("RESP0")
@@ -566,7 +580,8 @@ typedef union {
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 77 and 78 
  * @see Also https://en.wikipedia.org/wiki/Radio_Data_System
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t INTACK : 1;     // Interrupt Acknowledge; 0 = RDSINT status preserved; 1 = Clears RDSINT.
@@ -584,7 +599,8 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 77 and 78
  */
-typedef union {
+typedef union
+{
     struct
     {
         // status ("RESP0")
@@ -639,7 +655,8 @@ typedef union {
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 103
  * @see also https://en.wikipedia.org/wiki/Radio_Data_System
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t RDSRECV : 1;      //!<  If set, generate RDSINT when RDS FIFO has at least FM_RDS_INT_FIFO_COUNT entries.
@@ -670,7 +687,8 @@ typedef union {
  *  
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 58 and 104 
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t RDSEN : 1; //!<  1 = RDS Processing Enable.
@@ -688,7 +706,8 @@ typedef union {
  * 
  * @brief Block A data type
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint16_t pi;
@@ -718,7 +737,8 @@ typedef union {
  * @see also Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 78 and 79
  * @see also https://en.wikipedia.org/wiki/Radio_Data_System
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint16_t address : 2;            // Depends on Group Type and Version codes. If 0A or 0B it is the Text Segment Address.
@@ -789,7 +809,8 @@ typedef union {
  * To make it compatible with 8, 16 and 32 bits platforms and avoid Crosses boundary, it was necessary to
  * split minute and hour representation. 
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t offset : 5;       // Local Time Offset
@@ -812,7 +833,8 @@ typedef union {
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); For FM page 80; for AM page 142
  * @see AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
  */
-typedef union {
+typedef union
+{
     struct
     {
         // status ("RESP0")
@@ -841,7 +863,8 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); For FM page 81; for AM page 143
  */
-typedef union {
+typedef union
+{
     struct
     {
         // ARG1
@@ -868,7 +891,8 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 125 and 151
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t AMCHFLT : 4; //!<  Selects the bandwidth of the AM channel filter.
@@ -886,7 +910,8 @@ typedef union {
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t AUDIOBW : 4;     //!<  0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz
@@ -909,7 +934,8 @@ typedef union {
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 195. 
  */
-typedef union {
+typedef union
+{
     struct
     {
         uint8_t OSIZE : 2; //!<  Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
@@ -928,13 +954,14 @@ typedef union {
  * @details This structure will be used to read an eeprom generated by leo sketch SI47XX_09_SAVE_SSB_PATCH_EEPROM.ino.
  * @details The sketch SI47XX_09_SAVE_SSB_PATCH_EEPROM can be found on Examples/SI47XX_TOOLS folder   
  */
-typedef union {
+typedef union
+{
     struct
     {
-        uint8_t reserved[8];   // Not used  
-        uint8_t status[8];     // Note used  
-        uint8_t patch_id[14];  // Patch name
-        uint16_t patch_size;   // Patch size (in bytes)
+        uint8_t reserved[8];  // Not used
+        uint8_t status[8];    // Note used
+        uint8_t patch_id[14]; // Patch name
+        uint16_t patch_size;  // Patch size (in bytes)
     } refined;
     uint8_t raw[32];
 } si4735_eeprom_patch_header;
@@ -998,10 +1025,10 @@ protected:
 
     int16_t deviceAddress = SI473X_ADDR_SEN_LOW; //!<  Stores the current I2C bus address.
 
-    // Delays 
+    // Delays
     uint16_t maxDelaySetFrequency = MAX_DELAY_AFTER_SET_FREQUENCY; //!< Stores the maximum delay after set frequency command (in ms).
     uint16_t maxDelayAfterPouwerUp = MAX_DELAY_AFTER_POWERUP;      //!< Stores the maximum delay you have to setup after a power up command (in ms).
-    unsigned long maxSeekTime = MAX_SEEK_TIME; //!< Stores the maximum time (ms) for a seeking process. Defines the maximum seeking time.  
+    unsigned long maxSeekTime = MAX_SEEK_TIME;                     //!< Stores the maximum time (ms) for a seeking process. Defines the maximum seeking time.
 
     uint8_t lastTextFlagAB;
     uint8_t resetPin;     //!<  pin used on Arduino Board to RESET the Si47XX device
@@ -1017,13 +1044,13 @@ protected:
 
     uint8_t lastMode = -1; //!<  Stores the last mode used.
 
-    uint8_t currentAvcAmMaxGain = 48; //!<  Stores the current Automatic Volume Control Gain for AM. Default value is 48.
+    uint8_t currentAvcAmMaxGain = 48;          //!<  Stores the current Automatic Volume Control Gain for AM. Default value is 48.
     uint8_t currentClockType = XOSCEN_CRYSTAL; //!< Stores the current clock type used (Crystal or REF CLOCK)
     uint8_t currentInterruptEnable = 0;        //!< If you are using interrupt, this variable stores 1.
 
-    uint16_t refClock = 31768;                  //!< Frequency of Reference Clock in Hz.
-    uint16_t refClockPrescale = 1;              //!< Prescaler for Reference Clock (divider).
-    uint8_t refClockSourcePin = 0;              //!< 0 = RCLK pin is clock source; 1 = DCLK pin is clock source.
+    uint16_t refClock = 31768;     //!< Frequency of Reference Clock in Hz.
+    uint16_t refClockPrescale = 1; //!< Prescaler for Reference Clock (divider).
+    uint8_t refClockSourcePin = 0; //!< 0 = RCLK pin is clock source; 1 = DCLK pin is clock source.
 
     si47x_frequency currentFrequency; //!<  data structure to get current frequency
     si47x_set_frequency currentFrequencyParams;
@@ -1034,15 +1061,13 @@ protected:
     si47x_agc_status currentAgcStatus;       //!<  current AGC status
     si47x_ssb_mode currentSSBMode;           //!<  indicates if USB or LSB
 
-
     si473x_powerup powerUp;
 
-    uint8_t volume = 32;   //!< Stores the current vlume setup (0-63). 
+    uint8_t volume = 32; //!< Stores the current vlume setup (0-63).
 
     uint8_t currentAudioMode = SI473X_ANALOG_AUDIO; //!< Current audio mode used (ANALOG or DIGITAL or both)
     uint8_t currentSsbStatus;
     int8_t audioMuteMcuPin = -1;
-
 
     void waitInterrupr(void);
     si47x_status getInterruptStatus();
@@ -1250,13 +1275,14 @@ public:
      */
     inline uint16_t getAntennaTuningCapacitor()
     {
-        si47x_property cap;
+        si47x_antenna_capacitor cap;
 
-        if (currentTune == FM_TUNE_FREQ) {
+        if (currentTune == FM_TUNE_FREQ)
             return currentStatus.resp.READANTCAP;
-        } else {
-            cap.raw.byteLow = currentStatus.resp.READANTCAP; // On AM it is the low byte the READANTCAP value
-            cap.raw.byteHigh = currentStatus.resp.MULT; // On AM it is the high byte the READANTCAP value
+        else
+        {
+            cap.raw.ANTCAPL = currentStatus.resp.READANTCAP; // On AM it is the low byte the READANTCAP value
+            cap.raw.ANTCAPH = currentStatus.resp.MULT;       // On AM it is the high byte the READANTCAP value
             return cap.value;
         }
     };
@@ -1516,7 +1542,7 @@ public:
      * @details Returns the current volume level.
      * @return uint8_t 
      */
-    inline uint8_t getCurrentVolume() { return volume; }; 
+    inline uint8_t getCurrentVolume() { return volume; };
 
     /**
      * @ingroup group13 Audio volume
@@ -1524,14 +1550,14 @@ public:
      * @details Same volumeUp()
      * @see volumeUp
      */
-    inline void setVolumeUp() {volumeUp();};
+    inline void setVolumeUp() { volumeUp(); };
     /**
      * @ingroup group13 Audio volume
      * @brief Set the Volume Down 
      * @details Same volumeDown()
      * @return voi 
      */
-    inline void setVolumeDown() {volumeDown();};
+    inline void setVolumeDown() { volumeDown(); };
 
     /**
      * @ingroup group13 Digital Audio setup
@@ -1630,7 +1656,7 @@ public:
      * @details Same frequencyUp
      * @see frequencyUp
      */
-    inline void setFrequencyUp() {frequencyUp();};
+    inline void setFrequencyUp() { frequencyUp(); };
 
     /**
      * @ingroup   group08 Tune Frequency 
@@ -1638,12 +1664,9 @@ public:
      * @details same frequencyDown
      * @see frequencyDown
      */
-    inline void setFrequencyDown() {frequencyDown();};
-
-
+    inline void setFrequencyDown() { frequencyDown(); };
 
     void getFirmware(void);
-
 
     void seekStation(uint8_t SEEKUP, uint8_t WRAP); // See WRAP parameter
 
@@ -1657,7 +1680,8 @@ public:
      * 
      * @param time_in_ms time in milliseconds. 
      */
-    inline void setMaxSeekTime(long time_in_ms) {
+    inline void setMaxSeekTime(long time_in_ms)
+    {
         this->maxSeekTime = time_in_ms;
     };
 
@@ -1797,7 +1821,6 @@ public:
     {
         return currentRdsStatus.resp.GRPLOST;
     };
-
 
     /**
      * @brief Get the Num Rds Fifo Used 
@@ -1979,7 +2002,6 @@ public:
      * @param value in Hz. For example: The values 500000 sets the bus to 500KHz.
      */
     inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); };
-
 
     /**
      * @ingroup group18 MCU External Audio Mute  
