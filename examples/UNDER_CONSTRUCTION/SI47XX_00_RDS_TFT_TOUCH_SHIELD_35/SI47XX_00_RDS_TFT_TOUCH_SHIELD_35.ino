@@ -108,6 +108,7 @@ bool cmdVolume = false;  // if true, the encoder will control the volume.
 bool cmdAgcAtt = false;
 bool cmdFilter = false;
 bool cmdStep = false;
+bool cmdBand = false;
 
 
 bool ssbLoaded = false;
@@ -358,6 +359,7 @@ void disableCommands() {
     cmdAgcAtt = false;
     cmdFilter = false;
     cmdStep = false;
+    cmdBand = false;
 }
 
 
@@ -450,7 +452,6 @@ void showTemplate()
   bPreviousBand.initButton(&tft, 45, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Band-", 1);
   bNextBand.initButton(&tft, 120, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Band+", 1);
   bVolumeLevel.initButton(&tft, 195, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Vol", 1);
-
   bAudioMute.initButton(&tft, 270, 130, 60, 40, WHITE, CYAN, BLACK, (char *)"Mute", 1);
 
   bSeekDown.initButton(&tft, 45, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"Seek-", 1);
@@ -458,13 +459,10 @@ void showTemplate()
   bBFO.initButton(&tft, 195, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"BFO", 1);
   bStep.initButton(&tft, 270, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"Step", 1);
 
-
-
   bFM.initButton(&tft, 45, 235, 60, 40, WHITE, CYAN, BLACK, (char *)"FM", 1);
   bMW.initButton(&tft, 120, 235, 60, 40, WHITE, CYAN, BLACK, (char *)"MW", 1);
   bSW.initButton(&tft, 195, 235, 60, 40, WHITE, CYAN, BLACK, (char *)"SW", 1);
   bAGC.initButton(&tft, 270, 235, 60, 40, WHITE, CYAN, BLACK, (char *)"ATT", 1);
-
 
   bAM.initButton(&tft, 45, 285, 60, 40, WHITE, CYAN, BLACK, (char *)"AM", 1);
   bLSB.initButton(&tft, 120, 285, 60, 40, WHITE, CYAN, BLACK, (char *)"LSB", 1);
@@ -1180,6 +1178,7 @@ void loop(void)
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
       si4735.setSSBBfo(currentBFO);
       showBFO();
+      elapsedCommand = millis();
     }
     else if (cmdVolume)
     {
