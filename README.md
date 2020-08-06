@@ -234,7 +234,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 * Digital FM stereo decoder
 * AM/FM/SW/LW digital tuning
 * RDS/RBDS processor
-* Digital audio out
+* Digital audio out (__Attention__: Crystal and digital audio mode cannot be used at the same time)
 * I²C and SPI interface 
 * Great Programming Guide and additional documentation to deal with the device
 

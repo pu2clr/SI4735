@@ -26,9 +26,9 @@
  * @details 8. More than 120 functions implemented. You can customize almost every feature available on Si47XX family. 
  * @details 9. RDS support.
  * @details 10. SSB (Single Side Band) patch support (SI4735-D60 and SI4732-A10). 
- * @details 11. Digital Audio.
+ * @details 11. Digital Audio (__Attention__: Crystal and digital audio mode cannot be used at the same time).
  * 
- * Some texts were extracted directly from the Silicon Labs documentation. The name of the Silicon Labs document and pages are described in the source code comments.
+  Some texts were extracted directly from the Silicon Labs documentation. The name of the Silicon Labs document and pages are described in the source code comments.
  * 
  * @see https://pu2clr.github.io/SI4735/
  * @see Si47XX PROGRAMMING GUIDE AN332 (REV 1.0): https://www.silabs.com/documents/public/application-notes/AN332.pdf
@@ -392,6 +392,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * @details Before call this function call the setPowerUp to set up the parameters.
  * 
  * @details Parameters you have to set up with setPowerUp
+ * 
  * | Parameter | Description |
  * | --------- | ----------- |
  * | CTSIEN    | Interrupt anabled or disabled |
@@ -401,7 +402,10 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * | FUNC      | defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver |
  * | OPMODE    | SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011) |
  * 
- * @see setMaxDelaySetFrequency()
+ * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; the is the following note:
+ *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
+ * 
+ *see setMaxDelaySetFrequency()
  * @see MAX_DELAY_AFTER_POWERUP 
  * @see  SI4735::setPowerUp()
  * @see  Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129
@@ -554,7 +558,10 @@ void SI4735::setRefClockPrescaler(uint16_t prescale, uint8_t rclk_sel)
  * @details Use this function to start the device up with the parameters shown below.
  * @details If the audio mode parameter is not entered, analog mode will be considered.
  * @details You can use any Arduino digital pin. Be sure you are using less than 3.6V on Si47XX RST pin.   
- *  
+ * 
+ * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; the is the following note:
+ *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
+ * 
  * @param resetPin Digital Arduino Pin used to RESET de Si47XX device. 
  * @param interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled.
  * @param defaultFunction is the mode you want the receiver starts.
@@ -1716,9 +1723,13 @@ void SI4735::disableFmDebug()
  * 
  * @details Options: DCLK edge, data format, force mono, and sample precision.
  *  
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 195. 
+ * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; the is the following note:
+ *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
+ * 
+ * @see Si47XX PROGRAMINGGUIDE; AN332 (REV 1.0); page 195.
+ * @see Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; AN383; rev 0.8; page 6; 
 
- * @param uint8_t OSIZE Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
+ * @param uint8_t OSIZE Dgital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
  * @param uint8_t OMONO Digital Output Mono Mode (0=Use mono/stereo blend ).
  * @param uint8_t OMODE Digital Output Mode (0=I2S, 6 = Left-justified, 8 = MSB at second DCLK after DFS pulse, 12 = MSB at first DCLK after DFS pulse).
  * @param uint8_t OFALL Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge)
@@ -1739,9 +1750,13 @@ void SI4735::digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, ui
  * 
  * @brief Enables digital audio output and configures digital audio output sample rate in samples per second (sps).
  * 
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 196. 
+ * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; the is the following note:
+ *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
  * 
- * @param uint16_t DOSR Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
+ * @see Si47XX PROGRAMINGGUIDE; AN332 (REV 1.0); page 196. 
+ * @see Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383; rev 0.8; page 6
+ * 
+ * @param uint16_t DOSR Diital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
  */
 void SI4735::digitalOutputSampleRate(uint16_t DOSR)
 {
