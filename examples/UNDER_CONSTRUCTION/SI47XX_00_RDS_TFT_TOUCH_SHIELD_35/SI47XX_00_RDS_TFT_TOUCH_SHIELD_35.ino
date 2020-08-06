@@ -109,6 +109,7 @@ bool cmdAgcAtt = false;
 bool cmdFilter = false;
 bool cmdStep = false;
 bool cmdBand = false;
+bool cmdSmute = false;
 
 
 bool ssbLoaded = false;
@@ -122,7 +123,7 @@ uint8_t agcNdx = 0;
 
 uint16_t antennaIdx = 0;
 
-uint8_t softMuteIdx = 0;
+int8_t softMuteIdx = 0;
 
 int currentBFO = 0;
 int previousBFO = 0;
@@ -215,6 +216,7 @@ char bufferAGC[15];
 char bufferBW[20];
 char bufferMode[15];
 char bufferBandName[15];
+char bufferSoftMute[15];
 
 
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
@@ -360,6 +362,7 @@ void disableCommands() {
     cmdFilter = false;
     cmdStep = false;
     cmdBand = false;
+    cmdSmute = false;
 }
 
 
@@ -647,7 +650,7 @@ void clearBuffer()
   bufferCapacitorRead[0] = '\0';
   bufferVolume[0] = '\0';
   bufferStep[0] = '\0';
-
+  bufferSoftMute[0] = '\0';
 }
 
 /**
@@ -691,6 +694,7 @@ void showStatus()
   showBandwitdth();
   showAgcAtt();
   showStep();
+  showSoftMute();
 
 }
 
@@ -767,6 +771,17 @@ void showStep() {
 
   sprintf(sStep, "Step: %4d",currentStep);
   printText(240, 60, 1, bufferStep, sStep, GREEN, 7);
+
+}
+
+
+void showSoftMute() {
+  
+ char sMute[15];
+ tft.setFont(NULL); // default font
+
+ sprintf(sMute, "SMute: %2d", softMuteIdx);
+ printText(160, 85, 1, bufferSoftMute, sMute, GREEN, 7);
 
 }
 
@@ -1111,6 +1126,18 @@ void switchStep(int8_t v) {
     elapsedCommand = millis();
 }
 
+void switchSoftMute( int8_t v) {
+  softMuteIdx = (v == 1)? softMuteIdx + 1 : softMuteIdx - 1;
+  if (softMuteIdx > 16) 
+     softMuteIdx = 0; 
+  else if (softMuteIdx < 0) 
+     softMuteIdx = 16;
+
+   si4735.setAmSoftMuteMaxAttenuation(softMuteIdx);
+   showSoftMute();
+   elapsedCommand = millis();
+}
+
 /**
  * @brief Proccess the volume level
  * 
@@ -1194,6 +1221,17 @@ void loop(void)
     else if (cmdStep) {
       switchStep(encoderCount);
     }
+    else if (cmdSmute) {
+      switchSoftMute(encoderCount);
+    } else if ( cmdBand ) {
+      if (encoderCount == 1) 
+         bandUp();
+      else
+      {
+        bandDown();
+      }
+      elapsedCommand = millis();   
+    }
     else if ( cmdAntenna ) {
       antennaIdx = (encoderCount == 1) ? (antennaIdx + currentStep) : (antennaIdx - currentStep);
       si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
@@ -1265,13 +1303,8 @@ void loop(void)
   // SMute
   if (bSoftMute.justPressed())
   {
-    if (softMuteIdx >= 8) 
-       softMuteIdx = 0; 
-    else
-       softMuteIdx += 2;
-
-    si4735.setAmSoftMuteMaxAttenuation(softMuteIdx);
-          
+    disableCommands();
+    cmdSmute = true;
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   }
 
@@ -1397,7 +1430,11 @@ void loop(void)
 
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
-    doBFO();
+    if ( cmdBFO ) {
+      doBFO();
+    } else {
+      cmdBand = true;
+    }
     delay(250);
   }
 
