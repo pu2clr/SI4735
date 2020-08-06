@@ -222,7 +222,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 ![SI473x Block Diagram](extras/images/block_diagram.png)
 
 
-According to the Si47XX PROGRAMMING GUIDE/AN332, the Si4732-A10 has the same firmware FMRX component and AM_SW_LW RX component as that of Si4735-D60. It is considered as the most recent revision as D60. So, All descrition related to the SI4735-D60 also apply to Si4732-A10. Including SSB patch support. The Si4732-A10 block diagram below.  
+According to the Si47XX PROGRAMMING GUIDE/AN332, the Si4732-A10 has the same firmware FMRX component and AM_SW_LW RX component as that of Si4735-D60. It is considered as the most recent revision as D60. So, __All descrition related to the SI4735-D60 also apply to Si4732-A10__. __Including SSB patch support__. See the Si4732-A10 block diagram below.  
 
 
 ![SI4732-A10 Block Diagram](extras/images/si4732_A10_diagram.png)
