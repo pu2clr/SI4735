@@ -309,10 +309,13 @@ Functions</h2></td></tr>
 
 <p>Configures the digital audio output format. </p>
 <p>Options: DCLK edge, data format, force mono, and sample precision.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 195.</dd></dl>
+<p>ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note: Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMINGGUIDE; AN332 (REV 1.0); page 195. </dd>
+<dd>
+Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; AN383; rev 0.8; page 6;</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">uint8_t</td><td>OSIZE Digital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits). </td></tr>
+    <tr><td class="paramname">uint8_t</td><td>OSIZE Dgital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits). </td></tr>
     <tr><td class="paramname">uint8_t</td><td>OMONO Digital Output Mono Mode (0=Use mono/stereo blend ). </td></tr>
     <tr><td class="paramname">uint8_t</td><td>OMODE Digital Output Mode (0=I2S, 6 = Left-justified, 8 = MSB at second DCLK after DFS pulse, 12 = MSB at first DCLK after DFS pulse). </td></tr>
     <tr><td class="paramname">uint8_t</td><td>OFALL Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge) </td></tr>
@@ -339,10 +342,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enables digital audio output and configures digital audio output sample rate in samples per second (sps). </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 196.</dd></dl>
+<p>ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note: Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMINGGUIDE; AN332 (REV 1.0); page 196. </dd>
+<dd>
+Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383; rev 0.8; page 6</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">uint16_t</td><td>DOSR Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output). </td></tr>
+    <tr><td class="paramname">uint16_t</td><td>DOSR Diital Output Sample Rate(32–48 ksps .0 to disable digital audio output). </td></tr>
   </table>
   </dd>
 </dl>

@@ -213,7 +213,8 @@ Functions</h2></td></tr>
 
 <p>Powerup the Si47XX. </p>
 <p>Before call this function call the setPowerUp to set up the parameters.</p>
-<p>Parameters you have to set up with setPowerUp </p><table class="markdownTable">
+<p>Parameters you have to set up with setPowerUp</p>
+<table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Parameter </th><th class="markdownTableHeadNone">Description  </th></tr>
 <tr class="markdownTableRowOdd">
@@ -229,9 +230,8 @@ Functions</h2></td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">OPMODE </td><td class="markdownTableBodyNone">SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011)  </td></tr>
 </table>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8" title="Set the Max Delay after Set Frequency.">setMaxDelaySetFrequency()</a> </dd>
-<dd>
-<a class="el" href="_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663">MAX_DELAY_AFTER_POWERUP</a> </dd>
+<p>ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note: Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.</p>
+<p>see <a class="el" href="group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8" title="Set the Max Delay after Set Frequency.">setMaxDelaySetFrequency()</a> </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663">MAX_DELAY_AFTER_POWERUP</a> </dd>
 <dd>
 <a class="el" href="group__group07.html#ga8bc001cb28dc8fbd88ba0fa7024eca39" title="Set the Power Up parameters for si473X.">SI4735::setPowerUp()</a> </dd>
 <dd>
@@ -469,6 +469,7 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129 </dd></dl>
 <p>If the audio mode parameter is not entered, analog mode will be considered.</p>
 <p>You can use any Arduino digital pin. Be sure you are using less than 3.6V on Si47XX RST pin. <br  />
 </p>
+<p>ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note: Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">resetPin</td><td>Digital Arduino Pin used to RESET de Si47XX device. </td></tr>
