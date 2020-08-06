@@ -47,7 +47,7 @@ The photo below shows the Si4730 on adapter board connect attached on a mini bre
 
 The Si4730 and ATtiny85 FM radio prototype. 
 
-![Photo ATtiny85 and Si4730](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4730_attiny85A.jpg)
+![Photo ATtiny85 and Si4730](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4730_attiny85A.png)
 
 
 
