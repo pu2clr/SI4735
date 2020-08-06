@@ -34,6 +34,7 @@ Contact: __pu2clr@gmail.com__.
    * [RDS support](https://pu2clr.github.io/SI4735/#rds)
    * [SSB support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band)
    * [EEPROM support](https://pu2clr.github.io/SI4735/#eeprom-support)
+   * [Digital Audio Support](https://pu2clr.github.io/SI4735/#digital-audio-support)
    * [Customizing PU2CLR Arduino Library](https://pu2clr.github.io/SI4735/#customizing-pu2clr-arduino-library)
 11. [Hardware Requirements and Setup](https://pu2clr.github.io/SI4735/#hardware-requirements-and-setup)
 12. [__SCHEMATIC__](https://pu2clr.github.io/SI4735/#schematic)
@@ -539,6 +540,17 @@ __The EEPROM device used for testing was the AT24C256 Serial I2C Interface__
 [Watch the video: ATtiny85 working with SI4735-D60 and SSB](https://www.youtube.com/watch?v=Dnk5tp0o880) 
 
 {% include eeprom.html %} 
+
+
+### Digital Audio support 
+
+First of all, it is important to say that Crystal and digital audio mode cannot be used at the same time. 
+The document Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383; rev 0.8; page 6; there is the following note: Crystal and digital audio mode cannot be used at the same time. For Digital Audio, you have to remove the crystal, and capacitors connected to the crystal. 
+
+This library supports the external clock reference and has implemented the digital audio functions. 
+You can configure digital audio and external clock reference by using the functions: __setup, radioPowerUp, digitalOutputFormat, digitalOutputSampleRate, setRefClock and setRefClockPrescaler__. 
+
+See the [API Documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) for more details. 
 
 <BR>
 

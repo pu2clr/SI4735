@@ -402,7 +402,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * | FUNC      | defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver |
  * | OPMODE    | SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011) |
  * 
- * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; the is the following note:
+ * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note:
  *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
  * 
  *see setMaxDelaySetFrequency()
@@ -559,7 +559,7 @@ void SI4735::setRefClockPrescaler(uint16_t prescale, uint8_t rclk_sel)
  * @details If the audio mode parameter is not entered, analog mode will be considered.
  * @details You can use any Arduino digital pin. Be sure you are using less than 3.6V on Si47XX RST pin.   
  * 
- * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; the is the following note:
+ * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note:
  *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
  * 
  * @param resetPin Digital Arduino Pin used to RESET de Si47XX device. 
@@ -1723,7 +1723,7 @@ void SI4735::disableFmDebug()
  * 
  * @details Options: DCLK edge, data format, force mono, and sample precision.
  *  
- * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; the is the following note:
+ * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note:
  *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
  * 
  * @see Si47XX PROGRAMINGGUIDE; AN332 (REV 1.0); page 195.
@@ -1750,7 +1750,7 @@ void SI4735::digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, ui
  * 
  * @brief Enables digital audio output and configures digital audio output sample rate in samples per second (sps).
  * 
- * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; the is the following note:
+ * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note:
  *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
  * 
  * @see Si47XX PROGRAMINGGUIDE; AN332 (REV 1.0); page 196. 
