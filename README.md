@@ -231,7 +231,7 @@ According to the Si47XX PROGRAMMING GUIDE/AN332, the Si4732-A10 has the same fir
 
 <BR>
 
-### The main Si4735 features
+### The main Si4735-D60 and Si4732-A10 features
 
 * FM (VHF) support (64–108 MHz)
 * AM (MW) band support (520–1710 kHz)
@@ -243,6 +243,7 @@ According to the Si47XX PROGRAMMING GUIDE/AN332, the Si4732-A10 has the same fir
 * Automatic gain control (AGC)
 * Digital FM stereo decoder
 * AM/FM/SW/LW digital tuning
+* SSB patch support
 * RDS/RBDS processor
 * Digital audio out (__Attention__: Crystal and digital audio mode cannot be used at the same time)
 * I²C and SPI interface 
