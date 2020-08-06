@@ -10,8 +10,7 @@
  * These functionalities can be seen in the comparison matrix shown in table 1 (Product Family Function); pages 2 and 3 of the programming guide.
  * If you need to build a prototype based on SI47XX device, see <https://pu2clr.github.io/SI4735/><br>
  * 
- * This larary has more than 20 examples. See <https://github.com/pu2clr/SI4735/tree/master/examples><br>
- * This library can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://pu2clr.github.io/SI4735/#mit-license).  
+ * This library has more than 20 examples and it can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://pu2clr.github.io/SI4735/#mit-license).  
  * Contact: pu2clr@gmail.com
  * 
  * @details This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs. 
@@ -21,14 +20,15 @@
  * @details 3. C++ Language and Object-oriented programming. You can easily extend the SI4735 class by adding more functionalities.
  * @details 4. Available on Arduino IDE (Manage Libraries).
  * @details 5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested).
- * @details 6. Simplifies projects based on SI4735.
+ * @details 6. Simplifies projects based on SS4735-D60, SI4732-A10, SI4730-D60, and other SI473X devices;
  * @details 7. I²C communication and Automatic I²C bus address detection. 
  * @details 8. More than 120 functions implemented. You can customize almost every feature available on Si47XX family. 
  * @details 9. RDS support.
  * @details 10. SSB (Single Side Band) patch support (SI4735-D60 and SI4732-A10). 
  * @details 11. Digital Audio (__Attention__: Crystal and digital audio mode cannot be used at the same time).
+ * @details 12. More than 20 example available.  See <https://github.com/pu2clr/SI4735/tree/master/examples><br>
  * 
-  Some texts were extracted directly from the Silicon Labs documentation. The name of the Silicon Labs document and pages are described in the source code comments.
+ *  Some texts were extracted directly from the Silicon Labs documentation. The name of the Silicon Labs document and pages are described in the source code comments.
  * 
  * @see https://pu2clr.github.io/SI4735/
  * @see Si47XX PROGRAMMING GUIDE AN332 (REV 1.0): https://www.silabs.com/documents/public/application-notes/AN332.pdf
