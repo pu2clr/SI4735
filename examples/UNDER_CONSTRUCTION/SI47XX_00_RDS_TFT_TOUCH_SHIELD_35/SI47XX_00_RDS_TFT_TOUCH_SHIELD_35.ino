@@ -286,6 +286,7 @@ void setup(void)
     ID = 0x9486; // write-only shield
   tft.begin(ID);
   tft.setRotation(0); //PORTRAIT
+  
   tft.fillScreen(BLACK);
 
   // tft.setFont(&FreeSans12pt7b);
@@ -1157,19 +1158,17 @@ void doVolume(int8_t v) {
 
 void doBFO() {
   bufferFreq[0] = '\0';
-  if (currentMode == LSB || currentMode == USB)
+  cmdBFO = !cmdBFO;
+  if (cmdBFO)
   {
-    cmdBFO = !cmdBFO;
-    if (cmdBFO)
-    {
-      bBFO.initButton(&tft, 195, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"VFO", 1);
-      showBFO();
-    } else {
-      bBFO.initButton(&tft, 195, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"BFO", 1);
-    }
-    bBFO.drawButton(true);
-    showStatus();
+    bBFO.initButton(&tft, 195, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"VFO", 1);
+    showBFO();
+  } else {
+    bBFO.initButton(&tft, 195, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"BFO", 1);
   }
+  bBFO.drawButton(true);
+  showStatus();
+  elapsedCommand = millis();
 }
 
 /* two buttons are quite simple
@@ -1276,7 +1275,9 @@ void loop(void)
 
   if (bBFO.justPressed())
   {
-    doBFO();
+    if (currentMode == LSB || currentMode == USB) {
+      doBFO();
+    }
     delay(MIN_ELAPSED_TIME);
   }
 
@@ -1430,10 +1431,10 @@ void loop(void)
 
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
-    if ( cmdBFO ) {
-      doBFO();
+    if (currentMode == LSB || currentMode == USB) {
+        doBFO();
     } else {
-      cmdBand = true;
+      cmdBand = !cmdBand;
     }
     delay(250);
   }
@@ -1468,6 +1469,13 @@ void loop(void)
 
   // Disable commands control
   if ( (millis() - elapsedCommand) > ELAPSED_COMMAND ) {
+    if ( cmdBFO ) {
+      bufferFreq[0] = '\0';
+      bBFO.initButton(&tft, 195, 185, 60, 40, WHITE, CYAN, BLACK, (char *)"BFO", 1);
+      bBFO.drawButton(true);
+      cmdBFO = false;
+      showFrequency();
+    }
     disableCommands();
     elapsedCommand = millis();
   }
