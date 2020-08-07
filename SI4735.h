@@ -1589,7 +1589,7 @@ public:
      * 
      * @param value Delay in micro-seconds
      */
-    inline void AmDelayNB(uint16_t value) {
+    inline void setAmDelayNB(uint16_t value) {
         sendProperty(AM_NB_DELAY, value);
     } 
 

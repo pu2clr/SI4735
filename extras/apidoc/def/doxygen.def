@@ -2169,13 +2169,13 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group13_1gaa17069562c765bde9767be39c60b877f';
+      sec-mem-id   = 'group__group13_1ga63302217aaa006f6683dacd410b48e40';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
 void
 _EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'AmDelayNB';
+      sec-mem-name = 'setAmDelayNB';
       sec-mem-param = {
         sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
 uint16_t
