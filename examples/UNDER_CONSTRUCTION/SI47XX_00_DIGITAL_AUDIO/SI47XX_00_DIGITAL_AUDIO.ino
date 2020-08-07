@@ -4,6 +4,11 @@
     
    Digital Audio output test. 
 
+   First of all, it is important to say that Crystal and digital audio mode cannot be used at the same time on SI47XX devices. 
+   The document Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383; rev 0.8; page 6; there is the following note: 
+   "Crystal and digital audio mode cannot be used at the same time".  
+   So, for Digital Audio, you have to remove the crystal, and capacitors connected to the crystal from the circuit.
+
    
    It is a FM, MW and SW (1700KHz to 30000Khz)
    

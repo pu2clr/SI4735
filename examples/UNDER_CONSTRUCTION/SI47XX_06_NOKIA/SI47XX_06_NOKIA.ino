@@ -1,6 +1,7 @@
 /*
 
   Under construction... 
+  
   Waiting for a Nokia5110 LCD from eBay. 
 
   It is compiling. You can try use and adjust it if you have an Nokia 5110

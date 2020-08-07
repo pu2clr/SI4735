@@ -1,4 +1,7 @@
 /*
+  
+  Under construction...
+
   This sketch uses the mcufriend TFT touch Display Shield 3.5".
   You can use it on Mega2560 or DUE.
 
