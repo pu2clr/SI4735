@@ -2190,7 +2190,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 Delay in micro-sonds before applying impulse blanking to the original samples. Default value is 172.
 
-@param ms Delay in micro-seconds
+@param value Delay in micro-seconds
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {

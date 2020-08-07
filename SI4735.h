@@ -1587,7 +1587,7 @@ public:
      * @brief Sets the delay before applying impulse blanking 
      * @details Delay in micro-sonds before applying impulse blanking to the original samples. Default value is 172.
      * 
-     * @param ms Delay in micro-seconds
+     * @param value Delay in micro-seconds
      */
     inline void AmDelayNB(uint16_t value) {
         sendProperty(AM_NB_DELAY, value);
