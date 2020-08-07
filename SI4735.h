@@ -1582,6 +1582,17 @@ public:
         currentAudioMode = audioMode;
     };
 
+    /**
+     * @ingroup group13 Audio Noise Blank Delay
+     * @brief Sets the delay before applying impulse blanking 
+     * @details Delay in micro-sonds before applying impulse blanking to the original samples. Default value is 172.
+     * 
+     * @param ms Delay in micro-seconds
+     */
+    inline void AmDelayNB(uint16_t value) {
+        sendProperty(AM_NB_DELAY, value);
+    } 
+
     void digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, uint8_t OFALL);
     void digitalOutputSampleRate(uint16_t DOSR);
 

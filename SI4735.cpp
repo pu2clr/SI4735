@@ -1795,8 +1795,10 @@ void SI4735::setAudioMute(bool off)
     sendProperty(RX_HARD_MUTE, value);
 }
 
+
+
 /**
- * @ingroup group13 Audio volume
+ * @ingroup group13 Aud volume
  * 
  * @brief Gets the current volume level.
  * 

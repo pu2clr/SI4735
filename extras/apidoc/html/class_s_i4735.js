@@ -85,6 +85,7 @@ var class_s_i4735 =
     [ "setVolumeUp", "group__group13.html#gae0e23a0a2cbc24ee16b03866ee587102", null ],
     [ "setVolumeDown", "group__group13.html#ga11be65552224d4ad3e41d83a5ff1172b", null ],
     [ "setAudioMode", "group__group13.html#gac6a538cefcb4beb5bd77a721f8dab019", null ],
+    [ "AmDelayNB", "group__group13.html#gaa17069562c765bde9767be39c60b877f", null ],
     [ "digitalOutputFormat", "group__group13.html#gaea652d358b4b586b6d5964ceb8eb7c81", null ],
     [ "digitalOutputSampleRate", "group__group13.html#ga1a404ca11fb32b457be2d7cfe484dd03", null ],
     [ "setAudioMute", "group__group13.html#ga12d4e173d096b1568e4209a63534d4f6", null ],
