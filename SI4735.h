@@ -1604,8 +1604,9 @@ public:
     void setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step);
 
     /**
+     * @ingroup group08
      * @brief Sets the FM Receive de-emphasis to 50 or 75 μs. 
-     * @details valid parameters are 1 = 50 μs. Used in Europe, Australia, Japan; 2 = 75 μs. Used in USA (default)
+     * @details valid parameters are 1 = 50 μs. Usedin Europe, Australia, Japan; 2 = 75 μs. Used in USA (default)
      * 
      * @param parameter 1 or 2 (default 1 - USA)
      */
@@ -1614,9 +1615,52 @@ public:
         sendProperty(FM_DEEMPHASIS, parameter);
     };
 
+
     /**
-     * @ingroup group08 Check FM mode status
+     * @ingroup group08
+     * @brief Sets the AM Receive de-emphasis to 50 or disable. 
+     * @details valid parameters are 1 = 50 μs. Usedin urope, Australia, Japan; 2 = 75 μs. Used in USA (default)
      * 
+     * @param parameter 1 = enable or 0 = disable
+     */
+   inline void setAMDeEmphasis(uint8_t parameter)
+    {
+        sendProperty(AM_DEEMPHASIS, parameter);
+    };
+
+    /**
+     * @ingroup group08
+     * @brief Sets the AM attenuation slope during soft mute
+     * @details Configures attenuation slope during soft mute in dB attenuation per dB SNR below the soft mute SNR threshold.
+     * @details Soft mute attenuation is the minimum of SMSLOPEx(SMTHR–SNR) and SMATTN.
+     * @details The default slope is 1 dB/dB for AMRX component 5.0 or later and 2 dB/dB for AMRX component 3.0 or earlier.
+     * 
+     * @see setAmSoftMuteMaxAttenuation
+     * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); 
+     * @param parameter  the valid values are 1–5 (default 1).
+     */
+    inline void setAMSoftMuteSlop(uint8_t parameter)
+    {
+       sendProperty(AM_SOFT_MUTE_SLOPE, parameter);
+    };
+
+
+    /**
+     * @ingroup group08
+     * @brief Sets the attack and decay rates when entering or leaving soft mute.
+     * @details The value specified is multiplied by 4.35 dB/s to come up with the actual attack rate
+     * @details The default rate is 278 dB/s.
+     * @see setAmSoftMuteMaxAttenuation
+     * @see Si47XX PRORAMMING GUIDE; AN332 (REV 1.0); 
+     * @param parameter  The valid values are 1-255  ( Default is ~64 - [64 x 4.35 = 278] )
+     */
+    inline void setAMSoftMuteRate(uint8_t parameter)
+    {
+       sendProperty(AM_SOFT_MUTE_RATE, parameter);
+    };
+
+
+    /* @ingroup group08 Check FM mode status 
      * @brief Returns true if the current function is FM (FM_TUNE_FREQ).
      * 
      * @return true if the current function is FM (FM_TUNE_FREQ).
