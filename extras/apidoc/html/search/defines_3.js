@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['get_5fint_5fstatus_786',['GET_INT_STATUS',['../_s_i4735_8h.html#ab34642df1357e9ee8ecd90913bdae01f',1,'SI4735.h']]],
-  ['get_5fproperty_787',['GET_PROPERTY',['../_s_i4735_8h.html#acf7a3971c551fcdf7ae16bb0f31c149d',1,'SI4735.h']]],
-  ['get_5frev_788',['GET_REV',['../_s_i4735_8h.html#a9fbb31eec68a8b17895fd18640296013',1,'SI4735.h']]],
-  ['gpio_5fctl_789',['GPIO_CTL',['../_s_i4735_8h.html#ac4ede73dbac84ceab4a5bc876104bc20',1,'SI4735.h']]],
-  ['gpio_5fset_790',['GPIO_SET',['../_s_i4735_8h.html#aee1a56baeb6b8457fb722fd36dad5bbf',1,'SI4735.h']]],
-  ['gpo_5fien_791',['GPO_IEN',['../_s_i4735_8h.html#a16b9c6d556c2db79e8742267daf63c83',1,'SI4735.h']]]
+  ['get_5fint_5fstatus_798',['GET_INT_STATUS',['../_s_i4735_8h.html#ab34642df1357e9ee8ecd90913bdae01f',1,'SI4735.h']]],
+  ['get_5fproperty_799',['GET_PROPERTY',['../_s_i4735_8h.html#acf7a3971c551fcdf7ae16bb0f31c149d',1,'SI4735.h']]],
+  ['get_5frev_800',['GET_REV',['../_s_i4735_8h.html#a9fbb31eec68a8b17895fd18640296013',1,'SI4735.h']]],
+  ['gpio_5fctl_801',['GPIO_CTL',['../_s_i4735_8h.html#ac4ede73dbac84ceab4a5bc876104bc20',1,'SI4735.h']]],
+  ['gpio_5fset_802',['GPIO_SET',['../_s_i4735_8h.html#aee1a56baeb6b8457fb722fd36dad5bbf',1,'SI4735.h']]],
+  ['gpo_5fien_803',['GPO_IEN',['../_s_i4735_8h.html#a16b9c6d556c2db79e8742267daf63c83',1,'SI4735.h']]]
 ];

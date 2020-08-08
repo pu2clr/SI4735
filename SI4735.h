@@ -1660,6 +1660,49 @@ public:
     };
 
 
+    /**
+     * @ingroup group08
+     * @brief Sets the SNR threshold to engage soft mute
+     * @details Whenever the SNR for a tuned frequency drops below this threshold the AM reception will go in soft mute,
+     * @details provided soft mute max attenuation property is non-zero. The default value is 8dB
+     * @see setAmSoftMuteMxAttenuation
+     * @see Si47XX PROAMMING GUIDE; AN332 (REV 1.0); 
+     * @param parameter  0-63 (default is 8)
+     */
+    inline void setAMSoftMuteSnrThreshold(uint8_t parameter)
+    {
+       sendProperty(AM_SOFT_MUTE_SNR_THRESHOLD, parameter);
+    };
+
+    /**
+     * @ingroup group08
+     * @brief Sets the soft mute release rate.
+     * @details Smaller values provide slower release and larger values provide faster release. The default is 8192 (approximately 8000 dB/s).
+     * @see setAmSoftMuteMxAttenuation
+     * @see Si47XX PROAMMING GUIDE; AN332 (REV 1.0); 
+     * @param parameter  1–32767 
+     */
+    inline void setAMSoftMuteReleaseRate(uint8_t parameter)
+    {
+       sendProperty(AM_SOFT_MUTE_RELEASE_RATE, parameter);
+    };
+
+
+
+    /**
+     * @ingroup group08
+     * @brief Sets the soft mute attack rate.
+     * @details Smaller values provide slower attack and larger values provide faster attack. 
+     * @see setAmSoftMuteMxAttenuation
+     * @see Si47XX PROAMMING GUIDE; AN332 (REV 1.0); 
+     * @param parameter  1–32767 
+     */
+    inline void setAMSoftMuteAttackRate(uint8_t parameter)
+    {
+       sendProperty(AM_SOFT_MUTE_ATTACK_RATE, parameter);
+    };
+
+
     /* @ingroup group08 Check FM mode status 
      * @brief Returns true if the current function is FM (FM_TUNE_FREQ).
      * 
