@@ -251,7 +251,6 @@ void showTemplate()
 }
 
 
-
 /*
     Prevents blinking during the frequency display.
     Erases the old digits if it has changed and print the new digit values.

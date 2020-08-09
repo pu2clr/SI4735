@@ -356,6 +356,15 @@ void rotaryEncoder()
  * 
  */
 void disableCommands() {
+
+    // Redraw if necessary
+    if ( cmdVolume ) bVolumeLevel.drawButton(true); 
+    if ( cmdStep )   bStep.drawButton(true);
+    if ( cmdFilter ) bFilter.drawButton(true);
+    if ( cmdAgcAtt)  bAGC.drawButton(true);
+    if ( cmdSoftMuteMaxAtt)  bSoftMute.drawButton(true);
+    
+  
     cmdBFO = false;
     cmdAudioMute = false;
     cmdSlop = false;
@@ -366,6 +375,7 @@ void disableCommands() {
     cmdBand = false;
     cmdSoftMuteMaxAtt = false;
 }
+
 
 
 /*
@@ -1148,12 +1158,10 @@ void switchSoftMute( int8_t v) {
  * @param v 1 = Up; !1 = down
  */
 void doVolume(int8_t v) {
-
   if ( v == 1) 
     si4735.volumeUp();
    else
     si4735.volumeDown();
-
   showVolume();
   elapsedCommand = millis();
 }
@@ -1260,10 +1268,12 @@ void loop(void)
     bandDown();
   else if (bVolumeLevel.justPressed())      // Volume
   {
+    bVolumeLevel.drawButton(false);
     disableCommands();
     si4735.setAudioMute(cmdAudioMute);
     cmdVolume = true;
     delay(MIN_ELAPSED_TIME);
+    elapsedCommand = millis();
   } 
   else if (bAudioMute.justPressed())        // Mute
   {
@@ -1296,9 +1306,11 @@ void loop(void)
   }
   else if (bSoftMute.justPressed())         // Soft Mute
   {
+    bSoftMute.drawButton(false);
     disableCommands();
     cmdSoftMuteMaxAtt = true;
     delay(MIN_ELAPSED_TIME); 
+    elapsedCommand = millis();
   }
   else if (bSlop.justPressed())           // ATU (Automatic Antenna Tuner)
   {
@@ -1391,22 +1403,28 @@ void loop(void)
   }
   else if (bAGC.justPressed())          // AGC and Attenuation control
   {
+    bAGC.drawButton(false);
     disableCommands();
     cmdAgcAtt = true;
     delay(MIN_ELAPSED_TIME);
+    elapsedCommand = millis();
   } 
   else if (bFilter.justPressed())       // FILTER
   {
+    bFilter.drawButton(false);
     disableCommands();
     cmdFilter =  true;
     delay(MIN_ELAPSED_TIME);
+    elapsedCommand = millis();
   }
   else if (bStep.justPressed())         // STEP
   {
     // switchStep();
+    bStep.drawButton(false);
     disableCommands();
     cmdStep = true;
     delay(MIN_ELAPSED_TIME);
+    elapsedCommand = millis();
   }
   else if (bEmphasis.justPressed()) {
      cmdDE = !cmdDE;
