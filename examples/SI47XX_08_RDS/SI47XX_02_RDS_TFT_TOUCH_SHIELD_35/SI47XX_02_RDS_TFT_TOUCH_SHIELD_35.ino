@@ -2,6 +2,7 @@
   This sketch uses the mcufriend TFT touch Display Shield 3.5".
   You can use it on Mega2560 or DUE.
 
+
   REMEMBER:
   ALL Touch panels and wiring is DIFFERENT
   copy-paste results from TouchScreen_Calibr_native.ino that comes with MCUFRIEND_kbv library.

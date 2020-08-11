@@ -1511,10 +1511,48 @@ public:
         return currentRqsStatus.resp.MULT;
     };
 
-    inline uint8_t getCurrentSignedFrequencyOffset() { return currentRqsStatus.resp.FREQOFF; }; //!<  Signed frequency offset (kHz).
-    inline bool getCurrentMultipathDetectLow() { return currentRqsStatus.resp.MULTLINT; };      //!<  Multipath Detect Low.
-    inline bool getCurrentMultipathDetectHigh() { return currentRqsStatus.resp.MULTHINT; };     //!<  Multipath Detect High
-    inline bool getCurrentBlendDetectInterrupt() { return currentRqsStatus.resp.BLENDINT; };    //!<  Blend Detect Interrupt
+    /**
+     * @ingroup group08
+     * @brief Gets the Signed frequency offset (kHz).
+     * 
+     * @return uint8_t 
+     */
+    inline uint8_t getCurrentSignedFrequencyOffset() {
+         return currentRqsStatus.resp.FREQOFF; 
+    }; 
+
+    /**
+     * @ingroup group08
+     * @brief Get Multipath Detect Low
+     * 
+     * @return true 
+     * @return false 
+     */
+    inline bool getCurrentMultipathDetectLow() { 
+        return currentRqsStatus.resp.MULTLINT; 
+    };     
+
+    /**
+     * @ingroup group08
+     * @brief Gets the Current Multipath Detect High 
+     * 
+     * @return true 
+     * @return false 
+     */
+    inline bool getCurrentMultipathDetectHigh() { 
+        return currentRqsStatus.resp.MULTHINT; 
+    };   
+
+    /**
+     * @ingroup group08
+     * @brief Gets the Current Blend Detect Interrupt
+     * 
+     * @return true 
+     * @return false 
+     */
+    inline bool getCurrentBlendDetectInterrupt() { 
+        return currentRqsStatus.resp.BLENDINT; 
+    };    
 
     /*
      * FIRMWARE RESPONSE
@@ -1522,14 +1560,85 @@ public:
      * See Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 66
      */
 
-    inline uint8_t getFirmwarePN() { return firmwareInfo.resp.PN; };             //!<   RESP1 - Part Number (HEX)
-    inline uint8_t getFirmwareFWMAJOR() { return firmwareInfo.resp.FWMAJOR; };   //!<  RESP2 - Returns the Firmware Major Revision (ASCII).
-    inline uint8_t getFirmwareFWMINOR() { return firmwareInfo.resp.FWMINOR; };   //!<  RESP3 - Returns the Firmware Minor Revision (ASCII).
-    inline uint8_t getFirmwarePATCHH() { return firmwareInfo.resp.PATCHH; };     //!<  RESP4 -  Returns the Patch ID High byte (HEX).
-    inline uint8_t getFirmwarePATCHL() { return firmwareInfo.resp.PATCHL; };     //!<  RESP5 - Returns the Patch ID Low byte (HEX).
-    inline uint8_t getFirmwareCMPMAJOR() { return firmwareInfo.resp.CMPMAJOR; }; //!<  RESP6 -  Returns the Component Major Revision (ASCII).
-    inline uint8_t getFirmwareCMPMINOR() { return firmwareInfo.resp.CMPMINOR; }; //!<  RESP7 - Returns the Component Minor Revision (ASCII).
-    inline uint8_t getFirmwareCHIPREV() { return firmwareInfo.resp.CHIPREV; };   //!<  RESP8 -  Returns the Chip Revision (ASCII).
+    /**
+     * @ingroup group06
+     * @brief Returns the Firmware Part Number
+     * 
+     * @return uint8_t 
+     */
+    inline uint8_t getFirmwarePN() { 
+        return firmwareInfo.resp.PN; 
+    }; 
+
+    /**
+     * @ingroup group06
+     * @brief Returns the Firmware F W M A J O R
+     * 
+     * @return uint8_t 
+     */
+    inline uint8_t getFirmwareFWMAJOR() { 
+        return firmwareInfo.resp.FWMAJOR; 
+    };  
+
+    /**
+     * @ingroup group06
+     * @brief Returns the Firmware F W M I N O R 
+     * 
+     * @return uint8_t 
+     */
+    inline uint8_t getFirmwareFWMINOR() { 
+        return firmwareInfo.resp.FWMINOR; 
+    };   
+
+    /**
+     * @ingroup group06
+     * @brief Returns the Firmware P A T C H  HIGH
+     * 
+     * @return uint8_t 
+     */
+    inline uint8_t getFirmwarePATCHH() { 
+        return firmwareInfo.resp.PATCHH; 
+    }; 
+
+    /**
+     * @ingroup group06
+     * @brief Returns the Firmware P A T C H  LOW
+     * 
+     * @return uint8_t 
+     */
+    inline uint8_t getFirmwarePATCHL() { 
+        return firmwareInfo.resp.PATCHL; 
+    };   
+
+    /**
+     * @ingroup group06
+     * @brief Get the Firmware C M P M A J O R object
+     * 
+     * @return uint8_t 
+     */
+    inline uint8_t getFirmwareCMPMAJOR() { 
+        return firmwareInfo.resp.CMPMAJOR; 
+    }; //!<  RESP6 -  Returns the Component Major Revision (ASCII).
+
+    /**
+     * @ingroup group06
+     * @brief Returns the Component Minor Revision (ASCII) (RESP7)
+     * 
+     * @return uint8_t 
+     */
+    inline uint8_t getFirmwareCMPMINOR() { 
+        return firmwareInfo.resp.CMPMINOR; 
+    };
+
+    /**
+     * @ingroup group06
+     * @brief RESP8 -  Returns the Chip Revision (ASCII)
+     * 
+     * @return uint8_t 
+     */
+    inline uint8_t getFirmwareCHIPREV() { 
+        return firmwareInfo.resp.CHIPREV; 
+    }; 
 
     void setVolume(uint8_t volume);
     uint8_t getVolume();
@@ -1739,10 +1848,49 @@ public:
 
     void setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT);
 
-    inline uint8_t getTuneFrequencyFast() { return currentFrequencyParams.arg.FAST; };                  //!<  Returns the FAST tuning status
-    inline void setTuneFrequencyFast(uint8_t FAST) { currentFrequencyParams.arg.FAST = FAST; };         //!<  FAST Tuning.  If set, executes fast and invalidated tune. The tune status will not be accurate
-    inline uint8_t getTuneFrequencyFreeze() { return currentFrequencyParams.arg.FREEZE; };              //!<  Returns the FREEZE status
-    inline void setTuneFrequencyFreeze(uint8_t FREEZE) { currentFrequencyParams.arg.FREEZE = FREEZE; }; //!<  Only FM. Freeze Metrics During Alternate Frequency Jump.
+    /**
+     * @ingroup group08 Tune Frequency 
+     * @brief Returns the FAST tuning status
+     * 
+     * @retrn uint8_t 
+     */
+    inline uint8_t getTuneFrequecyFast() { 
+        return currentFrequencyParams.arg.FAST; 
+    };  
+
+    /**
+     * @ingroup group08 Tune Frequency 
+     * @brief Sets the FAST Tuning.  
+     * @details If set, excutes fast and invalidated tune. Theune status will not be accurate
+     * 
+     * @param FAST 
+     */
+    inline void setTuneFrequencyFast (uint8_t FAST) { 
+        currentFrequencyParams.arg.FAST = FAST; 
+    };   
+
+    /**
+     * @ingroup group08 Tune Frequency 
+     * @brief Returns the FREEZE status
+     * 
+     * @return unt8_t 
+     */
+    inline uint8_t getTuneFrequecyFreeze() { 
+        return currentFrequencyParams.arg.FREEZE; 
+    };  
+    
+    /**
+     * @ingroup group08 Tune Frequency 
+     * @brief Sets Freeze Metrics During Alternate Frequency Jum.
+     * @details Only on FM mode
+     * 
+     * @param FREEZE 
+     */
+    inline void setTuneFrequencyFreze(uint8_t FREEZE) { 
+        currentFrequencyParams.arg.FREEZE = FREEZE; 
+    }; 
+   
+    
     void setTuneFrequencyAntennaCapacitor(uint16_t capacitor);
 
     void frequencyUp();
