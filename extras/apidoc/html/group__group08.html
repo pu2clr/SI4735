@@ -198,9 +198,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga39c2f0b6a140fe46638b950faba5afaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga39c2f0b6a140fe46638b950faba5afaa">SI4735::setAMSoftMuteReleaseRate</a> (uint8_t parameter)</td></tr>
 <tr class="memdesc:ga39c2f0b6a140fe46638b950faba5afaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the soft mute release rate.  <a href="group__group08.html#ga39c2f0b6a140fe46638b950faba5afaa">More...</a><br /></td></tr>
 <tr class="separator:ga39c2f0b6a140fe46638b950faba5afaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaed21c452de4eb92777a71e3ba3936364"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#gaed21c452de4eb92777a71e3ba3936364">SI4735::setAMSoftMuteAttackRate</a> (uint8_t parameter)</td></tr>
-<tr class="memdesc:gaed21c452de4eb92777a71e3ba3936364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the soft mute attack rate.  <a href="group__group08.html#gaed21c452de4eb92777a71e3ba3936364">More...</a><br /></td></tr>
-<tr class="separator:gaed21c452de4eb92777a71e3ba3936364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa4d5fa1c73073d5cfc47838d6b832ba5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#gaa4d5fa1c73073d5cfc47838d6b832ba5">SI4735::setAMSoftMuteAttackRate</a> (uint16_t parameter)</td></tr>
+<tr class="memdesc:gaa4d5fa1c73073d5cfc47838d6b832ba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the soft mute attack rate.  <a href="group__group08.html#gaa4d5fa1c73073d5cfc47838d6b832ba5">More...</a><br /></td></tr>
+<tr class="separator:gaa4d5fa1c73073d5cfc47838d6b832ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4714f08989f020110620781ae968b01b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga4714f08989f020110620781ae968b01b">SI4735::isCurrentTuneAM</a> ()</td></tr>
 <tr class="memdesc:ga4714f08989f020110620781ae968b01b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the current function is AM (AM_TUNE_FREQ).  <a href="group__group08.html#ga4714f08989f020110620781ae968b01b">More...</a><br /></td></tr>
 <tr class="separator:ga4714f08989f020110620781ae968b01b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1391,8 +1391,8 @@ Si47XX PROAMMING GUIDE; AN332 (REV 1.0); </dd></dl>
 
 </div>
 </div>
-<a id="gaed21c452de4eb92777a71e3ba3936364"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaed21c452de4eb92777a71e3ba3936364">&#9670;&nbsp;</a></span>setAMSoftMuteAttackRate()</h2>
+<a id="gaa4d5fa1c73073d5cfc47838d6b832ba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa4d5fa1c73073d5cfc47838d6b832ba5">&#9670;&nbsp;</a></span>setAMSoftMuteAttackRate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1403,7 +1403,7 @@ Si47XX PROAMMING GUIDE; AN332 (REV 1.0); </dd></dl>
         <tr>
           <td class="memname">void SI4735::setAMSoftMuteAttackRate </td>
           <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramtype">uint16_t&#160;</td>
           <td class="paramname"><em>parameter</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1421,7 +1421,7 @@ Si47XX PROAMMING GUIDE; AN332 (REV 1.0); </dd></dl>
 Si47XX PROAMMING GUIDE; AN332 (REV 1.0); </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">parameter</td><td>1–32767 </td></tr>
+    <tr><td class="paramname">parameter</td><td>1–32767 (The default is 8192 (approximately 8000 dB/s) </td></tr>
   </table>
   </dd>
 </dl>

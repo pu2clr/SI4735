@@ -12,7 +12,7 @@ var searchData=
   ['setam_601',['setAM',['../group__group08.html#ga753390952a1f2c2a98343979f1f3daa0',1,'SI4735::setAM()'],['../group__group08.html#ga43c5ea36995a3897820e0170d94c81f4',1,'SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint16_t step)']]],
   ['setamdeemphasis_602',['setAMDeEmphasis',['../group__group08.html#ga6451f3fdb5dc6cc11b99d9258da3ff25',1,'SI4735']]],
   ['setamdelaynb_603',['setAmDelayNB',['../group__group13.html#ga63302217aaa006f6683dacd410b48e40',1,'SI4735']]],
-  ['setamsoftmuteattackrate_604',['setAMSoftMuteAttackRate',['../group__group08.html#gaed21c452de4eb92777a71e3ba3936364',1,'SI4735']]],
+  ['setamsoftmuteattackrate_604',['setAMSoftMuteAttackRate',['../group__group08.html#gaa4d5fa1c73073d5cfc47838d6b832ba5',1,'SI4735']]],
   ['setamsoftmutemaxattenuation_605',['setAmSoftMuteMaxAttenuation',['../group__group17.html#ga05bbe1546d61d7ca3591824445084e70',1,'SI4735']]],
   ['setamsoftmuterate_606',['setAMSoftMuteRate',['../group__group08.html#ga48f023f4073dcaad41bfa4ef3cee7a4f',1,'SI4735']]],
   ['setamsoftmutereleaserate_607',['setAMSoftMuteReleaseRate',['../group__group08.html#ga39c2f0b6a140fe46638b950faba5afaa',1,'SI4735']]],

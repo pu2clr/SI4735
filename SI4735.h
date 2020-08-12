@@ -1804,9 +1804,9 @@ public:
      * @details Smaller values provide slower attack and larger values provide faster attack. 
      * @see setAmSoftMuteMxAttenuation
      * @see Si47XX PROAMMING GUIDE; AN332 (REV 1.0); 
-     * @param parameter  1–32767 
+     * @param parameter  1–32767 (The default is 8192 (approximately 8000 dB/s)
      */
-    inline void setAMSoftMuteAttackRate(uint8_t parameter)
+    inline void setAMSoftMuteAttackRate(uint16_t parameter)
     {
        sendProperty(AM_SOFT_MUTE_ATTACK_RATE, parameter);
     };

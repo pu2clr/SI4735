@@ -2692,7 +2692,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group08_1gaed21c452de4eb92777a71e3ba3936364';
+      sec-mem-id   = 'group__group08_1gaa4d5fa1c73073d5cfc47838d6b832ba5';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -2701,7 +2701,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'setAMSoftMuteAttackRate';
       sec-mem-param = {
         sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
-uint8_t
+uint16_t
 _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'parameter';
       }; /*        sec-mem-param--param */
@@ -2714,7 +2714,7 @@ _EnD_oF_dEf_TeXt_;
 Smaller values provide slower attack and larger values provide faster attack. 
 @see setAmSoftMuteMxAttenuation
 @see Si47XX PROAMMING GUIDE; AN332 (REV 1.0); 
-@param parameter  1–32767 
+@param parameter  1–32767 (The default is 8192 (approximately 8000 dB/s)
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {

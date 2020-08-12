@@ -35,7 +35,7 @@ var group__group08 =
     [ "setAMSoftMuteRate", "group__group08.html#ga48f023f4073dcaad41bfa4ef3cee7a4f", null ],
     [ "setAMSoftMuteSnrThreshold", "group__group08.html#ga64928266b152a979104491398a6058d4", null ],
     [ "setAMSoftMuteReleaseRate", "group__group08.html#ga39c2f0b6a140fe46638b950faba5afaa", null ],
-    [ "setAMSoftMuteAttackRate", "group__group08.html#gaed21c452de4eb92777a71e3ba3936364", null ],
+    [ "setAMSoftMuteAttackRate", "group__group08.html#gaa4d5fa1c73073d5cfc47838d6b832ba5", null ],
     [ "isCurrentTuneAM", "group__group08.html#ga4714f08989f020110620781ae968b01b", null ],
     [ "isCurrentTuneSSB", "group__group08.html#ga6913873c511adb357fa7c02f2a8386d7", null ],
     [ "getTuneFrequecyFast", "group__group08.html#ga7bb16741b03d8f1fb14348dce14c1a6b", null ],
