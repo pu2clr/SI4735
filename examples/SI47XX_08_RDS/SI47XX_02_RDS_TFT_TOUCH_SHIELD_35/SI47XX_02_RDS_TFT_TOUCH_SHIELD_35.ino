@@ -105,6 +105,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 bool cmdBFO = false;
 bool cmdAudioMute = false;
 bool cmdSlop = false;
+bool cmdMuteRate = false;
 bool cmdVolume = false;  // if true, the encoder will control the volume.
 bool cmdAgcAtt = false;
 bool cmdFilter = false;
@@ -122,10 +123,10 @@ bool touch = false;
 uint8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 uint8_t agcNdx = 0;
-
 uint16_t antennaIdx = 0;
-
 int8_t softMuteMaxAttIdx = 16;
+int8_t slopIdx = 1;
+int16_t muteRateIdx = 64;
 
 int currentBFO = 0;
 int previousBFO = 0;
@@ -219,6 +220,9 @@ char bufferBW[20];
 char bufferMode[15];
 char bufferBandName[15];
 char bufferSoftMute[15];
+
+char bufferSlop[10];
+char bufferMuteRate[10];
 
 
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
@@ -364,11 +368,13 @@ void disableCommands() {
     if ( cmdFilter ) bFilter.drawButton(true);
     if ( cmdAgcAtt)  bAGC.drawButton(true);
     if ( cmdSoftMuteMaxAtt)  bSoftMute.drawButton(true);
-    
-  
+    if ( cmdSlop ) bSlop.drawButton(true);
+    if ( cmdMuteRate ) bSMuteRate.drawButton(true);
+
     cmdBFO = false;
     cmdAudioMute = false;
     cmdSlop = false;
+    cmdMuteRate = false;
     cmdVolume = false;  // if true, the encoder will control the volume.
     cmdAgcAtt = false;
     cmdFilter = false;
@@ -605,9 +611,7 @@ void showFrequency()
   {
     showBFO();
   }
-
   tft.setFont(NULL); // default font
-  showCapacitor();
 }
 
 /**
@@ -666,6 +670,9 @@ void clearBuffer()
   bufferVolume[0] = '\0';
   bufferStep[0] = '\0';
   bufferSoftMute[0] = '\0';
+
+  bufferSlop[0] = '\0';
+  bufferMuteRate[0] = '\0';
 }
 
 /**
@@ -710,6 +717,8 @@ void showStatus()
   showAgcAtt();
   showStep();
   showSoftMute();
+  showSlop();
+  showMuteRate();
 
 }
 
@@ -819,15 +828,19 @@ void showVolume()
   printText(260, 85, 1, bufferVolume, sVolume, GREEN, 7);
 }
 
-// Internal tuning capacitor test
-void showCapacitor() {
-  /*
-  uint16_t capValue = si4735.getAntennaTuningCapacitor();
-  sprintf(buffer, "%d", antennaIdx);
-  printText(10, 430, 2, bufferCapacitor, buffer, YELLOW, 11);
-  sprintf(buffer, "%d", capValue);
-  printText(100, 430, 2, bufferCapacitorRead, buffer, YELLOW, 11);
-  */
+
+void showSlop() {
+  char sSlop[10];
+  tft.setFont(NULL); // default font
+  sprintf(sSlop, "Sl:%2.2u", slopIdx);
+  printText(180, 60, 1, bufferSlop, sSlop, GREEN, 7);
+}
+
+void showMuteRate() {
+  char sMRate[10];
+  tft.setFont(NULL); // default font
+  sprintf(sMRate, "MR:%3.3u", muteRateIdx);
+  printText(120, 60, 1, bufferMuteRate, sMRate, GREEN, 7);
 }
 
 char *rdsMsg;
@@ -956,8 +969,6 @@ void loadSSB()
 */
 void useBand()
 {
-  cmdSlop = false;
-
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -1183,6 +1194,33 @@ void doBFO() {
   elapsedCommand = millis();
 }
 
+
+void doSlop(int8_t v) {
+  slopIdx = (v == 1) ? slopIdx + 1 : slopIdx - 1;
+  if (slopIdx < 1)
+    slopIdx = 5;
+  else if  (slopIdx > 5 )
+    slopIdx = 1;
+
+  si4735.setAMSoftMuteSlop(slopIdx);
+  showSlop();
+  elapsedCommand = millis();
+}
+
+
+void doMuteRate(int8_t v) {
+  muteRateIdx = (v == 1) ? muteRateIdx + 1 : muteRateIdx - 1;
+  if (muteRateIdx < 1)
+    muteRateIdx = 255;
+  else if (slopIdx > 255)
+        muteRateIdx = 1;
+
+  si4735.setAMSoftMuteRate( (uint8_t) muteRateIdx);
+  showMuteRate();
+  elapsedCommand = millis();
+}
+
+
 /* two buttons are quite simple
 */
 void loop(void)
@@ -1245,9 +1283,10 @@ void loop(void)
       elapsedCommand = millis();   
     }
     else if ( cmdSlop ) {
-      antennaIdx = (encoderCount == 1) ? (antennaIdx + currentStep) : (antennaIdx - currentStep);
-      si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
-      showCapacitor();
+      doSlop(encoderCount);
+    } 
+    else if (cmdMuteRate) {
+      doMuteRate(encoderCount);
     } 
     else
     {
@@ -1315,17 +1354,19 @@ void loop(void)
   }
   else if (bSlop.justPressed())           // ATU (Automatic Antenna Tuner)
   {
-    cmdSlop = !cmdSlop;  
-    showCapacitor();
-    delay(MIN_ELAPSED_TIME); 
+    bSlop.drawButton(false);
+    disableCommands();
+    cmdSlop = true;  
+    delay(MIN_ELAPSED_TIME);
+    elapsedCommand = millis();
   } 
   else if (bSMuteRate.justPressed())
   {
+    bSMuteRate.drawButton(false);
     disableCommands();
-    antennaIdx = (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)? 0:1;
-    si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
-    showCapacitor();
-    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+    cmdMuteRate = true;
+    delay(MIN_ELAPSED_TIME);
+    elapsedCommand = millis();
   }
   else if (bAM.justPressed())               // Switch to AM mode
   {
