@@ -1060,6 +1060,7 @@ The figure above shows the very basic shematic implementation (no Button or Enco
     * IMPROVING NOISE IMMUNITY FOR SERIAL INTERFACE; A Lattice Semiconductor White Paper; July 2014
     * [Bus Buffers Simplify Design of Large, Noisy I²C Systems](https://www.analog.com/en/technical-articles/bus-buffers-simplify-design-of-large-noisy-i2c-systems.html#)
     * [Common Problems In Systems](https://www.i2c-bus.org/i2c-primer/common-problems/)
+    * [Tutorial: Arduino and the I2C bus – Part One](https://tronixstuff.com/2010/10/20/tutorial-arduino-and-the-i2c-bus/)
 15.  __Forums__
       * [How to reduce I²C bus noise](https://www.microchip.com/forums/m456630.aspx)
       * [Radio interferes with I²C bus communication](https://www.microchip.com/forums/m456630.aspx)
