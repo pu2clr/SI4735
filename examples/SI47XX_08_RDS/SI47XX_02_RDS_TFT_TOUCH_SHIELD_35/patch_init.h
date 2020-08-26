@@ -16,7 +16,7 @@
 // SSB patch for whole SSBRX initialization string
 // You can remove PROGMEM if you have enough RAM memory 
 // const PROGMEM  uint8_t ssb_patch_content[] =
-const /*PROGMEM*/  uint8_t ssb_patch_content[] =   // Nice if Arduino DUE or ESP32
+const PROGMEM  uint8_t ssb_patch_content[] =   // Nice if Arduino DUE or ESP32
 		{0x15, 0x00, 0x03, 0x74, 0x0B, 0xD4, 0x84, 0x60,
 		 0x16, 0x6F, 0xAE, 0x6C, 0xF9, 0xBB, 0x84, 0xA2,
 		 0x16, 0x65, 0xB1, 0x4B, 0xF6, 0x72, 0x01, 0x1A,
