@@ -113,12 +113,10 @@ bool bfoOn = false;
 bool ssbLoaded = false;
 bool fmStereo = true;
 
-
 // AGC and attenuation control
 int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 uint8_t agcNdx = 0;
-
 
 bool cmdBand = false;
 bool cmdBfo = false;
@@ -130,7 +128,6 @@ bool cmdMode = false;
 
 int currentBFO = 0;
 uint8_t seekDirection = 1;
-
 
 long elapsedRSSI = millis();
 long elapsedButton = millis();
