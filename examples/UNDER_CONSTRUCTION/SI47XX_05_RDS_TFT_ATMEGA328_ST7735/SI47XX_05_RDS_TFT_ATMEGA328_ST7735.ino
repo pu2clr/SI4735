@@ -22,6 +22,7 @@
   |                           | CS or SS                  |     10        |
   |                           | SDI                       |     11        |
   |                           | CLK                       |     13        |
+  |                           | BL                        |    +VCC       |  
   |     Si4735                |                           |               |
   |                           | RESET (pin 15)            |     12        |
   |                           | SDIO (pin 18)             |     A4        |
@@ -29,10 +30,10 @@
   |     Buttons               |                           |               |
   |                           | Switch MODE (AM/LSB/AM)   |      4        |
   |                           | Banddwith                 |      5        |
-  |                           | Next band                 |      6        |
-  |                           | Previous band             |      7        |
-  |                           | AGC ON/OF                 |     14 / A0   |
-  |                           | Frequency Step            |     15 / A1   |
+  |                           | BAND                      |      6        |
+  |                           | SEEK                      |      7        |
+  |                           | AGC/Attenuation           |     14 / A1   |
+  |                           | STEP                      |     15 / A2   | 
   |                           | VFO/VFO Switch            |     16 / A3   |
   |    Encoder                |                           |               |
   |                           | A                         |       2       |
