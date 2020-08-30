@@ -66,13 +66,6 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define TFT_LED 0  // 0 if wired to +3.3V directly
 #define TFT_BRIGHTNESS 200
 
-#define COLOR_BLACK 0x0000
-#define COLOR_YELLOW 0xFFE0
-#define COLOR_WHITE 0xFFFF
-#define COLOR_RED 0xF800
-#define COLOR_BLUE 0x001F
-#define COLOR_CYAN  0x00FFFF
-
 
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
@@ -95,9 +88,9 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define BFO_SWITCH 16         // Pin A3 - Used to select the enconder control (BFO or VFO)
 #define AUDIO_MUTE 1          // External AUDIO MUTE circuit control
 
-#define MIN_ELAPSED_TIME 100
+#define MIN_ELAPSED_TIME 200
 #define MIN_ELAPSED_RSSI_TIME 150
-#define ELAPSED_COMMAND 2000  // time to turn off the last command controlled by encoder
+#define ELAPSED_COMMAND 2500  // time to turn off the last command controlled by encoder
 #define DEFAULT_VOLUME 50     // change it for your favorite sound volume
 
 #define FM 0
@@ -183,8 +176,16 @@ typedef struct
 Band band[] = {
   {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
   {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
-  {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1}, // ALL SW1 (from 150Khz to 30MHz)
-  {"SW2", SW_BAND_TYPE, 150, 30000, 14200, 1} // ALL SW2 (from 150KHz to 30MHz)
+  {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1}, 
+  {"SW2", SW_BAND_TYPE, 150, 30000, 9600, 5}, 
+  {"SW3", SW_BAND_TYPE, 150, 30000, 11940, 5},
+  {"SW4", SW_BAND_TYPE, 150, 30000, 13600, 5},
+  {"SW5", SW_BAND_TYPE, 150, 30000, 14200, 1},
+  {"SW5", SW_BAND_TYPE, 150, 30000, 15300, 5},
+  {"SW6", SW_BAND_TYPE, 150, 30000, 17600, 5},
+  {"SW7", SW_BAND_TYPE, 150, 30000, 21100, 1},
+  {"SW8", SW_BAND_TYPE, 150, 30000, 22525, 5},  
+  {"SW9", SW_BAND_TYPE, 150, 30000, 28400, 1} 
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
@@ -224,8 +225,8 @@ void setup()
 
   // Use this initializer if using a 1.8" TFT screen:
   tft.initR(INITR_BLACKTAB);
-  tft.fillScreen(COLOR_BLACK);
-  tft.setTextColor(COLOR_BLUE);
+  tft.fillScreen(ST77XX_BLACK);
+  // tft.setTextColor(ST77XX_BLUE);
   tft.setRotation(1);
   showTemplate();
 
@@ -269,11 +270,11 @@ void showTemplate()
   int maxX1 = tft.width() - 2;
   int maxY1 = tft.height() - 5;
 
-  tft.fillScreen(COLOR_BLACK);
+  tft.fillScreen(ST77XX_BLACK);
 
-  tft.drawRect(2, 2, maxX1, maxY1, COLOR_YELLOW);
-  tft.drawLine(2, 40, maxX1, 40, COLOR_YELLOW);
-  tft.drawLine(2, 60, maxX1, 60, COLOR_YELLOW);
+  tft.drawRect(2, 2, maxX1, maxY1, ST77XX_YELLOW);
+  tft.drawLine(2, 40, maxX1, 40, ST77XX_YELLOW);
+  tft.drawLine(2, 60, maxX1, 60, ST77XX_YELLOW);
 
 }
 
@@ -296,7 +297,7 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
     if (*pOld != *pNew)
     {
       // Erases olde value
-      tft.setTextColor(COLOR_BLACK);
+      tft.setTextColor(ST77XX_BLACK);
       tft.setCursor(c, line);
       tft.print(*pOld);
       // Writes new value
@@ -310,7 +311,7 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
   }
 
   // Is there anything else to erase?
-  tft.setTextColor(COLOR_BLACK);
+  tft.setTextColor(ST77XX_BLACK);
   while (*pOld)
   {
     tft.setCursor(c, line);
@@ -387,10 +388,7 @@ void showFrequency()
 
 
   tft.setTextSize(2);
-  printValue(30, 10, &bufferFreq[0], &bufferDisplay[0], 18, COLOR_YELLOW);
-  printValue(100, 10, &bufferFreq[4], &bufferDisplay[4], 18, COLOR_YELLOW);
-  // tft.setCursor(78, 8);
-  // tft.print('.');
+  printValue(40, 10, bufferFreq, bufferDisplay, 18, ST77XX_YELLOW);
 
 }
 
@@ -409,7 +407,7 @@ void showFrequencySeek(uint16_t freq)
 void showStatus()
 {
   showFrequency();
-
+  showBandwitdth();
   /*
     rx.getStatus();
     rx.getCurrentReceivedSignalQuality();
@@ -418,56 +416,53 @@ void showStatus()
 
 
     tft.setFont(Terminal6x8);
-    printValue(155, 10, bufferStepVFO, bufferDisplay, COLOR_BLACK, 7);
+    printValue(155, 10, bufferStepVFO, bufferDisplay, ST77XX_BLACK, 7);
 
     if (rx.isCurrentTuneFM())
     {
-      tft.drawText(155, 30, "MHz", COLOR_RED);
-      tft.drawText(124, 45, bufferBW, COLOR_BLACK);
+      tft.drawText(155, 30, "MHz", ST77XX_RED);
+      tft.drawText(124, 45, bufferBW, ST77XX_BLACK);
       CLEAR_BUFFER(bufferBW)
     }
     else
     {
-      tft.fillRectangle(153, 3, 216, 20, COLOR_BLACK);  // Clear Step field
+      tft.fillRectangle(153, 3, 216, 20, ST77XX_BLACK);  // Clear Step field
       sprintf(bufferDisplay, "Stp: %3d", currentStep);
-      printValue(153, 10, bufferStepVFO, bufferDisplay, COLOR_YELLOW, 6);
-      tft.drawText(153, 30, "KHz", COLOR_RED);
+      printValue(153, 10, bufferStepVFO, bufferDisplay, ST77XX_YELLOW, 6);
+      tft.drawText(153, 30, "KHz", ST77XX_RED);
     }
 
     if (band[bandIdx].bandType == SW_BAND_TYPE)
       sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
     else
       sprintf(bufferDisplay, "%s", band[bandIdx].bandName);
-    printValue(4, 60, bufferBand, bufferDisplay, COLOR_CYAN, 6);
+    printValue(4, 60, bufferBand, bufferDisplay, ST77XX_CYAN, 6);
 
     // AGC
     rx.getAutomaticGainControl();
     sprintf(bufferDisplay, "%s %2d", (rx.isAgcEnabled()) ? "AGC" : "ATT", agcNdx);
-    printValue(65, 60, bufferAGC, bufferDisplay, COLOR_CYAN, 6);
+    printValue(65, 60, bufferAGC, bufferDisplay, ST77XX_CYAN, 6);
     showFilter();
   */
 }
 
 
 void showBandwitdth() {
-  /*
     // Bandwidth
     if (currentMode == LSB || currentMode == USB || currentMode == AM) {
-    char * bw;
-    tft.drawText(150, 60, bufferStereo, COLOR_BLACK); // Erase Stereo/Mono information
+      char * bw;
 
-    if (currentMode == AM) {
-      bw = (char *) bandwitdthAM[bwIdxAM];
-    }
+      if (currentMode == AM) 
+        bw = (char *) bandwitdthAM[bwIdxAM];
+      else 
+        bw = (char *) bandwitdthSSB[bwIdxSSB];
+      sprintf(bufferDisplay, "BW: %s KHz", bw);
+    } 
     else {
-      bw = (char *) bandwitdthSSB[bwIdxSSB];
-      showBFOTemplate(COLOR_CYAN);
-      showBFO();
+      bufferDisplay[0] = '\0';
     }
-    sprintf(bufferDisplay, "BW: %s KHz", bw);
-    printValue(124, 45, bufferBW, bufferDisplay, COLOR_CYAN, 6);
-    }
-  */
+    tft.setTextSize(1);
+    printValue(10, 110, bufferBW, bufferDisplay, 6, ST77XX_GREEN);
 }
 
 /* *******************************
@@ -484,7 +479,7 @@ void showRSSI()
     if (currentMode == FM)
     {
     sprintf(bufferDisplay, "%s", (rx.getCurrentPilot()) ? "STEREO" : "MONO");
-    printValue(150, 60, bufferStereo, bufferDisplay, COLOR_CYAN, 7);
+    printValue(150, 60, bufferStereo, bufferDisplay, ST77XX_CYAN, 7);
     }
 
     // Check it
@@ -493,11 +488,11 @@ void showRSSI()
     // SNR.: 0 to 127 dB
     snrLevel = 47 + map(snr, 0, 127, 0, ( maxAux  - 43) );
 
-    tft.fillRectangle(46, 151,  maxAux - 3, 155, COLOR_BLACK);
-    tft.fillRectangle(46, 164, maxAux - 3, 168, COLOR_BLACK);
+    tft.fillRectangle(46, 151,  maxAux - 3, 155, ST77XX_BLACK);
+    tft.fillRectangle(46, 164, maxAux - 3, 168, ST77XX_BLACK);
 
-    tft.fillRectangle(46, 151,  rssiLevel, 155, COLOR_LIGHTCYAN);
-    tft.fillRectangle(46, 164, snrLevel, 168, COLOR_LIGHTCYAN);
+    tft.fillRectangle(46, 151,  rssiLevel, 155, ST77XX_LIGHTCYAN);
+    tft.fillRectangle(46, 164, snrLevel, 168, ST77XX_LIGHTCYAN);
   */
 }
 
@@ -505,7 +500,7 @@ void showBFOTemplate(uint16_t color)
 {
   /*
     tft.setFont(Terminal6x8);
-    tft.drawText(150, 60, bufferStereo, COLOR_BLACK);
+    tft.drawText(150, 60, bufferStereo, ST77XX_BLACK);
     tft.drawText(124, 55, "BFO.:", color);
     tft.drawText(124, 65, "Stp.:", color);
   */
@@ -515,19 +510,17 @@ void showBFOTemplate(uint16_t color)
    Shows the current AGC and Attenuation status
 */
 void showAgcAtt() {
-  /*
+
     char sAgc[15];
 
-    si4735.getAutomaticGainControl();
+    rx.getAutomaticGainControl();
     if (agcNdx == 0 && agcIdx == 0)
-    strcpy(sAgc, "AGC ON");
+      strcpy(sAgc, "AGC ON");
     else
-    {
     sprintf(sAgc, "ATT: %2d", agcNdx);
-    }
     tft.setFont(NULL);
-    printText(90, 85, 1, bufferAGC, sAgc, GREEN, 7);
-  */
+    // printValue(80, 85, 1, bufferAGC, sAgc, 7, ST77XX_WHITE);
+
 }
 
 
@@ -539,22 +532,20 @@ void showStep() {
 }
 
 void clearBFO() {
-  // tft.fillRectangle(124, 52, 218, 79, COLOR_BLACK); // Clear All BFO area
+  // tft.fillRectangle(124, 52, 218, 79, ST77XX_BLACK); // Clear All BFO area
   CLEAR_BUFFER(bufferBFO);
   CLEAR_BUFFER(bufferStepBFO);
 }
 
 void showBFO()
 {
-  /*
-    tft.setFont(Terminal6x8);
-
+    tft.setTextSize(1);
+   
     sprintf(bufferDisplay, "%+4d", currentBFO);
-    printValue(160, 55, bufferBFO, bufferDisplay, COLOR_CYAN, 7);
+    printValue(10, 80, bufferBFO, bufferDisplay, 7, ST77XX_CYAN);
 
     sprintf(bufferDisplay, "%4d", currentBFOStep);
-    printValue(160, 65, bufferStepBFO, bufferDisplay, COLOR_CYAN, 7);
-  */
+    printValue(90, 80, bufferStepBFO, bufferDisplay, 7,  ST77XX_CYAN);
 }
 
 
@@ -569,6 +560,8 @@ void setBand(int8_t up_down) {
   else
     bandIdx = (bandIdx > 0) ? (bandIdx - 1) : lastBand;
   useBand();
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();
 }
 
 
@@ -681,9 +674,6 @@ void doBandwidth(int8_t v) {
 }
 
 
-void doBfo() {
-
-}
 
 /**
    Deal with AGC and attenuattion
@@ -743,7 +733,6 @@ void doStep(int8_t v) {
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
-
 }
 
 /**
@@ -771,7 +760,10 @@ void doMode(int8_t v) {
     band[bandIdx].currentFreq = currentFrequency;
     band[bandIdx].currentStep = currentStep;
     useBand();
+    showBFO();
   }
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();
 }
 
 /**
@@ -822,26 +814,20 @@ void loop()
   }
   else
   {
-    if ((millis() - elapsedButton) > MIN_ELAPSED_TIME)
-    {
-      if (digitalRead(BANDWIDTH_BUTTON) == LOW)
-        cmdBandwidth = true;
-      else if (digitalRead(BAND_BUTTON) == LOW)
-        cmdBand = true;
-      else if (digitalRead(SEEK_BUTTON) == LOW)
-        doSeek();
-      else if (digitalRead(BFO_SWITCH) == LOW)
-        cmdBfo = true;
-      else if (digitalRead(AGC_SWITCH) == LOW)
-        cmdAgc = true;
-      else if (digitalRead(STEP_SWITCH) == LOW)
-        cmdStep = true;
-      else if (digitalRead(MODE_SWITCH) == LOW)
-        cmdMode = true;
-
-      elapsedButton = millis();
-      delay(MIN_ELAPSED_TIME);
-    }
+    if (digitalRead(BANDWIDTH_BUTTON) == LOW)
+      cmdBandwidth = true;
+    else if (digitalRead(BAND_BUTTON) == LOW)
+      cmdBand = true;
+    else if (digitalRead(SEEK_BUTTON) == LOW)
+      doSeek();
+    else if (digitalRead(BFO_SWITCH) == LOW)
+      cmdBfo = true;
+    else if (digitalRead(AGC_SWITCH) == LOW)
+      cmdAgc = true;
+    else if (digitalRead(STEP_SWITCH) == LOW)
+      cmdStep = true;
+    else if (digitalRead(MODE_SWITCH) == LOW)
+      cmdMode = true;
   }
 
 
@@ -870,5 +856,5 @@ void loop()
     elapsedCommand = millis();
   }
 
-  delay(10);
+  delay(5);
 }
