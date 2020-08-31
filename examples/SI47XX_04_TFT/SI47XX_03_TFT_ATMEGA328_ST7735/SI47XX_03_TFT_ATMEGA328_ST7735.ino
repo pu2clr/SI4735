@@ -1,43 +1,47 @@
 /*
-
-  Under construction....
-
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT ST7735 1.8"
 
-  It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the
-  regular comercial stations. If you are using the same circuit used on examples with OLED and LCD,
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735  and  the 
+  "PU2CLR SI4735 Arduino Library" working with the TFT ST7735 display. It is not the purpose of this prototype 
+  to provide you a beautiful interface. To be honest, I think you can do it better than me. 
+
+  It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
+  regular  comercial  stations. If  you  are  using  the  same  circuit  used  on  examples with OLED and LCD,
   you have to change some buttons wire up. This TFT device takes five pins from Arduino.
   For this reason, it is necessary change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
-  Features:   FM/RDS; AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
+  Features:   AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
 
   Wire up on Arduino UNO, Pro mini
-  | Device name               | Device Pin / Description  |  Arduino Pin  |
-  | ----------------          | --------------------      | ------------  |
-  | Display TFT               |                           |               |
-  |                           | RST (RESET)               |      8        |
-  |                           | RS or DC                  |      9        |
-  |                           | CS or SS                  |     10        |
-  |                           | SDI                       |     11        |
-  |                           | CLK                       |     13        |
-  |                           | BL                        |    +VCC       |  
-  |     Si4735                |                           |               |
-  |                           | RESET (pin 15)            |     12        |
-  |                           | SDIO (pin 18)             |     A4        |
-  |                           | SCLK (pin 17)             |     A5        |
-  |     Buttons               |                           |               |
-  |                           | Switch MODE (AM/LSB/AM)   |      4        |
-  |                           | Banddwith                 |      5        |
-  |                           | BAND                      |      6        |
-  |                           | SEEK                      |      7        |
-  |                           | AGC/Attenuation           |     14 / A0   |
-  |                           | STEP                      |     15 / A1   | 
-  |                           | VFO/VFO Switch            |     16 / A2   |
-  |    Encoder                |                           |               |
-  |                           | A                         |       2       |
-  |                           | B                         |       3       |
+  | Device name               | Device Pin / Description      |  Arduino Pin  |
+  | ----------------          | ----------------------------- | ------------  |
+  | Display TFT               |                               |               |
+  |                           | RST (RESET)                   |      8        |
+  |                           | RS or DC                      |      9        |
+  |                           | CS or SS                      |     10        |
+  |                           | SDI                           |     11        |
+  |                           | CLK                           |     13        |
+  |                           | BL                            |    +VCC       |  
+  |     Si4735                |                               |               |
+  |                           | RESET (pin 15)                |     12        |
+  |                           | SDIO (pin 18)                 |     A4        |
+  |                           | SCLK (pin 17)                 |     A5        |
+  |     Buttons               |                               |               |
+  |                           | (*)Switch MODE (AM/LSB/AM)    |      4        |
+  |                           | (*)Banddwith                  |      5        |
+  |                           | (*)BAND                       |      6        |
+  |                           | SEEK                          |      7        |
+  |                           | (*)AGC/Attenuation            |     14 / A0   |
+  |                           | (*)STEP                       |     15 / A1   | 
+  |                           | VFO/VFO Switch                |     16 / A2   |
+  |    Encoder                |                               |               |
+  |                           | A                             |       2       |
+  |                           | B                             |       3       |
+
+  (*) You have to press the push button and after, rotate the encoder to select the parameter
+      After you activate a command by pressing a push button, it will keep active for 2,5 seconds 
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
@@ -142,7 +146,7 @@ const char * bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 uint8_t bwIdxAM = 1;
 const char * bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
-const char * bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
+const char * bandModeDesc[] = {"   ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
 uint16_t currentStep = 1;
@@ -172,21 +176,22 @@ typedef struct
 
 /*
    Band table
+   Actually, except FM (VHF), the other bands cover the entire LW / MW and SW spectrum.
+   Only the default frequency and step is changed. You can change this setup. 
 */
 Band band[] = {
-  {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
-  {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
-  {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1}, 
-  {"SW2", SW_BAND_TYPE, 150, 30000, 9600, 5}, 
-  {"SW3", SW_BAND_TYPE, 150, 30000, 11940, 5},
-  {"SW4", SW_BAND_TYPE, 150, 30000, 13600, 5},
-  {"SW5", SW_BAND_TYPE, 150, 30000, 14200, 1},
-  {"SW5", SW_BAND_TYPE, 150, 30000, 15300, 5},
-  {"SW6", SW_BAND_TYPE, 150, 30000, 17600, 5},
-  {"SW7", SW_BAND_TYPE, 150, 30000, 21100, 1},
-  {"SW8", SW_BAND_TYPE, 150, 30000, 22525, 5},  
-  {"SW9", SW_BAND_TYPE, 150, 30000, 28400, 1} 
-};
+    {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
+    {"MW ", MW_BAND_TYPE, 150, 1720, 810, 10},
+    {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1}, // Here and below: 150KHz to 30MHz
+    {"SW2", SW_BAND_TYPE, 150, 30000, 9600, 5},
+    {"SW3", SW_BAND_TYPE, 150, 30000, 11940, 5},
+    {"SW4", SW_BAND_TYPE, 150, 30000, 13600, 5},
+    {"SW5", SW_BAND_TYPE, 150, 30000, 14200, 1},
+    {"SW5", SW_BAND_TYPE, 150, 30000, 15300, 5},
+    {"SW6", SW_BAND_TYPE, 150, 30000, 17600, 5},
+    {"SW7", SW_BAND_TYPE, 150, 30000, 21100, 1},
+    {"SW8", SW_BAND_TYPE, 150, 30000, 22525, 5},
+    {"SW9", SW_BAND_TYPE, 150, 30000, 28400, 1}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
@@ -253,11 +258,13 @@ void disableCommands() {
 
   cmdBand = false;
   cmdBfo = false;
+  bfoOn = false;
   cmdVolume = false;
   cmdAgc = false;
   cmdBandwidth = false;
   cmdStep = false;
   cmdMode = false;
+
 
 }
 
@@ -369,6 +376,7 @@ void showFrequency()
     bufferDisplay[3] = '.';
     bufferDisplay[4] = tmp[3];
     bufferDisplay[5] = '\0';
+    color = ST7735_CYAN;
   }
   else
   {
@@ -387,11 +395,10 @@ void showFrequency()
       bufferDisplay[4] = tmp[4];
       bufferDisplay[5] = '\0';
     }
+    color = (bfoOn) ? ST7735_CYAN: ST77XX_YELLOW;
   }
 
-
-  printValue(30, 10, bufferFreq, bufferDisplay, 18, ST77XX_YELLOW, 2);
-
+  printValue(30, 10, bufferFreq, bufferDisplay, 18, color, 2);
 }
 
 
@@ -408,17 +415,33 @@ void showFrequencySeek(uint16_t freq)
 */
 void showStatus()
 {
-  showFrequency();
   char *unt;
 
+  int maxX1 = tft.width() - 5;
+
+  tft.fillRect(3, 3, maxX1, 36, ST77XX_BLACK);
+  tft.fillRect(3, 61, maxX1, 60, ST77XX_BLACK);
+
+  CLEAR_BUFFER(bufferFreq);
+  CLEAR_BUFFER(bufferUnt);
+  CLEAR_BUFFER(bufferBand);
+  CLEAR_BUFFER(bufferAGC);
+  CLEAR_BUFFER(bufferBW);
+  CLEAR_BUFFER(bufferStepVFO);
+
+  showFrequency();
   if (rx.isCurrentTuneFM()) {
     unt = (char *) "MHz";
   } else
   {
     unt = (char *) "KHz";
     showStep();
+    showAgcAtt();
+    if (loadSSB) showBFO();
   }
   printValue(140, 5, bufferUnt, unt, 6, ST77XX_GREEN,1);
+  sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
+  printValue(5, 65, bufferBand, bufferDisplay, 6, ST77XX_CYAN, 1);
 
   showBandwitdth();
   /*
@@ -473,7 +496,7 @@ void showBandwitdth() {
     else {
       bufferDisplay[0] = '\0';
     }
-    printValue(10, 110, bufferBW, bufferDisplay, 6, ST77XX_GREEN,1);
+    printValue(5, 110, bufferBW, bufferDisplay, 6, ST77XX_GREEN,1);
 }
 
 /* *******************************
@@ -507,31 +530,18 @@ void showRSSI()
   */
 }
 
-void showBFOTemplate(uint16_t color)
-{
-  /*
-    tft.setFont(Terminal6x8);
-    tft.drawText(150, 60, bufferStereo, ST77XX_BLACK);
-    tft.drawText(124, 55, "BFO.:", color);
-    tft.drawText(124, 65, "Stp.:", color);
-  */
-}
-
 /**
    Shows the current AGC and Attenuation status
 */
 void showAgcAtt() {
-
     char sAgc[15];
-
     rx.getAutomaticGainControl();
     if (agcNdx == 0 && agcIdx == 0)
       strcpy(sAgc, "AGC ON");
     else
     sprintf(sAgc, "ATT: %2d", agcNdx);
     tft.setFont(NULL);
-    // printValue(80, 85, 1, bufferAGC, sAgc, 7, ST77XX_WHITE);
-
+    printValue(110, 110, bufferAGC, sAgc, 6, ST77XX_GREEN, 1);
 }
 
 
@@ -552,7 +562,7 @@ void clearBFO() {
 void showBFO()
 {
     sprintf(bufferDisplay, "%+4d", currentBFO);
-    printValue(120, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
+    printValue(125, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
 }
 
 
@@ -737,6 +747,8 @@ void doStep(int8_t v) {
    Switches to the AM, LSB or USB modes
 */
 void doMode(int8_t v) {
+  bufferBFO[0] =  bufferFreq[0] = '\0';
+  bufferBFO[0];
   if (currentMode != FM)
   {
     if (currentMode == AM)
@@ -758,8 +770,8 @@ void doMode(int8_t v) {
     band[bandIdx].currentFreq = currentFrequency;
     band[bandIdx].currentStep = currentStep;
     useBand();
-    showBFO();
   }
+
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
@@ -813,22 +825,35 @@ void loop()
   }
   else
   {
-    if (digitalRead(BANDWIDTH_BUTTON) == LOW)
+    if (digitalRead(BANDWIDTH_BUTTON) == LOW) {
       cmdBandwidth = true;
-    else if (digitalRead(BAND_BUTTON) == LOW)
-      cmdBand = true;
-    else if (digitalRead(SEEK_BUTTON) == LOW)
-      doSeek();
-    else if (digitalRead(BFO_SWITCH) == LOW) {
-      bfoOn = !bfoOn;
       elapsedCommand = millis();
     }
-    else if (digitalRead(AGC_SWITCH) == LOW)
+    else if (digitalRead(BAND_BUTTON) == LOW) {
+      cmdBand = true;
+      elapsedCommand = millis();
+    }
+    else if (digitalRead(SEEK_BUTTON) == LOW) {
+      doSeek();
+    }
+    else if (digitalRead(BFO_SWITCH) == LOW) {
+      bfoOn = !bfoOn;
+      cmdBfo = false;
+      elapsedCommand = millis();
+      delay(MIN_ELAPSED_TIME);
+    }
+    else if (digitalRead(AGC_SWITCH) == LOW) {
         cmdAgc = true;
-    else if (digitalRead(STEP_SWITCH) == LOW)
+        elapsedCommand = millis();
+    }
+    else if (digitalRead(STEP_SWITCH) == LOW) {
         cmdStep = true;
-    else if (digitalRead(MODE_SWITCH) == LOW)
+        elapsedCommand = millis();
+    }
+    else if (digitalRead(MODE_SWITCH) == LOW) {
         cmdMode = true;
+        elapsedCommand = millis();
+    }
   }
 
 
@@ -850,7 +875,7 @@ void loop()
   if ( (millis() - elapsedCommand) > ELAPSED_COMMAND ) {
     if ( cmdBfo ) {
       bufferFreq[0] = '\0';
-      cmdBfo = false;
+      bfoOn = cmdBfo = false;
       showFrequency();
     }
     disableCommands();
