@@ -11,6 +11,14 @@
   For this reason, it is necessary change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
+  The libraries Adafruit_GFX and Adafruit_ST7735 take a lot of memory space from Arduino. 
+  You have few space to improve your prototype with standard Arduino Pro Mini.
+  However, you can use some approaches:  
+  1. Shrink or remove the boot loader from Arduino Pro Mini;
+  2. The Arduino Nano e Uno has smaller bootloader than the Arduino Pro Mini
+  3. Port this sketch to a bigger board like Arduino Mega or DUE. 
+
+
   Features:   AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
 
