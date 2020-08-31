@@ -373,23 +373,24 @@ void showFrequency()
   else
   {
     if ( currentFrequency  < 1000 ) {
-      bufferDisplay[0] = tmp[2] ;
-      bufferDisplay[1] = tmp[3];
-      bufferDisplay[2] = tmp[4];
-      bufferDisplay[3] = '\0';
+      bufferDisplay[0] = ' ';
+      bufferDisplay[1] = ' ';
+      bufferDisplay[2] = tmp[2] ;
+      bufferDisplay[3] = tmp[3];
+      bufferDisplay[4] = tmp[4];
+      bufferDisplay[5] = '\0';
     } else {
-      bufferDisplay[0] = tmp[0] ;
+      bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
       bufferDisplay[1] = tmp[1];
-      bufferDisplay[2] = '.';
-      bufferDisplay[3] = tmp[2];
-      bufferDisplay[4] = tmp[3];
-      bufferDisplay[5] = tmp[4];
-      bufferDisplay[6] = '\0';
+      bufferDisplay[2] = tmp[2];
+      bufferDisplay[3] = tmp[3];
+      bufferDisplay[4] = tmp[4];
+      bufferDisplay[5] = '\0';
     }
   }
 
 
-  printValue(40, 10, bufferFreq, bufferDisplay, 18, ST77XX_YELLOW, 2);
+  printValue(30, 10, bufferFreq, bufferDisplay, 18, ST77XX_YELLOW, 2);
 
 }
 
