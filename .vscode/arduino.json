@@ -1,5 +1,6 @@
 {
-    "board": "arduino:sam:arduino_due_x",
-    "port": "/dev/tty.usbmodem14201",
-    "sketch": "examples/UNDER_CONSTRUCTION/SI47XX_00_RDS_TFT_TOUCH_SHIELD_35/SI47XX_00_RDS_TFT_TOUCH_SHIELD_35.ino"
+    "board": "arduino:avr:pro",
+    "port": "/dev/tty.usbserial-A50285BI",
+    "sketch": "examples/UNDER_CONSTRUCTION/SI47XX_05_RDS_TFT_ATMEGA328_ST7735/SI47XX_05_RDS_TFT_ATMEGA328_ST7735.ino",
+    "configuration": "cpu=8MHzatmega328"
 }

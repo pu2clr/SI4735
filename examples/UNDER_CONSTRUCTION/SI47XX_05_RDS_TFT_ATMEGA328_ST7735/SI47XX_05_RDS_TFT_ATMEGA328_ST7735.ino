@@ -32,9 +32,9 @@
   |                           | Banddwith                 |      5        |
   |                           | BAND                      |      6        |
   |                           | SEEK                      |      7        |
-  |                           | AGC/Attenuation           |     14 / A1   |
-  |                           | STEP                      |     15 / A2   | 
-  |                           | VFO/VFO Switch            |     16 / A3   |
+  |                           | AGC/Attenuation           |     14 / A0   |
+  |                           | STEP                      |     15 / A1   | 
+  |                           | VFO/VFO Switch            |     16 / A2   |
   |    Encoder                |                           |               |
   |                           | A                         |       2       |
   |                           | B                         |       3       |
@@ -134,7 +134,7 @@ volatile int encoderCount = 0;
 uint16_t currentFrequency;
 uint16_t previousFrequency = 0;
 
-uint8_t currentBFOStep = 25;
+uint8_t currentBFOStep = 10;
 
 uint8_t bwIdxSSB = 2;
 const char * bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
@@ -151,12 +151,11 @@ char bufferDisplay[20]; // Useful to handle string
 char bufferFreq[15];
 char bufferBFO[15];
 char bufferStepVFO[15];
-char bufferStepBFO[15];
 char bufferBW[15];
 char bufferAGC[15];
 char bufferBand[15];
 char bufferStereo[15];
-
+char bufferUnt[5];
 
 /*
    Band data structure
@@ -283,11 +282,13 @@ void showTemplate()
   Prevents blinking during the frequency display.
   Erases the old digits if it has changed and print the new digit values.
 */
-void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space, uint16_t color)
+void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space, uint16_t color, uint8_t txtSize)
 {
   int c = col;
   char *pOld;
   char *pNew;
+
+  tft.setTextSize(txtSize);
 
   pOld = oldValue;
   pNew = newValue;
@@ -388,8 +389,7 @@ void showFrequency()
   }
 
 
-  tft.setTextSize(2);
-  printValue(40, 10, bufferFreq, bufferDisplay, 18, ST77XX_YELLOW);
+  printValue(40, 10, bufferFreq, bufferDisplay, 18, ST77XX_YELLOW, 2);
 
 }
 
@@ -408,6 +408,17 @@ void showFrequencySeek(uint16_t freq)
 void showStatus()
 {
   showFrequency();
+  char *unt;
+
+  if (rx.isCurrentTuneFM()) {
+    unt = (char *) "MHz";
+  } else
+  {
+    unt = (char *) "KHz";
+    showStep();
+  }
+  printValue(140, 5, bufferUnt, unt, 6, ST77XX_GREEN,1);
+
   showBandwitdth();
   /*
     rx.getStatus();
@@ -447,7 +458,6 @@ void showStatus()
   */
 }
 
-
 void showBandwitdth() {
     // Bandwidth
     if (currentMode == LSB || currentMode == USB || currentMode == AM) {
@@ -462,8 +472,7 @@ void showBandwitdth() {
     else {
       bufferDisplay[0] = '\0';
     }
-    tft.setTextSize(1);
-    printValue(10, 110, bufferBW, bufferDisplay, 6, ST77XX_GREEN);
+    printValue(10, 110, bufferBW, bufferDisplay, 6, ST77XX_GREEN,1);
 }
 
 /* *******************************
@@ -529,24 +538,20 @@ void showAgcAtt() {
    Shows the current step
 */
 void showStep() {
-
+  char sStep[15];
+  sprintf(sStep, "Stp:%3d", currentStep);
+  printValue(110, 65, bufferStepVFO, sStep, 6, ST77XX_GREEN, 1);
 }
 
 void clearBFO() {
   // tft.fillRectangle(124, 52, 218, 79, ST77XX_BLACK); // Clear All BFO area
   CLEAR_BUFFER(bufferBFO);
-  CLEAR_BUFFER(bufferStepBFO);
 }
 
 void showBFO()
 {
-    tft.setTextSize(1);
-   
     sprintf(bufferDisplay, "%+4d", currentBFO);
-    printValue(10, 80, bufferBFO, bufferDisplay, 7, ST77XX_CYAN);
-
-    sprintf(bufferDisplay, "%4d", currentBFOStep);
-    printValue(90, 80, bufferStepBFO, bufferDisplay, 7,  ST77XX_CYAN);
+    printValue(120, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
 }
 
 
@@ -711,27 +716,18 @@ int getStepIndex(int st) {
    Switches the current step
 */
 void doStep(int8_t v) {
-  // This command should work only for SSB mode
-  if (cmdBfo && (currentMode == LSB || currentMode == USB))
-  {
-    currentBFOStep = (currentBFOStep == 25) ? 10 : 20;
-    showBFO();
-  }
-  else
-  {
-    idxStep = ( v == 1 ) ? idxStep + 1 : idxStep - 1;
-    if ( idxStep > lastStep)
-      idxStep = 0;
-    else if ( idxStep < 0 )
-      idxStep = lastStep;
+  idxStep = ( v == 1 ) ? idxStep + 1 : idxStep - 1;
+  if ( idxStep > lastStep)
+     idxStep = 0;
+  else if ( idxStep < 0 )
+     idxStep = lastStep;
 
-    currentStep = tabStep[idxStep];
+  currentStep = tabStep[idxStep];
 
-    rx.setFrequencyStep(currentStep);
-    band[bandIdx].currentStep = currentStep;
-    rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
-    showStep();
-  }
+  rx.setFrequencyStep(currentStep);
+  band[bandIdx].currentStep = currentStep;
+  rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
+  showStep();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
@@ -786,8 +782,9 @@ void loop()
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
       rx.setSSBBfo(currentBFO);
       showBFO();
+      elapsedCommand = millis();
     }
-    else if ( cmdMode )
+    else if ( cmdMode ) 
       doMode(encoderCount);
     else if (cmdStep)
       doStep(encoderCount);
@@ -821,14 +818,16 @@ void loop()
       cmdBand = true;
     else if (digitalRead(SEEK_BUTTON) == LOW)
       doSeek();
-    else if (digitalRead(BFO_SWITCH) == LOW)
-      cmdBfo = true;
+    else if (digitalRead(BFO_SWITCH) == LOW) {
+      bfoOn = !bfoOn;
+      elapsedCommand = millis();
+    }
     else if (digitalRead(AGC_SWITCH) == LOW)
-      cmdAgc = true;
+        cmdAgc = true;
     else if (digitalRead(STEP_SWITCH) == LOW)
-      cmdStep = true;
+        cmdStep = true;
     else if (digitalRead(MODE_SWITCH) == LOW)
-      cmdMode = true;
+        cmdMode = true;
   }
 
 
