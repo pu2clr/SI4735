@@ -2981,7 +2981,7 @@ void SI4735::loadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patc
  * @param eeprom_i2c_address 
  * @return false if an error is found.
  */
-    si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_address)
+si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_address)
 {
     si4735_eeprom_patch_header eep;
     const int header_size = sizeof eep;

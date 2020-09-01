@@ -37,19 +37,22 @@
   |                           | SDIO (pin 18)                 |     A4        |
   |                           | SCLK (pin 17)                 |     A5        |
   |     Buttons               |                               |               |
-  |                           | (*)Switch MODE (AM/LSB/AM)    |      4        |
-  |                           | (*)Banddwith                  |      5        |
-  |                           | (*)BAND                       |      6        |
-  |                           | SEEK                          |      7        |
-  |                           | (*)AGC/Attenuation            |     14 / A0   |
-  |                           | (*)STEP                       |     15 / A1   | 
-  |                           | VFO/VFO Switch                |     16 / A2   |
+  |                           | (*1)Switch MODE (AM/LSB/AM)   |      4        |
+  |                           | (*1)Banddwith                 |      5        |
+  |                           | (*1)BAND                      |      6        |
+  |                           | (*2)SEEK                      |      7        |
+  |                           | (*1)AGC/Attenuation           |     14 / A0   |
+  |                           | (*1)STEP                      |     15 / A1   | 
+  |                           | VFO/VFO Switch (Encoder)      |     16 / A2   |
   |    Encoder                |                               |               |
   |                           | A                             |       2       |
   |                           | B                             |       3       |
 
-  (*) You have to press the push button and after, rotate the encoder to select the parameter
-      After you activate a command by pressing a push button, it will keep active for 2,5 seconds 
+  (*1) You have to press the push button and after, rotate the encoder to select the parameter.
+       After you activate a command by pressing a push button, it will keep active for 2,5 seconds. 
+  (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of 
+       the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of 
+       the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
@@ -117,7 +120,6 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 bool bfoOn = false;
 bool ssbLoaded = false;
-bool fmStereo = true;
 
 // AGC and attenuation control
 int8_t agcIdx = 0;
@@ -133,7 +135,7 @@ bool cmdStep = false;
 bool cmdMode = false;
 
 int currentBFO = 0;
-uint8_t seekDirection = 1;
+uint8_t seekDirection = 1;   // Tells the SEEK direction (botton or upper limit)
 
 long elapsedRSSI = millis();
 long elapsedButton = millis();
@@ -144,7 +146,6 @@ volatile int encoderCount = 0;
 
 // Some variables to check the SI4735 status
 uint16_t currentFrequency;
-uint16_t previousFrequency = 0;
 
 uint8_t currentBFOStep = 10;
 
@@ -233,13 +234,12 @@ void setup()
   pinMode(STEP_SWITCH, INPUT_PULLUP);
   pinMode(MODE_SWITCH, INPUT_PULLUP);
 
-  // Comment the line below if you do not have external audio mute circuit
-  rx.setAudioMuteMcuPin(AUDIO_MUTE);
+  // uncomment the line below if you have external audio mute circuit
+  // rx.setAudioMuteMcuPin(AUDIO_MUTE);
 
   // Use this initializer if using a 1.8" TFT screen:
   tft.initR(INITR_BLACKTAB);
   tft.fillScreen(ST77XX_BLACK);
-  // tft.setTextColor(ST77XX_BLUE);
   tft.setRotation(1);
   showTemplate();
 
@@ -259,9 +259,9 @@ void setup()
 
 
 /**
-   Set all command flags to false
-   When all flags are disabled (false), the encoder controls the frequency
-*/
+ *  Set all command flags to false
+ *  When all flags are disabled (false), the encoder controls the frequency
+ */
 void disableCommands() {
 
   cmdBand = false;
@@ -272,31 +272,25 @@ void disableCommands() {
   cmdBandwidth = false;
   cmdStep = false;
   cmdMode = false;
-
-
 }
 
-/*
-   Shows the static content on  display
-*/
+/**
+ *  Shows the static content on  display
+ */
 void showTemplate()
 {
-
   int maxX1 = tft.width() - 2;
   int maxY1 = tft.height() - 5;
-
   tft.fillScreen(ST77XX_BLACK);
-
   tft.drawRect(2, 2, maxX1, maxY1, ST77XX_YELLOW);
   tft.drawLine(2, 40, maxX1, 40, ST77XX_YELLOW);
   tft.drawLine(2, 60, maxX1, 60, ST77XX_YELLOW);
-
 }
 
-/*
-  Prevents blinking during the frequency display.
-  Erases the old digits if it has changed and print the new digit values.
-*/
+/**
+ * Prevents blinking during the frequency display.
+ * Erases the old digits if it has changed and print the new digit values.
+ */
 void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space, uint16_t color, uint8_t txtSize)
 {
   int c = col;
@@ -352,10 +346,10 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
 }
 
 
-/*
-    Reads encoder via interrupt
-    Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
-*/
+/**
+ *   Reads encoder via interrupt
+ *   Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
+ */
 void rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
@@ -364,9 +358,9 @@ void rotaryEncoder()
     encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
 }
 
-/*
-   Shows frequency information on Display
-*/
+/**
+ *  Shows frequency information on Display
+ */
 void showFrequency()
 {
   uint16_t color;
@@ -409,17 +403,18 @@ void showFrequency()
 }
 
 
-// Will be used by seekStationProgress function.
-// This Si4735 library method calls the function below during seek process informing the current seek frequency.
+/**
+ *  This function is called by the seek function process.
+ */
 void showFrequencySeek(uint16_t freq)
 {
   currentFrequency = freq;
   showFrequency();
 }
 
-/*
-    Show some basic information on display
-*/
+/**
+ *   Show some basic information on display
+ */
 void showStatus()
 {
   char *unt;
@@ -452,44 +447,12 @@ void showStatus()
   printValue(5, 65, bufferBand, bufferDisplay, 6, ST77XX_CYAN, 1);
 
   showBandwitdth();
-  /*
-    rx.getStatus();
-    rx.getCurrentReceivedSignalQuality();
-    // SRN
-    currentFrequency = rx.getFrequency();
 
-
-    tft.setFont(Terminal6x8);
-    printValue(155, 10, bufferStepVFO, bufferDisplay, ST77XX_BLACK, 7);
-
-    if (rx.isCurrentTuneFM())
-    {
-      tft.drawText(155, 30, "MHz", ST77XX_RED);
-      tft.drawText(124, 45, bufferBW, ST77XX_BLACK);
-      CLEAR_BUFFER(bufferBW)
-    }
-    else
-    {
-      tft.fillRectangle(153, 3, 216, 20, ST77XX_BLACK);  // Clear Step field
-      sprintf(bufferDisplay, "Stp: %3d", currentStep);
-      printValue(153, 10, bufferStepVFO, bufferDisplay, ST77XX_YELLOW, 6);
-      tft.drawText(153, 30, "KHz", ST77XX_RED);
-    }
-
-    if (band[bandIdx].bandType == SW_BAND_TYPE)
-      sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
-    else
-      sprintf(bufferDisplay, "%s", band[bandIdx].bandName);
-    printValue(4, 60, bufferBand, bufferDisplay, ST77XX_CYAN, 6);
-
-    // AGC
-    rx.getAutomaticGainControl();
-    sprintf(bufferDisplay, "%s %2d", (rx.isAgcEnabled()) ? "AGC" : "ATT", agcNdx);
-    printValue(65, 60, bufferAGC, bufferDisplay, ST77XX_CYAN, 6);
-    showFilter();
-  */
 }
 
+/**
+ * Shows the current Bandwitdth status
+ */
 void showBandwitdth() {
     // Bandwidth
     if (currentMode == LSB || currentMode == USB || currentMode == AM) {
@@ -507,9 +470,9 @@ void showBandwitdth() {
     printValue(5, 110, bufferBW, bufferDisplay, 6, ST77XX_GREEN,1);
 }
 
-/* *******************************
-   Shows RSSI status
-*/
+/**
+ *  Shows the current RSSI and SNR status
+ */
 void showRSSI()
 {
     int rssiLevel;
@@ -523,12 +486,10 @@ void showRSSI()
       printValue(4, 4, bufferStereo, sSt, 6, ST77XX_GREEN, 1);
     }
 
-    // Check it
+    // It needs to be calibrated. You can do it better. 
     // RSSI: 0 to 127 dBuV
     rssiLevel = map(rssi, 0, 127, 0, (maxAux - 48) );
     snrLevel = map(snr, 0, 127, 0, (maxAux - 48));
-
-    // tft.fillRect(3, 3, maxX1, 36, ST77XX_BLACK);
 
     tft.fillRect(5, 42,  maxAux, 6, ST77XX_BLACK);
     tft.fillRect(5, 42, rssiLevel, 6, ST77XX_ORANGE);
@@ -538,8 +499,8 @@ void showRSSI()
 }
 
 /**
-   Shows the current AGC and Attenuation status
-*/
+ *  Shows the current AGC and Attenuation status
+ */
 void showAgcAtt() {
     char sAgc[15];
     rx.getAutomaticGainControl();
@@ -553,19 +514,17 @@ void showAgcAtt() {
 
 
 /**
-   Shows the current step
-*/
+ *  Shows the current step
+ */
 void showStep() {
   char sStep[15];
   sprintf(sStep, "Stp:%3d", currentStep);
   printValue(110, 65, bufferStepVFO, sStep, 6, ST77XX_GREEN, 1);
 }
 
-void clearBFO() {
-  // tft.fillRectangle(124, 52, 218, 79, ST77XX_BLACK); // Clear All BFO area
-  CLEAR_BUFFER(bufferBFO);
-}
-
+/**
+ * Shows the current BFO value
+ */
 void showBFO()
 {
     sprintf(bufferDisplay, "%+4d", currentBFO);
@@ -574,8 +533,8 @@ void showBFO()
 
 
 /**
-   Sets Band up (1) or down (!1)
-*/
+ *  Sets Band up (1) or down (!1)
+ */
 void setBand(int8_t up_down) {
   band[bandIdx].currentFreq = currentFrequency;
   band[bandIdx].currentStep = currentStep;
@@ -588,12 +547,11 @@ void setBand(int8_t up_down) {
   elapsedCommand = millis();
 }
 
-
-/*
-   This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
-   SSB mode.
-*/
-
+/**
+ *  This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
+ *  SSB mode.
+ *  See also loadPatch implementation in the SI4735 Arduino Library (SI4735.h/SI4735.cpp) 
+ */
 void loadSSB()
 {
   rx.reset();
@@ -617,9 +575,9 @@ void loadSSB()
   ssbLoaded = true;
 }
 
-/*
-   Switch the radio to current band
-*/
+/**
+ *  Switch the radio to current band
+ */
 void useBand()
 {
   if (band[bandIdx].bandType == FM_BAND_TYPE)
@@ -661,8 +619,8 @@ void useBand()
 
 
 /**
-   Switches the Bandwidth
-*/
+ *  Switches the Bandwidth
+ */
 void doBandwidth(int8_t v) {
   if (currentMode == LSB || currentMode == USB)
   {
@@ -697,11 +655,9 @@ void doBandwidth(int8_t v) {
 
 }
 
-
-
 /**
-   Deal with AGC and attenuattion
-*/
+ *  Deal with AGC and attenuattion
+ */
 void doAgc(int8_t v) {
 
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
@@ -717,12 +673,11 @@ void doAgc(int8_t v) {
   showAgcAtt();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
-
 }
 
 /**
-   Gets the current step index.
-*/
+ *  Gets the current step index.
+ */
 int getStepIndex(int st) {
   for (int i = 0; i < lastStep; i++) {
     if ( st == tabStep[i] ) return i;
