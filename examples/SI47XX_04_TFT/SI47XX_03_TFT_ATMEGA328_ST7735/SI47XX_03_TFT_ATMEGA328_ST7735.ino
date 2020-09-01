@@ -436,6 +436,7 @@ void showStatus()
   CLEAR_BUFFER(bufferAGC);
   CLEAR_BUFFER(bufferBW);
   CLEAR_BUFFER(bufferStepVFO);
+  CLEAR_BUFFER(bufferStereo);
 
   showFrequency();
   if (rx.isCurrentTuneFM()) {
@@ -512,30 +513,29 @@ void showBandwitdth() {
 */
 void showRSSI()
 {
-  /*
     int rssiLevel;
     int snrLevel;
-    int maxAux = tft.maxX();
+    char sSt[15];
+    int maxAux = tft.width() - 5;
 
-    tft.setFont(Terminal6x8);
     if (currentMode == FM)
     {
-    sprintf(bufferDisplay, "%s", (rx.getCurrentPilot()) ? "STEREO" : "MONO");
-    printValue(150, 60, bufferStereo, bufferDisplay, ST77XX_CYAN, 7);
+      sprintf(sSt, "%s", (rx.getCurrentPilot()) ? "ST" : "MO");
+      printValue(4, 4, bufferStereo, sSt, 6, ST77XX_GREEN, 1);
     }
 
     // Check it
     // RSSI: 0 to 127 dBuV
-    rssiLevel = 47 + map(rssi, 0, 127, 0, ( maxAux  - 43) );
-    // SNR.: 0 to 127 dB
-    snrLevel = 47 + map(snr, 0, 127, 0, ( maxAux  - 43) );
+    rssiLevel = map(rssi, 0, 127, 0, (maxAux - 48) );
+    snrLevel = map(snr, 0, 127, 0, (maxAux - 48));
 
-    tft.fillRectangle(46, 151,  maxAux - 3, 155, ST77XX_BLACK);
-    tft.fillRectangle(46, 164, maxAux - 3, 168, ST77XX_BLACK);
+    // tft.fillRect(3, 3, maxX1, 36, ST77XX_BLACK);
 
-    tft.fillRectangle(46, 151,  rssiLevel, 155, ST77XX_LIGHTCYAN);
-    tft.fillRectangle(46, 164, snrLevel, 168, ST77XX_LIGHTCYAN);
-  */
+    tft.fillRect(5, 42,  maxAux, 6, ST77XX_BLACK);
+    tft.fillRect(5, 42, rssiLevel, 6, ST77XX_ORANGE);
+
+    tft.fillRect(5, 51, maxAux, 6, ST77XX_BLACK);
+    tft.fillRect(5, 51, snrLevel, 6, ST77XX_WHITE);
 }
 
 /**
