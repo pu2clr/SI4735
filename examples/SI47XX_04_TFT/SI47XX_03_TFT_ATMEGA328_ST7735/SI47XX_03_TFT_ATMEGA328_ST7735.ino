@@ -371,14 +371,12 @@ void showFrequency()
   sprintf(tmp, "%5.5u", currentFrequency);
 
   bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
-
+  bufferDisplay[1] = tmp[1];
   if (rx.isCurrentTuneFM())
   {
-    bufferDisplay[1] = tmp[1];
     bufferDisplay[2] = tmp[2];
     bufferDisplay[3] = '.';
     bufferDisplay[4] = tmp[3];
-    bufferDisplay[5] = '\0';
     color = ST7735_CYAN;
   }
   else
@@ -388,17 +386,14 @@ void showFrequency()
       bufferDisplay[2] = tmp[2] ;
       bufferDisplay[3] = tmp[3];
       bufferDisplay[4] = tmp[4];
-      bufferDisplay[5] = '\0';
     } else {
-      bufferDisplay[1] = tmp[1];
       bufferDisplay[2] = tmp[2];
       bufferDisplay[3] = tmp[3];
       bufferDisplay[4] = tmp[4];
-      bufferDisplay[5] = '\0';
     }
     color = (bfoOn) ? ST7735_CYAN: ST77XX_YELLOW;
   }
-
+  bufferDisplay[5] = '\0';
   printValue(30, 10, bufferFreq, bufferDisplay, 18, color, 2);
 }
 
@@ -440,7 +435,7 @@ void showStatus()
     unt = (char *) "KHz";
     showStep();
     showAgcAtt();
-    if (loadSSB) showBFO();
+    if (ssbLoaded)  showBFO();
   }
   printValue(140, 5, bufferUnt, unt, 6, ST77XX_GREEN,1);
   sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
@@ -528,7 +523,7 @@ void showStep() {
 void showBFO()
 {
     sprintf(bufferDisplay, "%+4d", currentBFO);
-    printValue(125, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
+    printValue(128, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
 }
 
 
@@ -686,8 +681,8 @@ int getStepIndex(int st) {
 }
 
 /**
-   Switches the current step
-*/
+ *  Switches the current step
+ */
 void doStep(int8_t v) {
   idxStep = ( v == 1 ) ? idxStep + 1 : idxStep - 1;
   if ( idxStep > lastStep)
@@ -706,8 +701,8 @@ void doStep(int8_t v) {
 }
 
 /**
-   Switches to the AM, LSB or USB modes
-*/
+ *  Switches to the AM, LSB or USB modes
+ */
 void doMode(int8_t v) {
   bufferBFO[0] =  bufferFreq[0] = '\0';
   bufferBFO[0];
@@ -739,8 +734,8 @@ void doMode(int8_t v) {
 }
 
 /**
-   Find a station. The direction is based on the last encoder move clockwise or counterclockwise
-*/
+ *  Find a station. The direction is based on the last encoder move clockwise or counterclockwise
+ */
 void doSeek() {
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   currentFrequency = rx.getFrequency();
