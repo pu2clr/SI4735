@@ -376,9 +376,10 @@ void showFrequency()
 
   sprintf(tmp, "%5.5u", currentFrequency);
 
+  bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
+
   if (rx.isCurrentTuneFM())
   {
-    bufferDisplay[0] = tmp[0];
     bufferDisplay[1] = tmp[1];
     bufferDisplay[2] = tmp[2];
     bufferDisplay[3] = '.';
@@ -389,14 +390,12 @@ void showFrequency()
   else
   {
     if ( currentFrequency  < 1000 ) {
-      bufferDisplay[0] = ' ';
       bufferDisplay[1] = ' ';
       bufferDisplay[2] = tmp[2] ;
       bufferDisplay[3] = tmp[3];
       bufferDisplay[4] = tmp[4];
       bufferDisplay[5] = '\0';
     } else {
-      bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
       bufferDisplay[1] = tmp[1];
       bufferDisplay[2] = tmp[2];
       bufferDisplay[3] = tmp[3];
@@ -516,7 +515,7 @@ void showRSSI()
     int rssiLevel;
     int snrLevel;
     char sSt[15];
-    int maxAux = tft.width() - 5;
+    int maxAux = tft.width() - 10;
 
     if (currentMode == FM)
     {
