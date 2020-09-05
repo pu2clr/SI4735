@@ -1305,6 +1305,7 @@ void loop(void)
       // currentFrequency = si4735.getFrequency();      // Queries the Si473X device. 
       currentFrequency = si4735.getCurrentFrequency();  // Just get the last setFrequency value (faster but can not be accurate sometimes).
       showFrequency();
+      elapsedCommand = millis();
     }
     encoderCount = 0;
   }
@@ -1547,4 +1548,5 @@ void loop(void)
     disableCommands();
     elapsedCommand = millis();
   }
+  delay(5);
 }
