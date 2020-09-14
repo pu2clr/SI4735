@@ -65,7 +65,7 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 
 ## SI47XX_02_TFT_TOUCH_SHIELD
 
-This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on Mega2560 and Arduino DUE. See the wire up below. 
+This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on __Mega2560__ or __Arduino DUE__. See the wire up below. 
 
 
 ### Touch screen calibration process
