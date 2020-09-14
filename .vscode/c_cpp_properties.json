@@ -7,9 +7,9 @@
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/**",
                 "/Users/rcaratti/Library/Arduino15/packages/arduino/tools/**",
                 "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/sam/1.6.12/**",
-                "/Users/rcaratti/Documents/Arduino/libraries/si4735/**",
-                "/Users/rcaratti/Documents/Arduino/libraries/Adafruit_GFX_Library/**",
-                "/Users/rcaratti/Documents/Arduino/libraries/Adafruit_ST7735_and_ST7789_Library/**"
+                "/Users/rcaratti/Documents/Arduino/libraries/si4735",
+                "/Users/rcaratti/Documents/Arduino/libraries/Adafruit_GFX_Library",
+                "/Users/rcaratti/Documents/Arduino/libraries/Adafruit_ST7735_and_ST7789_Library"
             ],
             "forcedInclude": [
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino/Arduino.h"
