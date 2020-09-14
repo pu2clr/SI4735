@@ -26,8 +26,8 @@
   | Device name               | Device Pin / Description      |  Arduino Pin  |
   | ----------------          | ----------------------------- | ------------  |
   | Display TFT               |                               |               |
-  |                           | RST (RESET)                   |      8        |
-  |                           | RS or DC                      |      9        |
+  |                           | RST (RESET)                   |     (*3) 8    |
+  |                           | RS or DC                      |     (*3) 9    |
   |                           | CS or SS                      |     10        |
   |                           | SDI                           |     11        |
   |                           | CLK                           |     13        |
@@ -53,11 +53,12 @@
   (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of 
        the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of 
        the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
+  (*3) You might need to switch from 8 to 9  depending of your ST7735 device     
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
-  By PU2CLR, Ricardo,  Feb  2020.
+  By PU2CLR, Ricardo,  Sep  2020.
 */
 
 #include <SI4735.h>
@@ -73,9 +74,9 @@
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
-// TFT MICROYUM or ILI9225 based device pin setup
-#define TFT_RST 8
-#define TFT_DC 9
+// TFT ST7735 based device pin setup
+#define TFT_RST 8  // You might need to switch from 8 to 9 depending of your ST7735 device
+#define TFT_DC 9   // You might need to switch from 9 to 8 depending of your ST7735 device
 #define TFT_CS 10  // SS
 #define TFT_SDI 11 // MOSI
 #define TFT_CLK 13 // SCK

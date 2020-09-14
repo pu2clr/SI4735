@@ -165,3 +165,56 @@ The video below can help you to to setup your display.
 
 It is important to know that any Arduino DUE digital pin can be configured as interrupt. 
 
+
+
+## SI47XX_03_TFT_ATMEGA328_ST7735
+
+This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT ST7735 1.8"
+The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735  and  the  "PU2CLR SI4735 Arduino Library" working with the TFT ST7735 display. It is not the purpose of this prototype to provide you a beautiful interface. To be honest, I think you can do it better than me. 
+
+It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the regular comercial  stations. If  you  are  using  the  same  circuit  used  on  examples with OLED and LCD,  you have to change some buttons wire up. This TFT device takes five pins from Arduino.  For this reason, it is necessary change the pins of some buttons. Fortunately, you can use the ATmega328 analog pins as digital pins.
+
+The libraries Adafruit_GFX and Adafruit_ST7735 take a lot of memory space from Arduino. 
+You have few space to improve your prototype with standard Arduino Pro Mini.
+However, you can use some approaches:  
+1. Shrink or remove the bootloader from Arduino Pro Mini;
+2. The Arduino Nano e Uno has smaller bootloader than the Arduino Pro Mini
+3. Port this sketch to a bigger board like Arduino Mega or DUE. 
+
+
+Wire up on Arduino UNO, Pro mini
+
+| Device name               | Device Pin / Description      |  Arduino Pin  |
+| ----------------          | ----------------------------- | ------------  |
+| Display TFT               |                               |               |
+|                           | RST (RESET)                   |     (*3) 8    |
+|                           | RS or DC                      |     (*3) 9    |
+|                           | CS or SS                      |     10        |
+|                           | SDI                           |     11        |
+|                           | CLK                           |     13        |
+|                           | BL                            |    +VCC       |  
+|     Si4735                |                               |               |
+|                           | RESET (pin 15)                |     12        |
+|                           | SDIO (pin 18)                 |     A4        |
+|                           | SCLK (pin 17)                 |     A5        |
+|     Buttons               |                               |               |
+|                           | (*1)Switch MODE (AM/LSB/AM)   |      4        |
+|                           | (*1)Banddwith                 |      5        |
+|                           | (*1)BAND                      |      6        |
+|                           | (*2)SEEK                      |      7        |
+|                           | (*1)AGC/Attenuation           |     14 / A0   |
+|                           | (*1)STEP                      |     15 / A1   | 
+|                           | VFO/VFO Switch (Encoder)      |     16 / A2   |
+|    Encoder                |                               |               |
+|                           | A                             |       2       |
+|                           | B                             |       3       |
+
+(*1) You have to press the push button and after, rotate the encoder to select the parameter.
+     After you activate a command by pressing a push button, it will keep active for 2,5 seconds. 
+(*2) The SEEK direction is based on the last movement of the encoder. If the last movement of 
+     the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of 
+     the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
+(*3) You might need to switch from 8 to 9  depending of your ST7735 device     
+
+
+
