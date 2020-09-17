@@ -209,11 +209,8 @@ Wire up on Arduino UNO, Pro mini
 |                           | A                             |       2       |
 |                           | B                             |       3       |
 
-(*1) You have to press the push button and after, rotate the encoder to select the parameter.
-     After you activate a command by pressing a push button, it will keep active for 2,5 seconds. 
-(*2) The SEEK direction is based on the last movement of the encoder. If the last movement of 
-     the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of 
-     the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
+(*1) You have to press the push button and after, rotate the encoder to select the parameter. After you activate a command by pressing a push button, it will keep active for 2,5 seconds. 
+(*2) The SEEK direction is based on the last movement of the encoder. If the last movement of the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of the encoder was ounterclockwise, the SEEK direction will be towards the lower limit.  
 (*3) You might need to switch from 8 to 9  depending of your ST7735 device     
 
 
