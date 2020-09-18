@@ -192,7 +192,7 @@ Do you need some old version (release) of this library?  If yes, [check here](ht
 * David Kellmer (USA) for suggesting corrections on the documentation and sketches; 
 * WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode; 
 * Jim Reagan, W0CHL, for contributions on circuit design;
-* Gert Baak, PE0MGB, for library improvements suggestions;  
+* Gert Baak, PE0MGB, for library improvements suggestions and the Article [Arduino All band radio with SI4735 by Gert PE0MGB](https://www.pi4raz.nl/razzies/razzies202009.pdf);  
 * Diego Stanfield for testing the SI4732-A10 with SSB;
 * All members of the Facebook groups ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) and ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/) for the  suggestions and corrections during the development of this project.
 
@@ -1111,6 +1111,7 @@ Here you can see some experiments using this library. Watch them.
 * [SI4735 KIT. First SSB test](https://youtu.be/bZW6NiOEGSQ)
 * [SI4735 KIT - First FM test](https://youtu.be/LudpuwJSajU)
 * [Great interface by Gert Baak](https://youtu.be/hRHSzFr_lQE)
+* [Arduino All band radio with SI4735 by Gert PE0MGB](https://www.pi4raz.nl/razzies/razzies202009.pdf)
 * [si4735 betatest radio](https://youtu.be/Gkh1zHn8NgE)
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
