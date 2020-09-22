@@ -84,8 +84,8 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define RESET_PIN 12
 
 // Enconder PINs
-#define ENCODER_PIN_A 3
-#define ENCODER_PIN_B 2
+#define ENCODER_PIN_A 2
+#define ENCODER_PIN_B 3
 
 // Buttons controllers
 #define MODE_SWITCH 4      // Switch MODE (Am/LSB/USB)
