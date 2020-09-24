@@ -783,11 +783,13 @@ void loop()
   else
   {
     if (digitalRead(BANDWIDTH_BUTTON) == LOW) {
-      cmdBandwidth = true;
+      // cmdBandwidth = true;
+      cmdBandwidth = !cmdBandwidth;
       elapsedCommand = millis();
     }
     else if (digitalRead(BAND_BUTTON) == LOW) {
-      cmdBand = true;
+      // cmdBand = true;
+      cmdBand = !cmdBand;
       elapsedCommand = millis();
     }
     else if (digitalRead(SEEK_BUTTON) == LOW) {
@@ -800,15 +802,18 @@ void loop()
       delay(MIN_ELAPSED_TIME);
     }
     else if (digitalRead(AGC_SWITCH) == LOW) {
-        cmdAgc = true;
+        // cmdAgc = true;
+        cmdAgc = !cmdAgc;
         elapsedCommand = millis();
     }
     else if (digitalRead(STEP_SWITCH) == LOW) {
-        cmdStep = true;
+        // cmdStep = true;
+        cmdStep = !cmdStep;
         elapsedCommand = millis();
     }
     else if (digitalRead(MODE_SWITCH) == LOW) {
-        cmdMode = true;
+        // cmdMode = true;
+        cmdMode = !cmdMode;
         elapsedCommand = millis();
     }
   }
