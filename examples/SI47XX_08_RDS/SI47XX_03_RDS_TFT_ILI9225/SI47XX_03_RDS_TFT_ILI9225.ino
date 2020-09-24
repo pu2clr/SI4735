@@ -79,7 +79,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define BAND_BUTTON_DOWN 7 // Previous band
 #define AGC_SWITCH 14      // Pin A0 - Switch AGC ON/OF
 #define STEP_SWITCH 15     // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
-#define BFO_SWITCH 16      // Pin A3 - Used to select the enconder control (BFO or VFO)
+#define BFO_SWITCH 16      // Pin A2 - Used to select the enconder control (BFO or VFO)
 #define AUDIO_MUTE 1       // External AUDIO MUTE circuit control
 
 #define MIN_ELAPSED_TIME 100

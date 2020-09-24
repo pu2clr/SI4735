@@ -37,7 +37,7 @@
   |                           | Previous band             |      7        |
   |                           | AGC ON/OF                 |     14 / A0   |
   |                           | Frequency Step            |     15 / A1   |
-  |                           | VFO/VFO Switch            |     16 / A3   |
+  |                           | VFO/VFO Switch            |     16 / A2   |
   |    Encoder                |                           |               |
   |                           | A                         |       2       |
   |                           | B                         |       3       |
@@ -87,7 +87,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define BAND_BUTTON_DOWN 7 // Previous band
 #define AGC_SWITCH 14      // Pin A0 - Switch AGC ON/OF
 #define STEP_SWITCH 15     // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
-#define BFO_SWITCH 16      // Pin A3 - Used to select the enconder control (BFO or VFO)
+#define BFO_SWITCH 16      // Pin A2 - Used to select the enconder control (BFO or VFO)
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150

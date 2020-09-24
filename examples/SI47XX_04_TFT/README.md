@@ -56,7 +56,7 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 |                           | Previous band             |      7        |
 |                           | AGC ON/OF                 |     14 / A0   |
 |                           | Frequency Step            |     15 / A1   | 
-|                           | VFO/VFO Switch            |     16 / A3   |
+|                           | VFO/VFO Switch            |     16 / A2   |
 | __Encoder__               |                           |               |
 |                           | A                         |       2       |
 |                           | B                         |       3       |
