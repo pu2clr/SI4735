@@ -228,11 +228,10 @@ void setup()
   oled.setCursor(16, 2);
   oled.print("All in One Radio");
   delay(500);
-  oled.setCursor(6, 3);
+  oled.setCursor(9, 3);
   oled.print("By PU2CLR & W0CHL");
   delay(5000);
   
-
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
@@ -263,7 +262,6 @@ void disableCommands() {
   cmdStep = false;
   cmdMode = false;
 }
-
 
 
 /**
