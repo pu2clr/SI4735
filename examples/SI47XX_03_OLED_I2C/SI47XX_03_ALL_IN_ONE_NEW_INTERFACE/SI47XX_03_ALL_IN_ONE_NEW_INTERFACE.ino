@@ -25,13 +25,9 @@
   Wire up on Arduino UNO, Pro mini
   | Device name               | Device Pin / Description      |  Arduino Pin  |
   | ----------------          | ----------------------------- | ------------  |
-  | Display TFT               |                               |               |
-  |                           | RST (RESET)                   |     (*3) 8    |
-  |                           | RS or DC                      |     (*3) 9    |
-  |                           | CS or SS                      |     10        |
-  |                           | SDI                           |     11        |
-  |                           | CLK                           |     13        |
-  |                           | BL                            |    +VCC       |  
+  | Display PLED              |                               |               |
+  |                           | SDA                           |     A4        |
+  |                           | CLK                           |     A5        |
   |     Si4735                |                               |               |
   |                           | RESET (pin 15)                |     12        |
   |                           | SDIO (pin 18)                 |     A4        |
@@ -224,15 +220,15 @@ void setup()
   oled.setFont(FONT6X8);
   
   // Splash - Change it for your introduction text.
-  oled.setCursor(40, 0);
+  oled.setCursor(41, 0);
   oled.print("SI4735");
-  oled.setCursor(20, 1);
+  oled.setCursor(21, 1);
   oled.print("Arduino Library");
   delay(500);
-  oled.setCursor(15, 2);
+  oled.setCursor(16, 2);
   oled.print("All in One Radio");
   delay(500);
-  oled.setCursor(5, 3);
+  oled.setCursor(6, 3);
   oled.print("By PU2CLR & W0CHL");
   delay(5000);
   
@@ -316,9 +312,9 @@ void showFrequency()
   else
     freqDisplay = ">" + String((float)currentFrequency / divider, decimals) + "<";
 
-  oled.setCursor(38, 0);
+  oled.setCursor(39, 0);
   oled.print("        ");
-  oled.setCursor(38, 0);
+  oled.setCursor(39, 0);
   oled.print(freqDisplay);
 
   if (currentFrequency < 520 )
@@ -326,10 +322,10 @@ void showFrequency()
   else
     bandMode = bandModeDesc[currentMode];
 
-  oled.setCursor(0, 0);
+  oled.setCursor(1, 0);
   oled.print(bandMode);
 
-  oled.setCursor(95, 0);
+  oled.setCursor(96, 0);
   oled.print(unit);
 }
 
@@ -348,13 +344,11 @@ void showFrequencySeek(uint16_t freq)
  */
 void showStatus()
 {
+  oled.clear();
   showFrequency();
-
   showStep();
   showBandwitdth();
-
   showAgcAtt();
-
   showRSSI();
   showVolume();
 }
@@ -380,13 +374,10 @@ void showBandwitdth() {
       bufferDisplay[0] = '\0';
     }
 
-   oled.setCursor(0, 3);
+   oled.setCursor(1, 3);
    oled.print("           ");
-   oled.setCursor(0, 3);
-
-   oled.print("BW:");
+   oled.setCursor(1, 3);
    oled.print(bufferDisplay);
-   oled.print("KHz");
 
 }
 
@@ -397,9 +388,9 @@ void showRSSI()
 {
   int bars = ((rssi / 10.0) / 2.0) + 1;
 
-  oled.setCursor(80, 3);
+  oled.setCursor(81, 3);
   oled.print("       ");
-  oled.setCursor(80, 3);
+  oled.setCursor(81, 3);
   oled.print("S:");
   if ( bars > 5 )  {
     bars = 5;
@@ -408,7 +399,7 @@ void showRSSI()
     oled.print(">");
 
   if ( currentMode == FM) {
-    oled.setCursor(0, 3);
+    oled.setCursor(1, 3);
     oled.print((rx.getCurrentPilot()) ? "STEREO   " : "MONO     ");
   }
 }
@@ -426,7 +417,7 @@ void showRSSI()
 
       // Show AGC Information
       rx.getAutomaticGainControl();
-      oled.setCursor(0, 1);
+      oled.setCursor(1, 1);
       oled.print(sAgc);      
  }
 
@@ -435,9 +426,9 @@ void showRSSI()
  *  Shows the current step
  */
 void showStep() {
-  oled.setCursor(80, 1);
+  oled.setCursor(81, 1);
   oled.print("      ");
-  oled.setCursor(80, 1);
+  oled.setCursor(81, 1);
   oled.print("St: ");
   oled.print(currentStep);
 }
@@ -454,16 +445,16 @@ void showBFO()
   else
     bfo = String(currentBFO);
 
-  oled.setCursor(0, 2);
+  oled.setCursor(1, 2);
   oled.print("         ");
-  oled.setCursor(0, 2);
+  oled.setCursor(1, 2);
   oled.print("BFO:");
   oled.print(bfo);
   oled.print("Hz ");
 
-  oled.setCursor(80, 2);
+  oled.setCursor(81, 2);
   oled.print("       ");
-  oled.setCursor(80, 2);
+  oled.setCursor(81, 2);
   oled.print("St: ");
   oled.print(currentBFOStep);
 }
@@ -474,9 +465,9 @@ void showBFO()
 */
 void showVolume()
 {
-  oled.setCursor(60, 3);
+  oled.setCursor(61, 3);
   oled.print("  ");
-  oled.setCursor(60, 3);
+  oled.setCursor(61, 3);
   oled.print(rx.getCurrentVolume());
 }
 
