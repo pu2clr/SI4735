@@ -252,7 +252,6 @@ void setup()
  *  When all flags are disabled (false), the encoder controls the frequency
  */
 void disableCommands() {
-
   cmdBand = false;
   cmdBfo = false;
   bfoOn = false;
@@ -376,7 +375,6 @@ void showBandwitdth() {
    oled.print("           ");
    oled.setCursor(1, 3);
    oled.print(bufferDisplay);
-
 }
 
 /**

@@ -1,0 +1,21 @@
+1. BAND, MODE, AGC/Attenuation and STEP
+
+Press the push button and after, rotate the encoder to select the option. For example: 
+To switch the band, press the band button and then rotate the encoder clockwise or counterclockwise. 
+The display will show you the current band. 
+
+To switch the mode (AM, LSB or USB), press mode button and the rotate the encoder.
+
+The same idea you can use to AGC/Attenuation, STEP and Banddwith.
+
+
+2. SEEK COMMAND
+
+The seek button should be used to find a station. The seek direction is based on the last encoder movement.
+If clockwise, the seek will go up; if counterclockwise, the seek will go down.
+
+
+3. VFO/VFO Switch 
+
+To control the VFO and BFO, used the encoder push button. The display will show if you are using VFO or BFO.
+
