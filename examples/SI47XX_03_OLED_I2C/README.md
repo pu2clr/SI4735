@@ -101,3 +101,63 @@ __Click [here](https://youtu.be/W2Ssjb9P_f4) to see a video about this example__
 
 <BR>
 
+
+## SI47XX_03_ALL_IN_ONE_NEW_INTERFACE
+
+This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with an regular OLED/I2C. 
+It uses another approach to execute the receiver commands. See below. 
+
+1. BAND, MODE, AGC/Attenuation and STEP
+
+Press the push button and after, rotate the encoder to select the option. For example: 
+To switch the band, press the band button and then rotate the encoder clockwise or counterclockwise. 
+The display will show you the current band. 
+
+To switch the mode (AM, LSB or USB), press mode button and the rotate the encoder.
+
+The same idea you can use to AGC/Attenuation, STEP and Banddwith.
+
+After you activate a command by pressing a push button, it will keep active for 2,5 seconds.
+
+
+2. SEEK COMMAND
+
+The seek button should be used to find a station. The seek direction is based on the last encoder movement.
+If clockwise, the seek will go up; if counterclockwise, the seek will go down.
+
+
+3. VFO/VFO Switch 
+
+To control the VFO and BFO, used the encoder push button. The display will show if you are using VFO or BFO.
+
+
+
+### Wire up on Arduino UNO, Pro mini
+
+| Device name               | Device Pin / Description      |  Arduino Pin  |
+| ------------------------- | ----------------------------- | ------------  |
+| Display PLED              |                               |               |
+|                           | SDA                           |     A4        |
+|                           | CLK                           |     A5        |
+|     Si4735                |                               |               |
+|                           | RESET (pin 15)                |     12        |
+|                           | SDIO (pin 18)                 |     A4        |
+|                           | SCLK (pin 17)                 |     A5        |
+|     Buttons               |                               |               |
+|                           | (*1)Switch MODE (AM/LSB/AM)   |      4        |
+|                           | (*1)Banddwith                 |      5        |
+|                           | (*1)BAND                      |      6        |
+|                           | (*2)SEEK                      |      7        |
+|                           | (*1)AGC/Attenuation           |     14 / A0   |
+|                           | (*1)STEP                      |     15 / A1   | 
+|                           | VFO/VFO Switch (Encoder)      |     16 / A2   |
+|    Encoder                |                               |               |
+|                           | A                             |       2       |
+|                           | B                             |       3       |
+
+* (*1) press the push button and after, rotate the encoder to select the parameter. After you activate a command by pressing a push button, it will keep active for 2,5 seconds. 
+* (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of the encoder was lockwise, the SEEK will be towards the upper limit. If the last movement of the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
+* (*3) You might need to switch from 8 to 9  depending of your ST7735 device     
+
+
+

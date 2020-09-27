@@ -1,6 +1,4 @@
 /*
-  Under construction....
-
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with an regular OLED/I2C
   You have to install the Tiny4kOLED library to used this sketch 
 
