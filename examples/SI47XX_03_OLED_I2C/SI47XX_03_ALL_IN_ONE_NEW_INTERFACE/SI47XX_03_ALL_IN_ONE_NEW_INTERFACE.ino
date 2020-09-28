@@ -224,7 +224,7 @@ void setup()
   oled.setCursor(21, 1);
   oled.print("Arduino Library");
   delay(500);
-  oled.setCursor(16, 2);
+  oled.setCursor(7, 2);
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(9, 3);
@@ -321,7 +321,7 @@ void showFrequency()
   oled.setCursor(1, 0);
   oled.print(bandMode);
 
-  oled.setCursor(96, 0);
+  oled.setCursor(95, 0);
   oled.print(unit);
 }
 
@@ -421,9 +421,9 @@ void showRSSI()
  *  Shows the current step
  */
 void showStep() {
-  oled.setCursor(81, 1);
+  oled.setCursor(80, 1);
   oled.print("      ");
-  oled.setCursor(81, 1);
+  oled.setCursor(80, 1);
   oled.print("St: ");
   oled.print(currentStep);
 }
@@ -452,6 +452,7 @@ void showBFO()
   oled.setCursor(81, 2);
   oled.print("St: ");
   oled.print(currentBFOStep);
+  showFrequency();
 }
 
 
@@ -460,10 +461,12 @@ void showBFO()
 */
 void showVolume()
 {
+  /* TO DO
   oled.setCursor(61, 3);
   oled.print("  ");
   oled.setCursor(61, 3);
   oled.print(rx.getCurrentVolume());
+  */
 }
 
 
