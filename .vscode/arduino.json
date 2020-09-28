@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:pro",
     "port": "/dev/tty.usbserial-A50285BI",
-    "sketch": "examples/SI47XX_04_TFT/SI47XX_03_TFT_ATMEGA328_ST7735/SI47XX_03_TFT_ATMEGA328_ST7735.ino",
+    "sketch": "*.ino",
     "configuration": "cpu=8MHzatmega328"
 }

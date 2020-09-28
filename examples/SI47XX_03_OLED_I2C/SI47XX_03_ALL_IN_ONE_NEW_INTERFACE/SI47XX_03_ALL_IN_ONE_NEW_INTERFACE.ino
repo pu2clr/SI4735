@@ -137,11 +137,10 @@ const char * bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 uint8_t bwIdxAM = 1;
 const char * bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
-const char * bandModeDesc[] = {"   ", "LSB", "USB", "AM "};
+const char * bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
 uint16_t currentStep = 1;
-
 
 /*
    Band data structure
@@ -720,12 +719,10 @@ void loop()
   else
   {
     if (digitalRead(BANDWIDTH_BUTTON) == LOW) {
-      // cmdBandwidth = true;
       cmdBandwidth = !cmdBandwidth;
       elapsedCommand = millis();
     }
     else if (digitalRead(BAND_BUTTON) == LOW) {
-      // cmdBand = true;
       cmdBand = !cmdBand;
       elapsedCommand = millis();
     }
@@ -739,17 +736,14 @@ void loop()
       delay(MIN_ELAPSED_TIME);
     }
     else if (digitalRead(AGC_SWITCH) == LOW) {
-        // cmdAgc = true;
         cmdAgc = !cmdAgc;
         elapsedCommand = millis();
     }
     else if (digitalRead(STEP_SWITCH) == LOW) {
-        // cmdStep = true;
         cmdStep = !cmdStep;
         elapsedCommand = millis();
     }
     else if (digitalRead(MODE_SWITCH) == LOW) {
-        // cmdMode = true;
         cmdMode = !cmdMode;
         elapsedCommand = millis();
     }
