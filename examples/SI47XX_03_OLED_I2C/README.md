@@ -104,7 +104,7 @@ __Click [here](https://youtu.be/W2Ssjb9P_f4) to see a video about this example__
 
 ## SI47XX_03_ALL_IN_ONE_NEW_INTERFACE
 
-This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with an regular OLED/I2C. 
+This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a regular OLED/I2C. 
 It uses another approach to execute the receiver commands. See below. 
 
 1. BAND, MODE, AGC/Attenuation and STEP
