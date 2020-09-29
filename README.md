@@ -191,7 +191,7 @@ Do you need some old version (release) of this library?  If yes, [check here](ht
 * I would like to thank Mr Francisco Scaramella  for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library;
 * David Kellmer (USA) for suggesting corrections on the documentation and sketches; 
 * WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode; 
-* Jim Reagan, W0CHL, for contributions on circuit design;
+* Jim Reagan, W0CHL, for contributions on circuit design and user interface;
 * Gert Baak, PE0MGB, for library improvements suggestions and the Article [Arduino All band radio with SI4735 by Gert PE0MGB](https://www.pi4raz.nl/razzies/razzies202009.pdf);  
 * Diego Stanfield for testing the SI4732-A10 with SSB;
 * All members of the Facebook groups ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) and ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/) for the  suggestions and corrections during the development of this project.
