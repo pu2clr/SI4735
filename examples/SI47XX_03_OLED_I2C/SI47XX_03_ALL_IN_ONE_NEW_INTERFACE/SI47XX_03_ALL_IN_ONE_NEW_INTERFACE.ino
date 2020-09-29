@@ -259,6 +259,9 @@ void disableCommands() {
   cmdBandwidth = false;
   cmdStep = false;
   cmdMode = false;
+  // Clear Command status
+  oled.setCursor(48,1);
+  oled.print("   ");
 }
 
 
@@ -559,6 +562,7 @@ void useBand()
   currentStep = band[bandIdx].currentStep;
   rssi = 0;
   showStatus();
+  showCommandStatus();
 }
 
 
@@ -593,10 +597,16 @@ void doBandwidth(int8_t v) {
 
     rx.setBandwidth(bwIdxAM, 1);
   }
-  showBandwitdth();
-  elapsedCommand = millis();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  showBandwitdth();
+  showCommandStatus();
+  elapsedCommand = millis();
+}
 
+
+void showCommandStatus() {
+  oled.setCursor(48, 1);
+  oled.print("cmd");
 }
 
 /**
@@ -616,6 +626,7 @@ void doAgc(int8_t v) {
   rx.setAutomaticGainControl(disableAgc, agcNdx);
   showAgcAtt();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  showCommandStatus();
   elapsedCommand = millis();
 }
 
@@ -646,6 +657,7 @@ void doStep(int8_t v) {
   rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
   showStep();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  showCommandStatus();
   elapsedCommand = millis();
 }
 
@@ -677,6 +689,7 @@ void doMode(int8_t v) {
   }
 
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  showCommandStatus();
   elapsedCommand = millis();
 }
 
@@ -725,7 +738,7 @@ void loop()
     }
     showFrequency();
     encoderCount = 0;
-    elapsedCommand = millis();
+    // elapsedCommand = millis();
   }
   else
   {
