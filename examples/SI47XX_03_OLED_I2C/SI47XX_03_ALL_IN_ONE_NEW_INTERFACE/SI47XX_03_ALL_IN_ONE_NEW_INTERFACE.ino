@@ -229,8 +229,8 @@ void setup()
   delay(500);
   oled.setCursor(9, 3);
   oled.print("By PU2CLR & W0CHL");
-  delay(5000);
-  
+  delay(4000);
+  oled.clear();
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
