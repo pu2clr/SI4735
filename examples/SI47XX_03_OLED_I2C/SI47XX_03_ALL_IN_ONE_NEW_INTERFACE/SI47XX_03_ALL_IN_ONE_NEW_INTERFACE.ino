@@ -88,7 +88,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define BFO_SWITCH 16         // Pin A2 - Used to select the enconder control (BFO or VFO)
 #define AUDIO_MUTE 1          // External AUDIO MUTE circuit control
 
-#define MIN_ELAPSED_TIME 250
+#define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 150
 #define ELAPSED_COMMAND 2500  // time to turn off the last command controlled by encoder
 #define DEFAULT_VOLUME 40     // change it for your favorite sound volume
@@ -303,10 +303,11 @@ void showFrequency()
     unit = "KHz";
   }
 
-  if ( !bfoOn )
-    freqDisplay = String((float)currentFrequency / divider, decimals);
-  else
+  // Flag the frequency it the SSB mode    
+  if ( bfoOn && (currentMode == LSB || currentMode == USB) )
     freqDisplay = ">" + String((float)currentFrequency / divider, decimals) + "<";
+  else
+    freqDisplay = String((float)currentFrequency / divider, decimals);  
 
   oled.setCursor(39, 0);
   oled.print("        ");
@@ -693,12 +694,11 @@ void loop()
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
-    if (bfoOn)
+    if (bfoOn & (currentMode == LSB || currentMode == USB ) )
     {
-      currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
-      rx.setSSBBfo(currentBFO);
-      showBFO();
-      elapsedCommand = millis();
+       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
+       rx.setSSBBfo(currentBFO);
+       showBFO();
     }
     else if ( cmdMode ) 
       doMode(encoderCount);
@@ -725,15 +725,18 @@ void loop()
     }
     showFrequency();
     encoderCount = 0;
+    elapsedCommand = millis();
   }
   else
   {
     if (digitalRead(BANDWIDTH_BUTTON) == LOW) {
       cmdBandwidth = !cmdBandwidth;
+      delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
     else if (digitalRead(BAND_BUTTON) == LOW) {
       cmdBand = !cmdBand;
+      delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
     else if (digitalRead(SEEK_BUTTON) == LOW) {
@@ -742,19 +745,26 @@ void loop()
     else if (digitalRead(BFO_SWITCH) == LOW) {
       bfoOn = !bfoOn;
       cmdBfo = false;
-      elapsedCommand = millis();
+      if ((currentMode == LSB || currentMode == USB ) ) {
+        showFrequency();
+        showBFO();
+      }
       delay(MIN_ELAPSED_TIME);
+      elapsedCommand = millis();
     }
     else if (digitalRead(AGC_SWITCH) == LOW) {
         cmdAgc = !cmdAgc;
+        delay(MIN_ELAPSED_TIME);
         elapsedCommand = millis();
     }
     else if (digitalRead(STEP_SWITCH) == LOW) {
         cmdStep = !cmdStep;
+        delay(MIN_ELAPSED_TIME);
         elapsedCommand = millis();
     }
     else if (digitalRead(MODE_SWITCH) == LOW) {
         cmdMode = !cmdMode;
+        delay(MIN_ELAPSED_TIME);
         elapsedCommand = millis();
     }
   }
@@ -784,5 +794,5 @@ void loop()
     elapsedCommand = millis();
   }
 
-  // delay(5);
+  delay(1);
 }
