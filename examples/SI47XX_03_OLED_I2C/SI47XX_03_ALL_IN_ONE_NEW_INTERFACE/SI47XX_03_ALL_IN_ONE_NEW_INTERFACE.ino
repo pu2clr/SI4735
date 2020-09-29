@@ -54,7 +54,7 @@
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
-  By PU2CLR, Ricardo,  Sep  2020.
+  By PU2CLR, Ricardo; and Jim Reagan W09CHL,  Sep  2020.
 */
 
 #include <SI4735.h>
@@ -88,10 +88,10 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define BFO_SWITCH 16         // Pin A2 - Used to select the enconder control (BFO or VFO)
 #define AUDIO_MUTE 1          // External AUDIO MUTE circuit control
 
-#define MIN_ELAPSED_TIME 200
+#define MIN_ELAPSED_TIME 250
 #define MIN_ELAPSED_RSSI_TIME 150
 #define ELAPSED_COMMAND 2500  // time to turn off the last command controlled by encoder
-#define DEFAULT_VOLUME 50     // change it for your favorite sound volume
+#define DEFAULT_VOLUME 40     // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -422,7 +422,7 @@ void showRSSI()
  */
 void showStep() {
   oled.setCursor(80, 1);
-  oled.print("      ");
+  oled.print("        ");
   oled.setCursor(80, 1);
   oled.print("St: ");
   oled.print(currentStep);
@@ -492,6 +492,10 @@ void setBand(int8_t up_down) {
  */
 void loadSSB()
 {
+
+  oled.setCursor(1, 2);
+  oled.print("Loading SSB");
+  
   rx.reset();
   rx.queryLibraryId(); // Is it really necessary here? I will check it.
   rx.patchPowerUp();
@@ -511,6 +515,7 @@ void loadSSB()
   rx.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
   delay(25);
   ssbLoaded = true;
+  showStatus();
 }
 
 /**
@@ -779,5 +784,5 @@ void loop()
     elapsedCommand = millis();
   }
 
-  delay(5);
+  // delay(5);
 }
