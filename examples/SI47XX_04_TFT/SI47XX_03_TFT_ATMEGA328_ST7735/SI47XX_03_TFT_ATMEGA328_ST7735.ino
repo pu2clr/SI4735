@@ -104,7 +104,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define BFO_SWITCH 16         // Pin A2 - Used to select the enconder control (BFO or VFO)
 #define AUDIO_MUTE 1          // External AUDIO MUTE circuit control
 
-#define MIN_ELAPSED_TIME 200
+#define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 150
 #define ELAPSED_COMMAND 2500  // time to turn off the last command controlled by encoder
 #define DEFAULT_VOLUME 50     // change it for your favorite sound volume
@@ -149,11 +149,37 @@ uint16_t currentFrequency;
 
 uint8_t currentBFOStep = 10;
 
-uint8_t bwIdxSSB = 2;
+/*
+int8_t bwIdxSSB = 2;
 const char * bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
-uint8_t bwIdxAM = 1;
+int8_t bwIdxAM = 1;
 const char * bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+*/
+
+typedef struct Bandwitdth
+{
+  uint8_t idx;      // SI473X device bandwitdth index
+  const char *desc; // bandwitdth description
+};
+
+int8_t bwIdxSSB = 4;
+Bandwitdth bandwitdthSSB[] = {{4, "0.5"},
+                              {5, "1.0"},
+                              {0, "1.2"},
+                              {1, "2.2"},
+                              {2, "3.0"},
+                              {3, "4.0"}};
+
+int8_t bwIdxAM = 4;
+Bandwitdth bandwitdthAM[] = {{4, "1.0"},
+                             {5, "1.8"},
+                             {3, "2.0"},
+                             {6, "2.5"},
+                             {2, "3.0"},
+                             {1, "4.0"},
+                             {0, "6.0"}};
+
 
 const char * bandModeDesc[] = {"   ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
@@ -454,9 +480,9 @@ void showBandwitdth() {
       char * bw;
 
       if (currentMode == AM) 
-        bw = (char *) bandwitdthAM[bwIdxAM];
+        bw = (char *) bandwitdthAM[bwIdxAM].desc;
       else 
-        bw = (char *) bandwitdthSSB[bwIdxSSB];
+        bw = (char *) bandwitdthSSB[bwIdxSSB].desc;
       sprintf(bufferDisplay, "BW: %s KHz", bw);
     } 
     else {
@@ -626,7 +652,7 @@ void doBandwidth(int8_t v) {
     else if ( bwIdxSSB < 0 )
       bwIdxSSB = 5;
 
-    rx.setSSBAudioBandwidth(bwIdxSSB);
+    rx.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
     if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
       rx.setSBBSidebandCutoffFilter(0);
@@ -642,7 +668,7 @@ void doBandwidth(int8_t v) {
     else if ( bwIdxAM < 0)
       bwIdxAM = 6;
 
-    rx.setBandwidth(bwIdxAM, 1);
+    rx.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
   }
   showBandwitdth();
   elapsedCommand = millis();
@@ -741,24 +767,22 @@ void doSeek() {
   currentFrequency = rx.getFrequency();
 }
 
-
 void loop()
 {
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
-    if (bfoOn)
+    if (bfoOn & (currentMode == LSB || currentMode == USB))
     {
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
       rx.setSSBBfo(currentBFO);
       showBFO();
-      elapsedCommand = millis();
     }
-    else if ( cmdMode ) 
+    else if (cmdMode)
       doMode(encoderCount);
     else if (cmdStep)
       doStep(encoderCount);
-    else if (cmdAgc )
+    else if (cmdAgc)
       doAgc(encoderCount);
     else if (cmdBandwidth)
       doBandwidth(encoderCount);
@@ -766,11 +790,13 @@ void loop()
       setBand(encoderCount);
     else
     {
-      if (encoderCount == 1) {
+      if (encoderCount == 1)
+      {
         rx.frequencyUp();
         seekDirection = 1;
       }
-      else {
+      else
+      {
         rx.frequencyDown();
         seekDirection = 0;
       }
@@ -779,45 +805,57 @@ void loop()
     }
     showFrequency();
     encoderCount = 0;
+    // elapsedCommand = millis();
   }
   else
   {
-    if (digitalRead(BANDWIDTH_BUTTON) == LOW) {
-      // cmdBandwidth = true;
+    if (digitalRead(BANDWIDTH_BUTTON) == LOW)
+    {
       cmdBandwidth = !cmdBandwidth;
+      delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (digitalRead(BAND_BUTTON) == LOW) {
-      // cmdBand = true;
+    else if (digitalRead(BAND_BUTTON) == LOW)
+    {
       cmdBand = !cmdBand;
+      delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (digitalRead(SEEK_BUTTON) == LOW) {
+    else if (digitalRead(SEEK_BUTTON) == LOW)
+    {
       doSeek();
     }
-    else if (digitalRead(BFO_SWITCH) == LOW) {
+    else if (digitalRead(BFO_SWITCH) == LOW)
+    {
       bfoOn = !bfoOn;
       cmdBfo = false;
-      elapsedCommand = millis();
+      if ((currentMode == LSB || currentMode == USB))
+      {
+        showFrequency();
+        showBFO();
+      }
       delay(MIN_ELAPSED_TIME);
+      elapsedCommand = millis();
     }
-    else if (digitalRead(AGC_SWITCH) == LOW) {
-        // cmdAgc = true;
-        cmdAgc = !cmdAgc;
-        elapsedCommand = millis();
+    else if (digitalRead(AGC_SWITCH) == LOW)
+    {
+      cmdAgc = !cmdAgc;
+      delay(MIN_ELAPSED_TIME);
+      elapsedCommand = millis();
     }
-    else if (digitalRead(STEP_SWITCH) == LOW) {
-        // cmdStep = true;
-        cmdStep = !cmdStep;
-        elapsedCommand = millis();
+    else if (digitalRead(STEP_SWITCH) == LOW)
+    {
+      cmdStep = !cmdStep;
+      delay(MIN_ELAPSED_TIME);
+      elapsedCommand = millis();
     }
-    else if (digitalRead(MODE_SWITCH) == LOW) {
-        // cmdMode = true;
-        cmdMode = !cmdMode;
-        elapsedCommand = millis();
+    else if (digitalRead(MODE_SWITCH) == LOW)
+    {
+      cmdMode = !cmdMode;
+      delay(MIN_ELAPSED_TIME);
+      elapsedCommand = millis();
     }
   }
-
 
   // Show RSSI status only if this condition has changed
   if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
@@ -834,9 +872,10 @@ void loop()
   }
 
   // Disable commands control
-  if ( (millis() - elapsedCommand) > ELAPSED_COMMAND ) {
-    if ( cmdBfo ) {
-      bufferFreq[0] = '\0';
+  if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
+  {
+    if (cmdBfo)
+    {
       bfoOn = cmdBfo = false;
       showFrequency();
     }
@@ -844,5 +883,5 @@ void loop()
     elapsedCommand = millis();
   }
 
-  delay(5);
+  delay(1);
 }
