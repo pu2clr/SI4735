@@ -139,7 +139,7 @@ typedef struct Bandwitdth {
    const char *desc; // bandwitdth description  
 };
 
-uint8_t bwIdxSSB = 4;
+int8_t bwIdxSSB = 4;
 Bandwitdth   bandwitdthSSB[] = {{4,"0.5"}, 
                                 {5,"1.0"},
                                 {0,"1.2"}, 
@@ -148,7 +148,7 @@ Bandwitdth   bandwitdthSSB[] = {{4,"0.5"},
                                 {3,"4.0"}};
 
 
-uint8_t bwIdxAM = 4;
+int8_t bwIdxAM = 4;
 Bandwitdth bandwitdthAM[] =   {{4,"1.0"},
                                {5,"1.8"},
                                {3,"2.0"},
