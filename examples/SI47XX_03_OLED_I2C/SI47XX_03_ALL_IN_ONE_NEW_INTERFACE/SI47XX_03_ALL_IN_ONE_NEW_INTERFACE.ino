@@ -11,11 +11,11 @@
   For this reason, it is necessary change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
-  The libraries Adafruit_GFX and Adafruit_ST7735 take a lot of memory space from Arduino. 
+  The libraries Adafruit_GFX and Adafruit_ST7735 and SSB patch take a lot of memory space from Arduino. 
   You have few space to improve your prototype with standard Arduino Pro Mini.
   However, you can use some approaches:  
   1. Shrink or remove the boot loader from Arduino Pro Mini;
-  2. The Arduino Nano e Uno has smaller bootloader than the Arduino Pro Mini
+  2. The Arduino Nano and Uno have smaller bootloader than the Arduino Pro Mini;
   3. Port this sketch to a bigger board like Arduino Mega or DUE. 
 
 
