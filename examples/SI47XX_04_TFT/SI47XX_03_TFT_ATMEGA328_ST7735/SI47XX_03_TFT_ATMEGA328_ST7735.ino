@@ -78,6 +78,8 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 // TFT ST7735 based device pin setup
 #define TFT_RST 8  // You might need to switch from 8 to 9 depending of your ST7735 device
 #define TFT_DC 9   // You might need to switch from 9 to 8 depending of your ST7735 device
+// #define TFT_DC 8 
+// #define TFT_RST 9  
 #define TFT_CS 10  // SS
 #define TFT_SDI 11 // MOSI
 #define TFT_CLK 13 // SCK
