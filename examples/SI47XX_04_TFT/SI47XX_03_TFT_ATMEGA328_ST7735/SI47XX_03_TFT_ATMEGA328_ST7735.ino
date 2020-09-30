@@ -27,9 +27,9 @@
   | ----------------          | ----------------------------- | ------------  |
   | Display TFT               |                               |               |
   |                           | RST (RESET)                   |     (*3) 8    |
-  |                           | RS or DC                      |     (*3) 9    |
+  |                           | RS or DC or A0                |     (*3) 9    |
   |                           | CS or SS                      |     10        |
-  |                           | SDI                           |     11        |
+  |                           | SDI or SDA or MOSI            |     11        |
   |                           | CLK                           |     13        |
   |                           | BL                            |    +VCC       |  
   |     Si4735                |                               |               |

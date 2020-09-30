@@ -41,10 +41,11 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 | ----------------          | --------------------      | ------------  |
 | __Display TFT__           |                           |               |                    
 |                           | RST (RESET)               |      8        |  
-|                           | RS  or DC                 |      9        |
+|                           | RS  or DC  or A0          |      9        |
 |                           | CS  or SS                 |     10        |
-|                           | SDI                       |     11        | 
+|                           | SDI or MOSI               |     11        | 
 |                           | CLK                       |     13        | 
+|                           | BL (LED)                  |    +VCC       |
 | __Si4735__                |                           |               |
 |                           | RESET (pin 15)            |     12        |
 |                           | SDIO (pin 18)             |     A4        |
@@ -188,11 +189,11 @@ Wire up on Arduino UNO, Pro mini
 | ----------------          | ----------------------------- | ------------  |
 | Display TFT               |                               |               |
 |                           | RST (RESET)                   |     (*3) 8    |
-|                           | RS or DC                      |     (*3) 9    |
+|                           | RS or DC or A0                |     (*3) 9    |
 |                           | CS or SS                      |     10        |
-|                           | SDI                           |     11        |
+|                           | SDI or SDA or MOSI            |     11        |
 |                           | CLK                           |     13        |
-|                           | BL                            |    +VCC       |  
+|                           | BL (LED)                      |    +VCC       |  
 |     Si4735                |                               |               |
 |                           | RESET (pin 15)                |     12        |
 |                           | SDIO (pin 18)                 |     A4        |
