@@ -1,6 +1,4 @@
 /*
-  Under construction... 
-
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with an regular OLED/I2C
   You have to install the Tiny4kOLED library to used this sketch 
 
@@ -54,7 +52,7 @@
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
   Jim Reagan schematic: https://github.com/JimReagans/Si4735-radio-PCB-s-and-bandpass-filter
-  
+
   By PU2CLR, Ricardo; and Jim Reagan W09CHL,  Sep  2020.
 */
 
