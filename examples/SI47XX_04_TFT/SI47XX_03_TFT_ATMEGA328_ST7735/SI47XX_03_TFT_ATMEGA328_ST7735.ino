@@ -419,7 +419,7 @@ void showFrequency()
       bufferDisplay[3] = tmp[3];
       bufferDisplay[4] = tmp[4];
     }
-    color = (bfoOn) ? ST7735_CYAN: ST77XX_YELLOW;
+    color = (bfoOn && (currentMode == LSB || currentMode == USB)) ? ST7735_WHITE : ST77XX_YELLOW;
   }
   bufferDisplay[5] = '\0';
   printValue(30, 10, bufferFreq, bufferDisplay, 18, color, 2);
@@ -552,6 +552,8 @@ void showBFO()
 {
     sprintf(bufferDisplay, "%+4d", currentBFO);
     printValue(128, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
+    // showFrequency();
+    elapsedCommand = millis();
 }
 
 
@@ -807,7 +809,6 @@ void loop()
     }
     showFrequency();
     encoderCount = 0;
-    // elapsedCommand = millis();
   }
   else
   {
@@ -833,9 +834,10 @@ void loop()
       cmdBfo = false;
       if ((currentMode == LSB || currentMode == USB))
       {
-        showFrequency();
         showBFO();
       }
+      bufferFreq[0] = '\0';
+      showFrequency();
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
@@ -884,6 +886,5 @@ void loop()
     disableCommands();
     elapsedCommand = millis();
   }
-
   delay(1);
 }
