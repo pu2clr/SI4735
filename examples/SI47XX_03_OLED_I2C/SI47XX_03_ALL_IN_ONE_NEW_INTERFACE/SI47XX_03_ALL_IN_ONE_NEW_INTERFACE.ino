@@ -474,6 +474,7 @@ void showBFO()
   oled.print("St: ");
   oled.print(currentBFOStep);
   showFrequency();
+  elapsedCommand = millis();
 }
 
 
