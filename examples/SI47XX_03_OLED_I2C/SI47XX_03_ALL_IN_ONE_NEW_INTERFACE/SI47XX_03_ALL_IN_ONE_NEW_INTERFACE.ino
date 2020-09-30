@@ -133,11 +133,29 @@ uint16_t currentFrequency;
 
 uint8_t currentBFOStep = 10;
 
-uint8_t bwIdxSSB = 2;
-const char * bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
-uint8_t bwIdxAM = 1;
-const char * bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+typedef struct Bandwitdth {
+   uint8_t idx; // SI473X device bandwitdth index
+   const char *desc; // bandwitdth description  
+};
+
+uint8_t bwIdxSSB = 4;
+Bandwitdth   bandwitdthSSB[] = {{4,"0.5"}, 
+                                {5,"1.0"},
+                                {0,"1.2"}, 
+                                {1,"2.2"}, 
+                                {2,"3.0"}, 
+                                {3,"4.0"}};
+
+
+uint8_t bwIdxAM = 4;
+Bandwitdth bandwitdthAM[] =   {{4,"1.0"},
+                               {5,"1.8"},
+                               {3,"2.0"},
+                               {6,"2.5"},
+                               {2,"3.0"},
+                               {1,"4.0"},
+                               {0,"6.0"}};
 
 const char * bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
@@ -365,9 +383,9 @@ void showBandwitdth() {
       char * bw;
 
       if (currentMode == AM) 
-        bw = (char *) bandwitdthAM[bwIdxAM];
+        bw = (char *) bandwitdthAM[bwIdxAM].desc;
       else 
-        bw = (char *) bandwitdthSSB[bwIdxSSB];
+        bw = (char *) bandwitdthSSB[bwIdxSSB].desc;
       sprintf(bufferDisplay, "BW: %s KHz", bw);
     } 
     else {
@@ -579,7 +597,7 @@ void doBandwidth(int8_t v) {
     else if ( bwIdxSSB < 0 )
       bwIdxSSB = 5;
 
-    rx.setSSBAudioBandwidth(bwIdxSSB);
+    rx.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
     if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
       rx.setSBBSidebandCutoffFilter(0);
@@ -595,7 +613,7 @@ void doBandwidth(int8_t v) {
     else if ( bwIdxAM < 0)
       bwIdxAM = 6;
 
-    rx.setBandwidth(bwIdxAM, 1);
+    rx.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   showBandwitdth();
