@@ -128,7 +128,7 @@ bool ssbLoaded = false;
 // AGC and attenuation control
 int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
-uint8_t agcNdx = 0;
+int8_t agcNdx = 0;
 
 bool cmdBand = false;
 bool cmdBfo = false;
@@ -883,6 +883,11 @@ void loop()
     if (cmdBfo)
     {
       bfoOn = cmdBfo = false;
+    }
+    if ((currentMode == LSB || currentMode == USB)) {
+      bfoOn = false;
+      showBFO();
+      bufferFreq[0] = '\0';
       showFrequency();
     }
     disableCommands();

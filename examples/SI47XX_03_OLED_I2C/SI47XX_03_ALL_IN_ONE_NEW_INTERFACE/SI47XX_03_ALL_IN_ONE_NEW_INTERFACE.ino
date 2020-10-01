@@ -107,7 +107,7 @@ bool ssbLoaded = false;
 // AGC and attenuation control
 int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
-uint8_t agcNdx = 0;
+int8_t agcNdx = 0;
 
 bool cmdBand = false;
 bool cmdBfo = false;
