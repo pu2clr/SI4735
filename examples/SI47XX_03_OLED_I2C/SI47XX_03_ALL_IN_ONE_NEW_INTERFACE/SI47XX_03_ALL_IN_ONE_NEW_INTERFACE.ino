@@ -402,7 +402,23 @@ void showBandwitdth() {
  */
 void showRSSI()
 {
-  int bars = ((rssi / 10.0) / 2.0) + 1;
+  int rssiAux;
+  
+
+  if (rssi < 2)
+    rssiAux = 4; 
+  else if (rssi < 4)
+    rssiAux = 5;
+  else if (rssi < 12)
+    rssiAux = 6;
+  else if (rssi < 25)
+    rssiAux = 7;
+  else if (rssi < 50)
+    rssiAux = 8;
+  else if (rssi >= 50)
+    rssiAux = 9;
+
+  int bars = rssiAux - 4;
 
   oled.setCursor(81, 3);
   oled.print("       ");

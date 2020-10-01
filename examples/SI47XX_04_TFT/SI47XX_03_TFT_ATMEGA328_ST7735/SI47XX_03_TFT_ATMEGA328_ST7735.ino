@@ -190,15 +190,16 @@ uint8_t currentMode = FM;
 
 uint16_t currentStep = 1;
 
-char bufferDisplay[20]; // Useful to handle string
+char bufferDisplay[15]; // Useful to handle string
 char bufferFreq[15];
 char bufferBFO[15];
-char bufferStepVFO[15];
+char bufferStepVFO[10];
 char bufferBW[15];
-char bufferAGC[15];
+char bufferAGC[10];
 char bufferBand[15];
-char bufferStereo[15];
+char bufferStereo[10];
 char bufferUnt[5];
+char bufferRssi[7];
 
 /*
    Band data structure
@@ -456,6 +457,7 @@ void showStatus()
   CLEAR_BUFFER(bufferBW);
   CLEAR_BUFFER(bufferStepVFO);
   CLEAR_BUFFER(bufferStereo);
+  CLEAR_BUFFER(bufferRssi);
 
   showFrequency();
   if (rx.isCurrentTuneFM()) {
@@ -501,8 +503,10 @@ void showBandwitdth() {
 void showRSSI()
 {
     int rssiLevel;
+    uint8_t rssiAux;
     int snrLevel;
-    char sSt[15];
+    char sSt[10];
+    char sRssi[7];
     int maxAux = tft.width() - 10;
 
     if (currentMode == FM)
@@ -513,11 +517,27 @@ void showRSSI()
 
     // It needs to be calibrated. You can do it better. 
     // RSSI: 0 to 127 dBuV
-    rssiLevel = map(rssi, 0, 127, 0, (maxAux - 48) );
-    snrLevel = map(snr, 0, 127, 0, (maxAux - 48));
+
+    if (rssi < 2) 
+       rssiAux = 4;
+    else if ( rssi < 4)
+       rssiAux = 5;
+    else if ( rssi < 12 ) 
+       rssiAux = 6;
+    else if (rssi < 25) 
+       rssiAux = 7;
+    else if ( rssi < 50 )
+       rssiAux = 8;
+    else if ( rssi >= 50 )
+       rssiAux = 9;
+                  
+    sprintf(sRssi,"S%u%c",rssiAux,(rssiAux == 9)? '+': ' ');
+    rssiLevel = map(rssiAux, 0, 10, 0, maxAux);
+    snrLevel = map(snr, 0, 127, 0, maxAux);
 
     tft.fillRect(5, 42,  maxAux, 6, ST77XX_BLACK);
     tft.fillRect(5, 42, rssiLevel, 6, ST77XX_ORANGE);
+    printValue(5, 31, bufferRssi, sRssi, 6, ST77XX_GREEN, 1);
 
     tft.fillRect(5, 51, maxAux, 6, ST77XX_BLACK);
     tft.fillRect(5, 51, snrLevel, 6, ST77XX_WHITE);
@@ -527,12 +547,12 @@ void showRSSI()
  *  Shows the current AGC and Attenuation status
  */
 void showAgcAtt() {
-    char sAgc[15];
+    char sAgc[10];
     rx.getAutomaticGainControl();
     if (agcNdx == 0 && agcIdx == 0)
       strcpy(sAgc, "AGC ON");
     else
-    sprintf(sAgc, "ATT: %2d", agcNdx);
+      sprintf(sAgc, "ATT: %2d", agcNdx);
     tft.setFont(NULL);
     printValue(110, 110, bufferAGC, sAgc, 6, ST77XX_GREEN, 1);
 }
@@ -660,10 +680,10 @@ void doBandwidth(int8_t v) {
 
     rx.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-    // if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
-    //   rx.setSBBSidebandCutoffFilter(0);
-    // else
-    //   rx.setSBBSidebandCutoffFilter(1);
+    if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
+       rx.setSBBSidebandCutoffFilter(0);
+    else
+       rx.setSBBSidebandCutoffFilter(1);
   }
   else if (currentMode == AM)
   {
