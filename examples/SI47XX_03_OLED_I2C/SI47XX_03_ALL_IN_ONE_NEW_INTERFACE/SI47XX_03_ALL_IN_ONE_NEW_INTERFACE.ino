@@ -534,7 +534,7 @@ void loadSSB()
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  rx.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
+  rx.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
   delay(25);
   ssbLoaded = true;
   showStatus();
