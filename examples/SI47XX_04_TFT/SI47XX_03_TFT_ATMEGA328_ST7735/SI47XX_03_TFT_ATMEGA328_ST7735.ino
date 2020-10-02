@@ -709,6 +709,7 @@ void doAgc(int8_t v) {
   else if ( agcIdx > 35)
     agcIdx = 0;
 
+
   disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable 
 
   if (agcIdx > 1)
