@@ -377,7 +377,7 @@ void showBandwitdth()
       bw = (char *)bandwitdthAM[bwIdxAM].desc;
     else
       bw = (char *)bandwitdthSSB[bwIdxSSB].desc;
-    sprintf(bufferDisplay, "BW: %s KHz", bw);
+    sprintf(bufferDisplay, "BW: %sKHz", bw);
   }
   else
   {
@@ -396,7 +396,7 @@ void showBandwitdth()
 void showRSSI()
 {
   int rssiAux;
-
+  char sMeter[7];
   if (rssi < 2)
     rssiAux = 4;
   else if (rssi < 4)
@@ -411,17 +411,18 @@ void showRSSI()
     rssiAux = 9;
 
   int bars = rssiAux - 4;
+  sprintf(sMeter,"S%1u>",rssiAux);
 
-  oled.setCursor(81, 3);
+  oled.setCursor(78, 3);
   oled.print("       ");
-  oled.setCursor(81, 3);
-  oled.print("S:");
+  oled.setCursor(78, 3);
+  oled.print(sMeter);
   if (bars > 5)
   {
     bars = 5;
   }
   for (int i = 0; i < bars; i++)
-    oled.print(">");
+    oled.print('|');
 
   if (currentMode == FM)
   {
@@ -440,7 +441,7 @@ void showAgcAtt()
   if (agcNdx == 0 && agcIdx == 0)
     strcpy(sAgc, "AGC ON");
   else
-    sprintf(sAgc, "ATT: %2d", agcNdx);
+    sprintf(sAgc, "ATT:%2d", agcNdx);
 
   // Show AGC Information
   rx.getAutomaticGainControl();
@@ -640,22 +641,24 @@ void showCommandStatus()
 /**
  *  Deal with AGC and attenuattion
  */
-void doAgc(int8_t v)
-{
+void doAgc(int8_t v) {
 
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
-  if (agcIdx < 0)
+  if (agcIdx < 0 )
     agcIdx = 35;
-  else if (agcIdx > 35)
+  else if ( agcIdx > 35)
     agcIdx = 0;
 
-  disableAgc = (agcIdx > 0);
-  agcNdx = agcIdx;
+  disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable 
 
-  rx.setAutomaticGainControl(disableAgc, agcNdx);
+  if (agcIdx > 1)
+    agcNdx = agcIdx - 1;
+  else
+    agcNdx = 0;
+
+  rx.setAutomaticGainControl(disableAgc, agcNdx); // if agcNdx = 0, no attenuation
   showAgcAtt();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  showCommandStatus();
   elapsedCommand = millis();
 }
 
