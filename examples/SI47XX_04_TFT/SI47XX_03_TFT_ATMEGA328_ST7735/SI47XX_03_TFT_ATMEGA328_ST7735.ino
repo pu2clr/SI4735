@@ -131,7 +131,6 @@ uint8_t disableAgc = 0;
 int8_t agcNdx = 0;
 
 bool cmdBand = false;
-bool cmdBfo = false;
 bool cmdVolume = false;
 bool cmdAgc = false;
 bool cmdBandwidth = false;
@@ -294,9 +293,7 @@ void setup()
  *  When all flags are disabled (false), the encoder controls the frequency
  */
 void disableCommands() {
-
   cmdBand = false;
-  cmdBfo = false;
   bfoOn = false;
   cmdVolume = false;
   cmdAgc = false;
@@ -853,12 +850,10 @@ void loop()
     else if (digitalRead(BFO_SWITCH) == LOW)
     {
       bfoOn = !bfoOn;
-      cmdBfo = false;
       if ((currentMode == LSB || currentMode == USB))
-      {
         showBFO();
-      }
-      bufferFreq[0] = '\0';
+        
+      CLEAR_BUFFER(bufferFreq);
       showFrequency();
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
@@ -900,14 +895,10 @@ void loop()
   // Disable commands control
   if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
   {
-    if (cmdBfo)
-    {
-      bfoOn = cmdBfo = false;
-    }
     if ((currentMode == LSB || currentMode == USB)) {
       bfoOn = false;
       showBFO();
-      bufferFreq[0] = '\0';
+      CLEAR_BUFFER(bufferFreq);
       showFrequency();
     }
     disableCommands();
