@@ -229,8 +229,7 @@ Band band[] = {
     {"SW5", SW_BAND_TYPE, 150, 30000, 15300, 5},
     {"SW6", SW_BAND_TYPE, 150, 30000, 17600, 5},
     {"SW7", SW_BAND_TYPE, 150, 30000, 21100, 1},
-    {"SW8", SW_BAND_TYPE, 150, 30000, 22525, 5},
-    {"SW9", SW_BAND_TYPE, 150, 30000, 28400, 1}};
+    {"SW8", SW_BAND_TYPE, 150, 30000, 28400, 1}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
