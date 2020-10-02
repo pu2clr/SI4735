@@ -709,13 +709,14 @@ void doAgc(int8_t v) {
   else if ( agcIdx > 35)
     agcIdx = 0;
 
-  disableAgc = (agcIdx > 0);
-  if (agcIdx == 1)
-    agcNdx = 0;
-  else
-    agcNdx = agcIdx;
+  disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable 
 
-  rx.setAutomaticGainControl(disableAgc, agcNdx);
+  if (agcIdx > 1)
+    agcNdx = agcIdx - 1;
+  else
+    agcNdx = 0;
+
+  rx.setAutomaticGainControl(disableAgc, agcNdx); // if agcNdx = 0, no attenuation
   showAgcAtt();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
