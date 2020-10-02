@@ -710,7 +710,10 @@ void doAgc(int8_t v) {
     agcIdx = 0;
 
   disableAgc = (agcIdx > 0);
-  agcNdx = agcIdx;
+  if (agcIdx == 1)
+    agcNdx = 0;
+  else
+    agcNdx = agcIdx;
 
   rx.setAutomaticGainControl(disableAgc, agcNdx);
   showAgcAtt();
