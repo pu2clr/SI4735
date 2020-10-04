@@ -523,7 +523,7 @@ void showTemplate()
   bEmphasis.drawButton(true);
 
   showText(0, 397, 1, NULL, GREEN, "RSSI");
-  tft.drawRect(30, 393, (w - 32), 12, CYAN);
+  tft.drawRect(30, 393, (w - 32), 14, CYAN);
 
   showText(0, 450, 1, NULL, YELLOW, "PU2CLR-Si4535 Arduino Library-Example");
   showText(0, 465, 1, NULL, YELLOW, "DIY - You can do it better.");
@@ -773,8 +773,11 @@ void showAgcAtt()
 void showRSSI()
 {
 
-  int w = tft.width();
+  int w = tft.width() - 34;
   int signalLevel;
+  uint8_t rssiAux;
+  char sMeter[7];
+  char sTmp[7];
 
   if (currentMode == FM)
   {
@@ -787,9 +790,25 @@ void showRSSI()
     printText(240, 10, 1, bufferStereo, buffer, BLACK, 11);
   }
 
-  signalLevel = map(rssi, 0, 63, 0, w - 34);
-  tft.fillRect(30, 395, w - 34, 8, BLACK);
-  tft.fillRect(30, 395, signalLevel, 8, (signalLevel > 25) ? YELLOW : RED);
+  if (rssi < 2)
+    rssiAux = 4;
+  else if (rssi < 4)
+    rssiAux = 5;
+  else if (rssi < 12)
+    rssiAux = 6;
+  else if (rssi < 25)
+    rssiAux = 7;
+  else if (rssi < 50)
+    rssiAux = 8;
+  else if (rssi >= 50)
+    rssiAux = 9;
+
+  signalLevel = map(rssiAux, 0, 9, 0, w);
+  tft.fillRect(30, 395, w , 10, BLACK);
+  tft.fillRect(30, 395, signalLevel, 10, (rssiAux > 4) ? YELLOW : RED);
+  sTmp[0] = '\0';
+  sprintf(sMeter,"S%1u%c",rssiAux,(rssiAux > 8)? '+':' ');
+  printText(signalLevel + 15, 396, 1, sTmp, sMeter, BLACK, 6);
 }
 
 void showStep()
