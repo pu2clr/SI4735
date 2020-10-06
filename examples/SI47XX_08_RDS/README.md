@@ -10,19 +10,21 @@ This folder has examples of using the TFT  display. If you plan to use the touch
 
 ## SI47XX_03_RDS_TFT_ILI9225 
 
-This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a [SPI TFT from MICROYUM (2" - 176 x 220)](https://github.com/Nkawu/TFT_22_ILI9225/wiki) based on ILI9225 driver. It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the regular commercial stations. 
+This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a [SPI TFT from MICROYUM (2" - 176 x 220)](https://github.com/Nkawu/TFT_22_ILI9225/wiki) based on ILI9225 driver.  The Arduino library used to control that display device is MCUFRIEND_kbv. Please, install it before start working with this sketch.  
+
+It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the regular commercial stations.  It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
 
 1. Encoder to tune stations;
 2. Band selection via push buttons
 3. AM, FM and SSB;
 4. LW, MW and SW;
-5. FM/RDS/RBDS;
-6. Bandwidth filter;
-7. BFO Control; 
-8. VFO/BFO switching via encoder push button;
-9. 12 SW bands + one from (1.7MHz to 30MHz). 
-10. Frequency step switch (1, 5, 10, 100 and 500KHz KHz);
-
+5. Bandwidth filter;
+6. BFO Control; 
+7. VFO/BFO switching via encoder push button;
+8. 12 SW bands + one from (1.7MHz to 30MHz); 
+9. Frequency step switch (1, 5, 10, 100 and 500KHz KHz);
+10. FM/RDS functions.
+  
 
 ### Wire up and functions
 
@@ -32,10 +34,11 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 | ----------------          | --------------------      | ------------  |
 | __Display TFT__           |                           |               |                    
 |                           | RST (RESET)               |      8        |  
-|                           | RS  or DC                 |      9        |
+|                           | RS  or DC  or A0          |      9        |
 |                           | CS  or SS                 |     10        |
-|                           | SDI                       |     11        | 
+|                           | SDA orSDI or MOSI         |     11        | 
 |                           | CLK                       |     13        | 
+|                           | BL (LED)                  |    +VCC       |
 | __Si4735__                |                           |               |
 |                           | RESET (pin 15)            |     12        |
 |                           | SDIO (pin 18)             |     A4        |
@@ -47,7 +50,7 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 |                           | Previous band             |      7        |
 |                           | AGC ON/OF                 |     14 / A0   |
 |                           | Frequency Step            |     15 / A1   | 
-|                           | VFO/VFO Switch            |     16 / A3   |
+|                           | VFO/VFO Switch            |     16 / A2   |
 | __Encoder__               |                           |               |
 |                           | A                         |       2       |
 |                           | B                         |       3       |

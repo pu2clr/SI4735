@@ -1,5 +1,8 @@
 /*
-  This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220).
+  This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220) - ILI9225.
+  The Arduino library used to control that display device is MCUFRIEND_kbv. Please, install it before start working 
+  with this sketch. 
+
   It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the
   regular comercial stations. If you are using the same circuit used on examples with OLED and LCD,
   you have to change some buttons wire up. This TFT device takes five pins from Arduino.
@@ -18,7 +21,7 @@
   |                           | RST (RESET)               |      8        |
   |                           | RS or DC                  |      9        |
   |                           | CS or SS                  |     10        |
-  |                           | SDI                       |     11        |
+  |                           | SDI / SDA / MOSI          |     11        |
   |                           | CLK                       |     13        |
   |     Si4735                |                           |               |
   |                           | RESET (pin 15)            |     12        |
@@ -31,7 +34,7 @@
   |                           | Previous band             |      7        |
   |                           | AGC ON/OF                 |     14 / A0   |
   |                           | Frequency Step            |     15 / A1   |
-  |                           | VFO/VFO Switch            |     16 / A3   |
+  |                           | VFO/VFO Switch            |     16 / A2   |
   |    Encoder                |                           |               |
   |                           | A                         |       2       |
   |                           | B                         |       3       |

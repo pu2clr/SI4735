@@ -17,7 +17,9 @@ Videos:
 
 ## SI47XX_01_TFT_ILI9225 
 
-This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a [SPI TFT from MICROYUM (2" - 176 x 220)](https://github.com/Nkawu/TFT_22_ILI9225/wiki) based on ILI9225 driver. It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the regular commercial stations.  It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
+This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a [SPI TFT from MICROYUM (2" - 176 x 220)](https://github.com/Nkawu/TFT_22_ILI9225/wiki) based on ILI9225 driver.  The Arduino library used to control that display device is MCUFRIEND_kbv. Please, install it before start working with this sketch.  
+
+It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the regular commercial stations.  It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
 
 1. Encoder to tune stations;
 2. Band selection via push buttons
@@ -28,7 +30,7 @@ This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a [SPI TFT from MICROYUM (
 7. VFO/BFO switching via encoder push button;
 8. 12 SW bands + one from (1.7MHz to 30MHz). 
 9. Frequency step switch (1, 5, 10, 100 and 500KHz KHz);
-
+  
 
 If you are using the same circuit used on examples with OLED and LCD, you have to change some buttons wire up. This TFT device takes five pins from Arduino. For this reason, it is necessary change the pins of some buttons. Fortunately, you can use the ATmega328 analog pins as digital pins. The table below.   
 
@@ -43,7 +45,7 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 |                           | RST (RESET)               |      8        |  
 |                           | RS  or DC  or A0          |      9        |
 |                           | CS  or SS                 |     10        |
-|                           | SDI or MOSI               |     11        | 
+|                           | SDA orSDI or MOSI         |     11        | 
 |                           | CLK                       |     13        | 
 |                           | BL (LED)                  |    +VCC       |
 | __Si4735__                |                           |               |
