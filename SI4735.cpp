@@ -2824,8 +2824,8 @@ void SI4735::patchPowerUp()
     waitToSend();
     Wire.beginTransmission(deviceAddress);
     Wire.write(POWER_UP);
-    Wire.write(0b00110001);          // Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
-    Wire.write(SI473X_ANALOG_AUDIO); // Set to Analog Output
+    Wire.write(0b00110001);          // This is a condition for loading the patch: Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled. You can change this calling setSSB.
+    Wire.write(SI473X_ANALOG_AUDIO); // This is a condition for loading the patch: Set to Analog Output. You can change this calling setSSB.
     Wire.endTransmission();
     delay(maxDelayAfterPouwerUp);
 }
@@ -2840,8 +2840,8 @@ void SI4735::ssbPowerUp()
     waitToSend();
     Wire.beginTransmission(deviceAddress);
     Wire.write(POWER_UP);
-    Wire.write(0b00010001); // Set to AM/SSB, disable interrupt; disable GPO2OEN; boot normaly; enable External Crystal Oscillator  .
-    Wire.write(0b00000101); // Set to Analog Line Input.
+    Wire.write(0b00010001); // This is a condition for loading the patch: Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled. You can change this calling setSSB.
+    Wire.write(0b00000101); // This is a condition for loading the patch: Set to Analog Output. You can change this calling setSSB.
     Wire.endTransmission();
     delayMicroseconds(2500);
 
@@ -2952,7 +2952,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
  */
 void SI4735::loadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, uint8_t ssb_audiobw)
 {
-    reset();
+    // reset(); // Is is not necessary. The queryLibraryId calls power down and it has the same effect.
     queryLibraryId(); 
     patchPowerUp();
     delay(50);
