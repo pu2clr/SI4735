@@ -1,7 +1,7 @@
 var group__group01_unionsi47x__rds__blockb =
 [
-    [ "group0", "group__group01.html#affbc7c03d40ea38d7b6f3cbf51c86be4", null ],
-    [ "group2", "group__group01.html#ad6cec2eafdda2b1706482498fce7bf08", null ],
-    [ "refined", "group__group01.html#a70c9cec56ad505c229ec84e915dd5b8b", null ],
-    [ "raw", "group__group01.html#a5659426420d3a3583ebb633a5b3ef873", null ]
+    [ "group0", "group__group01.html#abed5e383b3c62bc0a091efdd326c40d8", null ],
+    [ "group2", "group__group01.html#a8e070d0226a78cd520ede1037a6a24d4", null ],
+    [ "refined", "group__group01.html#ad3111bc05fa4a108d7d7eadf0dbe94ba", null ],
+    [ "raw", "group__group01.html#afb2283c294aa4046fb606eef18839331", null ]
 ];

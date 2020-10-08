@@ -26,6 +26,8 @@ var annotated_dup =
     [ "si47x_firmware_query_library.resp", "group__group01.html#structsi47x__firmware__query__library_8resp", "group__group01_structsi47x__firmware__query__library_8resp" ],
     [ "si47x_frequency", "group__group01.html#unionsi47x__frequency", "group__group01_unionsi47x__frequency" ],
     [ "si47x_frequency.raw", "group__group01.html#structsi47x__frequency_8raw", "group__group01_structsi47x__frequency_8raw" ],
+    [ "si47x_frontend_agc_control", "group__group01.html#unionsi47x__frontend__agc__control", "group__group01_unionsi47x__frontend__agc__control" ],
+    [ "si47x_frontend_agc_control.field", "group__group01.html#structsi47x__frontend__agc__control_8field", "group__group01_structsi47x__frontend__agc__control_8field" ],
     [ "si47x_property", "group__group01.html#unionsi47x__property", "group__group01_unionsi47x__property" ],
     [ "si47x_property.raw", "group__group01.html#structsi47x__property_8raw", "group__group01_structsi47x__property_8raw" ],
     [ "si47x_rds_blocka", "group__group01.html#unionsi47x__rds__blocka", "group__group01_unionsi47x__rds__blocka" ],

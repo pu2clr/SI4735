@@ -169,6 +169,11 @@ Data Structures</h2></td></tr>
 <tr class="separator:unionsi47x__rqs__status"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structsi47x__rqs__status_8resp"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#structsi47x__rqs__status_8resp">si47x_rqs_status.resp</a></td></tr>
 <tr class="separator:structsi47x__rqs__status_8resp"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:unionsi47x__frontend__agc__control"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#unionsi47x__frontend__agc__control">si47x_frontend_agc_control</a></td></tr>
+<tr class="memdesc:unionsi47x__frontend__agc__control"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adjusts the AM AGC for external front-end attenuator and external front-end cascode LNA.  <a href="group__group01.html#unionsi47x__frontend__agc__control">More...</a><br /></td></tr>
+<tr class="separator:unionsi47x__frontend__agc__control"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structsi47x__frontend__agc__control_8field"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#structsi47x__frontend__agc__control_8field">si47x_frontend_agc_control.field</a></td></tr>
+<tr class="separator:structsi47x__frontend__agc__control_8field"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:unionsi47x__rds__command"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group01.html#unionsi47x__rds__command">si47x_rds_command</a></td></tr>
 <tr class="memdesc:unionsi47x__rds__command"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data type for RDS Status command and response information.  <a href="group__group01.html#unionsi47x__rds__command">More...</a><br /></td></tr>
 <tr class="separator:unionsi47x__rds__command"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1704,6 +1709,66 @@ RESP7 - Signed frequency offset (kHz). </td></tr>
 
 </div>
 </div>
+<a name="unionsi47x__frontend__agc__control" id="unionsi47x__frontend__agc__control"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#unionsi47x__frontend__agc__control">&#9670;&nbsp;</a></span>si47x_frontend_agc_control</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union si47x_frontend_agc_control</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Adjusts the AM AGC for external front-end attenuator and external front-end cascode LNA. </p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROAMMING GUIDE; AN332 (REV 1.0); page 168 </dd></dl>
+</div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a id="aba5582f017d6f5d656993ba8d4a97795"></a>struct <a class="el" href="group__group01.html#structsi47x__frontend__agc__control_8field">si47x_frontend_agc_control</a></td>
+<td class="fieldname">
+field</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="aff89664deed303ec065bbad68b2053ae"></a>uint16_t</td>
+<td class="fieldname">
+word</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="structsi47x__frontend__agc__control_8field" id="structsi47x__frontend__agc__control_8field"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#structsi47x__frontend__agc__control_8field">&#9670;&nbsp;</a></span>si47x_frontend_agc_control.field</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct si47x_frontend_agc_control.field</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"></div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a id="aae22ea8fbb38533f36125b5ccc45338b"></a>uint8_t</td>
+<td class="fieldname">
+ATTN_BACKUP</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="aeb3a984f28076574a7347412473f7c13"></a>uint8_t</td>
+<td class="fieldname">
+MIN_GAIN_INDEX</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
 <a name="unionsi47x__rds__command" id="unionsi47x__rds__command"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#unionsi47x__rds__command">&#9670;&nbsp;</a></span>si47x_rds_command</h2>
 
@@ -1722,7 +1787,7 @@ Also <a href="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipe
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a0e8b45dd88845a6fa05c7cc9a3e88197"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__command_8arg">si47x_rds_command</a></td>
+<a id="abc89226fb1cac2f4db84d19f6aac5960"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__command_8arg">si47x_rds_command</a></td>
 <td class="fieldname">
 arg</td>
 <td class="fielddoc">
@@ -1794,7 +1859,7 @@ dummy: 5</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="ab56e9d309c505da542bd9fe64c765948"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__status_8resp">si47x_rds_status</a></td>
+<a id="a48fe19756bd1b858964dd8a74c5651a3"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__status_8resp">si47x_rds_status</a></td>
 <td class="fieldname">
 resp</td>
 <td class="fielddoc">
@@ -2030,7 +2095,7 @@ also <a href="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipe
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="aca287b88234a84b4f3210ea155b814b8"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__int__source_8refined">si47x_rds_int_source</a></td>
+<a id="ab5540a81bf1596dbbc015ef2f458a5b1"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__int__source_8refined">si47x_rds_int_source</a></td>
 <td class="fieldname">
 refined</td>
 <td class="fielddoc">
@@ -2127,7 +2192,7 @@ Reserved - Always write to 0. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="ae4672dc74089b7ebdfcbc073f113ec61"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__config_8arg">si47x_rds_config</a></td>
+<a id="a54505a8468e1aafafe7bb7485c2241e9"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__config_8arg">si47x_rds_config</a></td>
 <td class="fieldname">
 arg</td>
 <td class="fielddoc">
@@ -2210,13 +2275,13 @@ Block Error Threshold BLOCKA. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="aa4c2a9fbae026e643467c35779259061"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__blocka_8refined">si47x_rds_blocka</a></td>
+<a id="a404ba554979caaf39c11a7783a596bd1"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__blocka_8refined">si47x_rds_blocka</a></td>
 <td class="fieldname">
 refined</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="ade8be88f35ffe415f3a01eab00cc4bfa"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__blocka_8raw">si47x_rds_blocka</a></td>
+<a id="a809d189eba718f9245672c9abab05690"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__blocka_8raw">si47x_rds_blocka</a></td>
 <td class="fieldname">
 raw</td>
 <td class="fielddoc">
@@ -2298,25 +2363,25 @@ also <a href="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipe
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="affbc7c03d40ea38d7b6f3cbf51c86be4"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__blockb_8group0">si47x_rds_blockb</a></td>
+<a id="abed5e383b3c62bc0a091efdd326c40d8"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__blockb_8group0">si47x_rds_blockb</a></td>
 <td class="fieldname">
 group0</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="ad6cec2eafdda2b1706482498fce7bf08"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__blockb_8group2">si47x_rds_blockb</a></td>
+<a id="a8e070d0226a78cd520ede1037a6a24d4"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__blockb_8group2">si47x_rds_blockb</a></td>
 <td class="fieldname">
 group2</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a70c9cec56ad505c229ec84e915dd5b8b"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__blockb_8refined">si47x_rds_blockb</a></td>
+<a id="ad3111bc05fa4a108d7d7eadf0dbe94ba"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__blockb_8refined">si47x_rds_blockb</a></td>
 <td class="fieldname">
 refined</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a5659426420d3a3583ebb633a5b3ef873"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__blockb_8raw">si47x_rds_blockb</a></td>
+<a id="afb2283c294aa4046fb606eef18839331"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__blockb_8raw">si47x_rds_blockb</a></td>
 <td class="fieldname">
 raw</td>
 <td class="fielddoc">
@@ -2541,7 +2606,7 @@ highValue</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a614026be0bca0398d647492f60ffdf70"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__date__time_8refined">si47x_rds_date_time</a></td>
+<a id="aca88dde0784fe180c29a66b4e0b65104"></a>struct <a class="el" href="group__group01.html#structsi47x__rds__date__time_8refined">si47x_rds_date_time</a></td>
 <td class="fieldname">
 refined</td>
 <td class="fielddoc">
@@ -2633,7 +2698,7 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a7b740364af15fb3218e210a9ce1fe86b"></a>struct <a class="el" href="group__group01.html#structsi47x__agc__status_8refined">si47x_agc_status</a></td>
+<a id="aac4fc78ed4e4f265c74a9e50c2e63592"></a>struct <a class="el" href="group__group01.html#structsi47x__agc__status_8refined">si47x_agc_status</a></td>
 <td class="fieldname">
 refined</td>
 <td class="fielddoc">
@@ -2741,7 +2806,7 @@ AGCIDX</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a6e59c439331e3addf2f3979fddf54036"></a>struct <a class="el" href="group__group01.html#structsi47x__agc__overrride_8arg">si47x_agc_overrride</a></td>
+<a id="a05a271d0b62d67a76532e70016cc5056"></a>struct <a class="el" href="group__group01.html#structsi47x__agc__overrride_8arg">si47x_agc_overrride</a></td>
 <td class="fieldname">
 arg</td>
 <td class="fielddoc">
@@ -2808,7 +2873,7 @@ AGCIDX</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="adc78f2cf172c060ce156a35450ac2134"></a>struct <a class="el" href="group__group01.html#structsi47x__bandwidth__config_8param">si47x_bandwidth_config</a></td>
+<a id="a5da2dcc72ae3a6f0ced1aad7594362d5"></a>struct <a class="el" href="group__group01.html#structsi47x__bandwidth__config_8param">si47x_bandwidth_config</a></td>
 <td class="fieldname">
 param</td>
 <td class="fielddoc">
@@ -2880,7 +2945,7 @@ DUMMY2: 7</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a8f2415270b023a24064dc81d7ed5bb74"></a>struct <a class="el" href="group__group01.html#structsi47x__ssb__mode_8param">si47x_ssb_mode</a></td>
+<a id="affb467645fbaf299d351c3fc7c0ed3bb"></a>struct <a class="el" href="group__group01.html#structsi47x__ssb__mode_8param">si47x_ssb_mode</a></td>
 <td class="fieldname">
 param</td>
 <td class="fielddoc">
@@ -2971,7 +3036,7 @@ DSP_AFCDIS: 1</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a35ccd17683cd73a68c47e8351f8f7520"></a>struct <a class="el" href="group__group01.html#structsi4735__digital__output__format_8refined">si4735_digital_output_format</a></td>
+<a id="a2f5af498b9dfe1e33765207842b3796d"></a>struct <a class="el" href="group__group01.html#structsi4735__digital__output__format_8refined">si4735_digital_output_format</a></td>
 <td class="fieldname">
 refined</td>
 <td class="fielddoc">
@@ -3052,7 +3117,7 @@ Always 0. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a4707ab771c6fd6fc0bbb07b1fa4dfce9"></a>struct <a class="el" href="group__group01.html#structsi4735__eeprom__patch__header_8refined">si4735_eeprom_patch_header</a></td>
+<a id="a206c5907140c242eff43969fdbf1ee39"></a>struct <a class="el" href="group__group01.html#structsi4735__eeprom__patch__header_8refined">si4735_eeprom_patch_header</a></td>
 <td class="fieldname">
 refined</td>
 <td class="fielddoc">

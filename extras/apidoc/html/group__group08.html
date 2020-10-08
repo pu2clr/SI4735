@@ -201,6 +201,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gaa4d5fa1c73073d5cfc47838d6b832ba5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#gaa4d5fa1c73073d5cfc47838d6b832ba5">SI4735::setAMSoftMuteAttackRate</a> (uint16_t parameter)</td></tr>
 <tr class="memdesc:gaa4d5fa1c73073d5cfc47838d6b832ba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the soft mute attack rate.  <a href="group__group08.html#gaa4d5fa1c73073d5cfc47838d6b832ba5">More...</a><br /></td></tr>
 <tr class="separator:gaa4d5fa1c73073d5cfc47838d6b832ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga46d1dae32aae4da7ad9fabfdb36440cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga46d1dae32aae4da7ad9fabfdb36440cc">SI4735::setAMFrontEndAgcControl</a> (uint8_t MIN_GAIN_INDEX, uint8_t ATTN_BACKUP)</td></tr>
+<tr class="memdesc:ga46d1dae32aae4da7ad9fabfdb36440cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adjusts the AM AGC for external front-end attenuator and external front-end cascode LNA.  <a href="group__group08.html#ga46d1dae32aae4da7ad9fabfdb36440cc">More...</a><br /></td></tr>
+<tr class="separator:ga46d1dae32aae4da7ad9fabfdb36440cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4714f08989f020110620781ae968b01b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga4714f08989f020110620781ae968b01b">SI4735::isCurrentTuneAM</a> ()</td></tr>
 <tr class="memdesc:ga4714f08989f020110620781ae968b01b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the current function is AM (AM_TUNE_FREQ).  <a href="group__group08.html#ga4714f08989f020110620781ae968b01b">More...</a><br /></td></tr>
 <tr class="separator:ga4714f08989f020110620781ae968b01b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1422,6 +1425,58 @@ Si47XX PROAMMING GUIDE; AN332 (REV 1.0); </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parameter</td><td>1–32767 (The default is 8192 (approximately 8000 dB/s) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga46d1dae32aae4da7ad9fabfdb36440cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga46d1dae32aae4da7ad9fabfdb36440cc">&#9670;&nbsp;</a></span>setAMFrontEndAgcControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setAMFrontEndAgcControl </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>MIN_GAIN_INDEX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>ATTN_BACKUP</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adjusts the AM AGC for external front-end attenuator and external front-end cascode LNA. </p>
+<p>This property contains two fields: MIN_GAIN_INDEX and ATTN_BACKUP.</p>
+<p>MIN_GAIN_INDEX impacts sensitivity and U/D performance. Lower values improve sensitivity, but degrade</p>
+<p>far away blocker U/D performance.</p>
+<p>Higher values degrade sensitivity, but improve U/D. With MIN_GAIN_INDEX=19 and Si4743 EVB reference</p>
+<p>design, the Si474x provides sensitivity of 28dBuV typical and U/D exceeding 55dB on far away blockers.</p>
+<p>With MIN_GAIN_INDEX=24, the Si474x provides sensitivity of 34dBuV typical and U/D approaching 70dB on</p>
+<p>far away blockers. </p><dl class="section see"><dt>See also</dt><dd>Si47XX PROAMMING GUIDE; AN332 (REV 1.0); page 168 </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">MIN_GAIN_INDEX</td><td>Values below 19 have minimal sensitivity improvement; Higher values degrade sensitivity, but improve U/D. </td></tr>
+    <tr><td class="paramname">ATTN_BACKUP</td><td>??? </td></tr>
   </table>
   </dd>
 </dl>
@@ -2831,7 +2886,7 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__group08_html_gacd89e7b8adefcbc4e89f802acb915906"><div class="ttname"><a href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906">SI4735::setFM</a></div><div class="ttdeci">void setFM()</div><div class="ttdoc">Sets the radio to FM function.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:794</div></div>
-<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:2173</div></div>
+<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:2212</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
