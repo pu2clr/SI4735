@@ -160,11 +160,12 @@ int8_t bwIdxAM = 1;
 const char * bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 */
 
-typedef struct Bandwitdth
+
+typedef struct 
 {
   uint8_t idx;      // SI473X device bandwitdth index
   const char *desc; // bandwitdth description
-};
+} Bandwitdth;
 
 int8_t bwIdxSSB = 4;
 Bandwitdth bandwitdthSSB[] = {{4, "0.5"}, // 0

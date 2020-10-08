@@ -574,6 +574,21 @@ typedef union
 
 /**
  * @ingroup group01
+ * @brief Adjusts the AM AGC for external front-end attenuator and external front-end cascode LNA.
+ * @see Si47XX PROAMMING GUIDE; AN332 (REV 1.0); page 168
+ */
+typedef union
+{
+    struct
+    {
+        uint8_t ATTN_BACKUP;
+        uint8_t MIN_GAIN_INDEX;
+    } field;
+    uint16_t word;
+} si47x_frontend_agc_control;
+
+/**
+ * @ingroup group01
  * 
  * @brief Data type for RDS Status command and response information 
  *
@@ -1809,6 +1824,30 @@ public:
     inline void setAMSoftMuteAttackRate(uint16_t parameter)
     {
        sendProperty(AM_SOFT_MUTE_ATTACK_RATE, parameter);
+    };
+
+    /**
+     * @ingroup group08
+     * @brief Adjusts the AM AGC for external front-end attenuator and external front-end cascode LNA.
+     * @details This property contains two fields: MIN_GAIN_INDEX and ATTN_BACKUP.
+     * @details MIN_GAIN_INDEX impacts sensitivity and U/D performance. Lower values improve sensitivity, but degrade 
+     * @details far away blocker U/D performance. 
+     * @details Higher values degrade sensitivity, but improve U/D. With MIN_GAIN_INDEX=19 and Si4743 EVB reference 
+     * @details design, the Si474x provides sensitivity of 28dBuV typical and U/D exceeding 55dB on far away blockers.
+     * @details With MIN_GAIN_INDEX=24, the Si474x provides sensitivity of 34dBuV typical and U/D approaching 70dB on 
+     * @details far away blockers. 
+     * @see Si47XX PROAMMING GUIDE; AN332 (REV 1.0); page 168
+     * @param MIN_GAIN_INDEX Values below 19 have minimal sensitivity improvement; Higher values degrade sensitivity, but improve U/D.
+     * @param ATTN_BACKUP ??? 
+     */
+    inline void setAMFrontEndAgcControl(uint8_t MIN_GAIN_INDEX, uint8_t ATTN_BACKUP)
+    {
+        si47x_frontend_agc_control param;
+
+        param.field.MIN_GAIN_INDEX = MIN_GAIN_INDEX;
+        param.field.ATTN_BACKUP = ATTN_BACKUP;
+
+        sendProperty(AM_FRONTEND_AGC_CONTROL, param.word);
     };
 
 

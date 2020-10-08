@@ -67,7 +67,10 @@
 
 #include "Rotary.h"
 
-#include "patch_init.h" // SSB patch for whole SSBRX initialization string
+// #include "patch_init.h" // SSB patch for whole SSBRX initialization string
+#include "patch_init.h"    // SSB patch full - What is the difference? It is not clear.
+
+const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
 #define MINPRESSURE 200
 #define MAXPRESSURE 1000
@@ -99,8 +102,6 @@
 #define AM 3
 #define LW 4
 #define SSB 1
-
-const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
 bool cmdBFO = false;
 bool cmdAudioMute = false;
@@ -195,11 +196,31 @@ uint8_t bandwidthIdx = 0;
 uint16_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
-int8_t bwIdxSSB = 2;
-const char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+// Datatype to deal with bandwidth on AM and SSB in numerical order. 
+typedef struct 
+{
+  uint8_t idx;      // SI473X device bandwitdth index value
+  const char *desc; // bandwitdth description
+} Bandwitdth;
 
-int8_t bwIdxAM = 1;
-const char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+
+int8_t bwIdxSSB = 4;
+Bandwitdth bandwitdthSSB[] = {{4, "0.5"}, //  4 = 0.5KHz
+                              {5, "1.0"}, //  
+                              {0, "1.2"}, // 
+                              {1, "2.2"}, // 
+                              {2, "3.0"}, // 
+                              {3, "4.0"}}; // 3 = 4KHz
+
+int8_t bwIdxAM = 4;
+Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1KHz
+                             {5, "1.8"},
+                             {3, "2.0"},
+                             {6, "2.5"},
+                             {2, "3.0"},
+                             {1, "4.0"},
+                             {0, "6.0"}}; // 0 = 6KHz
+
 
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
@@ -736,13 +757,13 @@ void showBandwitdth()
   tft.setFont(NULL);
   if (currentMode == LSB || currentMode == USB)
   {
-    sprintf(bw, "BW:%s KHz", bandwitdthSSB[bwIdxSSB]);
+    sprintf(bw, "BW:%s KHz", bandwitdthSSB[bwIdxSSB].desc);
     printText(5, 85, 1, bufferBW, bw, GREEN, 7);
     showBFO();
   }
   else if (currentMode == AM)
   {
-    sprintf(bw, "BW:%s KHz", bandwitdthAM[bwIdxAM]);
+    sprintf(bw, "BW:%s KHz", bandwitdthAM[bwIdxAM].desc);
     printText(5, 85, 1, bufferBW, bw, GREEN, 7);
   }
 }
@@ -982,7 +1003,7 @@ void loadSSB()
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
+  si4735.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
   delay(25);
   ssbLoaded = true;
 }
@@ -1126,12 +1147,12 @@ void switchFilter(uint8_t v)
     else if (bwIdxSSB < 0)
       bwIdxSSB = 5;
 
-    si4735.setSSBAudioBandwidth(bwIdxSSB);
+    si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-    if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
-      si4735.setSBBSidebandCutoffFilter(0);
+    if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
+       si4735.setSBBSidebandCutoffFilter(0);
     else
-      si4735.setSBBSidebandCutoffFilter(1);
+       si4735.setSBBSidebandCutoffFilter(1);
   }
   else if (currentMode == AM)
   {
@@ -1142,7 +1163,7 @@ void switchFilter(uint8_t v)
     else if (bwIdxAM < 0)
       bwIdxAM = 6;
 
-    si4735.setBandwidth(bwIdxAM, 1);
+    si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
   }
   showBandwitdth();
   elapsedCommand = millis();

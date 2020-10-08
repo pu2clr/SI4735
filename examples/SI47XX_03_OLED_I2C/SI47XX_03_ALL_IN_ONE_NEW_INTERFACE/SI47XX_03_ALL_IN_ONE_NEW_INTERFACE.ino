@@ -130,11 +130,11 @@ uint16_t currentFrequency;
 
 uint8_t currentBFOStep = 10;
 
-typedef struct Bandwitdth
+typedef struct 
 {
   uint8_t idx;      // SI473X device bandwitdth index
   const char *desc; // bandwitdth description
-};
+} Bandwitdth;
 
 int8_t bwIdxSSB = 4;
 Bandwitdth bandwitdthSSB[] = {{4, "0.5"},
