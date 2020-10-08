@@ -706,8 +706,8 @@ void doAgc(int8_t v) {
 
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
   if (agcIdx < 0 )
-    agcIdx = 35;
-  else if ( agcIdx > 35)
+    agcIdx = 37;
+  else if ( agcIdx > 37)
     agcIdx = 0;
 
 

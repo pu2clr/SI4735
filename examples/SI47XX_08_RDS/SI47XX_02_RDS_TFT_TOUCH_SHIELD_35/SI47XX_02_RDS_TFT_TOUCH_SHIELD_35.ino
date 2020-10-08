@@ -121,9 +121,9 @@ bool fmStereo = true;
 bool touch = false;
 
 // AGC and attenuation control
-uint8_t agcIdx = 0;
+int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
-uint8_t agcNdx = 0;
+int8_t agcNdx = 0;
 uint16_t antennaIdx = 0;
 int8_t softMuteMaxAttIdx = 16;
 int8_t slopIdx = 1;
@@ -1065,6 +1065,7 @@ void useBand()
 
   // Sets AGC or attenuation control
   si4735.setAutomaticGainControl(disableAgc, agcNdx);
+  // si4735.setAMFrontEndAgcControl(10,12); // Try to improve sensitivity
 
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
@@ -1077,58 +1078,18 @@ void switchAgc(int8_t v)
 {
 
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
-
-  if (agcIdx == 0)
-  {
-    disableAgc = 0; // Turns AGC ON
-    agcNdx = 0;
-  }
-  else if (agcIdx == 1)
-  {
-    disableAgc = 1; // Turns AGC OFF
-    agcNdx = 0;     // Sets minimum attenuation
-  }
-  else if (agcIdx == 2)
-  {
-    disableAgc = 1; // Turns AGC OFF
-    agcNdx = 5;     // Increases the attenuation AM/SSB AGC Index  = 10
-  }
-  else if (agcIdx == 3)
-  {
-    disableAgc = 1; // Turns AGC OFF
-    agcNdx = 10;    // Increases the attenuation AM/SSB AGC Index  = 30
-  }
-  else if (agcIdx == 4)
-  {
-    disableAgc = 1; // Turns AGC OFF
-    agcNdx = 15;    // Increases the attenuation AM/SSB AGC Index  = 30
-  }
-  else if (agcIdx == 5)
-  {
-    disableAgc = 1; // Turns AGC OFF
-    agcNdx = 20;    // Increases the attenuation AM/SSB AGC Index  = 30
-  }
-  else if (agcIdx == 6)
-  {
-    disableAgc = 1; // Turns AGC OFF
-    agcNdx = 25;    // Increases the attenuation AM/SSB AGC Index  = 30
-  }
-  else if (agcIdx == 7)
-  {
-    disableAgc = 1; // Turns AGC OFF
-    agcNdx = 30;    // Increases the attenuation AM/SSB AGC Index  = 30
-  }
-  else if (agcIdx == 8)
-  {
-    disableAgc = 1; // Turns AGC OFF
-    agcNdx = 35;    // Increases the attenuation AM/SSB AGC Index  = 30
-  }
-  else if (agcIdx >= 9)
-  {
-    disableAgc = 1; // Turns AGC OFF
-    agcNdx = 0;     // Increases the attenuation AM/SSB AGC Index  = 30
+  if (agcIdx < 0 )
+    agcIdx = 37;
+  else if ( agcIdx > 37)
     agcIdx = 0;
-  }
+
+  disableAgc =  (agcIdx > 0); // if true, disable AGC; esle, AGC is enable 
+
+  if (agcIdx > 1)
+    agcNdx = agcIdx - 1;
+  else 
+    agcNdx = 0;
+  
   // Sets AGC on/off and gain
   si4735.setAutomaticGainControl(disableAgc, agcNdx);
   showAgcAtt();
