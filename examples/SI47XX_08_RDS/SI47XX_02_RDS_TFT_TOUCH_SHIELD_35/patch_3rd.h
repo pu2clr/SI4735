@@ -3,7 +3,7 @@
  * https://www.silabs.com/content/usergenerated/asi/cloud/attachments/siliconlabs/en/community/groups/audio-radio/forum/jcr:content/content/primary/qna/ssb_and_or_ask_fskn-nJpo/lookattachment_p216-Fwrr/si4735_patch.txt
  * 
  * According to the original source, this patch was taken from DEGEN DE1103 receiver. 
- * The third line was commented because it looks like it was accidentally inserted at the source (It was duplicated.). 
+ * The third line was commented because it looks like a line inserted accidentally by the author (It was duplicated.). 
  * Without this procedure, the patch will not load properly. 
  */
 const PROGMEM uint8_t ssb_patch_content[] = {
