@@ -68,7 +68,8 @@
 #include "Rotary.h"
 
 // #include "patch_init.h" // SSB patch for whole SSBRX initialization string
-#include "patch_init.h"    // SSB patch full - What is the difference? It is not clear.
+// #include "patch_init.h"  // SSB patch full - It is not clear. No difference found if compared with patch_init
+#include "patch_3rd.h" // 3rd patch. Taken from DEGEN DE1103 receiver according to the source. 
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
