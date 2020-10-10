@@ -1,4 +1,7 @@
 /*
+  
+  Under construction.... 
+  
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220) - ILI9225.
   The Arduino library used to control that display device is TFT_22_ILI9225 (seeL https://github.com/Nkawu/TFT_22_ILI9225).
   Please, install it before start working  with this sketch. 
@@ -30,8 +33,8 @@
   |     Buttons               |                           |               |
   |                           | Switch MODE (AM/LSB/AM)   |      4        |
   |                           | Banddwith                 |      5        |
-  |                           | Next band                 |      6        |
-  |                           | Previous band             |      7        |
+  |                           | Band Switch               |      6        |
+  |                           | Seek Station              |      7        |
   |                           | AGC ON/OF                 |     14 / A0   |
   |                           | Frequency Step            |     15 / A1   |
   |                           | VFO/VFO Switch            |     16 / A2   |
@@ -42,12 +45,42 @@
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
+
+  User Manual
+
+  Commands 
+
+  1. BAND selection
+
+     Press the Band Push Button or Encoder Push Button and after, rotate the encoder clockwise or counterclockwise
+     to go to next or previous band; It is importante to say the encoder push button will work only on AM mode. 
+     If you are on LSB or USB mode, the encoder push buton is used to switch VFO or BFO. 
+  
+  2. MODE selection 
+
+     This button work only AM or SSB mode. Use this buton to go to AM, LSB or USB. 
+
+
+  3. AGC, Attenuation and Step 
+
+    Use the buttons AGC and Step to switch these parameters. 
+
+  4. SEEK station
+
+    Press the Seek Push Button. 
+    The seek direction will be based on the last encoder action (clockwise or counterclockwise) 
+  
+
+  Tip: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. 
+       If you do that, you might alternate the command status (enable and disable) randomly. 
+
+
   By PU2CLR, Ricardo,  Feb  2020.
 */
 
 #include <SI4735.h>
 #include <SPI.h>
-#include "TFT_22_ILI9225.h" //   // See https://github.com/Nkawu/TFT_22_ILI9225/wiki
+#include "TFT_22_ILI9225.h" //  See https://github.com/Nkawu/TFT_22_ILI9225/wiki
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.

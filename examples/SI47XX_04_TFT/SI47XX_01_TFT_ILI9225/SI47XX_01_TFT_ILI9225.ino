@@ -1,5 +1,9 @@
 /*
-  This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220).
+
+  This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220) - ILI9225.
+  The Arduino library used to control that display device is TFT_22_ILI9225 (seeL https://github.com/Nkawu/TFT_22_ILI9225).
+  Please, install it before start working  with this sketch. 
+  
   It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the
   regular comercial stations. The SSB support works on SI4735-D60 and SI4732-A10 devices. 
   If you are using the same circuit used on examples with OLED and LCD,
