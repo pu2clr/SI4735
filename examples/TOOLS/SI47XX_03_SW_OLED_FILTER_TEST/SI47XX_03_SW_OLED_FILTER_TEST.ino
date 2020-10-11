@@ -47,7 +47,7 @@
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
-#define BANDWIDTH_BUTTON 5 // Bandwith 
+#define BANDWIDTH_BUTTON 5 // Bandwidth 
 #define VOL_UP 6           // Volume Volume Up
 #define VOL_DOWN 7         // Volume Down
 #define BAND_BUTTON_UP 8   // Next Band (See band table)

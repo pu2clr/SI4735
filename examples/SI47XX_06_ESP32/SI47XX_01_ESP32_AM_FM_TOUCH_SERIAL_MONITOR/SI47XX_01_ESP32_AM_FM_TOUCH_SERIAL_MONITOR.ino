@@ -63,7 +63,7 @@ void showHelp()
   Serial.println("Type S or s to seek station Up or Down");
   Serial.println("Type + or - to volume Up or Down");
   Serial.println("Type 0 to show current status");
-  Serial.println("Type B to change Bandwith filter");
+  Serial.println("Type B to change Bandwidth filter");
   Serial.println("Type ? to this help.");
   Serial.println("==================================================");
   delay(1000);

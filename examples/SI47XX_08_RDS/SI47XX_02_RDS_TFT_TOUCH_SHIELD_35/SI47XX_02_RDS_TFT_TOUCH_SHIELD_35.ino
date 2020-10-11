@@ -56,7 +56,39 @@
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
+
+  User manual
+
+  1. BAND selection
+
+  You can use the command Band+ or Band- to select the band you want. If you are on AM or FM modes, the Encoder Push Button can also be use to band
+  selection. To do that, press the encoder push button and then, rotate the encoder clockwise or counterclockwise to select the band you want.
+
+  2. MODE
+
+  Press the command FM, AM, LSB or MSB to select the mode. FM mode can be used only to listen to local FM broadcast (commercial station).
+
+  3. AGC/Attenuation, bandwidth and STEP
+
+  Press the desired command on touch screen and after, rotate the encoder to select the option you want.
+  For example:
+  To switch the bandwidth, press the command on touch screen and then rotate the encoder clockwise or counterclockwise.
+  The display will show you the current bandwidth. Use the same idea to select AGC/Attenuation and STEP.
+
+  4. SEEK COMMAND
+
+  Use Seek or Seek- to start searching a station.
+
+  5. VFO/VFO Switch
+
+  To control the VFO and BFO, used the encoder push button. The display will show if you are using VFO or BFO.
+  Also you can press the command BFO/VFO on touch screen.
+
+  Tip: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time.
+       If you do that, you might alternate the command status (enable and disable) randomly.
+
   By Ricardo Lima Caratti, Feb 2020
+  
 */
 
 #include <SI4735.h>
@@ -69,7 +101,7 @@
 
 // #include "patch_init.h" // SSB patch for whole SSBRX initialization string
 // #include "patch_init.h"  // SSB patch full - It is not clear. No difference found if compared with patch_init
-#include "patch_3rd.h" // 3rd patch. Taken from DEGEN DE1103 receiver according to the source. 
+#include "patch_3rd.h" // 3rd patch. Taken from DEGEN DE1103 receiver according to the source.
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
@@ -197,20 +229,19 @@ uint8_t bandwidthIdx = 0;
 uint16_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
-// Datatype to deal with bandwidth on AM and SSB in numerical order. 
-typedef struct 
+// Datatype to deal with bandwidth on AM and SSB in numerical order.
+typedef struct
 {
   uint8_t idx;      // SI473X device bandwitdth index value
   const char *desc; // bandwitdth description
 } Bandwitdth;
 
-
 int8_t bwIdxSSB = 4;
-Bandwitdth bandwitdthSSB[] = {{4, "0.5"}, //  4 = 0.5KHz
-                              {5, "1.0"}, //  
-                              {0, "1.2"}, // 
-                              {1, "2.2"}, // 
-                              {2, "3.0"}, // 
+Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  //  4 = 0.5KHz
+                              {5, "1.0"},  //
+                              {0, "1.2"},  //
+                              {1, "2.2"},  //
+                              {2, "3.0"},  //
                               {3, "4.0"}}; // 3 = 4KHz
 
 int8_t bwIdxAM = 4;
@@ -221,7 +252,6 @@ Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1KHz
                              {2, "3.0"},
                              {1, "4.0"},
                              {0, "6.0"}}; // 0 = 6KHz
-
 
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
@@ -826,10 +856,10 @@ void showRSSI()
     rssiAux = 9;
 
   signalLevel = map(rssiAux, 0, 9, 0, w);
-  tft.fillRect(30, 395, w , 10, BLACK);
+  tft.fillRect(30, 395, w, 10, BLACK);
   tft.fillRect(30, 395, signalLevel, 10, (rssiAux > 4) ? YELLOW : RED);
   sTmp[0] = '\0';
-  sprintf(sMeter,"S%1u%c",rssiAux,(rssiAux > 8)? '+':' ');
+  sprintf(sMeter, "S%1u%c", rssiAux, (rssiAux > 8) ? '+' : ' ');
   printText(signalLevel + 15, 396, 1, sTmp, sMeter, BLACK, 6);
 }
 
@@ -988,7 +1018,7 @@ void bandDown()
 void loadSSB()
 {
   // si4735.reset();
-  si4735.queryLibraryId(); // It also calls power down. So it is necessary.  
+  si4735.queryLibraryId(); // It also calls power down. So it is necessary.
   si4735.patchPowerUp();
   delay(50);
   // si4735.setI2CFastMode(); // Recommended
@@ -1079,18 +1109,18 @@ void switchAgc(int8_t v)
 {
 
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
-  if (agcIdx < 0 )
+  if (agcIdx < 0)
     agcIdx = 37;
-  else if ( agcIdx > 37)
+  else if (agcIdx > 37)
     agcIdx = 0;
 
-  disableAgc =  (agcIdx > 0); // if true, disable AGC; esle, AGC is enable 
+  disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable
 
   if (agcIdx > 1)
     agcNdx = agcIdx - 1;
-  else 
+  else
     agcNdx = 0;
-  
+
   // Sets AGC on/off and gain
   si4735.setAutomaticGainControl(disableAgc, agcNdx);
   showAgcAtt();
@@ -1112,9 +1142,9 @@ void switchFilter(uint8_t v)
     si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
     if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
-       si4735.setSBBSidebandCutoffFilter(0);
+      si4735.setSBBSidebandCutoffFilter(0);
     else
-       si4735.setSBBSidebandCutoffFilter(1);
+      si4735.setSBBSidebandCutoffFilter(1);
   }
   else if (currentMode == AM)
   {
@@ -1304,8 +1334,8 @@ void loop(void)
         si4735.frequencyUp();
       else
         si4735.frequencyDown();
-      // currentFrequency = si4735.getFrequency();      // Queries the Si473X device. 
-      currentFrequency = si4735.getCurrentFrequency();  // Just get the last setFrequency value (faster but can not be accurate sometimes).
+      // currentFrequency = si4735.getFrequency();      // Queries the Si473X device.
+      currentFrequency = si4735.getCurrentFrequency(); // Just get the last setFrequency value (faster but can not be accurate sometimes).
       showFrequency();
       elapsedCommand = millis();
     }
