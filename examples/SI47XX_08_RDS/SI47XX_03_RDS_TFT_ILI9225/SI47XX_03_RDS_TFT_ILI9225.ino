@@ -56,8 +56,8 @@
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
 // TFT MICROYUM or ILI9225 based device pin setup
-#define TFT_RST 9
-#define TFT_RS 8
+#define TFT_RST 8
+#define TFT_RS 9
 #define TFT_CS 10  // SS
 #define TFT_SDI 11 // MOSI
 #define TFT_CLK 13 // SCK
@@ -552,7 +552,6 @@ void setBand(uint8_t up_down) {
 */
 void loadSSB()
 {
-  si4735.reset();
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
   si4735.patchPowerUp();
   delay(50);

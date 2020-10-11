@@ -631,7 +631,6 @@ void useBand()
     rx.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     bfoOn = ssbLoaded = false;
-    rx.setRdsConfig(1, 2, 2, 2, 2);
   }
   else
   {
@@ -657,6 +656,7 @@ void useBand()
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
+  idxStep = getStepIndex(currentStep);
   rssi = 0;
   showStatus();
 }
@@ -759,7 +759,7 @@ void doStep(int8_t v) {
  */
 void doMode(int8_t v) {
   bufferBFO[0] =  bufferFreq[0] = '\0';
-  bufferBFO[0];
+
   if (currentMode != FM)
   {
     if (currentMode == AM)
