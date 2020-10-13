@@ -136,7 +136,7 @@ To control the VFO and BFO, used the encoder push button. The display will show 
 
 | Device name               | Device Pin / Description      |  Arduino Pin  |
 | ----------------          | ----------------------------- | ------------  |
-| Display PLED              |                               |               |
+| Display OLED              |                               |               |
 |                           | SDA                           |     A4        |
 |                           | CLK                           |     A5        |
 |     Si4735                |                               |               |
