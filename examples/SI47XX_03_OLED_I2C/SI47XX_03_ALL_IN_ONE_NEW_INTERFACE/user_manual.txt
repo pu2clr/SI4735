@@ -20,5 +20,5 @@ If clockwise, the seek will go up; if counterclockwise, the seek will go down.
 
 3. VFO/VFO Switch 
 
-To control the VFO and BFO, used the encoder push button. The display will show if you are using VFO or BFO.
+To control the VFO and BFO, used the encoder push button. The display will show you if you are using VFO or BFO.
 

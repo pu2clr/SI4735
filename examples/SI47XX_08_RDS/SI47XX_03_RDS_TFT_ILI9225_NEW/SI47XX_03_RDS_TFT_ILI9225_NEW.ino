@@ -26,10 +26,10 @@
   |                           | SDI / SDA / MOSI          |     11        |
   |                           | CLK                       |     13        |
   |     Si4735                |                           |               |
-  |                           | *1 RESET (pin 15)         |     12        |
-  |                           | *1 SDIO (pin 18)          |     A4        |
-  |                           | *1 SCLK (pin 17)          |     A5        |
-  |                           | *2 SEN (pin 16)           |    GND        |  
+  |                           | (*1) RESET (pin 15)       |     12        |
+  |                           | (*1) SDIO (pin 18)        |     A4        |
+  |                           | (*1) SCLK (pin 17)        |     A5        |
+  |                           | (*2) SEN (pin 16)         |    GND        |  
   |     Buttons               |                           |               |
   |                           | Switch MODE (AM/LSB/AM)   |      4        |
   |                           | Banddwith                 |      5        |
@@ -42,8 +42,8 @@
   |                           | A                         |       2       |
   |                           | B                         |       3       |
 
-  *1 - If you are using the SI4732-A10, check the corresponding pin numbers.  
-  *2 - If you are using the SI4735-D60, connect the SEN pin to the ground; 
+  (*1) If you are using the SI4732-A10, check the corresponding pin numbers.  
+  (*2) If you are using the SI4735-D60, connect the SEN pin to the ground; 
        If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
 
   User manual
@@ -67,11 +67,11 @@
 
   3. VFO/VFO Switch
 
-  To control the VFO and BFO, used the encoder push button. The display will show if you are using VFO or BFO.
+  To control the VFO and BFO, used the encoder push button. The display will show you if you are using VFO or BFO.
   It is importante to say the this action work only on SSB mode.
 
   Tip: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time.
-     If you do that, you might alternate the command status (enable and disable) randomly.
+       If you do that, you might alternate the command status (enable and disable) randomly.
 
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
