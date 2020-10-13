@@ -23,14 +23,14 @@
   Wire up on Arduino UNO, Pro mini and SI4735-D60
   | Device name               | Device Pin / Description      |  Arduino Pin  |
   | ----------------          | ----------------------------- | ------------  |
-  | Display PLED              |                               |               |
+  | Display OLED              |                               |               |
   |                           | SDA                           |     A4        |
   |                           | CLK                           |     A5        |
   |     Si4735                |                               |               |
-  |                           | (*4) RESET (pin 15)           |     12        |
-  |                           | (*4) SDIO (pin 18)            |     A4        |
-  |                           | (*4) SCLK (pin 17)            |     A5        |
-  |                           | (*4) SEN (pin 16)             |    Ground     | 
+  |                           | (*3) RESET (pin 15)           |     12        |
+  |                           | (*3) SDIO (pin 18)            |     A4        |
+  |                           | (*3) SCLK (pin 17)            |     A5        |
+  |                           | (*4) SEN (pin 16)             |    GND        | 
   |     Buttons               |                               |               |
   |                           | (*1)Switch MODE (AM/LSB/AM)   |      4        |
   |                           | (*1)Banddwith                 |      5        |
@@ -48,11 +48,9 @@
   (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of 
        the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of 
        the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
-  (*3) You might need to switch from 8 to 9  depending of your ST7735 device     
-  (*4) - If you are using the SI4732-A10, check the corresponding pin numbers.  
-  (*5) - If you are using the SI5735-D60, connect the SEN pin to the ground; 
+  (*3) - If you are using the SI4732-A10, check the corresponding pin numbers.  
+  (*4) - If you are using the SI5735-D60, connect the SEN pin to the ground; 
          If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
-
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/

@@ -169,7 +169,6 @@ The video below can help you to to setup your display.
 It is important to know that any Arduino DUE digital pin can be configured as interrupt. 
 
 
-
 ## SI47XX_03_TFT_ATMEGA328_ST7735
 
 This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT ST7735 1.8"
@@ -197,9 +196,10 @@ Wire up on Arduino UNO, Pro mini
 |                           | CLK                           |     13        |
 |                           | BL (LED)                      |    +VCC       |  
 |     Si4735                |                               |               |
-|                           | RESET (pin 15)                |     12        |
-|                           | SDIO (pin 18)                 |     A4        |
-|                           | SCLK (pin 17)                 |     A5        |
+|                           | (*4) RESET (pin 15)           |     12        |
+|                           | (*4) SDIO (pin 18)            |     A4        |
+|                           | (*4) SCLK (pin 17)            |     A5        |
+|                           | (*5) SEN (pin 16)             |    GND        |    
 |     Buttons               |                               |               |
 |                           | (*1)Switch MODE (AM/LSB/AM)   |      4        |
 |                           | (*1)Banddwith                 |      5        |
@@ -215,7 +215,9 @@ Wire up on Arduino UNO, Pro mini
 (*1) You have to press the push button and after, rotate the encoder to select the parameter. After you activate a command by pressing a push button, it will keep active for 2,5 seconds. 
 (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of the encoder was ounterclockwise, the SEEK direction will be towards the lower limit.  
 (*3) You might need to switch from 8 to 9  depending of your ST7735 device     
-
+(*4) If you are using the SI4732-A10, check the corresponding pin numbers.  
+(*5) If you are using the SI5735-D60, connect the SEN pin to the ground; 
+     If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
 
 
 
