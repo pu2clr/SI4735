@@ -43,7 +43,7 @@
   |                           | B                         |       3       |
 
   *1 - If you are using the SI4732-A10, check the corresponding pin numbers.  
-  *2 - If you are using the SI5735-D60, connect the SEN pin to the ground; 
+  *2 - If you are using the SI4735-D60, connect the SEN pin to the ground; 
        If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
 
   User manual

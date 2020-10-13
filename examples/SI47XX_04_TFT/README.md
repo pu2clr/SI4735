@@ -216,7 +216,7 @@ Wire up on Arduino UNO, Pro mini
 (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of the encoder was ounterclockwise, the SEEK direction will be towards the lower limit.  
 (*3) You might need to switch from 8 to 9  depending of your ST7735 device     
 (*4) If you are using the SI4732-A10, check the corresponding pin numbers.  
-(*5) If you are using the SI5735-D60, connect the SEN pin to the ground; 
+(*5) If you are using the SI4735-D60, connect the SEN pin to the ground; 
      If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
 
 

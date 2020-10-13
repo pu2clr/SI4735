@@ -57,7 +57,7 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 |                           | B                         |       3       |
 
   *1 - If you are using the SI4732-A10, check the corresponding pin numbers.  
-  *2 - If you are using the SI5735-D60, connect the SEN pin to the ground; 
+  *2 - If you are using the SI4735-D60, connect the SEN pin to the ground; 
        If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
 
 
@@ -97,7 +97,7 @@ Wire up on Arduino UNO, Pro mini and SI4735-D60
 |                           | B                         |       3       |
 
   *1 - If you are using the SI4732-A10, check the corresponding pin numbers.  
-  *2 - If you are using the SI5735-D60, connect the SEN pin to the ground; 
+  *2 - If you are using the SI4735-D60, connect the SEN pin to the ground; 
        If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
 
 ### User manual for SI47XX_03_RDS_TFT_ILI9225_NEW

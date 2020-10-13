@@ -49,7 +49,7 @@
        the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of 
        the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
   (*3) - If you are using the SI4732-A10, check the corresponding pin numbers.  
-  (*4) - If you are using the SI5735-D60, connect the SEN pin to the ground; 
+  (*4) - If you are using the SI4735-D60, connect the SEN pin to the ground; 
          If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
