@@ -67,11 +67,6 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-ref-name = 'getDeviceI2CAddress';
     };
       sec-mem-referencedby = {
-        sec-mem-ref-id = '_s_i4735_8cpp_1ga591bbfe4dbd39a6de29a37935a6abee5';
-        sec-mem-ref-line = '2953';
-        sec-mem-ref-name = 'loadPatch';
-    };
-      sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga5ac4e4465f33d988885c6b3ec86276bd';
         sec-mem-ref-line = '571';
         sec-mem-ref-name = 'setup';
@@ -5393,11 +5388,6 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-ref-id = '_s_i4735_8cpp_1gadfc2c82524918224cf19fec5b7fcf6d1';
         sec-mem-ref-line = '2781';
         sec-mem-ref-name = 'queryLibraryId';
-    };
-      sec-mem-referenceto = {
-        sec-mem-ref-id = '_s_i4735_8cpp_1gadc6014674bd4d1ee3aab56c605926db1';
-        sec-mem-ref-line = '308';
-        sec-mem-ref-name = 'reset';
     };
     }; /* sec-member */
     sec-member = {
