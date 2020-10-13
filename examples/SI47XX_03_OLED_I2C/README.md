@@ -132,17 +132,18 @@ To control the VFO and BFO, used the encoder push button. The display will show 
 
 
 
-### Wire up on Arduino UNO, Pro mini
+### Wire up on Arduino UNO, Pro mini and SI4735-D60
 
 | Device name               | Device Pin / Description      |  Arduino Pin  |
-| ------------------------- | ----------------------------- | ------------  |
+| ----------------          | ----------------------------- | ------------  |
 | Display PLED              |                               |               |
 |                           | SDA                           |     A4        |
 |                           | CLK                           |     A5        |
 |     Si4735                |                               |               |
-|                           | RESET (pin 15)                |     12        |
-|                           | SDIO (pin 18)                 |     A4        |
-|                           | SCLK (pin 17)                 |     A5        |
+|                           | (*4) RESET (pin 15)           |     12        |
+|                           | (*4) SDIO (pin 18)            |     A4        |
+|                           | (*4) SCLK (pin 17)            |     A5        |
+|                           | (*4) SEN (pin 16)             |    Ground     | 
 |     Buttons               |                               |               |
 |                           | (*1)Switch MODE (AM/LSB/AM)   |      4        |
 |                           | (*1)Banddwith                 |      5        |
@@ -155,8 +156,12 @@ To control the VFO and BFO, used the encoder push button. The display will show 
 |                           | A                             |       2       |
 |                           | B                             |       3       |
 
-* (*1) press the push button and after, rotate the encoder to select the parameter. After you activate a command by pressing a push button, it will keep active for 2,5 seconds. 
-* (*2) the SEEK direction is based on the last movement of the encoder. If the last movement of the encoder was lockwise, the SEEK will be towards the upper limit. If the last movement of the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
-
-
-
+(*1) You have to press the push button and after, rotate the encoder to select the parameter.
+     After you activate a command by pressing a push button, it will keep active for 2,5 seconds. 
+(*2) The SEEK direction is based on the last movement of the encoder. If the last movement of 
+     the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of 
+     the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
+(*3) You might need to switch from 8 to 9  depending of your ST7735 device     
+(*4) If you are using the SI4732-A10, check the corresponding pin numbers.  
+(*5) If you are using the SI5735-D60, connect the SEN pin to the ground; 
+     If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 

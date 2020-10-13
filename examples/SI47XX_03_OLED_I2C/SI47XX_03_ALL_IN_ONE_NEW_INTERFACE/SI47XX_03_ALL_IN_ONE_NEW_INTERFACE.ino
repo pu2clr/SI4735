@@ -20,17 +20,17 @@
   Features:   AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
 
-  Wire up on Arduino UNO, Pro mini
+  Wire up on Arduino UNO, Pro mini and SI4735-D60
   | Device name               | Device Pin / Description      |  Arduino Pin  |
   | ----------------          | ----------------------------- | ------------  |
   | Display PLED              |                               |               |
   |                           | SDA                           |     A4        |
   |                           | CLK                           |     A5        |
   |     Si4735                |                               |               |
-  |                           | RESET (pin 15)                |     12        |
-  |                           | SDIO (pin 18)                 |     A4        |
-  |                           | SCLK (pin 17)                 |     A5        |
-  |                           | SEN (pin 16)                  |    Ground     | 
+  |                           | (*4) RESET (pin 15)           |     12        |
+  |                           | (*4) SDIO (pin 18)            |     A4        |
+  |                           | (*4) SCLK (pin 17)            |     A5        |
+  |                           | (*4) SEN (pin 16)             |    Ground     | 
   |     Buttons               |                               |               |
   |                           | (*1)Switch MODE (AM/LSB/AM)   |      4        |
   |                           | (*1)Banddwith                 |      5        |
@@ -49,6 +49,10 @@
        the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of 
        the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
   (*3) You might need to switch from 8 to 9  depending of your ST7735 device     
+  (*4) - If you are using the SI4732-A10, check the corresponding pin numbers.  
+  (*5) - If you are using the SI5735-D60, connect the SEN pin to the ground; 
+         If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
+
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/

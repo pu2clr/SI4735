@@ -40,9 +40,10 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 |                           | CLK                       |     13        | 
 |                           | BL (LED)                  |    +VCC       |
 | __Si4735__                |                           |               |
-|                           | RESET (pin 15)            |     12        |
-|                           | SDIO (pin 18)             |     A4        |
-|                           | SCLK (pin 17)             |     A5        |
+|                           | *1 RESET (pin 15)         |     12        |
+|                           | *1 SDIO (pin 18)          |     A4        |
+|                           | *1SCLK (pin 17)           |     A5        |
+|                           | *2 SEN (pin 16)           |    GND        | 
 | __Buttons__               |                           |               | 
 |                           | Switch MODE (AM/LSB/AM)   |      4        |
 |                           | Banddwith                 |      5        | 
@@ -55,6 +56,77 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
 |                           | A                         |       2       |
 |                           | B                         |       3       |
 
+  *1 - If you are using the SI4732-A10, check the corresponding pin numbers.  
+  *2 - If you are using the SI5735-D60, connect the SEN pin to the ground; 
+       If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
+
+
+## SI47XX_03_RDS_TFT_ILI9225_NEW
+
+This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220) - ILI9225.
+The Arduino library used to control that display device is TFT_22_ILI9225 (seeL https://github.com/Nkawu/TFT_22_ILI9225).
+Please, install it before start working  with this sketch.
+
+It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices.
+
+Wire up on Arduino UNO, Pro mini and SI4735-D60
+
+| Device name               | Device Pin / Description  |  Arduino Pin  |
+| ----------------          | --------------------      | ------------  |
+| Display TFT               |                           |               |
+|                           | RST (RESET)               |      8        |
+|                           | RS or DC                  |      9        |
+|                           | CS or SS                  |     10        |
+|                           | SDI / SDA / MOSI          |     11        |
+|                           | CLK                       |     13        |
+|     Si4735                |                           |               |
+|                           | *1 RESET (pin 15)         |     12        |
+|                           | *1 SDIO (pin 18)          |     A4        |
+|                           | *1 SCLK (pin 17)          |     A5        |
+|                           | *2 SEN (pin 16)           |    GND        |  
+|     Buttons               |                           |               |
+|                           | Switch MODE (AM/LSB/AM)   |      4        |
+|                           | Banddwith                 |      5        |
+|                           | Band Switch               |      6        |
+|                           | Seek Station              |      7        |
+|                           | AGC ON/OF                 |     14 / A0   |
+|                           | Frequency Step            |     15 / A1   |
+|                           | VFO/VFO Switch            |     16 / A2   |
+|    Encoder                |                           |               |
+|                           | A                         |       2       |
+|                           | B                         |       3       |
+
+  *1 - If you are using the SI4732-A10, check the corresponding pin numbers.  
+  *2 - If you are using the SI5735-D60, connect the SEN pin to the ground; 
+       If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
+
+### User manual for SI47XX_03_RDS_TFT_ILI9225_NEW
+
+#### Commands 
+
+1. BAND, MODE, AGC/Attenuation, banddwith and STEP comands
+
+Press the desired command push button and after, rotate the encoder to select the option you want. For example:
+To switch the band, press the band button and then rotate the encoder clockwise or counterclockwise.
+The display will show you the current band. If you are on AM mode, you can use also the encoder push
+button to select the band (on SSB mode the encoder push button is used to switch the VFO and BFO).
+
+To switch the mode (AM, LSB or USB), press Mode push button and then rotate the encoder.
+
+The same idea you can use to AGC/Attenuation, STEP and Banddwith.
+
+2. SEEK COMMAND
+
+The seek button should be used to find a station. The seek direction is based on the last encoder movement.
+If clockwise, the seek will go up; if counterclockwise, the seek will go down.
+
+3. VFO/VFO Switch
+
+To control the VFO and BFO, used the encoder push button. The display will show if you are using VFO or BFO.
+It is importante to say the this action work only on SSB mode.
+
+Tip: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time.
+     If you do that, you might alternate the command status (enable and disable) randomly.
 
 
 ## SI47XX_02_RDS_TFT_TOUCH_SHIELD

@@ -15,7 +15,8 @@
 
   It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices.
 
-  Wire up on Arduino UNO, Pro mini
+  Wire up on Arduino UNO, Pro mini and SI4735-D60
+
   | Device name               | Device Pin / Description  |  Arduino Pin  |
   | ----------------          | --------------------      | ------------  |
   | Display TFT               |                           |               |
@@ -25,9 +26,10 @@
   |                           | SDI / SDA / MOSI          |     11        |
   |                           | CLK                       |     13        |
   |     Si4735                |                           |               |
-  |                           | RESET (pin 15)            |     12        |
-  |                           | SDIO (pin 18)             |     A4        |
-  |                           | SCLK (pin 17)             |     A5        |
+  |                           | *1 RESET (pin 15)         |     12        |
+  |                           | *1 SDIO (pin 18)          |     A4        |
+  |                           | *1 SCLK (pin 17)          |     A5        |
+  |                           | *2 SEN (pin 16)           |    GND        |  
   |     Buttons               |                           |               |
   |                           | Switch MODE (AM/LSB/AM)   |      4        |
   |                           | Banddwith                 |      5        |
@@ -40,6 +42,9 @@
   |                           | A                         |       2       |
   |                           | B                         |       3       |
 
+  *1 - If you are using the SI4732-A10, check the corresponding pin numbers.  
+  *2 - If you are using the SI5735-D60, connect the SEN pin to the ground; 
+       If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
 
   User manual
 
