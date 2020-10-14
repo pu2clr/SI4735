@@ -1,20 +1,31 @@
 /*
-  This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a regular OLED/I2C
-  You have to install the Tiny4kOLED library to use this sketch 
+  
+  Under construction.... 
 
+  This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a regular OLED/I2C
+  You have to install the LiquidCrystal library to use this sketch 
  
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
-  regular  comercial  stations. 
-  
+  regular  comercial  stations. If  you  are  using  the  same  circuit  used  on  examples with OLED and LCD,
+  you have to change some buttons wire up. 
+
+
   Features:   AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
 
   Wire up on Arduino UNO, Pro mini and SI4735-D60
   | Device name               | Device Pin / Description      |  Arduino Pin  |
   | ----------------          | ----------------------------- | ------------  |
-  | Display OLED              |                               |               |
-  |                           | SDA                           |     A4        |
-  |                           | CLK                           |     A5        |
+  |    LCD 16x2 or 20x4       |                               |               |
+  |                           | D4                            |     D4        |
+  |                           | D5                            |     D5        |  
+  |                           | D6                            |     D6        |
+  |                           | D7                            |     D7        | 
+  |                           | RS                            |     D8        | 
+  |                           | E/ENA                         |     D9        | 
+  |                           | RW & VSS & K (16)             |    GND        | 
+  |                           | A (15) & VDD                  |    +Vcc       | 
+  |                           | VO (see 20K tripot connection)|   ---------   |     
   |     Si4735                |                               |               |
   |                           | (*3) RESET (pin 15)           |     12        |
   |                           | (*3) SDIO (pin 18)            |     A4        |
@@ -37,19 +48,18 @@
   (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of 
        the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of 
        the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
-  (*3) - If you are using the SI4732-A10, check the corresponding pin numbers.  
-  (*4) - If you are using the SI4735-D60, connect the SEN pin to the ground; 
-         If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
+  (*3) If you are using the SI4732-A10, check the corresponding pin numbers.  
+  (*4) If you are using the SI4735-D60, connect the SEN pin to the ground; 
+       If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
-  Jim Reagan's schematic: https://github.com/JimReagans/Si4735-radio-PCB-s-and-bandpass-filter
 
-  By PU2CLR, Ricardo; and W09CHL, Jim Reagan;  Sep  2020.
+  By PU2CLR, Ricardo, Oct  2020.
 */
 
 #include <SI4735.h>
-#include <Tiny4kOLED.h>
+#include <LiquidCrystal.h>
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.
@@ -68,11 +78,19 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define ENCODER_PIN_A 2
 #define ENCODER_PIN_B 3
 
+// LCD 16x02 or LCD20x4 PINs
+#define LCD_D4    4
+#define LCD_D5    5
+#define LCD_D6    6
+#define LCD_D7    7 
+#define LCD_RS    8
+#define LCD_E     9
+
 // Buttons controllers
-#define MODE_SWITCH 4      // Switch MODE (Am/LSB/USB)
-#define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
-#define BAND_BUTTON 6      // Band switch button
-#define SEEK_BUTTON 7      // Previous band
+#define MODE_SWITCH 10      // Switch MODE (Am/LSB/USB)
+#define BANDWIDTH_BUTTON 11 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
+#define BAND_BUTTON 13      // Band switch button
+#define SEEK_BUTTON 0      // Previous band
 #define AGC_SWITCH 14      // Pin A0 - Switch AGC ON/OF
 #define STEP_SWITCH 15     // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 #define BFO_SWITCH 16      // Pin A2 - Used to select the enconder control (BFO or VFO)
@@ -197,6 +215,8 @@ uint8_t volume = DEFAULT_VOLUME;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
+LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7); 
+
 SI4735 rx;
 
 void setup()
@@ -215,24 +235,21 @@ void setup()
   // uncomment the line below if you have external audio mute circuit
   // rx.setAudioMuteMcuPin(AUDIO_MUTE);
 
-  oled.begin();
-  oled.clear();
-  oled.on();
-  oled.setFont(FONT6X8);
+  lcd.begin(16, 2);
+  lcd.display(); // liga display
 
   // Splash - Change it for your introduction text.
-  oled.setCursor(41, 0);
-  oled.print("SI4735");
-  oled.setCursor(21, 1);
-  oled.print("Arduino Library");
-  delay(500);
-  oled.setCursor(7, 2);
-  oled.print("All in One Radio");
-  delay(500);
-  oled.setCursor(9, 3);
-  oled.print("By PU2CLR & W0CHL");
-  delay(4000);
-  oled.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("SI4735");
+  lcd.setCursor(0, 1);
+  lcd.print("Arduino Library");
+  delay(1000);
+  lcd.setCursor(0, 0);
+  lcd.print("All in One Radio");
+  lcd.setCursor(0, 1);
+  lcd.print("By PU2CLR - 2020");
+  delay(3000);
+  lcd.clear();
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
@@ -242,8 +259,6 @@ void setup()
   // rx.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
   // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
   rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
-
-
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
@@ -264,9 +279,6 @@ void disableCommands()
   cmdBandwidth = false;
   cmdStep = false;
   cmdMode = false;
-  // Clear Command status
-  oled.setCursor(48, 1);
-  oled.print("   ");
 }
 
 /**
@@ -316,21 +328,29 @@ void showFrequency()
   else
     freqDisplay = String((float)currentFrequency / divider, decimals);
 
+  /*
   oled.setCursor(39, 0);
   oled.print("        ");
   oled.setCursor(39, 0);
   oled.print(freqDisplay);
+  */
+  // Print frequency on LCD here
+
 
   if (currentFrequency < 520)
     bandMode = "LW  ";
   else
     bandMode = bandModeDesc[currentMode];
 
+  /*
   oled.setCursor(1, 0);
   oled.print(bandMode);
 
   oled.setCursor(95, 0);
   oled.print(unit);
+  */
+  // Print band mode and unit on LCD here... 
+
 }
 
 /**
@@ -347,7 +367,7 @@ void showFrequencySeek(uint16_t freq)
  */
 void showStatus()
 {
-  oled.clear();
+  lcd.clear();
   showFrequency();
   showStep();
   showBandwitdth();
@@ -380,10 +400,14 @@ void showBandwitdth()
     bufferDisplay[0] = '\0';
   }
 
+  /*
   oled.setCursor(1, 3);
   oled.print("           ");
   oled.setCursor(1, 3);
   oled.print(bufferDisplay);
+  */
+
+  // Print the content on LCD here... 
 }
 
 /**
@@ -409,6 +433,7 @@ void showRSSI()
   int bars = rssiAux - 4;
   sprintf(sMeter,"S%1u>",rssiAux);
 
+  /*
   oled.setCursor(78, 3);
   oled.print("       ");
   oled.setCursor(78, 3);
@@ -425,6 +450,10 @@ void showRSSI()
     oled.setCursor(1, 3);
     oled.print((rx.getCurrentPilot()) ? "STEREO   " : "MONO     ");
   }
+  */ 
+  
+  // Print RSSI on LCD here... 
+
 }
 
 /**
@@ -441,8 +470,11 @@ void showAgcAtt()
 
   // Show AGC Information
   rx.getAutomaticGainControl();
+  /**
   oled.setCursor(1, 1);
   oled.print(sAgc);
+  */ 
+ // Print AGC here... 
 }
 
 /**
@@ -450,11 +482,14 @@ void showAgcAtt()
  */
 void showStep()
 {
+  /*
   oled.setCursor(80, 1);
   oled.print("        ");
   oled.setCursor(80, 1);
   oled.print("St: ");
   oled.print(currentStep);
+  */ 
+
 }
 
 /**
@@ -469,6 +504,7 @@ void showBFO()
   else
     bfo = String(currentBFO);
 
+ /*
   oled.setCursor(1, 2);
   oled.print("         ");
   oled.setCursor(1, 2);
@@ -481,6 +517,7 @@ void showBFO()
   oled.setCursor(81, 2);
   oled.print("St: ");
   oled.print(currentBFOStep);
+  */
   showFrequency();
   elapsedCommand = millis();
 }
@@ -522,8 +559,10 @@ void setBand(int8_t up_down)
 void loadSSB()
 {
 
+  /*
   oled.setCursor(1, 2);
   oled.print("Loading SSB");
+  */
 
   rx.reset();
   rx.queryLibraryId(); // Is it really necessary here? I will check it.
@@ -630,8 +669,10 @@ void doBandwidth(int8_t v)
 
 void showCommandStatus()
 {
+  /*
   oled.setCursor(48, 1);
   oled.print("cmd");
+  */
 }
 
 /**
