@@ -32,10 +32,10 @@
   |                           | (*3) SCLK (pin 17)            |     A5        |
   |                           | (*4) SEN (pin 16)             |    GND        | 
   |     Buttons               |                               |               |
-  |                           | (*1)Switch MODE (AM/LSB/AM)   |      4        |
-  |                           | (*1)Banddwith                 |      5        |
-  |                           | (*1)BAND                      |      6        |
-  |                           | (*2)SEEK                      |      7        |
+  |                           | (*1)Switch MODE (AM/LSB/AM)   |      10       |
+  |                           | (*1)Banddwith                 |      11       |
+  |                           | (*1)(*5)BAND                  |      13       |
+  |                           | (*2)SEEK                      |      1        |
   |                           | (*1)AGC/Attenuation           |     14 / A0   |
   |                           | (*1)STEP                      |     15 / A1   | 
   |                           | VFO/VFO Switch (Encoder)      |     16 / A2   |
@@ -51,6 +51,11 @@
   (*3) If you are using the SI4732-A10, check the corresponding pin numbers.  
   (*4) If you are using the SI4735-D60, connect the SEN pin to the ground; 
        If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
+  (*5) The pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar might need some adjust:
+       This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. 
+       If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop 
+       voltage caused by the LED circuit. If this occurs in your project, change the circuit to use external 
+       pull-up on pin 13 or remove the LED from the Arduino board.            
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
