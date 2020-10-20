@@ -1,27 +1,27 @@
 /*
-  Under construction.... 
+  Under construction....
 
-  This skect is still in development and might not work properly. 
+  This skect is still in development and might not work properly.
 
   This sketch was build to work with the project "DIY Si4730 All Band Radio (LW, MW, SW, FM)" receiver from Mirko Pavleski.
   The original project can be found on https://create.arduino.cc/projecthub/mircemk/diy-si4730-all-band-radio-lw-mw-sw-fm-1894d9
-  Please, follow the circuit available on that link. 
+  Please, follow the circuit available on that link.
 
-  If you are using a SI4735-D60 or SI4732-A10, you can also use this sketch to add the SSB functionalities to the 
+  If you are using a SI4735-D60 or SI4732-A10, you can also use this sketch to add the SSB functionalities to the
   original Pavleski's project. If you are using another SI4730-D60, the SSB wil not work. But you will still have
-  the SW functionalities. 
-  
-  
+  the SW functionalities.
+
+
   ATTENTION:
-  
+
   It is important to say that this sketch was designed to work with the circuit implemented by Mirko Pavleski (see link above).
-  The visual interface, control commands, band plan, and some functionalities are different if compared with the original 
-  sketch. Be sure you are using the SI4735 Arduino Library written by PU2CLR to run this sketch. The library used by the original 
-  sketch will not work here. Also, you have to install the LiquidCrystal library. 
+  The visual interface, control commands, band plan, and some functionalities are different if compared with the original
+  sketch. Be sure you are using the SI4735 Arduino Library written by PU2CLR to run this sketch. The library used by the original
+  sketch will not work here. Also, you have to install the LiquidCrystal library.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations. If  you  are  using  the  same  circuit  used  on  examples with OLED and LCD,
-  you have to change some buttons wire up. 
+  you have to change some buttons wire up.
 
   Features:   AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
@@ -31,29 +31,29 @@
   | ----------------          | ----------------------------- | ------------  |
   |    LCD 16x2 or 20x4       |                               |               |
   |                           | D4                            |     D7        |
-  |                           | D5                            |     D6        |  
+  |                           | D5                            |     D6        |
   |                           | D6                            |     D5        |
-  |                           | D7                            |     D4        | 
-  |                           | RS                            |     D12       | 
-  |                           | E/ENA                         |     D13       | 
-  |                           | RW & VSS & K (16)             |    GND        | 
-  |                           | A (15) & VDD                  |    +Vcc       | 
-  |                           | VO (see 20K tripot connection)|   ---------   |     
+  |                           | D7                            |     D4        |
+  |                           | RS                            |     D12       |
+  |                           | E/ENA                         |     D13       |
+  |                           | RW & VSS & K (16)             |    GND        |
+  |                           | A (15) & VDD                  |    +Vcc       |
+  |                           | VO (see 20K tripot connection)|   ---------   |
   |     SS473X                |                               |               |
   |                           | RESET (pin 15)                |      9        |
   |                           | SDIO (pin 18)                 |     A4        |
   |                           | SCLK (pin 17)                 |     A5        |
-  |                           | (*1)SEN (pin 16)              |  +Vcc or GND  | 
+  |                           | (*1)SEN (pin 16)              |  +Vcc or GND  |
   |    Encoder                |                               |               |
   |                           | A                             |       2       |
   |                           | B                             |       3       |
-  |                           | PUSH BUTTON (encoder)         |     A0/14     | 
+  |                           | PUSH BUTTON (encoder)         |     A0/14     |
 
- 
-  (*1) If you are using the SI4732-A10, check the corresponding pin numbers.  
+
+  (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
-       It seems the original project connect the SEN pin to the +Vcc. By using this sketch, you do 
-       not need to worry about this setting. 
+       It seems the original project connect the SEN pin to the +Vcc. By using this sketch, you do
+       not need to worry about this setting.
 
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
@@ -86,7 +86,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define LCD_D7    4
 #define LCD_D6    5
 #define LCD_D5    6
-#define LCD_D4    7 
+#define LCD_D4    7
 #define LCD_RS    12
 #define LCD_E     13
 
@@ -124,6 +124,7 @@ bool cmdAgc = false;
 bool cmdBandwidth = false;
 bool cmdStep = false;
 bool cmdMode = false;
+bool cmdMenu = false;
 
 int currentBFO = 0;
 uint8_t seekDirection = 1; // Tells the SEEK direction (botton or upper limit)
@@ -141,7 +142,13 @@ uint16_t currentFrequency;
 
 uint8_t currentBFOStep = 10;
 
-typedef struct 
+
+char * menu[] = {"<Select>", "STEP", "MODE", "BW", "AGG/ATT", "VOLUME"};
+int8_t menuIdx = 0;
+const int lastMenu = 5;
+int8_t currentMenuCmd = -1;
+
+typedef struct
 {
   uint8_t idx;      // SI473X device bandwitdth index
   const char *desc; // bandwitdth description
@@ -149,20 +156,22 @@ typedef struct
 
 int8_t bwIdxSSB = 4;
 Bandwitdth bandwitdthSSB[] = {{4, "0.5"},
-                              {5, "1.0"},
-                              {0, "1.2"},
-                              {1, "2.2"},
-                              {2, "3.0"},
-                              {3, "4.0"}};
+  {5, "1.0"},
+  {0, "1.2"},
+  {1, "2.2"},
+  {2, "3.0"},
+  {3, "4.0"}
+};
 
 int8_t bwIdxAM = 4;
 Bandwitdth bandwitdthAM[] = {{4, "1.0"},
-                             {5, "1.8"},
-                             {3, "2.0"},
-                             {6, "2.5"},
-                             {2, "3.0"},
-                             {1, "4.0"},
-                             {0, "6.0"}};
+  {5, "1.8"},
+  {3, "2.0"},
+  {6, "2.5"},
+  {2, "3.0"},
+  {1, "4.0"},
+  {0, "6.0"}
+};
 
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
@@ -187,21 +196,22 @@ typedef struct
    You can customize this table for your own band plan
 */
 Band band[] = {
-    {"FM ", FM_BAND_TYPE, 6400, 10800,  10390, 10},
-    {"MW1", MW_BAND_TYPE,   150,  1720,   810, 10},
-    {"MW2", MW_BAND_TYPE,  1700,  3500,  2500, 5},
-    {"SW2", SW_BAND_TYPE,  3500,  7000,  4500, 5},
-    {"SW3", SW_BAND_TYPE,  7000,  9000,  7200, 5},
-    {"SW4", SW_BAND_TYPE,  9000, 11000,  9500, 5},
-    {"SW5", SW_BAND_TYPE, 11100, 13000, 11900, 5},
-    {"SW5", SW_BAND_TYPE, 13000, 15000, 13500, 5},
-    {"SW6", SW_BAND_TYPE, 15000, 17000, 15300, 5},
-    {"SW7", SW_BAND_TYPE, 18000, 22000, 21500, 5},
-    {"11M", SW_BAND_TYPE, 26000, 28000, 27500, 1},
-    {"10M", SW_BAND_TYPE, 28000, 30000, 28400, 1},
-    {"ALL", SW_BAND_TYPE, 150, 30000, 15000, 1}}; // Super band: 150KHz to 30MHz
+  {"FM ", FM_BAND_TYPE, 6400, 10800,  10390, 10},
+  {"MW1", MW_BAND_TYPE,   150,  1720,   810, 10},
+  {"MW2", MW_BAND_TYPE,  1700,  3500,  2500, 5},
+  {"SW2", SW_BAND_TYPE,  3500,  7000,  4500, 5},
+  {"SW3", SW_BAND_TYPE,  7000,  9000,  7200, 5},
+  {"SW4", SW_BAND_TYPE,  9000, 11000,  9500, 5},
+  {"SW5", SW_BAND_TYPE, 11100, 13000, 11900, 5},
+  {"SW5", SW_BAND_TYPE, 13000, 15000, 13500, 5},
+  {"SW6", SW_BAND_TYPE, 15000, 17000, 15300, 5},
+  {"SW7", SW_BAND_TYPE, 18000, 22000, 21500, 5},
+  {"11M", SW_BAND_TYPE, 26000, 28000, 27500, 1},
+  {"10M", SW_BAND_TYPE, 28000, 30000, 28400, 1},
+  {"ALL", SW_BAND_TYPE, 150, 30000, 15000, 1}
+}; // Super band: 150KHz to 30MHz
 
-    const int lastBand = (sizeof band / sizeof(Band)) - 1;
+const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
 
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
@@ -216,12 +226,14 @@ uint8_t volume = DEFAULT_VOLUME;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
-LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7); 
+LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
 SI4735 rx;
 
 void setup()
 {
+
+  Serial.begin(9600);
   // Encoder pins
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
   lcd.begin(16, 2);
@@ -251,21 +263,21 @@ void setup()
 }
 
 /**
- * Cleans the screen with a visual effect.
- */
+   Cleans the screen with a visual effect.
+*/
 void Flash (int d)
 {
-  delay(d); 
-  lcd.clear();  
-  lcd.noDisplay();                
-  delay(500);                    
-  lcd.display();                  
+  delay(d);
+  lcd.clear();
+  lcd.noDisplay();
+  delay(500);
+  lcd.display();
 }
 
 /**
- *  Set all command flags to false
- *  When all flags are disabled (false), the encoder controls the frequency
- */
+    Set all command flags to false
+    When all flags are disabled (false), the encoder controls the frequency
+*/
 void disableCommands()
 {
   cmdBand = false;
@@ -275,13 +287,15 @@ void disableCommands()
   cmdBandwidth = false;
   cmdStep = false;
   cmdMode = false;
-  countClick = 0; 
+  cmdMenu = false;
+  countClick = 0;
+  // currentMenuCmd =  - 1;
 }
 
 /**
- *   Reads encoder via interrupt
- *   Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
- */
+     Reads encoder via interrupt
+     Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
+*/
 void rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
@@ -291,8 +305,8 @@ void rotaryEncoder()
 }
 
 /**
- *  Shows frequency information on Display
- */
+    Shows frequency information on Display
+*/
 void showFrequency()
 {
   String freqDisplay;
@@ -325,9 +339,9 @@ void showFrequency()
   else
     freqDisplay = String((float)currentFrequency / divider, decimals);
 
-  lcd.setCursor(0,1);
+  lcd.setCursor(0, 1);
   lcd.print("        ");
-  lcd.setCursor(0,1);
+  lcd.setCursor(0, 1);
   lcd.print(freqDisplay);
   lcd.setCursor(6, 1);
   lcd.print(unit);
@@ -344,8 +358,8 @@ void showFrequency()
 }
 
 /**
- *  This function is called by the seek function process.
- */
+    This function is called by the seek function process.
+*/
 void showFrequencySeek(uint16_t freq)
 {
   currentFrequency = freq;
@@ -353,8 +367,8 @@ void showFrequencySeek(uint16_t freq)
 }
 
 /**
- *   Show some basic information on display
- */
+     Show some basic information on display
+*/
 void showStatus()
 {
   lcd.clear();
@@ -367,8 +381,8 @@ void showStatus()
 }
 
 /**
- * Shows the current Bandwitdth status
- */
+   Shows the current Bandwitdth status
+*/
 void showBandwitdth()
 {
 
@@ -383,26 +397,27 @@ void showBandwitdth()
       bw = (char *)bandwitdthAM[bwIdxAM].desc;
     else
       bw = (char *)bandwitdthSSB[bwIdxSSB].desc;
-    sprintf(bufferDisplay, "BW: %sKHz", bw);
+      
+    sprintf(bufferDisplay, "B%s", bw);
   }
   else
   {
     bufferDisplay[0] = '\0';
   }
 
-  /*
-  oled.setCursor(1, 3);
-  oled.print("           ");
-  oled.setCursor(1, 3);
-  oled.print(bufferDisplay);
+    /*
+    oled.setCursor(1, 3);
+    oled.print("           ");
+    oled.setCursor(1, 3);
+    oled.print(bufferDisplay);
   */
 
-  // Print the content on LCD here... 
+  // Print the content on LCD here...
 }
 
 /**
- *  Shows the current RSSI and SNR status
- */
+    Shows the current RSSI and SNR status
+*/
 void showRSSI()
 {
   int rssiAux;
@@ -421,70 +436,64 @@ void showRSSI()
     rssiAux = 9;
 
   int bars = rssiAux - 4;
-  sprintf(sMeter,"S%1u>",rssiAux);
+  sprintf(sMeter, "S%1u>", rssiAux);
 
   /*
-  oled.setCursor(78, 3);
-  oled.print("       ");
-  oled.setCursor(78, 3);
-  oled.print(sMeter);
-  if (bars > 5)
-  {
+    oled.setCursor(78, 3);
+    oled.print("       ");
+    oled.setCursor(78, 3);
+    oled.print(sMeter);
+    if (bars > 5)
+    {
     bars = 5;
-  }
-  for (int i = 0; i < bars; i++)
+    }
+    for (int i = 0; i < bars; i++)
     oled.print('|');
 
-  if (currentMode == FM)
-  {
+    if (currentMode == FM)
+    {
     oled.setCursor(1, 3);
     oled.print((rx.getCurrentPilot()) ? "STEREO   " : "MONO     ");
-  }
-  */ 
-  
-  // Print RSSI on LCD here... 
+    }
+  */
+
+  // Print RSSI on LCD here...
 
 }
 
 /**
-  *  Shows the current AGC and Attenuation status
-  */
+     Shows the current AGC and Attenuation status
+*/
 void showAgcAtt()
 {
   char sAgc[15];
   rx.getAutomaticGainControl();
   if (agcNdx == 0 && agcIdx == 0)
-    strcpy(sAgc, "AGC ON");
+    strcpy(sAgc, "AGC");
   else
-    sprintf(sAgc, "ATT:%2d", agcNdx);
-
-  // Show AGC Information
-  rx.getAutomaticGainControl();
-  /**
-  oled.setCursor(1, 1);
-  oled.print(sAgc);
-  */ 
- // Print AGC here... 
+    sprintf(sAgc, " %2.2d", agcNdx);
+    
+  lcd.setCursor(5, 0);
+  lcd.print(sAgc);
 }
 
 /**
- *  Shows the current step
- */
+    Shows the current step
+*/
 void showStep()
 {
-  /*
-  oled.setCursor(80, 1);
-  oled.print("        ");
-  oled.setCursor(80, 1);
-  oled.print("St: ");
-  oled.print(currentStep);
-  */ 
-
+    char stAux[10];
+    sprintf(stAux,"%4u",currentStep);
+    lcd.setCursor(12,1 );
+    lcd.print("    ");
+    lcd.setCursor(12, 1);
+    lcd.print(stAux);
+ 
 }
 
 /**
- * Shows the current BFO value
- */
+   Shows the current BFO value
+*/
 void showBFO()
 {
   String bfo;
@@ -494,19 +503,19 @@ void showBFO()
   else
     bfo = String(currentBFO);
 
- /*
-  oled.setCursor(1, 2);
-  oled.print("         ");
-  oled.setCursor(1, 2);
-  oled.print("BFO:");
-  oled.print(bfo);
-  oled.print("Hz ");
+  /*
+    oled.setCursor(1, 2);
+    oled.print("         ");
+    oled.setCursor(1, 2);
+    oled.print("BFO:");
+    oled.print(bfo);
+    oled.print("Hz ");
 
-  oled.setCursor(81, 2);
-  oled.print("       ");
-  oled.setCursor(81, 2);
-  oled.print("St: ");
-  oled.print(currentBFOStep);
+    oled.setCursor(81, 2);
+    oled.print("       ");
+    oled.setCursor(81, 2);
+    oled.print("St: ");
+    oled.print(currentBFOStep);
   */
   showFrequency();
   elapsedCommand = millis();
@@ -518,16 +527,16 @@ void showBFO()
 void showVolume()
 {
   /* TO DO
-  oled.setCursor(61, 3);
-  oled.print("  ");
-  oled.setCursor(61, 3);
-  oled.print(rx.getCurrentVolume());
+    oled.setCursor(61, 3);
+    oled.print("  ");
+    oled.setCursor(61, 3);
+    oled.print(rx.getCurrentVolume());
   */
 }
 
 /**
- *  Sets Band up (1) or down (!1)
- */
+    Sets Band up (1) or down (!1)
+*/
 void setBand(int8_t up_down)
 {
   band[bandIdx].currentFreq = currentFrequency;
@@ -542,16 +551,16 @@ void setBand(int8_t up_down)
 }
 
 /**
- *  This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
- *  SSB mode.
- *  See also loadPatch implementation in the SI4735 Arduino Library (SI4735.h/SI4735.cpp) 
- */
+    This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
+    SSB mode.
+    See also loadPatch implementation in the SI4735 Arduino Library (SI4735.h/SI4735.cpp)
+*/
 void loadSSB()
 {
 
   /*
-  oled.setCursor(1, 2);
-  oled.print("Loading SSB");
+    oled.setCursor(1, 2);
+    oled.print("Loading SSB");
   */
 
   rx.reset();
@@ -577,8 +586,8 @@ void loadSSB()
 }
 
 /**
- *  Switch the radio to current band
- */
+    Switch the radio to current band
+*/
 void useBand()
 {
   if (band[bandIdx].bandType == FM_BAND_TYPE)
@@ -620,8 +629,8 @@ void useBand()
 }
 
 /**
- *  Switches the Bandwidth
- */
+    Switches the Bandwidth
+*/
 void doBandwidth(int8_t v)
 {
   if (currentMode == LSB || currentMode == USB)
@@ -636,9 +645,9 @@ void doBandwidth(int8_t v)
     rx.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
     if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
-       rx.setSBBSidebandCutoffFilter(0);
-     else
-       rx.setSBBSidebandCutoffFilter(1);
+      rx.setSBBSidebandCutoffFilter(0);
+    else
+      rx.setSBBSidebandCutoffFilter(1);
   }
   else if (currentMode == AM)
   {
@@ -660,14 +669,22 @@ void doBandwidth(int8_t v)
 void showCommandStatus()
 {
   /*
-  oled.setCursor(48, 1);
-  oled.print("cmd");
+    oled.setCursor(48, 1);
+    oled.print("cmd");
   */
 }
 
+void showMenu() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("MENU");
+  lcd.setCursor(0, 1);
+  lcd.print(menu[menuIdx]);
+}
+
 /**
- *  Deal with AGC and attenuattion
- */
+    Deal with AGC and attenuattion
+*/
 void doAgc(int8_t v) {
 
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
@@ -676,7 +693,7 @@ void doAgc(int8_t v) {
   else if ( agcIdx > 35)
     agcIdx = 0;
 
-  disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable 
+  disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable
 
   if (agcIdx > 1)
     agcNdx = agcIdx - 1;
@@ -690,8 +707,8 @@ void doAgc(int8_t v) {
 }
 
 /**
- *  Gets the current step index.
- */
+    Gets the current step index.
+*/
 int getStepIndex(int st)
 {
   for (int i = 0; i < lastStep; i++)
@@ -703,8 +720,8 @@ int getStepIndex(int st)
 }
 
 /**
- *  Switches the current step
- */
+    Switches the current step
+*/
 void doStep(int8_t v)
 {
   idxStep = (v == 1) ? idxStep + 1 : idxStep - 1;
@@ -725,13 +742,13 @@ void doStep(int8_t v)
 }
 
 /**
- *  Switches to the AM, LSB or USB modes
- */
+    Switches to the AM, LSB or USB modes
+*/
 void doMode(int8_t v)
 {
   if (currentMode != FM)
   {
-    if (v == 1)  { // clockwise 
+    if (v == 1)  { // clockwise
       if (currentMode == AM)
       {
         // If you were in AM mode, it is necessary to load SSB patch (avery time)
@@ -772,13 +789,65 @@ void doMode(int8_t v)
 }
 
 /**
- *  Find a station. The direction is based on the last encoder move clockwise or counterclockwise
- */
+    Find a station. The direction is based on the last encoder move clockwise or counterclockwise
+*/
 void doSeek()
 {
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   currentFrequency = rx.getFrequency();
 }
+
+
+void doMenu( int8_t v) {
+
+
+  menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
+
+
+  if ( menuIdx > lastMenu )
+    menuIdx = 0;
+  else if (menuIdx < 0 )
+    menuIdx = lastMenu;
+
+  showMenu();
+
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();
+}
+
+
+void doCurrentManuCmd() {
+
+  disableCommands();
+
+  Serial.print("\ncurrentMenuCmd = ");
+  Serial.println(currentMenuCmd);
+    
+  switch (currentMenuCmd) {
+    case 1:                 // STEP
+      cmdStep = true;
+      break;
+    case 2:                 // MODE
+      cmdMode = true;
+      break;
+    case 3:                 // BW
+      cmdBandwidth = true;
+      break;
+    case 4:                 // AGC/ATT
+      cmdAgc = true;
+      break;
+    case 5:                 // VOLUME
+      cmdVolume = true;
+      break;
+    default:
+      break;
+  }
+  currentMenuCmd = -1;
+  showStatus();
+  elapsedCommand = millis();
+}
+
+
 
 void loop()
 {
@@ -791,6 +860,8 @@ void loop()
       rx.setSSBBfo(currentBFO);
       showBFO();
     }
+    else if (cmdMenu)
+      doMenu(encoderCount);
     else if (cmdMode)
       doMode(encoderCount);
     else if (cmdStep)
@@ -816,81 +887,33 @@ void loop()
       // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
     }
-    showFrequency();
+    if ( !cmdMenu ) showFrequency();
     encoderCount = 0;
     // elapsedCommand = millis();
   }
   else
   {
-    /* if (digitalRead(DUMMY_BUTTON) == LOW)
-    {
-      cmdBandwidth = !cmdBandwidth;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else */ 
-
-    if ( digitalRead(ENCODER_PUSH_BUTTON) == LOW ) { 
+    if ( digitalRead(ENCODER_PUSH_BUTTON) == LOW ) {
       countClick++;
       if (  (millis() - elapsedClick) > ELAPSED_CLICK ) {
-         if ( countClick == 1 ) { // If just one click, you can select the band by rotating the encoder 
-            cmdBand = !cmdBand;
-            delay(MIN_ELAPSED_TIME);
-            elapsedCommand = millis();
-         } else { // GO to MENU if more than one click in less than 1/2 seconds.
-           Flash(500);
-           lcd.setCursor(0,0);
-           lcd.print("MENU");
-           lcd.setCursor(0,1);
-           lcd.print("UNDER CONSTRUCT.");
-           Flash(3000);
-           showStatus();
-         } 
+        if (cmdMenu ) {
+          Serial.print("\nmenuIdx = ");
+          Serial.print(menuIdx);
+          currentMenuCmd = menuIdx;
+          doCurrentManuCmd();
+        } else if ( countClick == 1) { // If just one click, you can select the band by rotating the encoder
+          cmdBand = !cmdBand;
+          delay(MIN_ELAPSED_TIME);
+          elapsedCommand = millis();
+        } else { // GO to MENU if more than one click in less than 1/2 seconds.
+          cmdMenu = !cmdMenu;
+          if (cmdMenu) showMenu();
+          delay(MIN_ELAPSED_TIME);
+          elapsedCommand = millis();
+        }
       }
     }
 
-    /*       
-    if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
-    {
-      cmdBand = !cmdBand;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-
-    else if (digitalRead(DUMMY_BUTTON) == LOW)
-    {
-      doSeek();
-    }
-    else if (digitalRead(DUMMY_BUTTON) == LOW)
-    {
-      bfoOn = !bfoOn;
-      if ((currentMode == LSB || currentMode == USB))
-      {
-        showFrequency();
-        showBFO();
-      }
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (digitalRead(DUMMY_BUTTON) == LOW)
-    {
-      cmdAgc = !cmdAgc;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (digitalRead(DUMMY_BUTTON) == LOW)
-    {
-      cmdStep = !cmdStep;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (digitalRead(DUMMY_BUTTON) == LOW)
-    {
-      cmdMode = !cmdMode;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    */
   }
 
   // Show RSSI status only if this condition has changed
@@ -913,9 +936,9 @@ void loop()
     if ((currentMode == LSB || currentMode == USB))
     {
       bfoOn = false;
-      showFrequency();
       showBFO();
     }
+    showFrequency();
     disableCommands();
     elapsedCommand = millis();
   }
