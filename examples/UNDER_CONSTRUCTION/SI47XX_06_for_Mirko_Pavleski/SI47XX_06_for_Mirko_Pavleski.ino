@@ -230,8 +230,6 @@ SI4735 rx;
 
 void setup()
 {
-
-  Serial.begin(9600);
   // Encoder pins
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
   lcd.begin(16, 2);
@@ -287,7 +285,9 @@ void disableCommands()
   cmdMode = false;
   cmdMenu = false;
   countClick = 0;
-  // currentMenuCmd =  - 1;
+
+  lcd.setCursor(6, 0);
+  lcd.print("   ");
 }
 
 /**
@@ -307,51 +307,41 @@ void rotaryEncoder()
 */
 void showFrequency()
 {
-  String freqDisplay;
-  String unit;
-  String bandMode;
-  int divider = 1;
-  int decimals = 3;
-  if (band[bandIdx].bandType == FM_BAND_TYPE)
+  char tmp[15];
+  char bufferDisplay[15];
+  char * unit;
+  // It is better than use dtostrf or String to save space.
+  sprintf(tmp, "%5.5u", currentFrequency);
+
+  bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
+  bufferDisplay[1] = tmp[1];
+  if (rx.isCurrentTuneFM())
   {
-    divider = 100;
-    decimals = 1;
-    unit = "MHz";
-  }
-  else if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
-  {
-    divider = 1;
-    decimals = 0;
-    unit = "KHz";
+    bufferDisplay[2] = tmp[2];
+    bufferDisplay[3] = '.';
+    bufferDisplay[4] = tmp[3];
+    unit = (char *) " MHz";
   }
   else
   {
-    divider = 1000;
-    decimals = 3;
-    unit = "KHz";
+    if ( currentFrequency  < 1000 ) {
+      bufferDisplay[1] = ' ';
+      bufferDisplay[2] = tmp[2] ;
+      bufferDisplay[3] = tmp[3];
+      bufferDisplay[4] = tmp[4];
+    } else {
+      bufferDisplay[2] = tmp[2];
+      bufferDisplay[3] = tmp[3];
+      bufferDisplay[4] = tmp[4];
+    }
+    unit = (char *) " KHz";
   }
-
-  // Flag the frequency it the SSB mode
-  if (bfoOn && (currentMode == LSB || currentMode == USB))
-    freqDisplay = ">" + String((float)currentFrequency / divider, decimals) + "<";
-  else
-    freqDisplay = String((float)currentFrequency / divider, decimals);
-
+  bufferDisplay[5] = '\0';
+  strcat(bufferDisplay,unit);
   lcd.setCursor(0, 1);
-  lcd.print("        ");
-  lcd.setCursor(0, 1);
-  lcd.print(freqDisplay);
-  lcd.setCursor(6, 1);
-  lcd.print(unit);
+  lcd.print(bufferDisplay);
 
-  if (currentFrequency < 520)
-    bandMode = "LW  ";
-  else
-    bandMode = bandModeDesc[currentMode];
-
-
-  lcd.setCursor(0, 0);
-  lcd.print(bandMode);
+  showMode();
 
 }
 
@@ -361,11 +351,10 @@ void showMode() {
   char * bandMode;
   
   if (currentFrequency < 520)
-    bandMode = "LW  ";
+    bandMode = (char *) "LW  ";
   else
-    bandMode = bandModeDesc[currentMode];
+    bandMode = (char *) bandModeDesc[currentMode];
 
-  lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print(bandMode);
 
@@ -388,10 +377,7 @@ void showStatus()
 {
   lcd.clear();
   showFrequency();
-  // showStep();
-  // showAgcAtt();
   showRSSI();
-  showVolume();
 }
 
 /**
@@ -399,30 +385,23 @@ void showStatus()
 */
 void showBandwitdth()
 {
-
   char bufferDisplay[15];
-
   // Bandwidth
   if (currentMode == LSB || currentMode == USB || currentMode == AM)
   {
     char *bw;
-
     if (currentMode == AM)
       bw = (char *)bandwitdthAM[bwIdxAM].desc;
     else
       bw = (char *)bandwitdthSSB[bwIdxSSB].desc;
-      
-    sprintf(bufferDisplay, "B%s", bw);
+    sprintf(bufferDisplay, "BW: %s", bw);
   }
   else
-  {
     bufferDisplay[0] = '\0';
-  }
 
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print(bufferDisplay);
-
 }
 
 /**
@@ -445,7 +424,6 @@ void showRSSI()
   else
     rssiAux = 9;
 
-  int bars = rssiAux - 4;
   sprintf(sMeter, "S%1.1u%c", rssiAux,(rssi >=60)? '+':' ');
 
   lcd.setCursor(13, 1);
@@ -454,7 +432,7 @@ void showRSSI()
   if (currentMode == FM)
   {
     lcd.setCursor(10, 0);
-    lcd.print((rx.getCurrentPilot()) ? "STEREO" : "MONO  ");
+    lcd.print((rx.getCurrentPilot()) ? "STEREO" : "  MONO");
   }
 
 }
@@ -525,12 +503,11 @@ void showBFO()
 */
 void showVolume()
 {
-  /* TO DO
-    oled.setCursor(61, 3);
-    oled.print("  ");
-    oled.setCursor(61, 3);
-    oled.print(rx.getCurrentVolume());
-  */
+    char volAux[12];
+    sprintf(volAux,"VOLUME: %2u",rx.getVolume());
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print(volAux);  
 }
 
 /**
@@ -596,7 +573,6 @@ void useBand()
     rx.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     bfoOn = ssbLoaded = false;
-    rx.setRdsConfig(1, 2, 2, 2, 2);
   }
   else
   {
@@ -661,16 +637,14 @@ void doBandwidth(int8_t v)
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   showBandwitdth();
-  showCommandStatus();
+  // showCommandStatus();
   elapsedCommand = millis();
 }
 
 void showCommandStatus()
 {
-  /*
-    oled.setCursor(48, 1);
-    oled.print("cmd");
-  */
+    lcd.setCursor(6, 0);
+    lcd.print("cmd");
 }
 
 void showMenu() {
@@ -736,7 +710,7 @@ void doStep(int8_t v)
   rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
   showStep();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  showCommandStatus();
+  // showCommandStatus();
   elapsedCommand = millis();
 }
 
@@ -783,7 +757,7 @@ void doMode(int8_t v)
   }
 
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  showCommandStatus();
+  // showCommandStatus();
   elapsedCommand = millis();
 }
 
@@ -796,6 +770,18 @@ void doSeek()
   currentFrequency = rx.getFrequency();
 }
 
+
+void doVolume( int8_t v ) {
+   if ( v == 1) 
+      rx.volumeUp();
+   else
+      rx.volumeDown();  
+
+   showVolume(); 
+   
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();      
+}
 
 void doMenu( int8_t v) {
 
@@ -818,10 +804,7 @@ void doMenu( int8_t v) {
 void doCurrentMenuCmd() {
 
   disableCommands();
-
-  Serial.print("\ncurrentMenuCmd = ");
-  Serial.println(currentMenuCmd);
-    
+   
   switch (currentMenuCmd) {
     case 1:                 // STEP
       cmdStep = true;
@@ -829,6 +812,7 @@ void doCurrentMenuCmd() {
       break;
     case 2:                 // MODE
       cmdMode = true;
+      lcd.clear();
       showMode();
       break;
     case 3:                 // BW
@@ -841,6 +825,7 @@ void doCurrentMenuCmd() {
       break;
     case 5:                 // VOLUME
       cmdVolume = true;
+      showVolume();
       break;
     default:
       break;
@@ -872,6 +857,8 @@ void loop()
       doAgc(encoderCount);
     else if (cmdBandwidth)
       doBandwidth(encoderCount);
+    else if (cmdVolume) 
+      doVolume(encoderCount);  
     else if (cmdBand)
       setBand(encoderCount);
     else
@@ -921,7 +908,7 @@ void loop()
   {
     rx.getCurrentReceivedSignalQuality();
     int aux = rx.getCurrentRSSI();
-    if (rssi != aux)
+    if (rssi != aux &&  !(cmdStep | cmdMode | cmdBandwidth | cmdAgc | cmdVolume ) )
     {
       rssi = aux;
       showRSSI();
