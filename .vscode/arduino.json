@@ -1,6 +1,6 @@
 {
-    "board": "arduino:avr:pro",
+    "board": "arduino:avr:nano",
     "port": "/dev/tty.usbserial-A50285BI",
-    "sketch": "examples/UNDER_CONSTRUCTION/SI47XX_06_LCD_16x02/SI47XX_06_LCD_16x02.ino",
-    "configuration": "cpu=8MHzatmega328"
+    "sketch": "examples/UNDER_CONSTRUCTION/SI47XX_06_for_Mirko_Pavleski/SI47XX_06_for_Mirko_Pavleski.ino",
+    "configuration": "cpu=atmega328old"
 }
