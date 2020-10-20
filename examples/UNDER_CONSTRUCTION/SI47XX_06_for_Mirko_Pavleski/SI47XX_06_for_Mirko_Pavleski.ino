@@ -143,7 +143,7 @@ uint16_t currentFrequency;
 uint8_t currentBFOStep = 10;
 
 
-char * menu[] = {"<Select>", "STEP", "MODE", "BW", "AGG/ATT", "VOLUME"};
+const char * menu[] = {"<Select>", "STEP", "MODE", "BW", "AGG/ATT", "VOLUME"};
 int8_t menuIdx = 0;
 const int lastMenu = 5;
 int8_t currentMenuCmd = -1;
@@ -219,8 +219,6 @@ const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 int idxStep = 0;
 
 uint8_t rssi = 0;
-uint8_t snr = 0;
-uint8_t stereo = 1;
 uint8_t volume = DEFAULT_VOLUME;
 
 // Devices class declarations
@@ -357,6 +355,23 @@ void showFrequency()
 
 }
 
+
+void showMode() {
+
+  char * bandMode;
+  
+  if (currentFrequency < 520)
+    bandMode = "LW  ";
+  else
+    bandMode = bandModeDesc[currentMode];
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(bandMode);
+
+}
+
+
 /**
     This function is called by the seek function process.
 */
@@ -373,9 +388,8 @@ void showStatus()
 {
   lcd.clear();
   showFrequency();
-  showStep();
-  showBandwitdth();
-  showAgcAtt();
+  // showStep();
+  // showAgcAtt();
   showRSSI();
   showVolume();
 }
@@ -405,14 +419,10 @@ void showBandwitdth()
     bufferDisplay[0] = '\0';
   }
 
-    /*
-    oled.setCursor(1, 3);
-    oled.print("           ");
-    oled.setCursor(1, 3);
-    oled.print(bufferDisplay);
-  */
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(bufferDisplay);
 
-  // Print the content on LCD here...
 }
 
 /**
@@ -420,7 +430,7 @@ void showBandwitdth()
 */
 void showRSSI()
 {
-  int rssiAux;
+  int rssiAux = 0;
   char sMeter[7];
   if (rssi < 2)
     rssiAux = 4;
@@ -432,32 +442,20 @@ void showRSSI()
     rssiAux = 7;
   else if (rssi < 50)
     rssiAux = 8;
-  else if (rssi >= 50)
+  else
     rssiAux = 9;
 
   int bars = rssiAux - 4;
-  sprintf(sMeter, "S%1u>", rssiAux);
+  sprintf(sMeter, "S%1.1u%c", rssiAux,(rssi >=60)? '+':' ');
 
-  /*
-    oled.setCursor(78, 3);
-    oled.print("       ");
-    oled.setCursor(78, 3);
-    oled.print(sMeter);
-    if (bars > 5)
-    {
-    bars = 5;
-    }
-    for (int i = 0; i < bars; i++)
-    oled.print('|');
+  lcd.setCursor(13, 1);
+  lcd.print(sMeter);
 
-    if (currentMode == FM)
-    {
-    oled.setCursor(1, 3);
-    oled.print((rx.getCurrentPilot()) ? "STEREO   " : "MONO     ");
-    }
-  */
-
-  // Print RSSI on LCD here...
+  if (currentMode == FM)
+  {
+    lcd.setCursor(10, 0);
+    lcd.print((rx.getCurrentPilot()) ? "STEREO" : "MONO  ");
+  }
 
 }
 
@@ -467,13 +465,16 @@ void showRSSI()
 void showAgcAtt()
 {
   char sAgc[15];
+
+  lcd.clear();
+  
   rx.getAutomaticGainControl();
   if (agcNdx == 0 && agcIdx == 0)
-    strcpy(sAgc, "AGC");
+    strcpy(sAgc, "AGC ON");
   else
-    sprintf(sAgc, " %2.2d", agcNdx);
+    sprintf(sAgc, "ATT: %2.2d", agcNdx);
     
-  lcd.setCursor(5, 0);
+  lcd.setCursor(0, 0);
   lcd.print(sAgc);
 }
 
@@ -483,13 +484,11 @@ void showAgcAtt()
 void showStep()
 {
     char stAux[10];
-    sprintf(stAux,"%4u",currentStep);
-    lcd.setCursor(12,1 );
-    lcd.print("    ");
-    lcd.setCursor(12, 1);
+    sprintf(stAux,"STEP: %4u",currentStep);
+    lcd.clear();
+    lcd.setCursor(0,0);
     lcd.print(stAux);
- 
-}
+ }
 
 /**
    Shows the current BFO value
@@ -816,7 +815,7 @@ void doMenu( int8_t v) {
 }
 
 
-void doCurrentManuCmd() {
+void doCurrentMenuCmd() {
 
   disableCommands();
 
@@ -826,15 +825,19 @@ void doCurrentManuCmd() {
   switch (currentMenuCmd) {
     case 1:                 // STEP
       cmdStep = true;
+      showStep();
       break;
     case 2:                 // MODE
       cmdMode = true;
+      showMode();
       break;
     case 3:                 // BW
       cmdBandwidth = true;
+      showBandwitdth();
       break;
     case 4:                 // AGC/ATT
       cmdAgc = true;
+      showAgcAtt();
       break;
     case 5:                 // VOLUME
       cmdVolume = true;
@@ -843,7 +846,6 @@ void doCurrentManuCmd() {
       break;
   }
   currentMenuCmd = -1;
-  showStatus();
   elapsedCommand = millis();
 }
 
@@ -886,8 +888,8 @@ void loop()
       }
       // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
+      showFrequency();
     }
-    if ( !cmdMenu ) showFrequency();
     encoderCount = 0;
     // elapsedCommand = millis();
   }
@@ -897,10 +899,8 @@ void loop()
       countClick++;
       if (  (millis() - elapsedClick) > ELAPSED_CLICK ) {
         if (cmdMenu ) {
-          Serial.print("\nmenuIdx = ");
-          Serial.print(menuIdx);
           currentMenuCmd = menuIdx;
-          doCurrentManuCmd();
+          doCurrentMenuCmd();
         } else if ( countClick == 1) { // If just one click, you can select the band by rotating the encoder
           cmdBand = !cmdBand;
           delay(MIN_ELAPSED_TIME);
@@ -924,7 +924,6 @@ void loop()
     if (rssi != aux)
     {
       rssi = aux;
-      snr = rx.getCurrentSNR();
       showRSSI();
     }
     elapsedRSSI = millis();
@@ -938,7 +937,7 @@ void loop()
       bfoOn = false;
       showBFO();
     }
-    showFrequency();
+    showStatus();
     disableCommands();
     elapsedCommand = millis();
   }
