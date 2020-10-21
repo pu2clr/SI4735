@@ -2952,7 +2952,6 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
  */
 void SI4735::loadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, uint8_t ssb_audiobw)
 {
-    // reset(); // Is is not necessary. The queryLibraryId calls power down and it has the same effect.
     queryLibraryId(); 
     patchPowerUp();
     delay(50);
