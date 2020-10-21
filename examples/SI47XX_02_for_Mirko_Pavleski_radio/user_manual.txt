@@ -19,14 +19,14 @@ Commands:
 2. STEP, MODE, AGC/Attenuation, bandwitdth and VOLUME
 
      2.1. Press the encoder push button twice (within 1/2 second).
-     2.2. After that, the display shows you the <Select> text, rotate the encoder clockwise or counterclockwise 
+     2.2. After that, the display shows you the <Select> text. Rotate the encoder clockwise or counterclockwise 
           to select the option (STEP, MODE, AGC/Attenuation, bandwitdth, VOLUME, etc). 
      2.3. After that, select the option you want to setup by pressing the encoder push button again. 
      2.4. Finally, rotate the encoder clockwise or counterclockwise to select the parameter.
 
-3. VFO/VFO Switch 
+3. VFO/BFO Switch 
     3.1. Press the encoder push button twice (within 1/2 second).
-    3.2. Rotate the encoder clockwise or counterclockwise and got to the BFO option. 
+    3.2. Rotate the encoder clockwise or counterclockwise and got to the BFO option. This option is shown only on SSB mode. 
     3.3. Press the encoder push button again. 
     3.4. Finally, rotate the encoder clockwise or counterclockwise increment or decrement the BFO.
     3.5. If you stop rotate the ancoder for about 3 seconds, the control goes back to the VFO.  
