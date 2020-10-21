@@ -1,7 +1,4 @@
 /*
-  Under construction....
-  This skect is still in development and might not work properly.
-
   This sketch was build to work with the project "DIY Si4730 All Band Radio (LW, MW, SW, FM)" receiver from Mirko Pavleski.
   The original project can be found on https://create.arduino.cc/projecthub/mircemk/diy-si4730-all-band-radio-lw-mw-sw-fm-1894d9
   Please, follow the circuit available on that link.
@@ -236,12 +233,12 @@ void setup()
   lcd.print("PU2CLR-SI4735");
   lcd.setCursor(0, 1);
   lcd.print("Arduino Library");
-  Flash(2500);
+  Flash(2000);
   lcd.setCursor(0, 0);
   lcd.print("All in One Radio");
   lcd.setCursor(0, 1);
   lcd.print("By RICARDO/2020");
-  Flash(4500);
+  Flash(3500);
 
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
@@ -578,6 +575,7 @@ void useBand()
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
+  idxStep = getStepIndex(currentStep);
   rssi = 0;
   showStatus();
   showCommandStatus();
@@ -677,7 +675,9 @@ int getStepIndex(int st)
 */
 void doStep(int8_t v)
 {
+
   idxStep = (v == 1) ? idxStep + 1 : idxStep - 1;
+  
   if (idxStep > lastStep)
     idxStep = 0;
   else if (idxStep < 0)
