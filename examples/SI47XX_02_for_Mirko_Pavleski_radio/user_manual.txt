@@ -9,7 +9,7 @@ original Pavleski's project. If you are using another SI4730-D60, the SSB wil no
 the SW functionalities.
 
 
-Commands:
+Commands
 
 1. BAND SELECTION
 
