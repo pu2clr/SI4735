@@ -1,0 +1,22 @@
+Commands
+
+
+1. BAND SELECTION
+
+   Select the band by pressing the encoder push button once and then rotate the encoder clockwise or counterclockwise;
+
+
+2. STEP, MODE, AGC/Attenuation, bandwitdth and VOLUME
+
+     2.1. Press the encoder push button twice (within 1/2 second).
+     2.2. After that, the display shows you the <Select> text, rotate the encoder clockwise or counterclockwise 
+          to select the option (STEP, MODE, AGC/Attenuation, bandwitdth, VOLUME, etc). 
+     2.3. After that, select the option you want to setup by pressing the encoder push button again. 
+     2.4. Finally, rotate the encoder clockwise or counterclockwise to select the parameter.
+
+3. VFO/VFO Switch 
+
+
+Tip: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. 
+     If you do that, you might alternate the command status (enable and disable) randomly. 
+
