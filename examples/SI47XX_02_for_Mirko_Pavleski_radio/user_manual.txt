@@ -1,6 +1,15 @@
+User Manual
 
-Commands
+This sketch was build to work with the project "DIY Si4730 All Band Radio (LW, MW, SW, FM)" receiver from Mirko Pavleski.
+The original project can be found on https://create.arduino.cc/projecthub/mircemk/diy-si4730-all-band-radio-lw-mw-sw-fm-1894d9
+Please, follow the circuit available on that link.
 
+If you are using a SI4735-D60 or SI4732-A10, you can also use this sketch to add the SSB functionalities to the
+original Pavleski's project. If you are using another SI4730-D60, the SSB wil not work. But you will still have
+the SW functionalities.
+
+
+Commands:
 
 1. BAND SELECTION
 
