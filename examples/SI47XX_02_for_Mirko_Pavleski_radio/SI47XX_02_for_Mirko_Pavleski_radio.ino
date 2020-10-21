@@ -7,8 +7,6 @@
   original Pavleski's project. If you are using another SI4730-D60, the SSB wil not work. But you will still have
   the SW functionalities.
 
-  ATTENTION:
-
   It is important to say that this sketch was designed to work with the circuit implemented by Mirko Pavleski (see link above).
   The visual interface, control commands, band plan, and some functionalities are different if compared with the original
   sketch. Be sure you are using the SI4735 Arduino Library written by PU2CLR to run this sketch. The library used by the original
@@ -16,7 +14,6 @@
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
-
 
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
@@ -43,7 +40,6 @@
   |                           | A                             |       2       |
   |                           | B                             |       3       |
   |                           | PUSH BUTTON (encoder)         |     A0/14     |
-
 
   (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
@@ -189,7 +185,7 @@ typedef struct
    You can customize this table for your own band plan
 */
 Band band[] = {
-  {"FM ", FM_BAND_TYPE, 6400, 10800,  10390, 10},
+  {"VHF", FM_BAND_TYPE, 6400, 10800,  10390, 10},
   {"MW1", MW_BAND_TYPE,   150,  1720,   810, 10},
   {"MW2", MW_BAND_TYPE,  1700,  3500,  2500, 5},
   {"SW2", SW_BAND_TYPE,  3500,  7000,  4500, 5},
@@ -305,7 +301,6 @@ void showFrequency()
   char * unit;
   // It is better than use dtostrf or String to save space.
   sprintf(tmp, "%5.5u", currentFrequency);
-
   bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
   bufferDisplay[1] = tmp[1];
   if (rx.isCurrentTuneFM())
@@ -313,7 +308,7 @@ void showFrequency()
     bufferDisplay[2] = tmp[2];
     bufferDisplay[3] = '.';
     bufferDisplay[4] = tmp[3];
-    unit = (char *) " MHz";
+    unit = (char *) "MHz";
   }
   else
   {
@@ -327,15 +322,13 @@ void showFrequency()
       bufferDisplay[3] = tmp[3];
       bufferDisplay[4] = tmp[4];
     }
-    unit = (char *) " KHz";
+    unit = (char *) "KHz";
   }
   bufferDisplay[5] = '\0';
   strcat(bufferDisplay, unit);
-  lcd.setCursor(0, 1);
+  lcd.setCursor(4, 1);
   lcd.print(bufferDisplay);
-
   showMode();
-
 }
 
 /**
@@ -349,11 +342,13 @@ void showMode() {
     bandMode = (char *) bandModeDesc[currentMode];
   lcd.setCursor(0, 0);
   lcd.print(bandMode);
+  lcd.setCursor(0,1);
+  lcd.print(band[bandIdx].bandName);
 }
 
 /**
-     Show some basic information on display
-*/
+ * Shows some basic information on display
+ */
 void showStatus()
 {
   lcd.clear();
@@ -362,8 +357,8 @@ void showStatus()
 }
 
 /**
-   Shows the current Bandwitdth status
-*/
+ *  Shows the current Bandwitdth status
+ */
 void showBandwitdth()
 {
   char bufferDisplay[15];
@@ -386,8 +381,8 @@ void showBandwitdth()
 }
 
 /**
-    Shows the current RSSI and SNR status
-*/
+ *   Shows the current RSSI and SNR status
+ */
 void showRSSI()
 {
   int rssiAux = 0;
@@ -406,27 +401,22 @@ void showRSSI()
     rssiAux = 9;
 
   sprintf(sMeter, "S%1.1u%c", rssiAux, (rssi >= 60) ? '+' : ' ');
-
   lcd.setCursor(13, 1);
   lcd.print(sMeter);
-
   if (currentMode == FM)
   {
     lcd.setCursor(10, 0);
     lcd.print((rx.getCurrentPilot()) ? "STEREO" : "  MONO");
   }
-
 }
 
 /**
-     Shows the current AGC and Attenuation status
-*/
+ *    Shows the current AGC and Attenuation status
+ */
 void showAgcAtt()
 {
   char sAgc[15];
-
   lcd.clear();
-
   rx.getAutomaticGainControl();
   if (agcNdx == 0 && agcIdx == 0)
     strcpy(sAgc, "AGC ON");
@@ -438,8 +428,8 @@ void showAgcAtt()
 }
 
 /**
-    Shows the current step
-*/
+ *   Shows the current step
+ */
 void showStep()
 {
   char stAux[10];
@@ -450,12 +440,11 @@ void showStep()
 }
 
 /**
-   Shows the current BFO value
-*/
+ *  Shows the current BFO value
+ */
 void showBFO()
 {
   char bfo[10];
-
   if (currentBFO > 0)
     sprintf(bfo, "BFO: +%4.4d", currentBFO);
   else
@@ -468,8 +457,8 @@ void showBFO()
 }
 
 /*
-   Shows the volume level on LCD
-*/
+ *  Shows the volume level on LCD
+ */
 void showVolume()
 {
   char volAux[12];
@@ -480,8 +469,8 @@ void showVolume()
 }
 
 /**
-    Sets Band up (1) or down (!1)
-*/
+ *   Sets Band up (1) or down (!1)
+ */
 void setBand(int8_t up_down)
 {
   band[bandIdx].currentFreq = currentFrequency;
@@ -493,35 +482,6 @@ void setBand(int8_t up_down)
   useBand();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
-}
-
-/**
-    This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
-    SSB mode.
-    See also loadPatch implementation in the SI4735 Arduino Library (SI4735.h/SI4735.cpp)
-*/
-void loadSSB()
-{
-  rx.reset();
-  rx.queryLibraryId(); // Is it really necessary here? I will check it.
-  rx.patchPowerUp();
-  delay(50);
-  rx.setI2CFastMode(); // Recommended
-  // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
-  rx.downloadPatch(ssb_patch_content, size_content);
-  rx.setI2CStandardMode(); // goes back to default (100KHz)
-
-  // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
-  // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
-  // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
-  // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
-  // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
-  // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  rx.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
-  delay(25);
-  ssbLoaded = true;
-  showStatus();
 }
 
 /**
@@ -683,7 +643,8 @@ void doMode(int8_t v)
       if (currentMode == AM)
       {
         // If you were in AM mode, it is necessary to load SSB patch (avery time)
-        loadSSB();
+        rx.loadPatch(ssb_patch_content, size_content, bandwitdthSSB[bwIdxSSB].idx);
+        ssbLoaded = true;
         currentMode = LSB;
       }
       else if (currentMode == LSB)
@@ -697,7 +658,8 @@ void doMode(int8_t v)
       if (currentMode == AM)
       {
         // If you were in AM mode, it is necessary to load SSB patch (avery time)
-        loadSSB();
+        rx.loadPatch(ssb_patch_content, size_content, bandwitdthSSB[bwIdxSSB].idx);
+        ssbLoaded = true;
         currentMode = USB;
       }
       else if (currentMode == USB)
@@ -715,6 +677,7 @@ void doMode(int8_t v)
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
+  showStatus();
 }
 
 /**
