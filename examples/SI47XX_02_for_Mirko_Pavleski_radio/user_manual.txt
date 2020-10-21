@@ -1,3 +1,4 @@
+
 Commands
 
 
@@ -15,6 +16,11 @@ Commands
      2.4. Finally, rotate the encoder clockwise or counterclockwise to select the parameter.
 
 3. VFO/VFO Switch 
+    3.1. Press the encoder push button twice (within 1/2 second).
+    3.2. Rotate the encoder clockwise or counterclockwise and got to the BFO option. 
+    3.3. Press the encoder push button again. 
+    3.4. Finally, rotate the encoder clockwise or counterclockwise increment or decrement the BFO.
+    3.5. If you stop rotate the ancoder for about 3 seconds, the control goes back to the VFO.  
 
 
 Tip: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. 

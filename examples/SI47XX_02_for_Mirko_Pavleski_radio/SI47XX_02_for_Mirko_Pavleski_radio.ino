@@ -1,6 +1,5 @@
 /*
   Under construction....
-
   This skect is still in development and might not work properly.
 
   This sketch was build to work with the project "DIY Si4730 All Band Radio (LW, MW, SW, FM)" receiver from Mirko Pavleski.
@@ -142,9 +141,9 @@ uint16_t currentFrequency;
 uint8_t currentBFOStep = 10;
 
 
-const char * menu[] = {"<Select>", "STEP", "MODE", "BW", "AGG/ATT", "VOLUME"};
+const char * menu[] = {"<Select>", "STEP", "MODE", "BW", "AGG/ATT", "VOLUME", "BFO"};
 int8_t menuIdx = 0;
-const int lastMenu = 5;
+const int lastMenu = 6;
 int8_t currentMenuCmd = -1;
 
 typedef struct
@@ -472,28 +471,16 @@ void showStep()
 */
 void showBFO()
 {
-  String bfo;
+  char bfo[10];
 
   if (currentBFO > 0)
-    bfo = "+" + String(currentBFO);
+    sprintf(bfo,"BFO: +%4.4d",currentBFO);
   else
-    bfo = String(currentBFO);
+    sprintf(bfo, "BFO: %4.4d", currentBFO);
 
-  /*
-    oled.setCursor(1, 2);
-    oled.print("         ");
-    oled.setCursor(1, 2);
-    oled.print("BFO:");
-    oled.print(bfo);
-    oled.print("Hz ");
-
-    oled.setCursor(81, 2);
-    oled.print("       ");
-    oled.setCursor(81, 2);
-    oled.print("St: ");
-    oled.print(currentBFOStep);
-  */
-  showFrequency();
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print(bfo);
   elapsedCommand = millis();
 }
 
@@ -777,18 +764,17 @@ void doVolume( int8_t v ) {
 }
 
 void doMenu( int8_t v) {
-
+  int8_t lastOpt;
 
   menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
+  lastOpt = ((currentMode == LSB || currentMode == USB))? lastMenu: lastMenu - 1;
 
-
-  if ( menuIdx > lastMenu )
+  if (menuIdx > lastOpt)
     menuIdx = 0;
-  else if (menuIdx < 0 )
-    menuIdx = lastMenu;
+  else if (menuIdx < 0)
+    menuIdx = lastOpt;
 
   showMenu();
-
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
@@ -820,6 +806,11 @@ void doCurrentMenuCmd() {
       cmdVolume = true;
       showVolume();
       break;
+    case 6:
+      bfoOn = !bfoOn;
+      if ((currentMode == LSB || currentMode == USB))
+        showBFO();
+      showFrequency();
     default:
       break;
   }

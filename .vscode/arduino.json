@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:nano",
     "port": "/dev/tty.usbserial-A50285BI",
-    "sketch": "examples/UNDER_CONSTRUCTION/LCD_MENU/LCD_MENU.ino",
+    "sketch": "examples/SI47XX_02_for_Mirko_Pavleski_radio/SI47XX_02_for_Mirko_Pavleski_radio.ino",
     "configuration": "cpu=atmega328old"
 }
