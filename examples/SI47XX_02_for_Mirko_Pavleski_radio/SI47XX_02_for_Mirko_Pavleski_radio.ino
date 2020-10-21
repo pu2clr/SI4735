@@ -11,7 +11,6 @@
   original Pavleski's project. If you are using another SI4730-D60, the SSB wil not work. But you will still have
   the SW functionalities.
 
-
   ATTENTION:
 
   It is important to say that this sketch was designed to work with the circuit implemented by Mirko Pavleski (see link above).
@@ -20,11 +19,11 @@
   sketch will not work here. Also, you have to install the LiquidCrystal library.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
-  regular  comercial  stations. If  you  are  using  the  same  circuit  used  on  examples with OLED and LCD,
-  you have to change some buttons wire up.
+  regular  comercial  stations. 
+  
 
-  Features:   AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
-              AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
+  Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control; 
+              SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
 
   Wire up on Arduino UNO, Pro mini and SI4735-D60
   | Device name               | Device Pin / Description      |  Arduino Pin  |
@@ -55,6 +54,7 @@
        It seems the original project connect the SEN pin to the +Vcc. By using this sketch, you do
        not need to worry about this setting.
 
+  ATTENTION: Read the file user_manual.txt  
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
@@ -66,10 +66,9 @@
 #include <LiquidCrystal.h>
 #include "Rotary.h"
 
-// Test it with patch_init.h or patch_full.h. Do not try load both.
 #include "patch_init.h" // SSB patch for whole SSBRX initialization string
 
-const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
+const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
@@ -533,12 +532,6 @@ void setBand(int8_t up_down)
 */
 void loadSSB()
 {
-
-  /*
-    oled.setCursor(1, 2);
-    oled.print("Loading SSB");
-  */
-
   rx.reset();
   rx.queryLibraryId(); // Is it really necessary here? I will check it.
   rx.patchPowerUp();
