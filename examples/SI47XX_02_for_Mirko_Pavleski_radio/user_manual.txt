@@ -29,11 +29,25 @@ Commands
     3.2. Rotate the encoder clockwise or counterclockwise and got to the BFO option. This option is shown only on SSB mode. 
     3.3. Press the encoder push button again. 
     3.4. Finally, rotate the encoder clockwise or counterclockwise increment or decrement the BFO.
-    3.5. If you stop rotate the ancoder for about 3 seconds, the control goes back to the VFO.  
+    3.5. If you stop rotate the ancoder for about 3 seconds, the control goes back to the VFO. 
+         You can chage this value.
 
 
 ATTENTION: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. 
            If you do that, you might alternate the command status (enable and disable) randomly. 
            After 3 seconds, the current command or action is disabled automatically and the interface goes back
            to VFO control.
+
+
+TIPS:
+
+     Try to refine the time to disable a current command or action by changing the constant ELAPSED_COMMAND 
+     (#define ELAPSED_COMMAND 2000). The value 2000 means 2 seconds. Increase or decrease the value to get 
+     a better interface for you;
+     Try to refine the constant ELAPSED_CLICK (#define ELAPSED_CLICK 1500). This constant controls the time 
+     for double click on encoder push button. Smaller values demand more agility in the double click;
+     
+
+
+
 

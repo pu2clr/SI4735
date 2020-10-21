@@ -15,10 +15,10 @@
   sketch will not work here. Also, you have to install the LiquidCrystal library.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
-  regular  comercial  stations. 
-  
+  regular  comercial  stations.
 
-  Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control; 
+
+  Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
 
   Wire up on Arduino UNO, Pro mini and SI4735-D60
@@ -50,7 +50,7 @@
        It seems the original project connect the SEN pin to the +Vcc. By using this sketch, you do
        not need to worry about this setting.
 
-  ATTENTION: Read the file user_manual.txt  
+  ATTENTION: Read the file user_manual.txt
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
@@ -91,9 +91,9 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 150
-#define ELAPSED_COMMAND 2500 // time to turn off the last command controlled by encoder
-#define ELAPSED_CLICK 500    // time to check the click commands
-#define DEFAULT_VOLUME 40    // change it for your favorite sound volume
+#define ELAPSED_COMMAND 2000  // time to turn off the last command controlled by encoder. Time to goes back to the FVO control
+#define ELAPSED_CLICK 1500    // time to check the double click commands
+#define DEFAULT_VOLUME 35    // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -332,7 +332,7 @@ void showFrequency()
     unit = (char *) " KHz";
   }
   bufferDisplay[5] = '\0';
-  strcat(bufferDisplay,unit);
+  strcat(bufferDisplay, unit);
   lcd.setCursor(0, 1);
   lcd.print(bufferDisplay);
 
@@ -344,7 +344,7 @@ void showFrequency()
 void showMode() {
 
   char * bandMode;
-  
+
   if (currentFrequency < 520)
     bandMode = (char *) "LW  ";
   else
@@ -419,7 +419,7 @@ void showRSSI()
   else
     rssiAux = 9;
 
-  sprintf(sMeter, "S%1.1u%c", rssiAux,(rssi >=60)? '+':' ');
+  sprintf(sMeter, "S%1.1u%c", rssiAux, (rssi >= 60) ? '+' : ' ');
 
   lcd.setCursor(13, 1);
   lcd.print(sMeter);
@@ -440,13 +440,13 @@ void showAgcAtt()
   char sAgc[15];
 
   lcd.clear();
-  
+
   rx.getAutomaticGainControl();
   if (agcNdx == 0 && agcIdx == 0)
     strcpy(sAgc, "AGC ON");
   else
     sprintf(sAgc, "ATT: %2.2d", agcNdx);
-    
+
   lcd.setCursor(0, 0);
   lcd.print(sAgc);
 }
@@ -456,12 +456,12 @@ void showAgcAtt()
 */
 void showStep()
 {
-    char stAux[10];
-    sprintf(stAux,"STEP: %4u",currentStep);
-    lcd.clear();
-    lcd.setCursor(0,0);
-    lcd.print(stAux);
- }
+  char stAux[10];
+  sprintf(stAux, "STEP: %4u", currentStep);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(stAux);
+}
 
 /**
    Shows the current BFO value
@@ -471,12 +471,12 @@ void showBFO()
   char bfo[10];
 
   if (currentBFO > 0)
-    sprintf(bfo,"BFO: +%4.4d",currentBFO);
+    sprintf(bfo, "BFO: +%4.4d", currentBFO);
   else
     sprintf(bfo, "BFO: %4.4d", currentBFO);
 
   lcd.clear();
-  lcd.setCursor(0,0);
+  lcd.setCursor(0, 0);
   lcd.print(bfo);
   elapsedCommand = millis();
 }
@@ -486,11 +486,11 @@ void showBFO()
 */
 void showVolume()
 {
-    char volAux[12];
-    sprintf(volAux,"VOLUME: %2u",rx.getVolume());
-    lcd.clear();
-    lcd.setCursor(0,0);
-    lcd.print(volAux);  
+  char volAux[12];
+  sprintf(volAux, "VOLUME: %2u", rx.getVolume());
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(volAux);
 }
 
 /**
@@ -621,8 +621,8 @@ void doBandwidth(int8_t v)
 
 void showCommandStatus()
 {
-    lcd.setCursor(6, 0);
-    lcd.print("cmd");
+  lcd.setCursor(6, 0);
+  lcd.print("cmd");
 }
 
 void showMenu() {
@@ -677,7 +677,7 @@ void doStep(int8_t v)
 {
 
   idxStep = (v == 1) ? idxStep + 1 : idxStep - 1;
-  
+
   if (idxStep > lastStep)
     idxStep = 0;
   else if (idxStep < 0)
@@ -752,22 +752,22 @@ void doSeek()
 
 
 void doVolume( int8_t v ) {
-   if ( v == 1) 
-      rx.volumeUp();
-   else
-      rx.volumeDown();  
+  if ( v == 1)
+    rx.volumeUp();
+  else
+    rx.volumeDown();
 
-   showVolume(); 
-   
+  showVolume();
+
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  elapsedCommand = millis();      
+  elapsedCommand = millis();
 }
 
 void doMenu( int8_t v) {
   int8_t lastOpt;
 
   menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
-  lastOpt = ((currentMode == LSB || currentMode == USB))? lastMenu: lastMenu - 1;
+  lastOpt = ((currentMode == LSB || currentMode == USB)) ? lastMenu : lastMenu - 1;
 
   if (menuIdx > lastOpt)
     menuIdx = 0;
@@ -783,7 +783,7 @@ void doMenu( int8_t v) {
 void doCurrentMenuCmd() {
 
   disableCommands();
-   
+
   switch (currentMenuCmd) {
     case 1:                 // STEP
       cmdStep = true;
@@ -819,7 +819,6 @@ void doCurrentMenuCmd() {
 }
 
 
-
 void loop()
 {
   // Check if the encoder has moved.
@@ -841,8 +840,8 @@ void loop()
       doAgc(encoderCount);
     else if (cmdBandwidth)
       doBandwidth(encoderCount);
-    else if (cmdVolume) 
-      doVolume(encoderCount);  
+    else if (cmdVolume)
+      doVolume(encoderCount);
     else if (cmdBand)
       setBand(encoderCount);
     else
@@ -868,23 +867,18 @@ void loop()
   {
     if ( digitalRead(ENCODER_PUSH_BUTTON) == LOW ) {
       countClick++;
-      if (  (millis() - elapsedClick) > ELAPSED_CLICK ) {
-        if (cmdMenu ) {
-          currentMenuCmd = menuIdx;
-          doCurrentMenuCmd();
-        } else if ( countClick == 1) { // If just one click, you can select the band by rotating the encoder
-          cmdBand = !cmdBand;
-          delay(MIN_ELAPSED_TIME);
-          elapsedCommand = millis();
-        } else { // GO to MENU if more than one click in less than 1/2 seconds.
-          cmdMenu = !cmdMenu;
-          if (cmdMenu) showMenu();
-          delay(MIN_ELAPSED_TIME);
-          elapsedCommand = millis();
-        }
+      if (cmdMenu ) {
+        currentMenuCmd = menuIdx;
+        doCurrentMenuCmd();
+      } else if ( countClick == 1) { // If just one click, you can select the band by rotating the encoder
+        cmdBand = !cmdBand;
+      } else { // GO to MENU if more than one click in less than 1/2 seconds.
+        cmdMenu = !cmdMenu;
+        if (cmdMenu) showMenu();
       }
+      delay(MIN_ELAPSED_TIME);
+      elapsedCommand = millis();
     }
-
   }
 
   // Show RSSI status only if this condition has changed
@@ -912,5 +906,11 @@ void loop()
     disableCommands();
     elapsedCommand = millis();
   }
+
+  if ( (millis() - elapsedClick) > ELAPSED_CLICK ) {
+    countClick = 0;
+    elapsedClick = millis();
+  }
+
   delay(5);
 }
