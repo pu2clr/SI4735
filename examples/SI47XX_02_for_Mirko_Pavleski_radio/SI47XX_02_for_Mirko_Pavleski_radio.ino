@@ -122,8 +122,6 @@ bool cmdMode = false;
 bool cmdMenu = false;
 
 int currentBFO = 0;
-uint8_t seekDirection = 1; // Tells the SEEK direction (botton or upper limit)
-
 long elapsedRSSI = millis();
 long elapsedButton = millis();
 long elapsedCommand = millis();
@@ -340,29 +338,17 @@ void showFrequency()
 
 }
 
-
+/**
+ * Shows the current mode
+ */
 void showMode() {
-
   char * bandMode;
-
   if (currentFrequency < 520)
     bandMode = (char *) "LW  ";
   else
     bandMode = (char *) bandModeDesc[currentMode];
-
   lcd.setCursor(0, 0);
   lcd.print(bandMode);
-
-}
-
-
-/**
-    This function is called by the seek function process.
-*/
-void showFrequencySeek(uint16_t freq)
-{
-  currentFrequency = freq;
-  showFrequency();
 }
 
 /**
@@ -539,8 +525,8 @@ void loadSSB()
 }
 
 /**
-    Switch the radio to current band
-*/
+ * Switch the radio to current band
+ */
 void useBand()
 {
   if (band[bandIdx].bandType == FM_BAND_TYPE)
@@ -548,14 +534,12 @@ void useBand()
     currentMode = FM;
     rx.setTuneFrequencyAntennaCapacitor(0);
     rx.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-    rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     bfoOn = ssbLoaded = false;
   }
   else
   {
     // set the tuning capacitor for SW or MW/LW
     rx.setTuneFrequencyAntennaCapacitor((band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) ? 0 : 1);
-
     if (ssbLoaded)
     {
       rx.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
@@ -569,8 +553,6 @@ void useBand()
     }
     rx.setAmSoftMuteMaxAttenuation(0); // Disable Soft Mute for AM or SSB
     rx.setAutomaticGainControl(disableAgc, agcNdx);
-    rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
-    rx.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10KHz for spacing
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
@@ -582,8 +564,8 @@ void useBand()
 }
 
 /**
-    Switches the Bandwidth
-*/
+ *  Switches the Bandwidth
+ */
 void doBandwidth(int8_t v)
 {
   if (currentMode == LSB || currentMode == USB)
@@ -619,12 +601,18 @@ void doBandwidth(int8_t v)
   elapsedCommand = millis();
 }
 
+/**
+ * Show cmd on display. It means you are setting up something.  
+ */
 void showCommandStatus()
 {
   lcd.setCursor(6, 0);
   lcd.print("cmd");
 }
 
+/**
+ * Show menu options
+ */
 void showMenu() {
   lcd.clear();
   lcd.setCursor(0, 0);
@@ -634,23 +622,19 @@ void showMenu() {
 }
 
 /**
-    Deal with AGC and attenuattion
-*/
+ *  AGC and attenuattion setup
+ */
 void doAgc(int8_t v) {
-
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
   if (agcIdx < 0 )
     agcIdx = 35;
   else if ( agcIdx > 35)
     agcIdx = 0;
-
   disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable
-
   if (agcIdx > 1)
     agcNdx = agcIdx - 1;
   else
     agcNdx = 0;
-
   rx.setAutomaticGainControl(disableAgc, agcNdx); // if agcNdx = 0, no attenuation
   showAgcAtt();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
@@ -658,8 +642,8 @@ void doAgc(int8_t v) {
 }
 
 /**
-    Gets the current step index.
-*/
+ * Gets the current step index.
+ */
 int getStepIndex(int st)
 {
   for (int i = 0; i < lastStep; i++)
@@ -671,32 +655,26 @@ int getStepIndex(int st)
 }
 
 /**
-    Switches the current step
-*/
+ * Switches the current step
+ */
 void doStep(int8_t v)
 {
-
   idxStep = (v == 1) ? idxStep + 1 : idxStep - 1;
-
   if (idxStep > lastStep)
     idxStep = 0;
   else if (idxStep < 0)
     idxStep = lastStep;
-
   currentStep = tabStep[idxStep];
-
   rx.setFrequencyStep(currentStep);
   band[bandIdx].currentStep = currentStep;
-  rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
   showStep();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  // showCommandStatus();
   elapsedCommand = millis();
 }
 
 /**
-    Switches to the AM, LSB or USB modes
-*/
+ * Switches to the AM, LSB or USB modes
+ */
 void doMode(int8_t v)
 {
   if (currentMode != FM)
@@ -735,22 +713,13 @@ void doMode(int8_t v)
     band[bandIdx].currentStep = currentStep;
     useBand();
   }
-
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  // showCommandStatus();
   elapsedCommand = millis();
 }
 
 /**
-    Find a station. The direction is based on the last encoder move clockwise or counterclockwise
-*/
-void doSeek()
-{
-  rx.seekStationProgress(showFrequencySeek, seekDirection);
-  currentFrequency = rx.getFrequency();
-}
-
-
+ * Sets the audio volume
+ */
 void doVolume( int8_t v ) {
   if ( v == 1)
     rx.volumeUp();
@@ -763,9 +732,11 @@ void doVolume( int8_t v ) {
   elapsedCommand = millis();
 }
 
+/**
+ *  Menu options selection
+ */
 void doMenu( int8_t v) {
   int8_t lastOpt;
-
   menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
   lastOpt = ((currentMode == LSB || currentMode == USB)) ? lastMenu : lastMenu - 1;
 
@@ -780,10 +751,11 @@ void doMenu( int8_t v) {
 }
 
 
+/**
+ * Starts the MENU action process
+ */
 void doCurrentMenuCmd() {
-
   disableCommands();
-
   switch (currentMenuCmd) {
     case 1:                 // STEP
       cmdStep = true;
@@ -847,15 +819,9 @@ void loop()
     else
     {
       if (encoderCount == 1)
-      {
         rx.frequencyUp();
-        seekDirection = 1;
-      }
       else
-      {
         rx.frequencyDown();
-        seekDirection = 0;
-      }
       // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
       showFrequency();
@@ -911,6 +877,5 @@ void loop()
     countClick = 0;
     elapsedClick = millis();
   }
-
   delay(5);
 }
