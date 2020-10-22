@@ -124,6 +124,7 @@ long elapsedButton = millis();
 long elapsedCommand = millis();
 long elapsedClick = millis();
 
+
 // Encoder control variables
 volatile int encoderCount = 0;
 
@@ -276,7 +277,7 @@ void disableCommands()
   cmdSoftMuteMaxAtt = false;
   countClick = 0;
   lcd.setCursor(6, 0);
-  lcd.print("   ");
+  lcd.print("VFO ");
 }
 
 /**
@@ -532,7 +533,7 @@ void useBand()
   idxStep = getStepIndex(currentStep);
   rssi = 0;
   showStatus();
-  showCommandStatus();
+  showCommandStatus((char *) "Band");
 }
 
 /**
@@ -576,10 +577,10 @@ void doBandwidth(int8_t v)
 /**
  * Show cmd on display. It means you are setting up something.  
  */
-void showCommandStatus()
+void showCommandStatus(char * currentCmd)
 {
   lcd.setCursor(6, 0);
-  lcd.print("cmd");
+  lcd.print(currentCmd);
 }
 
 /**
@@ -588,9 +589,10 @@ void showCommandStatus()
 void showMenu() {
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("MENU");
+  // lcd.print("MENU");
   lcd.setCursor(0, 1);
   lcd.print(menu[menuIdx]);
+  showCommandStatus( (char *) "Menu");
 }
 
 /**
@@ -690,6 +692,7 @@ void doMode(int8_t v)
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
   showStatus();
+  disableCommands();
 }
 
 /**
@@ -831,7 +834,13 @@ void loop()
         currentMenuCmd = menuIdx;
         doCurrentMenuCmd();
       } else if ( countClick == 1) { // If just one click, you can select the band by rotating the encoder
-        cmdBand = !cmdBand;
+        if ( (cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | bfoOn | cmdBand) ) {
+          disableCommands();
+          showStatus();
+        } else {
+          cmdBand = !cmdBand;
+          showCommandStatus((char *) "Band");
+        }
       } else { // GO to MENU if more than one click in less than 1/2 seconds.
         cmdMenu = !cmdMenu;
         if (cmdMenu) showMenu();
@@ -846,7 +855,7 @@ void loop()
   {
     rx.getCurrentReceivedSignalQuality();
     int aux = rx.getCurrentRSSI();
-    if (rssi != aux &&  !(cmdStep | cmdMode | cmdBandwidth | cmdAgc | cmdVolume ) )
+    if (rssi != aux &&  !(cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | bfoOn) )
     {
       rssi = aux;
       showRSSI();
