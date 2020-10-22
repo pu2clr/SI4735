@@ -106,7 +106,6 @@ int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 int8_t agcNdx = 0;
 int8_t softMuteMaxAttIdx = 4;
-
 uint8_t countClick = 0;
 
 bool cmdBand = false;
@@ -123,16 +122,10 @@ long elapsedRSSI = millis();
 long elapsedButton = millis();
 long elapsedCommand = millis();
 long elapsedClick = millis();
-
-
-// Encoder control variables
 volatile int encoderCount = 0;
-
-// Some variables to check the SI4735 status
 uint16_t currentFrequency;
 
-uint8_t currentBFOStep = 10;
-
+const uint8_t currentBFOStep = 10;
 
 const char * menu[] = {"<Select>", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BFO"};
 int8_t menuIdx = 0;
@@ -167,11 +160,9 @@ Bandwitdth bandwitdthAM[] = {{4, "1.0"},
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
-uint16_t currentStep = 1;
-
-/*
-   Band data structure
-*/
+/**
+ *  Band data structure
+ */
 typedef struct
 {
   const char *bandName; // Band description
@@ -203,19 +194,17 @@ Band band[] = {
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
-
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 int idxStep = 0;
+uint16_t currentStep = 1;
 
 uint8_t rssi = 0;
 uint8_t volume = DEFAULT_VOLUME;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
-
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
-
 SI4735 rx;
 
 void setup()
@@ -234,7 +223,6 @@ void setup()
   lcd.setCursor(0, 1);
   lcd.print("By RICARDO/2020");
   Flash(3000);
-
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
@@ -286,7 +274,6 @@ void disableCommands()
 void rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
-
   if (encoderStatus)
     encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
 }
@@ -299,7 +286,6 @@ void showFrequency()
   char tmp[15];
   char bufferDisplay[15];
   char * unit;
-  // It is better than use dtostrf or String to save space.
   sprintf(tmp, "%5.5u", currentFrequency);
   bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
   bufferDisplay[1] = tmp[1];
@@ -362,7 +348,6 @@ void showStatus()
 void showBandwitdth()
 {
   char bufferDisplay[15];
-  // Bandwidth
   if (currentMode == LSB || currentMode == USB || currentMode == AM)
   {
     char *bw;
@@ -370,7 +355,7 @@ void showBandwitdth()
       bw = (char *)bandwitdthAM[bwIdxAM].desc;
     else
       bw = (char *)bandwitdthSSB[bwIdxSSB].desc;
-    sprintf(bufferDisplay, "BW: %s", bw);
+    sprintf(bufferDisplay, "BW: %s KHz", bw);
   }
   else
     bufferDisplay[0] = '\0';
@@ -559,7 +544,6 @@ void doBandwidth(int8_t v)
   else if (currentMode == AM)
   {
     bwIdxAM = (v == 1) ? bwIdxAM + 1 : bwIdxAM - 1;
-
     if (bwIdxAM > 6)
       bwIdxAM = 0;
     else if (bwIdxAM < 0)
@@ -588,7 +572,6 @@ void showCommandStatus(char * currentCmd)
 void showMenu() {
   lcd.clear();
   lcd.setCursor(0, 0);
-  // lcd.print("MENU");
   lcd.setCursor(0, 1);
   lcd.print(menu[menuIdx]);
   showCommandStatus( (char *) "Menu");
@@ -704,11 +687,13 @@ void doVolume( int8_t v ) {
     rx.volumeDown();
 
   showVolume();
-
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
 
+/**
+ * Sets the Soft Mute Parameter
+ */
 void doSoftMute(int8_t v)
 {
   softMuteMaxAttIdx = (v == 1) ? softMuteMaxAttIdx + 1 : softMuteMaxAttIdx - 1;
@@ -729,7 +714,6 @@ void doMenu( int8_t v) {
   int8_t lastOpt;
   menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
   lastOpt = ((currentMode == LSB || currentMode == USB)) ? lastMenu : lastMenu - 1;
-
   if (menuIdx > lastOpt)
     menuIdx = 0;
   else if (menuIdx < 0)
@@ -784,7 +768,9 @@ void doCurrentMenuCmd() {
   elapsedCommand = millis();
 }
 
-
+/**
+ * Main loop
+ */
 void loop()
 {
   // Check if the encoder has moved.
