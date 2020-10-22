@@ -102,10 +102,10 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 bool bfoOn = false;
 bool ssbLoaded = false;
 
-// AGC and attenuation control
 int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 int8_t agcNdx = 0;
+int8_t softMuteMaxAttIdx = 4;
 
 uint8_t countClick = 0;
 
@@ -116,6 +116,7 @@ bool cmdBandwidth = false;
 bool cmdStep = false;
 bool cmdMode = false;
 bool cmdMenu = false;
+bool cmdSoftMuteMaxAtt = false;
 
 int currentBFO = 0;
 long elapsedRSSI = millis();
@@ -132,9 +133,9 @@ uint16_t currentFrequency;
 uint8_t currentBFOStep = 10;
 
 
-const char * menu[] = {"<Select>", "STEP", "MODE", "BW", "AGG/ATT", "VOLUME", "BFO"};
+const char * menu[] = {"<Select>", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BFO"};
 int8_t menuIdx = 0;
-const int lastMenu = 6;
+const int lastMenu = 7;
 int8_t currentMenuCmd = -1;
 
 typedef struct
@@ -272,8 +273,8 @@ void disableCommands()
   cmdStep = false;
   cmdMode = false;
   cmdMenu = false;
+  cmdSoftMuteMaxAtt = false;
   countClick = 0;
-
   lcd.setCursor(6, 0);
   lcd.print("   ");
 }
@@ -468,6 +469,18 @@ void showVolume()
 }
 
 /**
+ * Show Soft Mute 
+ */
+void showSoftMute()
+{
+  char sMute[15];
+  sprintf(sMute, "Soft Mute: %2d", softMuteMaxAttIdx);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(sMute);
+}
+
+/**
  *   Sets Band up (1) or down (!1)
  */
 void setBand(int8_t up_down)
@@ -510,7 +523,7 @@ void useBand()
       rx.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       bfoOn = false;
     }
-    rx.setAmSoftMuteMaxAttenuation(0); // Disable Soft Mute for AM or SSB
+    rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Soft Mute for AM or SSB
     rx.setAutomaticGainControl(disableAgc, agcNdx);
   }
   delay(100);
@@ -694,6 +707,19 @@ void doVolume( int8_t v ) {
   elapsedCommand = millis();
 }
 
+void doSoftMute(int8_t v)
+{
+  softMuteMaxAttIdx = (v == 1) ? softMuteMaxAttIdx + 1 : softMuteMaxAttIdx - 1;
+  if (softMuteMaxAttIdx > 32)
+    softMuteMaxAttIdx = 0;
+  else if (softMuteMaxAttIdx < 0)
+    softMuteMaxAttIdx = 32;
+
+  rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx);
+  showSoftMute();
+  elapsedCommand = millis();
+}
+
 /**
  *  Menu options selection
  */
@@ -740,7 +766,11 @@ void doCurrentMenuCmd() {
       cmdVolume = true;
       showVolume();
       break;
-    case 6:
+    case 6: 
+      cmdSoftMuteMaxAtt = true;
+      showSoftMute();  
+      break;
+    case 7:
       bfoOn = !bfoOn;
       if ((currentMode == LSB || currentMode == USB))
         showBFO();
@@ -776,6 +806,8 @@ void loop()
       doBandwidth(encoderCount);
     else if (cmdVolume)
       doVolume(encoderCount);
+    else if (cmdSoftMuteMaxAtt)
+      doSoftMute(encoderCount);
     else if (cmdBand)
       setBand(encoderCount);
     else

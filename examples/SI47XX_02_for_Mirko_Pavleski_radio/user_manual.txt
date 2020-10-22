@@ -16,7 +16,7 @@ Commands
    Select the band by pressing the encoder push button once and then rotate the encoder clockwise or counterclockwise;
 
 
-2. STEP, MODE, AGC/Attenuation, bandwitdth and VOLUME
+2. STEP, MODE, AGC/Attenuation, bandwitdth, Soft Mute and VOLUME
 
      2.1. Press the encoder push button twice (within 1/2 second).
      2.2. After that, the display shows you the <Select> text. Rotate the encoder clockwise or counterclockwise 
