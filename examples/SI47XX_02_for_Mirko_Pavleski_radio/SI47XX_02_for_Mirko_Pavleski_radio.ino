@@ -182,10 +182,9 @@ typedef struct
   uint16_t currentStep; // Defeult step (increment and decrement)
 } Band;
 
-/*
-   Band table
-   You can customize this table for your own band plan
-*/
+/**
+ *  Band table. You can customize this table for your own band plan
+ */
 Band band[] = {
   {"VHF", FM_BAND_TYPE, 6400, 10800,  10390, 10},
   {"MW1", MW_BAND_TYPE,   150,  1720,   810, 10},
@@ -231,10 +230,10 @@ void setup()
   lcd.print("Arduino Library");
   Flash(2000);
   lcd.setCursor(0, 0);
-  lcd.print("All in One Radio");
+  lcd.print("DIY Mirko Radio");
   lcd.setCursor(0, 1);
   lcd.print("By RICARDO/2020");
-  Flash(3500);
+  Flash(3000);
 
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
@@ -249,8 +248,8 @@ void setup()
 }
 
 /**
-   Cleans the screen with a visual effect.
-*/
+ *  Cleans the screen with a visual effect.
+ */
 void Flash (int d)
 {
   delay(d);
@@ -281,8 +280,8 @@ void disableCommands()
 }
 
 /**
-     Reads encoder via interrupt
-     Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
+ * Reads encoder via interrupt
+ * Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
 */
 void rotaryEncoder()
 { // rotary encoder events
@@ -293,8 +292,8 @@ void rotaryEncoder()
 }
 
 /**
-    Shows frequency information on Display
-*/
+ * Shows frequency information on Display
+ */
 void showFrequency()
 {
   char tmp[15];
@@ -579,7 +578,7 @@ void doBandwidth(int8_t v)
  */
 void showCommandStatus(char * currentCmd)
 {
-  lcd.setCursor(6, 0);
+  lcd.setCursor(5, 0);
   lcd.print(currentCmd);
 }
 
