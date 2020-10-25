@@ -108,6 +108,8 @@ int8_t agcNdx = 0;
 int8_t softMuteMaxAttIdx = 4;
 uint8_t countClick = 0;
 
+uint8_t seekDirection = 1;
+
 bool cmdBand = false;
 bool cmdVolume = false;
 bool cmdAgc = false;
@@ -228,7 +230,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
   rx.setI2CFastMode(); // Set I2C bus speed.
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
-  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
+  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG audio mode.
   // Set up the radio for the current band (see index table variable bandIdx )
 
   delay(500); 
@@ -694,6 +696,24 @@ void doVolume( int8_t v ) {
 }
 
 /**
+ *  This function is called by the seek function process.
+ */
+void showFrequencySeek(uint16_t freq)
+{
+  currentFrequency = freq;
+  showFrequency();
+}
+
+/**
+ *  Find a station. The direction is based on the last encoder move clockwise or counterclockwise
+ */
+void doSeek()
+{
+  rx.seekStationProgress(showFrequencySeek, seekDirection);
+  currentFrequency = rx.getFrequency();
+}
+
+/**
  * Sets the Soft Mute Parameter
  */
 void doSoftMute(int8_t v)
@@ -802,10 +822,14 @@ void loop()
       setBand(encoderCount);
     else
     {
-      if (encoderCount == 1)
+      if (encoderCount == 1) {
         rx.frequencyUp();
-      else
+        seekDirection = 1;
+      }
+      else{
         rx.frequencyDown();
+        seekDirection = 0;
+      }
       // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
       showFrequency();
@@ -820,6 +844,8 @@ void loop()
       if (cmdMenu ) {
         currentMenuCmd = menuIdx;
         doCurrentMenuCmd();
+      } else if (countClick > 5)  {
+        doSeek();  
       } else if ( countClick == 1) { // If just one click, you can select the band by rotating the encoder
         if ( (cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | bfoOn | cmdBand) ) {
           disableCommands();
@@ -832,7 +858,7 @@ void loop()
         cmdMenu = !cmdMenu;
         if (cmdMenu) showMenu();
       }
-      delay(MIN_ELAPSED_TIME);
+      delay(150);
       elapsedCommand = millis();
     }
   }
