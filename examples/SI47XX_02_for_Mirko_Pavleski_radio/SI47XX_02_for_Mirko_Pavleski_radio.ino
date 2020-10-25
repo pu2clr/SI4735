@@ -265,8 +265,7 @@ void disableCommands()
   cmdMenu = false;
   cmdSoftMuteMaxAtt = false;
   countClick = 0;
-  lcd.setCursor(6, 0);
-  lcd.print("VFO ");
+  showCommandStatus((char *) "VFO ");
 }
 
 /**
@@ -680,8 +679,8 @@ void doMode(int8_t v)
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
-  showStatus();
-  disableCommands();
+  // showStatus();
+  // disableCommands();
 }
 
 /**
@@ -712,8 +711,11 @@ void showFrequencySeek(uint16_t freq)
  */
 void doSeek()
 {
+  if ((currentMode == LSB || currentMode == USB)) return; // It does not work for SSB mode
+  
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   currentFrequency = rx.getFrequency();
+  
 }
 
 /**
@@ -782,10 +784,11 @@ void doCurrentMenuCmd() {
       showSoftMute();  
       break;
     case 7:
-      bfoOn = !bfoOn;
-      if ((currentMode == LSB || currentMode == USB))
+      bfoOn = true;
+      if ((currentMode == LSB || currentMode == USB)) {
         showBFO();
-      showFrequency();
+       }
+      // showFrequency();
     default:
         showStatus();
         doSeek();
@@ -850,9 +853,10 @@ void loop()
         currentMenuCmd = menuIdx;
         doCurrentMenuCmd();
       } else if ( countClick == 1) { // If just one click, you can select the band by rotating the encoder
-        if ( (cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | bfoOn | cmdBand) ) {
+        if ( (cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdBand) ) {
           disableCommands();
           showStatus();
+          showCommandStatus((char *) "VFO ");
         } else {
           cmdBand = !cmdBand;
           showCommandStatus((char *) "Band");
