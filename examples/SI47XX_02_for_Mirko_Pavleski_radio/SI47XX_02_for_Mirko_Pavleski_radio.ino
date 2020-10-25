@@ -129,7 +129,7 @@ uint16_t currentFrequency;
 
 const uint8_t currentBFOStep = 10;
 
-const char * menu[] = {"<Select>", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BFO"};
+const char * menu[] = {"Seek", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BFO"};
 int8_t menuIdx = 0;
 const int lastMenu = 7;
 int8_t currentMenuCmd = -1;
@@ -495,6 +495,7 @@ void useBand()
     currentMode = FM;
     rx.setTuneFrequencyAntennaCapacitor(0);
     rx.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+    rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     bfoOn = ssbLoaded = false;
   }
   else
@@ -514,6 +515,9 @@ void useBand()
     }
     rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Soft Mute for AM or SSB
     rx.setAutomaticGainControl(disableAgc, agcNdx);
+    rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
+    rx.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10KHz for spacing
+
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
@@ -627,6 +631,7 @@ void doStep(int8_t v)
   currentStep = tabStep[idxStep];
   rx.setFrequencyStep(currentStep);
   band[bandIdx].currentStep = currentStep;
+  rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
   showStep();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
@@ -784,6 +789,8 @@ void doCurrentMenuCmd() {
         showBFO();
       showFrequency();
     default:
+        showStatus();
+        doSeek();
       break;
   }
   currentMenuCmd = -1;
@@ -844,8 +851,6 @@ void loop()
       if (cmdMenu ) {
         currentMenuCmd = menuIdx;
         doCurrentMenuCmd();
-      } else if (countClick > 5)  {
-        doSeek();  
       } else if ( countClick == 1) { // If just one click, you can select the band by rotating the encoder
         if ( (cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | bfoOn | cmdBand) ) {
           disableCommands();
@@ -858,7 +863,7 @@ void loop()
         cmdMenu = !cmdMenu;
         if (cmdMenu) showMenu();
       }
-      delay(150);
+      delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
   }
