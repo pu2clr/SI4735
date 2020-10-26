@@ -188,14 +188,14 @@ Band band[] = {
   {"SW4", SW_BAND_TYPE,  9000, 11000,  9500, 5},
   {"SW5", SW_BAND_TYPE, 11100, 13000, 11900, 5},
   {"SW6", SW_BAND_TYPE, 13000, 14000, 13500, 5},
-  {"20M", SW_BAND_TYPE, 14000, 14000, 14200, 1},  
+  {"20M", SW_BAND_TYPE, 14000, 15000, 14200, 1},  
   {"SW7", SW_BAND_TYPE, 15000, 17000, 15300, 5},
   {"SW8", SW_BAND_TYPE, 17000, 18000, 17500, 5},
-  {"15M", SW_BAND_TYPE, 20000, 21300, 21100, 1},
-  {"SW9", SW_BAND_TYPE, 18000, 22000, 21500, 5},
+  {"15M", SW_BAND_TYPE, 20000, 21400, 21100, 1},
+  {"SW9", SW_BAND_TYPE, 21400, 22800, 21500, 5},
   {"CB ", SW_BAND_TYPE, 26000, 28000, 27500, 1},
   {"10M", SW_BAND_TYPE, 28000, 30000, 28400, 1},
-  {"ALL", SW_BAND_TYPE, 150, 30000, 15000, 1}
+  {"ALL", SW_BAND_TYPE, 150, 30000, 15000, 1}    // All band. LW, MW and SW (from 150Khz to 30MHz)
 }; // Super band: 150KHz to 30MHz
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
@@ -881,7 +881,7 @@ void loop()
   {
     rx.getCurrentReceivedSignalQuality();
     int aux = rx.getCurrentRSSI();
-    if (rssi != aux &&  !(cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | bfoOn) )
+    if (rssi != aux &&  !(cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode) )
     {
       rssi = aux;
       showRSSI();
