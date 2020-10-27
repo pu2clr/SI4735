@@ -8,6 +8,13 @@ If you are using a SI4735-D60 or SI4732-A10 based circuit, you can also use this
 original Pavleski's project. If you are using the original SI4730-D60 based circuit, the SSB will not work. However, the STEP, 
 MODE, AGC, Attenuation, bandwitdth, Soft Mute, Audio Volume and Shortwave will work fine. 
 
+There are two boards very common on eBay and AlliExpress based on SI4730 . 
+
+1) “PL102BA-S V:2.1 10628” based on SI4730-D60 with shortwave support and FM / RDS. 
+   See https://pu2clr.github.io/SI4735/extras/BOARD_PL102BA/ for more details.
+2) “NE928-10A V:01” based on SI4730-B20 without shortwave and FM / RDS. 
+   See https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/ for more details. 
+
 
 Commands
 
