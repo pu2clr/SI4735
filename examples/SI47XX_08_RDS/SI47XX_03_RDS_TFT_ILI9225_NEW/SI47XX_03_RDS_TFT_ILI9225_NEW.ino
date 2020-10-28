@@ -283,6 +283,8 @@ void setup()
   tft.begin();
   tft.setOrientation(1);
   tft.clear();
+  // tft.setBacklightBrightness(128);
+  
   showTemplate();
 
   // Encoder interrupt
