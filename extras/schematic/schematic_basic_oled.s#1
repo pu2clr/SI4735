@@ -4611,39 +4611,39 @@ Mors</description>
 <net name="SDA" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="A5"/>
+<pinref part="U1" gate="A" pin="SDIO"/>
+<wire x1="-53.34" y1="152.4" x2="-25.4" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="-25.4" y1="152.4" x2="-25.4" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="-25.4" y1="134.62" x2="-22.86" y2="134.62" width="0.1524" layer="91"/>
 <pinref part="R4" gate="G$1" pin="2"/>
 <wire x1="-22.86" y1="134.62" x2="-10.16" y2="134.62" width="0.1524" layer="91"/>
 <wire x1="-10.16" y1="134.62" x2="15.24" y2="134.62" width="0.1524" layer="91"/>
 <wire x1="-22.86" y1="127" x2="-22.86" y2="134.62" width="0.1524" layer="91"/>
+<junction x="-22.86" y="134.62"/>
 <wire x1="-10.16" y1="134.62" x2="-10.16" y2="127" width="0.1524" layer="91"/>
 <junction x="-10.16" y="134.62"/>
 <wire x1="-10.16" y1="127" x2="10.16" y2="127" width="0.1524" layer="91"/>
 <pinref part="U$1" gate="G$1" pin="SCL"/>
 <wire x1="10.16" y1="127" x2="10.16" y2="116.84" width="0.1524" layer="91"/>
-<pinref part="U1" gate="A" pin="SCLK"/>
-<wire x1="-53.34" y1="149.86" x2="-22.86" y2="149.86" width="0.1524" layer="91"/>
-<wire x1="-22.86" y1="149.86" x2="-22.86" y2="134.62" width="0.1524" layer="91"/>
-<junction x="-22.86" y="134.62"/>
 </segment>
 </net>
 <net name="N$2" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="A4"/>
+<wire x1="-30.48" y1="137.16" x2="-12.7" y2="137.16" width="0.1524" layer="91"/>
+<pinref part="U1" gate="A" pin="SCLK"/>
 <wire x1="-12.7" y1="137.16" x2="-7.62" y2="137.16" width="0.1524" layer="91"/>
 <wire x1="-7.62" y1="137.16" x2="15.24" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="-53.34" y1="149.86" x2="-30.48" y2="149.86" width="0.1524" layer="91"/>
+<wire x1="-30.48" y1="149.86" x2="-30.48" y2="137.16" width="0.1524" layer="91"/>
 <pinref part="R5" gate="G$1" pin="2"/>
 <wire x1="-12.7" y1="127" x2="-12.7" y2="137.16" width="0.1524" layer="91"/>
+<junction x="-12.7" y="137.16"/>
 <wire x1="-7.62" y1="137.16" x2="-7.62" y2="129.54" width="0.1524" layer="91"/>
 <junction x="-7.62" y="137.16"/>
 <wire x1="-7.62" y1="129.54" x2="12.7" y2="129.54" width="0.1524" layer="91"/>
 <pinref part="U$1" gate="G$1" pin="SDA"/>
 <wire x1="12.7" y1="129.54" x2="12.7" y2="116.84" width="0.1524" layer="91"/>
-<pinref part="U1" gate="A" pin="SDIO"/>
-<wire x1="-53.34" y1="152.4" x2="-17.78" y2="152.4" width="0.1524" layer="91"/>
-<wire x1="-17.78" y1="152.4" x2="-17.78" y2="137.16" width="0.1524" layer="91"/>
-<wire x1="-17.78" y1="137.16" x2="-12.7" y2="137.16" width="0.1524" layer="91"/>
-<junction x="-12.7" y="137.16"/>
-<wire x1="-12.7" y1="137.16" x2="-7.62" y2="137.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VCC" class="0">

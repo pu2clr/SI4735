@@ -1119,6 +1119,7 @@ Here you can see some experiments using this library. Watch them.
 * [Great interface by Gert Baak](https://youtu.be/hRHSzFr_lQE)
 * [Arduino All band radio with SI4735 by Gert PE0MGB](https://www.pi4raz.nl/razzies/razzies202009.pdf)
 * [si4735 betatest radio](https://youtu.be/Gkh1zHn8NgE)
+* [Dual Conversion HF Receiver Silabs Si4732/Si4735 and Si5351](https://lu7ads.blogspot.com/?fbclid=IwAR0TNxYh9SkS5T7RA_0mm2rZs4ycP7e0Y-SH6ORsT5Uj0C0wFKSEg6Gqd20)
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
