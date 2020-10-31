@@ -167,7 +167,7 @@ Band band[] = {
   {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
   {"LW ", LW_BAND_TYPE, 100, 510, 300, 1},
   {"AM ", MW_BAND_TYPE, 520, 1720, 810, 10},
-  {"80m", SW_BAND_TYPE, 3000, 4500, 3700, 1}, // 80 meters - 160 meters
+  {"80m", SW_BAND_TYPE, 3000, 4500, 3700, 1}, // 80 meters 
   {"60m", SW_BAND_TYPE, 4500, 6300, 6000, 5}, //
   {"41m", SW_BAND_TYPE, 6800, 7800, 7100, 5}, // 40 meters
   {"31m", SW_BAND_TYPE, 9200, 10000, 9600, 5},
