@@ -165,18 +165,26 @@ typedef struct
    Only the default frequency and step is changed. You can change this setup.
 */
 Band band[] = {
-  {"F ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
-  {"A ", MW_BAND_TYPE, 150, 1720, 810, 10},
-  {"S1", SW_BAND_TYPE, 150, 30000, 7100, 1}, // Here and below: 150KHz to 30MHz
-  {"S2", SW_BAND_TYPE, 150, 30000, 9600, 5},
-  {"S3", SW_BAND_TYPE, 150, 30000, 11940, 5},
-  {"S4", SW_BAND_TYPE, 150, 30000, 13600, 5},
-  {"S5", SW_BAND_TYPE, 150, 30000, 14200, 1},
-  {"S6", SW_BAND_TYPE, 150, 30000, 15300, 5},
-  {"S7", SW_BAND_TYPE, 150, 30000, 17600, 5},
-  {"S8", SW_BAND_TYPE, 150, 30000, 21100, 1},
-  {"S9", SW_BAND_TYPE, 150, 30000, 28400, 1}
-};
+    {"FM  ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
+    {"AM  ", MW_BAND_TYPE, 150, 1720, 810, 10},
+    {"S-0 ", SW_BAND_TYPE, 1700, 3000, 2500, 5},
+    {"H80 ", SW_BAND_TYPE, 3500, 4000, 3600, 1},
+    {"S-1 ", SW_BAND_TYPE, 4000, 5500, 4885, 5},
+    {"S-2 ", SW_BAND_TYPE, 5500, 7000, 6100, 5},
+    {"H40 ", SW_BAND_TYPE, 7000, 7200, 7100, 1},
+    {"S-3 ", SW_BAND_TYPE, 7200, 8000, 7205, 5},
+    {"S-4 ", SW_BAND_TYPE, 8000, 10500, 9600, 5},
+    {"S-5 ", SW_BAND_TYPE, 10500, 13000, 11940, 5},
+    {"S-6 ", SW_BAND_TYPE, 13000, 14000, 13600, 5},
+    {"H20 ", SW_BAND_TYPE, 14000, 15000, 14200, 1},
+    {"S-7 ", SW_BAND_TYPE, 15000, 17000, 15300, 5},
+    {"S-8 ", SW_BAND_TYPE, 17000, 19000, 17600, 5},
+    {"H15 ", SW_BAND_TYPE, 20000, 22000, 21525, 1},
+    {"S-9 ", SW_BAND_TYPE, 21000, 22000, 21525, 5},
+    {"CB  ", SW_BAND_TYPE, 26000, 28000, 27500, 1},
+    {"H10 ", SW_BAND_TYPE, 28000, 30000, 28400, 1},
+    {"ALL1", SW_BAND_TYPE, 150, 30000, 21100, 1},
+    {"ALL2", SW_BAND_TYPE, 150, 30000, 28400, 1}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
@@ -484,6 +492,15 @@ void showBFO()
 }
 
 
+/** 
+ * Show the current band name on display
+ * 
+ */
+
+void showBand() {
+  tm.displayText(band[bandIdx].bandName);
+}
+
 /**
  * Show cmd on display. It means you are setting up something.  
  */
@@ -505,6 +522,7 @@ void setBand(int8_t up_down)
   else
     bandIdx = (bandIdx > 0) ? (bandIdx - 1) : lastBand;
   useBand();
+  showBand();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
@@ -831,7 +849,7 @@ void loop()
     else if (tm_button == AUDIO_VOLUME)
       prepareCommand(&cmdVolume, showVolume);
     else if (tm_button == BAND_BUTTON)
-      prepareCommand(&cmdBand, NULL);
+      prepareCommand(&cmdBand, showBand);
     else if (tm_button == AGC_SWITCH )
       prepareCommand(&cmdAgc, showAgcAtt);
     else if (tm_button ==  STEP_SWITCH)

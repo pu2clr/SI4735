@@ -52,10 +52,11 @@ The current frequency is show on the the five digits to the right of the display
 Press the desired command  push button (S1, S2, S3 etc) and after, rotate the encoder to select the option you want. 
 
 For example: To switch the band, press the band button (S1) and then rotate the encoder clockwise or counterclockwise.
-
 To switch the mode (AM, LSB or USB), press mode button (S2) and then rotate the encoder.
 
 The same idea you can use to configure AGC/Attenuation, banddwith, STEP , Volume and Soft Mute
+
+After finishing a given setup, you can wait for 2.5 seconds or press the command button again to back the control to VFO.
 
 Tip: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time.
      If you do that, you might alternate the command status (enable and disable) randomly.
