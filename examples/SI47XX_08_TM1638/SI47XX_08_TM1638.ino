@@ -112,6 +112,8 @@ volatile int encoderCount = 0;
 // Some variables to check the SI4735 status
 uint16_t currentFrequency;
 
+bool commandDisabledByUser = false;
+
 uint8_t currentBFOStep = 10;
 
 typedef struct
@@ -241,9 +243,19 @@ void disableCommands()
   cmdMode = false;
   cmdSoftMuteMaxAtt = false;
 
+  commandDisabledByUser = false;
+
   tm.setLED(1, 0);  // Turn off the command LED indicator
   
 }
+
+/**
+ * Checks if the system is in command condition
+ */
+inline bool isCommand() {
+  return (cmdBand | cmdSoftMuteMaxAtt | cmdMode | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | bfoOn);
+}
+
 
 /**
     Shows the static content on  display
@@ -281,12 +293,10 @@ void rotaryEncoder()
 */
 void showFrequency()
 {
-  uint16_t color;
   char bufferDisplay[15];
   char tmp[15];
 
   // It is better than use dtostrf or String to save space.
-
   sprintf(tmp, "%5.5u", currentFrequency);
 
   bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
@@ -382,9 +392,7 @@ void showRSSI()
 {
   uint8_t rssiAux;
 
-  if ( cmdBand | cmdVolume | cmdAgc | cmdBandwidth | cmdStep | cmdMode | cmdSoftMuteMaxAtt | bfoOn ) return;
-
-
+  if (isCommand() ) return; // do not show the RSSI during command status
 
   if (currentMode == FM)
   {
@@ -673,31 +681,45 @@ void doStep(int8_t v)
 */
 void doMode(int8_t v)
 {
-
   if (currentMode != FM)
   {
-    if (currentMode == AM)
-    {
-      // If you were in AM mode, it is necessary to load SSB patch (avery time)
-      loadSSB();
-      currentMode = LSB;
+    if (v == 1)
+    { // clockwise
+      if (currentMode == AM)
+      {
+        // If you were in AM mode, it is necessary to load SSB patch (avery time)
+        loadSSB();
+        currentMode = LSB;
+      }
+      else if (currentMode == LSB)
+        currentMode = USB;
+      else if (currentMode == USB)
+      {
+        currentMode = AM;
+        bfoOn = ssbLoaded = false;
+      }
     }
-    else if (currentMode == LSB)
-    {
-      currentMode = USB;
-    }
-    else if (currentMode == USB)
-    {
-      currentMode = AM;
-      bfoOn = ssbLoaded = false;
+    else
+    { // and counterclockwise
+      if (currentMode == AM)
+      {
+        // If you were in AM mode, it is necessary to load SSB patch (avery time)
+        loadSSB();
+        currentMode = USB;
+      }
+      else if (currentMode == USB)
+        currentMode = LSB;
+      else if (currentMode == LSB)
+      {
+        currentMode = AM;
+        bfoOn = ssbLoaded = false;
+      }
     }
     // Nothing to do if you are in FM mode
     band[bandIdx].currentFreq = currentFrequency;
     band[bandIdx].currentStep = currentStep;
     useBand();
   }
-
-  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
 
@@ -740,7 +762,20 @@ void doSoftMute( int8_t v )  {
   elapsedCommand = millis();
 }
 
+/**
+ * Prepares to call process command
+ */
+void prepareCommand(bool *b, void (*showFunc)())
+{
+  *b = !*b;
+  commandDisabledByUser = (*b) ? false : true;
+  showCommandStatus(cmdBand);
+  if ( showFunc != NULL)
+    showFunc();
 
+  delay(MIN_ELAPSED_TIME);
+  elapsedCommand = millis();
+}
 
 void loop()
 {
@@ -787,74 +822,34 @@ void loop()
     encoderCount = 0;
     // elapsedRSSI = elapsedCommand = millis();
   }
-  else
+  else // checks actions from buttons
   {
     uint8_t tm_button = tm.readButtons();
-
     delay(50);
-
     if (tm_button == BANDWIDTH_BUTTON)
-    {
-      cmdBandwidth = !cmdBandwidth;
-      showCommandStatus(cmdBandwidth);
-      showBandwitdth();
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    } else if (tm_button == AUDIO_VOLUME) {
-      cmdVolume = !cmdVolume;
-      showCommandStatus(cmdVolume);
-      showVolume();
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
+      prepareCommand(&cmdBandwidth, showBandwitdth);
+    else if (tm_button == AUDIO_VOLUME)
+      prepareCommand(&cmdVolume, showVolume);
     else if (tm_button == BAND_BUTTON)
-    {
-      cmdBand = !cmdBand;
-      showCommandStatus(cmdBand);
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
+      prepareCommand(&cmdBand, NULL);
+    else if (tm_button == AGC_SWITCH )
+      prepareCommand(&cmdAgc, showAgcAtt);
+    else if (tm_button ==  STEP_SWITCH)
+      prepareCommand(&cmdStep,showStep);
+    else if (tm_button == MODE_SWITCH)
+      prepareCommand(&cmdMode, NULL);
+    else if ( tm_button == SOFT_MUTE) 
+      prepareCommand(&cmdSoftMuteMaxAtt, showSoftMute);
     else if (tm_button == SEEK_BUTTON)
-    {
       doSeek();
-    }
     else if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
     {
       bfoOn = !bfoOn;
+      commandDisabledByUser = (bfoOn) ? false : true;
       if ((currentMode == LSB || currentMode == USB))
-        showBFO();
-
+         showBFO();
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
-    }
-    else if (tm_button == AGC_SWITCH )
-    {
-      cmdAgc = !cmdAgc;
-      showCommandStatus(cmdAgc);
-      showAgcAtt();
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (tm_button ==  STEP_SWITCH)
-    {
-      cmdStep = !cmdStep;
-      showCommandStatus(cmdStep);
-      showStep();
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (tm_button == MODE_SWITCH)
-    {
-      cmdMode = !cmdMode;
-      showCommandStatus(cmdMode);
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    } else if ( tm_button == SOFT_MUTE) {
-      cmdSoftMuteMaxAtt = !cmdSoftMuteMaxAtt;
-      showCommandStatus(cmdSoftMuteMaxAtt);
-      showSoftMute();
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();       
     }
   }
 
@@ -873,13 +868,10 @@ void loop()
   }
 
   // Disable commands control
-  if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
+  if ((millis() - elapsedCommand) > ELAPSED_COMMAND && isCommand() || commandDisabledByUser)
   {
     if ((currentMode == LSB || currentMode == USB))
-    {
       bfoOn = false;
-      // showBFO();
-    }
     showFrequency();
     disableCommands();
     elapsedCommand = millis();

@@ -1,6 +1,6 @@
 {
-    "board": "arduino:avr:nano",
+    "board": "arduino:avr:pro",
     "port": "/dev/tty.usbserial-A50285BI",
-    "sketch": "examples/SI47XX_02_for_Mirko_Pavleski_radio/SI47XX_02_for_Mirko_Pavleski_radio.ino",
-    "configuration": "cpu=atmega328old"
+    "sketch": "examples/SI47XX_08_TM1638/SI47XX_08_TM1638.ino",
+    "configuration": "cpu=8MHzatmega328"
 }
