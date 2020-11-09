@@ -78,3 +78,25 @@ It is importante to say the this action work only on SSB mode.
 
 ![TM1638 Protoboard 02](../../extras/images/TM1638_00.png)
 
+
+## Wire up on Arduino UNO, Pro mini and SI4735-D60
+
+
+  | Device name      | Device Pin / Description |  Arduino Pin  |
+  | ---------------- | -------------------------| ------------  |
+  |    TM1638        |                          |               |
+  |                  | STB                      |    4          |
+  |                  | CLK                      |    7          |
+  |                  | DIO                      |    8          |
+  |                  | VCC                      |    3.3V       |
+  |                  | GND                      |    GND        |
+  |    Si4735        |                          |               |
+  |                  | RESET (pin 15)           |     12        |
+  |                  | SDIO (pin 18)            |     A4        |
+  |                  | SCLK (pin 17)            |     A5        |
+  |                  | SEN (pin 16)             |    GND        |
+  |    Encoder       |                          |               |
+  |                  | A                        |       2       |
+  |                  | B                        |       3       |
+  |                  | Encoder button           |      A0       |
+
