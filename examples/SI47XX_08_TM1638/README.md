@@ -74,8 +74,6 @@ To control the VFO and BFO, used the encoder push button. The display will show 
 It is importante to say the this action work only on SSB mode.
 
 
-
-
 ![TM1638 Protoboard 02](../../extras/images/TM1638_00.png)
 
 
