@@ -13,7 +13,7 @@
 | ----------- | ----------------- |
 | S1          | Band switch button |
 | S2          | Mode FM/AM/SSB |
-| S3          | Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz |
+| S3          | Used to select the banddwith |
 | S4          | Seek |  
 | S5          | Switch AGC ON/OF |
 | S6          | Increment or decrement frequency step (1, 5 or 10 KHz) |
