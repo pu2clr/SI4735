@@ -21,7 +21,8 @@
 | S8          | External AUDIO MUTE circuit control |
 | Encoder     | VFO/BFO switch |
 
-### LEDS
+### LED
+
 | LED         | Status            |
 | ----------- | ----------------- |
 | LED1        | FM mono or stereo |
