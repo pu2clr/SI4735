@@ -67,7 +67,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define AGC_SWITCH  16      // S5 Switch AGC ON/OF
 #define STEP_SWITCH 32      // S6 Increment or decrement frequency step (1, 5 or 10 KHz)
 #define AUDIO_VOLUME 64     // S7 Volume Control
-#define AUDIO_MUTRE 128     // S8 External AUDIO MUTE circuit control
+#define SOFT_MUTE 128       // S8 External AUDIO MUTE circuit control
 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 150
@@ -97,6 +97,7 @@ bool cmdAgc = false;
 bool cmdBandwidth = false;
 bool cmdStep = false;
 bool cmdMode = false;
+bool cmdSoftMuteMaxAtt = false;
 
 int currentBFO = 0;
 uint8_t seekDirection = 1; // Tells the SEEK direction (botton or upper limit)
@@ -187,6 +188,10 @@ uint8_t snr = 0;
 uint8_t stereo = 1;
 uint8_t volume = DEFAULT_VOLUME;
 
+
+int8_t softMuteMaxAttIdx = 8;
+
+
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
@@ -201,6 +206,7 @@ void setup()
 
   tm.reset();
   showSplash();
+  
 
   // uncomment the line below if you have external audio mute circuit
   // rx.setAudioMuteMcuPin(AUDIO_VOLUME);
@@ -233,6 +239,7 @@ void disableCommands()
   cmdBandwidth = false;
   cmdStep = false;
   cmdMode = false;
+  cmdSoftMuteMaxAtt = false;
 
   tm.setLED(1, 0);  // Turn off the command LED indicator
   
@@ -251,6 +258,9 @@ void showSplash()
     tm.setLED(i, 0);
     delay(200);
   }
+  
+  delay(1000);
+  tm.reset();
 
 }
 
@@ -305,11 +315,22 @@ void showFrequency()
   }
   bufferDisplay[5] = '\0';
 
-  sprintf(tmp, "%s %s", band[bandIdx].bandName,bufferDisplay);
-  
-  tm.displayText(tmp);
+     
+  for (int i = 3; i < 8; i++ )
+     tm.displayASCII(i,bufferDisplay[i-3]);
+
 
 }
+
+
+void showMode() {
+    for (int i = 4; i < 8; i++ ) {
+       tm.setLED (i, (i - 4) == currentMode);
+    }
+}
+
+
+
 
 /**
     This function is called by the seek function process.
@@ -325,18 +346,9 @@ void showFrequencySeek(uint16_t freq)
 */
 void showStatus()
 {
-
+  tm.reset();
   showFrequency();
-  if (rx.isCurrentTuneFM())
-  {
-
-  }
-  else
-  {
-
-  }
-
-  // showBandwitdth();
+  showMode();
 }
 
 /**
@@ -368,11 +380,11 @@ void showBandwitdth()
 */
 void showRSSI()
 {
-  int rssiLevel;
   uint8_t rssiAux;
-  int snrLevel;
-  char sSt[10];
-  char sRssi[7];
+
+  if ( cmdBand | cmdVolume | cmdAgc | cmdBandwidth | cmdStep | cmdMode | cmdSoftMuteMaxAtt | bfoOn ) return;
+
+
 
   if (currentMode == FM)
   {
@@ -395,9 +407,12 @@ void showRSSI()
   else if (rssi >= 50)
     rssiAux = 9;
 
-  for ( int i = 2; i < 8; i++ ) {
-     tm.setLED(i, (rssiAux >= (i + 2)) );  
-  }
+  tm.displayASCII(0, ' ');
+  tm.displayASCII(1, ' ');
+  tm.displayASCII(2, ' ');
+
+  tm.displayASCII(0, 'S');
+  tm.displayHex(1, rssiAux);
 
 }
 
@@ -438,14 +453,25 @@ void showVolume()
   tm.displayText(volAux);
 }
 
+
+/*
+ * shows Soft Mute
+ */
+void showSoftMute()
+{
+  char sMute[15];
+  sprintf(sMute, "SM %2d", softMuteMaxAttIdx);
+  tm.displayText(sMute);
+}
+
 /**
    Shows the current BFO value
 */
 void showBFO()
 {
-  // sprintf(bufferDisplay, "%+4d", currentBFO);
-  // printValue(128, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN, 1);
-  // showFrequency();
+  char bufferDisplay[15];
+  sprintf(bufferDisplay, "BFO %4d", currentBFO);
+  tm.displayText(bufferDisplay);
   elapsedCommand = millis();
 }
 
@@ -532,7 +558,7 @@ void useBand()
       rx.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       bfoOn = false;
     }
-    rx.setAmSoftMuteMaxAttenuation(0); // Disable Soft Mute for AM or SSB
+    rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for AM or SSB
     rx.setAutomaticGainControl(disableAgc, agcNdx);
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
     rx.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10KHz for spacing
@@ -685,7 +711,6 @@ void doSeek()
 }
 
 
-
 /**
  * Sets the audio volume
  */
@@ -699,6 +724,22 @@ void doVolume( int8_t v ) {
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
+
+
+
+void doSoftMute( int8_t v )  {
+  
+  softMuteMaxAttIdx = (v == 1) ? softMuteMaxAttIdx + 1 : softMuteMaxAttIdx - 1;
+  if (softMuteMaxAttIdx > 32)
+    softMuteMaxAttIdx = 0;
+  else if (softMuteMaxAttIdx < 0)
+    softMuteMaxAttIdx = 32;
+
+  rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx);
+  showSoftMute();
+  elapsedCommand = millis();
+}
+
 
 
 void loop()
@@ -725,6 +766,8 @@ void loop()
       doVolume(encoderCount);      
     else if (cmdBand)
       setBand(encoderCount);
+    else if (cmdSoftMuteMaxAtt)
+      doSoftMute(encoderCount);      
     else
     {
       if (encoderCount == 1)
@@ -742,13 +785,13 @@ void loop()
       showFrequency();
     }
     encoderCount = 0;
+    // elapsedRSSI = elapsedCommand = millis();
   }
   else
   {
     uint8_t tm_button = tm.readButtons();
 
     delay(50);
-    // tm.displayHex(7, tm_button);
 
     if (tm_button == BANDWIDTH_BUTTON)
     {
@@ -781,13 +824,14 @@ void loop()
       if ((currentMode == LSB || currentMode == USB))
         showBFO();
 
-      showFrequency();
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
     else if (tm_button == AGC_SWITCH )
     {
       cmdAgc = !cmdAgc;
+      showCommandStatus(cmdAgc);
+      showAgcAtt();
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
@@ -805,6 +849,12 @@ void loop()
       showCommandStatus(cmdMode);
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
+    } else if ( tm_button == SOFT_MUTE) {
+      cmdSoftMuteMaxAtt = !cmdSoftMuteMaxAtt;
+      showCommandStatus(cmdSoftMuteMaxAtt);
+      showSoftMute();
+      delay(MIN_ELAPSED_TIME);
+      elapsedCommand = millis();       
     }
   }
 
@@ -828,7 +878,7 @@ void loop()
     if ((currentMode == LSB || currentMode == USB))
     {
       bfoOn = false;
-      showBFO();
+      // showBFO();
     }
     showFrequency();
     disableCommands();
