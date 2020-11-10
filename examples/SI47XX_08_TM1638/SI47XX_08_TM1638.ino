@@ -167,20 +167,20 @@ typedef struct
 Band band[] = {
     {"FM  ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
     {"AM  ", MW_BAND_TYPE, 150, 1720, 810, 10},
-    {"S-0 ", SW_BAND_TYPE, 1700, 3000, 2500, 5},
+    {"180 ", SW_BAND_TYPE, 1700, 3000, 2500, 5},
     {"H80 ", SW_BAND_TYPE, 3500, 4000, 3600, 1},
-    {"S-1 ", SW_BAND_TYPE, 4000, 5500, 4885, 5},
-    {"S-2 ", SW_BAND_TYPE, 5500, 7000, 6100, 5},
+    {"60  ", SW_BAND_TYPE, 4000, 5500, 4885, 5},
+    {"49  ", SW_BAND_TYPE, 5500, 7000, 6100, 5},
     {"H40 ", SW_BAND_TYPE, 7000, 7200, 7100, 1},
-    {"S-3 ", SW_BAND_TYPE, 7200, 8000, 7205, 5},
-    {"S-4 ", SW_BAND_TYPE, 8000, 10500, 9600, 5},
-    {"S-5 ", SW_BAND_TYPE, 10500, 13000, 11940, 5},
-    {"S-6 ", SW_BAND_TYPE, 13000, 14000, 13600, 5},
+    {"41  ", SW_BAND_TYPE, 7200, 8000, 7205, 5},
+    {"31  ", SW_BAND_TYPE, 8000, 10500, 9600, 5},
+    {"25  ", SW_BAND_TYPE, 10500, 13000, 11940, 5},
+    {"22  ", SW_BAND_TYPE, 13000, 14000, 13600, 5},
     {"H20 ", SW_BAND_TYPE, 14000, 15000, 14200, 1},
-    {"S-7 ", SW_BAND_TYPE, 15000, 17000, 15300, 5},
-    {"S-8 ", SW_BAND_TYPE, 17000, 19000, 17600, 5},
+    {"19  ", SW_BAND_TYPE, 15000, 17000, 15300, 5},
+    {"16  ", SW_BAND_TYPE, 17000, 19000, 17600, 5},
     {"H15 ", SW_BAND_TYPE, 20000, 22000, 21525, 1},
-    {"S-9 ", SW_BAND_TYPE, 21000, 22000, 21525, 5},
+    {"13  ", SW_BAND_TYPE, 21000, 22000, 21525, 5},
     {"CB  ", SW_BAND_TYPE, 26000, 28000, 27500, 1},
     {"H10 ", SW_BAND_TYPE, 28000, 30000, 28400, 1},
     {"ALL1", SW_BAND_TYPE, 150, 30000, 21100, 1},
@@ -282,6 +282,13 @@ void showSplash()
   delay(1000);
   tm.reset();
 
+}
+
+
+void clearStatusDisplay() {
+  tm.displayASCII(0, ' ');
+  tm.displayASCII(1, ' ');
+  tm.displayASCII(2, ' ');
 }
 
 /**
@@ -423,9 +430,7 @@ void showRSSI()
   else if (rssi >= 50)
     rssiAux = 9;
 
-  tm.displayASCII(0, ' ');
-  tm.displayASCII(1, ' ');
-  tm.displayASCII(2, ' ');
+  clearStatusDisplay();
 
   tm.displayASCII(0, 'S');
   tm.displayHex(1, rssiAux);
@@ -781,11 +786,13 @@ void doSoftMute( int8_t v )  {
 }
 
 /**
- * Prepares to call process command
+ * Prepares the system to process the desired current command
  */
 void prepareCommand(bool *b, void (*showFunc)())
 {
-  *b = !*b;
+  bool tmp = *b;
+  disableCommands(); // Disable previous command if active.
+  *b = !tmp;
   commandDisabledByUser = (*b) ? false : true;
   showCommandStatus(cmdBand);
   if ( showFunc != NULL)
@@ -892,6 +899,7 @@ void loop()
       bfoOn = false;
     showFrequency();
     disableCommands();
+    clearStatusDisplay();
     elapsedCommand = millis();
   }
   delay(1);
