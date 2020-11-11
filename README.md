@@ -844,8 +844,6 @@ The SI47XX devices have about 0,7 V DC  (DC bias) component in the analog audio
 
 The schematic below shows this approach.
 
-![Mute circuit](./extras/images/mute_circuit_schematic.png)
-
 <BR>
 
 ![Mute circuit](./extras/images/mute_circuit_eagle.png)
