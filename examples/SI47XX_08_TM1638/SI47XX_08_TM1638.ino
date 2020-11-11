@@ -1,11 +1,9 @@
 /*
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a TM1638 7 segments display and controls
-
   Features:   AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
 
   Wire up on Arduino UNO, Pro mini and SI4735-D60
-
   | Device name               | Device Pin / Description      |  Arduino Pin  |
   | ----------------          | ----------------------------- | ------------  |
   |    TM1638                 |                               |               |
@@ -24,13 +22,10 @@
   |                           | B                             |       3       |
   |                           | Encoder button                |      A0       |
 
-
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
   Jim Reagan's schematic: https://github.com/JimReagans/Si4735-radio-PCB-s-and-bandpass-filter
-
   By PU2CLR, Ricardo; and W09CHL, Jim Reagan;  Sep  2020.
-
 */
 
 #include <TM1638lite.h>
@@ -38,7 +33,6 @@
 
 #include "Rotary.h"
 
-// Test it with patch_init.h or patch_full.h. Do not try load both.
 #include "patch_init.h" // SSB patch for whole SSBRX initialization string
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
@@ -80,9 +74,6 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define AM 3
 #define LW 4
 
-#define SSB 1
-#define CLEAR_BUFFER(x) (x[0] = '\0');
-
 bool bfoOn = false;
 bool ssbLoaded = false;
 
@@ -101,7 +92,6 @@ bool cmdSoftMuteMaxAtt = false;
 
 int currentBFO = 0;
 uint8_t seekDirection = 1; // Tells the SEEK direction (botton or upper limit)
-
 long elapsedRSSI = millis();
 long elapsedButton = millis();
 long elapsedCommand = millis();
@@ -111,9 +101,7 @@ volatile int encoderCount = 0;
 
 // Some variables to check the SI4735 status
 uint16_t currentFrequency;
-
 bool commandDisabledByUser = false;
-
 uint8_t currentBFOStep = 10;
 
 typedef struct
@@ -123,13 +111,14 @@ typedef struct
 } Bandwitdth;
 
 int8_t bwIdxSSB = 4;
-Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  // 0
-  {5, "1.0"},  // 1
-  {0, "1.2"},  // 2
-  {1, "2.2"},  // 3
-  {2, "3.0"},  // 4
-  {3, "4.0"}
-}; // 5
+Bandwitdth bandwitdthSSB[] = {
+    {4, "0.5"}, // 0
+    {5, "1.0"}, // 1
+    {0, "1.2"}, // 2
+    {1, "2.2"}, // 3
+    {2, "3.0"}, // 4
+    {3, "4.0"}  // 5
+};
 
 int8_t bwIdxAM = 4;
 Bandwitdth bandwitdthAM[] = {{4, "1.0"},
@@ -141,14 +130,12 @@ Bandwitdth bandwitdthAM[] = {{4, "1.0"},
   {0, "6.0"}
 };
 
-const char *bandModeDesc[] = {"   ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
-
 uint16_t currentStep = 1;
 
-/*
-   Band data structure
-*/
+/**
+ *  Band data structure
+ */
 typedef struct
 {
   const char *bandName; // Band description
@@ -160,10 +147,9 @@ typedef struct
 } Band;
 
 /*
-   Band table
-   Actually, except FM (VHF), the other bands cover the entire LW / MW and SW spectrum.
-   Only the default frequency and step is changed. You can change this setup.
-*/
+ *  Band table. Actually, except FM (VHF), the other bands cover the entire LW / MW and SW spectrum.
+ *  Only the default frequency and step is changed. You can change this setup.
+ */
 Band band[] = {
     {"FM  ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
     {"AM  ", MW_BAND_TYPE, 150, 1720, 810, 10},
@@ -196,39 +182,26 @@ int idxStep = 0;
 uint8_t rssi = 0;
 uint8_t stereo = 1;
 uint8_t volume = DEFAULT_VOLUME;
-
-
 int8_t softMuteMaxAttIdx = 8;
-
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
-
 TM1638lite tm(TM1638_STB, TM1638_CLK, TM1638_DIO);
-
 SI4735 rx;
 
 void setup()
 {
-
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
-
   tm.reset();
   showSplash();
-  
-
   // uncomment the line below if you have external audio mute circuit
   // rx.setAudioMuteMcuPin(AUDIO_VOLUME);
-
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
-  
   rx.setI2CFastMode(); // Set I2C bus speed.
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
-
   rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
-
   delay(400);
   useBand();
   rx.setVolume(volume);
@@ -236,9 +209,8 @@ void setup()
 }
 
 /**
-    Set all command flags to false
-    When all flags are disabled (false), the encoder controls the frequency
-*/
+ * Set all command flags to false. When all flags are disabled (false), the encoder controls the frequency
+ */
 void disableCommands()
 {
   cmdBand = false;
@@ -249,11 +221,8 @@ void disableCommands()
   cmdStep = false;
   cmdMode = false;
   cmdSoftMuteMaxAtt = false;
-
   commandDisabledByUser = false;
-
   tm.setLED(1, 0);  // Turn off the command LED indicator
-  
 }
 
 /**
@@ -263,10 +232,9 @@ inline bool isCommand() {
   return (cmdBand | cmdSoftMuteMaxAtt | cmdMode | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | bfoOn);
 }
 
-
 /**
-    Shows the static content on  display
-*/
+ * Shows the static content on  display
+ */
 void showSplash()
 {
   const char *s7= "-SI4735-";
@@ -277,13 +245,13 @@ void showSplash()
     tm.setLED(i, 0);
     delay(200);
   }
-  
   delay(1000);
   tm.reset();
-
 }
 
-
+/**
+ * Clear the first three 7 seg. display 
+ */
 void clearStatusDisplay() {
   tm.displayASCII(0, ' ');
   tm.displayASCII(1, ' ');
@@ -291,28 +259,24 @@ void clearStatusDisplay() {
 }
 
 /**
-     Reads encoder via interrupt
-     Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
-*/
+ * Reads encoder via interrupt. It uses Rotary.h and Rotary.cpp
+ */
 void rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
-
   if (encoderStatus)
     encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
 }
 
 /**
-    Shows frequency information on Display
-*/
+ * Shows frequency information on Display
+ */
 void showFrequency()
 {
   char bufferDisplay[15];
   char tmp[15];
-
   // It is better than use dtostrf or String to save space.
   sprintf(tmp, "%5.5u", currentFrequency);
-
   bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
   bufferDisplay[1] = tmp[1];
   if (rx.isCurrentTuneFM())
@@ -338,27 +302,22 @@ void showFrequency()
     }
   }
   bufferDisplay[5] = '\0';
-
-     
   for (int i = 3; i < 8; i++ )
      tm.displayASCII(i,bufferDisplay[i-3]);
-
-
 }
 
-
+/**
+ * Shows the current mode (Actually it turns on the FM, LSB, USB or AM LED)
+ */
 void showMode() {
     for (int i = 4; i < 8; i++ ) {
        tm.setLED (i, (i - 4) == currentMode);
     }
 }
 
-
-
-
 /**
-    This function is called by the seek function process.
-*/
+ * This function is called by the seek function process.
+ */
 void showFrequencySeek(uint16_t freq)
 {
   currentFrequency = freq;
@@ -366,8 +325,8 @@ void showFrequencySeek(uint16_t freq)
 }
 
 /**
-     Show some basic information on display
-*/
+ * Show some basic information on display
+ */
 void showStatus()
 {
   tm.reset();
@@ -376,8 +335,8 @@ void showStatus()
 }
 
 /**
-   Shows the current Bandwitdth status
-*/
+ *  Shows the current Bandwitdth status
+ */
 void showBandwitdth()
 {
   char bufferDisplay[15];
@@ -400,22 +359,18 @@ void showBandwitdth()
 }
 
 /**
-    Shows the current RSSI and SNR status
-*/
+ *   Shows the current RSSI and SNR status
+ */
 void showRSSI()
 {
   uint8_t rssiAux;
-
   if (isCommand() ) return; // do not show the RSSI during command status
-
   if (currentMode == FM)
   {
     tm.setLED (0, rx.getCurrentPilot()); // Indicates Stereo or Mono 
   }
-
   // It needs to be calibrated. You can do it better.
   // RSSI: 0 to 127 dBuV
-
   if (rssi < 2)
     rssiAux = 4;
   else if (rssi < 4)
@@ -433,12 +388,11 @@ void showRSSI()
 
   tm.displayASCII(0, 'S');
   tm.displayHex(1, rssiAux);
-
 }
 
 /**
-    Shows the current AGC and Attenuation status
-*/
+ * Shows the current AGC and Attenuation status
+ */
 void showAgcAtt()
 {
   char sAgc[10];
@@ -449,12 +403,11 @@ void showAgcAtt()
     sprintf(sAgc, "ATT %2d", agcNdx);
 
   tm.displayText(sAgc);
-
 }
 
 /**
-    Shows the current step
-*/
+ * Shows the current step
+ */
 void showStep()
 {
   char sStep[15];
@@ -462,9 +415,8 @@ void showStep()
   tm.displayText(sStep);
 }
 
-
-/*
- *  Shows the volume level on LCD
+/**
+ *  Shows the current audio volume level 
  */
 void showVolume()
 {
@@ -473,9 +425,8 @@ void showVolume()
   tm.displayText(volAux);
 }
 
-
-/*
- * shows Soft Mute
+/**
+ * Shows the current Soft Mute Attenuation
  */
 void showSoftMute()
 {
@@ -485,8 +436,8 @@ void showSoftMute()
 }
 
 /**
-   Shows the current BFO value
-*/
+ * Shows the current BFO value
+ */
 void showBFO()
 {
   char bufferDisplay[15];
@@ -495,12 +446,9 @@ void showBFO()
   elapsedCommand = millis();
 }
 
-
 /** 
  * Show the current band name on display
- * 
  */
-
 void showBand() {
   tm.displayText(band[bandIdx].bandName);
 }
@@ -513,10 +461,9 @@ inline void showCommandStatus(uint8_t v)
   tm.setLED(1,v);
 }
 
-
 /**
-    Sets Band up (1) or down (!1)
-*/
+ * Sets Band up (1) or down (!1)
+ */
 void setBand(int8_t up_down)
 {
   band[bandIdx].currentFreq = currentFrequency;
@@ -532,10 +479,9 @@ void setBand(int8_t up_down)
 }
 
 /**
-    This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
-    SSB mode.
-    See also loadPatch implementation in the SI4735 Arduino Library (SI4735.h/SI4735.cpp)
-*/
+ *   This function loads the contents of the ssb_patch_content array into the CI (Si4735). 
+ *   See also loadPatch implementation in the SI4735 Arduino Library (SI4735.h/SI4735.cpp)
+ */
 void loadSSB()
 {
   tm.displayText("SSB...");
@@ -547,7 +493,6 @@ void loadSSB()
   // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
   rx.downloadPatch(ssb_patch_content, size_content);
   rx.setI2CStandardMode(); // goes back to default (100KHz)
-
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
@@ -561,8 +506,8 @@ void loadSSB()
 }
 
 /**
-    Switch the radio to current band
-*/
+ * Switch the radio to current band
+ */
 void useBand()
 {
   if (band[bandIdx].bandType == FM_BAND_TYPE)
@@ -604,8 +549,8 @@ void useBand()
 }
 
 /**
-    Switches the Bandwidth
-*/
+ *   Switches the Bandwidth
+ */
 void doBandwidth(int8_t v)
 {
   if (currentMode == LSB || currentMode == USB)
@@ -641,11 +586,10 @@ void doBandwidth(int8_t v)
 }
 
 /**
-    Deal with AGC and attenuattion
+ * Deal with AGC and attenuattion
 */
 void doAgc(int8_t v)
 {
-
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
   if (agcIdx < 0)
     agcIdx = 37;
@@ -666,8 +610,8 @@ void doAgc(int8_t v)
 }
 
 /**
-    Gets the current step index.
-*/
+ *   Gets the current step index.
+ */
 int getStepIndex(int st)
 {
   for (int i = 0; i < lastStep; i++)
@@ -679,8 +623,8 @@ int getStepIndex(int st)
 }
 
 /**
-    Switches the current step
-*/
+ * Switches the current step
+ */
 void doStep(int8_t v)
 {
   idxStep = (v == 1) ? idxStep + 1 : idxStep - 1;
@@ -690,7 +634,6 @@ void doStep(int8_t v)
     idxStep = lastStep;
 
   currentStep = tabStep[idxStep];
-
   rx.setFrequencyStep(currentStep);
   band[bandIdx].currentStep = currentStep;
   rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
@@ -700,7 +643,7 @@ void doStep(int8_t v)
 }
 
 /**
-    Switches to the AM, LSB or USB modes
+ * Switches to the AM, LSB or USB modes
 */
 void doMode(int8_t v)
 {
@@ -747,14 +690,13 @@ void doMode(int8_t v)
 }
 
 /**
-    Find a station. The direction is based on the last encoder move clockwise or counterclockwise
-*/
+ * Find a station. The direction is based on the last encoder move clockwise or counterclockwise
+ */
 void doSeek()
 {
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   currentFrequency = rx.getFrequency();
 }
-
 
 /**
  * Sets the audio volume
@@ -770,10 +712,10 @@ void doVolume( int8_t v ) {
   elapsedCommand = millis();
 }
 
-
-
+/**
+ * Configures the Softmute parameter
+ */
 void doSoftMute( int8_t v )  {
-  
   softMuteMaxAttIdx = (v == 1) ? softMuteMaxAttIdx + 1 : softMuteMaxAttIdx - 1;
   if (softMuteMaxAttIdx > 32)
     softMuteMaxAttIdx = 0;
@@ -868,7 +810,6 @@ void loop()
       elapsedCommand = millis();
     }
   }
-
   // Show RSSI status only if this condition has changed
   if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
   {
@@ -881,7 +822,6 @@ void loop()
     }
     elapsedRSSI = millis();
   }
-
   // Disable commands control
   if ((millis() - elapsedCommand) > ELAPSED_COMMAND && isCommand() || commandDisabledByUser)
   {

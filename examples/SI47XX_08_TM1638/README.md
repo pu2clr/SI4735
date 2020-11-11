@@ -56,7 +56,8 @@ To switch the mode (AM, LSB or USB), press mode button (S2) and then rotate the 
 
 The same idea you can use to configure AGC/Attenuation, banddwith, STEP , Volume and Soft Mute
 
-After finishing a given setup, you can wait for 2.5 seconds or press the command button again to back the control to VFO.
+After finishing a given setup, you can wait for 1.5 seconds or press the command button again to back the control to VFO.
+__You can increase or decrease that time to make the interface more suitable for you by changing the ELAPSED_COMMAND constant__
 
 Tip: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time.
      If you do that, you might alternate the command status (enable and disable) randomly.
