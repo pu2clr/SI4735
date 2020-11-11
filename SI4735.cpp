@@ -633,10 +633,10 @@ void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
  * 
  * @brief Selects the tuning capacitor value.
  * 
- * @details On FM mode, The Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the antenna input.
+ * @details On FM mode, the Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the antenna input.
  * This selects the value of the antenna tuning capacitor manually, or automatically if set to zero. 
- * The valid range is 0 to 191. Automatic capacitor tuning is recommended. Whentunedmanually,thevaractorisoffsetbyfourcodes. 
- * Forexample,if the varactor is set to a value of 5 manually, when read back the value will be 1. The four codes (1pf) delta accounts for the capacitance at the chip.
+ * The valid range is 0 to 191. Automatic capacitor tuning is recommended. 
+ * For example, if the varactor is set to a value of 5 manually, when read back the value will be 1. 
  * @details on AM mode, If the value is set to anything other than 0, the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. 
  * ANTCAP manual range is 1–6143. Automatic capacitor tuning is recommended. In SW mode, ANTCAPH[15:8] (high byte) needs to be set to 0 and ANTCAPL[7:0] (low byte) needs to be set to 1. 
  * 
