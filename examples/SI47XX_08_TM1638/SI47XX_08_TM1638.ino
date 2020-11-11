@@ -71,7 +71,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 150
-#define ELAPSED_COMMAND 2500 // time to turn off the last command controlled by encoder
+#define ELAPSED_COMMAND 1500 // time to turn off the last command controlled by encoder
 #define DEFAULT_VOLUME 50    // change it for your favorite sound volume
 
 #define FM 0
@@ -194,7 +194,6 @@ const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 int idxStep = 0;
 
 uint8_t rssi = 0;
-uint8_t snr = 0;
 uint8_t stereo = 1;
 uint8_t volume = DEFAULT_VOLUME;
 
@@ -539,6 +538,7 @@ void setBand(int8_t up_down)
 */
 void loadSSB()
 {
+  tm.displayText("SSB...");
   rx.reset();
   rx.queryLibraryId(); // Is it really necessary here? I will check it.
   rx.patchPowerUp();
@@ -804,7 +804,6 @@ void prepareCommand(bool *b, void (*showFunc)())
 
 void loop()
 {
-
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
@@ -830,22 +829,14 @@ void loop()
       doSoftMute(encoderCount);      
     else
     {
-      if (encoderCount == 1)
-      {
+      if (seekDirection = (encoderCount == 1))
         rx.frequencyUp();
-        seekDirection = 1;
-      }
       else
-      {
         rx.frequencyDown();
-        seekDirection = 0;
-      }
-      // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
       showFrequency();
     }
     encoderCount = 0;
-    // elapsedRSSI = elapsedCommand = millis();
   }
   else // checks actions from buttons
   {
@@ -886,7 +877,6 @@ void loop()
     if (rssi != aux)
     {
       rssi = aux;
-      snr = rx.getCurrentSNR();
       showRSSI();
     }
     elapsedRSSI = millis();
