@@ -26,13 +26,15 @@
 
   | Device name               | Device Pin / Description      |  Arduino Pin  |
   | ----------------          | ----------------------------- | ------------  |
-  | Display TFT               |                               |               |
-  |                           | RST (RESET)                   |     (*3) 8    |
-  |                           | RS or DC or A0                |     (*3) 9    |
-  |                           | CS or SS                      |     10        |
-  |                           | SDI or SDA or MOSI            |     11        |
-  |                           | CLK                           |     13        |
-  |                           | BL                            |    +VCC       |  
+  | Display NOKIA             |                               |               |
+  |                           | (1) RST (RESET)               |     8         |
+  |                           | (2) CE or CS                  |     9         |
+  |                           | (3) DC or DO                  |    10         |
+  |                           | (4) DIN or DI or MOSI         |    11         |
+  |                           | (5) CLK                       |    13         |
+  |                           | (6) VCC  (3V-5V)              |    +VCC       |  
+  |                           | (7) BL/DL/LIGHT               |    +VCC       |
+  |                           | (8) GND                       |    GND        |
   |     Si4735                |                               |               |
   |                           | (*4) RESET (pin 15)           |     12        |
   |                           | (*4) SDIO (pin 18)            |     A4        |
@@ -70,8 +72,8 @@
 
 #include <SI4735.h>
 
-#include <Adafruit_GFX.h>    // Core graphics library
-#include <Adafruit_ST7735.h> // Hardware-specific library for ST7735
+#include <Adafruit_GFX.h>    //Downlaod it here : https://www.electronoobs.com/eng_arduino_Adafruit_GFX.php
+#include <Adafruit_PCD8544.h> //Download it here: https://www.electronoobs.com/eng_arduino_Adafruit_PCD8544.php
 #include <SPI.h>
 #include "Rotary.h"
 
@@ -80,17 +82,13 @@
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
-// TFT ST7735 based device pin setup
-#define TFT_RST 8  // You might need to switch from 8 to 9 depending of your ST7735 device
-#define TFT_DC 9   // You might need to switch from 9 to 8 depending of your ST7735 device
-// #define TFT_DC 8 
-// #define TFT_RST 9  
-#define TFT_CS 10  // SS
-#define TFT_SDI 11 // MOSI
-#define TFT_CLK 13 // SCK
-#define TFT_LED 0  // 0 if wired to +3.3V directly
-#define TFT_BRIGHTNESS 200
-
+// NOKIA Display pin setup
+#define NOKIA_RST  8  // 
+#define NOKIA_CE   9  // 
+#define NOKIA_DC  10  // 
+#define NOKIA_DIN 11  // MOSI
+#define NOKIA_CLK 13  // SCK
+#define NOKIA_LED  0  // 0 if wired to +3.3V directly
 
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
@@ -244,7 +242,9 @@ uint8_t volume = DEFAULT_VOLUME;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
-Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
+Adafruit_PCD8544 display = Adafruit_PCD8544(NOKIA_DC, NOKIA_CE, NOKIA_RST);
+
+
 SI4735 rx;
 
 void setup()
@@ -263,11 +263,26 @@ void setup()
   // uncomment the line below if you have external audio mute circuit
   // rx.setAudioMuteMcuPin(AUDIO_MUTE);
 
-  // Use this initializer if using a 1.8" TFT screen:
-  tft.initR(INITR_BLACKTAB);
-  tft.fillScreen(ST77XX_BLACK);
-  tft.setRotation(1);
-  showTemplate();
+  // Splash
+  display.begin();
+  display.setContrast(80);
+  display.clearDisplay();
+  display.display();
+
+  display.setTextSize(1);
+  display.setTextColor(BLACK);
+
+  // Splash - Change it for your introduction text.
+  display.setCursor(23, 0);
+  display.print("SI4735");
+  display.setCursor(20, 10);
+  display.print("Arduino");
+  display.setCursor(20, 20);
+  display.print("Library");
+  display.display();
+  delay(500);
+  while (1)
+    ;
 
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
@@ -303,12 +318,12 @@ void disableCommands() {
  */
 void showTemplate()
 {
-  int maxX1 = tft.width() - 2;
-  int maxY1 = tft.height() - 5;
-  tft.fillScreen(ST77XX_BLACK);
-  tft.drawRect(2, 2, maxX1, maxY1, ST77XX_YELLOW);
-  tft.drawLine(2, 40, maxX1, 40, ST77XX_YELLOW);
-  tft.drawLine(2, 60, maxX1, 60, ST77XX_YELLOW);
+  // int maxX1 = tft.width() - 2;
+  // int maxY1 = tft.height() - 5;
+  // tft.fillScreen(ST77XX_BLACK);
+  // tft.drawRect(2, 2, maxX1, maxY1, ST77XX_YELLOW);
+  // tft.drawLine(2, 40, maxX1, 40, ST77XX_YELLOW);
+  // tft.drawLine(2, 60, maxX1, 60, ST77XX_YELLOW);
 }
 
 /**
@@ -321,7 +336,7 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
   char *pOld;
   char *pNew;
 
-  tft.setTextSize(txtSize);
+  // tft.setTextSize(txtSize);
 
   pOld = oldValue;
   pNew = newValue;
@@ -332,13 +347,13 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
     if (*pOld != *pNew)
     {
       // Erases olde value
-      tft.setTextColor(ST77XX_BLACK);
-      tft.setCursor(c, line);
-      tft.print(*pOld);
+      // tft.setTextColor(ST77XX_BLACK);
+      // tft.setCursor(c, line);
+      // tft.print(*pOld);
       // Writes new value
-      tft.setTextColor(color);
-      tft.setCursor(c, line);
-      tft.print(*pNew);
+      // tft.setTextColor(color);
+      // tft.setCursor(c, line);
+      // tft.print(*pNew);
     }
     pOld++;
     pNew++;
@@ -346,21 +361,21 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
   }
 
   // Is there anything else to erase?
-  tft.setTextColor(ST77XX_BLACK);
+  // tft.setTextColor(ST77XX_BLACK);
   while (*pOld)
   {
-    tft.setCursor(c, line);
-    tft.print(*pOld);
+    // tft.setCursor(c, line);
+    // tft.print(*pOld);
     pOld++;
     c += space;
   }
 
   // Is there anything else to print?
-  tft.setTextColor(color);
+  // tft.setTextColor(color);
   while (*pNew)
   {
-    tft.setCursor(c, line);
-    tft.print(*pNew);
+    // tft.setCursor(c, line);
+    // tft.print(*pNew);
     pNew++;
     c += space;
   }
@@ -401,7 +416,7 @@ void showFrequency()
     bufferDisplay[2] = tmp[2];
     bufferDisplay[3] = '.';
     bufferDisplay[4] = tmp[3];
-    color = ST7735_CYAN;
+    // color = ST7735_CYAN;
   }
   else
   {
@@ -415,10 +430,10 @@ void showFrequency()
       bufferDisplay[3] = tmp[3];
       bufferDisplay[4] = tmp[4];
     }
-    color = (bfoOn && (currentMode == LSB || currentMode == USB)) ? ST7735_WHITE : ST77XX_YELLOW;
+    // color = (bfoOn && (currentMode == LSB || currentMode == USB)) ? ST7735_WHITE : ST77XX_YELLOW;
   }
   bufferDisplay[5] = '\0';
-  printValue(30, 10, bufferFreq, bufferDisplay, 18, color, 2);
+  // printValue(30, 10, bufferFreq, bufferDisplay, 18, color, 2);
 }
 
 
@@ -438,10 +453,10 @@ void showStatus()
 {
   char *unt;
 
-  int maxX1 = tft.width() - 5;
+  // int maxX1 = tft.width() - 5;
 
-  tft.fillRect(3, 3, maxX1, 36, ST77XX_BLACK);
-  tft.fillRect(3, 61, maxX1, 60, ST77XX_BLACK);
+  // tft.fillRect(3, 3, maxX1, 36, ST77XX_BLACK);
+  // tft.fillRect(3, 61, maxX1, 60, ST77XX_BLACK);
 
   CLEAR_BUFFER(bufferFreq);
   CLEAR_BUFFER(bufferUnt);
@@ -462,9 +477,9 @@ void showStatus()
     showAgcAtt();
     if (ssbLoaded)  showBFO();
   }
-  printValue(140, 5, bufferUnt, unt, 6, ST77XX_GREEN,1);
+  // printValue(140, 5, bufferUnt, unt, 6, ST77XX_GREEN,1);
   sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
-  printValue(5, 65, bufferBand, bufferDisplay, 6, ST77XX_CYAN, 1);
+  // printValue(5, 65, bufferBand, bufferDisplay, 6, ST77XX_CYAN, 1);
 
   showBandwitdth();
 
@@ -487,7 +502,7 @@ void showBandwitdth() {
     else {
       bufferDisplay[0] = '\0';
     }
-    printValue(5, 110, bufferBW, bufferDisplay, 6, ST77XX_GREEN,1);
+    // printValue(5, 110, bufferBW, bufferDisplay, 6, ST77XX_GREEN,1);
 }
 
 /**
@@ -500,12 +515,12 @@ void showRSSI()
     int snrLevel;
     char sSt[10];
     char sRssi[7];
-    int maxAux = tft.width() - 10;
+    // int maxAux = tft.width() - 10;
 
     if (currentMode == FM)
     {
       sprintf(sSt, "%s", (rx.getCurrentPilot()) ? "ST" : "MO");
-      printValue(4, 4, bufferStereo, sSt, 6, ST77XX_GREEN, 1);
+      // printValue(4, 4, bufferStereo, sSt, 6, ST77XX_GREEN, 1);
     }
 
     // It needs to be calibrated. You can do it better. 
@@ -523,7 +538,8 @@ void showRSSI()
        rssiAux = 8;
     else if ( rssi >= 50 )
        rssiAux = 9;
-                  
+
+    /*              
     sprintf(sRssi,"S%u%c",rssiAux,(rssiAux == 9)? '+': ' ');
     rssiLevel = map(rssiAux, 0, 10, 0, maxAux);
     snrLevel = map(snr, 0, 127, 0, maxAux);
@@ -534,6 +550,7 @@ void showRSSI()
 
     tft.fillRect(5, 51, maxAux, 6, ST77XX_BLACK);
     tft.fillRect(5, 51, snrLevel, 6, ST77XX_WHITE);
+    */
 }
 
 /**
@@ -546,8 +563,9 @@ void showAgcAtt() {
       strcpy(sAgc, "AGC ON");
     else
       sprintf(sAgc, "ATT: %2d", agcNdx);
-    tft.setFont(NULL);
-    printValue(110, 110, bufferAGC, sAgc, 6, ST77XX_GREEN, 1);
+
+    // tft.setFont(NULL);
+    // printValue(110, 110, bufferAGC, sAgc, 6, ST77XX_GREEN, 1);
 }
 
 
@@ -557,7 +575,7 @@ void showAgcAtt() {
 void showStep() {
   char sStep[15];
   sprintf(sStep, "Stp:%3d", currentStep);
-  printValue(110, 65, bufferStepVFO, sStep, 6, ST77XX_GREEN, 1);
+  // printValue(110, 65, bufferStepVFO, sStep, 6, ST77XX_GREEN, 1);
 }
 
 /**
@@ -566,7 +584,7 @@ void showStep() {
 void showBFO()
 {
     sprintf(bufferDisplay, "%+4d", currentBFO);
-    printValue(128, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
+    // printValue(128, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
     // showFrequency();
     elapsedCommand = millis();
 }
