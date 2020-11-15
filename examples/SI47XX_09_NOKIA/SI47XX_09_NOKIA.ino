@@ -1,23 +1,17 @@
 /*
-  This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT ST7735 1.8"
 
-  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735  and  the 
-  "PU2CLR SI4735 Arduino Library" working with the TFT ST7735 display. It is not the purpose of this prototype 
-  to provide you a beautiful interface. To be honest, I think you can do it better than me. 
+  Under construction... 
+
+  This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a display NOKIA.
+  To control the Nokia display this sketch uses the libraries Adafruit_GFX and Adafruit_PCD8544.
+  Plese, install these libraries before compiling this sketch. 
+
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the 
+  "PU2CLR SI4735 Arduino Library" working with NOKIA Diaplsy. It is not the purpose of this prototype 
+  to provide you a beautiful interface. I think you can do it better than me. 
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
-  regular  comercial  stations. If  you  are  using  the  same  circuit  used  on  examples with OLED and LCD,
-  you have to change some buttons wire up. This TFT device takes five pins from Arduino.
-  For this reason, it is necessary change the pins of some buttons.
-  Fortunately, you can use the ATmega328 analog pins as digital pins.
-
-  The libraries Adafruit_GFX and Adafruit_ST7735 and SSB patch take a lot of memory space from Arduino. 
-  You have few space to improve your prototype with standard Arduino Pro Mini.
-  However, you can use some approaches:  
-  1. Shrink or remove the boot loader from Arduino Pro Mini;
-  2. The Arduino Nano and Uno have smaller bootloader than the Arduino Pro Mini
-  3. Port this sketch to a bigger board like Arduino Mega or DUE. 
-
+  regular  comercial  stations. 
 
   Features:   AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
@@ -36,10 +30,10 @@
   |                           | (7) BL/DL/LIGHT               |    +VCC       |
   |                           | (8) GND                       |    GND        |
   |     Si4735                |                               |               |
-  |                           | (*4) RESET (pin 15)           |     12        |
-  |                           | (*4) SDIO (pin 18)            |     A4        |
-  |                           | (*4) SCLK (pin 17)            |     A5        |
-  |                           | (*5) SEN (pin 16)             |    GND        | 
+  |                           | (*3) RESET (pin 15)           |     12        |
+  |                           | (*3) SDIO (pin 18)            |     A4        |
+  |                           | (*3) SCLK (pin 17)            |     A5        |
+  |                           | (*4) SEN (pin 16)             |    GND        | 
   |     Buttons               |                               |               |
   |                           | (*1)Switch MODE (AM/LSB/AM)   |      4        |
   |                           | (*1)Banddwith                 |      5        |
@@ -57,9 +51,8 @@
   (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of 
        the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of 
        the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
-  (*3) You might need to switch from 8 to 9  depending of your ST7735 device     
-  (*4) - If you are using the SI4732-A10, check the corresponding pin numbers.  
-  (*5) - If you are using the SI4735-D60, connect the SEN pin to the ground; 
+  (*3) - If you are using the SI4732-A10, check the corresponding pin numbers.  
+  (*4) - If you are using the SI4735-D60, connect the SEN pin to the ground; 
          If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
@@ -77,14 +70,14 @@
 #include <SPI.h>
 #include "Rotary.h"
 
-// Test it with patch_init.h or patch_full.h. Do not try load both.
+// Test it with patch_init.h 
 #include "patch_init.h" // SSB patch for whole SSBRX initialization string
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 
 // NOKIA Display pin setup
-#define NOKIA_RST  8  // 
-#define NOKIA_CE   9  // 
+#define NOKIA_RST  8  // RESET
+#define NOKIA_CE   9  // Some NOKIA devices show CS
 #define NOKIA_DC  10  // 
 #define NOKIA_DIN 11  // MOSI
 #define NOKIA_CLK 13  // SCK
@@ -162,12 +155,12 @@ typedef struct
 } Bandwitdth;
 
 int8_t bwIdxSSB = 4;
-Bandwitdth bandwitdthSSB[] = {{4, "0.5"}, // 0
-                              {5, "1.0"}, // 1
-                              {0, "1.2"}, // 2
-                              {1, "2.2"}, // 3
-                              {2, "3.0"}, // 4
-                              {3, "4.0"}}; // 5
+Bandwitdth bandwitdthSSB[] = {{4, "0.5"},   // 0
+                              {5, "1.0"},   // 1
+                              {0, "1.2"},   // 2
+                              {1, "2.2"},   // 3
+                              {2, "3.0"},   // 4
+                              {3, "4.0"}};  // 5
 
 int8_t bwIdxAM = 4;
 Bandwitdth bandwitdthAM[] = {{4, "1.0"},
@@ -178,22 +171,10 @@ Bandwitdth bandwitdthAM[] = {{4, "1.0"},
                              {1, "4.0"},
                              {0, "6.0"}};
 
-
 const char * bandModeDesc[] = {"   ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
 uint16_t currentStep = 1;
-
-char bufferDisplay[15]; // Useful to handle string
-char bufferFreq[15];
-char bufferBFO[15];
-char bufferStepVFO[10];
-char bufferBW[15];
-char bufferAGC[10];
-char bufferBand[15];
-char bufferStereo[10];
-char bufferUnt[5];
-char bufferRssi[7];
 
 /*
    Band data structure
@@ -227,7 +208,7 @@ Band band[] = {
     {"SW8", SW_BAND_TYPE, 150, 30000, 28400, 1}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int bandIdx = 0;
+int bandIdx = 1;
 
 
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
@@ -243,7 +224,6 @@ uint8_t volume = DEFAULT_VOLUME;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 Adafruit_PCD8544 display = Adafruit_PCD8544(NOKIA_DC, NOKIA_CE, NOKIA_RST);
-
 
 SI4735 rx;
 
@@ -263,34 +243,18 @@ void setup()
   // uncomment the line below if you have external audio mute circuit
   // rx.setAudioMuteMcuPin(AUDIO_MUTE);
 
-  // Splash
+  // Start the Nokia display device
   display.begin();
   display.setContrast(80);
-  display.clearDisplay();
-  display.display();
-
-  display.setTextSize(1);
-  display.setTextColor(BLACK);
-
-  // Splash - Change it for your introduction text.
-  display.setCursor(23, 0);
-  display.print("SI4735");
-  display.setCursor(20, 10);
-  display.print("Arduino");
-  display.setCursor(20, 20);
-  display.print("Library");
-  display.display();
-  delay(500);
-  while (1)
-    ;
-
+  // Splash
+  splash();
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   // rx.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
-  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
-  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
+  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
@@ -298,6 +262,32 @@ void setup()
   showStatus();
 }
 
+/**
+ * Shows splash message
+ */
+void splash() {
+  display.clearDisplay();
+  display.display();
+  display.setTextColor(BLACK);
+  // Splash - Change it for your introduction text.
+  display.setCursor(0, 0);
+  display.setTextSize(2);
+  display.print("SI4735");
+  display.setCursor(0, 15);
+  display.print("Arduino");
+  display.setCursor(0, 30);
+  display.print("Library");
+  display.display();
+  delay(3000);
+  display.clearDisplay();
+  display.setCursor(30, 0);
+  display.print("BY");
+  display.setCursor(10, 20);
+  display.print("PU2CLR");
+  display.display();
+  delay(2000);
+  display.clearDisplay();
+}
 
 /**
  *  Set all command flags to false
@@ -318,70 +308,7 @@ void disableCommands() {
  */
 void showTemplate()
 {
-  // int maxX1 = tft.width() - 2;
-  // int maxY1 = tft.height() - 5;
-  // tft.fillScreen(ST77XX_BLACK);
-  // tft.drawRect(2, 2, maxX1, maxY1, ST77XX_YELLOW);
-  // tft.drawLine(2, 40, maxX1, 40, ST77XX_YELLOW);
-  // tft.drawLine(2, 60, maxX1, 60, ST77XX_YELLOW);
-}
 
-/**
- * Prevents blinking during the frequency display.
- * Erases the old digits if it has changed and print the new digit values.
- */
-void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space, uint16_t color, uint8_t txtSize)
-{
-  int c = col;
-  char *pOld;
-  char *pNew;
-
-  // tft.setTextSize(txtSize);
-
-  pOld = oldValue;
-  pNew = newValue;
-
-  // prints just changed digits
-  while (*pOld && *pNew)
-  {
-    if (*pOld != *pNew)
-    {
-      // Erases olde value
-      // tft.setTextColor(ST77XX_BLACK);
-      // tft.setCursor(c, line);
-      // tft.print(*pOld);
-      // Writes new value
-      // tft.setTextColor(color);
-      // tft.setCursor(c, line);
-      // tft.print(*pNew);
-    }
-    pOld++;
-    pNew++;
-    c += space;
-  }
-
-  // Is there anything else to erase?
-  // tft.setTextColor(ST77XX_BLACK);
-  while (*pOld)
-  {
-    // tft.setCursor(c, line);
-    // tft.print(*pOld);
-    pOld++;
-    c += space;
-  }
-
-  // Is there anything else to print?
-  // tft.setTextColor(color);
-  while (*pNew)
-  {
-    // tft.setCursor(c, line);
-    // tft.print(*pNew);
-    pNew++;
-    c += space;
-  }
-
-  // Save the current content to be tested next time
-  strcpy(oldValue, newValue);
 }
 
 
@@ -397,16 +324,22 @@ void rotaryEncoder()
     encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
 }
 
-/**
+void show(uint8_t col, uint8_t lin, uint8_t textSize, const char *content) {
+  display.setCursor(col, lin);
+  display.setTextSize(textSize);
+  display.print(content);
+  display.display();
+}
+
+    /**
  *  Shows frequency information on Display
  */
-void showFrequency()
+    void showFrequency()
 {
-  uint16_t color;
-  char tmp[15];
-
+  char tmp[10];
+  char bufferDisplay[10];
+  
   // It is better than use dtostrf or String to save space.
-
   sprintf(tmp, "%5.5u", currentFrequency);
 
   bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
@@ -416,7 +349,6 @@ void showFrequency()
     bufferDisplay[2] = tmp[2];
     bufferDisplay[3] = '.';
     bufferDisplay[4] = tmp[3];
-    // color = ST7735_CYAN;
   }
   else
   {
@@ -430,10 +362,10 @@ void showFrequency()
       bufferDisplay[3] = tmp[3];
       bufferDisplay[4] = tmp[4];
     }
-    // color = (bfoOn && (currentMode == LSB || currentMode == USB)) ? ST7735_WHITE : ST77XX_YELLOW;
   }
   bufferDisplay[5] = '\0';
-  // printValue(30, 10, bufferFreq, bufferDisplay, 18, color, 2);
+
+  show(0,0,2,bufferDisplay);
 }
 
 
@@ -452,22 +384,11 @@ void showFrequencySeek(uint16_t freq)
 void showStatus()
 {
   char *unt;
+  char bufferDisplay[20];
 
-  // int maxX1 = tft.width() - 5;
+  sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
+  show(0,15,1,bufferDisplay);
 
-  // tft.fillRect(3, 3, maxX1, 36, ST77XX_BLACK);
-  // tft.fillRect(3, 61, maxX1, 60, ST77XX_BLACK);
-
-  CLEAR_BUFFER(bufferFreq);
-  CLEAR_BUFFER(bufferUnt);
-  CLEAR_BUFFER(bufferBand);
-  CLEAR_BUFFER(bufferAGC);
-  CLEAR_BUFFER(bufferBW);
-  CLEAR_BUFFER(bufferStepVFO);
-  CLEAR_BUFFER(bufferStereo);
-  CLEAR_BUFFER(bufferRssi);
-
-  showFrequency();
   if (rx.isCurrentTuneFM()) {
     unt = (char *) "MHz";
   } else
@@ -476,19 +397,20 @@ void showStatus()
     showStep();
     showAgcAtt();
     if (ssbLoaded)  showBFO();
+    showBandwitdth();
+    showAgcAtt();
   }
-  // printValue(140, 5, bufferUnt, unt, 6, ST77XX_GREEN,1);
-  sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
-  // printValue(5, 65, bufferBand, bufferDisplay, 6, ST77XX_CYAN, 1);
+  show(65,8,1,unt);
 
-  showBandwitdth();
-
+  showRSSI();
+  showFrequency();
 }
 
 /**
  * Shows the current Bandwitdth status
  */
 void showBandwitdth() {
+    char bufferDisplay[15];
     // Bandwidth
     if (currentMode == LSB || currentMode == USB || currentMode == AM) {
       char * bw;
@@ -502,7 +424,7 @@ void showBandwitdth() {
     else {
       bufferDisplay[0] = '\0';
     }
-    // printValue(5, 110, bufferBW, bufferDisplay, 6, ST77XX_GREEN,1);
+
 }
 
 /**
@@ -512,19 +434,16 @@ void showRSSI()
 {
     int rssiLevel;
     uint8_t rssiAux;
-    int snrLevel;
-    char sSt[10];
     char sRssi[7];
     // int maxAux = tft.width() - 10;
 
+    display.setTextSize(1);
+
     if (currentMode == FM)
     {
-      sprintf(sSt, "%s", (rx.getCurrentPilot()) ? "ST" : "MO");
-      // printValue(4, 4, bufferStereo, sSt, 6, ST77XX_GREEN, 1);
+      display.setCursor(70,0);
+      display.print((rx.getCurrentPilot())? "ST" : "MO");
     }
-
-    // It needs to be calibrated. You can do it better. 
-    // RSSI: 0 to 127 dBuV
 
     if (rssi < 2) 
        rssiAux = 4;
@@ -539,18 +458,8 @@ void showRSSI()
     else if ( rssi >= 50 )
        rssiAux = 9;
 
-    /*              
     sprintf(sRssi,"S%u%c",rssiAux,(rssiAux == 9)? '+': ' ');
-    rssiLevel = map(rssiAux, 0, 10, 0, maxAux);
-    snrLevel = map(snr, 0, 127, 0, maxAux);
-
-    tft.fillRect(5, 42,  maxAux, 6, ST77XX_BLACK);
-    tft.fillRect(5, 42, rssiLevel, 6, ST77XX_ORANGE);
-    printValue(5, 31, bufferRssi, sRssi, 6, ST77XX_GREEN, 1);
-
-    tft.fillRect(5, 51, maxAux, 6, ST77XX_BLACK);
-    tft.fillRect(5, 51, snrLevel, 6, ST77XX_WHITE);
-    */
+    show(15,70,1,sRssi);
 }
 
 /**
@@ -564,10 +473,8 @@ void showAgcAtt() {
     else
       sprintf(sAgc, "ATT: %2d", agcNdx);
 
-    // tft.setFont(NULL);
-    // printValue(110, 110, bufferAGC, sAgc, 6, ST77XX_GREEN, 1);
+    show(0,20,1,sAgc);   
 }
-
 
 /**
  *  Shows the current step
@@ -575,7 +482,7 @@ void showAgcAtt() {
 void showStep() {
   char sStep[15];
   sprintf(sStep, "Stp:%3d", currentStep);
-  // printValue(110, 65, bufferStepVFO, sStep, 6, ST77XX_GREEN, 1);
+  show(60,20,1,sStep); 
 }
 
 /**
@@ -583,9 +490,9 @@ void showStep() {
  */
 void showBFO()
 {
+    char bufferDisplay[10];
     sprintf(bufferDisplay, "%+4d", currentBFO);
-    // printValue(128, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
-    // showFrequency();
+    show(0,40,1,bufferDisplay);
     elapsedCommand = millis();
 }
 
@@ -772,7 +679,6 @@ void doStep(int8_t v) {
  *  Switches to the AM, LSB or USB modes
  */
 void doMode(int8_t v) {
-  bufferBFO[0] =  bufferFreq[0] = '\0';
 
   if (currentMode != FM)
   {
@@ -872,7 +778,6 @@ void loop()
       if ((currentMode == LSB || currentMode == USB))
         showBFO();
         
-      CLEAR_BUFFER(bufferFreq);
       showFrequency();
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
@@ -917,7 +822,6 @@ void loop()
     if ((currentMode == LSB || currentMode == USB)) {
       bfoOn = false;
       showBFO();
-      CLEAR_BUFFER(bufferFreq);
       showFrequency();
     }
     disableCommands();

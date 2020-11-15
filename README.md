@@ -52,7 +52,7 @@ Contact: __pu2clr@gmail.com__.
     * [ATTINY85](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85)
     * [ESP32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32)
     * [STM32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32) 
-    * [FM RDS/RBDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS)
+    * [FM RDS/RBDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS)
     * [About the board based on SI4730-D60 labeled "PL102BA-S V:2.1 10628"](https://pu2clr.github.io/SI4735/extras/BOARD_PL102BA/)
     * [About the board based on Si4730 labeled "NE928-10A V:01"](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/)
     * [Mobile Device as Remote Control to the SI4735 prototype](https://github.com/pu2clr/bluetooth_remote_control)
@@ -410,7 +410,7 @@ This library implements some RDS features of the SI4735. All function to deal wi
 {% include videoRDS1.html %} 
 
 
-See RDS example implementations [here](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS).
+See RDS example implementations [here](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS).
 
 <BR>
 
@@ -528,8 +528,8 @@ This library implements many SSB examples. See the table below.
 | ------ | ------ | ------ |
 | [SI4735_03_POC_SSB ](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR/SI4735_03_POC_SSB)| [SI473X_04_ALL_IN_ONE](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_02_LCD_20x4_I2C/SI473X_04_ALL_IN_ONE) | [SI4735_02_ALL_IN_ONE_OLED](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C/SI4735_02_ALL_IN_ONE_OLED) |
 | [SI47XX_01_TFT_ILI9225 - TFT](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT/SI47XX_01_TFT_ILI9225)| [SI47XX_02_TFT_TOUCH_SHIELD - Touch Screen](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT/SI47XX_02_TFT_TOUCH_SHIELD) | [SI47XX_02_ESP32_TOUCH_ALL_IN_ONE](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32/SI47XX_02_ESP32_TOUCH_ALL_IN_ONE) |
-| [SI4735_02_POC_SSB.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32/SI4735_02_POC_SSB) | [SI47XX_03_RDS_TFT_ILI9225](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS/SI47XX_03_RDS_TFT_ILI9225) | [ 	SI47XX_02_RDS_TFT_TOUCH_SHIELD](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD) |
-| [SI4735_04_RDS_ALL_IN_ONE_OLED](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS/SI4735_04_RDS_ALL_IN_ONE_OLED) |  |  | 
+| [SI4735_02_POC_SSB.ino](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32/SI4735_02_POC_SSB) | [SI47XX_03_RDS_TFT_ILI9225](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS/SI47XX_03_RDS_TFT_ILI9225) | [ 	SI47XX_02_RDS_TFT_TOUCH_SHIELD](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD) |
+| [SI4735_04_RDS_ALL_IN_ONE_OLED](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS/SI4735_04_RDS_ALL_IN_ONE_OLED) |  |  | 
 
 {% include videoSSB.html %}
 

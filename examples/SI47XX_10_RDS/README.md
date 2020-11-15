@@ -1,9 +1,9 @@
 # PU2CLR SI4735 Arduino Library TFT and touch screen examples
 
-This folder has examples of using the TFT  display. If you plan to use the touch screen version, I recommend reading the touch calibration process carefully. Otherwise, your touch will not work properly. See below the [SI47XX_02_RDS_TFT_TOUCH_SHIELD](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS#si47xx_02_rds_tft_touch_shield) sketch details. 
+This folder has examples of using the TFT  display. If you plan to use the touch screen version, I recommend reading the touch calibration process carefully. Otherwise, your touch will not work properly. See below the [SI47XX_02_RDS_TFT_TOUCH_SHIELD](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS#si47xx_02_rds_tft_touch_shield) sketch details. 
 
 * __SI47XX_03_RDS_TFT_ILI9225__ sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220).  It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the regular comercial FM stations. See the source code comments for more information;
-* __SI47XX_02_RDS_TFT_TOUCH_SHIELD__ sketch uses the mcufriend TFT touct Display Shield. You can use it on Mega2560 or DUE. It is also an "all in one receiver" (FM, AM and SSB - LW, MW and SW). See the source code comments for more information. __You will need to calibrate your touch screen before. [See how](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_RDS#si47xx_02_rds_tft_touch_shield)__;
+* __SI47XX_02_RDS_TFT_TOUCH_SHIELD__ sketch uses the mcufriend TFT touct Display Shield. You can use it on Mega2560 or DUE. It is also an "all in one receiver" (FM, AM and SSB - LW, MW and SW). See the source code comments for more information. __You will need to calibrate your touch screen before. [See how](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS#si47xx_02_rds_tft_touch_shield)__;
 * __SI4735_04_RDS_ALL_IN_ONE_OLED__ sketch is very similar to the __SI47XX_03_RDS_TFT_ILI9225__. It uses __OLED__ display.  See the source code comments for more information.
 
 

@@ -2,7 +2,7 @@
 
 It is an example that uses the reference clock setup instead of crystal oscilator. 
 
-The folder SI47XX_RDS_TOUCH_SHIELD_REF_CLOCK has a sketch that uses the mcufriend TFT touch Display Shield. This sketch is very similar to the sketch found on SI47XX_08_RDS folder. The main difference is the external clock setup. 
+The folder SI47XX_RDS_TOUCH_SHIELD_REF_CLOCK has a sketch that uses the mcufriend TFT touch Display Shield. This sketch is very similar to the sketch found on SI47XX_10_RDS folder. The main difference is the external clock setup. 
 
 To execute this example, you will need a external clock source. I have used my [Multipurpose signal generator with SI5351](https://github.com/pu2clr/SI5351) project to do that. However, you can use any clock source for this example.
 
