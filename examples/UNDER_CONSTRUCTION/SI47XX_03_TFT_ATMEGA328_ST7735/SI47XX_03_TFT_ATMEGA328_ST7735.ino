@@ -91,7 +91,6 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define TFT_LED 0  // 0 if wired to +3.3V directly
 #define TFT_BRIGHTNESS 200
 
-
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
 #define SW_BAND_TYPE 2
@@ -232,11 +231,9 @@ Band band[] = {
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
 
-
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 int idxStep = 0;
-
 
 uint8_t rssi = 0;
 uint8_t snr = 0;
@@ -264,7 +261,6 @@ void setup()
   // uncomment the line below if you have external audio mute circuit
   // rx.setAudioMuteMcuPin(AUDIO_MUTE);
 
-  // Use this initializer if using a 1.8" TFT screen:
   tft.initR(INITR_BLACKTAB);
   tft.fillScreen(ST77XX_BLACK);
   tft.setRotation(1);
@@ -275,15 +271,12 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   // rx.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
-  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
-  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
-
-  // Set up the radio for the current band (see index table variable bandIdx )
+  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+ 
   useBand();
   rx.setVolume(volume);
   showStatus();
 }
-
 
 /**
  *  Set all command flags to false
@@ -332,7 +325,6 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
   char *pNew;
 
   tft.setTextSize(txtSize);
-
   pOld = oldValue;
   pNew = newValue;
 
@@ -374,11 +366,9 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
     pNew++;
     c += space;
   }
-
   // Save the current content to be tested next time
   strcpy(oldValue, newValue);
 }
-
 
 /**
  *   Reads encoder via interrupt
@@ -387,7 +377,6 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
 void rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
-
   if (encoderStatus)
     encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
 }
@@ -401,9 +390,7 @@ void showFrequency()
   char tmp[15];
 
   // It is better than use dtostrf or String to save space.
-
   sprintf(tmp, "%5.5u", currentFrequency);
-
   bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
   bufferDisplay[1] = tmp[1];
   if (rx.isCurrentTuneFM())
@@ -431,7 +418,6 @@ void showFrequency()
   printValue(30, 10, bufferFreq, bufferDisplay, 18, color, 2);
 }
 
-
 /**
  *  This function is called by the seek function process.
  */
@@ -447,12 +433,10 @@ void showFrequencySeek(uint16_t freq)
 void showStatus()
 {
   char *unt;
-
   int maxX1 = tft.width() - 5;
 
   tft.fillRect(3, 3, maxX1, 36, ST77XX_BLACK);
   tft.fillRect(3, 61, maxX1, 60, ST77XX_BLACK);
-
   CLEAR_BUFFER(bufferFreq);
   CLEAR_BUFFER(bufferUnt);
   CLEAR_BUFFER(bufferBand);
@@ -461,7 +445,6 @@ void showStatus()
   CLEAR_BUFFER(bufferStepVFO);
   CLEAR_BUFFER(bufferStereo);
   CLEAR_BUFFER(bufferRssi);
-
   showFrequency();
   if (rx.isCurrentTuneFM()) {
     unt = (char *) "MHz";
@@ -475,9 +458,7 @@ void showStatus()
   printValue(140, 5, bufferUnt, unt, 6, ST77XX_GREEN,1);
   sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
   printValue(5, 65, bufferBand, bufferDisplay, 6, ST77XX_CYAN, 1);
-
   showBandwitdth();
-
 }
 
 /**
@@ -487,7 +468,6 @@ void showBandwitdth() {
     // Bandwidth
     if (currentMode == LSB || currentMode == USB || currentMode == AM) {
       char * bw;
-
       if (currentMode == AM) 
         bw = (char *) bandwitdthAM[bwIdxAM].desc;
       else 
@@ -520,7 +500,6 @@ void showRSSI()
 
     // It needs to be calibrated. You can do it better. 
     // RSSI: 0 to 127 dBuV
-
     if (rssi < 2) 
        rssiAux = 4;
     else if ( rssi < 4)
@@ -560,7 +539,6 @@ void showAgcAtt() {
     printValue(110, 110, bufferAGC, sAgc, 6, ST77XX_GREEN, 1);
 }
 
-
 /**
  *  Shows the current step
  */
@@ -580,7 +558,6 @@ void showBFO()
     // showFrequency();
     elapsedCommand = millis();
 }
-
 
 /**
  *  Sets Band up (1) or down (!1)
@@ -675,7 +652,6 @@ void doBandwidth(int8_t v) {
   if (currentMode == LSB || currentMode == USB)
   {
     bwIdxSSB = ( v == 1) ? bwIdxSSB + 1 : bwIdxSSB - 1;
-
     if (bwIdxSSB > 5)
       bwIdxSSB = 0;
     else if ( bwIdxSSB < 0 )
@@ -691,7 +667,6 @@ void doBandwidth(int8_t v) {
   else if (currentMode == AM)
   {
     bwIdxAM = ( v == 1) ? bwIdxAM + 1 : bwIdxAM - 1;
-
     if (bwIdxAM > 6)
       bwIdxAM = 0;
     else if ( bwIdxAM < 0)
@@ -709,13 +684,11 @@ void doBandwidth(int8_t v) {
  *  Deal with AGC and attenuattion
  */
 void doAgc(int8_t v) {
-
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
   if (agcIdx < 0 )
     agcIdx = 37;
   else if ( agcIdx > 37)
     agcIdx = 0;
-
 
   disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable 
 
@@ -751,7 +724,6 @@ void doStep(int8_t v) {
      idxStep = lastStep;
 
   currentStep = tabStep[idxStep];
-
   rx.setFrequencyStep(currentStep);
   band[bandIdx].currentStep = currentStep;
   rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
@@ -837,16 +809,10 @@ void loop()
       setBand(encoderCount);
     else
     {
-      if (encoderCount == 1)
-      {
+      if (seekDirection = (encoderCount == 1) )
         rx.frequencyUp();
-        seekDirection = 1;
-      }
       else
-      {
         rx.frequencyDown();
-        seekDirection = 0;
-      }
       // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
     }

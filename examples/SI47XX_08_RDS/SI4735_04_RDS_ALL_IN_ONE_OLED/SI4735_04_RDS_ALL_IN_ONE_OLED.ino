@@ -1,6 +1,10 @@
 /*
-  Under construction.....
-  
+ 
+  It is a sketch to control a receiver based on SI4735 with an I2C OLED device and 9 buttons. 
+
+  This sketch works on DVE (David/Martins) KIT. See: https://davidmartinsengineering.wordpress.com/si4735-radio-kit/
+  If you are using the DVE kit, set the OLED I2C bus address to 0X3D (see I2C_ADDRESS defined constan below)
+
   SI4735 all in one with SSB Support
   It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
 
@@ -76,7 +80,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define LW_BAND_TYPE 3
 
 // OLED Diaplay constants 
-#define I2C_ADDRESS 0x3C  // Check your I2C bus address (0X3D is very commom too) 
+#define I2C_ADDRESS 0x3C  // Check your I2C bus address (0X3D is also very commom) 
 #define RST_PIN -1        // Define proper RST_PIN if required.
 
 #define RESET_PIN 12
@@ -99,7 +103,6 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
-
 #define DEFAULT_VOLUME 45 // change it for your favorite sound volume
 
 #define FM 0
@@ -114,12 +117,10 @@ const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
 bool bfoOn = false;
-
 bool ssbLoaded = false;
 bool fmStereo = true;
 
 int currentBFO = 0;
-
 long elapsedRSSI = millis();
 long elapsedButton = millis();
 
@@ -156,8 +157,8 @@ typedef struct
 } Band;
 
 /*
-   Band table
-*/
+ *  Band table
+ */
 Band band[] = {
     {FM_BAND_TYPE, 8400, 10800, 10570, 10},
     {LW_BAND_TYPE, 100, 510, 300, 1},

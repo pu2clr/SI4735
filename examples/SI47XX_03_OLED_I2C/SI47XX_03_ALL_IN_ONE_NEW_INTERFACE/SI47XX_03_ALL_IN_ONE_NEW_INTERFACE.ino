@@ -108,7 +108,7 @@ bool cmdStep = false;
 bool cmdMode = false;
 
 int currentBFO = 0;
-uint8_t seekDirection = 1; // Tells the SEEK direction (botton or upper limit)
+uint8_t seekDirection = 1; // Tells the SEEK direction (botton or upper)
 
 long elapsedRSSI = millis();
 long elapsedButton = millis();
@@ -240,10 +240,8 @@ void setup()
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
   // rx.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
-  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
-  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
-
-
+  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
@@ -361,14 +359,12 @@ void showStatus()
  */
 void showBandwitdth()
 {
-
   char bufferDisplay[15];
 
   // Bandwidth
   if (currentMode == LSB || currentMode == USB || currentMode == AM)
   {
     char *bw;
-
     if (currentMode == AM)
       bw = (char *)bandwitdthAM[bwIdxAM].desc;
     else
