@@ -81,6 +81,7 @@
   By PU2CLR, Ricardo,  Oct  2020.
 */
 
+#include "AutoBPF.h" 
 #include <SI4735.h>
 #include <SPI.h>
 #include "TFT_22_ILI9225.h" //  See https://github.com/Nkawu/TFT_22_ILI9225/wiki
@@ -110,6 +111,9 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 // Enconder PINs
 #define ENCODER_PIN_A 2
 #define ENCODER_PIN_B 3
+
+#define FILERT_PIN1   15
+#define FILERT_PIN2   16
 
 // Buttons controllers
 #define MODE_SWITCH 4         // Switch MODE (Am/LSB/USB)
@@ -258,6 +262,7 @@ uint8_t stereo = 1;
 uint8_t volume = DEFAULT_VOLUME;
 
 // Devices class declarations
+AutoBPF bpf;            // Declare the Auto bandpass filter class.
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 TFT_22_ILI9225 tft = TFT_22_ILI9225(TFT_RST, TFT_RS, TFT_CS, TFT_LED, TFT_BRIGHTNESS);
 SI4735 rx;
@@ -276,6 +281,8 @@ void setup()
   pinMode(MODE_SWITCH, INPUT_PULLUP);
 
 
+  bpf.setup(FILERT_PIN1, FILERT_PIN2); 
+
   // Comment the line below if you do not have external audio mute circuit
   rx.setAudioMuteMcuPin(AUDIO_MUTE);
 
@@ -292,8 +299,8 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   // rx.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
-  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
-  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
+  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
