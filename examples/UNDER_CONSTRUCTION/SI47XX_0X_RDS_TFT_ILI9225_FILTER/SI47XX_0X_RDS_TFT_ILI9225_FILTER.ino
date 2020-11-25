@@ -29,7 +29,7 @@
   |                           | (*1) RESET (pin 15)       |     12        |
   |                           | (*1) SDIO (pin 18)        |     A4        |
   |                           | (*1) SCLK (pin 17)        |     A5        |
-  |                           | (*2) SEN (pin 16)         |    GND        |  
+  |                           | (*2) SEN (pin 16)         |    GND        |
   |     Buttons               |                           |               |
   |                           | Switch MODE (AM/LSB/AM)   |      4        |
   |                           | Banddwith                 |      5        |
@@ -42,9 +42,9 @@
   |                           | A                         |       2       |
   |                           | B                         |       3       |
 
-  (*1) If you are using the SI4732-A10, check the corresponding pin numbers.  
-  (*2) If you are using the SI4735-D60, connect the SEN pin to the ground; 
-       If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
+  (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
+  (*2) If you are using the SI4735-D60, connect the SEN pin to the ground;
+       If you are using the SI4732-A10, connect the SEN pin to the +Vcc.
 
   User manual
 
@@ -81,7 +81,7 @@
   By PU2CLR, Ricardo,  Oct  2020.
 */
 
-#include "AutoBPF.h" 
+#include "AutoBPF.h"
 #include <SI4735.h>
 #include <SPI.h>
 #include "TFT_22_ILI9225.h" //  See https://github.com/Nkawu/TFT_22_ILI9225/wiki
@@ -112,16 +112,16 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define ENCODER_PIN_A 2
 #define ENCODER_PIN_B 3
 
-#define FILERT_PIN1   15
-#define FILERT_PIN2   16
+#define FILERT_PIN1   14
+#define FILERT_PIN2   15
 
 // Buttons controllers
 #define MODE_SWITCH 4         // Switch MODE (Am/LSB/USB)
 #define BANDWIDTH_BUTTON 5    // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
 #define BAND_BUTTON 6         // Band switch button
-#define SEEK_BUTTON 7         // Previous band
-#define AGC_SWITCH 14         // Pin A0 - Switch AGC ON/OF
-#define STEP_SWITCH 15        // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
+// #define SEEK_BUTTON          // Previous band
+#define AGC_SWITCH 0          // Pin A0 - Switch AGC ON/OF
+#define STEP_SWITCH 7         // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
 #define ENCODER_PUSH_BUTTON 16         // Pin A2 - Used to select the enconder control (BFO or VFO)
 #define AUDIO_MUTE 1          // External AUDIO MUTE circuit control
 
@@ -230,6 +230,7 @@ typedef struct
   uint16_t maximumFreq; // maximum frequency of the band
   uint16_t currentFreq; // Default frequency or current frequency
   uint16_t currentStep; // Defeult step (increment and decrement)
+  uint8_t  filter;
 } Band;
 
 /*
@@ -238,21 +239,30 @@ typedef struct
    Only the default frequency and step is changed. You can change this setup.
 */
 Band band[] = {
-  {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
-  {"MW ", MW_BAND_TYPE, 150, 1720, 810, 10},
-  {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1}, // Here and below: 150KHz to 30MHz
-  {"SW2", SW_BAND_TYPE, 150, 30000, 9600, 5},
-  {"SW3", SW_BAND_TYPE, 150, 30000, 11940, 5},
-  {"SW4", SW_BAND_TYPE, 150, 30000, 13600, 5},
-  {"SW5", SW_BAND_TYPE, 150, 30000, 14200, 1},
-  {"SW5", SW_BAND_TYPE, 150, 30000, 15300, 5},
-  {"SW6", SW_BAND_TYPE, 150, 30000, 17600, 5},
-  {"SW7", SW_BAND_TYPE, 150, 30000, 21100, 1},
-  {"SW8", SW_BAND_TYPE, 150, 30000, 28400, 1}
+  {"FM ", FM_BAND_TYPE,  6400,  10800, 10390, 10, 0},
+  {"MW ", MW_BAND_TYPE,  150,   1720,    810, 10, 0},
+  {"SW1", SW_BAND_TYPE,  1800,  3000,   3700,  1, 1},
+  {"H80", SW_BAND_TYPE,  3000,  5500,   4885,  5, 1},
+  {"SW2", SW_BAND_TYPE,  5500,  6500,   6100,  5, 1},
+  {"H40", SW_BAND_TYPE,  6500,  7200,   7100,  5, 1},
+  {"S41", SW_BAND_TYPE,  7200,  7800,   7205,  5, 1},
+  {"S31", SW_BAND_TYPE,  9000, 10500,   9600,  5, 2},
+  {"S25", SW_BAND_TYPE, 11000, 12500,  11940,  5, 2},
+  {"S22", SW_BAND_TYPE, 13000, 14000,  13600,  5, 2},
+  {"H20", SW_BAND_TYPE, 14000, 30000,  14200,  1, 2},
+  {"S19", SW_BAND_TYPE, 15000, 16000,  15300,  5, 2},
+  {"S17", SW_BAND_TYPE, 17000, 18000, 17600,   5, 3},
+  {"H15", SW_BAND_TYPE, 20000, 21500, 21100,   1, 3},
+  {"S13", SW_BAND_TYPE, 21400, 22000, 28525,   5, 3},
+  {"CB ", SW_BAND_TYPE, 26000, 28000, 27500,   1, 3},
+  {"H10", SW_BAND_TYPE, 28000, 30000, 28400,   1, 3},
+  {"ALL", SW_BAND_TYPE,   150, 30000, 15000,   1, 0}
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
+
+uint8_t currentFilter = 0;
 
 const char * const text_message  = "DIY: github.com/pu2clr/SI4735";
 
@@ -274,34 +284,30 @@ void setup()
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
   pinMode(BANDWIDTH_BUTTON, INPUT_PULLUP);
   pinMode(BAND_BUTTON, INPUT_PULLUP);
-  pinMode(SEEK_BUTTON, INPUT_PULLUP);
+  // pinMode(SEEK_BUTTON, INPUT_PULLUP);
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
   pinMode(AGC_SWITCH, INPUT_PULLUP);
   pinMode(STEP_SWITCH, INPUT_PULLUP);
   pinMode(MODE_SWITCH, INPUT_PULLUP);
 
-
-  bpf.setup(FILERT_PIN1, FILERT_PIN2); 
-
-  // Comment the line below if you do not have external audio mute circuit
-  rx.setAudioMuteMcuPin(AUDIO_MUTE);
+  bpf.setup(FILERT_PIN1, FILERT_PIN2);
+  rx.setAudioMuteMcuPin(AUDIO_MUTE);    // avoiding pop in the speaker
 
   // Use this initializer if using a 1.8" TFT screen:
   tft.begin();
-  tft.setOrientation(3); // Change it to 0,1 or 2, if necessary. 
+  tft.setOrientation(3); // Change it to 0,1 or 2, if necessary.
   tft.clear();
   // tft.setBacklightBrightness(128);
-  
+
   showTemplate();
 
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  // rx.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
   rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
-  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
 
+  delay(500);
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
   rx.setVolume(volume);
@@ -333,7 +339,6 @@ int getStepIndex(int st) {
   return 0;
 }
 
-
 /*
    Shows the static content on  display
 */
@@ -341,26 +346,18 @@ void showTemplate()
 {
   int maxY1 = tft.maxY() - 1;
   int maxX1 = tft.maxX() - 1;
-
   tft.setFont(Terminal6x8);
-
   tft.drawRectangle(0, 0, maxX1, maxY1, COLOR_WHITE);
   tft.drawRectangle(2, 2, maxX1 - 2, 40, COLOR_YELLOW);
-
   tft.drawLine(150, 0, 150, 40, COLOR_YELLOW);
-
   tft.drawLine(0, 80, maxX1, 80, COLOR_YELLOW); //
   tft.drawLine(60, 40, 60, 80, COLOR_YELLOW);            // Mode Block
   tft.drawLine(120, 40, 120, 80, COLOR_YELLOW);          // Band name
-
   tft.drawText(5, 150, "SNR.:", COLOR_RED);
   tft.drawText(5, 163, "RSSI:", COLOR_RED);
-
   tft.drawLine(0, 145, maxX1, 145, COLOR_YELLOW);
-
   tft.drawRectangle(45, 150,  maxX1 - 2, 156, COLOR_YELLOW);
   tft.drawRectangle(45, 163,  maxX1 - 2, 169, COLOR_YELLOW);
-
   tft.drawText(5, 130, text_message, COLOR_YELLOW);
 }
 
@@ -389,7 +386,6 @@ void printValue(byte col, byte line, char *oldValue, char *newValue, uint16_t co
     pNew++;
     c += space;
   }
-
   // Is there anything else to erase?
   while (*pOld)
   {
@@ -397,7 +393,6 @@ void printValue(byte col, byte line, char *oldValue, char *newValue, uint16_t co
     pOld++;
     c += space;
   }
-
   // Is there anything else to print?
   while (*pNew)
   {
@@ -405,7 +400,6 @@ void printValue(byte col, byte line, char *oldValue, char *newValue, uint16_t co
     pNew++;
     c += space;
   }
-
   // Save the current content to be tested next time
   strcpy(oldValue, newValue);
 }
@@ -417,7 +411,6 @@ void printValue(byte col, byte line, char *oldValue, char *newValue, uint16_t co
 void rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
-
   if (encoderStatus)
     encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
 }
@@ -429,11 +422,7 @@ void showFrequency()
 {
   uint16_t color;
   char tmp[15];
-
-  // It is better than use dtostrf or String to save space.
-
   sprintf(tmp, "%5.5u", currentFrequency);
-
   if (rx.isCurrentTuneFM())
   {
     bufferDisplay[0] = tmp[0];
@@ -460,7 +449,6 @@ void showFrequency()
       bufferDisplay[6] = '\0';
     }
   }
-
   color = (bfoOn && (currentMode == LSB || currentMode == USB)) ?  COLOR_CYAN : COLOR_YELLOW;
   tft.setFont(Trebuchet_MS16x21);
   printValue(10, 10, bufferFreq, bufferDisplay, color, 20);
@@ -482,13 +470,10 @@ void showStatus()
 {
   rx.getStatus();
   rx.getCurrentReceivedSignalQuality();
-  // SRN
   currentFrequency = rx.getFrequency();
   showFrequency();
-
   tft.setFont(Terminal6x8);
   printValue(155, 10, bufferStepVFO, bufferDisplay, COLOR_BLACK, 7);
-
   if (rx.isCurrentTuneFM())
   {
     tft.drawText(155, 30, "MHz", COLOR_RED);
@@ -496,16 +481,13 @@ void showStatus()
     CLEAR_BUFFER(bufferBW)
   }
   else
-  {
     showStep();
-  }
 
   if (band[bandIdx].bandType == SW_BAND_TYPE)
-    sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
+    sprintf(bufferDisplay, "%s %s %1.1u", band[bandIdx].bandName, bandModeDesc[currentMode], currentFilter);
   else
-    sprintf(bufferDisplay, "%s", band[bandIdx].bandName);
+    sprintf(bufferDisplay, "%s %1.1u", band[bandIdx].bandName, currentFilter);
   printValue(4, 60, bufferBand, bufferDisplay, COLOR_CYAN, 6);
-
   showAgcAtt();
   showBandwitdth();
 }
@@ -649,10 +631,8 @@ void showRSSI()
 
   tft.fillRectangle(46, 151,  maxAux - 3, 155, COLOR_BLACK);
   tft.fillRectangle(46, 164, maxAux - 3, 168, COLOR_BLACK);
-
   tft.fillRectangle(46, 151,  rssiLevel, 155, COLOR_LIGHTCYAN);
   tft.fillRectangle(46, 164, snrLevel, 168, COLOR_LIGHTCYAN);
-
 }
 
 void showBFOTemplate(uint16_t color)
@@ -670,10 +650,8 @@ void clearBFO() {
 void showBFO()
 {
   tft.setFont(Terminal6x8);
-
   sprintf(bufferDisplay, "%+4d", currentBFO);
   printValue(160, 55, bufferBFO, bufferDisplay, COLOR_CYAN, 7);
-
   elapsedCommand = millis();
 }
 
@@ -701,25 +679,25 @@ void setBand(uint8_t up_down) {
 */
 void loadSSB()
 {
-  rx.reset();
-  rx.queryLibraryId(); // Is it really necessary here? I will check it.
-  rx.patchPowerUp();
-  delay(50);
-  rx.setI2CFastMode(); // Recommended
-  // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
-  rx.downloadPatch(ssb_patch_content, size_content);
-  rx.setI2CStandardMode(); // goes back to default (100KHz)
+    rx.reset();
+    rx.queryLibraryId(); // Is it really necessary here? I will check it.
+    rx.patchPowerUp();
+    delay(50);
+    rx.setI2CFastMode(); // Recommended
+    // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
+    rx.downloadPatch(ssb_patch_content, size_content);
+    rx.setI2CStandardMode(); // goes back to default (100KHz)
 
-  // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
-  // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
-  // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
-  // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
-  // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
-  // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  rx.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
-  delay(25);
-  ssbLoaded = true;
+    // Parameters
+    // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+    // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
+    // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
+    // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
+    // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
+    // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
+    rx.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
+    delay(25);
+    ssbLoaded = true;
 }
 
 /*
@@ -729,7 +707,6 @@ void useBand()
 {
   showBFOTemplate(COLOR_BLACK);
   tft.fillRectangle(3, 90,  tft.maxX() - 5, 120, COLOR_BLACK);
-
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -763,6 +740,7 @@ void useBand()
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
+  bpf.setFilter( currentFilter =  band[bandIdx].filter );
   idxStep = getStepIndex(currentStep);
   rssi = 0;
   clearBFO();
@@ -775,15 +753,12 @@ void useBand()
 */
 void doAgc(int8_t v)
 {
-
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
   if (agcIdx < 0)
     agcIdx = 37;
   else if (agcIdx > 37)
     agcIdx = 0;
-
   disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable
-
   if (agcIdx > 1)
     agcNdx = agcIdx - 1;
   else
@@ -807,7 +782,6 @@ void doStep(int8_t v) {
     idxStep = lastStep;
 
   currentStep = tabStep[idxStep];
-
   rx.setFrequencyStep(currentStep);
   band[bandIdx].currentStep = currentStep;
   rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
@@ -831,9 +805,24 @@ void doSeek() {
 */
 void doMode(int8_t v)
 {
-  bufferBFO[0] = bufferFreq[0] - '\0';
-  if (currentMode != FM)
-  {
+  if (v == 1) {
+    if (currentFilter < 3)
+      currentFilter++;
+    else
+      currentFilter = 0;
+  } else {
+    if (currentFilter > 0 )
+      currentFilter--;
+    else
+      currentFilter = 3;
+  }
+  bpf.setFilter(currentFilter);
+  showStatus();
+
+  /*
+    bufferBFO[0] = bufferFreq[0] - '\0';
+    if (currentMode != FM)
+    {
     if (v == 1)  { // clockwise
       if (currentMode == AM)
       {
@@ -867,8 +856,15 @@ void doMode(int8_t v)
     band[bandIdx].currentFreq = currentFrequency;
     band[bandIdx].currentStep = currentStep;
     useBand();
-  }
+    }
+  */
+  delay(MIN_ELAPSED_TIME);
+  elapsedCommand = millis();
+  
 }
+
+
+
 
 /**
     Switches the Bandwidth
@@ -877,7 +873,6 @@ void doBandwidth(int8_t v) {
   if (currentMode == LSB || currentMode == USB)
   {
     bwIdxSSB = ( v == 1) ? bwIdxSSB + 1 : bwIdxSSB - 1;
-
     if (bwIdxSSB > 5)
       bwIdxSSB = 0;
     else if ( bwIdxSSB < 0 )
@@ -918,6 +913,19 @@ void doBFO()
   elapsedCommand = millis();
 }
 
+
+/**
+ * Prepares the system to process the desired current command
+ */
+void prepareCommand(bool *b)
+{
+  bool tmp = *b;
+  disableCommands(); // Disable previous command if active.
+  *b = !tmp;
+  delay(MIN_ELAPSED_TIME);
+  elapsedCommand = millis();
+}
+
 void loop()
 {
   // Check if the encoder has moved.
@@ -941,17 +949,10 @@ void loop()
       setBand(encoderCount);
     else
     {
-      if (encoderCount == 1)
-      {
+      if ( seekDirection = (encoderCount == 1) )
         rx.frequencyUp();
-        seekDirection = 1;
-      }
       else
-      {
         rx.frequencyDown();
-        seekDirection = 0;
-      }
-      // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
     }
     showFrequency();
@@ -960,21 +961,17 @@ void loop()
   else
   {
     if (digitalRead(BANDWIDTH_BUTTON) == LOW)
-    {
-      cmdBandwidth = !cmdBandwidth;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
+      prepareCommand(&cmdBandwidth);
     else if (digitalRead(BAND_BUTTON) == LOW)
-    {
-      cmdBand = !cmdBand;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (digitalRead(SEEK_BUTTON) == LOW)
-    {
-      doSeek();
-    }
+      prepareCommand(&cmdBand);
+    else if (digitalRead(AGC_SWITCH) == LOW)
+      prepareCommand(&cmdAgc);
+    else if (digitalRead(STEP_SWITCH) == LOW)
+      prepareCommand(&cmdStep);
+    else if (digitalRead(MODE_SWITCH) == LOW)
+      prepareCommand(&cmdMode);
+    // else if (digitalRead(SEEK_BUTTON) == LOW)
+    //   doSeek();      
     else if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
     {
       if (currentMode == LSB || currentMode == USB)
@@ -985,24 +982,6 @@ void loop()
         elapsedCommand = millis();
       }
       delay(300);
-    }
-    else if (digitalRead(AGC_SWITCH) == LOW)
-    {
-      cmdAgc = !cmdAgc;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (digitalRead(STEP_SWITCH) == LOW)
-    {
-      cmdStep = !cmdStep;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (digitalRead(MODE_SWITCH) == LOW)
-    {
-      cmdMode = !cmdMode;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
     }
   }
 
@@ -1043,6 +1022,5 @@ void loop()
     }
     checkRDS();
   }
-
   delay(1);
 }
