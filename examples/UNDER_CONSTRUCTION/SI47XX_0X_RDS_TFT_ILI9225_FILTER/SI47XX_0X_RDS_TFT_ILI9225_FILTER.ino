@@ -145,7 +145,6 @@ bool ssbLoaded = false;
 bool fmStereo = true;
 
 // AGC and attenuation control
-// AGC and attenuation control
 int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 int8_t agcNdx = 0;
@@ -805,6 +804,7 @@ void doSeek() {
 */
 void doMode(int8_t v)
 {
+  /*
   if (v == 1) {
     if (currentFilter < 3)
       currentFilter++;
@@ -818,8 +818,8 @@ void doMode(int8_t v)
   }
   bpf.setFilter(currentFilter);
   showStatus();
-
-  /*
+  */
+ 
     bufferBFO[0] = bufferFreq[0] - '\0';
     if (currentMode != FM)
     {
@@ -857,7 +857,7 @@ void doMode(int8_t v)
     band[bandIdx].currentStep = currentStep;
     useBand();
     }
-  */
+
   delay(MIN_ELAPSED_TIME);
   elapsedCommand = millis();
   
