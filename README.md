@@ -827,6 +827,11 @@ __Example:__
 si4735.setMaxDelaySetFrequency(50);
 ```
 
+<BR>
+
+__Finally, if no previous attempt could not solve the issue, check that the crystal is working correctly__.
+
+
 
 ### I cannot tune satisfactorily any station on LW, MW or SW
 
