@@ -804,7 +804,7 @@ void doSeek() {
 */
 void doMode(int8_t v)
 {
-  /*
+  
   if (v == 1) {
     if (currentFilter < 3)
       currentFilter++;
@@ -818,7 +818,8 @@ void doMode(int8_t v)
   }
   bpf.setFilter(currentFilter);
   showStatus();
-  */
+  
+  /*
  
     bufferBFO[0] = bufferFreq[0] - '\0';
     if (currentMode != FM)
@@ -858,8 +859,10 @@ void doMode(int8_t v)
     useBand();
     }
 
+  */
   delay(MIN_ELAPSED_TIME);
   elapsedCommand = millis();
+  
   
 }
 
