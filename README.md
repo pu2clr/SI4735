@@ -787,7 +787,7 @@ It has been observed in several tests. Some tips:
 4. Check if the pins 17 (SCLK / SCL) and 18 (SDIO / SDA) of the SI47XX device are correctly connected to the Arduino board pins;
 5. Check the pull-up resistors connected to the pins 17 (SCLK / SCL) and 18 (SDIO / SDA) of the SI47XX device;
 6. Check the voltage on SI47XX pin 15 (RST).  It should be 3.3V. All digital pins of your Arduino must have 3.3v when in HIGH condition. If it is greater than 3.3V, probably you are using an 5V board; 
-7. If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version; 
+7. If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on Arduino IDE Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version; 
 8. Do not try to power an ATmega328 Arduino Board designed to work with 5V and 16MHz with a 3.3V supply. That configuration will make your system unstable. See [ATmega328P Datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf);  
 9. Do not try to power your Arduino based board designed to work with 3.3V with greater voltage. See the technical specifications of your Arduino Board and remember that the maximum voltage of the SI47XX MCU CONTROL INTERFACE is 3.6V;
 10. Check the external crystal and its capacitors connections. 
@@ -807,7 +807,7 @@ If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 a
 
 This problem can be a little complicated to solve. I have observed that very few times in my experiments. When I am powering the system using the computer USB and the computer is connected to the grid, it might occur. __Please, test your system using only batteries__.
 
-If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version.
+If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on IDE Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version.
 
 This problem also can be caused by the external crystal. This crystal needs a minimum delay to become stable after a reset or power up command. Currently, this delay is 10ms. Try to increase that delay by using the method setMaxDelayPowerUp.
 
@@ -943,8 +943,6 @@ The table below shows some SI473X chips and Si4730 based-boards where the PU2CLR
 * __Acording to Silicon Labs guide AN332, the SI4732-A10 has the same firmware FMRX component and AM_SW_LW RX component as that of SI4735-D60. See Si47XX PROGRAMMING GUIDE; AN332; page 2. So, like the SI4735-D60, it is possible to use it to listen to SSB mode with the SI4732-A10__.
 
 
-  
-  
 
 <BR>
 
@@ -967,7 +965,7 @@ This item describes some tools and accessories you might need to build your radi
 |---------------|---------------|  
 |![Arduino Pro Mini 01](./extras/images/tools_arduino_02_A.png)|![Arduino Pro Mini 02](./extras/images/tools_arduino_02_B.png)|
 
-* Pro Mini 3.3V 8MHz /5V 16M Atmega328 Replace ATmega128 Arduino Compatible Nano
+* Pro Mini 3.3V 8MHz Atmega328 Replace ATmega128 Arduino Compatible Nano
 
 <BR> 
 
@@ -975,8 +973,7 @@ This item describes some tools and accessories you might need to build your radi
 |---------------|---------------|   
 |![FT232 USB A](./extras/images/tools_FT232_usb_a.png)|![SI4735 on adapter 05](./extras/images/tools_FT232_usb_b.png)|
 
-* FT232RL 3.3V 5.5V FTDI USB to TTL Serial Adapter Module for Arduino Mini Port 
-
+* FT232RL 3.3V/5.5V FTDI USB to TTL Serial Adapter Module for Arduino Mini Port 
 
 <BR>
 
