@@ -7,6 +7,10 @@
   SI47XX_09_SAVE_SSB_PATCH_EEPROM. 
   See https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM
 
+  Other examples of using EEPROM and SSB patch: 
+  https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR/SI4735_06_SSB_EEPROM
+  https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_10_USING_EEPROM_WITH_SSB
+
   Prototype documentation : https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
@@ -21,7 +25,7 @@
 
 #define EEPROM_ADDR 0x50
 
-#define SSB_UP      1      // AM/FM SWITCH
+#define SSB_UP      1    // AM/FM SWITCH
 #define SSB_DOWN    4    // Seek Up
 #define FM_FUNCTION 0
 #define AM_FUNCTION 1
