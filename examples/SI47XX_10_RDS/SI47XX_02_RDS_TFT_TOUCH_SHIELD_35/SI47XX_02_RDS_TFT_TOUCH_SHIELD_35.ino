@@ -14,10 +14,10 @@
   2) It uses the touch screen interface provided by mcufriend TFT;
   3) Encoder;
   4) FM, AM (MW and SW) and SSB (LSB and USB);
-  5) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+  5) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
   6) BFO Control;
   7) RDS;
-  8) Frequency step switch (1, 5 and 10KHz).
+  8) Frequency step switch (1, 5 and 10kHz).
 
   Wire up
 
@@ -237,21 +237,21 @@ typedef struct
 } Bandwitdth;
 
 int8_t bwIdxSSB = 4;
-Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  //  4 = 0.5KHz
+Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
                               {5, "1.0"},  //
                               {0, "1.2"},  //
                               {1, "2.2"},  //
                               {2, "3.0"},  //
-                              {3, "4.0"}}; // 3 = 4KHz
+                              {3, "4.0"}}; // 3 = 4kHz
 
 int8_t bwIdxAM = 4;
-Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1KHz
+Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1kHz
                              {5, "1.8"},
                              {3, "2.0"},
                              {6, "2.5"},
                              {2, "3.0"},
                              {1, "4.0"},
-                             {0, "6.0"}}; // 0 = 6KHz
+                             {0, "6.0"}}; // 0 = 6kHz
 
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
@@ -767,7 +767,7 @@ void showStatus()
     return;
   }
 
-  printText(250, 30, 2, bufferUnit, "KHz", WHITE, 12);
+  printText(250, 30, 2, bufferUnit, "kHz", WHITE, 12);
 
   showBandwitdth();
   showAgcAtt();
@@ -788,13 +788,13 @@ void showBandwitdth()
   tft.setFont(NULL);
   if (currentMode == LSB || currentMode == USB)
   {
-    sprintf(bw, "BW:%s KHz", bandwitdthSSB[bwIdxSSB].desc);
+    sprintf(bw, "BW:%s kHz", bandwitdthSSB[bwIdxSSB].desc);
     printText(5, 85, 1, bufferBW, bw, GREEN, 7);
     showBFO();
   }
   else if (currentMode == AM)
   {
-    sprintf(bw, "BW:%s KHz", bandwitdthAM[bwIdxAM].desc);
+    sprintf(bw, "BW:%s kHz", bandwitdthAM[bwIdxAM].desc);
     printText(5, 85, 1, bufferBW, bw, GREEN, 7);
   }
 }
@@ -1024,11 +1024,11 @@ void loadSSB()
   // si4735.setI2CFastMode(); // Recommended
   si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
   si4735.downloadPatch(ssb_patch_content, size_content);
-  si4735.setI2CStandardMode(); // goes back to default (100KHz)
+  si4735.setI2CStandardMode(); // goes back to default (100kHz)
 
   // delay(50);
   // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
   // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
@@ -1052,7 +1052,7 @@ void useBand()
     // si4735.setFMDeEmphasis(1); // 1 = 50 μs. Used in Europe, Australia, Japan;
     si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     // Define here the best criteria to find a FM station during the seeking process
-    // si4735.setSeekFmSpacing(10); // frequency spacing for FM seek (5, 10 or 20. They mean 50, 100 or 200 KHz)
+    // si4735.setSeekFmSpacing(10); // frequency spacing for FM seek (5, 10 or 20. They mean 50, 100 or 200 kHz)
     // si4735.setSeekAmRssiThreshold(0);
     // si4735.setSeekFmSrnThreshold(3);
 
@@ -1090,7 +1090,7 @@ void useBand()
 
     // Sets the seeking limits and space.
     si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
-    si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10KHz for spacing
+    si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10kHz for spacing
   }
   delay(100);
 
@@ -1183,7 +1183,7 @@ void switchStep(int8_t v)
 
     si4735.setFrequencyStep(currentStep);
     band[bandIdx].currentStep = currentStep;
-    si4735.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
+    si4735.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10kHz for spacing
     showStep();
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.

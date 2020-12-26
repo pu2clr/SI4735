@@ -71,10 +71,10 @@ __Pay attention to the your I2C device voltage. The system can become unstable i
 
   1) Internal Arduino pull-up (no external resistors on schematic for buttons and encoder);
   2) Only SSB (LSB and USB);
-  3) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+  3) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
   4) Eight ham radio bands pre configured;
   5) BFO Control; and
-  6) Frequency step switch (1, 5 and 10KHz);
+  6) Frequency step switch (1, 5 and 10kHz);
 
   Main Parts: 
   Encoder with push button; 
@@ -87,13 +87,13 @@ Pay attention on the push buttons added on this example. The table below shows t
 
 | Defined constant | Arduino Pin | Description |
 | ---------------- | ----------- | ----------- | 
-| BANDWIDTH_BUTTON | 5           | Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz |
+| BANDWIDTH_BUTTON | 5           | Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz |
 | VOL_UP           | 6           | Volume Up |
 | VOL_DOWN 7       | 7           | Volume Down |
 | BAND_BUTTON_UP   | 8           | Next band |
 | BAND_BUTTON_DOWN | 9           | Previous band | 
 | AGC_SWITCH       | 11          | Switch AGC ON/OF | 
-| STEP_SWITCH      | 10          | Used to select the increment or decrement frequency step (1, 5 or 10 KHz) |
+| STEP_SWITCH      | 10          | Used to select the increment or decrement frequency step (1, 5 or 10 kHz) |
 | BFO_SWITCH       | 13          | Used to select the enconder control (BFO or VFO) |
 
 

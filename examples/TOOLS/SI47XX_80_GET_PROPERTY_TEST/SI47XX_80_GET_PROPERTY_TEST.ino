@@ -60,10 +60,10 @@ void setup()
 
   delay(500);
   si4735.setup(RESET_PIN, AM_FUNCTION);
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   si4735.setAM(520, 1750, 810, 10);
   si4735.setSeekAmLimits(520, 1750);
-  si4735.setSeekAmSpacing(10); // spacing 50KHz
+  si4735.setSeekAmSpacing(10); // spacing 50kHz
   delay(500);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
@@ -73,13 +73,13 @@ void setup()
 void showHelp()
 {
 
-  Serial.println("Type F to FM; A to MW; 1 to All Band (100KHz to 30MHz)");
+  Serial.println("Type F to FM; A to MW; 1 to All Band (100kHz to 30MHz)");
   Serial.println("Type U to increase and D to decrease the frequency");
   Serial.println("Type S or s to seek station Up or Down");
   Serial.println("Type + or - to volume Up or Down");
   Serial.println("Type 0 to show current status");
   Serial.println("Type B to change Bandwidth filter");
-  Serial.println("Type 4 to 8 (4 to step 1; 5 to step 5Khz; 6 to 10KHz; 7 to 100Khz; 8 to 1000KHz)");
+  Serial.println("Type 4 to 8 (4 to step 1; 5 to step 5kHz; 6 to 10kHz; 7 to 100kHz; 8 to 1000kHz)");
   Serial.println("Type P to show some properties.");
   Serial.println("Type ? to this help.");
   Serial.println("==================================================");
@@ -135,7 +135,7 @@ void showStatus()
   else
   {
     Serial.print(currentFrequency);
-    Serial.print("KHz");
+    Serial.print("kHz");
   }
   Serial.print(" [SNR:");
   Serial.print(si4735.getCurrentSNR());
@@ -164,7 +164,7 @@ void loop()
       case 'A':
         si4735.setAM(520, 1750, 810, 10);
         si4735.setSeekAmLimits(520, 1750);
-        si4735.setSeekAmSpacing(10); // spacing 50KHz
+        si4735.setSeekAmSpacing(10); // spacing 50kHz
         break;
       case 'f':
       case 'F':
@@ -173,7 +173,7 @@ void loop()
       case '1':
         si4735.setAM(100, 30000, 9600, 5);
         si4735.setSeekAmLimits(100, 30000);
-        si4735.setSeekAmSpacing(5); // spacing 50KHz
+        si4735.setSeekAmSpacing(5); // spacing 50kHz
         break;
       case 'U':
       case 'u':
@@ -196,7 +196,7 @@ void loop()
           si4735.setBandwidth(bandwidthIdx, 1);
           Serial.print("Filter - Bandwidth: ");
           Serial.print(String(bandwitdth[bandwidthIdx]));
-          Serial.println(" KHz");
+          Serial.println(" kHz");
           bandwidthIdx++;
         }
         break;

@@ -1125,7 +1125,7 @@ void SI4735::powerDown(void)
  * Set the frequency to the corrent function of the Si4735 (AM or FM)
  * You have to call setup or setPowerUp before call setFrequency.
  * 
- * @param unsigned freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
+ * @param unsigned freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 kHz. 
  */
 void SI4735::setFrequency(unsigned freq) 
 ```
@@ -2268,10 +2268,10 @@ void SI4735::setSSBBfo(int offset)
  * 
  * See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  * 
- * @param AUDIOBW SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz.
+ * @param AUDIOBW SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz.
  * @param SBCUTFLT SSB side band cutoff filter for band passand low pass filter
  *                 if 0, the band pass filter to cutoff both the unwanted side band and high frequency 
- *                  component > 2KHz of the wanted side band (default).
+ *                  component > 2kHz of the wanted side band (default).
  * @param AVC_DIVIDER set 0 for SSB mode; set 3 for SYNC mode.
  * @param AVCEN SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
  * @param SMUTESEL SSB Soft-mute Based on RSSI or SNR.

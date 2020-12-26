@@ -181,7 +181,7 @@ void showFrequency()
     showSeparator();
     Serial.print("Current Frequency: ");
     Serial.print(freqDisplay);
-    Serial.print("KHz");
+    Serial.print("kHz");
     Serial.print(" | Step: ");
     Serial.println(currentStep);
 }
@@ -202,7 +202,7 @@ void showStatus()
 
     Serial.print(" | BW :");
     Serial.print(String(bandwitdth[bandwidthIdx]));
-    Serial.print("KHz");
+    Serial.print("kHz");
     Serial.print(" | SNR: ");
     Serial.print(si4735.getCurrentSNR());
     Serial.print(" | RSSI: ");
@@ -289,7 +289,7 @@ void loadSSB()
     Serial.print("\nPatch Size: ");
     Serial.print(eep.refined.patch_size);
     // Parameters
-    // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+    // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
     // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
     // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
     // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).

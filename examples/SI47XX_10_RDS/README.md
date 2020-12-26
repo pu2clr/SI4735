@@ -22,7 +22,7 @@ It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and al
 6. BFO Control; 
 7. VFO/BFO switching via encoder push button;
 8. 12 SW bands + one from (1.7MHz to 30MHz); 
-9. Frequency step switch (1, 5, 10, 100 and 500KHz KHz);
+9. Frequency step switch (1, 5, 10, 100 and 500kHz kHz);
 10. FM/RDS functions.
   
 

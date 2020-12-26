@@ -95,7 +95,7 @@ void setup()
 
   si4735.setup(RESET_PIN, FM_FUNCTION);
 
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   si4735.setFM(8400, 10800,  10390, 10);
 
   delay(500);
@@ -134,7 +134,7 @@ void showStatus()
     Serial.print((si4735.getCurrentPilot()) ? "STEREO" : "MONO");
   } else {
     Serial.print(currentFrequency);
-    Serial.print("KHz");
+    Serial.print("kHz");
   }
 
   si4735.getCurrentReceivedSignalQuality();

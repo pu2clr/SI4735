@@ -22,11 +22,11 @@ Features of this sketch:
 
 1) __Internal Arduino pull-up (no external resistors on schematic for buttons and encoder)__;
 2) Only SSB (LSB and USB);
-3) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+3) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
 4) Volume control;
 5) Eight ham radio bands pre configured;
 6) BFO Control; 
-7) Frequency step switch (1, 5 and 10KHz);  and
+7) Frequency step switch (1, 5 and 10kHz);  and
 8) BFO step (10 and 50 Hz)
    
 
@@ -46,13 +46,13 @@ Pay attention on the push buttons added on this example. The table below shows t
 
 | Defined constant | Arduino Pin | Description |
 | ---------------- | ----------- | ----------- | 
-| BANDWIDTH_BUTTON | 5           | Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz |
+| BANDWIDTH_BUTTON | 5           | Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz |
 | VOL_UP           | 6           | Volume Up |
 | VOL_DOWN 7       | 7           | Volume Down |
 | BAND_BUTTON_UP   | 8           | Next band |
 | BAND_BUTTON_DOWN | 9           | Previous band | 
 | AGC_SWITCH       | 11          | Switch AGC ON/OF | 
-| STEP_SWITCH      | 10          | Used to select the increment or decrement frequency step (1, 5 or 10 KHz) |
+| STEP_SWITCH      | 10          | Used to select the increment or decrement frequency step (1, 5 or 10 kHz) |
 | BFO_SWITCH       | 13          | Used to select the enconder control (BFO or VFO) |
 
 <BR>
@@ -121,10 +121,10 @@ Once again, the author disclaims any liability for any damage this procedure may
 ### Features of this sketch:
 
 * FM, AM (MW and SW) and SSB (LSB and USB);
-* Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+* Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
 * 22 commercial and ham radio bands pre configured;
 * BFO Control; and
-* Frequency step switch (1, 5 and 10KHz);
+* Frequency step switch (1, 5 and 10kHz);
 
 <BR>
 

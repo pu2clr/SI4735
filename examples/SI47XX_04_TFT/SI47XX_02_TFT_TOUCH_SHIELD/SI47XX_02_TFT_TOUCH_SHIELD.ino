@@ -12,9 +12,9 @@
   2) It uses the touch screen interface provided by mcufriend TFT;
   3) Encoder;
   4) FM, AM (MW and SW) and SSB (LSB and USB);
-  5) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+  5) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
   6) BFO Control; and
-  7) Frequency step switch (1, 5 and 10KHz).
+  7) Frequency step switch (1, 5 and 10kHz).
 
   Wire up
 
@@ -455,7 +455,7 @@ void showStatus()
   } else {
     sprintf(buffer, "Step:%2d", currentStep);
     showText(170, 10, 1, NULL, WHITE, buffer);
-    showText(170, 30, 2, NULL, WHITE, "KHz");
+    showText(170, 30, 2, NULL, WHITE, "kHz");
   }
 
   tft.fillRect(0, 60, 250, 36, BLACK);
@@ -477,7 +477,7 @@ void showStatus()
   if (currentMode == LSB || currentMode == USB)
   {
     showText(5, 85, 1, NULL, BLACK, bufferBW );
-    sprintf(buffer, "BW:%s KHz", bandwitdthSSB[bwIdxSSB]);
+    sprintf(buffer, "BW:%s kHz", bandwitdthSSB[bwIdxSSB]);
     showText(5, 85, 1, NULL, GREEN, buffer );
     strcpy( bufferBW, buffer);
     showBFO();
@@ -486,7 +486,7 @@ void showStatus()
   else if (currentMode == AM)
   {
     showText(5, 85, 1, NULL, BLACK, bufferBW );
-    sprintf(buffer, "BW:%s KHz", bandwitdthAM[bwIdxAM]);
+    sprintf(buffer, "BW:%s kHz", bandwitdthAM[bwIdxAM]);
     showText(5, 85, 1, NULL, GREEN, buffer );
     strcpy( bufferBW, buffer);
     showText(70, 85, 1, NULL, GREEN, bufferAGC);
@@ -592,11 +592,11 @@ void loadSSB()
   si4735.setI2CFastMode(); // Recommended
   // si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
   si4735.downloadPatch(ssb_patch_content, size_content);
-  si4735.setI2CStandardMode(); // goes back to default (100KHz)
+  si4735.setI2CStandardMode(); // goes back to default (100kHz)
 
   // delay(50);
   // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
   // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).

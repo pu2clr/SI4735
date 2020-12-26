@@ -20,7 +20,7 @@
 #define MAX_TIME 200
 
 uint16_t currentFrequency;
-uint16_t lastAmFrequency = 810;     // Starts AM on 810KHz;
+uint16_t lastAmFrequency = 810;     // Starts AM on 810kHz;
 uint16_t lastFmFrequency = 10390;   // Starts FM on 103,9MHz
 
 long lastQuery = millis();
@@ -47,7 +47,7 @@ void setup()
   oled.clear();
 
   si4735.setup(RESET_PIN, FM_FUNCTION);
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   si4735.setFM(8400, 10800, 10570, 10);
   delay(500);
   currentFrequency = si4735.getFrequency();
@@ -78,7 +78,7 @@ void showStatus() {
     oled.setCursor(38, 0);     
     oled.print(currentFrequency);
     oled.setCursor(95, 0);
-    oled.print("KHz");
+    oled.print("kHz");
   }
 }
 

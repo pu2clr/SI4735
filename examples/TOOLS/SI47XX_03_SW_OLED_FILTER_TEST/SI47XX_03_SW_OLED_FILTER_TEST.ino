@@ -175,7 +175,7 @@ void showStatus()
   String bandMode;
 
   bandMode = String("AM");
-  unit = "KHz";
+  unit = "kHz";
   freqDisplay = String(currentFrequency);
 
   display.set1X();
@@ -206,7 +206,7 @@ void showStatus()
   display.setCursor(0, 7);
   display.print("BW: ");
   display.print(String(bandwitdth[bandwidthIdx]));
-  display.print(" KHz");
+  display.print(" kHz");
 }
 
 /* *******************************

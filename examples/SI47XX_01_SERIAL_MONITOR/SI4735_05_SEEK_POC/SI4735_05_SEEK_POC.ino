@@ -42,7 +42,7 @@ void setup()
   }
   delay(500);
   si47xx.setup(RESET_PIN, FM_FUNCTION);
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   si47xx.setFM(8400, 10800, 10390, 10);
   previousFrequency = currentFrequency = si47xx.getFrequency();
   delay(500);
@@ -52,7 +52,7 @@ void setup()
 
 void showHelp()
 {
-  Serial.println("Type F to FM; A to MW; 1 to All Band (100KHz to 30MHz)");
+  Serial.println("Type F to FM; A to MW; 1 to All Band (100kHz to 30MHz)");
   Serial.println("Type U to increase and D to decrease the frequency");
   Serial.println("Type S or s to seek station Up or Down with progress");
   Serial.println("Type > or < to seek down or up ");
@@ -70,7 +70,7 @@ void showFrequency( uint16_t freq ) {
   else
   {
     Serial.print(freq);
-    Serial.println("KHz");
+    Serial.println("kHz");
   }
 }
 
@@ -85,7 +85,7 @@ void loop()
     case 'A':
       si47xx.setAM(520, 1750, 810, 10);
       si47xx.setSeekAmLimits(520, 1750);
-      si47xx.setSeekAmSpacing(10); // spacing 10KHz
+      si47xx.setSeekAmSpacing(10); // spacing 10kHz
       break;
     case 'f':
     case 'F':
@@ -96,7 +96,7 @@ void loop()
     case '1':
       si47xx.setAM(100, 30000, 7200, 5);
       si47xx.setSeekAmLimits(7100, 7500);   // Range for seeking.
-      si47xx.setSeekAmSpacing(1);           // spacing 1KHz
+      si47xx.setSeekAmSpacing(1);           // spacing 1kHz
       break;
     case 'U':
     case 'u':

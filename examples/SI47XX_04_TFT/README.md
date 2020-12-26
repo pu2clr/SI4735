@@ -29,7 +29,7 @@ It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and al
 6. BFO Control; 
 7. VFO/BFO switching via encoder push button;
 8. 12 SW bands + one from (1.7MHz to 30MHz). 
-9. Frequency step switch (1, 5, 10, 100 and 500KHz KHz);
+9. Frequency step switch (1, 5, 10, 100 and 500kHz kHz);
   
 
 If you are using the same circuit used on examples with OLED and LCD, you have to change some buttons wire up. This TFT device takes five pins from Arduino. For this reason, it is necessary change the pins of some buttons. Fortunately, you can use the ATmega328 analog pins as digital pins. The table below.   
@@ -146,7 +146,7 @@ The video below can help you to to setup your display.
 4. Bandwidth filter;
 5. BFO Control; 
 6. VFO/BFO switching via encoder button
-7. Frequency step switch (1, 5 and 10KHz);
+7. Frequency step switch (1, 5 and 10kHz);
 8. Volume control 
 9. Audio mute; 
 

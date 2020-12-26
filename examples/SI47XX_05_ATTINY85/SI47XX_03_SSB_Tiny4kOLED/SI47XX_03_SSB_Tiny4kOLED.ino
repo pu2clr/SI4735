@@ -32,7 +32,7 @@
 #define MAX_TIME 200
 
 uint16_t currentFrequency;
-uint16_t lastAmFrequency = 810;     // Starts AM on 810KHz;
+uint16_t lastAmFrequency = 810;     // Starts AM on 810kHz;
 uint16_t lastFmFrequency = 10390;   // Starts FM on 103,9MHz
 
 int currentBFO = 0;
@@ -67,7 +67,7 @@ void setup()
   loadSSB();
   delay(1000);
 
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   // si4735.setFM(8400, 10800, 10570, 10);
   delay(100);
   si4735.setSSB(520, 1710,  810, 10, 1);
@@ -101,7 +101,7 @@ void loadSSB()
   oled.setCursor(0, 2);
   oled.print(eep.refined.patch_size);
    // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
   // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).

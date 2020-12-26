@@ -32,7 +32,7 @@ void setup()
   lcd.print("   By PU2CLR   ");
 
   si4735.setup(RESET_PIN, FM_FUNCTION);
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   si4735.setFM(8400, 10800, 10390, 10);
   delay(100);
   currentFrequency = si4735.getFrequency();

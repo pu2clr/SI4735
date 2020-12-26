@@ -39,9 +39,9 @@ This example is a complete FM/AM/LW/SW (with SSB support) receiver based on SI47
 3) I2C LiquidCrystal/LCD 20x4;
 4) Encoder;
 5) FM, AM (MW and SW) and SSB (LSB and USB);
-6) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+6) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
 7) BFO Control; and
-8) Frequency step switch (1, 5 and 10KHz). 
+8) Frequency step switch (1, 5 and 10kHz). 
 
 ### About SSB support
 
@@ -74,12 +74,12 @@ However, you have pay attention to the new configuration pins on ESP32. See tabl
 | GPIO   | Used as  | Constant number (#define)| Function Description | 
 | ------ | -------- | ------------------ | ----------- | 
 | GPIO32 | Capacitive | 32 (GPIO32) | Switch MODE (Am/LSB/USB) | 
-| GPIO33 | Capacitive | 33 (GPIO33) | Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz |
+| GPIO33 | Capacitive | 33 (GPIO33) | Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz |
 | GPIO27 | Capacitive | 27 (GPIO27) | Volume Up |
 | GPIO14 | Capacitive | 14 (GPIO14) | Volume Down |
 | GPIO12 | Capacitive | 12 (GPIO12) | Switch to the next band |
 | GPIO4  | Capacitive |  4 (GPIO4)  | Switch to the previous band | 
-| GPIO2  | Capacitive |  2 (GPIO2)  | Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
+| GPIO2  | Capacitive |  2 (GPIO2)  | Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
 | GPIO15 | Capacitive | 15 (GPUI15) | Used to select the enconder control (BFO or VFO) 
 
 
@@ -123,9 +123,9 @@ void setup() {
 * I2C LiquidCrystal/LCD 20x4;
 * Encoder;
 * FM, AM (MW and SW) and SSB (LSB and USB);
-* Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+* Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
 * BFO Control; and
-* Frequency step switch (1, 5 and 10KHz).
+* Frequency step switch (1, 5 and 10kHz).
 
 
 ## Example SI47XX_03_ESP32_ALL_IN_ONE_TFT

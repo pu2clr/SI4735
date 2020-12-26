@@ -1,7 +1,7 @@
 /*
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a TM1638 7 segments display and controls
-  Features:   AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
-              AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
+  Features:   AM; SSB; LW/MW/SW; two super band (from 150kHz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
+              AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
   Wire up on Arduino UNO, Pro mini and SI4735-D60
   | Device name               | Device Pin / Description      |  Arduino Pin  |
@@ -56,10 +56,10 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 // TM1638 - Buttons controllers
 #define BAND_BUTTON 1       // S1 Band switch button
 #define MODE_SWITCH 2       // S2 FM/AM/SSB
-#define BANDWIDTH_BUTTON 4  // S3 Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
+#define BANDWIDTH_BUTTON 4  // S3 Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz
 #define SEEK_BUTTON 8       // S4 Seek
 #define AGC_SWITCH  16      // S5 Switch AGC ON/OF
-#define STEP_SWITCH 32      // S6 Increment or decrement frequency step (1, 5 or 10 KHz)
+#define STEP_SWITCH 32      // S6 Increment or decrement frequency step (1, 5 or 10 kHz)
 #define AUDIO_VOLUME 64     // S7 Volume Control
 #define SOFT_MUTE 128       // S8 External AUDIO MUTE circuit control
 
@@ -492,9 +492,9 @@ void loadSSB()
   rx.setI2CFastMode(); // Recommended
   // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
   rx.downloadPatch(ssb_patch_content, size_content);
-  rx.setI2CStandardMode(); // goes back to default (100KHz)
+  rx.setI2CStandardMode(); // goes back to default (100kHz)
   // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
   // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
@@ -537,7 +537,7 @@ void useBand()
     rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for AM or SSB
     rx.setAutomaticGainControl(disableAgc, agcNdx);
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
-    rx.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10KHz for spacing
+    rx.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10kHz for spacing
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
@@ -636,7 +636,7 @@ void doStep(int8_t v)
   currentStep = tabStep[idxStep];
   rx.setFrequencyStep(currentStep);
   band[bandIdx].currentStep = currentStep;
-  rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
+  rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10kHz for spacing
   showStep();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();

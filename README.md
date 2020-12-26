@@ -356,7 +356,7 @@ This library has more than 120 functions. The table below shows the mains functi
 | setSBBSidebandCutoffFilter        | Sets SBB Sideband Cutoff Filter for band pass and low pass filters. |
 | setTuneFrequencyAntennaCapacitor  | Only FM. Freeze Metrics During Alternate Frequency Jump. |
 | setI2CFastModeCustom              | Sets the I2C bus to a given value. |
-| setI2CStandardMode                | Sets I2C bus to 100KHz. |
+| setI2CStandardMode                | Sets I2C bus to 100kHz. |
 | setAudioMuteMcuPin                | This function sets the mcu digital pin you want to use to control the external audio mute circuit. | 
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
@@ -803,7 +803,7 @@ If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 a
   *  Change the circuit and sketch to use external pull-up on pin 13; or
   *  Remove the LED or the resitor connected to the LED from the Arduino Board.   
 
-### After power up or try to tune the receiver, the display shows LW and 0 Khz
+### After power up or try to tune the receiver, the display shows LW and 0 kHz
 
 This problem can be a little complicated to solve. I have observed that very few times in my experiments. When I am powering the system using the computer USB and the computer is connected to the grid, it might occur. __Please, test your system using only batteries__.
 

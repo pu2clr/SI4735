@@ -902,7 +902,7 @@ You have to call setup or setPowerUp before call setFrequency.
 @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 70, 135
 @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13
 
-@param uint16_t  freq is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz.
+@param uint16_t  freq is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 kHz.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga7b45c1b22c3c1a3f2326bee913d1e1e0';
@@ -2425,7 +2425,7 @@ _EnD_oF_dEf_TeXt_;
 Sets the radio to AM (LW/MW/SW) function.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-The example below sets the band from 550KHz to 1750KHz on AM mode. The band will start on 810KHz and step is 10KHz. 
+The example below sets the band from 550kHz to 1750kHz on AM mode. The band will start on 810kHz and step is 10kHz. 
 
 @code 
 si4735.setAM(520, 1750, 810, 10); 
@@ -2488,8 +2488,8 @@ Defines the band range you want to use for the FM mode.
 
 
 
-The example below sets the band from 64MHz to 108MHzKHz on FM mode. The band will start on 103.9MHz and step is 100KHz.
-On FM mode, the step 10 means 100KHz. If you want a 1MHz step, use 100.     
+The example below sets the band from 64MHz to 108MHzkHz on FM mode. The band will start on 103.9MHz and step is 100kHz.
+On FM mode, the step 10 means 100kHz. If you want a 1MHz step, use 100.     
 <br>
 
 @code 
@@ -3417,7 +3417,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 163, 229 and 283
 
-@param uint16_t spacing - step in KHz
+@param uint16_t spacing - step in kHz
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -3528,7 +3528,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 101
 
-@param uint16_t spacing - step in KHz
+@param uint16_t spacing - step in kHz
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -4829,10 +4829,10 @@ You can use this method for:
 
 @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
 
-@param AUDIOBW SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz.
+@param AUDIOBW SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz.
 @param SBCUTFLT SSB side band cutoff filter for band passand low pass filter
                 if 0, the band pass filter to cutoff both the unwanted side band and high frequency 
-                 component > 2KHz of the wanted side band (default).
+                 component > 2kHz of the wanted side band (default).
 @param AVC_DIVIDER set 0 for SSB mode; set 3 for SYNC mode.
 @param AVCEN SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
 @param SMUTESEL SSB Soft-mute Based on RSSI or SNR.
@@ -5377,7 +5377,7 @@ Configures the Si4735-D60/SI4732-A10 device to work with SSB.
 
 @param ssb_patch_content        point to patch content array 
 @param ssb_patch_content_size   size of patch content 
-@param ssb_audiobw              SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz.
+@param ssb_audiobw              SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gafaabd6c73b7ad7c20ae959d5b75c1e71';
@@ -5547,16 +5547,16 @@ setFrequencyStep(100); // the step will be 1MHz (you are using FM mode)
 .
 .
 setAM(7000,7600,7100,5); 
-setFrequencyStep(1); // the step will be 1KHz (you are usin AM or SSB mode)  
+setFrequencyStep(1); // the step will be 1kHz (you are usin AM or SSB mode)  
 @endcode 
 
 @see setFM()
 @see setAM()
 @see setSSB()
 
-@param step if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz
-            For AM, 1 (1KHz) to 1000 (1MHz) are valid values.
-            For FM 5 (50KHz), 10 (100KHz) and 100 (1MHz) are valid values.  
+@param step if you are using FM, 10 means 100kHz. If you are using AM 10 means 10kHz
+            For AM, 1 (1kHz) to 1000 (1MHz) are valid values.
+            For FM 5 (50kHz), 10 (100kHz) and 100 (1MHz) are valid values.  
 <br>
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
@@ -5729,11 +5729,11 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '2259';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Sets I2C bus to 10KHz.
+Sets I2C bus to 10kHz.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 The functions below modify the clock frequency for I2C communication. 
-100KHz  is usually the baseline.
+100kHz  is usually the baseline.
 Use one of these funcition if you have problem on you default configuration. 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
@@ -5754,7 +5754,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '2269';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Sets I2C bus to 100KHz.
+Sets I2C bus to 100kHz.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 <br>
@@ -5777,7 +5777,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '2276';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Sets I2C bus to 400KHz.
+Sets I2C bus to 400kHz.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -5810,7 +5810,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 <br>
 
-@param value in Hz. For example: The values 500000 sets the bus to 500KHz.
+@param value in Hz. For example: The values 500000 sets the bus to 500kHz.
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -13324,7 +13324,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/SI4735.h';
       sec-mem-desc-line = '932';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz
+0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 

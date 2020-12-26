@@ -9,7 +9,7 @@
   All you have to do is calling the setAudioMuteMcuPin( <digital_arduino_pin> ) before call the receiver setup.
    
   Test and validation of the SI4735 Arduino Library.
-  It is a FM, MW and SW (1700KHz to 30000Khz)
+  It is a FM, MW and SW (1700kHz to 30000kHz)
    
 
     The table below shows the Si4735 and Arduino Pro Mini pin connections 
@@ -76,7 +76,7 @@ void setup()
   radio.setAudioMuteMcuPin(AUDIO_MUTE); // Tells the system to control an external audio mute circuit. And it is enough. Finish.
   
   radio.setup(RESET_PIN, FM_FUNCTION);
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   radio.setFM(8400, 10800, 10390, 10);
   delay(500);
   currentFrequency = previousFrequency = radio.getFrequency();
@@ -87,13 +87,13 @@ void setup()
 void showHelp()
 {
 
-  Serial.println("Type F to FM; A to MW; 1 to All Band (100KHz to 30MHz)");
+  Serial.println("Type F to FM; A to MW; 1 to All Band (100kHz to 30MHz)");
   Serial.println("Type U to increase and D to decrease the frequency");
   Serial.println("Type S or s to seek station Up or Down");
   Serial.println("Type + or - to volume Up or Down");
   Serial.println("Type 0 to show current status");
   Serial.println("Type B to change Bandwidth filter");
-  Serial.println("Type 4 to 8 (4 to step 1; 5 to step 5Khz; 6 to 10KHz; 7 to 100Khz; 8 to 1000KHz)");
+  Serial.println("Type 4 to 8 (4 to step 1; 5 to step 5kHz; 6 to 10kHz; 7 to 100kHz; 8 to 1000kHz)");
   Serial.println("Type ? to this help.");
   Serial.println("==================================================");
   delay(1000);
@@ -114,7 +114,7 @@ void showStatus()
   else
   {
     Serial.print(currentFrequency);
-    Serial.print("KHz");
+    Serial.print("kHz");
   }
   Serial.print(" [SNR:");
   Serial.print(radio.getCurrentSNR());
@@ -143,7 +143,7 @@ void loop()
     case 'A':
       radio.setAM(520, 1750, 810, 10);
       radio.setSeekAmLimits(520, 1750);
-      radio.setSeekAmSpacing(10); // spacing 50KHz
+      radio.setSeekAmSpacing(10); // spacing 50kHz
       break;
     case 'f':
     case 'F':
@@ -152,7 +152,7 @@ void loop()
     case '1':
       radio.setAM(100, 30000, 9600, 5);
       radio.setSeekAmLimits(100, 30000);
-      radio.setSeekAmSpacing(5); // spacing 50KHz
+      radio.setSeekAmSpacing(5); // spacing 50kHz
       break;
     case 'U':
     case 'u':
@@ -175,7 +175,7 @@ void loop()
         radio.setBandwidth(bandwidthIdx, 1);
         Serial.print("Filter - Bandwidth: ");
         Serial.print(String(bandwitdth[bandwidthIdx]));
-        Serial.println(" KHz");
+        Serial.println(" kHz");
         bandwidthIdx++;
       }
       break;

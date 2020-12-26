@@ -16,7 +16,7 @@
 | S3          | Used to select the banddwith |
 | S4          | Seek |  
 | S5          | Switch AGC ON/OF |
-| S6          | Increment or decrement frequency step (1, 5 or 10 KHz) |
+| S6          | Increment or decrement frequency step (1, 5 or 10 kHz) |
 | S7          | Volume Control |
 | S8          | External AUDIO MUTE circuit control |
 | Encoder     | VFO/BFO switch |

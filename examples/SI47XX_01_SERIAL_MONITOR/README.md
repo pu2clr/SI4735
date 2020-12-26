@@ -47,7 +47,7 @@ I strongly recommend starting with this sketch. This example is a proof of conce
 | - | Volume Down |
 | 0 | Shows current status | 
 | 1 | SW band (from 1.7MHz to 30MHz) | 
-| 5-8 | Steps for SW: 5 to step 5Khz; 6 to 10KHz; 7 to 100Khz; 8 to 1000KHz  |
+| 5-8 | Steps for SW: 5 to step 5kHz; 6 to 10kHz; 7 to 100kHz; 8 to 1000kHz  |
 
 
 
@@ -63,7 +63,7 @@ This example shows how can you use SW features of the Si4735 Arduino Library. Li
 __This sketch has been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Micro (see the operating voltage of your Micro); Arduino Mega (by using a voltage converter); Arduino DUE; and ESP32 (LOLIN32 WEMOS)__
 
 ### SW Bands used by the example 02
-| Band | From (KHz) | To (KHz) | Default (KHz)|
+| Band | From (kHz) | To (kHz) | Default (kHz)|
 | ---- | ---------- | -------- | ------------ | 
 | 60m | 4600| 5200| 4700|
 | 49m | 5700| 6200| 6000|
@@ -139,10 +139,10 @@ Features of this sketch:
 
 1) Internal Arduino pull-up (no external resistors on schematic for buttons and encoder);
 2) Only SSB (LSB and USB);
-3) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+3) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
 4) Ten ham radio bands pre configured;
 5) BFO Control; and
-6) Frequency step switch (1, 5 and 10KHz);
+6) Frequency step switch (1, 5 and 10kHz);
 
   Main Parts: 
   Encoder with push button; 

@@ -30,7 +30,7 @@ void setup()
 
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   si4735.setAM(570, 1700,  810, 10);
 
   delay(500);
@@ -38,7 +38,7 @@ void setup()
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(50);
 
-  // Starts bandwidth with 6Khz
+  // Starts bandwidth with 6kHz
   si4735.setBandwidth(bandwidthIdx, 1);
   showStatus();  
   
@@ -59,13 +59,13 @@ void showStatus()
 {
   Serial.print("[You are tuned on ");
   Serial.print(currentFrequency);
-  Serial.print(" KHz][");
+  Serial.print(" kHz][");
   Serial.print(" Signal:" );
   Serial.print(si4735.getCurrentRSSI());
   Serial.print("dBuV]");
   Serial.print("[Bandwidth: ");
   Serial.print(String(bandwitdth[bandwidthIdx]));
-  Serial.println(" KHz]");
+  Serial.println(" kHz]");
 }
 
 // Main

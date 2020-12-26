@@ -16,7 +16,7 @@
   regular  comercial  stations.
 
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
-              SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
+              SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
   Wire up on Arduino UNO, Pro mini and SI4735-D60
   | Device name               | Device Pin / Description      |  Arduino Pin  |
@@ -195,8 +195,8 @@ Band band[] = {
   {"SW9", SW_BAND_TYPE, 21400, 22800, 21500, 5},
   {"CB ", SW_BAND_TYPE, 26000, 28000, 27500, 1},
   {"10M", SW_BAND_TYPE, 28000, 30000, 28400, 1},
-  {"ALL", SW_BAND_TYPE, 150, 30000, 15000, 1}    // All band. LW, MW and SW (from 150Khz to 30MHz)
-}; // Super band: 150KHz to 30MHz
+  {"ALL", SW_BAND_TYPE, 150, 30000, 15000, 1}    // All band. LW, MW and SW (from 150kHz to 30MHz)
+}; // Super band: 150kHz to 30MHz
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
@@ -315,7 +315,7 @@ void showFrequency()
       bufferDisplay[3] = tmp[3];
       bufferDisplay[4] = tmp[4];
     }
-    unit = (char *) "KHz";
+    unit = (char *) "kHz";
   }
   bufferDisplay[5] = '\0';
   strcat(bufferDisplay, unit);
@@ -362,7 +362,7 @@ void showBandwitdth()
       bw = (char *)bandwitdthAM[bwIdxAM].desc;
     else
       bw = (char *)bandwitdthSSB[bwIdxSSB].desc;
-    sprintf(bufferDisplay, "BW: %s KHz", bw);
+    sprintf(bufferDisplay, "BW: %s kHz", bw);
   }
   else
     bufferDisplay[0] = '\0';
@@ -519,7 +519,7 @@ void useBand()
     rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Soft Mute for AM or SSB
     rx.setAutomaticGainControl(disableAgc, agcNdx);
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
-    rx.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10KHz for spacing
+    rx.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10kHz for spacing
 
   }
   delay(100);
@@ -634,7 +634,7 @@ void doStep(int8_t v)
   currentStep = tabStep[idxStep];
   rx.setFrequencyStep(currentStep);
   band[bandIdx].currentStep = currentStep;
-  rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
+  rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10kHz for spacing
   showStep();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();

@@ -1897,7 +1897,7 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 124, 137, 139, 278 </dd></dl>
 <div class="line">.</div>
 <div class="line">.</div>
 <div class="line">setAM(7000,7600,7100,5); </div>
-<div class="line"><a class="code" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">setFrequencyStep</a>(1); <span class="comment">// the step will be 1KHz (you are usin AM or SSB mode)  </span></div>
+<div class="line"><a class="code" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">setFrequencyStep</a>(1); <span class="comment">// the step will be 1kHz (you are usin AM or SSB mode)  </span></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906" title="Sets the radio to FM function.">setFM()</a> </dd>
 <dd>
 <a class="el" href="group__group08.html#ga753390952a1f2c2a98343979f1f3daa0" title="Sets the radio to AM function. It means: LW MW and SW.">setAM()</a> </dd>
@@ -1905,7 +1905,7 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 124, 137, 139, 278 </dd></dl>
 <a class="el" href="group__group17.html#ga7c48f2af416b1f89dbedbfbe9a637620">setSSB()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">step</td><td>if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz For AM, 1 (1KHz) to 1000 (1MHz) are valid values. For FM 5 (50KHz), 10 (100KHz) and 100 (1MHz) are valid values. <br  />
+    <tr><td class="paramname">step</td><td>if you are using FM, 10 means 100kHz. If you are using AM 10 means 10kHz For AM, 1 (1kHz) to 1000 (1MHz) are valid values. For FM 5 (50kHz), 10 (100kHz) and 100 (1MHz) are valid values. <br  />
  </td></tr>
   </table>
   </dd>
@@ -2029,7 +2029,7 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 70, 135 </dd>
 AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">uint16_t</td><td>freq is the frequency to change. For example, FM =&gt; 10390 = 103.9 MHz; AM =&gt; 810 = 810 KHz. </td></tr>
+    <tr><td class="paramname">uint16_t</td><td>freq is the frequency to change. For example, FM =&gt; 10390 = 103.9 MHz; AM =&gt; 810 = 810 kHz. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2172,7 +2172,7 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 </div><div class="memdoc">
 
 <p>Sets the radio to AM (LW/MW/SW) function. </p>
-<p>The example below sets the band from 550KHz to 1750KHz on AM mode. The band will start on 810KHz and step is 10KHz.</p>
+<p>The example below sets the band from 550kHz to 1750kHz on AM mode. The band will start on 810kHz and step is 10kHz.</p>
 <div class="fragment"><div class="line">si4735.setAM(520, 1750, 810, 10); </div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906" title="Sets the radio to FM function.">setFM()</a> </dd>
 <dd>
@@ -2231,7 +2231,7 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13</dd></dl>
 
 <p>Sets the radio to FM function. </p>
 <p>Defines the band range you want to use for the FM mode.</p>
-<p>The example below sets the band from 64MHz to 108MHzKHz on FM mode. The band will start on 103.9MHz and step is 100KHz. On FM mode, the step 10 means 100KHz. If you want a 1MHz step, use 100. <br  />
+<p>The example below sets the band from 64MHz to 108MHzkHz on FM mode. The band will start on 103.9MHz and step is 100kHz. On FM mode, the step 10 means 100kHz. If you want a 1MHz step, use 100. <br  />
 </p>
 <div class="fragment"><div class="line">si4735.setFM(6400, 10800, 10390, 10);</div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 70 </dd>
@@ -2755,7 +2755,7 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 163, 229 and 283</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">uint16_t</td><td>spacing - step in KHz </td></tr>
+    <tr><td class="paramname">uint16_t</td><td>spacing - step in kHz </td></tr>
   </table>
   </dd>
 </dl>
@@ -2782,7 +2782,7 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 101</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">uint16_t</td><td>spacing - step in KHz </td></tr>
+    <tr><td class="paramname">uint16_t</td><td>spacing - step in kHz </td></tr>
   </table>
   </dd>
 </dl>

@@ -21,7 +21,7 @@ This sketch just check if your STM32 Board and Si47XX Device is working. No inte
 
 ### SI4735_01_POC
 
-It is a FM, MW and SW (up to 30000Khz)
+It is a FM, MW and SW (up to 30000kHz)
 The main advantages of using this sketch are: 
 * It is a easy way to check if your circuit is working;
 * You do not need to connect any display device to make your radio works;

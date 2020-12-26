@@ -687,7 +687,7 @@ void SI4735::setTuneFrequencyAntennaCapacitor(uint16_t capacitor)
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 70, 135
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 13
  * 
- * @param uint16_t  freq is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz.
+ * @param uint16_t  freq is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 kHz.
  */
 void SI4735::setFrequency(uint16_t freq)
 {
@@ -807,7 +807,7 @@ void SI4735::setFM()
  * 
  * @brief Sets the radio to AM (LW/MW/SW) function. 
  * 
- * @details The example below sets the band from 550KHz to 1750KHz on AM mode. The band will start on 810KHz and step is 10KHz. 
+ * @details The example below sets the band from 550kHz to 1750kHz on AM mode. The band will start on 810kHz and step is 10kHz. 
  * 
  * @code
  * si4735.setAM(520, 1750, 810, 10); 
@@ -843,8 +843,8 @@ void SI4735::setAM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uin
  * 
  * @details Defines the band range you want to use for the FM mode. 
  * 
- * @details The example below sets the band from 64MHz to 108MHzKHz on FM mode. The band will start on 103.9MHz and step is 100KHz.
- * On FM mode, the step 10 means 100KHz. If you want a 1MHz step, use 100.     
+ * @details The example below sets the band from 64MHz to 108MHzkHz on FM mode. The band will start on 103.9MHz and step is 100kHz.
+ * On FM mode, the step 10 means 100kHz. If you want a 1MHz step, use 100.     
  * 
  * @code
  * si4735.setFM(6400, 10800, 10390, 10);
@@ -1315,7 +1315,7 @@ void SI4735::setSeekFmLimits(uint16_t bottom, uint16_t top)
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 163, 229 and 283
  * 
- * @param uint16_t spacing - step in KHz
+ * @param uint16_t spacing - step in kHz
  */
 void SI4735::setSeekAmSpacing(uint16_t spacing)
 {
@@ -1329,7 +1329,7 @@ void SI4735::setSeekAmSpacing(uint16_t spacing)
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 101
  * 
- * @param uint16_t spacing - step in KHz
+ * @param uint16_t spacing - step in kHz
  */
 void SI4735::setSeekFmSpacing(uint16_t spacing)
 {
@@ -2531,10 +2531,10 @@ void SI4735::setSSBBfo(int offset)
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24 
  * 
- * @param AUDIOBW SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz.
+ * @param AUDIOBW SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz.
  * @param SBCUTFLT SSB side band cutoff filter for band passand low pass filter
  *                 if 0, the band pass filter to cutoff both the unwanted side band and high frequency 
- *                  component > 2KHz of the wanted side band (default).
+ *                  component > 2kHz of the wanted side band (default).
  * @param AVC_DIVIDER set 0 for SSB mode; set 3 for SYNC mode.
  * @param AVCEN SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
  * @param SMUTESEL SSB Soft-mute Based on RSSI or SNR.
@@ -2948,7 +2948,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
  * 
  * @param ssb_patch_content        point to patch content array 
  * @param ssb_patch_content_size   size of patch content 
- * @param ssb_audiobw              SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz.
+ * @param ssb_audiobw              SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz.
  */
 void SI4735::loadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, uint8_t ssb_audiobw)
 {
@@ -2957,7 +2957,7 @@ void SI4735::loadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patc
     delay(50);
     downloadPatch(ssb_patch_content, ssb_patch_content_size);
     // Parameters
-    // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+    // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
     // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
     // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
     // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).

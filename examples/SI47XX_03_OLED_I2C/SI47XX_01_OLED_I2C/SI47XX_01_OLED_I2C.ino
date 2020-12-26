@@ -57,7 +57,7 @@ volatile int encoderCount = 0;
 // Some variables to check the SI4735 status
 uint16_t currentFrequency;
 uint16_t previousFrequency;
-uint16_t lastAmFrequency = 810;     // Starts AM on 810KHz;
+uint16_t lastAmFrequency = 810;     // Starts AM on 810kHz;
 uint16_t lastFmFrequency = 10390;   // Starts FM on 103,9MHz
 uint8_t rssi = 0;
 uint8_t stereo = 1;
@@ -101,7 +101,7 @@ void setup()
   si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the Si47XX I2C bus address and set it.
   
   si4735.setup(RESET_PIN, FM_FUNCTION);
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   si4735.setFM(8400, 10800,  lastFmFrequency, 10);
   delay(200);
   currentFrequency = previousFrequency = si4735.getFrequency();
@@ -152,7 +152,7 @@ void showStatus()
   display.setCursor(0, 0);
   display.print( (si4735.isCurrentTuneFM()) ? "FM" : "AM" );
   display.setCursor(98, 0);
-  display.print((si4735.isCurrentTuneFM()) ? "MHz" : "KHz");
+  display.print((si4735.isCurrentTuneFM()) ? "MHz" : "kHz");
 
   // Show AGC Information
   si4735.getAutomaticGainControl();

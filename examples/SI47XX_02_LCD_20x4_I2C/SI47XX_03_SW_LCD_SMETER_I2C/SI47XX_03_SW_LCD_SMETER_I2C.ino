@@ -43,13 +43,13 @@
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
-#define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
+#define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
 #define BAND_BUTTON_UP 8   // Next band
 #define BAND_BUTTON_DOWN 9 // Previous band
 #define AGC_SWITCH 11      // Switch AGC ON/OF
-#define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
+#define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
 
 // Seek Function
 
@@ -212,7 +212,7 @@ void showStatus()
   lcd.print(String("SW"));
 
   lcd.setCursor(16, 0);
-  lcd.print("KHz");
+  lcd.print("kHz");
 
   // Show AGC Information
   si4735.getAutomaticGainControl();
@@ -224,14 +224,14 @@ void showStatus()
   lcd.setCursor(12, 1);
   lcd.print("St:");
   lcd.print(currentStep);
-  lcd.print("KHz");
+  lcd.print("kHz");
 
   lcd.setCursor(0, 3);
   lcd.print("           ");
   lcd.setCursor(0, 3);
   lcd.print("BW:");
   lcd.print(String(bandwitdth[bandwidthIdx]));
-  lcd.print("KHz");
+  lcd.print("kHz");
 
   showSmeter(rssi);
   showFrequency();

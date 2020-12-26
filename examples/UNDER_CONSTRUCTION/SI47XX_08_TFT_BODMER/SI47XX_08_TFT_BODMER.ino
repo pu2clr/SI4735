@@ -11,8 +11,8 @@
   For this reason, it is necessary change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
-  Features:   FM/RDS; AM; SSB; LW/MW/SW; two super band (from 150Khz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
-              AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500KHz step on AM and 10Hhz sep on SSB
+  Features:   FM/RDS; AM; SSB; LW/MW/SW; two super band (from 150kHz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
+              AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
   It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices.
 
@@ -106,11 +106,11 @@
 
 // Buttons controllers
 #define MODE_SWITCH 4         // Switch MODE (Am/LSB/USB)
-#define BANDWIDTH_BUTTON 5    // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
+#define BANDWIDTH_BUTTON 5    // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz
 #define BAND_BUTTON 6         // Band switch button
 #define SEEK_BUTTON 7         // Previous band
 #define AGC_SWITCH 14         // Pin A0 - Switch AGC ON/OF
-#define STEP_SWITCH 15        // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
+#define STEP_SWITCH 15        // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
 #define ENCODER_PUSH_BUTTON 16         // Pin A2 - Used to select the enconder control (BFO or VFO)
 #define AUDIO_MUTE 1          // External AUDIO MUTE circuit control
 
@@ -229,7 +229,7 @@ typedef struct
 Band band[] = {
   {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
   {"MW ", MW_BAND_TYPE, 150, 1720, 810, 10},
-  {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1}, // Here and below: 150KHz to 30MHz
+  {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1}, // Here and below: 150kHz to 30MHz
   {"SW2", SW_BAND_TYPE, 150, 30000, 9600, 5},
   {"SW3", SW_BAND_TYPE, 150, 30000, 11940, 5},
   {"SW4", SW_BAND_TYPE, 150, 30000, 13600, 5},
@@ -520,7 +520,7 @@ void showStep() {
   tft.setFont(Terminal6x8);
   sprintf(bufferDisplay, "Stp: %3d", tabStep[idxStep]);
   printValue(153, 10, bufferStepVFO, bufferDisplay, TFT_YELLOW, 6);
-  tft.drawText(153, 30, "KHz", TFT_RED);
+  tft.drawText(153, 30, "kHz", TFT_RED);
   */
 }
 
@@ -544,7 +544,7 @@ void showBandwitdth() {
       showBFOTemplate(TFT_CYAN);
       showBFO();
     }
-    sprintf(bufferDisplay, "BW: %s KHz", bw);
+    sprintf(bufferDisplay, "BW: %s kHz", bw);
     printValue(124, 45, bufferBW, bufferDisplay, TFT_CYAN, 1, 6);
   }
   */
@@ -709,10 +709,10 @@ void loadSSB()
   rx.setI2CFastMode(); // Recommended
   // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
   // rx.downloadPatch(ssb_patch_content, size_content);
-  rx.setI2CStandardMode(); // goes back to default (100KHz)
+  rx.setI2CStandardMode(); // goes back to default (100kHz)
 
   // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
   // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
@@ -759,7 +759,7 @@ void useBand()
     rx.setAmSoftMuteMaxAttenuation(0); // Disable Soft Mute for AM or SSB
     rx.setAutomaticGainControl(disableAgc, agcNdx);
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
-    rx.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10KHz for spacing
+    rx.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10kHz for spacing
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
@@ -811,7 +811,7 @@ void doStep(int8_t v) {
 
   rx.setFrequencyStep(currentStep);
   band[bandIdx].currentStep = currentStep;
-  rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10KHz for spacing
+  rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10kHz for spacing
   showStep();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();

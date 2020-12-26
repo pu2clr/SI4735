@@ -40,10 +40,10 @@
   Features of this sketch:
 
   1) FM, AM (MW and SW) and SSB (LSB and USB);
-  2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+  2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
   3) 22 commercial and ham radio bands pre configured;
   4) BFO Control; and
-  5) Frequency step switch (1, 5 and 10KHz);
+  5) Frequency step switch (1, 5 and 10kHz);
 
   Main Parts:
   Encoder with push button;
@@ -91,13 +91,13 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 // Buttons controllers
 #define MODE_SWITCH PA2      // Switch MODE (Am/LSB/USB)
-#define BANDWIDTH_BUTTON PA3 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
+#define BANDWIDTH_BUTTON PA3 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz
 #define VOL_UP PA4           // Volume Up
 #define VOL_DOWN PA5         // Volume Down
 #define BAND_BUTTON_UP PA6   // Next band
 #define BAND_BUTTON_DOWN PA7 // Previous band
 #define AGC_SWITCH PA8       // Switch AGC ON/OF
-#define STEP_SWITCH PA11     // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
+#define STEP_SWITCH PA11     // Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
 #define BFO_SWITCH PA15      // Used to select the enconder control (BFO or VFO)
 
 #define MIN_ELAPSED_TIME 100
@@ -376,7 +376,7 @@ void showFrequency()
     freq[4] = tmp[3];
     freq[5] = tmp[4];
     freq[6] = '\0';
-    unit = "KHz";
+    unit = "kHz";
   }
 
   textSize = ( !bfoOn ) ? 2 : 1;
@@ -451,13 +451,13 @@ void showStatus()
 
   if (currentMode == LSB || currentMode == USB)
   {
-    sprintf(bandwitdt, "BW:%sKHz", bandwitdthSSB[bwIdxSSB]);
+    sprintf(bandwitdt, "BW:%skHz", bandwitdthSSB[bwIdxSSB]);
     printValue(0, 30, oldBandwitdt, bandwitdt, 7, 1);
     showBFO();
   }
   else if (currentMode == AM)
   {
-    sprintf(bandwitdt, "BW:%sKHz", bandwitdthAM[bwIdxAM]);
+    sprintf(bandwitdt, "BW:%skHz", bandwitdthAM[bwIdxAM]);
     printValue(0, 30, oldBandwitdt, bandwitdt, 7, 1);
   }
 
@@ -566,7 +566,7 @@ void loadSSB()
   // clearLine4();
   // delay(50);
   // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
   // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
@@ -654,7 +654,7 @@ void bfoSwitchButton() {
 }
 
 /*
- * Button Step. KHz if you are controlling the VFO. If you are controlling the BFO the step changed will be the BFO in Hz
+ * Button Step. kHz if you are controlling the VFO. If you are controlling the BFO the step changed will be the BFO in Hz
  */
 void stepButton() {
 
@@ -797,7 +797,7 @@ void setup()
 
   si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
-  si4735.setI2CFastMode();               // Recommended (400 KHz)
+  si4735.setI2CFastMode();               // Recommended (400 kHz)
 
   si4735.setup(RESET_PIN, FM_BAND_TYPE);
 

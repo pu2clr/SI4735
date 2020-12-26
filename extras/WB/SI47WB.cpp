@@ -50,7 +50,7 @@ void SI47WB::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * Set the frequency to the corrent function of the Si4735 (AM, FM or WB)
  * You have to call setup or setPowerUp before call setFrequency.
  * 
- * @param uint16_t  freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 KHz. 
+ * @param uint16_t  freq Is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 kHz. 
  */
 
 void SI47WB::setFrequency(uint16_t freq)

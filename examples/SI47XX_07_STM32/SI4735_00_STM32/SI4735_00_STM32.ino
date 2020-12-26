@@ -34,7 +34,7 @@ void setup()
   delay(500);
   si4735.setup(RESET_PIN, FM_FUNCTION);
   delay(500);
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   si4735.setFM(8400, 10800, 10570, 10);
   // Switching to AM mode
   delay(5000);

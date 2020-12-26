@@ -1,6 +1,6 @@
 /*
    Test and validation of the SI4735 Arduino Library.
-   It is a FM, MW and SW (1700KHz to 30000Khz)
+   It is a FM, MW and SW (1700kHz to 30000kHz)
    
    ATTENTION:  Please, avoid using the computer connected to the mains during testing.
 
@@ -77,7 +77,7 @@ void setup()
 
   delay(500);
   si4735.setup(RESET_PIN, FM_FUNCTION);
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   si4735.setFM(8400, 10800, 10390, 10);
   delay(500);
   currentFrequency = previousFrequency = si4735.getFrequency();
@@ -88,13 +88,13 @@ void setup()
 void showHelp()
 {
 
-  Serial.println("Type F to FM; A to MW; 1 to All Band (100KHz to 30MHz)");
+  Serial.println("Type F to FM; A to MW; 1 to All Band (100kHz to 30MHz)");
   Serial.println("Type U to increase and D to decrease the frequency");
   Serial.println("Type S or s to seek station Up or Down");
   Serial.println("Type + or - to volume Up or Down");
   Serial.println("Type 0 to show current status");
   Serial.println("Type B to change Bandwidth filter");
-  Serial.println("Type 4 to 8 (4 to step 1; 5 to step 5Khz; 6 to 10KHz; 7 to 100Khz; 8 to 1000KHz)");
+  Serial.println("Type 4 to 8 (4 to step 1; 5 to step 5kHz; 6 to 10kHz; 7 to 100kHz; 8 to 1000kHz)");
   Serial.println("Type ? to this help.");
   Serial.println("==================================================");
   delay(1000);
@@ -116,7 +116,7 @@ void showStatus()
   else
   {
     Serial.print(currentFrequency);
-    Serial.print("KHz");
+    Serial.print("kHz");
   }
   Serial.print(" [SNR:");
   Serial.print(si4735.getCurrentSNR());
@@ -137,7 +137,7 @@ void showFrequency( uint16_t freq ) {
   else
   {
     Serial.print(freq);
-    Serial.println("KHz");
+    Serial.println("kHz");
   }
   
 }
@@ -161,7 +161,7 @@ void loop()
     case 'A':
       si4735.setAM(520, 1750, 810, 10);
       si4735.setSeekAmLimits(520, 1750);
-      si4735.setSeekAmSpacing(10); // spacing 10KHz
+      si4735.setSeekAmSpacing(10); // spacing 10kHz
       break;
     case 'f':
     case 'F':
@@ -172,7 +172,7 @@ void loop()
     case '1':
       si4735.setAM(100, 30000, 7200, 5);
       si4735.setSeekAmLimits(100, 30000);   // Range for seeking.
-      si4735.setSeekAmSpacing(1); // spacing 1KHz
+      si4735.setSeekAmSpacing(1); // spacing 1kHz
       Serial.println("\nALL - LW/MW/SW");
       break;
     case 'U':
@@ -196,7 +196,7 @@ void loop()
         si4735.setBandwidth(bandwidthIdx, 1);
         Serial.print("Filter - Bandwidth: ");
         Serial.print(String(bandwitdth[bandwidthIdx]));
-        Serial.println(" KHz");
+        Serial.println(" kHz");
         bandwidthIdx++;
       }
       break;

@@ -266,7 +266,7 @@ www.SparkFun.com SKU : Comp-SMDS</description>
 <hole x="1.5" y="0" drill="0.85"/>
 <hole x="-1.5" y="0" drill="0.85"/>
 </package>
-<package name="CRYSTAL-32KHZ-SMD">
+<package name="CRYSTAL-32kHz-SMD">
 <smd name="X1" x="-1.27" y="0" dx="1" dy="2.5" layer="1"/>
 <smd name="X2" x="1.27" y="0" dx="1" dy="2.5" layer="1"/>
 <smd name="SHEILD" x="0" y="5.08" dx="2.5" dy="6" layer="1"/>
@@ -672,7 +672,7 @@ design rules under a new name.</description>
 <attribute name="NAME" x="22.86" y="49.657" size="0.4064" layer="25" rot="R180"/>
 <attribute name="VALUE" x="19.812" y="49.657" size="0.4064" layer="27" rot="R180"/>
 </element>
-<element name="Y1" library="SparkFun" package="CRYSTAL-32KHZ-SMD" value="32.768kHz" x="33.02" y="40.64" smashed="yes" rot="R270">
+<element name="Y1" library="SparkFun" package="CRYSTAL-32kHz-SMD" value="32.768kHz" x="33.02" y="40.64" smashed="yes" rot="R270">
 <attribute name="NAME" x="41.275" y="41.275" size="0.4064" layer="25" rot="R270"/>
 <attribute name="VALUE" x="31.115" y="41.275" size="0.4064" layer="27" rot="R270"/>
 </element>

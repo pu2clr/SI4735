@@ -84,7 +84,7 @@ void showStatus()
   else
   {
     Serial.print(currentFrequency);
-    Serial.print("KHz");
+    Serial.print("kHz");
   }
   Serial.print(" [SNR:");
   Serial.print(si4735.getCurrentSNR());
@@ -126,7 +126,7 @@ void setup()
 
   delay(500);
   si4735.setup(RESET_PIN, FM_FUNCTION);
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100KHz)
+  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   si4735.setFM(8400, 10800, 10390, 10);
   delay(500);
   currentFrequency = previousFrequency = si4735.getFrequency();
@@ -185,7 +185,7 @@ void loop()
         si4735.setBandwidth(bandwidthIdx, 1);
         Serial.print("Filter - Bandwidth: ");
         Serial.print(String(bandwitdth[bandwidthIdx]));
-        Serial.println(" KHz");
+        Serial.println(" kHz");
         bandwidthIdx++;
       }
       break;

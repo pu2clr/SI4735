@@ -2,8 +2,8 @@
 /*
   Program to control the "Adafruit Si5351A Clock Generator" or similar via Arduino.
   This program control the frequencies of two clocks (CLK) output of the Si5351A
-  The CLK 0 can be used as a VFO (535KHz to 160MHz)
-  The CLK 1 can be used as a BFO (400KHz to 500KHz)
+  The CLK 0 can be used as a VFO (535kHz to 160MHz)
+  The CLK 1 can be used as a BFO (400kHz to 500kHz)
   See on https://github.com/etherkit/Si5351Arduino  and know how to calibrate your Si5351
   See also the example Etherkit/si5251_calibration
   Author: Ricardo Lima Caratti (PU2CLR) -   April, 2019
@@ -29,7 +29,7 @@
 #define BUTTON_BAND 5    // Controls the band
 #define BUTTON_VFO_BFO 6 // Switch VFO to BFO
 
-// BFO range for this project is 400KHz to 500KHz. The central frequency is 455KHz.
+// BFO range for this project is 400kHz to 500kHz. The central frequency is 455kHz.
 #define MAX_BFO 45800000LU    // BFO maximum frequency
 #define CENTER_BFO 45500000LU // BFO centeral frequency
 #define MIN_BFO 45200000LU    // BFO minimum frequency
@@ -63,7 +63,7 @@ typedef struct
   uint64_t minFreq; // Min. frequency value for the band (unit 0.01Hz)
   uint64_t maxFreq; // Max. frequency value for the band (unit 0.01Hz)
   long long offset;
-  char *unitFreq;         // MHz or KHz
+  char *unitFreq;         // MHz or kHz
   float divider;          // value that will be the divider of current clock (just to present on display)
   short decimals;         // number of digits after the comma
   short initialStepIndex; // Index to the initial step of incrementing
@@ -89,7 +89,7 @@ short currentBand = 0;                                 // First band. For this c
 // Struct for step database
 typedef struct
 {
-  char *name; // step label: 50Hz, 100Hz, 500Hz, 1KHz, 5KHz, 10KHz and 500KHz
+  char *name; // step label: 50Hz, 100Hz, 500Hz, 1kHz, 5kHz, 10kHz and 500kHz
   long value; // Frequency value (unit 0.01Hz See documentation) to increment or decrement
 } Step;
 
@@ -99,17 +99,17 @@ Step step[] = {
     {"10Hz  ", 1000},
     {"100Hz ", 10000},
     {"500Hz ", 50000},
-    {"1KHz  ", 100000},
-    {"5KHz  ", 500000},
-    {"10KHz  ",1000000},
-    {"50KHz ", 5000000},
-    {"100KHz", 10000000},
-    {"500KHz", 50000000}};
+    {"1kHz  ", 100000},
+    {"5kHz  ", 500000},
+    {"10kHz  ",1000000},
+    {"50kHz ", 5000000},
+    {"100kHz", 10000000},
+    {"500kHz", 50000000}};
 
 // Calculate the index of last position of step[] array (in this case will be 8)
 const short lastStepVFO = (sizeof step / sizeof(Step)) - 1; // index for max increment / decrement for VFO
-short lastStepBFO = 3;                                      // index for max. increment / decrement for BFO. In this case will be is 1KHz
-uint64_t bfoFreq = CENTER_BFO;                              // 455 KHz for this project
+short lastStepBFO = 3;                                      // index for max. increment / decrement for BFO. In this case will be is 1kHz
+uint64_t bfoFreq = CENTER_BFO;                              // 455 kHz for this project
 
 boolean isFreqChanged = true;
 boolean clearDisplay = false;

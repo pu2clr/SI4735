@@ -55,10 +55,10 @@ Once again, the author disclaims any liability for any damage this procedure may
 Features of this sketch:
 
 1) Only SSB (LSB and USB);
-2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
 3) Eight ham radio bands pre configured;
 4) BFO Control; and
-5) Frequency step switch (1, 5 and 10KHz);
+5) Frequency step switch (1, 5 and 10kHz);
 
 Main Parts:
 Encoder with push button;
@@ -160,9 +160,9 @@ void setup()
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
   // Testing I2C clock speed and SSB behaviour
-  // si4735.setI2CLowSpeedMode();     //  10000 (10KHz)
-  // si4735.setI2CStandardMode();        // 100000 (100KHz)
-  si4735.setI2CFastMode();         // 400000 (400KHz)
+  // si4735.setI2CLowSpeedMode();     //  10000 (10kHz)
+  // si4735.setI2CStandardMode();        // 100000 (100kHz)
+  si4735.setI2CFastMode();         // 400000 (400kHz)
   // si4735.setI2CFastModeCustom(500000); // -> It is not safe and can crash.
   delay(10);
   Serial.println("SSB patch is loading...");
@@ -211,7 +211,7 @@ void showFrequency()
   showSeparator();
   Serial.print("Current Frequency: ");
   Serial.print(freqDisplay);
-  Serial.print("KHz");
+  Serial.print("kHz");
   Serial.print(" | Step: ");
   Serial.println(currentStep);
 }
@@ -232,7 +232,7 @@ void showStatus()
   
   Serial.print(" | BW :");
   Serial.print(String(bandwitdth[bandwidthIdx]));
-  Serial.print("KHz");
+  Serial.print("kHz");
   Serial.print(" | SNR: ");
   Serial.print(si4735.getCurrentSNR());
   Serial.print(" | RSSI: ");
@@ -315,7 +315,7 @@ void loadSSB()
   delay(50);
   si4735.downloadPatch(ssb_patch_content, size_content);
   // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
   // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).

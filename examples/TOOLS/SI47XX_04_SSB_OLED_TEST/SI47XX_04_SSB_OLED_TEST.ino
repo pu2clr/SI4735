@@ -33,10 +33,10 @@
   Features of this sketch:
 
   1) Only SSB (LSB and USB);
-  2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4Khz;
+  2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
   3) Eight ham radio bands pre configured;
   4) BFO Control; and
-  5) Frequency step switch (1, 5 and 10KHz);
+  5) Frequency step switch (1, 5 and 10kHz);
 
   Main Parts:
   Encoder with push button;
@@ -71,13 +71,13 @@ const uint16_t size_content = sizeof ssb_patch_content;  // see ssb_patch_conten
 #define ENCODER_PIN_B 2
 
 // Buttons controllers
-#define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
+#define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
 #define BAND_BUTTON_UP 8   // Next band
 #define BAND_BUTTON_DOWN 9 // Previous band
 #define AGC_SWITCH 11      // Switch AGC ON/OF
-#define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
+#define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
 #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
 // Seek Function
 
@@ -187,9 +187,9 @@ void setup()
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
   // Testing I2C clock speed and SSB behaviour
-  // si4735.setI2CLowSpeedMode();     //  10000 (10KHz)
-  si4735.setI2CStandardMode();     // 100000 (100KHz)
-  // si4735.setI2CFastMode();            // 400000 (400KHz)
+  // si4735.setI2CLowSpeedMode();     //  10000 (10kHz)
+  si4735.setI2CStandardMode();     // 100000 (100kHz)
+  // si4735.setI2CFastMode();            // 400000 (400kHz)
   delay(100);
   loadSSB();
   delay(250);
@@ -243,7 +243,7 @@ void showStatus()
   String bandMode;
 
   bandMode = String("SSB");
-  unit = "KHz";
+  unit = "kHz";
 
   display.set1X();
   display.setCursor(0, 0);
@@ -263,7 +263,7 @@ void showStatus()
   display.setCursor(0, 5);
   display.print("Step:");
   display.print(currentStep);
-  display.print("KHz");
+  display.print("kHz");
 
   display.set1X();
   display.setCursor(0, 7);
@@ -271,7 +271,7 @@ void showStatus()
   display.setCursor(0, 7);
   display.print("BW:");
   display.print(String(bandwitdth[bandwidthIdx]));
-  display.print("KHz");
+  display.print("kHz");
 
   showFrequency();
 }
@@ -366,7 +366,7 @@ void loadSSB()
   si4735.downloadPatch(ssb_patch_content, size_content);
   delay(100);
   // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
   // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).

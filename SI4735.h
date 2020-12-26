@@ -929,7 +929,7 @@ typedef union
 {
     struct
     {
-        uint8_t AUDIOBW : 4;     //!<  0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz
+        uint8_t AUDIOBW : 4;     //!<  0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz
         uint8_t SBCUTFLT : 4;    //!<  SSB side band cutoff filter for band passand low pass filter
         uint8_t AVC_DIVIDER : 4; //!<  set 0 for SSB mode; set 3 for SYNC mode;
         uint8_t AVCEN : 1;       //!<  SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default);
@@ -2198,16 +2198,16 @@ public:
      * .
      * .
      * setAM(7000,7600,7100,5); 
-     * setFrequencyStep(1); // the step will be 1KHz (you are usin AM or SSB mode)  
+     * setFrequencyStep(1); // the step will be 1kHz (you are usin AM or SSB mode)  
      * @endcode 
      * 
      * @see setFM()
      * @see setAM()
      * @see setSSB()
      * 
-     * @param step if you are using FM, 10 means 100KHz. If you are using AM 10 means 10KHz
-     *             For AM, 1 (1KHz) to 1000 (1MHz) are valid values.
-     *             For FM 5 (50KHz), 10 (100KHz) and 100 (1MHz) are valid values.  
+     * @param step if you are using FM, 10 means 100kHz. If you are using AM 10 means 10kHz
+     *             For AM, 1 (1kHz) to 1000 (1MHz) are valid values.
+     *             For FM 5 (50kHz), 10 (100kHz) and 100 (1MHz) are valid values.  
      */
     inline void setFrequencyStep(uint16_t step)
     {
@@ -2248,13 +2248,13 @@ public:
 
     /******************************************************************************* 
      * The functions below modify the clock frequency for I2C communication. 
-     * 100KHz  is usually the baseline.
+     * 100kHz  is usually the baseline.
      * Use one of these funcition if you have problem on you default configuration. 
      *******************************************************************************/
 
     /**
      * @ingroup group18 MCU I2C Speed 
-     * @brief Sets I2C bus to 10KHz
+     * @brief Sets I2C bus to 10kHz
      */
     inline void setI2CLowSpeedMode(void)
     {
@@ -2264,14 +2264,14 @@ public:
     /**
      * @ingroup group18 MCU I2C Speed  
      * 
-     * @brief Sets I2C bus to 100KHz
+     * @brief Sets I2C bus to 100kHz
      */
     inline void setI2CStandardMode(void) { Wire.setClock(100000); };
 
     /**
      * @ingroup group18 MCU I2C Speed 
      * 
-     * @brief Sets I2C bus to 400KHz
+     * @brief Sets I2C bus to 400kHz
      */
     inline void setI2CFastMode(void)
     {
@@ -2284,7 +2284,7 @@ public:
      * @brief Sets the I2C bus to a given value.
      * ATTENTION: use this function with cation
      * 
-     * @param value in Hz. For example: The values 500000 sets the bus to 500KHz.
+     * @param value in Hz. For example: The values 500000 sets the bus to 500kHz.
      */
     inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); };
 

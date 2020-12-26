@@ -618,7 +618,7 @@ www.SparkFun.com SKU : Comp-SMDS</description>
 <text x="-5.08" y="-3.937" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
 <text x="-5.08" y="2.667" size="1.27" layer="25" ratio="10">&gt;NAME</text>
 </package>
-<package name="CRYSTAL-32KHZ-SMD">
+<package name="CRYSTAL-32kHz-SMD">
 <smd name="X1" x="-1.27" y="0" dx="1" dy="2.5" layer="1"/>
 <smd name="X2" x="1.27" y="0" dx="1" dy="2.5" layer="1"/>
 <smd name="SHEILD" x="0" y="5.08" dx="2.5" dy="6" layer="1"/>
@@ -637,7 +637,7 @@ www.SparkFun.com SKU : Comp-SMDS</description>
 <text x="-2.54" y="1.905" size="0.4064" layer="25">&gt;NAME</text>
 <text x="-2.54" y="-2.54" size="0.4064" layer="27">&gt;VALUE</text>
 </package>
-<package name="CRYSTAL-32KHZ-SMD_EPSON_MC146">
+<package name="CRYSTAL-32kHz-SMD_EPSON_MC146">
 <wire x1="0.2" y1="0" x2="7.2" y2="0" width="0.127" layer="51"/>
 <wire x1="7.2" y1="0" x2="7.2" y2="1.5" width="0.127" layer="51"/>
 <wire x1="7.2" y1="1.5" x2="0.2" y2="1.5" width="0.127" layer="51"/>
@@ -1806,7 +1806,7 @@ Various standard crystals. Proven footprints. Spark Fun Electronics SKU : COM-00
 <technology name=""/>
 </technologies>
 </device>
-<device name="32-SMD" package="CRYSTAL-32KHZ-SMD">
+<device name="32-SMD" package="CRYSTAL-32kHz-SMD">
 <connects>
 <connect gate="G$1" pin="1" pad="X1"/>
 <connect gate="G$1" pin="2" pad="X2"/>
@@ -1824,7 +1824,7 @@ Various standard crystals. Proven footprints. Spark Fun Electronics SKU : COM-00
 <technology name=""/>
 </technologies>
 </device>
-<device name="EPSONMC146" package="CRYSTAL-32KHZ-SMD_EPSON_MC146">
+<device name="EPSONMC146" package="CRYSTAL-32kHz-SMD_EPSON_MC146">
 <connects>
 <connect gate="G$1" pin="1" pad="P$2"/>
 <connect gate="G$1" pin="2" pad="P$1"/>
