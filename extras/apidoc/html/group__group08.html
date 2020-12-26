@@ -1989,7 +1989,7 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 124, 137, 139, 278 </dd></dl>
 </div><div class="memdoc">
 
 <p>Selects the tuning capacitor value. </p>
-<p>On FM mode, The Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the antenna input. This selects the value of the antenna tuning capacitor manually, or automatically if set to zero. The valid range is 0 to 191. Automatic capacitor tuning is recommended. Whentunedmanually,thevaractorisoffsetbyfourcodes. Forexample,if the varactor is set to a value of 5 manually, when read back the value will be 1. The four codes (1pf) delta accounts for the capacitance at the chip.</p>
+<p>On FM mode, the Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the antenna input. This selects the value of the antenna tuning capacitor manually, or automatically if set to zero. The valid range is 0 to 191. Automatic capacitor tuning is recommended. For example, if the varactor is set to a value of 5 manually, when read back the value will be 1.</p>
 <p>on AM mode, If the value is set to anything other than 0, the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF. ANTCAP manual range is 1–6143. Automatic capacitor tuning is recommended. In SW mode, ANTCAPH[15:8] (high byte) needs to be set to 0 and ANTCAPL[7:0] (low byte) needs to be set to 1.</p>
 <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 71 and 136</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
