@@ -57,6 +57,17 @@ Article written by Gert: [Arduino All band radio with SI4735](https://www.pi4raz
 [Gert's Github Repository - SI4735-Radio-ESP32-2.8 inch TFT Touchscreen-Arduino](https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino?fbclid=IwAR3TQd2j4HxAFvpcGkbXiPuDly8m2OnGclTDiqthnkbqqe2fN1McP2m3WSI)
 
 
+
+## Nancy Gail
+
+Nancy is a member of the [Facebook group "SI47XX for Radio Experimenters"](https://www.facebook.com/groups/532613604253401). She has shared with us excelent projects and ideas based on SI47XX devices. [Click here to visit her Github projects](https://github.com/LadyRoninEngineer/Si473x/tree/main/Si4732BO). 
+
+![Nancy's Board](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects/Nancy/Nancy_A.jpg)
+
+![Nancy's Prototype](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects/Nancy/Nancy_A.jpg)
+
+[Github](https://github.com/LadyRoninEngineer/Si473x/tree/main/Si4732BO)
+
 <BR>
 
 ## Felix Angga
