@@ -64,7 +64,7 @@ Nancy is a member of the [Facebook group "SI47XX for Radio Experimenters"](https
 
 ![Nancy's Board](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects/Nancy/Nancy_A.jpg)
 
-![Nancy's Prototype](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects/Nancy/Nancy_A.jpg)
+![Nancy's Prototype](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects/Nancy/Nancy_B.jpg)
 
 [Github](https://github.com/LadyRoninEngineer/Si473x/tree/main/Si4732BO)
 
