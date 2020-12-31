@@ -1865,8 +1865,8 @@ public:
 
     /**
      * @ingroup group08
-     * @brief Sets the AGC attack rate on SSB mode.
-     * @details Large values provide slower attack, and smaller values provide faster attack.. 
+     * @brief Sets the AGC Release rate on SSB mode.
+     * @details Larger values provide slower release, and smaller values provide faster release. 
      * @see setSsbAgcAttackRate
      * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 29 
      * @param parameter Range: 4–248 (The default is 0x18)
