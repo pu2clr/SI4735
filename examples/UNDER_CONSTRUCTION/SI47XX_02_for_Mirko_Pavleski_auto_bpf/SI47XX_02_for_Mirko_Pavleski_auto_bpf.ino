@@ -187,7 +187,7 @@ typedef struct
   uint16_t maximumFreq; // maximum frequency of the band
   uint16_t currentFreq; // Default frequency or current frequency
   uint16_t currentStep; // Defeult step (increment and decrement)
-  uint8_t  filter;      // number of Band Pass Filter for the band
+  int8_t  filter;      // number of Band Pass Filter for the band
 } Band;
 
 /**
@@ -763,7 +763,7 @@ void showFrequencySeek(uint16_t freq)
 */
 void doSeek()
 {
-  if ((currentMode == LSB || currentMode == USB)) return; // It does not work for SSB mode
+  if (currentMode == LSB || currentMode == USB) return; // It does not work for SSB mode
 
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   currentFrequency = rx.getFrequency();
@@ -856,9 +856,10 @@ void doCurrentMenuCmd() {
       break;
     case 8:
       bfoOn = true;
-      if ((currentMode == LSB || currentMode == USB)) {
+      if (currentMode == LSB || currentMode == USB) {
         showBFO();
       }
+      break;
     // showFrequency();
     default:
       showStatus();
