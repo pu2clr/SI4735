@@ -1811,8 +1811,6 @@ public:
        sendProperty(AM_SOFT_MUTE_RELEASE_RATE, parameter);
     };
 
-
-
     /**
      * @ingroup group08
      * @brief Sets the soft mute attack rate.
@@ -1824,6 +1822,58 @@ public:
     inline void setAMSoftMuteAttackRate(uint16_t parameter)
     {
        sendProperty(AM_SOFT_MUTE_ATTACK_RATE, parameter);
+    };
+
+    /**
+     * @ingroup group08
+     * @brief Sets the AGC attack rate.
+     * @details Large values provide slower attack, and smaller values provide faster attack.. 
+     * @see setAmAgcAttackRate
+     * @see Si47XX PROAMMING GUIDE; AN332 (REV 1.2); page 167 
+     * @param parameter Range: 4–248 (The default is 0x04) 
+     */
+    inline void setAmAgcAttackRate(uint16_t parameter)
+    {
+        sendProperty(AM_AGC_ATTACK_RATE, parameter);
+    };
+
+    /**
+     * @ingroup group08
+     * @brief Sets the AGC release rate.
+     * @details  Larger values provide slower release, and smaller values provide faster release.
+     * @see setAmAgcReleaseRate
+     * @see Si47XX PROAMMING GUIDE; AN332 (REV 1.2); page 168 
+     * @param parameter Range: 4–248 (The default is 0x8C) 
+     */
+    inline void setAmAgcReleaseRate(uint16_t parameter)
+    {
+        sendProperty(AM_AGC_RELEASE_RATE, parameter);
+    };
+
+    /**
+     * @ingroup group08
+     * @brief Sets the AGC attack rate on SSB mode.
+     * @details Large values provide slower attack, and smaller values provide faster attack.. 
+     * @see setSsbAgcAttackRate
+     * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 29 
+     * @param parameter Range: 4–248 (The default is 0x04) 
+     */
+    inline void setSsbAgcAttackRate(uint16_t parameter)
+    {
+        sendProperty(SSB_RF_AGC_ATTACK_RATE, parameter);
+    };
+
+    /**
+     * @ingroup group08
+     * @brief Sets the AGC attack rate on SSB mode.
+     * @details Large values provide slower attack, and smaller values provide faster attack.. 
+     * @see setSsbAgcAttackRate
+     * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 29 
+     * @param parameter Range: 4–248 (The default is 0x18)
+     */
+    inline void setSsbAgcReleaseRate(uint16_t parameter)
+    {
+        sendProperty(SSB_RF_AGC_RELEASE_RATE, parameter);
     };
 
     /**

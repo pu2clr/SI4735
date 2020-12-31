@@ -73,9 +73,10 @@ void showHelp()
 {
 
   Serial.println("Type F to FM; A to MW; 1 to All Band (100kHz to 30MHz)");
-  Serial.println("Type U to increase and D to decrease the frequency");
+  Serial.println("Type U to increase and to decrease the frequency");
   Serial.println("Type S or s to seek station Up or Down");
   Serial.println("Type + or - to volume Up or Down");
+  Serial.println("Type C or c to increase and to decrease the varicap");
   Serial.println("Type 0 to show current status");
   Serial.println("Type B to change Bandwidth filter");
   Serial.println("Type 4 to 8 (4 to step 1; 5 to step 5kHz; 6 to 10kHz; 7 to 100kHz; 8 to 1000kHz)");
