@@ -101,7 +101,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define MIN_ELAPSED_RSSI_TIME 150
 #define ELAPSED_COMMAND 2000  // time to turn off the last command controlled by encoder. Time to goes back to the FVO control
 #define ELAPSED_CLICK 1500    // time to check the double click commands
-#define DEFAULT_VOLUME 35    // change it for your favorite sound volume
+#define DEFAULT_VOLUME 40    // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -131,6 +131,7 @@ bool cmdMode = false;
 bool cmdMenu = false;
 bool cmdSoftMuteMaxAtt = false;
 bool cmdAutoBandPassFilter = false;
+bool cmdFrontEnd = false;
 
 int currentBFO = 0;
 long elapsedRSSI = millis();
@@ -142,11 +143,13 @@ uint16_t currentFrequency;
 
 const uint8_t currentBFOStep = 10;
 
-
-const char * menu[] = {"Seek", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BPF", "BFO"};
+const char *menu[] = {"Seek", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BPF", "Frontend", "BFO"};
 int8_t menuIdx = 0;
-const int lastMenu = 8;
+const int lastMenu = 9;
 int8_t currentMenuCmd = -1;
+
+int8_t currentFrontEnd = 19;
+
 
 typedef struct
 {
@@ -221,6 +224,7 @@ int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 int idxStep = 0;
 uint16_t currentStep = 1;
+int8_t currentFilter = 0;
 
 uint8_t rssi = 0;
 uint8_t volume = DEFAULT_VOLUME;
@@ -292,6 +296,7 @@ void disableCommands()
   cmdMenu = false;
   cmdSoftMuteMaxAtt = false;
   cmdAutoBandPassFilter = false;
+  cmdFrontEnd = false;
 
   countClick = 0;
   showCommandStatus((char *) "VFO ");
@@ -373,7 +378,7 @@ void showStatus()
   showRSSI();
   if (!rx.isCurrentTuneFM()) {
     // Shows current filter
-    sprintf(sBPF, "F:%1d", band[bandIdx].filter);
+    sprintf(sBPF, "F:%1d", currentFilter);
     lcd.setCursor(12, 0);
     lcd.print(sBPF);
   }
@@ -508,12 +513,23 @@ void showSoftMute()
 */
 void showAutoBandPassFilter() {
   char sBPF[15];
-  sprintf(sBPF, "Auto BPF: %1d", band[bandIdx].filter);
+  sprintf(sBPF, "Auto BPF: %1d", currentFilter);
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print(sBPF);
 }
 
+/**
+   shows  Front end AGC control Status
+*/
+void showFrontEnd()
+{
+  char sFrontEnd[15];
+  sprintf(sFrontEnd, "Frontend: %2d", currentFrontEnd);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(sFrontEnd);
+}
 
 /**
      Sets Band up (1) or down (!1)
@@ -522,6 +538,8 @@ void setBand(int8_t up_down)
 {
   band[bandIdx].currentFreq = currentFrequency;
   band[bandIdx].currentStep = currentStep;
+  band[bandIdx].filter = currentFilter;
+  
   if (up_down == 1)
     bandIdx = (bandIdx < lastBand) ? (bandIdx + 1) : 0;
   else
@@ -568,11 +586,11 @@ void useBand()
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
+  currentFilter = band[bandIdx].filter;
   idxStep = getStepIndex(currentStep);
   rssi = 0;
 
-  bpf.setFilter(band[bandIdx].filter);
-
+  bpf.setFilter(currentFilter);
   showStatus();
   showCommandStatus((char *) "Band");
 }
@@ -727,12 +745,11 @@ void doMode(int8_t v)
     // Nothing to do if you are in FM mode
     band[bandIdx].currentFreq = currentFrequency;
     band[bandIdx].currentStep = currentStep;
+    band[bandIdx].filter = currentFilter;
     useBand();
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
-  // showStatus();
-  // disableCommands();
 }
 
 /**
@@ -790,14 +807,32 @@ void doSoftMute(int8_t v)
    Sets the Auto Bandpass filter for the band manually
 */
 void doAutoBandPassFilter(int8_t v) {
-  band[bandIdx].filter = (v == 1) ? band[bandIdx].filter + 1 : band[bandIdx].filter - 1;
-  if (band[bandIdx].filter > 3)
-    band[bandIdx].filter = 0;
-  else if (band[bandIdx].filter < 0)
-    band[bandIdx].filter = 3;
+
+  currentFilter = (v == 1) ? currentFilter + 1 : currentFilter - 1;
+
+  if (currentFilter > 3)
+    currentFilter = 0;
+  else if (currentFilter < 0)
+    currentFilter = 3;
 
   showAutoBandPassFilter();
-  bpf.setFilter(band[bandIdx].filter);
+  bpf.setFilter(currentFilter);
+  elapsedCommand = millis();
+}
+
+/**
+   Sets AGC front end control
+*/
+void doFrontEnd(int8_t v)
+{
+  currentFrontEnd = (v == 1) ? currentFrontEnd + 1 : currentFrontEnd - 1;
+  if (currentFrontEnd > 38)
+    currentFrontEnd = 1;
+  else if (currentFrontEnd < 1)
+    currentFrontEnd = 38;
+  
+  showFrontEnd();
+  rx.setAMFrontEndAgcControl(currentFrontEnd,12);
   elapsedCommand = millis();
 }
 
@@ -855,6 +890,10 @@ void doCurrentMenuCmd() {
       showAutoBandPassFilter();
       break;
     case 8:
+      cmdFrontEnd = true;
+      showFrontEnd();
+      break;
+    case 9:
       bfoOn = true;
       if (currentMode == LSB || currentMode == USB) {
         showBFO();
@@ -900,6 +939,8 @@ void loop()
       doSoftMute(encoderCount);
     else if (cmdAutoBandPassFilter)
       doAutoBandPassFilter(encoderCount);
+    else if (cmdFrontEnd)
+      doFrontEnd(encoderCount);
     else if (cmdBand)
       setBand(encoderCount);
     else
@@ -949,7 +990,7 @@ void loop()
   {
     rx.getCurrentReceivedSignalQuality();
     int aux = rx.getCurrentRSSI();
-    if (rssi != aux &&  !(cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdAutoBandPassFilter | cmdMode) )
+    if (rssi != aux && !(cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdAutoBandPassFilter | cmdMode | cmdFrontEnd))
     {
       rssi = aux;
       showRSSI();
