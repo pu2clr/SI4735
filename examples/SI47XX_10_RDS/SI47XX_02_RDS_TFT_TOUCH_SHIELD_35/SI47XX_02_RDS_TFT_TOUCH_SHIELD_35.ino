@@ -685,11 +685,11 @@ void showFrequencySeek(uint16_t freq)
 
 /**
  * Checks the stop seeking criterias.  
- * Returns true if the user press the seek buttons actions or rotates the encoder. 
+ * Returns true if the user press the touch or rotates the encoder. 
  */
 bool checkStopSeeking() {
   // Checks the touch and encoder
-  return (bool) encoderCount || Touch_getXY(); // returns true if != 0; The use moved tne encoder 
+  return (bool) encoderCount || Touch_getXY(); // returns true if the user rotates the encoder or touches on screen
 } 
 
 
