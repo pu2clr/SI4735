@@ -2053,6 +2053,7 @@ public:
     void seekPreviousStation();
 
     void seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down);
+    void seekStationProgress(void (*showFunc)(uint16_t f), bool (*stopSeking)(),  uint8_t up_down);
 
     // AM Seek property configurations
     void setSeekAmLimits(uint16_t bottom, uint16_t top);

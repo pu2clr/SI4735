@@ -1227,7 +1227,7 @@ void SI4735::seekPreviousStation()
 /**
  * @ingroup group08 Seek 
  * @brief Seeks a station up or down.
- * @details Seek up or down a station and call a function defined by the user to show the frequency. 
+ * @details Seek up or down a station and call a function defined by the developer to show the frequency. 
  * @details The first parameter of this function is a name of your function that you have to implement to show the current frequency. 
  * @details If you do not want to show the seeking progress,  you can set NULL instead the name of the function.   
  * @details The code below shows an example using ta function the shows the current frequency on he Serial Monitor. You might want to implement a function that shows the frequency on your display device. 
@@ -1250,7 +1250,7 @@ void SI4735::seekPreviousStation()
  * }
  * @endcode
  * 
- * @see seekStation, seekStationUp, seekStationDown, getStatus   
+ * @see seekStation, seekStationUp, seekStationDown, getStatus, setMaxSeekTime   
  * @param showFunc  function that you have to implement to show the frequency during the seeking process. Set NULL if you do not want to show the progress. 
  * @param up_down   set up_down = 1 for seeking station up; set up_down = 0 for seeking station down
  */
@@ -1273,6 +1273,64 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
         currentWorkFrequency = freq.value;
         if (showFunc != NULL)
             showFunc(freq.value);
+    } while (!currentStatus.resp.VALID && !currentStatus.resp.BLTF && (millis() - elapsed_seek) < maxSeekTime);
+}
+
+/**
+ * @ingroup group08 Seek 
+ * @brief Seeks a station up or down.
+ * @details Seek up or down a station and call a function defined by the developer to show the frequency and stop seeking process by the user. 
+ * @details The first parameter of this function is a name of your function that you have to implement to show the current frequency. 
+ * @details The second parameter is the name function that will check stop seeking action. Thus function should return true or false and should read a button, encoder or some status to make decision to stop or keep seeking. 
+ * @details If you do not want to show the seeking progress,  you can set NULL instead the name of the function. 
+ * @details If you do not want stop seeking checking, you can set NULL instead the name of a function.    
+ * @details The code below shows an example using ta function the shows the current frequency on he Serial Monitor. You might want to implement a function that shows the frequency on your display device. 
+ * @details Also, you have to declare the frequency parameter that will be used by the function to show the frequency value. 
+ * @details __This function does not work on SSB mode__. 
+ * @code
+ * void showFrequency( uint16_t freq ) {
+ *    Serial.print(freq); 
+ *    Serial.println("MHz ");
+ * }
+ * 
+ * void loop() {
+ * 
+ *  receiver.seekStationProgress(showFrequency, checkStopSeeking, 1); // Seek Up
+ *  .
+ *  .
+ *  .
+ *  receiver.seekStationProgress(showFrequency, checkStopSeeking, 0); // Seek Down
+ * 
+ * }
+ * @endcode
+ * 
+ * @see seekStation, seekStationUp, seekStationDown, getStatus, setMaxSeekTime   
+ * @param showFunc  function that you have to implement to show the frequency during the seeking process. Set NULL if you do not want to show the progress. 
+ * @param stopSeeking functionthat you have to implement if you want to control the stop seeking action. 
+ * @param up_down   set up_down = 1 for seeking station up; set up_down = 0 for seeking station down
+ */
+void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), bool (*stopSeking)(), uint8_t up_down)
+{
+    si47x_frequency freq;
+    long elapsed_seek = millis();
+
+    // seek command does not work for SSB
+    if (lastMode == SSB_CURRENT_MODE)
+        return;
+    do
+    {
+        seekStation(up_down, 0);
+        delay(maxDelaySetFrequency);
+        getStatus(0, 0);
+        delay(maxDelaySetFrequency);
+        freq.raw.FREQH = currentStatus.resp.READFREQH;
+        freq.raw.FREQL = currentStatus.resp.READFREQL;
+        currentWorkFrequency = freq.value;
+        if (showFunc != NULL)
+            showFunc(freq.value);
+        if (stopSeking != NULL ) 
+           if ( stopSeking() ) return;
+           
     } while (!currentStatus.resp.VALID && !currentStatus.resp.BLTF && (millis() - elapsed_seek) < maxSeekTime);
 }
 

@@ -406,6 +406,8 @@ void rotaryEncoder()
   }
 }
 
+
+
 /**
  * Disable all commands
  * 
@@ -679,6 +681,17 @@ void showFrequencySeek(uint16_t freq)
   previousFrequency = currentFrequency = freq;
   showFrequency();
 }
+
+
+/**
+ * Checks the stop seeking criterias.  
+ * Returns true if the user press the seek buttons actions or rotates the encoder. 
+ */
+bool checkStopSeeking() {
+  // Checks the touch and encoder
+  return (bool) encoderCount || Touch_getXY(); // returns true if != 0; The use moved tne encoder 
+} 
+
 
 /**
  * Clears status area
@@ -1374,7 +1387,7 @@ void loop(void)
     }
     else if (bSeekUp.justPressed()) // SEEK UP
     {
-      si4735.seekStationProgress(showFrequencySeek, SEEK_UP);
+      si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, SEEK_UP);
       // si4735.seekNextStation(); // This method does not show the progress
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       currentFrequency = si4735.getFrequency();
@@ -1382,7 +1395,7 @@ void loop(void)
     }
     else if (bSeekDown.justPressed()) // SEEK DOWN
     {
-      si4735.seekStationProgress(showFrequencySeek, SEEK_DOWN);
+      si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, SEEK_DOWN);
       // si4735.seekPreviousStation(); // This method does not show the progress
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       currentFrequency = si4735.getFrequency();
