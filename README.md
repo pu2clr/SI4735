@@ -574,8 +574,10 @@ See the [API Documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
 
 ### Customizing PU2CLR Arduino Library
 
+Maybe you need some Si47XX device functions that the __PU2CLR SI4735 Arduino Library__ has not implemented so far. Also, you may want to change some existent function behaviors. This topic describes some approaches to add new SI473X features to your application.
 
-Maybe you need some Si47XX device functions that the __PU2CLR SI4735 Arduino Library__ has not implemented so far. Also, you may want to change some existent function behaviors.
+
+This library has primitive functions that make it easier for you to implement commands that may not have been implemented yet. The methods [setProperty, getProperty sendCommand, getCommandResponse and getStatusResponse](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group10.html) can be used to setup the SI473X devices directely. They can also be useful to check some features of the SI473X devices. To use those methods you have to be guided by the ["AN332 Si47XX PROGRAMMING GUIDE REV 1.0"](https://www.silabs.com/documents/public/application-notes/AN332.pdf) and __AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES__ Silicon Labs documentation.  If you are familiar with bit operators in C / C ++, you will have no problem in using the above functions. 
 
 The best way to customize the PU2CLR SI4735 Arduino Library for your needs is extending the current version of the library by using C++ OOP approaching.  For example: 
 
