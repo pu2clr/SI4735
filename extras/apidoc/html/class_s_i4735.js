@@ -128,6 +128,7 @@ var class_s_i4735 =
     [ "seekNextStation", "group__group08.html#gab91e6e91f8273104ff970e9a808c4d2f", null ],
     [ "seekPreviousStation", "group__group08.html#gad32c990d0c9184bb405f11560c4dae7e", null ],
     [ "seekStationProgress", "group__group08.html#ga80b69a4edfacf274a8a8033e860453ce", null ],
+    [ "seekStationProgress", "group__group08.html#ga38f7c7610e05fc67bef6fbb4791e1728", null ],
     [ "setSeekAmLimits", "group__group08.html#ga6b901d5cd729364dbda6e5b811dc9ec2", null ],
     [ "setSeekAmSpacing", "group__group08.html#ga6f8218c0bbdcb75ea54bc8af2a60dcc6", null ],
     [ "setSeekAmSrnThreshold", "group__group08.html#ga8107cc84409dcdad0c931368734ece3e", null ],

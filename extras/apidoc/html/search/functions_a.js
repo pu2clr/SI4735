@@ -4,7 +4,7 @@ var searchData=
   ['seekpreviousstation_607',['seekPreviousStation',['../group__group08.html#gad32c990d0c9184bb405f11560c4dae7e',1,'SI4735']]],
   ['seekstation_608',['seekStation',['../group__group08.html#ga3280b98b8331f00b4d0158ef1b076533',1,'SI4735']]],
   ['seekstationdown_609',['seekStationDown',['../group__group08.html#ga1eeaa09670cdbdc7ddd724c940d2506b',1,'SI4735']]],
-  ['seekstationprogress_610',['seekStationProgress',['../group__group08.html#ga80b69a4edfacf274a8a8033e860453ce',1,'SI4735']]],
+  ['seekstationprogress_610',['seekStationProgress',['../group__group08.html#ga80b69a4edfacf274a8a8033e860453ce',1,'SI4735::seekStationProgress(void(*showFunc)(uint16_t f), uint8_t up_down)'],['../group__group08.html#ga38f7c7610e05fc67bef6fbb4791e1728',1,'SI4735::seekStationProgress(void(*showFunc)(uint16_t f), bool(*stopSeking)(), uint8_t up_down)']]],
   ['seekstationup_611',['seekStationUp',['../group__group08.html#gaad5211e3fff28141473442f59008e415',1,'SI4735']]],
   ['sendcommand_612',['sendCommand',['../group__group10.html#ga3d2342264b36bd524ccbaf898e4d219b',1,'SI4735']]],
   ['sendproperty_613',['sendProperty',['../group__group10.html#ga4d65660ec2b60d7486165ed8a7a92015',1,'SI4735']]],

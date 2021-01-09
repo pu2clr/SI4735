@@ -316,6 +316,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga80b69a4edfacf274a8a8033e860453ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga80b69a4edfacf274a8a8033e860453ce">SI4735::seekStationProgress</a> (void(*showFunc)(uint16_t f), uint8_t up_down)</td></tr>
 <tr class="memdesc:ga80b69a4edfacf274a8a8033e860453ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeks a station up or down.  <a href="group__group08.html#ga80b69a4edfacf274a8a8033e860453ce">More...</a><br /></td></tr>
 <tr class="separator:ga80b69a4edfacf274a8a8033e860453ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga38f7c7610e05fc67bef6fbb4791e1728"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga38f7c7610e05fc67bef6fbb4791e1728">SI4735::seekStationProgress</a> (void(*showFunc)(uint16_t f), bool(*stopSeking)(), uint8_t up_down)</td></tr>
+<tr class="memdesc:ga38f7c7610e05fc67bef6fbb4791e1728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeks a station up or down.  <a href="group__group08.html#ga38f7c7610e05fc67bef6fbb4791e1728">More...</a><br /></td></tr>
+<tr class="separator:ga38f7c7610e05fc67bef6fbb4791e1728"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6b901d5cd729364dbda6e5b811dc9ec2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga6b901d5cd729364dbda6e5b811dc9ec2">SI4735::setSeekAmLimits</a> (uint16_t bottom, uint16_t top)</td></tr>
 <tr class="memdesc:ga6b901d5cd729364dbda6e5b811dc9ec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the bottom frequency and top frequency of the AM band for seek. Default is 520 to 1710.  <a href="group__group08.html#ga6b901d5cd729364dbda6e5b811dc9ec2">More...</a><br /></td></tr>
 <tr class="separator:ga6b901d5cd729364dbda6e5b811dc9ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2681,7 +2684,7 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 </div>
 </div>
 <a id="ga80b69a4edfacf274a8a8033e860453ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga80b69a4edfacf274a8a8033e860453ce">&#9670;&nbsp;</a></span>seekStationProgress()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ga80b69a4edfacf274a8a8033e860453ce">&#9670;&nbsp;</a></span>seekStationProgress() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2707,7 +2710,7 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 </div><div class="memdoc">
 
 <p>Seeks a station up or down. </p>
-<p>Seek up or down a station and call a function defined by the user to show the frequency.</p>
+<p>Seek up or down a station and call a function defined by the developer to show the frequency.</p>
 <p>The first parameter of this function is a name of your function that you have to implement to show the current frequency.</p>
 <p>If you do not want to show the seeking progress, you can set NULL instead the name of the function. <br  />
 </p>
@@ -2727,11 +2730,79 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 <div class="line"> receiver.seekStationProgress(showFrequency,0); <span class="comment">// Seek Down</span></div>
 <div class="line"> </div>
 <div class="line">}</div>
-</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#ga3280b98b8331f00b4d0158ef1b076533" title="Look for a station (Automatic tune)">seekStation</a>, <a class="el" href="group__group08.html#gaad5211e3fff28141473442f59008e415" title="Search for the next station.">seekStationUp</a>, <a class="el" href="group__group08.html#ga1eeaa09670cdbdc7ddd724c940d2506b" title="Search the previous station.">seekStationDown</a>, <a class="el" href="group__group08.html#ga5c0f4036a7fbbd11a26f1f6f4579d3cd" title="Gets the current status of the Si4735 (AM or FM)">getStatus</a> <br  />
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#ga3280b98b8331f00b4d0158ef1b076533" title="Look for a station (Automatic tune)">seekStation</a>, <a class="el" href="group__group08.html#gaad5211e3fff28141473442f59008e415" title="Search for the next station.">seekStationUp</a>, <a class="el" href="group__group08.html#ga1eeaa09670cdbdc7ddd724c940d2506b" title="Search the previous station.">seekStationDown</a>, <a class="el" href="group__group08.html#ga5c0f4036a7fbbd11a26f1f6f4579d3cd" title="Gets the current status of the Si4735 (AM or FM)">getStatus</a>, <a class="el" href="group__group08.html#gaed67e2cee4e20551f3d522eea45fb7f5" title="Sets the maximum time in milliseconds for seeking. The default value is 8000ms (8s).">setMaxSeekTime</a> <br  />
  </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">showFunc</td><td>function that you have to implement to show the frequency during the seeking process. Set NULL if you do not want to show the progress. </td></tr>
+    <tr><td class="paramname">up_down</td><td>set up_down = 1 for seeking station up; set up_down = 0 for seeking station down </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga38f7c7610e05fc67bef6fbb4791e1728"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga38f7c7610e05fc67bef6fbb4791e1728">&#9670;&nbsp;</a></span>seekStationProgress() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::seekStationProgress </td>
+          <td>(</td>
+          <td class="paramtype">void(*)(uint16_t f)&#160;</td>
+          <td class="paramname"><em>showFunc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool(*)()&#160;</td>
+          <td class="paramname"><em>stopSeking</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>up_down</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Seeks a station up or down. </p>
+<p>Seek up or down a station and call a function defined by the developer to show the frequency and stop seeking process by the user.</p>
+<p>The first parameter of this function is a name of your function that you have to implement to show the current frequency.</p>
+<p>The second parameter is the name function that will check stop seeking action. Thus function should return true or false and should read a button, encoder or some status to make decision to stop or keep seeking.</p>
+<p>If you do not want to show the seeking progress, you can set NULL instead the name of the function.</p>
+<p>If you do not want stop seeking checking, you can set NULL instead the name of a function. <br  />
+</p>
+<p>The code below shows an example using ta function the shows the current frequency on he Serial Monitor. You might want to implement a function that shows the frequency on your display device.</p>
+<p>Also, you have to declare the frequency parameter that will be used by the function to show the frequency value.</p>
+<p><b>This function does not work on SSB mode</b>. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> showFrequency( uint16_t freq ) {</div>
+<div class="line">   Serial.print(freq); </div>
+<div class="line">   Serial.println(<span class="stringliteral">&quot;MHz &quot;</span>);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> loop() {</div>
+<div class="line"> </div>
+<div class="line"> receiver.seekStationProgress(showFrequency, checkStopSeeking, 1); <span class="comment">// Seek Up</span></div>
+<div class="line"> .</div>
+<div class="line"> .</div>
+<div class="line"> .</div>
+<div class="line"> receiver.seekStationProgress(showFrequency, checkStopSeeking, 0); <span class="comment">// Seek Down</span></div>
+<div class="line"> </div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#ga3280b98b8331f00b4d0158ef1b076533" title="Look for a station (Automatic tune)">seekStation</a>, <a class="el" href="group__group08.html#gaad5211e3fff28141473442f59008e415" title="Search for the next station.">seekStationUp</a>, <a class="el" href="group__group08.html#ga1eeaa09670cdbdc7ddd724c940d2506b" title="Search the previous station.">seekStationDown</a>, <a class="el" href="group__group08.html#ga5c0f4036a7fbbd11a26f1f6f4579d3cd" title="Gets the current status of the Si4735 (AM or FM)">getStatus</a>, <a class="el" href="group__group08.html#gaed67e2cee4e20551f3d522eea45fb7f5" title="Sets the maximum time in milliseconds for seeking. The default value is 8000ms (8s).">setMaxSeekTime</a> <br  />
+ </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">showFunc</td><td>function that you have to implement to show the frequency during the seeking process. Set NULL if you do not want to show the progress. </td></tr>
+    <tr><td class="paramname">stopSeeking</td><td>functionthat you have to implement if you want to control the stop seeking action. </td></tr>
     <tr><td class="paramname">up_down</td><td>set up_down = 1 for seeking station up; set up_down = 0 for seeking station down </td></tr>
   </table>
   </dd>
@@ -2966,7 +3037,7 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__group08_html_gacd89e7b8adefcbc4e89f802acb915906"><div class="ttname"><a href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906">SI4735::setFM</a></div><div class="ttdeci">void setFM()</div><div class="ttdoc">Sets the radio to FM function.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:794</div></div>
-<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:2265</div></div>
+<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:2266</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
