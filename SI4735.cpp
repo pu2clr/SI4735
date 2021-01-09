@@ -2752,6 +2752,62 @@ void SI4735::sendSSBModeProperty()
     delayMicroseconds(550);
 }
 
+/**
+ * @ingroup group17 AGC 
+ * 
+ * @brief Queries SSB Automatic Gain Control STATUS
+ * @details After call this method, you can call isAgcEnabled to know the AGC status and getAgcGainIndex to know the gain index value.
+ * 
+ * @see AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM patches; page 18. 
+ * 
+ */
+void SI4735::getSsbAgcStatus()
+{
+    waitToSend();
+
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(SSB_AGC_STATUS);
+    Wire.endTransmission();
+    do
+    {
+        waitToSend();
+        Wire.requestFrom(deviceAddress, 3);
+        currentAgcStatus.raw[0] = Wire.read(); // STATUS response
+        currentAgcStatus.raw[1] = Wire.read(); // RESP 1
+        currentAgcStatus.raw[2] = Wire.read(); // RESP 2
+    } while (currentAgcStatus.refined.ERR);    // If error, try get AGC status again.
+}
+
+/** 
+ * @ingroup group17  
+ * 
+ * @brief Automatic Gain Control setup 
+ * @details Overrides the SSB AGC setting by disabling the AGC and forcing the gain index that ranges between 0 (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation). 
+ * 
+ * @param uint8_t SSBAGCDIS This param selects whether the AGC is enabled or disabled (0 = AGC enabled; 1 = AGC disabled);
+ * @param uint8_t SSBAGCNDX If 1, this byte forces the AGC gain index. if 0,  Minimum attenuation (max gain)
+ *                
+ */
+void SI4735::setSsbAgcOverrite(uint8_t SSBAGCDIS, uint8_t SSBAGCNDX)
+{
+    si47x_agc_overrride agc;
+
+    agc.arg.AGCDIS = SSBAGCDIS;
+    agc.arg.AGCIDX = SSBAGCNDX;
+
+    waitToSend();
+
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(SSB_AGC_OVERRIDE);
+    Wire.write(agc.raw[0]);
+    Wire.write(agc.raw[1]);
+    Wire.endTransmission();
+
+    waitToSend();
+}
+
+
+
 /***************************************************************************************
  * SI47XX PATCH RESOURCES
  **************************************************************************************/

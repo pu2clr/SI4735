@@ -1099,6 +1099,9 @@ protected:
     void clearRdsBuffer2B();
     void clearRdsBuffer0A();
 
+    void getSsbAgcStatus();
+    void setSsbAgcOverrite(uint8_t SSBAGCDIS, uint8_t SSBAGCNDX);
+
 public:
     SI4735();
     void reset(void);
@@ -1851,7 +1854,7 @@ public:
     };
 
     /**
-     * @ingroup group08
+     * @ingroup group17
      * @brief Sets the AGC attack rate on SSB mode.
      * @details Large values provide slower attack, and smaller values provide faster attack.. 
      * @see setSsbAgcAttackRate
@@ -1864,7 +1867,7 @@ public:
     };
 
     /**
-     * @ingroup group08
+     * @ingroup group17
      * @brief Sets the AGC Release rate on SSB mode.
      * @details Larger values provide slower release, and smaller values provide faster release. 
      * @see setSsbAgcAttackRate
