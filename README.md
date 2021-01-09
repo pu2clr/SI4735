@@ -579,6 +579,28 @@ Maybe you need some Si47XX device functions that the __PU2CLR SI4735 Arduino Lib
 
 This library has primitive functions that make it easier for you to implement commands that may not have been implemented yet. The methods [setProperty, getProperty sendCommand, getCommandResponse and getStatusResponse](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group10.html) can be used to setup the SI473X devices directely. They can also be useful to check some features of the SI473X devices. To use those methods you have to be guided by the ["AN332 Si47XX PROGRAMMING GUIDE REV 1.0"](https://www.silabs.com/documents/public/application-notes/AN332.pdf) and __AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES__ Silicon Labs documentation.  If you are familiar with bit operators in C / C ++, you will have no problem in using the above functions. 
 
+The example below configures the GPIO by sending the 0x81 (GPIO_SET) command(AN332 Si47XX Programming guide page 195). 
+
+```cpp
+
+SI4735 rx;
+uint8_t args[] = {0b00001010} // will set the GPIO 1 and 3 to high
+uint8_t response[0]
+
+.
+.
+.
+
+rx.sendCommand(0x81,1,args);
+.
+.
+rs.getCommandResponse(1,response);
+.
+.
+.
+
+```
+
 
 The best way to customize the PU2CLR SI4735 Arduino Library for your needs is extending the current version of the library by using C++ OOP approaching.  For example: 
 

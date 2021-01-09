@@ -1467,6 +1467,7 @@ void SI4735::sendCommand(uint8_t cmd, int parameter_size, const uint8_t *paramet
  */
 void SI4735::getCommandResponse(int response_size, uint8_t *response)
 {
+    waitToSend();
     // Asks the device to return a given number o bytes response
     Wire.requestFrom(deviceAddress, response_size);
     // Gets response information
