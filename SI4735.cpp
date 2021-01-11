@@ -657,7 +657,7 @@ void SI4735::setTuneFrequencyAntennaCapacitor(uint16_t capacitor)
 
     currentFrequencyParams.arg.DUMMY1 = 0;
 
-    if (currentTune == FM_TUNE_FREQ)
+    if (currentTune != AM_TUNE_FREQ) 
     {
         // For FM, the capacitor value has just one byte
         currentFrequencyParams.arg.ANTCAPH = (capacitor <= 191) ? cap.raw.ANTCAPL : 0;
@@ -711,7 +711,7 @@ void SI4735::setFrequency(uint16_t freq)
     Wire.write(currentFrequencyParams.arg.FREQL);
     Wire.write(currentFrequencyParams.arg.ANTCAPH);
     // If current tune is not FM sent one more byte
-    if (currentTune != FM_TUNE_FREQ)
+    if (currentTune == AM_TUNE_FREQ) // if AM or SSB
         Wire.write(currentFrequencyParams.arg.ANTCAPL);
 
     Wire.endTransmission();
@@ -900,7 +900,7 @@ void SI4735::setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT)
     si47x_bandwidth_config filter;
     si47x_property property;
 
-    if (currentTune == FM_TUNE_FREQ) // Only for AM/SSB mode
+    if (currentTune != AM_TUNE_FREQ) // Only for AM/SSB mode
         return;
 
     if (AMCHFLT > 6)
@@ -960,7 +960,7 @@ uint16_t SI4735::getFrequency()
 void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
 {
     si47x_tune_status status;
-    uint8_t cmd = (currentTune == FM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
+    uint8_t cmd = (currentTune != AM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
 
     waitToSend();
 
@@ -999,17 +999,17 @@ void SI4735::getAutomaticGainControl()
 {
     uint8_t cmd;
 
-    if (currentTune == FM_TUNE_FREQ)
-    { // FM TUNE
+    if (currentTune == FM_TUNE_FREQ) { // FM TUNE
         cmd = FM_AGC_STATUS;
     }
-    else
-    { // AM TUNE - SAME COMMAND used on SSB mode
+    else if (currentTune == NBFM_TUNE_FREQ) {
+        cmd = NBFM_AGC_STATUS;
+    }
+    else { // AM TUNE - SAME COMMAND used on SSB mode
         cmd = AM_AGC_STATUS;
     }
 
     waitToSend();
-
     Wire.beginTransmission(deviceAddress);
     Wire.write(cmd);
     Wire.endTransmission();
@@ -1046,7 +1046,14 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
 
     uint8_t cmd;
 
-    cmd = (currentTune == FM_TUNE_FREQ) ? FM_AGC_OVERRIDE : AM_AGC_OVERRIDE; // AM_AGC_OVERRIDE = SSB_AGC_OVERRIDE = 0x48
+    // cmd = (currentTune == FM_TUNE_FREQ) ? FM_AGC_OVERRIDE : AM_AGC_OVERRIDE; // AM_AGC_OVERRIDE = SSB_AGC_OVERRIDE = 0x48
+
+    if (currentTune == FM_TUNE_FREQ)
+        cmd = FM_AGC_OVERRIDE;
+    else if (currentTune == FM_TUNE_FREQ)
+        cmd = NBFM_AGC_OVERRIDE;
+    else
+        cmd = AM_AGC_OVERRIDE;
 
     agc.arg.AGCDIS = AGCDIS;
     agc.arg.AGCIDX = AGCIDX;
@@ -1105,8 +1112,12 @@ void SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
     if (currentTune == FM_TUNE_FREQ)
     { // FM TUNE
         cmd = FM_RSQ_STATUS;
-        sizeResponse = 8; // Check it
+        sizeResponse = 8; 
     }
+    else if (currentTune == NBFM_TUNE_FREQ) {
+        cmd = NBFM_RSQ_STATUS;
+        sizeResponse = 8; // Check it
+    } 
     else
     { // AM TUNE
         cmd = AM_RSQ_STATUS;
@@ -2786,7 +2797,7 @@ void SI4735::setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, ui
 
     currentWorkFrequency = initialFreq;
     setFrequency(currentWorkFrequency);
-    delayMicroseconds(550);
+    // delayMicroseconds(550);
 }
 
 /**  
@@ -3154,4 +3165,151 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
     return eep;
 }
 
+/**
+ * @defgroup group20 SI4735-D60 / SI4732-A10  NBFM 
+ * 
+ * @brief Narrow Band FM (Frequency Modulation) implementation.<br>  
+ * First of all, it is important to say that the NBFM patch content **is not part of this library**. 
+ * It is important to note that the author of this library does not encourage anyone to use the NBFM patches content for commercial purposes.
+ * In other words, this library only supports NBFM patches, the patches themselves are not part of this library.  
+ * 
+ * @details This implementation was tested only on Si4735-D60  and SI4732-A10 devices. 
+ * @details This implementation is applicable to Si47035-D60 and SI4732-A10 when powering up the part in FM mode with the NBFM patch
+ * 
+ * @details What does NBFM patch means?
+ * In this context, a patch is a piece of software used to change the behavior of the SI4735-D60/SI4732-A10 device.
+ * There is little information available about patching the SI4735-D60/SI4732-A10.
+ *  
+ * The following information is the understanding of the author of this project and 
+ * it is not necessarily correct. 
+ * 
+ * A patch is executed internally (run by internal MCU) of the device. Usually, 
+ * patches are used to fixes bugs or add improvements and new features of the firmware
+ * installed in the internal ROM of the device. Patches to the SI4735 or SI4732 are distributed
+ * in binary form and have to be transferred to the internal RAM of the device by the 
+ * host MCU (in this case Arduino boards). 
+ * Since the RAM is volatile memory, the patch stored into the device gets lost when 
+ * you turn off the system. Consequently, the content of the patch has to be transferred
+ * again to the device each time after turn on the system or reset the device.
+ * 
+ * I would like to thank Mr Vadim Afonkin for making available the SSBRX patches for 
+ * SI4735-D60/SI4732-A10 on his Dropbox repository. On this repository you have two files, 
+ * amrx_6_0_1_ssbrx_patch_full_0x9D29.csg and amrx_6_0_1_ssbrx_patch_init_0xA902.csg. 
+ * It is important to know that the patch content of the original files is constant 
+ * hexadecimal representation used by the language C/C++. Actally, the original files 
+ * are in ASCII format (not in binary format). 
+ * If you are not using C/C++ or if you want to load the files directly to the SI4735, 
+ * you must convert the values to numeric value of the hexadecimal constants. 
+ * For example: 0x15 = 21 (00010101); 0x16 = 22 (00010110); 0x01 = 1 (00000001); 
+ * 0xFF = 255 (11111111);
+ * 
+ * @details ATTENTION: The author of this project does not guarantee that procedures shown 
+ * here will work in your development environment. Given this, it is at your own risk 
+ * to continue with the procedures suggested here. This library works with the I²C 
+ * communication protocol and it is designed to apply a SSB extension PATCH to  
+ * SI4735-D60 and SI4732-A10 devices. Once again, the author disclaims any liability for any damage this 
+ * procedure may cause to your SI4735-D60 or SI4732-A10 or other devices that you are using.
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5 
+ */
 
+/**  
+ * @ingroup group20 Patch and NBFM support
+ *  
+ * @brief This method can be used to prepare the device to apply NBFM patch
+ *  
+ * @details Call queryLibraryId before call this method. Powerup the device by issuing the POWER_UP 
+ * command with FUNC = 0 (FM Receiver).
+ * 
+ * @see setMaxDelaySetFrequency()
+ * @see MAX_DELAY_AFTER_POWERUP 
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64 and 215-220 and
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES; page 32.
+ */
+void SI4735::patchPowerUpNBFM()
+{
+    waitToSend();
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(POWER_UP);
+    Wire.write(0b00110000);          // This is a condition for loading the patch: Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
+    Wire.write(SI473X_ANALOG_AUDIO); // This is a condition for loading the patch: Set to Analog Output. You can change this calling setNBFM.
+    Wire.endTransmission();
+    delay(maxDelayAfterPouwerUp);
+}
+
+/**
+ * @ingroup group20 Patch and NBFM support
+ * @brief Loads a given NBFM patch content
+ * @details Configures the Si4735-D60/SI4732-A10 device to work with NBFM. 
+ * 
+ * @param patch_content        point to patch content array 
+ * @param patch_content_size   size of patch content 
+ */
+void SI4735::loadPatchNBFM(const uint8_t *patch_content, const uint16_t patch_content_size)
+{
+    queryLibraryId();
+    patchPowerUpNBFM();
+    delay(50);
+    downloadPatch(patch_content, patch_content_size);
+    // TODO 
+    delay(25);
+}
+
+/**
+ * @ingroup group20 Patch and NBFM support
+ * 
+ * @brief Set the radio to FM function. 
+ * 
+ * @todo Adjust the power up parameters
+ * 
+ * @details Set the radio to NBFM function. 
+ * 
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 32 and 14 
+ * @see setAM(), setSSB(), setFM()
+ * @see setFrequencyStep()
+ * @see void SI4735::setFrequency(uint16_t freq)
+ */
+void SI4735::setNBFM()
+{
+    // Is it needed to load patch when switch to SSB?
+    // powerDown();
+    // It starts with the same AM parameters.
+    // setPowerUp(1, 1, 0, 1, 1, currentAudioMode);
+    setPowerUp(this->currentInterruptEnable, 0, 0, this->currentClockType, 0, currentAudioMode);
+    radioPowerUp();
+    currentTune = NBFM_TUNE_FREQ; // Force current tune to NBFM commands
+    // ssbPowerUp(); // Not used for regular operation
+    setVolume(volume); // Set to previus configured volume
+    currentSsbStatus = 0;
+    lastMode = NBFM_CURRENT_MODE;
+}
+
+/**
+ * @ingroup group20 Patch and NBFM support
+ *  
+ * @details Tunes the SSB (LSB or USB) receiver to a frequency between 64 and 108 MHz. 
+ * 
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; 
+ * @see setAM(), setFM(), setSSB()
+ * @see setFrequencyStep()
+ * @see void SI4735::setFrequency(uint16_t freq)
+ * 
+ * @param fromFreq minimum frequency for the band
+ * @param toFreq maximum frequency for the band
+ * @param initialFreq initial frequency 
+ * @param step step used to go to the next channel  
+ 
+ */
+void SI4735::setNBFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step)
+{
+    currentMinimumFrequency = fromFreq;
+    currentMaximumFrequency = toFreq;
+    currentStep = step;
+
+    if (initialFreq < fromFreq || initialFreq > toFreq)
+        initialFreq = fromFreq;
+
+    setNBFM();
+
+    currentWorkFrequency = initialFreq;
+    setFrequency(currentWorkFrequency);
+}

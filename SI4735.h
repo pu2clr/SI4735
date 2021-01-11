@@ -68,6 +68,27 @@
 #define FM_SEEK_TUNE_SNR_THRESHOLD 0x1403  // Sets the SNR threshold for a valid FM Seek/Tune
 #define FM_SEEK_TUNE_RSSI_THRESHOLD 0x1404 // Sets the RSSI threshold for a valid FM Seek/Tune
 
+
+// NBFM Commands
+#define NBFM_TUNE_FREQ 0x50
+#define NBFM_TUNE_STATUS 0x52
+#define NBFM_RSQ_STATUS 0x53
+#define NBFM_AGC_STATUS 0x57
+#define NBFM_AGC_OVERRIDE 0x58
+
+
+// NBFM Properties
+
+#define NBFM_MAX_TUNE_ERROR 0x5108
+#define NBFM_RSQ_INT_SOURCE 0x5200
+#define NBFM_RSQ_SNR_HI_THRESHOLD 0x5201
+#define NBFM_RSQ_SNR_LO_THRESHOLD 0x5202
+#define NBFM_RSQ_RSSI_HI_THRESHOLD 0x5203
+#define NBFM_RSQ_RSSI_LO_THRESHOLD 0x5204
+#define NBFM_VALID_SNR_THRESHOLD 0x5403
+#define NBFM_VALID_RSSI_THRESHOLD 0x5404
+
+
 // AM command
 #define AM_TUNE_FREQ 0x40    // Tunes to a given AM frequency.
 #define AM_SEEK_START 0x41   // Begins searching for a valid AM frequency.
@@ -161,6 +182,7 @@
 #define FM_CURRENT_MODE 0
 #define AM_CURRENT_MODE 1
 #define SSB_CURRENT_MODE 2
+#define NBFM_CURRENT_MODE 3
 
 #define SEEK_UP 1
 #define SEEK_DOWN 0
@@ -2199,6 +2221,11 @@ public:
     void setSSBAvcDivider(uint8_t AVC_DIVIDER);
     void setSSBDspAfc(uint8_t DSP_AFCDIS);
     void setSSBSoftMute(uint8_t SMUTESEL);
+
+    void setNBFM();
+    void setNBFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step);
+    void patchPowerUpNBFM();
+    void loadPatchNBFM(const uint8_t *patch_content, const uint16_t patch_content_size);
 
     si47x_firmware_query_library queryLibraryId();
     void patchPowerUp();
