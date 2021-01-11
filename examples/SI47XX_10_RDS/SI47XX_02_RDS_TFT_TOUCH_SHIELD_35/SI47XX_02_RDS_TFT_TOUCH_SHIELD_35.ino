@@ -159,7 +159,7 @@ uint8_t disableAgc = 0;
 int8_t agcNdx = 0;
 uint16_t antennaIdx = 0;
 int8_t softMuteMaxAttIdx = 16;
-int8_t slopIdx = 1;
+int16_t slopIdx = 1;
 int16_t muteRateIdx = 64;
 
 int currentBFO = 0;
