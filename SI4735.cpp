@@ -960,7 +960,14 @@ uint16_t SI4735::getFrequency()
 void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
 {
     si47x_tune_status status;
-    uint8_t cmd = (currentTune != AM_TUNE_FREQ) ? FM_TUNE_STATUS : AM_TUNE_STATUS;
+    uint8_t cmd;
+
+    if (currentTune == FM_TUNE_FREQ)
+        cmd = FM_TUNE_STATUS;
+    else if (currentTune == AM_TUNE_FREQ)
+        cmd = AM_TUNE_STATUS;
+    else if (currentTune == NBFM_TUNE_FREQ)
+        cmd = NBFM_TUNE_STATUS;
 
     waitToSend();
 

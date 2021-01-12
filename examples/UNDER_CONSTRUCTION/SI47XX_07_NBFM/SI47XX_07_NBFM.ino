@@ -27,8 +27,8 @@ By Ricardo Lima Caratti, Nov 2019.
 #include <SI4735.h>
 #include "Rotary.h"
 // Test it with patch_init.h or patch_full.h. Do not try load both.
-#include "patch_init.h" // SSB patch for whole SSBRX initialization string
-// #include "patch_full.h"    // SSB patch for whole SSBRX full download
+// #include "patch_init.h" // SSB patch for whole SSBRX initialization string
+#include "patch_full.h"    // SSB patch for whole SSBRX full download
 
 const uint16_t size_content = sizeof patch_content; // see patch_content in patch_full.h or patch_init.h
 
@@ -91,12 +91,16 @@ void setup()
   delay(100);
   currentFrequency = 30000;
   si4735.setNBFM(25600, 43200, currentFrequency, currentStep);
-  Serial.print("Aqui!");
+  // currentFrequency = 10650;
+  // si4735.setNBFM(6400, 10800, currentFrequency, currentStep);
   
-  
-  delay(100);
-  currentFrequency = si4735.getFrequency();
+  Serial.print("Aqui 1!");
   si4735.setVolume(60);
+  while(1);
+  // delay(100);
+  // currentFrequency = si4735.getFrequency();
+  si4735.setVolume(60);
+  Serial.print("Aqui 2!");
   showHelp();
   showStatus();
 }
@@ -140,8 +144,8 @@ void showStatus()
   showSeparator();
   Serial.print("NBFM | ");
 
-  si4735.getAutomaticGainControl();
-  si4735.getCurrentReceivedSignalQuality();
+  // si4735.getAutomaticGainControl();
+  // si4735.getCurrentReceivedSignalQuality();
     
 
   showFrequency();
