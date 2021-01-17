@@ -95,10 +95,8 @@ void setup()
   // si4735.setNBFM(6400, 10800, currentFrequency, currentStep);
   
   Serial.print("Aqui 1!");
-  si4735.setVolume(60);
-  while(1);
-  // delay(100);
-  // currentFrequency = si4735.getFrequency();
+  delay(100);
+  currentFrequency = si4735.getFrequency();
   si4735.setVolume(60);
   Serial.print("Aqui 2!");
   showHelp();

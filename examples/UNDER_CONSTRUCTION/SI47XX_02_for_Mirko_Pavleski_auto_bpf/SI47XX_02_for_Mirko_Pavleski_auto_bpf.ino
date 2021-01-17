@@ -122,6 +122,8 @@ uint8_t countClick = 0;
 
 uint8_t seekDirection = 1;
 
+int8_t slopIdx = 1;
+
 bool cmdBand = false;
 bool cmdVolume = false;
 bool cmdAgc = false;
@@ -132,6 +134,7 @@ bool cmdMenu = false;
 bool cmdSoftMuteMaxAtt = false;
 bool cmdAutoBandPassFilter = false;
 bool cmdFrontEnd = false;
+bool cmdSlop = false;
 
 int currentBFO = 0;
 long elapsedRSSI = millis();
@@ -143,9 +146,9 @@ uint16_t currentFrequency;
 
 const uint8_t currentBFOStep = 10;
 
-const char *menu[] = {"Seek", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BPF", "Frontend", "BFO"};
+const char *menu[] = {"Seek", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BPF", "Frontend", "SLOP", "BFO"};
 int8_t menuIdx = 0;
-const int lastMenu = 9;
+const int lastMenu = 10;
 int8_t currentMenuCmd = -1;
 
 int8_t currentFrontEnd = 19;
@@ -297,6 +300,7 @@ void disableCommands()
   cmdSoftMuteMaxAtt = false;
   cmdAutoBandPassFilter = false;
   cmdFrontEnd = false;
+  cmdSlop = false;
 
   countClick = 0;
   showCommandStatus((char *) "VFO ");
@@ -529,6 +533,15 @@ void showFrontEnd()
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print(sFrontEnd);
+}
+
+void showSlop()
+{
+  char sSlop[10];
+  sprintf(sSlop, "Slop:%2.2u", slopIdx);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(sSlop);
 }
 
 /**
@@ -837,6 +850,22 @@ void doFrontEnd(int8_t v)
 }
 
 /**
+ * Sets the Slop parameter
+ */
+void doSlop(int8_t v)
+{
+  slopIdx = (v == 1) ? slopIdx + 1 : slopIdx - 1;
+  if (slopIdx < 1)
+    slopIdx = 5;
+  else if (slopIdx > 5)
+    slopIdx = 1;
+
+  rx.setAMSoftMuteSlop(slopIdx);
+  showSlop();
+  elapsedCommand = millis();
+}
+
+/**
     Menu options selection
 */
 void doMenu( int8_t v) {
@@ -894,6 +923,10 @@ void doCurrentMenuCmd() {
       showFrontEnd();
       break;
     case 9:
+      cmdSlop = true;
+      showSlop();
+      break;
+    case 10:
       bfoOn = true;
       if (currentMode == LSB || currentMode == USB) {
         showBFO();
@@ -941,6 +974,8 @@ void loop()
       doAutoBandPassFilter(encoderCount);
     else if (cmdFrontEnd)
       doFrontEnd(encoderCount);
+    else if (cmdSlop)
+      doSlop(encoderCount);
     else if (cmdBand)
       setBand(encoderCount);
     else
@@ -990,7 +1025,7 @@ void loop()
   {
     rx.getCurrentReceivedSignalQuality();
     int aux = rx.getCurrentRSSI();
-    if (rssi != aux && !(cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdAutoBandPassFilter | cmdMode | cmdFrontEnd))
+    if (rssi != aux && !(cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdAutoBandPassFilter | cmdMode | cmdFrontEnd | cmdSlop))
     {
       rssi = aux;
       showRSSI();

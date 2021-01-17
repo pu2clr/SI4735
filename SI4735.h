@@ -2226,6 +2226,7 @@ public:
     void setNBFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step);
     void patchPowerUpNBFM();
     void loadPatchNBFM(const uint8_t *patch_content, const uint16_t patch_content_size);
+    void setFrequencyNBFM(uint16_t freq);
 
     si47x_firmware_query_library queryLibraryId();
     void patchPowerUp();

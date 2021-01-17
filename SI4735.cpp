@@ -960,14 +960,17 @@ uint16_t SI4735::getFrequency()
 void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
 {
     si47x_tune_status status;
-    uint8_t cmd;
+    uint8_t cmd = FM_TUNE_STATUS;
+    int limitResp = 8;
 
     if (currentTune == FM_TUNE_FREQ)
         cmd = FM_TUNE_STATUS;
     else if (currentTune == AM_TUNE_FREQ)
         cmd = AM_TUNE_STATUS;
-    else if (currentTune == NBFM_TUNE_FREQ)
+    else if (currentTune == NBFM_TUNE_FREQ) {
         cmd = NBFM_TUNE_STATUS;
+        limitResp = 6;
+    }
 
     waitToSend();
 
@@ -983,9 +986,9 @@ void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
     do
     {
         waitToSend();
-        Wire.requestFrom(deviceAddress, 8); // Check it
+        Wire.requestFrom(deviceAddress, limitResp); // Check it
         // Gets response information
-        for (uint8_t i = 0; i < 8; i++)
+        for (uint8_t i = 0; i < limitResp; i++)
             currentStatus.raw[i] = Wire.read();
     } while (currentStatus.resp.ERR); // If error, try it again
     waitToSend();
@@ -3319,4 +3322,35 @@ void SI4735::setNBFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, u
 
     currentWorkFrequency = initialFreq;
     setFrequency(currentWorkFrequency);
+}
+
+/**
+ * @ingroup   group20 Tune Frequency 
+ * 
+ * @brief Set the frequency to the corrent function of the Si4735 on NBFM mode
+ * @details You have to call setup or setPowerUp before call setFrequency.
+ * 
+ * @see maxDelaySetFrequency()
+ * @see MAX_DELAY_AFTER_SET_FREQUENCY
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 70, 135
+ * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 39
+ * 
+ * @param uint16_t  freq is the frequency to change. For example, FM => 10390 = 103.9 MHz; AM => 810 = 810 kHz.
+ */
+void SI4735::setFrequencyNBFM(uint16_t freq)
+{
+    waitToSend(); // Wait for the si473x is ready.
+    currentFrequency.value = freq;
+    currentFrequencyParams.arg.FREQH = currentFrequency.raw.FREQH;
+    currentFrequencyParams.arg.FREQL = currentFrequency.raw.FREQL;
+
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(0x50);
+    Wire.write(0x00); // Send a byte with FAST and  FREEZE information; if not FM must be 0;
+    Wire.write(currentFrequency.raw.FREQH);
+    Wire.write(currentFrequency.raw.FREQL);
+    Wire.endTransmission();
+    waitToSend();                // Wait for the si473x is ready.
+    currentWorkFrequency = freq; // check it
+    delay(250); // For some reason I need to delay here.
 }
