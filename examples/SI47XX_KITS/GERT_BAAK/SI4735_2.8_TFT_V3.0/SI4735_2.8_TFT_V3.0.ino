@@ -1557,7 +1557,7 @@ void loop() {
                   si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);  
                 }
               }
-              si4735.seekStationProgress(SeekFreq,1);// 1 is up
+              si4735.seekStationProgress(SeekFreq, checkStopSeeking,  SEEK_UP);// 1 is up
               delay(300);
               currentFrequency = si4735.getFrequency();
               band[bandIdx].currentFreq = currentFrequency ;
@@ -1588,7 +1588,7 @@ void loop() {
                }
            }
         
-          si4735.seekStationProgress(SeekFreq,0);
+          si4735.seekStationProgress(SeekFreq, checkStopSeeking,  SEEK_DOWN);
           delay(300);
           currentFrequency = si4735.getFrequency();
           band[bandIdx].currentFreq = currentFrequency ;
@@ -2419,6 +2419,15 @@ void FreqDispl() {
     }
   }
 }
+
+/**
+ * Checks the stop seeking criterias.  
+ * Returns true if the user press the touch or rotates the encoder. 
+ */
+bool checkStopSeeking() {
+  // Checks the touch and encoder
+  return (bool) encoderCount || tft.getTouch(&x, &y);   // returns true if the user rotates the encoder or touches on screen
+} 
 
 //=======================================================================================
 void SeekFreq (uint16_t freq)  {

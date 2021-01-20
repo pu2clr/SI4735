@@ -971,7 +971,7 @@ The table below shows some SI473X chips and Si4730 based-boards where the PU2CLR
 | NE928-10A SI4730    |  X |     | X  |     |    |    |    |   Yes  | 
 | PL102BA V2.11 10628 |  X | X   | X  |     |  X |  X | X  |   Yes  |
 
-* Although the SI4730-D60 does not officially support SW, several tests performed during the development of this library, as well as tests performed by other experimenters, it was observed excellent performance of this IC on HF/SW band. See "Si47XX PROGRAMMING GUIDE; pages 2 and 3; Table 1 - Product Family Function" for more details. See the video [Si4730-D60 ultimate testing (FM/RDS + LW + SW)](https://youtu.be/lRYE854EOrk).  
+* Although the SI4730-D60 does not officially support SW, several tests performed during the development of this library, as well as tests performed by other experimenters, it was observed excellent performance of this IC on HF/SW band. See "Si47XX PROGRAMMING GUIDE; pages 2 and 3; Table 1 - Product Family Function" for more details. See the video [Si4730-D60 ultimate testing (FM/RDS + LW + SW)](https://youtu.be/lRYE854EOrk). __It is important to note that the author of this library does not guarantee all SI4730-D60 devices sold on the market will work in LW and SW bands and FM with RDS as well__.
 
 * __Acording to Silicon Labs guide AN332, the SI4732-A10 has the same firmware FMRX component and AM_SW_LW RX component as that of SI4735-D60. See Si47XX PROGRAMMING GUIDE; AN332; page 2. So, like the SI4735-D60, it is possible to use it to listen to SSB mode with the SI4732-A10__.
 
