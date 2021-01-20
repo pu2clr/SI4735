@@ -966,7 +966,7 @@ The table below shows some SI473X chips and Si4730 based-boards where the PU2CLR
 | -------------------------| -- | --- | -- | --- | -- | -- | -- | ------ | 
 | SI4735-D60               |  X | X   | X  |  X  |  X |  X | X  |   Yes  |
 | SI4735-B20               |  X | X   | X  |     |  X |  X | X  |   Yes  |  
-| SI4732-A10 (*1)          |  X | X   |    |  X  |  X |  X | X  |   Yes  | 
+| SI4732-A10 (*1)          |  X | X   | X  |  X  |  X |  X | X  |   Yes  | 
 | SI4730-D60 (*2)          |  X | X*  | X  |     | X* |  X | X* |   Yes  |
 | NE928-10A SI4730         |  X |     | X  |     |    |    |    |   Yes  | 
 | PL102BA V2.11 10628 (*2) |  X | X*  | X  |     | X* |  X | X* |   Yes  |
