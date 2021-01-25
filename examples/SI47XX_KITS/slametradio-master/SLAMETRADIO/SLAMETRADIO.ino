@@ -1,11 +1,52 @@
+/**
+ * This sketch is based on the Felix Angga's project (See: https://github.com/felangga/slametradio). 
+ * Libraries used by this sketch that you need to inatall:
+ *  1) PU2CLR SI4735 Arduino Library - https://pu2clr.github.io/SI4735/  or install it via Arduino IDE
+ *  2) https://github.com/Bodmer/TFT_eSPI - https://github.com/Bodmer/TFT_eSPI or install it via Arduiino IDE
+ *  3) Adafruit_GFX - install it via Arduino IDE
+ *
+ * Important: after installing the TFT_eSPI library, it is necessary to copy the file User_Setup.h to the Arduino/libraries/TFT_eSPI folder.  
+ *
+ *  |------------|------------------|------------|------------|
+ *  |Display 2.8 |      ESP32       |   Si4735   |  Encoder   |
+ *  |  ILI9341   |                  |            |            |    
+ *  |------------|------------------|------------|------------|
+ *  |   Vcc      |     3V3     | 01 |    Vcc     |            |        
+ *  |   GND      |     GND     | 02 |    GND     |            |
+ *  |   CS       |     15      | 03 |            |            |
+ *  |   Reset    |      4      | 04 |            |            |
+ *  |   D/C      |      2      | 05 |            |            |
+ *  |   SDI      |     23      | 06 |            |            |
+ *  |   SCK      |     18      | 07 |            |            |
+ *  |   LED Coll.|     14 2K   | 08 |            |            |
+ *  |   SDO      |             | 09 |            |            |
+ *  |   T_CLK    |     18      | 10 |            |            |
+ *  |   T_CS     |      5      | 11 |            |            |
+ *  |   T_DIN    |     23      | 12 |            |            |
+ *  |   T_DO     |     19      | 13 |            |            |
+ *  |   T_IRQ    |     34      | 14 |            |            |
+ *  |            |     12      |    |   Reset    |            |
+ *  |            |     21      |    |    SDA     |            |
+ *  |            |     22      |    |    SCL     |            |
+ *  |            |     16      |    |            |      A     |
+ *  |            |     17      |    |            |      B     |
+ *  |            |     33      |    |            |   Button   |
+ *  |            |     32 2K   |    |            |            |
+ *  |            |     27 Mute |    |            |
+ *  |------------|-------------|----|------------|------------|
+ *
+ *
+ * The original Angga's sketch was modified by Ricardo Lima Caratti on 02/01/2021
+ */
+
 
 #include <SI4735.h>
-
 #include "Rotary.h"
 #include <math.h>
 #include <SPI.h>
 #include <TFT_eSPI.h>
 #include <Adafruit_GFX.h>
+#include "DSEG7_Classic_Mini_Regular_20.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.
 #include "patch_init.h" // SSB patch for whole SSBRX initialization string
@@ -18,6 +59,10 @@ TFT_eSPI    tft = TFT_eSPI();
 #define ESP32_I2C_SDA 21 // I2C bus pin on ESP32
 #define ESP32_I2C_SCL 22 // I2C bus pin on ESP32
 
+#define DISPLAY_LED 14   // Used to control to turn the display on or off
+#define DISPLAY_ON   0   
+#define DISPLAY_OFF  1
+
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
 #define SW_BAND_TYPE 2
@@ -26,25 +71,25 @@ TFT_eSPI    tft = TFT_eSPI();
 #define RESET_PIN 12
 
 // Enconder PINs
-#define ENCODER_PIN_A 17
-#define ENCODER_PIN_B 16
+#define ENCODER_PIN_A 16
+#define ENCODER_PIN_B 17
 #define ENCODER_SWITCH 36
 
 // Buttons controllers
 #define MODE_SWITCH 4      // Switch MODE (Am/LSB/USB)
-#define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 KHz
+#define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
 #define BAND_BUTTON_UP 8   // Next band
 #define BAND_BUTTON_DOWN 9 // Previous band
 #define AGC_SWITCH 11      // Switch AGC ON/OF
-#define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 KHz)
+#define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
 #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
 
-#define DEFAULT_VOLUME 50 // change it for your favorite sound volume
+#define DEFAULT_VOLUME 55 // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -185,11 +230,15 @@ void IRAM_ATTR rotaryEncoder()
 
 void setup()
 {
-
   
   tft.init();
   tft.setRotation(1);
   tft.fillScreen(0x0000);
+
+  // if you are using the Gerts or Thiago project, the two lines below turn on the display 
+  pinMode(DISPLAY_LED, OUTPUT);
+  digitalWrite(DISPLAY_LED, DISPLAY_ON);
+
 
   // KALIBRASI LAYAR
   uint16_t calData[5] = { 400, 3407, 348, 3340, 7 };
@@ -251,7 +300,7 @@ void setup()
   btnNextBand = {210, 60, 80, 30, "Next Band"};
   btnMode = {30, 100, 60, 30, (char*) AMMode[idxAMMode]};
   btnBFO = {110, 100, 80, 30, (char*) "BFO: 0"};
-  btnBandwidth = {210, 100, 80, 30, "BW: 4 KHz"};
+  btnBandwidth = {210, 100, 80, 30, "BW: 4 kHz"};
 
   daftarTombol();
 
@@ -345,12 +394,12 @@ void loadSSB()
   // si4735.setI2CFastMode(); // Recommended
   si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
   si4735.downloadPatch(ssb_patch_content, size_content);
-  si4735.setI2CStandardMode(); // goes back to default (100KHz)
+  si4735.setI2CStandardMode(); // goes back to default (100kHz)
 
 
   // delay(50);
   // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2KHz (default); 1=2.2KHz; 2=3KHz; 3=4KHz; 4=500Hz; 5=1KHz;
+  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
   // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
   // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
@@ -412,10 +461,16 @@ void drawFreq() {
     if (band[bandIdx].bandType == FM_BAND_TYPE) currentDecimal = 2;
     if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) currentDecimal = 0;
 
-    sprintf(freq, "%6s %s", String(currentFrequency / band[bandIdx].currentPembagi, currentDecimal), ((currentMode == FM) ? "MHz" : "KHz"));
-    tft.setTextSize(3);
-    tft.setTextColor(0xFFFF, 0x0000);
-    tft.drawRightString(freq, screenWidth - 2, 4, 1);
+    // sprintf(freq, "%6s %s", String(currentFrequency / band[bandIdx].currentPembagi, currentDecimal), ((currentMode == FM) ? "MHz" : "kHz"));
+    sprintf(freq, " %6s ", String(currentFrequency / band[bandIdx].currentPembagi, currentDecimal));
+    // tft.setTextSize(3);
+    tft.setTextColor(TFT_YELLOW, TFT_BLACK);
+    tft.setFreeFont(&DSEG7_Classic_Mini_Regular_20);
+    tft.drawRightString(freq, screenWidth - 58, 4, 1);
+    tft.setFreeFont(NULL);
+    tft.setTextColor(TFT_RED, TFT_BLACK);
+    tft.setTextSize(2);
+    tft.drawRightString((currentMode == FM) ? "MHz" : "kHz", screenWidth - 2, 4, 1);
     previousFrequency = currentFrequency;
   }
 
@@ -559,7 +614,7 @@ void getStatus() {
   if (currentMode == LSB || currentMode == USB)
   {
 
-    sprintf(buffBW, "BW: %s KHz", bandwitdthSSB[bwIdxSSB]);
+    sprintf(buffBW, "BW: %s kHz", bandwitdthSSB[bwIdxSSB]);
 
     btnBandwidth = {210, 100, 80, 30, buffBW};
     gambarTombol(btnBandwidth, false);
@@ -567,7 +622,7 @@ void getStatus() {
   }
   else if (currentMode == AM)
   {
-    sprintf(buffBW, "BW: %s KHz", bandwitdthAM[bwIdxAM]);
+    sprintf(buffBW, "BW: %s kHz", bandwitdthAM[bwIdxAM]);
 
     btnBandwidth = {210, 100, 80, 30, buffBW};
     gambarTombol(btnBandwidth, false);
