@@ -3,6 +3,12 @@
         {
             "name": "Mac",
             "includePath": [
+                "/Users/rcaratti/Library/Arduino15/packages/esp32/tools/**",
+                "/Users/rcaratti/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/**",
+                "/Users/rcaratti/Library/Arduino15/packages/esp8266/tools/**",
+                "/Users/rcaratti/Documents/Arduino/libraries/**",
+                "/Applications/Arduino.app/Contents/Java/libraries/**",
+                "/Users/rcaratti/Library/Arduino15/packages/esp8266/hardware/esp8266/2.7.4/**",
                 "/Applications/Arduino.app/Contents/Java/tools/**",
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/**",
                 "/Users/rcaratti/Library/Arduino15/packages/arduino/tools/**",
@@ -12,7 +18,7 @@
                 "/Users/rcaratti/Documents/Arduino/libraries/Adafruit_ST7735_and_ST7789_Library"
             ],
             "forcedInclude": [
-                "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino/Arduino.h"
+                "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/sam/1.6.12/cores/arduino/Arduino.h"
             ],
             "macFrameworkPath": [
                 "/System/Library/Frameworks",
@@ -21,7 +27,10 @@
             "intelliSenseMode": "clang-x64",
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
-            "cppStandard": "c++17"
+            "cppStandard": "c++17",
+            "defines": [
+                "USBCON"
+            ]
         }
     ],
     "version": 4

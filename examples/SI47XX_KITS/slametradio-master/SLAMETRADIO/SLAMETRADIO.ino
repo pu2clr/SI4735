@@ -15,6 +15,9 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 TFT_eSPI    tft = TFT_eSPI();
 
+#define ESP32_I2C_SDA 21 // I2C bus pin on ESP32
+#define ESP32_I2C_SCL 22 // I2C bus pin on ESP32
+
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
 #define SW_BAND_TYPE 2
@@ -23,8 +26,8 @@ TFT_eSPI    tft = TFT_eSPI();
 #define RESET_PIN 12
 
 // Enconder PINs
-#define ENCODER_PIN_A 2
-#define ENCODER_PIN_B 4
+#define ENCODER_PIN_A 17
+#define ENCODER_PIN_B 16
 #define ENCODER_SWITCH 36
 
 // Buttons controllers
@@ -182,6 +185,8 @@ void IRAM_ATTR rotaryEncoder()
 
 void setup()
 {
+
+  
   tft.init();
   tft.setRotation(1);
   tft.fillScreen(0x0000);
@@ -190,11 +195,14 @@ void setup()
   uint16_t calData[5] = { 400, 3407, 348, 3340, 7 };
   tft.setTouch(calData);
 
-
   tft.setTextColor(0xFFFF, 0x0000);
   tft.setTextWrap(false);
 
+  tft.println("STARTING...");
+
   Serial.begin(9600);
+
+  Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL); //I2C for SI4735
 
   // Look for the Si47XX I2C bus address
   int16_t si4735Addr = 0 ;

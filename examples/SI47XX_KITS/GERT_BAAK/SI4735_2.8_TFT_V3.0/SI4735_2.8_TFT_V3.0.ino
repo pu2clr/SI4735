@@ -1557,7 +1557,7 @@ void loop() {
                   si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);  
                 }
               }
-              si4735.seekStationProgress(SeekFreq, checkStopSeeking,  SEEK_UP);// 1 is up
+              // 1 is up
               delay(300);
               currentFrequency = si4735.getFrequency();
               band[bandIdx].currentFreq = currentFrequency ;
