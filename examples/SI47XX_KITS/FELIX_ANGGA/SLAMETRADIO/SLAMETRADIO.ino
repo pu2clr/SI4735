@@ -1,5 +1,6 @@
 /**
  * This sketch is based on the Felix Angga's project (See: https://github.com/felangga/slametradio). 
+ * 
  * Libraries used by this sketch that you need to inatall:
  *  1) PU2CLR SI4735 Arduino Library - https://pu2clr.github.io/SI4735/  or install it via Arduino IDE
  *  2) https://github.com/Bodmer/TFT_eSPI - https://github.com/Bodmer/TFT_eSPI or install it via Arduiino IDE
@@ -18,7 +19,7 @@
  *  |   D/C      |      2      | 05 |            |            |
  *  |   SDI      |     23      | 06 |            |            |
  *  |   SCK      |     18      | 07 |            |            |
- *  |   LED Coll.|     14 2K   | 08 |            |            |
+ *  |   LED Coll.|     14 2K   | 08 |            |            | Controls the display ON or OFF
  *  |   SDO      |             | 09 |            |            |
  *  |   T_CLK    |     18      | 10 |            |            |
  *  |   T_CS     |      5      | 11 |            |            |
@@ -32,11 +33,18 @@
  *  |            |     17      |    |            |      B     |
  *  |            |     33      |    |            |   Button   |
  *  |            |     32 2K   |    |            |            |
- *  |            |     27 Mute |    |            |
+ *  |            |     27 Mute |    |            |            |
  *  |------------|-------------|----|------------|------------|
  *
  *
- * The original Angga's sketch was modified by Ricardo Lima Caratti on 02/01/2021
+ * Changes: 
+ * 1) Display ON/OFF control - Can be used to save energy (see the Gert or Thiago Lima circuit)
+ * 2) Extern audio mute control -  Avoids the loud pop in the speaker (see the Gert or Thiago Lima circuit)
+ * 3) Added the 7 segment font to display frequency value 
+ * 4) Variable names
+ * 
+ * Modified by Ricardo Lima Caratti - 01/26/2021 
+ *
  */
 
 
@@ -59,9 +67,11 @@ TFT_eSPI    tft = TFT_eSPI();
 #define ESP32_I2C_SDA 21 // I2C bus pin on ESP32
 #define ESP32_I2C_SCL 22 // I2C bus pin on ESP32
 
-#define DISPLAY_LED 14   // Used to control to turn the display on or off
+#define DISPLAY_LED 14   // Pin used to control to turn the display on or off
 #define DISPLAY_ON   0   
 #define DISPLAY_OFF  1
+
+#define AUDIO_MUTE  27   // Pin used to external audio mute control 
 
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
@@ -89,7 +99,7 @@ TFT_eSPI    tft = TFT_eSPI();
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
 
-#define DEFAULT_VOLUME 55 // change it for your favorite sound volume
+#define DEFAULT_VOLUME 45 // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -146,7 +156,7 @@ typedef struct
   uint16_t maximumFreq; // maximum frequency of the band
   uint16_t currentFreq; // Default frequency or current frequency
   uint16_t currentStep; // Defeult step (increment and decrement)
-  double currentPembagi; // Defeult step (increment and decrement)
+  double currentDivider; // Defeult step (increment and decrement)
 
 } Band;
 
@@ -180,9 +190,9 @@ typedef struct
   uint16_t w;
   uint16_t h;
   char* title;
-} Tombol;
+} Button;
 
-Tombol btnAGC, btnNextBand, btnPrevBand, btnMode, btnBandwidth, btnBFO;
+Button btnAGC, btnNextBand, btnPrevBand, btnMode, btnBandwidth, btnBFO;
 
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
@@ -194,17 +204,17 @@ uint8_t stereo = 1;
 uint8_t volume = DEFAULT_VOLUME;
 
 unsigned long waktu;
-unsigned long waktuTerakhir;
+unsigned long lastTime;
 
 int tempTitik = 0;
 double currentBottomFreq = 8800;
 double currentTopFreq = 10800;
-double currentPembagi = 100.0;
+double currentDivider = 100.0;
 String currentSatuan = "MHz";
 int currentDecimal = 2;
-double geser = 0.0;
-double geserSebelum = geser;
-int frekuensi[13];
+double sliding = 0.0;
+double slidingBefore = sliding;
+int dialFrequency[13];
 boolean fast = false;
 
 // Devices class declarations
@@ -231,14 +241,22 @@ void IRAM_ATTR rotaryEncoder()
 void setup()
 {
   
-  tft.init();
-  tft.setRotation(1);
-  tft.fillScreen(0x0000);
 
   // if you are using the Gerts or Thiago project, the two lines below turn on the display 
   pinMode(DISPLAY_LED, OUTPUT);
   digitalWrite(DISPLAY_LED, DISPLAY_ON);
 
+  //  // Encoder pins
+  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
+  //  pinMode(ENCODER_SWITCH, INPUT_PULLUP);
+
+  attachInterrupt(ENCODER_PIN_A, rotaryEncoder, CHANGE);
+  attachInterrupt(ENCODER_PIN_B, rotaryEncoder, CHANGE);
+
+  tft.init();
+  tft.setRotation(1);
+  tft.fillScreen(0x0000);
 
   // KALIBRASI LAYAR
   uint16_t calData[5] = { 400, 3407, 348, 3340, 7 };
@@ -249,7 +267,7 @@ void setup()
 
   tft.println("STARTING...");
 
-  Serial.begin(9600);
+  // Serial.begin(9600);
 
   Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL); //I2C for SI4735
 
@@ -259,26 +277,20 @@ void setup()
     si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
     if ( si4735Addr == 0 ) {
       tft.println("Radio chip not found!");
-      Serial.println("Si473X not found!");
-
-    } else {
-      Serial.print("The Si473X I2C address is 0x");
-      Serial.println(si4735Addr, HEX);
-    }
+      // Serial.println("Si473X not found!");
+      while(1);
+    } 
     delay(500);
   }
 
   tft.fillScreen(0x0000);
 
-  si4735.setup(RESET_PIN, FM_BAND_TYPE);
+  
+  si4735.setAudioMuteMcuPin(AUDIO_MUTE);
 
-  //  // Encoder pins
-  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
-  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
-  //  pinMode(ENCODER_SWITCH, INPUT_PULLUP);
+  // si4735.setup(RESET_PIN, FM_BAND_TYPE);
+  si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL);
 
-  attachInterrupt(ENCODER_PIN_A, rotaryEncoder, CHANGE);
-  attachInterrupt(ENCODER_PIN_B, rotaryEncoder, CHANGE);
 
   useBand();
 
@@ -286,15 +298,14 @@ void setup()
 
 
   currentFrequency = si4735.getFrequency();
-  geserSebelum = ((band[bandIdx].maximumFreq - currentFrequency) / band[bandIdx].currentPembagi) * 30;
-
+  slidingBefore = ((band[bandIdx].maximumFreq - currentFrequency) / band[bandIdx].currentDivider) * 30;
+  delay(100);
   si4735.setFrequency(currentFrequency);
-  si4735.setVolume(volume);
 
   drawFreq();
-  drawDial(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentPembagi);
+  drawDial(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentDivider);
 
-  // init tombol
+  // init Button
   btnAGC = {30, 60, 60, 30, "AGC"};
   btnPrevBand = {110, 60, 80, 30, "Prev Band"};
   btnNextBand = {210, 60, 80, 30, "Next Band"};
@@ -302,10 +313,10 @@ void setup()
   btnBFO = {110, 100, 80, 30, (char*) "BFO: 0"};
   btnBandwidth = {210, 100, 80, 30, "BW: 4 kHz"};
 
-  daftarTombol();
-
+  showButtons();
 
   getStatus();
+  delay(100);
 }
 
 void showRSSI()
@@ -433,14 +444,14 @@ void useBand()
     {
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
       si4735.setSSBAutomaticVolumeControl(1);
-      si4735.setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
+      si4735.setSsbSoftMuteMaxAttenuation(8); // Disable Soft Mute for SSB
     }
     else
     {
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
-      si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
+      si4735.setAmSoftMuteMaxAttenuation(8); // // Disable Soft Mute for AM
       bfoOn = false;
     }
 
@@ -449,8 +460,11 @@ void useBand()
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
 
-  geserSebelum = ((band[bandIdx].maximumFreq - currentFrequency) / 100) * 30;
+  slidingBefore = ((band[bandIdx].maximumFreq - currentFrequency) / 100) * 30;
+  drawFreq();
   drawDial(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, 100);
+
+  si4735.setVolume(volume);
 }
 
 void drawFreq() {
@@ -461,7 +475,7 @@ void drawFreq() {
     if (band[bandIdx].bandType == FM_BAND_TYPE) currentDecimal = 2;
     if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) currentDecimal = 0;
 
-    sprintf(freq, " %6s ", String(currentFrequency / band[bandIdx].currentPembagi, currentDecimal));
+    sprintf(freq, " %6s ", String(currentFrequency / band[bandIdx].currentDivider, currentDecimal));
 
     tft.setTextColor(TFT_YELLOW, TFT_BLACK);
     tft.setFreeFont(&DSEG7_Classic_Mini_Regular_20);
@@ -475,13 +489,13 @@ void drawFreq() {
 }
 
 
-void drawDial(double startFreq, double endFreq, double pembagi) {
+void drawDial(double startFreq, double endFreq, double divider) {
 
-  geser = ((endFreq - currentFrequency) / pembagi) * 30.0;
+  sliding = ((endFreq - currentFrequency) / divider) * 30.0;
   currentDecimal = 3;
   if (band[bandIdx].bandType == FM_BAND_TYPE) currentDecimal = 2;
   if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) currentDecimal = 0;
-  Serial.println(geser);
+  // Serial.println(sliding);
 
   int r = (screenWidth / 2) + 30;
   int x = screenWidth / 2;
@@ -490,24 +504,24 @@ void drawDial(double startFreq, double endFreq, double pembagi) {
   tempTitik = 0;
 
   char freq[8];
-  String convert = String(currentFrequency /  band[bandIdx].currentPembagi, currentDecimal);
+  String convert = String(currentFrequency /  band[bandIdx].currentDivider, currentDecimal);
   convert.toCharArray(freq, 8);
 
-  for (int isi = ((int) floor(geser / 360) * 12); isi < ((int) floor(geser / 360) * 12) + 12; isi ++) {
-    if ((int) geser == 0) {
+  for (int isi = ((int) floor(sliding / 360) * 12); isi < ((int) floor(sliding / 360) * 12) + 12; isi ++) {
+    if ((int) sliding == 0) {
       if (isi >= 9) continue;
     }
-    frekuensi[isi % 12] = endFreq - (isi * pembagi);
-    if ((int) geser % 360 >= 300) {
-      Serial.println("LEBIH 360");
-      frekuensi[0] = endFreq - ((((int) floor(geser / 360) * 12) + 12 ) * pembagi) ;
-      frekuensi[1] = endFreq - ((((int) floor(geser / 360) * 12) + 13 ) * pembagi) ;
-      frekuensi[2] = endFreq - ((((int) floor(geser / 360) * 12) + 14 ) * pembagi) ;
-    } else if ((int) geser % 360 <= 60 && geser > 0) {
-      Serial.println("KURANG 60");
-      frekuensi[11] = endFreq - ((((int) floor(geser / 360) * 12) - 1 ) * pembagi) ;
-      frekuensi[10] = endFreq - ((((int) floor(geser / 360) * 12) - 2 ) * pembagi) ;
-      frekuensi[9] =  endFreq - ((((int) floor(geser / 360) * 12) - 3 ) * pembagi) ;
+    dialFrequency[isi % 12] = endFreq - (isi * divider);
+    if ((int) sliding % 360 >= 300) {
+      // Serial.println("LEBIH 360");
+      dialFrequency[0] = endFreq - ((((int) floor(sliding / 360) * 12) + 12 ) * divider) ;
+      dialFrequency[1] = endFreq - ((((int) floor(sliding / 360) * 12) + 13 ) * divider) ;
+      dialFrequency[2] = endFreq - ((((int) floor(sliding / 360) * 12) + 14 ) * divider) ;
+    } else if ((int) sliding % 360 <= 60 && sliding > 0) {
+      // Serial.println("KURANG 60");
+      dialFrequency[11] = endFreq - ((((int) floor(sliding / 360) * 12) - 1 ) * divider) ;
+      dialFrequency[10] = endFreq - ((((int) floor(sliding / 360) * 12) - 2 ) * divider) ;
+      dialFrequency[9] =  endFreq - ((((int) floor(sliding / 360) * 12) - 3 ) * divider) ;
     }
 
   }
@@ -525,20 +539,20 @@ void drawDial(double startFreq, double endFreq, double pembagi) {
 
   for (int i = 0; i < 360; i += 1)
   {
-    int x1 = r * cos(((i - geser) - 90) * PI / 180);
-    int y1 = r * sin(((i - geser) - 90) * PI / 180);
+    int x1 = r * cos(((i - sliding) - 90) * PI / 180);
+    int y1 = r * sin(((i - sliding) - 90) * PI / 180);
 
     if (i % 3 == 0) {
       tft.drawPixel(x + x1, y + y1, 0x0F00);
     }
 
     if (i % 30 == 0) {
-      convert = String(frekuensi[(i / 30)] /  band[bandIdx].currentPembagi, currentDecimal);
+      convert = String(dialFrequency[(i / 30)] /  band[bandIdx].currentDivider, currentDecimal);
       convert.toCharArray(freq, 8);
 
 
-      int x2 = r * cos(((i - geserSebelum) - 90) * PI / 180);
-      int y2 = r * sin(((i - geserSebelum) - 90) * PI / 180);
+      int x2 = r * cos(((i - slidingBefore) - 90) * PI / 180);
+      int y2 = r * sin(((i - slidingBefore) - 90) * PI / 180);
 
 
       tft.fillCircle(x + x1, y + y1, 2, TFT_CYAN);
@@ -546,7 +560,7 @@ void drawDial(double startFreq, double endFreq, double pembagi) {
       if (x + x1 < -10) continue;
       if (x + x1 > screenWidth) continue;
       if (y + y1 > screenHeight) continue;
-      if (frekuensi[(i / 30)] <= endFreq && frekuensi[(i / 30)] >= startFreq) {
+      if (dialFrequency[(i / 30)] <= endFreq && dialFrequency[(i / 30)] >= startFreq) {
 
         tft.setTextSize(1);
 
@@ -561,7 +575,7 @@ void drawDial(double startFreq, double endFreq, double pembagi) {
   }
 }
 
-void gambarTombol(Tombol button, bool pencet) {
+void drawButton(Button button, bool pencet) {
 
   if (!pencet) {
     tft.fillRoundRect(button.x, button.y, button.w, button.h, 10, 0x0900);
@@ -577,12 +591,11 @@ void gambarTombol(Tombol button, bool pencet) {
   }
 }
 
-bool tombolPressed(int x, int y, Tombol button) {
-  if (x > button.x && y > button.y && x < button.x + button.w && y < button.y + button.h) {
-    return true;
-  } else {
-    return false;
-  }
+/**
+ * Checks if a given button is pressed
+ */
+bool buttonPressed(int x, int y, Button button) {
+  return  (x > button.x && y > button.y && x < button.x + button.w && y < button.y + button.h);
 }
 
 void getStatus() {
@@ -615,7 +628,7 @@ void getStatus() {
     sprintf(buffBW, "BW: %s kHz", bandwitdthSSB[bwIdxSSB]);
 
     btnBandwidth = {210, 100, 80, 30, buffBW};
-    gambarTombol(btnBandwidth, false);
+    drawButton(btnBandwidth, false);
 
   }
   else if (currentMode == AM)
@@ -623,7 +636,7 @@ void getStatus() {
     sprintf(buffBW, "BW: %s kHz", bandwitdthAM[bwIdxAM]);
 
     btnBandwidth = {210, 100, 80, 30, buffBW};
-    gambarTombol(btnBandwidth, false);
+    drawButton(btnBandwidth, false);
     tft.fillRect(btnBFO.x, btnBFO.y, btnBFO.w, btnBFO.h, 0x0000);
   }
 
@@ -633,32 +646,31 @@ void getStatus() {
     if (currentMode != FM) {
       if (currentMode == LSB || currentMode == USB) {
         btnBFO = {110, 100, 80, 30, buffBFO };
-        gambarTombol(btnBFO, bfoOn);
+        drawButton(btnBFO, bfoOn);
       }
     }
   }
 
-  gambarTombol(btnAGC, !disableAgc);
+  drawButton(btnAGC, !disableAgc);
 
 }
 
-void daftarTombol() {
-  gambarTombol(btnAGC, !disableAgc);
-  gambarTombol(btnPrevBand,  false);
-  gambarTombol(btnNextBand, false);
+void showButtons() {
+  drawButton(btnAGC, !disableAgc);
+  drawButton(btnPrevBand,  false);
+  drawButton(btnNextBand, false);
   if (currentMode != FM) {
-    gambarTombol(btnMode, false);
-    gambarTombol(btnBandwidth, false);
+    drawButton(btnMode, false);
+    drawButton(btnBandwidth, false);
 
     if (currentMode == LSB || currentMode == USB) {
-      gambarTombol(btnBFO, bfoOn);
+      drawButton(btnBFO, bfoOn);
     }
   }
 }
 
 void loop()
 {
-
   uint16_t x = 0, y = 0;
   boolean pressed = tft.getTouch(&x, &y);
 
@@ -666,10 +678,10 @@ void loop()
   if (pressed) {
     lastPencet = true;
     //tft.fillCircle(x, y, 2, TFT_WHITE);
-    Serial.print(x); Serial.print(' '); Serial.print(y); Serial.println();
+    // Serial.print(x); // Serial.print(' '); // Serial.print(y); // Serial.println();
     // cek AGC
-    if (tombolPressed(x, y, btnAGC)) {
-      gambarTombol(btnAGC, !disableAgc);
+    if (buttonPressed(x, y, btnAGC)) {
+      drawButton(btnAGC, !disableAgc);
       disableAgc = !disableAgc;
       si4735.setAutomaticGainControl(disableAgc, 1);
       getStatus();
@@ -677,16 +689,16 @@ void loop()
       delay(MIN_ELAPSED_TIME);
     }
 
-    if (tombolPressed(x, y, btnNextBand)) {
-      gambarTombol(btnNextBand, true);
+    if (buttonPressed(x, y, btnNextBand)) {
+      drawButton(btnNextBand, true);
       tft.fillRect(0, (screenHeight / 2) + 10, screenWidth, screenHeight, 0x0000);
       bandUp();
       getStatus();
       delay(MIN_ELAPSED_TIME);
     }
 
-    if (tombolPressed(x, y, btnPrevBand)) {
-      gambarTombol(btnPrevBand, true);
+    if (buttonPressed(x, y, btnPrevBand)) {
+      drawButton(btnPrevBand, true);
       tft.fillRect(0, (screenHeight / 2) + 10, screenWidth, screenHeight, 0x0000);
       bandDown();
       getStatus();
@@ -694,9 +706,9 @@ void loop()
     }
 
     if (currentMode == LSB || currentMode == USB) {
-      if (tombolPressed(x, y, btnBFO)) {
+      if (buttonPressed(x, y, btnBFO)) {
 
-        gambarTombol(btnBFO, !bfoOn);
+        drawButton(btnBFO, !bfoOn);
         bfoOn = !bfoOn;
         getStatus();
 
@@ -705,8 +717,8 @@ void loop()
     }
 
 
-    if (tombolPressed(x, y, btnBandwidth)  && (currentMode != FM)) {
-      gambarTombol(btnBandwidth, true);
+    if (buttonPressed(x, y, btnBandwidth)  && (currentMode != FM)) {
+      drawButton(btnBandwidth, true);
       if (currentMode == LSB || currentMode == USB)
       {
         bwIdxSSB++;
@@ -733,15 +745,15 @@ void loop()
 
 
 
-    if (tombolPressed(x, y, btnMode) && (currentMode != FM)) {
-      gambarTombol(btnMode, true);
+    if (buttonPressed(x, y, btnMode) && (currentMode != FM)) {
+      drawButton(btnMode, true);
       idxAMMode ++;
       idxMode ++;
       if (idxAMMode > 2) idxAMMode = 0;
       btnMode = {30, 100, 60, 30, (char*) AMMode[idxAMMode]};
       delay(MIN_ELAPSED_TIME);
 
-//      Serial.println(idxMode);
+//      // Serial.println(idxMode);
 
 
       if (idxAMMode == 1) {
@@ -782,12 +794,12 @@ void loop()
   } else {
     if (lastPencet) {
       //      tft.fillRect(0, ( screenHeight / 2 ) - 60, screenWidth, 70, 0x0000);
-      daftarTombol();
+      showButtons();
       lastPencet = false;
     }
   }
 
-  if (millis() - waktuTerakhir > 700) fast = false;
+  if (millis() - lastTime > 700) fast = false;
   if (encoderCount != 0)
   {
     if (bfoOn)
@@ -799,16 +811,11 @@ void loop()
     else
     {
 
-      if (millis() - waktuTerakhir < 80) {
+      if (millis() - lastTime < 80) {
         fast = true;
-      }
-
-      if (fast) {
         step = 10;
-
       } else {
         step = 1;
-
       }
 
       if (encoderCount == -1) {
@@ -818,7 +825,7 @@ void loop()
       }
 
       si4735.setFrequency(currentFrequency);
-      geserSebelum = geser;
+      slidingBefore = sliding;
 
       drawDial(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, 100);
       drawFreq();
@@ -826,7 +833,7 @@ void loop()
       showRSSI();
     }
 
-    waktuTerakhir = millis();
+    lastTime = millis();
     encoderCount = 0;
   }
 
@@ -848,7 +855,7 @@ void loop()
     elapsedRSSI = millis();
   }
 
-  // drawFreq(); // Why is it here? 
+  // drawFreq(); // Why is it here? Need to be checked
 
   delay(10);
 }
