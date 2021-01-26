@@ -461,9 +461,8 @@ void drawFreq() {
     if (band[bandIdx].bandType == FM_BAND_TYPE) currentDecimal = 2;
     if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) currentDecimal = 0;
 
-    // sprintf(freq, "%6s %s", String(currentFrequency / band[bandIdx].currentPembagi, currentDecimal), ((currentMode == FM) ? "MHz" : "kHz"));
     sprintf(freq, " %6s ", String(currentFrequency / band[bandIdx].currentPembagi, currentDecimal));
-    // tft.setTextSize(3);
+
     tft.setTextColor(TFT_YELLOW, TFT_BLACK);
     tft.setFreeFont(&DSEG7_Classic_Mini_Regular_20);
     tft.drawRightString(freq, screenWidth - 58, 4, 1);
@@ -473,7 +472,6 @@ void drawFreq() {
     tft.drawRightString((currentMode == FM) ? "MHz" : "kHz", screenWidth - 2, 4, 1);
     previousFrequency = currentFrequency;
   }
-
 }
 
 
@@ -823,8 +821,9 @@ void loop()
       geserSebelum = geser;
 
       drawDial(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, 100);
-      showRSSI();
+      drawFreq();
 
+      showRSSI();
     }
 
     waktuTerakhir = millis();
@@ -849,9 +848,7 @@ void loop()
     elapsedRSSI = millis();
   }
 
-  drawFreq();
-
-
+  // drawFreq(); // Why is it here? 
 
   delay(10);
 }
