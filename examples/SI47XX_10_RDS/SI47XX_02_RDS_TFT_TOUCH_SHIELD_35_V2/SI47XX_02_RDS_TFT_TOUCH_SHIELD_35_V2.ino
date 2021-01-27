@@ -1423,12 +1423,14 @@ void loop(void)
       doMuteRate(encoderCount);
     else
     {
-      if (encoderCount == 1)
+      if (encoderCount == 1) 
         si4735.frequencyUp();
       else
         si4735.frequencyDown();
       // currentFrequency = si4735.getFrequency();      // Queries the Si473X device.
       currentFrequency = si4735.getCurrentFrequency(); // Just get the last setFrequency value (faster but can not be accurate sometimes).
+      // if (loadSSB) // Checking a bug on SSB patch
+      //   si4735.setAutomaticGainControl(disableAgc, agcNdx);
       showFrequency();
       elapsedCommand = millis();
     }
