@@ -475,7 +475,7 @@ void drawFreq() {
     if (band[bandIdx].bandType == FM_BAND_TYPE) currentDecimal = 2;
     if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) currentDecimal = 0;
 
-    sprintf(freq, " %6s ", String(currentFrequency / band[bandIdx].currentDivider, currentDecimal));
+    sprintf(freq, " %6s ", String(currentFrequency / band[bandIdx].currentDivider, currentDecimal).c_str());
 
     tft.setTextColor(TFT_YELLOW, TFT_BLACK);
     tft.setFreeFont(&DSEG7_Classic_Mini_Regular_20);

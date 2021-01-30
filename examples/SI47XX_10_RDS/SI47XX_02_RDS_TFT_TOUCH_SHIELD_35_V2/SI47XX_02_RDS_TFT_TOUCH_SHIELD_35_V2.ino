@@ -324,6 +324,16 @@ bool Touch_getXY(void)
 #define YELLOW 0xFFE0
 #define WHITE 0xFFFF
 
+void showBandwitdth(bool drawAfter = false);
+void showAgcAtt(bool drawAfter = false);
+void showStep(bool drawAfter = false);
+void showSoftMute(bool drawAfter = false);
+void showMuteRate(bool drawAfter = false);
+void showSlop(bool drawAfter = false);
+void showVolume(bool drawAfter = false);
+
+
+
 void setup(void)
 {
 
@@ -801,7 +811,7 @@ void showStatus()
   si4735.getFrequency();
   showFrequency();
 
-  showVolume();
+  showVolume(true);
   tft.setFont(NULL); // default font
   printText(5, 5, 2, bufferBandName, band[bandIdx].bandName, CYAN, 11);
 
@@ -818,26 +828,26 @@ void showStatus()
   {
     printText(280, 55, 2, bufferUnit, "MHz", WHITE, 12);
     setButtonsFM();
-    setDrawButtons(true);
+    // setDrawButtons(true);
     return;
   }
 
   printText(280, 55, 2, bufferUnit, "kHz", WHITE, 12);
 
-  showBandwitdth();
-  showAgcAtt();
-  showStep();
-  showSoftMute();
-  showSlop();
-  showMuteRate();
-  setDrawButtons(true);
+  showBandwitdth(true);
+  showAgcAtt(true);
+  showStep(true);
+  showSoftMute(true);
+  showSlop(true);
+  showMuteRate(true);
+  // setDrawButtons(true);
  }
 
 /**
  * SHow bandwitdth on AM or SSB mode
  * 
  */
-void showBandwitdth()
+void showBandwitdth(bool drawAfter)
 {
   char bw[20];
     
@@ -852,14 +862,14 @@ void showBandwitdth()
   else {
     return;
   }
-  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, bw, false);
+  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, bw, drawAfter);
 }
 
 /**
  * Shows AGC and Attenuation status
  * 
  */
-void showAgcAtt()
+void showAgcAtt(bool drawAfter)
 {
   char sAgc[15];
 
@@ -872,7 +882,7 @@ void showAgcAtt()
   {
     sprintf(sAgc, "ATT: %2d", agcNdx);
   }
-  setButton(&bAGC, 270, KEYBOARD_LIN_OFFSET +  240, 70, 49, sAgc, false);
+  setButton(&bAGC, 270, KEYBOARD_LIN_OFFSET +  240, 70, 49, sAgc, drawAfter);
 }
 
 /**
@@ -981,21 +991,21 @@ void showRSSI()
   tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 17 + spoint, RSSI_DISPLAY_LIN_OFFSET + 38, 212 - (2 + spoint), 6, GREEN);
 }
 
-void showStep()
+void showStep(bool drawAfter)
 {
   char sStep[15];
   sprintf(sStep, "Stp:%4d", currentStep);
-  setButton(&bStep, 270, KEYBOARD_LIN_OFFSET +  185, 70, 49, sStep, false);
+  setButton(&bStep, 270, KEYBOARD_LIN_OFFSET +  185, 70, 49, sStep, drawAfter);
 }
 
-void showSoftMute()
+void showSoftMute(bool drawAfter)
 {
   char sMute[15];
 
   if (currentMode == FM) return;
   
   sprintf(sMute, "SM: %2d", softMuteMaxAttIdx);
-  setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, sMute, false);
+  setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, sMute, drawAfter);
 }
 
 /**
@@ -1011,34 +1021,34 @@ void showBFO()
 /**
  * Shows the current volume level
  */
-void showVolume()
+void showVolume(bool drawAfter)
 {
   char sVolume[15];
   sprintf(sVolume, "Vol: %2.2d", si4735.getVolume());
-  setButton(&bVolumeLevel, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, sVolume, false);
+  setButton(&bVolumeLevel, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, sVolume, drawAfter);
 }
 
 /**
  * Shows slop parameter
  */
-void showSlop()
+void showSlop(bool drawAfter)
 {
   char sSlop[10];
 
   if (currentMode == FM) return; 
     
   sprintf(sSlop, "Sl:%2.2u", slopIdx);
-  setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, sSlop, false);
+  setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, sSlop, drawAfter);
 }
 
-void showMuteRate()
+void showMuteRate(bool drawAfter)
 {
   char sMRate[10];
 
   if (currentMode == FM) return; 
     
   sprintf(sMRate, "MR:%3.3u", muteRateIdx);
-  setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, sMRate, false);
+  setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, sMRate, drawAfter);
 }
 
 char *rdsMsg;
