@@ -1561,7 +1561,8 @@ void loop() {
                 }
               }
               si4735.frequencyUp();
-              si4735.seekStationProgress(SeekFreq,1);// 1 is up
+              si4735.seekStationProgress(SeekFreq, checkStopSeeking,  SEEK_UP);
+              // si4735.seekStationProgress(SeekFreq,1);// 1 is up
               delay(300);
               currentFrequency = si4735.getFrequency();
               band[bandIdx].currentFreq = currentFrequency ;
@@ -1592,7 +1593,8 @@ void loop() {
                }
            }
           si4735.frequencyDown();
-          si4735.seekStationProgress(SeekFreq,0);
+          // si4735.seekStationProgress(SeekFreq,0);
+          si4735.seekStationProgress(SeekFreq, checkStopSeeking,  SEEK_DOWN);
           delay(300);
           currentFrequency = si4735.getFrequency();
           band[bandIdx].currentFreq = currentFrequency ;
@@ -1879,6 +1881,7 @@ void encoderCheck()  {
     {  
       DrawFila(); 
       ThirdLayer = false;
+      FREQbut = false;
     }
     
     encoderCount = 0;
@@ -2412,6 +2415,55 @@ void checkRDS() {
   }
 }
 
+/*
+    Prevents blinking during the frequency display.
+    Erases the old digits if it has changed and print the new digit values.
+*/
+void showFrequencyValue(int col, int line, char *oldValue, const char *newValue, uint16_t color, uint8_t space, uint8_t textSize)
+{
+
+  int c = col;
+
+  char *pOld;
+  char *pNew;
+
+  pOld = oldValue;
+  pNew = (char *) newValue;
+
+  // prints just changed digits
+  while (*pOld && *pNew)
+  {
+    if (*pOld != *pNew)
+    {
+      tft.drawChar(c, line, *pOld, TFT_BLACK, TFT_BLACK, textSize);
+      tft.drawChar(c, line, *pNew, color, TFT_BLACK, textSize);
+    }
+    pOld++;
+    pNew++;
+    c += space;
+  }
+
+  // Is there anything else to erase?
+  while (*pOld)
+  {
+    tft.drawChar(c, line, *pOld, TFT_BLACK, TFT_BLACK, textSize);
+    pOld++;
+    c += space;
+  }
+
+  // Is there anything else to print?
+  while (*pNew)
+  {
+    tft.drawChar(c, line, *pNew, color, TFT_BLACK, textSize);
+    pNew++;
+    c += space;
+  }
+  strcpy(oldValue, newValue);
+}
+
+// char oldFrequency[20];
+
+
 //=======================================================================================
 void FreqDispl() {
 //=======================================================================================  
@@ -2466,6 +2518,7 @@ void FreqDispl() {
           tft.setFreeFont(&DSEG7_Classic_Mini_Bold_30);
           tft.setTextSize(1);
           tft.drawString(String(Displayfreq, 0), XFreqDispl + 120, YFreqDispl + 60);
+          // showFrequencyValue( XFreqDispl + 120, YFreqDispl + 60 , oldFrequency, String(Displayfreq, 0).c_str(), TFT_GREEN, 30, 1);
           tft.setFreeFont(NULL);                   
         }
       }
@@ -2475,6 +2528,8 @@ void FreqDispl() {
         tft.setFreeFont(&DSEG7_Classic_Mini_Bold_30);
         tft.setTextSize(1);
         tft.drawString(String(Displayfreq, 1), XFreqDispl + 120, YFreqDispl + 55);
+        // showFrequencyValue( XFreqDispl + 120, YFreqDispl + 55 , oldFrequency, String(Displayfreq, 1).c_str(), TFT_GREEN, 30, 1);
+
         tft.setFreeFont(NULL);
         tft.setTextColor(TFT_GREEN, TFT_BLACK);
         tft.setFreeFont(&Serif_bold_15);
@@ -2491,6 +2546,8 @@ void FreqDispl() {
           tft.setFreeFont(&DSEG7_Classic_Mini_Bold_30);
           tft.setTextSize(1);
           tft.drawString(String(Displayfreq, 0), XFreqDispl + 120, YFreqDispl + 60);
+          // showFrequencyValue( XFreqDispl + 120, YFreqDispl + 60 , oldFrequency, String(Displayfreq, 0).c_str(), TFT_GREEN, 30, 1);
+
           if ((Displayfreq >= 1000) and (Displayfreq <= 30000)) {
             Displayfreq =  currentFrequency / 1000;
             tft.drawString(String(Displayfreq, 3), XFreqDispl + 120, YFreqDispl + 60);
@@ -2559,6 +2616,17 @@ void FreqDispl() {
     }
   }
 }
+
+
+/**
+ * Checks the stop seeking criterias.  
+ * Returns true if the user press the touch or rotates the encoder. 
+ */
+bool checkStopSeeking() {
+  // Checks the touch and encoder
+  return (bool) encoderCount || tft.getTouch(&x, &y);   // returns true if the user rotates the encoder or touches on screen
+} 
+
 
 //=======================================================================================
 void SeekFreq (uint16_t freq)  {
