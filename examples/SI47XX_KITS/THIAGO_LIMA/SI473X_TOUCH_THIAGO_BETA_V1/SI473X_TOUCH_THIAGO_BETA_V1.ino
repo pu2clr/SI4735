@@ -1881,7 +1881,12 @@ void encoderCheck()  {
     {  
       DrawFila(); 
       ThirdLayer = false;
-      FREQbut = false;
+      BroadBand = false;
+      STEPbut = false;
+      BandWidth = false;
+      Modebut = false;
+      HamBand = false;
+      FREQbut = false;     
     }
     
     encoderCount = 0;
