@@ -1861,6 +1861,9 @@ void encoderCheck()  {
       FreqDispl();
       band[bandIdx].currentFreq = si4735.getFrequency();
     }
+
+    if ( !FirstLayer )  DrawFila(); 
+
     encoderCount = 0;
   }
 }
