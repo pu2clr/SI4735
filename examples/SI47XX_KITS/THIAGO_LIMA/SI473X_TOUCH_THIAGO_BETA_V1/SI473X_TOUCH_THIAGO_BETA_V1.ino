@@ -766,6 +766,20 @@ void setup() {
   //tft.setRotation(2); // Rotate 180
   //tft.setRotation(3); // Rotate 270
 
+  // RESET the EEPROM
+  for (int i = 0; i < 10; i++) {
+      encBut = analogRead(ENCODER_SWITCH);
+      if (encBut < 500) {
+        // chamar zerar EEPROM
+        tft.fillScreen(TFT_BLACK);
+        tft.setCursor(0, 0);
+        tft.println(F("O KIT retornou para as configurações originais!")); 
+        while(1);   
+      }
+      delay(100);
+  } 
+
+
   #ifdef IhaveVertTFT
     // Calibration code for touchscreen : for 2.8 inch & Rotation = 2
     uint16_t calData[5] = { 258, 3566, 413, 3512, 2 };
