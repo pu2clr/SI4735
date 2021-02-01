@@ -741,6 +741,18 @@ void IRAM_ATTR RotaryEncFreq() {
 }
 
 
+
+/**
+ * Cleans the EEPROM
+*/
+void resetEEPROM() {
+  EEPROM.begin(EEPROM_SIZE);
+  for (int k = 0; k < EEPROM_SIZE; k++) {
+      EEPROM.write(k, 0);
+  }
+  EEPROM.end();
+}
+
 //=======================================================================================
 void setup() {
 //=======================================================================================
@@ -770,10 +782,10 @@ void setup() {
   for (int i = 0; i < 10; i++) {
       encBut = analogRead(ENCODER_SWITCH);
       if (encBut < 500) {
-        // chamar zerar EEPROM
+        resetEEPROM(); // Cleans the EEPROM.
         tft.fillScreen(TFT_BLACK);
         tft.setCursor(0, 0);
-        tft.println(F("O KIT retornou para as configurações originais!")); 
+        tft.println(F("A EEPROM FOI LIMPA!")); 
         while(1);   
       }
       delay(100);
@@ -801,6 +813,7 @@ void setup() {
     while(1); 
   }
 
+  // RESET the EEPROM
   if (EEPROM.read(offsetEEPROM) != storage.chkDigit){
     // Serial.println(F("Writing defaults...."));
     saveConfig();
@@ -1891,7 +1904,7 @@ void encoderCheck()  {
     }
 
     // Beta test
-    if ( !FirstLayer )  // If you move the encoder when you are on second leyer, so you will abort the current action. 
+    if ( !FirstLayer && !AGCgainbut)  // If you move the encoder when you are on second leyer, so you will abort the current action. 
     {  
       DrawFila(); 
       ThirdLayer = false;
