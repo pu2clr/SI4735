@@ -23,7 +23,7 @@ Contact: __pu2clr@gmail.com__.
 2. [Labrary Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
 3. [License Copyright](https://pu2clr.github.io/SI4735/#mit-license)
 4. [Library Installation](https://pu2clr.github.io/SI4735/#library-installation)
-5. [Other Arduino Libraries by PU2CLR](https://pu2clr.github.io/SI4735/#other-arduino-libraries-by-pu2clr)
+5. [Other Arduino Libraries Developed by the Author](https://pu2clr.github.io/SI4735/#other-arduino-libraries-developed-by-the-author)
 6. [Groups and Forums](https://pu2clr.github.io/SI4735/#groups-and-forums)
 7. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
 8. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
@@ -186,7 +186,7 @@ Do you need some old version (release) of this library?  If yes, [check here](ht
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 
-## Other Arduino libraries by PU2CLR
+## Other Arduino Libraries Developed by the Author
 
 [PU2CLR SI4844 Arduino Library](https://github.com/pu2clr/SI4844). This is an Arduino library for the SI4844, BROADCAST ANALOG TUNING DIGITAL DISPLAY AM/FM/SW RADIO RECEIVER,  IC from Silicon Labs.  It is available on Arduino IDE. This library is intended to provide an easier interface for controlling the SI4844.
 [PU2CLR AKC695X Arduino Library](https://pu2clr.github.io/AKC695X/). The AKC695X is a family of IC DSP receiver from AKC technology. The AKC6955 and AKC6959sx support AM and FM modes. On AM mode the AKC6955 and AKC6959sx work on LW, MW and SW. On FM mode they work from 64MHz to 222MHz.
