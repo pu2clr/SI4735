@@ -23,12 +23,13 @@ Contact: __pu2clr@gmail.com__.
 2. [Labrary Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
 3. [License Copyright](https://pu2clr.github.io/SI4735/#mit-license)
 4. [Library Installation](https://pu2clr.github.io/SI4735/#library-installation)
-5. [Groups and Forums](https://pu2clr.github.io/SI4735/#groups-and-forums)
-6. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
-7. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
-8. [About the SI4735](https://pu2clr.github.io/SI4735/#about-the-si4735)
-9. [Terminology](https://github.com/pu2clr/SI4735#terminology)
-10. [Documentation](https://pu2clr.github.io/SI4735/#documentation)
+5. [Other Arduino Libraries by PU2CLR](https://pu2clr.github.io/SI4735/#other-arduino-libraries-by-pu2clr)
+6. [Groups and Forums](https://pu2clr.github.io/SI4735/#groups-and-forums)
+7. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
+8. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
+9. [About the SI4735](https://pu2clr.github.io/SI4735/#about-the-si4735)
+10. [Terminology](https://github.com/pu2clr/SI4735#terminology)
+11. [Documentation](https://pu2clr.github.io/SI4735/#documentation)
    * [API Documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) 
    * [About Class, Methods(functions) and custom data type structures](https://pu2clr.github.io/SI4735/#defined-data-types-and-structures)
    * [PU2CLR SI4735 Arduino Library methods (functions)](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
@@ -181,7 +182,20 @@ After, unzip the SI4735-master.zip file in your Arduino Library folder.
 With that approach, you will have the __most current version__ of the library. However, __it may not be the most stable version__. This is because the current version is always in development. [Prefer releases](https://github.com/pu2clr/SI4735/releases).
 Do you need some old version (release) of this library?  If yes, [check here](https://github.com/pu2clr/SI4735/releases). 
 
+
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
+
+
+## Other Arduino libraries by PU2CLR
+
+[PU2CLR SI4844 Arduino Library](https://github.com/pu2clr/SI4844). This is an Arduino library for the SI4844, BROADCAST ANALOG TUNING DIGITAL DISPLAY AM/FM/SW RADIO RECEIVER,  IC from Silicon Labs.  It is available on Arduino IDE. This library is intended to provide an easier interface for controlling the SI4844.
+[PU2CLR AKC695X Arduino Library](https://pu2clr.github.io/AKC695X/). The AKC695X is a family of IC DSP receiver from AKC technology. The AKC6955 and AKC6959sx support AM and FM modes. On AM mode the AKC6955 and AKC6959sx work on LW, MW and SW. On FM mode they work from 64MHz to 222MHz.
+[PU2CLR KT0915 Arduino Library](https://pu2clr.github.io/KT0915/). The KT0915 is a full band AM (LW, MW and SW) and FM DSP receiver that can provide you a easy way to build a high quality radio with low cost.
+[PU2CLR BK108X](https://pu2clr.github.io/BK108X/). The BK1086 and BK1088 are DSP receivers from BAKEN. The BK1088 is a BROADCAST FM and AM (LW, MW and ) RECEIVER and BK1086 is a subset of the BK1088 (it does not have LW and SW acording to the Datasheet).
+[PU2CLR RDA5807 Arduino Library](https://pu2clr.github.io/RDA5807/). The RDA5807 is a FM DSP integrated circuit receiver (50 to 115MHz) with low noise amplifier support. This device requires very few external components if compared with other similar devices. It also supports RDS/RBDS functionalities, direct auto gain control (AGC) and real time adaptive noise cancellation function.
+[PU2CLR SI470X Arduino Library](https://pu2clr.github.io/SI470X/). It is a Silicon Labs device family that integrates the complete functionalities for FM receivers, including RDS (Si4703).
+[PU2CLR MCP23008](https://pu2clr.github.io/MCP23008/).It is an Arduino Library to control the MCP23008 8-Bit I/O Expander. The MCP23008 device provides 8-bit, general purpose, parallel I/O expansion. It can be controlled via I2C bus applications. It is a great and inexpensive device that allow you to add more devices to be controlled by your Arduino board via I2C protocol.
+
 
 <BR>
 
