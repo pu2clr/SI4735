@@ -2567,7 +2567,6 @@ void FreqDispl()
       showContent(XFreqDispl + 50, YFreqDispl + 60, bufferAgcGain, (char *) String(currentAGCgain).c_str(), &DSEG7_Classic_Mini_Bold_30, TFT_CYAN, 26);
       showContent(XFreqDispl + 160, YFreqDispl + 55, bufferAux, "ATT SET", &Serif_bold_20, TFT_CYAN, 26);
   } else {
-
       untFreq = formatFrequency(tmpFrequency);
       showContent(XFreqDispl + 60, YFreqDispl + 55, bufferFrequency, tmpFrequency, &DSEG7_Classic_Mini_Bold_30, TFT_CYAN, 26);
       if (band[bandIdx].bandType == FM_BAND_TYPE)

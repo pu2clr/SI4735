@@ -957,6 +957,8 @@ The table below shows the some boards where this library has been successfully t
 | ESP WEMOS LOLIN32 | No |  21 and 22 [ˆ4] | 25 [ˆ5] | [More...](https://docs.platformio.org/en/latest/boards/espressif32/lolin32.html) |
 | ESP32 Dev Module | No | 21 and 22 [ˆ4] | 25 [ˆ5]| [More...](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf) |
 | Arduino UNO | Yes | A4 and A5 | 12 | [More...](https://store.arduino.cc/usa/arduino-uno-rev3) |
+| Arduino NANO ATmega 328 | Yes | A4 and A5 | 12 | [More...](https://store.arduino.cc/usa/arduino-nano) |
+| Arduino NANO ATmega 168 | Yes | A4 and A5 | 12 | [More...](https://www.arduino.cc/en/uploads/Main/ArduinoNanoManual23.pdf) |
 | Arduino Yún / ATmega-32u4 | Yes | 2 and 3 | 12 | [More...](https://store.arduino.cc/usa/arduino-yun)|
 | ATtiny85 | No | 5 and 7 | 2 (D3) | [More...](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf)|
 | Arduino DUE | No | 2 and 3 |   12 | [More...](https://store.arduino.cc/usa/due) |
