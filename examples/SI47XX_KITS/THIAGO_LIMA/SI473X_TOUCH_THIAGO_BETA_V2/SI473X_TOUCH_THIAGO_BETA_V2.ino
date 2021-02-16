@@ -79,9 +79,6 @@
 #include "Serif_plain_10.h"
 #include "Serif_plain_15.h"
 
-
-
-
 // =================================================
 //#define IhaveVertTFT
 #define IhaveHoriTFT
@@ -118,7 +115,6 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 //#define MIN_ELAPSED_RDS_TIME         5
 #define DEFAULT_VOLUME                45  // change it for your favorite start sound volume
 #define MIN_ELAPSED_VOLbut_TIME     1000
-
 
 #define FM          0
 #define LSB         1
@@ -212,7 +208,6 @@ float currentFrequency = 0;
 float dpfrq            = 0;
 float fact             = 1;
 
-
 String BWtext;
 String RDSbuttext;
 String AGCgainbuttext;
@@ -234,7 +229,7 @@ char bufferBandName[10];
 char bufferVolume[10];
 char bufferAgcGain[10];
 
-    const int ledChannel = 0;
+const int ledChannel = 0;
 const int resolution = 1;
 
 //=======================================================   Buttons First and Third Layer   ==========================
