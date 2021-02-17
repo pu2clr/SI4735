@@ -22,7 +22,7 @@
 */
 
 #include <SI4735.h>
-#include <LiquidCrystal_I2C.h>
+#include <LiquidCrystal_I2C.h> // Version 1.1.4 by Frank de Brabander. Download this library on https://github.com/marcoschwartz/LiquidCrystal_I2C
 #include <Adafruit_GFX.h>    // https://github.com/adafruit/Adafruit-GFX-Library
 #include <Adafruit_SH1106.h> // https://github.com/wonho-maker/Adafruit_SH1106
 #include "Rotary.h"

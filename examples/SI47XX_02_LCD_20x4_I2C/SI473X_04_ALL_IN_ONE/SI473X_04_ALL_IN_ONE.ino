@@ -63,7 +63,7 @@
 */
 
 #include <SI4735.h>
-#include <LiquidCrystal_I2C.h>
+#include <LiquidCrystal_I2C.h> // Version 1.1.4 by Frank de Brabander. Download this library on https://github.com/marcoschwartz/LiquidCrystal_I2C
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.

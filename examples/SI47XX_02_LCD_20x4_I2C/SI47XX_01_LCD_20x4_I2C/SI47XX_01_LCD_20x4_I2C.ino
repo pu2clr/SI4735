@@ -23,7 +23,7 @@
 */
 
 #include <SI4735.h>
-#include <LiquidCrystal_I2C.h>
+#include <LiquidCrystal_I2C.h> // Version 1.1.4 by Frank de Brabander. Download this library on https://github.com/marcoschwartz/LiquidCrystal_I2C
 #include "Rotary.h"
 
 #define AM_FUNCTION 1
