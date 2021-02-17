@@ -1499,6 +1499,7 @@ void loop() {
         previousVOL = currentVOL;
         FirstLayer  =  true;
         SecondLayer = false;
+        cleanDispl();
         FreqDispl();
       }
 
@@ -1798,6 +1799,7 @@ void VOLbutoff()  {
   if (((millis() - VOLbutOnTime) > MIN_ELAPSED_VOLbut_TIME * 10) and (VOLbut == true)) {
     VOLbut = false;
     drawVOL();
+    cleanDispl();
     FreqDispl();
   }
   if (VOLbut == false) VOLbutOnTime = millis();
@@ -2565,8 +2567,8 @@ void FreqDispl()
   bufferAux[0] = '\0';
 
   if (VOLbut) {
-      showContent(XFreqDispl + 45, YFreqDispl + 60, bufferVolume, (char *) String(map(currentVOL, 20, 63, 0, 100)).c_str(), &DSEG7_Classic_Mini_Bold_30, TFT_CYAN, 26);
-      showContent(XFreqDispl + 160, YFreqDispl + 55, bufferAux, " VOLUME", &Serif_bold_20, TFT_CYAN, 26);
+      showContent(XFreqDispl + 60, YFreqDispl + 55, bufferVolume, (char *) String(map(currentVOL, 20, 63, 0, 100)).c_str(), &DSEG7_Classic_Mini_Bold_30, TFT_CYAN, 26);
+      showContent(XFreqDispl + 130, YFreqDispl + 55, bufferAux, " VOLUME", &Serif_bold_10, TFT_CYAN, 11);
   } else if (AGCgainbut) {
       showContent(XFreqDispl + 50, YFreqDispl + 60, bufferAgcGain, (char *) String(currentAGCgain).c_str(), &DSEG7_Classic_Mini_Bold_30, TFT_CYAN, 26);
       showContent(XFreqDispl + 160, YFreqDispl + 55, bufferAux, "ATT SET", &Serif_bold_20, TFT_CYAN, 26);
