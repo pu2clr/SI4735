@@ -2547,7 +2547,7 @@ void showContent(uint16_t col, uint16_t lin, char *oldContent, char *newContent,
 
 void cleanDispl() {
   tft.fillRect( XFreqDispl + 6, YFreqDispl + 22 , 228, 45, TFT_BLACK); // Black freq. field
-  bufferVolume[0] = bufferAgcGain[0] = bufferFrequency[0] = '\0';
+  bufferVolume[0] = bufferAgcGain[0] = bufferFrequency[0] = bufferUnit[0] = bufferBandName[0] = '\0';
 } 
 
 char bufferAux[15];
