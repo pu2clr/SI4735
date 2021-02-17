@@ -1352,6 +1352,7 @@ void loop() {
               FirstLayer = true;
               SecondLayer = false;
             }
+            cleanDispl();
             FreqDispl();
             drawVOL();
           }
@@ -1378,6 +1379,7 @@ void loop() {
             ThirdLayer  = true;
             ForthLayer  = false;
             DrawThla();
+            cleanDispl();
           }
         }
       }
@@ -1664,6 +1666,7 @@ void loop() {
             SecondLayer = false;
             ThirdLayer  = false;
             ForthLayer  = false;
+            cleanDispl();
             DrawFila();
           }
 
@@ -1783,7 +1786,7 @@ void Dispoff()  {
     digitalWrite(Display_Led, displayoff);
     // Serial.println("Display off");
     PRESbut = false;
-    
+    cleanDispl();
     DrawDispl();
     DisplayOnTime = millis();
   }
@@ -1960,6 +1963,7 @@ void encoderButtonCheck()  {
           bfoOn = true;
         }
         //if (currentMode == FM) bfoOn = false;
+        cleanDispl();        
         drawBFO();
         DrawDispl();
       }
@@ -2541,6 +2545,11 @@ void showContent(uint16_t col, uint16_t lin, char *oldContent, char *newContent,
   showContentWithoutBlink(col, lin, oldContent, newContent, color, space, 1);
 }
 
+void cleanDispl() {
+  tft.fillRect( XFreqDispl + 6, YFreqDispl + 22 , 228, 45, TFT_BLACK); // Black freq. field
+  bufferVolume[0] = bufferAgcGain[0] = bufferFrequency[0] = '\0';
+} 
+
 char bufferAux[15];
 
 void FreqDispl()
@@ -2550,7 +2559,7 @@ void FreqDispl()
 
   if (!FirstLayer && !ThirdLayer) // Nothing to do if you are on FirstLayer or ThirdLayer
     return;
-
+  
   AGCfreqdisp();
   BFOfreqdisp();
   bufferAux[0] = '\0';
