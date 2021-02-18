@@ -229,6 +229,7 @@ char bufferUnit[5];
 char bufferBandName[10];
 char bufferVolume[10];
 char bufferAgcGain[10];
+char bufferRDS[65];
 
 const int ledChannel = 0;
 const int resolution = 1;
@@ -1968,7 +1969,7 @@ void encoderButtonCheck()  {
           bfoOn = true;
         }
         //if (currentMode == FM) bfoOn = false;
-        cleanDispl();        
+        cleanDispl();  // TIDO --> Is that necessary?       
         drawBFO();
         DrawDispl();
       }
@@ -2448,7 +2449,8 @@ void showRDSStation() {
   if ((FirstLayer) or (ThirdLayer)) {
      //tft.drawString(stationName, XFreqDispl + 120, YFreqDispl + 70);
      tft.setCursor(XFreqDispl + 130, YFreqDispl + 57);
-     tft.print(stationName);     
+     tft.print(stationName);  
+     // TODO --> showContentWithoutBlink    
   }
   delay(250);
 }
@@ -2524,8 +2526,9 @@ char * formatFrequency(char *strFreq) {
   char tmp[15];
   char *unt;
 
-  sprintf(tmp, "%5.5u", si4735.getFrequency());
+  sprintf(tmp, "%5.5u", si4735.getFrequency());  // TODO sprintf(tmp, "%5.3u", si4735.getFrequency());
 
+  strFreq[1] = (tmp[0] == '0' &&  tmp[1] == '0')? ' ':tmp[1];   // TODO
   strFreq[0] = (tmp[0] == '0')? ' ':tmp[0];
   strFreq[1] = tmp[1];
   if (si4735.isCurrentTuneFM())
@@ -2545,7 +2548,7 @@ char * formatFrequency(char *strFreq) {
   return unt;;
 }
 
-void showContent(uint16_t col, uint16_t lin, char *oldContent, char *newContent, const GFXfont *font, uint16_t color, uint8_t space) {
+inline void showContent(uint16_t col, uint16_t lin, char *oldContent, char *newContent, const GFXfont *font, uint16_t color, uint8_t space) {
   tft.setFreeFont(font);
   showContentWithoutBlink(col, lin, oldContent, newContent, color, space, 1);
 }
