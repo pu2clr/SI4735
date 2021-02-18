@@ -2573,7 +2573,7 @@ void FreqDispl()
   bufferAux[0] = '\0';
   // bufferAgcGain[0] = '\0';
   if (VOLbut) {
-      sprintf(tmpAux,"%2.2d", currentVOL);
+      sprintf(tmpAux,"%3d", map(currentVOL,20,63,0,100));
       showContent(XFreqDispl + 60, YFreqDispl + 55, bufferVolume, tmpAux, &DSEG7_Classic_Mini_Bold_20, TFT_YELLOW, 20);
       showContent(XFreqDispl + 130, YFreqDispl + 55, bufferAux, " VOLUME", &Serif_bold_10, TFT_CYAN, 11);
   } else if (AGCgainbut) {
