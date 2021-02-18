@@ -1257,6 +1257,7 @@ void loop() {
               } else {
                 bfoOn = false;
               }
+              cleanDispl();
               drawBFO();
               DrawDispl ();
             } else Beep(4, 100);
@@ -2526,10 +2527,9 @@ char * formatFrequency(char *strFreq) {
   char tmp[15];
   char *unt;
 
-  sprintf(tmp, "%5.5u", si4735.getFrequency());  // TODO sprintf(tmp, "%5.3u", si4735.getFrequency());
+  sprintf(tmp, "%5.3u", si4735.getFrequency());  // TODO sprintf(tmp, "%5.3u", si4735.getFrequency());
 
-  strFreq[1] = (tmp[0] == '0' &&  tmp[1] == '0')? ' ':tmp[1];   // TODO
-  strFreq[0] = (tmp[0] == '0')? ' ':tmp[0];
+  strFreq[0] = tmp[0];  
   strFreq[1] = tmp[1];
   if (si4735.isCurrentTuneFM())
   {
