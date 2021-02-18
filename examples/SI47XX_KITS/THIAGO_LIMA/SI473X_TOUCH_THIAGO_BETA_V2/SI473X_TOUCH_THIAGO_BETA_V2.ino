@@ -931,7 +931,7 @@ void setup() {
  * 
  */
 void cleanBuffer() {
-  bufferAgcGain[0] = bufferVolume[0] = bufferBandName[0] = bufferUnit[0] = bufferFrequency[0] = '\0';
+  bufferVolume[0] = bufferAgcGain[0] = bufferFrequency[0] = bufferUnit[0] = bufferBandName[0] = bufferVFO[0] = '\0';
 }
 
 
@@ -1925,6 +1925,7 @@ void encoderCheck()  {
     // Beta test
     if ( !FirstLayer && !AGCgainbut)  // If you move the encoder when you are on second leyer, so you will abort the current action. 
     {  
+      cleanDispl();
       DrawFila(); 
       ThirdLayer = false;
       BroadBand = false;
@@ -2551,8 +2552,8 @@ void showContent(uint16_t col, uint16_t lin, char *oldContent, char *newContent,
 
 
 void cleanDispl() {
-  tft.fillRect( XFreqDispl + 6, YFreqDispl + 22 , 228, 45, TFT_BLACK); // Black freq. field
-  bufferVolume[0] = bufferAgcGain[0] = bufferFrequency[0] = bufferUnit[0] = bufferBandName[0] = bufferVFO[0] = '\0';
+tft.fillRect( XFreqDispl + 6, YFreqDispl + 22 , 228, 45, TFT_BLACK); // Black freq. field
+ cleanBuffer();
 } 
 
 char bufferAux[15];
@@ -2561,6 +2562,7 @@ void FreqDispl()
 {
   char tmpFrequency[10];
   char tmpVFO[10];
+  char tmpAux[10];
   char *untFreq; 
 
   if (!FirstLayer && !ThirdLayer) // Nothing to do if you are on FirstLayer or ThirdLayer
@@ -2571,11 +2573,13 @@ void FreqDispl()
   bufferAux[0] = '\0';
 
   if (VOLbut) {
-      showContent(XFreqDispl + 60, YFreqDispl + 55, bufferVolume, (char *) String(map(currentVOL, 20, 63, 0, 100)).c_str(), &DSEG7_Classic_Mini_Bold_30, TFT_CYAN, 26);
+      sprintf(tmpAux,"%2.2d", currentVOL);
+      showContent(XFreqDispl + 60, YFreqDispl + 55, bufferVolume, tmpAux, &DSEG7_Classic_Mini_Bold_20, TFT_YELLOW, 20);
       showContent(XFreqDispl + 130, YFreqDispl + 55, bufferAux, " VOLUME", &Serif_bold_10, TFT_CYAN, 11);
   } else if (AGCgainbut) {
-      showContent(XFreqDispl + 50, YFreqDispl + 60, bufferAgcGain, (char *) String(currentAGCgain).c_str(), &DSEG7_Classic_Mini_Bold_30, TFT_CYAN, 26);
-      showContent(XFreqDispl + 160, YFreqDispl + 55, bufferAux, "ATT SET", &Serif_bold_20, TFT_CYAN, 26);
+      sprintf(tmpAux,"%2.2d",currentAGCgain);
+      showContent(XFreqDispl + 60, YFreqDispl + 55, bufferAgcGain, tmpAux, &DSEG7_Classic_Mini_Bold_20, TFT_YELLOW, 20);
+      showContent(XFreqDispl + 130, YFreqDispl + 55, bufferAux, "ATT SET", &Serif_bold_10, TFT_CYAN, 11);
   } else {
        if (bfoOn) {  
          sprintf(tmpVFO,"%5d",currentBFO);
