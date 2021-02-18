@@ -1315,6 +1315,7 @@ void loop() {
             if (currentMode != FM)  {
               if (bfoOn) setStep();
               else {
+                cleanDispl();
                 STEPbut = true;
                 Steplist();
                 FirstLayer = false;
