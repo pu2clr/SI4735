@@ -1,5 +1,6 @@
 {
-    "board": "arduino:sam:arduino_due_x",
+    "board": "arduino:avr:pro",
     "port": "/dev/tty.usbmodem14201",
-    "sketch": "examples/UNDER_CONSTRUCTION/SI47XX_08_TFT_BODMER/SI47XX_08_TFT_BODMER.ino"
+    "sketch": "examples/UNDER_CONSTRUCTION/SI47XX_08_TFT_BODMER/SI47XX_08_TFT_BODMER.ino",
+    "configuration": "cpu=8MHzatmega328"
 }
