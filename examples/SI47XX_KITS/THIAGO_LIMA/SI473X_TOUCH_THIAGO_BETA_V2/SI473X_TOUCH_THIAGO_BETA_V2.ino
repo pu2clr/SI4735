@@ -2558,6 +2558,7 @@ char * formatFrequency(char *strFreq) {
 inline void showContent(uint16_t col, uint16_t lin, char *oldContent, char *newContent, const GFXfont *font, uint16_t color, uint8_t space) {
   tft.setFreeFont(font);
   showContentWithoutBlink(col, lin, oldContent, newContent, color, space, 1);
+  tft.setFreeFont(NULL);
 }
 
 
@@ -2610,6 +2611,7 @@ void FreqDispl()
   } else {
     showFrequency();
   }
+
 }
 
 
