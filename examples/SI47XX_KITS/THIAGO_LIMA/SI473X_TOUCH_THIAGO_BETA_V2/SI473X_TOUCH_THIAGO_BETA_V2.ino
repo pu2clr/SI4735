@@ -230,6 +230,7 @@ char bufferBandName[10];
 char bufferVolume[10];
 char bufferAgcGain[10];
 char bufferRDS[65];
+char bufferAux[15];
 
 const int ledChannel = 0;
 const int resolution = 1;
@@ -1385,6 +1386,7 @@ void loop() {
             ForthLayer  = false;
             DrawThla();
             cleanDispl();
+            showFrequency();
           }
         }
       }
@@ -1620,6 +1622,8 @@ void loop() {
                 delay(300); 
               }
             }  
+            cleanDispl();
+            showFrequency();
             SEEK = false;
           }
 
@@ -1652,6 +1656,8 @@ void loop() {
             delay(300); 
           }
           }
+          cleanDispl();
+          showFrequency();
           SEEK = false;
         }
 
@@ -2560,14 +2566,31 @@ tft.fillRect( XFreqDispl + 6, YFreqDispl + 22 , 228, 45, TFT_BLACK); // Black fr
  cleanBuffer();
 } 
 
-char bufferAux[15];
+
+
+void showFrequency() {
+  char tmpFrequency[10];
+  char tmpVFO[10];
+  char *untFreq; 
+  if (bfoOn) {  
+     sprintf(tmpVFO,"%5d",currentBFO);
+     showContent(XFreqDispl + 60, YFreqDispl + 45, bufferVFO, tmpVFO, &DSEG7_Classic_Mini_Bold_20, TFT_YELLOW, 20);
+     showContent(XFreqDispl + 160, YFreqDispl + 45, bufferAux, "Hz", &Serif_bold_10, TFT_GREEN, 11);
+  } else {
+     untFreq = formatFrequency(tmpFrequency);
+     showContent(XFreqDispl + 60, YFreqDispl + 55, bufferFrequency, tmpFrequency, &DSEG7_Classic_Mini_Bold_30, TFT_CYAN, 26);
+     if (band[bandIdx].bandType == FM_BAND_TYPE)
+          tft.drawChar(XFreqDispl + 60 + 78, YFreqDispl + 55, '.', TFT_CYAN, TFT_BLACK, 1);
+     showContent(XFreqDispl + 195, YFreqDispl + 50, bufferUnit, untFreq, &Serif_bold_15, TFT_GREEN, 15);
+     showContent(XFreqDispl + 10, YFreqDispl + 50, bufferBandName, (char *)band[bandIdx].bandName, &Serif_bold_15, TFT_GREEN, 13);
+  }
+
+}
 
 void FreqDispl()
 {
-  char tmpFrequency[10];
-  char tmpVFO[10];
+
   char tmpAux[10];
-  char *untFreq; 
 
   if (!FirstLayer && !ThirdLayer) // Nothing to do if you are on FirstLayer or ThirdLayer
     return;
@@ -2585,18 +2608,7 @@ void FreqDispl()
       showContent(XFreqDispl + 60, YFreqDispl + 55, bufferAux, tmpAux, &DSEG7_Classic_Mini_Bold_20, TFT_YELLOW, 20);
       showContent(XFreqDispl + 130, YFreqDispl + 55, bufferAux, "ATT SET", &Serif_bold_10, TFT_CYAN, 9);
   } else {
-       if (bfoOn) {  
-         sprintf(tmpVFO,"%5d",currentBFO);
-         showContent(XFreqDispl + 60, YFreqDispl + 45, bufferVFO, tmpVFO, &DSEG7_Classic_Mini_Bold_20, TFT_YELLOW, 20);
-         showContent(XFreqDispl + 160, YFreqDispl + 45, bufferAux, "Hz", &Serif_bold_10, TFT_GREEN, 11);
-       } else {
-        untFreq = formatFrequency(tmpFrequency);
-        showContent(XFreqDispl + 60, YFreqDispl + 55, bufferFrequency, tmpFrequency, &DSEG7_Classic_Mini_Bold_30, TFT_CYAN, 26);
-        if (band[bandIdx].bandType == FM_BAND_TYPE)
-           tft.drawChar(XFreqDispl + 60 + 78, YFreqDispl + 55, '.', TFT_CYAN, TFT_BLACK, 1);
-        showContent(XFreqDispl + 195, YFreqDispl + 50, bufferUnit, untFreq, &Serif_bold_15, TFT_GREEN, 15);
-        showContent(XFreqDispl + 10, YFreqDispl + 50, bufferBandName, (char *)band[bandIdx].bandName, &Serif_bold_15, TFT_GREEN, 13);
-     }
+    showFrequency();
   }
 }
 
@@ -2611,55 +2623,12 @@ bool checkStopSeeking() {
 } 
 
 
-//=======================================================================================
-void SeekFreq (uint16_t freq)  {
-//=======================================================================================
-  if ((FirstLayer)or(ThirdLayer))  {
-    currentFrequency = freq;
-    tft.setTextSize(1);
-    tft.setFreeFont(&DSEG7_Classic_Mini_Bold_30);
-    tft.setTextColor(TFT_YELLOW, TFT_BLACK);
-    tft.setTextDatum(BC_DATUM);
-    tft.setTextPadding(0);
-    tft.fillRect( XFreqDispl + 6, YFreqDispl +28 , 228, 32, TFT_BLACK);// Black freq. field
-    if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) {
-        Displayfreq =  currentFrequency;
-        tft.setTextSize(1);
-        tft.setFreeFont(&DSEG7_Classic_Mini_Bold_30);
-        tft.drawString(String(Displayfreq,0), XFreqDispl +120,YFreqDispl +60);
-        tft.setFreeFont(NULL);
-        tft.setTextColor(TFT_RED, TFT_BLACK);
-        tft.setFreeFont(&Serif_bold_15);       
-        tft.setTextSize(1);
-        tft.drawString("kHz", XFreqDispl +210,YFreqDispl +50);
-        tft.setFreeFont(NULL);
-      }
-    if (band[bandIdx].bandType == FM_BAND_TYPE){
-      Displayfreq =  currentFrequency/100;
-      tft.setTextSize(1);
-      tft.setFreeFont(&DSEG7_Classic_Mini_Bold_30);
-      tft.drawString(String(Displayfreq,1), XFreqDispl +120,YFreqDispl +54);
-      tft.setFreeFont(NULL);
-      tft.setTextColor(TFT_RED, TFT_BLACK);
-      tft.setFreeFont(&Serif_bold_15);       
-      tft.setTextSize(1);
-      tft.drawString("MHz", XFreqDispl +210,YFreqDispl +50);
-      tft.setFreeFont(NULL);
-    } 
-    if (band[bandIdx].bandType == SW_BAND_TYPE){
-        Displayfreq =  currentFrequency/1000;
-        tft.setTextSize(1);
-        tft.setFreeFont(&DSEG7_Classic_Mini_Bold_30);
-        tft.drawString(String(Displayfreq,3), XFreqDispl +120,YFreqDispl +60);
-        tft.setFreeFont(NULL);
-        tft.setTextColor(TFT_RED, TFT_BLACK);
-        tft.setFreeFont(&Serif_bold_15);       
-        tft.setTextSize(1);
-        tft.drawString("MHz", XFreqDispl +210,YFreqDispl +50);
-        tft.setFreeFont(NULL);
-      }
-     }    
-   }
+void SeekFreq (uint16_t freq) {
+    if ((FirstLayer) || (ThirdLayer))  {
+        currentFrequency = freq;
+        showFrequency();
+    }
+}
    
 //=======================================================================================
 void DrawDispl() {
