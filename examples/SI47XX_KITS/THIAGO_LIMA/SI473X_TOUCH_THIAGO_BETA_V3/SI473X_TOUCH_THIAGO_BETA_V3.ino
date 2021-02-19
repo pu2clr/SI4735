@@ -2584,7 +2584,9 @@ void showFrequency() {
      untFreq = formatFrequency(tmpFrequency);
      showContent(XFreqDispl + 60, YFreqDispl + 55, bufferFrequency, tmpFrequency, &DSEG7_Classic_Mini_Bold_30, TFT_CYAN, 26);
      if (band[bandIdx].bandType == FM_BAND_TYPE)
-     tft.drawChar(XFreqDispl + 60 + 78, YFreqDispl + 55, '.', TFT_CYAN, TFT_BLACK, 1);
+     tft.setFreeFont(&DSEG7_Classic_Mini_Bold_30);
+     tft.drawChar(XFreqDispl + 60 + 78, YFreqDispl + 55, (si4735.isCurrentTuneFM())? '.':' ', TFT_CYAN, TFT_BLACK, 1);
+     tft.setFreeFont(NULL);
      showContent(XFreqDispl + 192, YFreqDispl + 50, bufferUnit, untFreq, &Serif_bold_15, TFT_GREEN, 14);
      showContent(XFreqDispl + 10, YFreqDispl + 50, bufferBandName, (char *)band[bandIdx].bandName, &Serif_bold_15, TFT_RED, 12);
   }
