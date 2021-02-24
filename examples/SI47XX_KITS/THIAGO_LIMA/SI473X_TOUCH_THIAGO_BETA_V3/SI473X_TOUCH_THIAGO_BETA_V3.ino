@@ -1104,6 +1104,7 @@ void loadSSB()  {
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
   si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
+  // si4735.setSSBConfig(bwIdxSSB, 1, 3, 0, 0, 0); // SYNC MODE
   delay(25);
   ssbLoaded = true;
 }
