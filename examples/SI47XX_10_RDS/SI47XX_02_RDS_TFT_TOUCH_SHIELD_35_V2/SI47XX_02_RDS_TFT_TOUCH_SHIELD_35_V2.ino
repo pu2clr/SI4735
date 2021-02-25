@@ -155,7 +155,7 @@ bool cmdStep = false;
 bool cmdBand = false;
 bool cmdSoftMuteMaxAtt = false;
 
-bool cmdDE = false;
+bool cmdSync = false;
 
 bool ssbLoaded = false;
 bool fmStereo = true;
@@ -296,7 +296,7 @@ const int XP = 7, XM = A1, YP = A2, YM = 6; //320x480 ID=0x6814
 const int TS_LEFT = 149, TS_RT = 846, TS_TOP = 120, TS_BOT = 918;
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 480);
-Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeLevel, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC, bSoftMute, bSlop, bSMuteRate, bBFO, bEmphasis;
+Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeLevel, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC, bSoftMute, bSlop, bSMuteRate, bBFO, bSync;
 
 int pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -549,7 +549,7 @@ void setDrawButtons( bool value) {
   bSoftMute.drawButton(value);
   bSlop.drawButton(value);
   bSMuteRate.drawButton(value);
-  bEmphasis.drawButton(value);
+  bSync.drawButton(value);
 }
 
 /**
@@ -602,7 +602,7 @@ void showTemplate()
   bSoftMute.initButton(&tft, 45, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"SM Att", 1);
   bSMuteRate.initButton(&tft, 120, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"SM Rate", 1);
   bSlop.initButton(&tft, 195, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"Slop", 1);
-  bEmphasis.initButton(&tft, 270, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"DE", 1);
+  bSync.initButton(&tft, 270, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"DE", 1);
   */
 
   setButton(&bPreviousBand, 45, KEYBOARD_LIN_OFFSET + 130, 70, 49, "Band-", true);
@@ -624,7 +624,7 @@ void showTemplate()
   setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
   setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
   setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bEmphasis, 270, KEYBOARD_LIN_OFFSET + 350, 70, 49, "DE", true);
+  setButton(&bSync, 270, KEYBOARD_LIN_OFFSET + 350, 70, 49, "SYNC", true);
 
   // Exibe os botões (teclado touch)
   setDrawButtons(true);
@@ -1294,6 +1294,26 @@ void switchFilter(uint8_t v)
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
+void switchSync(int8_t v) {
+  if (currentMode != FM)
+  {
+    currentBFO = 0;
+    if (!ssbLoaded)
+    {
+      loadSSB();
+    }
+    currentMode = (currentMode == LSB)? USB:LSB;
+    band[bandIdx].currentFreq = currentFrequency;
+    band[bandIdx].currentStep = currentStep;
+    useBand();
+    si4735.setSSBDspAfc(0);
+    si4735.setSSBAvcDivider(3);
+  }
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();
+}
+
+
 void switchStep(int8_t v)
 {
 
@@ -1421,7 +1441,7 @@ void checkTouch()
   bSoftMute.press(down && bSoftMute.contains(pixel_x, pixel_y));
   bSlop.press(down && bSlop.contains(pixel_x, pixel_y));
   bSMuteRate.press(down && bSMuteRate.contains(pixel_x, pixel_y));
-  bEmphasis.press(down && bEmphasis.contains(pixel_x, pixel_y));
+  bSync.press(down && bSync.contains(pixel_x, pixel_y));
 }
 
 /* two buttons are quite simple
@@ -1448,6 +1468,8 @@ void loop(void)
       switchStep(encoderCount);
     else if (cmdSoftMuteMaxAtt)
       switchSoftMute(encoderCount);
+    // else if (cmdSync) 
+    //   switchSync(encoderCount);  
     else if (cmdBand)
     {
       if (encoderCount == 1)
@@ -1646,13 +1668,10 @@ void loop(void)
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (bEmphasis.justPressed())
+    else if (bSync.justPressed())
     {
-      cmdDE = !cmdDE;
-      if (currentMode == FM)
-        si4735.setFMDeEmphasis(cmdDE);
-      else
-        si4735.setAMDeEmphasis(cmdDE);
+      cmdSync = !cmdSync;
+      switchSync(0);
       delay(MIN_ELAPSED_TIME);
     }
   }
