@@ -1095,15 +1095,18 @@ The figure above shows the very basic shematic implementation (no Button or Enco
 2. [BROADCAST AM/FM/SW/LW RADIO RECEIVER](https://www.silabs.com/documents/public/data-sheets/Si4730-31-34-35-D60.pdf)
 3. [SI47XX PROGRAMMING GUIDE (REV 1.0)](https://www.silabs.com/documents/public/application-notes/AN332.pdf)
 4. AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
-5. [Installing Additional Arduino Libraries](https://www.arduino.cc/en/Guide/Libraries#toc3)
-6. [Specification of the radio data system (RDS) for VHF/FM sound broadcasting in the frequency range from 87,5 to 108,0 MHz](http://www.interactive-radio-system.com/docs/EN50067_RDS_Standard.pdf)
-7. [Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
-8. [RDS Encoder](https://haddadi.github.io/papers/RDSencoderHaddadi.pdf)
-9. [RDS in Europe, RBDS in the USA –What are the differences and how canreceivers cope with both systems?](https://sigidwiki.com/images/a/ad/RDS_in_Europe,_RBDS_in_the_USA.pdf)
-10. [RBDS & RDS PTY Codes and Program Types](https://www.fmsystems-inc.com/rbds-rds-pty-codes-program-types/)
-11. [Using RDS/RBDS with the Si4701/03](https://www.silabs.com/documents/public/application-notes/AN243.pdf)
-12. [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
-13. __Other implementations using Si4735 and Arduino__
+5. [DIGITAL METHOD OF SSB MODULATION](http://science.lpnu.ua/sites/default/files/journal-paper/2018/sep/14625/5.pdf)
+6. [Understanding the 'Phasing Method' of Single Sideband Demodulation](https://wwwusers.ts.infn.it/~milotti/Didattica/Segnali/SSB-Lyons.pdf)
+7. [Design a modulator and demodulator SSB by DSP processor TMS320C50 for PLC systems](https://ieeexplore.ieee.org/document/1280328)
+8. [Installing Additional Arduino Libraries](https://www.arduino.cc/en/Guide/Libraries#toc3)
+9. [Specification of the radio data system (RDS) for VHF/FM sound broadcasting in the frequency range from 87,5 to 108,0 MHz](http://www.interactive-radio-system.com/docs/EN50067_RDS_Standard.pdf)
+10. [Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
+11. [RDS Encoder](https://haddadi.github.io/papers/RDSencoderHaddadi.pdf)
+12. [RDS in Europe, RBDS in the USA –What are the differences and how canreceivers cope with both systems?](https://sigidwiki.com/images/a/ad/RDS_in_Europe,_RBDS_in_the_USA.pdf)
+13. [RBDS & RDS PTY Codes and Program Types](https://www.fmsystems-inc.com/rbds-rds-pty-codes-program-types/)
+14. [Using RDS/RBDS with the Si4701/03](https://www.silabs.com/documents/public/application-notes/AN243.pdf)
+15. [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
+16. __Other implementations using Si4735 and Arduino__
     * [This is a git fork of [Michael Kennedy's]](https://github.com/FlyingLotus1983/Si4735)  
     * [Arduino Si4735 radio library](https://sourceforge.net/projects/arduino-si4735/)
     * [SI4735 AM & FM Receiver Shield](https://www.sparkfun.com/products/retired/10342)
@@ -1111,7 +1114,7 @@ The figure above shows the very basic shematic implementation (no Button or Enco
     * [Ryan Owens for SparkFun Electronics](https://pu2clr.github.io/csdexter/Si4735)
     * [Silicon Labs Si4737 WB/AM/FM Stereo/RDS single-chip receiver HAL library for Arduino](https://devhub.io/repos/rickeywang-Si4737_i2c)
     * [Enhanced Software for Elektor DSP-Radio (Si4735)](https://www.elektormagazine.com/labs/enhanced-software-for-elektor-dsp-radio-si4735)
-14. __I²C__ 
+17. __I²C__ 
     * [Taking The Leap Off Board: An Introduction To I²C Over Long Wires](https://hackaday.com/2017/02/08/taking-the-leap-off-board-an-introduction-to-i2c-over-long-wires/)
     * [Difference between I²C and SPI](https://dcubestore.com/blog/difference-between-i2c-and-spi/?fbclid=IwAR2pnpqKe9q2R7r28q0PiPt5Cb_JzqdgKkcsLIb43ZSb4ZForI-fWQmZtM0)
     * [Issues with the I²C (Inter-IC) Bus and How to Solve Them](https://www.digikey.com/en/articles/techzone/2018/aug/issues-with-the-i2c-bus-and-how-to-solve-them)
@@ -1120,14 +1123,14 @@ The figure above shows the very basic shematic implementation (no Button or Enco
     * [Bus Buffers Simplify Design of Large, Noisy I²C Systems](https://www.analog.com/en/technical-articles/bus-buffers-simplify-design-of-large-noisy-i2c-systems.html#)
     * [Common Problems In Systems](https://www.i2c-bus.org/i2c-primer/common-problems/)
     * [Tutorial: Arduino and the I2C bus – Part One](https://tronixstuff.com/2010/10/20/tutorial-arduino-and-the-i2c-bus/)
-15.  __Forums__
+18.  __Forums__
       * [How to reduce I²C bus noise](https://www.microchip.com/forums/m456630.aspx)
       * [Radio interferes with I²C bus communication](https://www.microchip.com/forums/m456630.aspx)
       * [Reducing Noise on an I²C bus line](http://e2e.ti.com/support/interface/f/138/t/552072)
       * [Noise on I²C bus](https://forum.allaboutcircuits.com/threads/noise-on-i2c-bus.41916/)
       * [Noises on the I²C BUS](https://electronics.stackexchange.com/questions/292032/noises-on-the-i2c-bus)
-16. ["Multi-Band Receiver On A Chip Controlled By Arduino" commented by Tom Nardi on Hackaday](https://hackaday.com/2020/03/02/multi-band-receiver-on-a-chip-controlled-by-arduino/) 
-17. __C/C++ for Arduino__ 
+19. ["Multi-Band Receiver On A Chip Controlled By Arduino" commented by Tom Nardi on Hackaday](https://hackaday.com/2020/03/02/multi-band-receiver-on-a-chip-controlled-by-arduino/) 
+20. __C/C++ for Arduino__ 
     * [How to use C++ Classes in Arduino IDE without creating a Library](https://www.radishlogic.com/arduino/use-c-class-arduino-ide-without-creating-library/?fbclid=IwAR07yO6OvyUlAa4d28N7VTWtY2vHjlUbtkxKiO7LJKOUkPou1bh8Lvwg8rA)
     * [Arduino the Object Oriented way](https://paulmurraycbr.github.io/ArduinoTheOOWay.html)
     * [Arduino Object Oriented Programming (OOP)](https://roboticsbackend.com/arduino-object-oriented-programming-oop/)
