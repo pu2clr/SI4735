@@ -342,7 +342,7 @@ Esta biblioteca foi desenvolvida para funcionar em várias plataformas de Hardwa
 ## Fotos (Ferramentas e Acessórios) 
 
 
-Este item apresenta algumas ferraentas e acessórios podem ser úteis em sua montagem do rádio baseado no SI4735.  
+Este item apresenta algumas ferramentas e acessórios podem ser úteis em sua montagem do rádio baseado no SI4735.  
 
 
 |Arduino Pro Mini|Arduino Pro Mini| 
