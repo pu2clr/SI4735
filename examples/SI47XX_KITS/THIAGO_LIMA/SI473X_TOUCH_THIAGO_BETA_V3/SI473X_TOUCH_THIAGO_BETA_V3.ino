@@ -334,7 +334,7 @@ Button bt[] = {       //                                                 | 11 |
   { "FILTRO",  6 , ""      ,11 , Xbut7 , Ybut7  },     
   { "PASSO" , 11 , ""      , 2 , Xbut8 , Ybut8  },    
   { "BANDA" ,  1 , ""      , 3 , Xbut9 , Ybut9  },
-  { "PSET"  , 10 , ""      , 9 , Xbut10, Ybut10 },
+  { "SYNC"  , 10 , ""      , 9 , Xbut10, Ybut10 },
   { "MENU"  ,  7 , "VOLTA" , 7 , Xbut11, Ybut11 }
 };
 #endif
@@ -351,7 +351,7 @@ Button bt[] = {
   { "BANDW" ,  5 , ""      , 7 , Xbut7 , Ybut7  }, //     |  9 | 10 | 11 |     
   { "STEP"  ,  6 , ""      , 8 , Xbut8 , Ybut8  }, //     |----|----|----|     
   { "BROAD" ,  1 , ""      , 1 , Xbut9 , Ybut9  },
-  { "PRESET", 10 , ""      , 4 , Xbut10, Ybut10 },
+  { "SYNC", 10 , ""      , 4 , Xbut10, Ybut10 },
   { "NEXT"  , 11 , "PREV"  ,11 , Xbut11, Ybut11 }
 };
 #endif
@@ -1334,6 +1334,21 @@ void loop() {
             SecondLayer = true;
           }
           if (n == PRESET) {
+            if (currentMode != FM)
+            {
+              currentBFO = 0;
+              if (!ssbLoaded)
+              {
+                loadSSB();
+              }
+              currentMode = (currentMode == LSB) ? USB : LSB;
+              band[bandIdx].currentFreq = currentFrequency;
+              band[bandIdx].currentStep = currentStep;
+              useBand();
+              si4735.setSSBDspAfc(0);
+              si4735.setSSBAvcDivider(3);
+            }
+            /*
             delay(400);
             x = 0;
             y = 0;
@@ -1341,6 +1356,7 @@ void loop() {
             //tft.fillScreen(TFT_BLACK);
             FirstLayer = false;
             SecondLayer = true;
+            */
           }
 
           if (n == VOL) {
