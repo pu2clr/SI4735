@@ -18,9 +18,7 @@
                 "/Users/rcaratti/Documents/Arduino/libraries/Adafruit_GFX_Library",
                 "/Users/rcaratti/Documents/Arduino/libraries/Adafruit_ST7735_and_ST7789_Library"
             ],
-            "forcedInclude": [
-                "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/Arduino.h"
-            ],
+            "forcedInclude": [],
             "macFrameworkPath": [
                 "/System/Library/Frameworks",
                 "/Library/Frameworks"

@@ -120,6 +120,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define LSB         1
 #define USB         2
 #define AM          3
+#define SYNC        4
 
 bool bfoOn          = false;
 bool ssbLoaded      = false;
@@ -215,7 +216,7 @@ String AGCgainbuttext;
 const char *bandwidthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 const char *bandwidthAM[]  = {"6.0", "4.0", "3.0", "2.0", "1.0", "1.8", "2.5"};
 const char *Keypathtext[]  = {"1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "0", "ENTER", "Clear"};
-const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
+const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM ", "SYN"};
 
 char buffer[64]; // Useful to handle string
 char buffer1[64];
@@ -334,7 +335,7 @@ Button bt[] = {       //                                                 | 11 |
   { "FILTRO",  6 , ""      ,11 , Xbut7 , Ybut7  },     
   { "PASSO" , 11 , ""      , 2 , Xbut8 , Ybut8  },    
   { "BANDA" ,  1 , ""      , 3 , Xbut9 , Ybut9  },
-  { "SYNC"  , 10 , ""      , 9 , Xbut10, Ybut10 },
+  { "PSET"  , 10 , ""      , 9 , Xbut10, Ybut10 },
   { "MENU"  ,  7 , "VOLTA" , 7 , Xbut11, Ybut11 }
 };
 #endif
@@ -351,7 +352,7 @@ Button bt[] = {
   { "BANDW" ,  5 , ""      , 7 , Xbut7 , Ybut7  }, //     |  9 | 10 | 11 |     
   { "STEP"  ,  6 , ""      , 8 , Xbut8 , Ybut8  }, //     |----|----|----|     
   { "BROAD" ,  1 , ""      , 1 , Xbut9 , Ybut9  },
-  { "SYNC", 10 , ""      , 4 , Xbut10, Ybut10 },
+  { "PRESET", 10 , ""      , 4 , Xbut10, Ybut10 },
   { "NEXT"  , 11 , "PREV"  ,11 , Xbut11, Ybut11 }
 };
 #endif
@@ -419,7 +420,8 @@ Mode md[] = {
   { 0  , Xfmod, 200, Yfmod, 50,  0},
   { 1  , Xfmod, 200, Yfmod, 50, 50},
   { 2  , Xfmod, 200, Yfmod, 50,100},
-  { 3  , Xfmod, 200, Yfmod, 50,150}
+  { 3  , Xfmod, 200, Yfmod, 50,150},
+  { 4  , Xfmod, 200, Yfmod, 50,200}
 };
 //======================================================= End Modulation Types     ============================
 
@@ -1004,9 +1006,9 @@ void printConfig() {
 void BandSet()  {
 //=======================================================================================
   if (bandIdx == 0) currentMode = 0;// only mod FM in FM band
-  if ((currentMode == AM) or (currentMode == FM)) ssbLoaded = false;
+  if ((currentMode == AM) || (currentMode == FM)) ssbLoaded = false;
 
-  if ((currentMode == LSB) or  (currentMode == USB))
+  if ((currentMode == LSB) || (currentMode == USB) || (currentMode == SYNC))
   {
     if (ssbLoaded == false) {
       loadSSB();
@@ -1050,6 +1052,7 @@ void useBand()  {
       //si4735.setSSBAvcDivider(3);
       //si4735.setSsbSoftMuteMaxAttenuation(8); // Disable Soft Mute for SSB
       //si4735.setSBBSidebandCutoffFilter(0);
+     
       
       si4735.setSSBBfo(currentBFO);     
     }
@@ -1103,8 +1106,13 @@ void loadSSB()  {
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
-  // si4735.setSSBConfig(bwIdxSSB, 1, 3, 0, 0, 0); // SYNC MODE
+  if (currentMode == SYNC) {
+    si4735.setSSBConfig(bwIdxSSB, 1, 3, 0, 0, 0); // SYNC MODE
+    currentBFO = 0;
+  }
+  else  
+    si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
+
   delay(25);
   ssbLoaded = true;
 }
@@ -1334,21 +1342,6 @@ void loop() {
             SecondLayer = true;
           }
           if (n == PRESET) {
-            if (currentMode != FM)
-            {
-              currentBFO = 0;
-              if (!ssbLoaded)
-              {
-                loadSSB();
-              }
-              currentMode = (currentMode == LSB) ? USB : LSB;
-              band[bandIdx].currentFreq = currentFrequency;
-              band[bandIdx].currentStep = currentStep;
-              useBand();
-              si4735.setSSBDspAfc(0);
-              si4735.setSSBAvcDivider(3);
-            }
-            /*
             delay(400);
             x = 0;
             y = 0;
@@ -1356,7 +1349,6 @@ void loop() {
             //tft.fillScreen(TFT_BLACK);
             FirstLayer = false;
             SecondLayer = true;
-            */
           }
 
           if (n == VOL) {
@@ -2412,6 +2404,7 @@ void BWList()  {
   if ( currentMode == AM)  tft.drawString("AM Bandw. in kHz"  , XfBW + 50, YfBW - 30);
   if ( currentMode == USB) tft.drawString("USB Bandw. in kHz" , XfBW + 50, YfBW - 30);
   if ( currentMode == LSB) tft.drawString("LSB Bandw. in kHz" , XfBW + 50, YfBW - 30);
+  if ( currentMode == SYNC)  tft.drawString("SYNC Bandw. in kHz", XfBW + 50, YfBW - 30);
   tft.setFreeFont(NULL);
 }
 
