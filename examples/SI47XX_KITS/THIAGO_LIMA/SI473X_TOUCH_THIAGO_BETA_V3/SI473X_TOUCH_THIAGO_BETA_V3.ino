@@ -191,7 +191,7 @@ uint8_t currentVOL         =  0;
 uint8_t previousVOL        =  0;
 uint8_t currentVOLStep     =  1;
 uint8_t MaxVOL             = 63;
-uint8_t MinVOL             = 20;
+uint8_t MinVOL             =  0;
 
 uint8_t currentAGCAtt      =  0;
 uint8_t bwIdxSSB;
@@ -2616,7 +2616,7 @@ void FreqDispl()
   bufferAux[0] = '\0';
   // bufferAgcGain[0] = '\0';
   if (VOLbut) {
-      sprintf(tmpAux,"%3d", map(currentVOL,20,63,0,100));
+      sprintf(tmpAux,"%3d", map(currentVOL,MinVOL,MaxVOL,0,100));
       showContent(XFreqDispl + 20, YFreqDispl + 50, bufferVolume, tmpAux, &DSEG7_Classic_Mini_Bold_20, TFT_CYAN, 20);
       showContent(XFreqDispl + 80, YFreqDispl + 50, bufferAux, " VOLUME", &Serif_bold_20, TFT_GREEN, 20);
   } else if (AGCgainbut) {
