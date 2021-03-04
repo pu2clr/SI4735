@@ -187,8 +187,8 @@ uint8_t MinAGCgain         =  1;
 
 
 
-uint8_t currentVOL         =  0;
-uint8_t previousVOL        =  0;
+int currentVOL         =  0;
+int previousVOL        =  0;
 uint8_t currentVOLStep     =  1;
 uint8_t MaxVOL             = 63;
 uint8_t MinVOL             =  0;
