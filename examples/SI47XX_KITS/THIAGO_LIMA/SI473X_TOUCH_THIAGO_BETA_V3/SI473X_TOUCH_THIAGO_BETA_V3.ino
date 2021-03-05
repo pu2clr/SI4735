@@ -1,6 +1,3 @@
-//
-// UNDER CONSTRUCTION - It is a Beta version and can no work properly. 
-//
 // The sketches and documentation available here are based on Gert's sketch that made his work available for avery one.
 // I would like to thank to [Gert Baak](https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino).
 //
