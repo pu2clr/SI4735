@@ -59,6 +59,32 @@
   Prototype documentation : https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
+  ATTENTION: 
+  SI473X bases device  and Arduino Atmega328 based device wire up. 
+
+  | Device name               | Device Pin / Description  |  Arduino Pin  |
+  | ----------------          | --------------------      | ------------  |
+  | Display OLED              |                           |               |
+  |                           | SDA                       |     A4        |
+  |                           | CLK                       |     A5        |
+  |     Si4735                |                           |               |
+  |                           | RESET (pin 15)            |     12        |
+  |                           | SDIO (pin 18)             |     A4        |
+  |                           | SCLK (pin 17)             |     A5        |
+  |     Buttons               |                           |               |
+  |                           | Mode Switch (AM/LSB/USB)  |      4        |
+  |                           | BANDWIDTH switch          |      5        |
+  |                           | Volume Up                 |      6        | 
+  |                           | Volume Down               |      7        |
+  |                           | Next Band (Up)            |      8        |  
+  |                           | Previous Band (Down)      |      9        | 
+  |                           | Step switch               |     10        |  
+  |                           | AGC Switch                |     11        | 
+  |                           | BFO Switch                |    A0/14      |    
+  |    Encoder                |                           |               |
+  |                           | A                         |      2        |
+  |                           | B                         |      3        |
+
   By Ricardo Lima Caratti, Nov 2019.
 */
 
@@ -96,8 +122,8 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define BAND_BUTTON_DOWN 9 // Previous band
 #define AGC_SWITCH 11      // Switch AGC ON/OF
 #define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
-#define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
-// #define BFO_SWITCH 14   // A0 (Alternative to the pin 13). Used to select the enconder control (BFO or VFO)
+// #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
+#define BFO_SWITCH 14   // A0 (Alternative to the pin 13). Used to select the enconder control (BFO or VFO)
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150

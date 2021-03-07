@@ -13,9 +13,32 @@
 
   This sketch has been successfully tested on Pro Mini 3.3V.
 
+  SI473X bases device  and Arduino Atmega328 based device wire up. 
+
+  | Device name               | Device Pin / Description  |  Arduino Pin  |
+  | ----------------          | --------------------      | ------------  |
+  | Display OLED              |                           |               |
+  |                           | SDA                       |     A4        |
+  |                           | CLK                       |     A5        |
+  |     Si4735                |                           |               |
+  |                           | RESET (pin 15)            |     12        |
+  |                           | SDIO (pin 18)             |     A4        |
+  |                           | SCLK (pin 17)             |     A5        |
+  |     Buttons               |                           |               |
+  |                           | AM/FM                     |      4        |
+  |                           | Seek Up                   |      6        |
+  |                           | Seek Down                 |      7        |
+  |                           | Volume Up                 |      8        | 
+  |                           | Volume Down               |      9        |   
+  |    Encoder                |                           |               |
+  |                           | A                         |      2        |
+  |                           | B                         |      3        |
+
+
   Prototype documentation : https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
   Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png
+
 
   By Ricardo Lima Caratti, Nov 2019.
 */

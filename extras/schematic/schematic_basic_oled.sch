@@ -4363,6 +4363,7 @@ Mors</description>
 <sheets>
 <sheet>
 <plain>
+<text x="55.88" y="165.1" size="1.778" layer="91" rot="R90">A0 = digital pin 14</text>
 </plain>
 <instances>
 <instance part="B1" gate="G$1" x="25.4" y="152.4" smashed="yes">
@@ -4890,10 +4891,10 @@ Mors</description>
 <net name="N$24" class="0">
 <segment>
 <pinref part="BFO" gate="SW" pin="E"/>
-<wire x1="27.94" y1="215.9" x2="50.8" y2="215.9" width="0.1524" layer="91"/>
-<wire x1="50.8" y1="215.9" x2="50.8" y2="149.86" width="0.1524" layer="91"/>
-<pinref part="B1" gate="G$1" pin="13"/>
-<wire x1="50.8" y1="149.86" x2="38.1" y2="149.86" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="215.9" x2="58.42" y2="215.9" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="215.9" x2="58.42" y2="152.4" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="A0"/>
+<wire x1="58.42" y1="152.4" x2="38.1" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
