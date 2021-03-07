@@ -9,17 +9,6 @@ The photos below show the KIT sold on Aliexpress and eBay.
 
 <BR> 
 
-![PL102BA-S V:2.1 10628](./ali_001.png)
-
-
-<BR> 
-
-![PL102BA-S V:2.1 10628](./ali_002.png)
-
-
-<BR> 
-
-![PL102BA-S V:2.1 10628](./ali_003.png)
-
+![PL102BA-S V:2.1 10628](./ali_000.png)
 
 
