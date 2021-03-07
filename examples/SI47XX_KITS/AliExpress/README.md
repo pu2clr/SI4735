@@ -1,4 +1,4 @@
-# AliExpress Kit
+# KIT sold on Aliexpress and eBay
 
 The kit below is sold on Aliexpress and eBay.  Although the author of this KIT does not explicitly mention that the sketch used by the KIT is based on this library (PU2CLR SI4735 Arduino Library), I’ve been testing successfully the sketch [SI473X_ALL_IN_ONE_OLED_CHINESE](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_CHINESE) on some KITs acquired by some Brazilians experimenters. __The author of this library is only making this sketch available. It is important you understand that there is no guarantee that this sketch will work correctly in your KIT__. 
 
