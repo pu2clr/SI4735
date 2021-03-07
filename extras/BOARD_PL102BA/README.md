@@ -72,7 +72,7 @@ Some examples in this library detect the bus address automatically. However, you
 
 ## Video
 
-The video shows the __"NE928-10A V:01"__ device working with the sketch [SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED]( https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED). That sketch was built to work on SI4735-D60 and SI4735-A10. So, the SSB function will not work. To add the encoder and push buttons, follow the schamatic below.
+The video shows the __"PL102BA-S V:2.1 10628"__ device working with the sketch [SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED]( https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED). That sketch was built to work on SI4735-D60 and SI4735-A10. So, the SSB function will not work. To add the encoder and push buttons, follow the schamatic below.
 
 ![schematic to guide you to add buttons and encoder](../images/basic_schematic_oled_buttons_eagle.png)
 
