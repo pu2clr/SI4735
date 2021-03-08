@@ -721,14 +721,11 @@ The main porpuse of this prototype is to test the Si4735 Arduino Library. It doe
 
 The image bellow shows a version of Slicon Labs SSOP Typical Application Schematic connect to the host MCU (Arduino Pro Pini 3.3V). __Pay attention to the Si4735-D60 SEN pin (16).  When the SEN pin is connected to the ground, the I²C bus address is 0x11. When the SEN pin is connected to +3.3V, the I²C bus address is 0x63.  By default, the "Si4735 Arduino Library" uses the 0x11 I²C bus address (SEN pin connected to GND). If you want to use the address 0x63 (SEN connected on +3.3V), see the functions (methods) getDeviceI2CAddress, setDeviceI2CAddress and setDeviceOtherI2CAddress__.   
 
-
-![Basic Schematic](./extras/images/basic_schematic.png)
-
 <BR>
 
 #### Eagle version
 
-![Basic Schematic Eagle version](./extras/images/basic_schematic_eagle.png)
+![Basic Schematic Eagle version](./extras/images/schematic_basic_eagle.png)
 
 
 #### The picture below shows the SI4735-D60/SI4730-D60 pinout (SSOP)
