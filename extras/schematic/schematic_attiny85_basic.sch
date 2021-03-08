@@ -4254,6 +4254,7 @@ Ingenieurbüro ing-rb, &lt;i&gt;mail@ing-rb.de&lt;/i&gt;&lt;/p&gt;&lt;/author&gt
 <plain>
 <text x="22.86" y="55.88" size="1.778" layer="91">If GND, I2C addr =  0x11</text>
 <text x="22.86" y="50.8" size="1.778" layer="91">If VCC, I2C addr =  0x63</text>
+<text x="55.88" y="45.72" size="1.778" layer="91">R4 and R5 = 3.3K</text>
 </plain>
 <instances>
 <instance part="U1" gate="A" x="-35.56" y="116.84" smashed="yes">
@@ -4265,7 +4266,6 @@ Ingenieurbüro ing-rb, &lt;i&gt;mail@ing-rb.de&lt;/i&gt;&lt;/p&gt;&lt;/author&gt
 </instance>
 <instance part="R4" gate="G$1" x="55.88" y="68.58" smashed="yes" rot="R90">
 <attribute name="NAME" x="54.356" y="68.58" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
-<attribute name="VALUE" x="57.404" y="68.58" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
 </instance>
 <instance part="R5" gate="G$1" x="66.04" y="68.58" smashed="yes" rot="R90">
 <attribute name="NAME" x="61.976" y="68.58" size="1.778" layer="95" font="vector" rot="R270" align="bottom-center"/>
