@@ -723,9 +723,8 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 
 <BR>
 
-#### Eagle version
 
-![Basic Schematic Eagle version](./extras/images/schematic_basic_eagle.png)
+![Basic Schematic Eagle version](./extras/images/schematic_mute_circuit_eagle.png)
 
 
 #### The picture below shows the SI4735-D60/SI4730-D60 pinout (SSOP)
