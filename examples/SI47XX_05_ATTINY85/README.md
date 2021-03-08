@@ -29,7 +29,7 @@ To run this sketch you must have a external I2C EEPROM device configured with yo
 
 The pull-up resistor values may vary depending on the devices connected to the I2C bus. Select the lowest possible resistors. The schematic below show 4.7K for pull-up resistors. However, it can be lower than it.
 
-![Schematic ATtiny85 and Si4735](https://github.com/pu2clr/SI4735/blob/master/extras/images/attiny85_schematic.png)
+![Schematic ATtiny85 and Si4735](../../extras/images/schematic_attiny85_basic.png)
 
 ### Photo
 

@@ -2,7 +2,8 @@
 
 This folder show some examples with Si4735 Arduino Library  and ESP32 platform.
 
-
+Before start compiling ESP32 based sketches, you have to configure your Arduino IDE. 
+To do this, check [Installing the ESP32 Board in Arduino IDE (Windows, Mac OS X, Linux)](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/).
 
 
 ## Example SI47XX_01_ESP32_AM_FM_TOUCH_SERIAL_MONITOR
@@ -66,7 +67,7 @@ The ESP32 board has enough RAM memory to support all SSB patch and a nice TFT Di
 You can use the same schematic used on Arduino family. 
 However, you have pay attention to the new configuration pins on ESP32. See tables bellow. The circuit below shows a generic setup for ESP32. __It is very important to consider the pinout of your ESP32 board__.
 
-![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_esp32_eagle.png)
+![Schematic for I2C display device](../../extras/images/schematic_schematic_esp32_eagle.pngras/images/basic_schematic_esp32_eagle.png)
 
 
 ### ESP-LOLIN32-WEMOS touch capacitive 
