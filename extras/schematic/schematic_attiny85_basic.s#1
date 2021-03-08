@@ -4598,8 +4598,8 @@ Ingenieurbüro ing-rb, &lt;i&gt;mail@ing-rb.de&lt;/i&gt;&lt;/p&gt;&lt;/author&gt
 <net name="N$1" class="0">
 <segment>
 <pinref part="U1" gate="A" pin="!RST"/>
-<pinref part="U2" gate="G$1" pin="PB3"/>
-<wire x1="76.2" y1="93.98" x2="33.02" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="93.98" x2="50.8" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="93.98" x2="50.8" y2="76.2" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$15" class="0">
