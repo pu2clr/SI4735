@@ -727,6 +727,10 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 ![Basic Schematic Eagle version](./extras/images/schematic_mute_circuit_eagle.png)
 
 
+__Please, check the folder [extras/schematic/](https://github.com/pu2clr/SI4735/tree/master/extras/schematic)__. There you will find other schematics with OLED, LCD, TFT, buttons and encoders setup.
+ 
+
+
 #### The picture below shows the SI4735-D60/SI4730-D60 pinout (SSOP)
 
 ![Si4735-D60 pinout](./extras/images/Si4735-D60-pinout.png)
