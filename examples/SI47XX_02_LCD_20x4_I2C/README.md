@@ -32,7 +32,7 @@ Features of this sketch:
 
 Follow the schematic below to use this sketch. 
 
-![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png)
+![Schematic for I2C display device](https://github.com/pu2clr/SI4735/blob/master/extras/images/schematic_basic_oled_SI47XX_02_ALL_IN_ONE_OLED.png)
 
 #### __ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:__
 This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, change the circuit to use external pull-up on pin 13. 
@@ -142,7 +142,7 @@ This sketch has been successfully tested on:
 
 ### Schematic
 
-![Schematic All In One](https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_i2c.png)
+![Schematic All In One](https://github.com/pu2clr/SI4735/blob/master/extras/images/schematic_basic_with_buttons_i2c.png)
 
 
 

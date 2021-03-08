@@ -24,7 +24,7 @@
   If this occurs in your project, change the circuit to use external pull-up on pin 13.     
 
 
-  Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic_with_buttons_internal_pullup_i2c.png
+  Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/schematic_basic_oled_SI47XX_02_ALL_IN_ONE_OLED.png
 
   By Ricardo Lima Caratti, Nov 2019.
 */
