@@ -6,6 +6,9 @@ Please, also check the comments at the beginning of each sketch example availabl
 
 ## Basic Schematic (Atmega328 based board)
 
+The schematic below shows how to connect the 
+
+
 ![Basic Schematic](../images/schematic_basic_eagle.png)
 
 [All Sketches on SI47XX_01_SERIAL_MONITOR folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR)
