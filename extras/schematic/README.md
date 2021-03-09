@@ -65,6 +65,17 @@ You can use de Si4735 Arduino Library on the very small ATtiny85 or Attiny84. Th
 Sketches on [examples/SI47XX_05_ATTINY85](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85)
 
 
+## Bluepill - STM32F103C8 basic schematic
+
+The schematic below guides you to build a SI473X based receiver using the STM32 device. 
+
+
+![Bluepill Basic schematic](../images/schematic_bluepill_basic.png)
+
+
+Sketches on [SI47XX_07_STM32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32)
+
+
 ## External Mute Circuit 
 
 The SI47XX devices have about DC bias component in the analog audio output pins (SI4735-D60 pins 23 and 24). When the device goes to power down mode, the voltage on the audio pins drops to 0V.  The device do it internally and there is not a way to avoid that. When the device goes to power up, that audio pins suddenly goes to high DC again. This transition causes the loud pop in the speaker. It is possible to solve this problem by adding an extra __mute__ circuit and control it by the MCU (Atmega, ESP32, STM32, ATtiny85 etc). 
