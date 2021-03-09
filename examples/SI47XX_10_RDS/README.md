@@ -60,6 +60,14 @@ The table below show the pins wire up for this example on Arduino Pro Mini.
   *2 - If you are using the SI4735-D60, connect the SEN pin to the ground; 
        If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
 
+<BR>
+
+The schematic below guides you to build your own receiver based on the SI473X with TFT display. The sketches available on [examples/SI47XX_04_TFT/](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT) folder decribe the wire up used by the TFT selected by the author. Please, at the beginning of each sketch example.  
+
+
+![Basic schematic with TFT](../../extras/images/schematic_tft.png)
+
+
 
 ## SI47XX_03_RDS_TFT_ILI9225_NEW
 
