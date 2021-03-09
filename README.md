@@ -42,6 +42,7 @@ Contact: __pu2clr@gmail.com__.
 12. [__SCHEMATIC__](https://pu2clr.github.io/SI4735/#schematic)
    * [Component Parts](https://pu2clr.github.io/SI4735/#parts)
    * [Tips to build](https://pu2clr.github.io/SI4735/#tips-to-build)
+   * [Other schematics](https://pu2clr.github.io/SI4735/extras/schematic)
 13. [Most Frequent Problems](https://pu2clr.github.io/SI4735/#most-frequent-problems)
 14. [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
 15. [Photos (Tools and Accessories)](https://pu2clr.github.io/SI4735/#photos-tools-and-accessories)
