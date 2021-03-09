@@ -54,6 +54,17 @@ The schematic below guides you to build your own receiver based on the SI473X wi
 Sketches on [examples/SI47XX_04_TFT/](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT)
 
 
+
+## Arduio DUE/MEGA and touch TFT display. 
+
+The schematic below shows just the Arduino DUE and SI473X connections. The touch TFT used by this circuit is a shield that can be connected to the Arduino DUE directly. If you intent to use Arduino Mega, you have to add a bidirectional logic level converter. 
+
+
+![Basic schematic with TFT](../images/schematic_arduino_due_mega_basic.png)
+
+
+
+
 ## Attiny85 basic circuit
 
 You can use de Si4735 Arduino Library on the very small ATtiny85 or Attiny84. The schematic below can guide you to build a receiver based on attiny85 device. 
