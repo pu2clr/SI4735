@@ -101,14 +101,6 @@ Wire up on Arduino UNO, Pro mini and SI4735-D60
        If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
 
 
-<BR>
-
-
-The schematic below shows just the Arduino DUE and SI473X connections. The touch TFT used by this circuit is a shield that can be connected to the Arduino DUE directly. If you intent to use Arduino Mega, you have to add a bidirectional logic level converter. 
-
-
-![Basic schematic with TFT](../../extras/images/schematic_arduino_due_mega_basic.png)
-
 
 ### User manual for SI47XX_03_RDS_TFT_ILI9225_NEW
 
@@ -156,6 +148,17 @@ This sketch uses the TFT Touch Shield (2.4") from mcufriend. You can use it on M
   | A               |                         |   18              |
   | B               |                         |   19              |
   | BUTTON          |  ENCODER PUSH BUTTON    |   23              |  
+
+
+<BR> 
+
+
+The schematic below shows just the Arduino DUE and SI473X connections. The touch TFT used by this circuit is a shield that can be connected to the Arduino DUE directly. If you intent to use Arduino Mega, you have to add a bidirectional logic level converter. 
+
+
+![Basic schematic with TFT](../../extras/images/schematic_arduino_due_mega_basic.png)
+
+
 
 
 ### The photo below shows the SI47XX_02_RDS_TFT_TOUCH_SHIELD version. 
