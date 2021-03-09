@@ -54,6 +54,16 @@ The schematic below guides you to build your own receiver based on the SI473X wi
 Sketches on [examples/SI47XX_04_TFT/](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT)
 
 
+## Attiny85 basic circuit
+
+You can use de Si4735 Arduino Library on the very small ATtiny85 or Attiny84. The schematic below can guide you to build a receiver based on attiny85 device. 
+
+
+![Attiny85 Basic schematic](../images/schematic_attiny85_basic.png)
+
+
+Sketches on [examples/SI47XX_05_ATTINY85](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85)
+
 
 ## External Mute Circuit 
 
