@@ -55,13 +55,15 @@ Sketches on [examples/SI47XX_04_TFT/](https://github.com/pu2clr/SI4735/tree/mast
 
 
 
-## Arduio DUE/MEGA and touch TFT display. 
+## Arduino DUE/MEGA and touch TFT display. 
 
 The schematic below shows just the Arduino DUE and SI473X connections. The touch TFT used by this circuit is a shield that can be connected to the Arduino DUE directly. If you intent to use Arduino Mega, you have to add a bidirectional logic level converter. 
 
 
 ![Basic schematic with TFT](../images/schematic_arduino_due_mega_basic.png)
 
+
+Sketches on [SI47XX_10_RDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS)
 
 
 
