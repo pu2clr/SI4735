@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_si5735.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PU2CLR Si4735 Arduino Library
-   &#160;<span id="projectnumber">2.0.0</span>
+   &#160;<span id="projectnumber">2.0.7</span>
    </div>
    <div id="projectbrief">Arduino Library for Si47XX Devices - By Ricardo Lima Caratti</div>
   </td>
@@ -616,6 +616,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ga91251dfc2ff9488aaef3aa1a528097d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga91251dfc2ff9488aaef3aa1a528097d9">setSSBSoftMute</a> (uint8_t SMUTESEL)</td></tr>
 <tr class="memdesc:ga91251dfc2ff9488aaef3aa1a528097d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets SSB Soft-mute Based on RSSI or SNR Selection:  <a href="group__group17.html#ga91251dfc2ff9488aaef3aa1a528097d9">More...</a><br /></td></tr>
 <tr class="separator:ga91251dfc2ff9488aaef3aa1a528097d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga505445484e643ae95a2a9300eac9c4c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group20.html#ga505445484e643ae95a2a9300eac9c4c1">setNBFM</a> ()</td></tr>
+<tr class="memdesc:ga505445484e643ae95a2a9300eac9c4c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the radio to FM function.  <a href="group__group20.html#ga505445484e643ae95a2a9300eac9c4c1">More...</a><br /></td></tr>
+<tr class="separator:ga505445484e643ae95a2a9300eac9c4c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga22adda493bc8278a376c1ba6f6ea4668"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group20.html#ga22adda493bc8278a376c1ba6f6ea4668">setNBFM</a> (uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step)</td></tr>
+<tr class="separator:ga22adda493bc8278a376c1ba6f6ea4668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabed83f2c503dc3b35ca115ef6b08d552"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group20.html#gabed83f2c503dc3b35ca115ef6b08d552">patchPowerUpNBFM</a> ()</td></tr>
+<tr class="memdesc:gabed83f2c503dc3b35ca115ef6b08d552"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method can be used to prepare the device to apply NBFM patch.  <a href="group__group20.html#gabed83f2c503dc3b35ca115ef6b08d552">More...</a><br /></td></tr>
+<tr class="separator:gabed83f2c503dc3b35ca115ef6b08d552"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadd298b10c6c7e760e7233b50500773c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group20.html#gadd298b10c6c7e760e7233b50500773c3">loadPatchNBFM</a> (const uint8_t *patch_content, const uint16_t patch_content_size)</td></tr>
+<tr class="memdesc:gadd298b10c6c7e760e7233b50500773c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a given NBFM patch content.  <a href="group__group20.html#gadd298b10c6c7e760e7233b50500773c3">More...</a><br /></td></tr>
+<tr class="separator:gadd298b10c6c7e760e7233b50500773c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5c8c57c727fd102f0eb3d59ec995692f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group20.html#ga5c8c57c727fd102f0eb3d59ec995692f">setFrequencyNBFM</a> (uint16_t freq)</td></tr>
+<tr class="memdesc:ga5c8c57c727fd102f0eb3d59ec995692f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the frequency to the corrent function of the Si4735 on NBFM mode.  <a href="group__group20.html#ga5c8c57c727fd102f0eb3d59ec995692f">More...</a><br /></td></tr>
+<tr class="separator:ga5c8c57c727fd102f0eb3d59ec995692f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadfc2c82524918224cf19fec5b7fcf6d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__group01.html#unionsi47x__firmware__query__library">si47x_firmware_query_library</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#gadfc2c82524918224cf19fec5b7fcf6d1">queryLibraryId</a> ()</td></tr>
 <tr class="memdesc:gadfc2c82524918224cf19fec5b7fcf6d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query the library information of the Si47XX device.  <a href="group__group17.html#gadfc2c82524918224cf19fec5b7fcf6d1">More...</a><br /></td></tr>
 <tr class="separator:gadfc2c82524918224cf19fec5b7fcf6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>

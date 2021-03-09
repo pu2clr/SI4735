@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['xoscen_5fcrystal_441',['XOSCEN_CRYSTAL',['../_s_i4735_8h.html#a33a17dceb88b2b05d8032714a1998368',1,'SI4735.h']]],
-  ['xoscen_5frclk_442',['XOSCEN_RCLK',['../_s_i4735_8h.html#a9d2a0e22f5a37d3911eef36581225dd2',1,'SI4735.h']]]
+  ['waitinterrupr_457',['waitInterrupr',['../group__group05.html#gad2e95c88de0dfa58ff7aa36988071421',1,'SI4735']]],
+  ['waittosend_458',['waitToSend',['../group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0',1,'SI4735']]],
+  ['word_459',['word',['../group__group01.html#aff89664deed303ec065bbad68b2053ae',1,'si47x_frontend_agc_control']]]
 ];

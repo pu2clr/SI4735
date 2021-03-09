@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['union_2c_20struct_20and_20defined_20data_20types_432',['Union, Struct and Defined Data Types',['../group__group01.html',1,'']]],
-  ['usb_5fmode_433',['USB_MODE',['../_s_i4735_8h.html#a551c8ca21f0924d285ffba7169674775',1,'SI4735.h']]]
+  ['tune_2c_20device_20mode_20and_20filter_20setup_448',['Tune, Device Mode and Filter setup',['../group__group08.html',1,'']]],
+  ['tools_20method_449',['Tools method',['../group__group10.html',1,'']]],
+  ['todo_20list_450',['Todo List',['../todo.html',1,'']]]
 ];

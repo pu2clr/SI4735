@@ -6,6 +6,7 @@ var modules =
     [ "FM Mono Stereo audio setup", "group__group12.html", "group__group12" ],
     [ "FM RDS/RBDS", "group__group16.html", "group__group16" ],
     [ "Host and slave MCU setup", "group__group06.html", "group__group06" ],
+    [ "SI4735-D60 / SI4732-A10  NBFM", "group__group20.html", "group__group20" ],
     [ "Si4735-D60 Single Side Band (SSB) support", "group__group17.html", "group__group17" ],
     [ "Tools method", "group__group10.html", "group__group10" ],
     [ "Tune, Device Mode and Filter setup", "group__group08.html", "group__group08" ],
