@@ -45,7 +45,7 @@ Please, use the [MiniCore](https://github.com/MCUdude/MiniCore) setup on your Ar
 
 ## Basic schematic with TFT
 
-The schematic below guides you to build your own receiver based on the SI473X with TFT display. The sketches available on [examples/SI47XX_04_TFT/](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT) folder decribe the wire up used by the TFT selected by the author. Please, at the beginning of each sketch example.  
+The schematic below guides you to build your own receiver based on the SI473X with TFT display. The sketches available on [examples/SI47XX_04_TFT/](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT) folder decribe the wire up used by the TFT selected by the author. Please, read the comments at the beginning of each sketch example.  
 
 
 ![Basic schematic with TFT](../images/schematic_tft.png)
