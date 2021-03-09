@@ -15,7 +15,7 @@ The table below shows the Si4735 and STM32F103C8 pin connections
 
 The schematic below guides you to build a SI473X based receiver using the STM32 device. 
 
-![Bluepill Basic schematic](..extras/images/schematic_bluepill_basic.png)
+![Bluepill Basic schematic](../../extras/images/schematic_bluepill_basic.png)
 
 
 ## Examples (Sketches)
