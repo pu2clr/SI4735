@@ -30,7 +30,8 @@
  * 
  *  Some texts were extracted directly from the Silicon Labs documentation. The name of the Silicon Labs document and pages are described in the source code comments.
  * 
- * @see https://pu2clr.github.io/SI4735/
+ * @see [General Documentation](https://pu2clr.github.io/SI4735/)
+ * @see [Schematics](https://pu2clr.github.io/SI4735/extras/schematic/)
  * @see Si47XX PROGRAMMING GUIDE AN332 (REV 1.0): https://www.silabs.com/documents/public/application-notes/AN332.pdf
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
  * 
