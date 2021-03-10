@@ -137,7 +137,7 @@ Some low power audio amplifiers IC also implement mute circuit that can be contr
 It is a HF band pass filter controlled by Arduino. It is designed for HF receivers. With this project, you can use a set of up to four HF bandpass filters that can be selected by Arduino. To do that you will need just two digital Arduino pins. All about this project on [here](https://pu2clr.github.io/auto_bpf_arduino/).
 
 
-![Band Pass Filter controlled by Arduino](https://github.com/pu2clr/auto_bpf_arduino/blob/master/images/schematic_01.png)
+![Band Pass Filter controlled by Arduino](https://pu2clr.github.io/auto_bpf_arduino/images/schematic_01.png)
 
 
 [Back to the main page](https://pu2clr.github.io/SI4735/)
