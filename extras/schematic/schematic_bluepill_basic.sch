@@ -4667,6 +4667,406 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 </deviceset>
 </devicesets>
 </library>
+<library name="diy-modules">
+<description>&lt;b&gt;DIY Modules for Arduino, Raspberry Pi, CubieBoard etc.&lt;/b&gt;
+&lt;br&gt;&lt;br&gt;
+The library contains a list of symbols and footprints for popular, cheap and easy-to-use electronic modules.&lt;br&gt;
+The modules are intend to work with microprocessor-based platforms such as &lt;a href="http://arduino.cc"&gt;Arduino&lt;/a&gt;, &lt;a href="http://raspberrypi.org/"&gt;Raspberry Pi&lt;/a&gt;, &lt;a href="http://cubieboard.org/"&gt;CubieBoard&lt;/a&gt;, &lt;a href="http://beagleboard.org/"&gt;BeagleBone&lt;/a&gt; and many others. There are many manufacturers of the modules in the world. Almost all of them can be bought on &lt;a href="ebay.com"&gt;ebay.com&lt;/a&gt;.&lt;br&gt;
+&lt;br&gt;
+By using this library, you can design a PCB for devices created with usage of modules. Even if you do not need to create PCB design, you can also use the library to quickly document your work by drawing schematics of devices built by you.&lt;br&gt;
+&lt;br&gt;
+The latest version, examples, photos and much more can be found at: &lt;b&gt;&lt;a href="http://diymodules.org/eagle"&gt;diymodules.org/eagle&lt;/a&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;
+Comments, suggestions and bug reports please send to: &lt;b&gt;&lt;a href="mailto:eagle@diymodules.org"&gt;eagle@diymodules.org&lt;/b&gt;&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+&lt;i&gt;Version: 1.8.0 (2017-Jul-02)&lt;/i&gt;&lt;br&gt;
+&lt;i&gt;Created by: Miroslaw Brudnowski&lt;/i&gt;&lt;br&gt;&lt;br&gt;
+&lt;i&gt;Released under the Creative Commons Attribution 4.0 International License: &lt;a href="http://creativecommons.org/licenses/by/4.0"&gt;http://creativecommons.org/licenses/by/4.0&lt;/a&gt;&lt;/i&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;center&gt;
+&lt;a href="http://diymodules.org/eagle"&gt;&lt;img src="http://www.diymodules.org/img/diymodules-lbr-image.php?v=1.8.0" alt="DIYmodules.org"&gt;&lt;/a&gt;
+&lt;/center&gt;</description>
+<packages>
+<package name="DISPLAY-OLED-128X64-I2C">
+<description>&lt;b&gt;128x64 Dot Matrix OLED Module&lt;/b&gt;&lt;br /&gt;
+Variant with I2C interface</description>
+<wire x1="-13.716" y1="13.97" x2="13.716" y2="13.97" width="0.127" layer="21"/>
+<wire x1="13.716" y1="13.97" x2="13.716" y2="-13.97" width="0.127" layer="21"/>
+<wire x1="13.716" y1="-13.97" x2="7.62" y2="-13.97" width="0.127" layer="21"/>
+<wire x1="7.62" y1="-13.97" x2="-7.62" y2="-13.97" width="0.127" layer="21"/>
+<wire x1="-7.62" y1="-13.97" x2="-13.716" y2="-13.97" width="0.127" layer="21"/>
+<wire x1="-13.716" y1="-13.97" x2="-13.716" y2="13.97" width="0.127" layer="21"/>
+<pad name="1" x="-3.81" y="12.7" drill="1" shape="square"/>
+<pad name="2" x="-1.27" y="12.7" drill="1"/>
+<pad name="3" x="1.27" y="12.7" drill="1"/>
+<pad name="4" x="3.81" y="12.7" drill="1"/>
+<wire x1="-5.08" y1="13.335" x2="-4.445" y2="13.97" width="0.127" layer="21"/>
+<wire x1="-3.175" y1="13.97" x2="-2.54" y2="13.335" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="13.335" x2="-1.905" y2="13.97" width="0.127" layer="21"/>
+<wire x1="-0.635" y1="13.97" x2="0" y2="13.335" width="0.127" layer="21"/>
+<wire x1="0" y1="13.335" x2="0.635" y2="13.97" width="0.127" layer="21"/>
+<wire x1="1.905" y1="13.97" x2="2.54" y2="13.335" width="0.127" layer="21"/>
+<wire x1="2.54" y1="13.335" x2="3.175" y2="13.97" width="0.127" layer="21"/>
+<wire x1="4.445" y1="13.97" x2="5.08" y2="13.335" width="0.127" layer="21"/>
+<wire x1="5.08" y1="12.065" x2="4.445" y2="11.43" width="0.127" layer="21"/>
+<wire x1="4.445" y1="11.43" x2="3.175" y2="11.43" width="0.127" layer="21"/>
+<wire x1="3.175" y1="11.43" x2="2.54" y2="12.065" width="0.127" layer="21"/>
+<wire x1="2.54" y1="12.065" x2="1.905" y2="11.43" width="0.127" layer="21"/>
+<wire x1="1.905" y1="11.43" x2="0.635" y2="11.43" width="0.127" layer="21"/>
+<wire x1="0.635" y1="11.43" x2="0" y2="12.065" width="0.127" layer="21"/>
+<wire x1="0" y1="12.065" x2="-0.635" y2="11.43" width="0.127" layer="21"/>
+<wire x1="-0.635" y1="11.43" x2="-1.905" y2="11.43" width="0.127" layer="21"/>
+<wire x1="-1.905" y1="11.43" x2="-2.54" y2="12.065" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="12.065" x2="-3.175" y2="11.43" width="0.127" layer="21"/>
+<wire x1="-3.175" y1="11.43" x2="-4.445" y2="11.43" width="0.127" layer="21"/>
+<wire x1="-4.445" y1="11.43" x2="-5.08" y2="12.065" width="0.127" layer="21"/>
+<wire x1="-5.08" y1="12.065" x2="-5.08" y2="13.335" width="0.127" layer="21"/>
+<hole x="-10.414" y="11.557" drill="2"/>
+<wire x1="-11.43" y1="8.128" x2="11.43" y2="8.128" width="0.127" layer="21"/>
+<wire x1="11.43" y1="8.128" x2="11.43" y2="-5.588" width="0.127" layer="21"/>
+<wire x1="11.43" y1="-5.588" x2="-11.43" y2="-5.588" width="0.127" layer="21"/>
+<wire x1="-11.43" y1="-5.588" x2="-11.43" y2="8.128" width="0.127" layer="21"/>
+<text x="0" y="15.24" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-15.24" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+<hole x="10.414" y="11.557" drill="2"/>
+<hole x="10.414" y="-11.557" drill="2"/>
+<hole x="-10.414" y="-11.557" drill="2"/>
+<wire x1="5.08" y1="13.335" x2="5.08" y2="12.065" width="0.127" layer="21"/>
+<text x="-3.81" y="10.922" size="1.016" layer="21" align="top-center">GND</text>
+<text x="-1.27" y="9.652" size="1.016" layer="21" align="top-center">VCC</text>
+<text x="1.27" y="10.922" size="1.016" layer="21" align="top-center">SCL</text>
+<text x="3.81" y="9.652" size="1.016" layer="21" align="top-center">SDA</text>
+<wire x1="-1.27" y1="10.033" x2="-1.27" y2="11.049" width="0.127" layer="21"/>
+<wire x1="3.81" y1="10.033" x2="3.81" y2="11.049" width="0.127" layer="21"/>
+<wire x1="-7.62" y1="-13.97" x2="-6.35" y2="-12.065" width="0.127" layer="21"/>
+<wire x1="-6.35" y1="-12.065" x2="6.35" y2="-12.065" width="0.127" layer="21"/>
+<wire x1="6.35" y1="-12.065" x2="7.62" y2="-13.97" width="0.127" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="DISPLAY-OLED-128X64-I2C">
+<description>&lt;b&gt;128x64 Dot Matrix OLED Module&lt;/b&gt;&lt;br /&gt;
+Variant with I2C interface</description>
+<wire x1="-15.24" y1="15.24" x2="12.7" y2="15.24" width="0.254" layer="94"/>
+<wire x1="12.7" y1="15.24" x2="12.7" y2="-15.24" width="0.254" layer="94"/>
+<wire x1="12.7" y1="-15.24" x2="-15.24" y2="-15.24" width="0.254" layer="94"/>
+<wire x1="-15.24" y1="-15.24" x2="-15.24" y2="15.24" width="0.254" layer="94"/>
+<pin name="GND" x="-5.08" y="20.32" length="middle" direction="pwr" rot="R270"/>
+<pin name="VCC" x="-2.54" y="20.32" length="middle" direction="pwr" rot="R270"/>
+<pin name="SCL" x="0" y="20.32" length="middle" rot="R270"/>
+<pin name="SDA" x="2.54" y="20.32" length="middle" rot="R270"/>
+<wire x1="-12.7" y1="7.62" x2="10.16" y2="7.62" width="0.254" layer="94"/>
+<wire x1="10.16" y1="7.62" x2="10.16" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="10.16" y1="-7.62" x2="-12.7" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="-7.62" x2="-12.7" y2="7.62" width="0.254" layer="94"/>
+<rectangle x1="-11.684" y1="5.08" x2="-10.16" y2="6.604" layer="94"/>
+<rectangle x1="-9.144" y1="5.08" x2="-7.62" y2="6.604" layer="94"/>
+<rectangle x1="-11.684" y1="2.54" x2="-10.16" y2="4.064" layer="94"/>
+<text x="15.24" y="12.7" size="1.778" layer="95">&gt;NAME</text>
+<text x="15.24" y="10.16" size="1.778" layer="96">&gt;VALUE</text>
+<rectangle x1="-6.604" y1="5.08" x2="-5.08" y2="6.604" layer="94"/>
+<rectangle x1="-11.684" y1="0" x2="-10.16" y2="1.524" layer="94"/>
+<rectangle x1="-9.144" y1="2.54" x2="-7.62" y2="4.064" layer="94"/>
+<text x="7.62" y="-5.08" size="1.778" layer="94" align="bottom-right">128x64</text>
+<text x="7.62" y="-2.54" size="1.778" layer="94" align="bottom-right">OLED</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="DISPLAY-OLED-128X64-I2C">
+<description>&lt;b&gt;128x64 Dot Matrix OLED Module&lt;/b&gt; based on &lt;b&gt;SSD1306&lt;/b&gt; chip&lt;br /&gt;
+Variant with &lt;b&gt;I2C interface&lt;/b&gt;
+&lt;p&gt;More details available here:&lt;br /&gt;
+&lt;a href="http://www.instructables.com/id/Monochrome-096-i2c-OLED-display-with-arduino-SSD13/"&gt;http://www.instructables.com/id/Monochrome-096-i2c-OLED-display-with-arduino-SSD13/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;SSD1306&lt;/b&gt; datasheet:&lt;br&gt;
+&lt;a href="https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf"&gt;https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;a href="http://www.ebay.com/sch/oled+display+128x64+iic"&gt;Click here to find device on ebay.com&lt;/a&gt;&lt;/b&gt;&lt;br /&gt;
+&lt;b&gt;Note:&lt;/b&gt; There are two variants: I2C and SPI. Search for the proper version.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="photo" src="http://www.diymodules.org/img/device-photo.php?name=DISPLAY-OLED-128X64-I2C"&gt;&lt;/p&gt;</description>
+<gates>
+<gate name="G$1" symbol="DISPLAY-OLED-128X64-I2C" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="DISPLAY-OLED-128X64-I2C">
+<connects>
+<connect gate="G$1" pin="GND" pad="1"/>
+<connect gate="G$1" pin="SCL" pad="3"/>
+<connect gate="G$1" pin="SDA" pad="4"/>
+<connect gate="G$1" pin="VCC" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="SparkFun-Switches" urn="urn:adsk.eagle:library:535">
+<description>&lt;h3&gt;SparkFun Switches, Buttons, Encoders&lt;/h3&gt;
+In this library you'll find switches, buttons, joysticks, and anything that moves to create or disrupt an electrical connection.
+&lt;br&gt;
+&lt;br&gt;
+We've spent an enormous amount of time creating and checking these footprints and parts, but it is &lt;b&gt; the end user's responsibility&lt;/b&gt; to ensure correctness and suitablity for a given componet or application. 
+&lt;br&gt;
+&lt;br&gt;If you enjoy using this library, please buy one of our products at &lt;a href=" www.sparkfun.com"&gt;SparkFun.com&lt;/a&gt;.
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
+&lt;br&gt;
+&lt;br&gt;
+You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
+<packages>
+<package name="ROTARY_ENC_PLAIN" urn="urn:adsk.eagle:footprint:40096/1" library_version="1">
+<description>&lt;h3&gt;Rotary Encoder w/ Select Switch&lt;/h3&gt;
+&lt;p&gt;Encoders rotate similarly to potentiometers, but they’re different from potentiometers in that an encoder has full rotation without limits. They output gray code so that you can tell how much and in which direction the encoder has been turned.&lt;/p&gt;
+&lt;p&gt;This encoder includes a push-down select switch built into the shaft.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.sparkfun.com/datasheets/Components/TW-700198.pdf"&gt;Datasheet&lt;/a&gt;&lt;/p&gt;</description>
+<pad name="C" x="7.493" y="0" drill="1.016"/>
+<pad name="SW+" x="-6.985" y="2.54" drill="1.016"/>
+<pad name="P$3" x="0" y="6.604" drill="2.286"/>
+<pad name="P$4" x="0" y="-6.604" drill="2.286"/>
+<pad name="SW-" x="-6.985" y="-2.54" drill="1.016"/>
+<pad name="B" x="7.493" y="2.54" drill="1.016"/>
+<pad name="A" x="7.493" y="-2.54" drill="1.016"/>
+<wire x1="-6.35" y1="6.35" x2="-2.54" y2="6.35" width="0.2032" layer="21"/>
+<wire x1="2.54" y1="6.35" x2="6.35" y2="6.35" width="0.2032" layer="21"/>
+<wire x1="6.35" y1="6.35" x2="6.35" y2="-6.35" width="0.2032" layer="21"/>
+<wire x1="6.35" y1="-6.35" x2="2.54" y2="-6.35" width="0.2032" layer="21"/>
+<wire x1="-2.54" y1="-6.35" x2="-6.35" y2="-6.35" width="0.2032" layer="21"/>
+<wire x1="-6.35" y1="-6.35" x2="-6.35" y2="-3.81" width="0.2032" layer="21"/>
+<wire x1="-6.35" y1="6.35" x2="-6.35" y2="3.81" width="0.2032" layer="21"/>
+<wire x1="-6.35" y1="1.27" x2="-6.35" y2="-1.27" width="0.2032" layer="21"/>
+<text x="5.08" y="6.477" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;Name</text>
+<text x="5.08" y="-6.477" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;Value</text>
+</package>
+</packages>
+<packages3d>
+<package3d name="ROTARY_ENC_PLAIN" urn="urn:adsk.eagle:package:40158/1" type="box" library_version="1">
+<description>Rotary Encoder w/ Select Switch
+Encoders rotate similarly to potentiometers, but they’re different from potentiometers in that an encoder has full rotation without limits. They output gray code so that you can tell how much and in which direction the encoder has been turned.
+This encoder includes a push-down select switch built into the shaft.
+Datasheet</description>
+<packageinstances>
+<packageinstance name="ROTARY_ENC_PLAIN"/>
+</packageinstances>
+</package3d>
+</packages3d>
+<symbols>
+<symbol name="ROT_ENCODER" urn="urn:adsk.eagle:symbol:40095/1" library_version="1">
+<description>&lt;h3&gt;Rotary Encoder w/ Select Switch&lt;/h3&gt;
+&lt;p&gt;Encoders rotate similarly to potentiometers, but they’re different from potentiometers in that an encoder has full rotation without limits. They output gray code so that you can tell how much and in which direction the encoder has been turned.&lt;/p&gt;</description>
+<pin name="SW+" x="-10.16" y="5.08" visible="off" length="middle"/>
+<pin name="SW-" x="-10.16" y="-5.08" visible="off" length="middle"/>
+<pin name="B" x="10.16" y="5.08" visible="pin" length="middle" rot="R180"/>
+<pin name="C" x="10.16" y="0" visible="pin" length="middle" rot="R180"/>
+<pin name="A" x="10.16" y="-5.08" visible="pin" length="middle" rot="R180"/>
+<wire x1="-5.08" y1="5.08" x2="-2.54" y2="5.08" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="5.08" x2="-2.54" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="-1.524" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="-5.08" y1="-5.08" x2="-2.54" y2="-5.08" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="-5.08" x2="-2.54" y2="-1.778" width="0.1524" layer="94"/>
+<wire x1="-7.62" y1="7.62" x2="7.62" y2="7.62" width="0.254" layer="94"/>
+<wire x1="7.62" y1="7.62" x2="7.62" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-7.62" x2="-7.62" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-7.62" x2="-7.62" y2="7.62" width="0.254" layer="94"/>
+<text x="-7.62" y="7.874" size="1.778" layer="95" font="vector">&gt;NAME</text>
+<text x="-7.62" y="-7.874" size="1.778" layer="96" font="vector" align="top-left">&gt;VALUE</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="ENCODER-SWITCH" urn="urn:adsk.eagle:component:40201/1" prefix="S" library_version="1">
+<description>&lt;h3&gt;Rotary Encoder w/ Select Switch&lt;/h3&gt;
+&lt;p&gt;Encoders rotate similarly to potentiometers, but they’re different from potentiometers in that an encoder has full rotation without limits. They output gray code so that you can tell how much and in which direction the encoder has been turned.&lt;/p&gt;
+&lt;p&gt;This encoder includes a push-down select switch built into the shaft.&lt;/p&gt;
+&lt;h4&gt;SparkFun Products&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.sparkfun.com/products/9117"&gt;Rotary Encoder&lt;/a&gt; (COM-09117)&lt;/li&gt;
+&lt;/ul&gt;</description>
+<gates>
+<gate name="G$1" symbol="ROT_ENCODER" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="ROTARY_ENC_PLAIN">
+<connects>
+<connect gate="G$1" pin="A" pad="A"/>
+<connect gate="G$1" pin="B" pad="B"/>
+<connect gate="G$1" pin="C" pad="C"/>
+<connect gate="G$1" pin="SW+" pad="SW+"/>
+<connect gate="G$1" pin="SW-" pad="SW-"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:40158/1"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="SF_SKU" value="COM-09117"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="adafruit" urn="urn:adsk.eagle:library:420">
+<packages>
+<package name="PUSHBUTTON_SMD_SJ" urn="urn:adsk.eagle:footprint:6240313/1" library_version="2">
+<wire x1="-2.9997" y1="3" x2="3" y2="3" width="0.127" layer="51"/>
+<wire x1="3" y1="3" x2="3" y2="-3" width="0.2032" layer="51"/>
+<wire x1="3" y1="-3" x2="-3" y2="-3" width="0.127" layer="51"/>
+<wire x1="-3" y1="-3" x2="-2.9997" y2="3" width="0.2032" layer="51"/>
+<wire x1="-3" y1="1.7" x2="-3" y2="3" width="0.2032" layer="21"/>
+<wire x1="-3" y1="3" x2="3" y2="3" width="0.2032" layer="21"/>
+<wire x1="3" y1="3" x2="3" y2="1.7" width="0.2032" layer="21"/>
+<wire x1="3" y1="-1.7" x2="3" y2="-3" width="0.2032" layer="21"/>
+<wire x1="3" y1="-3" x2="-3" y2="-3" width="0.2032" layer="21"/>
+<wire x1="-3" y1="-3" x2="-3" y2="-1.7" width="0.2032" layer="21"/>
+<circle x="0" y="0" radius="2.8398" width="0.2032" layer="51"/>
+<smd name="P$1" x="3" y="0" dx="2" dy="2" layer="1"/>
+<smd name="P$2" x="-3" y="0" dx="2" dy="2" layer="1"/>
+<text x="-1.778" y="0.127" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
+<text x="-1.778" y="-0.762" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
+</package>
+<package name="TACT_PANA-EVQ" urn="urn:adsk.eagle:footprint:6240314/1" library_version="2">
+<pad name="P$1" x="-3.25" y="0" drill="1.3" diameter="2.54"/>
+<pad name="P$2" x="3.25" y="0" drill="1.3" diameter="2.54"/>
+<wire x1="-3" y1="1.75" x2="3" y2="1.75" width="0.127" layer="51"/>
+<wire x1="3" y1="1.75" x2="3" y2="0.5" width="0.127" layer="51"/>
+<wire x1="3" y1="0.5" x2="3" y2="-0.5" width="0.127" layer="51"/>
+<wire x1="3" y1="-0.5" x2="3" y2="-1.75" width="0.127" layer="51"/>
+<wire x1="3" y1="-1.75" x2="-3" y2="-1.75" width="0.127" layer="51"/>
+<wire x1="-3" y1="-1.75" x2="-3" y2="-0.5" width="0.127" layer="51"/>
+<wire x1="-3" y1="-0.5" x2="-3" y2="0.5" width="0.127" layer="51"/>
+<wire x1="-3" y1="0.5" x2="-3" y2="1.75" width="0.127" layer="51"/>
+<wire x1="3.95" y1="-0.5" x2="3.95" y2="0.5" width="0.127" layer="51"/>
+<wire x1="3.95" y1="0.5" x2="3" y2="0.5" width="0.127" layer="51"/>
+<wire x1="3" y1="0.5" x2="3" y2="-0.5" width="0.127" layer="51"/>
+<wire x1="3" y1="-0.5" x2="3.95" y2="-0.5" width="0.127" layer="51"/>
+<wire x1="3.95" y1="0.5" x2="3" y2="0.5" width="0.127" layer="51"/>
+<wire x1="-3.95" y1="0" x2="-3.95" y2="0.5" width="0.127" layer="51"/>
+<wire x1="-3.95" y1="0.5" x2="-3" y2="0.5" width="0.127" layer="51"/>
+<wire x1="-3" y1="0.5" x2="-3" y2="-0.5" width="0.127" layer="51"/>
+<wire x1="-3" y1="-0.5" x2="-3.95" y2="-0.5" width="0.127" layer="51"/>
+<wire x1="-3.95" y1="-0.5" x2="-3.95" y2="0" width="0.127" layer="51"/>
+<wire x1="-1.5" y1="0.7" x2="1.5" y2="0.7" width="0.127" layer="51"/>
+<wire x1="1.5" y1="0.7" x2="1.5" y2="-0.7" width="0.127" layer="51"/>
+<wire x1="1.5" y1="-0.7" x2="-1.5" y2="-0.7" width="0.127" layer="51"/>
+<wire x1="-1.5" y1="-0.7" x2="-1.5" y2="0.7" width="0.127" layer="51"/>
+<wire x1="-3.1" y1="1.5" x2="-3.1" y2="1.9" width="0.127" layer="21"/>
+<wire x1="-3.1" y1="1.9" x2="3.1" y2="1.9" width="0.127" layer="21"/>
+<wire x1="3.1" y1="1.9" x2="3.1" y2="1.5" width="0.127" layer="21"/>
+<wire x1="-3.1" y1="-1.5" x2="-3.1" y2="-1.9" width="0.127" layer="21"/>
+<wire x1="-3.1" y1="-1.9" x2="3.1" y2="-1.9" width="0.127" layer="21"/>
+<wire x1="3.1" y1="-1.9" x2="3.1" y2="-1.5" width="0.127" layer="21"/>
+<text x="-3.043" y="2.17" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
+<text x="-3.016" y="-2.451" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
+</package>
+<package name="BTN_CK_KSS" urn="urn:adsk.eagle:footprint:6240315/1" library_version="2">
+<wire x1="-2.75" y1="1.75" x2="2.75" y2="1.75" width="0.127" layer="51"/>
+<wire x1="2.75" y1="1.75" x2="2.75" y2="1.505" width="0.127" layer="51"/>
+<wire x1="2.75" y1="1.505" x2="2.75" y2="-1.505" width="0.127" layer="51"/>
+<wire x1="2.75" y1="-1.505" x2="2.75" y2="-1.75" width="0.127" layer="51"/>
+<wire x1="2.75" y1="-1.75" x2="1.25" y2="-1.75" width="0.127" layer="51"/>
+<wire x1="1.25" y1="-1.75" x2="-1.25" y2="-1.75" width="0.127" layer="51"/>
+<wire x1="-1.25" y1="-1.75" x2="-2.75" y2="-1.75" width="0.127" layer="51"/>
+<wire x1="-2.75" y1="-1.75" x2="-2.75" y2="-1.505" width="0.127" layer="51"/>
+<wire x1="-2.75" y1="-1.505" x2="-2.75" y2="1.505" width="0.127" layer="51"/>
+<wire x1="-2.75" y1="1.505" x2="-2.75" y2="1.75" width="0.127" layer="51"/>
+<wire x1="3.5" y1="1.505" x2="3.5" y2="-1.505" width="0.127" layer="51"/>
+<wire x1="-3.5" y1="-1.505" x2="-3.5" y2="1.505" width="0.127" layer="51"/>
+<wire x1="-1.25" y1="-2.65" x2="1.25" y2="-2.65" width="0.127" layer="51"/>
+<wire x1="1.25" y1="-2.65" x2="1.25" y2="-1.75" width="0.127" layer="51"/>
+<wire x1="-1.25" y1="-2.65" x2="-1.25" y2="-1.75" width="0.127" layer="51"/>
+<wire x1="-3.5" y1="1.505" x2="-2.75" y2="1.505" width="0.127" layer="51"/>
+<wire x1="2.75" y1="1.505" x2="3.5" y2="1.505" width="0.127" layer="51"/>
+<wire x1="-2.75" y1="-1.505" x2="-3.5" y2="-1.505" width="0.127" layer="51"/>
+<wire x1="3.5" y1="-1.505" x2="2.75" y2="-1.505" width="0.127" layer="51"/>
+<wire x1="-1.9" y1="1.9" x2="1.9" y2="1.9" width="0.127" layer="21"/>
+<wire x1="-1.9" y1="-1.9" x2="-1.4" y2="-1.9" width="0.127" layer="21"/>
+<wire x1="1.4" y1="-1.9" x2="1.9" y2="-1.9" width="0.127" layer="21"/>
+<smd name="P$1" x="-2.95" y="0" dx="1.7" dy="3.7" layer="1"/>
+<smd name="P$2" x="2.95" y="0" dx="1.7" dy="3.7" layer="1"/>
+<text x="-1.886" y="2.094" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
+<text x="-1.886" y="1.144" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
+</package>
+</packages>
+<packages3d>
+<package3d name="PUSHBUTTON_SMD_SJ" urn="urn:adsk.eagle:package:6240956/1" type="box" library_version="2">
+<packageinstances>
+<packageinstance name="PUSHBUTTON_SMD_SJ"/>
+</packageinstances>
+</package3d>
+<package3d name="TACT_PANA-EVQ" urn="urn:adsk.eagle:package:6240957/1" type="box" library_version="2">
+<packageinstances>
+<packageinstance name="TACT_PANA-EVQ"/>
+</packageinstances>
+</package3d>
+<package3d name="BTN_CK_KSS" urn="urn:adsk.eagle:package:6240958/1" type="box" library_version="2">
+<packageinstances>
+<packageinstance name="BTN_CK_KSS"/>
+</packageinstances>
+</package3d>
+</packages3d>
+<symbols>
+<symbol name="PUSHBUTTON" urn="urn:adsk.eagle:symbol:6239671/1" library_version="2">
+<wire x1="-2.54" y1="1.27" x2="0" y2="1.27" width="0.254" layer="94"/>
+<wire x1="0" y1="1.27" x2="2.54" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-0.635" y1="2.286" x2="0" y2="2.286" width="0.254" layer="94"/>
+<wire x1="0" y1="2.286" x2="0.635" y2="2.286" width="0.254" layer="94"/>
+<wire x1="0" y1="1.27" x2="0" y2="2.286" width="0.254" layer="94"/>
+<text x="-2.54" y="3.556" size="1.27" layer="95">&gt;NAME</text>
+<text x="-2.54" y="-2.286" size="1.27" layer="96">&gt;VALUE</text>
+<pin name="P$1" x="-5.08" y="0" visible="off" length="short" direction="pas"/>
+<pin name="P$2" x="5.08" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="SWITCH_PUSHBUTTON" urn="urn:adsk.eagle:component:6241159/1" prefix="SW" uservalue="yes" library_version="2">
+<description>&lt;p&gt;&lt;b&gt;Buttons&lt;/b&gt;&lt;/p&gt;
+&lt;b&gt;SOFTTOUCHSMD_SJ&lt;/b&gt; - Soft touch temporary push button (Super Junk Akihabara)
+&lt;p&gt;Compatible with SKPMANE010 [Mouser: 688-SKPMAN]&lt;/p&gt;
+&lt;p&gt;C&amp;K_KSS = Digikey: KSS221GLFS&lt;/p&gt;</description>
+<gates>
+<gate name="G$1" symbol="PUSHBUTTON" x="0" y="0"/>
+</gates>
+<devices>
+<device name="SOFTTOUCHSMD_SJ" package="PUSHBUTTON_SMD_SJ">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+<connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:6240956/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="EVQ-PE" package="TACT_PANA-EVQ">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+<connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:6240957/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="C&amp;K_KSS" package="BTN_CK_KSS">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+<connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:6240958/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -4706,13 +5106,26 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <part name="U$1" library="BluePill" deviceset="BLUE_PILL" device=""/>
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="U$2" library="diy-modules" deviceset="DISPLAY-OLED-128X64-I2C" device=""/>
+<part name="GND8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
+<part name="S2" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="ENCODER-SWITCH" device="" package3d_urn="urn:adsk.eagle:package:40158/1"/>
+<part name="SW1" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="SWITCH_PUSHBUTTON" device="EVQ-PE" package3d_urn="urn:adsk.eagle:package:6240957/1" value="Mode"/>
+<part name="SW2" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="SWITCH_PUSHBUTTON" device="EVQ-PE" package3d_urn="urn:adsk.eagle:package:6240957/1" value="Bandwidth"/>
+<part name="SW3" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="SWITCH_PUSHBUTTON" device="EVQ-PE" package3d_urn="urn:adsk.eagle:package:6240957/1" value="Vol Up"/>
+<part name="SW4" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="SWITCH_PUSHBUTTON" device="EVQ-PE" package3d_urn="urn:adsk.eagle:package:6240957/1" value="Vol Down"/>
+<part name="SW5" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="SWITCH_PUSHBUTTON" device="EVQ-PE" package3d_urn="urn:adsk.eagle:package:6240957/1" value="Band Up"/>
+<part name="SW6" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="SWITCH_PUSHBUTTON" device="EVQ-PE" package3d_urn="urn:adsk.eagle:package:6240957/1" value="Band Down"/>
+<part name="SW7" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="SWITCH_PUSHBUTTON" device="EVQ-PE" package3d_urn="urn:adsk.eagle:package:6240957/1" value="AGC"/>
+<part name="SW8" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="SWITCH_PUSHBUTTON" device="EVQ-PE" package3d_urn="urn:adsk.eagle:package:6240957/1" value="Step"/>
+<part name="GND9" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 <text x="22.86" y="55.88" size="1.778" layer="91">If GND, I2C addr =  0x11</text>
 <text x="22.86" y="50.8" size="1.778" layer="91">If VCC, I2C addr =  0x63</text>
-<text x="55.88" y="45.72" size="1.778" layer="91">R4 and R5 = 3.3K</text>
+<text x="27.94" y="43.18" size="1.778" layer="91">R4 and R5 = 3.3K</text>
 <text x="99.06" y="83.82" size="1.778" layer="91">STM32F103C8</text>
 </plain>
 <instances>
@@ -4814,6 +5227,55 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <instance part="GND6" gate="1" x="129.54" y="119.38" smashed="yes" rot="R180">
 <attribute name="VALUE" x="132.08" y="121.92" size="1.778" layer="96" rot="R180"/>
 </instance>
+<instance part="U$2" gate="G$1" x="104.14" y="149.86" smashed="yes" rot="R180">
+<attribute name="NAME" x="88.9" y="137.16" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="121.92" y="170.18" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="GND8" gate="1" x="121.92" y="127" smashed="yes">
+<attribute name="VALUE" x="119.38" y="124.46" size="1.778" layer="96"/>
+</instance>
+<instance part="SUPPLY2" gate="G$1" x="106.68" y="124.46" smashed="yes" rot="R180">
+<attribute name="VALUE" x="108.585" y="121.285" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="S2" gate="G$1" x="154.94" y="144.78" smashed="yes" rot="R270">
+<attribute name="NAME" x="162.814" y="152.4" size="1.778" layer="95" font="vector" rot="R270"/>
+<attribute name="VALUE" x="141.986" y="165.1" size="1.778" layer="96" font="vector" align="top-left"/>
+</instance>
+<instance part="SW1" gate="G$1" x="187.96" y="68.58" smashed="yes">
+<attribute name="NAME" x="185.42" y="72.136" size="1.27" layer="95"/>
+<attribute name="VALUE" x="185.42" y="66.294" size="1.27" layer="96"/>
+</instance>
+<instance part="SW2" gate="G$1" x="187.96" y="78.74" smashed="yes">
+<attribute name="NAME" x="185.42" y="82.296" size="1.27" layer="95"/>
+<attribute name="VALUE" x="182.88" y="76.454" size="1.27" layer="96"/>
+</instance>
+<instance part="SW3" gate="G$1" x="187.96" y="88.9" smashed="yes">
+<attribute name="NAME" x="185.42" y="92.456" size="1.27" layer="95"/>
+<attribute name="VALUE" x="185.42" y="86.614" size="1.27" layer="96"/>
+</instance>
+<instance part="SW4" gate="G$1" x="187.96" y="99.06" smashed="yes">
+<attribute name="NAME" x="185.42" y="102.616" size="1.27" layer="95"/>
+<attribute name="VALUE" x="182.88" y="96.774" size="1.27" layer="96"/>
+</instance>
+<instance part="SW5" gate="G$1" x="187.96" y="109.22" smashed="yes">
+<attribute name="NAME" x="185.42" y="112.776" size="1.27" layer="95"/>
+<attribute name="VALUE" x="185.42" y="106.934" size="1.27" layer="96"/>
+</instance>
+<instance part="SW6" gate="G$1" x="187.96" y="119.38" smashed="yes">
+<attribute name="NAME" x="185.42" y="122.936" size="1.27" layer="95"/>
+<attribute name="VALUE" x="182.88" y="117.094" size="1.27" layer="96"/>
+</instance>
+<instance part="SW7" gate="G$1" x="187.96" y="129.54" smashed="yes">
+<attribute name="NAME" x="185.42" y="133.096" size="1.27" layer="95"/>
+<attribute name="VALUE" x="185.42" y="127.254" size="1.27" layer="96"/>
+</instance>
+<instance part="SW8" gate="G$1" x="187.96" y="139.7" smashed="yes">
+<attribute name="NAME" x="185.42" y="143.256" size="1.27" layer="95"/>
+<attribute name="VALUE" x="185.42" y="137.414" size="1.27" layer="96"/>
+</instance>
+<instance part="GND9" gate="1" x="193.04" y="58.42" smashed="yes">
+<attribute name="VALUE" x="190.5" y="55.88" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -4883,6 +5345,44 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <pinref part="U$1" gate="G$1" pin="GND1"/>
 <wire x1="129.54" y1="114.3" x2="127" y2="114.3" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="U$2" gate="G$1" pin="GND"/>
+<pinref part="GND8" gate="1" pin="GND"/>
+<wire x1="109.22" y1="129.54" x2="121.92" y2="129.54" width="0.1524" layer="91"/>
+<pinref part="S2" gate="G$1" pin="C"/>
+<wire x1="154.94" y1="134.62" x2="154.94" y2="129.54" width="0.1524" layer="91"/>
+<wire x1="154.94" y1="129.54" x2="121.92" y2="129.54" width="0.1524" layer="91"/>
+<junction x="121.92" y="129.54"/>
+<pinref part="S2" gate="G$1" pin="SW-"/>
+<wire x1="149.86" y1="154.94" x2="121.92" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="154.94" x2="121.92" y2="129.54" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SW8" gate="G$1" pin="P$2"/>
+<pinref part="SW7" gate="G$1" pin="P$2"/>
+<wire x1="193.04" y1="139.7" x2="193.04" y2="129.54" width="0.1524" layer="91"/>
+<pinref part="SW6" gate="G$1" pin="P$2"/>
+<wire x1="193.04" y1="129.54" x2="193.04" y2="119.38" width="0.1524" layer="91"/>
+<junction x="193.04" y="129.54"/>
+<pinref part="SW5" gate="G$1" pin="P$2"/>
+<wire x1="193.04" y1="119.38" x2="193.04" y2="109.22" width="0.1524" layer="91"/>
+<junction x="193.04" y="119.38"/>
+<pinref part="SW4" gate="G$1" pin="P$2"/>
+<wire x1="193.04" y1="109.22" x2="193.04" y2="99.06" width="0.1524" layer="91"/>
+<junction x="193.04" y="109.22"/>
+<pinref part="SW3" gate="G$1" pin="P$2"/>
+<wire x1="193.04" y1="99.06" x2="193.04" y2="88.9" width="0.1524" layer="91"/>
+<junction x="193.04" y="99.06"/>
+<pinref part="SW2" gate="G$1" pin="P$2"/>
+<wire x1="193.04" y1="88.9" x2="193.04" y2="78.74" width="0.1524" layer="91"/>
+<junction x="193.04" y="88.9"/>
+<pinref part="SW1" gate="G$1" pin="P$2"/>
+<wire x1="193.04" y1="78.74" x2="193.04" y2="68.58" width="0.1524" layer="91"/>
+<junction x="193.04" y="78.74"/>
+<pinref part="GND9" gate="1" pin="GND"/>
+<wire x1="193.04" y1="60.96" x2="193.04" y2="68.58" width="0.1524" layer="91"/>
+<junction x="193.04" y="68.58"/>
+</segment>
 </net>
 <net name="SDA" class="0">
 <segment>
@@ -4896,6 +5396,12 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <pinref part="U$1" gate="G$1" pin="PB6"/>
 <wire x1="86.36" y1="81.28" x2="66.04" y2="81.28" width="0.1524" layer="91"/>
 <junction x="66.04" y="81.28"/>
+<pinref part="U$2" gate="G$1" pin="SCL"/>
+<wire x1="104.14" y1="129.54" x2="104.14" y2="127" width="0.1524" layer="91"/>
+<wire x1="104.14" y1="127" x2="66.04" y2="127" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="127" x2="66.04" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="99.06" x2="58.42" y2="99.06" width="0.1524" layer="91"/>
+<junction x="58.42" y="99.06"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -4932,6 +5438,11 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <segment>
 <pinref part="S1" gate="BEF1" pin="S"/>
 <pinref part="SUPPLY4" gate="G$1" pin="VCC"/>
+</segment>
+<segment>
+<pinref part="U$2" gate="G$1" pin="VCC"/>
+<pinref part="SUPPLY2" gate="G$1" pin="VCC"/>
+<wire x1="106.68" y1="129.54" x2="106.68" y2="127" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -5050,6 +5561,11 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <wire x1="55.88" y1="78.74" x2="55.88" y2="73.66" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="78.74" x2="55.88" y2="78.74" width="0.1524" layer="91"/>
 <junction x="55.88" y="78.74"/>
+<pinref part="U$2" gate="G$1" pin="SDA"/>
+<wire x1="101.6" y1="129.54" x2="63.5" y2="129.54" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="129.54" x2="63.5" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="101.6" x2="55.88" y2="101.6" width="0.1524" layer="91"/>
+<junction x="55.88" y="101.6"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -5065,6 +5581,106 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <pinref part="U1" gate="A" pin="!RST"/>
 <pinref part="U$1" gate="G$1" pin="PA12"/>
 <wire x1="33.02" y1="93.98" x2="86.36" y2="93.98" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$17" class="0">
+<segment>
+<pinref part="S2" gate="G$1" pin="B"/>
+<pinref part="U$1" gate="G$1" pin="PA0"/>
+<wire x1="160.02" y1="134.62" x2="160.02" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="160.02" y1="76.2" x2="127" y2="76.2" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$18" class="0">
+<segment>
+<pinref part="S2" gate="G$1" pin="A"/>
+<wire x1="149.86" y1="134.62" x2="149.86" y2="78.74" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="PA1"/>
+<wire x1="149.86" y1="78.74" x2="127" y2="78.74" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$19" class="0">
+<segment>
+<pinref part="SW1" gate="G$1" pin="P$1"/>
+<wire x1="182.88" y1="68.58" x2="137.16" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="137.16" y1="68.58" x2="137.16" y2="81.28" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="PA2"/>
+<wire x1="137.16" y1="81.28" x2="127" y2="81.28" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$20" class="0">
+<segment>
+<pinref part="SW2" gate="G$1" pin="P$1"/>
+<wire x1="182.88" y1="78.74" x2="182.88" y2="83.82" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="PA3"/>
+<wire x1="182.88" y1="83.82" x2="127" y2="83.82" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$21" class="0">
+<segment>
+<pinref part="SW3" gate="G$1" pin="P$1"/>
+<pinref part="U$1" gate="G$1" pin="PA4"/>
+<wire x1="182.88" y1="88.9" x2="182.88" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="182.88" y1="86.36" x2="127" y2="86.36" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$22" class="0">
+<segment>
+<pinref part="SW4" gate="G$1" pin="P$1"/>
+<wire x1="182.88" y1="99.06" x2="180.34" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="180.34" y1="99.06" x2="180.34" y2="88.9" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="PA5"/>
+<wire x1="180.34" y1="88.9" x2="127" y2="88.9" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$23" class="0">
+<segment>
+<pinref part="SW5" gate="G$1" pin="P$1"/>
+<wire x1="182.88" y1="109.22" x2="175.26" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="175.26" y1="109.22" x2="175.26" y2="91.44" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="PA6"/>
+<wire x1="175.26" y1="91.44" x2="127" y2="91.44" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$24" class="0">
+<segment>
+<pinref part="SW6" gate="G$1" pin="P$1"/>
+<wire x1="182.88" y1="119.38" x2="182.88" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="182.88" y1="111.76" x2="147.32" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="147.32" y1="111.76" x2="147.32" y2="93.98" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="PA7"/>
+<wire x1="147.32" y1="93.98" x2="127" y2="93.98" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$25" class="0">
+<segment>
+<pinref part="SW7" gate="G$1" pin="P$1"/>
+<wire x1="182.88" y1="129.54" x2="175.26" y2="129.54" width="0.1524" layer="91"/>
+<wire x1="175.26" y1="129.54" x2="175.26" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="175.26" y1="175.26" x2="78.74" y2="175.26" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="PA8"/>
+<wire x1="78.74" y1="175.26" x2="78.74" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="104.14" x2="86.36" y2="104.14" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$26" class="0">
+<segment>
+<pinref part="SW8" gate="G$1" pin="P$1"/>
+<wire x1="182.88" y1="139.7" x2="182.88" y2="180.34" width="0.1524" layer="91"/>
+<wire x1="182.88" y1="180.34" x2="73.66" y2="180.34" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="180.34" x2="73.66" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="PA11"/>
+<wire x1="86.36" y1="96.52" x2="73.66" y2="96.52" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$16" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PA15"/>
+<wire x1="86.36" y1="91.44" x2="68.58" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="91.44" x2="68.58" y2="182.88" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="182.88" x2="160.02" y2="182.88" width="0.1524" layer="91"/>
+<pinref part="S2" gate="G$1" pin="SW+"/>
+<wire x1="160.02" y1="182.88" x2="160.02" y2="154.94" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
