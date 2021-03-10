@@ -131,7 +131,7 @@ Some low power audio amplifiers IC also implement mute circuit that can be contr
 
 <BR>
 
-[Back to main page](https://pu2clr.github.io/SI4735/)
+[Back to the main page](https://pu2clr.github.io/SI4735/)
 
 
 
