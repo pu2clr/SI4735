@@ -1,5 +1,8 @@
 /*
   Test and validation of the SI4735 Arduino Library on ATtiny85.
+
+  This sketch works with a fix frequency and allow you to deal with SSB offset
+
   It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
   This example shows the use of the external EEPROM. It will transfer the SSB patch content stored in an EEPROM 
   to SI4735-D60. To run this sketch you must have a external I2C EEPROM device configured with your ATtiny85 
@@ -25,8 +28,8 @@
 
 #define EEPROM_ADDR 0x50
 
-#define SSB_UP      1    // AM/FM SWITCH
-#define SSB_DOWN    4    // Seek Up
+#define SSB_UP      1    // BFO offset up
+#define SSB_DOWN    4    // BFO offset down
 #define FM_FUNCTION 0
 #define AM_FUNCTION 1
 #define MAX_TIME 200
@@ -60,16 +63,11 @@ void setup()
   oled.setCursor(0, 1);
   oled.print("SSB...");
   
-  // si4735.setup(RESET_PIN, FM_FUNCTION);
   si4735.setup(RESET_PIN, AM_FUNCTION);
   delay(100);
 
   loadSSB();
   delay(1000);
-
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
-  // si4735.setFM(8400, 10800, 10570, 10);
-  delay(100);
   si4735.setSSB(520, 1710,  810, 10, 1);
   currentFrequency = si4735.getFrequency();
   si4735.setVolume(55);
