@@ -859,13 +859,18 @@ This problem can be a little complicated to solve. I have observed that very few
 
 If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on IDE Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version.
 
-This problem also can be caused by the external crystal. This crystal needs a minimum delay to become stable after a reset or power up command. Currently, this delay is 10ms. Try to increase that delay by using the method setMaxDelayPowerUp.
+This problem also can be caused by the external crystal connected to the SI473X device (in general 32768K). This crystal needs a minimum delay to become stable after a reset or power up command. Currently, this delay is 10ms. Try to increase that delay by using the method setMaxDelayPowerUp.
 
 
 __Example:__
 
 ```cpp
- si4735.setMaxDelayPowerUp(500);
+void setup() {
+ 
+ si4735.setMaxDelayPowerUp(500); // now the delay after power up will be 500 ms
+ si4735.setup(RESET_PIN, FM_FUNCTION);
+
+}
 ```
 
 
@@ -875,13 +880,15 @@ __Example:__
 __Example:__
 
 ```cpp
-si4735.setMaxDelaySetFrequency(50);
+void setup() {
+  si4735.setMaxDelaySetFrequency(50);
+  si4735.setup(RESET_PIN, FM_FUNCTION);
+}
 ```
 
 <BR>
 
 __Finally, if no previous attempt could not solve the issue, check that the crystal is working correctly__.
-
 
 
 ### I cannot tune satisfactorily any station on LW, MW or SW
