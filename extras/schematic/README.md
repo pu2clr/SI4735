@@ -129,7 +129,9 @@ void setup() {
 
 Some low power audio amplifiers IC also implement mute circuit that can be controlled externally. You can find this resource on __[LM4906](http://www.ti.com/lit/ds/symlink/lm4906.pdf), [LM4863](https://www.ti.com/lit/ds/symlink/lm4863.pdf?ts=1588602798363), KA8602B, MC34119, PAM8403__ and __HT82V739__ devices.
 
+<BR>
 
+[Back to main page](https://pu2clr.github.io/SI4735/)
 
 
 
