@@ -4502,7 +4502,7 @@ Variant with &lt;b&gt;I2C interface&lt;/b&gt;
 </instance>
 <instance part="U$1" gate="G$1" x="88.9" y="139.7" smashed="yes" rot="R180">
 <attribute name="NAME" x="73.66" y="127" size="1.778" layer="95" rot="R180"/>
-<attribute name="VALUE" x="73.66" y="129.54" size="1.778" layer="96" rot="R180"/>
+<attribute name="VALUE" x="104.14" y="157.48" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="SUPPLY2" gate="G$1" x="99.06" y="111.76" smashed="yes">
 <attribute name="VALUE" x="97.155" y="114.935" size="1.778" layer="96"/>

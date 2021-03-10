@@ -1,7 +1,7 @@
 /*
   Test and validation of the SI4735 Arduino Library on ATtiny85.
 
-  This sketch works with a fix frequency and allow you to deal with SSB offset
+  This sketch works with a fixed frequency and allows you to deal with SSB offset
 
   It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
   This example shows the use of the external EEPROM. It will transfer the SSB patch content stored in an EEPROM 
