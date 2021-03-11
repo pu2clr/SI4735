@@ -726,7 +726,7 @@ The image bellow shows a version of Slicon Labs SSOP Typical Application Schemat
 <BR>
 
 
-![Basic Schematic Eagle version](./extras/images/schematic_mute_circuit_eagle.png)
+![Basic Schematic Eagle version](./extras/images/schematic_basic_eagle.png)
 
 
 __Please, check the folder [extras/schematic/](https://pu2clr.github.io/SI4735/extras/schematic)__. There, you will find other schematics with OLED, LCD, TFT, buttons and encoders setup. Also, check the comments at the beginning of each sketch example. You will find the SI473X, button, encoder, display and Arduino settings. 
@@ -910,7 +910,7 @@ The schematic below shows this approach.
 
 <BR>
 
-![Mute circuit](./extras/images/mute_circuit_eagle.png)
+![Mute circuit](extras/images/schematic_mute_circuit_eagle.png)
 
 Considering that you are using a MCU based on Atmega328, when the D14 is HIGH the Si47XX output audio will be drained to the ground. At this condition, no audio will be transferred to the amplifier input and, consequently, to the speaker. So, no loud click in the speaker. 
 
