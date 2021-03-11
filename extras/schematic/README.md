@@ -99,6 +99,9 @@ The schematic below is a simple example that shows a way to use your smartphone 
 ![Mobile device remote control Schematic](https://pu2clr.github.io/bluetooth_remote_control/extras/schematic_basic.png)
 
 
+See [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://pu2clr.github.io/bluetooth_remote_control/).
+
+
 ## External Mute Circuit 
 
 The SI47XX devices have about DC bias component in the analog audio output pins (SI4735-D60 pins 23 and 24). When the device goes to power down mode, the voltage on the audio pins drops to 0V.  The device do it internally and there is not a way to avoid that. When the device goes to power up, that audio pins suddenly goes to high DC again. This transition causes the loud pop in the speaker. It is possible to solve this problem by adding an extra __mute__ circuit and control it by the MCU (Atmega, ESP32, STM32, ATtiny85 etc). 
