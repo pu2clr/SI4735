@@ -207,6 +207,7 @@ Do you need some old version (release) of this library?  If yes, [check here](ht
 * Mrs. [Nancy Daniels Yoga](https://github.com/LadyRoninEngineer/Si473x) for sharing experiences and suggestions for noise reduction on the I2C bus and also for sharing the excellent board projects for the SI4732-A10 device;
 * Mr. Tom Nardi for his great article ["Multi-Band Receiver On A Chip Controlled By Arduino"](https://hackaday.com/2020/03/02/multi-band-receiver-on-a-chip-controlled-by-arduino/) on Hackaday website;
 * [Mr. Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) for making available the SSBRX patches for SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0);
+* Luiz Carlos, PT2MC, for guiding me  about external mute circuit; 
 * Mr. Francisco Scaramella  for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library;
 * Mr. David Kellmer (USA) for suggesting corrections on the documentation and sketches; 
 * WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode; 
