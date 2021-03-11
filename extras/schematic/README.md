@@ -94,9 +94,9 @@ Sketches on [SI47XX_07_STM32](https://github.com/pu2clr/SI4735/tree/master/examp
 
 ## [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://github.com/pu2clr/bluetooth_remote_control)
 
-The schematic below is a simple example that shows a way to use your smartphone as a remote control via Bluetooth. You will find more details [here](https://github.com/pu2clr/bluetooth_remote_control).
+The schematic below is a simple example that shows a way to use your smartphone as a remote control via Bluetooth. You will find more details [here](https://pu2clr.github.io/bluetooth_remote_control/).
 
-![Mobile device remote control Schematic](https://github.com/pu2clr/bluetooth_remote_control/blob/master/extras/schematic_basic.png)
+![Mobile device remote control Schematic](https://pu2clr.github.io/bluetooth_remote_control/extras/schematic_basic.png)
 
 
 ## External Mute Circuit 
