@@ -5056,13 +5056,6 @@ Datasheet</description>
 <wire x1="66.04" y1="86.36" x2="78.74" y2="86.36" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$21" class="0">
-<segment>
-<pinref part="U$2" gate="G$1" pin="(PCINT2/AIN1/ADC2)PA2"/>
-<pinref part="U1" gate="A" pin="!RST"/>
-<wire x1="78.74" y1="93.98" x2="33.02" y2="93.98" width="0.1524" layer="91"/>
-</segment>
-</net>
 </nets>
 </sheet>
 </sheets>
