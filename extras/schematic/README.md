@@ -31,7 +31,7 @@ Sketche [SI47XX_02_ALL_IN_ONE_OLED](https://github.com/pu2clr/SI4735/blob/master
 The schematic below guides you to build a SI473X based receiver using the ESP32 device. 
 
 
-![Bluepill Basic schematic](../images/schematic_esp32_basic.png)
+![ESP32 Basic schematic](../images/schematic_esp32_basic.png)
 
 <BR>
 

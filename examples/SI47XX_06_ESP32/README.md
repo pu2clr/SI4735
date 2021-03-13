@@ -67,7 +67,13 @@ The ESP32 board has enough RAM memory to support all SSB patch and a nice TFT Di
 You can use the same schematic used on Arduino family. 
 However, you have pay attention to the new configuration pins on ESP32. See tables bellow. The circuit below shows a generic setup for ESP32. __It is very important to consider the pinout of your ESP32 board__.
 
+<BR> 
+
 ![Schematic for I2C device](../../extras/images/schematic_schematic_esp32_eagle.png))
+
+<BR>
+
+![ESP32 Basic schematic](../../extras/images/schematic_esp32_basic.png)
 
 
 ### ESP-LOLIN32-WEMOS touch capacitive 
