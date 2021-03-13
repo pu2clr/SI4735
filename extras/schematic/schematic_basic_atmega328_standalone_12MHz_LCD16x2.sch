@@ -5480,6 +5480,8 @@ Datasheet</description>
 <text x="93.98" y="81.28" size="1.778" layer="91">D13</text>
 <text x="63.5" y="124.46" size="1.778" layer="91">D2</text>
 <text x="71.12" y="109.22" size="1.778" layer="91">D3</text>
+<text x="162.56" y="124.46" size="1.778" layer="91">Optional </text>
+<rectangle x1="149.86" y1="99.06" x2="182.88" y2="121.92" layer="207"/>
 </plain>
 <instances>
 <instance part="U1" gate="A" x="-71.12" y="116.84" smashed="yes">
