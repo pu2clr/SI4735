@@ -30,7 +30,7 @@
 */
 
 #include <SI4735.h>
-// #include <LiquidCrystal.h>
+#include <Tiny4kOLED.h>
 #include "Rotary.h"
 
 // #include "patch_init.h" // SSB patch for whole SSBRX initialization string
@@ -159,7 +159,7 @@ Band band[] = {
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
-int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
+int tabStep[] = {1, 5, 10, 50, 500};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 int idxStep = 0;
 uint16_t currentStep = 1;
@@ -169,30 +169,29 @@ uint8_t volume = DEFAULT_VOLUME;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
-// LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
+
 SI4735 rx;
 
 void setup()
 {
   // Encoder pins
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
-  // lcd.begin(16, 2);
-  // Splash - Change it for your introduction text.
-  // lcd.setCursor(0, 0);
-  // lcd.print("PU2CLR-SI4735");
-  // lcd.setCursor(0, 1);
-  // lcd.print("Arduino Library");
-  Flash(2000);
-  // lcd.setCursor(0, 0);
-  // lcd.print("DIY Mirko Radio");
-  // lcd.setCursor(0, 1);
-  // lcd.print("By RICARDO/2020");
-  Flash(3000);
+
+  oled.begin();
+  oled.clear();
+  oled.on();
+  oled.setCursor(0, 0);
+  oled.print(F("SI473X-Attiny84A"));
+  oled.setCursor(0, 2);
+  // oled.print(F("   By PU2CLR   "));
+  delay(3000);
+  oled.clear();
+
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
-  rx.setI2CFastMode(); // Set I2C bus speed.
-  rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
+  //rx.setI2CFastMode(); // Set I2C bus speed.
+  //rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
   rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
   // Set up the radio for the current band (see index table variable bandIdx )
 
@@ -202,17 +201,6 @@ void setup()
   showStatus();
 }
 
-/**
- *  Cleans the screen with a visual effect.
- */
-void Flash (int d)
-{
-  delay(d);
-  // lcd.clear();
-  // lcd.noDisplay();
-  delay(500);
-  // lcd.display();
-}
 
 /**
     Set all command flags to false
@@ -228,7 +216,7 @@ void disableCommands()
   cmdMenu = false;
   cmdSoftMuteMaxAtt = false;
   countClick = 0;
-  showCommandStatus((char *) "VFO ");
+  showCommandStatus((char *) F("VFO "));
 }
 
 /**
@@ -258,7 +246,7 @@ void showFrequency()
     bufferDisplay[2] = tmp[2];
     bufferDisplay[3] = '.';
     bufferDisplay[4] = tmp[3];
-    unit = (char *) "MHz";
+    unit = (char *) F("MHz");
   }
   else
   {
@@ -272,7 +260,7 @@ void showFrequency()
       bufferDisplay[3] = tmp[3];
       bufferDisplay[4] = tmp[4];
     }
-    unit = (char *) "kHz";
+    unit = (char *) F("kHz");
   }
   bufferDisplay[5] = '\0';
   strcat(bufferDisplay, unit);
@@ -315,6 +303,7 @@ void showBandwitdth()
  */
 void showRSSI()
 {
+  /*
   int rssiAux = 0;
   char sMeter[7];
   if (rssi < 2)
@@ -338,6 +327,7 @@ void showRSSI()
     // lcd.setCursor(10, 0);
     // lcd.print((rx.getCurrentPilot()) ? "STEREO" : "  MONO");
   }
+  */
 }
 
 /**
@@ -364,7 +354,7 @@ void showAgcAtt()
  */
 void showStep()
 {
-  char stAux[10];
+  // char stAux[10];
   // sprintf(stAux, "STEP: %4u", currentStep);
   // lcd.clear();
   // lcd.setCursor(0, 0);
@@ -377,7 +367,7 @@ void showStep()
  */
 void showVolume()
 {
-  char volAux[12];
+  // char volAux[12];
   // sprintf(volAux, "VOLUME: %2u", rx.getVolume());
   // lcd.clear();
   // lcd.setCursor(0, 0);
@@ -389,7 +379,7 @@ void showVolume()
  */
 void showSoftMute()
 {
-  char sMute[15];
+  // char sMute[15];
   // sprintf(sMute, "Soft Mute: %2d", softMuteMaxAttIdx);
   // lcd.clear();
   // lcd.setCursor(0, 0);
@@ -441,7 +431,7 @@ void useBand()
   idxStep = getStepIndex(currentStep);
   rssi = 0;
   showStatus();
-  showCommandStatus((char *) "Band");
+  showCommandStatus((char *) F("Band"));
 }
 
 /**
@@ -482,7 +472,7 @@ void showMenu() {
   // lcd.setCursor(0, 0);
   // lcd.setCursor(0, 1);
   // lcd.print(menu[menuIdx]);
-  showCommandStatus( (char *) "Menu");
+  showCommandStatus( (char *) F("Menu"));
 }
 
 /**
