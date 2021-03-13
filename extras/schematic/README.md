@@ -14,6 +14,7 @@ The schematic below shows how to connect the
 [All Sketches on SI47XX_01_SERIAL_MONITOR folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR)
 
 
+<BR>
 
 ## Atmega328 based board and OLED
 
@@ -22,7 +23,7 @@ The schematic below shows how to connect the
 
 Sketche [SI47XX_02_ALL_IN_ONE_OLED](https://github.com/pu2clr/SI4735/blob/master/examples/SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED/)
 
-
+<BR>
 
 ## ESP32 based board 
 
@@ -38,7 +39,7 @@ The schematic below guides you to build a SI473X based receiver using the ESP32 
 
 [All Sketches on SI47XX_06_ESP32 folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR)
 
-
+<BR>
 
 ## Standalone ATmega328 with or without external Crystal (SI4735-D60 and LCD 16x2). 
 
@@ -53,6 +54,7 @@ Sketch [SI47XX_02_for_Mirko_Pavleski_radio](https://github.com/pu2clr/SI4735/tre
 
 Please, use the [MiniCore](https://github.com/MCUdude/MiniCore) setup on your Arduino IDE to deal with standalone Atmega328.
 
+<BR>
 
 ## Basic schematic with TFT
 
@@ -64,7 +66,7 @@ The schematic below guides you to build your own receiver based on the SI473X wi
 
 Sketches on [examples/SI47XX_04_TFT/](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT)
 
-
+<BR>
 
 ## Arduino DUE/MEGA and touch TFT display. 
 
@@ -76,7 +78,7 @@ The schematic below shows just the Arduino DUE and SI473X connections. The touch
 
 Sketches on [SI47XX_10_RDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS)
 
-
+<BR>
 
 ## Attiny85 basic circuit
 
@@ -88,6 +90,7 @@ You can use de Si4735 Arduino Library on the very small ATtiny85 or Attiny84. Th
 
 Sketches on [examples/SI47XX_05_ATTINY85](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85)
 
+<BR>
 
 ## Bluepill - STM32F103C8 basic schematic
 
@@ -99,6 +102,18 @@ The schematic below guides you to build a SI473X based receiver using the STM32 
 
 Sketches on [SI47XX_07_STM32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32)
 
+<BR>
+
+## [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://github.com/pu2clr/bluetooth_remote_control)
+
+The schematic below is a simple example that shows a way to use your smartphone as a remote control via Bluetooth. You will find more details [here](https://pu2clr.github.io/bluetooth_remote_control/).
+
+![Mobile device remote control Schematic](https://pu2clr.github.io/bluetooth_remote_control/extras/schematic_basic.png)
+
+
+See [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://pu2clr.github.io/bluetooth_remote_control/).
+
+<BR>
 
 ## [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://github.com/pu2clr/bluetooth_remote_control)
 
@@ -110,18 +125,7 @@ The schematic below is a simple example that shows a way to use your smartphone 
 See [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://pu2clr.github.io/bluetooth_remote_control/).
 
 
-
-## [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://github.com/pu2clr/bluetooth_remote_control)
-
-The schematic below is a simple example that shows a way to use your smartphone as a remote control via Bluetooth. You will find more details [here](https://pu2clr.github.io/bluetooth_remote_control/).
-
-![Mobile device remote control Schematic](https://pu2clr.github.io/bluetooth_remote_control/extras/schematic_basic.png)
-
-
-See [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://pu2clr.github.io/bluetooth_remote_control/).
-
-
-
+<BR>
 
 ## External Mute Circuit 
 
