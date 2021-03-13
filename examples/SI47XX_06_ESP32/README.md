@@ -69,9 +69,13 @@ However, you have pay attention to the new configuration pins on ESP32. See tabl
 
 <BR> 
 
+#### ESP32 basic setup
+
 ![ESP32 Schematic](../../extras/images/schematic_schematic_esp32_eagle.png))
 
 <BR>
+
+#### ESP32 DEVKIT with OLED and Encoder setup
 
 ![ESP32 and OLED schematic](../../extras/images/schematic_esp32_basic.png)
 
