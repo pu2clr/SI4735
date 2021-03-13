@@ -7,7 +7,7 @@
 
 # Preface
 
-
+|          |            |
 |----------|------------|
 |  ![SI4735 Prototypes](extras/images/SI4735_TFT_PROJECTS_SMALL.png)        | This document is aimed at the Arduino developers, radio experimenters, hobbyists and anyone interested in building a receiver based on the Si47XX IC family from Silicon Labs.  This project is about an Arduino library for the SI47XX BROADCAST AM/FM/SW RADIO RECEIVER.|
 
