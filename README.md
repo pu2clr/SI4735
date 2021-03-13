@@ -7,7 +7,13 @@
 
 # Preface
 
-This document is aimed at the Arduino developers, radio experimenters, hobbyists and anyone interested in building a receiver based on the Si47XX IC family from Silicon Labs.  This project is about an Arduino library for the SI47XX BROADCAST AM/FM/SW RADIO RECEIVER.  This library is intended to provide an easier interface for controlling the SI47XX (including the boards ["PL102BA-S V:2.1 10628"](https://pu2clr.github.io/SI4735/extras/BOARD_PL102BA/) and ["NE928-10A V:01"](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/) based on SI4730) by using Arduino platform. It also has support to the __SSB mode__ on __SI4735-D60__ and __SI4732-A10 devices__. __The communication protocol used by this library is the I²C__. 
+
+|----------|------------|
+|  ![SI4735 Prototypes](extras/images/SI4735_TFT_PROJECTS_SMALL.png)        | This document is aimed at the Arduino developers, radio experimenters, hobbyists and anyone interested in building a receiver based on the Si47XX IC family from Silicon Labs.  This project is about an Arduino library for the SI47XX BROADCAST AM/FM/SW RADIO RECEIVER.|
+
+<BR>
+
+This library is intended to provide an easier interface for controlling the SI47XX (including the boards ["PL102BA-S V:2.1 10628"](https://pu2clr.github.io/SI4735/extras/BOARD_PL102BA/) and ["NE928-10A V:01"](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/) based on SI4730) by using Arduino platform. It also has support to the __SSB mode__ on __SI4735-D60__ and __SI4732-A10 devices__. __The communication protocol used by this library is the I²C__. 
 
 This library was built based on ["AN332 Si47XX PROGRAMMING GUIDE REV 1.0"](https://www.silabs.com/documents/public/application-notes/AN332.pdf) and __AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES__. It also can be used on __all members of the SI473X family__ respecting, of course, the features available in each IC version. Please, follow the [contents below](https://pu2clr.github.io/SI4735/#contents) to get the most out of this document. 
 
