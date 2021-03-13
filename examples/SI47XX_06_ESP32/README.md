@@ -69,11 +69,11 @@ However, you have pay attention to the new configuration pins on ESP32. See tabl
 
 <BR> 
 
-![Schematic for I2C device](../../extras/images/schematic_schematic_esp32_eagle.png))
+![ESP32 Schematic](../../extras/images/schematic_schematic_esp32_eagle.png))
 
 <BR>
 
-![ESP32 Basic schematic](../../extras/images/schematic_esp32_basic.png)
+![ESP32 and OLED schematic](../../extras/images/schematic_esp32_basic.png)
 
 
 ### ESP-LOLIN32-WEMOS touch capacitive 
