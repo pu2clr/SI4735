@@ -26,6 +26,14 @@ Sketche [SI47XX_02_ALL_IN_ONE_OLED](https://github.com/pu2clr/SI4735/blob/master
 
 ## ESP32 based board 
 
+
+The schematic below guides you to build a SI473X based receiver using the ESP32 device. 
+
+
+![Bluepill Basic schematic](../images/schematic_esp32_basic.png)
+
+<BR>
+
 ![Esp32 based board schematic](../images/schematic_schematic_esp32_eagle.png)
 
 [All Sketches on SI47XX_06_ESP32 folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR)
@@ -101,16 +109,6 @@ The schematic below is a simple example that shows a way to use your smartphone 
 
 See [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://pu2clr.github.io/bluetooth_remote_control/).
 
-
-## ESP32 basic schematic
-
-The schematic below guides you to build a SI473X based receiver using the ESP32 device. 
-
-
-![Bluepill Basic schematic](../images/schematic_esp32_basic.png)
-
-
-Sketches on [SI47XX_06_ESP32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32)
 
 
 ## [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://github.com/pu2clr/bluetooth_remote_control)
