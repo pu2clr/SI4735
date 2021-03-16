@@ -268,6 +268,9 @@ void showFrequency()
   String freqDisplay;
   String unit;
   String bandMode;
+
+  // oled.setFont(FONT8X16DIGITS);
+
   int divider = 1;
   int decimals = 3;
   if (band[bandIdx].bandType == FM_BAND_TYPE)
@@ -298,6 +301,8 @@ void showFrequency()
   oled.print("        ");
   oled.setCursor(38, 0);
   oled.print(freqDisplay);
+
+  // oled.setFont(FONT6X8);
 
   if (currentFrequency < 520)
     bandMode = "LW  ";
