@@ -203,8 +203,14 @@ void showVolume()
   lcd.print(volume);
 }
 
-
-
+/* *****************************
+ * Show the Smeter
+ * The code of showSmeter is part of a code extracted from  https://www.dropbox.com/sh/at3ymvlz8sfhefl/AADWlDpcdjlBc2P30TiWva-qa?dl=0
+ * The original Arduino sketch was written by Greg Stievenart with no claim to or any images or information 
+ * provided in this code. Freely published May 26, 2016.
+ * 
+ * I copied only the part of Greg's code that matters to this example. 
+ */
 void showSmeter(uint16_t signalLevel)
 {
   static uint8_t buffer[20]; 
