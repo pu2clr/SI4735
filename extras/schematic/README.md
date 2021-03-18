@@ -213,7 +213,16 @@ It is a HF band pass filter controlled by Arduino. It is designed for HF receive
 ![Band Pass Filter controlled by Arduino](https://pu2clr.github.io/auto_bpf_arduino/images/schematic_01.png)
 
 
+
+See videos: 
+
+* [HF Auto Bandpass filter controlled by Arduino (first test)](https://youtu.be/M1PDRzVvAm0)
+* [HF auto bandpass filter controlled by Arduino (real test)](https://youtu.be/KuAmm0LjUGA)
+
+{% include bpf.html %}
+
 [Back to the main page](https://pu2clr.github.io/SI4735/)
+
 
 
 
