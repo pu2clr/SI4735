@@ -43,7 +43,7 @@ The schematic below guides you to build a SI473X based receiver using the ESP32 
 [All Sketches on SI47XX_06_ESP32 folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR)
 
 
-* [Si4735 Arduino Library - Arduino Mega 2560 and ESP32 LOLIN32 WEMOS](https://youtu.be/H-uIJclH9l8)
+* [Si4735 Arduino Library - Arduino Mega 2560 and ESP32 LOLIN32 WEMOS](https://youtu.be/HrxR-bUqbjw)
 
 {% include esp32_mega2560.html %}
 
