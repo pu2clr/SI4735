@@ -60,6 +60,7 @@
 #define FM_BLEND_SNR_MONO_THRESHOLD 0x1805
 #define FM_BLEND_MULTIPATH_STEREO_THRESHOLD 0x1808
 #define FM_BLEND_MULTIPATH_MONO_THRESHOLD 0x1809
+#define FM_CHANNEL_FILTER 0x1102
 
 // FM SEEK Properties
 #define FM_SEEK_BAND_BOTTOM 0x1400         // Sets the bottom of the FM band for seek
@@ -1961,6 +1962,24 @@ public:
     }
 
     void setBandwidth(uint8_t AMCHFLT, uint8_t AMPLFLT);
+
+    /**
+     * @brief Sets the Bandwith on FM mode
+     * @details Selects bandwidth of channel filter applied at the demodulation stage. Default is automatic which means the device automatically selects proper channel filter. <BR>
+     * @details | Filter  | Description |
+     * @details | ------- | -------------|
+     * @details |    0    | Automatically select proper channel filter (Default) |
+     * @details |    1    | Force wide (110 kHz) channel filter |
+     * @details |    2    | Force narrow (84 kHz) channel filter |
+     * @details |    3    | Force narrower (60 kHz) channel filter |
+     * @details |    4    | Force narrowest (40 kHz) channel filter |
+     * 
+     * @param filter_value 
+     */
+    inline void setFmBandwidth(uint8_t filter_value = 0)
+    {
+        sendProperty(FM_CHANNEL_FILTER, filter_value);
+    }
 
     /**
      * @ingroup group08 Tune Frequency 

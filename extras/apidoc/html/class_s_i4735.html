@@ -399,6 +399,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ga8755743a36d2d4662c8db918d02ee4e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga8755743a36d2d4662c8db918d02ee4e1">setBandwidth</a> (uint8_t AMCHFLT, uint8_t AMPLFLT)</td></tr>
 <tr class="memdesc:ga8755743a36d2d4662c8db918d02ee4e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects the bandwidth of the channel filter for AM reception.  <a href="group__group08.html#ga8755743a36d2d4662c8db918d02ee4e1">More...</a><br /></td></tr>
 <tr class="separator:ga8755743a36d2d4662c8db918d02ee4e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af28a854a8997ba7a195b6365b20fda95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#af28a854a8997ba7a195b6365b20fda95">setFmBandwidth</a> (uint8_t filter_value=0)</td></tr>
+<tr class="memdesc:af28a854a8997ba7a195b6365b20fda95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Bandwith on FM mode.  <a href="class_s_i4735.html#af28a854a8997ba7a195b6365b20fda95">More...</a><br /></td></tr>
+<tr class="separator:af28a854a8997ba7a195b6365b20fda95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7bb16741b03d8f1fb14348dce14c1a6b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga7bb16741b03d8f1fb14348dce14c1a6b">getTuneFrequecyFast</a> ()</td></tr>
 <tr class="memdesc:ga7bb16741b03d8f1fb14348dce14c1a6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the FAST tuning status.  <a href="group__group08.html#ga7bb16741b03d8f1fb14348dce14c1a6b">More...</a><br /></td></tr>
 <tr class="separator:ga7bb16741b03d8f1fb14348dce14c1a6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -902,6 +905,49 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="af28a854a8997ba7a195b6365b20fda95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af28a854a8997ba7a195b6365b20fda95">&#9670;&nbsp;</a></span>setFmBandwidth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setFmBandwidth </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>filter_value</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the Bandwith on FM mode. </p>
+<p>Selects bandwidth of channel filter applied at the demodulation stage. Default is automatic which means the device automatically selects proper channel filter. <br  />
+</p>
+<p>| Filter | Description |</p>
+<p>| ----&mdash; | ----------&mdash;|</p>
+<p>| 0 | Automatically select proper channel filter (Default) |</p>
+<p>| 1 | Force wide (110 kHz) channel filter |</p>
+<p>| 2 | Force narrow (84 kHz) channel filter |</p>
+<p>| 3 | Force narrower (60 kHz) channel filter |</p>
+<p>| 4 | Force narrowest (40 kHz) channel filter |</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filter_value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

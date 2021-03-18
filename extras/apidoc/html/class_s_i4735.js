@@ -111,6 +111,7 @@ var class_s_i4735 =
     [ "isCurrentTuneAM", "group__group08.html#ga4714f08989f020110620781ae968b01b", null ],
     [ "isCurrentTuneSSB", "group__group08.html#ga6913873c511adb357fa7c02f2a8386d7", null ],
     [ "setBandwidth", "group__group08.html#ga8755743a36d2d4662c8db918d02ee4e1", null ],
+    [ "setFmBandwidth", "class_s_i4735.html#af28a854a8997ba7a195b6365b20fda95", null ],
     [ "getTuneFrequecyFast", "group__group08.html#ga7bb16741b03d8f1fb14348dce14c1a6b", null ],
     [ "setTuneFrequencyFast", "group__group08.html#ga51d816112d974f10306d9d001667395a", null ],
     [ "getTuneFrequecyFreeze", "group__group08.html#ga96d83cfe35e5fb5db4719d604871e8cc", null ],

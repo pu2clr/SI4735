@@ -261,6 +261,13 @@ Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1kHz
                              {1, "4.0"},
                              {0, "6.0"}}; // 0 = 6kHz
 
+int8_t bwIdxFM = 0;
+Bandwitdth bandwitdthFM[] = {{0, "AUT"}, // Automatic
+                             {1, "110"}, // Force wide (110 kHz) channel filter.
+                             {2, " 84"},
+                             {3, " 60"},
+                             {4, " 40"}};
+
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
@@ -564,7 +571,7 @@ void setButton(Adafruit_GFX_Button *button, int16_t col, int16_t lin, int16_t wi
 
 
 void setButtonsFM() {
-  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, "---", true);
+  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, "BW", true);
   setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
   setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
   setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
@@ -620,7 +627,7 @@ void showTemplate()
   setButton(&bAM, 45, KEYBOARD_LIN_OFFSET + 295, 70, 49, "AM", true);
   setButton(&bLSB, 120, KEYBOARD_LIN_OFFSET + 295, 70, 49, "LSB", true);
   setButton(&bUSB, 195, KEYBOARD_LIN_OFFSET + 295, 70, 49, "USB", true);
-  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, "---", true);
+  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, "BW", true);
   setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
   setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
   setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
@@ -860,7 +867,7 @@ void showBandwitdth(bool drawAfter)
     sprintf(bw, "BW:%s", bandwitdthAM[bwIdxAM].desc);
   }
   else {
-    return;
+    sprintf(bw, "BW:%s", bandwitdthFM[bwIdxFM].desc);
   }
   setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, bw, drawAfter);
 }
@@ -1288,6 +1295,14 @@ void switchFilter(uint8_t v)
       bwIdxAM = 6;
 
     si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+  } else {
+    bwIdxFM = (v == 1) ? bwIdxFM + 1 : bwIdxFM - 1;
+    if (bwIdxFM > 4)
+      bwIdxFM = 0;
+    else if (bwIdxFM < 0)
+      bwIdxFM = 4;
+
+    si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
   }
   showBandwitdth();
   elapsedCommand = millis();
