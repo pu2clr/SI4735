@@ -144,6 +144,13 @@ The schematic below is a simple example that shows a way to use your smartphone 
 
 See [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://pu2clr.github.io/bluetooth_remote_control/).
 
+See video
+
+* [SI4735 receiver prototype controlled by iPhone via Bluetooth](https://youtu.be/Yc9DHl7yQZ0)
+
+{% include ble_remote_control.html %}
+
+
 <BR>
 
 ## [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://github.com/pu2clr/bluetooth_remote_control)
