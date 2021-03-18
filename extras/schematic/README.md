@@ -6,7 +6,7 @@ Please, also check the comments at the beginning of each sketch example availabl
 
 ## Basic Schematic (Atmega328 based board)
 
-The schematic below shows how to connect the 
+The schematic below shows how to connect the SI473X (SSOP24 package) circuit with Arduino Pro Mini 3.3V/8MHz.
 
 
 ![Basic Schematic](../images/schematic_basic_eagle.png)
