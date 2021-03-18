@@ -80,6 +80,11 @@ The schematic below shows just the Arduino DUE and SI473X connections. The touch
 
 Sketches on [SI47XX_10_RDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS)
 
+See videos: 
+
+{% include shcema_due_mega.html %}
+
+
 <BR>
 
 ## Attiny85 basic circuit
