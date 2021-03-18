@@ -82,6 +82,9 @@ Sketches on [SI47XX_10_RDS](https://github.com/pu2clr/SI4735/tree/master/example
 
 See videos: 
 
+[Arduino DUE](https://youtu.be/oI9TfJ-8Z9Q)
+[Arduino MEGA 2560](https://youtu.be/fLA2-WFK6GY)
+
 {% include shcema_due_mega.html %}
 
 
