@@ -14,7 +14,11 @@ The schematic below shows how to connect the SI473X (SSOP24 package) circuit wit
 [All Sketches on SI47XX_01_SERIAL_MONITOR folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR)
 
 
+See  video:
 
+* [All band receiver based on SI473X and standalone ATmega328 Modes: FM (VHF) and AM and SSB (HF)](https://youtu.be/H-uIJclH9l8)
+
+{% include shcematic_due_mega.html %}
 
 
 
@@ -59,6 +63,13 @@ Sketch [SI47XX_02_for_Mirko_Pavleski_radio](https://github.com/pu2clr/SI4735/tre
 
 
 Please, use the [MiniCore](https://github.com/MCUdude/MiniCore) setup on your Arduino IDE to deal with standalone Atmega328.
+
+See  video:
+
+* [SI4735 receiver prototype controlled by iPhone via Bluetooth](https://youtu.be/H-uIJclH9l8)
+
+{% include shcematic_due_mega.html %}
+
 
 <BR>
 
