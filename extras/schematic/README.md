@@ -14,6 +14,10 @@ The schematic below shows how to connect the SI473X (SSOP24 package) circuit wit
 [All Sketches on SI47XX_01_SERIAL_MONITOR folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR)
 
 
+
+
+
+
 <BR>
 
 ## Atmega328 based board and OLED
@@ -82,10 +86,10 @@ Sketches on [SI47XX_10_RDS](https://github.com/pu2clr/SI4735/tree/master/example
 
 See videos: 
 
-[Arduino DUE](https://youtu.be/oI9TfJ-8Z9Q)
-[Arduino MEGA 2560](https://youtu.be/fLA2-WFK6GY)
+* [Arduino DUE](https://youtu.be/oI9TfJ-8Z9Q)
+* [Arduino MEGA 2560](https://youtu.be/fLA2-WFK6GY)
 
-{% include shcema_due_mega.html %}
+{% include shcematic_due_mega.html %}
 
 
 <BR>
@@ -102,8 +106,8 @@ Sketches on [examples/SI47XX_05_ATTINY85](https://github.com/pu2clr/SI4735/tree/
 
 See videos: 
 
-[SI4735 Arduino Library working with ATtiny85](https://youtu.be/oI9TfJ-8Z9Q)
-[How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s)
+* [SI4735 Arduino Library working with ATtiny85](https://youtu.be/oI9TfJ-8Z9Q)
+* [How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s)
 
 {% include schematic_attiny85.html %}
 
@@ -119,6 +123,15 @@ The schematic below guides you to build a SI473X based receiver using the STM32 
 
 
 Sketches on [SI47XX_07_STM32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32)
+
+
+See videos: 
+
+* [Si4735 Arduino Library and Bluepill STM32F103](https://youtu.be/https://youtu.be/v4o5_lKKATc)
+
+
+{% include schematic_basic_pro_mini.html %}
+
 
 <BR>
 
