@@ -130,7 +130,7 @@ See videos:
 * [Si4735 Arduino Library and Bluepill STM32F103](https://youtu.be/https://youtu.be/v4o5_lKKATc)
 
 
-{% include schematic_basic_pro_mini.html %}
+{% include schematic_basic_stm32.html %}
 
 
 <BR>
