@@ -68,7 +68,7 @@ See  video:
 
 * [SI4735 receiver prototype controlled by iPhone via Bluetooth](https://youtu.be/H-uIJclH9l8)
 
-{% include shcematic_due_mega.html %}
+{% include atmega328_standalone.html %}
 
 
 <BR>
