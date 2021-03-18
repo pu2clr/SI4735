@@ -100,6 +100,14 @@ You can use de Si4735 Arduino Library on the very small ATtiny85 or Attiny84. Th
 
 Sketches on [examples/SI47XX_05_ATTINY85](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85)
 
+See videos: 
+
+[SI4735 Arduino Library working with ATtiny85](https://youtu.be/oI9TfJ-8Z9Q)
+[How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s)
+
+{% include schematic_attiny85.html %}
+
+
 <BR>
 
 ## Bluepill - STM32F103C8 basic schematic
