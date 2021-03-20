@@ -236,6 +236,14 @@ See videos:
 
 
 
+## Storing data into the internal EEPROM before shutdowning  
+
+The EEPROM memory has a life time around 100,000 write/erase cycles. Therefore, writing data to eeprom with each system status change could give an application a very short life. To mitigate this problem, some approaches can be used to save recordings on the EEPROM. 
+
+The following circuit illustrates a way to configure the Arduino based on Atmega328 working with 3.7V (Arduino Pro Mini 8MHz 3.3V) or similar to record useful information on its internal EEPROM.  The idea of this approach is to obtain the last status of the system after turning it back on.  Observe  in the circuit that a 2000uF electrolytic capacitor has been added. This capacitor is powered by the battery voltage or external power supply while the system is working. When the user turn the system off, the capacitor will still keep the arduino running for a few seconds.  Observe also that the Arduino pin 16 (A3), is connected to the power supply. That setup works as a shutdown detector. I mean, the pin 16 status will keep HIGH while the power supply is on. However, when the power supply is off, the pin 16 status will be LOW. Now, all the programmer have to do is checking the pin 16 status. When it is LOW, the Arduino will have few seconds to save data into the internal EEPROM. Actually, the best way to save data immediately is using the interrupt approaching via pins 2 or 3 of Atmega328. However, this example uses the pulling approaching. Due to the voltage drop caused by the diode, it is important to raise the input voltage to 3.7V. This way the Arduino will continue operating steadily for a few seconds after turing the system off. This time should be enough to save the data into the EEPROM. Also it is important to say that the Arduino pin 16 have to be configured to internal pull up resistor or you have to use a external pull up resistor. The Atmega328 Datasheet says that the internal pull up resistors has a wide range between 20kOhm and 50kOhm. The pull up resistance value also implies the discharge time of the capacitor. Thus, the discharge produced by the pull up resistor added to the system consumption should guide the choice of the right electrolytic capacitor.   
+
+
+![Storing data into the internal EEPROM before shutdowning ](../images/schematic_storing_data_eeprom_shutdown.png)
 
 
 
