@@ -388,6 +388,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ga46d1dae32aae4da7ad9fabfdb36440cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga46d1dae32aae4da7ad9fabfdb36440cc">setAMFrontEndAgcControl</a> (uint8_t MIN_GAIN_INDEX, uint8_t ATTN_BACKUP)</td></tr>
 <tr class="memdesc:ga46d1dae32aae4da7ad9fabfdb36440cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adjusts the AM AGC for external front-end attenuator and external front-end cascode LNA.  <a href="group__group08.html#ga46d1dae32aae4da7ad9fabfdb36440cc">More...</a><br /></td></tr>
 <tr class="separator:ga46d1dae32aae4da7ad9fabfdb36440cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20b9ef7d2f0fba55eaf20f48781846b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a20b9ef7d2f0fba55eaf20f48781846b5">setAmNoiseBlank</a> (uint16_t nb_rate=64, uint16_t nb_interval=55, uint16_t nb_irr_filter=300)</td></tr>
+<tr class="memdesc:a20b9ef7d2f0fba55eaf20f48781846b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Am Noise Blank.  <a href="class_s_i4735.html#a20b9ef7d2f0fba55eaf20f48781846b5">More...</a><br /></td></tr>
+<tr class="separator:a20b9ef7d2f0fba55eaf20f48781846b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7ca2ffa6ad68ca69e4f35a3c40bbc3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#ae7ca2ffa6ad68ca69e4f35a3c40bbc3c">isCurrentTuneFM</a> ()</td></tr>
 <tr class="separator:ae7ca2ffa6ad68ca69e4f35a3c40bbc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4714f08989f020110620781ae968b01b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga4714f08989f020110620781ae968b01b">isCurrentTuneAM</a> ()</td></tr>
@@ -883,6 +886,62 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a20b9ef7d2f0fba55eaf20f48781846b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20b9ef7d2f0fba55eaf20f48781846b5">&#9670;&nbsp;</a></span>setAmNoiseBlank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setAmNoiseBlank </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>nb_rate</em> = <code>64</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>nb_interval</em> = <code>55</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>nb_irr_filter</em> = <code>300</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the Am Noise Blank. </p>
+<p>Sets Noise blanking rate in 100 Hz units</p>
+<p>Sets the Interval in micro-seconds that original samples are replaced by sample-hold clean samples.</p>
+<p>Sets the bandwidth of the noise floor estimator.</p>
+<p>ATTENTION: It works on SI474X. It may not work on SI473X devices.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nb_rate</td><td>Noise blanking rate in 100 Hz units. Default value is 64. </td></tr>
+    <tr><td class="paramname">nb_interval</td><td>Interval in micro-seconds that original samples are replaced by interpolated clean samples. Default value is 55 μs. </td></tr>
+    <tr><td class="paramname">nb_irr_filter</td><td>Sets the bandwidth of the noise floor estimator. Default value is 300. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ae7ca2ffa6ad68ca69e4f35a3c40bbc3c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae7ca2ffa6ad68ca69e4f35a3c40bbc3c">&#9670;&nbsp;</a></span>isCurrentTuneFM()</h2>
 

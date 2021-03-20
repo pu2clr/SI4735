@@ -1933,9 +1933,12 @@ public:
      * @details Sets the Interval in micro-seconds that original samples are replaced by sample-hold clean samples.
      * @details Sets the bandwidth of the noise floor estimator.
      * 
+     * @details ATTENTION: It works on SI474X. It may not work on SI473X devices. 
+     * 
      * @param nb_rate Noise blanking rate in 100 Hz units. Default value is 64.
      * @param nb_interval Interval in micro-seconds that original samples are replaced by interpolated clean samples. Default value is 55 μs.
      * @param nb_irr_filter Sets the bandwidth of the noise floor estimator. Default value is 300.
+     * 
      */
     inline void setAmNoiseBlank(uint16_t nb_rate = 64, uint16_t nb_interval = 55, uint16_t nb_irr_filter = 300)
     {

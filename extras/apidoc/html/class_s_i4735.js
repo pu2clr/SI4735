@@ -107,6 +107,7 @@ var class_s_i4735 =
     [ "setSsbAgcAttackRate", "group__group17.html#ga211bb7fb7b339e005e8a0ae2e2813b79", null ],
     [ "setSsbAgcReleaseRate", "group__group17.html#ga65ae2ed5be90932da9b26073f87a8bda", null ],
     [ "setAMFrontEndAgcControl", "group__group08.html#ga46d1dae32aae4da7ad9fabfdb36440cc", null ],
+    [ "setAmNoiseBlank", "class_s_i4735.html#a20b9ef7d2f0fba55eaf20f48781846b5", null ],
     [ "isCurrentTuneFM", "class_s_i4735.html#ae7ca2ffa6ad68ca69e4f35a3c40bbc3c", null ],
     [ "isCurrentTuneAM", "group__group08.html#ga4714f08989f020110620781ae968b01b", null ],
     [ "isCurrentTuneSSB", "group__group08.html#ga6913873c511adb357fa7c02f2a8386d7", null ],

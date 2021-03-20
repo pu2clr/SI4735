@@ -1416,12 +1416,14 @@ void doBFO()
 void doSlop(int8_t v)
 {
   slopIdx = (v == 1) ? slopIdx + 1 : slopIdx - 1;
-  if (slopIdx < 1)
+
+   if (slopIdx < 1)
     slopIdx = 5;
   else if (slopIdx > 5)
     slopIdx = 1;
 
   si4735.setAMSoftMuteSlop(slopIdx);
+  
   showSlop();
   elapsedCommand = millis();
 }
@@ -1434,7 +1436,9 @@ void doMuteRate(int8_t v)
   else if (slopIdx > 255)
     muteRateIdx = 1;
 
-  si4735.setAMSoftMuteRate((uint8_t)muteRateIdx);
+  // si4735.setAMSoftMuteRate((uint8_t)muteRateIdx);
+  si4735.setAmNoiseBlank(muteRateIdx);
+  
   showMuteRate();
   elapsedCommand = millis();
 }
