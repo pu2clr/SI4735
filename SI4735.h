@@ -1926,6 +1926,23 @@ public:
         sendProperty(AM_FRONTEND_AGC_CONTROL, param.word);
     };
 
+    /**
+     * @brief Set the Am Noise Blank 
+     * 
+     * @details Sets Noise blanking rate in 100 Hz units
+     * @details Sets the Interval in micro-seconds that original samples are replaced by sample-hold clean samples.
+     * @details Sets the bandwidth of the noise floor estimator.
+     * 
+     * @param nb_rate Noise blanking rate in 100 Hz units. Default value is 64.
+     * @param nb_interval Interval in micro-seconds that original samples are replaced by interpolated clean samples. Default value is 55 μs.
+     * @param nb_irr_filter Sets the bandwidth of the noise floor estimator. Default value is 300.
+     */
+    inline void setAmNoiseBlank(uint16_t nb_rate = 64, uint16_t nb_interval = 55, uint16_t nb_irr_filter = 300)
+    {
+        sendProperty(AM_NB_RATE, nb_rate);
+        sendProperty(AM_NB_INTERVAL, nb_interval);
+        sendProperty(AM_NB_IIR_FILTER, nb_irr_filter);
+    }
 
     /* @ingroup group08 Check FM mode status 
      * @brief Returns true if the current function is FM (FM_TUNE_FREQ).

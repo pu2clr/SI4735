@@ -253,13 +253,23 @@ Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
                               {3, "4.0"}}; // 3 = 4kHz
 
 int8_t bwIdxAM = 4;
+const int maxFilterAM = 15;
 Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1kHz
                              {5, "1.8"},
                              {3, "2.0"},
                              {6, "2.5"},
                              {2, "3.0"},
                              {1, "4.0"},
-                             {0, "6.0"}}; // 0 = 6kHz
+                             {0, "6.0"}, // 0 = 6kHz
+                             {7, "U07"}, // 7–15 = Reserved (Do not use) says the manual.
+                             {8, "U08"},
+                             {9, "U09"},
+                             {10, "U10"},
+                             {11, "U11"},
+                             {12, "U12"},
+                             {13, "U13"},
+                             {14, "U14"},
+                             {15, "U15"}};
 
 int8_t bwIdxFM = 0;
 Bandwitdth bandwitdthFM[] = {{0, "AUT"}, // Automatic
@@ -1289,10 +1299,10 @@ void switchFilter(uint8_t v)
   {
     bwIdxAM = (v == 1) ? bwIdxAM + 1 : bwIdxAM - 1;
 
-    if (bwIdxAM > 6)
+    if (bwIdxAM > maxFilterAM)
       bwIdxAM = 0;
     else if (bwIdxAM < 0)
-      bwIdxAM = 6;
+      bwIdxAM = maxFilterAM;
 
     si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
   } else {
