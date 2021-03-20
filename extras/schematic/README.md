@@ -232,9 +232,6 @@ See videos:
 
 {% include bpf.html %}
 
-[Back to the main page](https://pu2clr.github.io/SI4735/)
-
-
 
 ## Storing data into the internal EEPROM before shutdowning  
 
@@ -255,4 +252,7 @@ The following circuit illustrates a way to configure the Arduino based on Atmega
 Sketches on [examples/TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN)
 
 
+
+
+[Back to the main page](https://pu2clr.github.io/SI4735/)
 
