@@ -242,10 +242,14 @@ The EEPROM memory has a life time around 100,000 write/erase cycles. Therefore, 
 
 The following circuit illustrates a way to configure the Arduino based on Atmega328 working with 3.7V (Arduino Pro Mini 8MHz 3.3V) or similar to record useful information on its internal EEPROM.  The idea of this approach is to obtain the last status of the system after turning it back on.  Observe  in the circuit that a 2000uF electrolytic capacitor has been added. This capacitor is powered by the battery voltage or external power supply while the system is working. When the user turn the system off, the capacitor will still keep the arduino running for a few seconds.  Observe also that the Arduino pin 16 (A2), is connected to the power supply. That setup works as a shutdown detector. I mean, the pin 16 status will keep HIGH while the power supply is on. However, when the turn the system off (no power supply), the pin 16 status will be LOW. Now, the programmer have to add a code to check the pin 16 status. If it is LOW, the Arduino will have few seconds to save data into the internal EEPROM. Actually, the best way to save data immediately is using the interrupt approaching via pins 2 or 3 of Atmega328. However, this example uses the pulling approaching. Due to the voltage drop caused by the diode, it is important to raise the input voltage to 3.7V. This way the Arduino will continue operating steadily for a few seconds after turning the system off. The time should be enough to save the data into the EEPROM. 
 
+<BR>
 
 ![Storing data into the internal EEPROM before shutdowning ](../images/schematic_storing_data_eeprom_shutdown.png)
 
+<BR>
 
+
+Sketches on [examples/TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN)
 
 
 
