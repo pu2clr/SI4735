@@ -85,20 +85,23 @@ void setup()
   oled.clear();
   oled.setCursor(0, 0);
   
-  // Checking the EEPROM content 
-  if (EEPROM.read(eeprom_address) == 35) { 
-    // There are useful data stored
+  // Checking the EEPROM content
+  if (EEPROM.read(eeprom_address) == app_id)
+  {
+    // There are useful data stored to rescue
     volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
     freqByteHigh = EEPROM.read(eeprom_address + 2); // Gets the frequency high byte
     freqByteLow = EEPROM.read(eeprom_address + 3);  // Gets the frequency low  byte
     currentFrequency = (freqByteHigh << 8) | freqByteLow; // Converts the stored frequency to SI473X frequency.
-    oled.print("Data restored"); 
-  } else {
+    oled.print("Data restored");
+  }
+  else
+  {
     oled.print("No data found");
     volume = 45;
     currentFrequency = 10390; // 103.9MHz
   }
-  
+
   delay(2000);
   oled.clear();
 
@@ -184,7 +187,6 @@ void loop()
 
   // Checks the shutdown status
   if (digitalRead(SHUTDOWN_DETECTOR) == LOW ) {
-    Serial.print("\nShutdown Detector is working");
     writeReceiverData();
     while(1); // Stop working
   }

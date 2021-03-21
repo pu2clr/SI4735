@@ -239,7 +239,7 @@ This example uses the Arduino Pro Mini 3.3V (8MHz), the SI4735 and OLED.
  
 The EEPROM memory has a life time around 100,000 write/erase cycles. Therefore, writing data to eeprom with each system status change could give an application a very short life. To mitigate this problem, some approaches can be used to save recordings on the EEPROM. 
 
-The following circuit illustrates a way to configure the Arduino based on Atmega328 or similar to record useful information on its internal EEPROM.  The idea of this approach is to obtain the last status of the system after turning it back on.  Observe  in the circuit that a 2200uF electrolytic capacitor has been added. This capacitor is powered by the battery voltage or external power supply while the system is working. When the user turn the system off, the capacitor will still keep the arduino running for a few seconds.  Observe also that the Arduino pin 16 (A2), is connected to the power supply. That setup works as a shutdown detector. I mean, the pin 16 status will keep HIGH while the power supply is on. However, when the turn the system off (no power supply), the pin 16 status will be LOW. In this situation, a sketch code have to check the pin 16 status frequently. If it is LOW, the Arduino will have few seconds to save data into the internal EEPROM. Actually, the best way to save data immediately is using the interrupt approaching via pins 2 or 3 of Atmega328. However, this example uses the pulling approaching. Due to the voltage drop caused by the diode D1, it is important to raise the input voltage to 3.7V. This way the Arduino will continue operating steadily with about 3.0V. The SI4735 and OLED are powered with 3.7V. Only the arduino will keep running for a few seconds after system shutdown. See circuit and schetch reference below. 
+The following circuit illustrates a way to configure the Arduino based on Atmega328 or similar to record useful information on its internal EEPROM.  The idea of this approach is to obtain the last status of the system after turning it back on.  Observe  in the circuit that a 2200uF electrolytic capacitor has been added. This capacitor is powered by the battery voltage or external power supply while the system is working. When the user turns the system off, the capacitor will still keep the arduino running for few seconds.  Observe also that the Arduino pin 16 (A2), is connected to the power supply. That setup works as a shutdown detector. I mean, the pin 16 status will keep HIGH while the power supply is on. However, when the user turns the system off (no power supply), the pin 16 status will be LOW. In this condition, a sketch code have to be added to in the loop function to check the pin 16 status frequently. If the pin 16  is LOW, the Arduino will have few seconds to save data into the internal EEPROM. Actually, the best way to save data immediately is using the interrupt approaching via digital pins 2 or 3 of Atmega328. However, this example uses the pulling approaching. Due to the voltage drop caused by the diode D1, it is important to raise the input voltage to 3.7V. This way the Arduino will continue operating steadily with about 3V. The SI4735 and OLED are powered with 3.7V. Only the arduino will keep running for few seconds after system shutdown. See circuit and schetch reference below. 
 
 
 <BR>
@@ -248,8 +248,78 @@ The following circuit illustrates a way to configure the Arduino based on Atmega
 
 <BR>
 
+```cpp
+
+#include <SI4735.h>
+#include <EEPROM.h>
+
+#define SHUTDOWN_DETECTOR 16 // A2 - Arduino pin 16 configured as digital
+
+const uint8_t app_id =  35; // Useful to check the EEPROM content before processing useful data
+const int eeprom_address = 0;
+
+void setup() {
+
+  pinMode(SHUTDOWN_DETECTOR, INPUT); // If HIGH power supply detected; else, power supply down
+  .
+  .
+  .
+
+  // Checking the EEPROM content 
+  if (EEPROM.read(eeprom_address) == app_id) { 
+    // There are useful data stored to rescue
+    volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
+    freqByteHigh = EEPROM.read(eeprom_address + 2); // Gets the frequency high byte
+    freqByteLow = EEPROM.read(eeprom_address + 3);  // Gets the frequency low  byte
+    currentFrequency = (freqByteHigh << 8) | freqByteLow; // Converts the stored frequency to SI473X frequency.
+    oled.print("Data restored"); 
+  } else {
+    oled.print("No data found");
+    volume = 45;
+    currentFrequency = 10390; // 103.9MHz
+  }
+
+  .
+  .
+  .
+  rx.setup(RESET_PIN, FM_FUNCTION);
+  rx.setFM(8400, 10800, currentFrequency, 10);
+  rx.setVolume(volume);
+  .
+  .
+  .
+
+}
+
+/** 
+ *  Saves the current volume and frequency into the internal EEPROM
+ */
+void writeReceiverData() {
+  EEPROM.write(eeprom_address, app_id); // stores the app id;
+  EEPROM.write(eeprom_address + 1, rx.getVolume()); // stores the current Volume
+  EEPROM.write(eeprom_address + 2, (currentFrequency >> 8) );   // stores the current Frequency HIGH byte
+  EEPROM.write(eeprom_address + 3, (currentFrequency & 0xFF));  // stores the current Frequency LOW byte
+}
+
+
+void loop {
+  .
+  .
+  .
+  // Checks the shutdown status
+  if (digitalRead(SHUTDOWN_DETECTOR) == LOW ) {
+    writeReceiverData();
+    while(1); // Stop working
+  }
+}
+
+
+```
+
 
 Sketches on [examples/TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN)
+
+
 
 
 
