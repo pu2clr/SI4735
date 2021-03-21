@@ -2,6 +2,7 @@
 
     Is is an example to show how to save data into the internal Arduino EEPROM. 
     The Arduino used for this example is the Pro Mini 8MHz 3.3V.
+    The receiver setup is a FM receiver.
 
     This sketch implements the circuit https://pu2clr.github.io/SI4735/extras/schematic#storing-data-into-the-internal-eeprom-before-shutdowning.
     It saves the Frequency and Volume values into the internal Arduino EEPROM after turning the system off. 
@@ -49,9 +50,7 @@ uint8_t freqByteHigh;
 
 volatile int encoderCount = 0;
 Rotary encoder = Rotary(ENCODER_A, ENCODER_B);
-
 SI4735 rx;
-
 
 void setup()
 {
@@ -131,6 +130,9 @@ void rotaryEncoder()
   }
 }
 
+/**
+ * Shows current frequency and volume
+ */
 void showStatus() {
     oled.setCursor(0, 0);
     oled.print("FM ");
