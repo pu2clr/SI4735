@@ -55,7 +55,7 @@ SI4735 rx;
 
 void setup()
 {
-  pinMode(SHUTDOWN_DETECTOR, INPUT); // If HIGH power supply detected; else, power supply down
+  pinMode(SHUTDOWN_DETECTOR, INPUT); // If HIGH power supply detected; else, no power supply detected.
 
   pinMode(ENCODER_A, INPUT_PULLUP);
   pinMode(ENCODER_B, INPUT_PULLUP);

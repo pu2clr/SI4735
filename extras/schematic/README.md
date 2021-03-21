@@ -259,7 +259,7 @@ const uint8_t app_id =  35; // Useful to check the EEPROM content before process
 const int eeprom_address = 0;
 
 void setup() {
-  pinMode(SHUTDOWN_DETECTOR, INPUT); // If HIGH power supply detected; else, power supply down
+  pinMode(SHUTDOWN_DETECTOR, INPUT); // If HIGH power supply detected; else, no power supply detected
   .
   .
   .
