@@ -259,26 +259,20 @@ const uint8_t app_id =  35; // Useful to check the EEPROM content before process
 const int eeprom_address = 0;
 
 void setup() {
-
   pinMode(SHUTDOWN_DETECTOR, INPUT); // If HIGH power supply detected; else, power supply down
   .
   .
   .
-
   // Checking the EEPROM content 
-  if (EEPROM.read(eeprom_address) == app_id) { 
-    // There are useful data stored to rescue
+  if (EEPROM.read(eeprom_address) == app_id) { // There are useful data stored to rescue
     volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
     freqByteHigh = EEPROM.read(eeprom_address + 2); // Gets the frequency high byte
     freqByteLow = EEPROM.read(eeprom_address + 3);  // Gets the frequency low  byte
     currentFrequency = (freqByteHigh << 8) | freqByteLow; // Converts the stored frequency to SI473X frequency.
-    oled.print("Data restored"); 
-  } else {
-    oled.print("No data found");
+  } else { // No data found
     volume = 45;
     currentFrequency = 10390; // 103.9MHz
   }
-
   .
   .
   .
@@ -288,7 +282,6 @@ void setup() {
   .
   .
   .
-
 }
 
 /** 
