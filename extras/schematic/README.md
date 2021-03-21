@@ -267,9 +267,18 @@ const int eeprom_address = 0;
 
 void setup() {
   pinMode(SHUTDOWN_DETECTOR, INPUT); // If HIGH power supply detected; else, no power supply detected
+  pinMode(VOLUME_DOWN, INPUT_PULLUP);
+  pinMode(VOLUME_UP, INPUT_PULLUP);  
   .
   .
-  .
+  // If you want to reset (erase) the eeprom, keep the VOLUME_UP button pressed during statup
+  if (digitalRead(VOLUME_UP) == LOW)
+  {
+    EEPROM.write(eeprom_address, 0); // In our case, just the app_id is enough.
+    oled.print("EEPROM RESETED");
+    delay(2000);
+  }
+
   // Checking the EEPROM content 
   if (EEPROM.read(eeprom_address) == app_id) { // There are useful data stored to rescue
     volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
