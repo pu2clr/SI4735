@@ -4567,7 +4567,9 @@ Variant with &lt;b&gt;I2C interface&lt;/b&gt;
 <part name="SUPPLY3" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 <part name="S1" library="switch" library_urn="urn:adsk.eagle:library:380" deviceset="TL36WO" device="" package3d_urn="urn:adsk.eagle:package:27754/1"/>
 <part name="SUPPLY4" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
-<part name="C9" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="1000UF" device="-RADIAL-5MM-35V-20%-KIT" package3d_urn="urn:adsk.eagle:package:37421/1" value="1mf"/>
+<part name="C9" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="1000UF" device="-RADIAL-5MM-35V-20%-KIT" package3d_urn="urn:adsk.eagle:package:37421/1" value="1mf">
+<attribute name="UF" value="1000"/>
+</part>
 <part name="D1" library="SparkFun-DiscreteSemi" library_urn="urn:adsk.eagle:library:514" deviceset="DIODE" device="-1N4148" package3d_urn="urn:adsk.eagle:package:38452/1" value="200mA/100V/1V"/>
 <part name="U$1" library="diy-modules" deviceset="DISPLAY-OLED-128X64-I2C" device=""/>
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
@@ -4578,7 +4580,6 @@ Variant with &lt;b&gt;I2C interface&lt;/b&gt;
 <text x="22.86" y="55.88" size="1.778" layer="91">If GND, I2C addr =  0x11</text>
 <text x="22.86" y="50.8" size="1.778" layer="91">If VCC, I2C addr =  0x63</text>
 <text x="-22.86" y="152.4" size="1.778" layer="91">Storing data automatically before turning the Arduino off</text>
-<text x="119.38" y="106.68" size="1.778" layer="91">2000uF</text>
 <text x="119.38" y="81.28" size="1.778" layer="91">3.7V</text>
 <text x="93.98" y="109.22" size="1.778" layer="91">˜3V</text>
 <text x="66.04" y="48.26" size="1.778" layer="91">3.7V</text>
@@ -4691,7 +4692,8 @@ Variant with &lt;b&gt;I2C interface&lt;/b&gt;
 <attribute name="VALUE" x="45.085" y="62.865" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="C9" gate="G$1" x="114.3" y="106.68" smashed="yes" rot="R180">
-<attribute name="NAME" x="113.284" y="106.045" size="1.778" layer="95" font="vector" rot="R180"/>
+<attribute name="NAME" x="120.904" y="108.585" size="1.778" layer="95" font="vector" rot="R180"/>
+<attribute name="UF" x="127" y="106.68" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="D1" gate="G$1" x="114.3" y="96.52" smashed="yes" rot="R90">
 <attribute name="NAME" x="112.268" y="93.98" size="1.778" layer="95" font="vector" rot="R90"/>
