@@ -319,7 +319,10 @@ void loop {
 See the complete sketches on [examples/TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN)
 
 
+See video:
+* [Storing the current status of the SI473X based receivers into the Arduino eeprom automatically](https://youtu.be/ahavz9PHjng)
 
+{% include eeprom_receiver_status.html %}
 
 
 
