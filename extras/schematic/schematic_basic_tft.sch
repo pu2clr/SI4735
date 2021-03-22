@@ -4317,6 +4317,8 @@ Mors</description>
 <sheets>
 <sheet>
 <plain>
+<rectangle x1="-119.38" y1="185.42" x2="-106.68" y2="200.66" layer="205"/>
+<text x="-116.84" y="203.2" size="1.778" layer="205">Optional</text>
 </plain>
 <instances>
 <instance part="B1" gate="G$1" x="25.4" y="152.4" smashed="yes">

@@ -4249,6 +4249,8 @@ Area: 2.32" x 1.00"
 <sheets>
 <sheet>
 <plain>
+<rectangle x1="-129.54" y1="180.34" x2="-114.3" y2="195.58" layer="205"/>
+<text x="-127" y="198.12" size="1.778" layer="205">Optional</text>
 </plain>
 <instances>
 <instance part="U1" gate="A" x="-129.54" y="162.56" smashed="yes">

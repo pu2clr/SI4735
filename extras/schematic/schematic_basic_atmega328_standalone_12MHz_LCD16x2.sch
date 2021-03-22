@@ -5482,6 +5482,8 @@ Datasheet</description>
 <text x="71.12" y="109.22" size="1.778" layer="91">D3</text>
 <text x="162.56" y="124.46" size="1.778" layer="91">Optional </text>
 <rectangle x1="149.86" y1="99.06" x2="182.88" y2="121.92" layer="207"/>
+<rectangle x1="-71.12" y1="134.62" x2="-55.88" y2="149.86" layer="205"/>
+<text x="-68.58" y="152.4" size="1.778" layer="205">Optional</text>
 </plain>
 <instances>
 <instance part="U1" gate="A" x="-71.12" y="116.84" smashed="yes">

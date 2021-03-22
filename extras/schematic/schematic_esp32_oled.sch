@@ -4342,6 +4342,8 @@ Datasheet</description>
 <plain>
 <text x="5.08" y="76.2" size="1.778" layer="91">If GND, I2C addr =  0x11</text>
 <text x="5.08" y="71.12" size="1.778" layer="91">If VCC, I2C addr =  0x63</text>
+<rectangle x1="-53.34" y1="157.48" x2="-38.1" y2="170.18" layer="205"/>
+<text x="-50.8" y="172.72" size="1.778" layer="205">Optional</text>
 </plain>
 <instances>
 <instance part="U1" gate="A" x="-53.34" y="137.16" smashed="yes">

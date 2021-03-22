@@ -4368,6 +4368,8 @@ Mors</description>
 <text x="71.12" y="165.1" size="1.778" layer="91" rot="R90">A0 = digital pin 14</text>
 <text x="-160.02" y="238.76" size="1.778" layer="91">Sketche: SI47XX_02_ALL_IN_ONE_OLED.ino</text>
 <text x="-160.02" y="246.38" size="1.778" layer="91">SI4735 all in one with SSB Support</text>
+<rectangle x1="-172.72" y1="185.42" x2="-157.48" y2="200.66" layer="205"/>
+<text x="-170.18" y="203.2" size="1.778" layer="205">Optional</text>
 </plain>
 <instances>
 <instance part="B1" gate="G$1" x="40.64" y="152.4" smashed="yes">

@@ -4364,6 +4364,8 @@ Mors</description>
 <sheet>
 <plain>
 <text x="55.88" y="165.1" size="1.778" layer="91" rot="R90">A0 = digital pin 14</text>
+<rectangle x1="-121.92" y1="187.96" x2="-106.68" y2="198.12" layer="205"/>
+<text x="-119.38" y="200.66" size="1.778" layer="205">Optional</text>
 </plain>
 <instances>
 <instance part="B1" gate="G$1" x="25.4" y="152.4" smashed="yes">

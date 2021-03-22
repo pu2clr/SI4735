@@ -5127,6 +5127,8 @@ Datasheet</description>
 <text x="22.86" y="50.8" size="1.778" layer="91">If VCC, I2C addr =  0x63</text>
 <text x="27.94" y="43.18" size="1.778" layer="91">R4 and R5 = 3.3K</text>
 <text x="99.06" y="83.82" size="1.778" layer="91">STM32F103C8</text>
+<rectangle x1="-35.56" y1="137.16" x2="-20.32" y2="147.32" layer="205"/>
+<text x="-30.48" y="149.86" size="1.778" layer="205">Optional</text>
 </plain>
 <instances>
 <instance part="U1" gate="A" x="-35.56" y="116.84" smashed="yes">

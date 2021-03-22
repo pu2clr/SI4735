@@ -4113,6 +4113,8 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <plain>
 <text x="22.86" y="55.88" size="1.778" layer="91">If GND, I2C addr =  0x11</text>
 <text x="22.86" y="50.8" size="1.778" layer="91">If VCC, I2C addr =  0x63</text>
+<rectangle x1="-35.56" y1="137.16" x2="-20.32" y2="149.86" layer="205"/>
+<text x="-33.02" y="152.4" size="1.778" layer="205">Optional</text>
 </plain>
 <instances>
 <instance part="B1" gate="G$1" x="76.2" y="101.6" smashed="yes">

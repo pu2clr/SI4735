@@ -5030,6 +5030,8 @@ Datasheet</description>
 <plain>
 <text x="12.7" y="68.58" size="1.778" layer="91">If GND, I2C addr =  0x11</text>
 <text x="12.7" y="63.5" size="1.778" layer="91">If VCC, I2C addr =  0x63</text>
+<text x="-50.8" y="157.48" size="1.778" layer="91">R3 is optional</text>
+<rectangle x1="-33.02" y1="149.86" x2="-22.86" y2="160.02" layer="205"/>
 </plain>
 <instances>
 <instance part="U1" gate="A" x="-35.56" y="129.54" smashed="yes">

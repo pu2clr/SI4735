@@ -4585,6 +4585,8 @@ Variant with &lt;b&gt;I2C interface&lt;/b&gt;
 <text x="66.04" y="48.26" size="1.778" layer="91">3.7V</text>
 <text x="45.72" y="66.04" size="1.778" layer="91">3.7V</text>
 <text x="43.18" y="106.68" size="1.778" layer="91">3.7V</text>
+<rectangle x1="-35.56" y1="137.16" x2="-20.32" y2="147.32" layer="205"/>
+<text x="-35.56" y="149.86" size="1.778" layer="205">Optional</text>
 </plain>
 <instances>
 <instance part="B1" gate="G$1" x="76.2" y="101.6" smashed="yes">
