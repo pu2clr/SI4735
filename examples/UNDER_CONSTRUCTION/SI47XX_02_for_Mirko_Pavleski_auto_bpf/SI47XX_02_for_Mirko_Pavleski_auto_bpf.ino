@@ -40,7 +40,7 @@
   |                           | A (15) & VDD                  |    +Vcc       |
   |                           | VO (see 20K tripot connection)|   ---------   |
   |     SS473X                |                               |               |
-  |                           | RESET (pin 15)                |      9        |
+  |                           | RESET (pin 15)                |     D9        |
   |                           | SDIO (pin 18)                 |     A4        |
   |                           | SCLK (pin 17)                 |     A5        |
   |                           | (*1)SEN (pin 16)              |  +Vcc or GND  |
@@ -51,6 +51,8 @@
   | Auto Bandpass Filter      |                               |               |
   |                           | S0                            |     A1/15     | 
   |                           | S1                            |     A2/16     | 
+  | Shutdown Detector (+VCC)  |                               |               | Used to save status into the EEPROM
+  |                           | Power Supply +VCC             |      D8       |  
 
   (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
@@ -65,6 +67,7 @@
 
 #include "AutoBPF.h"
 #include <SI4735.h>
+#include <EEPROM.h>
 #include <LiquidCrystal.h>
 #include "Rotary.h"
 
@@ -82,6 +85,8 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 // Enconder PINs
 #define ENCODER_PIN_A 2
 #define ENCODER_PIN_B 3
+
+#define SHUTDOWN_DETECTOR 4  // Shutdown detector pin
 
 // LCD 16x02 or LCD20x4 PINs
 #define LCD_D7    4
@@ -145,6 +150,8 @@ volatile int encoderCount = 0;
 uint16_t currentFrequency;
 
 const uint8_t currentBFOStep = 10;
+const uint8_t app_id = 32;    // Id of this application
+
 
 const char *menu[] = {"Seek", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BPF", "Frontend", "SLOP", "BFO"};
 int8_t menuIdx = 0;
@@ -242,11 +249,26 @@ void setup()
 {
   // Encoder pins
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
+  pinMode(SHUTDOWN_DETECTOR, INPUT);
 
   bpf.setup(FILERT_S0, FILERT_S1);
 
   lcd.begin(16, 2);
+
+  // If you start the system with push button pressed, the status stored into eeprom will be eresaed.
+  // And the default values will be used 
+  if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
+  {
+    EEPROM[0] = 0; // 
+    lcd.setCursor(0, 0);
+    lcd.print("SYSTEM RESETED");
+    delay(2000);
+  } else {
+    restoreStatus(); // Restores the receiver status from EEPROM
+  }
+
   // Splash - Change it for your introduction text.
+  lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("PU2CLR-SI4735");
   lcd.setCursor(0, 1);
@@ -262,7 +284,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
   rx.setI2CFastMode(); // Set I2C bus speed.
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
-  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+  rx.setup(RESET_PIN, -1, currentMode, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
   // Set up the radio for the current band (see index table variable bandIdx )
 
   delay(500);
@@ -282,6 +304,46 @@ void Flash (int d)
   delay(500);
   lcd.display();
 }
+
+
+/**
+ * Gets the last status information of the receiver from internal EEPROM
+ */
+void restoreStatus() {
+
+  if (EEPROM[0] == app_id)
+  {
+    // There are useful data stored to be restored
+    volume = EEPROM[1];             
+    currentFrequency = (EEPROM[2] << 8) | EEPROM[3]; 
+    currentBFO = EEPROM[4];
+    bandIdx = EEPROM[5];
+    idxStep = EEPROM[6];
+    currentFrontEnd = EEPROM[7];
+    currentMode = EEPROM[8];
+    currentStep = EEPROM[9];
+    currentFilter = EEPROM[10];
+  } // else, default values 
+
+}
+
+/**
+ *  Stores the current status into the internal EEPROM
+ */
+void saveStatus() {
+  EEPROM[0] =  app_id;                     // stores the app id;
+  EEPROM[1] =  rx.getVolume();             // stores the current Volume
+  EEPROM[2] =  (currentFrequency >> 8);    // stores the current Frequency HIGH byte
+  EEPROM[3] =  (currentFrequency & 0xFF);  // stores the current Frequency LOW byte
+  EEPROM[4] = currentBFO;
+  EEPROM[5] = bandIdx;
+  EEPROM[6] = idxStep;
+  EEPROM[7] = currentFrontEnd;
+  EEPROM[8] = currentMode;
+  EEPROM[9] = currentStep;
+  EEPROM[10] = currentFilter;
+}
+
 
 /**
     Set all command flags to false
@@ -1049,6 +1111,13 @@ void loop()
   if ( (millis() - elapsedClick) > ELAPSED_CLICK ) {
     countClick = 0;
     elapsedClick = millis();
+  }
+
+  // Checks the shutdown status
+  if (digitalRead(SHUTDOWN_DETECTOR) == LOW)
+  {
+    saveStatus();
+    while (1); // Stop working
   }
   delay(5);
 }
