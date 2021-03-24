@@ -1,5 +1,4 @@
 /*
- 
   This sketch was modified to work with the Chinese KIT from AliExpress 
 
   This sketch works on DVE (David/Martins) KIT. See: https://davidmartinsengineering.wordpress.com/si4735-radio-kit/
@@ -21,7 +20,7 @@
   content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
 
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
-  There is little information available about patching the SI4735. The following information is the understanding of the author of
+  There is little information available about patching the SI4735 or Si4732 devices. The following information is the understanding of the author of
   this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
   Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device.
   Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by
@@ -174,7 +173,7 @@ uint8_t volume = DEFAULT_VOLUME;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
-SI4735 si4735;
+SI4735 rx;
 
 void setup()
 {
@@ -199,7 +198,7 @@ void setup()
 
   // Splash - Change it for your introduction text.
   oled.setCursor(40, 0);
-  oled.print("SI4735");
+  oled.print("SI473X");
   oled.setCursor(20, 1);
   oled.print("Arduino Library");
   delay(500);
@@ -207,7 +206,7 @@ void setup()
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(10, 3);
-  oled.print("V1.1.5 - By PU2CLR");
+  oled.print("V2.0.1 - By PU2CLR");
   delay(5000);
   // end Splash
 
@@ -216,20 +215,20 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   // Uncomment the lines below if you experience some unstable behaviour. Default values were optimized to make the SSB patch load fast
-  // si4735.setMaxDelayPowerUp(500);      // Time to the external crystal become stable after power up command (default is 10ms).
-  // si4735.setMaxDelaySetFrequency(100); // Time needed to process the next frequency setup (default is 30 ms)
+  // rx.setMaxDelayPowerUp(500);      // Time to the external crystal become stable after power up command (default is 10ms).
+  // rx.setMaxDelaySetFrequency(100); // Time needed to process the next frequency setup (default is 30 ms)
 
-  si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
+  rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
-  si4735.setup(RESET_PIN, FM_BAND_TYPE);
+  rx.setup(RESET_PIN, FM_BAND_TYPE);
 
   delay(300);
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
 
-  currentFrequency = previousFrequency = si4735.getFrequency();
+  currentFrequency = previousFrequency = rx.getFrequency();
 
-  si4735.setVolume(volume);
+  rx.setVolume(volume);
   oled.clear();
   showStatus();
 }
@@ -340,7 +339,7 @@ void showStatus()
   }
 
   // Show AGC Information
-  // si4735.getAutomaticGainControl();
+  // rx.getAutomaticGainControl();
   oled.setCursor(0, 1);
   if (agcIdx == 0 ) {
     oled.print("AGC ON");
@@ -377,7 +376,7 @@ void showRSSI()
   if (currentMode == FM)
   {
     oled.setCursor(0, 3);
-    oled.print((si4735.getCurrentPilot()) ? "STEREO   " : "MONO     ");
+    oled.print((rx.getCurrentPilot()) ? "STEREO   " : "MONO     ");
   }
 }
 
@@ -389,7 +388,7 @@ void showVolume()
   oled.setCursor(60, 3);
   oled.print("  ");
   oled.setCursor(60, 3);
-  oled.print(si4735.getCurrentVolume());
+  oled.print(rx.getCurrentVolume());
 }
 
 /*
@@ -460,14 +459,14 @@ void checkRDS()
 
   // tft.setFont(Terminal6x8);
 
-  si4735.getRdsStatus();
-  if (si4735.getRdsReceived())
+  rx.getRdsStatus();
+  if (rx.getRdsReceived())
   {
-    if (si4735.getRdsSync() && si4735.getRdsSyncFound())
+    if (rx.getRdsSync() && rx.getRdsSyncFound())
     {
-      rdsMsg = si4735.getRdsText2A();
-      stationName = si4735.getRdsText0A();
-      rdsTime = si4735.getRdsTime();
+      rdsMsg = rx.getRdsText2A();
+      stationName = rx.getRdsText0A();
+      rdsTime = rx.getRdsTime();
       // if ( rdsMsg != NULL )   showRDSMsg();
       if (stationName != NULL)
         showRDSStation();
@@ -524,14 +523,14 @@ void loadSSB()
   oled.setCursor(0, 2);
   oled.print("  Switching to SSB  ");
 
-  si4735.reset();
-  si4735.queryLibraryId(); // Is it really necessary here?  Just powerDown() maigh work!
-  si4735.patchPowerUp();
+  rx.reset();
+  rx.queryLibraryId(); // Is it really necessary here?  Just powerDown() maigh work!
+  rx.patchPowerUp();
   delay(50);
-  si4735.setI2CFastMode(); // Recommended
-  // si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
-  si4735.downloadPatch(ssb_patch_content, size_content);
-  si4735.setI2CStandardMode(); // goes back to default (100kHz)
+  rx.setI2CFastMode(); // Recommended
+  // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
+  rx.downloadPatch(ssb_patch_content, size_content);
+  rx.setI2CStandardMode(); // goes back to default (100kHz)
   clearLine4();
 
   // delay(50);
@@ -542,7 +541,7 @@ void loadSSB()
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
+  rx.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
   delay(25);
   ssbLoaded = true;
   oled.clear();
@@ -559,30 +558,30 @@ void useBand()
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
-    si4735.setTuneFrequencyAntennaCapacitor(0);
-    si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+    rx.setTuneFrequencyAntennaCapacitor(0);
+    rx.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     bfoOn = ssbLoaded = false;
-    si4735.setRdsConfig(1, 2, 2, 2, 2);
+    rx.setRdsConfig(1, 2, 2, 2, 2);
   }
   else
   {
     if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
-      si4735.setTuneFrequencyAntennaCapacitor(0);
+      rx.setTuneFrequencyAntennaCapacitor(0);
     else
-      si4735.setTuneFrequencyAntennaCapacitor(1);
+      rx.setTuneFrequencyAntennaCapacitor(1);
 
     if (ssbLoaded)
     {
-      si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
-      si4735.setSSBAutomaticVolumeControl(1);
-      si4735.setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
+      rx.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
+      rx.setSSBAutomaticVolumeControl(1);
+      rx.setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
     }
     else
     {
       currentMode = AM;
-      si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      si4735.setAutomaticGainControl(disableAgc, agcNdx);
-      si4735.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
+      rx.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+      rx.setAutomaticGainControl(disableAgc, agcNdx);
+      rx.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
       bfoOn = false;
     }
   }
@@ -600,18 +599,18 @@ void loop()
     if (bfoOn)
     {
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
-      si4735.setSSBBfo(currentBFO);
+      rx.setSSBBfo(currentBFO);
       showBFO();
     }
     else
     {
       if (encoderCount == 1)
-        si4735.frequencyUp();
+        rx.frequencyUp();
       else
-        si4735.frequencyDown();
+        rx.frequencyDown();
 
       // Show the current frequency only if it has changed
-      currentFrequency = si4735.getFrequency();
+      currentFrequency = rx.getFrequency();
     }
     encoderCount = 0;
   }
@@ -627,19 +626,19 @@ void loop()
         bwIdxSSB++;
         if (bwIdxSSB > 5)
           bwIdxSSB = 0;
-        si4735.setSSBAudioBandwidth(bwIdxSSB);
+        rx.setSSBAudioBandwidth(bwIdxSSB);
         // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
         if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
-          si4735.setSBBSidebandCutoffFilter(0);
+          rx.setSBBSidebandCutoffFilter(0);
         else
-          si4735.setSBBSidebandCutoffFilter(1);
+          rx.setSBBSidebandCutoffFilter(1);
       }
       else if (currentMode == AM)
       {
         bwIdxAM++;
         if (bwIdxAM > 6)
           bwIdxAM = 0;
-        si4735.setBandwidth(bwIdxAM, 1);
+        rx.setBandwidth(bwIdxAM, 1);
       }
       showStatus();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
@@ -650,15 +649,15 @@ void loop()
       bandDown();
     else if (digitalRead(VOL_UP) == LOW)
     {
-      si4735.volumeUp();
-      volume = si4735.getVolume();
+      rx.volumeUp();
+      volume = rx.getVolume();
       showVolume();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(VOL_DOWN) == LOW)
     {
-      si4735.volumeDown();
-      volume = si4735.getVolume();
+      rx.volumeDown();
+      volume = rx.getVolume();
       showVolume();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
@@ -673,9 +672,9 @@ void loop()
       }
       else if (currentMode == FM)
       {
-        si4735.seekStationUp();
+        rx.seekStationUp();
         delay(30);
-        currentFrequency = si4735.getFrequency();
+        currentFrequency = rx.getFrequency();
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
@@ -708,7 +707,7 @@ void loop()
         agcIdx = 0;
       }
       // Sets AGC on/off an gain
-      si4735.setAutomaticGainControl(disableAgc, agcNdx);
+      rx.setAutomaticGainControl(disableAgc, agcNdx);
       showStatus();
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
@@ -717,9 +716,9 @@ void loop()
       {
         fmStereo = !fmStereo;
         if (fmStereo)
-          si4735.setFmStereoOn();
+          rx.setFmStereoOn();
         else
-          si4735.setFmStereoOff(); // It is not working so far.
+          rx.setFmStereoOff(); // It is not working so far.
       }
       else
       {
@@ -738,7 +737,7 @@ void loop()
             currentStep = 10;
           else
             currentStep = 1;
-          si4735.setFrequencyStep(currentStep);
+          rx.setFrequencyStep(currentStep);
           band[bandIdx].currentStep = currentStep;
           showStatus();
         }
@@ -777,8 +776,8 @@ void loop()
   // Show RSSI status only if this condition has changed
   if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 9)
   {
-    si4735.getCurrentReceivedSignalQuality();
-    int aux = si4735.getCurrentRSSI();
+    rx.getCurrentReceivedSignalQuality();
+    int aux = rx.getCurrentRSSI();
     if (rssi != aux)
     {
       rssi = aux;
