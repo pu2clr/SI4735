@@ -456,17 +456,14 @@ void showRDSTime()
 
 void checkRDS()
 {
-
-  // tft.setFont(Terminal6x8);
-
   rx.getRdsStatus();
   if (rx.getRdsReceived())
   {
     if (rx.getRdsSync() && rx.getRdsSyncFound())
     {
-      rdsMsg = rx.getRdsText2A();
+      // rdsMsg = rx.getRdsText2A();
       stationName = rx.getRdsText0A();
-      rdsTime = rx.getRdsTime();
+      // rdsTime = rx.getRdsTime();
       // if ( rdsMsg != NULL )   showRDSMsg();
       if (stationName != NULL)
         showRDSStation();
