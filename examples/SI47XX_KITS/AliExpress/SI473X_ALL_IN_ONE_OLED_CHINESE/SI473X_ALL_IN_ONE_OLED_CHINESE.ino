@@ -209,7 +209,7 @@ void setup()
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(10, 3);
-  oled.print("V2.0.2 - By PU2CLR");
+  oled.print("V2.0.3 - By PU2CLR");
   delay(5000);
   // end Splash
 

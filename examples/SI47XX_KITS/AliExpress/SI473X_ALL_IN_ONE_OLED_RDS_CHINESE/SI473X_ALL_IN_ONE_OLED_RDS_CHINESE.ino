@@ -206,7 +206,7 @@ void setup()
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(10, 3);
-  oled.print("V2.0.1 - By PU2CLR");
+  oled.print("V2.0.3 - By PU2CLR");
   delay(5000);
   // end Splash
 
@@ -426,33 +426,15 @@ char bufferStatioName[50];
 char bufferRdsMsg[100];
 char bufferRdsTime[32];
 
-void showRDSMsg()
-{
-  rdsMsg[35] = bufferRdsMsg[35] = '\0';
-  if (strcmp(bufferRdsMsg, rdsMsg) == 0)
-    return;
-  delay(250);
-}
 
 void showRDSStation()
 {
-  // if (strcmp(bufferStatioName, stationName) == 0 ) return;
-  // printValue(5, 110,bufferStatioName, stationName, COLOR_GREEN, 6);
   clearLine4();
   oled.setCursor(0, 2);
   oled.print(stationName);
-  // strcpy(bufferStatioName, stationName);
   delay(250);
 }
 
-void showRDSTime()
-{
-
-  if (strcmp(bufferRdsTime, rdsTime) == 0)
-    return;
-  // printValue(80, 110, bufferRdsTime, rdsTime, COLOR_GREEN, 6);
-  delay(250);
-}
 
 void checkRDS()
 {
@@ -461,13 +443,9 @@ void checkRDS()
   {
     if (rx.getRdsSync() && rx.getRdsSyncFound())
     {
-      // rdsMsg = rx.getRdsText2A();
       stationName = rx.getRdsText0A();
-      // rdsTime = rx.getRdsTime();
-      // if ( rdsMsg != NULL )   showRDSMsg();
       if (stationName != NULL)
         showRDSStation();
-      // if ( rdsTime != NULL ) showRDSTime();
     }
   }
 }
@@ -482,13 +460,9 @@ void bandUp()
   band[bandIdx].currentStep = currentStep;
 
   if (bandIdx < lastBand)
-  {
     bandIdx++;
-  }
   else
-  {
     bandIdx = 0;
-  }
   useBand();
 }
 
@@ -501,13 +475,9 @@ void bandDown()
   band[bandIdx].currentFreq = currentFrequency;
   band[bandIdx].currentStep = currentStep;
   if (bandIdx > 0)
-  {
     bandIdx--;
-  }
   else
-  {
     bandIdx = lastBand;
-  }
   useBand();
 }
 
