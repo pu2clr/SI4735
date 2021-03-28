@@ -58,6 +58,7 @@ Contact: __pu2clr@gmail.com__.
      * [Bluepill - STM32F103C8 basic schematic](extras/schematic#bluepill---stm32f103c8-basic-schematic)
      * [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](extras/schematic#android-and-ios-remote-control-for-pu2clr-arduino-library-dsp-receivers)
      * [External Mute Circuit](extras/schematic#external-mute-circuit)
+     * [SI473X and external active crystal oscillator or signal generator](extras/schematic#si473x-and-external-active-crystal-oscillator-or-signal-generator)
      * [Band Pass Filter controlled by Arduino](extras/schematic#band-pass-filter-controlled-by-arduino)
      * [Storing data into the internal EEPROM before shutdowning](extras/schematic#storing-data-into-the-internal-eeprom-before-shutdowning)
 13. [Most Frequent Problems](https://pu2clr.github.io/SI4735/#most-frequent-problems)

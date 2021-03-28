@@ -223,14 +223,32 @@ You can use a signal generator or a active crystal oscillator instead the passiv
 
 ![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc.png)
 
+Check the [PU2CLR SI4735 Arduino Library API documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) to deal with external clock reference. The code below shows how to setup external clock. 
 
+```cpp
+void setup(void)
+{
+
+  .
+  .
+  .
+  si4735.setRefClock(32768);
+  si4735.setRefClockPrescaler(1);   // will work with 32768  
+ 
+  si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
+  .
+  .
+  .
+}
+```
+
+See the sketch example: [I47XX_02_RDS_TOUCH_SHIELD_REF_CLOCK](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_99_NO_CRYSTAL)
 
 Video: 
 
 [SI4735-D60 and external reference clock test](https://youtu.be/Jgh3ScQUudE)
 
 {% include external_crystal.html %}
-
 
 
 
