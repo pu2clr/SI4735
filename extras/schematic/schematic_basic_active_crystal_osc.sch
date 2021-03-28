@@ -3368,6 +3368,7 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <plain>
 <text x="22.86" y="55.88" size="1.778" layer="91">If GND, I2C addr =  0x11</text>
 <text x="22.86" y="50.8" size="1.778" layer="91">If VCC, I2C addr =  0x63</text>
+<text x="40.64" y="104.14" size="1.778" layer="91">external clock</text>
 </plain>
 <instances>
 <instance part="B1" gate="G$1" x="76.2" y="101.6" smashed="yes">
@@ -3572,7 +3573,6 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <segment>
 <pinref part="U1" gate="A" pin="RCLK"/>
 <wire x1="33.02" y1="104.14" x2="60.96" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="60.96" y1="104.14" x2="60.96" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$6" class="0">

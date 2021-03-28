@@ -41,9 +41,18 @@
   5) Frequency step switch (1, 5 and 10kHz);
   6) RDS
 
-
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
+
+  TO DO:
+
+  1) Setup mode to: 
+    1.1. allow the user to select MW band space 9kHz or 10kHz;
+    1.2. set the defaul volume level;
+  2) Implement the seek (ATS) functions. If AM (LW/MW and SW) or FM modes, the encoder push button will start seeking station.
+     The direction of the seek will depend on the last encoder rotation direction.     
+
+
 
   By Ricardo Lima Caratti, Nov 2019.
 */
