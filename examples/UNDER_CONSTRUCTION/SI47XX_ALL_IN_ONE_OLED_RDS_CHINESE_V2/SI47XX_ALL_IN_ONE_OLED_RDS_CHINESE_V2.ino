@@ -1,6 +1,8 @@
 /*
   This sketch was modified to work with the Chinese KIT from AliExpress 
 
+  To save Arduino memory space, thi sketch stop using String class and sprintf function. Instead, the function convertToChar was implemented. 
+
   This sketch works on DVE (David/Martins) KIT. See: https://davidmartinsengineering.wordpress.com/si4735-radio-kit/
   If you are using the DVE kit, set the OLED I2C bus address to 0X3D (see I2C_ADDRESS defined constan below)
 
