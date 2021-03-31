@@ -1405,8 +1405,8 @@ void SI4735::setSeekAmSpacing(uint16_t spacing)
 /**
  * @ingroup group08 Seek 
  * 
- * @brief Selects frequency spacingfor FM seek. Default is 100 kHz kHz spacing. There are only 3 valid values: 5, 10, and 20.
- * 
+ * @brief Selects frequency spacingfor FM seek. Default is 100 kHz (value 10) spacing. There are only 3 valid values: 5, 10, and 20.
+ * @details Although the guide does not mention it, the value 1 (10 kHz) seems to work better 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 101
  * 
  * @param uint16_t spacing - step in kHz

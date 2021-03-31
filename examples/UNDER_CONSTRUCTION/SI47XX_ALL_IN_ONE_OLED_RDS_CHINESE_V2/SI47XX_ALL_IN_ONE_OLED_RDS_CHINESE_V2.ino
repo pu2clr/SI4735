@@ -333,7 +333,7 @@ void printValue(int col, int line, char *oldValue, char *newValue, const DCfont 
  **********************/
 
 /**
-  Converts an uint16_t value to 5 digit char array 
+  Converts a number to a char string and places leading zeros. 
   It is useful to mitigate memory space used by sprintf or generic similar function
 */
 void convertToChar(uint16_t value, char *strValue, uint8_t len)
@@ -351,40 +351,42 @@ void convertToChar(uint16_t value, char *strValue, uint8_t len)
 char bufferFreq[15];
 
 void showFrequencyFM() {
-  char tmp[10];
+  char tmp[7];
+  char freq[8];
   convertToChar(currentFrequency, tmp,5);
 
-  bufferFreq[0] = (tmp[0] == '0') ? ' ' : tmp[0];
-  bufferFreq[1] = tmp[1];
+  freq[0] = (tmp[0] == '0') ? ' ' : tmp[0];
+  freq[1] = tmp[1];
   if (rx.isCurrentTuneFM())
   {
-    bufferFreq[2] = tmp[2];
-    bufferFreq[3] = '.';
-    bufferFreq[4] = tmp[3];
+    freq[2] = tmp[2];
+    freq[3] = '.';
+    freq[4] = tmp[3];
   }
-  printValue(2, 2, bufferFreq, tmp, digit1632Font);
-
+  printValue(2, 2, bufferFreq, freq, digit1632Font);
 }
 
 void showFrequencyAM() {
-  char tmp[10];
+  char tmp[7];
+  char freq[10];
   convertToChar(currentFrequency, tmp,5);
 
-  bufferFreq[0] = (tmp[0] == '0') ? ' ' : tmp[0];
+  freq[5] = freq[6] = '\0';
+  freq[0] = (tmp[0] == '0') ? ' ' : tmp[0]; // does not have a leading zero
   if (currentFrequency < 1000)
   {
-    bufferFreq[1] = ' ';
-    bufferFreq[2] = tmp[2];
-    bufferFreq[3] = tmp[3];
-    bufferFreq[4] = tmp[4];
+    freq[1] = ' '; // does not have a leading zero
+    freq[2] = tmp[2];
+    freq[3] = tmp[3];
+    freq[4] = tmp[4];
+  } else {
+    freq[1] = tmp[1];
+    freq[2] = '.';
+    freq[3] = tmp[2];
+    freq[4] = tmp[3];
+    freq[5] = tmp[4];
   }
-  else
-  {
-    bufferFreq[2] = tmp[2];
-    bufferFreq[3] = tmp[3];
-    bufferFreq[4] = tmp[4];
-  }
-  printValue(2, 2, bufferFreq, tmp, digit1632Font);
+  printValue(2, 2, bufferFreq, freq, digit1632Font);
 }
 
 void showFrequencySSB() {

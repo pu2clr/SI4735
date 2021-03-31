@@ -1,6 +1,6 @@
 /*
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT ST7735 1.8"
-
+  
   The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735  and  the 
   "PU2CLR SI4735 Arduino Library" working with the TFT ST7735 display. It is not the purpose of this prototype 
   to provide you a beautiful interface. To be honest, I think you can do it better than me. 
@@ -72,6 +72,7 @@
 
 #include <Adafruit_GFX.h>    // Core graphics library
 #include <Adafruit_ST7735.h> // Hardware-specific library for ST7735
+
 #include <SPI.h>
 #include "Rotary.h"
 
@@ -195,7 +196,7 @@ char bufferAGC[10];
 char bufferBand[15];
 char bufferStereo[10];
 char bufferUnt[5];
-char bufferRssi[7];
+char bufferRssi[8];
 
 /*
    Band data structure
@@ -314,6 +315,24 @@ void showTemplate()
   tft.drawLine(2, 60, maxX1, 60, ST77XX_YELLOW);
 }
 
+
+/**
+  Converts a number to a char string and places leading zeros. 
+  It is useful to mitigate memory space used by sprintf or generic similar function
+*/
+void convertToChar(uint16_t value, char *strValue, uint8_t len)
+{
+  char d;
+  for (int i = (len - 1); i >= 0; i--)
+  {
+    d = value % 10;
+    value = value / 10;
+    strValue[i] = d + 48;
+  }
+  strValue[len] = '\0';
+}
+
+
 /**
  * Prevents blinking during the frequency display.
  * Erases the old digits if it has changed and print the new digit values.
@@ -389,8 +408,7 @@ void showFrequency()
   uint16_t color;
   char tmp[15];
 
-  // It is better than use dtostrf or String to save space.
-  sprintf(tmp, "%5.5u", currentFrequency);
+  convertToChar(currentFrequency, tmp,5);
   bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
   bufferDisplay[1] = tmp[1];
   if (rx.isCurrentTuneFM())
@@ -456,7 +474,10 @@ void showStatus()
     if (ssbLoaded)  showBFO();
   }
   printValue(140, 5, bufferUnt, unt, 6, ST77XX_GREEN,1);
-  sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
+  strcpy(bufferDisplay, band[bandIdx].bandName);
+  strcat(bufferDisplay, " ");
+  strcat(bufferDisplay, bandModeDesc[currentMode]);
+
   printValue(5, 65, bufferBand, bufferDisplay, 6, ST77XX_CYAN, 1);
   showBandwitdth();
 }
@@ -472,7 +493,9 @@ void showBandwitdth() {
         bw = (char *) bandwitdthAM[bwIdxAM].desc;
       else 
         bw = (char *) bandwitdthSSB[bwIdxSSB].desc;
-      sprintf(bufferDisplay, "BW: %s kHz", bw);
+      strcpy(bufferDisplay,"BW: ");
+      strcat(bufferDisplay,bw);
+      strcat(bufferDisplay,"kHz");  
     } 
     else {
       bufferDisplay[0] = '\0';
@@ -489,12 +512,12 @@ void showRSSI()
     uint8_t rssiAux;
     int snrLevel;
     char sSt[10];
-    char sRssi[7];
+    char sRssi[10];
     int maxAux = tft.width() - 10;
 
     if (currentMode == FM)
     {
-      sprintf(sSt, "%s", (rx.getCurrentPilot()) ? "ST" : "MO");
+      strcpy(sSt,(rx.getCurrentPilot()) ? "ST" : "MO");
       printValue(4, 4, bufferStereo, sSt, 6, ST77XX_GREEN, 1);
     }
 
@@ -512,8 +535,12 @@ void showRSSI()
        rssiAux = 8;
     else if ( rssi >= 50 )
        rssiAux = 9;
-                  
-    sprintf(sRssi,"S%u%c",rssiAux,(rssiAux == 9)? '+': ' ');
+
+    sRssi[0] = 'S';
+    sRssi[1] = rssiAux + 48; 
+    sRssi[2] = (rssiAux == 9)? '+': ' ';  
+    sRssi[3] = '\0'; 
+              
     rssiLevel = map(rssiAux, 0, 10, 0, maxAux);
     snrLevel = map(snr, 0, 127, 0, maxAux);
 
@@ -530,11 +557,15 @@ void showRSSI()
  */
 void showAgcAtt() {
     char sAgc[10];
+    char tmp[4];
     rx.getAutomaticGainControl();
     if (agcNdx == 0 && agcIdx == 0)
       strcpy(sAgc, "AGC ON");
-    else
-      sprintf(sAgc, "ATT: %2d", agcNdx);
+    else {
+      convertToChar(agcNdx,tmp,2);
+      strcpy(sAgc,"ATT: ");
+      strcat(sAgc,tmp);  
+    }
     tft.setFont(NULL);
     printValue(110, 110, bufferAGC, sAgc, 6, ST77XX_GREEN, 1);
 }
@@ -544,7 +575,10 @@ void showAgcAtt() {
  */
 void showStep() {
   char sStep[15];
-  sprintf(sStep, "Stp:%3d", currentStep);
+  char tmp[10];
+  convertToChar(currentStep,tmp,4);
+  strcpy(sStep,"Stp:");
+  strcat(sStep,tmp);
   printValue(110, 65, bufferStepVFO, sStep, 6, ST77XX_GREEN, 1);
 }
 
@@ -553,7 +587,21 @@ void showStep() {
  */
 void showBFO()
 {
-    sprintf(bufferDisplay, "%+4d", currentBFO);
+    char tmp[6];
+    uint16_t auxBfo;
+    auxBfo = currentBFO;
+    if (currentBFO < 0 ) {
+        auxBfo = ~currentBFO + 1; // converts to absolute value (ABS) using binary operator
+        bufferDisplay[0] = '-';
+    }
+    else if (currentBFO > 0 )  
+      bufferDisplay[0] = '+';
+    else 
+      bufferDisplay[0] = ' ';      
+    
+     convertToChar(auxBfo,tmp,4); 
+     strcpy(&bufferDisplay[1], auxBfo);
+    // sprintf(bufferDisplay, "%+4d", currentBFO);
     printValue(128, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
     // showFrequency();
     elapsedCommand = millis();

@@ -1,6 +1,6 @@
 /*
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT ST7735 1.8"
-
+  
   The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735  and  the 
   "PU2CLR SI4735 Arduino Library" working with the TFT ST7735 display. It is not the purpose of this prototype 
   to provide you a beautiful interface. To be honest, I think you can do it better than me. 
@@ -72,6 +72,7 @@
 
 #include <Adafruit_GFX.h>    // Core graphics library
 #include <Adafruit_ST7735.h> // Hardware-specific library for ST7735
+
 #include <SPI.h>
 #include "Rotary.h"
 
@@ -90,7 +91,6 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define TFT_CLK 13 // SCK
 #define TFT_LED 0  // 0 if wired to +3.3V directly
 #define TFT_BRIGHTNESS 200
-
 
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
@@ -141,6 +141,7 @@ bool cmdAgc = false;
 bool cmdBandwidth = false;
 bool cmdStep = false;
 bool cmdMode = false;
+bool commandDisabledByUser = false;
 
 int currentBFO = 0;
 uint8_t seekDirection = 1;   // Tells the SEEK direction (botton or upper limit)
@@ -195,7 +196,7 @@ char bufferAGC[10];
 char bufferBand[15];
 char bufferStereo[10];
 char bufferUnt[5];
-char bufferRssi[7];
+char bufferRssi[8];
 
 /*
    Band data structure
@@ -231,11 +232,9 @@ Band band[] = {
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
 
-
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 int idxStep = 0;
-
 
 uint8_t rssi = 0;
 uint8_t snr = 0;
@@ -263,7 +262,6 @@ void setup()
   // uncomment the line below if you have external audio mute circuit
   // rx.setAudioMuteMcuPin(AUDIO_MUTE);
 
-  // Use this initializer if using a 1.8" TFT screen:
   tft.initR(INITR_BLACKTAB);
   tft.fillScreen(ST77XX_BLACK);
   tft.setRotation(1);
@@ -274,15 +272,12 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   // rx.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
-  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
-  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
-
-  // Set up the radio for the current band (see index table variable bandIdx )
+  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+ 
   useBand();
   rx.setVolume(volume);
   showStatus();
 }
-
 
 /**
  *  Set all command flags to false
@@ -296,6 +291,15 @@ void disableCommands() {
   cmdBandwidth = false;
   cmdStep = false;
   cmdMode = false;
+  commandDisabledByUser = false;
+}
+
+/**
+ * Checks if the system is in command condition
+ */
+inline bool isCommand()
+{
+  return (cmdBand | cmdMode | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | bfoOn);
 }
 
 /**
@@ -311,6 +315,24 @@ void showTemplate()
   tft.drawLine(2, 60, maxX1, 60, ST77XX_YELLOW);
 }
 
+
+/**
+  Converts a number to a char string and places leading zeros. 
+  It is useful to mitigate memory space used by sprintf or generic similar function
+*/
+void convertToChar(uint16_t value, char *strValue, uint8_t len)
+{
+  char d;
+  for (int i = (len - 1); i >= 0; i--)
+  {
+    d = value % 10;
+    value = value / 10;
+    strValue[i] = d + 48;
+  }
+  strValue[len] = '\0';
+}
+
+
 /**
  * Prevents blinking during the frequency display.
  * Erases the old digits if it has changed and print the new digit values.
@@ -322,7 +344,6 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
   char *pNew;
 
   tft.setTextSize(txtSize);
-
   pOld = oldValue;
   pNew = newValue;
 
@@ -364,11 +385,9 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
     pNew++;
     c += space;
   }
-
   // Save the current content to be tested next time
   strcpy(oldValue, newValue);
 }
-
 
 /**
  *   Reads encoder via interrupt
@@ -377,7 +396,6 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
 void rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
-
   if (encoderStatus)
     encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
 }
@@ -390,10 +408,7 @@ void showFrequency()
   uint16_t color;
   char tmp[15];
 
-  // It is better than use dtostrf or String to save space.
-
-  sprintf(tmp, "%5.5u", currentFrequency);
-
+  convertToChar(currentFrequency, tmp,5);
   bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
   bufferDisplay[1] = tmp[1];
   if (rx.isCurrentTuneFM())
@@ -421,7 +436,6 @@ void showFrequency()
   printValue(30, 10, bufferFreq, bufferDisplay, 18, color, 2);
 }
 
-
 /**
  *  This function is called by the seek function process.
  */
@@ -437,12 +451,10 @@ void showFrequencySeek(uint16_t freq)
 void showStatus()
 {
   char *unt;
-
   int maxX1 = tft.width() - 5;
 
   tft.fillRect(3, 3, maxX1, 36, ST77XX_BLACK);
   tft.fillRect(3, 61, maxX1, 60, ST77XX_BLACK);
-
   CLEAR_BUFFER(bufferFreq);
   CLEAR_BUFFER(bufferUnt);
   CLEAR_BUFFER(bufferBand);
@@ -451,7 +463,6 @@ void showStatus()
   CLEAR_BUFFER(bufferStepVFO);
   CLEAR_BUFFER(bufferStereo);
   CLEAR_BUFFER(bufferRssi);
-
   showFrequency();
   if (rx.isCurrentTuneFM()) {
     unt = (char *) "MHz";
@@ -463,11 +474,12 @@ void showStatus()
     if (ssbLoaded)  showBFO();
   }
   printValue(140, 5, bufferUnt, unt, 6, ST77XX_GREEN,1);
-  sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
+  strcpy(bufferDisplay, band[bandIdx].bandName);
+  strcat(bufferDisplay, " ");
+  strcat(bufferDisplay, bandModeDesc[currentMode]);
+
   printValue(5, 65, bufferBand, bufferDisplay, 6, ST77XX_CYAN, 1);
-
   showBandwitdth();
-
 }
 
 /**
@@ -477,12 +489,13 @@ void showBandwitdth() {
     // Bandwidth
     if (currentMode == LSB || currentMode == USB || currentMode == AM) {
       char * bw;
-
       if (currentMode == AM) 
         bw = (char *) bandwitdthAM[bwIdxAM].desc;
       else 
         bw = (char *) bandwitdthSSB[bwIdxSSB].desc;
-      sprintf(bufferDisplay, "BW: %s kHz", bw);
+      strcpy(bufferDisplay,"BW: ");
+      strcat(bufferDisplay,bw);
+      strcat(bufferDisplay,"kHz");  
     } 
     else {
       bufferDisplay[0] = '\0';
@@ -499,18 +512,17 @@ void showRSSI()
     uint8_t rssiAux;
     int snrLevel;
     char sSt[10];
-    char sRssi[7];
+    char sRssi[10];
     int maxAux = tft.width() - 10;
 
     if (currentMode == FM)
     {
-      sprintf(sSt, "%s", (rx.getCurrentPilot()) ? "ST" : "MO");
+      strcpy(sSt,(rx.getCurrentPilot()) ? "ST" : "MO");
       printValue(4, 4, bufferStereo, sSt, 6, ST77XX_GREEN, 1);
     }
 
     // It needs to be calibrated. You can do it better. 
     // RSSI: 0 to 127 dBuV
-
     if (rssi < 2) 
        rssiAux = 4;
     else if ( rssi < 4)
@@ -523,8 +535,12 @@ void showRSSI()
        rssiAux = 8;
     else if ( rssi >= 50 )
        rssiAux = 9;
-                  
-    sprintf(sRssi,"S%u%c",rssiAux,(rssiAux == 9)? '+': ' ');
+
+    sRssi[0] = 'S';
+    sRssi[1] = rssiAux + 48; 
+    sRssi[2] = (rssiAux == 9)? '+': ' ';  
+    sRssi[3] = '\0'; 
+              
     rssiLevel = map(rssiAux, 0, 10, 0, maxAux);
     snrLevel = map(snr, 0, 127, 0, maxAux);
 
@@ -541,22 +557,28 @@ void showRSSI()
  */
 void showAgcAtt() {
     char sAgc[10];
+    char tmp[4];
     rx.getAutomaticGainControl();
     if (agcNdx == 0 && agcIdx == 0)
       strcpy(sAgc, "AGC ON");
-    else
-      sprintf(sAgc, "ATT: %2d", agcNdx);
+    else {
+      convertToChar(agcNdx,tmp,2);
+      strcpy(sAgc,"ATT: ");
+      strcat(sAgc,tmp);  
+    }
     tft.setFont(NULL);
     printValue(110, 110, bufferAGC, sAgc, 6, ST77XX_GREEN, 1);
 }
-
 
 /**
  *  Shows the current step
  */
 void showStep() {
   char sStep[15];
-  sprintf(sStep, "Stp:%3d", currentStep);
+  char tmp[10];
+  convertToChar(currentStep,tmp,4);
+  strcpy(sStep,"Stp:");
+  strcat(sStep,tmp);
   printValue(110, 65, bufferStepVFO, sStep, 6, ST77XX_GREEN, 1);
 }
 
@@ -565,12 +587,25 @@ void showStep() {
  */
 void showBFO()
 {
-    sprintf(bufferDisplay, "%+4d", currentBFO);
+    char tmp[6];
+    uint16_t auxBfo;
+    auxBfo = currentBFO;
+    if (currentBFO < 0 ) {
+        auxBfo = ~currentBFO + 1; // converts to absolute value (ABS) using binary operator
+        bufferDisplay[0] = '-';
+    }
+    else if (currentBFO > 0 )  
+      bufferDisplay[0] = '+';
+    else 
+      bufferDisplay[0] = ' ';      
+    
+     convertToChar(auxBfo,tmp,4); 
+     strcpy(&bufferDisplay[1], auxBfo);
+    // sprintf(bufferDisplay, "%+4d", currentBFO);
     printValue(128, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
     // showFrequency();
     elapsedCommand = millis();
 }
-
 
 /**
  *  Sets Band up (1) or down (!1)
@@ -665,7 +700,6 @@ void doBandwidth(int8_t v) {
   if (currentMode == LSB || currentMode == USB)
   {
     bwIdxSSB = ( v == 1) ? bwIdxSSB + 1 : bwIdxSSB - 1;
-
     if (bwIdxSSB > 5)
       bwIdxSSB = 0;
     else if ( bwIdxSSB < 0 )
@@ -681,7 +715,6 @@ void doBandwidth(int8_t v) {
   else if (currentMode == AM)
   {
     bwIdxAM = ( v == 1) ? bwIdxAM + 1 : bwIdxAM - 1;
-
     if (bwIdxAM > 6)
       bwIdxAM = 0;
     else if ( bwIdxAM < 0)
@@ -699,13 +732,11 @@ void doBandwidth(int8_t v) {
  *  Deal with AGC and attenuattion
  */
 void doAgc(int8_t v) {
-
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
   if (agcIdx < 0 )
     agcIdx = 37;
   else if ( agcIdx > 37)
     agcIdx = 0;
-
 
   disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable 
 
@@ -741,7 +772,6 @@ void doStep(int8_t v) {
      idxStep = lastStep;
 
   currentStep = tabStep[idxStep];
-
   rx.setFrequencyStep(currentStep);
   band[bandIdx].currentStep = currentStep;
   rx.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10kHz for spacing
@@ -791,6 +821,19 @@ void doSeek() {
   currentFrequency = rx.getFrequency();
 }
 
+/**
+ * Prepares the system to process the desired current command
+ */
+void prepareCommand(bool *b)
+{
+  bool tmp = *b;
+  disableCommands(); // Disable previous command if is activated.
+  *b = !tmp;
+  commandDisabledByUser = (*b) ? false : true;
+  delay(MIN_ELAPSED_TIME);
+  elapsedCommand = millis();
+}
+
 void loop()
 {
   // Check if the encoder has moved.
@@ -814,16 +857,10 @@ void loop()
       setBand(encoderCount);
     else
     {
-      if (encoderCount == 1)
-      {
+      if (seekDirection = (encoderCount == 1) )
         rx.frequencyUp();
-        seekDirection = 1;
-      }
       else
-      {
         rx.frequencyDown();
-        seekDirection = 0;
-      }
       // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
     }
@@ -833,47 +870,25 @@ void loop()
   else
   {
     if (digitalRead(BANDWIDTH_BUTTON) == LOW)
-    {
-      cmdBandwidth = !cmdBandwidth;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
+      prepareCommand(&cmdBandwidth);
     else if (digitalRead(BAND_BUTTON) == LOW)
-    {
-      cmdBand = !cmdBand;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
+      prepareCommand(&cmdBand);
     else if (digitalRead(SEEK_BUTTON) == LOW)
-    {
       doSeek();
-    }
+    else if (digitalRead(AGC_SWITCH) == LOW)
+      prepareCommand(&cmdAgc);
+    else if (digitalRead(STEP_SWITCH) == LOW)
+      prepareCommand(&cmdStep);
+    else if (digitalRead(MODE_SWITCH) == LOW)
+      prepareCommand(&cmdStep);
     else if (digitalRead(BFO_SWITCH) == LOW)
     {
       bfoOn = !bfoOn;
       if ((currentMode == LSB || currentMode == USB))
         showBFO();
-        
+
       CLEAR_BUFFER(bufferFreq);
       showFrequency();
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (digitalRead(AGC_SWITCH) == LOW)
-    {
-      cmdAgc = !cmdAgc;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (digitalRead(STEP_SWITCH) == LOW)
-    {
-      cmdStep = !cmdStep;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (digitalRead(MODE_SWITCH) == LOW)
-    {
-      cmdMode = !cmdMode;
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
@@ -894,7 +909,7 @@ void loop()
   }
 
   // Disable commands control
-  if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
+  if ( ( ((millis() - elapsedCommand) > ELAPSED_COMMAND ) && isCommand()) || commandDisabledByUser)
   {
     if ((currentMode == LSB || currentMode == USB)) {
       bfoOn = false;
