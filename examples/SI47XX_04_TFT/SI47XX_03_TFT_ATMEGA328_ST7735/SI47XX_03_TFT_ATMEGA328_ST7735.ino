@@ -5,6 +5,8 @@
   "PU2CLR SI4735 Arduino Library" working with the TFT ST7735 display. It is not the purpose of this prototype 
   to provide you a beautiful interface. To be honest, I think you can do it better than me. 
 
+  This sketch does not use sprintf or any function to deal with value formatting.  It helped to save Arduino memory.  
+
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations. If  you  are  using  the  same  circuit  used  on  examples with OLED and LCD,
   you have to change some buttons wire up. This TFT device takes five pins from Arduino.
