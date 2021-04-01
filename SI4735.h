@@ -1026,10 +1026,9 @@ volatile static bool data_from_si4735; /** @ingroup group04 store the interrupt 
  * @details this function just set the volatile static bool data_from_si4735 to true;
  * 
  * If you are using interrupt feature, this function will be called by the system, not by you. 
- * If you are not using interrupt feature, please, ignore the compile message:
- * "warning: 'void interrupt_hundler()' defined but not used [-Wunused-function]"
  */
-static void interrupt_hundler()
+__attribute__((used))
+static void interrupt_hundler() 
 {
     data_from_si4735 = true;
 };
