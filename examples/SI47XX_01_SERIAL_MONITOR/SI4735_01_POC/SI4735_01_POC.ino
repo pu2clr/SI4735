@@ -50,7 +50,7 @@ uint8_t bandwidthIdx = 0;
 const char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 
-SI4735 si4735;
+SI4735 rx;
 
 void setup()
 {
@@ -64,7 +64,7 @@ void setup()
   showHelp();
 
   // Look for the Si47XX I2C bus address
-  int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
+  int16_t si4735Addr = rx.getDeviceI2CAddress(RESET_PIN);
   if ( si4735Addr == 0 ) {
     Serial.println("Si473X not found!");
     Serial.flush();
@@ -76,12 +76,13 @@ void setup()
 
 
   delay(500);
-  si4735.setup(RESET_PIN, FM_FUNCTION);
+  rx.setup(RESET_PIN, FM_FUNCTION);
+  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO);
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
-  si4735.setFM(8400, 10800, 10390, 10);
+  rx.setFM(8400, 10800, 10650, 10);
   delay(500);
-  currentFrequency = previousFrequency = si4735.getFrequency();
-  si4735.setVolume(45);
+  currentFrequency = previousFrequency = rx.getFrequency();
+  rx.setVolume(45);
   showStatus();
 }
 
@@ -103,15 +104,15 @@ void showHelp()
 // Show current frequency
 void showStatus()
 {
-  // si4735.getStatus();
-  previousFrequency = currentFrequency = si4735.getFrequency();
-  si4735.getCurrentReceivedSignalQuality();
+  // rx.getStatus();
+  previousFrequency = currentFrequency = rx.getFrequency();
+  rx.getCurrentReceivedSignalQuality();
   Serial.print("You are tuned on ");
-  if (si4735.isCurrentTuneFM())
+  if (rx.isCurrentTuneFM())
   {
     Serial.print(String(currentFrequency / 100.0, 2));
     Serial.print("MHz ");
-    Serial.print((si4735.getCurrentPilot()) ? "STEREO" : "MONO");
+    Serial.print((rx.getCurrentPilot()) ? "STEREO" : "MONO");
   }
   else
   {
@@ -119,17 +120,17 @@ void showStatus()
     Serial.print("kHz");
   }
   Serial.print(" [SNR:");
-  Serial.print(si4735.getCurrentSNR());
+  Serial.print(rx.getCurrentSNR());
   Serial.print("dB");
 
   Serial.print(" Signal:");
-  Serial.print(si4735.getCurrentRSSI());
+  Serial.print(rx.getCurrentRSSI());
   Serial.println("dBuV]");
 }
 
 void showFrequency( uint16_t freq ) {
 
-  if (si4735.isCurrentTuneFM())
+  if (rx.isCurrentTuneFM())
   {
     Serial.print(String(freq / 100.0, 2));
     Serial.println("MHz ");
@@ -152,40 +153,40 @@ void loop()
     switch (key)
     {
     case '+':
-      si4735.volumeUp();
+      rx.volumeUp();
       break;
     case '-':
-      si4735.volumeDown();
+      rx.volumeDown();
       break;
     case 'a':
     case 'A':
-      si4735.setAM(520, 1750, 810, 10);
-      si4735.setSeekAmLimits(520, 1750);
-      si4735.setSeekAmSpacing(10); // spacing 10kHz
+      rx.setAM(520, 1750, 810, 10);
+      rx.setSeekAmLimits(520, 1750);
+      rx.setSeekAmSpacing(10); // spacing 10kHz
       break;
     case 'f':
     case 'F':
-      si4735.setFM(8600, 10800, 10390, 50);
-      si4735.setSeekAmRssiThreshold(0);
-      si4735.setSeekAmSrnThreshold(10);
+      rx.setFM(8600, 10800, 10390, 50);
+      rx.setSeekAmRssiThreshold(0);
+      rx.setSeekAmSrnThreshold(10);
       break;
     case '1':
-      si4735.setAM(100, 30000, 7200, 5);
-      si4735.setSeekAmLimits(100, 30000);   // Range for seeking.
-      si4735.setSeekAmSpacing(1); // spacing 1kHz
+      rx.setAM(100, 30000, 7200, 5);
+      rx.setSeekAmLimits(100, 30000);   // Range for seeking.
+      rx.setSeekAmSpacing(1); // spacing 1kHz
       Serial.println("\nALL - LW/MW/SW");
       break;
     case 'U':
     case 'u':
-      si4735.frequencyUp();
+      rx.frequencyUp();
       break;
     case 'D':
     case 'd':
-      si4735.frequencyDown();
+      rx.frequencyDown();
       break;
     case 'b':
     case 'B':
-      if (si4735.isCurrentTuneFM())
+      if (rx.isCurrentTuneFM())
       {
         Serial.println("Not valid for FM");
       }
@@ -193,7 +194,7 @@ void loop()
       {
         if (bandwidthIdx > 6)
           bandwidthIdx = 0;
-        si4735.setBandwidth(bandwidthIdx, 1);
+        rx.setBandwidth(bandwidthIdx, 1);
         Serial.print("Filter - Bandwidth: ");
         Serial.print(String(bandwitdth[bandwidthIdx]));
         Serial.println(" kHz");
@@ -201,34 +202,34 @@ void loop()
       }
       break;
     case 'S':
-      si4735.seekStationProgress(showFrequency,1);
-      // si4735.seekStationUp();
+      rx.seekStationProgress(showFrequency,1);
+      // rx.seekStationUp();
       break;
     case 's':
-      si4735.seekStationProgress(showFrequency,0);
-      // si4735.seekStationDown();
+      rx.seekStationProgress(showFrequency,0);
+      // rx.seekStationDown();
       break;
     case '0':
       showStatus();
       break;
     case '4':
-      si4735.setFrequencyStep(1);
+      rx.setFrequencyStep(1);
       Serial.println("\nStep 1");
       break;  
     case '5':
-      si4735.setFrequencyStep(5);
+      rx.setFrequencyStep(5);
       Serial.println("\nStep 5");
       break;    
     case '6':
-      si4735.setFrequencyStep(10);
+      rx.setFrequencyStep(10);
       Serial.println("\nStep 10");
       break;
     case '7':
-      si4735.setFrequencyStep(100);
+      rx.setFrequencyStep(100);
       Serial.println("\nStep 100");      
       break;
     case '8':
-      si4735.setFrequencyStep(1000);
+      rx.setFrequencyStep(1000);
       Serial.println("\nStep 1000");    
       break;
     case '?':
@@ -239,7 +240,7 @@ void loop()
     }
   }
   delay(100);
-  currentFrequency = si4735.getCurrentFrequency();
+  currentFrequency = rx.getCurrentFrequency();
   if (currentFrequency != previousFrequency)
   {
     previousFrequency = currentFrequency;
