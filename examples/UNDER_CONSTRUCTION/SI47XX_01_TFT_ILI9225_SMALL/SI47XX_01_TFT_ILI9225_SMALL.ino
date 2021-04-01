@@ -1,7 +1,7 @@
 /*
 
   Under construction... 
-  Shrinking Arduino memory used by the Sketch by removing sprintf and dtostrf functions. 
+  Shrinking Arduino memory consumption  by removing sprintf and dtostrf functions. 
   
 
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220) - ILI9225.
@@ -59,7 +59,7 @@
 #include <SI4735.h>
 
 #include <SPI.h>
-#include "TFT_22_ILI9225.h" //   // See https://github.com/Nkawu/TFT_22_ILI9225/wiki
+#include <TFT_22_ILI9225.h> // See https://github.com/Nkawu/TFT_22_ILI9225/wiki
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.
@@ -355,7 +355,7 @@ void showFrequency()
   char sf[15];
 
   tft.setFont(Trebuchet_MS16x21);
-
+  
   convertToChar(currentFrequency, tmp, 5);
 
   sf[5] = sf[6] = '\0';
@@ -446,9 +446,9 @@ void showFilter() {
       showBFOTemplate(COLOR_CYAN);
       showBFO();
     }
-    strcpy(bufferDisplay, "BW: ");
+    strcpy(bufferDisplay, "BW:");
     strcat(bufferDisplay, bw);
-    strcat(bufferDisplay, " kHz");
+    strcat(bufferDisplay, "kHz");
     printValue(124, 45, bufferBW, bufferDisplay, COLOR_CYAN, 6);
   }
 
@@ -695,12 +695,7 @@ void loop()
           clearBFO();
         }
         CLEAR_BUFFER(bufferFreq);
-      } /* Uncomment this block if you want FM Seek Station when push encoder button
-      else if (currentMode == FM)
-      {
-        rx.seekStationUp();
-        currentFrequency = rx.getFrequency();
-      } */
+      } 
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       showFrequency();
     }

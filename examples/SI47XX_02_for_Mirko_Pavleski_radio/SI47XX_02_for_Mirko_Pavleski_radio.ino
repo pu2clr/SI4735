@@ -795,6 +795,7 @@ void doCurrentMenuCmd() {
         showBFO();
        }
       // showFrequency();
+      break;
     default:
         showStatus();
         doSeek();

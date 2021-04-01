@@ -147,7 +147,7 @@ void showStatus()
   {
     lcd.print("FM ");
     lcd.setCursor(7, 0);
-    lcd.print(String(currentFrequency / 100.0, 2));
+    lcd.print(String(currentFrequency / 100.0, 2)); // String should be removed to save memory 
     lcd.setCursor(16, 0);
     lcd.print("MHz");
     showStereo();
