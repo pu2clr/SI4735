@@ -324,31 +324,7 @@ int getStepIndex(int st) {
 */
 void showTemplate()
 {
-  /*
-  int maxY1 = tft.maxY() - 1;
-  int maxX1 = tft.maxX() - 1;
 
-  tft.setFont(Terminal6x8);
-
-  tft.drawRectangle(0, 0, maxX1, maxY1, TFT_WHITE);
-  tft.drawRectangle(2, 2, maxX1 - 2, 40, TFT_YELLOW);
-
-  tft.drawLine(150, 0, 150, 40, TFT_YELLOW);
-
-  tft.drawLine(0, 80, maxX1, 80, TFT_YELLOW); //
-  tft.drawLine(60, 40, 60, 80, TFT_YELLOW);            // Mode Block
-  tft.drawLine(120, 40, 120, 80, TFT_YELLOW);          // Band name
-
-  tft.drawText(5, 150, "SNR.:", TFT_RED);
-  tft.drawText(5, 163, "RSSI:", TFT_RED);
-
-  tft.drawLine(0, 145, maxX1, 145, TFT_YELLOW);
-
-  tft.drawRectangle(45, 150,  maxX1 - 2, 156, TFT_YELLOW);
-  tft.drawRectangle(45, 163,  maxX1 - 2, 169, TFT_YELLOW);
-
-  tft.drawText(5, 130, text_message, TFT_YELLOW);
-  */
 }
 
 
@@ -419,7 +395,7 @@ void showFrequency()
 
   // It is better than use dtostrf or String to save space.
 
-  sprintf(tmp, "%5.5u", currentFrequency);
+  // sprintf(tmp, "%5.5u", currentFrequency);
 
   if (rx.isCurrentTuneFM())
   {
@@ -466,36 +442,8 @@ void showFrequencySeek(uint16_t freq)
 */
 void showStatus()
 {
-  /*
-  rx.getStatus();
-  rx.getCurrentReceivedSignalQuality();
-  // SRN
-  currentFrequency = rx.getFrequency();
-  showFrequency();
 
-  tft.setFont(Terminal6x8);
-  printValue(155, 10, bufferStepVFO, bufferDisplay, TFT_BLACK, 7);
 
-  if (rx.isCurrentTuneFM())
-  {
-    tft.drawText(155, 30, "MHz", TFT_RED);
-    tft.drawText(124, 45, bufferBW, TFT_BLACK);
-    CLEAR_BUFFER(bufferBW)
-  }
-  else
-  {
-    showStep();
-  }
-
-  if (band[bandIdx].bandType == SW_BAND_TYPE)
-    sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
-  else
-    sprintf(bufferDisplay, "%s", band[bandIdx].bandName);
-  printValue(4, 60, bufferBand, bufferDisplay, TFT_CYAN, 6);
-
-  showAgcAtt();
-  showBandwitdth();
-  */
 }
 
 /**
@@ -503,12 +451,8 @@ void showStatus()
 */
 void showAgcAtt()
 {
-  /*
-  tft.setFont(Terminal6x8);
-  rx.getAutomaticGainControl();
-  sprintf(bufferDisplay, "%s %2d", (rx.isAgcEnabled()) ? "AGC" : "ATT", agcNdx);
-  printValue(65, 60, bufferAGC, bufferDisplay, TFT_CYAN, 6);
-  */
+
+
 }
 
 
@@ -516,12 +460,7 @@ void showAgcAtt()
     Shows the current step
 */
 void showStep() {
-  /*
-  tft.setFont(Terminal6x8);
-  sprintf(bufferDisplay, "Stp: %3d", tabStep[idxStep]);
-  printValue(153, 10, bufferStepVFO, bufferDisplay, TFT_YELLOW, 6);
-  tft.drawText(153, 30, "kHz", TFT_RED);
-  */
+
 }
 
 
@@ -529,25 +468,7 @@ void showStep() {
    Shows the current Bandwitdth status
 */
 void showBandwitdth() {
-  /*
-  // Bandwidth
-  tft.setFont(Terminal6x8);
-  if (currentMode == LSB || currentMode == USB || currentMode == AM) {
-    char * bw;
-    tft.drawText(150, 60, bufferStereo, TFT_BLACK); // Erase Stereo/Mono information
 
-    if (currentMode == AM) {
-      bw = (char *) bandwitdthAM[bwIdxAM].desc;
-    }
-    else {
-      bw = (char *) bandwitdthSSB[bwIdxSSB].desc;
-      showBFOTemplate(TFT_CYAN);
-      showBFO();
-    }
-    sprintf(bufferDisplay, "BW: %s kHz", bw);
-    printValue(124, 45, bufferBW, bufferDisplay, TFT_CYAN, 1, 6);
-  }
-  */
 }
 
 
@@ -561,29 +482,23 @@ char bufferRdsTime[32];
 long stationNameElapsed = millis();
 
 void showRDSMsg() {
-  rdsMsg[35] = bufferRdsMsg[35] = '\0';
-  if (strcmp(bufferRdsMsg, rdsMsg) == 0) return;
-  printValue(5, 90, bufferRdsMsg, rdsMsg, TFT_GREEN, 1,  6);
-  delay(250);
+
+
 }
 
 /**
    TODO: process RDS Dynamic PS or Scrolling PS
 */
 void showRDSStation() {
-  if (strncmp(bufferStatioName, stationName, 3) == 0 ) return;
-  printValue(5, 110, bufferStatioName, stationName, TFT_GREEN, 1,  6);
-  // for( int i = 0; i < 8; i++ ) stationName[i] = '\0';
+
 }
 
 void showRDSTime() {
-  if (strcmp(bufferRdsTime, rdsTime) == 0 ) return;
-  printValue(100, 110, bufferRdsTime, rdsTime, TFT_GREEN, 1, 6);
-  delay(100);
+
 }
 
 void checkRDS() {
-  // tft.setFont(Terminal6x8);
+
   rx.getRdsStatus();
   if (rx.getRdsReceived()) {
     if (rx.getRdsSync() && rx.getRdsSyncFound() ) {
@@ -607,75 +522,21 @@ void checkRDS() {
 */
 void showRSSI()
 {
-  /*
-  int rssiLevel;
-  int snrLevel;
-  int maxAux = tft.maxX();
-  uint8_t rssiAux;
-
-  tft.setFont(Terminal6x8);
-  if (currentMode == FM)
-  {
-    sprintf(bufferDisplay, "%s", (rx.getCurrentPilot()) ? "STEREO" : "MONO");
-    printValue(150, 60, bufferStereo, bufferDisplay, TFT_CYAN, 1, 7);
-  }
-
-  // It needs to be calibrated. You can do it better.
-  // RSSI: 0 to 127 dBuV
-
-  if (rssi < 2)
-    rssiAux = 4;
-  else if ( rssi < 4)
-    rssiAux = 5;
-  else if ( rssi < 12 )
-    rssiAux = 6;
-  else if (rssi < 25)
-    rssiAux = 7;
-  else if ( rssi < 50 )
-    rssiAux = 8;
-  else if ( rssi >= 50 )
-    rssiAux = 9;
-
-  // Check it
-  // RSSI: 0 to 127 dBuV
-  rssiLevel = 47 + map(rssiAux, 0, 10, 0, ( maxAux  - 43) );
-  // SNR.: 0 to 127 dB
-  snrLevel = 47 + map(snr, 0, 127, 0, ( maxAux  - 43) );
-
-  tft.fillRectangle(46, 151,  maxAux - 3, 155, TFT_BLACK);
-  tft.fillRectangle(46, 164, maxAux - 3, 168, TFT_BLACK);
-
-  tft.fillRectangle(46, 151,  rssiLevel, 155, TFT_LIGHTCYAN);
-  tft.fillRectangle(46, 164, snrLevel, 168, TFT_LIGHTCYAN);
-  */
+ 
 }
 
 void showBFOTemplate(uint16_t color)
 {
-  /*
-  tft.setFont(Terminal6x8);
-  tft.drawText(150, 60, bufferStereo, TFT_BLACK);
-  tft.drawText(124, 55, "BFO.:", color);
-  */
+ 
 }
 
 void clearBFO() {
-  /*
-  tft.fillRectangle(124, 52, 218, 79, TFT_BLACK); // Clear All BFO area
-  CLEAR_BUFFER(bufferBFO);
-  */
+
 }
 
 void showBFO()
 {
-  /*
-  tft.setFont(Terminal6x8);
 
-  sprintf(bufferDisplay, "%+4d", currentBFO);
-  printValue(160, 55, bufferBFO, bufferDisplay, TFT_CYAN, 1,  7);
-
-  elapsedCommand = millis();
-  */
 }
 
 
@@ -728,8 +589,6 @@ void loadSSB()
 */
 void useBand()
 {
-  showBFOTemplate(TFT_BLACK);
-  // tft.fillRectangle(3, 90,  tft.maxX() - 5, 120, TFT_BLACK);
 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
@@ -767,7 +626,6 @@ void useBand()
   idxStep = getStepIndex(currentStep);
   rssi = 0;
   clearBFO();
-  // tft.fillRectangle(153, 3, 216, 20, TFT_BLACK);  // Clear Step field
   showStatus();
 }
 
@@ -1036,7 +894,6 @@ void loop()
 
   if ( currentMode == FM) {
     if ( currentFrequency != previousFrequency ) {
-      // tft.fillRectangle(3, 90,  tft.maxX() - 5, 120, TFT_BLACK);
       bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] =  bufferRdsTime[0] = rdsMsg[0] = stationName[0] = '\0';
       showRDSMsg();
       showRDSStation();
