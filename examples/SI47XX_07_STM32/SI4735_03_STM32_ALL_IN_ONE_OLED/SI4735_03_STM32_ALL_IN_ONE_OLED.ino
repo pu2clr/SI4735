@@ -797,7 +797,7 @@ void setup()
 
   si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
-  si4735.setI2CFastMode();               // Recommended (400 kHz)
+  // si4735.setI2CFastMode();               // Recommended (400 kHz)
 
   si4735.setup(RESET_PIN, FM_BAND_TYPE);
 

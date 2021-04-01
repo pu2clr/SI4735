@@ -162,7 +162,7 @@ void setup()
   // Testing I2C clock speed and SSB behaviour
   // si4735.setI2CLowSpeedMode();     //  10000 (10kHz)
   // si4735.setI2CStandardMode();        // 100000 (100kHz)
-  si4735.setI2CFastMode();         // 400000 (400kHz)
+  // si4735.setI2CFastMode();         // 400000 (400kHz)
   // si4735.setI2CFastModeCustom(500000); // -> It is not safe and can crash.
   delay(10);
   Serial.println("SSB patch is loading...");
