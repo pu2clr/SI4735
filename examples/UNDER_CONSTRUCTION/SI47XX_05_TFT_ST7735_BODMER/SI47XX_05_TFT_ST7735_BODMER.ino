@@ -253,10 +253,8 @@ void setup(void)
     attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
     rx.getDeviceI2CAddress(RESET_PIN);               // Looks for the I2C bus address and set it.  Returns 0 if error
     rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+    delay(300);
     // Set up the radio for the current band (see index table variable bandIdx )
-
-
-    delay(500);
     useBand();
     rx.setVolume(volume);
     showStatus();
@@ -359,10 +357,11 @@ void showMode()
         bandMode = (char *)"LW  ";
     else
         bandMode = (char *)bandModeDesc[currentMode];
-    // lcd.setCursor(0, 0);
-    // lcd.print(bandMode);
-    // lcd.setCursor(0, 1);
-    // lcd.print(band[bandIdx].bandName);
+
+    tft.setTextColor(ST7735_YELLOW, ST7735_BLACK); //
+    tft.drawString(bandMode,0,50,4); 
+    tft.drawString(band[bandIdx].bandName,50,50,4); 
+
 }
 
 /**
@@ -370,9 +369,10 @@ void showMode()
  */
 void showStatus()
 {
-    // lcd.clear();
     showFrequency();
     showRSSI();
+    showMode();
+    showBandwitdth();
 }
 
 /**
@@ -388,14 +388,18 @@ void showBandwitdth()
             bw = (char *)bandwitdthAM[bwIdxAM].desc;
         else
             bw = (char *)bandwitdthSSB[bwIdxSSB].desc;
-        // sprintf(bufferDisplay, "BW: %s kHz", bw);
+
+        strcpy(bufferDisplay,"BW: ");
+        strcat(bufferDisplay,bw);
+        strcat(bufferDisplay," kHz");    
     }
     else
         bufferDisplay[0] = '\0';
 
-    // lcd.clear();
-    // lcd.setCursor(0, 0);
-    // lcd.print(bufferDisplay);
+    
+        
+    tft.setTextColor(ST7735_GREEN, ST7735_BLACK); //
+    tft.drawString(bufferDisplay,0,110,2); 
 }
 
 /**
@@ -519,7 +523,8 @@ void setBand(int8_t up_down)
  */
 void useBand()
 {
-    clearFrequency();
+    // clearFrequency();
+    tft.fillScreen(ST7735_BLACK);
   
     if (band[bandIdx].bandType == FM_BAND_TYPE)
     {
