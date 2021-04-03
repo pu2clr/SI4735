@@ -79,12 +79,12 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define LCD_RS    12
 #define LCD_E     13
 
-#define BUZZY_PIN 10             // Buzzy pin
-#define CW_BUTTON 11             // Command to call CW
-#define DELAY_CHAR 400           // delay between dashes /  dots
-#define DELAY_SPACE 400          // space delay
-#define DELAY_DOT 50             // dot time
-#define DELAY_DASH DELAY_DOT * 3 // dash time
+#define BUZZY_PIN 10              // Buzzy pin
+#define CW_BUTTON 11              // Command to call CW
+#define DELAY_DOT 50              // dot time
+#define DELAY_DASH DELAY_DOT * 3  // dash time
+#define DELAY_SPACE DELAY_DOT * 7 // space delay
+#define DELAY_CHAR DELAY_DOT * 3   // delay between dashes /  dots
 
 // Buttons controllers
 #define ENCODER_PUSH_BUTTON 14      // Pin A0/14
@@ -325,10 +325,11 @@ void playMorseCode(char *s)
     encoderCount = 0;
     while (*s && encoderCount == 0)
     {
+        delay(DELAY_CHAR);
         playCharCode(*s++);
     }
     encoderCount = 0;
-    delay(500);
+    delay(DELAY_SPACE);
     rx.setAudioMute(false);
 }
 
@@ -355,7 +356,6 @@ void playCharCode(char code)
         cw++;
         delay(duration << 1); // duration * 2 ==> Time between dashes or dots
     } while (*cw);
-    delay(DELAY_CHAR);
 }
 
 
