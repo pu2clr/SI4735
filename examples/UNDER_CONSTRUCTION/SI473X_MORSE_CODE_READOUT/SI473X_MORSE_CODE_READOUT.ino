@@ -81,6 +81,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 
 #define BUZZY_PIN 10              // Buzzy pin
 #define CW_BUTTON 11              // Command to call CW
+#define CW_TONE   800             // CW tone (audio frequency)
 #define DELAY_DOT 50              // dot time
 #define DELAY_DASH DELAY_DOT * 3  // dash time
 #define DELAY_SPACE DELAY_DOT * 7 // space delay
@@ -264,7 +265,7 @@ const char *cwCode[] = {
     "--.."   // Z - 90
 };
 
-char *welcome = "CQ DX PU2CLR";
+char *welcome = (char *) "CQ DX PU2CLR";
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
@@ -319,7 +320,7 @@ void Flash (int d)
  * Morse Code implementation
  *******************************/
 
-void playMorseCode(char *s)
+void playMorseCode(const char *s)
 {
     rx.setAudioMute(true);
     encoderCount = 0;
@@ -337,7 +338,7 @@ void playCharCode(char code)
 {
     uint8_t idx = code - 48;
     char *cw = (char *)cwCode[idx];
-    unsigned int duration;
+    unsigned int duration = 0;
 
     if (code < 48 || code > 90)
     {
@@ -351,7 +352,7 @@ void playCharCode(char code)
         {
             if (encoderCount != 0) return;
             duration = (*cw == '-') ? DELAY_DASH : DELAY_DOT;
-            tone(BUZZY_PIN, 1200, duration);
+            tone(BUZZY_PIN, CW_TONE, duration);
         }
         cw++;
         delay(duration << 1); // duration * 2 ==> Time between dashes or dots
