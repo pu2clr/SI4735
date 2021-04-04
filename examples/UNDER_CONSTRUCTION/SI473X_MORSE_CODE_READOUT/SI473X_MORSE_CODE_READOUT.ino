@@ -84,7 +84,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define DELAY_DOT 50              // dot time
 #define DELAY_DASH DELAY_DOT * 3  // dash time
 #define DELAY_SPACE DELAY_DOT * 7 // space delay
-#define DELAY_CHAR DELAY_DOT * 3   // delay between dashes /  dots
+#define DELAY_CHAR DELAY_DOT * 5  // delay between dashes /  dots
 
 // Buttons controllers
 #define ENCODER_PUSH_BUTTON 14      // Pin A0/14
