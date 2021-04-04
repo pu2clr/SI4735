@@ -87,7 +87,7 @@ Contact: __pu2clr@gmail.com__.
 
 
 ## Attention
-* __The SI473 (SI47XX) is a 3.3V part. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V bidirectional converter. It is important to say that just power the Si47XX device with 3.3V from Arduino board is not enough. You have to be aware that the Arduino that operates with 5V, the digital pins and the I2C bus will send 5V signals to the Si47XX device. That configuration can make the system unstable or damage the Si47XX device__.  
+* __The SI473X device can work from 1.6V to 3.6V. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V bidirectional converter. It is important to say that just power the Si47XX device with 3.3V from Arduino board is not enough. You have to be aware that the Arduino that operates with 5V, the digital pins and the I2C bus will send 5V signals to the SI473X device. That configuration can make the system unstable or damage the Si473X device__.  
 * __This library has been successfully tested on many boards including:  ESP32; STM32; Mega 2560;  DUE; ATmega328 and Atmega32u4 based boards; ATtiny85 and more__. See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested).  
 * __The Si47XX IC family  functionalities__ can be seen in the comparison matrix shown in table 1 (__Product Family Function__); pages 2 and 3 of the [“Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0)”](https://www.silabs.com/documents/public/application-notes/AN332.pdf).
 
@@ -98,7 +98,7 @@ Contact: __pu2clr@gmail.com__.
 
 I started my work on building an Arduino library for SI375 in early November 2019. The initial idea was to build a receiver by using an Arduino board, few components and the SI4735 device from Silicon Labs. Checking some videos on Youtube, I realized that the receiver besed on Si4735-D60 could go far beyond the initial proposal, __including listening to amateur radio and citizens band stations on SSB mode__. Via forums and websites, I also realized that there was a great demand for experimenters who would like to see the SI4735 device working on SSB mode. So, instead of developing a simple receiver based on the SI4735, __I decided to develop a library for Arduino platform that would provide full support to the SI4735 and all SI473X device family as well__.
 
-With this library, more than 20 examples were developed using various display types. [These examples can assist the experimenter in building their own receiver](https://github.com/pu2clr/SI4735/tree/master/examples).
+With this library, more than 30 examples were developed using various display types. [These examples can assist the experimenter in building their own receiver](https://github.com/pu2clr/SI4735/tree/master/examples).
 
 Judging by the groups created around the SI47XX devices, I estimate that this library is currently being used by hundreds of experimenters. If you are an experimenter or a radio enthusiast and want to try the SI473X devices, then this library is for you.  
 
@@ -122,7 +122,7 @@ This library uses the I²C communication protocol and implements most of the fun
 6. Simplifies projects based on SI4735;
 7. __I²C communication protocol__ and Automatic I²C bus address detection; 
 8. [More than __120__ functions implemented](https://pu2clr.github.io/SI4735/extras/apidoc/html/). You can customize almost every feature available on Si47XX family; 
-9. [More than 20 examples to guide the user](https://github.com/pu2clr/SI4735/tree/master/examples);
+9. [More than 30 examples to guide the user](https://github.com/pu2clr/SI4735/tree/master/examples);
 10. [RDS support](https://pu2clr.github.io/SI4735/#rds);
 11. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band);
 12. Clock reference selection (crystal or external clock reference);
