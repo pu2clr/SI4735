@@ -1,19 +1,8 @@
 /*
-  This sketch was built to work with the project "DIY Si4730 All Band Radio (LW, MW, SW, FM)" receiver from Mirko Pavleski.
-  The original project can be found on https://create.arduino.cc/projecthub/mircemk/diy-si4730-all-band-radio-lw-mw-sw-fm-1894d9
-  Please, follow the circuit available on that link.
-
-  If you are using a SI4735-D60 or SI4732-A10, you can also use this sketch to add the SSB functionalities to the
-  original Pavleski's project. If you are using another SI4730-D60, the SSB wil not work. But you will still have
-  the SW functionalities.
-
-  It is important to say that this sketch was designed to work with the circuit implemented by Mirko Pavleski (see link above).
-  The visual interface, control commands, band plan, and some functionalities are different if compared with the original
-  sketch. Be sure you are using the SI4735 Arduino Library written by PU2CLR to run this sketch. The library used by the original
-  sketch will not work here. Also, you have to install the LiquidCrystal library.
-
-  It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
-  regular  comercial  stations.
+  Morse Code Readout
+  This skech demonstrates a way to report the current status of the receiver via Morse Code. 
+  However, the prototype used by this sketch is not intended for blind people. 
+  It is just an idea to inspire people to build receivers with accessibility features. 
 
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
@@ -40,6 +29,8 @@
   |                           | A                             |       2       |
   |                           | B                             |       3       |
   |                           | PUSH BUTTON (encoder)         |     A0/14     |
+  | Push Button(Query Status) |                               |      D11      |
+  |     Buzzy                 |                               |      D10      |   
 
   (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
