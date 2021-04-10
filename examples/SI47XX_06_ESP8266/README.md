@@ -3,10 +3,10 @@
 This folder show some examples with Si473X Arduino Library  and ESP8266 platform.
 
 Before start compiling ESP8266 based sketches, you have to configure your Arduino IDE. 
-To do this, check [Installing the ESP8266 Board in Arduino IDE (Windows, Mac OS X, Linux)](https://randomnerdtutorials.com/installing-the-ESP8266-board-in-arduino-ide-windows-instructions/).
+To do this, check [Installing the ESP8266 Board in Arduino IDE (Windows, Mac OS X, Linux)](https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/).
 
 
-## Example SI47XX_01_ESP32_AM_FM_TOUCH_SERIAL_MONITOR
+## Example SI47XX_01_ESP12F_AM_FM_TOUCH_SERIAL_MONITOR
 
 This sketch uses just the Serial Monitor as the human interface to test and validation of the Si473X Arduino Library on ESP platform. It can be very useful to test your circuit. 
 
@@ -26,11 +26,5 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 | pin 15    |   RESET               |   2 (GPIO2)           |  
 | pin 18    |   SDIO                |   4 (SDA / GPIO4)     |
 | pin 17    |   SCLK                |   5 (SCL / GPIO5)     |
-
-
-
-## Example SI47XX_01_ESP12F_AM_FM_TOUCH_SERIAL_MONITOR
-
-This example is a complete FM/AM/LW/SW (with SSB support) receiver based on Si473X running on ESP8266 
 
 
