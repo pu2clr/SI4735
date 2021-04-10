@@ -10,6 +10,15 @@ __IN NO EVENT SHALL THE AUTHOR OF THIS LIBRARY BE LIABLE FOR ANY CLAIM, DAMAGES 
 
 The photos below show the KIT sold on Aliexpress and eBay.
 
+__DO NOT BUY THIS RECEIVER BEFORE READING COMMENTS AND REPORTS ABOUT IT. FOLLOW THE REFERENCES BELOW:__
+
+* [SWLing - Any thoughts on this inexpensive Si4732-based receiver?](https://swling.com/blog/2021/04/any-thoughts-on-this-inexpensive-si4732-based-receiver/)
+* [Kevin O'Reilly: SI4732 The end of the line?](https://youtu.be/A3Mus-7lTrk)
+* [Si47XX for Radio Experimenters](https://www.facebook.com/groups/532613604253401)
+* [SI4735 SI4732 All Band Radio Receiver User Group](https://www.facebook.com/groups/340642344032449)
+
+  
+
 <BR> 
 
 ![PL102BA-S V:2.1 10628](./ali_000.png)
