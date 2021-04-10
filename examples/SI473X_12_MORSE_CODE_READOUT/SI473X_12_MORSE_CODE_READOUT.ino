@@ -74,9 +74,10 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define CW_BUTTON 11              // Command to call CW
 #define CW_TONE   800             // CW tone (audio frequency)
 #define DELAY_DOT 50              // dot time
+#define DELAY_BETWEEN_DASH_DOT DELAY_DOT * 4 
 #define DELAY_DASH DELAY_DOT * 3  // dash time
 #define DELAY_SPACE DELAY_DOT * 7 // space delay
-#define DELAY_CHAR DELAY_DOT * 5  // delay between dashes /  dots
+#define DELAY_CHAR DELAY_DOT * 6  // delay between dashes /  dots
 
 // Buttons controllers
 #define ENCODER_PUSH_BUTTON 14      // Pin A0/14
@@ -256,7 +257,8 @@ const char *cwCode[] = {
     "--.."   // Z - 90
 };
 
-char *welcome = (char *) "CQ DX PU2CLR";
+// char *welcome = (char *) "CQ DX PU2CLR";
+char *welcome = (char *) "CQ CQ KB5ELV CQ CQ KB5ELV DE PU2CLR";
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
@@ -346,7 +348,7 @@ void playCharCode(char code)
             tone(BUZZY_PIN, CW_TONE, duration);
         }
         cw++;
-        delay(duration << 1); // duration * 2 ==> Time between dashes or dots
+        delay(duration << 1 ); // duration * 2 ==> Time between dashes or dots
     } while (*cw);
 }
 
