@@ -4,6 +4,9 @@
 
 __This project is about a library to control the SI47XX devices and the focus of this project is the library and its functionalities. Please, don't ask me to assist you in your: displays, encoders, buttons or something else out the library scope. Thanks.__
 
+__IT IS IMPORTANT TO SAY THAT THE CIRCUITS DESIGN BUILT BY THE AUTHOR ARE NOT INTEND TO BE A FINAL PRODUCT. SOME IMPORTANT ASPECTS AND DETAILS ABOUT A GOOD RECEIVER WERE OMITTED HERE. THE IDEA OF THE CIRCUITS MADE BY THE AUTHOR WERE ORIENTED TO BE A PROVE OF CONCEPT OF THE FUNCTIONS IMPLEMENTED IN THE ARDUINO LIBRARY. SO, COMPONENTS LIKE FRONT-ENDS, BAND PASS FILTER,  ESD, ANTENNA DESIGN ARE NOT THE MAIN PART OF THIS PROJECT__.
+
+
 Before using this examples, you most install the ["PU2CLR SI3735 Arduino Library"](https://github.com/pu2clr/SI4735#library-installation) on your Arduino IDE. Also be aware about other libraries that are eventually used to control LCD, OLED, TFT display, encoder etc. These libraries are referenced in the sample sketches themselves.
 
 It is important to know tha the author of this library  just try to show how you can use this library and the Si4735 device in your appication. Other devices used in some examples like encoders, buttons and display (OLED, LCD or TFT) are not the focus of this subject. Said that, it is possible some implementation using theses devices might need different approaches used here.
