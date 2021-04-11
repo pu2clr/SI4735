@@ -12,7 +12,7 @@
   |                           | DIO                           |    8          |
   |                           | VCC                           |    3.3V       |
   |                           | GND                           |    GND        |
-  |     Si4735                |                               |               |
+  |     SI4735                |                               |               |
   |                           | RESET (pin 15)                |     12        |
   |                           | SDIO (pin 18)                 |     A4        |
   |                           | SCLK (pin 17)                 |     A5        |
