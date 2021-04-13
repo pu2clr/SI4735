@@ -3080,6 +3080,51 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 
 /**
  * @ingroup group17 Patch and SSB support
+ *  
+ * @brief Same downloadPatch. 
+ * @details Transfers the content of a patch stored in a compressed array of bytes to the SI4735 device. 
+ * @param ssb_patch_content         point to array of bytes content patch.
+ * @param ssb_patch_content_size    array size (number of bytes). The maximum size allowed for a patch is 15856 bytes
+ * @param cmd_0x15                  Array of lines where the first byte of each patch content line is 0x15
+ * @param cmd_0x15_size             Array size      
+ */
+bool SI4735::downloadCompressedPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, const uint16_t *cmd_0x15, const int16_t cmd_0x15_size)
+{
+    uint8_t content;
+    int i, offset;
+    uint16_t command_line = 0;
+    uint8_t cmd;
+    // Send patch to the SI4735 device
+    for (offset = 0; offset < (int)ssb_patch_content_size; offset += 7)
+    {
+        // Checks if the current line starts with 0x15     
+        cmd = 0x16;
+        for (i = 0; i < cmd_0x15_size / sizeof(uint16_t); i++)
+        {
+            if (pgm_read_word_near(cmd_0x15 + i) == command_line)
+            {
+                cmd = 0x15;
+                break;
+            }
+        }
+
+        Wire.beginTransmission(deviceAddress);
+        Wire.write(cmd);
+        for (i = 0; i < 7; i++)
+        {
+            content = pgm_read_byte_near(ssb_patch_content + (i + offset));
+            Wire.write(content);
+        }
+        Wire.endTransmission();
+        delayMicroseconds(MIN_DELAY_WAIT_SEND_LOOP); // Need check the minimum value
+        command_line++;
+    }
+    delayMicroseconds(250);
+    return true;
+}
+
+/**
+ * @ingroup group17 Patch and SSB support
  * @brief Loads a given SSB patch content
  * @details Configures the Si4735-D60/SI4732-A10 device to work with SSB. 
  * 

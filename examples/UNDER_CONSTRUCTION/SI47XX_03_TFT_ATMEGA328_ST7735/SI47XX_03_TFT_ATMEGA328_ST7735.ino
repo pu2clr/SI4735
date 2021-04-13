@@ -77,9 +77,10 @@
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.
-#include "patch_init.h" // SSB patch for whole SSBRX initialization string
+#include "patch_compressed.h" // SSB patch for whole SSBRX initialization string
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
+const uint16_t cmd_0x15_size = sizeof cmd_0x15;
 
 // TFT ST7735 based device pin setup
 #define TFT_RST 8  // You might need to switch from 8 to 9 depending of your ST7735 device
@@ -635,7 +636,7 @@ void loadSSB()
   delay(50);
   rx.setI2CFastMode(); // Recommended
   // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
-  rx.downloadPatch(ssb_patch_content, size_content);
+  rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
   rx.setI2CStandardMode(); // goes back to default (100kHz)
 
   // Parameters

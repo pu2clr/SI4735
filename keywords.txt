@@ -5,6 +5,7 @@ analogPowerUp	KEYWORD2
 digitalOutputFormat	KEYWORD2
 digitalOutputSampleRate	KEYWORD2
 downloadPatch	KEYWORD2
+downloadCompressedPatch KEYWORD2
 downloadPatchFromEeprom	KEYWORD2
 frequencyDown	KEYWORD2
 frequencyUp	KEYWORD2
