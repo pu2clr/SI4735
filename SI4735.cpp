@@ -3033,12 +3033,11 @@ void SI4735::ssbPowerUp()
 bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size)
 {
     uint8_t content;
-    register int i, offset;
     // Send patch to the SI4735 device
-    for (offset = 0; offset < (int)ssb_patch_content_size; offset += 8)
+    for (uint16_t offset = 0; offset <  ssb_patch_content_size; offset += 8)
     {
         Wire.beginTransmission(deviceAddress);
-        for (i = 0; i < 8; i++)
+        for (uint16_t i = 0; i < 8; i++)
         {
             content = pgm_read_byte_near(ssb_patch_content + (i + offset));
             Wire.write(content);
@@ -3090,27 +3089,24 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
  */
 bool SI4735::downloadCompressedPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, const uint16_t *cmd_0x15, const int16_t cmd_0x15_size)
 {
-    uint8_t content;
-    int i, offset;
+    uint8_t cmd, content;
     uint16_t command_line = 0;
-    uint8_t cmd;
     // Send patch to the SI4735 device
-    for (offset = 0; offset < (int)ssb_patch_content_size; offset += 7)
+    for (uint16_t offset = 0; offset < ssb_patch_content_size; offset += 7)
     {
         // Checks if the current line starts with 0x15     
         cmd = 0x16;
-        for (uint16_t idx = 0; idx < cmd_0x15_size / sizeof(uint16_t); idx++)
+        for (uint16_t i = 0; i < cmd_0x15_size / sizeof(uint16_t); i++)
         {
-            if (pgm_read_word_near(cmd_0x15 + idx) == command_line)
+            if (pgm_read_word_near(cmd_0x15 + i) == command_line)
             {   // performance improvement: save the last idx to be used next time 
                 cmd = 0x15;
                 break;
             }
         }
-
         Wire.beginTransmission(deviceAddress);
         Wire.write(cmd);
-        for (i = 0; i < 7; i++)
+        for (uint16_t i = 0; i < 7; i++)
         {
             content = pgm_read_byte_near(ssb_patch_content + (i + offset));
             Wire.write(content);

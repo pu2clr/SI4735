@@ -311,12 +311,13 @@ void bandDown()
  */
 void loadSSB()
 {
+  rx.setI2CFastModeCustom(500000);
   rx.queryLibraryId(); // Is it really necessary here? I will check it.
   rx.patchPowerUp();
   delay(50);
   rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
   rx.setSSBConfig(bandwidthIdx, 1, 0, 1, 0, 1);    
-  delay(50);
+  rx.setI2CStandardMode();
 }
 
 /*

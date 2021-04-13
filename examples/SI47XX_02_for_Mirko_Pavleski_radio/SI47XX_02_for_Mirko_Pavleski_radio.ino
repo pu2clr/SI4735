@@ -424,7 +424,7 @@ void showAgcAtt()
  */
 void showStep()
 {
-  char stAux[10];
+  char stAux[15];
   sprintf(stAux, "STEP: %4u", currentStep);
   lcd.clear();
   lcd.setCursor(0, 0);
@@ -436,7 +436,7 @@ void showStep()
  */
 void showBFO()
 {
-  char bfo[10];
+  char bfo[15];
   if (currentBFO > 0)
     sprintf(bfo, "BFO: +%4.4d", currentBFO);
   else
@@ -465,7 +465,7 @@ void showVolume()
  */
 void showSoftMute()
 {
-  char sMute[15];
+  char sMute[18];
   sprintf(sMute, "Soft Mute: %2d", softMuteMaxAttIdx);
   lcd.clear();
   lcd.setCursor(0, 0);
