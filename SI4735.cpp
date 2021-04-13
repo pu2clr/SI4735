@@ -3099,10 +3099,10 @@ bool SI4735::downloadCompressedPatch(const uint8_t *ssb_patch_content, const uin
     {
         // Checks if the current line starts with 0x15     
         cmd = 0x16;
-        for (i = 0; i < cmd_0x15_size / sizeof(uint16_t); i++)
+        for (uint16_t idx = 0; idx < cmd_0x15_size / sizeof(uint16_t); idx++)
         {
-            if (pgm_read_word_near(cmd_0x15 + i) == command_line)
-            {
+            if (pgm_read_word_near(cmd_0x15 + idx) == command_line)
+            {   // performance improvement: save the last idx to be used next time 
                 cmd = 0x15;
                 break;
             }
