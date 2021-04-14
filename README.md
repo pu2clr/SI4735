@@ -883,12 +883,12 @@ If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 a
 
 ### After power up or try to tune the receiver, the display shows LW and 0 kHz
 
-This problem can be a little complicated to solve. I have observed that very few times in my experiments. When I am powering the system using the computer USB and the computer is connected to the grid, it might occur. __Please, test your system using only batteries__.
-
-If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on IDE Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version.
-
-This problem also can be caused by the external crystal connected to the SI473X device (in general 32768K). This crystal needs a minimum delay to become stable after a reset or power up command. Currently, this delay is 10ms. Try to increase that delay by using the method setMaxDelayPowerUp.
-
+This problem can be a little complicated to solve. It can occur in many situations. I have observed that very few times in my experiments: 
+ 
+* When I am powering the system using the computer USB and the computer is connected to the grid, it might occur. __Please, test your system using only batteries__.
+* If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on the IDE Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version.
+* Check if the SI473X and the controller are well connected.  
+* This problem also can be caused by the external crystal connected to the SI473X device (in general 32768K). This crystal needs a minimum delay to become stable after a reset or power up command. Currently, this delay is 10ms. Try to increase that delay by using the method setMaxDelayPowerUp.
 
 __Example:__
 
@@ -902,8 +902,7 @@ void setup() {
 ```
 
 
-<P>Also, for some reason, the frequency switching needs a little delay (the default value is 30ms).  Try to increase that delay by using the method setMaxDelaySetFrequency.</P>
-
+* Also, for some reason, the frequency switching needs a little delay (the default value is 30ms).  Try to increase that delay by using the method setMaxDelaySetFrequency.</P>
 
 __Example:__
 
@@ -914,9 +913,7 @@ void setup() {
 }
 ```
 
-<BR>
-
-__Finally, if no previous attempt could not solve the issue, check that the crystal is working correctly__.
+* __Finally, if no previous attempt could not solve the issue, check that the crystal is working correctly__.
 
 
 ### I cannot tune satisfactorily any station on LW, MW or SW
