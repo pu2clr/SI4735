@@ -887,7 +887,7 @@ This problem can be a little complicated to solve. It can occur in many situatio
  
 * When I am powering the system using the computer USB and the computer is connected to the grid, it might occur. __Please, test your system using only batteries__.
 * If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on the IDE Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version.
-* Check if the SI473X and the controller are well connected.  
+* Check if the RESET pin of the SI473X and the controller are well connected.  
 * This problem also can be caused by the external crystal connected to the SI473X device (in general 32768K). This crystal needs a minimum delay to become stable after a reset or power up command. Currently, this delay is 10ms. Try to increase that delay by using the method setMaxDelayPowerUp.
 
 __Example:__
