@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['frequencydown_539',['frequencyDown',['../group__group08.html#ga93fff524a6f900ac91eb1222ce73f9ba',1,'SI4735']]],
-  ['frequencyup_540',['frequencyUp',['../group__group08.html#gac0fcfd64dcf30b11d4dc219d9f7fc5d9',1,'SI4735']]]
+  ['digitaloutputformat_537',['digitalOutputFormat',['../group__group13.html#gaea652d358b4b586b6d5964ceb8eb7c81',1,'SI4735']]],
+  ['digitaloutputsamplerate_538',['digitalOutputSampleRate',['../group__group13.html#ga1a404ca11fb32b457be2d7cfe484dd03',1,'SI4735']]],
+  ['disablefmdebug_539',['disableFmDebug',['../group__group12.html#gae4683e9a9fc7a633305b18dae54fbd83',1,'SI4735']]],
+  ['downloadcompressedpatch_540',['downloadCompressedPatch',['../group__group17.html#gaf1b8947db928728ada66ef3edaa79e76',1,'SI4735']]],
+  ['downloadpatch_541',['downloadPatch',['../group__group17.html#gafd1343bd8b4f0c290ef81c418222036c',1,'SI4735']]],
+  ['downloadpatchfromeeprom_542',['downloadPatchFromEeprom',['../group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6',1,'SI4735']]]
 ];

@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['lastmode_199',['lastMode',['../class_s_i4735.html#a157e4ae8cd53396973584aa10888cd47',1,'SI4735']]],
-  ['lasttextflagab_200',['lastTextFlagAB',['../class_s_i4735.html#abd965c0e49493bc2c7c37547d36dcc96',1,'SI4735']]],
-  ['loadpatch_201',['loadPatch',['../group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5',1,'SI4735']]],
-  ['loadpatchnbfm_202',['loadPatchNBFM',['../group__group20.html#gadd298b10c6c7e760e7233b50500773c3',1,'SI4735']]],
-  ['lsb_5fmode_203',['LSB_MODE',['../_s_i4735_8h.html#a6c1cf039ba7ea7e5c0cce10943a18e3b',1,'SI4735.h']]]
+  ['interruptpin_196',['interruptPin',['../class_s_i4735.html#af8f8123888060f858c74ba08a29ff38b',1,'SI4735']]],
+  ['isagcenabled_197',['isAgcEnabled',['../group__group08.html#gaea08b7e553212cbe01bf6f4ec9e02de7',1,'SI4735']]],
+  ['iscurrenttuneam_198',['isCurrentTuneAM',['../group__group08.html#ga4714f08989f020110620781ae968b01b',1,'SI4735']]],
+  ['iscurrenttunefm_199',['isCurrentTuneFM',['../class_s_i4735.html#ae7ca2ffa6ad68ca69e4f35a3c40bbc3c',1,'SI4735']]],
+  ['iscurrenttunessb_200',['isCurrentTuneSSB',['../group__group08.html#ga6913873c511adb357fa7c02f2a8386d7',1,'SI4735']]]
 ];

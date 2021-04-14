@@ -133,5 +133,6 @@ var _s_i4735_8h =
     [ "MIN_DELAY_WAIT_SEND_LOOP", "_s_i4735_8h.html#a166d7b31e78d530aba242e50dd903de4", null ],
     [ "MAX_SEEK_TIME", "_s_i4735_8h.html#acc98e8d3badddd21bc528451bb718f82", null ],
     [ "XOSCEN_CRYSTAL", "_s_i4735_8h.html#a33a17dceb88b2b05d8032714a1998368", null ],
-    [ "XOSCEN_RCLK", "_s_i4735_8h.html#a9d2a0e22f5a37d3911eef36581225dd2", null ]
+    [ "XOSCEN_RCLK", "_s_i4735_8h.html#a9d2a0e22f5a37d3911eef36581225dd2", null ],
+    [ "__attribute__", "_s_i4735_8h.html#a0ffccb04eb0d46d79dad69cf72d40f2d", null ]
 ];

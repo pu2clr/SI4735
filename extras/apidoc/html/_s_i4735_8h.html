@@ -86,7 +86,8 @@ $(document).ready(function(){initNavTree('_s_i4735_8h.html',''); initResizable()
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#define-members">Macros</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">SI4735.h File Reference</div>  </div>
 </div><!--header-->
@@ -521,6 +522,12 @@ Macros</h2></td></tr>
 <tr class="separator:a33a17dceb88b2b05d8032714a1998368"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d2a0e22f5a37d3911eef36581225dd2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_s_i4735_8h.html#a9d2a0e22f5a37d3911eef36581225dd2">XOSCEN_RCLK</a>&#160;&#160;&#160;0</td></tr>
 <tr class="separator:a9d2a0e22f5a37d3911eef36581225dd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a0ffccb04eb0d46d79dad69cf72d40f2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_s_i4735_8h.html#a0ffccb04eb0d46d79dad69cf72d40f2d">__attribute__</a> ((used)) static void interrupt_hundler()</td></tr>
+<tr class="memdesc:a0ffccb04eb0d46d79dad69cf72d40f2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt Function.  <a href="_s_i4735_8h.html#a0ffccb04eb0d46d79dad69cf72d40f2d">More...</a><br /></td></tr>
+<tr class="separator:a0ffccb04eb0d46d79dad69cf72d40f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a3d0f9d1b446b57f1f425654b6030fe02"></a>
@@ -2400,6 +2407,29 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a0ffccb04eb0d46d79dad69cf72d40f2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ffccb04eb0d46d79dad69cf72d40f2d">&#9670;&nbsp;</a></span>__attribute__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__attribute__ </td>
+          <td>(</td>
+          <td class="paramtype">(used)&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Interrupt Function. </p>
+<p>this function just set the volatile static bool data_from_si4735 to true;</p>
+<p>If you are using interrupt feature, this function will be called by the system, not by you. </p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['analogpowerup_530',['analogPowerUp',['../group__group07.html#ga412f51386c47a17cf04fd0a3c3078726',1,'SI4735']]]
+  ['_5f_5fattribute_5f_5f_532',['__attribute__',['../_s_i4735_8h.html#a0ffccb04eb0d46d79dad69cf72d40f2d',1,'SI4735.h']]]
 ];

@@ -329,7 +329,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga6f8218c0bbdcb75ea54bc8af2a60dcc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects frequency spacingfor AM seek. Default is 10 kHz spacing.  <a href="group__group08.html#ga6f8218c0bbdcb75ea54bc8af2a60dcc6">More...</a><br /></td></tr>
 <tr class="separator:ga6f8218c0bbdcb75ea54bc8af2a60dcc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6269e74b72ec1a1c3630b2800bad66b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga6269e74b72ec1a1c3630b2800bad66b1">SI4735::setSeekFmSpacing</a> (uint16_t spacing)</td></tr>
-<tr class="memdesc:ga6269e74b72ec1a1c3630b2800bad66b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects frequency spacingfor FM seek. Default is 100 kHz kHz spacing. There are only 3 valid values: 5, 10, and 20.  <a href="group__group08.html#ga6269e74b72ec1a1c3630b2800bad66b1">More...</a><br /></td></tr>
+<tr class="memdesc:ga6269e74b72ec1a1c3630b2800bad66b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects frequency spacingfor FM seek. Default is 100 kHz (value 10) spacing. There are only 3 valid values: 5, 10, and 20.  <a href="group__group08.html#ga6269e74b72ec1a1c3630b2800bad66b1">More...</a><br /></td></tr>
 <tr class="separator:ga6269e74b72ec1a1c3630b2800bad66b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8107cc84409dcdad0c931368734ece3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga8107cc84409dcdad0c931368734ece3e">SI4735::setSeekAmSrnThreshold</a> (uint16_t value)</td></tr>
 <tr class="memdesc:ga8107cc84409dcdad0c931368734ece3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the SNR threshold for a valid AM Seek/Tune.  <a href="group__group08.html#ga8107cc84409dcdad0c931368734ece3e">More...</a><br /></td></tr>
@@ -2929,8 +2929,8 @@ AN332 REV 0.8 Universal Programming Guide Amendment for SI4735-D60 SSB and NBFM 
       </table>
 </div><div class="memdoc">
 
-<p>Selects frequency spacingfor FM seek. Default is 100 kHz kHz spacing. There are only 3 valid values: 5, 10, and 20. </p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 101</dd></dl>
+<p>Selects frequency spacingfor FM seek. Default is 100 kHz (value 10) spacing. There are only 3 valid values: 5, 10, and 20. </p>
+<p>Although the guide does not mention it, the value 1 (10 kHz) seems to work better </p><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 101</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">uint16_t</td><td>spacing - step in kHz </td></tr>

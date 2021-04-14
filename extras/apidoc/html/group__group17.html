@@ -170,6 +170,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gafd1343bd8b4f0c290ef81c418222036c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#gafd1343bd8b4f0c290ef81c418222036c">SI4735::downloadPatch</a> (const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size)</td></tr>
 <tr class="memdesc:gafd1343bd8b4f0c290ef81c418222036c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers the content of a patch stored in a array of bytes to the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> device.  <a href="group__group17.html#gafd1343bd8b4f0c290ef81c418222036c">More...</a><br /></td></tr>
 <tr class="separator:gafd1343bd8b4f0c290ef81c418222036c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf1b8947db928728ada66ef3edaa79e76"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#gaf1b8947db928728ada66ef3edaa79e76">SI4735::downloadCompressedPatch</a> (const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, const uint16_t *cmd_0x15, const int16_t cmd_0x15_size)</td></tr>
+<tr class="memdesc:gaf1b8947db928728ada66ef3edaa79e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same downloadPatch.  <a href="group__group17.html#gaf1b8947db928728ada66ef3edaa79e76">More...</a><br /></td></tr>
+<tr class="separator:gaf1b8947db928728ada66ef3edaa79e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga591bbfe4dbd39a6de29a37935a6abee5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5">SI4735::loadPatch</a> (const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, uint8_t ssb_audiobw=1)</td></tr>
 <tr class="memdesc:ga591bbfe4dbd39a6de29a37935a6abee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a given SSB patch content.  <a href="group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5">More...</a><br /></td></tr>
 <tr class="separator:ga591bbfe4dbd39a6de29a37935a6abee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1068,6 +1071,58 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if an error is found. </dd></dl>
+
+</div>
+</div>
+<a id="gaf1b8947db928728ada66ef3edaa79e76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf1b8947db928728ada66ef3edaa79e76">&#9670;&nbsp;</a></span>downloadCompressedPatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::downloadCompressedPatch </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>ssb_patch_content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>ssb_patch_content_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t *&#160;</td>
+          <td class="paramname"><em>cmd_0x15</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int16_t&#160;</td>
+          <td class="paramname"><em>cmd_0x15_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Same downloadPatch. </p>
+<p>Transfers the content of a patch stored in a compressed array of bytes to the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> device. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ssb_patch_content</td><td>point to array of bytes content patch. </td></tr>
+    <tr><td class="paramname">ssb_patch_content_size</td><td>array size (number of bytes). The maximum size allowed for a patch is 15856 bytes </td></tr>
+    <tr><td class="paramname">cmd_0x15</td><td>Array of lines where the first byte of each patch content line is 0x15 </td></tr>
+    <tr><td class="paramname">cmd_0x15_size</td><td>Array size <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
