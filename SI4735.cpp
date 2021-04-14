@@ -331,7 +331,7 @@ void SI4735::waitToSend()
     {
         delayMicroseconds(MIN_DELAY_WAIT_SEND_LOOP); // Need check the minimum value.
         Wire.requestFrom(deviceAddress, 1);
-    } while (!(Wire.read() & B10000000));
+    } while (!(Wire.read() & 0B10000000));
 }
 
 /** @defgroup group07 Device Setup and Start up */

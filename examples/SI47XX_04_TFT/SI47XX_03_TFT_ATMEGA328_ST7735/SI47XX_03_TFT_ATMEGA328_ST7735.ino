@@ -602,7 +602,7 @@ void showBFO()
       bufferDisplay[0] = ' ';      
     
      convertToChar(auxBfo,tmp,4); 
-     strcpy(&bufferDisplay[1], auxBfo);
+     strcpy(&bufferDisplay[1], tmp);
     // sprintf(bufferDisplay, "%+4d", currentBFO);
     printValue(128, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
     // showFrequency();
