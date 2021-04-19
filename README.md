@@ -257,7 +257,7 @@ If you would like to support this library development, consider joining this pro
 
 ## About the SI4732 and SI4735  
 
-The SI4732-A10 and SI4735-D60 are DSP radio receiver IC from Silcon Labs. It has great performance on AM (LW/MW/SW) and local FM station. __It is important to note that the engineers and programmers at Silicon Labs did an excellent job by implementing all the internal resources in this IC family. This library implements just the interface  that allows you to use the SI473X resources with and Arduino based board controller__. 
+The SI4732-A10 and SI4735-D60 are DSP radio receivers IC from Silcon Labs. They have great performance on AM, SSB (LW/MW/SW) and  FM (VHF) from 64 to 108 MHz. __It is important to note that the engineers and programmers at Silicon Labs did an excellent job by implementing all the internal resources in this IC family. This library implements just the interface  that allows you to use the SI473X resources with  Arduino based board controller__. 
 The SI473X can be programmed by sending commands and getting responses. You can control it via a microcontroller like Arduino using I2C communication protocol. To make the SI473X perform an action, the microcontroller has to send a set of bytes (command and arguments) that the device interprets and executes the given command.
 
 <BR>
