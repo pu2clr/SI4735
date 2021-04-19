@@ -33,7 +33,7 @@ Contact: __pu2clr@gmail.com__.
 6. [Groups and Forums](https://pu2clr.github.io/SI4735/#groups-and-forums)
 7. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
 8. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
-9. [About the SI4735](https://pu2clr.github.io/SI4735/#about-the-si4735)
+9. [About the SI4732 and SI4735](https://pu2clr.github.io/SI4735/#about-the-si4732-and-si4735)
 10. [Terminology](https://github.com/pu2clr/SI4735#terminology)
 11. [Documentation](https://pu2clr.github.io/SI4735/#documentation)
    * [API Documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) 
@@ -255,9 +255,10 @@ If you would like to support this library development, consider joining this pro
 
 <BR>
 
-## About the SI4735  
+## About the SI4732 and SI4735  
 
-The Si4735 is DSP radio receiver IC from Silcon Labs. It has great performance on AM (LW/MW/SW) and local FM station. The SI4735 can be programmed by using commands and responses. You can contron it via a microcontroller like Arduino. To make the SI4735 perform an action, the microccontroller have to send a set of bytes (command and arguments) that the device interpret it and executes the given command.
+The SI4732-A10 and SI4735-D60 are DSP radio receiver IC from Silcon Labs. It has great performance on AM (LW/MW/SW) and local FM station. __It is important to note that the engineers and programmers at Silicon Labs did an excellent job by implementing all the internal resources in this IC family. This library implements just the interface  that allows you to use the SI473X resources with Arduino platform__. 
+The SI473X can be programmed by sending commands and getting responses. You can control it via a microcontroller like Arduino using I2C communication protocol. To make the SI473X perform an action, the microcontroller has to send a set of bytes (command and arguments) that the device interprets and executes the given command.
 
 <BR>
 
