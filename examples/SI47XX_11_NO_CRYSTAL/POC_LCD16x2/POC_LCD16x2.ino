@@ -649,6 +649,7 @@ void doStep(int8_t v)
  */
 void doMode(int8_t v)
 {
+  rx.setI2CFastModeCustom(500000); 
   if (currentMode != FM)
   {
     if (v == 1)  { // clockwise
@@ -687,6 +688,7 @@ void doMode(int8_t v)
     band[bandIdx].currentStep = currentStep;
     useBand();
   }
+  rx.setI2CStandardMode(); 
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
   // showStatus();
