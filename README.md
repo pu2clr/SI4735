@@ -707,7 +707,7 @@ void loop() {
 }
 ```
 
-If you use that approach, all you have to do is downloading the current version of PU2CLR SI4735 Arduino Library. Instead of using PU2CLR SI4735 Arduino Library class directly, you can use your own class that extends the original class.  This way, you always have the current version of the library customized for your needs. So, no extra work will be needed when you update the PU2CLR SI4735 Arduino Library. In other words, your custom code will be always sincronized with the PU2CLR SI4735 Arduino Library code.
+If you use that approach, all you have to do is download the current version of PU2CLR SI4735 Arduino Library. Instead of using PU2CLR SI4735 Arduino Library class directly, you can use your own class that extends the original class.  This way, you always have the current version of the library customized for your needs. So, no extra work will be needed when you update the PU2CLR SI4735 Arduino Library. In other words, your custom code will be always synchronized with the PU2CLR SI4735 Arduino Library code.
 
 
 __Please, check the [API documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) before implementing something you think is new. It is possible that what you want has already been implemented__). 
@@ -747,9 +747,9 @@ This library has been written for the Arduino platform and has been successfully
 
 ### Schematic
 
-The main porpuse of this prototype is to test the Si4735 Arduino Library. It does not intend to be a real radio for exigent listener. However, it is possible to start with it and then, if you wish, you can include some devices to the circuit to improve, for example,  its sensibility beyond other desired features.
+The main purpose of this prototype is to test the Si4735 Arduino Library. It does not intend to be a real radio or an exigent listener. However, it is possible to start with it and then, if you wish, you can include some devices to the circuit to improve, for example,  its sensibility beyond other desired features.
 
-The image bellow shows a version of Slicon Labs SSOP Typical Application Schematic connect to the host MCU (Arduino Pro Pini 3.3V). __Pay attention to the Si4735-D60 SEN pin (16).  When the SEN pin is connected to the ground, the I²C bus address is 0x11. When the SEN pin is connected to +3.3V, the I²C bus address is 0x63.  By default, the "Si4735 Arduino Library" uses the 0x11 I²C bus address (SEN pin connected to GND). If you want to use the address 0x63 (SEN connected on +3.3V), see the functions (methods) getDeviceI2CAddress, setDeviceI2CAddress and setDeviceOtherI2CAddress__.   
+The image below shows a version of Silicon Labs SSOP Typical Application Schematic connect to the host MCU (Arduino Pro Mini 3.3V). __Pay attention to the Si4735-D60 SEN pin (16).  When the SEN pin is connected to the ground, the I²C bus address is 0x11. When the SEN pin is connected to +3.3V, the I²C bus address is 0x63.  By default, the "Si4735 Arduino Library" uses the 0x11 I²C bus address (SEN pin connected to GND). If you want to use the address 0x63 (SEN connected on +3.3V), see the functions (methods) getDeviceI2CAddress, setDeviceI2CAddress and setDeviceOtherI2CAddress__.   
 
 <BR>
 
@@ -785,7 +785,7 @@ __Please, check the folder [extras/schematic/](https://pu2clr.github.io/SI4735/e
 
 <BR>
 
-#### The image bellow shows the Slicon Labs SSOP Typical Application Schematic.
+#### The image bellow shows the Silicon Labs SSOP Typical Application Schematic.
 
 ![Silicon Labs Schematic](./extras/images/silicon_labs_schematic_pag_19.png)
 
@@ -795,7 +795,7 @@ __Please, check the folder [extras/schematic/](https://pu2clr.github.io/SI4735/e
 
 ### Parts
 
-The table below shows the component parts used to build the radio prototype based on Si4735 and used the Slicon Labs SSOP Typical Application Schematic as main source. However, some parts were included by the author of this project. 
+The table below shows the component parts used to build the radio prototype based on Si4735 and used the Silicon Labs SSOP Typical Application Schematic as main source. However, some parts were included by the author of this project. 
 
 
 |Part	| Description |
