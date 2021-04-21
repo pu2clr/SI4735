@@ -1,6 +1,8 @@
 # Using Reference Clock (No Crystal) with SI47XX device
 
-It is an example that uses the reference clock setup instead of crystal oscilator. 
+
+The examples found here will show you how to configure the SI473X device with external oscillator. 
+It can be useful to improve the stability of the system by using more precise oscillators instead of regular passive crystals. 
 
 The folder SI47XX_RDS_TOUCH_SHIELD_REF_CLOCK has a sketch that uses the mcufriend TFT touch Display Shield. This sketch is very similar to the sketch found on SI47XX_10_RDS folder. The main difference is the external clock setup. 
 
@@ -34,6 +36,41 @@ si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
 
 The [PU2CLR Si4735 Arduino Library API documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group07.html) can give you more detail about reference clock setup.
 
+
+
+## SI473X and external active crystal oscillator or signal generator
+
+You can use a signal generator or a active crystal oscillator instead the passive 32768kHz passive crystal with Si473X devices. This setup can be useful to improve the receiver performance or deal with digital audio output. The schematic below shows this setup. 
+
+
+![SI473X and external active crystal oscillator or signal generator](../../extras/images/schematic_basic_active_crystal_osc.png)
+
+Check the [PU2CLR SI4735 Arduino Library API documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) to deal with external clock reference. The code below shows how to setup external clock. 
+
+```cpp
+void setup(void)
+{
+
+  .
+  .
+  .
+  si4735.setRefClock(32768);
+  si4735.setRefClockPrescaler(1);   // will work with 32768  
+ 
+  si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
+  .
+  .
+  .
+}
+```
+
+See the sketch example: [I47XX_02_RDS_TOUCH_SHIELD_REF_CLOCK](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_99_NO_CRYSTAL)
+
+Video: 
+
+[SI4735-D60 and external reference clock test](https://youtu.be/Jgh3ScQUudE)
+
+{% include external_crystal.html %}
 
 
 
