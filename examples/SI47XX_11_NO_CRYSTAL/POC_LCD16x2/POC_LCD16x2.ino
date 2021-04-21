@@ -275,6 +275,8 @@ void setup()
     currentFrequency = (freqByteHigh << 8) | freqByteLow; // Converts the stored frequency to SI473X frequency.
     bandIdx = EEPROM.read(eeprom_address + 4);
     currentMode = EEPROM.read(eeprom_address + 5);
+    currentBFO = EEPROM.read(eeprom_address + 6) << 8; // High byte
+    currentBFO |= EEPROM.read(eeprom_address + 7);     // Low bye
     band[bandIdx].currentFreq = previousFrequency = currentFrequency;
     if (currentMode == LSB || currentMode == USB) {
       rx.loadPatch(ssb_patch_content, size_content, bandwitdthSSB[bwIdxSSB].idx);
@@ -559,6 +561,7 @@ void useBand()
     {
       rx.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
       rx.setSSBAutomaticVolumeControl(1);
+      rx.setSSBBfo(currentBFO);
     }
     else
     {
@@ -579,6 +582,8 @@ void useBand()
   rssi = 0;
   showStatus();
   showCommandStatus((char *) "Band");
+  previousFrequency = 0;
+  storeTime = millis();
 }
 
 /**
@@ -728,7 +733,6 @@ void doMode(int8_t v)
         currentMode = AM;
         bfoOn = ssbLoaded = false;
       }
-      previousFrequency = 0;
     }
     // Nothing to do if you are in FM mode
     band[bandIdx].currentFreq = currentFrequency;
@@ -753,7 +757,7 @@ void doVolume( int8_t v ) {
 
   showVolume();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  elapsedCommand = millis();
+  storeTime = elapsedCommand = millis();
   previousFrequency = 0; // Forces save the current receiver status
 }
 
@@ -871,6 +875,8 @@ void writeReceiverData() {
   EEPROM.update(eeprom_address + 3, (currentFrequency & 0xFF));  // stores the current Frequency LOW byte
   EEPROM.update(eeprom_address + 4, bandIdx); // Stores the current band
   EEPROM.update(eeprom_address + 5, currentMode); // Stores the current Mode (FM / AM / SSB)
+  EEPROM.update(eeprom_address + 6, currentBFO >> 8);
+  EEPROM.update(eeprom_address + 7, currentBFO &  0XFF);    
 }
 
 
