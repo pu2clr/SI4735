@@ -1,8 +1,6 @@
-# Using Reference Clock (No Crystal) with SI47XX device
+# Using Reference Clock with SI47XX device
 
-
-The examples found here will show you how to configure the SI473X device with external oscillator. 
-It can be useful to improve the stability of the system by using more precise oscillators instead of regular passive crystals. 
+The examples found here will show you how to configure the SI473X device with external oscillators (TCXO, Active Crystal, configurable clock generators like SI5351 etc). It can be useful to improve the stability of the system by using more precise oscillators instead of regular passive crystals. 
 
 The folder SI47XX_RDS_TOUCH_SHIELD_REF_CLOCK has a sketch that uses the mcufriend TFT touch Display Shield. This sketch is very similar to the sketch found on SI47XX_10_RDS folder. The main difference is the external clock setup. 
 
