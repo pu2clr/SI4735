@@ -1,16 +1,15 @@
 /*
-  This sketch was built to work with the project "DIY Si4730 All Band Radio (LW, MW, SW, FM)" receiver from Mirko Pavleski.
-  The original project can be found on https://create.arduino.cc/projecthub/mircemk/diy-si4730-all-band-radio-lw-mw-sw-fm-1894d9
-  Please, follow the circuit available on that link.
 
+  This sketch was built to check the external active crystal oscillator instead passive crystal. 
+  Link to the external oscillator schematic: https://github.com/pu2clr/SI4735/tree/master/extras/schematic#si473x-and-external-active-crystal-oscillator-or-signal-generator
+  Link to encoder and LCD16x2 schematic....: https://github.com/pu2clr/SI4735/tree/master/extras/schematic#standalone-atmega328-with-or-without-external-crystal-si4735-d60-and-lcd-16x2
+
+  This sketch uses the ATmega328 internal EEPROM to store the current status of the receiver. 
+
+  
   If you are using a SI4735-D60 or SI4732-A10, you can also use this sketch to add the SSB functionalities to the
   original Pavleski's project. If you are using another SI4730-D60, the SSB wil not work. But you will still have
   the SW functionalities.
-
-  It is important to say that this sketch was designed to work with the circuit implemented by Mirko Pavleski (see link above).
-  The visual interface, control commands, band plan, and some functionalities are different if compared with the original
-  sketch. Be sure you are using the SI4735 Arduino Library written by PU2CLR to run this sketch. The library used by the original
-  sketch will not work here. Also, you have to install the LiquidCrystal library.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
@@ -53,6 +52,7 @@
 */
 
 #include <SI4735.h>
+#include <EEPROM.h>
 #include <LiquidCrystal.h>
 #include "Rotary.h"
 
@@ -70,6 +70,8 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 // Enconder PINs
 #define ENCODER_PIN_A 2
 #define ENCODER_PIN_B 3
+
+#define SHUTDOWN_DETECTOR 8 //
 
 // LCD 16x02 or LCD20x4 PINs
 #define LCD_D7    4
@@ -96,6 +98,14 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define LW 4
 
 #define SSB 1
+
+#define STORE_TIME 10000
+const uint8_t app_id =  35; // Useful to check the EEPROM content before processing useful data
+const int eeprom_address = 0;
+uint8_t freqByteLow;
+uint8_t freqByteHigh;
+long storeTime = millis();
+
 
 bool bfoOn = false;
 bool ssbLoaded = false;
@@ -124,6 +134,7 @@ long elapsedCommand = millis();
 long elapsedClick = millis();
 volatile int encoderCount = 0;
 uint16_t currentFrequency;
+uint16_t previousFrequency;
 
 const uint8_t currentBFOStep = 10;
 
@@ -199,7 +210,7 @@ Band band[] = {
 }; // Super band: 150kHz to 30MHz
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int bandIdx = 0;
+int8_t bandIdx = 0;
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 int idxStep = 0;
@@ -215,6 +226,7 @@ SI4735 rx;
 
 void setup()
 {
+  pinMode(SHUTDOWN_DETECTOR, INPUT); // If HIGH power supply detected; else, no power supply detected.
   // Encoder pins
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
   lcd.begin(16, 2);
@@ -228,6 +240,17 @@ void setup()
   lcd.print("ACTIVE CRYSTAL");
   lcd.setCursor(0, 1);
   lcd.print("By RICARDO/2020");
+
+  // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
+  if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
+  {
+    EEPROM.write(eeprom_address, 0);
+    lcd.setCursor(0, 0);
+    lcd.print("EEPROM RESETED");
+    delay(5000);
+  }
+
+ 
   Flash(3000);
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
@@ -240,8 +263,31 @@ void setup()
   // rx.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);
   // rx.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_DIGITAL_AUDIO1, XOSCEN_RCLK);
   rx.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
-
   delay(500); 
+
+  // Checking the EEPROM content
+  if (EEPROM.read(eeprom_address) == app_id)
+  {
+    // There are useful data stored to rescue
+    volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
+    freqByteHigh = EEPROM.read(eeprom_address + 2); // Gets the frequency high byte
+    freqByteLow = EEPROM.read(eeprom_address + 3);  // Gets the frequency low  byte
+    currentFrequency = (freqByteHigh << 8) | freqByteLow; // Converts the stored frequency to SI473X frequency.
+    bandIdx = EEPROM.read(eeprom_address + 4);
+    currentMode = EEPROM.read(eeprom_address + 5);
+    band[bandIdx].currentFreq = previousFrequency = currentFrequency;
+    if (currentMode == LSB || currentMode == USB) {
+      rx.loadPatch(ssb_patch_content, size_content, bandwitdthSSB[bwIdxSSB].idx);
+      ssbLoaded = true;
+    }
+  }
+  else
+  {
+    volume = 40; // default volume 
+  }
+
+
+  
   useBand();
   rx.setVolume(volume);
   showStatus();
@@ -682,6 +728,7 @@ void doMode(int8_t v)
         currentMode = AM;
         bfoOn = ssbLoaded = false;
       }
+      previousFrequency = 0;
     }
     // Nothing to do if you are in FM mode
     band[bandIdx].currentFreq = currentFrequency;
@@ -707,6 +754,7 @@ void doVolume( int8_t v ) {
   showVolume();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
+  previousFrequency = 0; // Forces save the current receiver status
 }
 
 /**
@@ -811,6 +859,21 @@ void doCurrentMenuCmd() {
   elapsedCommand = millis();
 }
 
+
+/**
+    Saves the current volume and frequency into the internal EEPROM
+    The update command writes into EEPROM only if the data has changed.  
+*/
+void writeReceiverData() {
+  EEPROM.update(eeprom_address, app_id); // stores the app id;
+  EEPROM.update(eeprom_address + 1, rx.getVolume()); // stores the current Volume
+  EEPROM.update(eeprom_address + 2, (currentFrequency >> 8) );   // stores the current Frequency HIGH byte
+  EEPROM.update(eeprom_address + 3, (currentFrequency & 0xFF));  // stores the current Frequency LOW byte
+  EEPROM.update(eeprom_address + 4, bandIdx); // Stores the current band
+  EEPROM.update(eeprom_address + 5, currentMode); // Stores the current Mode (FM / AM / SSB)
+}
+
+
 /**
  * Main loop
  */
@@ -853,6 +916,7 @@ void loop()
       }
       // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
+      storeTime = millis();
       showFrequency();
     }
     encoderCount = 0;
@@ -913,5 +977,15 @@ void loop()
     countClick = 0;
     elapsedClick = millis();
   }
+
+  // Store current information into EEPROM if the condition is ok.
+  if ( currentFrequency != previousFrequency ) {
+    if (storeTime - millis() > STORE_TIME) {
+        writeReceiverData();
+        storeTime = millis();
+        previousFrequency = currentFrequency;
+    }
+  }
+  
   delay(5);
 }
