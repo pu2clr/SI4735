@@ -986,7 +986,7 @@ void loop()
 
   // Store current information into EEPROM if the condition is ok.
   if ( currentFrequency != previousFrequency ) {
-    if (storeTime - millis() > STORE_TIME) {
+    if ( (millis() - storeTime) > STORE_TIME) {
         writeReceiverData();
         storeTime = millis();
         previousFrequency = currentFrequency;
