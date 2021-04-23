@@ -52,12 +52,11 @@
   2) Implement the seek (ATS) functions. If AM (LW/MW and SW) or FM modes, the encoder push button will start seeking station.
      The direction of the seek will depend on the last encoder rotation direction.     
 
-
-
-  By Ricardo Lima Caratti, Nov 2019.
+  By Ricardo Lima Caratti, Nov 2021.
 */
 
 #include <SI4735.h>
+#include <EEPROM.h>
 #include <Tiny4kOLED.h>
 #include "Rotary.h"
 
@@ -105,8 +104,16 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 #define SSB 1
 
+#define STORE_TIME 10000
+
+const uint8_t app_id = 35; // Useful to check the EEPROM content before processing useful data
+const int eeprom_address = 0;
+long storeTime = millis();
+
+
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
+uint8_t seekDirection = 1;
 
 bool bfoOn = false;
 bool ssbLoaded = false;
@@ -215,9 +222,20 @@ void setup()
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(10, 3);
-  oled.print("V2.0.3 - By PU2CLR");
-  delay(5000);
+  oled.print("V2.0.4 - By PU2CLR");
+  delay(4000);
   // end Splash
+
+  // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
+  if (digitalRead(BFO_SWITCH) == LOW)
+  {
+    oled.clear();
+    EEPROM.write(eeprom_address, 0);
+    oled.setCursor(0, 0);
+    oled.print("EEPROM RESETED");
+    delay(3000);
+    oled.clear();
+  }
 
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
@@ -232,6 +250,13 @@ void setup()
   rx.setup(RESET_PIN, FM_BAND_TYPE);
 
   delay(300);
+
+  // Checking the EEPROM content
+  if (EEPROM.read(eeprom_address) == app_id)
+  {
+    readAllReceiverInformation();
+  }
+
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
 
@@ -258,6 +283,59 @@ void rotaryEncoder()
     }
   }
 }
+
+/*
+ * EEPROM receiver status 
+ */
+
+void saveAllReceiverInformation()
+{
+  int addr_offset;
+  EEPROM.update(eeprom_address, app_id);                 // stores the app id;
+  EEPROM.update(eeprom_address + 1, rx.getVolume()); // stores the current Volume
+  EEPROM.update(eeprom_address + 2, bandIdx);            // Stores the current band
+  EEPROM.update(eeprom_address + 3, currentMode);        // Stores the current Mode (FM / AM / SSB)
+  EEPROM.update(eeprom_address + 4, currentBFO >> 8);
+  EEPROM.update(eeprom_address + 5, currentBFO & 0XFF);
+
+  addr_offset = 6;
+  band[bandIdx].currentFreq = currentFrequency;
+
+  for (int i = 0; i < lastBand; i++)
+  {
+    EEPROM.update(addr_offset++, (band[i].currentFreq >> 8));   // stores the current Frequency HIGH byte for the band
+    EEPROM.update(addr_offset++, (band[i].currentFreq & 0xFF)); // stores the current Frequency LOW byte for the band
+    EEPROM.update(addr_offset++, band[i].currentStep);          // Stores current step of the band
+  }
+  // Serial.println("All information was saved!");
+}
+
+void readAllReceiverInformation()
+{
+  int addr_offset;
+  volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
+  bandIdx = EEPROM.read(eeprom_address + 2);
+  currentMode = EEPROM.read(eeprom_address + 3);
+  currentBFO = EEPROM.read(eeprom_address + 4) << 8;
+  currentBFO |= EEPROM.read(eeprom_address + 5);
+
+  addr_offset = 6;
+  for (int i = 0; i < lastBand; i++)
+  {
+    band[i].currentFreq = EEPROM.read(addr_offset++) << 8;
+    band[i].currentFreq |= EEPROM.read(addr_offset++);
+    band[i].currentStep = EEPROM.read(addr_offset++);
+  }
+
+  previousFrequency = currentFrequency = band[bandIdx].currentFreq;
+  currentStep = band[bandIdx].currentStep;
+
+  if (currentMode == LSB || currentMode == USB)
+  {
+    loadSSB();
+  }
+}
+
 
 void clearLine4()
 {
@@ -314,6 +392,16 @@ void showFrequency()
   oled.setCursor(95, 0);
   oled.print(unit);
 }
+
+/**
+ *  This function is called by the seek function process.
+ */
+void showFrequencySeek(uint16_t freq)
+{
+  currentFrequency = freq;
+  showFrequency();
+}
+
 
 /*
     Show some basic information on display
@@ -536,6 +624,8 @@ void useBand()
     currentMode = FM;
     rx.setTuneFrequencyAntennaCapacitor(0);
     rx.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+    rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
+    rx.setSeekFmSpacing(1);
     bfoOn = ssbLoaded = false;
     rx.setRdsConfig(1, 2, 2, 2, 2);
   }
@@ -560,11 +650,17 @@ void useBand()
       rx.setAmSoftMuteMaxAttenuation(0); // // Disable Soft Mute for AM
       bfoOn = false;
     }
+    // Sets the seeking limits and space.
+    rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
+    rx.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10kHz for spacing
+    
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
   showStatus();
+  storeTime = millis();
+  previousFrequency = 0;
 }
 
 void loop()
@@ -580,13 +676,17 @@ void loop()
     }
     else
     {
-      if (encoderCount == 1)
+      if (encoderCount == 1) {
         rx.frequencyUp();
-      else
+        seekDirection = 1;
+      }
+      else {
         rx.frequencyDown();
-
+        seekDirection = 0;
+      }
       // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
+      showFrequency();
     }
     encoderCount = 0;
   }
@@ -646,11 +746,18 @@ void loop()
           showBFO();
         showStatus();
       }
-      else if (currentMode == FM)
+      else if (currentMode == FM || currentMode == AM)
       {
-        rx.seekStationUp();
+        // Jumps up or down one space 
+        if (seekDirection ) 
+           rx.frequencyUp();
+        else
+           rx.frequencyDown();
+              
+        rx.seekStationProgress(showFrequencySeek, seekDirection);
         delay(30);
         currentFrequency = rx.getFrequency();
+        showFrequency();
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
@@ -710,9 +817,12 @@ void loop()
           if (currentStep == 1)
             currentStep = 5;
           else if (currentStep == 5)
+            currentStep = 9;
+          else if (currentStep == 9)
             currentStep = 10;
-          else
-            currentStep = 1;
+          else if (currentStep == 10)
+            currentStep = 50;
+          else currentStep = 1;
           rx.setFrequencyStep(currentStep);
           band[bandIdx].currentStep = currentStep;
           showStatus();
@@ -774,9 +884,12 @@ void loop()
   // Show the current frequency only if it has changed
   if (currentFrequency != previousFrequency)
   {
-    previousFrequency = currentFrequency;
-    showFrequency();
+    if ((millis() - storeTime) > STORE_TIME)
+    {
+      saveAllReceiverInformation();
+      storeTime = millis();
+      previousFrequency = currentFrequency;
+    }
   }
-
   delay(10);
 }
