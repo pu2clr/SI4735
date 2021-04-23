@@ -641,6 +641,8 @@ void useBand()
     currentMode = FM;
     si4735.setTuneFrequencyAntennaCapacitor(0);
     si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+    si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
+    si4735.setSeekFmSpacing(1);
     bfoOn = ssbLoaded = false;
     si4735.setRdsConfig(1, 2, 2, 2, 2);
   }
@@ -665,6 +667,8 @@ void useBand()
       si4735.setAmSoftMuteMaxAttenuation(6); // // Disable Soft Mute for AM
       bfoOn = false;
     }
+    si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);           // Consider the range all defined current band
+    si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10kHz for spacing
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
@@ -758,12 +762,18 @@ void loop()
           showBFO();
         showStatus();
       }
-      else if (currentMode == FM)
+      else if (currentMode == FM || currentMode == AM)
       {
-         si4735.seekStationProgress(showFrequencySeek, seekDirection);
-          delay(30);
-         currentFrequency = si4735.getFrequency();
-         showFrequency();
+        // Jumps up or down one space
+        if (seekDirection)
+          si4735.frequencyUp();
+        else
+          si4735.frequencyDown();
+
+        si4735.seekStationProgress(showFrequencySeek, seekDirection);
+        delay(30);
+        currentFrequency = si4735.getFrequency();
+        showFrequency();
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
@@ -897,6 +907,5 @@ void loop()
         previousFrequency = currentFrequency;
     }
   }
-
   delay(10);
 }
