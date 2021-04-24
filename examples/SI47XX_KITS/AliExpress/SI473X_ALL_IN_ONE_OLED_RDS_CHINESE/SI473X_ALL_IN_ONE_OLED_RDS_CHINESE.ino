@@ -402,6 +402,15 @@ void showFrequencySeek(uint16_t freq)
   showFrequency();
 }
 
+/**
+ * Checks the stop seeking criterias.  
+ * Returns true if the user press the touch or rotates the encoder. 
+ */
+bool checkStopSeeking()
+{
+  // Checks the touch and encoder
+  return (bool)encoderCount || (digitalRead(BFO_SWITCH) == LOW); // returns true if the user rotates the encoder or press the push button
+}
 
 /*
     Show some basic information on display
@@ -753,8 +762,8 @@ void loop()
            rx.frequencyUp();
         else
            rx.frequencyDown();
-              
-        rx.seekStationProgress(showFrequencySeek, seekDirection);
+
+        rx.seekStationProgress(showFrequencySeek, checkStopSeeking, seekDirection);
         delay(30);
         currentFrequency = rx.getFrequency();
         showFrequency();

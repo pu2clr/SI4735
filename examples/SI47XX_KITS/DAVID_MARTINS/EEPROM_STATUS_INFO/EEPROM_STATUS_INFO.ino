@@ -4,7 +4,7 @@
 
   This sketch uses I2C OLED/I2C, ATmega328 EEPROM, buttons and  Encoder.
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
-  together with this sketch) and Tiny4kOLED Library (look for this library on Tools->Manage Libraries). 
+  together with this sketch). Also, you need to install Tiny4kOLED and TinyOLED-Fonts Libraries 
 
   OLED I2C bus address is 0x3D
   THE ENCODER PUSH BUTTON is connected to the Arduino Nano pin 13. The inboard led connected to this pin was removed from Arduino Nano board.
@@ -53,6 +53,7 @@
 #include <SI4735.h>
 #include <EEPROM.h>
 #include <Tiny4kOLED.h>
+#include <font8x16atari.h> // Please, install the TinyOLED-Fonts library
 #include "Rotary.h"
 
 // Test it with patch_init.h or patch_full.h. Do not try load both.
@@ -379,7 +380,8 @@ void showFrequency()
   else
     freqDisplay = ">" + String((float)currentFrequency / divider, decimals) + "<";
 
-  oled.setFont(FONT8X16);
+  // oled.setFont(FONT8X16);
+  oled.setFont(FONT8X16ATARI);
   oled.setCursor(36, 0);
   oled.print("       ");
   oled.setCursor(36, 0);
@@ -410,6 +412,17 @@ void showFrequencySeek(uint16_t freq)
   currentFrequency = freq;
   showFrequency();
 }
+
+/**
+ * Checks the stop seeking criterias.  
+ * Returns true if the user press the touch or rotates the encoder. 
+ */
+bool checkStopSeeking() {
+  // Checks the touch and encoder
+  return (bool) encoderCount || (digitalRead(BFO_SWITCH) == LOW); // returns true if the user rotates the encoder or press the push button
+} 
+
+
 
 /*
     Show some basic information on display
@@ -464,8 +477,6 @@ void showStatus()
 */
 void showRSSI()
 {
-  char c[2] = ">";
-
   int bars = ((rssi / 10.0) / 2.0) + 1;
 
   oled.setCursor(90, 3);
@@ -773,7 +784,7 @@ void loop()
         else
           si4735.frequencyDown();
 
-        si4735.seekStationProgress(showFrequencySeek, seekDirection);
+        si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, seekDirection);
         delay(30);
         currentFrequency = si4735.getFrequency();
         showFrequency();
