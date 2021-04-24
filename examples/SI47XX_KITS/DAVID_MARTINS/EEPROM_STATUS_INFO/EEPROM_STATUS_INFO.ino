@@ -33,10 +33,12 @@
 
   1) FM/RDS, AM (MW and SW) and SSB (LSB and USB);
   2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
-  3) Many commercial and ham radio bands pre configured;
-  4) BFO Control; and
-  5) Frequency step switch (1, 5, 9, 10 and 50kHz);
-  6) Receiver information stored into the Arduino EEPROM.
+  3) Steps: 1, 5, 9, 10 and 50 kHz;
+  4) Many commercial and ham radio bands pre configured;
+  5) BFO Control; 
+  6) Frequency step switch (1, 5, 9, 10 and 50kHz);
+  7) Receiver information stored into the Arduino EEPROM.
+  8) Seek Function on AM and FM: press the encoder push button. The direction of the seek will be guided by the last direction rotation of the encoder.
 
   DVE KIT: https://davidmartinsengineering.wordpress.com/si4735-radio-kit/
   Library documentation: https://pu2clr.github.io/SI4735/
@@ -377,10 +379,13 @@ void showFrequency()
   else
     freqDisplay = ">" + String((float)currentFrequency / divider, decimals) + "<";
 
-  oled.setCursor(38, 0);
-  oled.print("        ");
-  oled.setCursor(38, 0);
+  oled.setFont(FONT8X16);
+  oled.setCursor(36, 0);
+  oled.print("       ");
+  oled.setCursor(36, 0);
   oled.print(freqDisplay);
+  oled.setFont(FONT6X8);
+
 
   // oled.setFont(FONT6X8);
 
@@ -414,10 +419,10 @@ void showStatus()
 
   showFrequency();
 
-  oled.setCursor(80, 1);
+  oled.setCursor(93, 1);
   oled.print("      ");
-  oled.setCursor(80, 1);
-  oled.print("St: ");
+  oled.setCursor(93, 1);
+  oled.print("S:");
   oled.print(currentStep);
 
   oled.setCursor(0, 3);
@@ -441,10 +446,12 @@ void showStatus()
   // Show AGC Information
   // si4735.getAutomaticGainControl();
   oled.setCursor(0, 1);
+  oled.print("     ");
+  oled.setCursor(0, 1);
   if (agcIdx == 0 ) {
-    oled.print("AGC ON");
+    oled.print("AGC");
   } else {
-    oled.print("ATT: ");
+    oled.print("At:");
     oled.print(agcNdx);
   }
 
@@ -461,17 +468,13 @@ void showRSSI()
 
   int bars = ((rssi / 10.0) / 2.0) + 1;
 
-  oled.setCursor(80, 3);
-  oled.print("       ");
-  oled.setCursor(80, 3);
-  oled.print("S:");
-  if (bars > 5)
-  {
-    bars = 5;
-    c[0] = '+';
-  }
+  oled.setCursor(90, 3);
+  oled.print("      ");
+  oled.setCursor(90, 3);
+  // oled.print("S:");
+
   for (int i = 0; i < bars; i++)
-    oled.print(c);
+    oled.print('+');
 
   if (currentMode == FM)
   {
@@ -512,10 +515,10 @@ void showBFO()
   oled.print(bfo);
   oled.print("Hz ");
 
-  oled.setCursor(80, 2);
-  oled.print("       ");
-  oled.setCursor(80, 2);
-  oled.print("St: ");
+  oled.setCursor(93, 2);
+  oled.print("     ");
+  oled.setCursor(93, 2);
+  oled.print("S:");
   oled.print(currentBFOStep);
 }
 
