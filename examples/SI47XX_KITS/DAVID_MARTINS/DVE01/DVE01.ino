@@ -625,7 +625,7 @@ void showRDSStation()
     col+=10;
   }
   // strcpy(oldBuffer, stationName);
-  delay(300);
+  delay(100);
 }
 
 
