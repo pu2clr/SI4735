@@ -1,20 +1,20 @@
 /*
-  This sketch support the board "SI4735 KIT FM, AM, SW, LW, SSB" from DVE (David Martins Engineering).  
+  This sketch support the board "SI4735 KIT FM, AM, SW, LW, SSB" from DVE (David Martins Engineering).
   DVE KIT: https://davidmartinsengineering.wordpress.com/si4735-radio-kit/
 
   This sketch uses I2C OLED/I2C, ATmega328 EEPROM, buttons and  Encoder.
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
-  together with this sketch). Also, you need to install Tiny4kOLED and TinyOLED-Fonts Libraries 
+  together with this sketch). Also, you need to install Tiny4kOLED and TinyOLED-Fonts Libraries
 
   OLED I2C bus address is 0x3D
   THE ENCODER PUSH BUTTON is connected to the Arduino Nano pin 13. The inboard led connected to this pin was removed from Arduino Nano board.
-  
-  ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Nano Board:
-  This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. 
-  If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage. 
-  For this reason, the LED was removed. 
 
-  ABOUT SSB PATCH:  
+  ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Nano Board:
+  This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on.
+  If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage.
+  For this reason, the LED was removed.
+
+  ABOUT SSB PATCH:
   This sketch will download a SSB patch to your SI4735 device (see file patch_init.h). It will take about 8KB from the Arduino Nano memory.
 
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
@@ -25,9 +25,9 @@
   the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
   Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
 
-  Finally, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by 
-  Mr. Vadim Afonkin on his Dropbox repository. This library only supports SSB patches. The patches themselves are not part of this library. 
-  It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. 
+  Finally, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by
+  Mr. Vadim Afonkin on his Dropbox repository. This library only supports SSB patches. The patches themselves are not part of this library.
+  It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes.
 
   Features of this sketch and receiver:
 
@@ -35,7 +35,7 @@
   2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
   3) Steps: 1, 5, 9, 10 and 50 kHz;
   4) Many commercial and ham radio bands pre configured;
-  5) BFO Control; 
+  5) BFO Control;
   6) Frequency step switch (1, 5, 9, 10 and 50kHz);
   7) Receiver information stored into the Arduino EEPROM.
   8) Seek Function on AM and FM: press the encoder push button. The direction of the seek will be guided by the last direction rotation of the encoder.
@@ -56,18 +56,17 @@
 #include <font8x16atari.h> // Please, install the TinyOLED-Fonts library
 #include "Rotary.h"
 
-// Test it with patch_init.h or patch_full.h. Do not try load both.
-#include "patch_init.h" // SSB patch for whole SSBRX initialization string
-// #include "patch_full.h"    // SSB patch for whole SSBRX full download
+#include "patch_ssb_compressed.h"    // SSB patch for whole SSBRX full download
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
+const uint16_t cmd_0x15_size = sizeof cmd_0x15; 
 
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
 #define SW_BAND_TYPE 2
 #define LW_BAND_TYPE 3
 
-// OLED Diaplay constants 
+// OLED Diaplay constants
 #define I2C_ADDRESS 0x3C  // Check your I2C bus address (0X3D is very commom too) 
 #define RST_PIN -1        // Define proper RST_PIN if required.
 
@@ -131,11 +130,50 @@ uint16_t previousFrequency;
 uint8_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
-uint8_t bwIdxSSB = 2;
-const char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+// Datatype to deal with bandwidth on AM, SSB and FM in numerical order.
+typedef struct
+{
+  uint8_t idx;      // SI473X device bandwitdth index value
+  const char *desc; // bandwitdth description
+} Bandwitdth;
 
-uint8_t bwIdxAM = 1;
-const char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+int8_t bwIdxSSB = 4;
+Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
+  {5, "1.0"},  //
+  {0, "1.2"},  //
+  {1, "2.2"},  //
+  {2, "3.0"},  //
+  {3, "4.0"}
+}; // 3 = 4kHz
+
+int8_t bwIdxAM = 4;
+const int maxFilterAM = 15;
+Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1kHz
+  {5, "1.8"},
+  {3, "2.0"},
+  {6, "2.5"},
+  {2, "3.0"},
+  {1, "4.0"},
+  {0, "6.0"}, // 0 = 6kHz
+  {7, "U07"}, // 7–15 = Reserved (Do not use) says the manual.
+  {8, "U08"},
+  {9, "U09"},
+  {10, "U10"},
+  {11, "U11"},
+  {12, "U12"},
+  {13, "U13"},
+  {14, "U14"},
+  {15, "U15"}
+};
+
+int8_t bwIdxFM = 0;
+Bandwitdth bandwitdthFM[] = {{0, "AUT"}, // Automatic
+  {1, "110"}, // Force wide (110 kHz) channel filter.
+  {2, " 84"},
+  {3, " 60"},
+  {4, " 40"}
+};
+
 
 // Atenuação and AGC
 uint8_t agcIdx = 0;
@@ -158,29 +196,31 @@ typedef struct
    Band table
 */
 Band band[] = {
-    {FM_BAND_TYPE, 8400, 10800, 10570, 10},
-    {LW_BAND_TYPE, 100, 510, 300, 1},
-    {MW_BAND_TYPE, 520, 1720, 810, 10},
-    {SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
-    {SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
-    {SW_BAND_TYPE, 4500, 5500, 4850, 5},
-    {SW_BAND_TYPE, 5600, 6300, 6000, 5},
-    {SW_BAND_TYPE, 6800, 7800, 7200, 5}, // 40 meters
-    {SW_BAND_TYPE, 9200, 10000, 9600, 5},
-    {SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
-    {SW_BAND_TYPE, 11200, 12500, 11940, 5},
-    {SW_BAND_TYPE, 13400, 13900, 13600, 5},
-    {SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
-    {SW_BAND_TYPE, 15000, 15900, 15300, 5},
-    {SW_BAND_TYPE, 17200, 17900, 17600, 5},
-    {SW_BAND_TYPE, 18000, 18300, 18100, 1},  // 17 meters
-    {SW_BAND_TYPE, 21000, 21900, 21200, 1},  // 15 mters
-    {SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
-    {SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
-    {SW_BAND_TYPE, 28000, 30000, 28400, 1}}; // 10 meters
+  {FM_BAND_TYPE, 6400, 8400, 7000, 10},  
+  {FM_BAND_TYPE, 8400, 10800, 10570, 10},
+  {LW_BAND_TYPE, 100, 510, 300, 1},
+  {MW_BAND_TYPE, 520, 1720, 810, 10},
+  {SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
+  {SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
+  {SW_BAND_TYPE, 4500, 5500, 4850, 5},
+  {SW_BAND_TYPE, 5600, 6300, 6000, 5},
+  {SW_BAND_TYPE, 6800, 7800, 7200, 5}, // 40 meters
+  {SW_BAND_TYPE, 9200, 10000, 9600, 5},
+  {SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
+  {SW_BAND_TYPE, 11200, 12500, 11940, 5},
+  {SW_BAND_TYPE, 13400, 13900, 13600, 5},
+  {SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
+  {SW_BAND_TYPE, 15000, 15900, 15300, 5},
+  {SW_BAND_TYPE, 17200, 17900, 17600, 5},
+  {SW_BAND_TYPE, 18000, 18300, 18100, 1},  // 17 meters
+  {SW_BAND_TYPE, 21000, 21900, 21200, 1},  // 15 mters
+  {SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
+  {SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
+  {SW_BAND_TYPE, 28000, 30000, 28400, 1}
+}; // 10 meters
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int bandIdx = 0;
+int bandIdx = 1;
 
 uint8_t rssi = 0;
 uint8_t stereo = 1;
@@ -195,7 +235,7 @@ void setup()
 
   // Serial.begin(9600);
   // while (!Serial);
-  
+
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
@@ -227,18 +267,18 @@ void setup()
   oled.setCursor(38, 3);
   oled.print("Receiver");
 
- // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
+  // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
   if (digitalRead(BFO_SWITCH) == LOW)
   {
-    oled.clear();    
+    oled.clear();
     EEPROM.write(eeprom_address, 0);
     oled.setCursor(0, 0);
     oled.print("EEPROM RESETED");
-    delay(3000);
+    delay(2000);
     oled.clear();
   }
 
-  delay(4000);
+  delay(3000);
   // end Splash
 
   // Encoder interrupt
@@ -256,11 +296,11 @@ void setup()
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id)
-  { 
-     readAllReceiverInformation();
+  {
+    readAllReceiverInformation();
   }
 
-  
+
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
 
@@ -290,51 +330,51 @@ void rotaryEncoder()
 
 
 /*
- * EEPROM receiver status 
- */
+   EEPROM receiver status
+*/
 
 void saveAllReceiverInformation() {
-  int addr_offset; 
+  int addr_offset;
   EEPROM.update(eeprom_address, app_id); // stores the app id;
   EEPROM.update(eeprom_address + 1, si4735.getVolume()); // stores the current Volume
   EEPROM.update(eeprom_address + 2, bandIdx); // Stores the current band
   EEPROM.update(eeprom_address + 3, currentMode); // Stores the current Mode (FM / AM / SSB)
   EEPROM.update(eeprom_address + 4, currentBFO >> 8);
-  EEPROM.update(eeprom_address + 5, currentBFO &  0XFF);   
- 
+  EEPROM.update(eeprom_address + 5, currentBFO &  0XFF);
+
   addr_offset = 6;
   band[bandIdx].currentFreq = currentFrequency;
- 
-  for (int i = 0; i < lastBand; i++ ) { 
+
+  for (int i = 0; i < lastBand; i++ ) {
     EEPROM.update(addr_offset++, (band[i].currentFreq >> 8) );   // stores the current Frequency HIGH byte for the band
     EEPROM.update(addr_offset++, (band[i].currentFreq & 0xFF));  // stores the current Frequency LOW byte for the band
     EEPROM.update(addr_offset++, band[i].currentStep); // Stores current step of the band
-   }
-   // Serial.println("All information was saved!");
+  }
+  // Serial.println("All information was saved!");
 }
 
 
 void readAllReceiverInformation() {
-    int addr_offset; 
-    volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
-    bandIdx = EEPROM.read(eeprom_address + 2);
-    currentMode = EEPROM.read(eeprom_address + 3); 
-    currentBFO = EEPROM.read(eeprom_address + 4) << 8; 
-    currentBFO |= EEPROM.read(eeprom_address + 5); 
-           
-    addr_offset = 6;
-    for (int i = 0; i < lastBand; i++ ) { 
-      band[i].currentFreq = EEPROM.read(addr_offset++) << 8;
-      band[i].currentFreq |= EEPROM.read(addr_offset++); 
-      band[i].currentStep = EEPROM.read(addr_offset++);         
-    }      
+  int addr_offset;
+  volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
+  bandIdx = EEPROM.read(eeprom_address + 2);
+  currentMode = EEPROM.read(eeprom_address + 3);
+  currentBFO = EEPROM.read(eeprom_address + 4) << 8;
+  currentBFO |= EEPROM.read(eeprom_address + 5);
 
-    previousFrequency = currentFrequency = band[bandIdx].currentFreq;
-    currentStep = band[bandIdx].currentStep;
-    
-    if (currentMode == LSB || currentMode == USB) {
-      loadSSB();
-    }
+  addr_offset = 6;
+  for (int i = 0; i < lastBand; i++ ) {
+    band[i].currentFreq = EEPROM.read(addr_offset++) << 8;
+    band[i].currentFreq |= EEPROM.read(addr_offset++);
+    band[i].currentStep = EEPROM.read(addr_offset++);
+  }
+
+  previousFrequency = currentFrequency = band[bandIdx].currentFreq;
+  currentStep = band[bandIdx].currentStep;
+
+  if (currentMode == LSB || currentMode == USB) {
+    loadSSB();
+  }
 }
 
 
@@ -345,7 +385,7 @@ void clearLine4()
 }
 
 /**
-  Converts a number to a char string and places leading zeros. 
+  Converts a number to a char string and places leading zeros.
   It is useful to mitigate memory space used by sprintf or generic similar function
 */
 void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot)
@@ -353,21 +393,21 @@ void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot)
   char d;
   for (int i = (len - 1); i >= 0; i--)
   {
-      d = value % 10;
-      value = value / 10;
-      strValue[i] = d + 48;
+    d = value % 10;
+    value = value / 10;
+    strValue[i] = d + 48;
   }
   strValue[len] = '\0';
-  if ( dot > 0 ) { 
+  if ( dot > 0 ) {
     for (int i = len; i >= dot ; i-- ) {
-      strValue[i+1] = strValue[i];
+      strValue[i + 1] = strValue[i];
     }
-    strValue[dot] = '.';  
+    strValue[dot] = '.';
   }
 
   if (strValue[0] == '0') {
-     strValue[0] = ' ';
-     if (strValue[1] == '0') strValue[1] = ' ';
+    strValue[0] = ' ';
+    if (strValue[1] == '0') strValue[1] = ' ';
   }
 }
 
@@ -381,10 +421,10 @@ void showFrequency()
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     convertToChar(currentFrequency, freqDisplay, 5, 3);
-    if (freqDisplay[5] >= '6')  
+    if (freqDisplay[5] >= '6')
     {
       freqDisplay[5] = '0';
-      freqDisplay[4] = (freqDisplay[4] == '9')? '0' : (freqDisplay[4] + 1);
+      freqDisplay[4] = (freqDisplay[4] == '9') ? '0' : (freqDisplay[4] + 1);
     }
     unit = (char *)"MHz";
   }
@@ -395,7 +435,7 @@ void showFrequency()
     else
       convertToChar(currentFrequency, freqDisplay, 5, 2);
   }
-  
+
   oled.invertOutput(bfoOn);
 
   oled.setFont(FONT8X16ATARI);
@@ -420,8 +460,8 @@ void showFrequency()
 
 
 /**
- *  This function is called by the seek function process.
- */
+    This function is called by the seek function process.
+*/
 void showFrequencySeek(uint16_t freq)
 {
   currentFrequency = freq;
@@ -429,13 +469,13 @@ void showFrequencySeek(uint16_t freq)
 }
 
 /**
- * Checks the stop seeking criterias.  
- * Returns true if the user press the touch or rotates the encoder. 
- */
+   Checks the stop seeking criterias.
+   Returns true if the user press the touch or rotates the encoder.
+*/
 bool checkStopSeeking() {
   // Checks the touch and encoder
   return (bool) encoderCount || (digitalRead(BFO_SWITCH) == LOW); // returns true if the user rotates the encoder or press the push button
-} 
+}
 
 
 
@@ -453,23 +493,7 @@ void showStatus()
   oled.print("S:");
   oled.print(currentStep);
 
-  oled.setCursor(0, 3);
-  oled.print("           ");
-  oled.setCursor(0, 3);
-
-  if (currentMode == LSB || currentMode == USB)
-  {
-    oled.print("BW:");
-    oled.print((char *)bandwitdthSSB[bwIdxSSB]);
-    oled.print("kHz");
-    showBFO();
-  }
-  else if (currentMode == AM)
-  {
-    oled.print("BW:");
-    oled.print( (char *) bandwitdthAM[bwIdxAM]);
-    oled.print("kHz");
-  }
+  showBandwitdth();
 
   // Show AGC Information
   // si4735.getAutomaticGainControl();
@@ -479,7 +503,7 @@ void showStatus()
   if (agcIdx == 0 ) {
     oled.print("AGC");
   } else {
-    oled.print("At:");
+    oled.print("- ");
     oled.print(agcNdx);
   }
 
@@ -492,20 +516,26 @@ void showStatus()
 */
 void showRSSI()
 {
-  int bars = ((rssi / 10.0) / 2.0) + 1;
-
+  int bars = (rssi / 20.0) + 1;
   oled.setCursor(90, 3);
   oled.print("      ");
   oled.setCursor(90, 3);
-  // oled.print("S:");
-
+  oled.print(".");
   for (int i = 0; i < bars; i++)
-    oled.print('+');
+    oled.print('_');
+  oled.print('|');
 
   if (currentMode == FM)
   {
-    oled.setCursor(0, 3);
-    oled.print((si4735.getCurrentPilot()) ? "STEREO   " : "MONO     ");
+    oled.setCursor(18, 0);
+    oled.print("  ");
+    oled.setCursor(18, 0);
+    oled.invertOutput(true);
+    if (si4735.getCurrentPilot() )  {
+       oled.invertOutput(true);
+       oled.print("s");
+     } 
+    oled.invertOutput(false);
   }
 }
 
@@ -520,13 +550,40 @@ void showVolume()
   oled.print(si4735.getCurrentVolume());
 }
 
+
+/**
+   SHow bandwitdth on AM,SSB and FM mode
+
+*/
+void showBandwitdth()
+{
+  char bw[10];
+
+  strcpy(bw, "BW: ");
+  if (currentMode == LSB || currentMode == USB)
+  {
+    strcat(bw, bandwitdthSSB[bwIdxSSB].desc);
+    showBFO();
+  }
+  else if (currentMode == AM) {
+    strcat(bw, bandwitdthAM[bwIdxAM].desc);
+  }
+  else {
+    strcat(bw, bandwitdthFM[bwIdxFM].desc);
+  }
+  oled.setCursor(0, 3);
+  oled.print("          ");
+  oled.setCursor(0, 3);
+  oled.print(bw);
+}
+
+
 /*
    Shows the BFO current status.
    Must be called only on SSB mode (LSB or USB)
 */
 void showBFO()
 {
- 
   oled.setCursor(0, 2);
   oled.print("         ");
   oled.setCursor(0, 2);
@@ -535,7 +592,7 @@ void showBFO()
   oled.print("Hz ");
 
   oled.setCursor(93, 2);
-  oled.print("     ");
+  oled.print("    ");
   oled.setCursor(93, 2);
   oled.print("S:");
   oled.print(currentBFOStep);
@@ -547,16 +604,30 @@ char *rdsTime;
 char bufferStatioName[20];
 long rdsElapsed = millis();
 
+char oldBuffer[15];
+
+
 void showRDSStation()
 {
-  // if (strcmp(bufferStatioName, stationName) == 0 ) return;
-  // printValue(5, 110,bufferStatioName, stationName, COLOR_GREEN, 6);
-  clearLine4();
-  oled.setCursor(0, 2);
-  oled.print(stationName);
-  // strcpy(bufferStatioName, stationName);
-  delay(250);
+  char *po, *pc;
+  int col = 0;
+  
+  po = oldBuffer;
+  pc = stationName;
+  while (*pc) {
+    if ( *po != *pc ) {
+        oled.setCursor(col, 2);
+        oled.print(*pc); 
+    }
+    *po = *pc;    
+    po++;
+    pc++;
+    col+=10;
+  }
+  // strcpy(oldBuffer, stationName);
+  delay(300);
 }
+
 
 
 void checkRDS()
@@ -571,7 +642,7 @@ void checkRDS()
     {
       rdsMsg = si4735.getRdsText2A();
       stationName = si4735.getRdsText0A();
-      if (stationName != NULL && (millis() - rdsElapsed) > 200 ) {
+      if (stationName != NULL && (millis() - rdsElapsed) > 10 ) {
         showRDSStation();
         rdsElapsed = millis();
       }
@@ -626,33 +697,20 @@ void loadSSB()
 {
   oled.setCursor(0, 2);
   oled.print("  Switching to SSB  ");
-
-  si4735.reset();
-  si4735.queryLibraryId(); // Is it really necessary here?  Just powerDown() maigh work!
+  si4735.setI2CFastModeCustom(500000);
+  si4735.queryLibraryId(); // Is it really necessary here? I will check it.
   si4735.patchPowerUp();
   delay(50);
-  si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
-  si4735.downloadPatch(ssb_patch_content, size_content);
-  si4735.setI2CStandardMode(); // goes back to default (100kHz)
-  clearLine4();
-
-  // delay(50);
-  // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
-  // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
-  // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
-  // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
-  // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
-  // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  si4735.setSSBConfig(bwIdxSSB, 1, 0, 0, 0, 1);
-  delay(25);
+  si4735.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
+  si4735.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 1, 0, 1);    
+  si4735.setI2CStandardMode();
   ssbLoaded = true;
   oled.clear();
 }
 
 /*
    Switch the radio to current band.
-   The bandIdx variable points to the current band. 
+   The bandIdx variable points to the current band.
    This function change to the band referenced by bandIdx (see table band).
 */
 void useBand()
@@ -740,9 +798,10 @@ void loop()
         bwIdxSSB++;
         if (bwIdxSSB > 5)
           bwIdxSSB = 0;
-        si4735.setSSBAudioBandwidth(bwIdxSSB);
+
+        si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
         // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-        if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
+        if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
           si4735.setSBBSidebandCutoffFilter(0);
         else
           si4735.setSBBSidebandCutoffFilter(1);
@@ -752,7 +811,14 @@ void loop()
         bwIdxAM++;
         if (bwIdxAM > 6)
           bwIdxAM = 0;
-        si4735.setBandwidth(bwIdxAM, 1);
+        si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+      } else {
+        bwIdxFM++;
+        if (bwIdxFM > 4)
+          bwIdxFM = 0;
+        else if (bwIdxFM < 0)
+          bwIdxFM = 4;
+        si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
       }
       showStatus();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
@@ -843,7 +909,6 @@ void loop()
       }
       else
       {
-
         // This command should work only for SSB mode
         if (bfoOn && (currentMode == LSB || currentMode == USB))
         {
@@ -864,6 +929,7 @@ void loop()
             currentStep = 1;
           si4735.setFrequencyStep(currentStep);
           band[bandIdx].currentStep = currentStep;
+          si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10kHz for spacing
           showStatus();
         }
         delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
@@ -924,9 +990,9 @@ void loop()
   if (currentFrequency != previousFrequency)
   {
     if ( (millis() - storeTime ) > STORE_TIME) {
-        saveAllReceiverInformation();
-        storeTime = millis();
-        previousFrequency = currentFrequency;
+      saveAllReceiverInformation();
+      storeTime = millis();
+      previousFrequency = currentFrequency;
     }
   }
   delay(10);
