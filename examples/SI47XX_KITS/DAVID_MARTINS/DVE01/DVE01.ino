@@ -131,6 +131,7 @@ uint8_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
 // Datatype to deal with bandwidth on AM, SSB and FM in numerical order.
+// Ordering by bandwidth values.   
 typedef struct
 {
   uint8_t idx;      // SI473X device bandwitdth index value
@@ -189,6 +190,8 @@ typedef struct
 
 /*
    Band table
+   To add a new band, all you have to do is insert a new line in the table below. No extra code will be needed.
+   Remove a line if you dont want a given band
 */
 Band band[] = {
   {FM_BAND_TYPE, 6400, 8400, 7000, 10, 0},  // FM from 64 to 84 MHz
@@ -227,10 +230,6 @@ SI4735 si4735;
 
 void setup()
 {
-
-  // Serial.begin(9600);
-  // while (!Serial);
-
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
@@ -280,13 +279,9 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  // Uncomment the lines below if you experience some unstable behaviour. Default values were optimized to make the SSB patch load fast
-  // si4735.setMaxDelayPowerUp(500);      // Time to the external crystal become stable after power up command (default is 10ms).
-  // si4735.setMaxDelaySetFrequency(100); // Time needed to process the next frequency setup (default is 30 ms)
-
   si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
-  si4735.setup(RESET_PIN, FM_BAND_TYPE);
+  si4735.setup(RESET_PIN, MW_BAND_TYPE); // 
   delay(300);
 
   // Checking the EEPROM content
@@ -343,8 +338,8 @@ void saveAllReceiverInformation() {
   for (int i = 0; i < lastBand; i++ ) {
     EEPROM.update(addr_offset++, (band[i].currentFreq >> 8) );   // stores the current Frequency HIGH byte for the band
     EEPROM.update(addr_offset++, (band[i].currentFreq & 0xFF));  // stores the current Frequency LOW byte for the band
-    EEPROM.update(addr_offset++, band[i].currentStep);  // Stores current step of the band
-    EEPROM.update(addr_offset++, band[i].bandwitdth);   // table index of bandwitdth
+    EEPROM.update(addr_offset++, band[i].currentStep);          // Stores current step of the band
+    EEPROM.update(addr_offset++, band[i].bandwitdth);           // table index (direct position) of bandwitdth
   }
 }
 
@@ -372,7 +367,7 @@ void readAllReceiverInformation() {
   
   if (currentMode == LSB || currentMode == USB) {
       loadSSB();
-      bwIdxSSB = bwIdx;
+      bwIdxSSB = (bwIdx > 5)? 5: bwIdx;
       si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
       // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
       if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
@@ -754,6 +749,7 @@ void useBand()
       si4735.setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
       bwIdxSSB = band[bandIdx].bandwitdth;
       si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
+      si4735.setSSBBfo(currentBFO);   
     }
     else
     {
@@ -785,6 +781,7 @@ void loop()
     {
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
       si4735.setSSBBfo(currentBFO);
+      previousFrequency = 0;  // Forces eeprom update
       showBFO();
     }
     else
@@ -841,6 +838,8 @@ void loop()
         si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
       }
       showStatus();
+      previousFrequency = 0;  // Forces store into the eeprom in few seconds.
+      storeTime = millis();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(BAND_BUTTON_UP) == LOW)
@@ -916,6 +915,8 @@ void loop()
       // Sets AGC on/off an gain
       si4735.setAutomaticGainControl(disableAgc, agcNdx);
       showStatus();
+      previousFrequency = 0;  // Forces store into the eeprom in few seconds.
+      storeTime = millis();
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
     {
@@ -952,6 +953,8 @@ void loop()
           si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10kHz for spacing
           showStatus();
         }
+        previousFrequency = 0;  // Forces store into the eeprom in few seconds.
+        storeTime = millis();
         delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       }
     }
