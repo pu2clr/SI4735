@@ -138,36 +138,30 @@ typedef struct
 } Bandwitdth;
 
 int8_t bwIdxSSB = 4;
-Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
-  {5, "1.0"},  //
-  {0, "1.2"},  //
-  {1, "2.2"},  //
-  {2, "3.0"},  //
-  {3, "4.0"}
+Bandwitdth bandwitdthSSB[] = {
+  {4, "0.5"},  // 0  
+  {5, "1.0"},  // 1
+  {0, "1.2"},  // 2
+  {1, "2.2"},  // 3
+  {2, "3.0"},  // 4  - default
+  {3, "4.0"}   // 5
 }; // 3 = 4kHz
 
 int8_t bwIdxAM = 4;
 const int maxFilterAM = 15;
-Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1kHz
-  {5, "1.8"},
-  {3, "2.0"},
-  {6, "2.5"},
-  {2, "3.0"},
-  {1, "4.0"},
-  {0, "6.0"}, // 0 = 6kHz
-  {7, "U07"}, // 7–15 = Reserved (Do not use) says the manual.
-  {8, "U08"},
-  {9, "U09"},
-  {10, "U10"},
-  {11, "U11"},
-  {12, "U12"},
-  {13, "U13"},
-  {14, "U14"},
-  {15, "U15"}
+Bandwitdth bandwitdthAM[] = {
+  {4, "1.0"},   // 0
+  {5, "1.8"},   // 1
+  {3, "2.0"},   // 2
+  {6, "2.5"},   // 3
+  {2, "3.0"},   // 4 - default 
+  {1, "4.0"},   // 5
+  {0, "6.0"}    // 6 
 };
 
 int8_t bwIdxFM = 0;
-Bandwitdth bandwitdthFM[] = {{0, "AUT"}, // Automatic
+Bandwitdth bandwitdthFM[] = {
+  {0, "AUT"}, // Automatic - default
   {1, "110"}, // Force wide (110 kHz) channel filter.
   {2, " 84"},
   {3, " 60"},
@@ -190,33 +184,34 @@ typedef struct
   uint16_t maximumFreq; // maximum frequency of the band
   uint16_t currentFreq; // Default frequency or current frequency
   uint16_t currentStep; // Defeult step (increment and decrement)
+  int8_t  bandwitdth;  // Bandwitdth local table index.
 } Band;
 
 /*
    Band table
 */
 Band band[] = {
-  {FM_BAND_TYPE, 6400, 8400, 7000, 10},  
-  {FM_BAND_TYPE, 8400, 10800, 10570, 10},
-  {LW_BAND_TYPE, 100, 510, 300, 1},
-  {MW_BAND_TYPE, 520, 1720, 810, 10},
-  {SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
-  {SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
-  {SW_BAND_TYPE, 4500, 5500, 4850, 5},
-  {SW_BAND_TYPE, 5600, 6300, 6000, 5},
-  {SW_BAND_TYPE, 6800, 7800, 7200, 5}, // 40 meters
-  {SW_BAND_TYPE, 9200, 10000, 9600, 5},
-  {SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
-  {SW_BAND_TYPE, 11200, 12500, 11940, 5},
-  {SW_BAND_TYPE, 13400, 13900, 13600, 5},
-  {SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
-  {SW_BAND_TYPE, 15000, 15900, 15300, 5},
-  {SW_BAND_TYPE, 17200, 17900, 17600, 5},
-  {SW_BAND_TYPE, 18000, 18300, 18100, 1},  // 17 meters
-  {SW_BAND_TYPE, 21000, 21900, 21200, 1},  // 15 mters
-  {SW_BAND_TYPE, 24890, 26200, 24940, 1},  // 12 meters
-  {SW_BAND_TYPE, 26200, 27900, 27500, 1},  // CB band (11 meters)
-  {SW_BAND_TYPE, 28000, 30000, 28400, 1}
+  {FM_BAND_TYPE, 6400, 8400, 7000, 10, 0},  // FM from 64 to 84 MHz
+  {FM_BAND_TYPE, 8400, 10800, 10570, 10, 0},
+  {LW_BAND_TYPE, 100, 510, 300, 1, 4},
+  {MW_BAND_TYPE, 520, 1720, 810, 10, 4},
+  {SW_BAND_TYPE, 1800, 3500, 1900, 1, 4}, // 160 meters
+  {SW_BAND_TYPE, 3500, 4500, 3700, 1, 5}, // 80 meters
+  {SW_BAND_TYPE, 4500, 5500, 4850, 5, 4},
+  {SW_BAND_TYPE, 5600, 6300, 6000, 5, 4},
+  {SW_BAND_TYPE, 6800, 7800, 7200, 5, 4}, // 40 meters
+  {SW_BAND_TYPE, 9200, 10000, 9600, 5, 4},
+  {SW_BAND_TYPE, 10000, 11000, 10100, 1, 4}, // 30 meters
+  {SW_BAND_TYPE, 11200, 12500, 11940, 5, 4},
+  {SW_BAND_TYPE, 13400, 13900, 13600, 5, 4},
+  {SW_BAND_TYPE, 14000, 14500, 14200, 1, 4}, // 20 meters
+  {SW_BAND_TYPE, 15000, 15900, 15300, 5, 4},
+  {SW_BAND_TYPE, 17200, 17900, 17600, 5, 4},
+  {SW_BAND_TYPE, 18000, 18300, 18100, 1, 4},  // 17 meters
+  {SW_BAND_TYPE, 21000, 21900, 21200, 1, 4},  // 15 mters
+  {SW_BAND_TYPE, 24890, 26200, 24940, 1, 4},  // 12 meters
+  {SW_BAND_TYPE, 26200, 27900, 27500, 1, 4},  // CB band (11 meters)
+  {SW_BAND_TYPE, 28000, 30000, 28400, 1, 4}
 }; // 10 meters
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
@@ -348,14 +343,15 @@ void saveAllReceiverInformation() {
   for (int i = 0; i < lastBand; i++ ) {
     EEPROM.update(addr_offset++, (band[i].currentFreq >> 8) );   // stores the current Frequency HIGH byte for the band
     EEPROM.update(addr_offset++, (band[i].currentFreq & 0xFF));  // stores the current Frequency LOW byte for the band
-    EEPROM.update(addr_offset++, band[i].currentStep); // Stores current step of the band
+    EEPROM.update(addr_offset++, band[i].currentStep);  // Stores current step of the band
+    EEPROM.update(addr_offset++, band[i].bandwitdth);   // table index of bandwitdth
   }
-  // Serial.println("All information was saved!");
 }
 
 
 void readAllReceiverInformation() {
   int addr_offset;
+  int bwIdx;
   volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
   bandIdx = EEPROM.read(eeprom_address + 2);
   currentMode = EEPROM.read(eeprom_address + 3);
@@ -367,14 +363,30 @@ void readAllReceiverInformation() {
     band[i].currentFreq = EEPROM.read(addr_offset++) << 8;
     band[i].currentFreq |= EEPROM.read(addr_offset++);
     band[i].currentStep = EEPROM.read(addr_offset++);
+    band[i].bandwitdth = EEPROM.read(addr_offset++);
   }
 
   previousFrequency = currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
-
+  bwIdx = band[bandIdx].bandwitdth;
+  
   if (currentMode == LSB || currentMode == USB) {
-    loadSSB();
-  }
+      loadSSB();
+      bwIdxSSB = bwIdx;
+      si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
+      // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+      if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
+          si4735.setSBBSidebandCutoffFilter(0);
+       else
+          si4735.setSBBSidebandCutoffFilter(1);
+   }
+   else if (currentMode == AM) {
+        bwIdxAM = bwIdx;
+        si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+   } else {
+        bwIdxFM = bwIdx;
+        si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
+   }
 }
 
 
@@ -725,6 +737,8 @@ void useBand()
     si4735.setSeekFmSpacing(1);
     bfoOn = ssbLoaded = false;
     si4735.setRdsConfig(1, 2, 2, 2, 2);
+    bwIdxFM = band[bandIdx].bandwitdth; 
+    si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);    
   }
   else
   {
@@ -738,6 +752,8 @@ void useBand()
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
       si4735.setSSBAutomaticVolumeControl(1);
       si4735.setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
+      bwIdxSSB = band[bandIdx].bandwitdth;
+      si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
     }
     else
     {
@@ -745,6 +761,8 @@ void useBand()
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(disableAgc, agcNdx);
       si4735.setAmSoftMuteMaxAttenuation(6); // // Disable Soft Mute for AM
+      bwIdxAM = band[bandIdx].bandwitdth;
+      si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);      
       bfoOn = false;
     }
     si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);           // Consider the range all defined current band
@@ -798,7 +816,7 @@ void loop()
         bwIdxSSB++;
         if (bwIdxSSB > 5)
           bwIdxSSB = 0;
-
+        band[bandIdx].bandwitdth = bwIdxSSB;
         si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
         // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
         if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
@@ -811,13 +829,15 @@ void loop()
         bwIdxAM++;
         if (bwIdxAM > 6)
           bwIdxAM = 0;
-        si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+          band[bandIdx].bandwitdth = bwIdxAM;
+          si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
       } else {
         bwIdxFM++;
         if (bwIdxFM > 4)
           bwIdxFM = 0;
         else if (bwIdxFM < 0)
           bwIdxFM = 4;
+        band[bandIdx].bandwitdth = bwIdxFM; 
         si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
       }
       showStatus();
