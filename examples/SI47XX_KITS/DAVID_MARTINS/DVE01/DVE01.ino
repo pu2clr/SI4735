@@ -384,6 +384,13 @@ void readAllReceiverInformation() {
    }
 }
 
+/*
+ * To store any change into the EEPROM, it is needed at least STORE_TIME  milliseconds of inactivity.
+ */
+void resetEepromDelay() {
+    storeTime = millis();
+    previousFrequency = 0;
+}
 
 void clearLine4()
 {
@@ -614,6 +621,9 @@ long rdsElapsed = millis();
 char oldBuffer[15];
 
 
+/*
+ * Show the Station Name. 
+ */
 void showRDSStation()
 {
   char *po, *pc;
@@ -636,12 +646,11 @@ void showRDSStation()
 }
 
 
-
+/*
+ * Checks the station name is available
+ */
 void checkRDS()
 {
-
-  // tft.setFont(Terminal6x8);
-
   si4735.getRdsStatus();
   if (si4735.getRdsReceived())
   {
@@ -768,8 +777,7 @@ void useBand()
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
   showStatus();
-  storeTime = millis();
-  previousFrequency = 0;
+  resetEepromDelay();
 }
 
 void loop()
@@ -798,8 +806,8 @@ void loop()
       currentFrequency = si4735.getFrequency();
       showFrequency();
     }
-    storeTime = millis();
     encoderCount = 0;
+    resetEepromDelay();
   }
 
   // Check button commands
@@ -838,8 +846,7 @@ void loop()
         si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
       }
       showStatus();
-      previousFrequency = 0;  // Forces store into the eeprom in few seconds.
-      storeTime = millis();
+      resetEepromDelay();
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(BAND_BUTTON_UP) == LOW)
@@ -915,8 +922,7 @@ void loop()
       // Sets AGC on/off an gain
       si4735.setAutomaticGainControl(disableAgc, agcNdx);
       showStatus();
-      previousFrequency = 0;  // Forces store into the eeprom in few seconds.
-      storeTime = millis();
+      resetEepromDelay();
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
     {
@@ -953,8 +959,7 @@ void loop()
           si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10kHz for spacing
           showStatus();
         }
-        previousFrequency = 0;  // Forces store into the eeprom in few seconds.
-        storeTime = millis();
+        resetEepromDelay();
         delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
       }
     }
