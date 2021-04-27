@@ -66,7 +66,6 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;
 #define LW_BAND_TYPE 3
 
 // OLED Diaplay constants
-#define I2C_ADDRESS 0x3C  // Check your I2C bus address (0X3D is very commom too) 
 #define RST_PIN -1        // Define proper RST_PIN if required.
 
 #define RESET_PIN 12
