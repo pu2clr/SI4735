@@ -214,7 +214,7 @@ Band band[] = {
   {FM_BAND_TYPE, 8400, 10800, 10570, 10, 0},
   {LW_BAND_TYPE, 100, 510, 300, 1, 4},
   {MW_BAND_TYPE, 520, 1720, 810, 10, 4},  
-  {MW_BAND_TYPE, 531, 1701, 783, 9, 4},   // MW for Europe, Africa and Asia the
+  {MW_BAND_TYPE, 531, 1701, 783, 9, 4},   // MW for Europe, Africa and Asia
   {SW_BAND_TYPE, 1800, 3500, 1900, 1, 4}, // 160 meters
   {SW_BAND_TYPE, 3500, 4500, 3700, 1, 5}, // 80 meters
   {SW_BAND_TYPE, 4500, 5500, 4850, 5, 4},
