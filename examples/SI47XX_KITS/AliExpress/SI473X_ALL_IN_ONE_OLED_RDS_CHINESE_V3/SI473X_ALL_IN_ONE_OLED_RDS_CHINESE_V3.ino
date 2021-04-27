@@ -20,7 +20,7 @@
 
   ATTENTION: Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 
-  Arduino Libraries: 
+  ARDUINO LIBRARIES: 
   1) This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included together with this sketch). You do not need to install it;
   2) Tiny4kOLED Library and TinyOLED-Fonts (on your Arduino IDE, look for this library on Tools->Manage Libraries). 
   3) PU2CLR SI4735 Arduino Library (on your Arduino IDE look for this library on Tools->Manage Libraries). 
