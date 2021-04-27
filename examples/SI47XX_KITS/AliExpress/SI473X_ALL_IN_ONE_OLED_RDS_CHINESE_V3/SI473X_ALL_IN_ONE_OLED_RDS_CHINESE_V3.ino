@@ -1,14 +1,27 @@
 /*
-  This sketch can work with the Chinese KIT sold on AliExpress, eBay and Amazon 
+  
+  This sketch SHOULD work with the Chinese KIT sold on AliExpress, eBay and Amazon 
+  ATTENTION:  
+  IT IS NOT TESTED ENOUGHT. SO, DO NOT TRY IT IF YOU DON'T KNOW WHAT ARE YOU DOING. 
+  YOU MUST BE ABLE TO GO BACK TO THE PREVIOUS VERSION IF THIS SKETCH DOES NOT WORK.
+  
+  New features: 
+
+  1) the final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features); 
+  2) All the previous status of the receiver can be rescued when you turn it on (including SSB mode, bandwidth, volume, frequency, BFO etc);
+  2) The bandwidth now is a property of the band (you can use different bandwidth for different bands);
+  3) The seek function was improved (it is more precise on FM mode). The seek direction is controlled by the encoder (clockwise or counter-clockwise . Press encoder push button for seeking;
+  4) Steps: 1, 5, 9, 10 and 50 kHz; Now you can configure MW band space to 9 or 10 kHz; and
+  5) The frequency on Display is bigger than the previous version.
 
   This sketch uses I2C OLED/I2C, buttons and  Encoder.
 
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
-  together with this sketch) and Tiny4kOLED Library (look for this library on Tools->Manage Libraries). 
+  together with this sketch).
+  INSTALL THE LIBRARIES Tiny4kOLED Library and TinyOLED-Fonts (look for this library on Tools->Manage Libraries). 
 
   ABOUT SSB PATCH:  
-  This sketch will download a SSB patch to your SI4735-D60 or SI4732-A10 devices (patch_init.h). It will take about 8KB of the Arduino memory.
-
+ 
   First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
   Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
   content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
@@ -27,13 +40,6 @@
   Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
 
   Features of this sketch:
-
-  1) FM, AM (MW and SW) and SSB (LSB and USB);
-  2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
-  3) 22 commercial and ham radio bands pre configured;
-  4) BFO Control; and
-  5) Frequency step switch (1, 5 and 10kHz);
-  6) RDS
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
