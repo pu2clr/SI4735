@@ -1,54 +1,53 @@
 /*
-  This sketch support the board "SI4735 KIT FM, AM, SW, LW, SSB" from DVE (David Martins Engineering).
-  DVE KIT: https://davidmartinsengineering.wordpress.com/si4735-radio-kit/
+  This sketch can work with the Chinese KIT sold on AliExpress, eBay and Amazon 
 
-  This sketch uses I2C OLED/I2C, ATmega328 EEPROM, buttons and  Encoder.
+  This sketch uses I2C OLED/I2C, buttons and  Encoder.
+
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
-  together with this sketch). Also, you need to install Tiny4kOLED and TinyOLED-Fonts Libraries
+  together with this sketch) and Tiny4kOLED Library (look for this library on Tools->Manage Libraries). 
 
-  OLED I2C bus address is 0x3D
-  THE ENCODER PUSH BUTTON is connected to the Arduino Nano pin 13. The inboard led connected to this pin was removed from Arduino Nano board.
+  ABOUT SSB PATCH:  
+  This sketch will download a SSB patch to your SI4735-D60 or SI4732-A10 devices (patch_init.h). It will take about 8KB of the Arduino memory.
 
-  ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Nano Board:
-  This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on.
-  If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage.
-  For this reason, the LED was removed.
-
-  ABOUT SSB PATCH:
-  This sketch will download a SSB patch to your SI4735 device (see file patch_init.h). It will take about 8KB from the Arduino Nano memory.
+  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
+  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
+  content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
 
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
-  There is little information available about patching the SI4735. The following information is the understanding of the author of
-  this sketch and PU2SI4735 Arduino Library. It is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
+  There is little information available about patching the SI4735 or Si4732 devices. The following information is the understanding of the author of
+  this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
   Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device.
   Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by
   the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
   Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
 
-  Finally, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by
-  Mr. Vadim Afonkin on his Dropbox repository. This library only supports SSB patches. The patches themselves are not part of this library.
-  It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes.
+  ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment.
+  Given this, it is at your own risk to continue with the procedures suggested here.
+  This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
+  Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
 
-  Features of this sketch and receiver:
+  Features of this sketch:
 
-  1) FM/RDS, AM (MW and SW) and SSB (LSB and USB);
+  1) FM, AM (MW and SW) and SSB (LSB and USB);
   2) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
-  3) Steps: 1, 5, 9, 10 and 50 kHz;
-  4) Many commercial and ham radio bands pre configured;
-  5) BFO Control;
-  6) Frequency step switch (1, 5, 9, 10 and 50kHz);
-  7) Receiver information stored into the Arduino EEPROM.
-  8) Seek Function on AM and FM: press the encoder push button. The direction of the seek will be guided by the last direction rotation of the encoder.
+  3) 22 commercial and ham radio bands pre configured;
+  4) BFO Control; and
+  5) Frequency step switch (1, 5 and 10kHz);
+  6) RDS
 
-  DVE KIT: https://davidmartinsengineering.wordpress.com/si4735-radio-kit/
-  Library documentation: https://pu2clr.github.io/SI4735/
+  Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
-  Circuit design by David Martins Engineering;
-  Sketch written by Ricardo Lima Caratti, April 2021.
-*/
+  TO DO:
 
-#define SSD1306    0x3D  // The OLED bus address for this KIt is 0x3D
+  1) Setup mode to: 
+    1.1. allow the user to select MW band space 9kHz or 10kHz;
+    1.2. set the defaul volume level;
+  2) Implement the seek (ATS) functions. If AM (LW/MW and SW) or FM modes, the encoder push button will start seeking station.
+     The direction of the seek will depend on the last encoder rotation direction.     
+
+  By Ricardo Lima Caratti, Nov 2021.
+*/
 
 #include <SI4735.h>
 #include <EEPROM.h>
@@ -81,12 +80,11 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;
 #define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
-#define BAND_BUTTON_UP 9   // Next band
-#define BAND_BUTTON_DOWN 8 // Previous band
+#define BAND_BUTTON_UP 8   // Next band
+#define BAND_BUTTON_DOWN 9 // Previous band
 #define AGC_SWITCH 11      // Switch AGC ON/OF
 #define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
-#define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
-// #define BFO_SWITCH 14 // A0 (Alternative to the pin 13). Used to select the enconder control (BFO or VFO)
+#define BFO_SWITCH 14      // Used to select the enconder control (BFO or VFO)
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
@@ -250,16 +248,18 @@ void setup()
   oled.setFont(FONT6X8);
 
   // Splash - Change it for your introduction text.
-  oled.setCursor(19, 0);
-  oled.print("PU2CLR SI4735");
-  oled.setCursor(15, 1);
+  oled.setCursor(40, 0);
+  oled.print("SI473X");
+  oled.setCursor(20, 1);
   oled.print("Arduino Library");
   delay(500);
-  oled.setCursor(10, 2);
-  oled.print("DVE KIT All in One");
+  oled.setCursor(15, 2);
+  oled.print("All in One Radio");
   delay(500);
-  oled.setCursor(38, 3);
-  oled.print("Receiver");
+  oled.setCursor(10, 3);
+  oled.print("V3.0.1 - By PU2CLR");
+  delay(1000);
+  // end Splash
 
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
   if (digitalRead(BFO_SWITCH) == LOW)
@@ -272,7 +272,7 @@ void setup()
     oled.clear();
   }
 
-  delay(3000);
+  delay(2000);
   // end Splash
 
   // Encoder interrupt
