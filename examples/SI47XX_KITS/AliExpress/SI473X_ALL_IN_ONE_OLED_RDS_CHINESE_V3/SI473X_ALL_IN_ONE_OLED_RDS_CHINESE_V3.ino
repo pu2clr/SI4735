@@ -56,7 +56,7 @@
   2) Implement the seek (ATS) functions. If AM (LW/MW and SW) or FM modes, the encoder push button will start seeking station.
      The direction of the seek will depend on the last encoder rotation direction.     
 
-  By Ricardo Lima Caratti, Nov 2021.
+  By Ricardo Lima Caratti, April  2021.
 */
 
 #include <SI4735.h>
