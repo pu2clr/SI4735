@@ -17,6 +17,8 @@
    9) New FM band from 64 to 84 MHz;
   10) The frequency on Display is bigger than the previous version.
 
+  ATTENTION: Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
+
   This sketch uses I2C OLED/I2C, buttons and  Encoder.
 
   This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
@@ -109,7 +111,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;
 
 #define STORE_TIME 10000
 
-const uint8_t app_id =  35; // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id =  32; // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
