@@ -205,7 +205,9 @@ typedef struct
 /*
    Band table
    To add a new band, all you have to do is insert a new line in the table below. No extra code will be needed.
-   Remove a line if you dont want a given band
+   Remove or comment a line if you do not want a given band
+   You have to RESET the eeprom after modiging this table. 
+   Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 */
 Band band[] = {
   {FM_BAND_TYPE, 6400, 8400, 7000, 10, 0},  // FM from 64 to 84 MHz
@@ -229,8 +231,8 @@ Band band[] = {
   {SW_BAND_TYPE, 21000, 21900, 21200, 1, 4},  // 15 mters
   {SW_BAND_TYPE, 24890, 26200, 24940, 1, 4},  // 12 meters
   {SW_BAND_TYPE, 26200, 27900, 27500, 1, 4},  // CB band (11 meters)
-  {SW_BAND_TYPE, 28000, 30000, 28400, 1, 4}
-}; // 10 meters
+  {SW_BAND_TYPE, 28000, 30000, 28400, 1, 4}   // 10 meters
+}; 
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 1;
@@ -274,7 +276,7 @@ void setup()
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(10, 3);
-  oled.print("V3.0.1 - By PU2CLR");
+  oled.print("V3.0.2 - By PU2CLR");
   delay(1000);
   // end Splash
 
