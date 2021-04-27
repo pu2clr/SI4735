@@ -15,7 +15,8 @@
    7) Steps: 1, 5, 9, 10 and 50 kHz;
    8) Now you can configure MW band space to 9 or 10 kHz;
    9) New FM band from 64 to 84 MHz;
-  10) The frequency on Display is bigger than the previous version.
+  10) The frequency on Display is bigger than the previous version;
+  11) Now the bandwidth sequence is ordered by bandwidth values.
 
   ATTENTION: Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 
@@ -108,7 +109,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;
 
 #define SSB 1
 
-#define STORE_TIME 10000
+#define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
 const uint8_t app_id =  36; // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
