@@ -15,8 +15,9 @@
    7) Steps: 1, 5, 9, 10 and 50 kHz;
    8) Now you can configure MW band space to 9 or 10 kHz;
    9) New FM band from 64 to 84 MHz;
-  10) The frequency on Display is bigger than the previous version;
-  11) Now the bandwidth sequence is ordered by bandwidth values.
+  10) Added a MW band for Europe, Africa and Asia 
+  11) The frequency on Display is bigger than the previous version;
+  12) Now the bandwidth sequence is ordered by bandwidth values.
 
   ATTENTION: Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 
