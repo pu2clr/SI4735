@@ -1,18 +1,21 @@
 /*
-  
   This sketch SHOULD work with the Chinese KIT sold on AliExpress, eBay and Amazon 
   ATTENTION:  
-  IT IS NOT TESTED ENOUGHT. SO, DO NOT TRY IT IF YOU DON'T KNOW WHAT ARE YOU DOING. 
-  YOU MUST BE ABLE TO GO BACK TO THE PREVIOUS VERSION IF THIS SKETCH DOES NOT WORK.
+  IT IS NOT TESTED ENOUGH. SO, DO NOT TRY IT IF YOU DON'T KNOW WHAT ARE YOU DOING. 
+  YOU MUST BE ABLE TO GO BACK TO THE PREVIOUS VERSION IF THIS SKETCH DOES NOT WORK FOR YOU.
   
   New features: 
 
-  1) the final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features); 
+  1) The final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features); 
   2) All the previous status of the receiver can be rescued when you turn it on (including SSB mode, bandwidth, volume, frequency, BFO etc);
   2) The bandwidth now is a property of the band (you can use different bandwidth for different bands);
-  3) The seek function was improved (it is more precise on FM mode). The seek direction is controlled by the encoder (clockwise or counter-clockwise . Press encoder push button for seeking;
-  4) Steps: 1, 5, 9, 10 and 50 kHz; Now you can configure MW band space to 9 or 10 kHz; and
-  5) The frequency on Display is bigger than the previous version.
+  3) Bandwidth control on FM mode (Auto, 110, 84, 60 and 40 kHz); 
+  4) FM/RDS presentation improved; 
+  5) The seek function was improved (it is more precise on FM mode). The seek direction is controlled by the encoder (clockwise or counter-clockwise . Press encoder push button for seeking;
+  6) Steps: 1, 5, 9, 10 and 50 kHz;
+  7) Now you can configure MW band space to 9 or 10 kHz;
+  8) New FM band from 64 to 84 MHz;
+  8) The frequency on Display is bigger than the previous version.
 
   This sketch uses I2C OLED/I2C, buttons and  Encoder.
 
