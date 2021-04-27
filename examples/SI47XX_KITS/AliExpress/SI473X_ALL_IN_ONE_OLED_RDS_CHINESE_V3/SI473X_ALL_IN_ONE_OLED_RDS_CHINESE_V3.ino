@@ -111,7 +111,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;
 
 #define STORE_TIME 10000
 
-const uint8_t app_id =  32; // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id =  36; // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
