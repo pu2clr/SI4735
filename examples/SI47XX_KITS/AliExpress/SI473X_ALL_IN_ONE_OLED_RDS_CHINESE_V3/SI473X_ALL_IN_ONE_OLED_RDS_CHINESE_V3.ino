@@ -114,7 +114,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
-const uint8_t app_id =  38; // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id =  39; // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
@@ -273,7 +273,7 @@ void setup()
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(10, 3);
-  oled.print("V3.0.3 - By PU2CLR");
+  oled.print("V3.0.4 - By PU2CLR");
   delay(1000);
   // end Splash
 
@@ -626,9 +626,7 @@ void showBFO()
   oled.print(currentBFOStep);
 }
 
-char *rdsMsg;
 char *stationName;
-char *rdsTime;
 char bufferStatioName[20];
 long rdsElapsed = millis();
 
@@ -656,7 +654,7 @@ void showRDSStation()
     col+=10;
   }
   // strcpy(oldBuffer, stationName);
-  delay(100);
+  delay(120);
 }
 
 
@@ -670,7 +668,6 @@ void checkRDS()
   {
     if (si4735.getRdsSync() && si4735.getRdsSyncFound())
     {
-      rdsMsg = si4735.getRdsText2A();
       stationName = si4735.getRdsText0A();
       if (stationName != NULL && (millis() - rdsElapsed) > 10 ) {
         showRDSStation();
@@ -904,8 +901,9 @@ void loop()
         delay(30);
         if (currentMode == FM)
         {
-          currentFrequency = 10 + ((si4735.getFrequency() / 10) * 10); // adjusts band space from 1 (10kHz) to 10 (100 kHz)
-          si4735.setFrequency(currentFrequency);
+          float f = round(si4735.getFrequency() / 10.0); 
+          currentFrequency = (uint16_t) f * 10; // adjusts band space from 1 (10kHz) to 10 (100 kHz)
+          si4735.setFrequency(currentFrequency); 
         }
         else
         {

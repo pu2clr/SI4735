@@ -607,9 +607,7 @@ void showBFO()
   oled.print(currentBFOStep);
 }
 
-char *rdsMsg;
 char *stationName;
-char *rdsTime;
 char bufferStatioName[20];
 long rdsElapsed = millis();
 
@@ -637,7 +635,7 @@ void showRDSStation()
     col+=10;
   }
   // strcpy(oldBuffer, stationName);
-  delay(100);
+  delay(120);
 }
 
 
@@ -649,9 +647,8 @@ void checkRDS()
   si4735.getRdsStatus();
   if (si4735.getRdsReceived())
   {
-    if (si4735.getRdsSync() && si4735.getRdsSyncFound())
+    if (si4735.getRdsSync() && si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost())
     {
-      rdsMsg = si4735.getRdsText2A();
       stationName = si4735.getRdsText0A();
       if (stationName != NULL && (millis() - rdsElapsed) > 10 ) {
         showRDSStation();
@@ -884,7 +881,8 @@ void loop()
         si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, seekDirection);
         delay(30);
         if (currentMode == FM)  { 
-          currentFrequency = 10 + ((si4735.getFrequency() / 10) * 10); // adjusts band space from 1 (10kHz) to 10 (100 kHz)
+          float f = round(si4735.getFrequency() / 10.0); 
+          currentFrequency = (uint16_t) f * 10; // adjusts band space from 1 (10kHz) to 10 (100 kHz)
           si4735.setFrequency(currentFrequency); 
         } else {
           currentFrequency = si4735.getFrequency(); // 
