@@ -216,7 +216,7 @@ void rotaryEncoder()
 }
 
 
-void clearLine4() {
+void cleanBfoRdsInfo() {
   display.setCursor(0, 2);
   display.print("                    ");
 }
@@ -396,7 +396,7 @@ void loadSSB()
   // si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
   si4735.downloadPatch(ssb_patch_content, size_content);
   si4735.setI2CStandardMode(); // goes back to default (100kHz)
-  clearLine4();
+  cleanBfoRdsInfo();
 
   // delay(50);
   // Parameters
@@ -417,7 +417,7 @@ void loadSSB()
 */
 void useBand()
 {
-  clearLine4();
+  cleanBfoRdsInfo();
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;

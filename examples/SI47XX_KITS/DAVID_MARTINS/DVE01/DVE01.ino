@@ -392,7 +392,7 @@ void resetEepromDelay() {
     previousFrequency = 0;
 }
 
-void clearLine4()
+void cleanBfoRdsInfo()
 {
   oled.setCursor(0, 2);
   oled.print("                    ");
@@ -723,7 +723,7 @@ void loadSSB()
   si4735.setI2CStandardMode();
   ssbLoaded = true;
   // oled.clear();
-  clearLine4();
+  cleanBfoRdsInfo();
 }
 
 /*
@@ -733,7 +733,7 @@ void loadSSB()
 */
 void useBand()
 {
-  clearLine4();
+  cleanBfoRdsInfo();
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -1011,7 +1011,7 @@ void loop()
   {
     if (currentFrequency != previousFrequency)
     {
-      clearLine4();
+      cleanBfoRdsInfo();
     }
     checkRDS();
   }

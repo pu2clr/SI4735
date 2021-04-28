@@ -474,7 +474,7 @@ void showStatus()
 */
 void useBand()
 {
-  // clearLine4();
+  // cleanBfoRdsInfo();
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -563,7 +563,7 @@ void loadSSB()
   delay(50);
   // You might wnat to improve the I2C bus speed.
   si4735.downloadPatch(ssb_patch_content, size_content);
-  // clearLine4();
+  // cleanBfoRdsInfo();
   // delay(50);
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;

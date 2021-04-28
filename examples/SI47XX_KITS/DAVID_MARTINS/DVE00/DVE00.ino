@@ -338,7 +338,7 @@ void readAllReceiverInformation() {
 }
 
 
-void clearLine4()
+void cleanBfoRdsInfo()
 {
   oled.setCursor(0, 2);
   oled.print("                    ");
@@ -543,7 +543,7 @@ void showRDSStation()
 {
   // if (strcmp(bufferStatioName, stationName) == 0 ) return;
   // printValue(5, 110,bufferStatioName, stationName, COLOR_GREEN, 6);
-  clearLine4();
+  cleanBfoRdsInfo();
   oled.setCursor(0, 2);
   oled.print(stationName);
   // strcpy(bufferStatioName, stationName);
@@ -626,7 +626,7 @@ void loadSSB()
   si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
   si4735.downloadPatch(ssb_patch_content, size_content);
   si4735.setI2CStandardMode(); // goes back to default (100kHz)
-  clearLine4();
+  cleanBfoRdsInfo();
 
   // delay(50);
   // Parameters
@@ -649,7 +649,7 @@ void loadSSB()
 */
 void useBand()
 {
-  clearLine4();
+  cleanBfoRdsInfo();
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -907,7 +907,7 @@ void loop()
   {
     if (currentFrequency != previousFrequency)
     {
-      clearLine4();
+      cleanBfoRdsInfo();
     }
     checkRDS();
   }

@@ -269,7 +269,7 @@ void rotaryEncoder()
   }
 }
 
-void clearLine4()
+void cleanBfoRdsInfo()
 {
   oled.setCursor(0, 2);
   oled.print("                    ");
@@ -538,7 +538,7 @@ char bufferRdsTime[32];
 
 void showRDSStation()
 {
-  clearLine4();
+  cleanBfoRdsInfo();
   oled.setCursor(0, 2);
   oled.print(stationName);
   delay(250);
@@ -607,7 +607,7 @@ void loadSSB()
   // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
   rx.downloadPatch(ssb_patch_content, size_content);
   rx.setI2CStandardMode(); // goes back to default (100kHz)
-  clearLine4();
+  cleanBfoRdsInfo();
 
   // delay(50);
   // Parameters
@@ -630,7 +630,7 @@ void loadSSB()
 */
 void useBand()
 {
-  clearLine4();
+  cleanBfoRdsInfo();
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -866,7 +866,7 @@ void loop()
   {
     if (currentFrequency != previousFrequency)
     {
-      clearLine4();
+      cleanBfoRdsInfo();
     }
     checkRDS();
   }
