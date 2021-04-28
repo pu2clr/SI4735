@@ -95,12 +95,12 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
-#define BAND_BUTTON_UP 8   // Next band
-#define BAND_BUTTON_DOWN 9 // Previous band
+#define BAND_BUTTON_UP 9   // Next band
+#define BAND_BUTTON_DOWN 8 // Previous band
 #define AGC_SWITCH 11      // Switch AGC ON/OF
 #define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
 #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
-// #define BFO_SWITCH 14      // Used to select the enconder control (BFO or VFO)
+// #define BFO_SWITCH 14 // A0 (Alternative to the pin 13). Used to select the enconder control (BFO or VFO)
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
