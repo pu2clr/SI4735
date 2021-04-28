@@ -435,11 +435,6 @@ void showFrequency()
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     convertToChar(currentFrequency, freqDisplay, 5, 3);
-    if (freqDisplay[5] >= '6')
-    {
-      freqDisplay[5] = '0';
-      freqDisplay[4] = (freqDisplay[4] == '9') ? '0' : (freqDisplay[4] + 1);
-    }
     unit = (char *)"MHz";
   }
   else {
@@ -888,7 +883,13 @@ void loop()
 
         si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, seekDirection);
         delay(30);
-        currentFrequency = si4735.getFrequency();
+        if (currentMode == FM)  { 
+          currentFrequency = 10 + ((si4735.getFrequency() / 10) * 10); // adjusts band space from 1 (10kHz) to 10 (100 kHz)
+          si4735.setFrequency(currentFrequency); 
+        } else {
+          currentFrequency = si4735.getFrequency(); // 
+        }
+        
         showFrequency();
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
