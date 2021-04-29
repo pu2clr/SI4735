@@ -100,7 +100,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define AGC_SWITCH 11      // Switch AGC ON/OF
 #define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
 // #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
-#define BFO_SWITCH 14 // Used to select the enconder control (BFO or VFO)
+#define BFO_SWITCH 14      // Used to select the enconder control (BFO or VFO)
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
@@ -117,7 +117,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
-const uint8_t app_id =  40; // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id =  41; // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
@@ -130,11 +130,11 @@ bool bfoOn = false;
 bool ssbLoaded = false;
 bool fmStereo = true;
 
-// Command buttons to be controlled by encoder
 bool cmdVolume = false; // if true, the encoder will control the volume.
 bool cmdAgcAtt = false; // if true, the encoder will control the AGC / Attenuation
 bool cmdStep = false;   // if true, the encoder will control the step frequency
 bool cmdBw = false;     // if true, the encoder will control the bandwidth
+bool cmdBand = false;   // if true, the encoder will control the band
 
 int currentBFO = 0;
 
@@ -195,7 +195,7 @@ int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 uint8_t agcNdx = 0;
 
-// You can add more steps if you want. No extra code will be needed.
+
 int tabStep[] = {1,     // 0
                  5,     // 1
                  9,     // 2
@@ -205,7 +205,6 @@ int tabStep[] = {1,     // 0
                    
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 int idxStep = 3;
-
 
 
 /*
@@ -224,9 +223,9 @@ typedef struct
 /*
    Band table
    To add a new band, all you have to do is insert a new line in the table below. No extra code will be needed.
-   Remove or comment a line if you do not want a given band.
-   IMPORTANT: You have to RESET the eeprom after modiging this table. 
-              Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
+   Remove or comment a line if you do not want a given band
+   You have to RESET the eeprom after modiging this table. 
+   Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 */
 Band band[] = {
   {FM_BAND_TYPE, 6400, 8400, 7000, 3, 0},  // FM from 64 to 84 MHz
@@ -295,7 +294,7 @@ void setup()
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(10, 3);
-  oled.print("V3.0.5 - By PU2CLR");
+  oled.print("V3.0.6 - By PU2CLR");
   delay(1000);
   // end Splash
 
@@ -358,7 +357,7 @@ void rotaryEncoder()
 
 
 /*
-   EEPROM receiver status
+   writes the conrrent receiver information nto the eeprom. 
 */
 
 void saveAllReceiverInformation() {
@@ -381,7 +380,9 @@ void saveAllReceiverInformation() {
   }
 }
 
-
+/**
+ * reads the last receiver status from eeprom. 
+ */
 void readAllReceiverInformation() {
   int addr_offset;
   int bwIdx;
@@ -598,8 +599,7 @@ void showStep() {
 }
 
 /**
-   SHow bandwitdth on AM,SSB and FM mode
-
+   Shows bandwitdth on AM,SSB and FM mode
 */
 void showBandwitdth()
 {
@@ -625,7 +625,9 @@ void showBandwitdth()
   oled.invertOutput(false); 
 }
 
-
+/*
+ * Shows AGCC and Attenuation
+ */
 void showAgcAtt() {
   // Show AGC Information
   oled.setCursor(0, 1);
@@ -833,6 +835,7 @@ void useBand()
  */
 void doStep(int8_t v)
 {
+
   // This command should work only for SSB mode
   if (currentMode == LSB || currentMode == USB)
   {
@@ -855,9 +858,10 @@ void doStep(int8_t v)
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
+
 /**
  * Changes the volume based on encoder rotation
- */
+*/
 void doVolume(int8_t v)
 {
   if (v == 1)
@@ -941,7 +945,6 @@ void doBandwidth(uint8_t v)
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
-
 /**
  * disble command buttons and keep the current status of the last command button pressed
  */
@@ -950,12 +953,15 @@ void disableCommand( bool *b, bool value, void (*showFunction)()) {
   cmdAgcAtt = false; 
   cmdStep = false;
   cmdBw = false;
+  cmdBand = false;
   showVolume();
   showStep();
   showAgcAtt();
   showBandwitdth();
-  *b = value;
-  showFunction();
+  if ( b != NULL )            // rescues the last status of the last command only the parameter is not null
+    *b = value;
+  if (showFunction != NULL ) //  show the desired status only if it is necessary.
+    showFunction();
 }
 
 void loop()
@@ -977,7 +983,14 @@ void loop()
     else if (cmdStep) 
       doStep(encoderCount);   
     else if (cmdBw) 
-      doBandwidth(encoderCount);    
+      doBandwidth(encoderCount); 
+    else if (cmdBand)
+    {
+      if (encoderCount == 1)
+        bandUp();
+      else
+        bandDown();
+    }         
     else
     {
       if (encoderCount == 1) {
@@ -1007,20 +1020,26 @@ void loop()
         delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(BAND_BUTTON_UP) == LOW)
-      bandUp();
+    {
+        cmdBand = !cmdBand;
+        disableCommand(&cmdBand, cmdBand, NULL);
+        delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+    }
     else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
-      bandDown();
+    {
+      // available to add other function
+      showStatus();
+    }
     else if (digitalRead(VOL_UP) == LOW)
     {
-        cmdVolume = ! cmdVolume;
+        cmdVolume = !cmdVolume;
         disableCommand(&cmdVolume, cmdVolume, showVolume);
         delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(VOL_DOWN) == LOW)
     {
-        cmdVolume = ! cmdVolume;
-        disableCommand(&cmdVolume, cmdVolume, showVolume);
-        delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+      // available to add other function
+      showStatus();        
     }
     else if (digitalRead(BFO_SWITCH) == LOW)
     {

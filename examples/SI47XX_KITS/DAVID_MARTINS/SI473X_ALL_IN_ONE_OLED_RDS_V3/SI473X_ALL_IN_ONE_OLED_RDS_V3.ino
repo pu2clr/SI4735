@@ -117,7 +117,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
-const uint8_t app_id =  40; // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id = 41; // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
@@ -132,8 +132,9 @@ bool fmStereo = true;
 
 bool cmdVolume = false; // if true, the encoder will control the volume.
 bool cmdAgcAtt = false; // if true, the encoder will control the AGC / Attenuation
-bool cmdStep = false;
-bool cmdBw = false;
+bool cmdStep = false;   // if true, the encoder will control the step frequency
+bool cmdBw = false;     // if true, the encoder will control the bandwidth
+bool cmdBand = false;   // if true, the encoder will control the band
 
 int currentBFO = 0;
 
@@ -150,7 +151,7 @@ uint16_t previousFrequency;
 uint8_t currentBFOStep = 25;
 
 // Datatype to deal with bandwidth on AM, SSB and FM in numerical order.
-// Ordering by bandwidth values.   
+// Ordering by bandwidth values.
 typedef struct
 {
   uint8_t idx;      // SI473X device bandwitdth index value
@@ -159,65 +160,60 @@ typedef struct
 
 int8_t bwIdxSSB = 4;
 Bandwitdth bandwitdthSSB[] = {
-  {4, "0.5"},  // 0  
-  {5, "1.0"},  // 1
-  {0, "1.2"},  // 2
-  {1, "2.2"},  // 3
-  {2, "3.0"},  // 4  - default
-  {3, "4.0"}   // 5
-}; // 3 = 4kHz
+    {4, "0.5"}, // 0
+    {5, "1.0"}, // 1
+    {0, "1.2"}, // 2
+    {1, "2.2"}, // 3
+    {2, "3.0"}, // 4  - default
+    {3, "4.0"}  // 5
+};              // 3 = 4kHz
 
 int8_t bwIdxAM = 4;
 const int maxFilterAM = 6;
 Bandwitdth bandwitdthAM[] = {
-  {4, "1.0"},   // 0
-  {5, "1.8"},   // 1
-  {3, "2.0"},   // 2
-  {6, "2.5"},   // 3
-  {2, "3.0"},   // 4 - default 
-  {1, "4.0"},   // 5
-  {0, "6.0"}    // 6 
+    {4, "1.0"}, // 0
+    {5, "1.8"}, // 1
+    {3, "2.0"}, // 2
+    {6, "2.5"}, // 3
+    {2, "3.0"}, // 4 - default
+    {1, "4.0"}, // 5
+    {0, "6.0"}  // 6
 };
 
 int8_t bwIdxFM = 0;
 Bandwitdth bandwitdthFM[] = {
-  {0, "AUT"}, // Automatic - default
-  {1, "110"}, // Force wide (110 kHz) channel filter.
-  {2, " 84"},
-  {3, " 60"},
-  {4, " 40"}
-};
-
+    {0, "AUT"}, // Automatic - default
+    {1, "110"}, // Force wide (110 kHz) channel filter.
+    {2, " 84"},
+    {3, " 60"},
+    {4, " 40"}};
 
 // Atenuação and AGC
 int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 uint8_t agcNdx = 0;
 
+int tabStep[] = {1,    // 0
+                 5,    // 1
+                 9,    // 2
+                 10,   // 3
+                 50,   // 4
+                 100}; // 5
 
-int tabStep[] = {1,     // 0
-                 5,     // 1
-                 9,     // 2
-                 10,    // 3
-                 50,    // 4
-                 100};  // 5
-                   
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 int idxStep = 3;
-
-
 
 /*
    Band data structure
 */
 typedef struct
 {
-  uint8_t bandType;     // Band type (FM, MW or SW)
-  uint16_t minimumFreq; // Minimum frequency of the band
-  uint16_t maximumFreq; // maximum frequency of the band
-  uint16_t currentFreq; // Default frequency or current frequency
+  uint8_t bandType;        // Band type (FM, MW or SW)
+  uint16_t minimumFreq;    // Minimum frequency of the band
+  uint16_t maximumFreq;    // maximum frequency of the band
+  uint16_t currentFreq;    // Default frequency or current frequency
   uint16_t currentStepIdx; // Idex of tabStep:  Defeult frequency step (See tabStep)
-  int8_t  bandwitdthIdx;  //  Index of the table bandwitdthFM, bandwitdthAM or bandwitdthSSB; 
+  int8_t bandwitdthIdx;    //  Index of the table bandwitdthFM, bandwitdthAM or bandwitdthSSB;
 } Band;
 
 /*
@@ -228,29 +224,29 @@ typedef struct
    Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 */
 Band band[] = {
-  {FM_BAND_TYPE, 6400, 8400, 7000, 3, 0},  // FM from 64 to 84 MHz
-  {FM_BAND_TYPE, 8400, 10800, 10570, 3, 0},
-  {LW_BAND_TYPE, 100, 510, 300, 0, 4},
-  {MW_BAND_TYPE, 520, 1720, 810, 3, 4},  
-  {MW_BAND_TYPE, 531, 1701, 783, 2, 4},   // MW for Europe, Africa and Asia
-  {SW_BAND_TYPE, 1800, 3500, 1900, 0, 4}, // 160 meters
-  {SW_BAND_TYPE, 3500, 4500, 3700, 0, 5}, // 80 meters
-  {SW_BAND_TYPE, 4500, 5500, 4850, 1, 4},
-  {SW_BAND_TYPE, 5600, 6300, 6000, 1, 4},
-  {SW_BAND_TYPE, 6800, 7800, 7200, 1, 4}, // 40 meters
-  {SW_BAND_TYPE, 9200, 10000, 9600, 1, 4},
-  {SW_BAND_TYPE, 10000, 11000, 10100, 0, 4}, // 30 meters
-  {SW_BAND_TYPE, 11200, 12500, 11940, 1, 4},
-  {SW_BAND_TYPE, 13400, 13900, 13600, 1, 4},
-  {SW_BAND_TYPE, 14000, 14500, 14200, 0, 4}, // 20 meters
-  {SW_BAND_TYPE, 15000, 15900, 15300, 1, 4},
-  {SW_BAND_TYPE, 17200, 17900, 17600, 1, 4},
-  {SW_BAND_TYPE, 18000, 18300, 18100, 0, 4},  // 17 meters
-  {SW_BAND_TYPE, 21000, 21900, 21200, 0, 4},  // 15 mters
-  {SW_BAND_TYPE, 24890, 26200, 24940, 0, 4},  // 12 meters
-  {SW_BAND_TYPE, 26200, 27900, 27500, 0, 4},  // CB band (11 meters)
-  {SW_BAND_TYPE, 28000, 30000, 28400, 0, 4}   // 10 meters
-}; 
+    {FM_BAND_TYPE, 6400, 8400, 7000, 3, 0}, // FM from 64 to 84 MHz
+    {FM_BAND_TYPE, 8400, 10800, 10570, 3, 0},
+    {LW_BAND_TYPE, 100, 510, 300, 0, 4},
+    {MW_BAND_TYPE, 520, 1720, 810, 3, 4},
+    {MW_BAND_TYPE, 531, 1701, 783, 2, 4},   // MW for Europe, Africa and Asia
+    {SW_BAND_TYPE, 1800, 3500, 1900, 0, 4}, // 160 meters
+    {SW_BAND_TYPE, 3500, 4500, 3700, 0, 5}, // 80 meters
+    {SW_BAND_TYPE, 4500, 5500, 4850, 1, 4},
+    {SW_BAND_TYPE, 5600, 6300, 6000, 1, 4},
+    {SW_BAND_TYPE, 6800, 7800, 7200, 1, 4}, // 40 meters
+    {SW_BAND_TYPE, 9200, 10000, 9600, 1, 4},
+    {SW_BAND_TYPE, 10000, 11000, 10100, 0, 4}, // 30 meters
+    {SW_BAND_TYPE, 11200, 12500, 11940, 1, 4},
+    {SW_BAND_TYPE, 13400, 13900, 13600, 1, 4},
+    {SW_BAND_TYPE, 14000, 14500, 14200, 0, 4}, // 20 meters
+    {SW_BAND_TYPE, 15000, 15900, 15300, 1, 4},
+    {SW_BAND_TYPE, 17200, 17900, 17600, 1, 4},
+    {SW_BAND_TYPE, 18000, 18300, 18100, 0, 4}, // 17 meters
+    {SW_BAND_TYPE, 21000, 21900, 21200, 0, 4}, // 15 mters
+    {SW_BAND_TYPE, 24890, 26200, 24940, 0, 4}, // 12 meters
+    {SW_BAND_TYPE, 26200, 27900, 27500, 0, 4}, // CB band (11 meters)
+    {SW_BAND_TYPE, 28000, 30000, 28400, 0, 4}  // 10 meters
+};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 1;
@@ -294,7 +290,7 @@ void setup()
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(10, 3);
-  oled.print("V3.0.4 - By PU2CLR");
+  oled.print("V3.0.6 - By PU2CLR");
   delay(1000);
   // end Splash
 
@@ -318,7 +314,7 @@ void setup()
 
   si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
-  si4735.setup(RESET_PIN, MW_BAND_TYPE); // 
+  si4735.setup(RESET_PIN, MW_BAND_TYPE); //
   delay(300);
 
   // Checking the EEPROM content
@@ -326,7 +322,6 @@ void setup()
   {
     readAllReceiverInformation();
   }
-
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
@@ -355,33 +350,37 @@ void rotaryEncoder()
   }
 }
 
-
 /*
-   EEPROM receiver status
+   writes the conrrent receiver information nto the eeprom. 
 */
 
-void saveAllReceiverInformation() {
+void saveAllReceiverInformation()
+{
   int addr_offset;
-  EEPROM.update(eeprom_address, app_id); // stores the app id;
+  EEPROM.update(eeprom_address, app_id);                 // stores the app id;
   EEPROM.update(eeprom_address + 1, si4735.getVolume()); // stores the current Volume
-  EEPROM.update(eeprom_address + 2, bandIdx); // Stores the current band
-  EEPROM.update(eeprom_address + 3, currentMode); // Stores the current Mode (FM / AM / SSB)
+  EEPROM.update(eeprom_address + 2, bandIdx);            // Stores the current band
+  EEPROM.update(eeprom_address + 3, currentMode);        // Stores the current Mode (FM / AM / SSB)
   EEPROM.update(eeprom_address + 4, currentBFO >> 8);
-  EEPROM.update(eeprom_address + 5, currentBFO &  0XFF);
+  EEPROM.update(eeprom_address + 5, currentBFO & 0XFF);
 
   addr_offset = 6;
   band[bandIdx].currentFreq = currentFrequency;
 
-  for (int i = 0; i < lastBand; i++ ) {
-    EEPROM.update(addr_offset++, (band[i].currentFreq >> 8) );   // stores the current Frequency HIGH byte for the band
-    EEPROM.update(addr_offset++, (band[i].currentFreq & 0xFF));  // stores the current Frequency LOW byte for the band
-    EEPROM.update(addr_offset++, band[i].currentStepIdx);          // Stores current step of the band
-    EEPROM.update(addr_offset++, band[i].bandwitdthIdx);           // table index (direct position) of bandwitdth
+  for (int i = 0; i < lastBand; i++)
+  {
+    EEPROM.update(addr_offset++, (band[i].currentFreq >> 8));   // stores the current Frequency HIGH byte for the band
+    EEPROM.update(addr_offset++, (band[i].currentFreq & 0xFF)); // stores the current Frequency LOW byte for the band
+    EEPROM.update(addr_offset++, band[i].currentStepIdx);       // Stores current step of the band
+    EEPROM.update(addr_offset++, band[i].bandwitdthIdx);        // table index (direct position) of bandwitdth
   }
 }
 
-
-void readAllReceiverInformation() {
+/**
+ * reads the last receiver status from eeprom. 
+ */
+void readAllReceiverInformation()
+{
   int addr_offset;
   int bwIdx;
   volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
@@ -391,7 +390,8 @@ void readAllReceiverInformation() {
   currentBFO |= EEPROM.read(eeprom_address + 5);
 
   addr_offset = 6;
-  for (int i = 0; i < lastBand; i++ ) {
+  for (int i = 0; i < lastBand; i++)
+  {
     band[i].currentFreq = EEPROM.read(addr_offset++) << 8;
     band[i].currentFreq |= EEPROM.read(addr_offset++);
     band[i].currentStepIdx = EEPROM.read(addr_offset++);
@@ -401,32 +401,37 @@ void readAllReceiverInformation() {
   previousFrequency = currentFrequency = band[bandIdx].currentFreq;
   idxStep = tabStep[band[bandIdx].currentStepIdx];
   bwIdx = band[bandIdx].bandwitdthIdx;
-  
-  if (currentMode == LSB || currentMode == USB) {
-      loadSSB();
-      bwIdxSSB = (bwIdx > 5)? 5: bwIdx;
-      si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
-      // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-      if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
-          si4735.setSBBSidebandCutoffFilter(0);
-       else
-          si4735.setSBBSidebandCutoffFilter(1);
-   }
-   else if (currentMode == AM) {
-        bwIdxAM = bwIdx;
-        si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
-   } else {
-        bwIdxFM = bwIdx;
-        si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
-   }
+
+  if (currentMode == LSB || currentMode == USB)
+  {
+    loadSSB();
+    bwIdxSSB = (bwIdx > 5) ? 5 : bwIdx;
+    si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
+    // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+    if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
+      si4735.setSBBSidebandCutoffFilter(0);
+    else
+      si4735.setSBBSidebandCutoffFilter(1);
+  }
+  else if (currentMode == AM)
+  {
+    bwIdxAM = bwIdx;
+    si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+  }
+  else
+  {
+    bwIdxFM = bwIdx;
+    si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
+  }
 }
 
 /*
  * To store any change into the EEPROM, it is needed at least STORE_TIME  milliseconds of inactivity.
  */
-void resetEepromDelay() {
-    storeTime = millis();
-    previousFrequency = 0;
+void resetEepromDelay()
+{
+  storeTime = millis();
+  previousFrequency = 0;
 }
 
 /*
@@ -452,16 +457,20 @@ void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot)
     strValue[i] = d + 48;
   }
   strValue[len] = '\0';
-  if ( dot > 0 ) {
-    for (int i = len; i >= dot ; i-- ) {
+  if (dot > 0)
+  {
+    for (int i = len; i >= dot; i--)
+    {
       strValue[i + 1] = strValue[i];
     }
     strValue[dot] = '.';
   }
 
-  if (strValue[0] == '0') {
+  if (strValue[0] == '0')
+  {
     strValue[0] = ' ';
-    if (strValue[1] == '0') strValue[1] = ' ';
+    if (strValue[1] == '0')
+      strValue[1] = ' ';
   }
 }
 
@@ -477,7 +486,8 @@ void showFrequency()
     convertToChar(currentFrequency, freqDisplay, 5, 3);
     unit = (char *)"MHz";
   }
-  else {
+  else
+  {
     unit = (char *)"kHz";
     if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
       convertToChar(currentFrequency, freqDisplay, 5, 0);
@@ -496,9 +506,9 @@ void showFrequency()
   oled.invertOutput(false);
 
   if (currentFrequency < 520)
-    bandMode = (char *) "LW  ";
+    bandMode = (char *)"LW  ";
   else
-    bandMode = (char *) bandModeDesc[currentMode];
+    bandMode = (char *)bandModeDesc[currentMode];
 
   oled.setCursor(0, 0);
   oled.print(bandMode);
@@ -506,7 +516,6 @@ void showFrequency()
   oled.setCursor(95, 0);
   oled.print(unit);
 }
-
 
 /**
     This function is called by the seek function process.
@@ -521,12 +530,11 @@ void showFrequencySeek(uint16_t freq)
    Checks the stop seeking criterias.
    Returns true if the user press the touch or rotates the encoder.
 */
-bool checkStopSeeking() {
+bool checkStopSeeking()
+{
   // Checks the touch and encoder
-  return (bool) encoderCount || (digitalRead(BFO_SWITCH) == LOW); // returns true if the user rotates the encoder or press the push button
+  return (bool)encoderCount || (digitalRead(BFO_SWITCH) == LOW); // returns true if the user rotates the encoder or press the push button
 }
-
-
 
 /*
     Show some basic information on display
@@ -563,10 +571,11 @@ void showRSSI()
     oled.print("  ");
     oled.setCursor(18, 0);
     oled.invertOutput(true);
-    if (si4735.getCurrentPilot() )  {
-       oled.invertOutput(true);
-       oled.print("s");
-     } 
+    if (si4735.getCurrentPilot())
+    {
+      oled.invertOutput(true);
+      oled.print("s");
+    }
     oled.invertOutput(false);
   }
 }
@@ -582,23 +591,22 @@ void showVolume()
   oled.invertOutput(cmdVolume);
   oled.print(si4735.getCurrentVolume());
   oled.print(' ');
-  oled.invertOutput(false);  
+  oled.invertOutput(false);
 }
 
-
-void showStep() {
+void showStep()
+{
   oled.setCursor(93, 1);
   oled.print("      ");
   oled.setCursor(93, 1);
   oled.print("S:");
-  oled.invertOutput(cmdStep);  
+  oled.invertOutput(cmdStep);
   oled.print(tabStep[idxStep]);
-  oled.invertOutput(false);    
+  oled.invertOutput(false);
 }
 
 /**
-   SHow bandwitdth on AM,SSB and FM mode
-
+   Shows bandwitdth on AM,SSB and FM mode
 */
 void showBandwitdth()
 {
@@ -610,34 +618,42 @@ void showBandwitdth()
     strcat(bw, bandwitdthSSB[bwIdxSSB].desc);
     showBFO();
   }
-  else if (currentMode == AM) {
+  else if (currentMode == AM)
+  {
     strcat(bw, bandwitdthAM[bwIdxAM].desc);
   }
-  else {
+  else
+  {
     strcat(bw, bandwitdthFM[bwIdxFM].desc);
   }
   oled.setCursor(0, 3);
   oled.print("          ");
   oled.setCursor(0, 3);
-  oled.invertOutput(cmdBw); 
+  oled.invertOutput(cmdBw);
   oled.print(bw);
-  oled.invertOutput(false); 
+  oled.invertOutput(false);
 }
 
-
-void showAgcAtt() {
+/*
+ * Shows AGCC and Attenuation
+ */
+void showAgcAtt()
+{
   // Show AGC Information
   oled.setCursor(0, 1);
   oled.print("     ");
   oled.setCursor(0, 1);
-  oled.invertOutput(cmdAgcAtt);  
-  if (agcIdx == 0 ) {
+  oled.invertOutput(cmdAgcAtt);
+  if (agcIdx == 0)
+  {
     oled.print("AGC");
-  } else {
+  }
+  else
+  {
     oled.print("At");
     oled.print(agcNdx);
   }
-  oled.invertOutput(false);  
+  oled.invertOutput(false);
 }
 
 /*
@@ -666,7 +682,6 @@ long rdsElapsed = millis();
 
 char oldBuffer[15];
 
-
 /*
  * Show the Station Name. 
  */
@@ -674,23 +689,24 @@ void showRDSStation()
 {
   char *po, *pc;
   int col = 0;
-  
+
   po = oldBuffer;
   pc = stationName;
-  while (*pc) {
-    if ( *po != *pc ) {
-        oled.setCursor(col, 2);
-        oled.print(*pc); 
+  while (*pc)
+  {
+    if (*po != *pc)
+    {
+      oled.setCursor(col, 2);
+      oled.print(*pc);
     }
-    *po = *pc;    
+    *po = *pc;
     po++;
     pc++;
-    col+=10;
+    col += 10;
   }
   // strcpy(oldBuffer, stationName);
   delay(120);
 }
-
 
 /*
  * Checks the station name is available
@@ -703,7 +719,8 @@ void checkRDS()
     if (si4735.getRdsSync() && si4735.getRdsSyncFound())
     {
       stationName = si4735.getRdsText0A();
-      if (stationName != NULL && (millis() - rdsElapsed) > 10 ) {
+      if (stationName != NULL && (millis() - rdsElapsed) > 10)
+      {
         showRDSStation();
         rdsElapsed = millis();
       }
@@ -764,7 +781,7 @@ void loadSSB()
   si4735.patchPowerUp();
   delay(50);
   si4735.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
-  si4735.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 1, 0, 1);    
+  si4735.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 1, 0, 1);
   si4735.setI2CStandardMode();
   ssbLoaded = true;
   // oled.clear();
@@ -788,8 +805,8 @@ void useBand()
     si4735.setSeekFmSpacing(1);
     bfoOn = ssbLoaded = false;
     si4735.setRdsConfig(1, 2, 2, 2, 2);
-    bwIdxFM = band[bandIdx].bandwitdthIdx; 
-    si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);    
+    bwIdxFM = band[bandIdx].bandwitdthIdx;
+    si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
   }
   else
   {
@@ -805,7 +822,7 @@ void useBand()
       si4735.setSsbSoftMuteMaxAttenuation(0); // Disable Soft Mute for SSB
       bwIdxSSB = band[bandIdx].bandwitdthIdx;
       si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
-      si4735.setSSBBfo(currentBFO);   
+      si4735.setSSBBfo(currentBFO);
     }
     else
     {
@@ -814,10 +831,10 @@ void useBand()
       si4735.setAutomaticGainControl(disableAgc, agcNdx);
       si4735.setAmSoftMuteMaxAttenuation(8); // // Disable Soft Mute for AM
       bwIdxAM = band[bandIdx].bandwitdthIdx;
-      si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);      
+      si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
       bfoOn = false;
     }
-    si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);           // Consider the range all defined current band
+    si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);                                       // Consider the range all defined current band
     si4735.setSeekAmSpacing((tabStep[band[bandIdx].currentStepIdx] > 10) ? 10 : tabStep[band[bandIdx].currentStepIdx]); // Max 10kHz for spacing
   }
   delay(100);
@@ -827,7 +844,9 @@ void useBand()
   resetEepromDelay();
 }
 
-
+/**
+ * Changes the step frequency value based on encoder rotation
+ */
 void doStep(int8_t v)
 {
 
@@ -853,12 +872,9 @@ void doStep(int8_t v)
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
-
 /**
- * @brief Proccess the volume level
- * 
- * @param v 1 = Up; !1 = down
- */
+ * Changes the volume based on encoder rotation
+*/
 void doVolume(int8_t v)
 {
   if (v == 1)
@@ -869,7 +885,9 @@ void doVolume(int8_t v)
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
-
+/**
+ * Switches the AGC/Attenuation based on encoder rotation
+ */
 void doAgcAtt(int8_t v)
 {
 
@@ -892,7 +910,9 @@ void doAgcAtt(int8_t v)
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
-
+/**
+ * Switches the bandwidth based on encoder rotation
+ */
 void doBandwidth(uint8_t v)
 {
   if (currentMode == LSB || currentMode == USB)
@@ -922,34 +942,42 @@ void doBandwidth(uint8_t v)
     else if (bwIdxAM < 0)
       bwIdxAM = maxFilterAM;
 
-     band[bandIdx].bandwitdthIdx = bwIdxAM;
+    band[bandIdx].bandwitdthIdx = bwIdxAM;
     si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
-  } else {
+  }
+  else
+  {
     bwIdxFM = (v == 1) ? bwIdxFM + 1 : bwIdxFM - 1;
     if (bwIdxFM > 4)
       bwIdxFM = 0;
     else if (bwIdxFM < 0)
       bwIdxFM = 4;
 
-    band[bandIdx].bandwitdthIdx = bwIdxFM; 
+    band[bandIdx].bandwitdthIdx = bwIdxFM;
     si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
   }
   showBandwitdth();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
-
-void disableCommand( bool *b, bool value, void (*showFunction)()) {
-  cmdVolume = false; 
-  cmdAgcAtt = false; 
+/**
+ * disble command buttons and keep the current status of the last command button pressed
+ */
+void disableCommand(bool *b, bool value, void (*showFunction)())
+{
+  cmdVolume = false;
+  cmdAgcAtt = false;
   cmdStep = false;
   cmdBw = false;
+  cmdBand = false;
   showVolume();
   showStep();
   showAgcAtt();
   showBandwitdth();
-  *b = value;
-  showFunction();
+  if (b != NULL) // rescues the last status of the last command only the parameter is not null
+    *b = value;
+  if (showFunction != NULL) //  show the desired status only if it is necessary.
+    showFunction();
 }
 
 void loop()
@@ -961,24 +989,33 @@ void loop()
     {
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
       si4735.setSSBBfo(currentBFO);
-      previousFrequency = 0;  // Forces eeprom update
+      previousFrequency = 0; // Forces eeprom update
       showBFO();
-    } 
+    }
     else if (cmdVolume)
       doVolume(encoderCount);
     else if (cmdAgcAtt)
-      doAgcAtt(encoderCount); 
-    else if (cmdStep) 
-      doStep(encoderCount);   
-    else if (cmdBw) 
-      doBandwidth(encoderCount);    
+      doAgcAtt(encoderCount);
+    else if (cmdStep)
+      doStep(encoderCount);
+    else if (cmdBw)
+      doBandwidth(encoderCount);
+    else if (cmdBand)
+    {
+      if (encoderCount == 1)
+        bandUp();
+      else
+        bandDown();
+    }
     else
     {
-      if (encoderCount == 1) {
+      if (encoderCount == 1)
+      {
         si4735.frequencyUp();
         seekDirection = 1;
       }
-      else {
+      else
+      {
         si4735.frequencyDown();
         seekDirection = 0;
       }
@@ -987,7 +1024,7 @@ void loop()
       showFrequency();
     }
     encoderCount = 0;
-    resetEepromDelay(); // if you moved the encoder, something was changed 
+    resetEepromDelay(); // if you moved the encoder, something was changed
   }
 
   // Check button commands
@@ -996,25 +1033,31 @@ void loop()
     // check if some button is pressed
     if (digitalRead(BANDWIDTH_BUTTON) == LOW)
     {
-        cmdBw = !cmdBw;
-        disableCommand(&cmdBw, cmdBw, showBandwitdth);
-        delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+      cmdBw = !cmdBw;
+      disableCommand(&cmdBw, cmdBw, showBandwitdth);
+      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(BAND_BUTTON_UP) == LOW)
-      bandUp();
+    {
+      cmdBand = !cmdBand;
+      disableCommand(&cmdBand, cmdBand, NULL);
+      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+    }
     else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
-      bandDown();
+    {
+      // available to add other function
+      showStatus();
+    }
     else if (digitalRead(VOL_UP) == LOW)
     {
-        cmdVolume = ! cmdVolume;
-        disableCommand(&cmdVolume, cmdVolume, showVolume);
-        delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+      cmdVolume = !cmdVolume;
+      disableCommand(&cmdVolume, cmdVolume, showVolume);
+      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(VOL_DOWN) == LOW)
     {
-        cmdVolume = ! cmdVolume;
-        disableCommand(&cmdVolume, cmdVolume, showVolume);
-        delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+      // available to add other function
+      showStatus();
     }
     else if (digitalRead(BFO_SWITCH) == LOW)
     {
@@ -1037,9 +1080,9 @@ void loop()
         delay(30);
         if (currentMode == FM)
         {
-          float f = round(si4735.getFrequency() / 10.0); 
-          currentFrequency = (uint16_t) f * 10; // adjusts band space from 1 (10kHz) to 10 (100 kHz)
-          si4735.setFrequency(currentFrequency); 
+          float f = round(si4735.getFrequency() / 10.0);
+          currentFrequency = (uint16_t)f * 10; // adjusts band space from 1 (10kHz) to 10 (100 kHz)
+          si4735.setFrequency(currentFrequency);
         }
         else
         {
@@ -1050,14 +1093,15 @@ void loop()
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(AGC_SWITCH) == LOW)
-    { 
+    {
       cmdAgcAtt = !cmdAgcAtt;
       disableCommand(&cmdAgcAtt, cmdAgcAtt, showAgcAtt);
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
     {
-      if ( currentMode != FM ) {
+      if (currentMode != FM)
+      {
         cmdStep = !cmdStep;
         disableCommand(&cmdStep, cmdStep, showStep);
       }
@@ -1117,7 +1161,8 @@ void loop()
   // Show the current frequency only if it has changed
   if (currentFrequency != previousFrequency)
   {
-    if ( (millis() - storeTime ) > STORE_TIME) {
+    if ((millis() - storeTime) > STORE_TIME)
+    {
       saveAllReceiverInformation();
       storeTime = millis();
       previousFrequency = currentFrequency;
