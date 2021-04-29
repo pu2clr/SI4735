@@ -130,10 +130,11 @@ bool bfoOn = false;
 bool ssbLoaded = false;
 bool fmStereo = true;
 
+// Command buttons to be controlled by encoder
 bool cmdVolume = false; // if true, the encoder will control the volume.
 bool cmdAgcAtt = false; // if true, the encoder will control the AGC / Attenuation
-bool cmdStep = false;
-bool cmdBw = false;
+bool cmdStep = false;   // if true, the encoder will control the step frequency
+bool cmdBw = false;     // if true, the encoder will control the bandwidth
 
 int currentBFO = 0;
 
@@ -827,10 +828,11 @@ void useBand()
   resetEepromDelay();
 }
 
-
+/**
+ * Changes the step frequency value based on encoder rotation
+ */
 void doStep(int8_t v)
 {
-
   // This command should work only for SSB mode
   if (currentMode == LSB || currentMode == USB)
   {
@@ -853,11 +855,8 @@ void doStep(int8_t v)
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
-
 /**
- * @brief Proccess the volume level
- * 
- * @param v 1 = Up; !1 = down
+ * Changes the volume based on encoder rotation
  */
 void doVolume(int8_t v)
 {
@@ -869,7 +868,9 @@ void doVolume(int8_t v)
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
-
+/**
+ * Switches the AGC/Attenuation based on encoder rotation
+ */
 void doAgcAtt(int8_t v)
 {
 
@@ -892,7 +893,9 @@ void doAgcAtt(int8_t v)
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
-
+/**
+ * Switches the bandwidth based on encoder rotation
+ */
 void doBandwidth(uint8_t v)
 {
   if (currentMode == LSB || currentMode == USB)
@@ -939,6 +942,9 @@ void doBandwidth(uint8_t v)
 }
 
 
+/**
+ * disble command buttons and keep the current status of the last command button pressed
+ */
 void disableCommand( bool *b, bool value, void (*showFunction)()) {
   cmdVolume = false; 
   cmdAgcAtt = false; 
