@@ -434,6 +434,7 @@ void resetEepromDelay()
   previousFrequency = 0;
 }
 
+
 /**
   Converts a number to a char string and places leading zeros.
   It is useful to mitigate memory space used by sprintf or generic similar function
@@ -602,16 +603,16 @@ void showBandwitdth()
   char *bw;
   if (currentMode == LSB || currentMode == USB)
   {
-    bw = (char *)bandwitdthSSB[bwIdxSSB].desc;
+    bw = (char *) bandwitdthSSB[bwIdxSSB].desc;
     showBFO();
   }
   else if (currentMode == AM)
   {
-    bw = (char *)bandwitdthAM[bwIdxAM].desc;
+    bw = (char *) bandwitdthAM[bwIdxAM].desc;
   }
   else
   {
-    bw = (char *)bandwitdthFM[bwIdxFM].desc;
+    bw = (char *) bandwitdthFM[bwIdxFM].desc;
   }
   oled.setCursor(0, 3);
   oled.print("          ");
@@ -619,7 +620,7 @@ void showBandwitdth()
   oled.invertOutput(cmdBw);
   oled.print("BW: ");
   oled.invertOutput(false);
-  oled.print(bw);
+  oled.print(bw);  
 }
 
 /*
@@ -670,6 +671,7 @@ long rdsElapsed = millis();
 long setRds = 0;
 
 char oldBuffer[15];
+
 
 /*
  * Clean the content of the third line (line 2 - remember the first line is 0)    
@@ -999,8 +1001,7 @@ void loop()
         bandUp();
       else
         bandDown();
-    }
-    else if (bfoOn)
+    } else if (bfoOn)
     {
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
       si4735.setSSBBfo(currentBFO);
@@ -1155,12 +1156,10 @@ void loop()
     {
       cleanBfoRdsInfo();
     }
-    else
-    {
-      if (setRds == 0)
-      {
+    else {
+      if ( setRds == 0 ) { 
         si4735.setRdsConfig(1, 2, 2, 2, 2);
-        setRds++;
+        setRds++; 
       }
       checkRDS();
     }
