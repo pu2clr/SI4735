@@ -161,7 +161,7 @@ var class_s_i4735 =
     [ "getRdsSync", "group__group16.html#ga6e899b37cbc3dcd0ab969724e4008f0f", null ],
     [ "getGroupLost", "group__group16.html#ga8db437efc42a81466d8daf4dcc35c50c", null ],
     [ "getNumRdsFifoUsed", "group__group16.html#ga819c370ff03c52a527fbc85f9877f526", null ],
-    [ "setFifoCount", "group__group16.html#ga511b1396fef645ba2a400154ac982d70", null ],
+    [ "setFifoCount", "group__group16.html#gad1c4f5e8f21d008361c8613c94eca0c0", null ],
     [ "setRdsConfig", "group__group16.html#gad9718a85c79a311c26997bbda20f2351", null ],
     [ "getRdsPI", "group__group16.html#gaf1e67b201799a9e8d7208a32a65656b5", null ],
     [ "getRdsGroupType", "group__group16.html#gaa35366e5cded7b864f7268a7e4a8dbe9", null ],

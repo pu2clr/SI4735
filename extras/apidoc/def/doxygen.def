@@ -4544,11 +4544,11 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group16_1ga511b1396fef645ba2a400154ac982d70';
+      sec-mem-id   = 'group__group16_1gad1c4f5e8f21d008361c8613c94eca0c0';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
-uint8_t
+void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'setFifoCount';
       sec-mem-param = {
@@ -4564,7 +4564,7 @@ Sets the minimum number of RDS groups stored in the RDS FIFO before RDSRECV is s
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 Return the number of RDS FIFO used
-@return uint8_t Total RDS FIFO used
+@param value from 0 to 25. Default value is 0. 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {

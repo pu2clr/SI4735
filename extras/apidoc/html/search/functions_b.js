@@ -30,7 +30,7 @@ var searchData=
   ['setbandwidth_662',['setBandwidth',['../group__group08.html#ga8755743a36d2d4662c8db918d02ee4e1',1,'SI4735']]],
   ['setdevicei2caddress_663',['setDeviceI2CAddress',['../group__group05.html#ga748a4027f317972cb2fb1aed4865973b',1,'SI4735']]],
   ['setdeviceotheri2caddress_664',['setDeviceOtherI2CAddress',['../group__group05.html#ga668008457910e916ebadf15bda2e5b29',1,'SI4735']]],
-  ['setfifocount_665',['setFifoCount',['../group__group16.html#ga511b1396fef645ba2a400154ac982d70',1,'SI4735']]],
+  ['setfifocount_665',['setFifoCount',['../group__group16.html#gad1c4f5e8f21d008361c8613c94eca0c0',1,'SI4735']]],
   ['setfm_666',['setFM',['../group__group08.html#gacd89e7b8adefcbc4e89f802acb915906',1,'SI4735::setFM()'],['../group__group08.html#ga673bc4b17d564bb6e7f3e9a61d35fbb3',1,'SI4735::setFM(uint16_t fromFreq, uint16_t toFreq, uint16_t initialFreq, uint16_t step)']]],
   ['setfmbandwidth_667',['setFmBandwidth',['../class_s_i4735.html#af28a854a8997ba7a195b6365b20fda95',1,'SI4735']]],
   ['setfmblendmonothreshold_668',['setFmBlendMonoThreshold',['../group__group12.html#gadf4c5ec4473fd8486dd2ec7a19a10d24',1,'SI4735']]],
