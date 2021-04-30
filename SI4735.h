@@ -2222,6 +2222,7 @@ public:
     };
 
     /**
+     * @ingroup group16 RDS
      * @brief Get the Num Rds Fifo Used 
      * @details Return the number of RDS FIFO used
      * @return uint8_t Total RDS FIFO used
@@ -2229,6 +2230,17 @@ public:
     inline uint8_t getNumRdsFifoUsed()
     {
         return currentRdsStatus.resp.RDSFIFOUSED;
+    };
+
+    /**
+     * @ingroup group16 RDS
+     * @brief Sets the minimum number of RDS groups stored in the RDS FIFO before RDSRECV is set. 
+     * @details Return the number of RDS FIFO used
+     * @return uint8_t Total RDS FIFO used
+     */
+    inline uint8_t setFifoCount(uint16_t value)
+    {
+        sendProperty(FM_RDS_INT_FIFO_COUNT, value);
     };
 
     void setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t BLETHC, uint8_t BLETHD);

@@ -680,7 +680,7 @@ void cleanBfoRdsInfo()
 {
   oled.setCursor(0, 2);
   oled.print("                    ");
-  si4735.setRdsConfig(0, 2, 2, 2, 2);
+  // si4735.setRdsConfig(0, 2, 2, 2, 2);
   setRds = 0;
 }
 
@@ -806,7 +806,8 @@ void useBand()
     si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     si4735.setSeekFmSpacing(1);
     bfoOn = ssbLoaded = false;
-    // si4735.setRdsConfig(1, 2, 2, 2, 2);
+    si4735.setRdsConfig(1, 2, 2, 2, 2);
+    si4735.setFifoCount(1);
     bwIdxFM = band[bandIdx].bandwitdthIdx;
     si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
   }
@@ -1158,7 +1159,7 @@ void loop()
     }
     else {
       if ( setRds == 0 ) { 
-        si4735.setRdsConfig(1, 2, 2, 2, 2);
+        // si4735.setRdsConfig(1, 2, 2, 2, 2);
         setRds++; 
       }
       checkRDS();
