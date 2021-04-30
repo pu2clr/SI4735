@@ -18,6 +18,8 @@
   10) Added a MW band for Europe, Africa and Asia 
   11) The frequency on Display is bigger than the previous version;
   12) Now the bandwidth sequence is ordered by bandwidth values.
+  13) Two buttos were release ("Vol -" and "Band -") now you can controle it via encoder 
+  14) After about 4 seconds, all command buttons all disabled and the encoder control goes back to the frequency.
 
   ATTENTION: Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 
@@ -63,7 +65,7 @@
   By Ricardo Lima Caratti, April  2021.
 */
 
-#define SSD1306    0x3D  // The OLED bus address for this KIt is 0x3D
+// #define SSD1306    0x3D  // The OLED bus address for this KIt is 0x3D
  
 #include <SI4735.h>
 #include <EEPROM.h>
@@ -95,12 +97,12 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz
 #define VOL_UP 6           // Volume Up
 #define VOL_DOWN 7         // Volume Down
-#define BAND_BUTTON_UP 9   // Next band
-#define BAND_BUTTON_DOWN 8 // Previous band
+#define BAND_BUTTON_UP 8   // Next band
+#define BAND_BUTTON_DOWN 9 // Previous band
 #define AGC_SWITCH 11      // Switch AGC ON/OF
 #define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
-#define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
-// #define BFO_SWITCH 14 // A0 (Alternative to the pin 13). Used to select the enconder control (BFO or VFO)
+// #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
+#define BFO_SWITCH 14      // Used to select the enconder control (BFO or VFO)
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
@@ -292,7 +294,7 @@ void setup()
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(10, 3);
-  oled.print("V3.0.6 - By PU2CLR");
+  oled.print("V3.0.7 - By PU2CLR");
   delay(1000);
   // end Splash
 
@@ -1148,7 +1150,7 @@ void loop()
       showRSSI();
     }
 
-    if (countRSSI++ > 10) {
+    if (countRSSI++ > 7) {
       disableCommand(NULL, false, NULL); // disable all command buttons
       countRSSI = 0;
     }
