@@ -541,9 +541,7 @@ bool checkStopSeeking()
 */
 void showStatus()
 {
-
   showFrequency();
-
   showStep();
   showBandwitdth();
   showAgcAtt();
@@ -705,7 +703,7 @@ void showRDSStation()
     col += 10;
   }
   // strcpy(oldBuffer, stationName);
-  delay(120);
+  delay(130);
 }
 
 /*
@@ -716,7 +714,7 @@ void checkRDS()
   si4735.getRdsStatus();
   if (si4735.getRdsReceived())
   {
-    if (si4735.getRdsSync() && si4735.getRdsSyncFound())
+    if (si4735.getRdsSync() && si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost())
     {
       stationName = si4735.getRdsText0A();
       if (stationName != NULL && (millis() - rdsElapsed) > 10)

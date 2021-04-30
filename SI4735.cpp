@@ -2497,8 +2497,8 @@ char *SI4735::getRdsTime()
         dt.raw[0] = currentRdsStatus.resp.BLOCKDL;
         dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
 
-        // Unfortunately it was necessary to wotk well on the GCC compiler on 32-bit
-        // platforms. See si47x_rds_date_time (typedef union) and CGG “Crosses boundary” issue/features.
+        // Unfortunately it was necessary dues to  the GCC compiler on 32-bit platform.
+        // See si47x_rds_date_time (typedef union) and CGG “Crosses boundary” issue/features.
         // Now it is working on Atmega328, STM32, Arduino DUE, ESP32 and more.
         minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
         hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
