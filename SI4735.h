@@ -2236,9 +2236,9 @@ public:
      * @ingroup group16 RDS
      * @brief Sets the minimum number of RDS groups stored in the RDS FIFO before RDSRECV is set. 
      * @details Return the number of RDS FIFO used
-     * @return uint8_t Total RDS FIFO used
+     * @param value from 0 to 25. Default value is 0. 
      */
-    inline uint8_t setFifoCount(uint16_t value)
+    inline void setFifoCount(uint16_t value)
     {
         sendProperty(FM_RDS_INT_FIFO_COUNT, value);
     };
