@@ -292,7 +292,7 @@ void setup()
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(10, 3);
-  oled.print("V3.0.6 - By PU2CLR");
+  oled.print("V3.0.7 - By PU2CLR");
   delay(1000);
   // end Splash
 
@@ -472,7 +472,6 @@ void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot)
 void showFrequency()
 {
   char *unit;
-  char *bandMode;
   char freqDisplay[10];
 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
@@ -490,7 +489,6 @@ void showFrequency()
   }
 
   oled.invertOutput(bfoOn);
-
   oled.setFont(FONT8X16ATARI);
   oled.setCursor(34, 0);
   oled.print("      ");
@@ -499,17 +497,10 @@ void showFrequency()
   oled.setFont(FONT6X8);
   oled.invertOutput(false);
 
-  if (currentFrequency < 520)
-    bandMode = (char *)"LW  ";
-  else
-    bandMode = (char *)bandModeDesc[currentMode];
-
-  oled.setCursor(0, 0);
-  oled.print(bandMode);
-
   oled.setCursor(95, 0);
   oled.print(unit);
 }
+
 
 /**
     This function is called by the seek function process.
@@ -536,12 +527,32 @@ bool checkStopSeeking()
 void showStatus()
 {
   showFrequency();
+  showBandDesc();
   showStep();
   showBandwitdth();
   showAgcAtt();
   showRSSI();
   showVolume();
 }
+
+/*
+ * Shows band information
+ */
+void showBandDesc() {
+  char *bandMode;
+  if (currentFrequency < 520)
+    bandMode = (char *)"LW  ";
+  else
+    bandMode = (char *)bandModeDesc[currentMode];
+
+  oled.setCursor(0, 0);
+  oled.print("    ");
+  oled.setCursor(0, 0);
+  oled.invertOutput(cmdBand);
+  oled.print(bandMode);
+  oled.invertOutput(false);
+}
+
 
 /* *******************************
    Shows RSSI status
@@ -976,10 +987,14 @@ void disableCommand(bool *b, bool value, void (*showFunction)())
   showStep();
   showAgcAtt();
   showBandwitdth();
+  showBandDesc();
   if (b != NULL) // rescues the last status of the last command only the parameter is not null
     *b = value;
   if (showFunction != NULL) //  show the desired status only if it is necessary.
     showFunction();
+    
+   elapsedRSSI = millis();
+   countRSSI = 0;    
 }
 
 void loop()
@@ -1026,6 +1041,8 @@ void loop()
     }
     encoderCount = 0;
     resetEepromDelay(); // if you moved the encoder, something was changed
+    elapsedRSSI = millis();
+    countRSSI = 0;   
   }
 
   // Check button commands
@@ -1041,7 +1058,7 @@ void loop()
     else if (digitalRead(BAND_BUTTON_UP) == LOW)
     {
       cmdBand = !cmdBand;
-      disableCommand(&cmdBand, cmdBand, NULL);
+      disableCommand(&cmdBand, cmdBand, showBandDesc);
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
     else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
@@ -1148,7 +1165,7 @@ void loop()
       showRSSI();
     }
 
-    if (countRSSI++ > 10) {
+    if (countRSSI++ > 3) {
       disableCommand(NULL, false, NULL); // disable all command buttons
       countRSSI = 0;
     }
