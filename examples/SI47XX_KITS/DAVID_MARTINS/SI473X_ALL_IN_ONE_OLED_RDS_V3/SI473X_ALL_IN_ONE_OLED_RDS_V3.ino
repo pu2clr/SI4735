@@ -434,14 +434,6 @@ void resetEepromDelay()
   previousFrequency = 0;
 }
 
-/*
- * Clean the content of the third line (line 2 - remember the first line is 0)    
- */
-void cleanBfoRdsInfo()
-{
-  oled.setCursor(0, 2);
-  oled.print("                    ");
-}
 
 /**
   Converts a number to a char string and places leading zeros.
@@ -676,8 +668,21 @@ void showBFO()
 char *stationName;
 char bufferStatioName[20];
 long rdsElapsed = millis();
+long setRds = 0;
 
 char oldBuffer[15];
+
+
+/*
+ * Clean the content of the third line (line 2 - remember the first line is 0)    
+ */
+void cleanBfoRdsInfo()
+{
+  oled.setCursor(0, 2);
+  oled.print("                    ");
+  si4735.setRdsConfig(0, 2, 2, 2, 2);
+  setRds = 0;
+}
 
 /*
  * Show the Station Name. 
@@ -702,7 +707,7 @@ void showRDSStation()
     col += 10;
   }
   // strcpy(oldBuffer, stationName);
-  delay(130);
+  delay(100);
 }
 
 /*
@@ -801,7 +806,7 @@ void useBand()
     si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     si4735.setSeekFmSpacing(1);
     bfoOn = ssbLoaded = false;
-    si4735.setRdsConfig(1, 2, 2, 2, 2);
+    // si4735.setRdsConfig(1, 2, 2, 2, 2);
     bwIdxFM = band[bandIdx].bandwitdthIdx;
     si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
   }
@@ -1151,7 +1156,13 @@ void loop()
     {
       cleanBfoRdsInfo();
     }
-    checkRDS();
+    else {
+      if ( setRds == 0 ) { 
+        si4735.setRdsConfig(1, 2, 2, 2, 2);
+        setRds++; 
+      }
+      checkRDS();
+    }
   }
 
   // Show the current frequency only if it has changed
