@@ -7,6 +7,8 @@ var group__group16 =
     [ "getRdsNewBlockB", "group__group16.html#gaff740d85cc04c257f53c7e910bd45fcf", null ],
     [ "getRdsSync", "group__group16.html#ga6e899b37cbc3dcd0ab969724e4008f0f", null ],
     [ "getGroupLost", "group__group16.html#ga8db437efc42a81466d8daf4dcc35c50c", null ],
+    [ "getNumRdsFifoUsed", "group__group16.html#ga819c370ff03c52a527fbc85f9877f526", null ],
+    [ "setFifoCount", "group__group16.html#ga511b1396fef645ba2a400154ac982d70", null ],
     [ "RdsInit", "group__group16.html#gaffdba9ca9fb9bf5bb671ac3d448a7e89", null ],
     [ "clearRdsBuffer2A", "group__group16.html#gac65c552004f5e5e646638e37a5a68213", null ],
     [ "clearRdsBuffer2B", "group__group16.html#gaed0988165057aa2880f41b88ac236cd7", null ],

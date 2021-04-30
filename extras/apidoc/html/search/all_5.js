@@ -44,7 +44,7 @@ var searchData=
   ['getinterruptstatus_152',['getInterruptStatus',['../group__group05.html#gaf361734168c913803e7e2dfbf4fe0c55',1,'SI4735']]],
   ['getnext2block_153',['getNext2Block',['../group__group16.html#gab1f4f137139b40fe386ca51586999e50',1,'SI4735']]],
   ['getnext4block_154',['getNext4Block',['../group__group16.html#gadb0a3c39aeacba0faf39aadd9465021f',1,'SI4735']]],
-  ['getnumrdsfifoused_155',['getNumRdsFifoUsed',['../class_s_i4735.html#a819c370ff03c52a527fbc85f9877f526',1,'SI4735']]],
+  ['getnumrdsfifoused_155',['getNumRdsFifoUsed',['../group__group16.html#ga819c370ff03c52a527fbc85f9877f526',1,'SI4735']]],
   ['getproperty_156',['getProperty',['../group__group10.html#gace60b9db8033c689247dc1370be367b6',1,'SI4735']]],
   ['getradiodatasysteminterrupt_157',['getRadioDataSystemInterrupt',['../group__group08.html#ga97dc44d9927ea58730a18fb6baa6867f',1,'SI4735']]],
   ['getrdsflagab_158',['getRdsFlagAB',['../group__group16.html#ga05f76a0a0ebda813483f1df24e890904',1,'SI4735']]],

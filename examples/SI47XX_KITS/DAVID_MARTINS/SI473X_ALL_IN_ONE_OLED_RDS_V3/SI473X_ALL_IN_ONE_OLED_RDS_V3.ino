@@ -668,7 +668,6 @@ void showBFO()
 char *stationName;
 char bufferStatioName[20];
 long rdsElapsed = millis();
-long setRds = 0;
 
 char oldBuffer[15];
 
@@ -680,8 +679,6 @@ void cleanBfoRdsInfo()
 {
   oled.setCursor(0, 2);
   oled.print("                    ");
-  // si4735.setRdsConfig(0, 2, 2, 2, 2);
-  setRds = 0;
 }
 
 /*
@@ -721,7 +718,7 @@ void checkRDS()
     if (si4735.getRdsSync() && si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost())
     {
       stationName = si4735.getRdsText0A();
-      if (stationName != NULL && (millis() - rdsElapsed) > 10)
+      if (stationName != NULL /* && (millis() - rdsElapsed) > 10 */)
       {
         showRDSStation();
         rdsElapsed = millis();
@@ -1158,10 +1155,6 @@ void loop()
       cleanBfoRdsInfo();
     }
     else {
-      if ( setRds == 0 ) { 
-        // si4735.setRdsConfig(1, 2, 2, 2, 2);
-        setRds++; 
-      }
       checkRDS();
     }
   }

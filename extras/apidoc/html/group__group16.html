@@ -114,6 +114,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga8db437efc42a81466d8daf4dcc35c50c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga8db437efc42a81466d8daf4dcc35c50c">SI4735::getGroupLost</a> ()</td></tr>
 <tr class="memdesc:ga8db437efc42a81466d8daf4dcc35c50c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Group Lost.  <a href="group__group16.html#ga8db437efc42a81466d8daf4dcc35c50c">More...</a><br /></td></tr>
 <tr class="separator:ga8db437efc42a81466d8daf4dcc35c50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga819c370ff03c52a527fbc85f9877f526"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga819c370ff03c52a527fbc85f9877f526">SI4735::getNumRdsFifoUsed</a> ()</td></tr>
+<tr class="memdesc:ga819c370ff03c52a527fbc85f9877f526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Num Rds Fifo Used.  <a href="group__group16.html#ga819c370ff03c52a527fbc85f9877f526">More...</a><br /></td></tr>
+<tr class="separator:ga819c370ff03c52a527fbc85f9877f526"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga511b1396fef645ba2a400154ac982d70"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga511b1396fef645ba2a400154ac982d70">SI4735::setFifoCount</a> (uint16_t value)</td></tr>
+<tr class="memdesc:ga511b1396fef645ba2a400154ac982d70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the minimum number of RDS groups stored in the RDS FIFO before RDSRECV is set.  <a href="group__group16.html#ga511b1396fef645ba2a400154ac982d70">More...</a><br /></td></tr>
+<tr class="separator:ga511b1396fef645ba2a400154ac982d70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaffdba9ca9fb9bf5bb671ac3d448a7e89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gaffdba9ca9fb9bf5bb671ac3d448a7e89">SI4735::RdsInit</a> ()</td></tr>
 <tr class="memdesc:gaffdba9ca9fb9bf5bb671ac3d448a7e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the control member variables for RDS.  <a href="group__group16.html#gaffdba9ca9fb9bf5bb671ac3d448a7e89">More...</a><br /></td></tr>
 <tr class="separator:gaffdba9ca9fb9bf5bb671ac3d448a7e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -380,6 +386,63 @@ Functions</h2></td></tr>
 
 <p>Get the Group Lost. </p>
 <p>Returns true if one or more RDS groups discarded due to FIFO overrun. </p><dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
+
+</div>
+</div>
+<a id="ga819c370ff03c52a527fbc85f9877f526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga819c370ff03c52a527fbc85f9877f526">&#9670;&nbsp;</a></span>getNumRdsFifoUsed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::getNumRdsFifoUsed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Num Rds Fifo Used. </p>
+<p>Return the number of RDS FIFO used </p><dl class="section return"><dt>Returns</dt><dd>uint8_t Total RDS FIFO used </dd></dl>
+
+</div>
+</div>
+<a id="ga511b1396fef645ba2a400154ac982d70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga511b1396fef645ba2a400154ac982d70">&#9670;&nbsp;</a></span>setFifoCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::setFifoCount </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the minimum number of RDS groups stored in the RDS FIFO before RDSRECV is set. </p>
+<p>Return the number of RDS FIFO used </p><dl class="section return"><dt>Returns</dt><dd>uint8_t Total RDS FIFO used </dd></dl>
 
 </div>
 </div>

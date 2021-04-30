@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['radiopowerup_631',['radioPowerUp',['../group__group07.html#ga3e228da65641f4dcf4253262e19bde9b',1,'SI4735']]],
-  ['rdsinit_632',['RdsInit',['../group__group16.html#gaffdba9ca9fb9bf5bb671ac3d448a7e89',1,'SI4735']]],
-  ['reset_633',['reset',['../group__group06.html#gadc6014674bd4d1ee3aab56c605926db1',1,'SI4735']]]
+  ['radiopowerup_632',['radioPowerUp',['../group__group07.html#ga3e228da65641f4dcf4253262e19bde9b',1,'SI4735']]],
+  ['rdsinit_633',['RdsInit',['../group__group16.html#gaffdba9ca9fb9bf5bb671ac3d448a7e89',1,'SI4735']]],
+  ['reset_634',['reset',['../group__group06.html#gadc6014674bd4d1ee3aab56c605926db1',1,'SI4735']]]
 ];
