@@ -583,13 +583,13 @@ void showRSSI()
 */
 void showVolume()
 {
-  oled.setCursor(60, 3);
+  oled.setCursor(58, 3);
   oled.print("  ");
-  oled.setCursor(60, 3);
+  oled.setCursor(58, 3);
   oled.invertOutput(cmdVolume);
-  oled.print(si4735.getCurrentVolume());
   oled.print(' ');
   oled.invertOutput(false);
+  oled.print(si4735.getCurrentVolume());
 }
 
 void showStep()
@@ -597,10 +597,10 @@ void showStep()
   oled.setCursor(93, 1);
   oled.print("      ");
   oled.setCursor(93, 1);
-  oled.print("S:");
   oled.invertOutput(cmdStep);
-  oled.print(tabStep[idxStep]);
+  oled.print("S:");
   oled.invertOutput(false);
+  oled.print(tabStep[idxStep]);
 }
 
 /**
@@ -608,28 +608,27 @@ void showStep()
 */
 void showBandwitdth()
 {
-  char bw[10];
-
-  strcpy(bw, "BW: ");
+  char *bw;
   if (currentMode == LSB || currentMode == USB)
   {
-    strcat(bw, bandwitdthSSB[bwIdxSSB].desc);
+    bw = (char *) bandwitdthSSB[bwIdxSSB].desc;
     showBFO();
   }
   else if (currentMode == AM)
   {
-    strcat(bw, bandwitdthAM[bwIdxAM].desc);
+    bw = (char *) bandwitdthAM[bwIdxAM].desc;
   }
   else
   {
-    strcat(bw, bandwitdthFM[bwIdxFM].desc);
+    bw = (char *) bandwitdthFM[bwIdxFM].desc;
   }
   oled.setCursor(0, 3);
   oled.print("          ");
   oled.setCursor(0, 3);
   oled.invertOutput(cmdBw);
-  oled.print(bw);
+  oled.print("BW: ");
   oled.invertOutput(false);
+  oled.print(bw);  
 }
 
 /*
@@ -983,14 +982,7 @@ void loop()
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
-    if (bfoOn)
-    {
-      currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
-      si4735.setSSBBfo(currentBFO);
-      previousFrequency = 0; // Forces eeprom update
-      showBFO();
-    }
-    else if (cmdVolume)
+    if (cmdVolume)
       doVolume(encoderCount);
     else if (cmdAgcAtt)
       doAgcAtt(encoderCount);
@@ -1004,6 +996,12 @@ void loop()
         bandUp();
       else
         bandDown();
+    } else if (bfoOn)
+    {
+      currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
+      si4735.setSSBBfo(currentBFO);
+      previousFrequency = 0; // Forces eeprom update
+      showBFO();
     }
     else
     {
