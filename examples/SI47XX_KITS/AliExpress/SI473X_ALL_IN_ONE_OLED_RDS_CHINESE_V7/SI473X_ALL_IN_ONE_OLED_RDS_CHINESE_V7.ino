@@ -599,6 +599,8 @@ void showVolume()
 
 void showStep()
 {
+  if (bfoOn)
+    return;
   oled.setCursor(93, 1);
   oled.print("      ");
   oled.setCursor(93, 1);
@@ -674,7 +676,9 @@ void showBFO()
   oled.setCursor(93, 2);
   oled.print("    ");
   oled.setCursor(93, 2);
+  oled.invertOutput(cmdStep);
   oled.print("S:");
+  oled.invertOutput(false);
   oled.print(currentBFOStep);
 }
 
@@ -730,9 +734,10 @@ void checkRDS()
     if (si4735.getRdsSync() && si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost())
     {
       stationName = si4735.getRdsText0A();
-      if (stationName != NULL /* && (millis() - rdsElapsed) > 10 */)
+      if (stationName != NULL /* && si4735.getEndGroupB()  && (millis() - rdsElapsed) > 10 */)
       {
         showRDSStation();
+        // si4735.resetEndGroupB();
         rdsElapsed = millis();
       }
     }
@@ -863,7 +868,7 @@ void doStep(int8_t v)
 {
 
   // This command should work only for SSB mode
-  if (currentMode == LSB || currentMode == USB)
+  if ((currentMode == LSB || currentMode == USB) && bfoOn)
   {
     currentBFOStep = (currentBFOStep == 25) ? 10 : 25;
     showBFO();
@@ -1085,6 +1090,7 @@ void loop()
         if (bfoOn)
           showBFO();
         showStatus();
+        disableCommand(NULL, false, NULL); // disable all command buttons
       }
       else if (currentMode == FM || currentMode == AM)
       {

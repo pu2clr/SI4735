@@ -1060,6 +1060,9 @@ protected:
     int rdsTextAdress2B; //!<  rds_buffer2B current position
     int rdsTextAdress0A; //!<  rds_buffer0A current position
 
+    bool rdsEndGroupA = false;
+    bool rdsEndGroupB = false;
+
     int16_t deviceAddress = SI473X_ADDR_SEN_LOW; //!<  Stores the current I2C bus address.
 
     // Delays
@@ -2242,6 +2245,42 @@ public:
     {
         sendProperty(FM_RDS_INT_FIFO_COUNT, value);
     };
+
+    /**
+     * @ingroup group16 RDS
+     * @brief Check if 0xD or 0xA special characters were received for group A
+     * @return true or false
+     */
+    inline bool getEndGroupA() {
+        return rdsEndGroupA;
+    }
+
+    /**
+     * @ingroup group16 RDS
+     * @brief Resets 0xD or 0xA special characters condition (makes it false)
+     */
+    inline void resetEndGroupA() {
+        rdsEndGroupA = false;
+    }
+
+    /**
+     * @ingroup group16 RDS
+     * @brief Check if 0xD or 0xA special characters were received for group B
+     * @return true or false
+     */
+    inline bool getEndGroupB()
+    {
+        return rdsEndGroupB;
+    }
+    
+    /**
+     * @ingroup group16 RDS
+     * @brief Resets 0xD or 0xA special characters condition (makes it false)
+     */
+    inline void resetEndGroupB()
+    {
+        rdsEndGroupB = false;
+    }
 
     void setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t BLETHC, uint8_t BLETHD);
     uint16_t getRdsPI(void);

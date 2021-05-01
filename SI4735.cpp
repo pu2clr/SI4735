@@ -2292,6 +2292,7 @@ void SI4735::getNext2Block(char *c)
     {
         if (raw[i] == 0xD || raw[i] == 0xA)
         {
+            rdsEndGroupB =  true;
             c[j] = '\0';
             return;
         }
@@ -2327,6 +2328,7 @@ void SI4735::getNext4Block(char *c)
     {
         if (raw[i] == 0xD || raw[i] == 0xA)
         {
+            rdsEndGroupA =  true;
             c[j] = '\0';
             return;
         }
