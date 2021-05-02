@@ -255,6 +255,7 @@ void Flash (int d)
   lcd.display();
 }
 
+
 /**
     Set all command flags to false
     When all flags are disabled (false), the encoder controls the frequency

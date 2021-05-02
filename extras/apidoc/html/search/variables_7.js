@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['maxdelayafterpouwerup_768',['maxDelayAfterPouwerUp',['../class_s_i4735.html#a7ce25193b7f254c75967568967ba4d85',1,'SI4735']]],
-  ['maxdelaysetfrequency_769',['maxDelaySetFrequency',['../class_s_i4735.html#a5f101b95b6fc5127b9e9d92a21f44ab6',1,'SI4735']]],
-  ['maxseektime_770',['maxSeekTime',['../class_s_i4735.html#ad656f75a444c174797f6e7a8bf6e6ee2',1,'SI4735']]]
+  ['param_783',['param',['../group__group01.html#a5da2dcc72ae3a6f0ced1aad7594362d5',1,'si47x_bandwidth_config::param()'],['../group__group01.html#affb467645fbaf299d351c3fc7c0ed3bb',1,'si47x_ssb_mode::param()']]],
+  ['powerup_784',['powerUp',['../class_s_i4735.html#a1331b701088bda20bf0844e2e38be142',1,'SI4735']]]
 ];

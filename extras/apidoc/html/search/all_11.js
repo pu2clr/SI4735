@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['value_459',['value',['../group__group01.html#aad12ac434ec9907e90a3f6b95377ca76',1,'si47x_frequency::value()'],['../group__group01.html#aa59f9604df88a98b91295b0a9c009bbd',1,'si47x_antenna_capacitor::value()'],['../group__group01.html#a7c04205c5a1798b35b738b2908853bfa',1,'si47x_property::value()']]],
-  ['volume_460',['volume',['../class_s_i4735.html#aa5220772c468fcfb69b5d16163de73fc',1,'SI4735']]],
-  ['volumedown_461',['volumeDown',['../group__group13.html#ga23d49ab35895b76e0898405fac086c09',1,'SI4735']]],
-  ['volumeup_462',['volumeUp',['../group__group13.html#ga5e3e8cf04ca99c6be2dbe15d72b4efa3',1,'SI4735']]]
+  ['waitinterrupr_470',['waitInterrupr',['../class_s_i4735.html#ad2e95c88de0dfa58ff7aa36988071421',1,'SI4735']]],
+  ['waittosend_471',['waitToSend',['../group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0',1,'SI4735']]],
+  ['word_472',['word',['../group__group01.html#aff89664deed303ec065bbad68b2053ae',1,'si47x_frontend_agc_control']]]
 ];

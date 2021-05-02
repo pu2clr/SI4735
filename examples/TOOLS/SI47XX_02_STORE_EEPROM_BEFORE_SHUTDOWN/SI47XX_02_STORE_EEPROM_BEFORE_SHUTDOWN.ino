@@ -176,7 +176,6 @@ void writeReceiverData() {
   EEPROM.write(eeprom_address + 3, (currentFrequency & 0xFF));  // stores the current Frequency LOW byte
 }
 
-
 void loop()
 {
   // Check if the encoder has moved.

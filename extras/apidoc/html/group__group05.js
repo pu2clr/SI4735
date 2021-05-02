@@ -1,6 +1,5 @@
 var group__group05 =
 [
-    [ "waitInterrupr", "group__group05.html#gad2e95c88de0dfa58ff7aa36988071421", null ],
     [ "getInterruptStatus", "group__group05.html#gaf361734168c913803e7e2dfbf4fe0c55", null ],
     [ "setGpioCtl", "group__group05.html#ga0d615c1fcfeb570effc97e8b7e959106", null ],
     [ "setGpio", "group__group05.html#ga5e5018897af1edc1ca8507af3d3bfc5e", null ],

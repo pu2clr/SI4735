@@ -111,13 +111,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ga7b45c1b22c3c1a3f2326bee913d1e1e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for the si473x is ready (Clear to Send (CTS) status bit have to be 1). <br  />
   <a href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">More...</a><br /></td></tr>
 <tr class="separator:ga7b45c1b22c3c1a3f2326bee913d1e1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0d615c1fcfeb570effc97e8b7e959106"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga0d615c1fcfeb570effc97e8b7e959106">setGpioCtl</a> (uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN)</td></tr>
+<tr class="memdesc:ga0d615c1fcfeb570effc97e8b7e959106"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables output for GPO1, 2, and 3.  <a href="group__group05.html#ga0d615c1fcfeb570effc97e8b7e959106">More...</a><br /></td></tr>
+<tr class="separator:ga0d615c1fcfeb570effc97e8b7e959106"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5e5018897af1edc1ca8507af3d3bfc5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga5e5018897af1edc1ca8507af3d3bfc5e">setGpio</a> (uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL)</td></tr>
+<tr class="memdesc:ga5e5018897af1edc1ca8507af3d3bfc5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the output level (high or low) for GPO1, 2, and 3. <br  />
+  <a href="group__group05.html#ga5e5018897af1edc1ca8507af3d3bfc5e">More...</a><br /></td></tr>
+<tr class="separator:ga5e5018897af1edc1ca8507af3d3bfc5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6806bca795400959f36e8202e36cd94c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga6806bca795400959f36e8202e36cd94c">setGpioIen</a> (uint8_t STCIEN, uint8_t RSQIEN, uint8_t ERRIEN, uint8_t CTSIEN, uint8_t STCREP, uint8_t RSQREP)</td></tr>
+<tr class="memdesc:ga6806bca795400959f36e8202e36cd94c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the sources for the GPO2/INT interrupt pin.  <a href="group__group05.html#ga6806bca795400959f36e8202e36cd94c">More...</a><br /></td></tr>
+<tr class="separator:ga6806bca795400959f36e8202e36cd94c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga944ed704e2175a6cf660ad65ca5bbad5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#ga944ed704e2175a6cf660ad65ca5bbad5">setup</a> (uint8_t <a class="el" href="class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e">resetPin</a>, uint8_t defaultFunction)</td></tr>
 <tr class="memdesc:ga944ed704e2175a6cf660ad65ca5bbad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the Si473X device. <br  />
   <a href="group__group07.html#ga944ed704e2175a6cf660ad65ca5bbad5">More...</a><br /></td></tr>
 <tr class="separator:ga944ed704e2175a6cf660ad65ca5bbad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5ac4e4465f33d988885c6b3ec86276bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#ga5ac4e4465f33d988885c6b3ec86276bd">setup</a> (uint8_t <a class="el" href="class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e">resetPin</a>, int <a class="el" href="class_s_i4735.html#af8f8123888060f858c74ba08a29ff38b">interruptPin</a>, uint8_t defaultFunction, uint8_t audioMode=<a class="el" href="_s_i4735_8h.html#afd6b0255af56b3deee67ef1fe14d2fd6">SI473X_ANALOG_AUDIO</a>, uint8_t clockType=<a class="el" href="_s_i4735_8h.html#a33a17dceb88b2b05d8032714a1998368">XOSCEN_CRYSTAL</a>)</td></tr>
-<tr class="memdesc:ga5ac4e4465f33d988885c6b3ec86276bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the Si473X device.  <a href="group__group07.html#ga5ac4e4465f33d988885c6b3ec86276bd">More...</a><br /></td></tr>
-<tr class="separator:ga5ac4e4465f33d988885c6b3ec86276bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf8d0ff88ec989d714ab63da39f3897b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#gaf8d0ff88ec989d714ab63da39f3897b4">setup</a> (uint8_t <a class="el" href="class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e">resetPin</a>, uint8_t <a class="el" href="class_s_i4735.html#a015d495717833b3a7e0b4a5ea8f09158">ctsIntEnable</a>, uint8_t defaultFunction, uint8_t audioMode=<a class="el" href="_s_i4735_8h.html#afd6b0255af56b3deee67ef1fe14d2fd6">SI473X_ANALOG_AUDIO</a>, uint8_t clockType=<a class="el" href="_s_i4735_8h.html#a33a17dceb88b2b05d8032714a1998368">XOSCEN_CRYSTAL</a>, uint8_t <a class="el" href="class_s_i4735.html#aa1a6e6b5698880e9c72506d8d7f2dcb0">gpo2Enable</a>=0)</td></tr>
+<tr class="memdesc:gaf8d0ff88ec989d714ab63da39f3897b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the Si473X device.  <a href="group__group07.html#gaf8d0ff88ec989d714ab63da39f3897b4">More...</a><br /></td></tr>
+<tr class="separator:gaf8d0ff88ec989d714ab63da39f3897b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga56d6eebe36f8178efc080e6e134e0b9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group07.html#ga56d6eebe36f8178efc080e6e134e0b9b">setRefClock</a> (uint16_t refclk)</td></tr>
 <tr class="memdesc:ga56d6eebe36f8178efc080e6e134e0b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the frequency of the REFCLK from the output of the prescaler.  <a href="group__group07.html#ga56d6eebe36f8178efc080e6e134e0b9b">More...</a><br /></td></tr>
 <tr class="separator:ga56d6eebe36f8178efc080e6e134e0b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -517,15 +527,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:gaffdba9ca9fb9bf5bb671ac3d448a7e89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gaffdba9ca9fb9bf5bb671ac3d448a7e89">RdsInit</a> ()</td></tr>
 <tr class="memdesc:gaffdba9ca9fb9bf5bb671ac3d448a7e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the control member variables for RDS.  <a href="group__group16.html#gaffdba9ca9fb9bf5bb671ac3d448a7e89">More...</a><br /></td></tr>
 <tr class="separator:gaffdba9ca9fb9bf5bb671ac3d448a7e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga530e64d00d95b4ceb13ce33aa74c63cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga530e64d00d95b4ceb13ce33aa74c63cb">setRdsIntSource</a> (uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t RDSSYNCFOUND, uint8_t RDSSYNCLOST, uint8_t RDSRECV)</td></tr>
-<tr class="memdesc:ga530e64d00d95b4ceb13ce33aa74c63cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures interrupt related to RDS.  <a href="group__group16.html#ga530e64d00d95b4ceb13ce33aa74c63cb">More...</a><br /></td></tr>
-<tr class="separator:ga530e64d00d95b4ceb13ce33aa74c63cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaddfe8c89101b4859eca31ad68ad9de2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gaddfe8c89101b4859eca31ad68ad9de2e">setRdsIntSource</a> (uint8_t RDSRECV, uint8_t RDSSYNCLOST, uint8_t RDSSYNCFOUND, uint8_t RDSNEWBLOCKA, uint8_t RDSNEWBLOCKB)</td></tr>
+<tr class="memdesc:gaddfe8c89101b4859eca31ad68ad9de2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures interrupt related to RDS.  <a href="group__group16.html#gaddfe8c89101b4859eca31ad68ad9de2e">More...</a><br /></td></tr>
+<tr class="separator:gaddfe8c89101b4859eca31ad68ad9de2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga350a2033671a7620d4b9290a2347e185"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga350a2033671a7620d4b9290a2347e185">getRdsStatus</a> (uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)</td></tr>
 <tr class="memdesc:ga350a2033671a7620d4b9290a2347e185"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS.  <a href="group__group16.html#ga350a2033671a7620d4b9290a2347e185">More...</a><br /></td></tr>
 <tr class="separator:ga350a2033671a7620d4b9290a2347e185"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga94cce3834f85fc127e8c2dab3a03e875"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga94cce3834f85fc127e8c2dab3a03e875">getRdsStatus</a> ()</td></tr>
-<tr class="memdesc:ga94cce3834f85fc127e8c2dab3a03e875"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets RDS Status.  <a href="group__group16.html#ga94cce3834f85fc127e8c2dab3a03e875">More...</a><br /></td></tr>
-<tr class="separator:ga94cce3834f85fc127e8c2dab3a03e875"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6e8405ea5846fab586080a7be696178e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga6e8405ea5846fab586080a7be696178e">getRdsReceived</a> ()</td></tr>
 <tr class="memdesc:ga6e8405ea5846fab586080a7be696178e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Rds Received FIFO.  <a href="group__group16.html#ga6e8405ea5846fab586080a7be696178e">More...</a><br /></td></tr>
 <tr class="separator:ga6e8405ea5846fab586080a7be696178e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -553,6 +560,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:gad1c4f5e8f21d008361c8613c94eca0c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gad1c4f5e8f21d008361c8613c94eca0c0">setFifoCount</a> (uint16_t value)</td></tr>
 <tr class="memdesc:gad1c4f5e8f21d008361c8613c94eca0c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the minimum number of RDS groups stored in the RDS FIFO before RDSRECV is set.  <a href="group__group16.html#gad1c4f5e8f21d008361c8613c94eca0c0">More...</a><br /></td></tr>
 <tr class="separator:gad1c4f5e8f21d008361c8613c94eca0c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadbc1132450ca79ed53e8e8cc0d2fe1d1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gadbc1132450ca79ed53e8e8cc0d2fe1d1">getEndIndicatorGroupA</a> ()</td></tr>
+<tr class="memdesc:gadbc1132450ca79ed53e8e8cc0d2fe1d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if 0xD or 0xA special characters were received for group A.  <a href="group__group16.html#gadbc1132450ca79ed53e8e8cc0d2fe1d1">More...</a><br /></td></tr>
+<tr class="separator:gadbc1132450ca79ed53e8e8cc0d2fe1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga339af59bbaefd8d60ba9b26e742bc01e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga339af59bbaefd8d60ba9b26e742bc01e">resetEndIndicatorGroupA</a> ()</td></tr>
+<tr class="memdesc:ga339af59bbaefd8d60ba9b26e742bc01e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets 0xD or 0xA special characters condition (makes it false)  <a href="group__group16.html#ga339af59bbaefd8d60ba9b26e742bc01e">More...</a><br /></td></tr>
+<tr class="separator:ga339af59bbaefd8d60ba9b26e742bc01e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1cd6e6388fbb853cc24d3e0dc0df1eb6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga1cd6e6388fbb853cc24d3e0dc0df1eb6">getEndIndicatorGroupB</a> ()</td></tr>
+<tr class="memdesc:ga1cd6e6388fbb853cc24d3e0dc0df1eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if 0xD or 0xA special characters were received for group B.  <a href="group__group16.html#ga1cd6e6388fbb853cc24d3e0dc0df1eb6">More...</a><br /></td></tr>
+<tr class="separator:ga1cd6e6388fbb853cc24d3e0dc0df1eb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga11a5d5eb070466b488e5adec650e625e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga11a5d5eb070466b488e5adec650e625e">resetEndIndicatorGroupB</a> ()</td></tr>
+<tr class="memdesc:ga11a5d5eb070466b488e5adec650e625e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets 0xD or 0xA special characters condition (makes it false)  <a href="group__group16.html#ga11a5d5eb070466b488e5adec650e625e">More...</a><br /></td></tr>
+<tr class="separator:ga11a5d5eb070466b488e5adec650e625e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga94cce3834f85fc127e8c2dab3a03e875"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga94cce3834f85fc127e8c2dab3a03e875">getRdsStatus</a> ()</td></tr>
+<tr class="memdesc:ga94cce3834f85fc127e8c2dab3a03e875"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets RDS Status.  <a href="group__group16.html#ga94cce3834f85fc127e8c2dab3a03e875">More...</a><br /></td></tr>
+<tr class="separator:ga94cce3834f85fc127e8c2dab3a03e875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga13cd4540eff45acbc4252875edda75ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga13cd4540eff45acbc4252875edda75ed">rdsClearFifo</a> ()</td></tr>
+<tr class="memdesc:ga13cd4540eff45acbc4252875edda75ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty FIFO.  <a href="group__group16.html#ga13cd4540eff45acbc4252875edda75ed">More...</a><br /></td></tr>
+<tr class="separator:ga13cd4540eff45acbc4252875edda75ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga358ae7318679b5a47b04d1f672bf3257"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga358ae7318679b5a47b04d1f672bf3257">rdsClearInterrupt</a> ()</td></tr>
+<tr class="memdesc:ga358ae7318679b5a47b04d1f672bf3257"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears RDSINT.  <a href="group__group16.html#ga358ae7318679b5a47b04d1f672bf3257">More...</a><br /></td></tr>
+<tr class="separator:ga358ae7318679b5a47b04d1f672bf3257"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad9718a85c79a311c26997bbda20f2351"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gad9718a85c79a311c26997bbda20f2351">setRdsConfig</a> (uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t BLETHC, uint8_t BLETHD)</td></tr>
 <tr class="memdesc:gad9718a85c79a311c26997bbda20f2351"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS property.  <a href="group__group16.html#gad9718a85c79a311c26997bbda20f2351">More...</a><br /></td></tr>
 <tr class="separator:gad9718a85c79a311c26997bbda20f2351"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -705,22 +733,11 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:gad2e95c88de0dfa58ff7aa36988071421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gad2e95c88de0dfa58ff7aa36988071421">waitInterrupr</a> (void)</td></tr>
-<tr class="memdesc:gad2e95c88de0dfa58ff7aa36988071421"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt handle.  <a href="group__group05.html#gad2e95c88de0dfa58ff7aa36988071421">More...</a><br /></td></tr>
-<tr class="separator:gad2e95c88de0dfa58ff7aa36988071421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2e95c88de0dfa58ff7aa36988071421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#ad2e95c88de0dfa58ff7aa36988071421">waitInterrupr</a> (void)</td></tr>
+<tr class="separator:ad2e95c88de0dfa58ff7aa36988071421"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf361734168c913803e7e2dfbf4fe0c55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__group01.html#unionsi47x__status">si47x_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gaf361734168c913803e7e2dfbf4fe0c55">getInterruptStatus</a> ()</td></tr>
 <tr class="memdesc:gaf361734168c913803e7e2dfbf4fe0c55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates bits 6:0 of the status byte.  <a href="group__group05.html#gaf361734168c913803e7e2dfbf4fe0c55">More...</a><br /></td></tr>
 <tr class="separator:gaf361734168c913803e7e2dfbf4fe0c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0d615c1fcfeb570effc97e8b7e959106"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga0d615c1fcfeb570effc97e8b7e959106">setGpioCtl</a> (uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN)</td></tr>
-<tr class="memdesc:ga0d615c1fcfeb570effc97e8b7e959106"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables output for GPO1, 2, and 3.  <a href="group__group05.html#ga0d615c1fcfeb570effc97e8b7e959106">More...</a><br /></td></tr>
-<tr class="separator:ga0d615c1fcfeb570effc97e8b7e959106"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5e5018897af1edc1ca8507af3d3bfc5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga5e5018897af1edc1ca8507af3d3bfc5e">setGpio</a> (uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL)</td></tr>
-<tr class="memdesc:ga5e5018897af1edc1ca8507af3d3bfc5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the output level (high or low) for GPO1, 2, and 3. <br  />
-  <a href="group__group05.html#ga5e5018897af1edc1ca8507af3d3bfc5e">More...</a><br /></td></tr>
-<tr class="separator:ga5e5018897af1edc1ca8507af3d3bfc5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6806bca795400959f36e8202e36cd94c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga6806bca795400959f36e8202e36cd94c">setGpioIen</a> (uint8_t STCIEN, uint8_t RSQIEN, uint8_t ERRIEN, uint8_t CTSIEN, uint8_t STCREP, uint8_t RSQREP)</td></tr>
-<tr class="memdesc:ga6806bca795400959f36e8202e36cd94c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the sources for the GPO2/INT interrupt pin.  <a href="group__group05.html#ga6806bca795400959f36e8202e36cd94c">More...</a><br /></td></tr>
-<tr class="separator:ga6806bca795400959f36e8202e36cd94c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4d65660ec2b60d7486165ed8a7a92015"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group10.html#ga4d65660ec2b60d7486165ed8a7a92015">sendProperty</a> (uint16_t propertyNumber, uint16_t param)</td></tr>
 <tr class="memdesc:ga4d65660ec2b60d7486165ed8a7a92015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends (sets) property to the SI47XX.  <a href="group__group10.html#ga4d65660ec2b60d7486165ed8a7a92015">More...</a><br /></td></tr>
 <tr class="separator:ga4d65660ec2b60d7486165ed8a7a92015"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -769,6 +786,10 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a11477d1eb13efb348395a4984b67f392"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a11477d1eb13efb348395a4984b67f392">rdsTextAdress0A</a></td></tr>
 <tr class="memdesc:a11477d1eb13efb348395a4984b67f392"><td class="mdescLeft">&#160;</td><td class="mdescRight">rds_buffer0A current position  <a href="class_s_i4735.html#a11477d1eb13efb348395a4984b67f392">More...</a><br /></td></tr>
 <tr class="separator:a11477d1eb13efb348395a4984b67f392"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b777d713357d2595e8617a63a32adbe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a4b777d713357d2595e8617a63a32adbe">rdsEndGroupA</a> = false</td></tr>
+<tr class="separator:a4b777d713357d2595e8617a63a32adbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07ac2f7392dceae88cf87cf34d9960d1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a07ac2f7392dceae88cf87cf34d9960d1">rdsEndGroupB</a> = false</td></tr>
+<tr class="separator:a07ac2f7392dceae88cf87cf34d9960d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a243ecc7d01fc0d0e9cabb4ed00b9e47d"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a243ecc7d01fc0d0e9cabb4ed00b9e47d">deviceAddress</a> = <a class="el" href="_s_i4735_8h.html#a501219f4a661e7aee098f263cba5d2a5">SI473X_ADDR_SEN_LOW</a></td></tr>
 <tr class="memdesc:a243ecc7d01fc0d0e9cabb4ed00b9e47d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the current I2C bus address.  <a href="class_s_i4735.html#a243ecc7d01fc0d0e9cabb4ed00b9e47d">More...</a><br /></td></tr>
 <tr class="separator:a243ecc7d01fc0d0e9cabb4ed00b9e47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -786,9 +807,6 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a6470177f747ef7eb8e7d02c76f72b19e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e">resetPin</a></td></tr>
 <tr class="memdesc:a6470177f747ef7eb8e7d02c76f72b19e"><td class="mdescLeft">&#160;</td><td class="mdescRight">pin used on Arduino Board to RESET the Si47XX device  <a href="class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e">More...</a><br /></td></tr>
 <tr class="separator:a6470177f747ef7eb8e7d02c76f72b19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8f8123888060f858c74ba08a29ff38b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#af8f8123888060f858c74ba08a29ff38b">interruptPin</a></td></tr>
-<tr class="memdesc:af8f8123888060f858c74ba08a29ff38b"><td class="mdescLeft">&#160;</td><td class="mdescRight">pin used on Arduino Board to control interrupt. If -1, interrupt is no used.  <a href="class_s_i4735.html#af8f8123888060f858c74ba08a29ff38b">More...</a><br /></td></tr>
-<tr class="separator:af8f8123888060f858c74ba08a29ff38b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc3d3a411d181e08846219661dbde1c4"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#acc3d3a411d181e08846219661dbde1c4">currentTune</a></td></tr>
 <tr class="memdesc:acc3d3a411d181e08846219661dbde1c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">tell the current tune (FM, AM or SSB)  <a href="class_s_i4735.html#acc3d3a411d181e08846219661dbde1c4">More...</a><br /></td></tr>
 <tr class="separator:acc3d3a411d181e08846219661dbde1c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -813,9 +831,10 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a1ed7daaa2bd7f4619d50815e2ab5e520"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a1ed7daaa2bd7f4619d50815e2ab5e520">currentClockType</a> = <a class="el" href="_s_i4735_8h.html#a33a17dceb88b2b05d8032714a1998368">XOSCEN_CRYSTAL</a></td></tr>
 <tr class="memdesc:a1ed7daaa2bd7f4619d50815e2ab5e520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the current clock type used (Crystal or REF CLOCK)  <a href="class_s_i4735.html#a1ed7daaa2bd7f4619d50815e2ab5e520">More...</a><br /></td></tr>
 <tr class="separator:a1ed7daaa2bd7f4619d50815e2ab5e520"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63a9825e57470b5b679401bb24f6d802"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a63a9825e57470b5b679401bb24f6d802">currentInterruptEnable</a> = 0</td></tr>
-<tr class="memdesc:a63a9825e57470b5b679401bb24f6d802"><td class="mdescLeft">&#160;</td><td class="mdescRight">If you are using interrupt, this variable stores 1.  <a href="class_s_i4735.html#a63a9825e57470b5b679401bb24f6d802">More...</a><br /></td></tr>
-<tr class="separator:a63a9825e57470b5b679401bb24f6d802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a015d495717833b3a7e0b4a5ea8f09158"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a015d495717833b3a7e0b4a5ea8f09158">ctsIntEnable</a> = 0</td></tr>
+<tr class="separator:a015d495717833b3a7e0b4a5ea8f09158"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1a6e6b5698880e9c72506d8d7f2dcb0"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#aa1a6e6b5698880e9c72506d8d7f2dcb0">gpo2Enable</a> = 0</td></tr>
+<tr class="separator:aa1a6e6b5698880e9c72506d8d7f2dcb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27aa16267153f881845b57818a58053e"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i4735.html#a27aa16267153f881845b57818a58053e">refClock</a> = 31768</td></tr>
 <tr class="memdesc:a27aa16267153f881845b57818a58053e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frequency of Reference Clock in Hz.  <a href="class_s_i4735.html#a27aa16267153f881845b57818a58053e">More...</a><br /></td></tr>
 <tr class="separator:a27aa16267153f881845b57818a58053e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -892,6 +911,32 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad2e95c88de0dfa58ff7aa36988071421"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2e95c88de0dfa58ff7aa36988071421">&#9670;&nbsp;</a></span>waitInterrupr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::waitInterrupr </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a20b9ef7d2f0fba55eaf20f48781846b5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a20b9ef7d2f0fba55eaf20f48781846b5">&#9670;&nbsp;</a></span>setAmNoiseBlank()</h2>
 
@@ -1217,7 +1262,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">Referenced by <a class="el" href="group__group07.html#gaa554b3390fb6c5a4d6661b96afae73ae">powerDown()</a>, <a class="el" href="group__group07.html#ga3e228da65641f4dcf4253262e19bde9b">radioPowerUp()</a>, and <a class="el" href="group__group07.html#ga5ac4e4465f33d988885c6b3ec86276bd">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group07.html#gaa554b3390fb6c5a4d6661b96afae73ae">powerDown()</a>, <a class="el" href="group__group07.html#ga3e228da65641f4dcf4253262e19bde9b">radioPowerUp()</a>, and <a class="el" href="group__group07.html#gaf8d0ff88ec989d714ab63da39f3897b4">setup()</a>.</p>
 
 </div>
 </div>
@@ -1404,6 +1449,54 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a4b777d713357d2595e8617a63a32adbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b777d713357d2595e8617a63a32adbe">&#9670;&nbsp;</a></span>rdsEndGroupA</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::rdsEndGroupA = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gadbc1132450ca79ed53e8e8cc0d2fe1d1">getEndIndicatorGroupA()</a>, <a class="el" href="group__group16.html#gadb0a3c39aeacba0faf39aadd9465021f">getNext4Block()</a>, and <a class="el" href="group__group16.html#ga339af59bbaefd8d60ba9b26e742bc01e">resetEndIndicatorGroupA()</a>.</p>
+
+</div>
+</div>
+<a id="a07ac2f7392dceae88cf87cf34d9960d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07ac2f7392dceae88cf87cf34d9960d1">&#9670;&nbsp;</a></span>rdsEndGroupB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::rdsEndGroupB = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#ga1cd6e6388fbb853cc24d3e0dc0df1eb6">getEndIndicatorGroupB()</a>, <a class="el" href="group__group16.html#gab1f4f137139b40fe386ca51586999e50">getNext2Block()</a>, and <a class="el" href="group__group16.html#ga11a5d5eb070466b488e5adec650e625e">resetEndIndicatorGroupB()</a>.</p>
+
+</div>
+</div>
 <a id="a243ecc7d01fc0d0e9cabb4ed00b9e47d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a243ecc7d01fc0d0e9cabb4ed00b9e47d">&#9670;&nbsp;</a></span>deviceAddress</h2>
 
@@ -1545,30 +1638,6 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>pin used on Arduino Board to RESET the Si47XX device </p>
-
-</div>
-</div>
-<a id="af8f8123888060f858c74ba08a29ff38b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8f8123888060f858c74ba08a29ff38b">&#9670;&nbsp;</a></span>interruptPin</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t SI4735::interruptPin</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>pin used on Arduino Board to control interrupt. If -1, interrupt is no used. </p>
 
 </div>
 </div>
@@ -1764,8 +1833,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a63a9825e57470b5b679401bb24f6d802"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63a9825e57470b5b679401bb24f6d802">&#9670;&nbsp;</a></span>currentInterruptEnable</h2>
+<a id="a015d495717833b3a7e0b4a5ea8f09158"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a015d495717833b3a7e0b4a5ea8f09158">&#9670;&nbsp;</a></span>ctsIntEnable</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1774,7 +1843,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t SI4735::currentInterruptEnable = 0</td>
+          <td class="memname">uint8_t SI4735::ctsIntEnable = 0</td>
         </tr>
       </table>
   </td>
@@ -1784,7 +1853,27 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>If you are using interrupt, this variable stores 1. </p>
+</div>
+</div>
+<a id="aa1a6e6b5698880e9c72506d8d7f2dcb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1a6e6b5698880e9c72506d8d7f2dcb0">&#9670;&nbsp;</a></span>gpo2Enable</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SI4735::gpo2Enable = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

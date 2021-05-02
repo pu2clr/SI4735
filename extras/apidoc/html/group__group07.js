@@ -7,6 +7,6 @@ var group__group07 =
     [ "getFirmware", "group__group07.html#ga2fbc7e2187a7c645879623100dbc8502", null ],
     [ "setRefClock", "group__group07.html#ga56d6eebe36f8178efc080e6e134e0b9b", null ],
     [ "setRefClockPrescaler", "group__group07.html#gadafdd29bf1d22e43199abc4c2ac7b231", null ],
-    [ "setup", "group__group07.html#ga5ac4e4465f33d988885c6b3ec86276bd", null ],
+    [ "setup", "group__group07.html#gaf8d0ff88ec989d714ab63da39f3897b4", null ],
     [ "setup", "group__group07.html#ga944ed704e2175a6cf660ad65ca5bbad5", null ]
 ];

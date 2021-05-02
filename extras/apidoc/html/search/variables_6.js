@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['lastmode_766',['lastMode',['../class_s_i4735.html#a157e4ae8cd53396973584aa10888cd47',1,'SI4735']]],
-  ['lasttextflagab_767',['lastTextFlagAB',['../class_s_i4735.html#abd965c0e49493bc2c7c37547d36dcc96',1,'SI4735']]]
+  ['maxdelayafterpouwerup_780',['maxDelayAfterPouwerUp',['../class_s_i4735.html#a7ce25193b7f254c75967568967ba4d85',1,'SI4735']]],
+  ['maxdelaysetfrequency_781',['maxDelaySetFrequency',['../class_s_i4735.html#a5f101b95b6fc5127b9e9d92a21f44ab6',1,'SI4735']]],
+  ['maxseektime_782',['maxSeekTime',['../class_s_i4735.html#ad656f75a444c174797f6e7a8bf6e6ee2',1,'SI4735']]]
 ];
