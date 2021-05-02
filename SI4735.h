@@ -1112,9 +1112,9 @@ protected:
     void waitInterrupr(void);
     si47x_status getInterruptStatus();
 
-    void setGpioCtl(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN);
-    void setGpio(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL);
-    void setGpioIen(uint8_t STCIEN, uint8_t RSQIEN, uint8_t ERRIEN, uint8_t CTSIEN, uint8_t STCREP, uint8_t RSQREP);
+    // void setGpioCtl(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN);
+    // void setGpio(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL);
+    // void setGpioIen(uint8_t STCIEN, uint8_t RSQIEN, uint8_t ERRIEN, uint8_t CTSIEN, uint8_t STCREP, uint8_t RSQREP);
 
     void sendProperty(uint16_t propertyNumber, uint16_t param);
 
@@ -1131,6 +1131,10 @@ public:
     SI4735();
     void reset(void);
     void waitToSend(void);
+
+    void setGpioCtl(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN);
+    void setGpio(uint8_t GPO1LEVEL, uint8_t GPO2LEVEL, uint8_t GPO3LEVEL);
+    void setGpioIen(uint8_t STCIEN, uint8_t RSQIEN, uint8_t ERRIEN, uint8_t CTSIEN, uint8_t STCREP, uint8_t RSQREP);
 
     void setup(uint8_t resetPin, uint8_t defaultFunction);
     void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO, uint8_t clockType = XOSCEN_CRYSTAL);
@@ -2144,7 +2148,6 @@ public:
     void RdsInit();
     void setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t RDSSYNCFOUND, uint8_t RDSSYNCLOST, uint8_t RDSRECV);
     void getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY);
-    void getRdsStatus();
 
     /**
      * @ingroup group16 RDS
@@ -2249,37 +2252,79 @@ public:
     /**
      * @ingroup group16 RDS
      * @brief Check if 0xD or 0xA special characters were received for group A
+     * @see resetEndIndicatorGroupA
      * @return true or false
      */
-    inline bool getEndGroupA() {
+    inline bool getEndIndicatorGroupA() {
         return rdsEndGroupA;
     }
 
     /**
      * @ingroup group16 RDS
      * @brief Resets 0xD or 0xA special characters condition (makes it false)
+     * @see getEndIndicatorGroupA
      */
-    inline void resetEndGroupA() {
+    inline void resetEndIndicatorGroupA() {
         rdsEndGroupA = false;
     }
 
     /**
      * @ingroup group16 RDS
      * @brief Check if 0xD or 0xA special characters were received for group B
+     * @see resetEndIndicatorGroupB
      * @return true or false
      */
-    inline bool getEndGroupB()
+    inline bool getEndIndicatorGroupB()
     {
         return rdsEndGroupB;
     }
-    
+
     /**
      * @ingroup group16 RDS
      * @brief Resets 0xD or 0xA special characters condition (makes it false)
+     * @see getEndIndicatorGroupB
      */
-    inline void resetEndGroupB()
+    inline void resetEndIndicatorGroupB()
     {
         rdsEndGroupB = false;
+    }
+
+    /**
+     * @ingroup group16 RDS status 
+     * 
+     * @brief Gets RDS Status.
+     * 
+     * @details Same result of calling getRdsStatus(0,0,0).
+     * @details Please, call getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY) instead getRdsStatus() 
+     * if you want other behaviour. 
+     * 
+     * @see SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
+     */
+    inline void getRdsStatus()
+    {
+        getRdsStatus(0, 0, 0);
+    }
+
+    /**
+     * @ingroup group16 RDS status 
+     * @brief Empty FIFO
+     * @details  Clear RDS Receive FIFO.
+     * @see getRdsStatus
+     */
+    inline void rdsClearFifo()
+    {
+        getRdsStatus(0, 1, 0);
+    }
+
+    /**
+     * @ingroup group16 RDS status 
+     * @brief Clears RDSINT.
+     * @details  INTACK Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT.
+     * @see getRdsStatus
+     */
+    inline void rdsClearInterrupt()
+    {
+        getRdsStatus(1, 0, 0);
     }
 
     void setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t BLETHC, uint8_t BLETHD);

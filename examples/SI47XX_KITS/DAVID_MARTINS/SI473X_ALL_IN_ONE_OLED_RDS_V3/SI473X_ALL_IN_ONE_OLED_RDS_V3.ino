@@ -718,13 +718,13 @@ void showRDSStation()
     *po = *pc;
     po++;
     pc++;
-    col += 10;
+    col += 14;
     k++;
   }
   while ( k < 8 ) {
       oled.setCursor(col, 2);
       oled.print(' ');
-      col += 10;
+      col += 14;
       k++;
   }
   // strcpy(oldBuffer, stationName);
@@ -736,7 +736,8 @@ void showRDSStation()
  */
 void checkRDS()
 {
-  si4735.getRdsStatus();
+  // si4735.getRdsStatus();
+  si4735.getRdsStatus(0,0,0);
   if (si4735.getRdsReceived())
   {
     if (si4735.getRdsSync() && si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost())
@@ -745,10 +746,11 @@ void checkRDS()
       if (stationName != NULL  /* && si4735.getEndGroupB()  && (millis() - rdsElapsed) > 10 */)
       {
         showRDSStation();
-        if (si4735.getEndGroupB()) {
+        if (si4735.getEndIndicatorGroupB()) {
           delay(500);  
           cleanBfoRdsInfo();
-          si4735.resetEndGroupB();
+          si4735.rdsClearFifo(); // Empty FIFO
+          si4735.resetEndIndicatorGroupB();
         } 
 
         rdsElapsed = millis();

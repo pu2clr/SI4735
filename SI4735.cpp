@@ -2144,22 +2144,6 @@ void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
     delayMicroseconds(550);
 }
 
-/**
- * @ingroup group16 RDS status 
- * 
- * @brief Gets RDS Status.
- * 
- * @details Same result of calling getRdsStatus(0,0,0).
- * @details Please, call getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY) instead getRdsStatus() 
- * if you want other behaviour. 
- * 
- * @see SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
- */
-void SI4735::getRdsStatus()
-{
-    getRdsStatus(0, 0, 0);
-}
-
 // See inlines methods / functions on SI4735.h
 
 /**  
