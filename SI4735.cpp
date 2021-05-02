@@ -67,18 +67,6 @@ SI4735::SI4735()
 
 /**
  * @ingroup group05 Interrupt
- * @brief Interrupt handle
- * @details If you setup interrupt, this function will be called whenever the Si4735 changes. 
- * 
- */
-void SI4735::waitInterrupr(void)
-{
-    while (!data_from_si4735)
-        ;
-}
-
-/**
- * @ingroup group05 Interrupt
  * 
  * @brief Updates bits 6:0 of the status byte.
  * 
@@ -564,30 +552,20 @@ void SI4735::setRefClockPrescaler(uint16_t prescale, uint8_t rclk_sel)
  *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
  * 
  * @param resetPin Digital Arduino Pin used to RESET de Si47XX device. 
- * @param interruptPin interrupt Arduino Pin (see your Arduino pinout). If less than 0, iterrupt disabled.
+ * @param ctsIntEnable CTS Interrupt Enable.
  * @param defaultFunction is the mode you want the receiver starts.
  * @param audioMode default SI473X_ANALOG_AUDIO (Analog Audio). Use SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO.
  * @param clockType 0 = Use external RCLK (crystal oscillator disabled); 1 = Use crystal oscillator 
+ * @param gpo2Enable GPO2OE (GPO2 Output) 1 = Enable; 0 Disable (defult) 
  */
-void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode, uint8_t clockType)
+void SI4735::setup(uint8_t resetPin, uint8_t ctsIntEnable, uint8_t defaultFunction, uint8_t audioMode, uint8_t clockType, uint8_t gpo2Enable)
 {
-    this->currentInterruptEnable = 0;
     Wire.begin();
 
     this->resetPin = resetPin;
-    this->interruptPin = interruptPin;
-
-    // Arduino interrupt setup (you have to know which Arduino Pins can deal with interrupt).
-    if (interruptPin >= 0)
-    {
-        pinMode(interruptPin, INPUT);
-        attachInterrupt(digitalPinToInterrupt(interruptPin), interrupt_hundler, RISING);
-        this->currentInterruptEnable = 1;
-    }
-
-    data_from_si4735 = false;
-
-    currentAudioMode = audioMode;
+    this->ctsIntEnable = (ctsIntEnable != 0)? 1:0; // Keeps old versions of the sketches running
+    this->gpo2Enable = gpo2Enable;
+    this->currentAudioMode = audioMode;
 
     // Set the initial SI473X behavior
     // CTSIEN   interruptEnable -> Interrupt anabled or disable;
@@ -596,8 +574,7 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, 
     // XOSCEN   clockType -> Use external crystal oscillator (XOSCEN_CRYSTAL) or reference clock (XOSCEN_RCLK);
     // FUNC     defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver.
     // OPMODE   SI473X_ANALOG_AUDIO or SI473X_DIGITAL_AUDIO.
-
-    setPowerUp(this->currentInterruptEnable, 0, 0, clockType, defaultFunction, audioMode);
+    setPowerUp(ctsIntEnable, gpo2Enable, 0, clockType, defaultFunction, audioMode);
 
     if (audioMuteMcuPin >= 0)
         setHardwareAudioMute(true); // If you are using external citcuit to mute the audio, it turns the audio mute
@@ -623,7 +600,7 @@ void SI4735::setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, 
  */
 void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
 {
-    setup(resetPin, -1, defaultFunction, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL);
+    setup(resetPin, 0, defaultFunction, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL,0);
     delay(250);
 }
 
@@ -774,7 +751,7 @@ void SI4735::setAM()
     if (lastMode != AM_CURRENT_MODE)
     {
         powerDown();
-        setPowerUp(this->currentInterruptEnable, 0, 0, this->currentClockType, AM_CURRENT_MODE, currentAudioMode);
+        setPowerUp(this->ctsIntEnable, 0, 0, this->currentClockType, AM_CURRENT_MODE, this->currentAudioMode);
         radioPowerUp();
         setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain to 48
         setVolume(volume);                    // Set to previus configured volume
@@ -795,7 +772,7 @@ void SI4735::setAM()
 void SI4735::setFM()
 {
     powerDown();
-    setPowerUp(this->currentInterruptEnable, 0, 0, this->currentClockType, FM_CURRENT_MODE, currentAudioMode);
+    setPowerUp(this->ctsIntEnable, this->gpo2Enable, 0, this->currentClockType, FM_CURRENT_MODE, this->currentAudioMode);
     radioPowerUp();
     setVolume(volume); // Set to previus configured volume
     currentSsbStatus = 0;
@@ -2064,7 +2041,7 @@ void SI4735::setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t
  * @param RDSNEWBLOCKA If set, generate an interrupt when Block A data is found or subsequently changed
  * @param RDSNEWBLOCKB If set, generate an interrupt when Block B data is found or subsequently changed
  */
-void SI4735::setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t RDSSYNCFOUND, uint8_t RDSSYNCLOST, uint8_t RDSRECV)
+void SI4735::setRdsIntSource(uint8_t RDSRECV, uint8_t RDSSYNCLOST, uint8_t RDSSYNCFOUND, uint8_t RDSNEWBLOCKA, uint8_t RDSNEWBLOCKB)
 {
     si47x_property property;
     si47x_rds_int_source rds_int_source;
@@ -2755,7 +2732,7 @@ void SI4735::setSSB(uint8_t usblsb)
     // powerDown();
     // It starts with the same AM parameters.
     // setPowerUp(1, 1, 0, 1, 1, currentAudioMode);
-    setPowerUp(this->currentInterruptEnable, 0, 0, this->currentClockType, 1, currentAudioMode);
+    setPowerUp(this->ctsIntEnable, 0, 0, this->currentClockType, 1, this->currentAudioMode);
     radioPowerUp();
     // ssbPowerUp(); // Not used for regular operation
     setVolume(volume); // Set to previus configured volume
@@ -2968,7 +2945,7 @@ void SI4735::ssbPowerUp()
     Wire.endTransmission();
     delayMicroseconds(2500);
 
-    powerUp.arg.CTSIEN = this->currentInterruptEnable; // 1 -> Interrupt anabled;
+    powerUp.arg.CTSIEN = this->ctsIntEnable; // 1 -> Interrupt anabled;
     powerUp.arg.GPO2OEN = 0;                           // 1 -> GPO2 Output Enable;
     powerUp.arg.PATCH = 0;                             // 0 -> Boot normally;
     powerUp.arg.XOSCEN = this->currentClockType;       // 1 -> Use external crystal oscillator;
@@ -3312,7 +3289,7 @@ void SI4735::setNBFM()
     // powerDown();
     // It starts with the same AM parameters.
     // setPowerUp(1, 1, 0, 1, 1, currentAudioMode);
-    setPowerUp(this->currentInterruptEnable, 0, 0, this->currentClockType, 0, currentAudioMode);
+    setPowerUp(this->ctsIntEnable, this->gpo2Enable, 0, this->currentClockType, 0, this->currentAudioMode);
     radioPowerUp();
     currentTune = NBFM_TUNE_FREQ; // Force current tune to NBFM commands
     // ssbPowerUp(); // Not used for regular operation

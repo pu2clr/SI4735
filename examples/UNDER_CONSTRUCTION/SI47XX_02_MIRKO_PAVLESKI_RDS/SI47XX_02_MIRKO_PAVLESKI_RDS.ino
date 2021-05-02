@@ -223,6 +223,9 @@ SI4735 rx;
 
 void setup()
 {
+  Serial.begin(9600);
+  while(!Serial);
+  
   // Encoder pins
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
   pinMode(RDS_PIN, INPUT);
@@ -244,7 +247,11 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
   // rx.setI2CFastMode(); // Set I2C bus speed.
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
-  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+  // rx.setup(RESET_PIN, 1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+  // rx.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
+  rx.setup(RESET_PIN, 1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL, 1);
+
+  
   // Set up the radio for the current band (see index table variable bandIdx )
 
   delay(500); 
@@ -304,6 +311,7 @@ void cleanBfoRdsInfo()
 {
   lcd.setCursor(0, 0);
   lcd.print("              ");
+  rx.rdsClearInterrupt();
 }
 
 /*
@@ -358,9 +366,12 @@ void checkRDS()
   stationName = rx.getRdsText0A();
   if (stationName != NULL /* && rx.getEndGroupB()  && (millis() - rdsElapsed) > 10 */)
    {
-        showRDSStation();
-        rdsElapsed = millis();
-        rx.rdsClearInterrupt();
+        if (!rx.getRdsSyncLost() && !rx.getGroupLost()) {
+          showRDSStation();
+          rdsElapsed = millis();
+          rx.rdsClearInterrupt();
+          delay(70);
+        }
     }
 }
 
@@ -580,11 +591,11 @@ void useBand()
     rx.setTuneFrequencyAntennaCapacitor(0);
     rx.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
-    rx.setGpioCtl(0, 1, 0);
-    rx.setGpio(1,1,1);
+    rx.setGpioCtl(0, 1, 0);  // Enables GPIO2
+    rx.setGpio(0,1,0);      // Sets GPIO2 HIGH
     rx.setRdsConfig(1, 2, 2, 2, 2);
-    rx.setFifoCount(1);    
-    rx.setRdsIntSource(1,0,0,0,0);
+    rx.setFifoCount(1);     //    
+    rx.setRdsIntSource(1,0,0,0,0); // Trigger an interrupt when the receiver gets RDS.
     bfoOn = ssbLoaded = false;
   }
   else
@@ -1000,9 +1011,11 @@ void loop()
   {
      if (digitalRead(RDS_PIN) == LOW) {  
       cleanBfoRdsInfo();
+      Serial.println("LOW - NO RDS");
       }  
     else
     {
+      Serial.println("HIGH - RDS");
       checkRDS();
     }
   }

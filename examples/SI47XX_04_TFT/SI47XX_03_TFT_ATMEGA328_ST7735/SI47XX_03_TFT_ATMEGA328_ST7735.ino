@@ -274,7 +274,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   // rx.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
-  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+  rx.setup(RESET_PIN, 0, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
  
   useBand();
   rx.setVolume(volume);

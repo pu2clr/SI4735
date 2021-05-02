@@ -1018,20 +1018,6 @@ typedef struct
     uint16_t DOSR;                   // Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
 } si4735_digital_output_sample_rate; // Maybe not necessary
 
-volatile static bool data_from_si4735; /** @ingroup group04 store the interrupt status */
-
-/**
- * @brief Interrupt Function
- * 
- * @details this function just set the volatile static bool data_from_si4735 to true;
- * 
- * If you are using interrupt feature, this function will be called by the system, not by you. 
- */
-__attribute__((used))
-static void interrupt_hundler() 
-{
-    data_from_si4735 = true;
-};
 
 /********************************************************************** 
  * SI4735 Class definition
@@ -1072,7 +1058,6 @@ protected:
 
     uint8_t lastTextFlagAB;
     uint8_t resetPin;     //!<  pin used on Arduino Board to RESET the Si47XX device
-    uint8_t interruptPin; //!<  pin used on Arduino Board to control interrupt. If -1, interrupt is no used.
 
     uint8_t currentTune; //!<  tell the current tune (FM, AM or SSB)
 
@@ -1086,7 +1071,8 @@ protected:
 
     uint8_t currentAvcAmMaxGain = 48;          //!<  Stores the current Automatic Volume Control Gain for AM. Default value is 48.
     uint8_t currentClockType = XOSCEN_CRYSTAL; //!< Stores the current clock type used (Crystal or REF CLOCK)
-    uint8_t currentInterruptEnable = 0;        //!< If you are using interrupt, this variable stores 1.
+    uint8_t ctsIntEnable = 0;
+    uint8_t gpo2Enable = 0;
 
     uint16_t refClock = 31768;     //!< Frequency of Reference Clock in Hz.
     uint16_t refClockPrescale = 1; //!< Prescaler for Reference Clock (divider).
@@ -1137,7 +1123,7 @@ public:
     void setGpioIen(uint8_t STCIEN, uint8_t RSQIEN, uint8_t ERRIEN, uint8_t CTSIEN, uint8_t STCREP, uint8_t RSQREP);
 
     void setup(uint8_t resetPin, uint8_t defaultFunction);
-    void setup(uint8_t resetPin, int interruptPin, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO, uint8_t clockType = XOSCEN_CRYSTAL);
+    void setup(uint8_t resetPin, uint8_t ctsIntEnable, uint8_t defaultFunction, uint8_t audioMode = SI473X_ANALOG_AUDIO, uint8_t clockType = XOSCEN_CRYSTAL, uint8_t gpo2Enable = 0);
 
     void setRefClock(uint16_t refclk);
     void setRefClockPrescaler(uint16_t prescale, uint8_t rclk_sel = 0);
@@ -2146,7 +2132,7 @@ public:
     void setFmStereoOff();
 
     void RdsInit();
-    void setRdsIntSource(uint8_t RDSNEWBLOCKB, uint8_t RDSNEWBLOCKA, uint8_t RDSSYNCFOUND, uint8_t RDSSYNCLOST, uint8_t RDSRECV);
+    void setRdsIntSource(uint8_t RDSRECV, uint8_t RDSSYNCLOST, uint8_t RDSSYNCFOUND, uint8_t RDSNEWBLOCKA, uint8_t RDSNEWBLOCKB);
     void getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY);
 
     /**

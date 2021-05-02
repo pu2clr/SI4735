@@ -260,9 +260,9 @@ void setup()
 
   rx.setRefClock(32768);
   rx.setRefClockPrescaler(1); // will work with 32768
-  // rx.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);
-  // rx.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_DIGITAL_AUDIO1, XOSCEN_RCLK);
-  rx.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
+  // rx.setup(RESET_PIN, 0, POWER_UP_FM, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);
+  // rx.setup(RESET_PIN, 0, POWER_UP_FM, SI473X_DIGITAL_AUDIO1, XOSCEN_RCLK);
+  rx.setup(RESET_PIN, 0, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
   delay(500); 
 
   // Checking the EEPROM content
@@ -287,8 +287,6 @@ void setup()
   {
     volume = 40; // default volume 
   }
-
-
   
   useBand();
   rx.setVolume(volume);

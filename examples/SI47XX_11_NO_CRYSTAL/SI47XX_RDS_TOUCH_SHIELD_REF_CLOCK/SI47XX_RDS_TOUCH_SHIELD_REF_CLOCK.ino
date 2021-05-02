@@ -284,9 +284,9 @@ void setup(void)
    si4735.setRefClock(32500);
    si4735.setRefClockPrescaler(400);   //   will work with 13000000 => 13Mhz 
 
-  si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
+  si4735.setup(RESET_PIN, 0, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
 
-  // si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL);
+  // si4735.setup(RESET_PIN, 0, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL);
 
   // Set up the radio for the current band (see index table variable bandIdx )
   delay(100);

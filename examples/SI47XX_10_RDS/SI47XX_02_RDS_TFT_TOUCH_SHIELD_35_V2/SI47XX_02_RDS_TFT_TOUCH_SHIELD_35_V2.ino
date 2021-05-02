@@ -399,7 +399,7 @@ void setup(void)
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   si4735.setup(RESET_PIN, 1);
-  // si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL);
+  // si4735.setup(RESET_PIN, 0, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL);
 
   // Set up the radio for the current band (see index table variable bandIdx )
   delay(100);
@@ -1080,7 +1080,7 @@ void showRDSMsg()
   if (strcmp(bufferRdsMsg, rdsMsg) == 0)
     return;
   printText(STATUS_DISPLAY_COL_OFFSET + 5, STATUS_DISPLAY_LIN_OFFSET + 20, 1, bufferRdsMsg, rdsMsg, GREEN, 6);
-  delay(250);
+  delay(100);
 }
 
 void showRDSStation()
@@ -1096,7 +1096,7 @@ void showRDSTime()
   if (strcmp(bufferRdsTime, rdsTime) == 0)
     return;
   printText(STATUS_DISPLAY_COL_OFFSET + 150, STATUS_DISPLAY_LIN_OFFSET + 5, 1, bufferRdsTime, rdsTime, GREEN, 6);
-  delay(250);
+  delay(100);
 }
 
 void checkRDS()

@@ -274,7 +274,7 @@ void setup(void)
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   si4735.setup(RESET_PIN, 1);
-  // si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL);
+  // si4735.setup(RESET_PIN, 0, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL);
 
   // Set up the radio for the current band (see index table variable bandIdx )
   delay(100);
