@@ -1,7 +1,7 @@
 /*
   Under development...
-  
-  This sketch is an example of using the RDS functions impplemented byte the Si4735 Library for Arduino. 
+
+  This sketch is an example of using the RDS functions impplemented byte the Si4735 Library for Arduino.
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
@@ -12,18 +12,21 @@
 #include <SI4735.h>
 
 #define INTERRUPT_PIN 2
-#define RESET_PIN 12
+#define RESET_PIN 9
 
 #define FM_FUNCTION 0
-
 #define ELAPSED_TIME 400
+
+#define GPIO2_PIN 16 // Arduino PIN A2 is connected to the SI473X GPIO2
+#define SI473X_INTERRUPT_ENABLE 1
+#define GPIO2_ENABLE 1
 
 long rdsElapsedTime = millis();
 
 const unsigned min_fm = 8400;
 const unsigned max_fm = 10900;
 
-// Setup some local FM Stations with RDS service
+// Sets some local FM Stations with RDS service
 uint16_t rdsStations[] = {10390, 9550, 9290, 8090, 9130, 9070, 9910, 10230, 10430, 10570, 10650};
 const int maxStations = (sizeof rdsStations / sizeof(uint16_t)) - 1;
 int currentStation = 0;
@@ -32,53 +35,56 @@ bool showRdsStatus = true;
 
 unsigned fm_freq;
 
-// UE
-/*
-  char *
-    tabProgramType[] = {
-        "No program definition type", "News", "Current affairs", "Information", "Sport", "Education", "Drama",
-        "Culture", "Science", "Variable", "Popular Music (Pop)", "Rock Music", "Easy Listening", "Light Classical",
-        "Serious Classical", "Other Music", "Weather", "Finance", "Children’s Programs", "Social Affairs", "Religion",
-        "Phone-in Talk", "Travel", "Leisure", "Jazz Music", "Country Music", "National Music", "Oldies Music",
-        "Folk Music", "Documentary", "Alarm Test", "Alarm"};
+SI4735 rx;
 
-  // USA - comment above and uncomment below if you are using USA
-  char * tabProgramType[] = {
-  "No program definition type", "News", "Information", "Sport", "Talk", "Rock", "Classic Rock",
-  "Adult Hits", "Soft Rock", "Top 40", "Country Music", "Oldies Music", "Soft Music", "Nostalgia",
-  "Jazz", "Classical", "Rhythm & Blues Music", "Soft Rhythm & Blues Music", "Language", "Religious Music", "Religious Talk",
-  "Personality", "Public", "College", "Not assigned", "Not assigned", "Not assigned", "Not assigned",
-  "Not assigned", "Weather", "Emergency Test", "Emergency"
-  };
-*/
-
-SI4735 si4735;
 char *rdsMsg2A;
 char *rdsMsg2B;
 char *stationInfo;
 char *rdsTime;
+
+volatile bool rdsEvent =  false;
+
+
 void setup()
 {
+
+  pinMode(GPIO2_PIN, INPUT);
+  
   Serial.begin(9600);
   Serial.println("SI4735 Arduino Library.");
   Serial.println("FM SDR test.");
 
+
+  rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
+
   delay(500);
 
-  si4735.setup(RESET_PIN, INTERRUPT_PIN, FM_FUNCTION);
-  
-  si4735.setVolume(45);
+  // Starts the SI473X with INTERRUPT ENABLE abd GPIO2 ENABLE
+  rx.setup(RESET_PIN, SI473X_INTERRUPT_ENABLE, FM_FUNCTION, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL, GPIO2_ENABLE);
+
+  rx.setVolume(45);
 
   delay(500);
 
   fm_freq = rdsStations[currentStation];
 
-  si4735.setFrequency(fm_freq);
+  rx.setFrequency(fm_freq);
   delay(100);
   showHelp();
   showCurrenteStatus();
-  si4735.setRdsConfig(1, 2, 2, 2, 2);
+
+  rx.setGpioCtl(0, 1, 0);  // Enables GPIO2
+  rx.setGpio(0, 1, 0);    // Sets GPIO2 HIGH
+  rx.setRdsConfig(1, 2, 2, 2, 2);
+  rx.setFifoCount(1);     //
+  rx.setRdsIntSource(1, 0, 0, 0, 0); // Trigger an interrupt when the receiver gets RDS.
+
+  Serial.println("FM SDR STARTED.");
+
 }
+
+
+
 
 void showHelp()
 {
@@ -95,62 +101,62 @@ void showHelp()
 void showCurrenteStatus()
 {
   delay(250);
-  fm_freq = si4735.getFrequency();
+  fm_freq = rx.getFrequency();
   Serial.print("You are tuned on ");
   Serial.print(String(fm_freq / 100.0, 2));
   Serial.print(" MHz");
   Serial.print(" [SNR:");
-  Serial.print(si4735.getCurrentSNR());
+  Serial.print(rx.getCurrentSNR());
   Serial.print("dB");
   Serial.print(" Signal:");
-  Serial.print(si4735.getCurrentRSSI());
+  Serial.print(rx.getCurrentRSSI());
   Serial.println("dBuV]");
   Serial.println("================================");
 }
 
 void showCurrenteRdsStatus() {
   Serial.print("Sync Lost...: ");
-  Serial.println(si4735.getRdsSyncLost());
+  Serial.println(rx.getRdsSyncLost());
 
   Serial.print("Sync Found..: ");
-  Serial.println(si4735.getRdsSyncFound());
+  Serial.println(rx.getRdsSyncFound());
 
   Serial.print("Synchronized: ");
-  Serial.println(si4735.getRdsSync());
+  Serial.println(rx.getRdsSync());
 
   Serial.print("Groups Lost.: ");
-  Serial.println(si4735.getGroupLost());
+  Serial.println(rx.getGroupLost());
 
   Serial.print("FIFO Used...: ");
-  Serial.println(si4735.getNumRdsFifoUsed());
+  Serial.println(rx.getNumRdsFifoUsed());
 
   Serial.print("New Block A.: ");
-  Serial.println(si4735.getRdsNewBlockA());
+  Serial.println(rx.getRdsNewBlockA());
 
   Serial.print("New Block B.: ");
-  Serial.println(si4735.getRdsNewBlockB());
+  Serial.println(rx.getRdsNewBlockB());
 
   Serial.print("PI..........: ");
-  Serial.println(si4735.getRdsPI());
+  Serial.println(rx.getRdsPI());
 
   Serial.print("Version......: ");
-  Serial.println(si4735.getRdsVersionCode());
+  Serial.println(rx.getRdsVersionCode());
 
   Serial.print("Flag A/B.....: ");
-  Serial.println(si4735.getRdsFlagAB());
+  Serial.println(rx.getRdsFlagAB());
 
-  int i = si4735.getRdsProgramType();
+  int i = rx.getRdsProgramType();
   Serial.print("Program Type.: ");
   Serial.print(i);
 
   Serial.print("\nGroup Type...: ");
-  Serial.println(si4735.getRdsGroupType());
+  Serial.println(rx.getRdsGroupType());
 }
 
 
 void showRdsText()
 {
-  si4735.getRdsStatus();
+  rx.getRdsStatus();
   // TO DO
 }
 //
@@ -161,32 +167,32 @@ void loop()
     char key = Serial.read();
     if (key == 'S')
     {
-      si4735.seekStationUp(); // Look for the next station FM
+      rx.seekStationUp(); // Look for the next station FM
       showCurrenteStatus();
     }
     else if (key == 's')
     {
-      si4735.seekStationDown(); //Look for the previous station FM
+      rx.seekStationDown(); //Look for the previous station FM
       showCurrenteStatus();
     }
     else if (key == '+')
     {
-      si4735.volumeUp();
+      rx.volumeUp();
     }
     else if (key == '-')
     {
-      si4735.volumeDown();
+      rx.volumeDown();
     }
     else if (key == '>' || key == '.')
     {
       fm_freq += 10;
-      si4735.setFrequency(fm_freq);
+      rx.setFrequency(fm_freq);
       showCurrenteStatus();
     }
     else if (key == '<' || key == ',')
     {
       fm_freq -= 10;
-      si4735.setFrequency(fm_freq);
+      rx.setFrequency(fm_freq);
       showCurrenteStatus();
     } else if (key == 'r' || key == 'R')
     { // Goes to the next RDS Station that you configured in the table rdsStations
@@ -194,7 +200,7 @@ void loop()
       if (currentStation > maxStations )
         currentStation = 0;
       fm_freq = rdsStations[currentStation];
-      si4735.setFrequency(fm_freq);
+      rx.setFrequency(fm_freq);
       delay(250);
       showCurrenteStatus();
     } else if ( key == 'M' || key == 'm' ) {
@@ -206,44 +212,47 @@ void loop()
     }
   }
 
-  si4735.getRdsStatus(); // It needs to be called before any other RDS call function
 
-  // Checks the RDS information each ELAPSED_TIME seconds
-  // if ((millis() - rdsElapsedTime) > ELAPSED_TIME  && showRdsStatus )
-  if ( si4735.getRdsReceived() )
-  {
-    si4735.getRdsStatus(); // It needs to be called before any other RDS call function
+  if ( digitalRead(GPIO2_PIN) == HIGH ) {
+     rx.getRdsStatus();
+    // Checks the RDS information each ELAPSED_TIME seconds
+    // if ((millis() - rdsElapsedTime) > ELAPSED_TIME  && showRdsStatus )
+    if ( rx.getRdsReceived() )
+    {
+      rx.getRdsStatus(); // It needs to be called before any other RDS call function
 
-    rdsMsg2A = si4735.getRdsText2A();
-    rdsMsg2B = si4735.getRdsText2B();
-    stationInfo = si4735.getRdsText0A();
-    rdsTime = si4735.getRdsTime();
+      rdsMsg2A = rx.getRdsText2A();
+      rdsMsg2B = rx.getRdsText2B();
+      stationInfo = rx.getRdsText0A();
+      rdsTime = rx.getRdsTime();
 
-    if ( stationInfo != NULL ) {
-      Serial.print("\nTipo 0A.....: ");
-      Serial.print(stationInfo);
+      if ( stationInfo != NULL ) {
+        Serial.print("\nTipo 0A.....: ");
+        Serial.print(stationInfo);
+      }
+
+      if ( rdsMsg2A != NULL ) {
+        Serial.print("\nTipo 2A.....: ");
+        Serial.print(rdsMsg2A);
+      }
+
+      if ( rdsMsg2B != NULL ) {
+        Serial.print("\nTipo 2B.....: ");
+        Serial.print(rdsMsg2B);
+      }
+
+      if ( rdsTime  != NULL ) {
+        Serial.print("\nTime........: ");
+        Serial.print(rdsTime);
+      }
+
+      Serial.println("\n***********");
+      delay(100);
+
+      rdsElapsedTime = millis();
     }
-
-    if ( rdsMsg2A != NULL ) {
-      Serial.print("\nTipo 2A.....: ");
-      Serial.print(rdsMsg2A);
-    }
-
-    if ( rdsMsg2B != NULL ) {
-      Serial.print("\nTipo 2B.....: ");
-      Serial.print(rdsMsg2B);
-    }
-
-    if ( rdsTime  != NULL ) {
-      Serial.print("\nTime........: ");
-      Serial.print(rdsTime);
-    }
-
-    Serial.println("\n***********");
     delay(100);
-
-    rdsElapsedTime = millis();
   }
 
-  delay(20);
+  delay(5);
 }
