@@ -11,13 +11,12 @@
 
 #include <SI4735.h>
 
-#define INTERRUPT_PIN 2
-#define RESET_PIN 9
+#define RESET_PIN 12
 
 #define FM_FUNCTION 0
 #define ELAPSED_TIME 400
 
-#define GPIO2_PIN 16 // Arduino PIN A2 is connected to the SI473X GPIO2
+#define GPIO2_PIN 2 // Arduino PIN A2 is connected to the SI473X GPIO2
 #define SI473X_INTERRUPT_ENABLE 1
 #define GPIO2_ENABLE 1
 
@@ -27,7 +26,7 @@ const unsigned min_fm = 8400;
 const unsigned max_fm = 10900;
 
 // Sets some local FM Stations with RDS service
-uint16_t rdsStations[] = {10390, 9550, 9290, 8090, 9130, 9070, 9910, 10230, 10430, 10570, 10650};
+uint16_t rdsStations[] = {10650, 10570, 9290, 9390, 9130, 9070, 9910, 10230, 9670, 9550, 10390};
 const int maxStations = (sizeof rdsStations / sizeof(uint16_t)) - 1;
 int currentStation = 0;
 
@@ -54,6 +53,7 @@ void setup()
   Serial.println("SI4735 Arduino Library.");
   Serial.println("FM SDR test.");
 
+  attachInterrupt(digitalPinToInterrupt(GPIO2_PIN), gpio2Process, RISING);
 
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
@@ -73,16 +73,27 @@ void setup()
   showHelp();
   showCurrenteStatus();
 
-  rx.setGpioCtl(0, 1, 0);  // Enables GPIO2
-  rx.setGpio(0, 1, 0);    // Sets GPIO2 HIGH
-  rx.setRdsConfig(1, 2, 2, 2, 2);
+  rx.setGpioCtl(0, 1, 0);         // Enables GPIO2
+  rx.setGpio(0, 0, 0);            // Sets GPIO2 HIGH
+  rx.setRdsConfig(1, 2, 2, 2, 2); 
   rx.setFifoCount(1);     //
+
+  // RDSRECV If set, generate RDSINT when RDS FIFO has at least FM_RDS_INT_FIFO_COUNT entries.
+  // RDSSYNCLOST If set, generate RDSINT when RDS loses synchronization.
+  // RDSSYNCFOUND set, generate RDSINT when RDS gains synchronization.
+  // RDSNEWBLOCKA If set, generate an interrupt when Block A data is found or subsequently changed
+  // RDSNEWBLOCKB If set, generate an interrupt when Block B data is found or subsequently changed
   rx.setRdsIntSource(1, 0, 0, 0, 0); // Trigger an interrupt when the receiver gets RDS.
 
   Serial.println("FM SDR STARTED.");
 
 }
 
+
+void gpio2Process() {
+  rx.getRdsStatus();
+  rdsEvent = rx.getRdsSyncFound(); // True if RDS sync 
+}
 
 
 
@@ -213,13 +224,9 @@ void loop()
   }
 
 
-  if ( digitalRead(GPIO2_PIN) == HIGH ) {
-     rx.getRdsStatus();
+  if ( rdsEvent ) {
     // Checks the RDS information each ELAPSED_TIME seconds
     // if ((millis() - rdsElapsedTime) > ELAPSED_TIME  && showRdsStatus )
-    if ( rx.getRdsReceived() )
-    {
-      rx.getRdsStatus(); // It needs to be called before any other RDS call function
 
       rdsMsg2A = rx.getRdsText2A();
       rdsMsg2B = rx.getRdsText2B();
@@ -246,12 +253,6 @@ void loop()
         Serial.print(rdsTime);
       }
 
-      Serial.println("\n***********");
-      delay(100);
-
-      rdsElapsedTime = millis();
-    }
-    delay(100);
   }
 
   delay(5);
