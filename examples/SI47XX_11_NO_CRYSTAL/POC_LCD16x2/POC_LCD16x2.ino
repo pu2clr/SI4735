@@ -241,7 +241,7 @@ void setup()
   lcd.setCursor(0, 1);
   lcd.print("By RICARDO/2020");
 
-  // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
+  // If you want to reset the eeprom, keep the ENCODER_PUSH_BUTTON button pressed during statup
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
     EEPROM.write(eeprom_address, 0);

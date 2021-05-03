@@ -227,7 +227,7 @@ void setup()
   oled.setCursor(38, 3);
   oled.print("Receiver");
 
- // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
+  // If you want to reset the eeprom, keep the ENCODER_PUSH_BUTTON (BFO_SWITCH) button pressed during statup
   if (digitalRead(BFO_SWITCH) == LOW)
   {
     oled.clear();    

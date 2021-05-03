@@ -77,7 +77,7 @@ void setup()
   } else
     oled.print("SI473X found");
   delay(2000);
-  // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
+  // If you want to reset the eeprom, keep the ENCODER_PUSH_BUTTON (BFO_SWITCH) button pressed during statup
   if (digitalRead(VOLUME_UP) == LOW)
   {
     cleanDisplay();
