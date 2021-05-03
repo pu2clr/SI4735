@@ -446,8 +446,7 @@ void setup() {
   // If you want to reset the eeprom, keep the  button pressed during statup
   if (digitalRead(GIVEN_BUTTON) == LOW)
   {
-    oled.clear();
-    EEPROM.write(eeprom_address, 0);
+    EEPROM.write(eeprom_address, 0); // Changes the application ID. It invalidates all stotred information. 
     delay(2000);
   }
 
@@ -495,7 +494,10 @@ void readAllReceiverInformation()
 
 
 void loop() {
-
+  .
+  .
+  .
+  // Monitor your data and set statusChanged variable to true if any useful data has changed. 
   .
   .
   .
