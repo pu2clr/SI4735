@@ -59,3 +59,7 @@ To control the VFO and BFO, you can use the encoder push button on SSB mode. The
 
 On FM or AM modes press the encoder push button.
 The direction of the seek up or seek down will  depend on the last rotating movement of the encoder, clockwise and counterclockwise respectively.
+
+9) RESET EEPROM
+
+Turn your receiver on with the encoder push button pressed.    
