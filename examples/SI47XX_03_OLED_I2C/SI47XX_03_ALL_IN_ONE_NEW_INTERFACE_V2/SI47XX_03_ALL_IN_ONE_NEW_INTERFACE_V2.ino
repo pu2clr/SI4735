@@ -12,7 +12,7 @@
   ATMEL says the lifetime of an EEPROM memory position is about 100,000 writes.  
   For this reason, this sketch tries to avoid save unnecessary writes into the eeprom. 
   So, the condition to store any status of the receiver is changing the frequency,  bandwidth, volume, band or step  and 10 seconds of inactivity. 
-  For example, if you switch the band and turn the receiver off immediately, no news information will be written into the eeprom.  
+  For example, if you switch the band and turn the receiver off immediately, no new information will be written into the eeprom.  
   But you wait 10 seconds after changing anything, all new information will be written. 
 
   ABOUT SSB PATCH:  
@@ -29,12 +29,37 @@
   the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
   Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
 
-  ATTENTION: The author of this project does not guarantee that procedures shown here will work in your development environment.
-  Given this, it is at your own risk to continue with the procedures suggested here.
-  This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
-  Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
+  Wire up on Arduino UNO, Pro mini and SI4735-D60
 
-  Features of this sketch:
+  | Device name               | Device Pin / Description      |  Arduino Pin  |
+  | ----------------          | ----------------------------- | ------------  |
+  | Display OLED              |                               |               |
+  |                           | SDA                           |     A4        |
+  |                           | CLK                           |     A5        |
+  |     (*1) SI4735           |                               |               |
+  |                           | RESET (pin 15)                |     12        |
+  |                           | SDIO (pin 18)                 |     A4        |
+  |                           | SCLK (pin 17)                 |     A5        |
+  |                           | SEN (pin 16)                  |    GND        | 
+  |     (*2) Buttons          |                               |               |
+  |                           | Switch MODE (AM/LSB/AM)       |      4        |
+  |                           | Banddwith                     |      5        |
+  |                           | Volume                        |      6        |
+  |                           | Custom button 1 (*3)          |      7        |
+  |                           | Band                          |      8        |
+  |                           | Custom button 2 (*3)          |      9        |
+  |                           | Step                          |     10        |
+  |                           | AGC / Attentuation            |     11        |
+  |                           | VFO/VFO Switch (Encoder)      |     14 / A0   |
+  |    Encoder (*4)           |                               |               |
+  |                           | A                             |       2       |
+  |                           | B                             |       3       |
+
+  *1 - You can use the SI4732-A10. Check on the SI4732 package the pins: RESET, SDIO, SCLK and SEN.
+  *2 - Please, read the file user_manual.txt for more detail. 
+  *3 - You can remove this buttons from your circuit and sketch if you dont want to use them.
+  *4 - Some encoder devices have pins A and B inverted. So, if the clockwise and counterclockwise directions 
+       are not correct for you, please, invert the settings for pins A and B. 
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
@@ -42,8 +67,6 @@
   By Ricardo Lima Caratti, April  2021.
 */
 
-// #define SSD1306    0x3D  // The OLED bus address for this KIt is 0x3D
- 
 #include <SI4735.h>
 #include <EEPROM.h>
 #include <Tiny4kOLED.h>
@@ -65,21 +88,20 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 
 #define RESET_PIN 12
 
-// Enconder PINs
+// Enconder PINs - if the clockwise and counterclockwise directions are not correct for you, please, invert this settings.
 #define ENCODER_PIN_A 2
 #define ENCODER_PIN_B 3
 
 // Buttons controllers
 #define MODE_SWITCH 4      // Switch MODE (Am/LSB/USB)
-#define BANDWIDTH_BUTTON 5 // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz
-#define VOL_UP 6           // Volume Up
-#define VOL_DOWN 7         // Volume Down
-#define BAND_BUTTON_UP 8   // Next band
-#define BAND_BUTTON_DOWN 9 // Previous band
-#define AGC_SWITCH 11      // Switch AGC ON/OF
-#define STEP_SWITCH 10     // Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
-// #define BFO_SWITCH 13      // Used to select the enconder control (BFO or VFO)
-#define BFO_SWITCH 14      // Used to select the enconder control (BFO or VFO)
+#define BANDWIDTH_BUTTON 5 // Used to select the banddwith. 
+#define VOLUME_BUTTON 6    // Volume Up
+#define FREE_BUTTON1 7     // **** Use thi button to implement a new function 
+#define BAND_BUTTON 8      // Next band
+#define FREE_BUTTON2 9     // **** Use thi button to implement a new function
+#define AGC_BUTTON 11      // Switch AGC ON/OF
+#define STEP_BUTTON 10     // Used to select the increment or decrement frequency step (see tabStep)
+#define ENCODER_BUTTON 14  // Used to select the enconder control (BFO or VFO) and SEEK function on AM and FM modes
 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
@@ -247,13 +269,13 @@ void setup()
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
   pinMode(BANDWIDTH_BUTTON, INPUT_PULLUP);
-  pinMode(BAND_BUTTON_UP, INPUT_PULLUP);
-  pinMode(BAND_BUTTON_DOWN, INPUT_PULLUP);
-  pinMode(VOL_UP, INPUT_PULLUP);
-  pinMode(VOL_DOWN, INPUT_PULLUP);
-  pinMode(BFO_SWITCH, INPUT_PULLUP);
-  pinMode(AGC_SWITCH, INPUT_PULLUP);
-  pinMode(STEP_SWITCH, INPUT_PULLUP);
+  pinMode(BAND_BUTTON, INPUT_PULLUP);
+  pinMode(FREE_BUTTON2, INPUT_PULLUP);
+  pinMode(VOLUME_BUTTON, INPUT_PULLUP);
+  pinMode(FREE_BUTTON1, INPUT_PULLUP);
+  pinMode(ENCODER_BUTTON, INPUT_PULLUP);
+  pinMode(AGC_BUTTON, INPUT_PULLUP);
+  pinMode(STEP_BUTTON, INPUT_PULLUP);
   pinMode(MODE_SWITCH, INPUT_PULLUP);
 
   oled.begin();
@@ -276,7 +298,7 @@ void setup()
   // end Splash
 
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
-  if (digitalRead(BFO_SWITCH) == LOW)
+  if (digitalRead(ENCODER_BUTTON) == LOW)
   {
     oled.clear();
     EEPROM.write(eeprom_address, 0);
@@ -332,9 +354,9 @@ void rotaryEncoder()
 }
 
 /*
-   writes the conrrent receiver information nto the eeprom. 
+   writes the conrrent receiver information into the eeprom.
+   The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
 */
-
 void saveAllReceiverInformation()
 {
   int addr_offset;
@@ -446,7 +468,9 @@ void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot)
   }
 }
 
-// Show current frequency
+/**
+  Show current frequency
+*/
 void showFrequency()
 {
   char *unit;
@@ -490,16 +514,16 @@ void showFrequencySeek(uint16_t freq)
 
 /**
    Checks the stop seeking criterias.
-   Returns true if the user press the touch or rotates the encoder.
+   Returns true if the user press the touch or rotates the encoder during the seek process.
 */
 bool checkStopSeeking()
 {
   // Checks the touch and encoder
-  return (bool)encoderCount || (digitalRead(BFO_SWITCH) == LOW); // returns true if the user rotates the encoder or press the push button
+  return (bool)encoderCount || (digitalRead(ENCODER_BUTTON) == LOW); // returns true if the user rotates the encoder or press the push button
 }
 
-/*
-    Show some basic information on display
+/**
+    Shows some basic information on display
 */
 void showStatus()
 {
@@ -512,7 +536,7 @@ void showStatus()
   showVolume();
 }
 
-/*
+/**
  * Shows band information
  */
 void showBandDesc()
@@ -1037,29 +1061,29 @@ void loop()
       disableCommand(&cmdBw, cmdBw, showBandwitdth);
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(BAND_BUTTON_UP) == LOW)
+    else if (digitalRead(BAND_BUTTON) == LOW)
     {
       cmdBand = !cmdBand;
       disableCommand(&cmdBand, cmdBand, showBandDesc);
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(BAND_BUTTON_DOWN) == LOW)
+    else if (digitalRead(FREE_BUTTON2) == LOW)
     {
       // available to add other function
       showStatus();
     }
-    else if (digitalRead(VOL_UP) == LOW)
+    else if (digitalRead(VOLUME_BUTTON) == LOW)
     {
       cmdVolume = !cmdVolume;
       disableCommand(&cmdVolume, cmdVolume, showVolume);
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(VOL_DOWN) == LOW)
+    else if (digitalRead(FREE_BUTTON1) == LOW)
     {
       // available to add other function
       showStatus();
     }
-    else if (digitalRead(BFO_SWITCH) == LOW)
+    else if (digitalRead(ENCODER_BUTTON) == LOW)
     {
       if (currentMode == LSB || currentMode == USB)
       {
@@ -1093,13 +1117,13 @@ void loop()
       }
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(AGC_SWITCH) == LOW)
+    else if (digitalRead(AGC_BUTTON) == LOW)
     {
       cmdAgcAtt = !cmdAgcAtt;
       disableCommand(&cmdAgcAtt, cmdAgcAtt, showAgcAtt);
       delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(STEP_SWITCH) == LOW)
+    else if (digitalRead(STEP_BUTTON) == LOW)
     {
       if (currentMode != FM)
       {
