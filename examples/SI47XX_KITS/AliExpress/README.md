@@ -30,6 +30,8 @@ The steps below will guide you to update the firmware of the KIT
 DO NOT TRY IT IF YOU DON'T KNOW WHAT ARE YOU DOING.
 
 Be sure you are using the last version of the Arduino IDE
+Read the comments of the sketch before uploading. 
+
 
 ## Step 1
 
