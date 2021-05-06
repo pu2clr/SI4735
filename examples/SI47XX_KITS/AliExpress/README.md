@@ -41,7 +41,9 @@ The photos below show the KIT sold on Aliexpress and eBay.
 * New FM band from 64 to 84 MHz
 * New MW band from 531 to 1701 kHz for Europe, Africa and Asia
 * The frequency on Display is bigger than the previous version
-* Now the bandwidth sequence is ordered by bandwidth values.
+* Now the bandwidth sequence is ordered by bandwidth values
+* After about 4 seconds, all command buttons are all disabled and the encoder control goes back to the frequency
+* The current status of the receiver will be stored only after 10 seconds of inactivity
 
 
 The steps below will guide you to update the firmware of the KIT
@@ -144,4 +146,50 @@ Finally, run the upload.
 
 
 ![Firmware Update 12](./images/OLED02.png)
+
+
+
+# User Manual 
+
+
+## COMMANDS
+
+Follow the instruction to operate with the receiver. 
+
+###  DEALING WITH AUDIO VOLUME
+
+Press the VOL push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+
+### SELECTING THE BAND
+
+Press the BAND push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+
+### DEALING WITH AGC AND ATTENUATION
+
+Press the AGC push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+
+### SELECTING BANDWIDTH
+
+Press the BW  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+
+### SWITCHING THE STEP FREQUENCY
+
+Press the STEP  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+
+### SWITCHING THE MODE AM, LSB AND USB
+
+On AM mode press MODE push button to switch to LSB mode; press MODE push button again to switch to USB mode; and finally press MODE push button again to switch AM mode.
+
+### VFO/BFO Switch
+
+To control the VFO and BFO, you can use the encoder push button on SSB mode. The display will show you if you are using VFO or BFO.
+
+### SEEK COMMAND
+
+On FM or AM modes press the encoder push button.
+The direction of the seek up or seek down will  depend on the last rotating movement of the encoder, clockwise and counterclockwise respectively.
+
+### RESET EEPROM
+
+__Turn your receiver on with the encoder push button pressed__.    
 
