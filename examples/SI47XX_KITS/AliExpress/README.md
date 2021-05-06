@@ -26,6 +26,8 @@ The photos below show the KIT sold on Aliexpress and eBay.
 
 # Firmware Update via Desktop Arduino IDE
 
+## New features
+
 * The final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features)
 * Band, Volume, Step, Bandwidth AGC/Attenuation are now controlled by encoder
 * __"Band -:  and "Vol -"__ buttons are free to implement new features. They have no function for while.  
