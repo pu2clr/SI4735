@@ -50,16 +50,17 @@ Check the version installed
 
 ![Firmware Update 03](./images/p03.png)
 
+
 ## Step 4
 
 Install the Libraries Tiny4kOLED and TinyOLED-Fonts libraries. Use the same approach shown before. 
 
 
-[Firmware Update 04](./images/p04.png)
+![Firmware Update 04](./images/p04.png)
 
 
 
-[Firmware Update 05](./images/p05.png)
+![Firmware Update 05](./images/p05.png)
 
 
 
@@ -68,7 +69,7 @@ Install the Libraries Tiny4kOLED and TinyOLED-Fonts libraries. Use the same appr
 Go to File Menu, Examples item  and look for the firmware
 
 
-[Firmware Update 06](./images/p06.png)
+![Firmware Update 06](./images/p06.png)
 
 
 
@@ -77,7 +78,7 @@ Go to File Menu, Examples item  and look for the firmware
 Check the sketch you have just loaded from PU2CLR_SI4735 Examples folder
 
 
-[Firmware Update 07](./images/p07.png)
+![Firmware Update 07](./images/p07.png)
 
 
 ## Step 7
@@ -85,7 +86,7 @@ Check the sketch you have just loaded from PU2CLR_SI4735 Examples folder
 Select the right Arduino Board.  On Tools Menu, select Arduino AVR Boards and Arduino Nano. 
 
 
-[Firmware Update 08](./images/p08.png)
+![Firmware Update 08](./images/p08.png)
 
 
 
@@ -94,21 +95,21 @@ Select the right Arduino Board.  On Tools Menu, select Arduino AVR Boards and Ar
 Select the right Processor. On Tools menu, select “Processor:” 
 
 
-[Firmware Update 09](./images/p09.png)
+![Firmware Update 09](./images/p09.png)
 
 
 ## Setup 9
 
 Connect your Receiver (Arduino device) to your computer and select the right COM port. The COM number will depend on your computer setup.
 
-[Firmware Update 10](./images/p10.png)
+![Firmware Update 10](./images/p10.png)
 
 
 ## Step 10
 
 Finally, run the upload. 
 
-[Firmware Update 11](./images/p11.png)
+![Firmware Update 11](./images/p11.png)
 
 
 
