@@ -609,7 +609,7 @@ void showStep()
   if (bfoOn)
     return;
   oled.setCursor(93, 1);
-  oled.print("      ");
+  oled.print("     ");
   oled.setCursor(93, 1);
   oled.invertOutput(cmdStep);
   oled.print("S:");

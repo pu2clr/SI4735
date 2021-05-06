@@ -20,6 +20,94 @@ The photos below show the KIT sold on Aliexpress and eBay.
 
 <BR> 
 
-![PL102BA-S V:2.1 10628](./ali_000.png)
+![PL102BA-S V:2.1 10628](./images/ali_000.png)
+
+
+# Firmware Update via Desktop Arduino IDE
+
+The steps below will guide you to update the firmware of the KIT
+
+DO NOT TRY IT IF YOU DON'T KNOW WHAT ARE YOU DOING.
+
+Be sure you are using the last version of the Arduino IDE
+
+## Step 1
+
+Open the Arduino IDE and go to the __Tools__ menu, go to __Manage Libraries…__
+
+![Firmware Update 01](./images/p01.png)
+
+## Step 2
+
+Look for SI4735 library and click on Update
+
+![Firmware Update 02](./images/p02.png)
+
+
+## Sept 3 
+
+Check the version installed 
+
+![Firmware Update 03](./images/p03.png)
+
+## Step 4
+
+Install the Libraries Tiny4kOLED and TinyOLED-Fonts libraries. Use the same approach shown before. 
+
+[Firmware Update 04](./images/p04.png)
+
+
+
+[Firmware Update 05](./images/p05.png)
+
+
+
+## Step 5
+
+Go to File Menu, Examples item  and look for the firmware
+
+
+[Firmware Update 06](./images/p06.png)
+
+
+
+## Step 6
+
+Check the sketch you have just loaded from PU2CLR_SI4735 Examples folder
+
+
+[Firmware Update 07](./images/p07.png)
+
+
+## Step 7
+
+Select the right Arduino Board.  On Tools Menu, select Arduino AVR Boards and Arduino Nano. 
+
+
+[Firmware Update 08](./images/p08.png)
+
+
+
+## Step 8 
+
+Select the right Processor. On Tools menu, select “Processor:” 
+
+
+[Firmware Update 09](./images/p09.png)
+
+
+## Setup 9
+
+Connect your Receiver (Arduino device) to your computer and select the right COM port. The COM number will depend on your computer setup.
+
+[Firmware Update 10](./images/p10.png)
+
+
+## Step 10
+
+Finally, run the upload. 
+
+[Firmware Update 11](./images/p11.png)
+
 
 
