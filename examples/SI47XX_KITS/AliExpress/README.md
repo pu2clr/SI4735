@@ -158,27 +158,27 @@ Follow the instruction to operate with the receiver.
 
 ###  DEALING WITH AUDIO VOLUME
 
-Press the VOL push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the __VOL+__ push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
 
 ### SELECTING THE BAND
 
-Press the BAND push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the __BAND+__ push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
 
 ### DEALING WITH AGC AND ATTENUATION
 
-Press the AGC push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the __AGC__ push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
 
 ### SELECTING BANDWIDTH
 
-Press the BW  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the __BW__  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
 
 ### SWITCHING THE STEP FREQUENCY
 
-Press the STEP  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the __STEP__  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
 
 ### SWITCHING THE MODE AM, LSB AND USB
 
-On AM mode press MODE push button to switch to LSB mode; press MODE push button again to switch to USB mode; and finally press MODE push button again to switch AM mode.
+On AM mode press __MODE__ push button to switch to LSB mode; press MODE push button again to switch to USB mode; and finally press MODE push button again to switch AM mode.
 
 ### VFO/BFO Switch
 
