@@ -1,6 +1,6 @@
 # KIT sold on Aliexpress and eBay
 
-The kit below is sold on Aliexpress and eBay.  Although the seller does not explicitly mention that the Arduino sketch used by the KIT is based on this library (PU2CLR SI4735 Arduino Library), I’ve been testing successfully the sketch [SI473X_ALL_IN_ONE_OLED_CHINESE](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_CHINESE) on some KITs acquired by some Brazilians experimenters. __The author of this library does not know the seller of this kit and does not have a commercial relationship with any commercial product that uses the library. It is important you understand that there is no guarantee that this sketch will work correctly in your current product__.
+The kit below is sold on Aliexpress and eBay.  Although the seller does not explicitly mention that the Arduino sketch used by the KIT is based on this library (PU2CLR SI4735 Arduino Library), I’ve been testing successfully the sketch [SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V7](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V7) on some KITs acquired by some Brazilians experimenters. __The author of this library does not know the seller of this kit and does not have a commercial relationship with any commercial product that uses the library. It is important you understand that there is no guarantee that this sketch will work correctly in your current product__.
 
 __IT IS IMPORTANT TO SAY THAT THE SSB PATCH CONTENT IS NOT PART OF THIS LIBRARY. ALSO, IT IS IMPORTANT TO SAY THAT THE AUTHOR OF THIS LIBRARY DOES NOT ENCOURAGE ANYONE TO USE THE SSB PATCHES CONTENT FOR COMMERCIAL PURPOSES. IN OTHER WORDS, THIS LIBRARY ONLY SUPPORTS SSB PATCHES, THE PATCHES THEMSELVES ARE NOT PART OF THIS LIBRARY__.
 
@@ -14,6 +14,7 @@ __DO NOT BUY THIS RECEIVER BEFORE READING COMMENTS AND REPORTS ABOUT IT. FOLLOW 
 * [Kevin O'Reilly: SI4732 The end of the line?](https://youtu.be/A3Mus-7lTrk)
 * [Si47XX for Radio Experimenters](https://www.facebook.com/groups/532613604253401)
 * [SI4735 SI4732 All Band Radio Receiver User Group](https://www.facebook.com/groups/340642344032449)
+* [SI4732 shortwave receiver](https://swli-05940-mi.blogspot.com/2021/04/si4732-shortwave-receiver.html)
 
 
 The photos below show the KIT sold on Aliexpress and eBay.
@@ -55,7 +56,7 @@ Check the version installed
 
 ## Step 4
 
-Install the Libraries Tiny4kOLED and TinyOLED-Fonts libraries. Use the same approach shown before. 
+Install the Libraries __Tiny4kOLED__ and __TinyOLED-Fonts__ Arduino libraries for OLED. Use the same approach shown before. 
 
 
 ![Firmware Update 04](./images/p04.png)
@@ -68,7 +69,7 @@ Install the Libraries Tiny4kOLED and TinyOLED-Fonts libraries. Use the same appr
 
 ## Step 5
 
-Go to File Menu, Examples item  and look for the firmware
+Go to File Menu, Examples item  and look for the firmware for this receiver / KIT
 
 
 ![Firmware Update 06](./images/p06.png)
@@ -86,6 +87,7 @@ Check the sketch you have just loaded from PU2CLR_SI4735 Examples folder
 ## Step 7
 
 Select the right Arduino Board.  On Tools Menu, select Arduino AVR Boards and Arduino Nano. 
+Read the comments of the sketche. 
 
 
 ![Firmware Update 08](./images/p08.png)
@@ -94,8 +96,9 @@ Select the right Arduino Board.  On Tools Menu, select Arduino AVR Boards and Ar
 
 ## Step 8 
 
-Select the right Processor. On Tools menu, select “Processor:” 
-
+Select the right Processor. On Tools menu, select “Processor:”. 
+Depending on the version of the Arduino Nano used, it can be __ATmega328 (Old Bootloader)__ or __ATmega328__.
+Try __ATmega328 (Old Bootloader)__ first. If you get error, try __ATmega328__.
 
 ![Firmware Update 09](./images/p09.png)
 
