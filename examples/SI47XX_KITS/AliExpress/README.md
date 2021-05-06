@@ -33,7 +33,7 @@ Be sure you are using the last version of the Arduino IDE
 
 ## Step 1
 
-Open the Arduino IDE and go to the __Tools__ menu, go to __Manage Libraries…__
+Open the Arduino IDE and go to the __Tools__ menu and select  __Manage Libraries…__
 
 ![Firmware Update 01](./images/p01.png)
 
@@ -53,6 +53,7 @@ Check the version installed
 ## Step 4
 
 Install the Libraries Tiny4kOLED and TinyOLED-Fonts libraries. Use the same approach shown before. 
+
 
 [Firmware Update 04](./images/p04.png)
 
