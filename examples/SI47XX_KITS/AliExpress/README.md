@@ -26,6 +26,22 @@ The photos below show the KIT sold on Aliexpress and eBay.
 
 # Firmware Update via Desktop Arduino IDE
 
+* The final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features)
+* Band, Volume, Step, Bandwidth AGC/Attenuation are now controlled by encoder
+* __"Band -:  and "Vol -"__ buttons are free to implement new features. They have no function for while.  
+* All the previous status of the receiver can be rescued when you turn it on (including SSB mode, bandwidth, volume, frequency, BFO etc)
+* The bandwidth now is a property of the band (you can use different bandwidth for different bands)
+* Bandwidth control on FM mode (Auto, 110, 84, 60 and 40 kHz)
+* FM/RDS presentation was  improved
+* The seek function was improved (it is more precise on FM mode). The seek direction is controlled by the encoder (clockwise or counter-clockwise . Press encoder push button for seeking
+* Steps: 1, 5, 9, 10 and 50 kHz;
+* Now you can configure MW band space to 9 or 10 kHz
+* New FM band from 64 to 84 MHz
+* New MW band from 531 to 1701 kHz for Europe, Africa and Asia
+* The frequency on Display is bigger than the previous version
+* Now the bandwidth sequence is ordered by bandwidth values.
+
+
 The steps below will guide you to update the firmware of the KIT
 
 DO NOT TRY IT IF YOU DON'T KNOW WHAT ARE YOU DOING.
@@ -117,4 +133,13 @@ Finally, run the upload.
 ![Firmware Update 11](./images/p11.png)
 
 
+
+## Final result
+
+
+![Firmware Update 12](./images/OLED01.png)
+
+
+
+![Firmware Update 12](./images/OLED02.png)
 
