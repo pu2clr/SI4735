@@ -117,9 +117,9 @@ Read the comments of the sketche.
 ## Step 8 
 
 Select the right Processor. On Tools menu, select __“Processor:”__ item. 
-Depending on the version of the Arduino Nano used by your KIT, it can be __ATmega328 (Old Bootloader)__ or just __ATmega328__.
+Depending on the version of the Arduino Nano used by your KIT, it can be __ATmega328p (Old Bootloader)__ or just __ATmega328p__.
 
-Select __ATmega328p (Old Bootloader)__ first. If you get error during uploading, try it again with __ATmega328__.
+Select __ATmega328p (Old Bootloader)__ first. If you get error during uploading, try it again with __ATmega328p__.
 
 ![Firmware Update 09](./images/p09.png)
 
