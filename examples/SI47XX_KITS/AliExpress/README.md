@@ -29,14 +29,20 @@ The photos below show the KIT sold on Aliexpress and eBay.
 ## New features
 
 * The final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features)
-* Band, Volume, Step, Bandwidth AGC/Attenuation are now controlled by encoder
-* __"Band -:  and "Vol -"__ buttons are free to implement new features. They have no function for while.  
+* Twenty three bands. Two VHF(FM); one LW; two MW; and Nineteen SW bands covering from 1800 to 30000 kHz
+* Band, Volume, Step, Bandwidth, AGC/Attenuation are now controlled by encoder
+* "Vol -"__ buttons is free to implement new features. It have no function for while. 
+* "BAND -" now is used to control Softmute Attenuation 
 * All the previous status of the receiver can be rescued when you turn it on (including SSB mode, bandwidth, volume, frequency, BFO etc)
 * The bandwidth now is a property of the band (you can use different bandwidth for different bands)
 * Bandwidth control on FM mode (Auto, 110, 84, 60 and 40 kHz)
+* Bandwidth control on AM mode (1, 2, 2.5, 3, 4 and 6 kHz)
+* Bandwidth control on SSB mode (0.5, 1, 1.2, 2.2, 3 and 4 kHz)
+* AGC (Automatic Gain Control) and Attenuation control 
+* Softmute Attenuation Control
 * FM/RDS presentation was  improved
 * The seek function was improved (it is more precise on FM mode). The seek direction is controlled by the encoder (clockwise or counter-clockwise . Press encoder push button for seeking
-* Steps: 1, 5, 9, 10 and 50 kHz;
+* Steps: 1, 5, 9, 10, 50 and 100 kHz;
 * Now you can configure MW band space to 9 or 10 kHz
 * New FM band from 64 to 84 MHz
 * New MW band from 531 to 1701 kHz for Europe, Africa and Asia

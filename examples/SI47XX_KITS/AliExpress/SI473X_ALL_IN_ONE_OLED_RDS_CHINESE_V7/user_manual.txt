@@ -6,7 +6,7 @@ Features
 * Two FM bands covering from 64 to 108 MHz
 * LW band
 * Two MW bands (one for Europe, Africa and Asia)
-* Seventeen SW bands converting  from 1800 to 30000 kHz
+* Twenty three bands. Two VHF(FM); one LW; two MW; and Nineteen SW bands covering from 1800 to 30000 kHz
 * FM/RDS
 * Bandwidth control on FM mode (Auto, 110, 84, 60 and 40 kHz)
 * Bandwidth control on AM mode (1, 2, 2.5, 3, 4 and 6 kHz)
@@ -62,4 +62,4 @@ The direction of the seek up or seek down will  depend on the last rotating move
 
 9) RESET EEPROM
 
-Turn your receiver on with the encoder push button pressed.    
+Turn your receiver on with the encoder push button pressed.
