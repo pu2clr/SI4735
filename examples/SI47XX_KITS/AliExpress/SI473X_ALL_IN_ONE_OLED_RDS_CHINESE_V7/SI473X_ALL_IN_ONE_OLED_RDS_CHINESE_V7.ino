@@ -124,7 +124,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
-const uint8_t app_id = 42; // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id = 43; // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
@@ -244,7 +244,8 @@ Band band[] = {
     {SW_BAND_TYPE, 3500, 4500, 3700, 0, 5}, // 80 meters
     {SW_BAND_TYPE, 4500, 5500, 4850, 1, 4},
     {SW_BAND_TYPE, 5600, 6300, 6000, 1, 4},
-    {SW_BAND_TYPE, 6800, 7800, 7200, 1, 4}, // 40 meters
+    {SW_BAND_TYPE, 6800, 7300, 7100, 0, 4}, // 40 meters
+    {SW_BAND_TYPE, 7200, 7900, 7200, 1, 4}, // 41 meters    
     {SW_BAND_TYPE, 9200, 10000, 9600, 1, 4},
     {SW_BAND_TYPE, 10000, 11000, 10100, 0, 4}, // 30 meters
     {SW_BAND_TYPE, 11200, 12500, 11940, 1, 4},
@@ -814,7 +815,7 @@ void loadSSB()
 {
   oled.setCursor(0, 2);
   oled.print("  Switching to SSB  ");
-  // si4735.setI2CFastModeCustom(850000); // It is working. Faster, but I'm not sure if it is safe.
+  // si4735.setI2CFastModeCustom(700000); // It is working. Faster, but I'm not sure if it is safe.
   si4735.setI2CFastModeCustom(500000);
   si4735.queryLibraryId(); // Is it really necessary here? I will check it.
   si4735.patchPowerUp();
