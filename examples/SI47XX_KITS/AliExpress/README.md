@@ -174,6 +174,11 @@ Press the __BAND+__ push button and rotate de encoder. Press the button again to
 
 Press the __AGC__ push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
 
+###  DEALING WITH SOFTMUTE AND ATTENUATION
+
+Press the push button labeled __"BAND-"__ and rotate de encoder. Press the button again to disable the command or wait for 4s. This button was used to control the band switch. Due to the new interface, this button has lost its original function. 
+
+
 ### SELECTING BANDWIDTH
 
 Press the __BW__  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;

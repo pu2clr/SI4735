@@ -124,7 +124,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
-const uint8_t app_id = 41; // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id = 42; // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
@@ -613,6 +613,8 @@ void showStep()
     return;
   oled.setCursor(93, 1);
   oled.print("     ");
+  if (currentMode == FM) 
+    return;
   oled.setCursor(93, 1);
   oled.invertOutput(cmdStep);
   oled.print("S:");
