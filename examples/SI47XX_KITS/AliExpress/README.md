@@ -67,14 +67,14 @@ Open the Arduino IDE and go to the __Tools__ menu and select  __Manage Libraries
 
 ## Step 2
 
-Look for SI4735 library and click on Update
+Look for SI4735 library, select __PU2CLR SI4735__ and click on Update
 
 ![Firmware Update 02](./images/p02.png)
 
 
 ## Sept 3 
 
-Check the version installed 
+Check the version installed. The last version should be 2.0.9 or greater. 
 
 ![Firmware Update 03](./images/p03.png)
 
@@ -87,14 +87,9 @@ Install the Libraries __Tiny4kOLED__ and __TinyOLED-Fonts__ Arduino libraries fo
 ![Firmware Update 04](./images/p04.png)
 
 
-
-![Firmware Update 05](./images/p05.png)
-
-
-
 ## Step 5
 
-Go to File Menu, Examples item  and look for the firmware for this receiver / KIT
+Go to the File Menu, select Examples item and look for the firmware for this receiver / KIT
 
 
 ![Firmware Update 06](./images/p06.png)
@@ -111,7 +106,7 @@ Check the sketch you have just loaded from PU2CLR_SI4735 Examples folder
 
 ## Step 7
 
-Select the right Arduino Board.  On Tools Menu, select Arduino AVR Boards and Arduino Nano. 
+Select the right Arduino Board.  On Tools Menu, select Arduino AVR Boards and __Arduino Nano__. 
 Read the comments of the sketche. 
 
 
@@ -121,9 +116,10 @@ Read the comments of the sketche.
 
 ## Step 8 
 
-Select the right Processor. On Tools menu, select “Processor:”. 
-Depending on the version of the Arduino Nano used, it can be __ATmega328 (Old Bootloader)__ or __ATmega328__.
-Try __ATmega328 (Old Bootloader)__ first. If you get error, try __ATmega328__.
+Select the right Processor. On Tools menu, select __“Processor:”_ item. 
+Depending on the version of the Arduino Nano used by your KIT, it can be __ATmega328 (Old Bootloader)__ or just __ATmega328__.
+
+Select ___ ATmega328p (Old Bootloader)__ first. If you get error during uploading, try it again with __ATmega328__.
 
 ![Firmware Update 09](./images/p09.png)
 
@@ -140,7 +136,6 @@ Connect your Receiver (Arduino device) to your computer and select the right COM
 Finally, run the upload. 
 
 ![Firmware Update 11](./images/p11.png)
-
 
 
 ## Final result
