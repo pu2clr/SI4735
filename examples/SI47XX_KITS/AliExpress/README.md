@@ -31,8 +31,8 @@ The photos below show the KIT sold on Aliexpress and eBay.
 * The final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features)
 * Twenty three bands. Two VHF(FM); one LW; two MW; and Nineteen SW bands covering from 1800 to 30000 kHz
 * Band, Volume, Step, Bandwidth, AGC/Attenuation are now controlled by encoder
-* "Vol -"__ buttons is free to implement new features. It have no function for while. 
-* "BAND -" now is used to control Softmute Attenuation 
+* __"Vol-"__ buttons is free to implement new features. It has no function for while. 
+* __"BAND-"__ now is used to control Softmute Attenuation 
 * All the previous status of the receiver can be rescued when you turn it on (including SSB mode, bandwidth, volume, frequency, BFO etc)
 * The bandwidth now is a property of the band (you can use different bandwidth for different bands)
 * Bandwidth control on FM mode (Auto, 110, 84, 60 and 40 kHz)
