@@ -15,6 +15,7 @@ __DO NOT BUY THIS RECEIVER BEFORE READING COMMENTS AND REPORTS ABOUT IT. FOLLOW 
 * [Si47XX for Radio Experimenters](https://www.facebook.com/groups/532613604253401)
 * [SI4735 SI4732 All Band Radio Receiver User Group](https://www.facebook.com/groups/340642344032449)
 * [SI4732 shortwave receiver](https://swli-05940-mi.blogspot.com/2021/04/si4732-shortwave-receiver.html)
+* [Amazon - Customer reviews](https://www.amazon.com/product-reviews/B08ZHXWTS1)
 
 
 The photos below show the KIT sold on Aliexpress and eBay.
