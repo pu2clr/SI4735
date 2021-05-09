@@ -39,27 +39,31 @@ Press the BAND push button and rotate de encoder. Press the button again to disa
 
 Press the AGC push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
 
-4) SELECTING BANDWIDTH
+4) DEALING WITH SOFTMUTE AND ATTENUATION
+
+Press the push button labeled "BAND-" and rotate de encoder. Press the button again to disable the command or wait for 4s. This button was used to control the band switch. Due to the new interface, this button has lost its original function.
+
+5) SELECTING BANDWIDTH
 
 Press the BW  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
 
-5) SWITCHING THE STEP FREQUENCY
+6) SWITCHING THE STEP FREQUENCY
 
 Press the STEP  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
 
-6) SWITCHING THE MODE AM, LSB AND USB
+7) SWITCHING THE MODE AM, LSB AND USB
 
 On AM mode press MODE push button to switch to LSB mode; press MODE push button again to switch to USB mode; and finally press MODE push button again to switch AM mode.
 
-7) VFO/BFO Switch
+8) VFO/BFO Switch
 
 To control the VFO and BFO, you can use the encoder push button on SSB mode. The display will show you if you are using VFO or BFO.
 
-8) SEEK COMMAND
+9) SEEK COMMAND
 
 On FM or AM modes press the encoder push button.
 The direction of the seek up or seek down will  depend on the last rotating movement of the encoder, clockwise and counterclockwise respectively.
 
-9) RESET EEPROM
+10) RESET EEPROM
 
 Turn your receiver on with the encoder push button pressed.
