@@ -25,6 +25,9 @@ The photos below show the KIT sold on Aliexpress and eBay.
 ![PL102BA-S V:2.1 10628](./images/ali_000.png)
 
 
+## Be a member of Facebook Group [Si47XX for Radio Experimenters](https://www.facebook.com/groups/532613604253401/)
+
+
 # Firmware Update via Desktop Arduino IDE
 
 ## New features
