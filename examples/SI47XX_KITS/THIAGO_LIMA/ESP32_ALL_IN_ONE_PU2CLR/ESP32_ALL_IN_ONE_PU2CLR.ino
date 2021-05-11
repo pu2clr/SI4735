@@ -29,9 +29,7 @@
 #include <SPI.h>
 #include <TFT_eSPI.h>      // Hardware-specific library
 
-
 #include "DSEG7_Classic_Mini_Regular_48.h"
-
 #include "Rotary.h"
 
 // #include "patch_init.h" // SSB patch for whole SSBRX initialization string
@@ -39,7 +37,6 @@
 #include "patch_3rd.h" // 3rd patch. Taken from DEGEN DE1103 receiver according to the source.
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
-
 
 #define DISPLAY_LED 14   // Pin used to control to turn the display on or off
 #define DISPLAY_ON   0   
@@ -76,13 +73,21 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define LW 4
 #define SSB 1
 
-
 #define RSSI_DISPLAY_COL_OFFSET 35
 #define RSSI_DISPLAY_LIN_OFFSET 90
 
 #define KEYBOARD_LIN_OFFSET 50
 #define STATUS_DISPLAY_COL_OFFSET 5
 #define STATUS_DISPLAY_LIN_OFFSET 430
+
+#define BLACK 0x0000
+#define BLUE 0x001F
+#define RED 0xF800
+#define GREEN 0x07E0
+#define CYAN 0x07FF
+#define MAGENTA 0xF81F
+#define YELLOW 0xFFE0
+#define WHITE 0xFFFF
 
 bool cmdBFO = false;
 bool cmdAudioMute = false;
@@ -230,25 +235,30 @@ char bufferUnit[10];
 char bufferMode[15];
 char bufferBandName[15];
 
-
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 TFT_eSPI tft = TFT_eSPI(); // Invoke custom library
 SI4735 si4735;
 
-// ALL Touch panels and wiring is DIFFERENT
-// copy-paste results from TouchScreen_Calibr_native.ino
-// ATTENTION: if you do not get success at first, check and change the XP, XM , YP and YM pins.
-// Read TouchScreen_Calibr_native.ino  (MCUFRIEND shield shares pins with the TFT).
-
-// TFT Touch shield  (my old and original MFUFIEND toutch screen)
-// const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
-// const int TS_LEFT = 170, TS_RT = 827, TS_TOP = 130, TS_BOT = 868;
-
-// TFT Touch shield 2 (my new kind of mcufriend toutch screen)
-//const int XP=7,XM=A1,YP=A2,YM=6; //240x320 ID=0x2053
-// const int TS_LEFT=155,TS_RT=831,TS_TOP=158,TS_BOT=892;
-
-TFT_eSPI_Button bNextBand, bPreviousBand, bVolumeLevel, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC, bSoftMute, bSlop, bSMuteRate, bBFO, bSync;
+TFT_eSPI_Button buttonNextBand, 
+                buttonPreviousBand, 
+                buttonVolumeLevel, 
+                buttonSeekUp, 
+                buttonSeekDown, 
+                buttonStep, 
+                buttonAudioMute, 
+                buttonAM, 
+                buttonLSB, 
+                buttonUSB, 
+                buttonFM, 
+                buttonMW, 
+                buttonSW, 
+                buttonFilter, 
+                buttonAGC, 
+                buttonSoftMute, 
+                buttonSlop, 
+                buttonSMuteRate, 
+                buttonBFO, 
+                buttonSync;
 
 uint16_t pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -256,15 +266,6 @@ bool Touch_getXY(void)
   bool pressed = tft.getTouch(&pixel_x, &pixel_y);
   return pressed;
 }
-
-#define BLACK 0x0000
-#define BLUE 0x001F
-#define RED 0xF800
-#define GREEN 0x07E0
-#define CYAN 0x07FF
-#define MAGENTA 0xF81F
-#define YELLOW 0xFFE0
-#define WHITE 0xFFFF
 
 void showBandwitdth(bool drawAfter = false);
 void showAgcAtt(bool drawAfter = false);
@@ -376,19 +377,19 @@ void disableCommands()
 
   // Redraw if necessary
   if (cmdVolume) 
-    bVolumeLevel.drawButton(true);
+    buttonVolumeLevel.drawButton(true);
   if (cmdStep)
-    bStep.drawButton(true);
+    buttonStep.drawButton(true);
   if (cmdFilter)
-    bFilter.drawButton(true);
+    buttonFilter.drawButton(true);
   if (cmdAgcAtt)
-    bAGC.drawButton(true);
+    buttonAGC.drawButton(true);
   if (cmdSoftMuteMaxAtt)
-    bSoftMute.drawButton(true);
+    buttonSoftMute.drawButton(true);
   if (cmdSlop)
-    bSlop.drawButton(true);
+    buttonSlop.drawButton(true);
   if (cmdMuteRate)
-    bSMuteRate.drawButton(true);
+    buttonSMuteRate.drawButton(true);
 
   cmdBFO = false;
   cmdAudioMute = false;
@@ -479,26 +480,26 @@ void printText(int col, int line, int sizeText, char *oldValue, const char *newV
 
 
 void setDrawButtons( bool value) {
-  bNextBand.drawButton(value);
-  bPreviousBand.drawButton(value);
-  bVolumeLevel.drawButton(value);
-  bAudioMute.drawButton(value);
-  bSeekUp.drawButton(value);
-  bSeekDown.drawButton(value);
-  bStep.drawButton(value);
-  bBFO.drawButton(value);
-  bFM.drawButton(value);
-  bMW.drawButton(value);
-  bSW.drawButton(value);
-  bAM.drawButton(value);
-  bLSB.drawButton(value);
-  bUSB.drawButton(value);
-  bFilter.drawButton(value);
-  bAGC.drawButton(value);
-  bSoftMute.drawButton(value);
-  bSlop.drawButton(value);
-  bSMuteRate.drawButton(value);
-  bSync.drawButton(value);
+  buttonNextBand.drawButton(value);
+  buttonPreviousBand.drawButton(value);
+  buttonVolumeLevel.drawButton(value);
+  buttonAudioMute.drawButton(value);
+  buttonSeekUp.drawButton(value);
+  buttonSeekDown.drawButton(value);
+  buttonStep.drawButton(value);
+  buttonBFO.drawButton(value);
+  buttonFM.drawButton(value);
+  buttonMW.drawButton(value);
+  buttonSW.drawButton(value);
+  buttonAM.drawButton(value);
+  buttonLSB.drawButton(value);
+  buttonUSB.drawButton(value);
+  buttonFilter.drawButton(value);
+  buttonAGC.drawButton(value);
+  buttonSoftMute.drawButton(value);
+  buttonSlop.drawButton(value);
+  buttonSMuteRate.drawButton(value);
+  buttonSync.drawButton(value);
 }
 
 /**
@@ -513,11 +514,11 @@ void setButton(TFT_eSPI_Button *button, int16_t col, int16_t lin, int16_t width,
 
 
 void setButtonsFM() {
-  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, "BW", true);
-  setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, "AGC On", true);
+  setButton(&buttonFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "BW", true);
+  setButton(&buttonSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&buttonSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&buttonSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&buttonAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "AGC On", true);
 }
 
 void showTemplate()
@@ -532,48 +533,48 @@ void showTemplate()
   tft.setFreeFont(NULL);
 
   /*
-  bPreviousBand.initButton(&tft, 45, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Band-", 1);
-  bNextBand.initButton(&tft, 120, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Band+", 1);
-  bVolumeLevel.initButton(&tft, 195, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Vol", 1);
-  bAudioMute.initButton(&tft, 270, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Mute", 1);
-  bSeekDown.initButton(&tft, 45, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"Seek-", 1);
-  bSeekUp.initButton(&tft, 120, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"Seek+", 1);
-  bBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"BFO", 1);
-  bStep.initButton(&tft, 270, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"Step", 1);
-  bFM.initButton(&tft, 45, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"FM", 1);
-  bMW.initButton(&tft, 120, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"MW", 1);
-  bSW.initButton(&tft, 195, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"SW", 1);
-  bAGC.initButton(&tft, 270, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"ATT", 1);
-  bAM.initButton(&tft, 45, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"AM", 1);
-  bLSB.initButton(&tft, 120, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"LSB", 1);
-  bUSB.initButton(&tft, 195, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"USB", 1);
-  bFilter.initButton(&tft, 270, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"BW", 1);
-  bSoftMute.initButton(&tft, 45, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"SM Att", 1);
-  bSMuteRate.initButton(&tft, 120, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"SM Rate", 1);
-  bSlop.initButton(&tft, 195, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"Slop", 1);
-  bSync.initButton(&tft, 270, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"DE", 1);
+  buttonPreviousBand.initButton(&tft, 45, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Band-", 1);
+  buttonNextBand.initButton(&tft, 120, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Band+", 1);
+  buttonVolumeLevel.initButton(&tft, 195, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Vol", 1);
+  buttonAudioMute.initButton(&tft, 270, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Mute", 1);
+  buttonSeekDown.initButton(&tft, 45, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"Seek-", 1);
+  buttonSeekUp.initButton(&tft, 120, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"Seek+", 1);
+  buttonBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"BFO", 1);
+  buttonStep.initButton(&tft, 270, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"Step", 1);
+  buttonFM.initButton(&tft, 45, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"FM", 1);
+  buttonMW.initButton(&tft, 120, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"MW", 1);
+  buttonSW.initButton(&tft, 195, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"SW", 1);
+  buttonAGC.initButton(&tft, 270, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"ATT", 1);
+  buttonAM.initButton(&tft, 45, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"AM", 1);
+  buttonLSB.initButton(&tft, 120, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"LSB", 1);
+  buttonUSB.initButton(&tft, 195, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"USB", 1);
+  buttonFilter.initButton(&tft, 270, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"BW", 1);
+  buttonSoftMute.initButton(&tft, 45, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"SM Att", 1);
+  buttonSMuteRate.initButton(&tft, 120, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"SM Rate", 1);
+  buttonSlop.initButton(&tft, 195, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"Slop", 1);
+  buttonSync.initButton(&tft, 270, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"DE", 1);
   */
 
-  setButton(&bPreviousBand, 45, KEYBOARD_LIN_OFFSET + 130, 70, 49, "Band-", true);
-  setButton(&bNextBand, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, "Band+", true);
-  setButton(&bVolumeLevel, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, "Vol", true);
-  setButton(&bAudioMute, 270, KEYBOARD_LIN_OFFSET + 130, 70, 49, "Mute", true);
-  setButton(&bSeekDown, 45, KEYBOARD_LIN_OFFSET + 185, 70, 49, "Seek-", true);
-  setButton(&bSeekUp, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, "Seek+", true);
-  setButton(&bBFO, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, "BFO", true);
-  setButton(&bStep, 270, KEYBOARD_LIN_OFFSET + 185, 70, 49, "Step", true);
-  setButton(&bFM, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, "FM", true);
-  setButton(&bMW, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, "MW", true);
-  setButton(&bSW, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, "SW", true);
-  setButton(&bAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, "AGC On", true);
-  setButton(&bAM, 45, KEYBOARD_LIN_OFFSET + 295, 70, 49, "AM", true);
-  setButton(&bLSB, 120, KEYBOARD_LIN_OFFSET + 295, 70, 49, "LSB", true);
-  setButton(&bUSB, 195, KEYBOARD_LIN_OFFSET + 295, 70, 49, "USB", true);
-  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, "BW", true);
-  setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bSync, 270, KEYBOARD_LIN_OFFSET + 350, 70, 49, "SYNC", true);
+  setButton(&buttonPreviousBand, 45, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Band-", true);
+  setButton(&buttonNextBand, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Band+", true);
+  setButton(&buttonVolumeLevel, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Vol", true);
+  setButton(&buttonAudioMute, 270, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Mute", true);
+  setButton(&buttonSeekDown, 45, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Seek-", true);
+  setButton(&buttonSeekUp, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Seek+", true);
+  setButton(&buttonBFO, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "BFO", true);
+  setButton(&buttonStep, 270, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Step", true);
+  setButton(&buttonFM, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "FM", true);
+  setButton(&buttonMW, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "MW", true);
+  setButton(&buttonSW, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "SW", true);
+  setButton(&buttonAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "AGC On", true);
+  setButton(&buttonAM, 45, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "AM", true);
+  setButton(&buttonLSB, 120, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "LSB", true);
+  setButton(&buttonUSB, 195, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "USB", true);
+  setButton(&buttonFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "BW", true);
+  setButton(&buttonSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&buttonSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&buttonSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&buttonSync, 270, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "SYNC", true);
 
   // Exibe os botões (teclado touch)
   setDrawButtons(true);
@@ -811,7 +812,7 @@ void showBandwitdth(bool drawAfter)
   else {
     sprintf(bw, "BW:%s", bandwitdthFM[bwIdxFM].desc);
   }
-  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, bw, drawAfter);
+  setButton(&buttonFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, bw, drawAfter);
 }
 
 /**
@@ -831,7 +832,7 @@ void showAgcAtt(bool drawAfter)
   {
     sprintf(sAgc, "ATT: %2d", agcNdx);
   }
-  setButton(&bAGC, 270, KEYBOARD_LIN_OFFSET +  240, 70, 49, sAgc, drawAfter);
+  setButton(&buttonAGC, 270, KEYBOARD_LIN_OFFSET +  240, 70, 49, sAgc, drawAfter);
 }
 
 /**
@@ -873,13 +874,13 @@ void showRSSI()
   if (currentMode != FM)
   {
     //dBuV to S point conversion HF
-    if ((rssi >= 0) and (rssi <= 1))
+    if (rssi <= 1 )
       spoint = 12; // S0
-    if ((rssi > 1) and (rssi <= 1))
+    if (rssi <= 2)
       spoint = 24; // S1
-    if ((rssi > 2) and (rssi <= 3))
+    if (rssi <= 3 )
       spoint = 36; // S2
-    if ((rssi > 3) and (rssi <= 4))
+    if (rssi <= 4)
       spoint = 48; // S3
     if ((rssi > 4) and (rssi <= 10))
       spoint = 48 + (rssi - 4) * 2; // S4
@@ -944,7 +945,7 @@ void showStep(bool drawAfter)
 {
   char sStep[15];
   sprintf(sStep, "Stp:%4d", currentStep);
-  setButton(&bStep, 270, KEYBOARD_LIN_OFFSET +  185, 70, 49, sStep, drawAfter);
+  setButton(&buttonStep, 270, KEYBOARD_LIN_OFFSET +  185, 70, 49, sStep, drawAfter);
 }
 
 void showSoftMute(bool drawAfter)
@@ -954,7 +955,7 @@ void showSoftMute(bool drawAfter)
   if (currentMode == FM) return;
   
   sprintf(sMute, "SM: %2d", softMuteMaxAttIdx);
-  setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, sMute, drawAfter);
+  setButton(&buttonSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, sMute, drawAfter);
 }
 
 /**
@@ -974,7 +975,7 @@ void showVolume(bool drawAfter)
 {
   char sVolume[15];
   sprintf(sVolume, "Vol: %2.2d", si4735.getVolume());
-  setButton(&bVolumeLevel, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, sVolume, drawAfter);
+  setButton(&buttonVolumeLevel, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, sVolume, drawAfter);
 }
 
 /**
@@ -987,7 +988,7 @@ void showSlop(bool drawAfter)
   if (currentMode == FM) return; 
     
   sprintf(sSlop, "Sl:%2.2u", slopIdx);
-  setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, sSlop, drawAfter);
+  setButton(&buttonSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, sSlop, drawAfter);
 }
 
 void showMuteRate(bool drawAfter)
@@ -997,7 +998,7 @@ void showMuteRate(bool drawAfter)
   if (currentMode == FM) return; 
     
   sprintf(sMRate, "MR:%3.3u", muteRateIdx);
-  setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, sMRate, drawAfter);
+  setButton(&buttonSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, sMRate, drawAfter);
 }
 
 char *rdsMsg;
@@ -1333,14 +1334,14 @@ void doBFO()
   cmdBFO = !cmdBFO;
   if (cmdBFO)
   {
-    bBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"VFO", 1);
+    buttonBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"VFO", 1);
     showBFO();
   }
   else
   {
-    bBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"BFO", 1);
+    buttonBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"BFO", 1);
   }
-  bBFO.drawButton(true);
+  buttonBFO.drawButton(true);
   showStatus();
   elapsedCommand = millis();
 }
@@ -1383,26 +1384,26 @@ void checkTouch()
 {
 
   bool down = Touch_getXY();
-  bNextBand.press(down && bNextBand.contains(pixel_x, pixel_y));
-  bPreviousBand.press(down && bPreviousBand.contains(pixel_x, pixel_y));
-  bVolumeLevel.press(down && bVolumeLevel.contains(pixel_x, pixel_y));
-  bBFO.press(down && bBFO.contains(pixel_x, pixel_y));
-  bSeekUp.press(down && bSeekUp.contains(pixel_x, pixel_y));
-  bSeekDown.press(down && bSeekDown.contains(pixel_x, pixel_y));
-  bStep.press(down && bStep.contains(pixel_x, pixel_y));
-  bAudioMute.press(down && bAudioMute.contains(pixel_x, pixel_y));
-  bFM.press(down && bFM.contains(pixel_x, pixel_y));
-  bMW.press(down && bMW.contains(pixel_x, pixel_y));
-  bSW.press(down && bSW.contains(pixel_x, pixel_y));
-  bAM.press(down && bAM.contains(pixel_x, pixel_y));
-  bLSB.press(down && bLSB.contains(pixel_x, pixel_y));
-  bUSB.press(down && bUSB.contains(pixel_x, pixel_y));
-  bFilter.press(down && bFilter.contains(pixel_x, pixel_y));
-  bAGC.press(down && bAGC.contains(pixel_x, pixel_y));
-  bSoftMute.press(down && bSoftMute.contains(pixel_x, pixel_y));
-  bSlop.press(down && bSlop.contains(pixel_x, pixel_y));
-  bSMuteRate.press(down && bSMuteRate.contains(pixel_x, pixel_y));
-  bSync.press(down && bSync.contains(pixel_x, pixel_y));
+  buttonNextBand.press(down && buttonNextBand.contains(pixel_x, pixel_y));
+  buttonPreviousBand.press(down && buttonPreviousBand.contains(pixel_x, pixel_y));
+  buttonVolumeLevel.press(down && buttonVolumeLevel.contains(pixel_x, pixel_y));
+  buttonBFO.press(down && buttonBFO.contains(pixel_x, pixel_y));
+  buttonSeekUp.press(down && buttonSeekUp.contains(pixel_x, pixel_y));
+  buttonSeekDown.press(down && buttonSeekDown.contains(pixel_x, pixel_y));
+  buttonStep.press(down && buttonStep.contains(pixel_x, pixel_y));
+  buttonAudioMute.press(down && buttonAudioMute.contains(pixel_x, pixel_y));
+  buttonFM.press(down && buttonFM.contains(pixel_x, pixel_y));
+  buttonMW.press(down && buttonMW.contains(pixel_x, pixel_y));
+  buttonSW.press(down && buttonSW.contains(pixel_x, pixel_y));
+  buttonAM.press(down && buttonAM.contains(pixel_x, pixel_y));
+  buttonLSB.press(down && buttonLSB.contains(pixel_x, pixel_y));
+  buttonUSB.press(down && buttonUSB.contains(pixel_x, pixel_y));
+  buttonFilter.press(down && buttonFilter.contains(pixel_x, pixel_y));
+  buttonAGC.press(down && buttonAGC.contains(pixel_x, pixel_y));
+  buttonSoftMute.press(down && buttonSoftMute.contains(pixel_x, pixel_y));
+  buttonSlop.press(down && buttonSlop.contains(pixel_x, pixel_y));
+  buttonSMuteRate.press(down && buttonSMuteRate.contains(pixel_x, pixel_y));
+  buttonSync.press(down && buttonSync.contains(pixel_x, pixel_y));
 }
 
 /* two buttons are quite simple
@@ -1462,26 +1463,26 @@ void loop(void)
   {
     checkTouch();
 
-    if (bNextBand.justPressed()) // Band +
+    if (buttonNextBand.justPressed()) // Band +
       bandUp();
-    else if (bPreviousBand.justPressed()) // Band-
+    else if (buttonPreviousBand.justPressed()) // Band-
       bandDown();
-    else if (bVolumeLevel.justPressed()) // Volume
+    else if (buttonVolumeLevel.justPressed()) // Volume
     {
-      bVolumeLevel.drawButton(false);
+      buttonVolumeLevel.drawButton(false);
       disableCommands();
       si4735.setAudioMute(cmdAudioMute);
       cmdVolume = true;
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (bAudioMute.justPressed()) // Mute
+    else if (buttonAudioMute.justPressed()) // Mute
     {
       cmdAudioMute = !cmdAudioMute;
       si4735.setAudioMute(cmdAudioMute);
       delay(MIN_ELAPSED_TIME);
     }
-    else if (bBFO.justPressed()) // BFO
+    else if (buttonBFO.justPressed()) // BFO
     {
       if (currentMode == LSB || currentMode == USB)
       {
@@ -1489,7 +1490,7 @@ void loop(void)
       }
       delay(MIN_ELAPSED_TIME);
     }
-    else if (bSeekUp.justPressed()) // SEEK UP
+    else if (buttonSeekUp.justPressed()) // SEEK UP
     {
       si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, SEEK_UP);
       // si4735.seekNextStation(); // This method does not show the progress
@@ -1497,7 +1498,7 @@ void loop(void)
       currentFrequency = si4735.getFrequency();
       showStatus();
     }
-    else if (bSeekDown.justPressed()) // SEEK DOWN
+    else if (buttonSeekDown.justPressed()) // SEEK DOWN
     {
       si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, SEEK_DOWN);
       // si4735.seekPreviousStation(); // This method does not show the progress
@@ -1505,31 +1506,31 @@ void loop(void)
       currentFrequency = si4735.getFrequency();
       showStatus();
     }
-    else if (bSoftMute.justPressed()) // Soft Mute
+    else if (buttonSoftMute.justPressed()) // Soft Mute
     {
-      bSoftMute.drawButton(false);
+      buttonSoftMute.drawButton(false);
       disableCommands();
       cmdSoftMuteMaxAtt = true;
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (bSlop.justPressed()) // ATU (Automatic Antenna Tuner)
+    else if (buttonSlop.justPressed()) // ATU (Automatic Antenna Tuner)
     {
-      bSlop.drawButton(false);
+      buttonSlop.drawButton(false);
       disableCommands();
       cmdSlop = true;
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (bSMuteRate.justPressed())
+    else if (buttonSMuteRate.justPressed())
     {
-      bSMuteRate.drawButton(false);
+      buttonSMuteRate.drawButton(false);
       disableCommands();
       cmdMuteRate = true;
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (bAM.justPressed()) // Switch to AM mode
+    else if (buttonAM.justPressed()) // Switch to AM mode
     {
       if (currentMode != FM)
       {
@@ -1542,7 +1543,7 @@ void loop(void)
         showFrequency();
       }
     }
-    else if (bFM.justPressed()) // Switch to VFH/FM
+    else if (buttonFM.justPressed()) // Switch to VFH/FM
     {
       if (currentMode != FM)
       {
@@ -1556,7 +1557,7 @@ void loop(void)
         showFrequency();
       }
     }
-    else if (bMW.justPressed()) // Switch to MW/AM
+    else if (buttonMW.justPressed()) // Switch to MW/AM
     {
       band[bandIdx].currentFreq = currentFrequency;
       band[bandIdx].currentStep = currentStep;
@@ -1566,7 +1567,7 @@ void loop(void)
       bandIdx = 2; // See Band table
       useBand();
     }
-    else if (bSW.justPressed()) // Switch to SW/AM
+    else if (buttonSW.justPressed()) // Switch to SW/AM
     {
       band[bandIdx].currentFreq = currentFrequency;
       band[bandIdx].currentStep = currentStep;
@@ -1576,7 +1577,7 @@ void loop(void)
       bandIdx = lastSwBand; // See Band table
       useBand();
     }
-    else if (bLSB.justPressed()) // Switch to LSB mode
+    else if (buttonLSB.justPressed()) // Switch to LSB mode
     {
       if (currentMode != FM)
       {
@@ -1590,7 +1591,7 @@ void loop(void)
         useBand();
       }
     }
-    else if (bUSB.justPressed()) // Switch to USB mode
+    else if (buttonUSB.justPressed()) // Switch to USB mode
     {
       if (currentMode != FM)
       {
@@ -1604,32 +1605,32 @@ void loop(void)
         useBand();
       }
     }
-    else if (bAGC.justPressed()) // AGC and Attenuation control
+    else if (buttonAGC.justPressed()) // AGC and Attenuation control
     {
-      bAGC.drawButton(false);
+      buttonAGC.drawButton(false);
       disableCommands();
       cmdAgcAtt = true;
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (bFilter.justPressed()) // FILTER
+    else if (buttonFilter.justPressed()) // FILTER
     {
-      bFilter.drawButton(false);
+      buttonFilter.drawButton(false);
       disableCommands();
       cmdFilter = true;
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (bStep.justPressed()) // STEP
+    else if (buttonStep.justPressed()) // STEP
     {
       // switchStep();
-      bStep.drawButton(false);
+      buttonStep.drawButton(false);
       disableCommands();
       cmdStep = true;
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (bSync.justPressed())
+    else if (buttonSync.justPressed())
     {
       cmdSync = !cmdSync;
       switchSync(0);
@@ -1684,8 +1685,8 @@ void loop(void)
     if (cmdBFO)
     {
       bufferFreq[0] = '\0';
-      bBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"BFO", 1);
-      bBFO.drawButton(true);
+      buttonBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"BFO", 1);
+      buttonBFO.drawButton(true);
       cmdBFO = false;
       showFrequency();
     }
