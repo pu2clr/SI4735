@@ -48,13 +48,13 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define MINPRESSURE 200
 #define MAXPRESSURE 1000
 
-#define RESET_PIN 22           // Mega2560 digital Pin used to RESET
-#define ENCODER_PUSH_BUTTON 23 // Used to switch BFO and VFO or other function
-#define AUDIO_MUTE_CIRCUIT 24  // If you have an external mute circuit, use this pin to connect it.
+#define RESET_PIN 12           // Mega2560 digital Pin used to RESET
+#define ENCODER_PUSH_BUTTON 33 // Used to switch BFO and VFO or other function
+#define AUDIO_MUTE_CIRCUIT 27  // If you have an external mute circuit, use this pin to connect it.
 
 // Enconder PINs (interrupt pins used on DUE. All Digital DUE Pins can be used as interrupt)
-#define ENCODER_PIN_A 18
-#define ENCODER_PIN_B 19
+#define ENCODER_PIN_A 17
+#define ENCODER_PIN_B 16
 
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
