@@ -73,10 +73,10 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define LW 4
 #define SSB 1
 
-#define RSSI_DISPLAY_COL_OFFSET 35
-#define RSSI_DISPLAY_LIN_OFFSET 90
+#define RSSI_DISPLAY_COL_OFFSET 1
+#define RSSI_DISPLAY_LIN_OFFSET 70
 
-#define KEYBOARD_LIN_OFFSET 50
+#define KEYBOARD_LIN_OFFSET 20
 #define STATUS_DISPLAY_COL_OFFSET 5
 #define STATUS_DISPLAY_LIN_OFFSET 430
 
@@ -620,7 +620,7 @@ void showFrequency()
     sFreq[3] = aux[3];
     sFreq[4] = '\0';
 
-    tft.drawChar(180, 55, '.', YELLOW, BLACK, 1);
+    // tft.drawChar(180, 55, '.', YELLOW, BLACK, 1);
   }
   else
   {
@@ -630,7 +630,7 @@ void showFrequency()
 
   color = (cmdBFO) ? CYAN : YELLOW;
 
-  showFrequencyValue(45, 58, bufferFreq, sFreq, color, 45, 1);
+  showFrequencyValue(40, 58, bufferFreq, sFreq, color, 38,1);
 
   if (currentMode == LSB || currentMode == USB)
   {
