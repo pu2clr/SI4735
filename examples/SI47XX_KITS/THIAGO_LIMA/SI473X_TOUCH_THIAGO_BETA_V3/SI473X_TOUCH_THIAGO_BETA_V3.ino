@@ -7,7 +7,7 @@
 //  This sketch uses  a 2.8 inch 240*320 touch-screen with ILI9341, ESP32 WROOM-32 and Rotary Encoder.
 //  The radio is fully controlled by the (Touch)Screen and Rotary Encoder
 //  This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
-//  together with this sketch).
+//  together with this sketch). 
 //  For the touch-screen the library TFT_eSPI is used. The configuration setup-file: setup1_ILI9341 is also
 //  included.
 //  Also a schematic drawing is available.
@@ -89,7 +89,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 #define ESP32_I2C_SDA    21  // I2C bus pin on ESP32
 #define ESP32_I2C_SCL    22  // I2C bus pin on ESP32
-#define RESET_PIN        12
+#define RESET_PI N        12
 #define ENCODER_PIN_A    17  // http://www.buxtronix.net/2011/10/rotary-encoders-done-properly.html
 #define ENCODER_PIN_B    16
 #define ENCODER_SWITCH   33
