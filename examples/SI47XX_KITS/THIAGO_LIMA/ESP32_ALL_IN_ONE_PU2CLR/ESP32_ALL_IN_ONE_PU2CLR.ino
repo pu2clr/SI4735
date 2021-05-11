@@ -28,9 +28,9 @@
 #include <SI4735.h>
 #include <SPI.h>
 #include <TFT_eSPI.h>      // Hardware-specific library
-
 #include "DSEG7_Classic_Mini_Regular_48.h"
 #include "Rotary.h"
+#include "EEPROM.h"
 
 // #include "patch_init.h" // SSB patch for whole SSBRX initialization string
 // #include "patch_init.h"  // SSB patch full - It is not clear. No difference found if compared with patch_init
@@ -89,6 +89,13 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define YELLOW 0xFFE0
 #define WHITE 0xFFFF
 
+
+// EEPROM - Stroring control variables
+const uint8_t app_id = 43; // Useful to check the EEPROM content before processing useful data
+const int eeprom_address = 0;
+long storeTime = millis();
+
+// Commands controls
 bool cmdBFO = false;
 bool cmdAudioMute = false;
 bool cmdSlop = false;
@@ -99,8 +106,6 @@ bool cmdFilter = false;
 bool cmdStep = false;
 bool cmdBand = false;
 bool cmdSoftMuteMaxAtt = false;
-
-bool cmdSync = false;
 
 bool ssbLoaded = false;
 bool fmStereo = true;
@@ -132,47 +137,52 @@ volatile int encoderCount = 0;
 typedef struct
 {
   const char *bandName;
-  uint8_t bandType;     // Band type (FM, MW or SW)
-  uint16_t minimumFreq; // Minimum frequency of the band
-  uint16_t maximumFreq; // maximum frequency of the band
-  uint16_t currentFreq; // Default frequency or current frequency
-  uint16_t currentStep; // Defeult step (increment and decrement)
+  uint8_t bandType;         // Band type (FM, MW or SW)
+  uint16_t minimumFreq;     // Minimum frequency of the band
+  uint16_t maximumFreq;     // maximum frequency of the band
+  uint16_t currentFreq;     // Default frequency or current frequency
+  uint16_t currentStep;     // Defeult step (increment and decrement)
+  int8_t currentStepIdx;  // Idex of tabStep:  Defeult frequency step (See tabStep)
+  int8_t bandwitdthIdx;    //  Index of the table bandwitdthFM, bandwitdthAM or bandwitdthSSB;
+
 } Band;
 
 /*
    Band table
 */
 Band band[] = {
-    {"FM  ", FM_BAND_TYPE, 8400, 10800, 10390, 10},
-    {"LW  ", LW_BAND_TYPE, 100, 510, 300, 1},
-    {"AM  ", MW_BAND_TYPE, 520, 1720, 810, 10},
-    {"160m", SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
-    {"80m ", SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
-    {"60m ", SW_BAND_TYPE, 4500, 5500, 4885, 5},
-    {"49m ", SW_BAND_TYPE, 5600, 6300, 6100, 5},
-    {"40m ", SW_BAND_TYPE, 6800, 7200, 7100, 1}, // 40 meters
-    {"41m ", SW_BAND_TYPE, 7200, 7900, 7205, 5}, // 41 meters
-    {"31m ", SW_BAND_TYPE, 9200, 10000, 9600, 5},
-    {"30m ", SW_BAND_TYPE, 10000, 11000, 10100, 1}, // 30 meters
-    {"25m ", SW_BAND_TYPE, 11200, 12500, 11940, 5},
-    {"22m ", SW_BAND_TYPE, 13400, 13900, 13600, 5},
-    {"20m ", SW_BAND_TYPE, 14000, 14500, 14200, 1}, // 20 meters
-    {"19m ", SW_BAND_TYPE, 15000, 15900, 15300, 5},
-    {"18m ", SW_BAND_TYPE, 17200, 17900, 17600, 5},
-    {"17m ", SW_BAND_TYPE, 18000, 18300, 18100, 1}, // 17 meters
-    {"15m ", SW_BAND_TYPE, 21000, 21499, 21200, 1}, // 15 mters
-    {"13m ", SW_BAND_TYPE, 21500, 21900, 21525, 5}, // 15 mters
-    {"12m ", SW_BAND_TYPE, 24890, 26200, 24940, 1}, // 12 meters
-    {"CB  ", SW_BAND_TYPE, 26200, 27900, 27500, 1}, // CB band (11 meters)
-    {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 1},
-    {"All ", SW_BAND_TYPE, 100, 30000, 15000, 1} // All HF in one band
+    {"FM1 ", FM_BAND_TYPE, 6400,  8400,  7000, 10, 3}, // FM from 64 to 84 MHz
+    {"FM2 ", FM_BAND_TYPE, 8400, 10800, 10390, 10, 3},
+    {"LW  ", LW_BAND_TYPE, 100, 510, 300, 1, 0},
+    {"AM1  ",MW_BAND_TYPE, 520, 1720, 810, 10, 3},
+    {"AM2  ",MW_BAND_TYPE, 531, 1701, 783, 9, 2},
+    {"160m", SW_BAND_TYPE, 1800, 3500, 1900, 1, 0}, // 160 meters
+    {"80m ", SW_BAND_TYPE, 3500, 4500, 3700, 1, 0}, // 80 meters
+    {"60m ", SW_BAND_TYPE, 4500, 5500, 4885, 5, 1},
+    {"49m ", SW_BAND_TYPE, 5600, 6300, 6100, 5, 1},
+    {"40m ", SW_BAND_TYPE, 6800, 7200, 7100, 1, 0}, // 40 meters
+    {"41m ", SW_BAND_TYPE, 7200, 7900, 7205, 5, 1}, // 41 meters
+    {"31m ", SW_BAND_TYPE, 9200, 10000, 9600, 5, 1},
+    {"30m ", SW_BAND_TYPE, 10000, 11000, 10100, 1, 0}, // 30 meters
+    {"25m ", SW_BAND_TYPE, 11200, 12500, 11940, 5, 1},
+    {"22m ", SW_BAND_TYPE, 13400, 13900, 13600, 5, 1},
+    {"20m ", SW_BAND_TYPE, 14000, 14500, 14200, 1, 0}, // 20 meters
+    {"19m ", SW_BAND_TYPE, 15000, 15900, 15300, 5, 1},
+    {"18m ", SW_BAND_TYPE, 17200, 17900, 17600, 5, 1},
+    {"17m ", SW_BAND_TYPE, 18000, 18300, 18100, 1, 0}, // 17 meters
+    {"15m ", SW_BAND_TYPE, 21000, 21499, 21200, 1, 0}, // 15 mters
+    {"13m ", SW_BAND_TYPE, 21500, 21900, 21525, 5, 1}, // 15 mters
+    {"12m ", SW_BAND_TYPE, 24890, 26200, 24940, 1, 0}, // 12 meters
+    {"CB  ", SW_BAND_TYPE, 26200, 27900, 27500, 1, 0}, // CB band (11 meters)
+    {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 1, 0},
+    {"All ", SW_BAND_TYPE, 100, 30000, 15000, 1, 0} // All HF in one band
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int bandIdx = 0;
+int bandIdx = 2;
 int lastSwBand = 7; // Saves the last SW band used
 
-int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
+int tabStep[] = {1, 5, 9, 10, 50, 100, 500, 1000};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 int idxStep = 0;
 
@@ -239,26 +249,17 @@ Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 TFT_eSPI tft = TFT_eSPI(); // Invoke custom library
 SI4735 si4735;
 
-TFT_eSPI_Button buttonNextBand, 
-                buttonPreviousBand, 
+TFT_eSPI_Button buttonBand,   
                 buttonVolumeLevel, 
-                buttonSeekUp, 
-                buttonSeekDown, 
+                buttonSeek,        
                 buttonStep, 
                 buttonAudioMute, 
-                buttonAM, 
-                buttonLSB, 
-                buttonUSB, 
-                buttonFM, 
-                buttonMW, 
-                buttonSW, 
+                buttonMode, 
                 buttonFilter, 
                 buttonAGC, 
                 buttonSoftMute, 
                 buttonSlop, 
-                buttonSMuteRate, 
-                buttonBFO, 
-                buttonSync;
+                buttonBFO;
 
 uint16_t pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -271,7 +272,6 @@ void showBandwitdth(bool drawAfter = false);
 void showAgcAtt(bool drawAfter = false);
 void showStep(bool drawAfter = false);
 void showSoftMute(bool drawAfter = false);
-void showMuteRate(bool drawAfter = false);
 void showSlop(bool drawAfter = false);
 void showVolume(bool drawAfter = false);
 
@@ -323,19 +323,36 @@ void setup(void)
     sprintf(buffer, "The Si473X I2C address is 0x%x ", si4735Addr);
     showText(65, 440, 1, NULL, RED, buffer);
   }
-  delay(5000);
+  delay(3000);
 
   tft.fillScreen(BLACK);
+
+  // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
+  if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
+  {
+    EEPROM.write(eeprom_address, 0);
+    showText(0, 160, 2, NULL, RED, "EEPROM RESETED");
+    delay(2000);
+    tft.fillScreen(BLACK);
+  }
 
   // Atach Encoder pins interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  si4735.setup(RESET_PIN, 1);
-  // si4735.setup(RESET_PIN, 0, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL);
+  // si4735.setup(RESET_PIN, 1);
+  si4735.setup(RESET_PIN, 0, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL);
 
   // Set up the radio for the current band (see index table variable bandIdx )
   delay(100);
+
+  // Checking the EEPROM content
+  if (EEPROM.read(eeprom_address) == app_id)
+  {
+    readAllReceiverInformation();
+  }
+
+
 
   showTemplate();
   
@@ -367,6 +384,95 @@ void rotaryEncoder()
 }
 
 
+/*
+   writes the conrrent receiver information into the eeprom.
+   The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
+*/
+void saveAllReceiverInformation()
+{
+  int addr_offset;
+  EEPROM.write(eeprom_address, app_id);                 // stores the app id;
+  EEPROM.write(eeprom_address + 1, si4735.getVolume()); // stores the current Volume
+  EEPROM.write(eeprom_address + 2, bandIdx);            // Stores the current band
+  EEPROM.write(eeprom_address + 3, currentMode);        // Stores the current Mode (FM / AM / SSB)
+  EEPROM.write(eeprom_address + 4, currentBFO >> 8);
+  EEPROM.write(eeprom_address + 5, currentBFO & 0XFF);
+
+  addr_offset = 6;
+  band[bandIdx].currentFreq = currentFrequency;
+
+  for (int i = 0; i < lastBand; i++)
+  {
+    EEPROM.write(addr_offset++, (band[i].currentFreq >> 8));   // stores the current Frequency HIGH byte for the band
+    EEPROM.write(addr_offset++, (band[i].currentFreq & 0xFF)); // stores the current Frequency LOW byte for the band
+    EEPROM.write(addr_offset++, band[i].currentStepIdx);       // Stores current step of the band
+    EEPROM.write(addr_offset++, band[i].bandwitdthIdx);        // table index (direct position) of bandwitdth
+  }
+}
+
+/**
+ * reads the last receiver status from eeprom. 
+ */
+void readAllReceiverInformation()
+{
+  uint8_t volume;
+  int addr_offset;
+  int bwIdx;
+  volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
+  bandIdx = EEPROM.read(eeprom_address + 2);
+  currentMode = EEPROM.read(eeprom_address + 3);
+  currentBFO = EEPROM.read(eeprom_address + 4) << 8;
+  currentBFO |= EEPROM.read(eeprom_address + 5);
+
+  addr_offset = 6;
+  for (int i = 0; i < lastBand; i++)
+  {
+    band[i].currentFreq = EEPROM.read(addr_offset++) << 8;
+    band[i].currentFreq |= EEPROM.read(addr_offset++);
+    band[i].currentStepIdx = EEPROM.read(addr_offset++);
+    band[i].bandwitdthIdx = EEPROM.read(addr_offset++);
+  }
+
+  previousFrequency = currentFrequency = band[bandIdx].currentFreq;
+  idxStep = tabStep[band[bandIdx].currentStepIdx];
+  bwIdx = band[bandIdx].bandwitdthIdx;
+
+  if (currentMode == LSB || currentMode == USB)
+  {
+    loadSSB();
+    bwIdxSSB = (bwIdx > 5) ? 5 : bwIdx;
+    si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
+    // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+    if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
+      si4735.setSBBSidebandCutoffFilter(0);
+    else
+      si4735.setSBBSidebandCutoffFilter(1);
+  }
+  else if (currentMode == AM)
+  {
+    bwIdxAM = bwIdx;
+    si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+  }
+  else
+  {
+    bwIdxFM = bwIdx;
+    si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
+  }
+
+  si4735.setVolume(volume);
+}
+
+/*
+ * To store any change into the EEPROM, it is needed at least STORE_TIME  milliseconds of inactivity.
+ */
+void resetEepromDelay()
+{
+  storeTime = millis();
+  previousFrequency = 0;
+}
+
+
+
 
 /**
  * Disable all commands
@@ -388,8 +494,6 @@ void disableCommands()
     buttonSoftMute.drawButton(true);
   if (cmdSlop)
     buttonSlop.drawButton(true);
-  if (cmdMuteRate)
-    buttonSMuteRate.drawButton(true);
 
   cmdBFO = false;
   cmdAudioMute = false;
@@ -480,26 +584,17 @@ void printText(int col, int line, int sizeText, char *oldValue, const char *newV
 
 
 void setDrawButtons( bool value) {
-  buttonNextBand.drawButton(value);
-  buttonPreviousBand.drawButton(value);
+  buttonBand.drawButton(value);
   buttonVolumeLevel.drawButton(value);
   buttonAudioMute.drawButton(value);
-  buttonSeekUp.drawButton(value);
-  buttonSeekDown.drawButton(value);
+  buttonSeek.drawButton(value);
   buttonStep.drawButton(value);
   buttonBFO.drawButton(value);
-  buttonFM.drawButton(value);
-  buttonMW.drawButton(value);
-  buttonSW.drawButton(value);
-  buttonAM.drawButton(value);
-  buttonLSB.drawButton(value);
-  buttonUSB.drawButton(value);
+  buttonMode.drawButton(value);
   buttonFilter.drawButton(value);
   buttonAGC.drawButton(value);
   buttonSoftMute.drawButton(value);
   buttonSlop.drawButton(value);
-  buttonSMuteRate.drawButton(value);
-  buttonSync.drawButton(value);
 }
 
 /**
@@ -515,11 +610,14 @@ void setButton(TFT_eSPI_Button *button, int16_t col, int16_t lin, int16_t width,
 
 
 void setButtonsFM() {
+
+  /*
   setButton(&buttonFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "BW", true);
   setButton(&buttonSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
-  setButton(&buttonSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+
   setButton(&buttonSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
   setButton(&buttonAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "AGC On", true);
+  */
 }
 
 void showTemplate()
@@ -530,26 +628,21 @@ void showTemplate()
   tft.drawRect(0, KEYBOARD_LIN_OFFSET + 100, w, 280, CYAN);
   tft.setFreeFont(NULL);
 
-  setButton(&buttonPreviousBand, 45, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Band-", true);
-  setButton(&buttonNextBand, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Band+", true);
-  setButton(&buttonVolumeLevel, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Vol", true);
-  setButton(&buttonAudioMute, 270, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Mute", true);
-  setButton(&buttonSeekDown, 45, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Seek-", true);
-  setButton(&buttonSeekUp, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Seek+", true);
-  setButton(&buttonBFO, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "BFO", true);
-  setButton(&buttonStep, 270, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Step", true);
-  setButton(&buttonFM, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "FM", true);
-  setButton(&buttonMW, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "MW", true);
-  setButton(&buttonSW, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "SW", true);
-  setButton(&buttonAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "AGC On", true);
-  setButton(&buttonAM, 45, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "AM", true);
-  setButton(&buttonLSB, 120, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "LSB", true);
-  setButton(&buttonUSB, 195, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "USB", true);
-  setButton(&buttonFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "BW", true);
-  setButton(&buttonSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
-  setButton(&buttonSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
-  setButton(&buttonSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
-  setButton(&buttonSync, 270, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "SYNC", true);
+  setButton(&buttonBand, 45, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Band", true);
+  setButton(&buttonVolumeLevel, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Vol", true);
+  setButton(&buttonAudioMute, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Mute", true);
+  
+  setButton(&buttonSeek, 45, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Seek", true);
+  setButton(&buttonBFO, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "BFO", true);
+  setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Step", true);
+  
+  setButton(&buttonMode, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "Mode", true);
+  setButton(&buttonAGC, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"AGC On", true);
+  setButton(&buttonFilter, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "BW", true);
+
+  setButton(&buttonSoftMute, 45, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *)"---", true);
+
+  setButton(&buttonSlop, 195, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *)"---", true);
 
   // Exibe os botões (teclado touch)
   setDrawButtons(true);
@@ -613,6 +706,8 @@ void showFrequency()
   tft.setTextSize(1);
   if (si4735.isCurrentTuneFM())
   {
+    sprintf(sFreq, "%5d", currentFrequency);
+    /*
     sprintf(aux, "%5.5d", currentFrequency);
     sFreq[0] = (aux[0] == '0') ? ' ' : aux[0];
     sFreq[1] = aux[1];
@@ -621,6 +716,7 @@ void showFrequency()
     sFreq[4] = '\0';
 
     // tft.drawChar(180, 55, '.', YELLOW, BLACK, 1);
+    */
   }
   else
   {
@@ -748,7 +844,6 @@ void showStatus()
   showStep(true);
   showSoftMute(true);
   showSlop(true);
-  showMuteRate(true);
   // setDrawButtons(true);
  }
 
@@ -771,7 +866,7 @@ void showBandwitdth(bool drawAfter)
   else {
     sprintf(bw, "BW:%s", bandwitdthFM[bwIdxFM].desc);
   }
-  setButton(&buttonFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, bw, drawAfter);
+  setButton(&buttonFilter, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, bw, drawAfter);
 }
 
 /**
@@ -791,7 +886,7 @@ void showAgcAtt(bool drawAfter)
   {
     sprintf(sAgc, "ATT: %2d", agcNdx);
   }
-  setButton(&buttonAGC, 270, KEYBOARD_LIN_OFFSET +  240, 70, 49, sAgc, drawAfter);
+  setButton(&buttonAGC, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, sAgc, drawAfter);
 }
 
 /**
@@ -904,7 +999,7 @@ void showStep(bool drawAfter)
 {
   char sStep[15];
   sprintf(sStep, "Stp:%4d", currentStep);
-  setButton(&buttonStep, 270, KEYBOARD_LIN_OFFSET +  185, 70, 49, sStep, drawAfter);
+  setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49,sStep, drawAfter);
 }
 
 void showSoftMute(bool drawAfter)
@@ -914,7 +1009,7 @@ void showSoftMute(bool drawAfter)
   if (currentMode == FM) return;
   
   sprintf(sMute, "SM: %2d", softMuteMaxAttIdx);
-  setButton(&buttonSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, sMute, drawAfter);
+  setButton(&buttonSoftMute, 45, KEYBOARD_LIN_OFFSET + 295, 70, 49, sMute, drawAfter);  
 }
 
 /**
@@ -934,7 +1029,7 @@ void showVolume(bool drawAfter)
 {
   char sVolume[15];
   sprintf(sVolume, "Vol: %2.2d", si4735.getVolume());
-  setButton(&buttonVolumeLevel, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, sVolume, drawAfter);
+  setButton(&buttonVolumeLevel, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, sVolume, drawAfter);
 }
 
 /**
@@ -947,18 +1042,11 @@ void showSlop(bool drawAfter)
   if (currentMode == FM) return; 
     
   sprintf(sSlop, "Sl:%2.2u", slopIdx);
-  setButton(&buttonSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, sSlop, drawAfter);
+
+  setButton(&buttonSlop, 195, KEYBOARD_LIN_OFFSET + 295, 70, 49, sSlop, drawAfter);
+ 
 }
 
-void showMuteRate(bool drawAfter)
-{
-  char sMRate[10];
-
-  if (currentMode == FM) return; 
-    
-  sprintf(sMRate, "MR:%3.3u", muteRateIdx);
-  setButton(&buttonSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, sMRate, drawAfter);
-}
 
 char *rdsMsg;
 char *stationName;
@@ -1320,20 +1408,6 @@ void doSlop(int8_t v)
   elapsedCommand = millis();
 }
 
-void doMuteRate(int8_t v)
-{
-  muteRateIdx = (v == 1) ? muteRateIdx + 1 : muteRateIdx - 1;
-  if (muteRateIdx < 1)
-    muteRateIdx = 255;
-  else if (slopIdx > 255)
-    muteRateIdx = 1;
-
-  // si4735.setAMSoftMuteRate((uint8_t)muteRateIdx);
-  si4735.setAmNoiseBlank(muteRateIdx);
-  
-  showMuteRate();
-  elapsedCommand = millis();
-}
 
 /**
  * @brief Checks the touch
@@ -1343,26 +1417,22 @@ void checkTouch()
 {
 
   bool down = Touch_getXY();
-  buttonNextBand.press(down && buttonNextBand.contains(pixel_x, pixel_y));
-  buttonPreviousBand.press(down && buttonPreviousBand.contains(pixel_x, pixel_y));
+  buttonBand.press(down && buttonBand.contains(pixel_x, pixel_y));
   buttonVolumeLevel.press(down && buttonVolumeLevel.contains(pixel_x, pixel_y));
   buttonBFO.press(down && buttonBFO.contains(pixel_x, pixel_y));
-  buttonSeekUp.press(down && buttonSeekUp.contains(pixel_x, pixel_y));
-  buttonSeekDown.press(down && buttonSeekDown.contains(pixel_x, pixel_y));
+  buttonSeek.press(down && buttonSeek.contains(pixel_x, pixel_y));
   buttonStep.press(down && buttonStep.contains(pixel_x, pixel_y));
   buttonAudioMute.press(down && buttonAudioMute.contains(pixel_x, pixel_y));
-  buttonFM.press(down && buttonFM.contains(pixel_x, pixel_y));
-  buttonMW.press(down && buttonMW.contains(pixel_x, pixel_y));
-  buttonSW.press(down && buttonSW.contains(pixel_x, pixel_y));
-  buttonAM.press(down && buttonAM.contains(pixel_x, pixel_y));
-  buttonLSB.press(down && buttonLSB.contains(pixel_x, pixel_y));
-  buttonUSB.press(down && buttonUSB.contains(pixel_x, pixel_y));
+  buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
+  buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
+  buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
+  buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
+  buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
+  buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
   buttonFilter.press(down && buttonFilter.contains(pixel_x, pixel_y));
   buttonAGC.press(down && buttonAGC.contains(pixel_x, pixel_y));
   buttonSoftMute.press(down && buttonSoftMute.contains(pixel_x, pixel_y));
   buttonSlop.press(down && buttonSlop.contains(pixel_x, pixel_y));
-  buttonSMuteRate.press(down && buttonSMuteRate.contains(pixel_x, pixel_y));
-  buttonSync.press(down && buttonSync.contains(pixel_x, pixel_y));
 }
 
 /* two buttons are quite simple
@@ -1388,9 +1458,7 @@ void loop(void)
     else if (cmdStep)
       switchStep(encoderCount);
     else if (cmdSoftMuteMaxAtt)
-      switchSoftMute(encoderCount);
-    // else if (cmdSync) 
-    //   switchSync(encoderCount);  
+      switchSoftMute(encoderCount);      
     else if (cmdBand)
     {
       if (encoderCount == 1)
@@ -1401,18 +1469,15 @@ void loop(void)
     }
     else if (cmdSlop)
       doSlop(encoderCount);
-    else if (cmdMuteRate)
-      doMuteRate(encoderCount);
     else
     {
       if (encoderCount == 1) 
         si4735.frequencyUp();
       else
         si4735.frequencyDown();
-      // currentFrequency = si4735.getFrequency();      // Queries the Si473X device.
+        
+      //  currentFrequency = si4735.getFrequency();      // Queries the Si473X device.
       currentFrequency = si4735.getCurrentFrequency(); // Just get the last setFrequency value (faster but can not be accurate sometimes).
-      // if (loadSSB) // Checking a bug on SSB patch
-      //   si4735.setAutomaticGainControl(disableAgc, agcNdx);
       showFrequency();
       elapsedCommand = millis();
     }
@@ -1422,9 +1487,9 @@ void loop(void)
   {
     checkTouch();
 
-    if (buttonNextBand.justPressed()) // Band +
+    if (buttonBand.justPressed()) // Band +
       bandUp();
-    else if (buttonPreviousBand.justPressed()) // Band-
+    else if (buttonBand.justPressed()) // Band-
       bandDown();
     else if (buttonVolumeLevel.justPressed()) // Volume
     {
@@ -1449,7 +1514,7 @@ void loop(void)
       }
       delay(MIN_ELAPSED_TIME);
     }
-    else if (buttonSeekUp.justPressed()) // SEEK UP
+    else if (buttonSeek.justPressed()) // SEEK UP
     {
       si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, SEEK_UP);
       // si4735.seekNextStation(); // This method does not show the progress
@@ -1457,7 +1522,7 @@ void loop(void)
       currentFrequency = si4735.getFrequency();
       showStatus();
     }
-    else if (buttonSeekDown.justPressed()) // SEEK DOWN
+    else if (buttonSeek.justPressed()) // SEEK DOWN
     {
       si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, SEEK_DOWN);
       // si4735.seekPreviousStation(); // This method does not show the progress
@@ -1481,15 +1546,7 @@ void loop(void)
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (buttonSMuteRate.justPressed())
-    {
-      buttonSMuteRate.drawButton(false);
-      disableCommands();
-      cmdMuteRate = true;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (buttonAM.justPressed()) // Switch to AM mode
+    else if (buttonMode.justPressed()) // Switch to AM mode
     {
       if (currentMode != FM)
       {
@@ -1502,7 +1559,7 @@ void loop(void)
         showFrequency();
       }
     }
-    else if (buttonFM.justPressed()) // Switch to VFH/FM
+    else if (buttonMode.justPressed()) // Switch to VFH/FM
     {
       if (currentMode != FM)
       {
@@ -1516,7 +1573,7 @@ void loop(void)
         showFrequency();
       }
     }
-    else if (buttonMW.justPressed()) // Switch to MW/AM
+    else if (buttonMode.justPressed()) // Switch to MW/AM
     {
       band[bandIdx].currentFreq = currentFrequency;
       band[bandIdx].currentStep = currentStep;
@@ -1526,7 +1583,7 @@ void loop(void)
       bandIdx = 2; // See Band table
       useBand();
     }
-    else if (buttonSW.justPressed()) // Switch to SW/AM
+    else if (buttonMode.justPressed()) // Switch to SW/AM
     {
       band[bandIdx].currentFreq = currentFrequency;
       band[bandIdx].currentStep = currentStep;
@@ -1536,7 +1593,7 @@ void loop(void)
       bandIdx = lastSwBand; // See Band table
       useBand();
     }
-    else if (buttonLSB.justPressed()) // Switch to LSB mode
+    else if (buttonMode.justPressed()) // Switch to LSB mode
     {
       if (currentMode != FM)
       {
@@ -1550,7 +1607,7 @@ void loop(void)
         useBand();
       }
     }
-    else if (buttonUSB.justPressed()) // Switch to USB mode
+    else if (buttonMode.justPressed()) // Switch to USB mode
     {
       if (currentMode != FM)
       {
@@ -1589,12 +1646,6 @@ void loop(void)
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (buttonSync.justPressed())
-    {
-      cmdSync = !cmdSync;
-      switchSync(0);
-      delay(MIN_ELAPSED_TIME);
-    }
   }
 
   // ENCODER PUSH BUTTON
@@ -1625,6 +1676,7 @@ void loop(void)
     elapsedRSSI = millis();
   }
 
+  /*
   if (currentMode == FM)
   {
     if (currentFrequency != previousFrequency)
@@ -1637,6 +1689,7 @@ void loop(void)
     }
     checkRDS();
   }
+  */
 
   // Disable commands control
   if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
