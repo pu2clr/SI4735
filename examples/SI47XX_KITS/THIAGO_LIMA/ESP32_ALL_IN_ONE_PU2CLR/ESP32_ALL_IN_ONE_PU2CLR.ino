@@ -503,7 +503,8 @@ void setDrawButtons( bool value) {
 }
 
 /**
- * Sets a given button
+ * Initiates an instance of a given button
+ * 
  */
 void setButton(TFT_eSPI_Button *button, int16_t col, int16_t lin, int16_t width, int16_t high, char *label, bool drawAfter)
 {
@@ -523,37 +524,11 @@ void setButtonsFM() {
 
 void showTemplate()
 {
-
   int w = tft.width();
-
   // Area used to show the frequency
   tft.drawRect(0, 0, w, 75, WHITE);
-
   tft.drawRect(0, KEYBOARD_LIN_OFFSET + 100, w, 280, CYAN);
   tft.setFreeFont(NULL);
-
-  /*
-  buttonPreviousBand.initButton(&tft, 45, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Band-", 1);
-  buttonNextBand.initButton(&tft, 120, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Band+", 1);
-  buttonVolumeLevel.initButton(&tft, 195, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Vol", 1);
-  buttonAudioMute.initButton(&tft, 270, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Mute", 1);
-  buttonSeekDown.initButton(&tft, 45, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"Seek-", 1);
-  buttonSeekUp.initButton(&tft, 120, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"Seek+", 1);
-  buttonBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"BFO", 1);
-  buttonStep.initButton(&tft, 270, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"Step", 1);
-  buttonFM.initButton(&tft, 45, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"FM", 1);
-  buttonMW.initButton(&tft, 120, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"MW", 1);
-  buttonSW.initButton(&tft, 195, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"SW", 1);
-  buttonAGC.initButton(&tft, 270, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"ATT", 1);
-  buttonAM.initButton(&tft, 45, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"AM", 1);
-  buttonLSB.initButton(&tft, 120, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"LSB", 1);
-  buttonUSB.initButton(&tft, 195, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"USB", 1);
-  buttonFilter.initButton(&tft, 270, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"BW", 1);
-  buttonSoftMute.initButton(&tft, 45, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"SM Att", 1);
-  buttonSMuteRate.initButton(&tft, 120, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"SM Rate", 1);
-  buttonSlop.initButton(&tft, 195, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"Slop", 1);
-  buttonSync.initButton(&tft, 270, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"DE", 1);
-  */
 
   setButton(&buttonPreviousBand, 45, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Band-", true);
   setButton(&buttonNextBand, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Band+", true);
@@ -578,18 +553,7 @@ void showTemplate()
 
   // Exibe os botões (teclado touch)
   setDrawButtons(true);
-
-  /*
-  showText(0, 397, 1, NULL, GREEN, "RSSI");
-  tft.drawRect(30, 393, (w - 32), 14, CYAN);
-  */
-
-  // tft.drawRect(0, STATUS_DISPLAY_LIN_OFFSET -5, w , 45, CYAN);
-
-  // DrawSmeter();
-
   showText(0, 470, 1, NULL, YELLOW, "PU2CLR SI4735 Arduino Library - You can do it better!");
-
   tft.setFreeFont(NULL);
 }
 
@@ -599,15 +563,12 @@ void showTemplate()
 */
 void showFrequencyValue(int col, int line, char *oldValue, char *newValue, uint16_t color, uint8_t space, uint8_t textSize)
 {
-
   int c = col;
-
   char *pOld;
   char *pNew;
 
   pOld = oldValue;
   pNew = newValue;
-
   // prints just changed digits
   while (*pOld && *pNew)
   {
@@ -620,7 +581,6 @@ void showFrequencyValue(int col, int line, char *oldValue, char *newValue, uint1
     pNew++;
     c += space;
   }
-
   // Is there anything else to erase?
   while (*pOld)
   {
@@ -628,7 +588,6 @@ void showFrequencyValue(int col, int line, char *oldValue, char *newValue, uint1
     pOld++;
     c += space;
   }
-
   // Is there anything else to print?
   while (*pNew)
   {
