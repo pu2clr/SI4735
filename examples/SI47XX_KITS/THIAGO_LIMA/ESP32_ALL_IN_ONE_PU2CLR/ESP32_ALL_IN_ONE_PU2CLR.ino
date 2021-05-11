@@ -1,5 +1,5 @@
 /*
-  SKETCH UNDER CONSTRUCTION...
+  UNDER CONSTRUCTION...
 
   ATTENTION: You migh need to calibrate the touch. 
 
