@@ -98,7 +98,6 @@ long storeTime = millis();
 // Commands controls
 bool cmdBFO = false;
 bool cmdAudioMute = false;
-bool cmdSlop = false;
 bool cmdMuteRate = false;
 bool cmdVolume = false; // if true, the encoder will control the volume.
 bool cmdAgcAtt = false;
@@ -257,9 +256,7 @@ TFT_eSPI_Button buttonBand,
                 buttonMode, 
                 buttonFilter, 
                 buttonAGC, 
-                buttonSoftMute, 
-                buttonSlop, 
-                buttonBFO;
+                buttonSoftMute;
 
 uint16_t pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -272,7 +269,7 @@ void showBandwitdth(bool drawAfter = false);
 void showAgcAtt(bool drawAfter = false);
 void showStep(bool drawAfter = false);
 void showSoftMute(bool drawAfter = false);
-void showSlop(bool drawAfter = false);
+
 void showVolume(bool drawAfter = false);
 
 
@@ -304,11 +301,15 @@ void setup(void)
   tft.fillScreen(BLACK);
 
   // tft.setFreeFont(&FreeSans12pt7b);
-  showText(80, 30, 3, NULL, GREEN, "SI4735");
-  showText(80, 90, 3, NULL, YELLOW, "Arduino");
-  showText(80, 160, 3, NULL, YELLOW, "Library");
-  showText(10, 240, 3, NULL, WHITE, "PU2CLR / RICARDO");
-  showText(50, 340, 1, NULL, WHITE, "https://pu2clr.github.io/SI4735/");
+  showText(60, 0, 3, NULL, GREEN, "SI4735");
+  showText(60, 25, 3, NULL, YELLOW, "Arduino");
+  showText(60, 50, 3, NULL, YELLOW, "Library");
+  tft.setFreeFont(NULL);
+  tft.setTextSize(1);
+  showText(60, 100, 3, NULL, WHITE, "PU2CLR");
+  showText(60, 150, 3, NULL, WHITE, "RICARDO");
+  showText(0, 200, 1, NULL, WHITE, "https://pu2clr.github.io/SI4735/");
+  
   int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
   if (si4735Addr == 0)
   {
@@ -492,12 +493,9 @@ void disableCommands()
     buttonAGC.drawButton(true);
   if (cmdSoftMuteMaxAtt)
     buttonSoftMute.drawButton(true);
-  if (cmdSlop)
-    buttonSlop.drawButton(true);
 
   cmdBFO = false;
   cmdAudioMute = false;
-  cmdSlop = false;
   cmdMuteRate = false;
   cmdVolume = false; // if true, the encoder will control the volume.
   cmdAgcAtt = false;
@@ -589,12 +587,10 @@ void setDrawButtons( bool value) {
   buttonAudioMute.drawButton(value);
   buttonSeek.drawButton(value);
   buttonStep.drawButton(value);
-  buttonBFO.drawButton(value);
   buttonMode.drawButton(value);
   buttonFilter.drawButton(value);
   buttonAGC.drawButton(value);
   buttonSoftMute.drawButton(value);
-  buttonSlop.drawButton(value);
 }
 
 /**
@@ -611,13 +607,6 @@ void setButton(TFT_eSPI_Button *button, int16_t col, int16_t lin, int16_t width,
 
 void setButtonsFM() {
 
-  /*
-  setButton(&buttonFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "BW", true);
-  setButton(&buttonSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
-
-  setButton(&buttonSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
-  setButton(&buttonAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "AGC On", true);
-  */
 }
 
 void showTemplate()
@@ -633,20 +622,17 @@ void showTemplate()
   setButton(&buttonAudioMute, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Mute", true);
   
   setButton(&buttonSeek, 45, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Seek", true);
-  setButton(&buttonBFO, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "BFO", true);
+  setButton(&buttonMode, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Mode", true);
   setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Step", true);
-  
-  setButton(&buttonMode, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "Mode", true);
-  setButton(&buttonAGC, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"AGC On", true);
+
+  setButton(&buttonAGC, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"AGC On", true);
+  setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"---", true);
   setButton(&buttonFilter, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "BW", true);
 
-  setButton(&buttonSoftMute, 45, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *)"---", true);
 
-  setButton(&buttonSlop, 195, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *)"---", true);
 
   // Exibe os botões (teclado touch)
   setDrawButtons(true);
-  showText(0, 470, 1, NULL, YELLOW, "PU2CLR SI4735 Arduino Library - You can do it better!");
   tft.setFreeFont(NULL);
 }
 
@@ -831,19 +817,18 @@ void showStatus()
 
   if (si4735.isCurrentTuneFM())
   {
-    printText(280, 55, 2, bufferUnit, "MHz", WHITE, 12);
+    // printText(280, 55, 2, bufferUnit, "MHz", WHITE, 12);
     setButtonsFM();
     // setDrawButtons(true);
     return;
   }
 
-  printText(280, 55, 2, bufferUnit, "kHz", WHITE, 12);
+  // printText(280, 55, 2, bufferUnit, "kHz", WHITE, 12);
 
   showBandwitdth(true);
   showAgcAtt(true);
   showStep(true);
   showSoftMute(true);
-  showSlop(true);
   // setDrawButtons(true);
  }
 
@@ -886,7 +871,7 @@ void showAgcAtt(bool drawAfter)
   {
     sprintf(sAgc, "ATT: %2d", agcNdx);
   }
-  setButton(&buttonAGC, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, sAgc, drawAfter);
+  setButton(&buttonAGC, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, sAgc, drawAfter);
 }
 
 /**
@@ -1009,7 +994,8 @@ void showSoftMute(bool drawAfter)
   if (currentMode == FM) return;
   
   sprintf(sMute, "SM: %2d", softMuteMaxAttIdx);
-  setButton(&buttonSoftMute, 45, KEYBOARD_LIN_OFFSET + 295, 70, 49, sMute, drawAfter);  
+  setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, sMute, drawAfter);
+ 
 }
 
 /**
@@ -1032,20 +1018,7 @@ void showVolume(bool drawAfter)
   setButton(&buttonVolumeLevel, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, sVolume, drawAfter);
 }
 
-/**
- * Shows slop parameter
- */
-void showSlop(bool drawAfter)
-{
-  char sSlop[10];
 
-  if (currentMode == FM) return; 
-    
-  sprintf(sSlop, "Sl:%2.2u", slopIdx);
-
-  setButton(&buttonSlop, 195, KEYBOARD_LIN_OFFSET + 295, 70, 49, sSlop, drawAfter);
- 
-}
 
 
 char *rdsMsg;
@@ -1381,32 +1354,15 @@ void doBFO()
   cmdBFO = !cmdBFO;
   if (cmdBFO)
   {
-    buttonBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"VFO", 1);
     showBFO();
   }
   else
   {
-    buttonBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"BFO", 1);
   }
-  buttonBFO.drawButton(true);
   showStatus();
   elapsedCommand = millis();
 }
 
-void doSlop(int8_t v)
-{
-  slopIdx = (v == 1) ? slopIdx + 1 : slopIdx - 1;
-
-   if (slopIdx < 1)
-    slopIdx = 5;
-  else if (slopIdx > 5)
-    slopIdx = 1;
-
-  si4735.setAMSoftMuteSlop(slopIdx);
-  
-  showSlop();
-  elapsedCommand = millis();
-}
 
 
 /**
@@ -1419,7 +1375,6 @@ void checkTouch()
   bool down = Touch_getXY();
   buttonBand.press(down && buttonBand.contains(pixel_x, pixel_y));
   buttonVolumeLevel.press(down && buttonVolumeLevel.contains(pixel_x, pixel_y));
-  buttonBFO.press(down && buttonBFO.contains(pixel_x, pixel_y));
   buttonSeek.press(down && buttonSeek.contains(pixel_x, pixel_y));
   buttonStep.press(down && buttonStep.contains(pixel_x, pixel_y));
   buttonAudioMute.press(down && buttonAudioMute.contains(pixel_x, pixel_y));
@@ -1432,7 +1387,7 @@ void checkTouch()
   buttonFilter.press(down && buttonFilter.contains(pixel_x, pixel_y));
   buttonAGC.press(down && buttonAGC.contains(pixel_x, pixel_y));
   buttonSoftMute.press(down && buttonSoftMute.contains(pixel_x, pixel_y));
-  buttonSlop.press(down && buttonSlop.contains(pixel_x, pixel_y));
+
 }
 
 /* two buttons are quite simple
@@ -1467,8 +1422,6 @@ void loop(void)
         bandDown();
       elapsedCommand = millis();
     }
-    else if (cmdSlop)
-      doSlop(encoderCount);
     else
     {
       if (encoderCount == 1) 
@@ -1506,14 +1459,6 @@ void loop(void)
       si4735.setAudioMute(cmdAudioMute);
       delay(MIN_ELAPSED_TIME);
     }
-    else if (buttonBFO.justPressed()) // BFO
-    {
-      if (currentMode == LSB || currentMode == USB)
-      {
-        doBFO();
-      }
-      delay(MIN_ELAPSED_TIME);
-    }
     else if (buttonSeek.justPressed()) // SEEK UP
     {
       si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, SEEK_UP);
@@ -1535,14 +1480,6 @@ void loop(void)
       buttonSoftMute.drawButton(false);
       disableCommands();
       cmdSoftMuteMaxAtt = true;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
-    }
-    else if (buttonSlop.justPressed()) // ATU (Automatic Antenna Tuner)
-    {
-      buttonSlop.drawButton(false);
-      disableCommands();
-      cmdSlop = true;
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
@@ -1697,8 +1634,6 @@ void loop(void)
     if (cmdBFO)
     {
       bufferFreq[0] = '\0';
-      buttonBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"BFO", 1);
-      buttonBFO.drawButton(true);
       cmdBFO = false;
       showFrequency();
     }
