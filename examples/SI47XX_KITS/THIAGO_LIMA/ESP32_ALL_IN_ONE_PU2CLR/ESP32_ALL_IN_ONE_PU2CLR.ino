@@ -105,7 +105,7 @@ bool cmdAgcAtt = false;
 bool cmdFilter = false;
 bool cmdStep = false;
 bool cmdBand = false;
-bool cmdMode =  false;
+bool cmdModeOrRDS =  false;
 bool cmdSoftMuteMaxAtt = false;
 
 bool ssbLoaded = false;
@@ -255,7 +255,7 @@ TFT_eSPI_Button buttonBand,
                 buttonSeek,        
                 buttonStep, 
                 buttonAudioMute, 
-                buttonMode, 
+                buttonModeOrRDS, 
                 buttonFilter, 
                 buttonAGC, 
                 buttonSoftMute;
@@ -558,7 +558,7 @@ void resetEepromDelay()
     buttonAudioMute.drawButton(value);
     buttonSeek.drawButton(value);
     buttonStep.drawButton(value);
-    buttonMode.drawButton(value);
+    buttonModeOrRDS.drawButton(value);
     buttonFilter.drawButton(value);
     buttonAGC.drawButton(value);
     buttonSoftMute.drawButton(value);
@@ -596,7 +596,7 @@ void resetEepromDelay()
     setButton(&buttonAudioMute, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *)"Mute", true);
 
     setButton(&buttonSeek, 45, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Seek", true);
-    setButton(&buttonMode, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Mode", true);
+    setButton(&buttonModeOrRDS, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Mode", true);
     setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Step", true);
 
     setButton(&buttonAGC, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"AGC On", true);
@@ -1406,7 +1406,7 @@ void checkTouch()
   buttonSeek.press(down && buttonSeek.contains(pixel_x, pixel_y));
   buttonStep.press(down && buttonStep.contains(pixel_x, pixel_y));
   buttonAudioMute.press(down && buttonAudioMute.contains(pixel_x, pixel_y));
-  buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
+  buttonModeOrRDS.press(down && buttonModeOrRDS.contains(pixel_x, pixel_y));
   buttonFilter.press(down && buttonFilter.contains(pixel_x, pixel_y));
   buttonAGC.press(down && buttonAGC.contains(pixel_x, pixel_y));
   buttonSoftMute.press(down && buttonSoftMute.contains(pixel_x, pixel_y));
@@ -1425,7 +1425,7 @@ void disableCommand(bool *b, bool value, void (*showFunction)( bool act))
   cmdFilter = false;
   cmdStep = false;
   cmdBand = false;
-  cmdMode = false;
+  cmdModeOrRDS = false;
   cmdSoftMuteMaxAtt = false;
 
   
@@ -1466,7 +1466,7 @@ void loop(void)
       switchStep(encoderCount);
     else if (cmdSoftMuteMaxAtt)
       switchSoftMute(encoderCount); 
-    else if (cmdMode) 
+    else if (cmdModeOrRDS) 
       doMode(encoderCount);       
     else if (cmdBand)
     {
@@ -1496,7 +1496,8 @@ void loop(void)
 
     if (buttonBand.justPressed()) {
       cmdBand = !cmdBand;
-      disableCommand(&cmdBand, cmdBand, NULL);      
+      disableCommand(&cmdBand, cmdBand, NULL); 
+      buttonBand.drawButton(!cmdBand);     
     }
       else if (buttonVolumeLevel.justPressed()) // Volume
     {
@@ -1517,10 +1518,11 @@ void loop(void)
       cmdSoftMuteMaxAtt = !cmdSoftMuteMaxAtt;
       disableCommand(&cmdSoftMuteMaxAtt, cmdSoftMuteMaxAtt, showSoftMute);
     }
-    else if (buttonMode.justPressed()) // Switch to AM mode
+    else if (buttonModeOrRDS.justPressed()) // Switch to AM mode
     {
-      cmdMode = !cmdMode;
-      disableCommand(&cmdMode, cmdMode, NULL);
+      cmdModeOrRDS = !cmdModeOrRDS;
+      disableCommand(&cmdModeOrRDS, cmdModeOrRDS, NULL);
+      buttonModeOrRDS.drawButton(!cmdModeOrRDS);
     }
     else if (buttonAGC.justPressed()) // AGC and Attenuation control
     {
@@ -1550,6 +1552,7 @@ void loop(void)
     {
       cmdBand = !cmdBand;
       disableCommand(&cmdBand, cmdBand, NULL);
+      buttonBand.drawButton(!cmdBand);
     }
     delay(300);
   }
@@ -1582,6 +1585,7 @@ void loop(void)
   }
   */
 
+  /*
   // Disable commands control
   if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
   {
@@ -1594,5 +1598,6 @@ void loop(void)
     disableCommand(NULL, false, NULL);
     elapsedCommand = millis();
   }
+  */
   delay(5);
 }
