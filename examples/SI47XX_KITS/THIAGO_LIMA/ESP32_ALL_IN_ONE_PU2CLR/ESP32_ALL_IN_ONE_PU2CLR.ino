@@ -110,6 +110,7 @@ bool cmdSoftMuteMaxAtt = false;
 
 bool ssbLoaded = false;
 bool fmStereo = true;
+bool fmRDS = false;
 bool touch = false;
 
 // AGC and attenuation control
@@ -271,7 +272,7 @@ void showBandwitdth(bool drawAfter = false);
 void showAgcAtt(bool drawAfter = false);
 void showStep(bool drawAfter = false);
 void showSoftMute(bool drawAfter = false);
-void showBFO(bool drawAfter = false);
+void showBFOorRDS(bool drawAfter = false);
 void showVolume(bool drawAfter = false);
 
 
@@ -580,7 +581,12 @@ void resetEepromDelay()
     setButton(&buttonAGC, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"*", true);
     setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"*", true);
     setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"*", true);
+    showBFOorRDS(true);
     showBandwitdth(true);
+  }
+
+  void setButtonsAM() {
+       setButton(&buttonModeOrRDS, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Mode", true);
   }
 
   void showTemplate()
@@ -703,7 +709,7 @@ void resetEepromDelay()
 
     if (currentMode == LSB || currentMode == USB)
     {
-      showBFO();
+      showBFOorRDS(true);
     }
     tft.setFreeFont(NULL); // default font
   }
@@ -810,10 +816,12 @@ void resetEepromDelay()
 
     printText(5, 55, 2, bufferUnit, "kHz", WHITE, 12);
 
+    setButtonsAM();
     showBandwitdth(true);
     showAgcAtt(true);
     showStep(true);
     showSoftMute(true);
+    
     // setDrawButtons(true);
   }
 
@@ -828,7 +836,7 @@ void resetEepromDelay()
     if (currentMode == LSB || currentMode == USB)
     {
       sprintf(bw, "BW:%s", bandwitdthSSB[bwIdxSSB].desc);
-      showBFO();
+      showBFOorRDS(true);
     }
     else if (currentMode == AM)
     {
@@ -987,14 +995,24 @@ void resetEepromDelay()
     setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, sMute, drawAfter);
   }
 
-  /**
- * Shows the BFO offset on frequency area
- */
-  void showBFO(bool drawAfter)
+ /**
+  * Shows the BFO or FM RDS status 
+  */
+  void showBFOorRDS(bool drawAfter)
   {
-    tft.setFreeFont(NULL); // default font
-    sprintf(buffer, "%c%d", (currentBFO >= 0) ? '+' : '-', abs(currentBFO));
-    printText(175, 5, 2, bufferBFO, buffer, YELLOW, 11);
+    if ( currentMode == FM ) {
+      sprintf(buffer, "%s", (fmRDS) ? "RDS On" : "RDS Off");
+    } else {
+      if ( ssbLoaded ) {
+        tft.setFreeFont(NULL); // default font
+        sprintf(buffer, "%c%d", (currentBFO >= 0) ? '+' : '-', abs(currentBFO));
+        printText(175, 5, 2, bufferBFO, buffer, YELLOW, 11);
+        sprintf(buffer,"%s", bandModeDesc[currentMode]);
+      } else {
+        sprintf(buffer,"%s", "Mode");  
+      }
+    }
+    setButton(&buttonModeOrRDS, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, buffer, drawAfter);
   }
 
   /**
@@ -1166,7 +1184,7 @@ void resetEepromDelay()
         si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
         si4735.setSSBAutomaticVolumeControl(1);
         si4735.setSsbSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for SSB
-        showBFO();
+        showBFOorRDS();
       }
       else
       {
@@ -1285,7 +1303,7 @@ void switchStep(int8_t v)
   if (cmdBFO && (currentMode == LSB || currentMode == USB))
   {
     currentBFOStep = (currentBFOStep == 25) ? 10 : 25;
-    showBFO();
+    showBFOorRDS();
   }
   else
   {
@@ -1340,7 +1358,7 @@ void doBFO()
   cmdBFO = !cmdBFO;
   if (cmdBFO)
   {
-    showBFO();
+    showBFOorRDS(true);
   }
   else
   {
@@ -1385,12 +1403,12 @@ void doMode(int8_t v)
         currentMode = AM;
         ssbLoaded = false;
       }
-    }
+    } 
     // Nothing to do if you are in FM mode
     band[bandIdx].currentFreq = currentFrequency;
     band[bandIdx].currentStep = currentStep;
     useBand();
-  }
+  } 
 }
 
 
@@ -1453,7 +1471,7 @@ void loop(void)
     {
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
       si4735.setSSBBfo(currentBFO);
-      showBFO();
+      showBFOorRDS(true);
       elapsedCommand = millis();
     }
     else if (cmdVolume)
@@ -1520,8 +1538,12 @@ void loop(void)
     }
     else if (buttonModeOrRDS.justPressed()) // Switch to AM mode
     {
-      cmdModeOrRDS = !cmdModeOrRDS;
-      disableCommand(&cmdModeOrRDS, cmdModeOrRDS, NULL);
+      if (currentMode == FM )
+        fmRDS = !fmRDS;
+      else
+        cmdModeOrRDS = !cmdModeOrRDS;
+
+      disableCommand(&cmdModeOrRDS, cmdModeOrRDS, showBFOorRDS);
       buttonModeOrRDS.drawButton(!cmdModeOrRDS);
     }
     else if (buttonAGC.justPressed()) // AGC and Attenuation control
