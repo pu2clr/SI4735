@@ -1026,6 +1026,7 @@ void disableCommand(bool *b, bool value, void (*showFunction)())
   showAttenuation();
   showBandwitdth();
   showBandDesc();
+
   if (b != NULL) // rescues the last status of the last command only the parameter is not null
     *b = value;
   if (showFunction != NULL) //  show the desired status only if it is necessary.

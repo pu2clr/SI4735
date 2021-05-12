@@ -29,6 +29,7 @@
 #include <SPI.h>
 #include <TFT_eSPI.h>      // Hardware-specific library
 #include "DSEG7_Classic_Mini_Regular_48.h"
+#include "DSEG7_Classic_Mini_Regular_38.h"
 #include "Rotary.h"
 #include "EEPROM.h"
 
@@ -104,6 +105,7 @@ bool cmdAgcAtt = false;
 bool cmdFilter = false;
 bool cmdStep = false;
 bool cmdBand = false;
+bool cmdMode =  false;
 bool cmdSoftMuteMaxAtt = false;
 
 bool ssbLoaded = false;
@@ -269,7 +271,7 @@ void showBandwitdth(bool drawAfter = false);
 void showAgcAtt(bool drawAfter = false);
 void showStep(bool drawAfter = false);
 void showSoftMute(bool drawAfter = false);
-
+void showBFO(bool drawAfter = false);
 void showVolume(bool drawAfter = false);
 
 
@@ -474,38 +476,7 @@ void resetEepromDelay()
 
 
 
-
-/**
- * Disable all commands
- * 
- */
-void disableCommands()
-{
-
-  // Redraw if necessary
-  if (cmdVolume) 
-    buttonVolumeLevel.drawButton(true);
-  if (cmdStep)
-    buttonStep.drawButton(true);
-  if (cmdFilter)
-    buttonFilter.drawButton(true);
-  if (cmdAgcAtt)
-    buttonAGC.drawButton(true);
-  if (cmdSoftMuteMaxAtt)
-    buttonSoftMute.drawButton(true);
-
-  cmdBFO = false;
-  cmdAudioMute = false;
-  cmdMuteRate = false;
-  cmdVolume = false; // if true, the encoder will control the volume.
-  cmdAgcAtt = false;
-  cmdFilter = false;
-  cmdStep = false;
-  cmdBand = false;
-  cmdSoftMuteMaxAtt = false;
-}
-
-/*
+  /*
    Shows a text on a given position; with a given size and font, and with a given color
 
    @param int x column
@@ -515,185 +486,187 @@ void disableCommands()
    @param uint16_t color
    @param char * msg message
 */
-void showText(int x, int y, int sz, const GFXfont *f, uint16_t color, const char *msg)
-{
-  tft.setFreeFont(f);
-  tft.setCursor(x, y);
-  tft.setTextColor(color);
-  tft.setTextSize(sz);
-  tft.print(msg);
-}
+  void showText(int x, int y, int sz, const GFXfont *f, uint16_t color, const char *msg)
+  {
+    tft.setFreeFont(f);
+    tft.setCursor(x, y);
+    tft.setTextColor(color);
+    tft.setTextSize(sz);
+    tft.print(msg);
+  }
 
-/*
+  /*
     Prevents blinking during the frequency display.
     Erases the old char/digit value if it has changed and print the new one.
 */
-void printText(int col, int line, int sizeText, char *oldValue, const char *newValue, uint16_t color, uint8_t space)
-{
-  int c = col;
-  char *pOld;
-  char *pNew;
-
-  pOld = oldValue;
-  pNew = (char *)newValue;
-
-  tft.setTextSize(sizeText);
-
-  // prints just changed digits
-  while (*pOld && *pNew)
+  void printText(int col, int line, int sizeText, char *oldValue, const char *newValue, uint16_t color, uint8_t space)
   {
-    if (*pOld != *pNew)
+    int c = col;
+    char *pOld;
+    char *pNew;
+
+    pOld = oldValue;
+    pNew = (char *)newValue;
+
+    tft.setTextSize(sizeText);
+
+    // prints just changed digits
+    while (*pOld && *pNew)
     {
-      tft.setTextColor(BLACK);
+      if (*pOld != *pNew)
+      {
+        tft.setTextColor(BLACK);
+        tft.setCursor(c, line);
+        tft.print(*pOld);
+        tft.setTextColor(color);
+        tft.setCursor(c, line);
+        tft.print(*pNew);
+      }
+      pOld++;
+      pNew++;
+      c += space;
+    }
+
+    // Is there anything else to erase?
+    tft.setTextColor(BLACK);
+    while (*pOld)
+    {
       tft.setCursor(c, line);
       tft.print(*pOld);
-      tft.setTextColor(color);
+      pOld++;
+      c += space;
+    }
+
+    // Is there anything else to print?
+    tft.setTextColor(color);
+    while (*pNew)
+    {
       tft.setCursor(c, line);
       tft.print(*pNew);
+      pNew++;
+      c += space;
     }
-    pOld++;
-    pNew++;
-    c += space;
+
+    // Save the current content to be tested next time
+    strcpy(oldValue, newValue);
   }
 
-  // Is there anything else to erase?
-  tft.setTextColor(BLACK);
-  while (*pOld)
+  void setDrawButtons(bool value)
   {
-    tft.setCursor(c, line);
-    tft.print(*pOld);
-    pOld++;
-    c += space;
+    buttonBand.drawButton(value);
+    buttonVolumeLevel.drawButton(value);
+    buttonAudioMute.drawButton(value);
+    buttonSeek.drawButton(value);
+    buttonStep.drawButton(value);
+    buttonMode.drawButton(value);
+    buttonFilter.drawButton(value);
+    buttonAGC.drawButton(value);
+    buttonSoftMute.drawButton(value);
   }
 
-  // Is there anything else to print?
-  tft.setTextColor(color);
-  while (*pNew)
-  {
-    tft.setCursor(c, line);
-    tft.print(*pNew);
-    pNew++;
-    c += space;
-  }
-
-  // Save the current content to be tested next time
-  strcpy(oldValue, newValue);
-}
-
-
-void setDrawButtons( bool value) {
-  buttonBand.drawButton(value);
-  buttonVolumeLevel.drawButton(value);
-  buttonAudioMute.drawButton(value);
-  buttonSeek.drawButton(value);
-  buttonStep.drawButton(value);
-  buttonMode.drawButton(value);
-  buttonFilter.drawButton(value);
-  buttonAGC.drawButton(value);
-  buttonSoftMute.drawButton(value);
-}
-
-/**
+  /**
  * Initiates an instance of a given button
  * 
  */
-void setButton(TFT_eSPI_Button *button, int16_t col, int16_t lin, int16_t width, int16_t high, char *label, bool drawAfter)
-{
-  tft.setFreeFont(NULL);
-  button->initButton(&tft, col, lin, width, high, WHITE, CYAN, BLACK, (char *)label, 1);
-  button->drawButton(drawAfter);
-}
+  void setButton(TFT_eSPI_Button * button, int16_t col, int16_t lin, int16_t width, int16_t high, char *label, bool drawAfter)
+  {
+    tft.setFreeFont(NULL);
+    button->initButton(&tft, col, lin, width, high, WHITE, CYAN, BLACK, (char *)label, 1);
+    button->drawButton(drawAfter);
+  }
 
+  void setButtonsFM()
+  {
+    setButton(&buttonAGC, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"*", true);
+    setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"*", true);
+    setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"*", true);
+    showBandwitdth(true);
+  }
 
-void setButtonsFM() {
+  void showTemplate()
+  {
+    int w = tft.width();
+    // Area used to show the frequency
+    tft.drawRect(0, 0, w, 75, WHITE);
+    tft.drawRect(0, KEYBOARD_LIN_OFFSET + 100, w, 280, CYAN);
+    tft.setFreeFont(NULL);
 
-}
+    setButton(&buttonBand, 45, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *)"Band", true);
+    setButton(&buttonVolumeLevel, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *)"Vol", true);
+    setButton(&buttonAudioMute, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *)"Mute", true);
 
-void showTemplate()
-{
-  int w = tft.width();
-  // Area used to show the frequency
-  tft.drawRect(0, 0, w, 75, WHITE);
-  tft.drawRect(0, KEYBOARD_LIN_OFFSET + 100, w, 280, CYAN);
-  tft.setFreeFont(NULL);
+    setButton(&buttonSeek, 45, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Seek", true);
+    setButton(&buttonMode, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Mode", true);
+    setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Step", true);
 
-  setButton(&buttonBand, 45, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Band", true);
-  setButton(&buttonVolumeLevel, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Vol", true);
-  setButton(&buttonAudioMute, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Mute", true);
-  
-  setButton(&buttonSeek, 45, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Seek", true);
-  setButton(&buttonMode, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Mode", true);
-  setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Step", true);
+    setButton(&buttonAGC, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"AGC On", true);
+    setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"---", true);
+    setButton(&buttonFilter, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"BW", true);
 
-  setButton(&buttonAGC, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"AGC On", true);
-  setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"---", true);
-  setButton(&buttonFilter, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "BW", true);
+    // Exibe os botões (teclado touch)
+    setDrawButtons(true);
+    tft.setFreeFont(NULL);
+  }
 
-
-
-  // Exibe os botões (teclado touch)
-  setDrawButtons(true);
-  tft.setFreeFont(NULL);
-}
-
-/*
+  /*
     Prevents blinking during the frequency display.
     Erases the old digits if it has changed and print the new digit values.
 */
-void showFrequencyValue(int col, int line, char *oldValue, char *newValue, uint16_t color, uint8_t space, uint8_t textSize)
-{
-  int c = col;
-  char *pOld;
-  char *pNew;
-
-  pOld = oldValue;
-  pNew = newValue;
-  // prints just changed digits
-  while (*pOld && *pNew)
+  void showFrequencyValue(int col, int line, char *oldValue, char *newValue, uint16_t color, uint8_t space, uint8_t textSize)
   {
-    if (*pOld != *pNew)
+    int c = col;
+    char *pOld;
+    char *pNew;
+
+    pOld = oldValue;
+    pNew = newValue;
+    // prints just changed digits
+    while (*pOld && *pNew)
+    {
+      if (*pOld != *pNew)
+      {
+        tft.drawChar(c, line, *pOld, BLACK, BLACK, textSize);
+        tft.drawChar(c, line, *pNew, color, BLACK, textSize);
+      }
+      pOld++;
+      pNew++;
+      c += space;
+    }
+    // Is there anything else to erase?
+    while (*pOld)
     {
       tft.drawChar(c, line, *pOld, BLACK, BLACK, textSize);
-      tft.drawChar(c, line, *pNew, color, BLACK, textSize);
+      pOld++;
+      c += space;
     }
-    pOld++;
-    pNew++;
-    c += space;
+    // Is there anything else to print?
+    while (*pNew)
+    {
+      tft.drawChar(c, line, *pNew, color, BLACK, textSize);
+      pNew++;
+      c += space;
+    }
+    strcpy(oldValue, newValue);
   }
-  // Is there anything else to erase?
-  while (*pOld)
-  {
-    tft.drawChar(c, line, *pOld, BLACK, BLACK, textSize);
-    pOld++;
-    c += space;
-  }
-  // Is there anything else to print?
-  while (*pNew)
-  {
-    tft.drawChar(c, line, *pNew, color, BLACK, textSize);
-    pNew++;
-    c += space;
-  }
-  strcpy(oldValue, newValue);
-}
 
-/**
+  /**
  * Shows the current frequency
  * 
  */
-void showFrequency()
-{
-  uint16_t color;
-
-  char aux[15];
-  char sFreq[15];
-
-  tft.setFreeFont(&DSEG7_Classic_Mini_Regular_48);
-  tft.setTextSize(1);
-  if (si4735.isCurrentTuneFM())
+  void showFrequency()
   {
-    sprintf(sFreq, "%5d", currentFrequency);
-    /*
+    uint16_t color;
+    uint8_t space; 
+    uint8_t lin, col;
+
+    char aux[15];
+    char sFreq[15];
+
+    tft.setTextSize(1);
+    if (si4735.isCurrentTuneFM())
+    {
+      sprintf(sFreq, "%5d", currentFrequency);
+      /*
     sprintf(aux, "%5.5d", currentFrequency);
     sFreq[0] = (aux[0] == '0') ? ' ' : aux[0];
     sFreq[1] = aux[1];
@@ -703,562 +676,575 @@ void showFrequency()
 
     // tft.drawChar(180, 55, '.', YELLOW, BLACK, 1);
     */
+    }
+    else
+    {
+      sprintf(sFreq, "%5d", currentFrequency);
+      tft.drawChar(180, 55, '.', BLACK, BLACK, 1);
+    }
+
+    color = YELLOW;   
+    if (ssbLoaded) { 
+        tft.setFreeFont(&DSEG7_Classic_Mini_Regular_38); 
+        space = 30;
+        col = 50;
+        lin = 64;
+        if ( cmdBFO ) 
+           color = CYAN;  
+    }
+    else {
+       tft.setFreeFont(&DSEG7_Classic_Mini_Regular_48);
+       space = 38;
+       col = 40;
+       lin = 58;
+    }
+
+    showFrequencyValue(col, lin, bufferFreq, sFreq, color, space, 1);
+
+    if (currentMode == LSB || currentMode == USB)
+    {
+      showBFO();
+    }
+    tft.setFreeFont(NULL); // default font
   }
-  else
-  {
-    sprintf(sFreq, "%5d", currentFrequency);
-    tft.drawChar(180, 55, '.', BLACK, BLACK, 1);
-  }
 
-  color = (cmdBFO) ? CYAN : YELLOW;
-
-  showFrequencyValue(40, 58, bufferFreq, sFreq, color, 38,1);
-
-  if (currentMode == LSB || currentMode == USB)
-  {
-    showBFO();
-  }
-  tft.setFreeFont(NULL); // default font
-}
-
-/**
+  /**
  * Shows the frequency during seek process
  * 
  */
-void showFrequencySeek(uint16_t freq)
-{
-  previousFrequency = currentFrequency = freq;
-  showFrequency();
-}
+  void showFrequencySeek(uint16_t freq)
+  {
+    previousFrequency = currentFrequency = freq;
+    showFrequency();
+  }
 
-
-/**
+  /**
  * Checks the stop seeking criterias.  
  * Returns true if the user press the touch or rotates the encoder. 
  */
-bool checkStopSeeking() {
-  // Checks the touch and encoder
-  return (bool) encoderCount || Touch_getXY(); // returns true if the user rotates the encoder or touches on screen
-} 
+  bool checkStopSeeking()
+  {
+    // Checks the touch and encoder
+    return (bool)encoderCount || Touch_getXY(); // returns true if the user rotates the encoder or touches on screen
+  }
 
-
-/**
+  /**
  * Clears status area
  * 
  */
-void clearStatusArea()
-{
-  tft.fillRect(STATUS_DISPLAY_COL_OFFSET, STATUS_DISPLAY_LIN_OFFSET, tft.width() -8, 36, BLACK); // Clear all status area
-}
+  void clearStatusArea()
+  {
+    tft.fillRect(STATUS_DISPLAY_COL_OFFSET, STATUS_DISPLAY_LIN_OFFSET, tft.width() - 8, 36, BLACK); // Clear all status area
+  }
 
-/**
+  /**
  * Clears frequency area
  * 
  */
-void clearFrequencyArea()
-{
-  tft.fillRect(2, 2, tft.width() - 4, 70, BLACK);
-}
-
-int getStepIndex(int st)
-{
-  for (int i = 0; i < lastStep; i++)
+  void clearFrequencyArea()
   {
-    if (st == tabStep[i])
-      return i;
+    tft.fillRect(2, 2, tft.width() - 4, 70, BLACK);
   }
-  return 0;
-}
 
-/**
+  int getStepIndex(int st)
+  {
+    for (int i = 0; i < lastStep; i++)
+    {
+      if (st == tabStep[i])
+        return i;
+    }
+    return 0;
+  }
+
+  /**
  * Clears buffer control variable
  * 
  */
-void clearBuffer()
-{
-  bufferMode[0] = '\0';
-  bufferBandName[0] = '\0';
-  bufferMode[0] = '\0';
-  bufferBFO[0] = '\0';
-  bufferFreq[0] = '\0';
-  bufferUnit[0] = '\0';
-}
+  void clearBuffer()
+  {
+    bufferMode[0] = '\0';
+    bufferBandName[0] = '\0';
+    bufferMode[0] = '\0';
+    bufferBFO[0] = '\0';
+    bufferFreq[0] = '\0';
+    bufferUnit[0] = '\0';
+  }
 
-/**
+  /**
  * Soows status
  * 
  */
-void showStatus()
-{
-  clearBuffer();
-  clearFrequencyArea();
-  clearStatusArea();
-
-  DrawSmeter();
-
-  si4735.getStatus();
-  si4735.getCurrentReceivedSignalQuality();
-
-  si4735.getFrequency();
-  showFrequency();
-
-  showVolume(true);
-  tft.setFreeFont(NULL); // default font
-  printText(5, 5, 2, bufferBandName, band[bandIdx].bandName, CYAN, 11);
-
-  if (band[bandIdx].bandType == SW_BAND_TYPE)
+  void showStatus()
   {
-    printText(5, 30, 2, bufferMode, bandModeDesc[currentMode], CYAN, 11);
-  }
-  else
-  {
-    printText(5, 30, 2, bufferMode, "    ", BLACK, 11);
-  }
+    clearBuffer();
+    clearFrequencyArea();
+    clearStatusArea();
 
-  if (si4735.isCurrentTuneFM())
-  {
-    // printText(280, 55, 2, bufferUnit, "MHz", WHITE, 12);
-    setButtonsFM();
+    DrawSmeter();
+
+    si4735.getStatus();
+    si4735.getCurrentReceivedSignalQuality();
+
+    si4735.getFrequency();
+    showFrequency();
+
+    showVolume(true);
+    tft.setFreeFont(NULL); // default font
+    printText(5, 5, 2, bufferBandName, band[bandIdx].bandName, CYAN, 11);
+
+    if (band[bandIdx].bandType == SW_BAND_TYPE)
+    {
+      printText(5, 30, 2, bufferMode, bandModeDesc[currentMode], RED, 11);
+    }
+    else
+    {
+      printText(5, 30, 2, bufferMode, "    ", BLACK, 11);
+    }
+
+    if (si4735.isCurrentTuneFM())
+    {
+      printText(5, 55, 2, bufferUnit, "MHz", WHITE, 12);
+      setButtonsFM();
+      return;
+    }
+
+    printText(5, 55, 2, bufferUnit, "kHz", WHITE, 12);
+
+    showBandwitdth(true);
+    showAgcAtt(true);
+    showStep(true);
+    showSoftMute(true);
     // setDrawButtons(true);
-    return;
   }
 
-  // printText(280, 55, 2, bufferUnit, "kHz", WHITE, 12);
-
-  showBandwitdth(true);
-  showAgcAtt(true);
-  showStep(true);
-  showSoftMute(true);
-  // setDrawButtons(true);
- }
-
-/**
+  /**
  * SHow bandwitdth on AM or SSB mode
  * 
  */
-void showBandwitdth(bool drawAfter)
-{
-  char bw[20];
-    
-  if (currentMode == LSB || currentMode == USB)
+  void showBandwitdth(bool drawAfter)
   {
-    sprintf(bw, "BW:%s", bandwitdthSSB[bwIdxSSB].desc);
-    showBFO();
-  }
-  else if (currentMode == AM) {
-    sprintf(bw, "BW:%s", bandwitdthAM[bwIdxAM].desc);
-  }
-  else {
-    sprintf(bw, "BW:%s", bandwitdthFM[bwIdxFM].desc);
-  }
-  setButton(&buttonFilter, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, bw, drawAfter);
-}
+    char bw[20];
 
-/**
+    if (currentMode == LSB || currentMode == USB)
+    {
+      sprintf(bw, "BW:%s", bandwitdthSSB[bwIdxSSB].desc);
+      showBFO();
+    }
+    else if (currentMode == AM)
+    {
+      sprintf(bw, "BW:%s", bandwitdthAM[bwIdxAM].desc);
+    }
+    else
+    {
+      sprintf(bw, "BW:%s", bandwitdthFM[bwIdxFM].desc);
+    }
+    setButton(&buttonFilter, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, bw, drawAfter);
+  }
+
+  /**
  * Shows AGC and Attenuation status
  * 
  */
-void showAgcAtt(bool drawAfter)
-{
-  char sAgc[15];
-
-  if (currentMode == FM) return;
-
-  si4735.getAutomaticGainControl();
-  if (agcNdx == 0 && agcIdx == 0)
-    strcpy(sAgc, "AGC ON");
-  else
+  void showAgcAtt(bool drawAfter)
   {
-    sprintf(sAgc, "ATT: %2d", agcNdx);
-  }
-  setButton(&buttonAGC, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, sAgc, drawAfter);
-}
+    char sAgc[15];
 
-/**
+    if (currentMode == FM)
+      return;
+
+    si4735.getAutomaticGainControl();
+    if (agcNdx == 0 && agcIdx == 0)
+      strcpy(sAgc, "AGC ON");
+    else
+    {
+      sprintf(sAgc, "ATT: %2d", agcNdx);
+    }
+    setButton(&buttonAGC, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, sAgc, drawAfter);
+  }
+
+  /**
  * Draws the Smeter 
  * This function is based on Mr. Gert Baak's sketch available on his github repository 
  * See: https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino 
  */
-void DrawSmeter()
-{
-  tft.setTextSize(1);
-  tft.setTextColor(WHITE, BLACK);
-  for (int i = 0; i < 10; i++)
+  void DrawSmeter()
   {
-    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15 + (i * 12), RSSI_DISPLAY_LIN_OFFSET + 24, 4, 8, YELLOW);
-    tft.setCursor((RSSI_DISPLAY_COL_OFFSET + 14 + (i * 12)), RSSI_DISPLAY_LIN_OFFSET + 13);
-    tft.print(i);
-  }
-  for (int i = 1; i < 7; i++)
-  {
-    tft.fillRect((RSSI_DISPLAY_COL_OFFSET + 123 + (i * 16)), RSSI_DISPLAY_LIN_OFFSET + 24, 4, 8, RED);
-    tft.setCursor((RSSI_DISPLAY_COL_OFFSET + 117 + (i * 16)), RSSI_DISPLAY_LIN_OFFSET + 13);
-    if ((i == 2) or (i == 4) or (i == 6))
+    tft.setTextSize(1);
+    tft.setTextColor(WHITE, BLACK);
+    for (int i = 0; i < 10; i++)
     {
-      tft.print("+");
-      tft.print(i * 10);
+      tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15 + (i * 12), RSSI_DISPLAY_LIN_OFFSET + 24, 4, 8, YELLOW);
+      tft.setCursor((RSSI_DISPLAY_COL_OFFSET + 14 + (i * 12)), RSSI_DISPLAY_LIN_OFFSET + 13);
+      tft.print(i);
     }
+    for (int i = 1; i < 7; i++)
+    {
+      tft.fillRect((RSSI_DISPLAY_COL_OFFSET + 123 + (i * 16)), RSSI_DISPLAY_LIN_OFFSET + 24, 4, 8, RED);
+      tft.setCursor((RSSI_DISPLAY_COL_OFFSET + 117 + (i * 16)), RSSI_DISPLAY_LIN_OFFSET + 13);
+      if ((i == 2) or (i == 4) or (i == 6))
+      {
+        tft.print("+");
+        tft.print(i * 10);
+      }
+    }
+    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15, RSSI_DISPLAY_LIN_OFFSET + 32, 112, 4, YELLOW);
+    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 127, RSSI_DISPLAY_LIN_OFFSET + 32, 100, 4, RED);
   }
-  tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15, RSSI_DISPLAY_LIN_OFFSET + 32, 112, 4, YELLOW);
-  tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 127, RSSI_DISPLAY_LIN_OFFSET + 32, 100, 4, RED);
-}
 
-/**
+  /**
  * Shows RSSI level
  * This function shows the RSSI level based on the function DrawSmeter above. 
  */
-void showRSSI()
-{
-  int spoint;
-  if (currentMode != FM)
+  void showRSSI()
   {
-    //dBuV to S point conversion HF
-    if (rssi <= 1 )
-      spoint = 12; // S0
-    if (rssi <= 2)
-      spoint = 24; // S1
-    if (rssi <= 3 )
-      spoint = 36; // S2
-    if (rssi <= 4)
-      spoint = 48; // S3
-    if ((rssi > 4) and (rssi <= 10))
-      spoint = 48 + (rssi - 4) * 2; // S4
-    if ((rssi > 10) and (rssi <= 16))
-      spoint = 60 + (rssi - 10) * 2; // S5
-    if ((rssi > 16) and (rssi <= 22))
-      spoint = 72 + (rssi - 16) * 2; // S6
-    if ((rssi > 22) and (rssi <= 28))
-      spoint = 84 + (rssi - 22) * 2; // S7
-    if ((rssi > 28) and (rssi <= 34))
-      spoint = 96 + (rssi - 28) * 2; // S8
-    if ((rssi > 34) and (rssi <= 44))
-      spoint = 108 + (rssi - 34) * 2; // S9
-    if ((rssi > 44) and (rssi <= 54))
-      spoint = 124 + (rssi - 44) * 2; // S9 +10
-    if ((rssi > 54) and (rssi <= 64))
-      spoint = 140 + (rssi - 54) * 2; // S9 +20
-    if ((rssi > 64) and (rssi <= 74))
-      spoint = 156 + (rssi - 64) * 2; // S9 +30
-    if ((rssi > 74) and (rssi <= 84))
-      spoint = 172 + (rssi - 74) * 2; // S9 +40
-    if ((rssi > 84) and (rssi <= 94))
-      spoint = 188 + (rssi - 84) * 2; // S9 +50
-    if (rssi > 94)
-      spoint = 204; // S9 +60
-    if (rssi > 95)
-      spoint = 208; //>S9 +60
+    int spoint;
+    if (currentMode != FM)
+    {
+      //dBuV to S point conversion HF
+      if (rssi <= 1)
+        spoint = 12; // S0
+      if (rssi <= 2)
+        spoint = 24; // S1
+      if (rssi <= 3)
+        spoint = 36; // S2
+      if (rssi <= 4)
+        spoint = 48; // S3
+      if ((rssi > 4) and (rssi <= 10))
+        spoint = 48 + (rssi - 4) * 2; // S4
+      if ((rssi > 10) and (rssi <= 16))
+        spoint = 60 + (rssi - 10) * 2; // S5
+      if ((rssi > 16) and (rssi <= 22))
+        spoint = 72 + (rssi - 16) * 2; // S6
+      if ((rssi > 22) and (rssi <= 28))
+        spoint = 84 + (rssi - 22) * 2; // S7
+      if ((rssi > 28) and (rssi <= 34))
+        spoint = 96 + (rssi - 28) * 2; // S8
+      if ((rssi > 34) and (rssi <= 44))
+        spoint = 108 + (rssi - 34) * 2; // S9
+      if ((rssi > 44) and (rssi <= 54))
+        spoint = 124 + (rssi - 44) * 2; // S9 +10
+      if ((rssi > 54) and (rssi <= 64))
+        spoint = 140 + (rssi - 54) * 2; // S9 +20
+      if ((rssi > 64) and (rssi <= 74))
+        spoint = 156 + (rssi - 64) * 2; // S9 +30
+      if ((rssi > 74) and (rssi <= 84))
+        spoint = 172 + (rssi - 74) * 2; // S9 +40
+      if ((rssi > 84) and (rssi <= 94))
+        spoint = 188 + (rssi - 84) * 2; // S9 +50
+      if (rssi > 94)
+        spoint = 204; // S9 +60
+      if (rssi > 95)
+        spoint = 208; //>S9 +60
+    }
+    else
+    {
+      //dBuV to S point conversion FM
+      if (rssi < 1)
+        spoint = 36;
+      if ((rssi > 1) and (rssi <= 2))
+        spoint = 60; // S6
+      if ((rssi > 2) and (rssi <= 8))
+        spoint = 84 + (rssi - 2) * 2; // S7
+      if ((rssi > 8) and (rssi <= 14))
+        spoint = 96 + (rssi - 8) * 2; // S8
+      if ((rssi > 14) and (rssi <= 24))
+        spoint = 108 + (rssi - 14) * 2; // S9
+      if ((rssi > 24) and (rssi <= 34))
+        spoint = 124 + (rssi - 24) * 2; // S9 +10
+      if ((rssi > 34) and (rssi <= 44))
+        spoint = 140 + (rssi - 34) * 2; // S9 +20
+      if ((rssi > 44) and (rssi <= 54))
+        spoint = 156 + (rssi - 44) * 2; // S9 +30
+      if ((rssi > 54) and (rssi <= 64))
+        spoint = 172 + (rssi - 54) * 2; // S9 +40
+      if ((rssi > 64) and (rssi <= 74))
+        spoint = 188 + (rssi - 64) * 2; // S9 +50
+      if (rssi > 74)
+        spoint = 204; // S9 +60
+      if (rssi > 76)
+        spoint = 208; //>S9 +60
+    }
+    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15, RSSI_DISPLAY_LIN_OFFSET + 38, (2 + spoint), 6, RED);
+    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 17 + spoint, RSSI_DISPLAY_LIN_OFFSET + 38, 212 - (2 + spoint), 6, GREEN);
   }
-  else
+
+  void showStep(bool drawAfter)
   {
-    //dBuV to S point conversion FM
-    if (rssi < 1)
-      spoint = 36;
-    if ((rssi > 1) and (rssi <= 2))
-      spoint = 60; // S6
-    if ((rssi > 2) and (rssi <= 8))
-      spoint = 84 + (rssi - 2) * 2; // S7
-    if ((rssi > 8) and (rssi <= 14))
-      spoint = 96 + (rssi - 8) * 2; // S8
-    if ((rssi > 14) and (rssi <= 24))
-      spoint = 108 + (rssi - 14) * 2; // S9
-    if ((rssi > 24) and (rssi <= 34))
-      spoint = 124 + (rssi - 24) * 2; // S9 +10
-    if ((rssi > 34) and (rssi <= 44))
-      spoint = 140 + (rssi - 34) * 2; // S9 +20
-    if ((rssi > 44) and (rssi <= 54))
-      spoint = 156 + (rssi - 44) * 2; // S9 +30
-    if ((rssi > 54) and (rssi <= 64))
-      spoint = 172 + (rssi - 54) * 2; // S9 +40
-    if ((rssi > 64) and (rssi <= 74))
-      spoint = 188 + (rssi - 64) * 2; // S9 +50
-    if (rssi > 74)
-      spoint = 204; // S9 +60
-    if (rssi > 76)
-      spoint = 208; //>S9 +60
+    char sStep[15];
+    if ( currentMode == FM) return;
+    sprintf(sStep, "Stp:%4d", currentStep);
+    setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, sStep, drawAfter);
   }
-  tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15, RSSI_DISPLAY_LIN_OFFSET + 38, (2 + spoint), 6, RED);
-  tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 17 + spoint, RSSI_DISPLAY_LIN_OFFSET + 38, 212 - (2 + spoint), 6, GREEN);
-}
 
-void showStep(bool drawAfter)
-{
-  char sStep[15];
-  sprintf(sStep, "Stp:%4d", currentStep);
-  setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49,sStep, drawAfter);
-}
+  void showSoftMute(bool drawAfter)
+  {
+    char sMute[15];
 
-void showSoftMute(bool drawAfter)
-{
-  char sMute[15];
+    if (currentMode == FM)
+      return;
 
-  if (currentMode == FM) return;
-  
-  sprintf(sMute, "SM: %2d", softMuteMaxAttIdx);
-  setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, sMute, drawAfter);
- 
-}
+    sprintf(sMute, "SM: %2d", softMuteMaxAttIdx);
+    setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, sMute, drawAfter);
+  }
 
-/**
+  /**
  * Shows the BFO offset on frequency area
  */
-void showBFO()
-{
-  tft.setFreeFont(NULL); // default font
-  sprintf(buffer, "%c%d", (currentBFO >= 0) ? '+' : '-', abs(currentBFO));
-  printText(262, 6, 2, bufferBFO, buffer, YELLOW, 11);
-}
+  void showBFO(bool drawAfter)
+  {
+    tft.setFreeFont(NULL); // default font
+    sprintf(buffer, "%c%d", (currentBFO >= 0) ? '+' : '-', abs(currentBFO));
+    printText(175, 5, 2, bufferBFO, buffer, YELLOW, 11);
+  }
 
-/**
+  /**
  * Shows the current volume level
  */
-void showVolume(bool drawAfter)
-{
-  char sVolume[15];
-  sprintf(sVolume, "Vol: %2.2d", si4735.getVolume());
-  setButton(&buttonVolumeLevel, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, sVolume, drawAfter);
-}
-
-
-
-
-char *rdsMsg;
-char *stationName;
-char *rdsTime;
-char bufferStatioName[255];
-char bufferRdsMsg[255];
-char bufferRdsTime[32];
-
-void showRDSMsg()
-{
-  if (strcmp(bufferRdsMsg, rdsMsg) == 0)
-    return;
-  printText(STATUS_DISPLAY_COL_OFFSET + 5, STATUS_DISPLAY_LIN_OFFSET + 20, 1, bufferRdsMsg, rdsMsg, GREEN, 6);
-  delay(100);
-}
-
-void showRDSStation()
-{
-  if (strcmp(bufferStatioName, stationName) == 0)
-    return;
-  printText(STATUS_DISPLAY_COL_OFFSET + 5, STATUS_DISPLAY_LIN_OFFSET + 5, 1, bufferStatioName, stationName, GREEN, 6);
-  delay(250);
-}
-
-void showRDSTime()
-{
-  if (strcmp(bufferRdsTime, rdsTime) == 0)
-    return;
-  printText(STATUS_DISPLAY_COL_OFFSET + 150, STATUS_DISPLAY_LIN_OFFSET + 5, 1, bufferRdsTime, rdsTime, GREEN, 6);
-  delay(100);
-}
-
-void checkRDS()
-{
-
-  si4735.getRdsStatus();
-  if (si4735.getRdsReceived())
+  void showVolume(bool drawAfter)
   {
-    if (si4735.getRdsSync() && si4735.getRdsSyncFound())
+    char sVolume[15];
+    sprintf(sVolume, "Vol: %2.2d", si4735.getVolume());
+    setButton(&buttonVolumeLevel, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, sVolume, drawAfter);
+  }
+
+  char *rdsMsg;
+  char *stationName;
+  char *rdsTime;
+  char bufferStatioName[255];
+  char bufferRdsMsg[255];
+  char bufferRdsTime[32];
+
+  void showRDSMsg()
+  {
+    if (strcmp(bufferRdsMsg, rdsMsg) == 0)
+      return;
+    printText(STATUS_DISPLAY_COL_OFFSET + 5, STATUS_DISPLAY_LIN_OFFSET + 20, 1, bufferRdsMsg, rdsMsg, GREEN, 6);
+    delay(100);
+  }
+
+  void showRDSStation()
+  {
+    if (strcmp(bufferStatioName, stationName) == 0)
+      return;
+    printText(STATUS_DISPLAY_COL_OFFSET + 5, STATUS_DISPLAY_LIN_OFFSET + 5, 1, bufferStatioName, stationName, GREEN, 6);
+    delay(250);
+  }
+
+  void showRDSTime()
+  {
+    if (strcmp(bufferRdsTime, rdsTime) == 0)
+      return;
+    printText(STATUS_DISPLAY_COL_OFFSET + 150, STATUS_DISPLAY_LIN_OFFSET + 5, 1, bufferRdsTime, rdsTime, GREEN, 6);
+    delay(100);
+  }
+
+  void checkRDS()
+  {
+
+    si4735.getRdsStatus();
+    if (si4735.getRdsReceived())
     {
-      rdsMsg = si4735.getRdsText2A();
-      stationName = si4735.getRdsText0A();
-      rdsTime = si4735.getRdsTime();
-      if (rdsMsg != NULL)
-        showRDSMsg();
-      if (stationName != NULL)
-        showRDSStation();
-      if (rdsTime != NULL)
-        showRDSTime();
+      if (si4735.getRdsSync() && si4735.getRdsSyncFound())
+      {
+        rdsMsg = si4735.getRdsText2A();
+        stationName = si4735.getRdsText0A();
+        rdsTime = si4735.getRdsTime();
+        if (rdsMsg != NULL)
+          showRDSMsg();
+        if (stationName != NULL)
+          showRDSStation();
+        if (rdsTime != NULL)
+          showRDSTime();
+      }
     }
   }
-}
 
-/*
+  /*
    Goes to the next band (see Band table)
 */
-void bandUp()
-{
-  // save the current frequency for the band
-  band[bandIdx].currentFreq = currentFrequency;
-  band[bandIdx].currentStep = currentStep;
-
-  if (bandIdx < lastBand)
+  void bandUp()
   {
-    bandIdx++;
-  }
-  else
-  {
-    bandIdx = 0;
+    // save the current frequency for the band
+    band[bandIdx].currentFreq = currentFrequency;
+    band[bandIdx].currentStep = currentStep;
+
+    if (bandIdx < lastBand)
+    {
+      bandIdx++;
+    }
+    else
+    {
+      bandIdx = 0;
+    }
+
+    useBand();
   }
 
-  useBand();
-}
-
-/*
+  /*
    Goes to the previous band (see Band table)
 */
-void bandDown()
-{
-  // save the current frequency for the band
-  band[bandIdx].currentFreq = currentFrequency;
-  band[bandIdx].currentStep = currentStep;
-  if (bandIdx > 0)
+  void bandDown()
   {
-    bandIdx--;
+    // save the current frequency for the band
+    band[bandIdx].currentFreq = currentFrequency;
+    band[bandIdx].currentStep = currentStep;
+    if (bandIdx > 0)
+    {
+      bandIdx--;
+    }
+    else
+    {
+      bandIdx = lastBand;
+    }
+    useBand();
   }
-  else
-  {
-    bandIdx = lastBand;
-  }
-  useBand();
-}
 
-/*
+  /*
    This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
    SSB mode.
 */
-void loadSSB()
-{
-  // si4735.reset();
-  si4735.queryLibraryId(); // It also calls power down. So it is necessary.
-  si4735.patchPowerUp();
-  delay(50);
-  // si4735.setI2CFastMode(); // Recommended
-  si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
-  si4735.downloadPatch(ssb_patch_content, size_content);
-  si4735.setI2CStandardMode(); // goes back to default (100kHz)
+  void loadSSB()
+  {
+    // si4735.reset();
+    si4735.queryLibraryId(); // It also calls power down. So it is necessary.
+    si4735.patchPowerUp();
+    delay(50);
+    // si4735.setI2CFastMode(); // Recommended
+    si4735.setI2CFastModeCustom(500000); // It is a test and may crash.
+    si4735.downloadPatch(ssb_patch_content, size_content);
+    si4735.setI2CStandardMode(); // goes back to default (100kHz)
 
-  // delay(50);
-  // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
-  // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
-  // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
-  // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
-  // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
-  // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  si4735.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
-  delay(25);
-  ssbLoaded = true;
-}
+    // delay(50);
+    // Parameters
+    // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
+    // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
+    // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
+    // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
+    // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
+    // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
+    si4735.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
+    delay(25);
+    ssbLoaded = true;
+  }
 
-/*
+  /*
    Switch the radio to current band
 */
-void useBand()
-{
-  if (band[bandIdx].bandType == FM_BAND_TYPE)
+  void useBand()
   {
-    currentMode = FM;
-    si4735.setTuneFrequencyAntennaCapacitor(0);
-    si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-    // si4735.setFMDeEmphasis(1); // 1 = 50 μs. Used in Europe, Australia, Japan;
-    si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
-    // Define here the best criteria to find a FM station during the seeking process
-    // si4735.setSeekFmSpacing(10); // frequency spacing for FM seek (5, 10 or 20. They mean 50, 100 or 200 kHz)
-    // si4735.setSeekAmRssiThreshold(0);
-    // si4735.setSeekFmSrnThreshold(3);
-
-    cmdBFO = ssbLoaded = false;
-    si4735.setRdsConfig(1, 2, 2, 2, 2);
-  }
-  else
-  {
-    if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
+    if (band[bandIdx].bandType == FM_BAND_TYPE)
     {
-      antennaIdx = 0;
-      si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
+      currentMode = FM;
+      si4735.setTuneFrequencyAntennaCapacitor(0);
+      si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+      // si4735.setFMDeEmphasis(1); // 1 = 50 μs. Used in Europe, Australia, Japan;
+      si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
+      // Define here the best criteria to find a FM station during the seeking process
+      // si4735.setSeekFmSpacing(10); // frequency spacing for FM seek (5, 10 or 20. They mean 50, 100 or 200 kHz)
+      // si4735.setSeekAmRssiThreshold(0);
+      // si4735.setSeekFmSrnThreshold(3);
+
+      cmdBFO = ssbLoaded = false;
+      si4735.setRdsConfig(1, 2, 2, 2, 2);
     }
     else
     {
-      antennaIdx = 1;
-      lastSwBand = bandIdx;
-      si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
-    }
+      if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
+      {
+        antennaIdx = 0;
+        si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
+      }
+      else
+      {
+        antennaIdx = 1;
+        lastSwBand = bandIdx;
+        si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
+      }
 
-    if (ssbLoaded)
-    {
-      si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
-      si4735.setSSBAutomaticVolumeControl(1);
-      si4735.setSsbSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for SSB
-      showBFO();
-    }
-    else
-    {
-      currentMode = AM;
-      si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      si4735.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // // Disable Soft Mute for AM
-      cmdBFO = false;
-    }
+      if (ssbLoaded)
+      {
+        si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
+        si4735.setSSBAutomaticVolumeControl(1);
+        si4735.setSsbSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for SSB
+        showBFO();
+      }
+      else
+      {
+        currentMode = AM;
+        si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+        si4735.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // // Disable Soft Mute for AM
+        cmdBFO = false;
+      }
 
-    // Sets the seeking limits and space.
-    si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
-    si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10kHz for spacing
+      // Sets the seeking limits and space.
+      si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
+      si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10kHz for spacing
+    }
+    delay(100);
+
+    // Sets AGC or attenuation control
+    si4735.setAutomaticGainControl(disableAgc, agcNdx);
+    // si4735.setAMFrontEndAgcControl(10,12); // Try to improve sensitivity
+
+    currentFrequency = band[bandIdx].currentFreq;
+    currentStep = band[bandIdx].currentStep;
+    idxStep = getStepIndex(currentStep);
+
+    showStatus();
   }
-  delay(100);
 
-  // Sets AGC or attenuation control
-  si4735.setAutomaticGainControl(disableAgc, agcNdx);
-  // si4735.setAMFrontEndAgcControl(10,12); // Try to improve sensitivity
-
-  currentFrequency = band[bandIdx].currentFreq;
-  currentStep = band[bandIdx].currentStep;
-  idxStep = getStepIndex(currentStep);
-
-  showStatus();
-}
-
-void switchAgc(int8_t v)
-{
-
-  agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
-  if (agcIdx < 0)
-    agcIdx = 37;
-  else if (agcIdx > 37)
-    agcIdx = 0;
-
-  disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable
-
-  if (agcIdx > 1)
-    agcNdx = agcIdx - 1;
-  else
-    agcNdx = 0;
-
-  // Sets AGC on/off and gain
-  si4735.setAutomaticGainControl(disableAgc, agcNdx);
-  showAgcAtt();
-  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  elapsedCommand = millis();
-}
-
-void switchFilter(uint8_t v)
-{
-  if (currentMode == LSB || currentMode == USB)
+  void switchAgc(int8_t v)
   {
-    bwIdxSSB = (v == 1) ? bwIdxSSB + 1 : bwIdxSSB - 1;
 
-    if (bwIdxSSB > 5)
-      bwIdxSSB = 0;
-    else if (bwIdxSSB < 0)
-      bwIdxSSB = 5;
+    agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
+    if (agcIdx < 0)
+      agcIdx = 37;
+    else if (agcIdx > 37)
+      agcIdx = 0;
 
-    si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
-    // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-    if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
-      si4735.setSBBSidebandCutoffFilter(0);
+    disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable
+
+    if (agcIdx > 1)
+      agcNdx = agcIdx - 1;
     else
-      si4735.setSBBSidebandCutoffFilter(1);
+      agcNdx = 0;
+
+    // Sets AGC on/off and gain
+    si4735.setAutomaticGainControl(disableAgc, agcNdx);
+    showAgcAtt();
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+    elapsedCommand = millis();
   }
-  else if (currentMode == AM)
+
+  void switchFilter(uint8_t v)
   {
-    bwIdxAM = (v == 1) ? bwIdxAM + 1 : bwIdxAM - 1;
+    if (currentMode == LSB || currentMode == USB)
+    {
+      bwIdxSSB = (v == 1) ? bwIdxSSB + 1 : bwIdxSSB - 1;
 
-    if (bwIdxAM > maxFilterAM)
-      bwIdxAM = 0;
-    else if (bwIdxAM < 0)
-      bwIdxAM = maxFilterAM;
+      if (bwIdxSSB > 5)
+        bwIdxSSB = 0;
+      else if (bwIdxSSB < 0)
+        bwIdxSSB = 5;
 
-    si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
-  } else {
+      si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
+      // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+      if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
+        si4735.setSBBSidebandCutoffFilter(0);
+      else
+        si4735.setSBBSidebandCutoffFilter(1);
+    }
+    else if (currentMode == AM)
+    {
+      bwIdxAM = (v == 1) ? bwIdxAM + 1 : bwIdxAM - 1;
+
+      if (bwIdxAM > maxFilterAM)
+        bwIdxAM = 0;
+      else if (bwIdxAM < 0)
+        bwIdxAM = maxFilterAM;
+
+      si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+    } else {
     bwIdxFM = (v == 1) ? bwIdxFM + 1 : bwIdxFM - 1;
     if (bwIdxFM > 4)
       bwIdxFM = 0;
@@ -1363,6 +1349,49 @@ void doBFO()
   elapsedCommand = millis();
 }
 
+/**
+    Switches to the AM, LSB or USB modes
+*/
+void doMode(int8_t v)
+{
+  bufferBFO[0] = bufferFreq[0] - '\0';
+  if (currentMode != FM)
+  {
+    if (v == 1)  { // clockwise
+      if (currentMode == AM)
+      {
+        // If you were in AM mode, it is necessary to load SSB patch (avery time)
+        loadSSB();
+        currentMode = LSB;
+      }
+      else if (currentMode == LSB)
+        currentMode = USB;
+      else if (currentMode == USB)
+      {
+        currentMode = AM;
+        ssbLoaded = false;
+      }
+    } else { // and counterclockwise
+      if (currentMode == AM)
+      {
+        // If you were in AM mode, it is necessary to load SSB patch (avery time)
+        loadSSB();
+        currentMode = USB;
+      }
+      else if (currentMode == USB)
+        currentMode = LSB;
+      else if (currentMode == LSB)
+      {
+        currentMode = AM;
+        ssbLoaded = false;
+      }
+    }
+    // Nothing to do if you are in FM mode
+    band[bandIdx].currentFreq = currentFrequency;
+    band[bandIdx].currentStep = currentStep;
+    useBand();
+  }
+}
 
 
 /**
@@ -1371,7 +1400,6 @@ void doBFO()
  */
 void checkTouch()
 {
-
   bool down = Touch_getXY();
   buttonBand.press(down && buttonBand.contains(pixel_x, pixel_y));
   buttonVolumeLevel.press(down && buttonVolumeLevel.contains(pixel_x, pixel_y));
@@ -1379,15 +1407,39 @@ void checkTouch()
   buttonStep.press(down && buttonStep.contains(pixel_x, pixel_y));
   buttonAudioMute.press(down && buttonAudioMute.contains(pixel_x, pixel_y));
   buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
-  buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
-  buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
-  buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
-  buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
-  buttonMode.press(down && buttonMode.contains(pixel_x, pixel_y));
   buttonFilter.press(down && buttonFilter.contains(pixel_x, pixel_y));
   buttonAGC.press(down && buttonAGC.contains(pixel_x, pixel_y));
   buttonSoftMute.press(down && buttonSoftMute.contains(pixel_x, pixel_y));
+}
 
+/**
+ * disble command buttons and keep the current status of the last command button pressed
+ */
+void disableCommand(bool *b, bool value, void (*showFunction)( bool act))
+{
+  cmdBFO = false;
+  cmdAudioMute = false;
+  cmdMuteRate = false;
+  cmdVolume = false; // if true, the encoder will control the volume.
+  cmdAgcAtt = false;
+  cmdFilter = false;
+  cmdStep = false;
+  cmdBand = false;
+  cmdMode = false;
+  cmdSoftMuteMaxAtt = false;
+
+  
+  
+  if (b != NULL)  { // rescues the last status of the last command only the parameter is not null
+     setDrawButtons(true);
+    *b = value;
+  }
+    
+  if (showFunction != NULL) //  show the desired status only if it is necessary.
+    showFunction(!value);
+
+  delay(MIN_ELAPSED_TIME);
+  elapsedCommand = millis();
 }
 
 /* two buttons are quite simple
@@ -1413,7 +1465,9 @@ void loop(void)
     else if (cmdStep)
       switchStep(encoderCount);
     else if (cmdSoftMuteMaxAtt)
-      switchSoftMute(encoderCount);      
+      switchSoftMute(encoderCount); 
+    else if (cmdMode) 
+      doMode(encoderCount);       
     else if (cmdBand)
     {
       if (encoderCount == 1)
@@ -1440,148 +1494,48 @@ void loop(void)
   {
     checkTouch();
 
-    if (buttonBand.justPressed()) // Band +
-      bandUp();
-    else if (buttonBand.justPressed()) // Band-
-      bandDown();
-    else if (buttonVolumeLevel.justPressed()) // Volume
+    if (buttonBand.justPressed()) {
+      cmdBand = !cmdBand;
+      disableCommand(&cmdBand, cmdBand, NULL);      
+    }
+      else if (buttonVolumeLevel.justPressed()) // Volume
     {
-      buttonVolumeLevel.drawButton(false);
-      disableCommands();
-      si4735.setAudioMute(cmdAudioMute);
-      cmdVolume = true;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
+      cmdVolume = ! cmdVolume;
+      disableCommand(&cmdVolume, cmdVolume, showVolume);
     }
     else if (buttonAudioMute.justPressed()) // Mute
     {
       cmdAudioMute = !cmdAudioMute;
-      si4735.setAudioMute(cmdAudioMute);
-      delay(MIN_ELAPSED_TIME);
-    }
-    else if (buttonSeek.justPressed()) // SEEK UP
-    {
-      si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, SEEK_UP);
-      // si4735.seekNextStation(); // This method does not show the progress
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-      currentFrequency = si4735.getFrequency();
-      showStatus();
+      disableCommand(&cmdAudioMute, cmdAudioMute, NULL);
     }
     else if (buttonSeek.justPressed()) // SEEK DOWN
     {
-      si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, SEEK_DOWN);
-      // si4735.seekPreviousStation(); // This method does not show the progress
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-      currentFrequency = si4735.getFrequency();
-      showStatus();
+      // TO DO
     }
     else if (buttonSoftMute.justPressed()) // Soft Mute
     {
-      buttonSoftMute.drawButton(false);
-      disableCommands();
-      cmdSoftMuteMaxAtt = true;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
+      cmdSoftMuteMaxAtt = !cmdSoftMuteMaxAtt;
+      disableCommand(&cmdSoftMuteMaxAtt, cmdSoftMuteMaxAtt, showSoftMute);
     }
     else if (buttonMode.justPressed()) // Switch to AM mode
     {
-      if (currentMode != FM)
-      {
-        currentMode = AM;
-        ssbLoaded = false;
-        cmdBFO = false;
-        band[bandIdx].currentFreq = currentFrequency;
-        band[bandIdx].currentStep = currentStep;
-        useBand();
-        showFrequency();
-      }
-    }
-    else if (buttonMode.justPressed()) // Switch to VFH/FM
-    {
-      if (currentMode != FM)
-      {
-        band[bandIdx].currentFreq = currentFrequency;
-        band[bandIdx].currentStep = currentStep;
-        ssbLoaded = false;
-        cmdBFO = false;
-        currentMode = FM;
-        bandIdx = 0;
-        useBand();
-        showFrequency();
-      }
-    }
-    else if (buttonMode.justPressed()) // Switch to MW/AM
-    {
-      band[bandIdx].currentFreq = currentFrequency;
-      band[bandIdx].currentStep = currentStep;
-      ssbLoaded = false;
-      cmdBFO = false;
-      currentMode = AM;
-      bandIdx = 2; // See Band table
-      useBand();
-    }
-    else if (buttonMode.justPressed()) // Switch to SW/AM
-    {
-      band[bandIdx].currentFreq = currentFrequency;
-      band[bandIdx].currentStep = currentStep;
-      ssbLoaded = false;
-      cmdBFO = false;
-      currentMode = AM;
-      bandIdx = lastSwBand; // See Band table
-      useBand();
-    }
-    else if (buttonMode.justPressed()) // Switch to LSB mode
-    {
-      if (currentMode != FM)
-      {
-        if (!ssbLoaded)
-        {
-          loadSSB();
-        }
-        currentMode = LSB;
-        band[bandIdx].currentFreq = currentFrequency;
-        band[bandIdx].currentStep = currentStep;
-        useBand();
-      }
-    }
-    else if (buttonMode.justPressed()) // Switch to USB mode
-    {
-      if (currentMode != FM)
-      {
-        if (!ssbLoaded)
-        {
-          loadSSB();
-        }
-        currentMode = USB;
-        band[bandIdx].currentFreq = currentFrequency;
-        band[bandIdx].currentStep = currentStep;
-        useBand();
-      }
+      cmdMode = !cmdMode;
+      disableCommand(&cmdMode, cmdMode, NULL);
     }
     else if (buttonAGC.justPressed()) // AGC and Attenuation control
     {
-      buttonAGC.drawButton(false);
-      disableCommands();
-      cmdAgcAtt = true;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
+      cmdAgcAtt = !cmdAgcAtt;
+      disableCommand(&cmdAgcAtt, cmdAgcAtt, showAgcAtt);
     }
     else if (buttonFilter.justPressed()) // FILTER
     {
-      buttonFilter.drawButton(false);
-      disableCommands();
-      cmdFilter = true;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
+      cmdFilter = !cmdFilter;
+      disableCommand(&cmdFilter, cmdFilter, showBandwitdth);
     }
     else if (buttonStep.justPressed()) // STEP
     {
-      // switchStep();
-      buttonStep.drawButton(false);
-      disableCommands();
-      cmdStep = true;
-      delay(MIN_ELAPSED_TIME);
-      elapsedCommand = millis();
+      cmdStep = !cmdStep;
+      disableCommand(&cmdStep, cmdStep, showStep);
     }
   }
 
@@ -1595,7 +1549,7 @@ void loop(void)
     else
     {
       cmdBand = !cmdBand;
-      elapsedCommand = millis();
+      disableCommand(&cmdBand, cmdBand, NULL);
     }
     delay(300);
   }
@@ -1637,7 +1591,7 @@ void loop(void)
       cmdBFO = false;
       showFrequency();
     }
-    disableCommands();
+    disableCommand(NULL, false, NULL);
     elapsedCommand = millis();
   }
   delay(5);
