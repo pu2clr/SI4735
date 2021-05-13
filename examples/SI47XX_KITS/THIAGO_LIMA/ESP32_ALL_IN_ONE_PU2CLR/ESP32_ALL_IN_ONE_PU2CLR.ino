@@ -272,7 +272,7 @@ void showStep(bool drawAfter = false);
 void showSoftMute(bool drawAfter = false);
 void showBFOorRDS(bool drawAfter = false);
 void showVolume(bool drawAfter = false);
-
+void showAudioMute(bool drwaAfter = false);
 
 
 void setup(void)
@@ -819,6 +819,7 @@ void showTemplate()
     showAgcAtt(true);
     showStep(true);
     showSoftMute(true);
+    showAudioMute(true);
     
     // setDrawButtons(true);
   }
@@ -1026,6 +1027,10 @@ void showTemplate()
     setButton(&buttonVolumeLevel, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, sVolume, drawAfter);
   }
 
+
+void showAudioMute(bool drwaAfter) {
+     setButton(&buttonAudioMute, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *)"Mute", drwaAfter); 
+}
 
 /***************  
  *   RDS
@@ -1507,11 +1512,13 @@ void loop(void)
     {
       cmdVolume = ! cmdVolume;
       disableCommand(&cmdVolume, cmdVolume, showVolume);
+      si4735.setAudioMute(cmdAudioMute);
     }
     else if (buttonAudioMute.justPressed()) // Mute
     {
       cmdAudioMute = !cmdAudioMute;
-      disableCommand(&cmdAudioMute, cmdAudioMute, NULL);
+      disableCommand(&cmdAudioMute, cmdAudioMute, showAudioMute);
+      si4735.setAudioMute(cmdAudioMute);
     }
     else if (buttonSeek.justPressed()) // SEEK DOWN
     {
