@@ -129,8 +129,6 @@ long elapsedRSSI = millis();
 long elapsedButton = millis();
 long elapsedFrequency = millis();
 
-long elapsedCommand = millis();
-
 uint8_t rssi = 0;
 
 // Encoder control variables
@@ -1184,7 +1182,7 @@ void resetEepromDelay()
         si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
         si4735.setSSBAutomaticVolumeControl(1);
         si4735.setSsbSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for SSB
-        showBFOorRDS();
+        // showBFOorRDS();
       }
       else
       {
@@ -1231,7 +1229,6 @@ void resetEepromDelay()
     si4735.setAutomaticGainControl(disableAgc, agcNdx);
     showAgcAtt();
     delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-    elapsedCommand = millis();
   }
 
   void switchFilter(uint8_t v)
@@ -1272,7 +1269,6 @@ void resetEepromDelay()
     si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
   }
   showBandwitdth();
-  elapsedCommand = millis();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
@@ -1292,7 +1288,6 @@ void switchSync(int8_t v) {
     si4735.setSSBAvcDivider(3);
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  elapsedCommand = millis();
 }
 
 
@@ -1321,7 +1316,6 @@ void switchStep(int8_t v)
     showStep();
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  elapsedCommand = millis();
 }
 
 void switchSoftMute(int8_t v)
@@ -1334,7 +1328,6 @@ void switchSoftMute(int8_t v)
 
   si4735.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx);
   showSoftMute();
-  elapsedCommand = millis();
 }
 
 /**
@@ -1349,7 +1342,6 @@ void doVolume(int8_t v)
   else
     si4735.volumeDown();
   showVolume();
-  elapsedCommand = millis();
 }
 
 void doBFO()
@@ -1358,13 +1350,9 @@ void doBFO()
   cmdBFO = !cmdBFO;
   if (cmdBFO)
   {
-    showBFOorRDS(true);
-  }
-  else
-  {
+    showBFOorRDS();
   }
   showStatus();
-  elapsedCommand = millis();
 }
 
 /**
@@ -1408,6 +1396,7 @@ void doMode(int8_t v)
     band[bandIdx].currentFreq = currentFrequency;
     band[bandIdx].currentStep = currentStep;
     useBand();
+    cmdModeOrRDS = false;
   } 
 }
 
@@ -1457,7 +1446,6 @@ void disableCommand(bool *b, bool value, void (*showFunction)( bool act))
     showFunction(!value);
 
   delay(MIN_ELAPSED_TIME);
-  elapsedCommand = millis();
 }
 
 /* two buttons are quite simple
@@ -1472,7 +1460,6 @@ void loop(void)
       currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
       si4735.setSSBBfo(currentBFO);
       showBFOorRDS(true);
-      elapsedCommand = millis();
     }
     else if (cmdVolume)
       doVolume(encoderCount);
@@ -1492,7 +1479,6 @@ void loop(void)
         bandUp();
       else
         bandDown();
-      elapsedCommand = millis();
     }
     else
     {
@@ -1504,7 +1490,6 @@ void loop(void)
       //  currentFrequency = si4735.getFrequency();      // Queries the Si473X device.
       currentFrequency = si4735.getCurrentFrequency(); // Just get the last setFrequency value (faster but can not be accurate sometimes).
       showFrequency();
-      elapsedCommand = millis();
     }
     encoderCount = 0;
   }
@@ -1592,34 +1577,5 @@ void loop(void)
     elapsedRSSI = millis();
   }
 
-  /*
-  if (currentMode == FM)
-  {
-    if (currentFrequency != previousFrequency)
-    {
-      clearStatusArea();
-      bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] = bufferRdsTime[0] = rdsMsg[0] = stationName[0] = '\0';
-      showRDSMsg();
-      showRDSStation();
-      previousFrequency = currentFrequency;
-    }
-    checkRDS();
-  }
-  */
-
-  /*
-  // Disable commands control
-  if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
-  {
-    if (cmdBFO)
-    {
-      bufferFreq[0] = '\0';
-      cmdBFO = false;
-      showFrequency();
-    }
-    disableCommand(NULL, false, NULL);
-    elapsedCommand = millis();
-  }
-  */
-  delay(5);
+  delay(3);
 }
