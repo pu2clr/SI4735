@@ -74,10 +74,10 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define LW 4
 #define SSB 1
 
-#define RSSI_DISPLAY_COL_OFFSET 1
-#define RSSI_DISPLAY_LIN_OFFSET 70
+#define RSSI_DISPLAY_COL_OFFSET 0
+#define RSSI_DISPLAY_LIN_OFFSET 100
 
-#define KEYBOARD_LIN_OFFSET 20
+#define KEYBOARD_LIN_OFFSET 50
 #define STATUS_DISPLAY_COL_OFFSET 5
 #define STATUS_DISPLAY_LIN_OFFSET 430
 
@@ -141,8 +141,7 @@ typedef struct
   uint16_t minimumFreq;     // Minimum frequency of the band
   uint16_t maximumFreq;     // maximum frequency of the band
   uint16_t currentFreq;     // Default frequency or current frequency
-  uint16_t currentStep;     // Defeult step (increment and decrement)
-  int8_t currentStepIdx;  // Idex of tabStep:  Defeult frequency step (See tabStep)
+  int8_t currentStepIdx;  // Idex of tabStepAM:  Defeult frequency step (See tabStepAM)
   int8_t bandwitdthIdx;    //  Index of the table bandwitdthFM, bandwitdthAM or bandwitdthSSB;
 
 } Band;
@@ -151,46 +150,54 @@ typedef struct
    Band table
 */
 Band band[] = {
-    {"FM1 ", FM_BAND_TYPE, 6400,  8400,  7000, 10, 3}, // FM from 64 to 84 MHz
-    {"FM2 ", FM_BAND_TYPE, 8400, 10800, 10390, 10, 3},
-    {"LW  ", LW_BAND_TYPE, 100, 510, 300, 1, 0},
-    {"AM1  ",MW_BAND_TYPE, 520, 1720, 810, 10, 3},
-    {"AM2  ",MW_BAND_TYPE, 531, 1701, 783, 9, 2},
-    {"160m", SW_BAND_TYPE, 1800, 3500, 1900, 1, 0}, // 160 meters
-    {"80m ", SW_BAND_TYPE, 3500, 4500, 3700, 1, 0}, // 80 meters
-    {"60m ", SW_BAND_TYPE, 4500, 5500, 4885, 5, 1},
-    {"49m ", SW_BAND_TYPE, 5600, 6300, 6100, 5, 1},
-    {"40m ", SW_BAND_TYPE, 6800, 7200, 7100, 1, 0}, // 40 meters
-    {"41m ", SW_BAND_TYPE, 7200, 7900, 7205, 5, 1}, // 41 meters
-    {"31m ", SW_BAND_TYPE, 9200, 10000, 9600, 5, 1},
-    {"30m ", SW_BAND_TYPE, 10000, 11000, 10100, 1, 0}, // 30 meters
-    {"25m ", SW_BAND_TYPE, 11200, 12500, 11940, 5, 1},
-    {"22m ", SW_BAND_TYPE, 13400, 13900, 13600, 5, 1},
-    {"20m ", SW_BAND_TYPE, 14000, 14500, 14200, 1, 0}, // 20 meters
-    {"19m ", SW_BAND_TYPE, 15000, 15900, 15300, 5, 1},
-    {"18m ", SW_BAND_TYPE, 17200, 17900, 17600, 5, 1},
-    {"17m ", SW_BAND_TYPE, 18000, 18300, 18100, 1, 0}, // 17 meters
-    {"15m ", SW_BAND_TYPE, 21000, 21499, 21200, 1, 0}, // 15 mters
-    {"13m ", SW_BAND_TYPE, 21500, 21900, 21525, 5, 1}, // 15 mters
-    {"12m ", SW_BAND_TYPE, 24890, 26200, 24940, 1, 0}, // 12 meters
-    {"CB  ", SW_BAND_TYPE, 26200, 27900, 27500, 1, 0}, // CB band (11 meters)
-    {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 1, 0},
-    {"All ", SW_BAND_TYPE, 100, 30000, 15000, 1, 0} // All HF in one band
+    {"FM1 ", FM_BAND_TYPE, 6400,  8400,  7000, 1, 0}, // FM from 64 to 84 MHz
+    {"FM2 ", FM_BAND_TYPE, 8400, 10800, 10390, 1, 0},
+    {"LW  ", LW_BAND_TYPE, 100, 510, 300,  0, 4},
+    {"AM1 ",MW_BAND_TYPE, 520, 1720, 810, 3, 4},
+    {"AM2 ",MW_BAND_TYPE, 531, 1701, 783, 2, 4},
+    {"160m", SW_BAND_TYPE, 1800, 3500, 1900, 0, 4}, // 160 meters
+    {"80m ", SW_BAND_TYPE, 3500, 4500, 3700, 0, 4}, // 80 meters
+    {"60m ", SW_BAND_TYPE, 4500, 5500, 4885, 1, 4},
+    {"49m ", SW_BAND_TYPE, 5600, 6300, 6100, 1, 4},
+    {"40m ", SW_BAND_TYPE, 6800, 7200, 7100, 0, 4}, // 40 meters
+    {"41m ", SW_BAND_TYPE, 7200, 7900, 7205, 1, 4}, // 41 meters
+    {"31m ", SW_BAND_TYPE, 9200, 10000, 9600, 1, 4},
+    {"30m ", SW_BAND_TYPE, 10000, 11000, 10100, 0, 4}, // 30 meters
+    {"25m ", SW_BAND_TYPE, 11200, 12500, 11940, 1, 4},
+    {"22m ", SW_BAND_TYPE, 13400, 13900, 13600, 1, 4},
+    {"20m ", SW_BAND_TYPE, 14000, 14500, 14200, 0, 4}, // 20 meters
+    {"19m ", SW_BAND_TYPE, 15000, 15900, 15300, 1, 4},
+    {"18m ", SW_BAND_TYPE, 17200, 17900, 17600, 1, 4},
+    {"17m ", SW_BAND_TYPE, 18000, 18300, 18100, 0, 4}, // 17 meters
+    {"15m ", SW_BAND_TYPE, 21000, 21499, 21200, 0, 4}, // 15 mters
+    {"13m ", SW_BAND_TYPE, 21500, 21900, 21525, 1, 4}, // 15 mters
+    {"12m ", SW_BAND_TYPE, 24890, 26200, 24940, 0, 4}, // 12 meters
+    {"CB  ", SW_BAND_TYPE, 26200, 27900, 27500, 0, 4}, // CB band (11 meters)
+    {"10m ", SW_BAND_TYPE, 28000, 30000, 28400, 0, 4},
+    {"All ", SW_BAND_TYPE, 100, 30000, 15000, 0, 4} // All HF in one band
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int bandIdx = 2;
+int bandIdx = 1;
 int lastSwBand = 7; // Saves the last SW band used
 
-int tabStep[] = {1, 5, 9, 10, 50, 100, 500, 1000};
-const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
-int idxStep = 0;
+int tabStepAM[] = {1, 5, 9, 10, 50, 100, 500, 1000};
+const int lastStepAM = (sizeof tabStepAM / sizeof(int)) - 1;
+
+
+int tabStepFM[] = {5, 10, 20};
+const int lastStepFM = (sizeof tabStepFM / sizeof(int)) - 1;
+
+int idxStepAM = 0;
+int idxStepFM = 0;
+
 
 uint16_t currentFrequency;
 uint16_t previousFrequency;
 uint8_t bandwidthIdx = 0;
-uint16_t currentStep = 1;
+uint16_t currentStepIdx = 1;
 uint8_t currentBFOStep = 25;
+uint8_t seekDirection = 1;
 
 // Datatype to deal with bandwidth on AM and SSB in numerical order.
 typedef struct
@@ -200,6 +207,7 @@ typedef struct
 } Bandwitdth;
 
 int8_t bwIdxSSB = 4;
+const int maxFilterSSB = 5;
 Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
                               {5, "1.0"},  //
                               {0, "1.2"},  //
@@ -208,25 +216,17 @@ Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
                               {3, "4.0"}}; // 3 = 4kHz
 
 int8_t bwIdxAM = 4;
-const int maxFilterAM = 15;
+const int maxFilterAM = 6;
 Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1kHz
                              {5, "1.8"},
                              {3, "2.0"},
                              {6, "2.5"},
                              {2, "3.0"},
                              {1, "4.0"},
-                             {0, "6.0"}, // 0 = 6kHz
-                             {7, "U07"}, // 7–15 = Reserved (Do not use) says the manual.
-                             {8, "U08"},
-                             {9, "U09"},
-                             {10, "U10"},
-                             {11, "U11"},
-                             {12, "U12"},
-                             {13, "U13"},
-                             {14, "U14"},
-                             {15, "U15"}};
+                             {0, "6.0"}}; // 0 = 6kHz
 
 int8_t bwIdxFM = 0;
+const int maxFilterFM = 4;
 Bandwitdth bandwitdthFM[] = {{0, "AUT"}, // Automatic
                              {1, "110"}, // Force wide (110 kHz) channel filter.
                              {2, " 84"},
@@ -436,9 +436,15 @@ void readAllReceiverInformation()
   }
 
   previousFrequency = currentFrequency = band[bandIdx].currentFreq;
-  idxStep = tabStep[band[bandIdx].currentStepIdx];
+  if (band[bandIdx].bandType == FM_BAND_TYPE) {
+    idxStepFM = tabStepFM[band[bandIdx].currentStepIdx];
+  }
+  else { 
+    idxStepAM = tabStepAM[band[bandIdx].currentStepIdx];
+  }
+  
   bwIdx = band[bandIdx].bandwitdthIdx;
-
+  
   if (currentMode == LSB || currentMode == USB)
   {
     loadSSB();
@@ -578,21 +584,26 @@ void resetEepromDelay()
   {
     setButton(&buttonAGC, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"*", true);
     setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"*", true);
-    setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"*", true);
     showBFOorRDS(true);
     showBandwitdth(true);
+    showStep(true);
   }
 
   void setButtonsAM() {
-       setButton(&buttonModeOrRDS, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Mode", true);
+    setButton(&buttonModeOrRDS, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Mode", true);
+    showStep(true);
   }
 
-  void showTemplate()
-  {
+
+/**
+ * Shows the main screen 
+ */
+void showTemplate()
+{
     int w = tft.width();
     // Area used to show the frequency
-    tft.drawRect(0, 0, w, 75, WHITE);
-    tft.drawRect(0, KEYBOARD_LIN_OFFSET + 100, w, 280, CYAN);
+    tft.drawRect(0, 0, w, 75, WHITE); // Frequency and status area
+    tft.drawRect(0, KEYBOARD_LIN_OFFSET + 100, w, KEYBOARD_LIN_OFFSET + 120, CYAN); // keyboard area
     tft.setFreeFont(NULL);
 
     setButton(&buttonBand, 45, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *)"Band", true);
@@ -610,7 +621,7 @@ void resetEepromDelay()
     // Exibe os botões (teclado touch)
     setDrawButtons(true);
     tft.setFreeFont(NULL);
-  }
+}
 
   /*
     Prevents blinking during the frequency display.
@@ -663,23 +674,12 @@ void resetEepromDelay()
     uint8_t space; 
     uint8_t lin, col;
 
-    char aux[15];
     char sFreq[15];
 
     tft.setTextSize(1);
     if (si4735.isCurrentTuneFM())
     {
       sprintf(sFreq, "%5d", currentFrequency);
-      /*
-    sprintf(aux, "%5.5d", currentFrequency);
-    sFreq[0] = (aux[0] == '0') ? ' ' : aux[0];
-    sFreq[1] = aux[1];
-    sFreq[2] = aux[2];
-    sFreq[3] = aux[3];
-    sFreq[4] = '\0';
-
-    // tft.drawChar(180, 55, '.', YELLOW, BLACK, 1);
-    */
     }
     else
     {
@@ -752,9 +752,9 @@ void resetEepromDelay()
 
   int getStepIndex(int st)
   {
-    for (int i = 0; i < lastStep; i++)
+    for (int i = 0; i < lastStepAM; i++)
     {
-      if (st == tabStep[i])
+      if (st == tabStepAM[i])
         return i;
     }
     return 0;
@@ -879,22 +879,22 @@ void resetEepromDelay()
     tft.setTextColor(WHITE, BLACK);
     for (int i = 0; i < 10; i++)
     {
-      tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15 + (i * 12), RSSI_DISPLAY_LIN_OFFSET + 24, 4, 8, YELLOW);
-      tft.setCursor((RSSI_DISPLAY_COL_OFFSET + 14 + (i * 12)), RSSI_DISPLAY_LIN_OFFSET + 13);
+      tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 13 + (i * 12), RSSI_DISPLAY_LIN_OFFSET + 24, 4, 8, YELLOW);
+      tft.setCursor((RSSI_DISPLAY_COL_OFFSET + 12 + (i * 12)), RSSI_DISPLAY_LIN_OFFSET + 13);
       tft.print(i);
     }
     for (int i = 1; i < 7; i++)
     {
-      tft.fillRect((RSSI_DISPLAY_COL_OFFSET + 123 + (i * 16)), RSSI_DISPLAY_LIN_OFFSET + 24, 4, 8, RED);
-      tft.setCursor((RSSI_DISPLAY_COL_OFFSET + 117 + (i * 16)), RSSI_DISPLAY_LIN_OFFSET + 13);
+      tft.fillRect((RSSI_DISPLAY_COL_OFFSET + 121 + (i * 16)), RSSI_DISPLAY_LIN_OFFSET + 24, 4, 8, RED);
+      tft.setCursor((RSSI_DISPLAY_COL_OFFSET + 115 + (i * 16)), RSSI_DISPLAY_LIN_OFFSET + 13);
       if ((i == 2) or (i == 4) or (i == 6))
       {
         tft.print("+");
         tft.print(i * 10);
       }
     }
-    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15, RSSI_DISPLAY_LIN_OFFSET + 32, 112, 4, YELLOW);
-    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 127, RSSI_DISPLAY_LIN_OFFSET + 32, 100, 4, RED);
+    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 13, RSSI_DISPLAY_LIN_OFFSET + 32, 112, 4, YELLOW);
+    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 125, RSSI_DISPLAY_LIN_OFFSET + 32, 100, 4, RED);
   }
 
   /**
@@ -970,15 +970,18 @@ void resetEepromDelay()
       if (rssi > 76)
         spoint = 208; //>S9 +60
     }
-    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15, RSSI_DISPLAY_LIN_OFFSET + 38, (2 + spoint), 6, RED);
-    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 17 + spoint, RSSI_DISPLAY_LIN_OFFSET + 38, 212 - (2 + spoint), 6, GREEN);
+    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 13, RSSI_DISPLAY_LIN_OFFSET + 38, (2 + spoint), 6, RED);
+    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15 + spoint, RSSI_DISPLAY_LIN_OFFSET + 38, 212 - (2 + spoint), 6, GREEN);
   }
 
   void showStep(bool drawAfter)
   {
     char sStep[15];
-    if ( currentMode == FM) return;
-    sprintf(sStep, "Stp:%4d", currentStep);
+    if ( currentMode == FM ) { 
+      sprintf(sStep, "Stp:%4d", tabStepFM[currentStepIdx] * 10); 
+    } else {
+      sprintf(sStep, "Stp:%4d", tabStepAM[currentStepIdx]); 
+    }
     setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, sStep, drawAfter);
   }
 
@@ -1023,66 +1026,49 @@ void resetEepromDelay()
     setButton(&buttonVolumeLevel, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, sVolume, drawAfter);
   }
 
-  char *rdsMsg;
-  char *stationName;
-  char *rdsTime;
-  char bufferStatioName[255];
-  char bufferRdsMsg[255];
-  char bufferRdsTime[32];
 
-  void showRDSMsg()
-  {
-    if (strcmp(bufferRdsMsg, rdsMsg) == 0)
-      return;
-    printText(STATUS_DISPLAY_COL_OFFSET + 5, STATUS_DISPLAY_LIN_OFFSET + 20, 1, bufferRdsMsg, rdsMsg, GREEN, 6);
-    delay(100);
-  }
+/***************  
+ *   RDS
+ *   
+ */
+ 
+char *stationName;
+char bufferStatioName[20];
 
-  void showRDSStation()
-  {
-    if (strcmp(bufferStatioName, stationName) == 0)
-      return;
+void showRDSStation()
+{
     printText(STATUS_DISPLAY_COL_OFFSET + 5, STATUS_DISPLAY_LIN_OFFSET + 5, 1, bufferStatioName, stationName, GREEN, 6);
-    delay(250);
-  }
-
-  void showRDSTime()
-  {
-    if (strcmp(bufferRdsTime, rdsTime) == 0)
-      return;
-    printText(STATUS_DISPLAY_COL_OFFSET + 150, STATUS_DISPLAY_LIN_OFFSET + 5, 1, bufferRdsTime, rdsTime, GREEN, 6);
     delay(100);
-  }
+}
 
-  void checkRDS()
+
+/*
+ * Checks the station name is available
+ */
+void checkRDS()
+{
+  si4735.getRdsStatus();
+  if (si4735.getRdsReceived())
   {
-
-    si4735.getRdsStatus();
-    if (si4735.getRdsReceived())
+    if (si4735.getRdsSync() && si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost())
     {
-      if (si4735.getRdsSync() && si4735.getRdsSyncFound())
+      stationName = si4735.getRdsText0A();
+      if (stationName != NULL )
       {
-        rdsMsg = si4735.getRdsText2A();
-        stationName = si4735.getRdsText0A();
-        rdsTime = si4735.getRdsTime();
-        if (rdsMsg != NULL)
-          showRDSMsg();
-        if (stationName != NULL)
-          showRDSStation();
-        if (rdsTime != NULL)
-          showRDSTime();
+        showRDSStation();
       }
     }
   }
+}
 
-  /*
+/*
    Goes to the next band (see Band table)
 */
   void bandUp()
   {
     // save the current frequency for the band
     band[bandIdx].currentFreq = currentFrequency;
-    band[bandIdx].currentStep = currentStep;
+    band[bandIdx].currentStepIdx = currentStepIdx;
 
     if (bandIdx < lastBand)
     {
@@ -1103,7 +1089,7 @@ void resetEepromDelay()
   {
     // save the current frequency for the band
     band[bandIdx].currentFreq = currentFrequency;
-    band[bandIdx].currentStep = currentStep;
+    band[bandIdx].currentStepIdx = currentStepIdx;
     if (bandIdx > 0)
     {
       bandIdx--;
@@ -1139,6 +1125,7 @@ void resetEepromDelay()
     // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
     // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
     si4735.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
+    si4735.setFifoCount(1);
     delay(25);
     ssbLoaded = true;
   }
@@ -1151,17 +1138,21 @@ void resetEepromDelay()
     if (band[bandIdx].bandType == FM_BAND_TYPE)
     {
       currentMode = FM;
+      idxStepFM = currentStepIdx = band[bandIdx].currentStepIdx;
       si4735.setTuneFrequencyAntennaCapacitor(0);
-      si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+      si4735.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, tabStepFM[currentStepIdx]);
       // si4735.setFMDeEmphasis(1); // 1 = 50 μs. Used in Europe, Australia, Japan;
       si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
       // Define here the best criteria to find a FM station during the seeking process
-      // si4735.setSeekFmSpacing(10); // frequency spacing for FM seek (5, 10 or 20. They mean 50, 100 or 200 kHz)
+      si4735.setSeekFmSpacing(1); // Using space 1 (not documentend). The manual says: 5, 10 or 20. They mean 50, 100 or 200 kHz.
       // si4735.setSeekAmRssiThreshold(0);
       // si4735.setSeekFmSrnThreshold(3);
 
       cmdBFO = ssbLoaded = false;
       si4735.setRdsConfig(1, 2, 2, 2, 2);
+
+      
+     
     }
     else
     {
@@ -1179,7 +1170,7 @@ void resetEepromDelay()
 
       if (ssbLoaded)
       {
-        si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
+        si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, tabStepAM[band[bandIdx].currentStepIdx], currentMode);
         si4735.setSSBAutomaticVolumeControl(1);
         si4735.setSsbSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for SSB
         // showBFOorRDS();
@@ -1187,14 +1178,13 @@ void resetEepromDelay()
       else
       {
         currentMode = AM;
-        si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
+        si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, tabStepAM[band[bandIdx].currentStepIdx]);
         si4735.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // // Disable Soft Mute for AM
         cmdBFO = false;
       }
-
-      // Sets the seeking limits and space.
+      idxStepAM = currentStepIdx = band[bandIdx].currentStepIdx;
       si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
-      si4735.setSeekAmSpacing((band[bandIdx].currentStep > 10) ? 10 : band[bandIdx].currentStep); // Max 10kHz for spacing
+      si4735.setSeekAmSpacing(5); 
     }
     delay(100);
 
@@ -1203,8 +1193,6 @@ void resetEepromDelay()
     // si4735.setAMFrontEndAgcControl(10,12); // Try to improve sensitivity
 
     currentFrequency = band[bandIdx].currentFreq;
-    currentStep = band[bandIdx].currentStep;
-    idxStep = getStepIndex(currentStep);
 
     showStatus();
   }
@@ -1282,7 +1270,7 @@ void switchSync(int8_t v) {
     }
     currentMode = (currentMode == LSB)? USB:LSB;
     band[bandIdx].currentFreq = currentFrequency;
-    band[bandIdx].currentStep = currentStep;
+    band[bandIdx].currentStepIdx = currentStepIdx;
     useBand();
     si4735.setSSBDspAfc(0);
     si4735.setSSBAvcDivider(3);
@@ -1302,17 +1290,28 @@ void switchStep(int8_t v)
   }
   else
   {
-    idxStep = (v == 1) ? idxStep + 1 : idxStep - 1;
-    if (idxStep > lastStep)
-      idxStep = 0;
-    else if (idxStep < 0)
-      idxStep = lastStep;
+    if ( currentMode == FM ) {
+      idxStepFM = (v == 1) ? idxStepFM + 1 : idxStepFM - 1;
+      if (idxStepFM > lastStepFM)
+        idxStepFM = 0;
+      else if (idxStepFM < 0)
+        idxStepFM = lastStepFM;
+        
+      currentStepIdx = idxStepFM;
+      si4735.setFrequencyStep(tabStepFM[currentStepIdx]);
+      
+    } else {
+      idxStepAM = (v == 1) ? idxStepAM + 1 : idxStepAM - 1;
+      if (idxStepAM > lastStepAM)
+        idxStepAM = 0;
+      else if (idxStepAM < 0)
+        idxStepAM = lastStepAM;
 
-    currentStep = tabStep[idxStep];
-
-    si4735.setFrequencyStep(currentStep);
-    band[bandIdx].currentStep = currentStep;
-    si4735.setSeekAmSpacing((currentStep > 10) ? 10 : currentStep); // Max 10kHz for spacing
+      currentStepIdx = idxStepAM;
+      si4735.setFrequencyStep(tabStepAM[currentStepIdx]);
+      si4735.setSeekAmSpacing(5); // Max 10kHz for spacing
+    }
+    
     showStep();
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
@@ -1392,9 +1391,8 @@ void doMode(int8_t v)
         ssbLoaded = false;
       }
     } 
-    // Nothing to do if you are in FM mode
     band[bandIdx].currentFreq = currentFrequency;
-    band[bandIdx].currentStep = currentStep;
+    band[bandIdx].currentStepIdx = currentStepIdx;
     useBand();
     cmdModeOrRDS = false;
   } 
@@ -1482,11 +1480,14 @@ void loop(void)
     }
     else
     {
-      if (encoderCount == 1) 
+      if (encoderCount == 1) {
         si4735.frequencyUp();
-      else
+        seekDirection = 1;
+      }
+      else {
         si4735.frequencyDown();
-        
+        seekDirection = 0;
+      }  
       //  currentFrequency = si4735.getFrequency();      // Queries the Si473X device.
       currentFrequency = si4735.getCurrentFrequency(); // Just get the last setFrequency value (faster but can not be accurate sometimes).
       showFrequency();
@@ -1514,7 +1515,27 @@ void loop(void)
     }
     else if (buttonSeek.justPressed()) // SEEK DOWN
     {
-      // TO DO
+      if (currentMode == FM || currentMode == AM ) {
+        // Jumps up or down one space
+        if (seekDirection)
+          si4735.frequencyUp();
+        else
+          si4735.frequencyDown();
+
+        si4735.seekStationProgress(showFrequencySeek, checkStopSeeking, seekDirection);
+        delay(30);
+        if (currentMode == FM)
+        {
+          float f = round(si4735.getFrequency() / 10.0);
+          currentFrequency = (uint16_t)f * 10; // adjusts band space from 1 (10kHz) to 10 (100 kHz)
+          si4735.setFrequency(currentFrequency);
+        }
+        else
+        {
+          currentFrequency = si4735.getFrequency(); //
+        }
+        showFrequency();
+      }
     }
     else if (buttonSoftMute.justPressed()) // Soft Mute
     {
@@ -1576,6 +1597,18 @@ void loop(void)
     }
     elapsedRSSI = millis();
   }
+
+  if (currentMode == FM)
+  {
+    if (currentFrequency != previousFrequency)
+    {
+      //cleanBfoRdsInfo();
+    }
+    else
+    {
+      checkRDS();
+    }
+  }  
 
   delay(3);
 }
