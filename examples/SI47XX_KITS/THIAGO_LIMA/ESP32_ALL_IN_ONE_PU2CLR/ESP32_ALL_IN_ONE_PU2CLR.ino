@@ -79,7 +79,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 #define KEYBOARD_LIN_OFFSET 50
 #define STATUS_DISPLAY_COL_OFFSET 5
-#define STATUS_DISPLAY_LIN_OFFSET 430
+#define STATUS_DISPLAY_LIN_OFFSET 85
 
 #define BLACK 0x0000
 #define BLUE 0x001F
@@ -1042,7 +1042,7 @@ char bufferStatioName[20];
 
 void showRDSStation()
 {
-    printText(STATUS_DISPLAY_COL_OFFSET + 5, STATUS_DISPLAY_LIN_OFFSET + 5, 1, bufferStatioName, stationName, GREEN, 6);
+    printText(STATUS_DISPLAY_COL_OFFSET + 5, STATUS_DISPLAY_LIN_OFFSET, 2, bufferStatioName, stationName, GREEN, 14);
     delay(100);
 }
 
@@ -1055,7 +1055,7 @@ void checkRDS()
   si4735.getRdsStatus();
   if (si4735.getRdsReceived())
   {
-    if (si4735.getRdsSync() && si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost())
+    if (si4735.getRdsSync() && si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost() )
     {
       stationName = si4735.getRdsText0A();
       if (stationName != NULL )
@@ -1152,12 +1152,9 @@ void checkRDS()
       si4735.setSeekFmSpacing(1); // Using space 1 (not documentend). The manual says: 5, 10 or 20. They mean 50, 100 or 200 kHz.
       // si4735.setSeekAmRssiThreshold(0);
       // si4735.setSeekFmSrnThreshold(3);
-
       cmdBFO = ssbLoaded = false;
       si4735.setRdsConfig(1, 2, 2, 2, 2);
-
-      
-     
+      si4735.setFifoCount(1);
     }
     else
     {
@@ -1493,8 +1490,8 @@ void loop(void)
         si4735.frequencyDown();
         seekDirection = 0;
       }  
-      //  currentFrequency = si4735.getFrequency();      // Queries the Si473X device.
-      currentFrequency = si4735.getCurrentFrequency(); // Just get the last setFrequency value (faster but can not be accurate sometimes).
+      currentFrequency = si4735.getFrequency();      // Queries the Si473X device.
+      // currentFrequency = si4735.getCurrentFrequency(); // Just get the last setFrequency value (faster but can not be accurate sometimes).
       showFrequency();
     }
     encoderCount = 0;
@@ -1607,9 +1604,12 @@ void loop(void)
 
   if (currentMode == FM)
   {
+    if ( 
     if (currentFrequency != previousFrequency)
     {
-      //cleanBfoRdsInfo();
+      stationName = (char *) "           ";
+      showRDSStation();
+      currentFrequency = previousFrequency;
     }
     else
     {
