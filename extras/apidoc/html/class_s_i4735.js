@@ -49,6 +49,7 @@ var class_s_i4735 =
     [ "setAvcAmMaxGain", "group__group08.html#ga98d12da4b801493a350ecf770f4f2d8b", null ],
     [ "getCurrentAvcAmMaxGain", "group__group17.html#ga27dd7dfd46583eb5be91cfc9461807ff", null ],
     [ "setAmSoftMuteMaxAttenuation", "group__group17.html#ga05bbe1546d61d7ca3591824445084e70", null ],
+    [ "setFmSoftMuteMaxAttenuation", "group__group17.html#gac5459a1eaf33567d2990e15f314f0ce0", null ],
     [ "setSsbSoftMuteMaxAttenuation", "group__group17.html#ga7f9f0eb9946d629e2e6d7e7901af86b9", null ],
     [ "isAgcEnabled", "group__group08.html#gaea08b7e553212cbe01bf6f4ec9e02de7", null ],
     [ "getAgcGainIndex", "group__group08.html#ga4eceaf5745e87fcca6cf31c04c5635bd", null ],

@@ -111,6 +111,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga05bbe1546d61d7ca3591824445084e70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga05bbe1546d61d7ca3591824445084e70">SI4735::setAmSoftMuteMaxAttenuation</a> (uint8_t smattn=0)</td></tr>
 <tr class="memdesc:ga05bbe1546d61d7ca3591824445084e70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Am Soft Mute Max Attenuation.  <a href="group__group17.html#ga05bbe1546d61d7ca3591824445084e70">More...</a><br /></td></tr>
 <tr class="separator:ga05bbe1546d61d7ca3591824445084e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac5459a1eaf33567d2990e15f314f0ce0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#gac5459a1eaf33567d2990e15f314f0ce0">SI4735::setFmSoftMuteMaxAttenuation</a> (uint8_t smattn=0)</td></tr>
+<tr class="memdesc:gac5459a1eaf33567d2990e15f314f0ce0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Fm Soft Mute Max Attenuation.  <a href="group__group17.html#gac5459a1eaf33567d2990e15f314f0ce0">More...</a><br /></td></tr>
+<tr class="separator:gac5459a1eaf33567d2990e15f314f0ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7f9f0eb9946d629e2e6d7e7901af86b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga7f9f0eb9946d629e2e6d7e7901af86b9">SI4735::setSsbSoftMuteMaxAttenuation</a> (uint8_t smattn=0)</td></tr>
 <tr class="memdesc:ga7f9f0eb9946d629e2e6d7e7901af86b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the SSB Soft Mute Max Attenuation object.  <a href="group__group17.html#ga7f9f0eb9946d629e2e6d7e7901af86b9">More...</a><br /></td></tr>
 <tr class="separator:ga7f9f0eb9946d629e2e6d7e7901af86b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -308,6 +311,43 @@ Functions</h2></td></tr>
 <p>This function can be useful to disable Soft Mute. The value 0 disable soft mute.</p>
 <p>Specified in units of dB. Default maximum attenuation is 8 dB. It works for AM and SSB.</p>
 <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 158.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">smattn</td><td>Maximum attenuation to apply when in soft mute </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gac5459a1eaf33567d2990e15f314f0ce0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac5459a1eaf33567d2990e15f314f0ce0">&#9670;&nbsp;</a></span>setFmSoftMuteMaxAttenuation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setFmSoftMuteMaxAttenuation </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>smattn</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the Fm Soft Mute Max Attenuation. </p>
+<p>This function can be useful to disable Soft Mute on FM mode. The value 0 disable soft mute.</p>
+<p>Specified in units of dB. Default maximum attenuation is 8 dB. It works for AM and SSB.</p>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 97.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">smattn</td><td>Maximum attenuation to apply when in soft mute </td></tr>

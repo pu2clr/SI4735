@@ -4,6 +4,7 @@ var group__group17 =
     [ "setAvcAmMaxGain", "group__group17.html#ga6e1e0e48d71e09debb07fc6dbe884829", null ],
     [ "getCurrentAvcAmMaxGain", "group__group17.html#ga27dd7dfd46583eb5be91cfc9461807ff", null ],
     [ "setAmSoftMuteMaxAttenuation", "group__group17.html#ga05bbe1546d61d7ca3591824445084e70", null ],
+    [ "setFmSoftMuteMaxAttenuation", "group__group17.html#gac5459a1eaf33567d2990e15f314f0ce0", null ],
     [ "setSsbSoftMuteMaxAttenuation", "group__group17.html#ga7f9f0eb9946d629e2e6d7e7901af86b9", null ],
     [ "setSsbAgcAttackRate", "group__group17.html#ga211bb7fb7b339e005e8a0ae2e2813b79", null ],
     [ "setSsbAgcReleaseRate", "group__group17.html#ga65ae2ed5be90932da9b26073f87a8bda", null ],

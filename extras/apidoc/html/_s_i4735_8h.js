@@ -34,6 +34,7 @@ var _s_i4735_8h =
     [ "FM_BLEND_MULTIPATH_STEREO_THRESHOLD", "_s_i4735_8h.html#a89a1ff203b89d700e362d30059a13963", null ],
     [ "FM_BLEND_MULTIPATH_MONO_THRESHOLD", "_s_i4735_8h.html#a775be7c1521bbdd8d33fdecc34772c1f", null ],
     [ "FM_CHANNEL_FILTER", "_s_i4735_8h.html#afbd0f546e5ae1646846a50f158e2f20e", null ],
+    [ "FM_SOFT_MUTE_MAX_ATTENUATION", "_s_i4735_8h.html#a8befb9228ad41e2baa0e69411e0f5108", null ],
     [ "FM_SEEK_BAND_BOTTOM", "_s_i4735_8h.html#a17c1d20d698569b77c2d00fb03fc905a", null ],
     [ "FM_SEEK_BAND_TOP", "_s_i4735_8h.html#ae8f8164aecb98eb67811957866f7173a", null ],
     [ "FM_SEEK_FREQ_SPACING", "_s_i4735_8h.html#ac5a0322f265c6a26f2eaa67b137a4e1e", null ],

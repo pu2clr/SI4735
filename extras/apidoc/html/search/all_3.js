@@ -27,10 +27,11 @@ var searchData=
   ['fm_5fseek_5fstart_101',['FM_SEEK_START',['../_s_i4735_8h.html#a25ef5653fc9206ab83d8215c209e9922',1,'SI4735.h']]],
   ['fm_5fseek_5ftune_5frssi_5fthreshold_102',['FM_SEEK_TUNE_RSSI_THRESHOLD',['../_s_i4735_8h.html#a960bbbda65e9a333eec9ad65a5d32af5',1,'SI4735.h']]],
   ['fm_5fseek_5ftune_5fsnr_5fthreshold_103',['FM_SEEK_TUNE_SNR_THRESHOLD',['../_s_i4735_8h.html#aa252fd7579dcf146a8b33544c76d0e93',1,'SI4735.h']]],
-  ['fm_5ftune_5ffreq_104',['FM_TUNE_FREQ',['../_s_i4735_8h.html#aa9acf37dc2ae6e26a01780d6d4e6dcc1',1,'SI4735.h']]],
-  ['fm_5ftune_5fstatus_105',['FM_TUNE_STATUS',['../_s_i4735_8h.html#a1c2be0c09ef2120b4e7b6d050a4a7735',1,'SI4735.h']]],
-  ['frequencydown_106',['frequencyDown',['../group__group08.html#ga93fff524a6f900ac91eb1222ce73f9ba',1,'SI4735']]],
-  ['frequencyup_107',['frequencyUp',['../group__group08.html#gac0fcfd64dcf30b11d4dc219d9f7fc5d9',1,'SI4735']]],
-  ['fm_20mono_20stereo_20audio_20setup_108',['FM Mono Stereo audio setup',['../group__group12.html',1,'']]],
-  ['fm_20rds_2frbds_109',['FM RDS/RBDS',['../group__group16.html',1,'']]]
+  ['fm_5fsoft_5fmute_5fmax_5fattenuation_104',['FM_SOFT_MUTE_MAX_ATTENUATION',['../_s_i4735_8h.html#a8befb9228ad41e2baa0e69411e0f5108',1,'SI4735.h']]],
+  ['fm_5ftune_5ffreq_105',['FM_TUNE_FREQ',['../_s_i4735_8h.html#aa9acf37dc2ae6e26a01780d6d4e6dcc1',1,'SI4735.h']]],
+  ['fm_5ftune_5fstatus_106',['FM_TUNE_STATUS',['../_s_i4735_8h.html#a1c2be0c09ef2120b4e7b6d050a4a7735',1,'SI4735.h']]],
+  ['frequencydown_107',['frequencyDown',['../group__group08.html#ga93fff524a6f900ac91eb1222ce73f9ba',1,'SI4735']]],
+  ['frequencyup_108',['frequencyUp',['../group__group08.html#gac0fcfd64dcf30b11d4dc219d9f7fc5d9',1,'SI4735']]],
+  ['fm_20mono_20stereo_20audio_20setup_109',['FM Mono Stereo audio setup',['../group__group12.html',1,'']]],
+  ['fm_20rds_2frbds_110',['FM RDS/RBDS',['../group__group16.html',1,'']]]
 ];
