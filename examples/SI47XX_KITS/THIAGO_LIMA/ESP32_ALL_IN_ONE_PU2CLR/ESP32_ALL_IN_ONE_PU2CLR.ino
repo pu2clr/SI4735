@@ -1,5 +1,6 @@
 /*
-  UNDER CONSTRUCTION...
+  
+  This sketch works with GERT BAAK circuit and Thiago's KIT based on SI4732 and THT touch 2.8" based on ILI9341
 
   ATTENTION: You migh need to calibrate the touch. 
 
@@ -18,7 +19,41 @@
   Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
 
 
-  Prototype documentation: https://pu2clr.github.io/SI4735/
+  The table below was copied from Gert's sketch and ca help you to connect your ESP32 to SI473X, TFT and other devices. 
+
+  |------------|------------------|------------|------------|------------|
+  |Display 2.8 |      ESP32       |   Si4735   |  Encoder   |  Beeper    |
+  |  ILI9341   |                  |            |            |            |        Encoder        1,2,3
+  |------------|------------------|------------|------------|------------|        Encoder switch 4,5
+  |   Vcc      |     3V3     | 01 |    Vcc     |            |            |        pin 33 with 18K to 3.3 volt and 18K to ground.
+  |   GND      |     GND     | 02 |    GND     |     2,4    |            |        pin 32 (Beeper) via 2K to base V1  BC547
+  |   CS       |     15      | 03 |            |            |            |        Collector via beeper to 5v
+  |   Reset    |      4      | 04 |            |            |            |        Emmitor to ground
+  |   D/C      |      2      | 05 |            |            |            |
+  |   SDI      |     23      | 06 |            |            |            |        Encoder        1,2,3
+  |   SCK      |     18      | 07 |            |            |            |        Encoder switch 4,5
+  |   LED Coll.|     14 2K   | 08 |            |            |            |        Display LED
+  |   SDO      |             | 09 |            |            |            |        Emmitor  V2 BC557 to 3.3 V
+  |   T_CLK    |     18      | 10 |            |            |            |        Base with 2K to pin 14 (Display_Led)
+  |   T_CS     |      5      | 11 |            |            |            |        Collector to led pin display
+  |   T_DIN    |     23      | 12 |            |            |            |
+  |   T_DO     |     19      | 13 |            |            |            |
+  |   T_IRQ    |     34      | 14 |            |            |            |
+  |            |     12      |    |   Reset    |            |            |
+  |            |     21      |    |    SDA     |            |            |
+  |            |     22      |    |    SCL     |            |            |
+  |            |     16      |    |            |      1     |            |
+  |            |     17      |    |            |      3     |            |
+  |            |     33      |    |            |      5     |            |
+  |            |     32 2K   |    |            |            |     In     |
+  |            |     27 Mute |    |see schematics                        |
+  |------------|-------------|----|------------|------------|------------|
+
+
+  Gert's shecmatic: https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino?fbclid=IwAR3TQd2j4HxAFvpcGkbXiPuDly8m2OnGclTDiqthnkbqqe2fN1McP2m3WSI
+  Thiago's project: https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/THIAGO_LIMA
+
+  SI473X Arduino Library documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
   By Ricardo Lima Caratti, May 2021
