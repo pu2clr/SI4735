@@ -1364,22 +1364,6 @@ public:
 
     /**
      * @ingroup group17
-     * @brief Sets the Fm Soft Mute Max Attenuation 
-     * 
-     * @details This function can be useful to disable Soft Mute on FM mode. The value 0 disable soft mute.
-     * @details Specified in units of dB. Default maximum attenuation is 8 dB. It works for AM and SSB.
-     * 
-     * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 97. 
-     * 
-     * @param smattn Maximum attenuation to apply when in soft mute
-     */
-    inline void setFmSoftMuteMaxAttenuation(uint8_t smattn = 0)
-    {
-        sendProperty(FM_SOFT_MUTE_MAX_ATTENUATION, smattn);
-    };
-
-    /**
-     * @ingroup group17
      * @brief Sets the SSB Soft Mute Max Attenuation object
      * 
      * @details Sets maximum attenuation during soft mute (dB). Set to 0 to disable soft mute. 
@@ -1774,6 +1758,21 @@ public:
         sendProperty(FM_DEEMPHASIS, parameter);
     };
 
+    /**
+     * @ingroup group08
+     * @brief Sets the Fm Soft Mute Max Attenuation 
+     * 
+     * @details This function can be useful to disable Soft Mute on FM mode. The value 0 disable soft mute.
+     * @details Specified in units of dB. Default maximum attenuation is 8 dB. It works for AM and SSB.
+     * 
+     * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 97. 
+     * 
+     * @param smattn Maximum attenuation to apply when in soft mute
+     */
+    inline void setFmSoftMuteMaxAttenuation(uint8_t smattn = 0)
+    {
+        sendProperty(FM_SOFT_MUTE_MAX_ATTENUATION, smattn);
+    };
 
     /**
      * @ingroup group08
