@@ -343,13 +343,14 @@ void setup(void)
 
   // tft.setFreeFont(&FreeSans12pt7b);
   showText(60, 0, 3, NULL, GREEN, "SI4735");
-  showText(60, 25, 3, NULL, YELLOW, "Arduino");
-  showText(60, 50, 3, NULL, YELLOW, "Library");
+  showText(60, 30, 3, NULL, YELLOW, "Arduino");
+  showText(60, 60, 3, NULL, YELLOW, "Library");
   tft.setFreeFont(NULL);
   tft.setTextSize(1);
   showText(60, 100, 3, NULL, WHITE, "PU2CLR");
-  showText(60, 150, 3, NULL, WHITE, "RICARDO");
-  showText(0, 200, 1, NULL, WHITE, "https://pu2clr.github.io/SI4735/");
+  showText(60, 140, 3, NULL, WHITE, "RICARDO");
+  showText(70, 180, 3, NULL, WHITE, "V1.0.0");
+  showText(30, 250, 1, NULL, WHITE, "https://pu2clr.github.io/SI4735/");
   
   int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
   if (si4735Addr == 0)
