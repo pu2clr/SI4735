@@ -145,6 +145,7 @@ bool cmdStep = false;
 bool cmdBand = false;
 bool cmdModeOrRDS =  false;
 bool cmdSoftMuteMaxAtt = false;
+bool cmdFmDE = false;
 
 bool ssbLoaded = false;
 bool fmStereo = true;
@@ -158,7 +159,7 @@ int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 int8_t agcNdx = 0;
 uint16_t antennaIdx = 0;
-int8_t softMuteMaxAttIdx = 16;
+int8_t softMuteMaxAttIdx = 8;
 int16_t slopIdx = 1;
 int16_t muteRateIdx = 64;
 
@@ -647,8 +648,6 @@ void resetEepromDelay()
 
   void setButtonsFM()
   {
-    setButton(&buttonAGC, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"*", true);
-    setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"*", true);
     showBFOorRDS(true);
     showBandwitdth(true);
     showStep(true);
@@ -680,7 +679,7 @@ void showTemplate()
     setButton(&buttonStep, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *)"Step", true);
 
     setButton(&buttonAGC, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"AGC On", true);
-    setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"---", true);
+    setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"SoftM", true);
     setButton(&buttonFilter, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *)"BW", true);
 
     // Exibe os botões (teclado touch)
@@ -921,10 +920,7 @@ void showTemplate()
   {
     char sAgc[15];
 
-    if (currentMode == FM)
-      return;
-
-    si4735.getAutomaticGainControl();
+    // si4735.getAutomaticGainControl();
     if (agcNdx == 0 && agcIdx == 0)
       strcpy(sAgc, "AGC ON");
     else
@@ -1055,10 +1051,7 @@ void showTemplate()
   {
     char sMute[15];
 
-    if (currentMode == FM)
-      return;
-
-    sprintf(sMute, "SM: %2d", softMuteMaxAttIdx);
+    sprintf(sMute, "SoftM: %2d", softMuteMaxAttIdx);
     setButton(&buttonSoftMute, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, sMute, drawAfter);
   }
 
@@ -1412,7 +1405,11 @@ void switchSoftMute(int8_t v)
   else if (softMuteMaxAttIdx < 0)
     softMuteMaxAttIdx = 32;
 
-  si4735.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx);
+  if ( currentMode == FM ) 
+    si4735.setFmSoftMuteMaxAttenuation(softMuteMaxAttIdx);
+  else 
+    si4735.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx);
+    
   showSoftMute();
 }
 

@@ -137,6 +137,7 @@ setMcuWakeUpPin	KEYWORD2
 setPowerUp	KEYWORD2
 setProperty	KEYWORD2
 setRdsConfig	KEYWORD2
+setFmSoftMuteMaxAttenuation KEYWORD2
 setRdsIntSource	KEYWORD2
 setSBBSidebandCutoffFilter	KEYWORD2
 setSSB	KEYWORD2

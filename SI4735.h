@@ -61,6 +61,7 @@
 #define FM_BLEND_MULTIPATH_STEREO_THRESHOLD 0x1808
 #define FM_BLEND_MULTIPATH_MONO_THRESHOLD 0x1809
 #define FM_CHANNEL_FILTER 0x1102
+#define FM_SOFT_MUTE_MAX_ATTENUATION 0x1302
 
 // FM SEEK Properties
 #define FM_SEEK_BAND_BOTTOM 0x1400         // Sets the bottom of the FM band for seek
@@ -1359,6 +1360,22 @@ public:
     inline void setAmSoftMuteMaxAttenuation(uint8_t smattn = 0)
     {
         sendProperty(AM_SOFT_MUTE_MAX_ATTENUATION, smattn);
+    };
+
+    /**
+     * @ingroup group17
+     * @brief Sets the Fm Soft Mute Max Attenuation 
+     * 
+     * @details This function can be useful to disable Soft Mute on FM mode. The value 0 disable soft mute.
+     * @details Specified in units of dB. Default maximum attenuation is 8 dB. It works for AM and SSB.
+     * 
+     * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 97. 
+     * 
+     * @param smattn Maximum attenuation to apply when in soft mute
+     */
+    inline void setFmSoftMuteMaxAttenuation(uint8_t smattn = 0)
+    {
+        sendProperty(FM_SOFT_MUTE_MAX_ATTENUATION, smattn);
     };
 
     /**
