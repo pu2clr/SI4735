@@ -48,7 +48,7 @@ var searchData=
   ['setfmblendsnrstereothreshold_313',['setFmBlendSnrStereoThreshold',['../group__group12.html#ga1d1a5eed976370d99827ba55d08b9293',1,'SI4735']]],
   ['setfmblendstereothreshold_314',['setFmBlendStereoThreshold',['../group__group12.html#gac598865516ca09db7dbfa6a84da7f179',1,'SI4735']]],
   ['setfmdeemphasis_315',['setFMDeEmphasis',['../group__group08.html#ga305b3c87d5151d3fede17d725c04d95a',1,'SI4735']]],
-  ['setfmsoftmutemaxattenuation_316',['setFmSoftMuteMaxAttenuation',['../group__group17.html#gac5459a1eaf33567d2990e15f314f0ce0',1,'SI4735']]],
+  ['setfmsoftmutemaxattenuation_316',['setFmSoftMuteMaxAttenuation',['../group__group08.html#gac5459a1eaf33567d2990e15f314f0ce0',1,'SI4735']]],
   ['setfmstereooff_317',['setFmStereoOff',['../group__group12.html#ga59ce1008944ff9a51b6c5baeb3a3e2cb',1,'SI4735']]],
   ['setfmstereoon_318',['setFmStereoOn',['../group__group12.html#ga52c7b7b1f0ed9121b0e64516b2bd2a55',1,'SI4735']]],
   ['setfrequency_319',['setFrequency',['../group__group08.html#ga63d205f2d3169ba877a2bd2ee28d224f',1,'SI4735']]],

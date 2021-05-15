@@ -30,6 +30,7 @@ var group__group08 =
     [ "getCurrentMultipathDetectHigh", "group__group08.html#ga82d0865cf348deb0c9f81a2f12222fb0", null ],
     [ "getCurrentBlendDetectInterrupt", "group__group08.html#ga16107a2f2e51cce5a7e2b1b303425118", null ],
     [ "setFMDeEmphasis", "group__group08.html#ga305b3c87d5151d3fede17d725c04d95a", null ],
+    [ "setFmSoftMuteMaxAttenuation", "group__group08.html#gac5459a1eaf33567d2990e15f314f0ce0", null ],
     [ "setAMDeEmphasis", "group__group08.html#ga6451f3fdb5dc6cc11b99d9258da3ff25", null ],
     [ "setAMSoftMuteSlop", "group__group08.html#ga1868c4cdd8a5fa9e846cd637f97f082e", null ],
     [ "setAMSoftMuteRate", "group__group08.html#ga48f023f4073dcaad41bfa4ef3cee7a4f", null ],
