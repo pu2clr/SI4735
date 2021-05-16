@@ -1620,6 +1620,7 @@ void loop(void)
           currentFrequency = si4735.getFrequency(); //
         }
         showFrequency();
+        resetEepromDelay();
       }
     }
     else if (buttonSoftMute.justPressed()) // Soft Mute

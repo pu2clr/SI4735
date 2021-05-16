@@ -1728,7 +1728,7 @@ public:
     /**
      * @ingroup group13 Audio Noise Blank Delay
      * @brief Sets the delay before applying impulse blanking 
-     * @details Delay in micro-sonds before applying impulse blanking to the original samples. Default value is 172.
+     * @details Delay in micro-seconds before applying impulse blanking to the original samples. Default value is 172.
      * 
      * @param value Delay in micro-seconds
      */

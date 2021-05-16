@@ -1038,7 +1038,7 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
 
     if (currentTune == FM_TUNE_FREQ)
         cmd = FM_AGC_OVERRIDE;
-    else if (currentTune == FM_TUNE_FREQ)
+    else if (currentTune ==  NBFM_TUNE_FREQ)
         cmd = NBFM_AGC_OVERRIDE;
     else
         cmd = AM_AGC_OVERRIDE;
