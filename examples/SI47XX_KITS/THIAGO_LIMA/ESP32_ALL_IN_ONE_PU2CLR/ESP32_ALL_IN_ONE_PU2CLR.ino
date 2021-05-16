@@ -163,7 +163,7 @@ int8_t softMuteMaxAttIdx = 8;
 int16_t slopIdx = 1;
 int16_t muteRateIdx = 64;
 
-int currentBFO = 0;
+int16_t currentBFO = 0;
 int previousBFO = 0;
 
 long elapsedRSSI = millis();
@@ -350,7 +350,7 @@ void setup(void)
   tft.setTextSize(1);
   showText(60, 100, 3, NULL, WHITE, "PU2CLR");
   showText(60, 140, 3, NULL, WHITE, "RICARDO");
-  showText(70, 180, 3, NULL, WHITE, "V1.0.0");
+  showText(70, 180, 3, NULL, WHITE, "V1.0.1");
   showText(30, 250, 1, NULL, WHITE, "https://pu2clr.github.io/SI4735/");
   
   int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
@@ -439,7 +439,9 @@ void rotaryEncoder()
 void saveAllReceiverInformation()
 {
   int addr_offset;
+  
   EEPROM.begin(EEPROM_SIZE);
+
   
   EEPROM.write(eeprom_address, app_id);                 // stores the app id;
   EEPROM.write(eeprom_address + 1, si4735.getVolume()); // stores the current Volume
@@ -496,8 +498,6 @@ void readAllReceiverInformation()
   EEPROM.end();
 
   previousFrequency = currentFrequency = band[bandIdx].currentFreq;
-
-
 
   if (band[bandIdx].bandType == FM_BAND_TYPE) {
     currentStepIdx = idxStepFM = band[bandIdx].currentStepIdx;
@@ -1065,7 +1065,7 @@ void showTemplate()
     } else {
       if ( ssbLoaded ) {
         tft.setFreeFont(NULL); // default font
-        sprintf(buffer, "%c%d", (currentBFO >= 0) ? '+' : '-', abs(currentBFO));
+        sprintf(buffer, "%c%d", (int) (currentBFO >= 0) ? '+' : '-', (int) abs(currentBFO));
         printText(175, 5, 2, bufferBFO, buffer, YELLOW, 11);
         sprintf(buffer,"%s", bandModeDesc[currentMode]);
       } else {
