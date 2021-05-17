@@ -48,13 +48,13 @@ Display is waking up by the use of one of the controllers e.g. screen, rotary co
 
 ### SI4732-A10 version 
 
-![SI4732-A10 version](./SI4732 Radio schematics.png)
+![SI4732-A10 version](./SI4732_Radio_schematics.png)
 
 
 ### SI4735-G60 version
 
 
-![SI4732-A10 version](./SI4735 Radio schematics.png)
+![SI4732-A10 version](./SI4735_Radio_schematics.png)
 
 
 
