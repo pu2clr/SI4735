@@ -1,5 +1,5 @@
 /*
-   Test and validation of the SI4735 Arduino Library and ESP32.
+   Test and validation of the SI4735 Arduino Library and ESP8266.
 
    ATTENTION:  Please, avoid using the computer connected to the mains during testing.
 
@@ -9,38 +9,36 @@
     3) You do not need connect any push buttons or encoders to change volume and frequency;
     4) The Arduino IDE is all you need to control the radio.  
    
-   This sketch has been successfully tested on:
-    1) Pro Mini 3.3V; 
-    2) UNO (by using a voltage converter); 
-    3) Arduino Yún;
-    4) Arduino Mega (by using a voltage converter); and 
-    5) ESP32 (LOLIN32 WEMOS)
+   This sketch has been successfully tested on ESP8266 on SI4735-G60 or SI4732-A10
 
-  | Si4735    | Function              |ESP LOLIN32 WEMOS (GPIO) |
-  |-----------| ----------------------|-------------------------|
-  | pin 15    |   RESET               |   2 (GPIO2)           |  
-  | pin 18    |   SDIO                |   4 (SDA / GPIO4)     |
-  | pin 17    |   SCLK                |   5 (SCL / GPIO5)     |
+  | Si4735-G60 | Function              |   ESP8266             |
+  |------------| ----------------------|-----------------------|
+  | pin 15     |   RESET               |   2 (GPIO2)           |  
+  | pin 18     |   SDIO                |   4 (SDA / GPIO4)     |
+  | pin 17     |   SCLK                |   5 (SCL / GPIO5)     |
 
 
-   I strongly recommend starting with this sketch.
+  | Si4732-A10 | Function              |   ESP8266             |
+  |------------| ----------------------|-----------------------|
+  | pin 9      |   RESET               |   2 (GPIO2)           |  
+  | pin 12     |   SDIO                |   4 (SDA / GPIO4)     |
+  | pin 11     |   SCLK                |   5 (SCL / GPIO5)     |
 
-   Prototype documentation : https://pu2clr.github.io/SI4735/
-   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
-   By Ricardo Lima Caratti, Nov 2019.
+
+  Prototype documentation : https://pu2clr.github.io/SI4735/
+  PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
+
+  By Ricardo Lima Caratti, May 2021.
 */
 
 #include <SI4735.h>
 
-#define RESET_PIN 2
+#define RESET_PIN 2           // (GPIO02)
 
 // I2C bus pin on ESP32
-#define ESP32_I2C_SDA 4
-#define ESP32_I2C_SCL 5
-
-#define CAPACITANCE 30
-
+#define ESP32_I2C_SDA 4       // (GPIO04)
+#define ESP32_I2C_SCL 5       // (GPIO05)
 
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
@@ -54,7 +52,6 @@ SI4735 si4735;
 
 void showHelp()
 {
-
   Serial.println("Type F to FM; A to MW; L to LW; and 1 to SW");
   Serial.println("Type U to increase and D to decrease the frequency");
   Serial.println("Type S or s to seek station Up or Down");
@@ -90,40 +87,38 @@ void showStatus()
   Serial.print(" Signal:");
   Serial.print(si4735.getCurrentRSSI());
   Serial.println("dBuV]");
+  Serial.flush();
 }
-
-
-
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while(!Serial);
+  delay(1000);
 
   digitalWrite(RESET_PIN, HIGH);
-  
   Serial.println("AM and FM station tuning test.");
 
   showHelp();
+  
 
   // The line below may be necessary to setup I2C pins on ESP32
   Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
 
-  delay(500);
+  // Gets the current SI473X I2C address 
+  int si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
   si4735.setup(RESET_PIN, FM_FUNCTION);
+  delay(300);
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   si4735.setFM(8400, 10800, 10390, 10);
-  delay(500);
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(45);
   showStatus();
 }
 
-
 // Main
 void loop()
 {
-  
   if (Serial.available() > 0)
   {
     char key = Serial.read();
@@ -187,8 +182,6 @@ void loop()
       break;
     }
   }
-  
-  delay(100);
   currentFrequency = si4735.getCurrentFrequency();
   if (currentFrequency != previousFrequency)
   {
@@ -196,5 +189,6 @@ void loop()
     showStatus();
     delay(300);
   }
-  
+
+  delay(5);
 }
