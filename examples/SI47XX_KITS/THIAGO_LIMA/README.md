@@ -7,14 +7,14 @@ This KIT was made based on Gert's project. I would like to thank to [Gert Baak](
 
 
 All sketches in this folder use the "PU2CLR SI4735 Arduino Library" developed by Ricardo.
-All sketches were tested on __ESP32 WROOM-32__, TFT 2.8" 240*320 Touchscreen with an __ILI9341 controller__ and Rotary Encoder with push button. For the TFT display the __ESP_eSPI__ Arduino Library is used. The ILI9341 config file is available here.
+All sketches were tested on __ESP32 WROOM-32__, TFT 2.8" 240*320 Touchscreen with an __ILI9341 controller__ and Rotary Encoder with push button. For the TFT display the __TFT_eSPI__ Arduino Library is used. The ILI9341 config file is available here.
 
-__After installing the ESP_eSPI Arduino Library, copy the files Setup1_ILI9341.h and User_Setup_Select.h to the /Documents/Arduino/libraries/TFT_eSPI folder. If you are using Windows, check where the Arduino stores the installed libraries.__ 
+__After installing the TFT_eSPI Arduino Library, copy the files Setup1_ILI9341.h and User_Setup_Select.h to the /Documents/Arduino/libraries/TFT_eSPI folder. If you are using Windows, check where the Arduino stores the installed libraries.__ 
 
-Read the documentation available in each ino file. The manual controle of the radio is 100% done by the touchscreen and Rotary Encoder.
+Read the documentation available in each ino file. The control of the radio is 100% done by the touchscreen and Rotary Encoder.
 
 
-### Program features :
+### Sketches features:
 
 * FM (VHF) support (64–108 MHz)
 * AM (MW) band support (520–1710 kHz)
@@ -55,6 +55,40 @@ Display is waking up by the use of one of the controllers e.g. screen, rotary co
 
 
 ![SI4732-A10 version](./SI4735_Radio_schematics.png)
+
+
+## Firmware Update Tutorial
+
+
+### Install the last version of Arduino IDE
+
+Go to [Arduino website](https://www.arduino.cc/)
+
+### Configure the ESP32 on Arduino IDE 
+
+Open the Arduino IDE and select the __Preferences...__ menu item. 
+Go to __Additional Boards Manager URLs:__ and add the URL: https://dl.espressif.com/dl/package_esp32_index.json
+ 
+After adding the ESP32 URL, go to __Tools__ menu, select the __Boards__ item and then select __Boards Manager...__ option. Finally install ESP32 board.
+
+
+### Install the PU2CLR SI4735 Arduino Library
+
+Go to __Tools__ menu and select __Manage libraries...__. Finally install the PU2CLR SI4735 Arduino Library.
+
+
+### Install the TFT_eSPI  Arduino Library
+
+Go to __Tools__ menu and select __Manage libraries...__. Finally install the TFT_eSPI Arduino Library.
+
+
+### Copy two configurarion files to TFT_eSPI library folder
+
+__After installing the TFT_eSPI Arduino Library, copy the files Setup1_ILI9341.h and User_Setup_Select.h available here to the /Documents/Arduino/libraries/TFT_eSPI folder. If you are using Windows, check where the Arduino stores the installed libraries.__ 
+
+
+
+
 
 
 
