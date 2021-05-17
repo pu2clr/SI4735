@@ -99,8 +99,9 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 #define MIN_ELAPSED_TIME 250
 #define MIN_ELAPSED_RSSI_TIME 200
-#define ELAPSED_COMMAND 2000 // time to turn off the last command
-#define DEFAULT_VOLUME 45    // change it for your favorite sound volume
+#define ELAPSED_COMMAND 2000      // time to turn off the last command
+#define ELAPSED_DISPLAY 60000 * 3 // Set the Display off after 3 minuts of inactivitiy 
+#define DEFAULT_VOLUME 45         // change it for your favorite sound volume
 
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
@@ -133,6 +134,9 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 const uint8_t app_id = 47; // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
+
+long displayTime = millis();
+bool displayOn = true;
 
 // Commands controls
 bool cmdBFO = false;
@@ -350,7 +354,7 @@ void setup(void)
   tft.setTextSize(1);
   showText(60, 100, 3, NULL, WHITE, "PU2CLR");
   showText(60, 140, 3, NULL, WHITE, "RICARDO");
-  showText(70, 180, 3, NULL, WHITE, "V1.0.1");
+  showText(70, 180, 3, NULL, WHITE, "V1.0.2");
   showText(30, 250, 1, NULL, WHITE, "https://pu2clr.github.io/SI4735/");
   
   int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
@@ -543,6 +547,11 @@ void resetEepromDelay()
 {
   storeTime = millis();
   itIsTimeToSave = true;
+  // Turns the display on only it is off
+  if (!displayOn) {   
+    digitalWrite(DISPLAY_LED, DISPLAY_ON);
+    displayOn =  true;
+   }
 }
 
 
@@ -1709,6 +1718,13 @@ void loop(void)
       storeTime = millis();
       itIsTimeToSave = false;
     }
+  }
+
+  // Turns the display off if it is On and the time greater than ELAPSED_DISPLAY
+  if ( displayOn && (millis() -  displayTime) > ELAPSED_DISPLAY ) {
+    displayTime = millis();
+    displayOn =  false;
+    digitalWrite(DISPLAY_LED, DISPLAY_OFF);
   }
 
   delay(3);
