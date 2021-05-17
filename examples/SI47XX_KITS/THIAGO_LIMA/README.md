@@ -3,7 +3,7 @@
 
 The KIT made by Thiago Lima is based on __ESP32 ( ESP32 WROOM-32)__ and __SI4732-A10__ device. 
 
-This KIT was made based on Gert's project. I would like to thank to [Gert Baak](https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino?fbclid=IwAR3TQd2j4HxAFvpcGkbXiPuDly8m2OnGclTDiqthnkbqqe2fN1McP2m3WSI).
+This KIT was based on the Gert's design. You can find the original project made by __Gert Baak__ [here](https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino?fbclid=IwAR3TQd2j4HxAFvpcGkbXiPuDly8m2OnGclTDiqthnkbqqe2fN1McP2m3WSI).
 
 
 All sketches in this folder use the "PU2CLR SI4735 Arduino Library" developed by Ricardo.
