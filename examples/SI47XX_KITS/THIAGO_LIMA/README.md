@@ -1,13 +1,11 @@
 
-# THIAGO'S KIT SKETCH
+# THIAGO'S KIT FIRMWARES / SKETCHES
 
-The KIT made by Thiago Lima is based on __ESP32 ( ESP32 WROOM-32)__ and __SI4732-A10__ device. 
-
-This KIT was based on the Gert's design. You can find the original project made by __Gert Baak__ [here](https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino?fbclid=IwAR3TQd2j4HxAFvpcGkbXiPuDly8m2OnGclTDiqthnkbqqe2fN1McP2m3WSI).
+The KIT made by Thiago Lima is based on __ESP32 ( ESP32 WROOM-32)__ and __SI4732-A10__ devices. It is based on the Gert's design. You can find the original project made by __Gert Baak__ [here](https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino?fbclid=IwAR3TQd2j4HxAFvpcGkbXiPuDly8m2OnGclTDiqthnkbqqe2fN1McP2m3WSI).
 
 
-All sketches in this folder use the "PU2CLR SI4735 Arduino Library" developed by Ricardo.
-All sketches were tested on __ESP32 WROOM-32__, TFT 2.8" 240*320 Touchscreen with an __ILI9341 controller__ and Rotary Encoder with push button. For the TFT display the __TFT_eSPI__ Arduino Library is used. The ILI9341 config file is available here.
+All sketches in this folder use the [PU2CLR SI4735 Arduino Library](https://pu2clr.github.io/SI4735/) developed by Ricardo.
+All sketches were tested on __ESP32 WROOM-32__, TFT 2.8" "240 x 320" Touchscreen with an __ILI9341 controller__ and Rotary Encoder with push button. For the TFT display the __TFT_eSPI__ Arduino Library is used. The ILI9341 config file is available here.
 
 __After installing the TFT_eSPI Arduino Library, copy the files Setup1_ILI9341.h and User_Setup_Select.h to the /Documents/Arduino/libraries/TFT_eSPI folder. If you are using Windows, check where the Arduino stores the installed libraries.__ 
 
@@ -92,7 +90,7 @@ __After installing the TFT_eSPI Arduino Library, copy the files Setup1_ILI9341.h
 * Connect the ESP32 device to your computer;
 * Select the board __ESP32 Dev Module__;
 * Select the right Port (it will depend on your SO);
-* Run the __Upload__.
+* Run the __Upload__ command.
 
 
 [Check this video on Youtube](https://youtu.be/Gv8bHQbzdO4)
