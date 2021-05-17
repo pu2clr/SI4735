@@ -86,8 +86,15 @@ Go to __Tools__ menu and select __Manage libraries...__. Finally install the TFT
 
 __After installing the TFT_eSPI Arduino Library, copy the files Setup1_ILI9341.h and User_Setup_Select.h available here to the /Documents/Arduino/libraries/TFT_eSPI folder. If you are using Windows, check where the Arduino stores the installed libraries.__ 
 
+### Compile and upload the firmware
 
+* Open the desired firmware with the Arduino IDE;
+* Connect the ESP32 device to your computer;
+* Select the right board "ESP32 Dev Module";
+* Select the right Port (it will depend on your SO);
+* Run the __Upload__.
 
+  
 
 
 
