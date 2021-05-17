@@ -90,7 +90,7 @@ __After installing the TFT_eSPI Arduino Library, copy the files Setup1_ILI9341.h
 
 * Open the desired firmware with the Arduino IDE;
 * Connect the ESP32 device to your computer;
-* Select the right board "ESP32 Dev Module";
+* Select the board __ESP32 Dev Module__;
 * Select the right Port (it will depend on your SO);
 * Run the __Upload__.
 
