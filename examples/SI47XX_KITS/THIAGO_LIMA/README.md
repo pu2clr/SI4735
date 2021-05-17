@@ -94,7 +94,10 @@ __After installing the TFT_eSPI Arduino Library, copy the files Setup1_ILI9341.h
 * Select the right Port (it will depend on your SO);
 * Run the __Upload__.
 
-  
+
+[Check this video on Youtube](https://youtu.be/Gv8bHQbzdO4)
+
+
 
 
 
