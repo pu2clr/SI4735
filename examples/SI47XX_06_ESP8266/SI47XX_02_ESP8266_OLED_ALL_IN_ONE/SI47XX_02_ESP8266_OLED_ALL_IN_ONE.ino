@@ -64,12 +64,12 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define RESET_PIN 2                // GPIO2
 
 // Enconder PINs
-#define ENCODER_PIN_A 13           // GPIO12 
-#define ENCODER_PIN_B 14           // GPIO13 
+#define ENCODER_PIN_A 14           // GPIO14 
+#define ENCODER_PIN_B 13           // GPIO13 
 
 
 // Buttons controllers
-#define ENCODER_PUSH_BUTTON 14     // GPIO14
+#define ENCODER_PUSH_BUTTON 12     // GPIO12
 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 150
@@ -323,6 +323,7 @@ void showFrequency()
   }
   bufferDisplay[5] = '\0';
   strcat(bufferDisplay, unit);
+  display.clearDisplay();
   display.setCursor(0, 10);
   display.print(bufferDisplay);
   display.display();
