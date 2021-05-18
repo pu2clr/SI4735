@@ -58,6 +58,12 @@ The schematic below guides you to build a SI473X based receiver using the ESP32 
 
 
 
+#### ESP8266 OLED
+
+
+![ESP32 Basic schematic](../images/schematic_esp8266_oled_SI47XX_02_ALL_IN_ONE.png)
+
+
 <BR>
 
 ## Standalone ATmega328 with or without external Crystal (SI4735-D60 and LCD 16x2). 
