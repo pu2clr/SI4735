@@ -26,7 +26,6 @@ Commands
     3.4. Rotate the encoder clockwise or counterclockwise to increment or decrement the BFO (select the offset).
     3.5. If you press the button again or stop rotating the ancoder for about 2 seconds, the control will go back to the VFO. 
 
-
 4. SEEK 
 
    4.1. Select the menu by pressing twice the encoder push button. The seek direction is based on the last encoder 
@@ -37,7 +36,6 @@ ATTENTION: Try press and release the push button fastly. I mean, do not keep the
            If you do that, you might alternate the command status (enable and disable) randomly. 
            After about 2 seconds, the current command or action is disabled automatically and the interface goes back
            to VFO control. 
-
 
 TIPS:
 
