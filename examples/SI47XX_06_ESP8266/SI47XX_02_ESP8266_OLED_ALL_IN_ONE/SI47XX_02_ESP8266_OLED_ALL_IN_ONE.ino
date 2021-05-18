@@ -322,10 +322,14 @@ void showFrequency()
     unit = (char *) "kHz";
   }
   bufferDisplay[5] = '\0';
-  strcat(bufferDisplay, unit);
+  // strcat(bufferDisplay, unit);
+  display.setTextSize(2);
   display.clearDisplay();
-  display.setCursor(0, 10);
+  display.setCursor(20, 10);
   display.print(bufferDisplay);
+  display.setCursor(90,10);
+  display.setTextSize(1);
+  display.print(unit);
   display.display();
   showMode();
 }
@@ -339,10 +343,13 @@ void showMode() {
     bandMode = (char *) "LW  ";
   else
     bandMode = (char *) bandModeDesc[currentMode];
-  // lcd.setCursor(0, 0);
-  // lcd.print(bandMode);
-  // lcd.setCursor(0,1);
-  // lcd.print(band[bandIdx].bandName);
+  display.setTextSize(1);
+  // display.clearDisplay();
+  display.setCursor(0, 0);
+  display.print(bandMode);
+  display.setCursor(90,0);
+  display.print(band[bandIdx].bandName);
+  display.display();
 }
 
 /**
@@ -373,9 +380,10 @@ void showBandwitdth()
   else
     bufferDisplay[0] = '\0';
 
-  // lcd.clear();
-  // lcd.setCursor(0, 0);
-  // lcd.print(bufferDisplay);
+  display.clearDisplay();
+  display.setCursor(0, 0);
+  display.print(bufferDisplay);
+  display.display();
 }
 
 /**
@@ -383,29 +391,18 @@ void showBandwitdth()
  */
 void showRSSI()
 {
-  int rssiAux = 0;
-  char sMeter[7];
-  if (rssi < 2)
-    rssiAux = 4;
-  else if (rssi < 4)
-    rssiAux = 5;
-  else if (rssi < 12)
-    rssiAux = 6;
-  else if (rssi < 25)
-    rssiAux = 7;
-  else if (rssi < 50)
-    rssiAux = 8;
-  else
-    rssiAux = 9;
-
-  sprintf(sMeter, "S%1.1u%c", rssiAux, (rssi >= 60) ? '+' : ' ');
-  // lcd.setCursor(13, 1);
-  // lcd.print(sMeter);
+  char sMeter[10];
+  sprintf(sMeter, "S:%d ", rssi);
+  display.setTextSize(1);
+  display.setCursor(80, 25);
+  display.print(sMeter);
   if (currentMode == FM)
   {
-    // lcd.setCursor(10, 0);
-    // lcd.print((rx.getCurrentPilot()) ? "STEREO" : "  MONO");
+    display.setCursor(0, 25);
+    display.print((rx.getCurrentPilot()) ? "ST" : "MO");
   }
+
+  display.display();
 }
 
 /**
@@ -421,8 +418,10 @@ void showAgcAtt()
   else
     sprintf(sAgc, "ATT: %2.2d", agcNdx);
 
-  // lcd.setCursor(0, 0);
-  // lcd.print(sAgc);
+  display.clearDisplay();
+  display.setCursor(0, 0);
+  display.print(sAgc);
+  display.display();
 }
 
 /**
@@ -432,9 +431,10 @@ void showStep()
 {
   char stAux[15];
   sprintf(stAux, "STEP: %4u", currentStep);
-  // lcd.clear();
-  // lcd.setCursor(0, 0);
-  // lcd.print(stAux);
+  display.clearDisplay();
+  display.setCursor(0, 0);
+  display.print(stAux);
+  display.display();
 }
 
 /**
@@ -448,9 +448,10 @@ void showBFO()
   else
     sprintf(bfo, "BFO: %4.4d", currentBFO);
 
-  // lcd.clear();
-  // lcd.setCursor(0, 0);
-  // lcd.print(bfo);
+  display.clearDisplay();
+  display.setCursor(0, 0);
+  display.print(bfo);
+  display.display();  
   elapsedCommand = millis();
 }
 
@@ -461,9 +462,10 @@ void showVolume()
 {
   char volAux[12];
   sprintf(volAux, "VOLUME: %2u", rx.getVolume());
-  // lcd.clear();
-  // lcd.setCursor(0, 0);
-  // lcd.print(volAux);
+  display.clearDisplay();
+  display.setCursor(0, 0);
+  display.print(volAux);
+  display.display();  
 }
 
 /**
@@ -473,9 +475,10 @@ void showSoftMute()
 {
   char sMute[18];
   sprintf(sMute, "Soft Mute: %2d", softMuteMaxAttIdx);
-  // lcd.clear();
-  // lcd.setCursor(0, 0);
-  // lcd.print(sMute);
+  display.clearDisplay();
+  display.setCursor(0, 0);
+  display.print(sMute);
+  display.display(); 
 }
 
 /**
@@ -579,18 +582,20 @@ void doBandwidth(int8_t v)
  */
 void showCommandStatus(char * currentCmd)
 {
-  // lcd.setCursor(5, 0);
-  // lcd.print(currentCmd);
+  display.setCursor(40, 0);
+  display.print(currentCmd);
+  display.display();  
 }
 
 /**
  * Show menu options
  */
 void showMenu() {
-  // lcd.clear();
-  // lcd.setCursor(0, 0);
-  // lcd.setCursor(0, 1);
-  // lcd.print(menu[menuIdx]);
+  display.clearDisplay();
+  display.setCursor(0, 0);
+  display.setCursor(0, 1);
+  display.print(menu[menuIdx]);
+  display.display();
   showCommandStatus( (char *) "Menu");
 }
 
