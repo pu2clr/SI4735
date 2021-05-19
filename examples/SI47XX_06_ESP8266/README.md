@@ -29,10 +29,10 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 
 
 
+## SI4732-A10 and ESP8266 prototype 
 
 
 ![ESP8266 prototype](../../extras/images/si4732_esp8266_prototype.jpg)
-
 
 
 # ESP8266 SCHEMATICS 
@@ -46,7 +46,6 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 
 
 ![ESP8266 Basic schematic](../../extras/images/schematic_esp8266_basic.png)
-
 
 
 ![ESP32 Basic schematic](../../extras/images/schematic_esp8266_oled_SI47XX_02_ALL_IN_ONE.png)
