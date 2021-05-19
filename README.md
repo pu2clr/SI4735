@@ -71,6 +71,7 @@ Contact: __pu2clr@gmail.com__.
     * [TFT and touch screen](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT)
     * [ATTINY85](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85)
     * [ESP32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32)
+    * [ESP8266](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP8266)
     * [STM32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32) 
     * [FM RDS/RBDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS)
     * [About the board based on SI4730-D60 labeled "PL102BA-S V:2.1 10628"](https://pu2clr.github.io/SI4735/extras/BOARD_PL102BA/)
