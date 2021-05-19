@@ -31,9 +31,12 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 
 # ESP8266 SCHEMATICS 
 
+## Standalone ESP12F
 
 ![ESP8266_12_F Basic schematic](../../extras/images/schematic_esp8266_12_f.png)
 
+
+## ESP8266 Generic Module
 
 
 ![ESP8266 Basic schematic](../../extras/images/schematic_esp8266_basic.png)
