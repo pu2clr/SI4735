@@ -58,10 +58,21 @@ The schematic below guides you to build a SI473X based receiver using the ESP32 
 
 
 
-#### ESP8266 OLED
+## ESP8266 
+
+
+![ESP8266_12_F Basic schematic](../images/schematic_esp8266_12_f.png)
+
+
+
+![ESP8266 Basic schematic](../images/schematic_esp8266_basic.png)
+
+
+## ESP8266 OLED
 
 
 ![ESP32 Basic schematic](../images/schematic_esp8266_oled_SI47XX_02_ALL_IN_ONE.png)
+
 
 
 <BR>

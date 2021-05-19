@@ -28,3 +28,20 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 | pin 17    |   SCLK                |   5 (SCL / GPIO5)     |
 
 
+
+
+## ESP8266 SCHEMATICS 
+
+
+![ESP8266_12_F Basic schematic](../../extras/images/schematic_esp8266_12_f.png)
+
+
+
+![ESP8266 Basic schematic](../../extras/schematic_esp8266_basic.png)
+
+
+## ESP8266 OLED
+
+
+![ESP32 Basic schematic](../../extras/schematic_esp8266_oled_SI47XX_02_ALL_IN_ONE.png)
+

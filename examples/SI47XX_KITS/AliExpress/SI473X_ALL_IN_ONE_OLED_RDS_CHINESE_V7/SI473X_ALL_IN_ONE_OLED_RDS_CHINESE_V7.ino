@@ -890,7 +890,6 @@ void useBand()
  */
 void doStep(int8_t v)
 {
-
   // This command should work only for SSB mode
   if ((currentMode == LSB || currentMode == USB) && bfoOn)
   {
