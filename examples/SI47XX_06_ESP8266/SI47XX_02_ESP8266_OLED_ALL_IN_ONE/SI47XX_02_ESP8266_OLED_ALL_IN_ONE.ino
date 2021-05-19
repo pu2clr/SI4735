@@ -243,6 +243,8 @@ void setup()
   // ICACHE_RAM_ATTR void rotaryEncoder(); see rotaryEncoder implementation below.
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
+
+  rx.setI2CFastModeCustom(100000);
   
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
   rx.setup(RESET_PIN, MW_BAND_TYPE); 
@@ -667,7 +669,9 @@ void doMode(int8_t v)
       if (currentMode == AM)
       {
         // If you were in AM mode, it is necessary to load SSB patch (avery time)
+        rx.setI2CFastModeCustom(700000); 
         rx.loadPatch(ssb_patch_content, size_content, bandwitdthSSB[bwIdxSSB].idx);
+        rx.setI2CFastModeCustom(100000); 
         ssbLoaded = true;
         currentMode = LSB;
       }
@@ -682,7 +686,9 @@ void doMode(int8_t v)
       if (currentMode == AM)
       {
         // If you were in AM mode, it is necessary to load SSB patch (avery time)
+        rx.setI2CFastModeCustom(700000);
         rx.loadPatch(ssb_patch_content, size_content, bandwitdthSSB[bwIdxSSB].idx);
+        rx.setI2CFastModeCustom(100000);
         ssbLoaded = true;
         currentMode = USB;
       }
@@ -893,6 +899,7 @@ void loop()
     }
   }
 
+
   // Show RSSI status only if this condition has changed
   if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
   {
@@ -905,7 +912,6 @@ void loop()
     }
     elapsedRSSI = millis();
   }
-
   /*
   // Disable commands control
   if ((millis() - elapsedCommand) > ELAPSED_COMMAND)

@@ -29,6 +29,12 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 
 
 
+
+
+![ESP8266 prototype](../../extras/images/si4732_esp8266_prototype.jpg)
+
+
+
 # ESP8266 SCHEMATICS 
 
 ## Standalone ESP12F
