@@ -545,13 +545,13 @@ void readAllReceiverInformation()
  */
 void resetEepromDelay()
 {
-  storeTime = millis();
+  storeTime = displayTime = millis();
   itIsTimeToSave = true;
   // Turns the display on only it is off
   if (!displayOn) {   
     digitalWrite(DISPLAY_LED, DISPLAY_ON);
-    displayOn =  true;
    }
+   displayOn = true;
 }
 
 
@@ -1507,6 +1507,8 @@ void checkTouch()
   buttonFilter.press(down && buttonFilter.contains(pixel_x, pixel_y));
   buttonAGC.press(down && buttonAGC.contains(pixel_x, pixel_y));
   buttonSoftMute.press(down && buttonSoftMute.contains(pixel_x, pixel_y));
+  if ( down )
+    resetEepromDelay();
 }
 
 /**
