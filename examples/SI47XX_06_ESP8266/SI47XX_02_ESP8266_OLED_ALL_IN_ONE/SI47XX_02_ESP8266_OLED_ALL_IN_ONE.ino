@@ -50,6 +50,7 @@
 #include <Adafruit_SSD1306.h>
 
 #include <SI4735.h>
+#include "DSEG7_Classic_Regular_16.h"
 #include "Rotary.h"
 
 #include "patch_init.h" // SSB patch for whole SSBRX initialization string
@@ -323,14 +324,17 @@ void showFrequency()
   }
   bufferDisplay[5] = '\0';
   // strcat(bufferDisplay, unit);
-  display.setTextSize(2);
+  // display.setTextSize(2);
+  display.setFont(&DSEG7_Classic_Regular_16);
   display.clearDisplay();
-  display.setCursor(20, 10);
+  display.setCursor(20, 24);
   display.print(bufferDisplay);
-  display.setCursor(90,10);
+  display.setCursor(90,15);
+  display.setFont(NULL);
   display.setTextSize(1);
   display.print(unit);
   display.display();
+
   showMode();
 }
 
@@ -381,7 +385,7 @@ void showBandwitdth()
     bufferDisplay[0] = '\0';
 
   display.clearDisplay();
-  display.setCursor(0, 0);
+  display.setCursor(0, 10);
   display.print(bufferDisplay);
   display.display();
 }
@@ -393,6 +397,8 @@ void showRSSI()
 {
   char sMeter[10];
   sprintf(sMeter, "S:%d ", rssi);
+
+  display.fillRect(0, 25, 128, 10, SSD1306_BLACK);  
   display.setTextSize(1);
   display.setCursor(80, 25);
   display.print(sMeter);
@@ -419,7 +425,7 @@ void showAgcAtt()
     sprintf(sAgc, "ATT: %2.2d", agcNdx);
 
   display.clearDisplay();
-  display.setCursor(0, 0);
+  display.setCursor(0, 10);
   display.print(sAgc);
   display.display();
 }
@@ -432,7 +438,7 @@ void showStep()
   char stAux[15];
   sprintf(stAux, "STEP: %4u", currentStep);
   display.clearDisplay();
-  display.setCursor(0, 0);
+  display.setCursor(0, 10);
   display.print(stAux);
   display.display();
 }
@@ -449,7 +455,7 @@ void showBFO()
     sprintf(bfo, "BFO: %4.4d", currentBFO);
 
   display.clearDisplay();
-  display.setCursor(0, 0);
+  display.setCursor(0, 10);
   display.print(bfo);
   display.display();  
   elapsedCommand = millis();
@@ -463,7 +469,7 @@ void showVolume()
   char volAux[12];
   sprintf(volAux, "VOLUME: %2u", rx.getVolume());
   display.clearDisplay();
-  display.setCursor(0, 0);
+  display.setCursor(0, 10);
   display.print(volAux);
   display.display();  
 }
@@ -476,7 +482,7 @@ void showSoftMute()
   char sMute[18];
   sprintf(sMute, "Soft Mute: %2d", softMuteMaxAttIdx);
   display.clearDisplay();
-  display.setCursor(0, 0);
+  display.setCursor(0, 10);
   display.print(sMute);
   display.display(); 
 }
@@ -592,8 +598,7 @@ void showCommandStatus(char * currentCmd)
  */
 void showMenu() {
   display.clearDisplay();
-  display.setCursor(0, 0);
-  display.setCursor(0, 1);
+  display.setCursor(0, 10);
   display.print(menu[menuIdx]);
   display.display();
   showCommandStatus( (char *) "Menu");
@@ -901,6 +906,7 @@ void loop()
     elapsedRSSI = millis();
   }
 
+  /*
   // Disable commands control
   if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
   {
@@ -913,6 +919,7 @@ void loop()
     disableCommands();
     elapsedCommand = millis();
   }
+  */
 
   if ( (millis() - elapsedClick) > ELAPSED_CLICK ) {
     countClick = 0;
