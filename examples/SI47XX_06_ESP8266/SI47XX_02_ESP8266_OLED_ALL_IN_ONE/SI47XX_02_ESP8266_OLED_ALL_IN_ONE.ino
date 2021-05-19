@@ -19,21 +19,29 @@
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-  Wire up on Arduino UNO, Pro mini and SI4735-D60
+
+  ESP8266/ESP12F and components wire up. 
+  
   | Device name               | Device Pin / Description      |  ESP8266      |
   | ----------------          | ----------------------------- | ------------  |
   |    OLED                   |                               |               |
   |                           | SDA/SDIO                      |  GPIO4        | 
   |                           | SCL/SCLK                      |  GPIO5        | 
-  |    SS4735 (*1)            |                               |               |
-  |                           | RESET (pin 15)                |  GPIO2        |
-  |                           | SDIO (pin 18)                 |  GPIO4        |
-  |                           | SCLK (pin 17)                 |  GPIO5        |
-  |                           | (*1)SEN (pin 16)              |  +Vcc or GND  |
   |    Encoder                |                               |               |
-  |                           | A                             |       2       |
-  |                           | B                             |       3       |
-  |                           | PUSH BUTTON (encoder)         |     A0/14     |
+  |                           | A                             |  GPIO 13      |
+  |                           | B                             |  GPIO 14      |
+  |                           | PUSH BUTTON (encoder)         |  GPIO 12      |
+
+
+  ESP8266/ESP12F and SI4735-D60 or SI4732-A10 wire up
+
+  | Si4735  | SI4732   | DESC.  | ESP8266  (GPIO)    |
+  |---------| -------- |--------|--------------------|
+  | pin 15  |  pin 9   | RESET  |   2 (GPIO2)        |  
+  | pin 18  |  pin 12  | SDIO   |   4 (SDA / GPIO4)  |
+  | pin 17  |  pin 11  | SCLK   |   5 (SCL / GPIO5)  |
+
+
 
   (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.

@@ -18,14 +18,29 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 * The Arduino IDE is all you need to control the radio.  
 
 
-### Si4735 Wire up
+### ESP8266 / ESP12F wire up
 
 
-| Si473X    | Function              |ESP LOLIN32 WEMOS (GPIO) |
-|-----------| ----------------------|-------------------------|
-| pin 15    |   RESET               |   2 (GPIO2)           |  
-| pin 18    |   SDIO                |   4 (SDA / GPIO4)     |
-| pin 17    |   SCLK                |   5 (SCL / GPIO5)     |
+#### SI4732-A10 and SI4735-G60
+    
+| Si4735  | SI4732   | DESC.  | ESP8266  (GPIO)    |
+|---------| -------- |--------|--------------------|
+| pin 15  |  pin 9   | RESET  |   2 (GPIO2)        |  
+| pin 18  |  pin 12  | SDIO   |   4 (SDA / GPIO4)  |
+| pin 17  |  pin 11  | SCLK   |   5 (SCL / GPIO5)  |
+
+
+#### ESP8266/ESP12F and components wire up. 
+  
+| Device name               | Device Pin / Description      |  ESP8266      |
+| ----------------          | ----------------------------- | ------------  |
+|    OLED                   |                               |               |
+|                           | SDA/SDIO                      |  GPIO4        | 
+|                           | SCL/SCLK                      |  GPIO5        | 
+|    Encoder                |                               |               |
+|                           | A                             |  GPIO 13      |
+|                           | B                             |  GPIO 14      |
+|                           | PUSH BUTTON (encoder)         |  GPIO 12      |
 
 
 
