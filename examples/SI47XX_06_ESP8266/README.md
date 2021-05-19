@@ -39,8 +39,6 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 ![ESP8266 Basic schematic](../../extras/images/schematic_esp8266_basic.png)
 
 
-## ESP8266 OLED
-
 
 ![ESP32 Basic schematic](../../extras/images/schematic_esp8266_oled_SI47XX_02_ALL_IN_ONE.png)
 
