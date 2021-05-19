@@ -31,8 +31,16 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 
 ## SI4732-A10 and ESP8266 prototype 
 
+### ESP8266 Module
 
-![ESP8266 prototype](../../extras/images/si4732_esp8266_prototype.jpg)
+![ESP8266 prototype](../../extras/images/esp8266_module.jpg)
+
+
+### ESP8266 standalone ESP12F
+
+
+![ESP8266 prototype](../../extras/images/esp8266_12F1.png)
+
 
 
 # ESP8266 SCHEMATICS 
