@@ -22,12 +22,12 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 
 
 #### SI4732-A10 and SI4735-G60
-    
+
 | Si4735  | SI4732   | DESC.  | ESP8266  (GPIO)    |
 |---------| -------- |--------|--------------------|
-| pin 15  |  pin 9   | RESET  |   2 (GPIO2)        |  
-| pin 18  |  pin 12  | SDIO   |   4 (SDA / GPIO4)  |
-| pin 17  |  pin 11  | SCLK   |   5 (SCL / GPIO5)  |
+| pin 15  |  pin 9   | RESET  |   (GPIO2)        |  
+| pin 18  |  pin 12  | SDIO   |   (SDA / GPIO4)  |
+| pin 17  |  pin 11  | SCLK   |   (SCL / GPIO5)  |
 
 
 #### ESP8266/ESP12F and components wire up. 
@@ -38,9 +38,9 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 |                           | SDA/SDIO                      |  GPIO4        | 
 |                           | SCL/SCLK                      |  GPIO5        | 
 |    Encoder                |                               |               |
-|                           | A                             |  GPIO 13      |
-|                           | B                             |  GPIO 14      |
-|                           | PUSH BUTTON (encoder)         |  GPIO 12      |
+|                           | A                             |  GPIO13       |
+|                           | B                             |  GPIO14       |
+|                           | PUSH BUTTON (encoder)         |  GPIO12       |
 
 
 
