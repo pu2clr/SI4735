@@ -328,7 +328,7 @@ void setup()
   si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
   si4735.setup(RESET_PIN, MW_BAND_TYPE); //
-  delay(300);
+  delay(500);
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id)
