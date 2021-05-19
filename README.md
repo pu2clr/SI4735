@@ -972,6 +972,34 @@ Some low power audio amplifiers IC also implement mute circuit that can be contr
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
+
+## Saving Memory on ATmega328 applications
+
+* Use [MiniCore](https://github.com/MCUdude/MiniCore) board setup instead regular Arduino Atmega328 setup. You can save about 1KB by removing the bootloader and using LTO option;
+* You can also use the regular Arduino setup and use the hex file without bootloader (use xloader application in this case);
+* Do not use the String class, sprintf ou dtostrf functions to format numbers. Use itoa function or you own implementation to convert number to char array. See example below.
+
+```cpp
+/**
+  Converts a number to a char string and places leading zeros. 
+  It is useful to mitigate memory space used by sprintf or generic similar function
+*/
+void convertToChar(uint16_t value, char *strValue, uint8_t len)
+{
+  char d;
+  for (int i = (len - 1); i >= 0; i--)
+  {
+    d = value % 10;
+    value = value / 10;
+    strValue[i] = d + 48;
+  }
+  strValue[len] = '\0';
+}
+```
+
+
+
+
 <BR>
 
 ## Boards where this library has been successfully tested
