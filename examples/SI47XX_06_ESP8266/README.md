@@ -21,7 +21,7 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 ### ESP8266 / ESP12F wire up
 
 
-#### SI4732-A10 and SI4735-G60
+#### SI4732-A10 and SI4735-G60 wire up
 
 | Si4735  | SI4732   | DESC.  | ESP8266  (GPIO)    |
 |---------| -------- |--------|--------------------|
@@ -30,7 +30,7 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 | pin 17  |  pin 11  | SCLK   |   (SCL / GPIO5)  |
 
 
-#### ESP8266/ESP12F and components wire up. 
+#### ESP8266/ESP12F, OLED and encoder wire up. 
   
 | Device name               | Device Pin / Description      |  ESP8266      |
 | ----------------          | ----------------------------- | ------------  |
