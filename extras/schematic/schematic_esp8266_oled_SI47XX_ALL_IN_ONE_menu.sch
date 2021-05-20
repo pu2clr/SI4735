@@ -4052,46 +4052,6 @@ Datasheet</description>
 </library>
 <library name="esp8266modules">
 <packages>
-<package name="ESP03">
-<description>ESP8266 Modules ESP-03</description>
-<wire x1="-5" y1="-8.6" x2="7.2" y2="-8.6" width="0.127" layer="21"/>
-<wire x1="-5" y1="8.8" x2="7.2" y2="8.8" width="0.127" layer="21"/>
-<wire x1="7.2" y1="8.8" x2="7.2" y2="5.6" width="0.127" layer="21"/>
-<smd name="VCC" x="-5.2" y="4.8" dx="1.5" dy="1" layer="1"/>
-<smd name="GPIO14" x="-5.2" y="2.8" dx="1.5" dy="1" layer="1"/>
-<smd name="GPIO12" x="-5.2" y="0.8" dx="1.5" dy="1" layer="1"/>
-<smd name="GPIO13" x="-5.2" y="-1.2" dx="1.5" dy="1" layer="1"/>
-<smd name="GPIO15" x="-5.2" y="-3.2" dx="1.5" dy="1" layer="1"/>
-<smd name="GPIO2" x="-5.2" y="-5.2" dx="1.5" dy="1" layer="1"/>
-<smd name="GPIO0" x="-5.2" y="-7.2" dx="1.5" dy="1" layer="1"/>
-<smd name="ANT" x="7.4" y="4.8" dx="1.5" dy="1" layer="1"/>
-<smd name="CH_PD" x="7.4" y="2.8" dx="1.5" dy="1" layer="1"/>
-<smd name="GPIO18" x="7.4" y="0.8" dx="1.5" dy="1" layer="1"/>
-<smd name="URXD" x="7.4" y="-1.2" dx="1.5" dy="1" layer="1"/>
-<smd name="UTXD" x="7.4" y="-3.2" dx="1.5" dy="1" layer="1"/>
-<smd name="NC" x="7.4" y="-5.2" dx="1.5" dy="1" layer="1"/>
-<smd name="GND" x="7.4" y="-7.2" dx="1.5" dy="1" layer="1"/>
-<wire x1="7.2" y1="5.6" x2="7.2" y2="-8.6" width="0.127" layer="21"/>
-<wire x1="-5" y1="8.8" x2="-5" y2="5.6" width="0.127" layer="21"/>
-<wire x1="-5" y1="5.6" x2="-5" y2="-8.6" width="0.127" layer="21"/>
-<wire x1="2.4" y1="3" x2="-2.4" y2="3" width="0.127" layer="21"/>
-<wire x1="-2.4" y1="3" x2="-2.4" y2="-2" width="0.127" layer="21"/>
-<wire x1="-2.4" y1="-2" x2="2.4" y2="-2" width="0.127" layer="21"/>
-<wire x1="2.4" y1="-2" x2="2.4" y2="3" width="0.127" layer="21"/>
-<wire x1="5.8" y1="-2.2" x2="3.4" y2="-2.2" width="0.127" layer="21"/>
-<wire x1="3.4" y1="-2.2" x2="3.4" y2="-4.8" width="0.127" layer="21"/>
-<wire x1="3.4" y1="-4.8" x2="5.8" y2="-4.8" width="0.127" layer="21"/>
-<wire x1="5.8" y1="-4.8" x2="5.8" y2="-2.2" width="0.127" layer="21"/>
-<wire x1="2.4" y1="-3.4" x2="-2.4" y2="-3.4" width="0.127" layer="21"/>
-<wire x1="-2.4" y1="-3.4" x2="-2.4" y2="-8.4" width="0.127" layer="21"/>
-<wire x1="-2.4" y1="-8.4" x2="2.4" y2="-8.4" width="0.127" layer="21"/>
-<wire x1="2.4" y1="-8.4" x2="2.4" y2="-3.4" width="0.127" layer="21"/>
-<text x="-2" y="6.4" size="1.27" layer="21">ESP03</text>
-<rectangle x1="-4.4" y1="6" x2="-2" y2="8.4" layer="21" rot="R270"/>
-<rectangle x1="3.8" y1="5.8" x2="6.2" y2="8.6" layer="21" rot="R270"/>
-<text x="-5" y="8.73" size="1.27" layer="25">&gt;Name</text>
-<text x="-5" y="-10" size="1.27" layer="27">&gt;Value</text>
-</package>
 <package name="ESP12">
 <description>ESP8266 Module 12</description>
 <wire x1="7.9" y1="14.2" x2="7.9" y2="8.4" width="0.127" layer="21"/>
@@ -4198,29 +4158,6 @@ Datasheet</description>
 </package>
 </packages>
 <symbols>
-<symbol name="ESP8266">
-<description>ESP8266 Wifi module 03 &amp; 04</description>
-<pin name="GPIO0" x="-17.78" y="-7.62" visible="pin" length="middle"/>
-<pin name="GPIO2" x="-17.78" y="-5.08" visible="pin" length="middle"/>
-<pin name="GPIO15" x="-17.78" y="-2.54" visible="pin" length="middle"/>
-<pin name="GPIO13" x="-17.78" y="0" visible="pin" length="middle"/>
-<pin name="GPIO12" x="-17.78" y="2.54" visible="pin" length="middle"/>
-<pin name="GPIO14" x="-17.78" y="5.08" visible="pin" length="middle"/>
-<pin name="VCC" x="-17.78" y="7.62" visible="pin" length="middle"/>
-<pin name="GND" x="15.24" y="-7.62" visible="pin" length="middle" rot="R180"/>
-<pin name="NC" x="15.24" y="-5.08" visible="pin" length="middle" rot="R180"/>
-<pin name="UTXD" x="15.24" y="-2.54" visible="pin" length="middle" rot="R180"/>
-<pin name="URXD" x="15.24" y="0" visible="pin" length="middle" rot="R180"/>
-<pin name="GPIO18" x="15.24" y="2.54" visible="pin" length="middle" rot="R180"/>
-<pin name="CH_PD" x="15.24" y="5.08" visible="pin" length="middle" rot="R180"/>
-<pin name="ANT" x="15.24" y="7.62" visible="pin" length="middle" rot="R180"/>
-<wire x1="-12.7" y1="-10.16" x2="10.16" y2="-10.16" width="0.254" layer="94"/>
-<wire x1="10.16" y1="-10.16" x2="10.16" y2="10.16" width="0.254" layer="94"/>
-<wire x1="10.16" y1="10.16" x2="-12.7" y2="10.16" width="0.254" layer="94"/>
-<wire x1="-12.7" y1="10.16" x2="-12.7" y2="-10.16" width="0.254" layer="94"/>
-<text x="-12.7" y="-12.7" size="1.778" layer="96">&gt;Value</text>
-<text x="-12.7" y="10.16" size="1.778" layer="95">&gt;Name</text>
-</symbol>
 <symbol name="ESP12">
 <wire x1="-12.7" y1="10.16" x2="-12.7" y2="-12.7" width="0.254" layer="94"/>
 <wire x1="-12.7" y1="-12.7" x2="10.16" y2="-12.7" width="0.254" layer="94"/>
@@ -4247,35 +4184,6 @@ Datasheet</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="ESP8266">
-<description>ESP8266 Wifi module 03 &amp; 04</description>
-<gates>
-<gate name="G$1" symbol="ESP8266" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="ESP03">
-<connects>
-<connect gate="G$1" pin="ANT" pad="ANT"/>
-<connect gate="G$1" pin="CH_PD" pad="CH_PD"/>
-<connect gate="G$1" pin="GND" pad="GND"/>
-<connect gate="G$1" pin="GPIO0" pad="GPIO0"/>
-<connect gate="G$1" pin="GPIO12" pad="GPIO12"/>
-<connect gate="G$1" pin="GPIO13" pad="GPIO13"/>
-<connect gate="G$1" pin="GPIO14" pad="GPIO14"/>
-<connect gate="G$1" pin="GPIO15" pad="GPIO15"/>
-<connect gate="G$1" pin="GPIO18" pad="GPIO18"/>
-<connect gate="G$1" pin="GPIO2" pad="GPIO2"/>
-<connect gate="G$1" pin="NC" pad="NC"/>
-<connect gate="G$1" pin="URXD" pad="URXD"/>
-<connect gate="G$1" pin="UTXD" pad="UTXD"/>
-<connect gate="G$1" pin="VCC" pad="VCC"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="ESP12" prefix="U" uservalue="yes">
 <description>ESP8266 Wifi module 12</description>
 <gates>
@@ -4369,7 +4277,6 @@ Datasheet</description>
 <part name="SUPPLY4" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="S1" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="ENCODER-SWITCH" device="" package3d_urn="urn:adsk.eagle:package:40158/1"/>
-<part name="U$2" library="esp8266modules" deviceset="ESP8266" device=""/>
 <part name="U2" library="esp8266modules" deviceset="ESP12" device="SMD"/>
 <part name="GND6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
@@ -4380,6 +4287,7 @@ Datasheet</description>
 <plain>
 <rectangle x1="-182.88" y1="226.06" x2="-167.64" y2="241.3" layer="205"/>
 <text x="-180.34" y="243.84" size="1.778" layer="205">Optional</text>
+<text x="30.48" y="187.96" size="1.778" layer="91">ESP8266</text>
 </plain>
 <instances>
 <instance part="U1" gate="A" x="-182.88" y="208.28" smashed="yes">
@@ -4481,10 +4389,6 @@ Datasheet</description>
 <instance part="S1" gate="G$1" x="20.32" y="119.38" smashed="yes" rot="R90">
 <attribute name="NAME" x="12.446" y="111.76" size="1.778" layer="95" font="vector" rot="R90"/>
 <attribute name="VALUE" x="51.054" y="111.76" size="1.778" layer="96" font="vector" rot="R180" align="top-left"/>
-</instance>
-<instance part="U$2" gate="G$1" x="-15.24" y="236.22" smashed="yes">
-<attribute name="VALUE" x="-27.94" y="223.52" size="1.778" layer="96"/>
-<attribute name="NAME" x="-27.94" y="246.38" size="1.778" layer="95"/>
 </instance>
 <instance part="U2" gate="G$1" x="35.56" y="175.26" smashed="yes" rot="MR0">
 <attribute name="NAME" x="48.26" y="185.42" size="1.778" layer="95" rot="MR0"/>
