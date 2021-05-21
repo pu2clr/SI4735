@@ -1711,7 +1711,6 @@ void loop(void)
       }
   }
 
-  // Show the current frequency only if it has changed
   if (itIsTimeToSave)
   {
     if ((millis() - storeTime) > STORE_TIME)
