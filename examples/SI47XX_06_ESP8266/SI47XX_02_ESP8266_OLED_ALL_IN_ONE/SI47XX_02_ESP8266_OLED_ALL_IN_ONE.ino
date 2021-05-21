@@ -697,6 +697,8 @@ void useBand()
     rx.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, tabFmStep[band[bandIdx].currentStepIdx]);
     rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     bfoOn = ssbLoaded = false;
+    bwIdxFM = band[bandIdx].bandwidthIdx;
+    rx.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);    
   }
   else
   {
@@ -706,14 +708,19 @@ void useBand()
     {
       rx.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, tabAmStep[band[bandIdx].currentStepIdx], currentMode);
       rx.setSSBAutomaticVolumeControl(1);
+      rx.setSsbSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for SSB
+      bwIdxSSB = band[bandIdx].bandwidthIdx;
+      rx.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
     }
     else
     {
       currentMode = AM;
       rx.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, tabAmStep[band[bandIdx].currentStepIdx]);
       bfoOn = false;
+      bwIdxAM = band[bandIdx].bandwidthIdx;
+      rx.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+      rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Soft Mute for AM or SSB
     }
-    rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Soft Mute for AM or SSB
     rx.setAutomaticGainControl(disableAgc, agcNdx);
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
     rx.setSeekAmSpacing(5); // Max 10kHz for spacing
