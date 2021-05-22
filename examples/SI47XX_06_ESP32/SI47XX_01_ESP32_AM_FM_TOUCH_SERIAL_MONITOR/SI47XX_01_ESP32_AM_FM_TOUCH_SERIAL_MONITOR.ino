@@ -33,7 +33,7 @@
 
 #include <SI4735.h>
 
-#define RESET_PIN 25
+#define RESET_PIN 12
 
 #define TOUCH_BAND_BUTTON_UP 13   // Next band
 #define TOUCH_BAND_BUTTON_DOWN 14 // Previous band
