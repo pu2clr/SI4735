@@ -4593,10 +4593,10 @@ Area: 2.32" x 1.00"
 <net name="N$1" class="0">
 <segment>
 <pinref part="U1" gate="A" pin="!RST"/>
-<wire x1="-60.96" y1="139.7" x2="-22.86" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="-22.86" y1="139.7" x2="-22.86" y2="170.18" width="0.1524" layer="91"/>
-<pinref part="ESP32" gate="G$1" pin="25"/>
-<wire x1="-22.86" y1="170.18" x2="-15.24" y2="170.18" width="0.1524" layer="91"/>
+<wire x1="-60.96" y1="139.7" x2="-25.4" y2="139.7" width="0.1524" layer="91"/>
+<pinref part="ESP32" gate="G$1" pin="12"/>
+<wire x1="-25.4" y1="139.7" x2="-25.4" y2="160.02" width="0.1524" layer="91"/>
+<wire x1="-25.4" y1="160.02" x2="-15.24" y2="160.02" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
