@@ -1,7 +1,7 @@
 /*
 	The first byte of each line of the patch content is a command 0x15 or 0x16.
-	To shrink the patch size stored into the conttoller he first byte will be ommited and a new array will be added
-	to indicate the position where the command 0x15 occours.  
+	To shrink the patch size stored into the controller he first byte will be ommited and a new array will be added
+	to indicate the position where the command 0x15 occours.
 */
 
 const PROGMEM uint16_t cmd_0x15[] = {
