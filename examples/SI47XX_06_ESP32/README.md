@@ -71,7 +71,7 @@ However, you have pay attention to the new configuration pins on ESP32. See tabl
 
 #### ESP32 basic setup
 
-![ESP32 Schematic](../../extras/images/schematic_schematic_esp32_oled.png))
+![ESP32 Schematic](../../extras/images/schematic_esp32_oled_all_in_one.png))
 
 <BR>
 

@@ -47,7 +47,8 @@ The schematic below guides you to build a SI473X based receiver using the ESP32 
 
 #### ESP32 DEVKIT with OLED and Encoder setup
 
-![Esp32 based board schematic](../images/schematic_schematic_esp32_oled.png)
+![Esp32 based board schematic](../images/schematic_esp32_oled_all_in_one.png)
+
 
 [All Sketches on SI47XX_06_ESP32 folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR)
 
