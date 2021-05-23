@@ -18,15 +18,16 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 * The Arduino IDE is all you need to control the radio.  
 
 
-### Si4735 Wire up
+### SI4732 / SI4735 Wire up
 
 
-| Si4735    | Function              |ESP LOLIN32 WEMOS (GPIO) |
-|-----------| ----------------------|-------------------------|
-| pin 15    |   RESET               |   25 (GPIO25)           |  
-| pin 18    |   SDIO                |   21 (SDA / GPIO21)     |
-| pin 17    |   SCLK                |   22 (SCL / GPIO22)     |
+ESP32 and SI4735-D60 or SI4732-A10 wire up
 
+| Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
+|---------| -------- |--------|--------------------|
+| pin 15  |  pin 9   | RESET  |   12 (GPIO12)      |  
+| pin 18  |  pin 12  | SDIO   |   21 (SDA / GPI21) |
+| pin 17  |  pin 11  | SCLK   |   22 (SCL / GPI22) |
 
 
 ## Example SI47XX_02_ESP32_TOUCH_ALL_IN_ONE

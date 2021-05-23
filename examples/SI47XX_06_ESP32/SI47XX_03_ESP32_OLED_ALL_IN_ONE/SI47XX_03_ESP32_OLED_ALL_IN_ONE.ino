@@ -30,13 +30,13 @@
   |                           | PUSH BUTTON (encoder)         |  GPIO 12      |
 
 
-  ESP8266/ESP12F and SI4735-D60 or SI4732-A10 wire up
+  ESP32 and SI4735-D60 or SI4732-A10 wire up
 
   | Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
   |---------| -------- |--------|--------------------|
   | pin 15  |  pin 9   | RESET  |   12 (GPIO12)      |  
-  | pin 18  |  pin 12  | SDIO   |   21 (SDA / GPI21)  |
-  | pin 17  |  pin 11  | SCLK   |   22 (SCL / GPI22)  |
+  | pin 18  |  pin 12  | SDIO   |   21 (SDA / GPI21) |
+  | pin 17  |  pin 11  | SCLK   |   22 (SCL / GPI22) |
 
 
 
