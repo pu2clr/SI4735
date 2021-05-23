@@ -17,13 +17,13 @@
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
 
-  ESP8266/ESP12F and components wire up. 
+  ESP32 and components wire up. 
   
   | Device name               | Device Pin / Description      |  ESP32        |
   | ----------------          | ----------------------------- | ------------  |
   |    OLED                   |                               |               |
-  |                           | SDA/SDIO                      |  GPIO4        | 
-  |                           | SCL/SCLK                      |  GPIO5        | 
+  |                           | SDA/SDIO                      |  GPI21        | 
+  |                           | SCL/SCLK                      |  GPI22        | 
   |    Encoder                |                               |               |
   |                           | A                             |  GPIO 13      |
   |                           | B                             |  GPIO 14      |
@@ -34,9 +34,9 @@
 
   | Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
   |---------| -------- |--------|--------------------|
-  | pin 15  |  pin 9   | RESET  |   2 (GPIO2)        |  
-  | pin 18  |  pin 12  | SDIO   |   4 (SDA / GPIO4)  |
-  | pin 17  |  pin 11  | SCLK   |   5 (SCL / GPIO5)  |
+  | pin 15  |  pin 9   | RESET  |   12 (GPIO12)      |  
+  | pin 18  |  pin 12  | SDIO   |   21 (SDA / GPI21)  |
+  | pin 17  |  pin 11  | SCLK   |   22 (SCL / GPI22)  |
 
 
 
@@ -70,8 +70,11 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 
 // Enconder PINs
 #define ENCODER_PIN_A 13           // GPIO13 
-#define ENCODER_PIN_B 14           // GPIO14 
+#define ENCODER_PIN_B 14           // GPIO14
 
+// I2C bus pin on ESP32
+#define ESP32_I2C_SDA 21
+#define ESP32_I2C_SCL 22
 
 // Buttons controllers
 #define ENCODER_PUSH_BUTTON 27     // GPIO27
@@ -246,7 +249,6 @@ int bandIdx = 0;
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 
-
 uint8_t rssi = 0;
 uint8_t volume = DEFAULT_VOLUME;
 
@@ -265,6 +267,9 @@ void setup()
   
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
+
+  // The line below may be necessary to setup I2C pins on ESP32
+  Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
 
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C); // Address 0x3C for 128x32
 

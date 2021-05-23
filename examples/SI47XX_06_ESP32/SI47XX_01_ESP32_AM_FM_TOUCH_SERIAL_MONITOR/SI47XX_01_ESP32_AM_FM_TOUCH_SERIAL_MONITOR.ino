@@ -18,7 +18,7 @@
 
   | Si4735    | Function              |ESP LOLIN32 WEMOS (GPIO) |
   |-----------| ----------------------|-------------------------|
-  | pin 15    |   RESET               |   25 (GPIO25)           |  
+  | pin 15    |   RESET               |   12 (GPIO12)           |  
   | pin 18    |   SDIO                |   21 (SDA / GPIO21)     |
   | pin 17    |   SCLK                |   22 (SCL / GPIO22)     |
 
@@ -33,14 +33,14 @@
 
 #include <SI4735.h>
 
-#define RESET_PIN 12
+#define RESET_PIN 12              // GPIO12
 
-#define TOUCH_BAND_BUTTON_UP 13   // Next band
-#define TOUCH_BAND_BUTTON_DOWN 14 // Previous band
+#define TOUCH_BAND_BUTTON_UP 13   // Next band (GPIO13)
+#define TOUCH_BAND_BUTTON_DOWN 14 // Previous band (GPIO14)
 
 // I2C bus pin on ESP32
-#define ESP32_I2C_SDA 21
-#define ESP32_I2C_SCL 22
+#define ESP32_I2C_SDA 21     // GPIO21
+#define ESP32_I2C_SCL 22     // GPIO22 
 
 #define CAPACITANCE 30
 

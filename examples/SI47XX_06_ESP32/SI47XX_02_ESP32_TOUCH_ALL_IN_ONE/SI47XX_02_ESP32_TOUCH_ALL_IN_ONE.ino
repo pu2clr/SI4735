@@ -14,15 +14,15 @@
 
   | Si4735    | Function              |ESP LOLIN32 WEMOS (GPIO) |
   |-----------| ----------------------|-------------------------|
-  | pin 15    |   RESET               |   25 (GPIO25)           |  
+  | pin 15    |   RESET               |   12 (GPIO12)           |  
   | pin 18    |   SDIO                |   21 (SDA / GPIO21)     |
   | pin 17    |   SCLK                |   22 (SCL / GPIO22)     |
 
   | Encoder   | Function              |ESP LOLIN32 WEMOS (GPIO) |
   |-----------| ----------------------|-------------------------|
-  | A         |  interrupt            |   16  (GPIO16)          |
-  | B         |  interrupt            |   17  (GPIO17)          |
-  | BUTTON    |  ENCODER PUSH BUTTON  |   23  (GPIO23)          |  
+  | A         |  interrupt            |   13  (GPIO13)          |
+  | B         |  interrupt            |   14  (GPIO14)          |
+  | BUTTON    |  ENCODER PUSH BUTTON  |   27  (GPIO23)          |  
 
   ABOUT SSB PATCH:  
   This sketch will download a SSB patch to your SI4735-D60 or SI4732-A10 devices (patch_init.h). It will take about 8KB of the Arduino memory.
@@ -70,11 +70,11 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define I2C_ADDRESS 0x3C
 #define RST_PIN -1 // Define proper RST_PIN if required.
 
-#define RESET_PIN 25
+#define RESET_PIN 12
 
 // Enconder PINs
-#define ENCODER_PIN_A 16
-#define ENCODER_PIN_B 17
+#define ENCODER_PIN_A 13
+#define ENCODER_PIN_B 14
 
 // You can use some pins as capacitive touch
 #define TOUCH_MODE_SWITCH  32     // Switch MODE (Am/LSB/USB)
