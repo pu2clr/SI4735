@@ -1,8 +1,5 @@
 /*
-
-  UNDER CONSTRUCTION......
- 
-  This sketch runs on ESP8266 device.   
+  This sketch runs on ESP32 device.   
 
   If you are using a SI4735-D60 or SI4732-A10, you can also use this sketch to add the SSB functionalities to the
   original Pavleski's project. If you are using another SI4730-D60, the SSB wil not work. But you will still have
@@ -22,7 +19,7 @@
 
   ESP8266/ESP12F and components wire up. 
   
-  | Device name               | Device Pin / Description      |  ESP8266      |
+  | Device name               | Device Pin / Description      |  ESP32        |
   | ----------------          | ----------------------------- | ------------  |
   |    OLED                   |                               |               |
   |                           | SDA/SDIO                      |  GPIO4        | 
@@ -35,7 +32,7 @@
 
   ESP8266/ESP12F and SI4735-D60 or SI4732-A10 wire up
 
-  | Si4735  | SI4732   | DESC.  | ESP8266  (GPIO)    |
+  | Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
   |---------| -------- |--------|--------------------|
   | pin 15  |  pin 9   | RESET  |   2 (GPIO2)        |  
   | pin 18  |  pin 12  | SDIO   |   4 (SDA / GPIO4)  |
