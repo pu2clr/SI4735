@@ -5,7 +5,9 @@
   It is important you understand that there is no guarantee that this sketch will work correctly in your current product.
   SO, DO NOT TRY IT IF YOU DON'T KNOW WHAT ARE YOU DOING. YOU MUST BE ABLE TO GO BACK TO THE PREVIOUS VERSION IF THIS SKETCH DOES NOT WORK FOR YOU.
 
-  Please, read the user_manual.txt for more details about this sketch.
+  Please, read the user_manual.txt for more details about this sketch before updating your receiver.
+  PLEASE, READ THE user_manual.txt FOR MORE DETAILS ABOUT THIS SKETCH BEFORE UPDATING YOUR RECEIVER.
+
   ATTENTION: Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 
   ARDUINO LIBRARIES: 

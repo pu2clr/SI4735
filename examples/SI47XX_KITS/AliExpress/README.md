@@ -27,8 +27,10 @@ The photos below show the KIT sold on Aliexpress and eBay.
 
 ## Be a member of Facebook Group [Si47XX for Radio Experimenters](https://www.facebook.com/groups/532613604253401/)
 
-
 # Firmware Update via Desktop Arduino IDE
+
+__PLEASE READ ALL TEXT BELOW BEFORE UPDATING THE FIRMWARE__
+
 
 ## New features
 
@@ -36,18 +38,18 @@ The photos below show the KIT sold on Aliexpress and eBay.
 * Twenty three bands. Two VHF(FM); one LW; two MW; and Nineteen SW bands covering from 1800 to 30000 kHz;
 * Band, Volume, Step, Bandwidth, AGC/Attenuation are now controlled by encoder;
 * __"Vol-"__ buttons is free to implement new features. It has no function for while; 
-* __"BAND-"__ now is used to control Softmute Attenuation; 
+* __"BAND-" __now is used to control Softmute Attenuation__; 
 * All the previous status of the receiver can be rescued when you turn it on (including SSB mode, bandwidth, volume, frequency, BFO etc);
-* The bandwidth now is a property of the band (you can use different bandwidth for different bands);
+* __The bandwidth now is a property of the band (you can use different bandwidth for different bands)__;
 * Bandwidth control on FM mode (Auto, 110, 84, 60 and 40 kHz);
 * Bandwidth control on AM mode (1, 2, 2.5, 3, 4 and 6 kHz);
 * Bandwidth control on SSB mode (0.5, 1, 1.2, 2.2, 3 and 4 kHz);
 * AGC (Automatic Gain Control) and Attenuation control; 
 * Softmute Attenuation Control;
 * FM/RDS presentation was improved;
-* The seek function was improved (it is more precise on FM mode). The seek direction is controlled by the encoder (clockwise or counter-clockwise. Press encoder push button for seeking
+* __The seek function was improved (it is more precise on FM mode)__. The seek direction is controlled by the encoder (clockwise or counter-clockwise. Press encoder push button for seeking
 * Steps: 1, 5, 9, 10, 50 and 100 kHz;
-* Now you can configure MW band space to 9 or 10 kHz;
+* __Now you can configure MW band space to 9 or 10 kHz__;
 * New FM band from 64 to 84 MHz;
 * New MW band from 531 to 1701 kHz for Europe, Africa and Asia;
 * The frequency on Display is bigger than the previous version;
