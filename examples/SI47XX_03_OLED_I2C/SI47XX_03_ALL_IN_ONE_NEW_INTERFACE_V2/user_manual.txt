@@ -28,24 +28,24 @@ COMMANDS
 
 1) DEALING WITH AUDIO VOLUME
 
-Press the VOL push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the VOL push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
 
 2) SELECTING THE BAND
 
-Press the BAND push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the BAND push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
 3) DEALING WITH AGC AND ATTENUATION
 
-Press the AGC push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the AGC push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
 4) SELECTING BANDWIDTH
 
-Press the BW  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the BW  push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
 5) SWITCHING THE STEP FREQUENCY
 
-Press the STEP  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the STEP  push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
 6) SWITCHING THE MODE AM, LSB AND USB
 

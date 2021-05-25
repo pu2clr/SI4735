@@ -163,28 +163,28 @@ Follow the instruction to operate with the receiver.
 
 ###  DEALING WITH AUDIO VOLUME
 
-Press the __VOL+__ push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the __VOL+__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
 ### SELECTING THE BAND
 
-Press the __BAND+__ push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the __BAND+__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
 ### DEALING WITH AGC AND ATTENUATION
 
-Press the __AGC__ push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the __AGC__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
 ###  DEALING WITH SOFTMUTE AND ATTENUATION
 
-Press the push button labeled __"BAND-"__ and rotate de encoder. Press the button again to disable the command or wait for 4s. This button was used to control the band switch. Due to the new interface, this button has lost its original function. 
+Press the push button labeled __"BAND-"__ and rotate the  encoder. Press the button again to disable the command or wait for 4s. This button was used to control the band switch. Due to the new interface, this button has lost its original function. 
 
 
 ### SELECTING BANDWIDTH
 
-Press the __BW__  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the __BW__  push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
 ### SWITCHING THE STEP FREQUENCY
 
-Press the __STEP__  push button and rotate de encoder. Press the button again to disable the command or wait for 4s;
+Press the __STEP__  push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
 ### SWITCHING THE MODE AM, LSB AND USB
 
