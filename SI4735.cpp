@@ -3192,7 +3192,8 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
  * It is important to note that the author of this library does not encourage anyone to use the NBFM patches content for commercial purposes.
  * In other words, this library only supports NBFM patches, the patches themselves are not part of this library.  
  * 
- * @details This implementation was tested only on Si4735-D60  and SI4732-A10 devices. 
+ * @details This implementation was not tested. 
+ * @details No NBFM patch was found to test this implementartion. 
  * @details This implementation is applicable to Si47035-D60 and SI4732-A10 when powering up the part in FM mode with the NBFM patch
  * 
  * @details What does NBFM patch means?
