@@ -1,0 +1,65 @@
+USER MANUAL
+
+Features
+
+* Modes: FM, AM and SSB
+* Two FM bands covering from 64 to 108 MHz
+* LW band
+* Two MW bands (one for Europe, Africa and Asia)
+* Seventeen SW bands converting  from 1800 to 30000 kHz
+* FM/RDS
+* Bandwidth control on FM mode (Auto, 110, 84, 60 and 40 kHz)
+* Bandwidth control on AM mode (1, 2, 2.5, 3, 4 and 6 kHz)
+* Bandwidth control on SSB mode (0.5, 1, 1.2, 2.2, 3 and 4 kHz)
+* Receiver status stored into the EEPROM
+* The final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features)
+* All the previous status of the receiver can be rescued when you turn it on (including SSB mode, bandwidth, volume, frequency, BFO etc)
+* The bandwidth is a property of the band (you can use different bandwidth for different bands)
+* The seek function was improved (it is more precise on FM mode). The seek direction is controlled by the encoder (clockwise or counter-clockwise . Press encoder push button for seeking
+* Steps: 1, 5, 9, 10 and 50 kHz
+* Now you can configure MW band space to 9 or 10 kHz
+* Added a MW band for Europe, Africa and Asia
+* The frequency on Display is bigger than the previous version
+* Now the bandwidth sequence is ordered by bandwidth values
+* After about 4 seconds, all command buttons are all disabled and the encoder control goes back to the frequency
+
+
+COMMANDS
+
+1) DEALING WITH AUDIO VOLUME
+
+Press the VOL push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+
+2) SELECTING THE BAND
+
+Press the BAND push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+3) DEALING WITH AGC AND ATTENUATION
+
+Press the AGC push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+4) SELECTING BANDWIDTH
+
+Press the BW  push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+5) SWITCHING THE STEP FREQUENCY
+
+Press the STEP  push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+6) SWITCHING THE MODE AM, LSB AND USB
+
+On AM mode press MODE push button to switch to LSB mode; press MODE push button again to switch to USB mode; and finally press MODE push button again to switch AM mode.
+
+7) VFO/BFO Switch
+
+To control the VFO and BFO, you can use the encoder push button on SSB mode. The display will show you if you are using VFO or BFO.
+
+8) SEEK COMMAND
+
+On FM or AM modes press the encoder push button.
+The direction of the seek up or seek down will  depend on the last rotating movement of the encoder, clockwise and counterclockwise respectively.
+
+9) RESET EEPROM
+
+Turn your receiver on with the encoder push button pressed.    
