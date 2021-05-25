@@ -1,9 +1,7 @@
 /*
   SI4735 all in one with SSB Support
   It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
-
   This sketch has been successfully tested on STM32F103 Bluepill
-
   The table below shows the Si4735 and STM32F103C8 pin connections
 
   | Si4735 pin      |  Arduino Pin  |

@@ -38,17 +38,11 @@
   | pin 18  |  pin 12  | SDIO   |   4 (SDA / GPIO4)  |
   | pin 17  |  pin 11  | SCLK   |   5 (SCL / GPIO5)  |
 
-
-
-  (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
-  (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
-       It seems the original project connect the SEN pin to the +Vcc. By using this sketch, you do
-       not need to worry about this setting.
   ATTENTION: Read the file user_manual.txt
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
-  By PU2CLR, Ricardo, Oct  2020.
+  By PU2CLR, Ricardo, May  2021.
 */
 #include <Wire.h>
 #include <Adafruit_GFX.h>

@@ -48,7 +48,7 @@
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
-  By PU2CLR, Ricardo, Oct  2020.
+  By PU2CLR, Ricardo, May  2021.
 */
 #include <Wire.h>
 #include <Adafruit_GFX.h>

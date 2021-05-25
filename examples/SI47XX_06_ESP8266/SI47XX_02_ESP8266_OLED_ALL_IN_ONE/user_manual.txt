@@ -31,17 +31,6 @@ Commands
    4.1. Select the menu by pressing twice the encoder push button. The seek direction is based on the last encoder 
         movement. If clockwise, the seek will go up; if counterclockwise, the seek will go down.  
 
-
 ATTENTION: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. 
            If you do that, you might alternate the command status (enable and disable) randomly. 
-           After about 2 seconds, the current command or action is disabled automatically and the interface goes back
-           to VFO control. 
 
-TIPS:
-
-     Try to refine the time to disable a current command or action by changing the constant ELAPSED_COMMAND 
-     (#define ELAPSED_COMMAND 2000). The value 2000 means 2 seconds. Increase or decrease the value to get 
-     a better interface for you;
-     Try to refine the constant ELAPSED_CLICK (#define ELAPSED_CLICK 1500). This constant controls the time 
-     for double click on encoder push button. Smaller values demand more agility in the double click;
-     
