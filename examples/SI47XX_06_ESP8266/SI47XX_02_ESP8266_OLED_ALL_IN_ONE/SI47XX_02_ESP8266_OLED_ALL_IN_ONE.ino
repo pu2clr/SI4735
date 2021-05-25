@@ -1,7 +1,4 @@
 /*
-
-  UNDER CONSTRUCTION......
- 
   This sketch runs on ESP8266 device.   
 
   If you are using a SI4735-D60 or SI4732-A10, you can also use this sketch to add the SSB functionalities to the
@@ -103,7 +100,6 @@ const int eeprom_address = 0;
 long storeTime = millis();
 
 bool itIsTimeToSave = false;
-
 
 bool bfoOn = false;
 bool ssbLoaded = false;
