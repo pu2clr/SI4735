@@ -1034,6 +1034,7 @@ The table below shows the some boards where this library has been successfully t
 | 16 | STM32F411 Series  |  No | PB6 (SCL) and PB7(SDA) | PA12 | [More...](https://hackaday.com/2021/01/20/blue-pill-vs-black-pill-transitioning-from-stm32f103-to-stm32f411/) |
 | 17 | Raspberry Pi Pico  | No | GP0 (0) and GP1 (1) | GP16 (16) | [More...](https://www.tomshardware.com/how-to/program-raspberry-pi-pico-with-arduino-ide) | 
 | 18 | Seeeduino XIAO | No  | A4 and A5  |  D1 |  [More...](https://wiki.seeedstudio.com/Seeeduino-XIAO/)  | 
+| 19 | Teensy 3.1     | No  | A4 and A5  | 12  |  [More...](https://www.adafruit.com/product/1625) | 
 
 
 * [ˆ4] It seams that in some ESP32 board, the I²C bus is not configured prorpelly by default. However, you can set almost any pin on ESP32 to setup I²C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. See see the folder examples to check how to use ESP32 devices. 
