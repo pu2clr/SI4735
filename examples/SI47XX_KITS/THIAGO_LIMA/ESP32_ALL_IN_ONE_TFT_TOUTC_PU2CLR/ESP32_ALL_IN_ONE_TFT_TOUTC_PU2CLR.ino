@@ -198,8 +198,8 @@ Band band[] = {
     {"FM1 ", FM_BAND_TYPE, 6400,  8400,  7000, 1, 0}, // FM from 64 to 84 MHz
     {"FM2 ", FM_BAND_TYPE, 8400, 10800, 10390, 1, 0},
     {"LW  ", LW_BAND_TYPE, 100, 510, 300,  0, 4},
-    {"AM1 ",MW_BAND_TYPE, 520, 1720, 810, 3, 4},
-    {"AM2 ",MW_BAND_TYPE, 531, 1701, 783, 2, 4},
+    {"AM1 ", MW_BAND_TYPE, 520, 1720, 810, 3, 4},
+    {"AM2 ", MW_BAND_TYPE, 531, 1701, 783, 2, 4},
     {"160m", SW_BAND_TYPE, 1800, 3500, 1900, 0, 4}, // 160 meters
     {"80m ", SW_BAND_TYPE, 3500, 4500, 3700, 0, 4}, // 80 meters
     {"60m ", SW_BAND_TYPE, 4500, 5500, 4885, 1, 4},
