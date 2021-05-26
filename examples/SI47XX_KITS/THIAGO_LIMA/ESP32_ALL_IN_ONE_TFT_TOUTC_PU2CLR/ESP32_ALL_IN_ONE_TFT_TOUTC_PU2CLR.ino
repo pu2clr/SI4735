@@ -354,7 +354,7 @@ void setup(void)
   tft.setTextSize(1);
   showText(60, 100, 3, NULL, WHITE, "PU2CLR");
   showText(60, 140, 3, NULL, WHITE, "RICARDO");
-  showText(70, 180, 3, NULL, WHITE, "V1.0.2");
+  showText(70, 180, 3, NULL, WHITE, "V1.0.3");
   showText(30, 250, 1, NULL, WHITE, "https://pu2clr.github.io/SI4735/");
   
   int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
@@ -460,7 +460,7 @@ void saveAllReceiverInformation()
   band[bandIdx].currentFreq = currentFrequency;
 
 
-  for (int i = 0; i < lastBand; i++)
+  for (int i = 0; i <= lastBand; i++)
   {
     EEPROM.write(addr_offset++, (band[i].currentFreq >> 8));   // stores the current Frequency HIGH byte for the band
     EEPROM.write(addr_offset++, (band[i].currentFreq & 0xFF)); // stores the current Frequency LOW byte for the band
@@ -491,7 +491,7 @@ void readAllReceiverInformation()
   currentBFO |= EEPROM.read(eeprom_address + 6);
 
   addr_offset = 7;
-  for (int i = 0; i < lastBand; i++)
+  for (int i = 0; i <= lastBand; i++)
   {
     band[i].currentFreq = EEPROM.read(addr_offset++) << 8;
     band[i].currentFreq |= EEPROM.read(addr_offset++);
