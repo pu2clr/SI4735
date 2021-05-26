@@ -210,6 +210,7 @@ typedef struct
 
 /**
  *  Band table. You can customize this table for your own band plan
+ *  If you change this table you have start the system pressing the encoder push button to reset the eeprom
  */
 Band band[] = {
     {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0},
