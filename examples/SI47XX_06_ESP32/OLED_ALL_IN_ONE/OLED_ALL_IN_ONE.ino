@@ -222,7 +222,7 @@ typedef struct
  *  Band table. You can customize this table for your own band plan
  */
 Band band[] = {
-    {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 0, 0},
+    {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0},
     {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4},
     {"MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4},
     {"MW2", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4},
