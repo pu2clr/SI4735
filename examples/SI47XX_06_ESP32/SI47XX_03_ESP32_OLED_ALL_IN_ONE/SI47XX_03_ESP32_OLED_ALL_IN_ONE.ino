@@ -370,7 +370,7 @@ void saveAllReceiverInformation()
   addr_offset = 7;
   band[bandIdx].currentFreq = currentFrequency;
 
-  for (int i = 0; i < lastBand; i++)
+  for (int i = 0; i <= lastBand; i++)
   {
     EEPROM.write(addr_offset++, (band[i].currentFreq >> 8));   // stores the current Frequency HIGH byte for the band
     EEPROM.write(addr_offset++, (band[i].currentFreq & 0xFF)); // stores the current Frequency LOW byte for the band
@@ -400,7 +400,7 @@ void readAllReceiverInformation()
   currentBFO |= EEPROM.read(eeprom_address + 6);
 
   addr_offset = 7;
-  for (int i = 0; i < lastBand; i++)
+  for (int i = 0; i <= lastBand; i++)
   {
     band[i].currentFreq = EEPROM.read(addr_offset++) << 8;
     band[i].currentFreq |= EEPROM.read(addr_offset++);
