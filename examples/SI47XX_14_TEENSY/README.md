@@ -36,8 +36,8 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 | Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
 |---------| -------- |--------|--------------------|
 | pin 15  |  pin 9   | RESET  |   12               |  
-| pin 18  |  pin 12  | SDIO   |   A4 (SDA / GPI21) |
-| pin 17  |  pin 11  | SCLK   |   A5 (SCL / GPI22) |
+| pin 18  |  pin 12  | SDIO   |   A4 (SDA) |
+| pin 17  |  pin 11  | SCLK   |   A5 (SCL) |
 
 
 
