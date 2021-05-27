@@ -17,7 +17,7 @@
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
 
-  ESP32 and components wire up. 
+  Teensy and components wire up. 
   
   | Device name               | Device Pin / Description      |  ESP32        |
   | ----------------          | ----------------------------- | ------------  |
