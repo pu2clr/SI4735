@@ -1,21 +1,11 @@
 /*
   This sketch runs on TEENSY devices.   
 
-  If you are using a SI4735-D60 or SI4732-A10, you can also use this sketch to add the SSB functionalities to the
-  original Pavleski's project. If you are using another SI4730-D60, the SSB wil not work. But you will still have
-  the SW functionalities.
-
-  It is important to say that this sketch was designed to work with the circuit implemented by Mirko Pavleski (see link above).
-  The visual interface, control commands, band plan, and some functionalities are different if compared with the original
-  sketch. Be sure you are using the SI4735 Arduino Library written by PU2CLR to run this sketch. The library used by the original
-  sketch will not work here. Also, you have to install the LiquidCrystal library.
-
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
 
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
-
 
   Teensy 3.1 and components wire up. 
   
