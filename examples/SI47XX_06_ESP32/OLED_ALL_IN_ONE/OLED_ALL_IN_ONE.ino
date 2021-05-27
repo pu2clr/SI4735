@@ -7,7 +7,6 @@
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-
   ESP32 and components wire up. 
   
   | Device name               | Device Pin / Description      |  ESP32        |
@@ -20,7 +19,6 @@
   |                           | B                             |  GPIO 14      |
   |                           | PUSH BUTTON (encoder)         |  GPIO 12      |
 
-
   ESP32 and SI4735-D60 or SI4732-A10 wire up
 
   | Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
@@ -28,8 +26,6 @@
   | pin 15  |  pin 9   | RESET  |   12 (GPIO12)      |  
   | pin 18  |  pin 12  | SDIO   |   21 (SDA / GPI21) |
   | pin 17  |  pin 11  | SCLK   |   22 (SCL / GPI22) |
-
-
 
   (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.

@@ -7,7 +7,6 @@
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-
   ESP8266/ESP12F and components wire up. 
   
   | Device name               | Device Pin / Description      |  ESP8266      |
@@ -19,7 +18,6 @@
   |                           | A                             |  GPIO 13      |
   |                           | B                             |  GPIO 14      |
   |                           | PUSH BUTTON (encoder)         |  GPIO 12      |
-
 
   ESP8266/ESP12F and SI4735-D60 or SI4732-A10 wire up
 
