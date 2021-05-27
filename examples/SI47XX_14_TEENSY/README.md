@@ -18,24 +18,24 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 ### SI4732 / SI4735 Wire up
 
 
-#### Teensy and components wire up. 
+#### Teensy 3.1 and components wire up. 
   
-| Device name               | Device Pin / Description      |  ESP32        |
-| ----------------          | ----------------------------- | ------------  |
-|    OLED                   |                               |               |
-|                           | SDA/SDIO                      |  A4           | 
-|                           | SCL/SCLK                      |  A5           | 
-|    Encoder                |                               |               |
-|                           | A                             |   9           |
-|                           | B                             |  10           |
-|                           | PUSH BUTTON (encoder)         |  11           |
+| Device name     | Device Pin / Description |  Teensy |
+| ----------------| -------------------------| --------|
+|    OLED         |                          |         |
+|                 | SDA/SDIO                 |  A4     | 
+|                 | SCL/SCLK                 |  A5     | 
+|    Encoder      |                          |         |
+|                 | A                        |   9     |
+|                 | B                        |  10     |
+|                 | PUSH BUTTON (encoder)    |  11     |
 
 
 #### Teensy and SI4735-D60 or SI4732-A10 wire up
 
-| Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
-|---------| -------- |--------|--------------------|
-| pin 15  |  pin 9   | RESET  |   12               |  
+| Si4735  | SI4732   | DESC.  | Teensy 3.1 |
+|---------| -------- |--------|------------|
+| pin 15  |  pin 9   | RESET  |   12       |  
 | pin 18  |  pin 12  | SDIO   |   A4 (SDA) |
 | pin 17  |  pin 11  | SCLK   |   A5 (SCL) |
 
