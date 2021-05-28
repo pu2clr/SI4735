@@ -825,7 +825,7 @@ void setup()
 
   // si4735.setI2CFastMode();               // Recommended (400 kHz)
 
-  si4735.setup(RESET_PIN, FM_BAND_TYPE);
+  si4735.setup(RESET_PIN, MW_BAND_TYPE);
 
   delay(300);
   // Set up the radio for the current band (see index table variable bandIdx )
