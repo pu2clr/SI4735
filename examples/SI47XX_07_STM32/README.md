@@ -30,9 +30,9 @@ The schematics below guide you to build a SI473X based receiver using the STM32 
 |               | SDA/SDIO                 |  B7     | 
 |               | SCL/SCLK                 |  B6     | 
 | Encoder       |                          |         |
-|               | A                        |  PA9    |
-|               | B                        |  PA10   |
-|               | PUSH BUTTON (encoder)    |  PA11   |
+|               | A                        |  PA0    |
+|               | B                        |  PA1    |
+|               | PUSH BUTTON (BFO/VFO)    |  PA15   | BFO_SWITCH
 | Buttons       |                          |         |
 |   MODE_SWITCH | Switch MODE (Am/LSB/USB) |  PA2    |  
 |   BANDWIDTH   | Bandwidth                |  PA3    |  
@@ -42,7 +42,6 @@ The schematics below guide you to build a SI473X based receiver using the STM32 
 |   BAND_DOWN   | Previous band            |  PA7    | 
 |   AGC_SWITCH  | Switch AGC               |  PA8    | 
 |   STEP_SWITCH | Step Switch              |  PA11   | 
-|   BFO_SWITCH  | BFO or VFO switch        |  PA15   |
 
 
 ### Bluepill Basic schematic V2
