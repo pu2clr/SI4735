@@ -24,6 +24,8 @@ The schematics below guide you to build a SI473X based receiver using the STM32 
 ![Bluepill Basic schematic V1](../../extras/images/schematic_bluepill_basic.png)
 
 
+#### OLED, Encoder and Buttons connections
+
 | Device name   | Device Pin / Description |  STM32F1|
 | --------------| -------------------------| --------|
 | OLED          |                          |         |
@@ -48,6 +50,7 @@ The schematics below guide you to build a SI473X based receiver using the STM32 
 
 ![Bluepill Basic schematic V2](../../extras/images/schematic_bluepill_basicv2.png)
 
+#### OLED and Encoder connections
 
 STM32F1 and components wire up. 
   
