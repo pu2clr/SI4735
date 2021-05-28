@@ -24,26 +24,25 @@ The schematics below guide you to build a SI473X based receiver using the STM32 
 ![Bluepill Basic schematic V1](../../extras/images/schematic_bluepill_basic.png)
 
 
-
-  | Device name   | Device Pin / Description |  STM32F1|
-  | --------------| -------------------------| --------|
-  | OLED          |                          |         |
-  |               | SDA/SDIO                 |  B7     | 
-  |               | SCL/SCLK                 |  B6     | 
-  | Encoder       |                          |         |
-  |               | A                        |  PA9    |
-  |               | B                        |  PA10   |
-  |               | PUSH BUTTON (encoder)    |  PA11   |
-  | Buttons       |                          |         |
-  |   MODE_SWITCH | Switch MODE (Am/LSB/USB) |  PA2    |  
-  |   BANDWIDTH   | Bandwidth                |  PA3    |  
-  |   VOL         | Volume Up                |  PA4    |
-  |   VOL_DOWN    | Volume Down              |  PA5    |
-  |   BAND_UP     | Next Band                |  PA6    | 
-  |   BAND_DOWN   | Previous band            |  PA7    | 
-  |   AGC_SWITCH  | Switch AGC               |  PA8    | 
-  |   STEP_SWITCH | Step Switch              |  PA11   | 
-  |   BFO_SWITCH  | BFO or VFO switch        |  PA15   |
+| Device name   | Device Pin / Description |  STM32F1|
+| --------------| -------------------------| --------|
+| OLED          |                          |         |
+|               | SDA/SDIO                 |  B7     | 
+|               | SCL/SCLK                 |  B6     | 
+| Encoder       |                          |         |
+|               | A                        |  PA9    |
+|               | B                        |  PA10   |
+|               | PUSH BUTTON (encoder)    |  PA11   |
+| Buttons       |                          |         |
+|   MODE_SWITCH | Switch MODE (Am/LSB/USB) |  PA2    |  
+|   BANDWIDTH   | Bandwidth                |  PA3    |  
+|   VOL         | Volume Up                |  PA4    |
+|   VOL_DOWN    | Volume Down              |  PA5    |
+|   BAND_UP     | Next Band                |  PA6    | 
+|   BAND_DOWN   | Previous band            |  PA7    | 
+|   AGC_SWITCH  | Switch AGC               |  PA8    | 
+|   STEP_SWITCH | Step Switch              |  PA11   | 
+|   BFO_SWITCH  | BFO or VFO switch        |  PA15   |
 
 
 ### Bluepill Basic schematic V2
@@ -51,17 +50,17 @@ The schematics below guide you to build a SI473X based receiver using the STM32 
 ![Bluepill Basic schematic V2](../../extras/images/schematic_bluepill_basicv2.png)
 
 
-  STM32F1 and components wire up. 
+STM32F1 and components wire up. 
   
-  | Device name   | Device Pin / Description |  STM32F1 |
-  | --------------| -------------------------| --------|
-  |    OLED       |                          |         |
-  |               | SDA/SDIO                 |  B7     | 
-  |               | SCL/SCLK                 |  B6     | 
-  |    Encoder    |                          |         |
-  |               | A                        |  PA9    |
-  |               | B                        |  PA10   |
-  |               | PUSH BUTTON (encoder)    |  PA11   |
+| Device name   | Device Pin / Description |  STM32F1 |
+| --------------| -------------------------| --------|
+|    OLED       |                          |         |
+|               | SDA/SDIO                 |  B7     | 
+|               | SCL/SCLK                 |  B6     | 
+|    Encoder    |                          |         |
+|               | A                        |  PA9    |
+|               | B                        |  PA10   |
+|               | PUSH BUTTON (encoder)    |  PA11   |
 
 
 
