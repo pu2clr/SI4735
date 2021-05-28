@@ -4,44 +4,71 @@ Test and validation of the SI4735 Arduino Library and SI4735 circuit.
 The examples of this folder are using the STM32F103 Series. See references below to know how to setup STM32 on Arduino IDE. 
 
 
-The table below shows the Si4735 and STM32F103C8 pin connections 
-    
-| Si4735 pin      |  Arduino Pin  |
-| ----------------| ------------  |
-| RESET (pin 15)  |     PA12      |
-| SDIO (pin 18)   |     PB7 (B7)  |
-| SCLK (pin 17)   |     PB6 (B6)  |
+### STM32F1 and SI4735-D60 or SI4732-A10 wire up
 
 
-The schematic below guides you to build a SI473X based receiver using the STM32 device. 
+| Si4735  | SI4732   | DESC.  | ESP32    | 
+|---------| -------- |--------|----------|
+| pin 15  |  pin 9   | RESET  |   PA12   |  
+| pin 18  |  pin 12  | SDIO   |   B7     |
+| pin 17  |  pin 11  | SCLK   |   B6     |
 
-![Bluepill Basic schematic](../../extras/images/schematic_bluepill_basic.png)
+
+## Schematics
+
+The schematics below guide you to build a SI473X based receiver using the STM32 device. 
+
+
+###  Bluepill Basic schematic V1
+
+![Bluepill Basic schematic V1](../../extras/images/schematic_bluepill_basic.png)
+
+
+
+  | Device name   | Device Pin / Description |  STM32F1|
+  | --------------| -------------------------| --------|
+  | OLED          |                          |         |
+  |               | SDA/SDIO                 |  B7     | 
+  |               | SCL/SCLK                 |  B6     | 
+  | Encoder       |                          |         |
+  |               | A                        |  PA9    |
+  |               | B                        |  PA10   |
+  |               | PUSH BUTTON (encoder)    |  PA11   |
+  | Buttons       |                          |         |
+  |   MODE_SWITCH | Switch MODE (Am/LSB/USB) |  PA2    |  
+  |   BANDWIDTH   | Bandwidth                |  PA3    |  
+  |   VOL         | Volume Up                |  PA4    |
+  |   VOL_DOWN    | Volume Down              |  PA5    |
+  |   BAND_UP     | Next Band                |  PA6    | 
+  |   BAND_DOWN   | Previous band            |  PA7    | 
+  |   AGC_SWITCH  | Switch AGC               |  PA8    | 
+  |   STEP_SWITCH | Step Switch              |  PA11   | 
+  |   BFO_SWITCH  | BFO or VFO switch        |  PA15   |
+
+
+### Bluepill Basic schematic V2
+
+![Bluepill Basic schematic V2](../../extras/images/schematic_bluepill_basicv2.png)
+
+
+  STM32F1 and components wire up. 
+  
+  | Device name   | Device Pin / Description |  STM32F1 |
+  | --------------| -------------------------| --------|
+  |    OLED       |                          |         |
+  |               | SDA/SDIO                 |  B7     | 
+  |               | SCL/SCLK                 |  B6     | 
+  |    Encoder    |                          |         |
+  |               | A                        |  PA9    |
+  |               | B                        |  PA10   |
+  |               | PUSH BUTTON (encoder)    |  PA11   |
+
+
 
 
 ## Examples (Sketches)
 
-### Sketch SI4735_00_STM32 
-
-This sketch just check if your STM32 Board and Si47XX Device is working. No interface is available here. If your prototype is working, you will hear the receiver in the speaker. 
-
-### SI4735_01_POC
-
-It is a FM, MW and SW (up to 30000kHz)
-The main advantages of using this sketch are: 
-* It is a easy way to check if your circuit is working;
-* You do not need to connect any display device to make your radio works;
-* You do not need connect any push buttons or encoders to change volume and frequency;
-* The Arduino IDE is all you need to control the radio.  
-
-### SI4735_02_POC_STM32_SSB
-
-This sketch will help you to test and validation of your circuit and the SI4735 Arduino Library with SSB support.
-It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
-
-### SI4735_03_STM32_ALL_IN_ONE_OLED
-
-This sketch implements a FM, AM and SSB receiver. It uses OLED, Encoder and button to control the receiver.
-It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
+Follow the source code documentation added to each sketch     
 
 
 ## STM32 setup on Arduino IDE

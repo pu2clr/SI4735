@@ -4,11 +4,41 @@
   This sketch has been successfully tested on STM32F103 Bluepill
   The table below shows the Si4735 and STM32F103C8 pin connections
 
-  | Si4735 pin      |  Arduino Pin  |
-  | ----------------| ------------  |
-  | RESET (pin 15)  |     PA12      |
-  | SDIO (pin 18)   |     PB7 (B7)  |
-  | SCLK (pin 17)   |     PB6 (B6)  |
+  STM32F1 and components wire up. 
+  
+  | Device name   | Device Pin / Description |  STM32F1|
+  | --------------| -------------------------| --------|
+  | OLED          |                          |         |
+  |               | SDA/SDIO                 |  B7     | 
+  |               | SCL/SCLK                 |  B6     | 
+  | Encoder       |                          |         |
+  |               | A                        |  PA9    |
+  |               | B                        |  PA10   |
+  |               | PUSH BUTTON (encoder)    |  PA11   |
+  | Buttons       |                          |         |
+  |   MODE_SWITCH | Switch MODE (Am/LSB/USB) |  PA2    |  
+  |   BANDWIDTH   | Bandwidth                |  PA3    |  
+  |   VOL         | Volume Up                |  PA4    |
+  |   VOL_DOWN    | Volume Down              |  PA5    |
+  |   BAND_UP     | Next Band                |  PA6    | 
+  |   BAND_DOWN   | Previous band            |  PA7    | 
+  |   AGC_SWITCH  | Switch AGC               |  PA8    | 
+  |   STEP_SWITCH | Step Switch              |  PA11   | 
+  |   BFO_SWITCH  | BFO or VFO switch        |  PA15   |
+
+
+
+  STM32F1 3.1 and SI4735-D60 or SI4732-A10 wire up
+
+  | Si4735  | SI4732   | DESC.  | ESP32    | 
+  |---------| -------- |--------|----------|
+  | pin 15  |  pin 9   | RESET  |   PA12   |  
+  | pin 18  |  pin 12  | SDIO   |   B7     |
+  | pin 17  |  pin 11  | SCLK   |   B6     |
+  
+ 
+
+
 
   This sketch uses I2C OLED/I2C, buttons and  Encoder.
 

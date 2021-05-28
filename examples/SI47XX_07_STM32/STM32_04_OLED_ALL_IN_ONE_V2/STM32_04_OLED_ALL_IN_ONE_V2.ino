@@ -7,16 +7,16 @@
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-  STM32F1 3.1 and components wire up. 
+  STM32F1 and components wire up. 
   
-  | Device name   | Device Pin / Description |  STM32F1 |
+  | Device name   | Device Pin / Description |  STM32F1|
   | --------------| -------------------------| --------|
   |    OLED       |                          |         |
   |               | SDA/SDIO                 |  B7     | 
   |               | SCL/SCLK                 |  B6     | 
   |    Encoder    |                          |         |
   |               | A                        |  PA9    |
-  |               | B                        |  PA10    |
+  |               | B                        |  PA10   |
   |               | PUSH BUTTON (encoder)    |  PA11   |
 
   STM32F1 3.1 and SI4735-D60 or SI4732-A10 wire up
