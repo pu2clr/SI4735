@@ -816,7 +816,7 @@ void showAttenuation()
 void showBFO()
 {
   oled.setCursor(0, 2);
-  oled.print("         ");
+  oled.print("            ");
   oled.setCursor(0, 2);
   oled.print("BFO: ");
   oled.print(currentBFO);
