@@ -1,5 +1,5 @@
 /*
-  This sketch runs on TEENSY devices.   
+  This sketch runs on STM32F1 devices.   
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
@@ -7,19 +7,19 @@
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-  Teensy 3.1 and components wire up. 
+  STM32F1 3.1 and components wire up. 
   
-  | Device name   | Device Pin / Description |  Teensy |
+  | Device name   | Device Pin / Description |  STM32F1 |
   | --------------| -------------------------| --------|
   |    OLED       |                          |         |
   |               | SDA/SDIO                 |  B7     | 
   |               | SCL/SCLK                 |  B6     | 
   |    Encoder    |                          |         |
-  |               | A                        |  PA0    |
-  |               | B                        |  PA1    |
-  |               | PUSH BUTTON (encoder)    |  PA15   |
+  |               | A                        |  PA9    |
+  |               | B                        |  PA10    |
+  |               | PUSH BUTTON (encoder)    |  PA11   |
 
-  Teensy 3.1 and SI4735-D60 or SI4732-A10 wire up
+  STM32F1 3.1 and SI4735-D60 or SI4732-A10 wire up
 
   | Si4735  | SI4732   | DESC.  | ESP32    | 
   |---------| -------- |--------|----------|
@@ -54,12 +54,12 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define LW_BAND_TYPE 3
 
 // Enconder PINs
-#define ENCODER_PIN_A PA0             
-#define ENCODER_PIN_B PA1           
+#define ENCODER_PIN_A PA9             
+#define ENCODER_PIN_B PA10           
 
 
 // Buttons controllers
-#define ENCODER_PUSH_BUTTON PA15
+#define ENCODER_PUSH_BUTTON PA11
 
 #define RESET_PIN PA12               
 
@@ -261,7 +261,7 @@ void setup()
   // Splash - Remove or change it for your introduction text.
   display.clearDisplay();
   print(0, 0, NULL, 2, "PU2CLR");
-  print(0, 15, NULL, 2, "Teensy");
+  print(0, 15, NULL, 2, "STM32F1");
   display.display();
   delay(2000);
   display.clearDisplay();
