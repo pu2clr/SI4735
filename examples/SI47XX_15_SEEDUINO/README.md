@@ -6,12 +6,27 @@ The Seeeduino XIAO  is very small board that can be programmed on Arduino IDE pl
 See [Seeeduino XIAO](https://wiki.seeedstudio.com/Seeeduino-XIAO/) for more details.
 
 
-## Seeeduino and Si4732 / Si4735 Wire up
+## Seeeduino XIAO and Si4732 / Si4735 Wire up
 
-| Si4735         | Si4732        |  Arduino Pin |
+| Si4735         | Si4732        |  Seeeduino   |
 | -------------- | ------------  | ------------ |
 | RESET (pin 15) | RESET (Pin 9) |     3        |
 | SDIO (pin 18)  | SDIO (pin 12) |    A4        |
 | CLK (pin 17)   | CLK (pin 11)  |    A5        |
+
+
+
+## Seeduino XIAO and OLED and Encoder
+
+| Device  | Seeeduino |
+| --------| ----------|
+| OLED    |           |
+|   SDA   |    4 (A4) |
+|   SCLK  |    5 (A5) |
+| Encoder |           |
+|   Pin A |    1 (D1) |
+|   Pin B |    2 (D2) |
+
+
 
 

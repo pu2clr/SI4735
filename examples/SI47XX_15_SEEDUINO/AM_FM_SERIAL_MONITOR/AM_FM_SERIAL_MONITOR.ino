@@ -1,14 +1,14 @@
 /*
-   Test and validation of the PU2CLR SI4735 Arduino Library on SEEEDUINO XIAO devices.
-   It is a FM, MW and SW (1700kHz to 30000kHz)
+  Test and validation of the PU2CLR SI4735 Arduino Library on SEEEDUINO XIAO devices.
+  It is a FM, MW and SW (1700kHz to 30000kHz)
    
-   ATTENTION:  Please, avoid using the computer connected to the mains during testing.
+  ATTENTION:  Please, avoid using the computer connected to the mains during testing.
 
-   The main advantages of using this sketch are: 
-    1) It is a easy way to check if your circuit is working;
-    2) You do not need to connect any display device to make your radio works;
-    3) You do not need connect any push buttons or encoders to change volume and frequency;
-    4) The Arduino IDE is all you need to control the radio.  
+  The main advantages of using this sketch are: 
+   1) It is a easy way to check if your circuit is working;
+   2) You do not need to connect any display device to make your radio works;
+   3) You do not need connect any push buttons or encoders to change volume and frequency;
+   4) The Arduino IDE is all you need to control the radio.  
 
   Seeeduino and Si4732 / Si4735 Wire up
 
@@ -75,7 +75,7 @@ void setup()
 
 void showHelp()
 {
-
+  Serial.println("Seeeduino XIAO receiver based on SI473X");
   Serial.println("Type F to FM; A to MW; 1 to All Band (100kHz to 30MHz)");
   Serial.println("Type U to increase and D to decrease the frequency");
   Serial.println("Type S or s to seek station Up or Down");
