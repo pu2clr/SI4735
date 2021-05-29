@@ -12,7 +12,7 @@
 
   Seeeduino and Si4732 / Si4735 Wire up
 
-  | Si4735         | Si4732        |  Arduino Pin |
+  | Si4735-D60     | Si4732-A10    |  Arduino Pin |
   | -------------- | ------------  | ------------ |
   | RESET (pin 15) | RESET (Pin 9) |     3        |
   | SDIO (pin 18)  | SDIO (pin 12) |    A4        |
