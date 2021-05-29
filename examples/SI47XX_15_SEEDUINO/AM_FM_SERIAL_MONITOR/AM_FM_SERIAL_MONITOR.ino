@@ -1,5 +1,5 @@
 /*
-   Test and validation of the SI4735 Arduino Library on SEEEDUINO XIAO devices.
+   Test and validation of the PU2CLR SI4735 Arduino Library on SEEEDUINO XIAO devices.
    It is a FM, MW and SW (1700kHz to 30000kHz)
    
    ATTENTION:  Please, avoid using the computer connected to the mains during testing.
@@ -9,24 +9,19 @@
     2) You do not need to connect any display device to make your radio works;
     3) You do not need connect any push buttons or encoders to change volume and frequency;
     4) The Arduino IDE is all you need to control the radio.  
-   
 
+  Seeeduino and Si4732 / Si4735 Wire up
 
-    The table below shows the Si4735 and Teensy connections
-    
-    | Si4735 pin      |  Arduino Pin  |
-    | ----------------| ------------  |
-    | RESET (pin 15)  |      3        |
-    | SDIO (pin 18)   |     A4        |
-    | CLK (pin 17)    |     A5        |
-
-
-  Schematic: https://github.com/pu2clr/SI4735/blob/master/extras/images/basic_schematic.png
+  | Si4735         | Si4732        |  Arduino Pin |
+  | -------------- | ------------  | ------------ |
+  | RESET (pin 15) | RESET (Pin 9) |     3        |
+  | SDIO (pin 18)  | SDIO (pin 12) |    A4        |
+  | CLK (pin 17)   | CLK (pin 11)  |    A5        |
 
   Prototype documentation : https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
-   By Ricardo Lima Caratti, Nov 2019.
+  By Ricardo Lima Caratti, May 2021.
 */
 
 #include <SI4735.h>
