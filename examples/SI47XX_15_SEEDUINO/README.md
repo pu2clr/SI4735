@@ -26,7 +26,22 @@ See [Seeeduino XIAO](https://wiki.seeedstudio.com/Seeeduino-XIAO/) for more deta
 | Encoder |           |
 |   Pin A |    1 (D1) |
 |   Pin B |    2 (D2) |
+|  Button |    0 (D0) |
 
+
+## Seeduino XIAO and TFT ST7735
+
+| ST7735  | Seeeduino |
+| --------| ----------|
+| DC      |   4 (D4)  | 
+| RES     |   5 (D5)  |
+| SDA     |  10 (Mosi)| 
+| SCL     |   8 (SCK) |
+| VCC     |  3V3      | 
+| GND     |  GND      |
+| BLK     |  3V3      |  
+
+ 
 
 
 
