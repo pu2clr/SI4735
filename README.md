@@ -1034,7 +1034,7 @@ The table below shows the some boards where this library has been successfully t
 | 15 | STM32F103 Series  |  No | PB6 (SCL) and PB7(SDA) | PA12 | [More...](https://circuitdigest.com/microcontroller-projects/getting-started-with-stm32-development-board-stm32f103c8-using-arduino-ide) |
 | 16 | STM32F411 Series  |  No | PB6 (SCL) and PB7(SDA) | PA12 | [More...](https://hackaday.com/2021/01/20/blue-pill-vs-black-pill-transitioning-from-stm32f103-to-stm32f411/) |
 | 17 | Raspberry Pi Pico  | No | GP0 (0) and GP1 (1) | GP16 (16) | [More...](https://www.tomshardware.com/how-to/program-raspberry-pi-pico-with-arduino-ide) | 
-| 18 | Seeeduino XIAO | No  | A4 and A5  |  D1 |  [More...](https://wiki.seeedstudio.com/Seeeduino-XIAO/)  | 
+| 18 | Seeeduino XIAO | No  | A4 and A5  |  3 |  [More...](https://wiki.seeedstudio.com/Seeeduino-XIAO/)  | 
 | 19 | Teensy 3.1     | No  | A4 and A5  | 12  |  [More...](https://www.adafruit.com/product/1625) | 
 
 
