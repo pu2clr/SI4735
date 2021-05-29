@@ -21,7 +21,7 @@
 
   Teensy 3.1 and SI4735-D60 or SI4732-A10 wire up
 
-  | Si4735  | SI4732   | DESC.  | ESP32    | 
+  | Si4735  | SI4732   | DESC.  | Teensy   | 
   |---------| -------- |--------|----------|
   | pin 15  |  pin 9   | RESET  |   12     |  
   | pin 18  |  pin 12  | SDIO   |   A4     |
@@ -720,7 +720,7 @@ void useBand()
 
 
 void loadSSB() {
-   rx.setI2CFastModeCustom(700000); 
+   rx.setI2CFastModeCustom(400000); 
    rx.loadPatch(ssb_patch_content, size_content, bandwitdthSSB[bwIdxSSB].idx);
    rx.setI2CFastModeCustom(100000);  
    ssbLoaded =  true; 

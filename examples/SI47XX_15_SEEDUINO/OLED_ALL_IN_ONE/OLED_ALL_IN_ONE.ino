@@ -1,5 +1,5 @@
 /*
-  This sketch runs on ESP32 device.   
+  This sketch runs on Seeeduino devices.   
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
@@ -7,25 +7,25 @@
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-  ESP32 and components wire up. 
+  Seeeduino 3.1 and components wire up. 
   
-  | Device name               | Device Pin / Description      |  ESP32        |
-  | ----------------          | ----------------------------- | ------------  |
-  |    OLED                   |                               |               |
-  |                           | SDA/SDIO                      |  GPI21        | 
-  |                           | SCL/SCLK                      |  GPI22        | 
-  |    Encoder                |                               |               |
-  |                           | A                             |  GPIO 13      |
-  |                           | B                             |  GPIO 14      |
-  |                           | PUSH BUTTON (encoder)         |  GPIO 12      |
+  | Device name   | Device Pin / Description |  Seeeduino |
+  | --------------| -------------------------| --------|
+  |    OLED       |                          |         |
+  |               | SDA/SDIO                 |  A4     | 
+  |               | SCL/SCLK                 |  A5     | 
+  |    Encoder    |                          |         |
+  |               | A                        |   1     |
+  |               | B                        |   2     |
+  |               | PUSH BUTTON (encoder)    |   0     |
 
-  ESP32 and SI4735-D60 or SI4732-A10 wire up
+  Seeeduino 3.1 and SI4735-D60 or SI4732-A10 wire up
 
-  | Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
-  |---------| -------- |--------|--------------------|
-  | pin 15  |  pin 9   | RESET  |   12 (GPIO12)      |  
-  | pin 18  |  pin 12  | SDIO   |   21 (SDA / GPI21) |
-  | pin 17  |  pin 11  | SCLK   |   22 (SCL / GPI22) |
+  | Si4735  | SI4732   | DESC.  | Seeduino | 
+  |---------| -------- |--------|----------|
+  | pin 15  |  pin 9   | RESET  |    3     |  
+  | pin 18  |  pin 12  | SDIO   |   A4     |
+  | pin 17  |  pin 11  | SCLK   |   A5     |
 
   (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
@@ -40,7 +40,7 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include "EEPROM.h"
+// #include <EEPROM.h>
 #include <SI4735.h>
 #include "DSEG7_Classic_Regular_16.h"
 #include "Rotary.h"
@@ -53,18 +53,17 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define SW_BAND_TYPE 2
 #define LW_BAND_TYPE 3
 
-#define RESET_PIN 12                // GPIO12
+
 
 // Enconder PINs
-#define ENCODER_PIN_A 13           // GPIO13 
-#define ENCODER_PIN_B 14           // GPIO14
+#define ENCODER_PIN_A 1            // D1
+#define ENCODER_PIN_B 2            //  D2
 
-// I2C bus pin on ESP32
-#define ESP32_I2C_SDA 21
-#define ESP32_I2C_SCL 22
 
 // Buttons controllers
-#define ENCODER_PUSH_BUTTON 27     // GPIO27
+#define ENCODER_PUSH_BUTTON 0      // D0
+
+#define RESET_PIN 3                // D3
 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 200
@@ -79,8 +78,6 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define LW 4
 
 #define SSB 1
-
-#define EEPROM_SIZE        512
 
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
@@ -257,7 +254,6 @@ void setup()
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
   // The line below may be necessary to setup I2C pins on ESP32
-  Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
 
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C); // Address 0x3C for 128x32
 
@@ -267,7 +263,7 @@ void setup()
   // Splash - Remove or change it for your introduction text.
   display.clearDisplay();
   print(0, 0, NULL, 2, "PU2CLR");
-  print(0, 15, NULL, 2, "ESP32");
+  print(0, 15, NULL, 2, "Seeeduino");
   display.display();
   delay(2000);
   display.clearDisplay();
@@ -279,13 +275,12 @@ void setup()
   delay(2000);
   display.clearDisplay();
 
-  EEPROM.begin(EEPROM_SIZE);
+  // EEPROM.begin();
 
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
-    EEPROM.write(eeprom_address, 0);
-    EEPROM.commit();
+    // EEPROM.write(eeprom_address, 0);
     print(0, 0, NULL, 2, "EEPROM RESETED");
     delay(3000);
     display.clearDisplay();
@@ -309,10 +304,10 @@ void setup()
   delay(300);
 
   // Checking the EEPROM content
-  if (EEPROM.read(eeprom_address) == app_id)
-  {
-    readAllReceiverInformation();
-  } else 
+  // if (EEPROM.read(eeprom_address) == app_id)
+  // {
+  //   readAllReceiverInformation();
+  // } else 
     rx.setVolume(volume);
   
   useBand();
@@ -342,32 +337,28 @@ void printParam(const char *msg) {
 */
 void saveAllReceiverInformation()
 {
+  /*
   int addr_offset;
 
-  EEPROM.begin(EEPROM_SIZE);
-
-  EEPROM.write(eeprom_address, app_id);                 // stores the app id;
-  EEPROM.write(eeprom_address + 1, rx.getVolume()); // stores the current Volume
-  EEPROM.write(eeprom_address + 2, bandIdx);            // Stores the current band
-  EEPROM.write(eeprom_address + 3, fmRDS);
-  EEPROM.write(eeprom_address + 4, currentMode); // Stores the current Mode (FM / AM / SSB)
-  EEPROM.write(eeprom_address + 5, currentBFO >> 8);
-  EEPROM.write(eeprom_address + 6, currentBFO & 0XFF);
-  EEPROM.commit();
+  EEPROM.update(eeprom_address, app_id);                 // stores the app id;
+  EEPROM.update(eeprom_address + 1, rx.getVolume()); // stores the current Volume
+  EEPROM.update(eeprom_address + 2, bandIdx);            // Stores the current band
+  EEPROM.update(eeprom_address + 3, fmRDS);
+  EEPROM.update(eeprom_address + 4, currentMode); // Stores the current Mode (FM / AM / SSB)
+  EEPROM.update(eeprom_address + 5, currentBFO >> 8);
+  EEPROM.update(eeprom_address + 6, currentBFO & 0XFF);
 
   addr_offset = 7;
   band[bandIdx].currentFreq = currentFrequency;
 
   for (int i = 0; i <= lastBand; i++)
   {
-    EEPROM.write(addr_offset++, (band[i].currentFreq >> 8));   // stores the current Frequency HIGH byte for the band
-    EEPROM.write(addr_offset++, (band[i].currentFreq & 0xFF)); // stores the current Frequency LOW byte for the band
-    EEPROM.write(addr_offset++, band[i].currentStepIdx);       // Stores current step of the band
-    EEPROM.write(addr_offset++, band[i].bandwidthIdx);         // table index (direct position) of bandwitdth
-    EEPROM.commit();
+    EEPROM.update(addr_offset++, (band[i].currentFreq >> 8));   // stores the current Frequency HIGH byte for the band
+    EEPROM.update(addr_offset++, (band[i].currentFreq & 0xFF)); // stores the current Frequency LOW byte for the band
+    EEPROM.update(addr_offset++, band[i].currentStepIdx);       // Stores current step of the band
+    EEPROM.update(addr_offset++, band[i].bandwidthIdx);         // table index (direct position) of bandwitdth
   }
-
-  EEPROM.end();
+  */
 }
 
 /**
@@ -375,10 +366,10 @@ void saveAllReceiverInformation()
  */
 void readAllReceiverInformation()
 {
+  /*
   uint8_t volume;
   int addr_offset;
   int bwIdx;
-  EEPROM.begin(EEPROM_SIZE);
 
   volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
   bandIdx = EEPROM.read(eeprom_address + 2);
@@ -395,8 +386,6 @@ void readAllReceiverInformation()
     band[i].currentStepIdx = EEPROM.read(addr_offset++);
     band[i].bandwidthIdx = EEPROM.read(addr_offset++);
   }
-
-  EEPROM.end();
 
   currentFrequency = band[bandIdx].currentFreq;
 
@@ -437,6 +426,7 @@ void readAllReceiverInformation()
 
   delay(50);
   rx.setVolume(volume);
+  */
 }
 
 /*
@@ -473,7 +463,7 @@ void disableCommands()
  * if you do not add ICACHE_RAM_ATTR declaration, the system will reboot during attachInterrupt call. 
  * With ICACHE_RAM_ATTR macro you put the function on the RAM.
  */
-ICACHE_RAM_ATTR void  rotaryEncoder()
+void  rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
   if (encoderStatus)
