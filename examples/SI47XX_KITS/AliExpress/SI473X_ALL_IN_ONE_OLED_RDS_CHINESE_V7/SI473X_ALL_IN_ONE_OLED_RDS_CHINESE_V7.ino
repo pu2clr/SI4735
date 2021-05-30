@@ -295,7 +295,7 @@ void setup()
   oled.on();
   oled.setFont(FONT6X8);
 
-  // Splash - Change it for your introduction text.
+  // Splash - Change orit for your introduction text or remove the splash code.
   oled.setCursor(40, 0);
   oled.print("SI473X");
   oled.setCursor(20, 1);
@@ -306,7 +306,7 @@ void setup()
   delay(500);
   oled.setCursor(10, 3);
   oled.print("V3.0.7b-By PU2CLR");
-  delay(1000);
+  delay(2000);
   // end Splash
 
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
@@ -319,9 +319,6 @@ void setup()
     delay(2000);
     oled.clear();
   }
-
-  delay(2000);
-  // end Splash
 
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
