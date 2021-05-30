@@ -720,10 +720,10 @@ void useBand()
 
 
 void loadSSB() {
-   rx.setI2CFastModeCustom(400000); 
-   rx.loadPatch(ssb_patch_content, size_content, bandwitdthSSB[bwIdxSSB].idx);
-   rx.setI2CFastModeCustom(100000);  
-   ssbLoaded =  true; 
+  rx.setI2CFastModeCustom(400000); // You can try rx.setI2CFastModeCustom(700000); or greater value
+  rx.loadPatch(ssb_patch_content, size_content, bandwitdthSSB[bwIdxSSB].idx);
+  rx.setI2CFastModeCustom(100000);
+  ssbLoaded = true; 
 }
 
 /**

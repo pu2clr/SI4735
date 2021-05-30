@@ -1,5 +1,4 @@
 /*
-  
   This sketch SHOULD work with the Chinese KIT sold on AliExpress, eBay and Amazon 
   The author of this sketch and Arduino Library does not know the seller of this kit and does not have a commercial relationship with any commercial product that uses the Arduino Library. 
   It is important you understand that there is no guarantee that this sketch will work correctly in your current product.
@@ -224,10 +223,10 @@ typedef struct
 {
   uint8_t bandType;        // Band type (FM, MW or SW)
   uint16_t minimumFreq;    // Minimum frequency of the band
-  uint16_t maximumFreq;    // maximum frequency of the band
+  uint16_t maximumFreq;    // Maximum frequency of the band
   uint16_t currentFreq;    // Default frequency or current frequency
   uint16_t currentStepIdx; // Idex of tabStep:  Defeult frequency step (See tabStep)
-  int8_t bandwitdthIdx;    //  Index of the table bandwitdthFM, bandwitdthAM or bandwitdthSSB;
+  int8_t bandwitdthIdx;    // Index of the table bandwitdthFM, bandwitdthAM or bandwitdthSSB;
 } Band;
 
 /*
@@ -238,30 +237,30 @@ typedef struct
    Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 */
 Band band[] = {
-    {FM_BAND_TYPE, 6400, 8400, 7000, 3, 0}, // FM from 64 to 84 MHz
+    {FM_BAND_TYPE, 6400, 8400, 7000, 3, 0},     // FM from 64 to 84MHz; default 70MHz; default step frequency index is 3; default bandwidth index AUTO  
     {FM_BAND_TYPE, 8400, 10800, 10570, 3, 0},
     {LW_BAND_TYPE, 100, 510, 300, 0, 4},
-    {MW_BAND_TYPE, 520, 1720, 810, 3, 4},
-    {MW_BAND_TYPE, 531, 1701, 783, 2, 4},   // MW for Europe, Africa and Asia
-    {SW_BAND_TYPE, 1700, 3500, 1900, 0, 4}, // 160 meters
-    {SW_BAND_TYPE, 3500, 4500, 3700, 0, 5}, // 80 meters
-    {SW_BAND_TYPE, 4500, 5500, 4850, 1, 4},
-    {SW_BAND_TYPE, 5600, 6300, 6000, 1, 4},
-    {SW_BAND_TYPE, 6800, 7300, 7100, 0, 4}, // 40 meters
-    {SW_BAND_TYPE, 7200, 7900, 7200, 1, 4}, // 41 meters    
-    {SW_BAND_TYPE, 9200, 10000, 9600, 1, 4},
-    {SW_BAND_TYPE, 10000, 11000, 10100, 0, 4}, // 30 meters
+    {MW_BAND_TYPE, 520, 1720, 810, 3, 4},       // AM/MW from 520 to 1720kHz; default 810kHz; default step frequency index is 3 (10kHz); default bandwidth index is 4 (3kHz)
+    {MW_BAND_TYPE, 531, 1701, 783, 2, 4},       // MW for Europe, Africa and Asia
+    {SW_BAND_TYPE, 1700, 3500, 1900, 0, 4},     // 160 meters
+    {SW_BAND_TYPE, 3500, 4500, 3700, 0, 5},     // 80 meters
+    {SW_BAND_TYPE, 4500, 5600, 4850, 1, 4},
+    {SW_BAND_TYPE, 5600, 6800, 6000, 1, 4},
+    {SW_BAND_TYPE, 6800, 7300, 7100, 0, 4},     // 40 meters
+    {SW_BAND_TYPE, 7200, 8500, 7200, 1, 4},     // 41 meters    
+    {SW_BAND_TYPE, 8500, 10000, 9600, 1, 4},
+    {SW_BAND_TYPE, 10000, 11200, 10100, 0, 4},  // 30 meters
     {SW_BAND_TYPE, 11200, 12500, 11940, 1, 4},
     {SW_BAND_TYPE, 13400, 13900, 13600, 1, 4},
-    {SW_BAND_TYPE, 14000, 14500, 14200, 0, 4}, // 20 meters
+    {SW_BAND_TYPE, 14000, 14500, 14200, 0, 4},  // 20 meters
     {SW_BAND_TYPE, 15000, 15900, 15300, 1, 4},
     {SW_BAND_TYPE, 17200, 17900, 17600, 1, 4},
-    {SW_BAND_TYPE, 18000, 18300, 18100, 0, 4}, // 17 meters
-    {SW_BAND_TYPE, 21000, 21400, 21200, 0, 4}, // 15 mters
-    {SW_BAND_TYPE, 21400, 21900, 21500, 1, 4}, // 13 mters
-    {SW_BAND_TYPE, 24890, 26200, 24940, 0, 4}, // 12 meters
-    {SW_BAND_TYPE, 26200, 27900, 27500, 0, 4}, // CB band (11 meters) 
-    {SW_BAND_TYPE, 28000, 30000, 28400, 0, 4}  // 10 meters
+    {SW_BAND_TYPE, 18000, 18300, 18100, 0, 4},  // 17 meters
+    {SW_BAND_TYPE, 21000, 21400, 21200, 0, 4},  // 15 mters
+    {SW_BAND_TYPE, 21400, 21900, 21500, 1, 4},  // 13 mters
+    {SW_BAND_TYPE, 24890, 26200, 24940, 0, 4},  // 12 meters
+    {SW_BAND_TYPE, 26200, 28000, 27500, 0, 4},  // CB band (11 meters) 
+    {SW_BAND_TYPE, 28000, 30000, 28400, 0, 4}   // 10 meters
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
