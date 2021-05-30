@@ -231,10 +231,12 @@ typedef struct
 
 /*
    Band table
+   YOU CAN CONFIGURE YOUR OWN BAND PLAN. Be guided by the comments.
    To add a new band, all you have to do is insert a new line in the table below. No extra code will be needed.
-   Remove or comment a line if you do not want a given band
-   You have to RESET the eeprom after modiging this table. 
-   Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
+   You can remove a band by deleting a line if you do not want a given band. 
+   Also, you can change the parameters of the band.
+   ATTENTION: You have to RESET the eeprom after adding or removing a line of this table. 
+              Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 */
 Band band[] = {
     {FM_BAND_TYPE, 6400, 8400, 7000, 3, 0},     // FM from 64 to 84MHz; default 70MHz; default step frequency index is 3; default bandwidth index AUTO  
