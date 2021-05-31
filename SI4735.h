@@ -1075,7 +1075,7 @@ protected:
     uint8_t ctsIntEnable = 0;
     uint8_t gpo2Enable = 0;
 
-    uint16_t refClock = 31768;     //!< Frequency of Reference Clock in Hz.
+    uint16_t refClock = 32768;     //!< Frequency of Reference Clock in Hz.
     uint16_t refClockPrescale = 1; //!< Prescaler for Reference Clock (divider).
     uint8_t refClockSourcePin = 0; //!< 0 = RCLK pin is clock source; 1 = DCLK pin is clock source.
 

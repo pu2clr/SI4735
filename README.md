@@ -1228,6 +1228,7 @@ Here you can see some experiments using this library. Watch them.
 
 ### Third-party projects using this library
 
+* [Si4735 - Si5351FM AM SSB / All-Mode Receiver By LZ1PPL](https://www.lz1ppl.com/en/2021/04/22/si4735-all-mode-reciver/)
 * [SI4735 SSB](https://youtu.be/z-mkR93L7SI)
 * [All Band Radio with a Nice Interface](https://youtu.be/hRHSzFr_lQE)
 * [SI4735 11 ALL IN ONE TEST OLED ver from jg3pup](https://youtu.be/bWAcBXwdYmI)

@@ -417,7 +417,7 @@ void SI4735::radioPowerUp(void)
     if (audioMuteMcuPin >= 0)
         setHardwareAudioMute(false);
 
-    if (this->currentClockType == 0)
+    if (this->currentClockType == XOSCEN_RCLK)
     {
         setRefClock(this->refClock);
         setRefClockPrescaler(this->refClockPrescale, this->refClockSourcePin);
