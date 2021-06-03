@@ -1,5 +1,8 @@
 /*
-
+  DIGITAL AUDIO TEST.....
+  UNDER CONSTRUCTION.....
+  IT IS NOT WORKING SO FAR.....
+  
   This sketch was built to check the external active crystal oscillator instead passive crystal. 
   Link to the external oscillator schematic: https://github.com/pu2clr/SI4735/tree/master/extras/schematic#si473x-and-external-active-crystal-oscillator-or-signal-generator
   Link to encoder and LCD16x2 schematic....: https://github.com/pu2clr/SI4735/tree/master/extras/schematic#standalone-atmega328-with-or-without-external-crystal-si4735-d60-and-lcd-16x2
@@ -260,9 +263,9 @@ void setup()
 
   rx.setRefClock(32768);
   rx.setRefClockPrescaler(1); // will work with 32768
-  // rx.setup(RESET_PIN, 0, POWER_UP_FM, SI473X_DIGITAL_AUDIO1, XOSCEN_RCLK);
-  // rx.setup(RESET_PIN, 0, POWER_UP_FM, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);
-  rx.setup(RESET_PIN, 0, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
+  // rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_DIGITAL_AUDIO1, XOSCEN_RCLK);
+  rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);
+  // rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
   delay(500); 
 
   // Checking the EEPROM content
@@ -543,6 +546,7 @@ void setBand(int8_t up_down)
  */
 void useBand()
 {
+  rx.digitalOutputSampleRate(0); 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -582,6 +586,15 @@ void useBand()
   showCommandStatus((char *) "Band");
   previousFrequency = 0;
   storeTime = millis();
+
+  // Digital Audio setup
+  // Digital Output Sample Rate(32–48 ksps)
+  rx.digitalOutputSampleRate(32); 
+  // 2 -> Digital Output Audio Sample Precision is 24 bits
+  // 0 -> Output Mono Mode 
+  // 0 -> Output Mode is I2S
+  // 0 -> Output DCLK Edge (0 = use DCLK rising edge)
+  rx.digitalOutputFormat(2, 0, 0, 0);    
 }
 
 /**
