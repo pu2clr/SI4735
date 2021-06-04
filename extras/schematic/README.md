@@ -241,6 +241,40 @@ See video:
 <BR>
 
 
+## Teensy 3.X and 4.X
+
+
+Teensy and components wire up. 
+  
+| Device name   | Device Pin / Description |  Teensy |
+| --------------| -------------------------| --------|
+|    OLED       |                          |         |
+|               | SDA/SDIO                 |  A4     | 
+|               | SCL/SCLK                 |  A5     | 
+|    Encoder    |                          |         |
+|               | A                        |   9     |
+|               | B                        |  10     |
+|               | PUSH BUTTON (encoder)    |  11     |
+
+
+
+Teensy and SI4735-D60 or SI4732-A10 wire up
+
+| Si4735  | SI4732   | DESC.  | Teensy   | 
+|---------| -------- |--------|----------|
+| pin 15  |  pin 9   | RESET  |   12     |  
+| pin 18  |  pin 12  | SDIO   |   A4     |
+| pin 17  |  pin 11  | SCLK   |   A5     |
+
+
+
+![Teensy 3.X or 4.X Basic schematic with OLED](../images/schematic_teensy31.png)
+
+
+
+Sketches on [SI47XX_14_TEENSY](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_14_TEENSY)
+
+
 ## Arduino Pro Mini 3.3V and 7SEG Display based on TM1638 
 
 
