@@ -243,8 +243,11 @@ See video:
 
 ## Teensy 3.X and 4.X
 
+The setup bellow works on Teensy 3.X and Teensy 4.X board family. 
 
-Teensy and components wire up. 
+### Teensy and components wire up. 
+
+#### OLED and Encoder
   
 | Device name   | Device Pin / Description |  Teensy |
 | --------------| -------------------------| --------|
@@ -257,8 +260,7 @@ Teensy and components wire up.
 |               | PUSH BUTTON (encoder)    |  11     |
 
 
-
-Teensy and SI4735-D60 or SI4732-A10 wire up
+#### SI4735-D60 or SI4732-A10 wire up
 
 | Si4735  | SI4732   | DESC.  | Teensy   | 
 |---------| -------- |--------|----------|
@@ -267,6 +269,7 @@ Teensy and SI4735-D60 or SI4732-A10 wire up
 | pin 17  |  pin 11  | SCLK   |   A5     |
 
 
+#### Teensy Basic schematic with OLED and Encoder
 
 ![Teensy 3.X or 4.X Basic schematic with OLED](../images/schematic_teensy31.png)
 
