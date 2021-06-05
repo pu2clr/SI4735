@@ -2,6 +2,7 @@
 
   New features: 
                 1) The receiver current status is stored into Arduino EEPROM;
+                2) FM RDS;
                 2) FM frequency step;
                 3) FM Bandwidth control.
 
@@ -151,7 +152,7 @@ const uint8_t currentBFOStep = 10;
 
 const char * menu[] = {"FM RDS", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BFO", "Seek Up", "Seek Down"};
 int8_t menuIdx = 0;
-const int lastMenu = 9;
+const int lastMenu = 10;
 int8_t currentMenuCmd = -1;
 
 typedef struct
@@ -603,12 +604,10 @@ void showRSSI()
   int rssiAux = 0;
   char sMeter[7];
 
-  lcd.setCursor(13, 1);
-  lcd.print(sMeter);
   if (currentMode == FM)
   {
     lcd.setCursor(14, 0);
-    lcd.print((rx.getCurrentPilot()) ? "ST" : "  MO");
+    lcd.print((rx.getCurrentPilot()) ? "ST" : "MO");
     lcd.setCursor(10, 0);
     if ( fmRDS ) {
       lcd.print("RDS");
@@ -618,8 +617,7 @@ void showRSSI()
       lcd.print("   ");
   }
 
-  
-  
+    
   if (rssi < 2)
     rssiAux = 4;
   else if (rssi < 4)
@@ -633,8 +631,9 @@ void showRSSI()
   else
     rssiAux = 9;
 
-  sprintf(sMeter, "S%1.1u%c", rssiAux, (rssi >= 60) ? '+' : ' ');
-
+  sprintf(sMeter, "S%1.1u%c", rssiAux, (rssi >= 60) ? '+' : '.');
+  lcd.setCursor(13, 1);
+  lcd.print(sMeter);
 }
 
 /**
@@ -1043,6 +1042,7 @@ void doSeek()
   if ((currentMode == LSB || currentMode == USB)) return; // It does not work for SSB mode
   
   rx.seekStationProgress(showFrequencySeek, seekDirection);
+  showStatus();
   currentFrequency = rx.getFrequency();
   
 }
@@ -1279,7 +1279,7 @@ void loop()
     }
   }
 
-  if (currentMode == FM && fmRDS )
+  if (currentMode == FM && fmRDS && !(cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds) )
   {
       if (currentFrequency != previousFrequency)
       {
