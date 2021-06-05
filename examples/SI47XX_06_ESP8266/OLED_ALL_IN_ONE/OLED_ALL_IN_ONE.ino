@@ -197,10 +197,15 @@ typedef struct
   int8_t bandwidthIdx;    // Index of the table bandwitdthFM, bandwitdthAM or bandwitdthSSB;
 } Band;
 
-/**
- *  Band table. You can customize this table for your own band plan
- *  If you change this table you have start the system pressing the encoder push button to reset the eeprom
- */
+/*
+   Band table
+   YOU CAN CONFIGURE YOUR OWN BAND PLAN. Be guided by the comments.
+   To add a new band, all you have to do is insert a new line in the table below. No extra code will be needed.
+   You can remove a band by deleting a line if you do not want a given band. 
+   Also, you can change the parameters of the band.
+   ATTENTION: You have to RESET the eeprom after adding or removing a line of this table. 
+              Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
+*/
 Band band[] = {
     {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0},
     {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4},
