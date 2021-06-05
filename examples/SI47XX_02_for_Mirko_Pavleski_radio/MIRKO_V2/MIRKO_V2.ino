@@ -108,7 +108,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
 // EEPROM - Stroring control variables
-const uint8_t app_id = 47; // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id = 30; // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
@@ -132,6 +132,7 @@ bool cmdBandwidth = false;
 bool cmdStep = false;
 bool cmdMode = false;
 bool cmdMenu = false;
+bool cmdRds  =  false;
 bool cmdSoftMuteMaxAtt = false;
 
 bool fmRDS = false;
@@ -143,13 +144,14 @@ long elapsedCommand = millis();
 long elapsedClick = millis();
 volatile int encoderCount = 0;
 uint16_t currentFrequency;
+uint16_t previousFrequency = 0;
 
 
 const uint8_t currentBFOStep = 10;
 
-const char * menu[] = {"Seek", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BFO"};
+const char * menu[] = {"FM RDS", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BFO", "Seek Up", "Seek Down"};
 int8_t menuIdx = 0;
-const int lastMenu = 7;
+const int lastMenu = 9;
 int8_t currentMenuCmd = -1;
 
 typedef struct
@@ -449,7 +451,7 @@ void readAllReceiverInformation()
  */
 void resetEepromDelay()
 {
-  storeTime = millis();
+  elapsedCommand = storeTime = millis();
   itIsTimeToSave = true;
 }
 
@@ -468,7 +470,9 @@ void disableCommands()
   cmdMode = false;
   cmdMenu = false;
   cmdSoftMuteMaxAtt = false;
+  cmdRds = false;
   countClick = 0;
+
   showCommandStatus((char *) "VFO ");
 }
 
@@ -493,6 +497,7 @@ void showFrequency()
   char tmp[15];
   char bufferDisplay[15];
   char *unit;
+  int col = 4;
   sprintf(tmp, "%5.5u", currentFrequency);
   bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
   bufferDisplay[1] = tmp[1];
@@ -501,7 +506,12 @@ void showFrequency()
     bufferDisplay[2] = tmp[2];
     bufferDisplay[3] = '.';
     bufferDisplay[4] = tmp[3];
-    unit = (char *)"MHz";
+    if ( fmRDS ) { 
+      col = 0;
+      unit = (char *)" ";
+    } else {
+      unit = (char *)"MHz";
+    }
   }
   else
   {
@@ -522,7 +532,7 @@ void showFrequency()
   }
   bufferDisplay[5] = '\0';
   strcat(bufferDisplay, unit);
-  lcd.setCursor(4, 1);
+  lcd.setCursor(col, 1);
   lcd.print(bufferDisplay);
   showMode();
 }
@@ -533,12 +543,17 @@ void showFrequency()
 void showMode()
 {
   char *bandMode;
+
+   
   if (currentFrequency < 520)
     bandMode = (char *)"LW  ";
   else
     bandMode = (char *)bandModeDesc[currentMode];
   lcd.setCursor(0, 0);
   lcd.print(bandMode);
+
+  if ( currentMode == FM && fmRDS ) return;
+  
   lcd.setCursor(0, 1);
   lcd.print(band[bandIdx].bandName);
 }
@@ -587,6 +602,24 @@ void showRSSI()
 {
   int rssiAux = 0;
   char sMeter[7];
+
+  lcd.setCursor(13, 1);
+  lcd.print(sMeter);
+  if (currentMode == FM)
+  {
+    lcd.setCursor(14, 0);
+    lcd.print((rx.getCurrentPilot()) ? "ST" : "  MO");
+    lcd.setCursor(10, 0);
+    if ( fmRDS ) {
+      lcd.print("RDS");
+      return;
+    }
+    else 
+      lcd.print("   ");
+  }
+
+  
+  
   if (rssi < 2)
     rssiAux = 4;
   else if (rssi < 4)
@@ -601,13 +634,7 @@ void showRSSI()
     rssiAux = 9;
 
   sprintf(sMeter, "S%1.1u%c", rssiAux, (rssi >= 60) ? '+' : ' ');
-  lcd.setCursor(13, 1);
-  lcd.print(sMeter);
-  if (currentMode == FM)
-  {
-    lcd.setCursor(10, 0);
-    lcd.print((rx.getCurrentPilot()) ? "STEREO" : "  MONO");
-  }
+
 }
 
 /**
@@ -679,6 +706,68 @@ void showSoftMute()
   lcd.print(sMute);
 }
 
+
+/**
+ * Shows RDS ON or OFF
+ */
+void showRdsSetup() 
+{
+  char sRdsStatus[10];
+  sprintf(sRdsStatus, "RDS: %s", (fmRDS)? "ON ": "OFF");
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(sRdsStatus);  
+
+}
+
+/***************  
+ *   RDS
+ *   
+ */
+ 
+char *stationName;
+char bufferStatioName[20];
+
+void clearRDS() {
+   stationName = (char *) "           ";
+   showRDSStation();
+}
+
+void showRDSStation()
+{
+    int col = 8;
+    for (int i = 0; i < 8; i++ ) {
+      if (stationName[i] != bufferStatioName[i] ) {
+        lcd.setCursor(col + i, 1);
+        lcd.print(stationName[i]); 
+        bufferStatioName[i] = stationName[i];
+      }
+    }
+    
+    delay(100);
+}
+
+
+/*
+ * Checks the station name is available
+ */
+void checkRDS()
+{
+  rx.getRdsStatus();
+  if (rx.getRdsReceived())
+  {
+    if (rx.getRdsSync() && rx.getRdsSyncFound() && !rx.getRdsSyncLost() && !rx.getGroupLost() )
+    {
+      stationName = rx.getRdsText0A();
+      if (stationName != NULL )
+      {
+        showRDSStation();
+      }
+    }
+  }
+}
+
+
 /**
  *   Sets Band up (1) or down (!1)
  */
@@ -705,6 +794,9 @@ void useBand()
     rx.setTuneFrequencyAntennaCapacitor(0);
     rx.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, tabFmStep[band[bandIdx].currentStepIdx]);
     rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
+    rx.setRdsConfig(1, 2, 2, 2, 2);
+    rx.setFifoCount(1);
+    
     bfoOn = ssbLoaded = false;
     bwIdxFM = band[bandIdx].bandwidthIdx;
     rx.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);    
@@ -972,6 +1064,17 @@ void doSoftMute(int8_t v)
 }
 
 /**
+ * Turns RDS ON or OFF
+ */
+void doRdsSetup(int8_t v)
+{
+  fmRDS = (v == 1)? true:false;
+  showRdsSetup();
+  elapsedCommand = millis();
+}
+
+
+/**
  *  Menu options selection
  */
 void doMenu( int8_t v) {
@@ -995,13 +1098,17 @@ void doMenu( int8_t v) {
 void doCurrentMenuCmd() {
   disableCommands();
   switch (currentMenuCmd) {
+    case 0: 
+      cmdRds = true;
+      showRdsSetup();
+      break;
     case 1:                 // STEP
       cmdStep = true;
       showStep();
       break;
     case 2:                 // MODE
       cmdMode = true;
-      // lcd.clear();
+      lcd.clear();
       showMode();
       break;
     case 3:                 // BW
@@ -1027,14 +1134,23 @@ void doCurrentMenuCmd() {
        }
       // showFrequency();
       break;
+    case 8:
+      seekDirection = 1;
+      doSeek();
+      break;  
+    case 9:
+      seekDirection = 0;
+      doSeek();
+      break;    
     default:
-        showStatus();
-        doSeek();
+      showStatus();
       break;
   }
   currentMenuCmd = -1;
   elapsedCommand = millis();
 }
+
+
 
 /**
  * Main loop
@@ -1066,24 +1182,24 @@ void loop()
       doSoftMute(encoderCount);
     else if (cmdBand)
       setBand(encoderCount);
+    else if (cmdRds ) 
+      doRdsSetup(encoderCount);  
     else
     {
       if (encoderCount == 1)
       {
         rx.frequencyUp();
-        seekDirection = 1;
       }
       else
       {
         rx.frequencyDown();
-        seekDirection = 0;
       }
       // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
       showFrequency();
     }
     encoderCount = 0;
-    // elapsedCommand = millis();
+    resetEepromDelay();
   }
   else
   {
@@ -1097,7 +1213,7 @@ void loop()
       }
       else if (countClick == 1)
       { // If just one click, you can select the band by rotating the encoder
-        if ((cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdBand))
+        if ((cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdBand | cmdRds))
         {
           disableCommands();
           showStatus();
@@ -1125,7 +1241,7 @@ void loop()
   {
     rx.getCurrentReceivedSignalQuality();
     int aux = rx.getCurrentRSSI();
-    if (rssi != aux && !(cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode))
+    if (rssi != aux && !(cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds))
     {
       rssi = aux;
       showRSSI();
@@ -1162,6 +1278,19 @@ void loop()
       itIsTimeToSave = false;
     }
   }
+
+  if (currentMode == FM && fmRDS )
+  {
+      if (currentFrequency != previousFrequency)
+      {
+        clearRDS();
+        previousFrequency = currentFrequency;
+       }
+      else
+      {
+        checkRDS();
+      }
+  }  
 
   delay(5);
 }
