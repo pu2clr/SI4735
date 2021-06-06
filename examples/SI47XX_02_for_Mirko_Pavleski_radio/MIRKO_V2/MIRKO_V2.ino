@@ -150,7 +150,7 @@ uint16_t previousFrequency = 0;
 
 const uint8_t currentBFOStep = 10;
 
-const char * menu[] = {"FM RDS", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BFO", "Seek Up", "Seek Down"};
+const char * menu[] = {"Volume", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "Seek Up", "Seek Down"};
 int8_t menuIdx = 0;
 const int lastMenu = 10;
 int8_t currentMenuCmd = -1;
@@ -1040,7 +1040,8 @@ void showFrequencySeek(uint16_t freq)
 void doSeek()
 {
   if ((currentMode == LSB || currentMode == USB)) return; // It does not work for SSB mode
-  
+
+  lcd.clear();
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   showStatus();
   currentFrequency = rx.getFrequency();
@@ -1098,41 +1099,41 @@ void doMenu( int8_t v) {
 void doCurrentMenuCmd() {
   disableCommands();
   switch (currentMenuCmd) {
-    case 0: 
+     case 0:                 // VOLUME
+      cmdVolume = true;
+      showVolume();
+      break;
+    case 1: 
       cmdRds = true;
       showRdsSetup();
       break;
-    case 1:                 // STEP
+    case 2:                 // STEP
       cmdStep = true;
       showStep();
       break;
-    case 2:                 // MODE
+    case 3:                 // MODE
       cmdMode = true;
       lcd.clear();
       showMode();
       break;
-    case 3:                 // BW
-      cmdBandwidth = true;
-      showBandwitdth();
-      break;
-    case 4:                 // AGC/ATT
-      cmdAgc = true;
-      showAgcAtt();
-      break;
-    case 5:                 // VOLUME
-      cmdVolume = true;
-      showVolume();
-      break;
-    case 6: 
-      cmdSoftMuteMaxAtt = true;
-      showSoftMute();  
-      break;
-    case 7:
+    case 4:
       bfoOn = true;
       if ((currentMode == LSB || currentMode == USB)) {
         showBFO();
        }
       // showFrequency();
+      break;      
+    case 5:                 // BW
+      cmdBandwidth = true;
+      showBandwitdth();
+      break;
+    case 6:                 // AGC/ATT
+      cmdAgc = true;
+      showAgcAtt();
+      break;
+    case 7: 
+      cmdSoftMuteMaxAtt = true;
+      showSoftMute();  
       break;
     case 8:
       seekDirection = 1;
