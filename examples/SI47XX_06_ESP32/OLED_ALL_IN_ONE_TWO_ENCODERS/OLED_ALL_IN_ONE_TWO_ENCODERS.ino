@@ -16,7 +16,7 @@
   |    OLED                   |                               |               |
   |                           | SDA/SDIO                      |  GPI21        | 
   |                           | SCL/SCLK                      |  GPI22        | 
-  |    Encoder1                |                               |              |
+  |    Encoder1               |                               |              |
   |                           | A                             |  GPIO 13      |
   |                           | B                             |  GPIO 14      |
   |                           | PUSH BUTTON                   |  GPIO 27      | 

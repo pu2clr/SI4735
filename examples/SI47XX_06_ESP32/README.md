@@ -35,16 +35,6 @@ ESP32 and SI4735-D60 or SI4732-A10 wire up
 This example is a complete FM/AM/LW/SW (with SSB support) receiver based on SI4735 running on ESP32 
 
 
-### __Features:__
-1) This sketch has been successfully tested on ESP LOLIN32 (WEMOS) and ESP32 DEVKIT;
-2) It uses the capacitive touch ESP32 resource;
-3) I2C LiquidCrystal/LCD 20x4;
-4) Encoder;
-5) FM, AM (MW and SW) and SSB (LSB and USB);
-6) Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
-7) BFO Control; and
-8) Frequency step switch (1, 5 and 10kHz). 
-
 ### About SSB support
 
 The the __PU2CLR SI4735 Arduino Library__ implements a set of methods to apply patches and deal with SSB mode. All documentation about pathces can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html).
@@ -159,4 +149,43 @@ Still under construction this sketch will show how to use TFT with ESP32, Si4735
 |   RST (Screen reset) | GPIO4                                       |
 |   CS  or SS          | GPIO5 VSPI SS (Slave Select or Chip Select) |
 
+
+
+
+
+### ESP32 OLED_IN_ONE sketch 
+
+
+#### Wire up 
+
+ ESP32 and components wire up. 
+  
+  | Device name               | Device Pin / Description      |  ESP32        |
+  | ----------------          | ----------------------------- | ------------  |
+  |    OLED                   |                               |               |
+  |                           | SDA/SDIO                      |  GPI21        | 
+  |                           | SCL/SCLK                      |  GPI22        | 
+  |    Encoder                |                               |               |
+  |                           | A                             |  GPIO 13      |
+  |                           | B                             |  GPIO 14      |
+  |                           | PUSH BUTTON (encoder)         |  GPIO 27      |
+
+
+
+### ESP32 OLED_IN_ONE_TWO_ENCODERS sketch 
+
+#### Wire up 
+  
+| Device name               | Device Pin / Description      |  ESP32        |
+| ----------------          | ----------------------------- | ------------  |
+|    OLED                   |                               |               |
+|                           | SDA/SDIO                      |  GPI21        | 
+|                           | SCL/SCLK                      |  GPI22        | 
+|    Encoder1               |                               |              |
+|                           | A                             |  GPIO 13      |
+|                           | B                             |  GPIO 14      |
+|                           | PUSH BUTTON                   |  GPIO 27      | 
+|    Encoder2               | A                             |  GPIO 25      |
+|                           | B                             |  GPIO 26      |    
+|                           | PUSH BUTTON (encoder)         |  GPIO 32      |
 
