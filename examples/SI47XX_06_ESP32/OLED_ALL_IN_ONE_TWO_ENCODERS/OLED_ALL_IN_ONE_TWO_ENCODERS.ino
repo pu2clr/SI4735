@@ -1,5 +1,7 @@
 /*
-  This sketch runs on ESP32 device.   
+  UNDER CONSTRUCTION....
+  This sketch runs on ESP32 device.
+  It is a POC of using two encoders with push button to control the system.   
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
@@ -14,10 +16,13 @@
   |    OLED                   |                               |               |
   |                           | SDA/SDIO                      |  GPI21        | 
   |                           | SCL/SCLK                      |  GPI22        | 
-  |    Encoder                |                               |               |
+  |    Encoder1                |                               |              |
   |                           | A                             |  GPIO 13      |
   |                           | B                             |  GPIO 14      |
-  |                           | PUSH BUTTON (encoder)         |  GPIO 27      |
+  |                           | PUSH BUTTON                   |  GPIO 27      | 
+  |    Encoder2               | A                             |  GPIO 25      |
+  |                           | B                             |  GPIO 26      |    
+  |                           | PUSH BUTTON (encoder)         |  GPIO 32      |
 
   ESP32 and SI4735-D60 or SI4732-A10 wire up
 
@@ -56,15 +61,22 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define RESET_PIN 12                // GPIO12
 
 // Enconder PINs
-#define ENCODER_PIN_A 13           // GPIO13 
-#define ENCODER_PIN_B 14           // GPIO14
+#define ENCODER1_PIN_A 13           // GPIO13 
+#define ENCODER1_PIN_B 14           // GPIO14
+#define ENCODER1_PUSH_BUTTON 27     // GPIO27
+
+#define ENCODER2_PIN_A 25           // GPIO25
+#define ENCODER2_PIN_B 26           // GPIO26
+#define ENCODER2_PUSH_BUTTON 27     // GPIO32
+
+
 
 // I2C bus pin on ESP32
 #define ESP32_I2C_SDA 21
 #define ESP32_I2C_SCL 22
 
 // Buttons controllers
-#define ENCODER_PUSH_BUTTON 27     // GPIO27
+
 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 200
@@ -119,7 +131,8 @@ long elapsedRSSI = millis();
 long elapsedButton = millis();
 
 long elapsedClick = millis();
-volatile int encoderCount = 0;
+volatile int encoderCount1 = 0;
+volatile int encoderCount2 = 0;
 uint16_t currentFrequency;
 
 const uint8_t currentBFOStep = 10;
@@ -246,7 +259,8 @@ uint8_t rssi = 0;
 uint8_t volume = DEFAULT_VOLUME;
 
 // Devices class declarations
-Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
+Rotary encoder1 = Rotary(ENCODER1_PIN_A, ENCODER1_PIN_B);
+Rotary encoder2 = Rotary(ENCODER2_PIN_A, ENCODER2_PIN_B);
 
 Adafruit_SSD1306 display = Adafruit_SSD1306(128, 32, &Wire);
 
@@ -256,10 +270,16 @@ SI4735 rx;
 void setup()
 {
   // Encoder pins
-  pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
+  pinMode(ENCODER1_PUSH_BUTTON, INPUT_PULLUP);
+  pinMode(ENCODER2_PUSH_BUTTON, INPUT_PULLUP);
+    
+  pinMode(ENCODER1_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER1_PIN_B, INPUT_PULLUP);
+
+  pinMode(ENCODER2_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER2_PIN_B, INPUT_PULLUP);
+
   
-  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
-  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
   // The line below may be necessary to setup I2C pins on ESP32
   Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
@@ -287,7 +307,7 @@ void setup()
   EEPROM.begin(EEPROM_SIZE);
 
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
-  if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
+  if (digitalRead(ENCODER1_PUSH_BUTTON) == LOW)
   {
     EEPROM.write(eeprom_address, 0);
     EEPROM.commit();
@@ -297,8 +317,12 @@ void setup()
   }
 
   // ICACHE_RAM_ATTR void rotaryEncoder(); see rotaryEncoder implementation below.
-  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ENCODER1_PIN_A), rotaryEncoder1, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ENCODER1_PIN_B), rotaryEncoder1, CHANGE);
+
+  attachInterrupt(digitalPinToInterrupt(ENCODER2_PIN_A), rotaryEncoder2, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ENCODER2_PIN_B), rotaryEncoder2, CHANGE);
+
 
   rx.setI2CFastModeCustom(100000);
   
@@ -478,12 +502,21 @@ void disableCommands()
  * if you do not add ICACHE_RAM_ATTR declaration, the system will reboot during attachInterrupt call. 
  * With ICACHE_RAM_ATTR macro you put the function on the RAM.
  */
-ICACHE_RAM_ATTR void  rotaryEncoder()
+ICACHE_RAM_ATTR void  rotaryEncoder1()
 { // rotary encoder events
-  uint8_t encoderStatus = encoder.process();
+  uint8_t encoderStatus = encoder1.process();
   if (encoderStatus)
-    encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
+    encoderCount1 = (encoderStatus == DIR_CW) ? 1 : -1;
 }
+
+
+ICACHE_RAM_ATTR void  rotaryEncoder2()
+{ // rotary encoder events
+  uint8_t encoderStatus = encoder2.process();
+  if (encoderStatus)
+    encoderCount2 = (encoderStatus == DIR_CW) ? 1 : -1;
+}
+
 
 /**
  * Shows frequency information on Display
@@ -658,6 +691,7 @@ void showBFO()
 void showVolume()
 {
   char volAux[12];
+  display.clearDisplay();
   sprintf(volAux, "VOLUME: %2u", rx.getVolume());
   printParam(volAux);
 }
@@ -1030,33 +1064,33 @@ void doCurrentMenuCmd() {
 void loop()
 {
   // Check if the encoder has moved.
-  if (encoderCount != 0)
+  if (encoderCount1 != 0)
   {
     if (bfoOn & (currentMode == LSB || currentMode == USB))
     {
-      currentBFO = (encoderCount == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
+      currentBFO = (encoderCount1 == 1) ? (currentBFO + currentBFOStep) : (currentBFO - currentBFOStep);
       rx.setSSBBfo(currentBFO);
       showBFO();
     }
     else if (cmdMenu)
-      doMenu(encoderCount);
+      doMenu(encoderCount1);
     else if (cmdMode)
-      doMode(encoderCount);
+      doMode(encoderCount1);
     else if (cmdStep)
-      doStep(encoderCount);
+      doStep(encoderCount1);
     else if (cmdAgc)
-      doAgc(encoderCount);
+      doAgc(encoderCount1);
     else if (cmdBandwidth)
-      doBandwidth(encoderCount);
+      doBandwidth(encoderCount1);
     else if (cmdVolume)
-      doVolume(encoderCount);
+      doVolume(encoderCount1);
     else if (cmdSoftMuteMaxAtt)
-      doSoftMute(encoderCount);
+      doSoftMute(encoderCount1);
     else if (cmdBand)
-      setBand(encoderCount);
+      setBand(encoderCount1);
     else
     {
-      if (encoderCount == 1) {
+      if (encoderCount1 == 1) {
         rx.frequencyUp();
         seekDirection = 1;
       }
@@ -1068,13 +1102,16 @@ void loop()
       currentFrequency = rx.getFrequency();
       showFrequency();
     }
-    encoderCount = 0;
+    encoderCount1 = 0;
     elapsedRSSI = millis();
     resetEepromDelay();
+  } else if (encoderCount2 != 0) {
+      doVolume(encoderCount2);
+      encoderCount2 = 0;          
   }
   else
   {
-    if ( digitalRead(ENCODER_PUSH_BUTTON) == LOW ) {
+    if ( digitalRead(ENCODER1_PUSH_BUTTON) == LOW ) {
       countClick++;
       if (cmdMenu ) {
         currentMenuCmd = menuIdx;
@@ -1093,6 +1130,9 @@ void loop()
         if (cmdMenu) showMenu();
       }
       delay(MIN_ELAPSED_TIME);
+    }
+    if ( digitalRead(ENCODER2_PUSH_BUTTON) == LOW ) {   
+      showStatus(); 
     }
   }
 
