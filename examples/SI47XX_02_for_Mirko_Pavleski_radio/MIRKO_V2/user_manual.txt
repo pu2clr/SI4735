@@ -56,7 +56,9 @@ Commands
 ATTENTION: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. 
            If you do that, you might alternate the command status (enable and disable) randomly. 
 
-5. The main information of the receiver is stored into the Arduino EEPROM. This way, when you turn the receiver on, 
+5. EEPROM RESET
+
+   The main information of the receiver is stored into the Arduino EEPROM. This way, when you turn the receiver on, 
    the last receiver status is rescued. To RESET the receiver to DEFAULT status, turn it on with the encoder pust button pressed. 
    Check the message "EEPROM RESETED". 
 
