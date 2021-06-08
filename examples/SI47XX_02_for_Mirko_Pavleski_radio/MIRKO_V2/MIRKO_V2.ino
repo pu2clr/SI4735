@@ -659,7 +659,8 @@ void showAgcAtt()
 void showStep()
 {
   char sStep[15];
-  sprintf(sStep, "Stp:%4d", tabFmStep[currentStepIdx] * ((currentMode == FM)? 10 : 1));
+
+  sprintf(sStep, "Stp:%4d", (currentMode == FM)? (tabFmStep[currentStepIdx] *10) : tabAmStep[currentStepIdx] );
   lcd.setCursor(0, 0);
   lcd.print(sStep);
 }
