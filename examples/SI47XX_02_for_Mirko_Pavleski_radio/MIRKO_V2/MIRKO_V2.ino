@@ -283,18 +283,19 @@ void setup()
   // Encoder pins
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
   lcd.begin(16, 2);
-  // Splash - Change it for your introduction text.
+
+  // Splash - Remove or Change the splash message
   lcd.setCursor(0, 0);
   lcd.print("PU2CLR-SI4735");
   lcd.setCursor(0, 1);
   lcd.print("Arduino Library");
-  Flash(2000);
+  Flash(1500);
   lcd.setCursor(0, 0);
   lcd.print("DIY Mirko Radio");
   lcd.setCursor(0, 1);
   lcd.print("By RICARDO/2021");
-  Flash(3000);
-  // Encoder interrupt
+  Flash(2000);
+  // End splash
 
   EEPROM.begin();
 
@@ -304,11 +305,11 @@ void setup()
     EEPROM.write(eeprom_address, 0);
     lcd.setCursor(0,0);
     lcd.print("EEPROM RESETED");
-    delay(3000);
+    delay(2000);
     lcd.clear();
   }
 
-  // ICACHE_RAM_ATTR void rotaryEncoder(); see rotaryEncoder implementation below.
+  // controlling encoder via interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
