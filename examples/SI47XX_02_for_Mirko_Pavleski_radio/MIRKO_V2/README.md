@@ -1,4 +1,4 @@
-# DIY Si4730 All Band Radio (LW, MW, SW, FM)" receiver by Mirko Pavleski
+# MANUAL FOR DIY Si4730 All Band Radio (LW, MW, SW, FM)" receiver by Mirko Pavleski
 
 This sketch was built to work with the project [DIY Si4730 All Band Radio (LW, MW, SW, FM)" receiver by Mirko Pavleski](Thttps://create.arduino.cc/projecthub/mircemk/diy-si4730-all-band-radio-lw-mw-sw-fm-1894d9). 
 
