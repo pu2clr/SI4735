@@ -427,7 +427,7 @@ See videos:
 
 This example uses the Arduino Pro Mini 3.3V (8MHz), the SI4735 and OLED.
  
-The EEPROM has a lifetime around 100,000 write/erase cycles. Therefore, writing data to eeprom with each system status change could give an application a very short life. To mitigate this problem, some approaches can be used to save recordings on the EEPROM.
+The EEPROM has a lifetime around 100,000 write/erase cycles. On "Atmel, ATmega328P, 8-bit AVR Microcontroller with 32K Bytes In-System Programmable Flash" DATASHEET, page 19, you will find: "The Atmel® ATmega328P contains 1Kbyte of data EEPROM memory. It is organized as a separate data space, in which single bytes can be read and written. The EEPROM has an endurance of at least 100,000 write/erase cycles". Therefore, writing data to eeprom with each system status change could give an application a very short life. To mitigate this problem, some approaches can be used to save recordings on the EEPROM.
 
 The following circuit illustrates a way to configure an Arduino based on Atmega328 to record useful information on its internal EEPROM.  The idea of this approach is to obtain the last status of the system after turning it on.    Observe  in the circuit that a 1000uF electrolytic capacitor has been added. Depending on the arduino board, the time needed to record the information and the shutdown check time, the capacitor value may be different. This capacitor is powered by the battery voltage or external power supply while the system is working. When the user turns the system off, the capacitor will still keep the arduino running for a few seconds.  Observe also that the Arduino pin 16 (A2), is connected to the power supply. That setup works as a shutdown detector. I mean, the pin 16 status will keep HIGH while the power supply is on. However, when the user turns the system off (no power supply), the pin 16 status will be LOW. In this condition, a few lines of code have to be added to the loop function to check the pin 16 status frequently. If the pin 16  is LOW, the Arduino will have few seconds to save data into the internal EEPROM. Be aware the capacitance of the capacitor must be high enough to allow the arduino to record all needed data. Increase the capacitance value if 1000uF does not provide enough time for your setup.
 Actually, the best way to save data immediately is using the interrupt approaching via digital pins 2 or 3 of Atmega328  . However, this example uses with success the pulling approach.  
@@ -536,11 +536,11 @@ Steps:
 
 * Select the data you want to keep into the EEPROM;
 * Add the code to monitor the data in your sketch;
-* Add code to save data the data. In this case, you need to define the criteria that will be used to perform a recording on the EEPROM. In general any change of useful data AND elapsed time. It will depend on your application.   
+* Add code to save the data. In this case, you need to define the criteria that will be used to perform a recording on the EEPROM. In general, a good criteria is:  any change of useful data AND elapsed time. It will depend on your application.   
 * Consider using the method EEPROM.update instead EEPROM.write. It will not write information if it is the same stored before;
 * Add the code to restore data from EEPROM;
 * Add the code to check if exist useful data stored into EEPROM. It can be a single byte indicating that exist valid information for the system. Use an identification number (ID) that will be understood as valid data by the system.  
-* Add code to erase the information in EEPROM. All you have to do is erasing the identification number. Actually just change the ID value. In other words, you do not need erease all data stored into EEPROM.
+* Add code to erase the information in EEPROM. All you have to do is erasing the identification number. Actually just change the ID value. In other words, you do not need erease all data stored into EEPROM to reset the data to the system.
 * Add code to RESET the system. At system start up check if a given button is pressed and then erase the ID;
 
 
@@ -620,10 +620,10 @@ void loop() {
   .
   .
   
- // Show the current frequency only if it has changed. 
+  // check if some status was changed  
   if ( statusChanged )
   {
-    // If the status has changed and the epapsed time is less than minimal time, wait a bit more for saving new data. 
+    // If the status has changed and the elapsed time is less than minimal time, wait a bit more for saving new data. 
     if ((millis() - storeTime) > STORE_TIME) 
     {
       saveAllReceiverInformation();
