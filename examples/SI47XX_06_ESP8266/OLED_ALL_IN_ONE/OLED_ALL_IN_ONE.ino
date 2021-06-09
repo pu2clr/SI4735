@@ -618,13 +618,9 @@ void showAgcAtt()
  */
 void showStep()
 {
-    char sStep[15];
-    if ( currentMode == FM ) { 
-      sprintf(sStep, "Stp:%4d", tabFmStep[currentStepIdx] * 10); 
-    } else {
-      sprintf(sStep, "Stp:%4d", tabAmStep[currentStepIdx]); 
-    }
-    printParam(sStep);
+  char sStep[15];
+  sprintf(sStep, "Stp:%4d", (currentMode == FM) ? (tabFmStep[currentStepIdx] * 10) : tabAmStep[currentStepIdx]);
+  printParam(sStep);
 }
 
 /**
