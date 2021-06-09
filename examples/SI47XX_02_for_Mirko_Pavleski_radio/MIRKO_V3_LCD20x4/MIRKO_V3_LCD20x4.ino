@@ -54,6 +54,9 @@
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
+  To LCD custom character: https://maxpromer.github.io/LCD-Character-Creator/
+
+
   By PU2CLR, Ricardo, May  2021.
 */
 
@@ -276,11 +279,25 @@ Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 SI4735 rx;
 
+
+// Custom LCD character to show the signal rssi level.
+byte lcdSignal[8][8] = {{B00000, B00000, B00000, B00000, B00000, B11111, B01110, B00100},
+                        {B00000, B00000, B00000, B00000, B11111, B01110, B00100, B00100},
+                        {B00000, B00000, B00000, B11111, B01110, B00100, B00100, B00100},
+                        {B00000, B00000, B11111, B01110, B00100, B00100, B00100, B00100},
+                        {B00000, B11111, B01110, B00100, B00100, B00100, B00100, B00100}, 
+                        {B11111, B01110, B00100, B00100, B00100, B00100, B00100, B00100},
+                        {B11111, B11111, B01110, B00100, B00100, B00100, B00100, B00100},
+                        {B11111, B01110, B00100, B00100, B00100, B00100, B00100, B00000}}; 
+              
 void setup()
 {
   // Encoder pins
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
   lcd.begin(20, 4);
+
+  // load LCD custom characters
+  for (int i = 0; i < 8; i++ ) lcd.createChar(i, lcdSignal[i]);
 
   // Splash - Remove or Change the splash message
   lcd.setCursor(0, 0);
@@ -534,7 +551,7 @@ void showMode()
   lcd.setCursor(0, 0);
   lcd.print(bandMode);
 
-  if ( currentMode == FM && fmRDS ) return;
+  if ( currentMode == FM ) return;
   
   lcd.setCursor(0, 1);
   lcd.print(band[bandIdx].bandName);
@@ -551,6 +568,7 @@ void showStatus()
   showVolume();
   showAgcAtt();
   showStep();
+  showBandwitdth();
 }
 
 /**
@@ -574,9 +592,8 @@ void showBandwitdth()
     bw = (char *)bandwitdthFM[bwIdxFM].desc;
   }
 
-  sprintf(bandwitdth, "BW: %s", bw);
-  lcd.clear();
-  lcd.setCursor(0, 0);
+  sprintf(bandwitdth, "BW:%s", bw);
+  lcd.setCursor(14, 3);
   lcd.print(bandwitdth);
 }
 
@@ -592,10 +609,10 @@ void showRSSI()
   {
     lcd.setCursor(18, 0);
     lcd.print((rx.getCurrentPilot()) ? "ST" : "MO");
-    lcd.setCursor(14, 0);
+    lcd.setCursor(0, 1);
     if ( fmRDS ) {
       lcd.print("RDS");
-      return;
+      // return;
     }
     else 
       lcd.print("   ");
@@ -614,9 +631,10 @@ void showRSSI()
   else
     rssiAux = 9;
 
-  sprintf(sMeter, "S%1.1u%c", rssiAux, (rssi >= 60) ? '+' : '.');
-  lcd.setCursor(17, 1);
-  lcd.print(sMeter);
+  // sprintf(sMeter, "S%1.1u%c", rssiAux, (rssi >= 60) ? '+' : '.');
+  lcd.setCursor(19, 1);
+  lcd.write(rssiAux - 2);
+  // lcd.print(sMeter);
 }
 
 /**
@@ -629,7 +647,7 @@ void showAgcAtt()
   if (agcNdx == 0 && agcIdx == 0)
     strcpy(sAgc, "AGC");
   else
-    sprintf(sAgc, "At: %2.2d", agcNdx);
+    sprintf(sAgc, "At:%2.2d", agcNdx);
 
   lcd.setCursor(0, 3);
   lcd.print(sAgc);
@@ -641,8 +659,8 @@ void showAgcAtt()
 void showStep()
 {
   char sStep[15];
-  sprintf(sStep, "Sp:%3d", (currentMode == FM)? (tabFmStep[currentStepIdx] *10) : tabAmStep[currentStepIdx] );
-  lcd.setCursor(7, 3);
+  sprintf(sStep, "St:%3d", (currentMode == FM)? (tabFmStep[currentStepIdx] *10) : tabAmStep[currentStepIdx] );
+  lcd.setCursor(6, 3);
   lcd.print(sStep);
 }
 
@@ -653,14 +671,12 @@ void showBFO()
 {
   char bfo[15];
   if (currentBFO > 0)
-    sprintf(bfo, "BFO: +%4.4d", currentBFO);
+    sprintf(bfo, "BFO:+%4.4d", currentBFO);
   else
     sprintf(bfo, "BFO: %4.4d", currentBFO);
 
-  lcd.clear();
-  lcd.setCursor(0, 0);
+  lcd.setCursor(0, 2);
   lcd.print(bfo);
-  elapsedCommand = millis();
 }
 
 /*
@@ -988,6 +1004,7 @@ void doMode(int8_t v)
     band[bandIdx].currentStepIdx = currentStepIdx;
     useBand();
   }
+  showStatus();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
