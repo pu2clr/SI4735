@@ -16,7 +16,7 @@
   |    OLED                   |                               |               |
   |                           | SDA/SDIO                      |  GPI21        | 
   |                           | SCL/SCLK                      |  GPI22        | 
-  |    Encoder1               |                               |              |
+  |    Encoder1               |                               |               |
   |                           | A                             |  GPIO 13      |
   |                           | B                             |  GPIO 14      |
   |                           | PUSH BUTTON                   |  GPIO 27      | 
@@ -67,7 +67,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 
 #define ENCODER2_PIN_A 25           // GPIO25
 #define ENCODER2_PIN_B 26           // GPIO26
-#define ENCODER2_PUSH_BUTTON 27     // GPIO32
+#define ENCODER2_PUSH_BUTTON 32     // GPIO32
 
 
 
