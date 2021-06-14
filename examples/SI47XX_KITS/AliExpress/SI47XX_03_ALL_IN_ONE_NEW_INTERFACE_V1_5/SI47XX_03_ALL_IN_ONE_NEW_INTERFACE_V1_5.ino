@@ -44,7 +44,40 @@
   Given this, it is at your own risk to continue with the procedures suggested here.
   This library works with the I2C communication protocol and it is designed to apply a SSB extension PATCH to CI SI4735-D60.
   Once again, the author disclaims any liability for any damage this procedure may cause to your SI4735 or other devices that you are using.
-  Features of this sketch:
+
+  Wire up on Arduino UNO, Pro mini and SI4735-D60
+
+  | Device name               | Device Pin / Description      |  Arduino Pin  |
+  | ----------------          | ----------------------------- | ------------  |
+  | Display OLED              |                               |               |
+  |                           | SDA                           |     A4        |
+  |                           | CLK                           |     A5        |
+  |     (*1) SI4735           |                               |               |
+  |                           | RESET (pin 15)                |     12        |
+  |                           | SDIO (pin 18)                 |     A4        |
+  |                           | SCLK (pin 17)                 |     A5        |
+  |                           | SEN (pin 16)                  |    GND        | 
+  |     (*2) Buttons          |                               |               |
+  |                           | Switch MODE (AM/LSB/AM)       |      4        |
+  |                           | Banddwith                     |      5        |
+  |                           | Volume                        |      6        |
+  |                           | Custom button 1 (*3)          |      7        |
+  |                           | Band                          |      8        |
+  |                           | Custom button 2 (*3)          |      9        |
+  |                           | Step                          |     10        |
+  |                           | AGC / Attentuation            |     11        |
+  |                           | VFO/VFO Switch (Encoder)      |     14 / A0   |
+  |    Encoder (*4)           |                               |               |
+  |                           | A                             |       2       |
+  |                           | B                             |       3       |
+
+  *1 - You can use the SI4732-A10. Check on the SI4732 package the pins: RESET, SDIO, SCLK and SEN.
+  *2 - Please, read the file user_manual.txt for more detail. 
+  *3 - You can remove this buttons from your circuit and sketch if you dont want to use them.
+  *4 - Some encoder devices have pins A and B inverted. So, if the clockwise and counterclockwise directions 
+       are not correct for you, please, invert the settings for pins A and B. 
+
+
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
   By Ricardo Lima Caratti, April  2021.
