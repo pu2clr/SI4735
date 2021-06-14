@@ -418,10 +418,16 @@ void cleanBfoRdsInfo()
 }
 
 /**
-  Converts a number to a char string and places leading zeros.
-  It is useful to mitigate memory space used by sprintf or generic similar function
-*/
-void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot)
+ * Converts a number to a char string and places leading zeros. 
+ * It is useful to mitigate memory space used by sprintf or generic similar function 
+ * 
+ * value  - value to be converted
+ * strValue - the value will be receive the value converted
+ * len -  final string size (in bytes) 
+ * dot - the decimal or tousand separator position
+ * separator -  symbol "." or "," 
+ */
+void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator)
 {
   char d;
   for (int i = (len - 1); i >= 0; i--)
@@ -435,7 +441,7 @@ void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot)
     for (int i = len; i >= dot ; i-- ) {
       strValue[i + 1] = strValue[i];
     }
-    strValue[dot] = '.';
+    strValue[dot] = separator;
   }
 
   if (strValue[0] == '0') {
@@ -453,15 +459,15 @@ void showFrequency()
 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
-    convertToChar(currentFrequency, freqDisplay, 5, 3);
+    convertToChar(currentFrequency, freqDisplay, 5, 3, ',');
     unit = (char *)"MHz";
   }
   else {
     unit = (char *)"kHz";
     if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
-      convertToChar(currentFrequency, freqDisplay, 5, 0);
+      convertToChar(currentFrequency, freqDisplay, 5, 0, '.');
     else
-      convertToChar(currentFrequency, freqDisplay, 5, 2);
+      convertToChar(currentFrequency, freqDisplay, 5, 2, '.');
   }
 
   oled.invertOutput(bfoOn);
