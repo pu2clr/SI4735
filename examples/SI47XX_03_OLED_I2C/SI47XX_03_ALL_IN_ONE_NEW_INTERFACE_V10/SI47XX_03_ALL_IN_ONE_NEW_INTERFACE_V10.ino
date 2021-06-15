@@ -124,12 +124,12 @@ uint8_t currentBFOStep = 10;
 
 typedef struct 
 {
-  uint8_t idx;      // SI473X device bandwitdth index
-  const char *desc; // bandwitdth description
-} Bandwitdth;
+  uint8_t idx;      // SI473X device bandwidth index
+  const char *desc; // bandwidth description
+} Bandwidth;
 
 int8_t bwIdxSSB = 4;
-Bandwitdth bandwitdthSSB[] = {{4, "0.5"},
+Bandwidth bandwidthSSB[] = {{4, "0.5"},
                               {5, "1.0"},
                               {0, "1.2"},
                               {1, "2.2"},
@@ -137,7 +137,7 @@ Bandwitdth bandwitdthSSB[] = {{4, "0.5"},
                               {3, "4.0"}};
 
 int8_t bwIdxAM = 4;
-Bandwitdth bandwitdthAM[] = {{4, "1.0"},
+Bandwidth bandwidthAM[] = {{4, "1.0"},
                              {5, "1.8"},
                              {3, "2.0"},
                              {6, "2.5"},
@@ -348,16 +348,16 @@ void showStatus()
   oled.clear();
   showFrequency();
   showStep();
-  showBandwitdth();
+  showBandwidth();
   showAgcAtt();
   showRSSI();
   showVolume();
 }
 
 /**
- * Shows the current Bandwitdth status
+ * Shows the current Bandwidth status
  */
-void showBandwitdth()
+void showBandwidth()
 {
   char bufferDisplay[15];
 
@@ -366,9 +366,9 @@ void showBandwitdth()
   {
     char *bw;
     if (currentMode == AM)
-      bw = (char *)bandwitdthAM[bwIdxAM].desc;
+      bw = (char *)bandwidthAM[bwIdxAM].desc;
     else
-      bw = (char *)bandwitdthSSB[bwIdxSSB].desc;
+      bw = (char *)bandwidthSSB[bwIdxSSB].desc;
     sprintf(bufferDisplay, "BW: %skHz", bw);
   }
   else
@@ -537,7 +537,7 @@ void loadSSB()
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  rx.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
+  rx.setSSBConfig(bandwidthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
   delay(25);
   ssbLoaded = true;
   showStatus();
@@ -600,9 +600,9 @@ void doBandwidth(int8_t v)
     else if (bwIdxSSB < 0)
       bwIdxSSB = 5;
 
-    rx.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
+    rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-    if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
+    if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
        rx.setSBBSidebandCutoffFilter(0);
      else
        rx.setSBBSidebandCutoffFilter(1);
@@ -616,10 +616,10 @@ void doBandwidth(int8_t v)
     else if (bwIdxAM < 0)
       bwIdxAM = 6;
 
-    rx.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+    rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  showBandwitdth();
+  showBandwidth();
   showCommandStatus();
   elapsedCommand = millis();
 }

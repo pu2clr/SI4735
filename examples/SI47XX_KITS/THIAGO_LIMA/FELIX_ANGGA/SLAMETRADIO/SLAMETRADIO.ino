@@ -134,10 +134,10 @@ uint8_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
 uint8_t bwIdxSSB = 2;
-const char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+const char *bandwidthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 uint8_t bwIdxAM = 1;
-const char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+const char *bandwidthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 unsigned int buttonstate;
 
 const char *AMMode[] = {"AM", "LSB", "USB"};
@@ -623,7 +623,7 @@ void getStatus() {
   if (currentMode == LSB || currentMode == USB)
   {
 
-    sprintf(buffBW, "BW: %s kHz", bandwitdthSSB[bwIdxSSB]);
+    sprintf(buffBW, "BW: %s kHz", bandwidthSSB[bwIdxSSB]);
 
     btnBandwidth = {210, 100, 80, 30, buffBW};
     drawButton(btnBandwidth, false);
@@ -631,7 +631,7 @@ void getStatus() {
   }
   else if (currentMode == AM)
   {
-    sprintf(buffBW, "BW: %s kHz", bandwitdthAM[bwIdxAM]);
+    sprintf(buffBW, "BW: %s kHz", bandwidthAM[bwIdxAM]);
 
     btnBandwidth = {210, 100, 80, 30, buffBW};
     drawButton(btnBandwidth, false);

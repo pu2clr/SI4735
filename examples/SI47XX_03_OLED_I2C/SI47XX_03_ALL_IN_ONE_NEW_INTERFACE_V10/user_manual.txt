@@ -1,4 +1,4 @@
-1. BAND, MODE, AGC/Attenuation, bandwitdth and STEP
+1. BAND, MODE, AGC/Attenuation, bandwidth and STEP
 
 Press the push button and after, rotate the encoder to select the option. For example:
 To switch the band, press the band button and then rotate the encoder clockwise or counterclockwise.

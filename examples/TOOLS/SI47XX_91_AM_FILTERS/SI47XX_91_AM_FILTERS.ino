@@ -14,7 +14,7 @@
 unsigned currentFrequency;
 unsigned previousFrequency;
 byte bandwidthIdx = 0;
-char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+char *bandwidth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 SI4735 si4735;
 
@@ -64,7 +64,7 @@ void showStatus()
   Serial.print(si4735.getCurrentRSSI());
   Serial.print("dBuV]");
   Serial.print("[Bandwidth: ");
-  Serial.print(String(bandwitdth[bandwidthIdx]));
+  Serial.print(String(bandwidth[bandwidthIdx]));
   Serial.println(" kHz]");
 }
 

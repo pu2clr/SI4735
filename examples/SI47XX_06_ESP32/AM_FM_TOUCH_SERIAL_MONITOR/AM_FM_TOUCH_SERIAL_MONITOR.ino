@@ -51,7 +51,7 @@
 uint16_t currentFrequency;
 uint16_t previousFrequency;
 uint8_t bandwidthIdx = 0;
-const char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+const char *bandwidth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 SI4735 si4735;
 
@@ -184,7 +184,7 @@ void loop()
           bandwidthIdx = 0;
         si4735.setBandwidth(bandwidthIdx, 1);
         Serial.print("Filter - Bandwidth: ");
-        Serial.print(String(bandwitdth[bandwidthIdx]));
+        Serial.print(String(bandwidth[bandwidthIdx]));
         Serial.println(" kHz");
         bandwidthIdx++;
       }

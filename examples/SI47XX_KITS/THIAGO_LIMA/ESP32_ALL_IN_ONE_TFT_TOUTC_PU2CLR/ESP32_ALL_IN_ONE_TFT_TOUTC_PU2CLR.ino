@@ -187,7 +187,7 @@ typedef struct
   uint16_t maximumFreq;     // maximum frequency of the band
   uint16_t currentFreq;     // Default frequency or current frequency
   int8_t currentStepIdx;  // Idex of tabStepAM:  Defeult frequency step (See tabStepAM)
-  int8_t bandwidthIdx;    //  Index of the table bandwitdthFM, bandwitdthAM or bandwitdthSSB;
+  int8_t bandwidthIdx;    //  Index of the table bandwidthFM, bandwidthAM or bandwidthSSB;
 
 } Band;
 
@@ -248,13 +248,13 @@ uint8_t seekDirection = 1;
 // Datatype to deal with bandwidth on AM and SSB in numerical order.
 typedef struct
 {
-  uint8_t idx;      // SI473X device bandwitdth index value
-  const char *desc; // bandwitdth description
-} Bandwitdth;
+  uint8_t idx;      // SI473X device bandwidth index value
+  const char *desc; // bandwidth description
+} Bandwidth;
 
 int8_t bwIdxSSB = 4;
 const int maxFilterSSB = 5;
-Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
+Bandwidth bandwidthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
                               {5, "1.0"},  //
                               {0, "1.2"},  //
                               {1, "2.2"},  //
@@ -263,7 +263,7 @@ Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
 
 int8_t bwIdxAM = 4;
 const int maxFilterAM = 6;
-Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1kHz
+Bandwidth bandwidthAM[] = {{4, "1.0"}, // 4 = 1kHz
                              {5, "1.8"},
                              {3, "2.0"},
                              {6, "2.5"},
@@ -273,7 +273,7 @@ Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1kHz
 
 int8_t bwIdxFM = 0;
 const int maxFilterFM = 4;
-Bandwitdth bandwitdthFM[] = {{0, "AUT"}, // Automatic
+Bandwidth bandwidthFM[] = {{0, "AUT"}, // Automatic
                              {1, "110"}, // Force wide (110 kHz) channel filter.
                              {2, " 84"},
                              {3, " 60"},
@@ -312,7 +312,7 @@ bool Touch_getXY(void)
   return pressed;
 }
 
-void showBandwitdth(bool drawAfter = false);
+void showBandwidth(bool drawAfter = false);
 void showAgcAtt(bool drawAfter = false);
 void showStep(bool drawAfter = false);
 void showSoftMute(bool drawAfter = false);
@@ -465,7 +465,7 @@ void saveAllReceiverInformation()
     EEPROM.write(addr_offset++, (band[i].currentFreq >> 8));   // stores the current Frequency HIGH byte for the band
     EEPROM.write(addr_offset++, (band[i].currentFreq & 0xFF)); // stores the current Frequency LOW byte for the band
     EEPROM.write(addr_offset++, band[i].currentStepIdx);       // Stores current step of the band
-    EEPROM.write(addr_offset++, band[i].bandwidthIdx);        // table index (direct position) of bandwitdth
+    EEPROM.write(addr_offset++, band[i].bandwidthIdx);        // table index (direct position) of bandwidth
     EEPROM.commit();
   }
   
@@ -518,9 +518,9 @@ void readAllReceiverInformation()
   {
     loadSSB();
     bwIdxSSB = (bwIdx > 5) ? 5 : bwIdx;
-    si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
+    si4735.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-    if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
+    if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
       si4735.setSBBSidebandCutoffFilter(0);
     else
       si4735.setSBBSidebandCutoffFilter(1);
@@ -528,12 +528,12 @@ void readAllReceiverInformation()
   else if (currentMode == AM)
   {
     bwIdxAM = bwIdx;
-    si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+    si4735.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
   }
   else
   {
     bwIdxFM = bwIdx;
-    si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
+    si4735.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
   }
   
   delay(50);
@@ -658,7 +658,7 @@ void resetEepromDelay()
   void setButtonsFM()
   {
     showBFOorRDS(true);
-    showBandwitdth(true);
+    showBandwidth(true);
     showStep(true);
   }
 
@@ -888,7 +888,7 @@ void showTemplate()
     printText(5, 55, 2, bufferUnit, "kHz", WHITE, 12);
 
     setButtonsAM();
-    showBandwitdth(true);
+    showBandwidth(true);
     showAgcAtt(true);
     showStep(true);
     showSoftMute(true);
@@ -898,25 +898,25 @@ void showTemplate()
   }
 
   /**
- * SHow bandwitdth on AM or SSB mode
+ * SHow bandwidth on AM or SSB mode
  * 
  */
-  void showBandwitdth(bool drawAfter)
+  void showBandwidth(bool drawAfter)
   {
     char bw[20];
 
     if (currentMode == LSB || currentMode == USB)
     {
-      sprintf(bw, "BW:%s", bandwitdthSSB[bwIdxSSB].desc);
+      sprintf(bw, "BW:%s", bandwidthSSB[bwIdxSSB].desc);
       showBFOorRDS(true);
     }
     else if (currentMode == AM)
     {
-      sprintf(bw, "BW:%s", bandwitdthAM[bwIdxAM].desc);
+      sprintf(bw, "BW:%s", bandwidthAM[bwIdxAM].desc);
     }
     else
     {
-      sprintf(bw, "BW:%s", bandwitdthFM[bwIdxFM].desc);
+      sprintf(bw, "BW:%s", bandwidthFM[bwIdxFM].desc);
     }
     setButton(&buttonFilter, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, bw, drawAfter);
   }
@@ -1204,7 +1204,7 @@ void checkRDS()
     // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
     // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
     // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-    si4735.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
+    si4735.setSSBConfig(bandwidthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
     si4735.setFifoCount(1);
     delay(25);
     ssbLoaded = true;
@@ -1231,7 +1231,7 @@ void checkRDS()
       si4735.setRdsConfig(1, 2, 2, 2, 2);
       si4735.setFifoCount(1);
       bwIdxFM = band[bandIdx].bandwidthIdx;
-      si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
+      si4735.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
     }
     else
     {
@@ -1253,7 +1253,7 @@ void checkRDS()
         si4735.setSSBAutomaticVolumeControl(1);
         si4735.setSsbSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for SSB
         bwIdxSSB = band[bandIdx].bandwidthIdx;
-        si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
+        si4735.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
         // showBFOorRDS();
       }
       else
@@ -1263,7 +1263,7 @@ void checkRDS()
         si4735.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // // Disable Soft Mute for AM
         cmdBFO = false;
         bwIdxAM = band[bandIdx].bandwidthIdx;
-        si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+        si4735.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
       }
       idxStepAM = currentStepIdx = band[bandIdx].currentStepIdx;
       si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);               // Consider the range all defined current band
@@ -1314,9 +1314,9 @@ void checkRDS()
       else if (bwIdxSSB < 0)
         bwIdxSSB = 5;
 
-      si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
+      si4735.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
       // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-      if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
+      if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
         si4735.setSBBSidebandCutoffFilter(0);
       else
         si4735.setSBBSidebandCutoffFilter(1);
@@ -1332,7 +1332,7 @@ void checkRDS()
       else if (bwIdxAM < 0)
         bwIdxAM = maxFilterAM;
 
-      si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+      si4735.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
       band[bandIdx].bandwidthIdx = bwIdxAM;
       
     } else {
@@ -1342,10 +1342,10 @@ void checkRDS()
     else if (bwIdxFM < 0)
       bwIdxFM = 4;
 
-    si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
+    si4735.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
     band[bandIdx].bandwidthIdx = bwIdxFM;
   }
-  showBandwitdth();
+  showBandwidth();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
@@ -1660,7 +1660,7 @@ void loop(void)
     else if (buttonFilter.justPressed()) // FILTER
     {
       cmdFilter = !cmdFilter;
-      disableCommand(&cmdFilter, cmdFilter, showBandwitdth);
+      disableCommand(&cmdFilter, cmdFilter, showBandwidth);
     }
     else if (buttonStep.justPressed()) // STEP
     {

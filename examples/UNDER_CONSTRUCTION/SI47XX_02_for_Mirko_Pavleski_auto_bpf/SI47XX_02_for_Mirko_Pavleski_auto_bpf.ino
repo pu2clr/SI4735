@@ -163,12 +163,12 @@ int8_t currentFrontEnd = 19;
 
 typedef struct
 {
-  uint8_t idx;      // SI473X device bandwitdth index
-  const char *desc; // bandwitdth description
-} Bandwitdth;
+  uint8_t idx;      // SI473X device bandwidth index
+  const char *desc; // bandwidth description
+} Bandwidth;
 
 int8_t bwIdxSSB = 4;
-Bandwitdth bandwitdthSSB[] = {{4, "0.5"},
+Bandwidth bandwidthSSB[] = {{4, "0.5"},
   {5, "1.0"},
   {0, "1.2"},
   {1, "2.2"},
@@ -177,7 +177,7 @@ Bandwitdth bandwitdthSSB[] = {{4, "0.5"},
 };
 
 int8_t bwIdxAM = 4;
-Bandwitdth bandwitdthAM[] = {{4, "1.0"},
+Bandwidth bandwidthAM[] = {{4, "1.0"},
   {5, "1.8"},
   {3, "2.0"},
   {6, "2.5"},
@@ -451,18 +451,18 @@ void showStatus()
 }
 
 /**
-    Shows the current Bandwitdth status
+    Shows the current Bandwidth status
 */
-void showBandwitdth()
+void showBandwidth()
 {
   char bufferDisplay[15];
   if (currentMode == LSB || currentMode == USB || currentMode == AM)
   {
     char *bw;
     if (currentMode == AM)
-      bw = (char *)bandwitdthAM[bwIdxAM].desc;
+      bw = (char *)bandwidthAM[bwIdxAM].desc;
     else
-      bw = (char *)bandwitdthSSB[bwIdxSSB].desc;
+      bw = (char *)bandwidthSSB[bwIdxSSB].desc;
     sprintf(bufferDisplay, "BW: %s kHz", bw);
   }
   else
@@ -684,9 +684,9 @@ void doBandwidth(int8_t v)
     else if (bwIdxSSB < 0)
       bwIdxSSB = 5;
 
-    rx.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
+    rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-    if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
+    if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
       rx.setSBBSidebandCutoffFilter(0);
     else
       rx.setSBBSidebandCutoffFilter(1);
@@ -699,10 +699,10 @@ void doBandwidth(int8_t v)
     else if (bwIdxAM < 0)
       bwIdxAM = 6;
 
-    rx.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+    rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  showBandwitdth();
+  showBandwidth();
   // showCommandStatus();
   elapsedCommand = millis();
 }
@@ -790,7 +790,7 @@ void doMode(int8_t v)
       if (currentMode == AM)
       {
         // If you were in AM mode, it is necessary to load SSB patch (avery time)
-        rx.loadPatch(ssb_patch_content, size_content, bandwitdthSSB[bwIdxSSB].idx);
+        rx.loadPatch(ssb_patch_content, size_content, bandwidthSSB[bwIdxSSB].idx);
         ssbLoaded = true;
         currentMode = LSB;
       }
@@ -805,7 +805,7 @@ void doMode(int8_t v)
       if (currentMode == AM)
       {
         // If you were in AM mode, it is necessary to load SSB patch (avery time)
-        rx.loadPatch(ssb_patch_content, size_content, bandwitdthSSB[bwIdxSSB].idx);
+        rx.loadPatch(ssb_patch_content, size_content, bandwidthSSB[bwIdxSSB].idx);
         ssbLoaded = true;
         currentMode = USB;
       }
@@ -962,7 +962,7 @@ void doCurrentMenuCmd() {
       break;
     case 3:                 // BW
       cmdBandwidth = true;
-      showBandwitdth();
+      showBandwidth();
       break;
     case 4:                 // AGC/ATT
       cmdAgc = true;

@@ -240,12 +240,12 @@ uint8_t currentBFOStep = 25;
 // Datatype to deal with bandwidth on AM and SSB in numerical order.
 typedef struct
 {
-  uint8_t idx;      // SI473X device bandwitdth index value
-  const char *desc; // bandwitdth description
-} Bandwitdth;
+  uint8_t idx;      // SI473X device bandwidth index value
+  const char *desc; // bandwidth description
+} Bandwidth;
 
 int8_t bwIdxSSB = 4;
-Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
+Bandwidth bandwidthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
                               {5, "1.0"},  //
                               {0, "1.2"},  //
                               {1, "2.2"},  //
@@ -254,7 +254,7 @@ Bandwitdth bandwitdthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
 
 int8_t bwIdxAM = 4;
 const int maxFilterAM = 15;
-Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1kHz
+Bandwidth bandwidthAM[] = {{4, "1.0"}, // 4 = 1kHz
                              {5, "1.8"},
                              {3, "2.0"},
                              {6, "2.5"},
@@ -272,7 +272,7 @@ Bandwitdth bandwitdthAM[] = {{4, "1.0"}, // 4 = 1kHz
                              {15, "U15"}};
 
 int8_t bwIdxFM = 0;
-Bandwitdth bandwitdthFM[] = {{0, "AUT"}, // Automatic
+Bandwidth bandwidthFM[] = {{0, "AUT"}, // Automatic
                              {1, "110"}, // Force wide (110 kHz) channel filter.
                              {2, " 84"},
                              {3, " 60"},
@@ -341,7 +341,7 @@ bool Touch_getXY(void)
 #define YELLOW 0xFFE0
 #define WHITE 0xFFFF
 
-void showBandwitdth(bool drawAfter = false);
+void showBandwidth(bool drawAfter = false);
 void showAgcAtt(bool drawAfter = false);
 void showStep(bool drawAfter = false);
 void showSoftMute(bool drawAfter = false);
@@ -851,7 +851,7 @@ void showStatus()
 
   printText(280, 55, 2, bufferUnit, "kHz", WHITE, 12);
 
-  showBandwitdth(true);
+  showBandwidth(true);
   showAgcAtt(true);
   showStep(true);
   showSoftMute(true);
@@ -861,23 +861,23 @@ void showStatus()
  }
 
 /**
- * SHow bandwitdth on AM or SSB mode
+ * SHow bandwidth on AM or SSB mode
  * 
  */
-void showBandwitdth(bool drawAfter)
+void showBandwidth(bool drawAfter)
 {
   char bw[20];
     
   if (currentMode == LSB || currentMode == USB)
   {
-    sprintf(bw, "BW:%s", bandwitdthSSB[bwIdxSSB].desc);
+    sprintf(bw, "BW:%s", bandwidthSSB[bwIdxSSB].desc);
     showBFO();
   }
   else if (currentMode == AM) {
-    sprintf(bw, "BW:%s", bandwitdthAM[bwIdxAM].desc);
+    sprintf(bw, "BW:%s", bandwidthAM[bwIdxAM].desc);
   }
   else {
-    sprintf(bw, "BW:%s", bandwitdthFM[bwIdxFM].desc);
+    sprintf(bw, "BW:%s", bandwidthFM[bwIdxFM].desc);
   }
   setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, bw, drawAfter);
 }
@@ -1183,7 +1183,7 @@ void loadSSB()
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  si4735.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
+  si4735.setSSBConfig(bandwidthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
   delay(25);
   ssbLoaded = true;
 }
@@ -1288,9 +1288,9 @@ void switchFilter(uint8_t v)
     else if (bwIdxSSB < 0)
       bwIdxSSB = 5;
 
-    si4735.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
+    si4735.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-    if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
+    if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
       si4735.setSBBSidebandCutoffFilter(0);
     else
       si4735.setSBBSidebandCutoffFilter(1);
@@ -1304,7 +1304,7 @@ void switchFilter(uint8_t v)
     else if (bwIdxAM < 0)
       bwIdxAM = maxFilterAM;
 
-    si4735.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+    si4735.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
   } else {
     bwIdxFM = (v == 1) ? bwIdxFM + 1 : bwIdxFM - 1;
     if (bwIdxFM > 4)
@@ -1312,9 +1312,9 @@ void switchFilter(uint8_t v)
     else if (bwIdxFM < 0)
       bwIdxFM = 4;
 
-    si4735.setFmBandwidth(bandwitdthFM[bwIdxFM].idx);
+    si4735.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
   }
-  showBandwitdth();
+  showBandwidth();
   elapsedCommand = millis();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }

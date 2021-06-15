@@ -75,7 +75,7 @@ uint16_t previousFrequency;
 uint8_t currentStep = 5;
 
 uint8_t bandwidthIdx = 2;
-const char *bandwitdth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+const char *bandwidth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 typedef struct {
   uint16_t   minimumFreq;
@@ -230,7 +230,7 @@ void showStatus()
   lcd.print("           ");
   lcd.setCursor(0, 3);
   lcd.print("BW:");
-  lcd.print(String(bandwitdth[bandwidthIdx]));
+  lcd.print(String(bandwidth[bandwidthIdx]));
   lcd.print("kHz");
 
   showSmeter(rssi);

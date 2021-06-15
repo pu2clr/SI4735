@@ -6,7 +6,7 @@ Sketch developed by Ricardo Lima Caratti - Jun, 2021
 
 ## SSB MODE
 
-If you are using a __SI4735-D60__ or __SI4732-A10__ based circuit, you can also use this sketch to add the SSB functionality  to the original Pavleski's project. If you are using the original SI4730-D60 based circuit, the SSB will not work. However, the __STEP, FM/RDS, MODE, AGC, Attenuation, bandwitdth, Soft Mute, Audio Volume and Shortwave__ will work fine. 
+If you are using a __SI4735-D60__ or __SI4732-A10__ based circuit, you can also use this sketch to add the SSB functionality  to the original Pavleski's project. If you are using the original SI4730-D60 based circuit, the SSB will not work. However, the __STEP, FM/RDS, MODE, AGC, Attenuation, bandwidth, Soft Mute, Audio Volume and Shortwave__ will work fine. 
 
 ## PL102BA-S V:2.1 vs NE928-10A V:01
 
@@ -62,10 +62,10 @@ This sketch is very similar to the previous sketch (MIRKO_V1.ino). The new featu
    * When the desired band is shown on display, you  can press the button once again or wait for about 2 seconds. 
    * You will notice the control will go back to the VFO.
 
-2. STEP, MODE, SEEK UP, SEEK DOWN, AGC/Attenuation, bandwitdth, FM/RDS, Soft Mute and VOLUME
+2. STEP, MODE, SEEK UP, SEEK DOWN, AGC/Attenuation, bandwidth, FM/RDS, Soft Mute and VOLUME
 
      * Press the encoder push button twice (within 1/2 second).
-     * After that, the display will show you the Menu text. Rotate the encoder clockwise or counterclockwise to select the option (STEP, MODE, AGC/Attenuation, bandwitdth, VOLUME, etc). 
+     * After that, the display will show you the Menu text. Rotate the encoder clockwise or counterclockwise to select the option (STEP, MODE, AGC/Attenuation, bandwidth, VOLUME, etc). 
      * After that, select the option you want to setup by pressing the encoder push button once again. 
      * After that, rotate the encoder clockwise or counterclockwise to select the parameter.
      * Finally, you can press the button once again or wait for about 2 seconds. 

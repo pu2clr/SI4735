@@ -40,7 +40,7 @@ uint16_t currentFrequency;
 uint8_t currentStep = 5;
 
 uint8_t bandwidthIdx = 2;
-const char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+const char *bandwidth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 
 long et1 = 0, et2 = 0;

@@ -134,10 +134,10 @@ uint8_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
 uint8_t bwIdxSSB = 2;
-const char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+const char *bandwidthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 uint8_t bwIdxAM = 1;
-const char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+const char *bandwidthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 /*
    Band data structure
@@ -334,14 +334,14 @@ void showStatus()
   if (currentMode == LSB || currentMode == USB)
   {
     display.print("BW:");
-    display.print(String(bandwitdthSSB[bwIdxSSB]));
+    display.print(String(bandwidthSSB[bwIdxSSB]));
     display.print("kHz");
     showBFO();
   }
   else if (currentMode == AM)
   {
     display.print("BW:");
-    display.print(String(bandwitdthAM[bwIdxAM]));
+    display.print(String(bandwidthAM[bwIdxAM]));
     display.print("kHz");
   }
 

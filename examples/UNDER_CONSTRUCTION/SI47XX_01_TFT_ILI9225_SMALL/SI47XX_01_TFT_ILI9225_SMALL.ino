@@ -129,10 +129,10 @@ uint16_t currentFrequency;
 uint8_t currentBFOStep = 25;
 
 uint8_t bwIdxSSB = 2;
-const char * bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+const char * bandwidthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 uint8_t bwIdxAM = 1;
-const char * bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+const char * bandwidthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 const char * bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
@@ -439,10 +439,10 @@ void showFilter() {
     tft.drawText(150, 60, bufferStereo, COLOR_BLACK); // Erase Stereo/Mono information
 
     if (currentMode == AM) {
-      bw = (char *) bandwitdthAM[bwIdxAM];
+      bw = (char *) bandwidthAM[bwIdxAM];
     }
     else {
-      bw = (char *) bandwitdthSSB[bwIdxSSB];
+      bw = (char *) bandwidthSSB[bwIdxSSB];
       showBFOTemplate(COLOR_CYAN);
       showBFO();
     }

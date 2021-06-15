@@ -154,10 +154,10 @@ uint16_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
 uint8_t bwIdxSSB = 2;
-const char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+const char *bandwidthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 uint8_t bwIdxAM = 1;
-const char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+const char *bandwidthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
@@ -477,7 +477,7 @@ void showStatus()
   if (currentMode == LSB || currentMode == USB)
   {
     showText(5, 85, 1, NULL, BLACK, bufferBW );
-    sprintf(buffer, "BW:%s kHz", bandwitdthSSB[bwIdxSSB]);
+    sprintf(buffer, "BW:%s kHz", bandwidthSSB[bwIdxSSB]);
     showText(5, 85, 1, NULL, GREEN, buffer );
     strcpy( bufferBW, buffer);
     showBFO();
@@ -486,7 +486,7 @@ void showStatus()
   else if (currentMode == AM)
   {
     showText(5, 85, 1, NULL, BLACK, bufferBW );
-    sprintf(buffer, "BW:%s kHz", bandwitdthAM[bwIdxAM]);
+    sprintf(buffer, "BW:%s kHz", bandwidthAM[bwIdxAM]);
     showText(5, 85, 1, NULL, GREEN, buffer );
     strcpy( bufferBW, buffer);
     showText(70, 85, 1, NULL, GREEN, bufferAGC);

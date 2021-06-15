@@ -180,10 +180,10 @@ uint8_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
 uint8_t bwIdxSSB = 2;
-const char *bandwitdthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+const char *bandwidthSSB[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 uint8_t bwIdxAM = 1;
-const char *bandwitdthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+const char *bandwidthAM[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
 
 /*
    Band data structure
@@ -477,13 +477,13 @@ void showStatus()
 
   if (currentMode == LSB || currentMode == USB)
   {
-    sprintf(bandwitdt, "BW:%skHz", bandwitdthSSB[bwIdxSSB]);
+    sprintf(bandwitdt, "BW:%skHz", bandwidthSSB[bwIdxSSB]);
     printValue(0, 30, oldBandwitdt, bandwitdt, 7, 1);
     showBFO();
   }
   else if (currentMode == AM)
   {
-    sprintf(bandwitdt, "BW:%skHz", bandwitdthAM[bwIdxAM]);
+    sprintf(bandwitdt, "BW:%skHz", bandwidthAM[bwIdxAM]);
     printValue(0, 30, oldBandwitdt, bandwitdt, 7, 1);
   }
 
@@ -636,9 +636,9 @@ void modeSwitchButton() {
 }
 
 /*
- * Button bandwitdth on AM and SSB modes
+ * Button bandwidth on AM and SSB modes
  */
-void bandwitdthButton() {
+void bandwidthButton() {
   if (currentMode == LSB || currentMode == USB)
   {
     bwIdxSSB++;
@@ -868,7 +868,7 @@ void loop()
   {
     // check if some button is pressed
     if (digitalRead(BANDWIDTH_BUTTON) == LOW)
-      bandwitdthButton();
+      bandwidthButton();
     else if (digitalRead(BAND_BUTTON_UP) == LOW)
       bandUp();
     else if (digitalRead(BAND_BUTTON_DOWN) == LOW)

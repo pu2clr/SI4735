@@ -169,12 +169,12 @@ uint8_t currentMode = FM;
 
 typedef struct
 {
-  uint8_t idx;      // SI473X device bandwitdth index
-  const char *desc; // bandwitdth description
-} Bandwitdth;
+  uint8_t idx;      // SI473X device bandwidth index
+  const char *desc; // bandwidth description
+} Bandwidth;
 
 int8_t bwIdxSSB = 4;
-Bandwitdth bandwitdthSSB[] = {{4, "0.5"}, // 0
+Bandwidth bandwidthSSB[] = {{4, "0.5"}, // 0
   {5, "1.0"}, // 1
   {0, "1.2"}, // 2
   {1, "2.2"}, // 3
@@ -183,7 +183,7 @@ Bandwitdth bandwitdthSSB[] = {{4, "0.5"}, // 0
 }; // 5
 
 int8_t bwIdxAM = 4;
-Bandwitdth bandwitdthAM[] = {{4, "1.0"},
+Bandwidth bandwidthAM[] = {{4, "1.0"},
   {5, "1.8"},
   {3, "2.0"},
   {6, "2.5"},
@@ -465,9 +465,9 @@ void showStep() {
 
 
 /**
-   Shows the current Bandwitdth status
+   Shows the current Bandwidth status
 */
-void showBandwitdth() {
+void showBandwidth() {
 
 }
 
@@ -579,7 +579,7 @@ void loadSSB()
   // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
   // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
   // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  rx.setSSBConfig(bandwitdthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
+  rx.setSSBConfig(bandwidthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
   delay(25);
   ssbLoaded = true;
 }
@@ -742,9 +742,9 @@ void doBandwidth(int8_t v) {
     else if ( bwIdxSSB < 0 )
       bwIdxSSB = 5;
 
-    rx.setSSBAudioBandwidth(bandwitdthSSB[bwIdxSSB].idx);
+    rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-    if (bandwitdthSSB[bwIdxSSB].idx == 0 || bandwitdthSSB[bwIdxSSB].idx == 4 || bandwitdthSSB[bwIdxSSB].idx == 5)
+    if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
       rx.setSBBSidebandCutoffFilter(0);
     else
       rx.setSBBSidebandCutoffFilter(1);
@@ -758,9 +758,9 @@ void doBandwidth(int8_t v) {
     else if ( bwIdxAM < 0)
       bwIdxAM = 6;
 
-    rx.setBandwidth(bandwitdthAM[bwIdxAM].idx, 1);
+    rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
   }
-  showBandwitdth();
+  showBandwidth();
   elapsedCommand = millis();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 

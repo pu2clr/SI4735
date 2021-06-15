@@ -57,7 +57,7 @@ uint8_t currentStep = 1;
 uint8_t currentBFOStep = 25;
 
 uint8_t bandwidthIdx = 2;
-const char *bandwitdth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+const char *bandwidth[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
 
 
 long et1 = 0, et2 = 0;
@@ -143,7 +143,7 @@ void showStatus()
   Serial.print(currentAGCAtt);
   
   Serial.print(" | BW :");
-  Serial.print(String(bandwitdth[bandwidthIdx]));
+  Serial.print(String(bandwidth[bandwidthIdx]));
   Serial.print("kHz");
   Serial.print(" | SNR: ");
   Serial.print(si4735.getCurrentSNR());
