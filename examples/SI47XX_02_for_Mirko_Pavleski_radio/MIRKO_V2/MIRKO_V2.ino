@@ -91,7 +91,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define DUMMY_BUTTON 15
 
 #define MIN_ELAPSED_TIME 300
-#define MIN_ELAPSED_RSSI_TIME 150
+#define MIN_ELAPSED_RSSI_TIME 500
 #define ELAPSED_COMMAND 2000 // time to turn off the last command controlled by encoder. Time to goes back to the FVO control
 #define ELAPSED_CLICK 1500   // time to check the double click commands
 #define DEFAULT_VOLUME 35    // change it for your favorite sound volume
@@ -673,9 +673,9 @@ void showBFO()
 {
   char bfo[15];
   if (currentBFO > 0)
-    sprintf(bfo, "BFO: +%4.4d", currentBFO);
+    sprintf(bfo, "BFO:+%4.4d", currentBFO);
   else
-    sprintf(bfo, "BFO: %4.4d", currentBFO);
+    sprintf(bfo, "BFO:%4.4d", currentBFO);
 
   lcd.clear();
   lcd.setCursor(0, 0);
@@ -1095,6 +1095,14 @@ void doMenu( int8_t v) {
 }
 
 
+
+/**
+ * Return true if the current status is Menu command
+ */
+bool isMenuMode() {
+  return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds);
+}
+
 /**
  * Starts the MENU action process
  */
@@ -1119,10 +1127,10 @@ void doCurrentMenuCmd() {
       showMode();
       break;
     case 4:
-      bfoOn = true;
-      if ((currentMode == LSB || currentMode == USB)) {
-        showBFO();
-       }
+        bfoOn = true;
+        if ((currentMode == LSB || currentMode == USB)) {
+          showBFO();
+        }
       // showFrequency();
       break;      
     case 5:                 // BW
@@ -1216,7 +1224,7 @@ void loop()
       }
       else if (countClick == 1)
       { // If just one click, you can select the band by rotating the encoder
-        if ((cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdBand | cmdRds))
+        if (isMenuMode())
         {
           disableCommands();
           showStatus();
@@ -1244,7 +1252,7 @@ void loop()
   {
     rx.getCurrentReceivedSignalQuality();
     int aux = rx.getCurrentRSSI();
-    if (rssi != aux && !(cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds))
+    if (rssi != aux && !isMenuMode())
     {
       rssi = aux;
       showRSSI();
@@ -1255,12 +1263,13 @@ void loop()
   // Disable commands control
   if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
   {
-    if ((currentMode == LSB || currentMode == USB))
+    if ((currentMode == LSB || currentMode == USB) )
     {
       bfoOn = false;
-      showBFO();
-    }
-    showStatus();
+      // showBFO();
+      showStatus();
+    } else if (isMenuMode()) 
+      showStatus();
     disableCommands();
     elapsedCommand = millis();
   }
@@ -1282,7 +1291,7 @@ void loop()
     }
   }
 
-  if (currentMode == FM && fmRDS && !(cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds) )
+  if (currentMode == FM && fmRDS && !isMenuMode() )
   {
       if (currentFrequency != previousFrequency)
       {
