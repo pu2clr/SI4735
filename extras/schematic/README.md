@@ -144,6 +144,11 @@ You can use de Si4735 Arduino Library on the very small ATtiny85 or Attiny84. Th
 ![Attiny85 Basic schematic](../images/schematic_attiny85_basic.png)
 
 
+### Attiny85 with external eeprom
+
+![Attiny85 Basic schematic](../images/schematic_attiny85_ssb_external_eeprom.png)
+
+
 Sketches on [examples/SI47XX_05_ATTINY85](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85)
 
 See videos: 
