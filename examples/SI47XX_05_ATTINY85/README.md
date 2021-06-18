@@ -31,6 +31,14 @@ The pull-up resistor values may vary depending on the devices connected to the I
 
 ![Schematic ATtiny85 and Si4735](../../extras/images/schematic_attiny85_basic.png)
 
+
+
+#### ATtiny85 AND EXTERNAL EEPROM SETUP 
+
+![Schematic ATtiny85 and Si4735](../../extras/images/schematic_attiny85_ssb_external_eeprom.png)
+
+
+
 ### Photo
 
 The photo below show the Si4730 on adapter board with the basic components suggested by Silicon Labs.
