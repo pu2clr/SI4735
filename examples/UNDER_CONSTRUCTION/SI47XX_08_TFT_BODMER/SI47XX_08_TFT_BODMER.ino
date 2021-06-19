@@ -74,7 +74,6 @@
   Tip: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time.
        If you do that, you might alternate the command status (enable and disable) randomly.
 
-
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
@@ -88,10 +87,11 @@
 
 #include "Rotary.h"
 
-// Test it with patch_init.h or patch_full.h. Do not try load both.
-#include "patch_init.h" // SSB patch for whole SSBRX initialization string
+#include "patch_ssb_compressed.h" // Compressed SSB patch version (saving almost 1KB)
 
-// const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
+const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
+const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
+
 
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
@@ -199,14 +199,14 @@ int idxStep = 0;
 
 uint16_t currentStep = 1;
 
-char bufferDisplay[100]; // Useful to handle string
-char bufferFreq[15];
-char bufferBFO[15];
-char bufferStepVFO[15];
-char bufferBW[15];
-char bufferAGC[10];
-char bufferBand[10];
-char bufferStereo[10];
+char bufferDisplay[10]; // Useful to handle string
+char bufferFreq[10];
+char bufferBFO[5];
+char bufferStepVFO[5];
+char bufferBW[5];
+char bufferAGC[5];
+char bufferBand[5];
+char bufferStereo[3];
 
 /*
    Band data structure
@@ -242,8 +242,6 @@ Band band[] = {
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
-
-const char * const text_message  = "DIY: github.com/pu2clr/SI4735";
 
 uint8_t rssi = 0;
 uint8_t snr = 0;
@@ -284,8 +282,8 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   // rx.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
-  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
-  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
+  rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
+  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
@@ -308,15 +306,6 @@ void disableCommands()
   cmdMode = false;
 }
 
-/**
-    Gets the current step index.
-*/
-int getStepIndex(int st) {
-  for (int i = 0; i < lastStep; i++) {
-    if ( st == tabStep[i] ) return i;
-  }
-  return 0;
-}
 
 
 /*
@@ -399,29 +388,10 @@ void showFrequency()
 
   if (rx.isCurrentTuneFM())
   {
-    bufferDisplay[0] = tmp[0];
-    bufferDisplay[1] = tmp[1];
-    bufferDisplay[2] = tmp[2];
-    bufferDisplay[3] = '.';
-    bufferDisplay[4] = tmp[3];
-    bufferDisplay[5] = '\0';
   }
   else
   {
-    if ( currentFrequency  < 1000 ) {
-      bufferDisplay[0] = tmp[2] ;
-      bufferDisplay[1] = tmp[3];
-      bufferDisplay[2] = tmp[4];
-      bufferDisplay[3] = '\0';
-    } else {
-      bufferDisplay[0] = tmp[0] ;
-      bufferDisplay[1] = tmp[1];
-      bufferDisplay[2] = '.';
-      bufferDisplay[3] = tmp[2];
-      bufferDisplay[4] = tmp[3];
-      bufferDisplay[5] = tmp[4];
-      bufferDisplay[6] = '\0';
-    }
+
   }
 
   color = (bfoOn && (currentMode == LSB || currentMode == USB)) ?  TFT_CYAN : TFT_YELLOW;
@@ -472,19 +442,10 @@ void showBandwidth() {
 }
 
 
-char *rdsMsg;
 char *stationName;
-char *rdsTime;
-char bufferStatioName[40];
-char bufferRdsMsg[40];
-char bufferRdsTime[32];
+char bufferStatioName[10];
 
 long stationNameElapsed = millis();
-
-void showRDSMsg() {
-
-
-}
 
 /**
    TODO: process RDS Dynamic PS or Scrolling PS
@@ -493,26 +454,16 @@ void showRDSStation() {
 
 }
 
-void showRDSTime() {
-
-}
 
 void checkRDS() {
-
   rx.getRdsStatus();
   if (rx.getRdsReceived()) {
     if (rx.getRdsSync() && rx.getRdsSyncFound() ) {
-      rdsMsg = rx.getRdsText2A();
       stationName = rx.getRdsText0A();
-      rdsTime = rx.getRdsTime();
-      if ( rdsMsg != NULL )   showRDSMsg();
-
-      if ( (millis() - stationNameElapsed) > 2000 ) {
+      if ( (millis() - stationNameElapsed) ) {
         if ( stationName != NULL && rx.getRdsNewBlockA() )   showRDSStation();
         stationNameElapsed = millis();
       }
-
-      if ( rdsTime != NULL ) showRDSTime();
     }
   }
 }
@@ -563,14 +514,13 @@ void setBand(uint8_t up_down) {
 */
 void loadSSB()
 {
-  rx.reset();
   rx.queryLibraryId(); // Is it really necessary here? I will check it.
   rx.patchPowerUp();
   delay(50);
-  rx.setI2CFastMode(); // Recommended
-  // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
-  // rx.downloadPatch(ssb_patch_content, size_content);
-  rx.setI2CStandardMode(); // goes back to default (100kHz)
+  // rx.setI2CFastMode(); // Recommended
+  // rx.setI2CFastModeCustom(600000); // It is a test and may crash.
+  rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
+  // rx.setI2CStandardMode(); // goes back to default (100kHz)
 
   // Parameters
   // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
@@ -623,7 +573,7 @@ void useBand()
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStep = band[bandIdx].currentStep;
-  idxStep = getStepIndex(currentStep);
+  // idxStep = getStepIndex(currentStep);
   rssi = 0;
   clearBFO();
   showStatus();
@@ -634,7 +584,7 @@ void useBand()
 */
 void doAgc(int8_t v)
 {
-
+  /*
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
   if (agcIdx < 0)
     agcIdx = 37;
@@ -652,6 +602,7 @@ void doAgc(int8_t v)
   showAgcAtt();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
+  */
 }
 
 
@@ -659,6 +610,7 @@ void doAgc(int8_t v)
     Switches the current step
 */
 void doStep(int8_t v) {
+  /*
   idxStep = ( v == 1 ) ? idxStep + 1 : idxStep - 1;
   if ( idxStep > lastStep)
     idxStep = 0;
@@ -673,6 +625,7 @@ void doStep(int8_t v) {
   showStep();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
+  */
 }
 
 
@@ -680,8 +633,10 @@ void doStep(int8_t v) {
     Find a station. The direction is based on the last encoder move clockwise or counterclockwise
 */
 void doSeek() {
+  /*
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   currentFrequency = rx.getFrequency();
+  */
 }
 
 
@@ -690,6 +645,7 @@ void doSeek() {
 */
 void doMode(int8_t v)
 {
+  
   bufferBFO[0] = bufferFreq[0] - '\0';
   if (currentMode != FM)
   {
@@ -727,12 +683,14 @@ void doMode(int8_t v)
     band[bandIdx].currentStep = currentStep;
     useBand();
   }
+
 }
 
 /**
     Switches the Bandwidth
 */
 void doBandwidth(int8_t v) {
+  /*
   if (currentMode == LSB || currentMode == USB)
   {
     bwIdxSSB = ( v == 1) ? bwIdxSSB + 1 : bwIdxSSB - 1;
@@ -763,11 +721,12 @@ void doBandwidth(int8_t v) {
   showBandwidth();
   elapsedCommand = millis();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-
+  */
 }
 
 void doBFO()
 {
+  /*
   bfoOn = !bfoOn;
   if ((currentMode == LSB || currentMode == USB))
     showBFO();
@@ -775,6 +734,7 @@ void doBFO()
   showFrequency();
   delay(MIN_ELAPSED_TIME);
   elapsedCommand = millis();
+  */
 }
 
 void loop()
@@ -894,8 +854,7 @@ void loop()
 
   if ( currentMode == FM) {
     if ( currentFrequency != previousFrequency ) {
-      bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] =  bufferRdsTime[0] = rdsMsg[0] = stationName[0] = '\0';
-      showRDSMsg();
+      bufferStatioName[0] = stationName[0] = '\0';
       showRDSStation();
       previousFrequency = currentFrequency;
     }
