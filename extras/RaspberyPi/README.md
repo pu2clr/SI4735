@@ -2,6 +2,8 @@
 
 __UNDER CONSTRUCTION....__
 
+Here you will have some tips about "PU2CLR SI4735 Arduino Library" and Raspberry Pi.  
+
 
 ## Using Arduino IDE to generate Raspbery Pi code
 
