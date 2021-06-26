@@ -31,11 +31,9 @@ I've since piped my arecord output to the aplay program which defaults to the ex
 
 I know this post is TLDR; and I haven't put all the details in here but I just wanted <whoever> to know that this amazing library will run on the Rpi.  I'll make another post with more hardware / connection / pitfall details.  So much thanks to Ricardo Caratti for his work on this amazing library.  I don't have Facebook, so if someone would please, link this to the si473x Facebook page so other Rpi experimenters can find it.  
 
-### More detais about xx setup
+### More detais about Ryk's Raspberry Pi setup
 
-[Group IO](https://mail.google.com/mail/u/0/#inbox/WhctKKWxVFQKTQcvzjzXzDJWgLbPprlcMFNvJlfDrwvlgdJZlLghBcSfSqhsLmCNVmDSbgQ)
-
-
+* [Group IO](https://mail.google.com/mail/u/0/#inbox/WhctKKWxVFQKTQcvzjzXzDJWgLbPprlcMFNvJlfDrwvlgdJZlLghBcSfSqhsLmCNVmDSbgQ)
 * [Install raspiArduino connector on github](https://github.com/me-no-dev/RasPiArduino)
 * [Install the PU2CLR SI4735 Arduino Library](https://github.com/pu2clr/SI4735#library-installation)
 * [How to Run Arduino Sketches on Raspberry Pi](https://www.deviceplus.com/raspberry-pi/how-to-run-arduino-sketches-on-raspberry-pi/)
@@ -52,4 +50,8 @@ __UNDER CONSTRUCTION....__
 * [i2c.c File Reference](https://alanbarr.github.io/RaspberryPi-GPIO/i2c_8c.html)
 * [Extending Python with C or C++](https://docs.python.org/3/extending/extending.html)
 * [Cross Compiling wiringPi on OSX using Docker](https://gist.github.com/jonlidgard/e581a31c9885bee34a18b60efa3774d8)
-* 
+
+
+
+
+#si4735 #si4732 #raspberry #arduino #si4730 
