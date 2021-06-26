@@ -31,6 +31,10 @@ I've since piped my arecord output to the aplay program which defaults to the ex
 
 I know this post is TLDR; and I haven't put all the details in here but I just wanted <whoever> to know that this amazing library will run on the Rpi.  I'll make another post with more hardware / connection / pitfall details.  So much thanks to Ricardo Caratti for his work on this amazing library.  I don't have Facebook, so if someone would please, link this to the si473x Facebook page so other Rpi experimenters can find it.  
 
+### More detais about xx setup
+
+[Group IO](https://mail.google.com/mail/u/0/#inbox/WhctKKWxVFQKTQcvzjzXzDJWgLbPprlcMFNvJlfDrwvlgdJZlLghBcSfSqhsLmCNVmDSbgQ)
+
 
 * [Install raspiArduino connector on github](https://github.com/me-no-dev/RasPiArduino)
 * [Install the PU2CLR SI4735 Arduino Library](https://github.com/pu2clr/SI4735#library-installation)
