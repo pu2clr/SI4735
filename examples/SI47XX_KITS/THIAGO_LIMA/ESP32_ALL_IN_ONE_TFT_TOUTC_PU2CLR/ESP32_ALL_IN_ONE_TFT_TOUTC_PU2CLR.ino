@@ -224,7 +224,6 @@ Band band[] = {
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 1;
-int lastSwBand = 7; // Saves the last SW band used
 
 int tabStepAM[] = {1, 5, 9, 10, 50, 100, 500, 1000};
 const int lastStepAM = (sizeof tabStepAM / sizeof(int)) - 1;
@@ -1243,7 +1242,6 @@ void checkRDS()
       else
       {
         antennaIdx = 1;
-        lastSwBand = bandIdx;
         si4735.setTuneFrequencyAntennaCapacitor(antennaIdx);
       }
 
