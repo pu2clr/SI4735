@@ -884,7 +884,7 @@ void loop()
     else if (digitalRead(STEP_SWITCH) == LOW)
       prepareCommand(&cmdStep);
     else if (digitalRead(MODE_SWITCH) == LOW)
-      prepareCommand(&cmdStep);
+      prepareCommand(&cmdMode);
     else if (digitalRead(BFO_SWITCH) == LOW)
     {
       bfoOn = !bfoOn;
