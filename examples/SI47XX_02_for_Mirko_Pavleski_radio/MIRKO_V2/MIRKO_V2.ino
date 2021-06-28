@@ -1230,6 +1230,10 @@ void loop()
           showStatus();
           showCommandStatus((char *)"VFO ");
         }
+        else if ( bfoOn ) {
+          bfoOn = false;
+          showStatus();
+        }
         else
         {
           cmdBand = !cmdBand;
