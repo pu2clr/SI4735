@@ -683,6 +683,7 @@ void setBand(int8_t up_down)
     bandIdx = (bandIdx > 0) ? (bandIdx - 1) : lastBand;
   useBand();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();
 }
 
 /**
