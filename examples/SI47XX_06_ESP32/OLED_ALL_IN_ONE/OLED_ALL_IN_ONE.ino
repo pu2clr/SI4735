@@ -119,14 +119,15 @@ long elapsedRSSI = millis();
 long elapsedButton = millis();
 
 long elapsedClick = millis();
+long elapsedCommand = millis();
 volatile int encoderCount = 0;
 uint16_t currentFrequency;
 
 const uint8_t currentBFOStep = 10;
 
-const char * menu[] = {"Seek", "Step", "Mode", "BW", "AGC/Att", "Volume", "SoftMute", "BFO"};
+const char *menu[] = {"Volume", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "Seek Up", "Seek Down"};
 int8_t menuIdx = 0;
-const int lastMenu = 7;
+const int lastMenu = 9;
 int8_t currentMenuCmd = -1;
 
 typedef struct
@@ -449,7 +450,7 @@ void readAllReceiverInformation()
  */
 void resetEepromDelay()
 {
-  storeTime = millis();
+  elapsedCommand = storeTime = millis();
   itIsTimeToSave = true;
 }
 
@@ -646,6 +647,7 @@ void showBFO()
     sprintf(bfo, "BFO: %4.4d", currentBFO);
 
   printParam(bfo);
+  elapsedCommand = millis();
 }
 
 /*
@@ -829,6 +831,7 @@ void doAgc(int8_t v) {
   rx.setAutomaticGainControl(disableAgc, agcNdx); // if agcNdx = 0, no attenuation
   showAgcAtt();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();
 }
 
 
@@ -860,6 +863,7 @@ void doStep(int8_t v)
     }
     band[bandIdx].currentStepIdx = currentStepIdx;
     showStep();
+    elapsedCommand = millis();
 }
 
 /**
@@ -906,6 +910,7 @@ void doMode(int8_t v)
     useBand();
   }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();
 }
 
 /**
@@ -955,6 +960,7 @@ void doSoftMute(int8_t v)
 
   rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx);
   showSoftMute();
+  elapsedCommand = millis();
 }
 
 /**
@@ -963,7 +969,7 @@ void doSoftMute(int8_t v)
 void doMenu( int8_t v) {
   int8_t lastOpt;
   menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
-  lastOpt = ((currentMode == LSB || currentMode == USB)) ? lastMenu : lastMenu - 1;
+  lastOpt = lastMenu - 1;
   if (menuIdx > lastOpt)
     menuIdx = 0;
   else if (menuIdx < 0)
@@ -971,6 +977,7 @@ void doMenu( int8_t v) {
 
   showMenu();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();
 }
 
 
@@ -980,44 +987,58 @@ void doMenu( int8_t v) {
 void doCurrentMenuCmd() {
   disableCommands();
   switch (currentMenuCmd) {
+     case 0:                 // VOLUME
+      cmdVolume = true;
+      showVolume();
+      break;
     case 1:                 // STEP
       cmdStep = true;
       showStep();
       break;
     case 2:                 // MODE
       cmdMode = true;
-      // lcd.clear();
       showMode();
       break;
-    case 3:                 // BW
+    case 3:
+        bfoOn = true;
+        if ((currentMode == LSB || currentMode == USB)) {
+          showBFO();
+        }
+      // showFrequency();
+      break;      
+    case 4:                 // BW
       cmdBandwidth = true;
       showBandwidth();
       break;
-    case 4:                 // AGC/ATT
+    case 5:                 // AGC/ATT
       cmdAgc = true;
       showAgcAtt();
-      break;
-    case 5:                 // VOLUME
-      cmdVolume = true;
-      showVolume();
       break;
     case 6: 
       cmdSoftMuteMaxAtt = true;
       showSoftMute();  
       break;
     case 7:
-      bfoOn = true;
-      if ((currentMode == LSB || currentMode == USB)) {
-        showBFO();
-       }
-      // showFrequency();
-      break;
+      seekDirection = 1;
+      doSeek();
+      break;  
+    case 8:
+      seekDirection = 0;
+      doSeek();
+      break;    
     default:
-        showStatus();
-        doSeek();
+      showStatus();
       break;
   }
   currentMenuCmd = -1;
+  elapsedCommand = millis();
+}
+
+/**
+ * Return true if the current status is Menu command
+ */
+bool isMenuMode() {
+  return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode);
 }
 
 /**
@@ -1052,52 +1073,66 @@ void loop()
       setBand(encoderCount);
     else
     {
-      if (encoderCount == 1) {
+      if (encoderCount == 1)
+      {
         rx.frequencyUp();
-        seekDirection = 1;
       }
-      else{
+      else
+      {
         rx.frequencyDown();
-        seekDirection = 0;
       }
       // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
       showFrequency();
     }
     encoderCount = 0;
-    elapsedRSSI = millis();
     resetEepromDelay();
   }
   else
   {
-    if ( digitalRead(ENCODER_PUSH_BUTTON) == LOW ) {
+    if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
+    {
       countClick++;
-      if (cmdMenu ) {
+      if (cmdMenu)
+      {
         currentMenuCmd = menuIdx;
         doCurrentMenuCmd();
-      } else if ( countClick == 1) { // If just one click, you can select the band by rotating the encoder
-        if ( (cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdBand) ) {
+      }
+      else if (countClick == 1)
+      { // If just one click, you can select the band by rotating the encoder
+        if (isMenuMode())
+        {
           disableCommands();
           showStatus();
-          showCommandStatus((char *) "VFO ");
-        } else {
-          cmdBand = !cmdBand;
-          showCommandStatus((char *) "Band");
+          showCommandStatus((char *)"VFO ");
         }
-      } else { // GO to MENU if more than one click in less than 1/2 seconds.
+        else if (bfoOn) {
+          bfoOn = false;
+          showStatus();
+        }
+        else
+        {
+          cmdBand = !cmdBand;
+          showCommandStatus((char *)"Band");
+        }
+      }
+      else
+      { // GO to MENU if more than one click in less than 1/2 seconds.
         cmdMenu = !cmdMenu;
-        if (cmdMenu) showMenu();
+        if (cmdMenu)
+          showMenu();
       }
       delay(MIN_ELAPSED_TIME);
+      elapsedCommand = millis();
     }
   }
 
   // Show RSSI status only if this condition has changed
-  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 12)
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
   {
     rx.getCurrentReceivedSignalQuality();
     int aux = rx.getCurrentRSSI();
-    if (rssi != aux &&  !(cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode) )
+    if (rssi != aux && !isMenuMode())
     {
       rssi = aux;
       showRSSI();
@@ -1105,7 +1140,22 @@ void loop()
     elapsedRSSI = millis();
   }
 
-  if ( (millis() - elapsedClick) > ELAPSED_CLICK ) {
+  // Disable commands control
+  if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
+  {
+    if ((currentMode == LSB || currentMode == USB) )
+    {
+      bfoOn = false;
+      // showBFO();
+      showStatus();
+    } else if (isMenuMode()) 
+      showStatus();
+    disableCommands();
+    elapsedCommand = millis();
+  }
+
+  if ((millis() - elapsedClick) > ELAPSED_CLICK)
+  {
     countClick = 0;
     elapsedClick = millis();
   }
