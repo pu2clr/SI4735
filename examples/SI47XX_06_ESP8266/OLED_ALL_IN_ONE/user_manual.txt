@@ -28,8 +28,10 @@ Commands
 
 4. SEEK 
 
-   4.1. Select the menu by pressing twice the encoder push button. The seek direction is based on the last encoder 
-        movement. If clockwise, the seek will go up; if counterclockwise, the seek will go down.  
+   4.1. Select the menu by pressing twice the encoder push button. 
+   4.2. Rotate the encoder clockwise or counterclockwise to select "Seek Up"  or "Seek Down".
+   4.3. Press the encoder push button once on "Seek Up"  or "Seek Down".
+
 
 ATTENTION: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. 
            If you do that, you might alternate the command status (enable and disable) randomly. 

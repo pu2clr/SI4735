@@ -78,10 +78,9 @@
 #include <SPI.h>
 #include "Rotary.h"
 
-// Test it with patch_init.h or patch_full.h. Do not try load both.
-#include "patch_init.h" // SSB patch for whole SSBRX initialization string
-
-const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
+#include "patch_ssb_compressed.h" // Compressed SSB patch version (saving almost 1KB)
+const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
+const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
 
 // TFT ST7735 based device pin setup
 #define TFT_RST 8  // You might need to switch from 8 to 9 depending of your ST7735 device
@@ -319,12 +318,17 @@ void showTemplate()
   tft.drawLine(2, 60, maxX1, 60, ST77XX_YELLOW);
 }
 
-
 /**
-  Converts a number to a char string and places leading zeros. 
-  It is useful to mitigate memory space used by sprintf or generic similar function
-*/
-void convertToChar(uint16_t value, char *strValue, uint8_t len)
+ * Converts a number to a char string and places leading zeros. 
+ * It is useful to mitigate memory space used by sprintf or generic similar function 
+ * 
+ * value  - value to be converted
+ * strValue - the value will be receive the value converted
+ * len -  final string size (in bytes) 
+ * dot - the decimal or tousand separator position
+ * separator -  symbol "." or "," 
+ */
+char* convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator)
 {
   char d;
   for (int i = (len - 1); i >= 0; i--)
@@ -334,6 +338,22 @@ void convertToChar(uint16_t value, char *strValue, uint8_t len)
     strValue[i] = d + 48;
   }
   strValue[len] = '\0';
+  if (dot > 0)
+  {
+    for (int i = len; i >= dot; i--)
+    {
+      strValue[i + 1] = strValue[i];
+    }
+    strValue[dot] = separator;
+  }
+
+  if (strValue[0] == '0')
+  {
+    strValue[0] = ' ';
+    if (strValue[1] == '0')
+      strValue[1] = ' ';
+  }
+  return strValue;
 }
 
 
@@ -410,30 +430,15 @@ void rotaryEncoder()
 void showFrequency()
 {
   uint16_t color;
-  char tmp[15];
 
-  convertToChar(currentFrequency, tmp,5);
-  bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
-  bufferDisplay[1] = tmp[1];
   if (rx.isCurrentTuneFM())
   {
-    bufferDisplay[2] = tmp[2];
-    bufferDisplay[3] = '.';
-    bufferDisplay[4] = tmp[3];
+    convertToChar(currentFrequency, bufferDisplay, 5, 3, ',');
     color = ST7735_CYAN;
   }
   else
   {
-    if ( currentFrequency  < 1000 ) {
-      bufferDisplay[1] = ' ';
-      bufferDisplay[2] = tmp[2] ;
-      bufferDisplay[3] = tmp[3];
-      bufferDisplay[4] = tmp[4];
-    } else {
-      bufferDisplay[2] = tmp[2];
-      bufferDisplay[3] = tmp[3];
-      bufferDisplay[4] = tmp[4];
-    }
+    convertToChar(currentFrequency, bufferDisplay, 5, 0, '.');
     color = (bfoOn && (currentMode == LSB || currentMode == USB)) ? ST7735_WHITE : ST77XX_YELLOW;
   }
   bufferDisplay[5] = '\0';
@@ -566,7 +571,7 @@ void showAgcAtt() {
     if (agcNdx == 0 && agcIdx == 0)
       strcpy(sAgc, "AGC ON");
     else {
-      convertToChar(agcNdx,tmp,2);
+      convertToChar(agcNdx, tmp, 2, 0, '.'); 
       strcpy(sAgc,"ATT: ");
       strcat(sAgc,tmp);  
     }
@@ -580,7 +585,7 @@ void showAgcAtt() {
 void showStep() {
   char sStep[15];
   char tmp[10];
-  convertToChar(currentStep,tmp,4);
+  convertToChar(currentStep, tmp, 4, 0, '.'); 
   strcpy(sStep,"Stp:");
   strcat(sStep,tmp);
   printValue(110, 65, bufferStepVFO, sStep, 6, ST77XX_GREEN, 1);
@@ -602,8 +607,8 @@ void showBFO()
       bufferDisplay[0] = '+';
     else 
       bufferDisplay[0] = ' ';      
-    
-     convertToChar(auxBfo,tmp,4); 
+
+     convertToChar(auxBfo, tmp, 4, 0, '.'); 
      strcpy(&bufferDisplay[1], tmp);
     // sprintf(bufferDisplay, "%+4d", currentBFO);
     printValue(128, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
@@ -637,9 +642,11 @@ void loadSSB()
   rx.queryLibraryId(); // Is it really necessary here? I will check it.
   rx.patchPowerUp();
   delay(50);
-  rx.setI2CFastMode(); // Recommended
-  // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
+  // rx.setI2CFastMode(); // Recommended
+  rx.setI2CFastModeCustom(500000); // It is a test and may crash.
   rx.downloadPatch(ssb_patch_content, size_content);
+  rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
+  
   rx.setI2CStandardMode(); // goes back to default (100kHz)
 
   // Parameters
