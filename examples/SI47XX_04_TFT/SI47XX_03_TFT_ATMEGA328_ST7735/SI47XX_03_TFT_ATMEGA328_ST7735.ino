@@ -74,6 +74,7 @@
 
 #include <Adafruit_GFX.h>    // Core graphics library
 #include <Adafruit_ST7735.h> // Hardware-specific library for ST7735
+#include <Fonts/FreeMonoBold18pt7b.h>  
 
 #include <SPI.h>
 #include "Rotary.h"
@@ -442,7 +443,10 @@ void showFrequency()
     color = (bfoOn && (currentMode == LSB || currentMode == USB)) ? ST7735_WHITE : ST77XX_YELLOW;
   }
   bufferDisplay[5] = '\0';
-  printValue(30, 10, bufferFreq, bufferDisplay, 18, color, 2);
+  
+  tft.setFont(&FreeMonoBold18pt7b);
+  printValue(22, 32, bufferFreq, bufferDisplay, 22, color, 1);
+  tft.setFont(NULL);
 }
 
 /**
@@ -611,7 +615,7 @@ void showBFO()
      convertToChar(auxBfo, tmp, 4, 0, '.'); 
      strcpy(&bufferDisplay[1], tmp);
     // sprintf(bufferDisplay, "%+4d", currentBFO);
-    printValue(128, 30, bufferBFO, bufferDisplay, 7, ST77XX_CYAN,1);
+    printValue(120, 30, bufferBFO, bufferDisplay, 6, ST77XX_CYAN,1);
     // showFrequency();
     elapsedCommand = millis();
 }
@@ -644,7 +648,6 @@ void loadSSB()
   delay(50);
   // rx.setI2CFastMode(); // Recommended
   rx.setI2CFastModeCustom(500000); // It is a test and may crash.
-  rx.downloadPatch(ssb_patch_content, size_content);
   rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
   
   rx.setI2CStandardMode(); // goes back to default (100kHz)
