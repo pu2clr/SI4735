@@ -57,6 +57,7 @@
 #include <SI4735.h>
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
+// #include <LiquidCrystal_I2C.h>
 #include "Rotary.h"
 #include "patch_init.h" // SSB patch for whole SSBRX initialization string
 
@@ -271,6 +272,8 @@ uint8_t volume = DEFAULT_VOLUME;
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
+// LiquidCrystal_I2C lcd(0x27, 20, 4); 
+
 SI4735 rx;
 
 
