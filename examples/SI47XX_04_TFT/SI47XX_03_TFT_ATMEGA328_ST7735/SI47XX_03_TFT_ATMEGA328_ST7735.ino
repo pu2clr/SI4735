@@ -118,7 +118,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 150
 #define ELAPSED_COMMAND 2500  // time to turn off the last command controlled by encoder
-#define DEFAULT_VOLUME 50     // change it for your favorite sound volume
+#define DEFAULT_VOLUME 40     // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
