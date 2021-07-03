@@ -1,20 +1,12 @@
 /*
-  LCD16x2 (3.3V version) and ESP32 wireup
-
-  Reference: https://www.circuitschools.com/interfacing-16x2-lcd-module-with-esp32-with-and-without-i2c/
-  
-  It is important to say that this sketch was designed to work with the circuit implemented by Mirko Pavleski (see link above).
-  The visual interface, control commands, band plan, and some functionalities are different if compared with the original
-  sketch. Be sure you are using the SI4735 Arduino Library written by PU2CLR to run this sketch. The library used by the original
-  sketch will not work here. Also, you have to install the LiquidCrystal library.
-
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
 
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-  Wire up on Arduino UNO, Pro mini and SI4735-D60
+  ESP32 Wire up with LCD, encoder/pushbutton and SI4735-D60
+    
   | Device name               | Device Pin / Description      |  ESP32        |
   | ----------------          | ----------------------------- | ------------- |
   |    LCD 16x2 or 20x4       |                               |               |
@@ -41,12 +33,13 @@
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
        It seems the original project connect the SEN pin to the +Vcc. By using this sketch, you do
        not need to worry about this setting.
+       
   ATTENTION: Read the file user_manual.txt
+  
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
-
-  To LCD custom character: https://maxpromer.github.io/LCD-Character-Creator/
-
+  LCD16x2 (3.3V version) and ESP32 wireup: https://www.circuitschools.com/interfacing-16x2-lcd-module-with-esp32-with-and-without-i2c/
+  LCD custom character: https://maxpromer.github.io/LCD-Character-Creator/
 
   By PU2CLR, Ricardo, May  2021.
 */
