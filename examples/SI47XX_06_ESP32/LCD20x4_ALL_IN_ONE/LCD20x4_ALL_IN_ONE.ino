@@ -79,7 +79,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define LCD_D6 16
 #define LCD_D5 17
 #define LCD_D4 18
-#define LCD_RS 12
+#define LCD_RS 19
 #define LCD_E  23
 
 // Buttons controllers
@@ -291,6 +291,9 @@ void setup()
 {
   // Encoder pins
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
+
   lcd.begin(20, 4);
 
   // load LCD custom characters
@@ -306,6 +309,7 @@ void setup()
   lcd.setCursor(0, 3);
   lcd.print("By RICARDO/2021 - V1");
   delay(3000);
+
   // End splash
 
   EEPROM.begin(EEPROM_SIZE);
