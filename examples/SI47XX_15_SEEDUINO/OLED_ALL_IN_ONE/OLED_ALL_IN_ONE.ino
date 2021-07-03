@@ -129,7 +129,7 @@ const uint8_t currentBFOStep = 10;
 
 const char *menu[] = {"Volume", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "Seek Up", "Seek Down"};
 int8_t menuIdx = 0;
-const int lastMenu = 9;
+const int lastMenu = 8;
 int8_t currentMenuCmd = -1;
 
 
@@ -964,13 +964,11 @@ void doSoftMute(int8_t v)
  *  Menu options selection
  */
 void doMenu( int8_t v) {
-  int8_t lastOpt;
   menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
-  lastOpt = lastMenu - 1;
-  if (menuIdx > lastOpt)
+  if (menuIdx > lastMenu)
     menuIdx = 0;
   else if (menuIdx < 0)
-    menuIdx = lastOpt;
+    menuIdx = lastMenu;
 
   showMenu();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
