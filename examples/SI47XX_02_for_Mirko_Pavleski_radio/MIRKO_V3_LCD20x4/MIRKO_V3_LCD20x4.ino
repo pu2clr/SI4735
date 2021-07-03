@@ -153,7 +153,7 @@ const uint8_t currentBFOStep = 10;
 
 const char * menu[] = {"Volume", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "Seek Up", "Seek Down"};
 int8_t menuIdx = 0;
-const int lastMenu = 10;
+const int lastMenu = 9;
 int8_t currentMenuCmd = -1;
 
 typedef struct
@@ -1078,13 +1078,11 @@ void doRdsSetup(int8_t v)
  *  Menu options selection
  */
 void doMenu( int8_t v) {
-  int8_t lastOpt;
   menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
-  lastOpt = ((currentMode == LSB || currentMode == USB)) ? lastMenu : lastMenu - 1;
-  if (menuIdx > lastOpt)
+  if (menuIdx > lastMenu)
     menuIdx = 0;
   else if (menuIdx < 0)
-    menuIdx = lastOpt;
+    menuIdx = lastMenu;
 
   showMenu();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
