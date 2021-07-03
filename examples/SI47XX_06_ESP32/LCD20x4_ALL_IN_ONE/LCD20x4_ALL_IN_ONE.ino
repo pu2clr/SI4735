@@ -1,7 +1,4 @@
 /*
-
-  UNDER CONSTRUCTION......
-  
   LCD20x4 (3.3V version) and ESP32 wireup
 
   Reference: https://www.circuitschools.com/interfacing-16x2-lcd-module-with-esp32-with-and-without-i2c/
@@ -305,7 +302,7 @@ void setup()
   lcd.setCursor(0, 1);
   lcd.print("Arduino Library");
   lcd.setCursor(0, 2);
-  lcd.print("DIY Mirko Receiver");
+  lcd.print("ALL IN ONE RECEIVER");
   lcd.setCursor(0, 3);
   lcd.print("By RICARDO/2021 - V1");
   delay(3000);

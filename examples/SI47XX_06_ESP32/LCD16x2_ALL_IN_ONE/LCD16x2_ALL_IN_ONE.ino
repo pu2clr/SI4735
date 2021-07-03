@@ -1,19 +1,8 @@
 /*
+  LCD16x2 (3.3V version) and ESP32 wireup
 
-  New features: 
-                1) The receiver current status is stored into Arduino EEPROM;
-                2) FM RDS;
-                2) FM frequency step;
-                3) FM Bandwidth control.
-
-  This sketch was built to work with the project "DIY Si4730 All Band Radio (LW, MW, SW, FM)" receiver from Mirko Pavleski.
-  The original project can be found on https://create.arduino.cc/projecthub/mircemk/diy-si4730-all-band-radio-lw-mw-sw-fm-1894d9
-  Please, follow the circuit available on that link.
-
-  If you are using a SI4735-D60 or SI4732-A10, you can also use this sketch to add the SSB functionalities to the
-  original Pavleski's project. If you are using another SI4730-D60, the SSB wil not work. But you will still have
-  the SW functionalities.
-
+  Reference: https://www.circuitschools.com/interfacing-16x2-lcd-module-with-esp32-with-and-without-i2c/
+  
   It is important to say that this sketch was designed to work with the circuit implemented by Mirko Pavleski (see link above).
   The visual interface, control commands, band plan, and some functionalities are different if compared with the original
   sketch. Be sure you are using the SI4735 Arduino Library written by PU2CLR to run this sketch. The library used by the original
@@ -26,27 +15,27 @@
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
   Wire up on Arduino UNO, Pro mini and SI4735-D60
-  | Device name               | Device Pin / Description      |  Arduino Pin  |
-  | ----------------          | ----------------------------- | ------------  |
+  | Device name               | Device Pin / Description      |  ESP32        |
+  | ----------------          | ----------------------------- | ------------- |
   |    LCD 16x2 or 20x4       |                               |               |
-  |                           | D4                            |     D7        |
-  |                           | D5                            |     D6        |
-  |                           | D6                            |     D5        |
-  |                           | D7                            |     D4        |
-  |                           | RS                            |     D12       |
-  |                           | E/ENA                         |     D13       |
-  |                           | RW & VSS & K (16)             |    GND        |
-  |                           | A (15) & VDD                  |    +Vcc       |
-  |                           | VO (see 20K tripot connection)|   ---------   |
+  |                           | D4                            |  GPIO18       |
+  |                           | D5                            |  GPIO17       |
+  |                           | D6                            |  GPIO16       |
+  |                           | D7                            |  GPIO15       |
+  |                           | RS                            |  GPIO19       |
+  |                           | E/ENA                         |  GPIO23       |
+  |                           | RW & VSS & K (16)             |  GND          |
+  |                           | A (15) & VDD                  |  +Vcc         |
+  |                           | VO (see 20K tripot connection)|  ------------ |
   |     SS473X                |                               |               |
-  |                           | RESET (pin 15)                |      9        |
-  |                           | SDIO (pin 18)                 |     A4        |
-  |                           | SCLK (pin 17)                 |     A5        |
+  |                           | RESET (pin 15)                |  GPIO12       |
+  |                           | SDIO (pin 18)                 |  GPIO21       |
+  |                           | SCLK (pin 17)                 |  GPIO22       |
   |                           | (*1)SEN (pin 16)              |  +Vcc or GND  |
   |    Encoder                |                               |               |
-  |                           | A                             |       2       |
-  |                           | B                             |       3       |
-  |                           | PUSH BUTTON (encoder)         |     A0/14     |
+  |                           | A                             |  CPIO13       |
+  |                           | B                             |  GPIO14       |
+  |                           | PUSH BUTTON (encoder)         |  GPIO27       |
 
   (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
@@ -56,12 +45,16 @@
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
+  To LCD custom character: https://maxpromer.github.io/LCD-Character-Creator/
+
+
   By PU2CLR, Ricardo, May  2021.
 */
 
 #include <SI4735.h>
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
+// #include <LiquidCrystal_I2C.h>
 #include "Rotary.h"
 #include "patch_init.h" // SSB patch for whole SSBRX initialization string
 
@@ -72,26 +65,26 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define SW_BAND_TYPE 2
 #define LW_BAND_TYPE 3
 
-#define RESET_PIN 9
+#define RESET_PIN 12
 
 // Enconder PINs
-#define ENCODER_PIN_A 2
-#define ENCODER_PIN_B 3
+#define ENCODER_PIN_A 13
+#define ENCODER_PIN_B 14
 
 // LCD 16x02 or LCD20x4 PINs
-#define LCD_D7 4
-#define LCD_D6 5
-#define LCD_D5 6
-#define LCD_D4 7
-#define LCD_RS 12
-#define LCD_E 13
+#define LCD_D7 15
+#define LCD_D6 16
+#define LCD_D5 17
+#define LCD_D4 18
+#define LCD_RS 19
+#define LCD_E  23
 
 // Buttons controllers
-#define ENCODER_PUSH_BUTTON 14 // Pin A0/14
+#define ENCODER_PUSH_BUTTON 27 // 
 #define DUMMY_BUTTON 15
 
 #define MIN_ELAPSED_TIME 300
-#define MIN_ELAPSED_RSSI_TIME 500
+#define MIN_ELAPSED_RSSI_TIME 150
 #define ELAPSED_COMMAND 2000 // time to turn off the last command controlled by encoder. Time to goes back to the FVO control
 #define ELAPSED_CLICK 1500   // time to check the double click commands
 #define DEFAULT_VOLUME 35    // change it for your favorite sound volume
@@ -276,30 +269,31 @@ uint8_t volume = DEFAULT_VOLUME;
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
+// LiquidCrystal_I2C lcd(0x27, 20, 4); 
+
 SI4735 rx;
 
+            
 void setup()
 {
   // Encoder pins
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
+
   lcd.begin(16, 2);
+
 
   // Splash - Remove or Change the splash message
   lcd.setCursor(0, 0);
   lcd.print("PU2CLR-SI4735");
   lcd.setCursor(0, 1);
   lcd.print("Arduino Library");
-  Flash(1500);
-  lcd.setCursor(0, 0);
-  lcd.print("DIY Mirko Radio");
-  lcd.setCursor(0, 1);
-  lcd.print("By RICARDO/2021");
-  Flash(2000);
+  delay(3000);
+
   // End splash
 
-  EEPROM.begin();
+  EEPROM.begin(EEPROM_SIZE);
 
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
@@ -339,18 +333,6 @@ void setup()
   showStatus();
 }
 
-/**
- *  Cleans the screen with a visual effect.
- */
-void Flash(int d)
-{
-  delay(d);
-  lcd.clear();
-  lcd.noDisplay();
-  delay(500);
-  lcd.display();
-}
-
 /*
    writes the conrrent receiver information into the eeprom.
    The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
@@ -359,7 +341,7 @@ void saveAllReceiverInformation()
 {
   int addr_offset;
 
-  EEPROM.begin();
+  EEPROM.begin(EEPROM_SIZE);
 
   EEPROM.write(eeprom_address, app_id);                 // stores the app id;
   EEPROM.write(eeprom_address + 1, rx.getVolume()); // stores the current Volume
