@@ -40,6 +40,8 @@
 #include <SI4735.h>
 
 #define RESET_PIN 12
+// #define RESET_PIN 9
+
 
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
@@ -70,7 +72,7 @@ void setup()
     Serial.flush();
     while (1);
   } else {
-    Serial.print("The Si473X I2C address is 0x");
+    Serial.print("The SI473X / SI474X I2C address is 0x");
     Serial.println(si4735Addr, HEX);
   }
 
@@ -88,7 +90,7 @@ void setup()
 
 void showHelp()
 {
-
+  Serial.println("The SI473X / SI474X I2C circuit test");
   Serial.println("Type F to FM; A to MW; 1 to All Band (100kHz to 30MHz)");
   Serial.println("Type U to increase and D to decrease the frequency");
   Serial.println("Type S or s to seek station Up or Down");

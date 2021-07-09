@@ -82,6 +82,8 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 
 #define AM_FUNCTION 1
 #define RESET_PIN 12
+// #define RESET_PIN 9
+
 
 #define LSB 1
 #define USB 2
