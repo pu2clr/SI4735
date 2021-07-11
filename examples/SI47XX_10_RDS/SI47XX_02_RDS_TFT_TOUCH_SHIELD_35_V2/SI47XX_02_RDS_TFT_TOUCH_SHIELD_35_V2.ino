@@ -581,11 +581,11 @@ void setButton(Adafruit_GFX_Button *button, int16_t col, int16_t lin, int16_t wi
 
 
 void setButtonsFM() {
-  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, "BW", true);
-  setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, "AGC On", true);
+  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "BW", true);
+  setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&bAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "AGC On", true);
 }
 
 void showTemplate()
@@ -622,26 +622,26 @@ void showTemplate()
   bSync.initButton(&tft, 270, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"DE", 1);
   */
 
-  setButton(&bPreviousBand, 45, KEYBOARD_LIN_OFFSET + 130, 70, 49, "Band-", true);
-  setButton(&bNextBand, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, "Band+", true);
-  setButton(&bVolumeLevel, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, "Vol", true);
-  setButton(&bAudioMute, 270, KEYBOARD_LIN_OFFSET + 130, 70, 49, "Mute", true);
-  setButton(&bSeekDown, 45, KEYBOARD_LIN_OFFSET + 185, 70, 49, "Seek-", true);
-  setButton(&bSeekUp, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, "Seek+", true);
-  setButton(&bBFO, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, "BFO", true);
-  setButton(&bStep, 270, KEYBOARD_LIN_OFFSET + 185, 70, 49, "Step", true);
-  setButton(&bFM, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, "FM", true);
-  setButton(&bMW, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, "MW", true);
-  setButton(&bSW, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, "SW", true);
-  setButton(&bAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, "AGC On", true);
-  setButton(&bAM, 45, KEYBOARD_LIN_OFFSET + 295, 70, 49, "AM", true);
-  setButton(&bLSB, 120, KEYBOARD_LIN_OFFSET + 295, 70, 49, "LSB", true);
-  setButton(&bUSB, 195, KEYBOARD_LIN_OFFSET + 295, 70, 49, "USB", true);
-  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, "BW", true);
-  setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, "---", true);
-  setButton(&bSync, 270, KEYBOARD_LIN_OFFSET + 350, 70, 49, "SYNC", true);
+  setButton(&bPreviousBand, 45, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Band-", true);
+  setButton(&bNextBand, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Band+", true);
+  setButton(&bVolumeLevel, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Vol", true);
+  setButton(&bAudioMute, 270, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Mute", true);
+  setButton(&bSeekDown, 45, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Seek-", true);
+  setButton(&bSeekUp, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Seek+", true);
+  setButton(&bBFO, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "BFO", true);
+  setButton(&bStep, 270, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Step", true);
+  setButton(&bFM, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "FM", true);
+  setButton(&bMW, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "MW", true);
+  setButton(&bSW, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "SW", true);
+  setButton(&bAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "AGC On", true);
+  setButton(&bAM, 45, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "AM", true);
+  setButton(&bLSB, 120, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "LSB", true);
+  setButton(&bUSB, 195, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "USB", true);
+  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "BW", true);
+  setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&bSync, 270, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "SYNC", true);
 
   // Exibe os botões (teclado touch)
   setDrawButtons(true);
@@ -941,7 +941,7 @@ void showRSSI()
   if (currentMode != FM)
   {
     //dBuV to S point conversion HF
-    if ((rssi >= 0) and (rssi <= 1))
+    if (rssi <= 1) 
       spoint = 12; // S0
     if ((rssi > 1) and (rssi <= 1))
       spoint = 24; // S1
@@ -1319,7 +1319,7 @@ void switchFilter(uint8_t v)
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
-void switchSync(int8_t v) {
+void switchSync( /*int8_t v */) {
   if (currentMode != FM)
   {
     currentBFO = 0;
@@ -1700,7 +1700,7 @@ void loop(void)
     else if (bSync.justPressed())
     {
       cmdSync = !cmdSync;
-      switchSync(0);
+      switchSync(/*0*/);
       delay(MIN_ELAPSED_TIME);
     }
   }
