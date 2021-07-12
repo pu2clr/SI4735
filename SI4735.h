@@ -17,6 +17,9 @@
  * @date  2019-2020
  */
 
+#ifndef _SI4735_H // Prevent this file from being compiled more than once
+#define _SI4735_H
+
 #include <Arduino.h>
 #include <Wire.h>
 
@@ -2619,3 +2622,4 @@ public:
         delayMicroseconds(300);
     }
 };
+#endif // _SI4735_H
