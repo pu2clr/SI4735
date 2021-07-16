@@ -108,6 +108,7 @@ int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 int8_t agcNdx = 0;
 int8_t softMuteMaxAttIdx = 4;
+int8_t avcIndex = 48;   // min 12 and max 96 
 uint8_t countClick = 0;
 
 uint8_t seekDirection = 1;
@@ -121,6 +122,7 @@ bool cmdMode = false;
 bool cmdMenu = false;
 bool cmdRds  =  false;
 bool cmdSoftMuteMaxAtt = false;
+bool cmdAvc = false;
 
 bool fmRDS = false;
 
@@ -136,9 +138,9 @@ uint16_t previousFrequency = 0;
 
 const uint8_t currentBFOStep = 10;
 
-const char * menu[] = {"Volume", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "Seek Up", "Seek Down"};
+const char * menu[] = {"Volume", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "AVC", "Seek Up", "Seek Down"};
 int8_t menuIdx = 0;
-const int lastMenu = 9;
+const int lastMenu = 10;
 int8_t currentMenuCmd = -1;
 
 typedef struct
@@ -450,6 +452,7 @@ void disableCommands()
   cmdMenu = false;
   cmdSoftMuteMaxAtt = false;
   cmdRds = false;
+  cmdAvc =  false; 
   countClick = 0;
 
   showCommandStatus((char *) "VFO ");
@@ -682,6 +685,18 @@ void showSoftMute()
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print(sMute);
+}
+
+/**
+ * Show Soft Mute 
+ */
+void showAvc()
+{
+  char sAvc[18];
+  sprintf(sAvc, "AVC: %2d", avcIndex);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(sAvc);
 }
 
 
@@ -1044,6 +1059,22 @@ void doSoftMute(int8_t v)
 }
 
 /**
+ * Sets the Soft Mute Parameter
+ */
+void doAvc(int8_t v)
+{
+  avcIndex = (v == 1) ? avcIndex + 2 : avcIndex - 2;
+  if (avcIndex > 96)
+    avcIndex = 12;
+  else if (12 < 0)
+    avcIndex = 96;
+
+  rx.setAvcAmMaxGain(avcIndex);
+  showAvc();
+  elapsedCommand = millis();
+}
+
+/**
  * Turns RDS ON or OFF
  */
 void doRdsSetup(int8_t v)
@@ -1075,7 +1106,7 @@ void doMenu( int8_t v) {
  * Return true if the current status is Menu command
  */
 bool isMenuMode() {
-  return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds);
+  return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds | cmdAvc);
 }
 
 /**
@@ -1120,11 +1151,15 @@ void doCurrentMenuCmd() {
       cmdSoftMuteMaxAtt = true;
       showSoftMute();  
       break;
-    case 8:
+    case 8: 
+      cmdAvc =  true; 
+      showAvc();
+      break;  
+    case 9:
       seekDirection = 1;
       doSeek();
       break;  
-    case 9:
+    case 10:
       seekDirection = 0;
       doSeek();
       break;    
@@ -1166,8 +1201,10 @@ void loop()
       doVolume(encoderCount);
     else if (cmdSoftMuteMaxAtt)
       doSoftMute(encoderCount);
+    else if (cmdAvc)
+      doAvc(encoderCount);
     else if (cmdBand)
-      setBand(encoderCount);
+          setBand(encoderCount);
     else if (cmdRds ) 
       doRdsSetup(encoderCount);  
     else

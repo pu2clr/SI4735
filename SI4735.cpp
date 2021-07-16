@@ -1072,7 +1072,7 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
 void SI4735::setAvcAmMaxGain(uint8_t gain)
 {
     uint16_t aux;
-    aux = (gain > 12 && gain < 193) ? (gain * 340) : (48 * 340);
+    aux = (gain > 12 && gain < 193) ? (gain * 340) : (32 * 340);
     currentAvcAmMaxGain = gain;
     sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, aux);
 }

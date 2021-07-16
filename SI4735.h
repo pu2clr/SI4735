@@ -1080,7 +1080,7 @@ protected:
 
     uint8_t lastMode = -1; //!<  Stores the last mode used.
 
-    uint8_t currentAvcAmMaxGain = 48;          //!<  Stores the current Automatic Volume Control Gain for AM. Default value is 48.
+    uint8_t currentAvcAmMaxGain = 32;          //!<  Stores the current Automatic Volume Control Gain for AM. Default value is 48.
     uint8_t currentClockType = XOSCEN_CRYSTAL; //!< Stores the current clock type used (Crystal or REF CLOCK)
     uint8_t ctsIntEnable = 0;
     uint8_t gpo2Enable = 0;
@@ -1340,7 +1340,7 @@ public:
      */
     inline void setAvcAmMaxGain()
     {
-        sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, ((currentAvcAmMaxGain = 48) * 340));
+        sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, ((currentAvcAmMaxGain = 32) * 340));
     };
 
     void setAvcAmMaxGain(uint8_t gain); //!<  Sets the maximum gain for automatic volume control.
