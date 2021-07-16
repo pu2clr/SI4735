@@ -753,7 +753,7 @@ void SI4735::setAM()
         powerDown();
         setPowerUp(this->ctsIntEnable, 0, 0, this->currentClockType, AM_CURRENT_MODE, this->currentAudioMode);
         radioPowerUp();
-        setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain to 48
+        setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain to 32
         setVolume(volume);                    // Set to previus configured volume
     }
     currentSsbStatus = 0;
