@@ -819,7 +819,6 @@ void useBand()
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
     rx.setSeekAmSpacing(5); // Max 10kHz for spacing
     avcIndex = rx.getCurrentAvcAmMaxGain();
-    rx.setAvcAmMaxGain(avcIndex);
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
