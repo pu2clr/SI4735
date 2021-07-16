@@ -203,6 +203,8 @@
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 #define MAX_SEEK_TIME 8000               // defines the maximum seeking time 8s is default.
 
+#define DEFAULT_CURRENT_AVC_AM_MAX_GAIN 32 
+
 #define XOSCEN_CRYSTAL 1 // Use crystal oscillator
 #define XOSCEN_RCLK 0    // Use external RCLK (crystal oscillator disabled).
 
@@ -1080,7 +1082,7 @@ protected:
 
     uint8_t lastMode = -1; //!<  Stores the last mode used.
 
-    uint8_t currentAvcAmMaxGain = 16;          //!<  Stores the current Automatic Volume Control Gain for AM. Default value is 48.
+    uint8_t currentAvcAmMaxGain = DEFAULT_CURRENT_AVC_AM_MAX_GAIN; //!<  Stores the current Automatic Volume Control Gain for AM.
     uint8_t currentClockType = XOSCEN_CRYSTAL; //!< Stores the current clock type used (Crystal or REF CLOCK)
     uint8_t ctsIntEnable = 0;
     uint8_t gpo2Enable = 0;
@@ -1335,15 +1337,36 @@ public:
 
     /**
      * @ingroup group17
-     * @brief Sets the Avc Am Max Gain to 48dB
-     * 
+     * @brief Sets the Avc Am Max Gain to maximum gain (0x7800)
      */
     inline void setAvcAmMaxGain()
     {
-        sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, ((currentAvcAmMaxGain = 16) * 340));
+        sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, 0x7800);
+        currentAvcAmMaxGain = 90;
     };
 
-    void setAvcAmMaxGain(uint8_t gain); //!<  Sets the maximum gain for automatic volume control.
+    /**
+     * @ingroup group17
+     * @brief Sets the Avc Am Max Gain to minimal gain (0x1000)
+     */
+    inline void setAvcAmMinGain()
+    {
+        sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, 0x1000);
+        currentAvcAmMaxGain = 12;
+    };
+
+    /**
+     * @ingroup group17
+     * @brief Sets the Avc Am Max Gain to default gain (0x2A80)
+     */
+    inline void setAvcAmDefaultGain()
+    {
+        sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, 0x1543);
+        currentAvcAmMaxGain = DEFAULT_CURRENT_AVC_AM_MAX_GAIN;
+    };
+
+
+    void setAvcAmMaxGain(uint8_t gain = 90); //!<  Sets the maximum gain for automatic volume control.
 
     /**
      * @ingroup group17

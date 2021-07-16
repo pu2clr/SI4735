@@ -108,7 +108,7 @@ int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 int8_t agcNdx = 0;
 int8_t softMuteMaxAttIdx = 4;
-int8_t avcIndex = 48;   // min 12 and max 96 
+int16_t avcIndex;   // min 12 and max 90 
 uint8_t countClick = 0;
 
 uint8_t seekDirection = 1;
@@ -323,7 +323,7 @@ void setup()
     readAllReceiverInformation();
   } else 
     rx.setVolume(volume);
-  
+
   useBand();
   showStatus();
 }
@@ -818,7 +818,8 @@ void useBand()
     rx.setAutomaticGainControl(disableAgc, agcNdx);
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
     rx.setSeekAmSpacing(5); // Max 10kHz for spacing
-
+    avcIndex = rx.getCurrentAvcAmMaxGain();
+    rx.setAvcAmMaxGain(avcIndex);
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
@@ -1064,10 +1065,10 @@ void doSoftMute(int8_t v)
 void doAvc(int8_t v)
 {
   avcIndex = (v == 1) ? avcIndex + 2 : avcIndex - 2;
-  if (avcIndex > 96)
+  if (avcIndex > 90)
     avcIndex = 12;
-  else if (12 < 0)
-    avcIndex = 96;
+  else if (avcIndex < 12)
+    avcIndex = 90;
 
   rx.setAvcAmMaxGain(avcIndex);
   showAvc();
