@@ -173,6 +173,8 @@
 #define SSB_SOFT_MUTE_SNR_THRESHOLD 0x3303   // Sets SNR threshould to engage soft mute. Defaul 8dB
 #define SSB_RF_AGC_ATTACK_RATE 0x3700        // Sets the number of milliseconds the high RF peak detector must be exceeded before decreasing the gain. Defaul 4.
 #define SSB_RF_AGC_RELEASE_RATE 0x3701       // Sets the number of milliseconds the low RF peak detector must be exceeded before increasing the gain. Defaul 24.
+#define SSB_IF_AGC_RELEASE_RATE 0x3703       // Sets the number of milliseconds the low IF peak detector must not be exceeded before increasing the gain. Default value is 140 (approximately 40 dB / s).
+#define SSB_IF_AGC_ATTACK_RATE 0x3702        // Sets the number of milliseconds the high IF peak detector must be exceeded before decreasing gain. Default value is 4 (approximately 1400 dB / s).
 
 // SSB
 #define SSB_RF_IF_AGC_ATTACK_RATE 0x3702  // Sets the number of milliseconds the high IF peak detector must be exceeded before decreasing gain. Defaul 4.
@@ -208,7 +210,7 @@
 #define XOSCEN_CRYSTAL 1 // Use crystal oscillator
 #define XOSCEN_RCLK 0    // Use external RCLK (crystal oscillator disabled).
 
-/** @defgroup group01 Union, Struct and Defined Data Types 
+    /** @defgroup group01 Union, Struct and Defined Data Types 
  * @section group01 Data Types 
  *  
  * @brief SI473X data representation
@@ -223,14 +225,14 @@
  * These data types will be usefull to deal with SI473X 
  */
 
-/**
+    /**
  * @ingroup group01
  * 
  * @brief Power Up arguments data type 
  * 
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64 and 65
  */
-typedef union
+    typedef union
 {
     struct
     {
@@ -1122,9 +1124,7 @@ protected:
     void clearRdsBuffer2A();
     void clearRdsBuffer2B();
     void clearRdsBuffer0A();
-
     void getSsbAgcStatus();
-    void setSsbAgcOverrite(uint8_t SSBAGCDIS, uint8_t SSBAGCNDX);
 
 public:
     SI4735();
@@ -1410,6 +1410,30 @@ public:
     };
 
     /**
+     * @ingroup group17
+     * @brief Sets the number of milliseconds the low IF peak detector
+     * 
+     * @details Sets the number of milliseconds the low IF peak detector must not be exceeded before increasing the gain. Default value is 140 (approximately 40 dB / s).
+     * @param param number of milliseconds ( from 4 to 248; step 4); default value 0x008C (140).
+     */
+    inline void setSsbIfAgcReleaseRate(uint8_t param = 140)
+    {
+        sendProperty(SSB_IF_AGC_RELEASE_RATE, param);
+    };
+
+    /**
+     * @ingroup group17
+     * @brief Sets the IF AGC attack rate
+     * 
+     * @details Large values provide slower attack, and smaller values provide faster attack
+     * @param param number of milliseconds ( from 4 to 248; step 4); default value 4.
+     */
+    inline void setSsbIfAgcAttackRate(uint8_t param = 4)
+    {
+        sendProperty(SSB_IF_AGC_ATTACK_RATE, param);
+    };
+
+    /**
      * @ingroup group08
      * @brief Checks if the AGC is enabled
      *
@@ -1432,6 +1456,7 @@ public:
     };
 
     void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX);
+    void setSsbAgcOverrite(uint8_t SSBAGCDIS, uint8_t SSBAGCNDX);
 
     void getCurrentReceivedSignalQuality(uint8_t INTACK);
     void getCurrentReceivedSignalQuality(void);

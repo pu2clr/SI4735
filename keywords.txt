@@ -160,7 +160,8 @@ setSsbSoftMuteMaxAttenuation	KEYWORD2
 setTuneFrequencyAntennaCapacitor	KEYWORD2
 setTuneFrequencyFast	KEYWORD2
 setTuneFrequencyFreeze	KEYWORD2
-setVolume	KEYWORD2
+setVolume	KEYWORD2 KEYWORD2
+setSsbAgcOverrite 
 setup	KEYWORD2
 ssbPowerUp	KEYWORD2
 ssbSetup	KEYWORD2

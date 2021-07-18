@@ -77,7 +77,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define DUMMY_BUTTON 15
 
 #define MIN_ELAPSED_TIME 300
-#define MIN_ELAPSED_RSSI_TIME 150
+#define MIN_ELAPSED_RSSI_TIME 3000
 #define ELAPSED_COMMAND 2000 // time to turn off the last command controlled by encoder. Time to goes back to the FVO control
 #define ELAPSED_CLICK 1500   // time to check the double click commands
 #define DEFAULT_VOLUME 35    // change it for your favorite sound volume
@@ -95,7 +95,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
 // EEPROM - Stroring control variables
-const uint8_t app_id = 30; // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id = 37; // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
@@ -281,10 +281,10 @@ void setup()
 
   // Splash - Remove or Change the splash message
   lcd.setCursor(0, 0);
-  lcd.print("PU2CLR-SI4735");
+  lcd.print("PU2CLR-SI47XX");
   lcd.setCursor(0, 1);
   lcd.print("Arduino Library");
-  delay(3000);
+  delay(1500);
 
   // End splash
 
@@ -294,6 +294,7 @@ void setup()
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
     EEPROM.write(eeprom_address, 0);
+    saveAllReceiverInformation(); // save all information with default content
     lcd.setCursor(0,0);
     lcd.print("EEPROM RESETED");
     delay(2000);
@@ -805,6 +806,7 @@ void useBand()
       rx.setSsbSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for SSB
       bwIdxSSB = band[bandIdx].bandwidthIdx;
       rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
+      rx.setSsbAgcOverrite(disableAgc, agcNdx);
     }
     else
     {
@@ -814,8 +816,8 @@ void useBand()
       bwIdxAM = band[bandIdx].bandwidthIdx;
       rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
       rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Soft Mute for AM or SSB
+      rx.setAutomaticGainControl(disableAgc, agcNdx);
     }
-    rx.setAutomaticGainControl(disableAgc, agcNdx);
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
     rx.setSeekAmSpacing(5); // Max 10kHz for spacing
     avcIndex = rx.getCurrentAvcAmMaxGain();
@@ -920,7 +922,11 @@ void doAgc(int8_t v) {
     agcNdx = agcIdx - 1;
   else
     agcNdx = 0;
-  rx.setAutomaticGainControl(disableAgc, agcNdx); // if agcNdx = 0, no attenuation
+  if ( currentMode == AM ) 
+     rx.setAutomaticGainControl(disableAgc, agcNdx); // if agcNdx = 0, no attenuation
+  else
+    rx.setSsbAgcOverrite(disableAgc, agcNdx);
+      
   showAgcAtt();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
@@ -1264,9 +1270,9 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
-  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME)
   {
-    rx.getCurrentReceivedSignalQuality();
+    rx.getCurrentReceivedSignalQuality(1);
     int aux = rx.getCurrentRSSI();
     if (rssi != aux && !isMenuMode())
     {
