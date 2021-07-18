@@ -2,9 +2,13 @@ var group__group17 =
 [
     [ "getAntennaTuningCapacitor", "group__group17.html#ga5a10cea82279f48a13d40298cf79e6ce", null ],
     [ "setAvcAmMaxGain", "group__group17.html#ga6e1e0e48d71e09debb07fc6dbe884829", null ],
+    [ "setAvcAmMinGain", "group__group17.html#gaf2f9f04bd7f05a882c39621db162c027", null ],
+    [ "setAvcAmDefaultGain", "group__group17.html#ga4333e267458eb9b00a9319f81255c0f1", null ],
     [ "getCurrentAvcAmMaxGain", "group__group17.html#ga27dd7dfd46583eb5be91cfc9461807ff", null ],
     [ "setAmSoftMuteMaxAttenuation", "group__group17.html#ga05bbe1546d61d7ca3591824445084e70", null ],
     [ "setSsbSoftMuteMaxAttenuation", "group__group17.html#ga7f9f0eb9946d629e2e6d7e7901af86b9", null ],
+    [ "setSsbIfAgcReleaseRate", "group__group17.html#gaa42de6f58ebc0d9bc2693477b5fe7734", null ],
+    [ "setSsbIfAgcAttackRate", "group__group17.html#ga2852abc7a2469362f1c1fe64758693a6", null ],
     [ "setSsbAgcAttackRate", "group__group17.html#ga211bb7fb7b339e005e8a0ae2e2813b79", null ],
     [ "setSsbAgcReleaseRate", "group__group17.html#ga65ae2ed5be90932da9b26073f87a8bda", null ],
     [ "setSSBBfo", "group__group17.html#ga55cf9a091d314a1aa21552f2254f756f", null ],

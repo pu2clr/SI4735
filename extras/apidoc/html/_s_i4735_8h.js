@@ -119,6 +119,8 @@ var _s_i4735_8h =
     [ "SSB_SOFT_MUTE_SNR_THRESHOLD", "_s_i4735_8h.html#a9d13509e672ac034bf05727a1bf86483", null ],
     [ "SSB_RF_AGC_ATTACK_RATE", "_s_i4735_8h.html#a3f0f97b4eb1221d0d9e098fec51598a7", null ],
     [ "SSB_RF_AGC_RELEASE_RATE", "_s_i4735_8h.html#a5a63b197bde5107c033b2f46636017e5", null ],
+    [ "SSB_IF_AGC_RELEASE_RATE", "_s_i4735_8h.html#a6f15c34efd3b10497b1d4fcb01768f32", null ],
+    [ "SSB_IF_AGC_ATTACK_RATE", "_s_i4735_8h.html#a8171c8f6d4571d5e81fa7117480035ff", null ],
     [ "SSB_RF_IF_AGC_ATTACK_RATE", "_s_i4735_8h.html#aa17a96499141a4e8f7487044e123d721", null ],
     [ "SSB_RF_IF_AGC_RELEASE_RATE", "_s_i4735_8h.html#a3cc8a8e7a441d49ad45f56f75544c6e7", null ],
     [ "LSB_MODE", "_s_i4735_8h.html#a6c1cf039ba7ea7e5c0cce10943a18e3b", null ],
@@ -138,6 +140,7 @@ var _s_i4735_8h =
     [ "MAX_DELAY_AFTER_POWERUP", "_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663", null ],
     [ "MIN_DELAY_WAIT_SEND_LOOP", "_s_i4735_8h.html#a166d7b31e78d530aba242e50dd903de4", null ],
     [ "MAX_SEEK_TIME", "_s_i4735_8h.html#acc98e8d3badddd21bc528451bb718f82", null ],
+    [ "DEFAULT_CURRENT_AVC_AM_MAX_GAIN", "_s_i4735_8h.html#a35d886cf426a77fedcb8b9784b821199", null ],
     [ "XOSCEN_CRYSTAL", "_s_i4735_8h.html#a33a17dceb88b2b05d8032714a1998368", null ],
     [ "XOSCEN_RCLK", "_s_i4735_8h.html#a9d2a0e22f5a37d3911eef36581225dd2", null ]
 ];

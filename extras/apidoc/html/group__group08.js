@@ -68,7 +68,7 @@ var group__group08 =
     [ "getStatus", "group__group08.html#ga5c0f4036a7fbbd11a26f1f6f4579d3cd", null ],
     [ "getAutomaticGainControl", "group__group08.html#gaaae187575b9868ff427c063c3a6cca2a", null ],
     [ "setAutomaticGainControl", "group__group08.html#ga27c22f5671ce3229e925e5fbe93ba0a6", null ],
-    [ "setAvcAmMaxGain", "group__group08.html#ga98d12da4b801493a350ecf770f4f2d8b", null ],
+    [ "setAvcAmMaxGain", "group__group08.html#ga611982795f2e45990c195c3ff09adb96", null ],
     [ "getCurrentReceivedSignalQuality", "group__group08.html#gabf59183da13c72384093fc238c3114cf", null ],
     [ "getCurrentReceivedSignalQuality", "group__group08.html#ga7393fa4f9d7811c8d0c0f48283ef6435", null ],
     [ "seekStation", "group__group08.html#ga3280b98b8331f00b4d0158ef1b076533", null ],
