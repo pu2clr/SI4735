@@ -327,6 +327,8 @@ void setup()
 
   
   delay(300);
+  rx.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM/SSB mode (you can use values between 12 and 90dB).
+
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id)

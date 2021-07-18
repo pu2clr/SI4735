@@ -396,6 +396,7 @@ void setup(void)
 
   // si4735.setup(RESET_PIN, 1);
   si4735.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL);
+  si4735.setAvcAmMaxGain(48); // Set the Automatic Volume Control Max Gain value.  
 
   // Set up the radio for the current band (see index table variable bandIdx )
   delay(300);

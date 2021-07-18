@@ -163,6 +163,7 @@ void loop()
     case 'a':
     case 'A':
       rx.setAM(520, 1750, 810, 10);
+      rx.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM mode.
       rx.setSeekAmLimits(520, 1750);
       rx.setSeekAmSpacing(10); // spacing 10kHz
       break;

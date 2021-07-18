@@ -329,6 +329,8 @@ void setup()
   si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
   si4735.setup(RESET_PIN, MW_BAND_TYPE); //
+  si4735.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM mode
+  
   delay(500);
 
   // Checking the EEPROM content

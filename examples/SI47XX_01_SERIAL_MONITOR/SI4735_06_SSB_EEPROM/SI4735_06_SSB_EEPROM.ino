@@ -143,7 +143,8 @@ void setup()
   si4735.setSSB(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep, band[currentFreqIdx].currentSSB);
   delay(100);
   currentFrequency = si4735.getFrequency();
-  si4735.setVolume(60);
+  si4735.setAvcAmMaxGain(50); // Sets the maximum gain for automatic volume control on AM/SSB mode. You can use from 12 to 90dB
+  si4735.setVolume(50);
   showHelp();
   showStatus();
 }

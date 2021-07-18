@@ -172,6 +172,7 @@ void loop()
       case 'a':
       case 'A':
         si4735.setAM(570, 1710,  810, 10);
+        si4735.setAvcAmMaxGain(32); // Sets the maximum gain for automatic volume control on AM mode
         showStatus();
         break;
       case 'f':
@@ -186,6 +187,8 @@ void loop()
           currentFreqIdx = 0;
         }
         si4735.setAM(band[currentFreqIdx].minimumFreq, band[currentFreqIdx].maximumFreq, band[currentFreqIdx].currentFreq, band[currentFreqIdx].currentStep);
+        si4735.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM mode
+
         delay(100);
         currentFrequency = band[currentFreqIdx].currentFreq;
         showBandName();
