@@ -1043,6 +1043,7 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
     else
         cmd = AM_AGC_OVERRIDE;
 
+    agc.arg.DUMMY = 0; // ARG1: bits 7:1 Always write to 0;
     agc.arg.AGCDIS = AGCDIS;
     agc.arg.AGCIDX = AGCIDX;
 
@@ -2833,6 +2834,7 @@ void SI4735::setSsbAgcOverrite(uint8_t SSBAGCDIS, uint8_t SSBAGCNDX)
 {
     si47x_agc_overrride agc;
 
+    agc.arg.DUMMY = 0; // ARG1: bits 7:1 Always write to 0; 
     agc.arg.AGCDIS = SSBAGCDIS;
     agc.arg.AGCIDX = SSBAGCNDX;
 
