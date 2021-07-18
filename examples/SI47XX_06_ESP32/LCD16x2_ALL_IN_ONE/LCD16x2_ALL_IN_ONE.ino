@@ -1065,7 +1065,7 @@ void doSoftMute(int8_t v)
 }
 
 /**
- * Sets the Soft Mute Parameter
+ * Sets the Max gain for Automatic Volume Control. 
  */
 void doAvc(int8_t v)
 {
