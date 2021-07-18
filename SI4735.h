@@ -205,7 +205,7 @@
 #define MIN_DELAY_WAIT_SEND_LOOP 300     // In uS (Microsecond) - each loop of waitToSend sould wait this value in microsecond
 #define MAX_SEEK_TIME 8000               // defines the maximum seeking time 8s is default.
 
-#define DEFAULT_CURRENT_AVC_AM_MAX_GAIN 32 
+#define DEFAULT_CURRENT_AVC_AM_MAX_GAIN 36 
 
 #define XOSCEN_CRYSTAL 1 // Use crystal oscillator
 #define XOSCEN_RCLK 0    // Use external RCLK (crystal oscillator disabled).
