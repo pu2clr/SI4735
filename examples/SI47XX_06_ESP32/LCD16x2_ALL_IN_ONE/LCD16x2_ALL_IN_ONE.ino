@@ -294,10 +294,11 @@ void setup()
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
     EEPROM.write(eeprom_address, 0);
-    saveAllReceiverInformation(); // save all information with default content
     lcd.setCursor(0,0);
     lcd.print("EEPROM RESETED");
-    delay(2000);
+    itIsTimeToSave =  true; // forces save the current status as soon as possible. 
+    storeTime = 0; 
+    delay(3000); 
     lcd.clear();
   }
 
@@ -914,8 +915,8 @@ void showMenu() {
 void doAgc(int8_t v) {
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
   if (agcIdx < 0 )
-    agcIdx = 35;
-  else if ( agcIdx > 35)
+    agcIdx = 37;
+  else if ( agcIdx > 37)
     agcIdx = 0;
   disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable
   if (agcIdx > 1)
@@ -925,7 +926,7 @@ void doAgc(int8_t v) {
   if ( currentMode == AM ) 
      rx.setAutomaticGainControl(disableAgc, agcNdx); // if agcNdx = 0, no attenuation
   else
-    rx.setSsbAgcOverrite(disableAgc, agcNdx);
+    rx.setSsbAgcOverrite(disableAgc, agcNdx, 0B1111111);
       
   showAgcAtt();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.

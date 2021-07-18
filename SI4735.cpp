@@ -753,7 +753,7 @@ void SI4735::setAM()
         powerDown();
         setPowerUp(this->ctsIntEnable, 0, 0, this->currentClockType, AM_CURRENT_MODE, this->currentAudioMode);
         radioPowerUp();
-        setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain to 32
+        setAvcAmMaxGain(currentAvcAmMaxGain);    // Set AM Automatic Volume Gain (default value is DEFAULT_CURRENT_AVC_AM_MAX_GAIN)
         setVolume(volume);                       // Set to previus configured volume
     }
     currentSsbStatus = 0;
@@ -2830,11 +2830,11 @@ void SI4735::getSsbAgcStatus()
  * @param uint8_t SSBAGCNDX If 1, this byte forces the AGC gain index. if 0,  Minimum attenuation (max gain)
  *                
  */
-void SI4735::setSsbAgcOverrite(uint8_t SSBAGCDIS, uint8_t SSBAGCNDX)
+void SI4735::setSsbAgcOverrite(uint8_t SSBAGCDIS, uint8_t SSBAGCNDX, uint8_t reserved)
 {
     si47x_agc_overrride agc;
 
-    agc.arg.DUMMY = 0; // ARG1: bits 7:1 Always write to 0; 
+    agc.arg.DUMMY = reserved; // ARG1: bits 7:1 - The manual says: Always write to 0;
     agc.arg.AGCDIS = SSBAGCDIS;
     agc.arg.AGCIDX = SSBAGCNDX;
 

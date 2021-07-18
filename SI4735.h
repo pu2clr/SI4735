@@ -1456,7 +1456,7 @@ public:
     };
 
     void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX);
-    void setSsbAgcOverrite(uint8_t SSBAGCDIS, uint8_t SSBAGCNDX);
+    void setSsbAgcOverrite(uint8_t SSBAGCDIS, uint8_t SSBAGCNDX, uint8_t reserved = 0);
 
     void getCurrentReceivedSignalQuality(uint8_t INTACK);
     void getCurrentReceivedSignalQuality(void);
