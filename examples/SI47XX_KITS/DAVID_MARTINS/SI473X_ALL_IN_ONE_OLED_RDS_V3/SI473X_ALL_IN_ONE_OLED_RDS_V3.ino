@@ -318,6 +318,8 @@ void setup()
 
   si4735.setup(RESET_PIN, MW_BAND_TYPE); //
   delay(300);
+  si4735.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM/SSB mode (between 12 and 90dB)
+  
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id)

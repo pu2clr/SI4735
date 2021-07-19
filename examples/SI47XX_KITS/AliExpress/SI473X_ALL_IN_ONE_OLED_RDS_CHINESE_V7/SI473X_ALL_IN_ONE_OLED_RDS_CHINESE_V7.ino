@@ -307,7 +307,7 @@ void setup()
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(10, 3);
-  oled.print("V3.0.7c-By PU2CLR");
+  oled.print("V3.0.7d-By PU2CLR");
   delay(2000);
   // end Splash
 
@@ -329,7 +329,7 @@ void setup()
   si4735.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
   si4735.setup(RESET_PIN, MW_BAND_TYPE); //
-  si4735.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM mode
+  si4735.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM/SSB mode (between 12 and 90dB)
   
   delay(500);
 

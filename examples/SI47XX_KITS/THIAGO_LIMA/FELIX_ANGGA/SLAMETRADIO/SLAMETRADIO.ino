@@ -450,6 +450,8 @@ void useBand()
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
       si4735.setAutomaticGainControl(1, 0);
       si4735.setAmSoftMuteMaxAttenuation(8); // // Disable Soft Mute for AM
+      si4735.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM/SSB mode (between 12 and 90dB)
+  
       bfoOn = false;
     }
 
