@@ -1227,13 +1227,15 @@ void useBand()
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
       si4735.setSSBAutomaticVolumeControl(1);
       si4735.setSsbSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for SSB
+      si4735.setAvcAmMaxGain(60);                             // Sets the maximum gain for automatic volume control on AM/SSB mode (between 12 and 90dB)
       showBFO();
     }
     else
     {
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      si4735.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // // Disable Soft Mute for AM
+      si4735.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for AM
+      si4735.setAvcAmMaxGain(42);                            // Sets the maximum gain for automatic volume control on AM/SSB mode (between 12 and 90dB)
       cmdBFO = false;
     }
 
