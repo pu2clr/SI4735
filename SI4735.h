@@ -210,7 +210,7 @@
 #define XOSCEN_CRYSTAL 1 // Use crystal oscillator
 #define XOSCEN_RCLK 0    // Use external RCLK (crystal oscillator disabled).
 
-    /** @defgroup group01 Union, Struct and Defined Data Types 
+/** @defgroup group01 Union, Struct and Defined Data Types 
  * @section group01 Data Types 
  *  
  * @brief SI473X data representation
@@ -225,7 +225,7 @@
  * These data types will be usefull to deal with SI473X 
  */
 
-    /**
+/**
  * @ingroup group01
  * 
  * @brief Power Up arguments data type 
@@ -2581,7 +2581,6 @@ public:
      * @ingroup group08 Si47XX device Status 
      * 
      * @brief Gets the current status  of the Si47XX (AM, FM or SSB)
-     * 
      * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 (FM) and 139 (AM)
      */
     inline void getStatus()

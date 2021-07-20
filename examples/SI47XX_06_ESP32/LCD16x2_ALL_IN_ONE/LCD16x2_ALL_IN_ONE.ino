@@ -108,7 +108,7 @@ int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 int8_t agcNdx = 0;
 int8_t softMuteMaxAttIdx = 4;
-int16_t avcIndex;   // min 12 and max 90 
+int8_t avcIndex;   // min 12 and max 90 
 uint8_t countClick = 0;
 
 uint8_t seekDirection = 1;
@@ -217,6 +217,10 @@ typedef struct
   uint16_t currentFreq;   // Default frequency or current frequency
   int8_t currentStepIdx;  // Idex of tabStepAM:  Defeult frequency step (See tabStepAM)
   int8_t bandwidthIdx;    // Index of the table bandwidthFM, bandwidthAM or bandwidthSSB;
+  uint8_t disableAgc;
+  int8_t agcIdx;
+  int8_t agcNdx;
+  int8_t avcIdx; 
 } Band;
 
 /*
@@ -229,27 +233,27 @@ typedef struct
               Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 */
 Band band[] = {
-    {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0},
-    {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4},
-    {"MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4},
-    {"MW2", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4},
-    {"80M", MW_BAND_TYPE, 3500, 4000, 3700, 0, 4},
-    {"SW1", SW_BAND_TYPE, 4000, 5500, 4885, 1, 4},
-    {"SW2", SW_BAND_TYPE, 5500, 6500, 6000, 1, 4},
-    {"40M", SW_BAND_TYPE, 6500, 7300, 7100, 0, 4},
-    {"SW3", SW_BAND_TYPE, 7200, 8000, 7200, 1, 4},
-    {"SW4", SW_BAND_TYPE, 9000, 11000, 9500, 1, 4},
-    {"SW5", SW_BAND_TYPE, 11100, 13000, 11900, 1, 4},
-    {"SW6", SW_BAND_TYPE, 13000, 14000, 13500, 1, 4},
-    {"20M", SW_BAND_TYPE, 14000, 15000, 14200, 0, 4},
-    {"SW7", SW_BAND_TYPE, 15000, 17000, 15300, 1, 4},
-    {"SW8", SW_BAND_TYPE, 17000, 18000, 17500, 1, 4},
-    {"15M", SW_BAND_TYPE, 20000, 21400, 21100, 0, 4},
-    {"SW9", SW_BAND_TYPE, 21400, 22800, 21500, 1, 4},
-    {"CB ", SW_BAND_TYPE, 26000, 28000, 27500, 0, 4},
-    {"10M", SW_BAND_TYPE, 28000, 30000, 28400, 0, 4},
-    {"ALL", SW_BAND_TYPE, 150, 30000, 15000, 0, 4} // All band. LW, MW and SW (from 150kHz to 30MHz)
-};                                             
+    {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0, 1, 0, 0, 0},
+    {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 16},
+    {"MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4, 0, 0, 0, 16},
+    {"MW2", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4, 1, 0, 0, 32},
+    {"80M", MW_BAND_TYPE, 3500, 4000, 3700, 0, 4, 1, 0, 0, 32},
+    {"SW1", SW_BAND_TYPE, 4000, 5500, 4885, 1, 4, 1, 0, 0, 32},
+    {"SW2", SW_BAND_TYPE, 5500, 6500, 6000, 1, 4, 1, 0, 0, 32},
+    {"40M", SW_BAND_TYPE, 6500, 7300, 7100, 0, 4, 1, 0, 0, 40},
+    {"SW3", SW_BAND_TYPE, 7200, 8000, 7200, 1, 4, 1, 0, 0, 40},
+    {"SW4", SW_BAND_TYPE, 9000, 11000, 9500, 1, 4, 1, 0, 0, 40},
+    {"SW5", SW_BAND_TYPE, 11100, 13000, 11900, 1, 4, 1, 0, 0, 40},
+    {"SW6", SW_BAND_TYPE, 13000, 14000, 13500, 1, 4, 1, 0, 0, 40},
+    {"20M", SW_BAND_TYPE, 14000, 15000, 14200, 0, 4, 1, 0, 0, 42},
+    {"SW7", SW_BAND_TYPE, 15000, 17000, 15300, 1, 4, 1, 0, 0, 42},
+    {"SW8", SW_BAND_TYPE, 17000, 18000, 17500, 1, 4, 1, 0, 0, 42},
+    {"15M", SW_BAND_TYPE, 20000, 21400, 21100, 0, 4, 1, 0, 0, 44},
+    {"SW9", SW_BAND_TYPE, 21400, 22800, 21500, 1, 4, 1, 0, 0, 44},
+    {"CB ", SW_BAND_TYPE, 26000, 28000, 27500, 0, 4, 1, 0, 0, 44},
+    {"10M", SW_BAND_TYPE, 28000, 30000, 28400, 0, 4, 1, 0, 0, 44},
+    {"ALL", SW_BAND_TYPE, 150, 30000, 15000, 0, 4, 1, 0, 0, 48} // All band. LW, MW and SW (from 150kHz to 30MHz)
+};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
@@ -306,8 +310,8 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
+  // rx.setMaxDelayPowerUp(500);
   rx.setI2CFastModeCustom(100000);
-  
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
   
   rx.setup(RESET_PIN, MW_BAND_TYPE);
@@ -357,6 +361,10 @@ void saveAllReceiverInformation()
     EEPROM.write(addr_offset++, (band[i].currentFreq & 0xFF)); // stores the current Frequency LOW byte for the band
     EEPROM.write(addr_offset++, band[i].currentStepIdx);       // Stores current step of the band
     EEPROM.write(addr_offset++, band[i].bandwidthIdx);         // table index (direct position) of bandwidth
+    EEPROM.write(addr_offset++, band[i].disableAgc );
+    EEPROM.write(addr_offset++, band[i].agcIdx);
+    EEPROM.write(addr_offset++, band[i].agcNdx);
+    EEPROM.write(addr_offset++, band[i].avcIdx);
   }
 
   EEPROM.end();
@@ -385,6 +393,10 @@ void readAllReceiverInformation()
     band[i].currentFreq |= EEPROM.read(addr_offset++);
     band[i].currentStepIdx = EEPROM.read(addr_offset++);
     band[i].bandwidthIdx = EEPROM.read(addr_offset++);
+    band[i].disableAgc = EEPROM.read(addr_offset++);
+    band[i].agcIdx = EEPROM.read(addr_offset++);
+    band[i].agcNdx = EEPROM.read(addr_offset++);
+    band[i].avcIdx = EEPROM.read(addr_offset++);
   }
 
 
@@ -798,6 +810,10 @@ void useBand()
   }
   else
   {
+    disableAgc = band[bandIdx].disableAgc;
+    agcIdx = band[bandIdx].agcIdx;
+    agcNdx = band[bandIdx].agcNdx;
+    avcIndex = band[bandIdx].avcIdx;
     // set the tuning capacitor for SW or MW/LW
     rx.setTuneFrequencyAntennaCapacitor((band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) ? 0 : 1);
     if (ssbLoaded)
@@ -821,11 +837,12 @@ void useBand()
     }
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
     rx.setSeekAmSpacing(5); // Max 10kHz for spacing
-    avcIndex = rx.getCurrentAvcAmMaxGain();
+    rx.setAvcAmMaxGain(avcIndex);
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStepIdx = band[bandIdx].currentStepIdx;
+  
 
   rssi = 0;
   showStatus();
@@ -927,7 +944,11 @@ void doAgc(int8_t v) {
      rx.setAutomaticGainControl(disableAgc, agcNdx); // if agcNdx = 0, no attenuation
   else
     rx.setSsbAgcOverrite(disableAgc, agcNdx, 0B1111111);
-      
+
+  band[bandIdx].disableAgc = disableAgc;
+  band[bandIdx].agcIdx = agcIdx;
+  band[bandIdx].agcNdx = agcNdx;
+
   showAgcAtt();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
@@ -1077,6 +1098,9 @@ void doAvc(int8_t v)
     avcIndex = 90;
 
   rx.setAvcAmMaxGain(avcIndex);
+
+  band[bandIdx].avcIdx = avcIndex;
+
   showAvc();
   elapsedCommand = millis();
 }
