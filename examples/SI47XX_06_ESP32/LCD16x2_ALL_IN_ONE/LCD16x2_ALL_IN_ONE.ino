@@ -105,10 +105,10 @@ bool bfoOn = false;
 bool ssbLoaded = false;
 
 int8_t agcIdx = 0;
-uint8_t disableAgc = 0;
+int8_t disableAgc = 0;
 int8_t agcNdx = 0;
 int8_t softMuteMaxAttIdx = 4;
-int8_t avcIndex;   // min 12 and max 90 
+int8_t avcIdx;   // min 12 and max 90 
 uint8_t countClick = 0;
 
 uint8_t seekDirection = 1;
@@ -234,9 +234,9 @@ typedef struct
 */
 Band band[] = {
     {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0, 1, 0, 0, 0},
-    {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 16},
-    {"MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4, 0, 0, 0, 16},
-    {"MW2", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4, 1, 0, 0, 32},
+    {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 32},
+    {"MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4, 0, 0, 0, 32},
+    {"MW3", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4, 1, 0, 0, 32},
     {"80M", MW_BAND_TYPE, 3500, 4000, 3700, 0, 4, 1, 0, 0, 32},
     {"SW1", SW_BAND_TYPE, 4000, 5500, 4885, 1, 4, 1, 0, 0, 32},
     {"SW2", SW_BAND_TYPE, 5500, 6500, 6000, 1, 4, 1, 0, 0, 32},
@@ -275,6 +275,10 @@ SI4735 rx;
             
 void setup()
 {
+
+  // Serial.begin(115200);
+  // while(!Serial);
+
   // Encoder pins
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
@@ -397,6 +401,10 @@ void readAllReceiverInformation()
     band[i].agcIdx = EEPROM.read(addr_offset++);
     band[i].agcNdx = EEPROM.read(addr_offset++);
     band[i].avcIdx = EEPROM.read(addr_offset++);
+    
+    // char str[100];
+    // sprintf(str,"Pos %2.2d | disableAgc %2.2d  | agcIdx %2.2d | agcNdx %2.2d | avcIdx %2.2d", i, band[i].disableAgc, band[i].agcIdx, band[i].agcNdx, band[i].avcIdx );
+    // Serial.println(str);
   }
 
 
@@ -437,6 +445,7 @@ void readAllReceiverInformation()
     rx.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
   }
 
+     
   delay(50);
   rx.setVolume(volume);
 }
@@ -639,7 +648,7 @@ void showAgcAtt()
   char sAgc[15];
   lcd.clear();
   rx.getAutomaticGainControl();
-  if (agcNdx == 0 && agcIdx == 0)
+  if ( !disableAgc /*agcNdx == 0 && agcIdx == 0 */ )
     strcpy(sAgc, "AGC ON");
   else
     sprintf(sAgc, "ATT: %2.2d", agcNdx);
@@ -707,7 +716,7 @@ void showSoftMute()
 void showAvc()
 {
   char sAvc[18];
-  sprintf(sAvc, "AVC: %2d", avcIndex);
+  sprintf(sAvc, "AVC: %2d", avcIdx);
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print(sAvc);
@@ -810,10 +819,17 @@ void useBand()
   }
   else
   {
+
     disableAgc = band[bandIdx].disableAgc;
     agcIdx = band[bandIdx].agcIdx;
     agcNdx = band[bandIdx].agcNdx;
-    avcIndex = band[bandIdx].avcIdx;
+    avcIdx = band[bandIdx].avcIdx;
+
+    // char str[100];
+    // sprintf(str,"Pos %2.2d | disableAgc %2.2d  | agcIdx %2.2d | agcNdx %2.2d | avcIdx %2.2d", bandIdx, disableAgc, agcIdx, agcNdx, avcIdx );
+    // Serial.println(str);
+
+    
     // set the tuning capacitor for SW or MW/LW
     rx.setTuneFrequencyAntennaCapacitor((band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) ? 0 : 1);
     if (ssbLoaded)
@@ -823,6 +839,7 @@ void useBand()
       rx.setSsbSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for SSB
       bwIdxSSB = band[bandIdx].bandwidthIdx;
       rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
+      delay(500);
       rx.setSsbAgcOverrite(disableAgc, agcNdx);
     }
     else
@@ -834,15 +851,15 @@ void useBand()
       rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
       rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Soft Mute for AM or SSB
       rx.setAutomaticGainControl(disableAgc, agcNdx);
+
     }
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
     rx.setSeekAmSpacing(5); // Max 10kHz for spacing
-    rx.setAvcAmMaxGain(avcIndex);
+    rx.setAvcAmMaxGain(avcIdx);
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStepIdx = band[bandIdx].currentStepIdx;
-  
 
   rssi = 0;
   showStatus();
@@ -1091,15 +1108,15 @@ void doSoftMute(int8_t v)
  */
 void doAvc(int8_t v)
 {
-  avcIndex = (v == 1) ? avcIndex + 2 : avcIndex - 2;
-  if (avcIndex > 90)
-    avcIndex = 12;
-  else if (avcIndex < 12)
-    avcIndex = 90;
+  avcIdx = (v == 1) ? avcIdx + 2 : avcIdx - 2;
+  if (avcIdx > 90)
+    avcIdx = 12;
+  else if (avcIdx < 12)
+    avcIdx = 90;
 
-  rx.setAvcAmMaxGain(avcIndex);
+  rx.setAvcAmMaxGain(avcIdx);
 
-  band[bandIdx].avcIdx = avcIndex;
+  band[bandIdx].avcIdx = avcIdx;
 
   showAvc();
   elapsedCommand = millis();
