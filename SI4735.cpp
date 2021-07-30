@@ -2468,8 +2468,20 @@ char *SI4735::getRdsTime()
         offset_h = (dt.refined.offset * 30) / 60;
         offset_m = (dt.refined.offset * 30) - (offset_h * 60);
         // sprintf(rds_time, "%02u:%02u %c%02u:%02u", dt.refined.hour, dt.refined.minute, offset_sign, offset_h, offset_m);
-        sprintf(rds_time, "%02u:%02u %c%02u:%02u", hour, minute, offset_sign, offset_h, offset_m);
+        // sprintf(rds_time, "%02u:%02u %c%02u:%02u", hour, minute, offset_sign, offset_h, offset_m);
 
+        // Using convertToChar instead sprintf to save space (about 1.2K on ATmega328 compiler tools).
+        this->convertToChar(hour, rds_time, 2, 0, ' ', false);
+        rds_time[2] = ':';
+        this->convertToChar(minute, &rds_time[3], 2, 0, ' ', false);
+        rds_time[5] = ' ';
+        rds_time[6] = offset_sign;
+        this->convertToChar(offset_h, &rds_time[7], 2, 0, ' ', false);
+        rds_time[9] = ':';
+        this->convertToChar(offset_m, &rds_time[10], 2, 0, ' ', false);
+        rds_time[12] = '\0';
+        
+    
         return rds_time;
     }
 
@@ -3181,6 +3193,51 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
 
     delay(50);
     return eep;
+}
+
+/** @defgroup group18 Tools method 
+ * @details A set of functions used to support other functions
+*/
+
+/**
+ * @ingroup group18 Covert numbers to char array
+ * @brief Converts a number to a char array 
+ * @details It is useful to mitigate memory space used by functions like sprintf or generic similar function   
+ * 
+ * @param value  value to be converted
+ * @param strValue char array that will be receive the converted value 
+ * @param len final string size (in bytes) 
+ * @param dot the decimal or tousand separator position
+ * @param separator symbol "." or "," 
+ * @param remove_leading_zeros if true removes up to two leading zeros 
+ */
+void SI4735::convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator, bool remove_leading_zeros)
+{
+    char d;
+    for (int i = (len - 1); i >= 0; i--)
+    {
+        d = value % 10;
+        value = value / 10;
+        strValue[i] = d + 48;
+    }
+    strValue[len] = '\0';
+    if (dot > 0)
+    {
+        for (int i = len; i >= dot; i--)
+        {
+            strValue[i + 1] = strValue[i];
+        }
+        strValue[dot] = separator;
+    }
+
+    if (remove_leading_zeros) { 
+        if (strValue[0] == '0')
+        {
+            strValue[0] = ' ';
+            if (strValue[1] == '0')
+                strValue[1] = ' ';
+        }
+    }
 }
 
 /**

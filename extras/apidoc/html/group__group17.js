@@ -23,7 +23,7 @@ var group__group17 =
     [ "setSSB", "group__group17.html#ga7c48f2af416b1f89dbedbfbe9a637620", null ],
     [ "sendSSBModeProperty", "group__group17.html#gae1d866bfc4cb37c4268c8942b4b4d062", null ],
     [ "getSsbAgcStatus", "group__group17.html#ga5507f4d98f389247320eb19b16395a27", null ],
-    [ "setSsbAgcOverrite", "group__group17.html#ga9729264d82b2f1389dc9e4afb894050d", null ],
+    [ "setSsbAgcOverrite", "group__group17.html#ga2da03a7257b7ca821f984bfa7fef97fa", null ],
     [ "queryLibraryId", "group__group17.html#gadfc2c82524918224cf19fec5b7fcf6d1", null ],
     [ "patchPowerUp", "group__group17.html#gafaabd6c73b7ad7c20ae959d5b75c1e71", null ],
     [ "ssbPowerUp", "group__group17.html#ga0fcfd8e487c594707b3f2aaa71a86d68", null ],

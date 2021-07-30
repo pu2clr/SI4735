@@ -167,9 +167,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga5507f4d98f389247320eb19b16395a27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga5507f4d98f389247320eb19b16395a27">SI4735::getSsbAgcStatus</a> ()</td></tr>
 <tr class="memdesc:ga5507f4d98f389247320eb19b16395a27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queries SSB Automatic Gain Control STATUS.  <a href="group__group17.html#ga5507f4d98f389247320eb19b16395a27">More...</a><br /></td></tr>
 <tr class="separator:ga5507f4d98f389247320eb19b16395a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9729264d82b2f1389dc9e4afb894050d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga9729264d82b2f1389dc9e4afb894050d">SI4735::setSsbAgcOverrite</a> (uint8_t SSBAGCDIS, uint8_t SSBAGCNDX)</td></tr>
-<tr class="memdesc:ga9729264d82b2f1389dc9e4afb894050d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatic Gain Control setup.  <a href="group__group17.html#ga9729264d82b2f1389dc9e4afb894050d">More...</a><br /></td></tr>
-<tr class="separator:ga9729264d82b2f1389dc9e4afb894050d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2da03a7257b7ca821f984bfa7fef97fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga2da03a7257b7ca821f984bfa7fef97fa">SI4735::setSsbAgcOverrite</a> (uint8_t SSBAGCDIS, uint8_t SSBAGCNDX, uint8_t reserved=0)</td></tr>
+<tr class="memdesc:ga2da03a7257b7ca821f984bfa7fef97fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatic Gain Control setup.  <a href="group__group17.html#ga2da03a7257b7ca821f984bfa7fef97fa">More...</a><br /></td></tr>
+<tr class="separator:ga2da03a7257b7ca821f984bfa7fef97fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadfc2c82524918224cf19fec5b7fcf6d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__group01.html#unionsi47x__firmware__query__library">si47x_firmware_query_library</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#gadfc2c82524918224cf19fec5b7fcf6d1">SI4735::queryLibraryId</a> ()</td></tr>
 <tr class="memdesc:gadfc2c82524918224cf19fec5b7fcf6d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query the library information of the Si47XX device.  <a href="group__group17.html#gadfc2c82524918224cf19fec5b7fcf6d1">More...</a><br /></td></tr>
 <tr class="separator:gadfc2c82524918224cf19fec5b7fcf6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1016,8 +1016,8 @@ void <a class="el" href="group__group08.html#ga63d205f2d3169ba877a2bd2ee28d224f"
 
 </div>
 </div>
-<a id="ga9729264d82b2f1389dc9e4afb894050d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9729264d82b2f1389dc9e4afb894050d">&#9670;&nbsp;</a></span>setSsbAgcOverrite()</h2>
+<a id="ga2da03a7257b7ca821f984bfa7fef97fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2da03a7257b7ca821f984bfa7fef97fa">&#9670;&nbsp;</a></span>setSsbAgcOverrite()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1032,7 +1032,13 @@ void <a class="el" href="group__group08.html#ga63d205f2d3169ba877a2bd2ee28d224f"
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>SSBAGCNDX</em>&#160;</td>
+          <td class="paramname"><em>SSBAGCNDX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>reserved</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
