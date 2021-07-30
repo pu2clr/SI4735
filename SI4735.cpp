@@ -1449,7 +1449,7 @@ void SI4735::setSeekFmRssiThreshold(uint16_t value)
     sendProperty(FM_SEEK_TUNE_RSSI_THRESHOLD, value);
 }
 
-/** @defgroup group10 Tools method 
+/** @defgroup group10 Generic SI473X Command and Property methods 
  * @details A set of functions used to support other functions
 */
 
