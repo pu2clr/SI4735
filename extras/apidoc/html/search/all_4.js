@@ -86,5 +86,6 @@ var searchData=
   ['gpo2enable_201',['gpo2Enable',['../class_s_i4735.html#aa1a6e6b5698880e9c72506d8d7f2dcb0',1,'SI4735']]],
   ['gpo_5fien_202',['GPO_IEN',['../_s_i4735_8h.html#a16b9c6d556c2db79e8742267daf63c83',1,'SI4735.h']]],
   ['group0_203',['group0',['../group__group01.html#abed5e383b3c62bc0a091efdd326c40d8',1,'si47x_rds_blockb']]],
-  ['group2_204',['group2',['../group__group01.html#a8e070d0226a78cd520ede1037a6a24d4',1,'si47x_rds_blockb']]]
+  ['generic_20si473x_20command_20and_20property_20methods_204',['Generic SI473X Command and Property methods',['../group__group10.html',1,'']]],
+  ['group2_205',['group2',['../group__group01.html#a8e070d0226a78cd520ede1037a6a24d4',1,'si47x_rds_blockb']]]
 ];

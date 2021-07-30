@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['si4735_2dd60_20single_20side_20band_20_28ssb_29_20support_986',['Si4735-D60 Single Side Band (SSB) support',['../group__group17.html',1,'']]],
-  ['si4735_2dd60_20_2f_20si4732_2da10_20_20nbfm_987',['SI4735-D60 / SI4732-A10  NBFM',['../group__group20.html',1,'']]]
+  ['host_20and_20slave_20mcu_20setup_986',['Host and slave MCU setup',['../group__group06.html',1,'']]]
 ];

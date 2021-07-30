@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['host_20and_20slave_20mcu_20setup_985',['Host and slave MCU setup',['../group__group06.html',1,'']]]
+  ['generic_20si473x_20command_20and_20property_20methods_985',['Generic SI473X Command and Property methods',['../group__group10.html',1,'']]]
 ];

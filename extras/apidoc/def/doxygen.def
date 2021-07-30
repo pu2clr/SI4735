@@ -149,7 +149,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gabed83f2c503dc3b35ca115ef6b08d552';
-        sec-mem-ref-line = '3304';
+        sec-mem-ref-line = '3305';
         sec-mem-ref-name = 'patchPowerUpNBFM';
     };
       sec-mem-referencedby = {
@@ -204,7 +204,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga5c8c57c727fd102f0eb3d59ec995692f';
-        sec-mem-ref-line = '3406';
+        sec-mem-ref-line = '3407';
         sec-mem-ref-name = 'setFrequencyNBFM';
     };
       sec-mem-referencedby = {
@@ -1014,7 +1014,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga505445484e643ae95a2a9300eac9c4c1';
-        sec-mem-ref-line = '3347';
+        sec-mem-ref-line = '3348';
         sec-mem-ref-name = 'setNBFM';
     };
       sec-mem-referencedby = {
@@ -6269,7 +6269,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga22adda493bc8278a376c1ba6f6ea4668';
-        sec-mem-ref-line = '3378';
+        sec-mem-ref-line = '3379';
         sec-mem-ref-name = 'setNBFM';
     };
     }; /* sec-member */
@@ -6327,7 +6327,7 @@ Tunes the SSB (LSB or USB) receiver to a frequency between 64 and 108 MHz.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga505445484e643ae95a2a9300eac9c4c1';
-        sec-mem-ref-line = '3347';
+        sec-mem-ref-line = '3348';
         sec-mem-ref-name = 'setNBFM';
     };
     }; /* sec-member */
@@ -6361,7 +6361,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadd298b10c6c7e760e7233b50500773c3';
-        sec-mem-ref-line = '3323';
+        sec-mem-ref-line = '3324';
         sec-mem-ref-name = 'loadPatchNBFM';
     };
     }; /* sec-member */
@@ -6399,7 +6399,7 @@ Configures the Si4735-D60/SI4732-A10 device to work with NBFM.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gabed83f2c503dc3b35ca115ef6b08d552';
-        sec-mem-ref-line = '3304';
+        sec-mem-ref-line = '3305';
         sec-mem-ref-name = 'patchPowerUpNBFM';
     };
       sec-mem-referenceto = {
@@ -6508,7 +6508,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadd298b10c6c7e760e7233b50500773c3';
-        sec-mem-ref-line = '3323';
+        sec-mem-ref-line = '3324';
         sec-mem-ref-name = 'loadPatchNBFM';
     };
     }; /* sec-member */
@@ -7291,7 +7291,10 @@ _EnD_oF_dEf_TeXt_;
 Converts a number to a char array.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-It is useful to mitigate memory space used by functions like sprintf or generic similar function   
+It is useful to mitigate memory space used by functions like sprintf or othetr generic similar functions
+
+
+You can use it to format frequency using decimal or tousand separator and also to convert smalm numbers.      
 <br>
 
 @param value  value to be converted
