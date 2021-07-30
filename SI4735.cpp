@@ -3202,7 +3202,8 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
 /**
  * @ingroup group18 Covert numbers to char array
  * @brief Converts a number to a char array 
- * @details It is useful to mitigate memory space used by functions like sprintf or generic similar function   
+ * @details It is useful to mitigate memory space used by functions like sprintf or othetr generic similar functions
+ * @details You can use it to format frequency using decimal or tousand separator and also to convert smalm numbers.      
  * 
  * @param value  value to be converted
  * @param strValue char array that will be receive the converted value 
