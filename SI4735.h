@@ -871,7 +871,8 @@ typedef union
         uint8_t minute2 : 4;      // UTC Minutes - 4 bits  more significant  (void “Crosses boundary”)
         uint8_t hour1 : 4;        // UTC Hours - 4 bits less significant (void “Crosses boundary”)
         uint8_t hour2 : 1;        // UTC Hours - 4 bits more significant (void “Crosses boundary”)
-        uint32_t mjd : 17;        // Modified Julian Day Code
+        uint16_t mjd1 : 15;        // Modified Julian Day Code - 15  bits less significant (void “Crosses boundary”)
+        uint16_t mjd2 : 2;         // Modified Julian Day Code - 2 bits more significant (void “Crosses boundary”)
     } refined;
     uint8_t raw[6];
 } si47x_rds_date_time;
@@ -1055,7 +1056,7 @@ protected:
     char rds_buffer2A[65]; //!<  RDS Radio Text buffer - Program Information
     char rds_buffer2B[33]; //!<  RDS Radio Text buffer - Station Informaation
     char rds_buffer0A[9];  //!<  RDS Basic tuning and switching information (Type 0 groups)
-    char rds_time[20];     //!<  RDS date time received information
+    char rds_time[25];     //!<  RDS date time received information
 
     int rdsTextAdress2A; //!<  rds_buffer2A current position
     int rdsTextAdress2B; //!<  rds_buffer2B current position
@@ -2471,6 +2472,8 @@ public:
     char *getRdsText2B(void);
 
     char *getRdsTime(void);
+    char *getRdsDate(void);
+    char *getRdsDateTime(void);
 
     void getNext2Block(char *);
     void getNext4Block(char *);

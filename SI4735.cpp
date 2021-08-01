@@ -2428,11 +2428,15 @@ char *SI4735::getRdsText2B(void)
 }
 
 /**
- * @ingroup group16 RDS status 
+ * @ingroup group16 RDS Time and Date 
  * 
  * @brief Gets the RDS time and date when the Group type is 4 
+ * @details Returns theUTC Time and offset (to convert it to local time)
+ * @details return examples: 
+ * @details                 12:31 +03:00 
+ * @details                 21:59 -02:30
  * 
- * @return char* a string with hh:mm +/- offset
+ * @return  point to char array. Format:  +/-hh:mm (offset)
  */
 char *SI4735::getRdsTime()
 {
@@ -2471,6 +2475,7 @@ char *SI4735::getRdsTime()
         // sprintf(rds_time, "%02u:%02u %c%02u:%02u", hour, minute, offset_sign, offset_h, offset_m);
 
         // Using convertToChar instead sprintf to save space (about 1.2K on ATmega328 compiler tools).
+    
         this->convertToChar(hour, rds_time, 2, 0, ' ', false);
         rds_time[2] = ':';
         this->convertToChar(minute, &rds_time[3], 2, 0, ' ', false);
@@ -2481,12 +2486,111 @@ char *SI4735::getRdsTime()
         this->convertToChar(offset_m, &rds_time[10], 2, 0, ' ', false);
         rds_time[12] = '\0';
         
-    
+            
         return rds_time;
     }
 
     return NULL;
 }
+
+/**
+ * @ingroup group16 RDS Time and Date 
+ * 
+ * @brief Gets the RDS Date when the Group type is 4 
+ * @details Converts MJD to Year-Moth-day string format 
+ * 
+ * @return array of char YYYY-MM-DD 
+ */
+char *SI4735::getRdsDate() {
+
+    return NULL;
+}
+
+/**
+ * @ingroup group16 RDS Time and Date
+ * @brief Gets the RDS the Time and Date when the Group type is 4 
+ * @details Returns the Date, UTC Time and offset (to convert it to local time)
+ * @details return examples: 
+ * @details                 2021-07-29 12:31 +03:00 
+ * @details                 1964-05-09 21:59 -02:30
+ * 
+ * @return array of char yy-mm-dd hh:mm +/-hh:mm offset
+ */
+char *SI4735::getRdsDateTime() {
+    si47x_rds_date_time dt;
+
+    uint16_t minute;
+    uint16_t hour;
+    uint32_t mjd;
+
+    uint8_t day;
+    uint8_t month;
+    uint32_t year;    
+
+    if (getRdsGroupType() == 4)
+    {
+        char offset_sign;
+        int offset_h;
+        int offset_m;
+
+        dt.raw[4] = currentRdsStatus.resp.BLOCKBL;
+        dt.raw[5] = currentRdsStatus.resp.BLOCKBH;
+        dt.raw[2] = currentRdsStatus.resp.BLOCKCL;
+        dt.raw[3] = currentRdsStatus.resp.BLOCKCH;
+        dt.raw[0] = currentRdsStatus.resp.BLOCKDL;
+        dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
+
+        // Unfortunately the resource below was necessary dues to  the GCC compiler on 32-bit platform.
+        // See si47x_rds_date_time (typedef union) and CGG “Crosses boundary” issue/features.
+        // Now it is working on Atmega328, STM32, Arduino DUE, ESP32 and more.
+
+        // Calculating day, month and year
+        mjd = (uint32_t) dt.refined.mjd2 << 15;
+        mjd |=  dt.refined.mjd1;
+        uint32_t jd = mjd + 2400001;
+        uint32_t l = jd + 68569;
+        uint32_t n = (4 * l / 146097);
+        l -=  (uint32_t) ((146097 * n + 3) / 4);
+        year = (uint32_t) (4000 * (l + 1) / 1461001);
+        l -= (uint32_t) ((1461 * year / 4)) + 31;
+        month = (uint32_t) (80 * l / 2447);
+        day = l - (uint32_t) (2447 * month / 80) + 1;
+        l = (uint32_t) (month / 11);
+        month = (uint32_t) (month + 2 - 12 * l) + 2;
+        year = (uint32_t) (100 * (n - 49) + year + l);
+
+        minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
+        hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
+
+        offset_sign = (dt.refined.offset_sense == 1) ? '+' : '-';
+        offset_h = (dt.refined.offset * 30) / 60;
+        offset_m = (dt.refined.offset * 30) - (offset_h * 60);
+
+        // Converting the result to array char - 
+        // Using convertToChar instead sprintf to save space (about 1.2K on ATmega328 compiler tools).
+
+        this->convertToChar(year, rds_time, 4, 0, ' ', false);
+        rds_time[4] = '-';
+        this->convertToChar(month, &rds_time[5], 2, 0, ' ', false);
+        rds_time[7] = '-';
+        this->convertToChar(day, &rds_time[8], 2, 0, ' ', false);
+        rds_time[10] = ' ';
+        this->convertToChar(hour, &rds_time[11], 2, 0, ' ', false);
+        rds_time[13] = ':';
+        this->convertToChar(minute, &rds_time[14], 2, 0, ' ', false);
+        rds_time[16] = ' ';
+        rds_time[17] = offset_sign;
+        this->convertToChar(offset_h, &rds_time[18], 2, 0, ' ', false);
+        rds_time[20] = ':';
+        this->convertToChar(offset_m, &rds_time[21], 2, 0, ' ', false);
+        rds_time[23] = '\0';
+
+        return rds_time;
+    }
+
+    return NULL;
+}
+
 
 /**
  * @defgroup group17 Si4735-D60 Single Side Band (SSB) support
@@ -2536,7 +2640,7 @@ char *SI4735::getRdsTime()
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5 
  */
 
-/**
+    /**
  * @ingroup group17 Patch and SSB support 
  *  
  * @brief Sets the SSB Beat Frequency Offset (BFO). 
@@ -2545,7 +2649,8 @@ char *SI4735::getRdsTime()
  * 
  * @param offset 16-bit signed value (unit in Hz). The valid range is -16383 to +16383 Hz. 
  */
-void SI4735::setSSBBfo(int offset)
+    void
+    SI4735::setSSBBfo(int offset)
 {
 
     si47x_property property;
