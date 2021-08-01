@@ -2521,11 +2521,7 @@ char *SI4735::getRdsDateTime() {
 
     uint16_t minute;
     uint16_t hour;
-    uint32_t mjd;
-
-    uint8_t day;
-    uint8_t month;
-    uint32_t year;    
+    uint32_t mjd, jd, ljd, njd, day, month, year;    
 
     if (getRdsGroupType() == 4)
     {
@@ -2545,20 +2541,23 @@ char *SI4735::getRdsDateTime() {
         // Now it is working on Atmega328, STM32, Arduino DUE, ESP32 and more.
 
         // Calculating day, month and year
-        mjd = (uint32_t) dt.refined.mjd2 << 15;
-        mjd |=  dt.refined.mjd1;
-        uint32_t jd = mjd + 2400001;
-        uint32_t l = jd + 68569;
-        uint32_t n = (4 * l / 146097);
-        l -=  (uint32_t) ((146097 * n + 3) / 4);
-        year = (uint32_t) (4000 * (l + 1) / 1461001);
-        l -= (uint32_t) ((1461 * year / 4)) + 31;
-        month = (uint32_t) (80 * l / 2447);
-        day = l - (uint32_t) (2447 * month / 80) + 1;
-        l = (uint32_t) (month / 11);
-        month = (uint32_t) (month + 2 - 12 * l) + 2;
-        year = (uint32_t) (100 * (n - 49) + year + l);
 
+        mjd = (uint32_t) dt.refined.mjd2 << 15;
+        mjd |= dt.refined.mjd1;
+
+        jd = mjd + 2400001;
+        ljd = jd + 68569;
+        njd = (uint32_t)(4 * ljd / 146097);
+        ljd = ljd - (uint32_t)((146097 * njd + 3) / 4);
+        year = (uint32_t)(4000 * (ljd + 1) / 1461001);
+        ljd = ljd - (uint32_t)((1461 * year / 4)) + 31;
+        month = (uint32_t)(80 * ljd / 2447);
+        day = ljd - (uint32_t)(2447 * month / 80);
+        ljd = (uint32_t)(month / 11);
+        month = (uint32_t)(month + 2 - 12 * ljd);
+        year = (uint32_t)(100 * (njd - 49) + year + ljd);
+
+        // Calculating / Getting UTC hour, minute and offset     
         minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
         hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
 
