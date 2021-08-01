@@ -2497,6 +2497,16 @@ char *SI4735::getRdsTime()
  * @ingroup group16 RDS Time and Date
  * @brief Gets the Rds Date Time 
  * @details This method gets the RDS date time massage, convert from MJD to JD and UTC time to local time
+ * @details Example:
+ * @code
+ *      uint16_t year, month, day, hour, minute;
+ *      .
+ *      .
+ *      si4735.getRdsStatus();
+ *      si4735.getRdsDateTime(&year, &month, &day, &hour, &minute);
+ *      .
+ *      .        
+ * @endcode
  * @param rYear  year variable reference 
  * @param rMonth month variable reference 
  * @param rDay day variable reference 
@@ -2507,7 +2517,8 @@ void SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
 {
     si47x_rds_date_time dt;
 
-    uint16_t minute, local_minute;
+    int16_t local_minute;
+    uint16_t minute;
     uint16_t hour;
     uint32_t mjd, jd, ljd, njd, day, month, year;
 
@@ -2547,7 +2558,8 @@ void SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
 
         // Converting UTC to local time
         local_minute = ((hour * 60) + minute) + ((dt.refined.offset * 30) * ((dt.refined.offset_sense == 1) ? -1 : 1));
-        hour = (uint16_t) local_minute / 60;
+        local_minute += (local_minute < 0 )? (1440): 0;
+        hour = (uint16_t)local_minute / 60;
         minute = local_minute - ( hour * 60);
 
         *rYear = (uint16_t)year;
