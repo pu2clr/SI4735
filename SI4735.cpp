@@ -2494,16 +2494,70 @@ char *SI4735::getRdsTime()
 }
 
 /**
- * @ingroup group16 RDS Time and Date 
- * 
- * @brief Gets the RDS Date when the Group type is 4 
- * @details Converts MJD to Year-Moth-day string format 
- * 
- * @return array of char YYYY-MM-DD 
+ * @ingroup group16 RDS Time and Date
+ * @brief Gets the Rds Date Time 
+ * @details This method gets the RDS date time massage, convert from MJD to JD and UTC time to local time
+ * @param rYear  year variable reference 
+ * @param rMonth month variable reference 
+ * @param rDay day variable reference 
+ * @param rHour local hour variable reference 
+ * @param rMinute local minute variable reference 
  */
-char *SI4735::getRdsDate() {
+void SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, uint16_t *rHour, uint16_t *rMinute)
+{
+    si47x_rds_date_time dt;
 
-    return NULL;
+    uint16_t minute, local_minute;
+    uint16_t hour;
+    uint32_t mjd, jd, ljd, njd, day, month, year;
+
+    if (getRdsGroupType() == 4)
+    {
+
+        dt.raw[4] = currentRdsStatus.resp.BLOCKBL;
+        dt.raw[5] = currentRdsStatus.resp.BLOCKBH;
+        dt.raw[2] = currentRdsStatus.resp.BLOCKCL;
+        dt.raw[3] = currentRdsStatus.resp.BLOCKCH;
+        dt.raw[0] = currentRdsStatus.resp.BLOCKDL;
+        dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
+
+        // Unfortunately the resource below was necessary dues to  the GCC compiler on 32-bit platform.
+        // See si47x_rds_date_time (typedef union) and CGG “Crosses boundary” issue/features.
+        // Now it is working on Atmega328, STM32, Arduino DUE, ESP32 and more.
+
+        mjd = (uint32_t)dt.refined.mjd2 << 15;
+        mjd |= dt.refined.mjd1;
+
+        minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
+        hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
+
+        // Calculating day, month and year
+        // This MJD algorithm is an adaptation of the javascript code found at http://www.csgnetwork.com/julianmodifdateconv.html
+        jd = mjd + 2400001;
+        ljd = jd + 68569;
+        njd = (uint32_t)(4 * ljd / 146097);
+        ljd = ljd - (uint32_t)((146097 * njd + 3) / 4);
+        year = (uint32_t)(4000 * (ljd + 1) / 1461001);
+        ljd = ljd - (uint32_t)((1461 * year / 4)) + 31;
+        month = (uint32_t)(80 * ljd / 2447);
+        day = ljd - (uint32_t)(2447 * month / 80);
+        ljd = (uint32_t)(month / 11);
+        month = (uint32_t)(month + 2 - 12 * ljd);
+        year = (uint32_t)(100 * (njd - 49) + year + ljd);
+
+        // Converting UTC to local time
+        local_minute = ((hour * 60) + minute) + ((dt.refined.offset * 30) * ((dt.refined.offset_sense == 1) ? -1 : 1));
+        hour = (uint16_t) local_minute / 60;
+        minute = local_minute - ( hour * 60);
+
+        *rYear = (uint16_t)year;
+        *rMonth = (uint16_t) month;
+        *rDay = (uint16_t) day;
+        *rHour = hour;
+        *rMinute = minute;
+
+    }
+
 }
 
 /**
@@ -2516,7 +2570,8 @@ char *SI4735::getRdsDate() {
  * 
  * @return array of char yy-mm-dd hh:mm +/-hh:mm offset
  */
-char *SI4735::getRdsDateTime() {
+    char *SI4735::getRdsDateTime()
+{
     si47x_rds_date_time dt;
 
     uint16_t minute;
@@ -2540,11 +2595,14 @@ char *SI4735::getRdsDateTime() {
         // See si47x_rds_date_time (typedef union) and CGG “Crosses boundary” issue/features.
         // Now it is working on Atmega328, STM32, Arduino DUE, ESP32 and more.
 
-        // Calculating day, month and year
-
         mjd = (uint32_t) dt.refined.mjd2 << 15;
         mjd |= dt.refined.mjd1;
 
+        minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
+        hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
+
+        // Calculating day, month and year
+        // This MJD algorithm is an adaptation of the javascript code found at http://www.csgnetwork.com/julianmodifdateconv.html
         jd = mjd + 2400001;
         ljd = jd + 68569;
         njd = (uint32_t)(4 * ljd / 146097);
@@ -2557,10 +2615,7 @@ char *SI4735::getRdsDateTime() {
         month = (uint32_t)(month + 2 - 12 * ljd);
         year = (uint32_t)(100 * (njd - 49) + year + ljd);
 
-        // Calculating / Getting UTC hour, minute and offset     
-        minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
-        hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
-
+        // Calculating hour, minute and offset
         offset_sign = (dt.refined.offset_sense == 1) ? '+' : '-';
         offset_h = (dt.refined.offset * 30) / 60;
         offset_m = (dt.refined.offset * 30) - (offset_h * 60);
@@ -2589,7 +2644,6 @@ char *SI4735::getRdsDateTime() {
 
     return NULL;
 }
-
 
 /**
  * @defgroup group17 Si4735-D60 Single Side Band (SSB) support

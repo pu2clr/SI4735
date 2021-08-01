@@ -2472,8 +2472,8 @@ public:
     char *getRdsText2B(void);
 
     char *getRdsTime(void);
-    char *getRdsDate(void);
     char *getRdsDateTime(void);
+    void getRdsDateTime(uint16_t *year, uint16_t *month, uint16_t *day, uint16_t *hour, uint16_t * minute);
 
     void getNext2Block(char *);
     void getNext4Block(char *);
