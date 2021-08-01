@@ -202,6 +202,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gaa8436bb156f3ac8321c65941be42fdba"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gaa8436bb156f3ac8321c65941be42fdba">SI4735::getRdsTime</a> (void)</td></tr>
 <tr class="memdesc:gaa8436bb156f3ac8321c65941be42fdba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the RDS time and date when the Group type is 4.  <a href="group__group16.html#gaa8436bb156f3ac8321c65941be42fdba">More...</a><br /></td></tr>
 <tr class="separator:gaa8436bb156f3ac8321c65941be42fdba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga397d52a9b2f609b5c6abb3a2386d65b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga397d52a9b2f609b5c6abb3a2386d65b2">SI4735::getRdsDateTime</a> (uint16_t *year, uint16_t *month, uint16_t *day, uint16_t *hour, uint16_t *minute)</td></tr>
+<tr class="memdesc:ga397d52a9b2f609b5c6abb3a2386d65b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Rds Date Time.  <a href="group__group16.html#ga397d52a9b2f609b5c6abb3a2386d65b2">More...</a><br /></td></tr>
+<tr class="separator:ga397d52a9b2f609b5c6abb3a2386d65b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5579fd16c75370bf36b1633fc00ec033"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga5579fd16c75370bf36b1633fc00ec033">SI4735::getRdsDateTime</a> (void)</td></tr>
+<tr class="memdesc:ga5579fd16c75370bf36b1633fc00ec033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the RDS the Time and Date when the Group type is 4.  <a href="group__group16.html#ga5579fd16c75370bf36b1633fc00ec033">More...</a><br /></td></tr>
+<tr class="separator:ga5579fd16c75370bf36b1633fc00ec033"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>RDS Dynamic PS or Scrolling PS support <br  />
@@ -1302,9 +1308,106 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the RDS time and date when the Group type is 4. </p>
-<dl class="section return"><dt>Returns</dt><dd>char* a string with hh:mm +/- offset </dd></dl>
+<p>Returns theUTC Time and offset (to convert it to local time)</p>
+<p>return examples:</p>
+<p>12:31 +03:00</p>
+<p>21:59 -02:30</p>
+<dl class="section return"><dt>Returns</dt><dd>point to char array. Format: +/-hh:mm (offset) </dd></dl>
 
-<p class="reference">References <a class="el" href="class_s_i4735.html#a1746daa81b363880dd106fa430784bf8">SI4735::rds_time</a>.</p>
+<p class="reference">References <a class="el" href="class_s_i4735.html#af722be88a23730082909000dba8002ae">SI4735::rds_time</a>.</p>
+
+</div>
+</div>
+<a id="ga397d52a9b2f609b5c6abb3a2386d65b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga397d52a9b2f609b5c6abb3a2386d65b2">&#9670;&nbsp;</a></span>getRdsDateTime() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::getRdsDateTime </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>rYear</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>rMonth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>rDay</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>rHour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>rMinute</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the Rds Date Time. </p>
+<p>This method gets the RDS date time massage, convert from MJD to JD and UTC time to local time</p>
+<p>Example: </p><div class="fragment"><div class="line">uint16_t year, month, day, hour, minute;</div>
+<div class="line">.</div>
+<div class="line">.</div>
+<div class="line">si4735.getRdsStatus();</div>
+<div class="line">si4735.getRdsDateTime(&amp;year, &amp;month, &amp;day, &amp;hour, &amp;minute);</div>
+<div class="line">.</div>
+<div class="line">.        </div>
+</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rYear</td><td>year variable reference </td></tr>
+    <tr><td class="paramname">rMonth</td><td>month variable reference </td></tr>
+    <tr><td class="paramname">rDay</td><td>day variable reference </td></tr>
+    <tr><td class="paramname">rHour</td><td>local hour variable reference </td></tr>
+    <tr><td class="paramname">rMinute</td><td>local minute variable reference </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga5579fd16c75370bf36b1633fc00ec033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5579fd16c75370bf36b1633fc00ec033">&#9670;&nbsp;</a></span>getRdsDateTime() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * SI4735::getRdsDateTime </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the RDS the Time and Date when the Group type is 4. </p>
+<p>Returns the Date, UTC Time and offset (to convert it to local time)</p>
+<p>return examples:</p>
+<p>2021-07-29 12:31 +03:00</p>
+<p>1964-05-09 21:59 -02:30</p>
+<dl class="section return"><dt>Returns</dt><dd>array of char yy-mm-dd hh:mm +/-hh:mm offset </dd></dl>
+
+<p class="reference">References <a class="el" href="class_s_i4735.html#af722be88a23730082909000dba8002ae">SI4735::rds_time</a>.</p>
 
 </div>
 </div>
