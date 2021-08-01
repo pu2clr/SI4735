@@ -2558,7 +2558,9 @@ void SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
 
         // Converting UTC to local time
         local_minute = ((hour * 60) + minute) + ((dt.refined.offset * 30) * ((dt.refined.offset_sense == 1) ? -1 : 1));
-        local_minute += (local_minute < 0 )? (1440): 0;
+        if (local_minute < 0)
+            local_minute += 1440;
+
         hour = (uint16_t)local_minute / 60;
         minute = local_minute - ( hour * 60);
 
