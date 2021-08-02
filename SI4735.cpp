@@ -2494,7 +2494,7 @@ char *SI4735::getRdsTime()
 }
 
 /**
- * @ingroup group16 RDS Modified Julian Day Converter (MJD)
+ * @ingroup group16 RDS Modified Julian Day Converter (MJD) 
  * @brief Converts the MJD number to integers Year, month and day
  * @details Calculates day, month and year based on MJD
  * @details This MJD algorithm is an adaptation of the javascript code found at http://www.csgnetwork.com/julianmodifdateconv.html

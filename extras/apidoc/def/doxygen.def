@@ -5726,7 +5726,10 @@ _EnD_oF_dEf_TeXt_;
 Converts the MJD number to integers Year, month and day.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-Calculating day, month and year
+      ()
+
+
+Calculates day, month and year based on MJD
 
 
 This MJD algorithm is an adaptation of the javascript code found at http://www.csgnetwork.com/julianmodifdateconv.html
