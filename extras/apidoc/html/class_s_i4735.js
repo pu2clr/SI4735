@@ -193,7 +193,7 @@ var class_s_i4735 =
     [ "mjdConverter", "group__group16.html#gab86c659a9fff0e24f4f66af2eda147c1", null ],
     [ "getRdsTime", "group__group16.html#gaa8436bb156f3ac8321c65941be42fdba", null ],
     [ "getRdsDateTime", "group__group16.html#ga5579fd16c75370bf36b1633fc00ec033", null ],
-    [ "getRdsDateTime", "group__group16.html#ga397d52a9b2f609b5c6abb3a2386d65b2", null ],
+    [ "getRdsDateTime", "group__group16.html#ga8f7e3991593d58cd59ddcaf3cbb37196", null ],
     [ "getNext2Block", "group__group16.html#gab1f4f137139b40fe386ca51586999e50", null ],
     [ "getNext4Block", "group__group16.html#gadb0a3c39aeacba0faf39aadd9465021f", null ],
     [ "setSSBBfo", "group__group17.html#ga55cf9a091d314a1aa21552f2254f756f", null ],

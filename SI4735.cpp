@@ -2540,8 +2540,9 @@ void SI4735::mjdConverter(uint32_t mjd, uint32_t *year, uint32_t *month, uint32_
  * @param rDay day variable reference 
  * @param rHour local hour variable reference 
  * @param rMinute local minute variable reference 
+ * @return true, it the RDS Date and time were processed 
  */
-void SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, uint16_t *rHour, uint16_t *rMinute)
+bool SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, uint16_t *rHour, uint16_t *rMinute)
 {
     si47x_rds_date_time dt;
 
@@ -2597,8 +2598,10 @@ void SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
         *rHour = hour;
         *rMinute = minute;
 
-    }
+        return true;
 
+    }
+    return false;
 }
 
 /**

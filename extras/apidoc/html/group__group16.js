@@ -37,6 +37,6 @@ var group__group16 =
     [ "getRdsText2B", "group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18", null ],
     [ "getRdsTime", "group__group16.html#gaa8436bb156f3ac8321c65941be42fdba", null ],
     [ "mjdConverter", "group__group16.html#gab86c659a9fff0e24f4f66af2eda147c1", null ],
-    [ "getRdsDateTime", "group__group16.html#ga397d52a9b2f609b5c6abb3a2386d65b2", null ],
+    [ "getRdsDateTime", "group__group16.html#ga8f7e3991593d58cd59ddcaf3cbb37196", null ],
     [ "getRdsDateTime", "group__group16.html#ga5579fd16c75370bf36b1633fc00ec033", null ]
 ];

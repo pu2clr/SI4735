@@ -49,7 +49,7 @@ var searchData=
   ['getnumrdsfifoused_164',['getNumRdsFifoUsed',['../group__group16.html#ga819c370ff03c52a527fbc85f9877f526',1,'SI4735']]],
   ['getproperty_165',['getProperty',['../group__group10.html#gace60b9db8033c689247dc1370be367b6',1,'SI4735']]],
   ['getradiodatasysteminterrupt_166',['getRadioDataSystemInterrupt',['../group__group08.html#ga97dc44d9927ea58730a18fb6baa6867f',1,'SI4735']]],
-  ['getrdsdatetime_167',['getRdsDateTime',['../group__group16.html#ga5579fd16c75370bf36b1633fc00ec033',1,'SI4735::getRdsDateTime(void)'],['../group__group16.html#ga397d52a9b2f609b5c6abb3a2386d65b2',1,'SI4735::getRdsDateTime(uint16_t *year, uint16_t *month, uint16_t *day, uint16_t *hour, uint16_t *minute)']]],
+  ['getrdsdatetime_167',['getRdsDateTime',['../group__group16.html#ga5579fd16c75370bf36b1633fc00ec033',1,'SI4735::getRdsDateTime(void)'],['../group__group16.html#ga8f7e3991593d58cd59ddcaf3cbb37196',1,'SI4735::getRdsDateTime(uint16_t *year, uint16_t *month, uint16_t *day, uint16_t *hour, uint16_t *minute)']]],
   ['getrdsflagab_168',['getRdsFlagAB',['../group__group16.html#ga05f76a0a0ebda813483f1df24e890904',1,'SI4735']]],
   ['getrdsgrouptype_169',['getRdsGroupType',['../group__group16.html#gaa35366e5cded7b864f7268a7e4a8dbe9',1,'SI4735']]],
   ['getrdsnewblocka_170',['getRdsNewBlockA',['../group__group16.html#ga561a052a8c737302368274c774d8c129',1,'SI4735']]],

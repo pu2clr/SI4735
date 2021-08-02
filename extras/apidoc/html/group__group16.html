@@ -205,9 +205,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gab86c659a9fff0e24f4f66af2eda147c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gab86c659a9fff0e24f4f66af2eda147c1">SI4735::mjdConverter</a> (uint32_t mjd, uint32_t *year, uint32_t *month, uint32_t *day)</td></tr>
 <tr class="memdesc:gab86c659a9fff0e24f4f66af2eda147c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the MJD number to integers Year, month and day.  <a href="group__group16.html#gab86c659a9fff0e24f4f66af2eda147c1">More...</a><br /></td></tr>
 <tr class="separator:gab86c659a9fff0e24f4f66af2eda147c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga397d52a9b2f609b5c6abb3a2386d65b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga397d52a9b2f609b5c6abb3a2386d65b2">SI4735::getRdsDateTime</a> (uint16_t *year, uint16_t *month, uint16_t *day, uint16_t *hour, uint16_t *minute)</td></tr>
-<tr class="memdesc:ga397d52a9b2f609b5c6abb3a2386d65b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes the RDS time to LOCAL Julian Day and time.  <a href="group__group16.html#ga397d52a9b2f609b5c6abb3a2386d65b2">More...</a><br /></td></tr>
-<tr class="separator:ga397d52a9b2f609b5c6abb3a2386d65b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8f7e3991593d58cd59ddcaf3cbb37196"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga8f7e3991593d58cd59ddcaf3cbb37196">SI4735::getRdsDateTime</a> (uint16_t *year, uint16_t *month, uint16_t *day, uint16_t *hour, uint16_t *minute)</td></tr>
+<tr class="memdesc:ga8f7e3991593d58cd59ddcaf3cbb37196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes the RDS time to LOCAL Julian Day and time.  <a href="group__group16.html#ga8f7e3991593d58cd59ddcaf3cbb37196">More...</a><br /></td></tr>
+<tr class="separator:ga8f7e3991593d58cd59ddcaf3cbb37196"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5579fd16c75370bf36b1633fc00ec033"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga5579fd16c75370bf36b1633fc00ec033">SI4735::getRdsDateTime</a> (void)</td></tr>
 <tr class="memdesc:ga5579fd16c75370bf36b1633fc00ec033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the RDS the Time and Date when the Group type is 4.  <a href="group__group16.html#ga5579fd16c75370bf36b1633fc00ec033">More...</a><br /></td></tr>
 <tr class="separator:ga5579fd16c75370bf36b1633fc00ec033"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1374,14 +1374,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga397d52a9b2f609b5c6abb3a2386d65b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga397d52a9b2f609b5c6abb3a2386d65b2">&#9670;&nbsp;</a></span>getRdsDateTime() <span class="overload">[1/2]</span></h2>
+<a id="ga8f7e3991593d58cd59ddcaf3cbb37196"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8f7e3991593d58cd59ddcaf3cbb37196">&#9670;&nbsp;</a></span>getRdsDateTime() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SI4735::getRdsDateTime </td>
+          <td class="memname">bool SI4735::getRdsDateTime </td>
           <td>(</td>
           <td class="paramtype">uint16_t *&#160;</td>
           <td class="paramname"><em>rYear</em>, </td>
@@ -1440,6 +1440,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>true, it the RDS Date and time were processed </dd></dl>
 
 </div>
 </div>
