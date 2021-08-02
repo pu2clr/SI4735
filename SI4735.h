@@ -2471,6 +2471,7 @@ public:
     char *getRdsText2A(void); // Gets the Radio Text
     char *getRdsText2B(void);
 
+    void mjdConverter(uint32_t mjd, uint32_t *year, uint32_t *month, uint32_t *day);
     char *getRdsTime(void);
     char *getRdsDateTime(void);
     void getRdsDateTime(uint16_t *year, uint16_t *month, uint16_t *day, uint16_t *hour, uint16_t * minute);

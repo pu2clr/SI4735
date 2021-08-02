@@ -2495,8 +2495,36 @@ char *SI4735::getRdsTime()
 
 /**
  * @ingroup group16 RDS Time and Date
+ * @brief Converts the MJD number to integers Year, month and day
+ * @details Calculating day, month and year
+ * @details This MJD algorithm is an adaptation of the javascript code found at http://www.csgnetwork.com/julianmodifdateconv.html
+ * @param mjd   mjd number 
+ * @param year  year variable reference 
+ * @param month month variable reference 
+ * @param day day variable reference 
+ */
+void SI4735::mjdConverter(uint32_t mjd, uint32_t *year, uint32_t *month, uint32_t *day)
+{
+    uint32_t jd, ljd, njd;
+    jd = mjd + 2400001;
+    ljd = jd + 68569;
+    njd = (uint32_t)(4 * ljd / 146097);
+    ljd = ljd - (uint32_t)((146097 * njd + 3) / 4);
+    *year = (uint32_t)(4000 * (ljd + 1) / 1461001);
+    ljd = ljd - (uint32_t)((1461 * (*year) / 4)) + 31;
+    *month = (uint32_t)(80 * ljd / 2447);
+    *day = ljd - (uint32_t)(2447 * (*month) / 80);
+    ljd = (uint32_t)(*month / 11);
+    *month = (uint32_t)(*month + 2 - 12 * ljd);
+    *year = (uint32_t)(100 * (njd - 49) + (*year) + ljd);
+}
+
+/**
+ * @ingroup group16 RDS Time and Date
  * @brief Gets the Rds Date Time 
  * @details This method gets the RDS date time massage, convert from MJD to JD and UTC time to local time
+ * @details The Date and Time service may not work correctly depending on the station that provides the service. 
+ * @details I have noticed that some FM stations consider Coordinated Universal Time (UTC) for date and time (hh:mm) while other stations only consider UTC for the time. 
  * @details Example:
  * @code
  *      uint16_t year, month, day, hour, minute;
@@ -2520,7 +2548,7 @@ void SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
     int16_t local_minute;
     uint16_t minute;
     uint16_t hour;
-    uint32_t mjd, jd, ljd, njd, day, month, year;
+    uint32_t mjd, day, month, year;
 
     if (getRdsGroupType() == 4)
     {
@@ -2542,19 +2570,8 @@ void SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
         minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
         hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
 
-        // Calculating day, month and year
-        // This MJD algorithm is an adaptation of the javascript code found at http://www.csgnetwork.com/julianmodifdateconv.html
-        jd = mjd + 2400001;
-        ljd = jd + 68569;
-        njd = (uint32_t)(4 * ljd / 146097);
-        ljd = ljd - (uint32_t)((146097 * njd + 3) / 4);
-        year = (uint32_t)(4000 * (ljd + 1) / 1461001);
-        ljd = ljd - (uint32_t)((1461 * year / 4)) + 31;
-        month = (uint32_t)(80 * ljd / 2447);
-        day = ljd - (uint32_t)(2447 * month / 80);
-        ljd = (uint32_t)(month / 11);
-        month = (uint32_t)(month + 2 - 12 * ljd);
-        year = (uint32_t)(100 * (njd - 49) + year + ljd);
+        // calculates the jd Year, Month and Day base on mjd number
+        mjdConverter(mjd, &year, &month, &day);
 
         // Converting UTC to local time
         local_minute = ((hour * 60) + minute) + ((dt.refined.offset * 30) * ((dt.refined.offset_sense == 1) ? -1 : 1));
@@ -2584,13 +2601,13 @@ void SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
  * 
  * @return array of char yy-mm-dd hh:mm +/-hh:mm offset
  */
-    char *SI4735::getRdsDateTime()
+char *SI4735::getRdsDateTime()
 {
     si47x_rds_date_time dt;
 
     uint16_t minute;
     uint16_t hour;
-    uint32_t mjd, jd, ljd, njd, day, month, year;    
+    uint32_t mjd, day, month, year;    
 
     if (getRdsGroupType() == 4)
     {
@@ -2615,19 +2632,8 @@ void SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
         minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
         hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
 
-        // Calculating day, month and year
-        // This MJD algorithm is an adaptation of the javascript code found at http://www.csgnetwork.com/julianmodifdateconv.html
-        jd = mjd + 2400001;
-        ljd = jd + 68569;
-        njd = (uint32_t)(4 * ljd / 146097);
-        ljd = ljd - (uint32_t)((146097 * njd + 3) / 4);
-        year = (uint32_t)(4000 * (ljd + 1) / 1461001);
-        ljd = ljd - (uint32_t)((1461 * year / 4)) + 31;
-        month = (uint32_t)(80 * ljd / 2447);
-        day = ljd - (uint32_t)(2447 * month / 80);
-        ljd = (uint32_t)(month / 11);
-        month = (uint32_t)(month + 2 - 12 * ljd);
-        year = (uint32_t)(100 * (njd - 49) + year + ljd);
+        // calculates the jd (Year, Month and Day) base on mjd number
+        mjdConverter(mjd, &year, &month, &day);
 
         // Calculating hour, minute and offset
         offset_sign = (dt.refined.offset_sense == 1) ? '+' : '-';
