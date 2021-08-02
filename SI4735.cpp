@@ -2571,12 +2571,22 @@ void SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
         hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
 
         // calculates the jd Year, Month and Day base on mjd number
-        mjdConverter(mjd, &year, &month, &day);
+        // mjdConverter(mjd, &year, &month, &day);
 
         // Converting UTC to local time
         local_minute = ((hour * 60) + minute) + ((dt.refined.offset * 30) * ((dt.refined.offset_sense == 1) ? -1 : 1));
-        if (local_minute < 0)
+        if (local_minute < 0) {
             local_minute += 1440;
+            mjd--;  // drecreases one day 
+        }
+        else if (local_minute > 1440)
+        {
+            local_minute -= 1440;
+            mjd++; // increases one day
+        }
+
+        // calculates the jd Year, Month and Day base on mjd number
+        mjdConverter(mjd, &year, &month, &day);
 
         hour = (uint16_t)local_minute / 60;
         minute = local_minute - ( hour * 60);
