@@ -2521,10 +2521,10 @@ void SI4735::mjdConverter(uint32_t mjd, uint32_t *year, uint32_t *month, uint32_
 
 /**
  * @ingroup group16 RDS Time and Date
- * @brief Gets the Rds Date Time 
- * @details This method gets the RDS date time massage, convert from MJD to JD and UTC time to local time
- * @details The Date and Time service may not work correctly depending on the station that provides the service. 
- * @details I have noticed that some FM stations consider Coordinated Universal Time (UTC) for date and time (hh:mm) while other stations only consider UTC for the time. 
+ * @brief   Decodes the RDS time to LOCAL Julian Day and time
+ * @details This method gets the RDS date time massage and converts it from MJD to JD and UTC time to local time
+ * @details The Date and Time service may not work correctly depending on the FM station that provides the service. 
+ * @details I have noticed that some FM stations do not use the service properly in my location.  
  * @details Example:
  * @code
  *      uint16_t year, month, day, hour, minute;
