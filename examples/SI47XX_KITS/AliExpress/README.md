@@ -155,7 +155,6 @@ Finally, run the upload.
 ![Firmware Update 12](./images/OLED02.png)
 
 
-
 # User Manual 
 
 
@@ -205,3 +204,7 @@ The direction of the seek up or seek down will  depend on the last rotating move
 
 __Turn your receiver on with the encoder push button pressed__.    
 
+
+See also: 
+* [#205 Si4732 ATS-20 Test and Update - Open Source Receiver 0-30 / 64-108](https://youtu.be/381139I2DCg)
+  

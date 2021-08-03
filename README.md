@@ -1251,6 +1251,14 @@ Here you can see some experiments using this library. Watch them.
 * [Dual Conversion HF Receiver Silabs Si4732/Si4735 and Si5351](https://lu7ads.blogspot.com/?fbclid=IwAR0TNxYh9SkS5T7RA_0mm2rZs4ycP7e0Y-SH6ORsT5Uj0C0wFKSEg6Gqd20)
 * [Manufacture of 50MHz AM QRP transceiver TRX-505 / JR0DBK](https://yuki-lab.jp/hw/trx-505/index.html?fbclid=IwAR2IWnGjvKpN4LBfQiB4-6j4hDODlqzjMvfZbzB5DdnWvzJHcDYc2AbrFrU)
 
+#### Videos that powered the standalone SI473X devices: 
+
+* [Prepper Radios: SI4732 All Band Shortwave Radio](https://youtu.be/6cyw0diZVTI)
+* [AM/FM/SW/LW радиоприемник Si4730/Si4735](https://youtu.be/gKCR7FTb9g4)
+* [Si4735 All in One Receiver running on Arduino Pro Mini 3.3V (8MHz) and TFT Display](https://youtu.be/oL8qyRglZ8I)
+
+
+
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
