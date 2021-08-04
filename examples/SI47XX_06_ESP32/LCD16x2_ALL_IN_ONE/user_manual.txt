@@ -1,5 +1,6 @@
 User Manual
 
+
 Commands
 
 1. BAND SELECTION
@@ -8,7 +9,7 @@ Commands
    When the desired band is shown on display, you  can press the button once again or wait for about 2 seconds. 
    You will notice the control will go back to the VFO.
 
-2. STEP, MODE, AGC/Attenuation, bandwidth, Soft Mute and VOLUME
+2. STEP, MODE, AGC (Automatic Gain Control)/Attenuation, bandwidth, Soft Mute, AVC (Automatic Volume Control) and VOLUME
 
      2.1. Press the encoder push button twice (within 1/2 second).
      2.2. After that, the display will show you the Menu text. Rotate the encoder clockwise or counterclockwise 

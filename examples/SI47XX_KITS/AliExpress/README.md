@@ -170,9 +170,14 @@ Press the __VOL+__ push button and rotate the  encoder. Press the button again t
 
 Press the __BAND+__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
-### DEALING WITH AGC AND ATTENUATION
+### DEALING WITH AGC (Automatic Gain Control) AND ATTENUATION
 
 Press the __AGC__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+### DEALING WITH AVC (Automatic Volume Control) 
+
+Press the __AVC__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
 
 ###  DEALING WITH SOFTMUTE AND ATTENUATION
 
