@@ -743,6 +743,8 @@ void showRdsSetup()
  
 char *stationName;
 char bufferStatioName[20];
+char localTime[10];
+uint16_t localYear, localMonth, localDay, localHour, localMinute; 
 
 void clearRDS() {
    stationName = (char *) "           ";
@@ -751,7 +753,7 @@ void clearRDS() {
 
 void showRDSStation()
 {
-    int col = 8;
+    int col = 7;
     for (int i = 0; i < 8; i++ ) {
       if (stationName[i] != bufferStatioName[i] ) {
         lcd.setCursor(col + i, 1);
@@ -763,6 +765,12 @@ void showRDSStation()
     delay(100);
 }
 
+void showRDSTime()
+{
+  lcd.setCursor(8,1);
+  lcd.print(localTime);
+  delay(200);
+}
 
 /*
  * Checks the station name is available
@@ -778,6 +786,12 @@ void checkRDS()
       if (stationName != NULL )
       {
         showRDSStation();
+      }
+      if ( rx.getRdsDateTime(&localYear, &localMonth, &localDay, &localHour, &localMinute) ) {
+        sprintf(localTime,"%02u:%02u", localHour, localMinute);
+        showRDSTime();
+        delay(500);
+        clearRDS();
       }
     }
   }
