@@ -1050,7 +1050,7 @@ The table below shows the some boards where this library has been successfully t
 
 <BR> 
 
-The table below shows some SI473X, SI474X chips and Si4730 based-boards where the __PU2CLR SI4735 Arduino Library__ has been successfully tested. 
+The table below shows some SI473X, SI474X devices and Si4730 based-boards where the __PU2CLR SI4735 Arduino Library__ has been successfully tested. 
 
 | SI473X board / IC        | FM | RDS | AM | SSB | LW | MW | SW | Tested | 
 | -------------------------| -- | --- | -- | --- | -- | -- | -- | ------ | 
@@ -1267,7 +1267,7 @@ Here you can see some experiments using this library. Watch them.
 
 The table below shows some radios based on SI47XX  
 
-| Manufacturer | Model | CI |More information |
+| Manufacturer | Model | Device |More information |
 | ------------ | ----- | ---- |----------- | 
 | Tecsun | PL310ET | Si4734 |[About](https://www.tecsunradios.com.au/store/product/tecsun-pl310et-multi-band-radio/)|
 | Tecsun | PL-365 | Si4735 |[Review](https://swling.com/blog/2017/02/charlie-reviews-the-tecsun-pl-365/)|
@@ -1281,7 +1281,7 @@ The table below shows some radios based on SI47XX
 | Degen | DE1127 (discontinued) | Si4734 | [Review](https://herculodge.typepad.com/herculodge/2012/01/dave-zantow-provides-firmware-updates-for-degen-de1127-and-de1126-models.html) |
 | Sangean | ATS-909X |  Si4735 | [Review](https://swling.com/blog/tag/sangean-ats-909x-review/) |
 | XHDATA | D808 | Si4735 |[Review](https://swling.com/blog/2018/04/a-detailed-review-of-the-xhdata-d-808-and-comparison-with-the-tecsun-pl-660/)|
-| RADIWOW | R-108 |  | [Review](https://www.hagensieker.com/wordpress/2019/05/08/radiwow-r-108-short-wave-radio-review/)|
+| RADIWOW | R-108 | SI4734 | [Review](https://www.hagensieker.com/wordpress/2019/05/08/radiwow-r-108-short-wave-radio-review/)|
 | C Crane |  CC Skywave |  |[Review](https://swling.com/blog/2014/12/review-of-the-c-crane-cc-skywave-portable-radio/) |
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
