@@ -1050,7 +1050,7 @@ The table below shows the some boards where this library has been successfully t
 
 <BR> 
 
-The table below shows some SI473X chips and Si4730 based-boards where the PU2CLR SI4735 Arduino Library has been successfully tested. 
+The table below shows some SI473X, SI474X chips and Si4730 based-boards where the __PU2CLR SI4735 Arduino Library__ has been successfully tested. 
 
 | SI473X board / IC        | FM | RDS | AM | SSB | LW | MW | SW | Tested | 
 | -------------------------| -- | --- | -- | --- | -- | -- | -- | ------ | 
@@ -1061,6 +1061,7 @@ The table below shows some SI473X chips and Si4730 based-boards where the PU2CLR
 | SI4734-D60               |  X |     | X  |     |  X |  X | X  |   Yes  |
 | NE928-10A SI4730         |  X |     | X  |     |    |    |    |   Yes  | 
 | PL102BA V2.11 10628 (*2) |  X | X*  | X  |     | X* |  X | X* |   Yes  |
+| SI4743-C10               |  X | X   | X  |     | X  |  X | X  |   Yes  | 
 | SI4745-C10               |  X | X   | X  |     | X  |  X | X  |   Yes  | 
  
 *1 -  __Acording to Silicon Labs guide AN332, the SI4732-A10 has the same firmware FMRX component and AM_SW_LW RX component as that of SI4735-D60. See Si47XX PROGRAMMING GUIDE; AN332; page 2. So, like the SI4735-D60, it is possible to use it to listen to SSB mode with the SI4732-A10__.
