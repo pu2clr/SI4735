@@ -10,6 +10,9 @@
 |----------|------------|
 |  ![SI4735 Prototypes](extras/images/multiplatform_SI47XX_photo_05.png)  | This document is aimed at the Arduino developers, radio experimenters, hobbyists and anyone interested in building a receiver based on the Si473X IC family from Silicon Labs.  This project is about an Arduino library for the SI473X BROADCAST AM, SSB and FM/RDS RADIO RECEIVERS. Actually, AM and SSB modes from 150kHz to 30MHz; and FM mode from 64 to 108 MHz.
 
+Teste!
+
+
 <BR>
 
 This library is intended to provide an easier interface for controlling the SI47XX (including the boards ["PL102BA-S V:2.1 10628"](https://pu2clr.github.io/SI4735/extras/BOARD_PL102BA/) and ["NE928-10A V:01"](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/) based on SI4730) by using Arduino platform. [It also has support to the SSB mode on SI4735-D60 and SI4732-A10 devices](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band). __The communication protocol used by this library is the I²C__. 
