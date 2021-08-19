@@ -1,10 +1,21 @@
 /*
+  UNDER CONSTRUCTION... 
+  This sketch was not tested on a hardware so far.
 
-  New features: 
-                1) The receiver current status is stored into Arduino EEPROM;
-                2) FM RDS;
-                2) FM frequency step;
-                3) FM Bandwidth control.
+  IMPORTANT:
+  This sketch is an EXPERIMENT with dual converter design.
+  It can be compiled on Arduino ATmega328 and Arduino Mega 
+  Please set the constants SI5351_CALIBRATE_VALUE and IF_OFFSET to the correct values. 
+
+  Features: 
+                1) Dual converter
+                2) The receiver current status is stored into Arduino EEPROM;
+                3) FM RDS;
+                4) FM frequency step;
+                5) FM Bandwidth control.
+
+
+  Se compilado para ATmega 328, utiliza o gerenciador de placa MiniCore com as opções: "LTO enabled" and "No bootloader". 
 
   See user_manual.txt before operating the receiver. 
 
@@ -66,9 +77,13 @@
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
 #include "Rotary.h"
-#include "patch_init.h" // SSB patch for whole SSBRX initialization string
 
-const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
+// #include "patch_init.h" // SSB patch for whole SSBRX initialization string
+#include "patch_ssb_compressed.h" // Compressed SSB patch version (saving almost 1KB)
+
+const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
+const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
+
 
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
@@ -541,14 +556,9 @@ void showFrequency()
   char bufferDisplay[15];
   char *unit;
   int col = 4;
-  sprintf(tmp, "%5.5u", currentFrequency);
-  bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
-  bufferDisplay[1] = tmp[1];
   if (rx.isCurrentTuneFM())
   {
-    bufferDisplay[2] = tmp[2];
-    bufferDisplay[3] = '.';
-    bufferDisplay[4] = tmp[3];
+    rx.convertToChar(currentFrequency, bufferDisplay, 5, 3, ',');
     if ( fmRDS ) { 
       col = 0;
       unit = (char *)" ";
@@ -559,21 +569,11 @@ void showFrequency()
   else
   {
     if (currentFrequency < 1000)
-    {
-      bufferDisplay[1] = ' ';
-      bufferDisplay[2] = tmp[2];
-      bufferDisplay[3] = tmp[3];
-      bufferDisplay[4] = tmp[4];
-    }
+      rx.convertToChar(currentFrequency, bufferDisplay, 5, 0, '.');
     else
-    {
-      bufferDisplay[2] = tmp[2];
-      bufferDisplay[3] = tmp[3];
-      bufferDisplay[4] = tmp[4];
-    }
+      rx.convertToChar(currentFrequency, bufferDisplay, 5, 2, '.');
     unit = (char *)"kHz";
   }
-  bufferDisplay[5] = '\0';
   strcat(bufferDisplay, unit);
   lcd.setCursor(col, 1);
   lcd.print(bufferDisplay);
@@ -632,10 +632,10 @@ void showBandwidth()
     bw = (char *)bandwidthFM[bwIdxFM].desc;
   }
 
-  sprintf(bandwidth, "BW: %s", bw);
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print(bandwidth);
+  lcd.print("BW: ");
+  lcd.print(bw);
 }
 
 /**
@@ -673,7 +673,11 @@ void showRSSI()
   else
     rssiAux = 9;
 
-  sprintf(sMeter, "S%1.1u%c", rssiAux, (rssi >= 60) ? '+' : '.');
+  sMeter[0] = 'S';
+  sMeter[1] = rssiAux + 48; // Converts number to asc
+  sMeter[2] = (rssi >= 60) ? '+' : '.';
+  sMeter[3] = '\0'; 
+
   lcd.setCursor(13, 1);
   lcd.print(sMeter);
 }
@@ -688,8 +692,10 @@ void showAgcAtt()
   rx.getAutomaticGainControl();
   if ( !disableAgc /*agcNdx == 0 && agcIdx == 0 */ )
     strcpy(sAgc, "AGC ON");
-  else
-    sprintf(sAgc, "ATT: %2.2d", agcNdx);
+  else {
+    strcpy(sAgc, "ATT: ");
+    rx.convertToChar(agcNdx, &sAgc[5],2,0,'.');
+  }
 
   lcd.setCursor(0, 0);
   lcd.print(sAgc);
@@ -702,8 +708,9 @@ void showAgcAtt()
 void showStep()
 {
   char sStep[15];
-
-  sprintf(sStep, "Stp:%4d", (currentMode == FM)? (tabFmStep[currentStepIdx] *10) : tabAmStep[currentStepIdx] );
+  int st = (currentMode == FM) ? (tabFmStep[currentStepIdx] * 10) : tabAmStep[currentStepIdx];
+  strcpy(sStep, "Stp: ");
+  rx.convertToChar(st, &sStep[5], 4, 0, '.');
   lcd.setCursor(0, 0);
   lcd.print(sStep);
 }
@@ -713,15 +720,10 @@ void showStep()
  */
 void showBFO()
 {
-  char bfo[15];
-  if (currentBFO > 0)
-    sprintf(bfo, "BFO:+%4.4d", currentBFO);
-  else
-    sprintf(bfo, "BFO:%4.4d", currentBFO);
-
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print(bfo);
+  lcd.print("BFO: ");
+  lcd.print(currentBFO);
   elapsedCommand = millis();
 }
 
@@ -730,11 +732,10 @@ void showBFO()
  */
 void showVolume()
 {
-  char volAux[12];
-  sprintf(volAux, "VOLUME: %2u", rx.getVolume());
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print(volAux);
+  lcd.print("VOLUME: ");
+  lcd.print(rx.getVolume());
 }
 
 /**
@@ -743,10 +744,10 @@ void showVolume()
 void showSoftMute()
 {
   char sMute[18];
-  sprintf(sMute, "Soft Mute: %2d", softMuteMaxAttIdx);
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print(sMute);
+  lcd.print("Soft Mute: ");
+  lcd.print(softMuteMaxAttIdx);
 }
 
 
@@ -756,10 +757,10 @@ void showSoftMute()
 void showAvc()
 {
   char sAvc[18];
-  sprintf(sAvc, "AVC: %2d", avcIdx);
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print(sAvc);
+  lcd.print("AVC: ");
+  lcd.print(avcIdx);
 }
 
 
@@ -770,11 +771,10 @@ void showAvc()
 void showRdsSetup() 
 {
   char sRdsStatus[10];
-  sprintf(sRdsStatus, "RDS: %s", (fmRDS)? "ON ": "OFF");
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print(sRdsStatus);  
-
+  lcd.print("RDS: ");
+  lcd.print((fmRDS) ? "ON " : "OFF");
 }
 
 /***************  
@@ -904,10 +904,16 @@ void useBand()
 
 
 void loadSSB() {
-   rx.setI2CFastModeCustom(400000); // You can try rx.setI2CFastModeCustom(700000); or greater value
-   rx.loadPatch(ssb_patch_content, size_content, bandwidthSSB[bwIdxSSB].idx);
-   rx.setI2CFastModeCustom(100000);  
-   ssbLoaded =  true; 
+  // rx.setI2CFastModeCustom(700000); // It is working. Faster, but I'm not sure if it is safe.
+  rx.setI2CFastModeCustom(400000);
+  rx.queryLibraryId(); // Is it really necessary here? I will check it.
+  rx.patchPowerUp();
+  delay(50);
+  rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
+  rx.setSSBConfig(bandwidthSSB[bwIdxSSB].idx, 1, 0, 1, 0, 1);
+  rx.setI2CStandardMode();
+  ssbLoaded = true;
+   
 }
 
 /**
@@ -1270,10 +1276,6 @@ void setVfoFrequency(int direction) {
     vfo.set_freq(currentFrequency + IF_OFFSET, SI5351_CLK0);     
 }
 
-
-/**
- * Main loop
- */
 /**
  * Main loop
  */
