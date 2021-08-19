@@ -10,12 +10,12 @@
   Features: 
                 1) Dual converter
                 2) The receiver current status is stored into Arduino EEPROM;
-                3) FM RDS;
+                3) ***FM RDS*** Disabled for while;
                 4) FM frequency step;
                 5) FM Bandwidth control.
 
 
-  Se compilado para ATmega 328, utiliza o gerenciador de placa MiniCore com as opções: "LTO enabled" and "No bootloader". 
+  On ATmega 328, please, use the MiniCore manager : "LTO enabled" and "No bootloader". 
 
   See user_manual.txt before operating the receiver. 
 
@@ -275,19 +275,12 @@ typedef struct
 Band band[] = {
     {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0, 1, 0, 0, 0},
     {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 32},
-    {"MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4, 0, 0, 0, 32},
-    {"MW3", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4, 1, 0, 0, 32},
-    {"80M", MW_BAND_TYPE, 3500, 4000, 3700, 0, 4, 1, 0, 0, 32},
-    {"SW1", SW_BAND_TYPE, 4000, 5500, 4885, 1, 4, 1, 0, 0, 32},
-    {"SW2", SW_BAND_TYPE, 5500, 6500, 6000, 1, 4, 1, 0, 0, 32},
+    {"80M", MW_BAND_TYPE, 1700, 4000, 3700, 0, 4, 1, 0, 0, 32},
+    {"SW1", SW_BAND_TYPE, 4000, 6500, 6000, 1, 4, 1, 0, 0, 32},
     {"40M", SW_BAND_TYPE, 6500, 7300, 7100, 0, 4, 1, 0, 0, 40},
-    {"SW3", SW_BAND_TYPE, 7200, 8000, 7200, 1, 4, 1, 0, 0, 40},
-    {"SW4", SW_BAND_TYPE, 9000, 11000, 9500, 1, 4, 1, 0, 0, 40},
-    {"SW5", SW_BAND_TYPE, 11100, 13000, 11900, 1, 4, 1, 0, 0, 40},
-    {"SW6", SW_BAND_TYPE, 13000, 14000, 13500, 1, 4, 1, 0, 0, 40},
+    {"SW2", SW_BAND_TYPE, 7200, 14000, 7200, 1, 4, 1, 0, 0, 40},
     {"20M", SW_BAND_TYPE, 14000, 15000, 14200, 0, 4, 1, 0, 0, 42},
-    {"SW7", SW_BAND_TYPE, 15000, 17000, 15300, 1, 4, 1, 0, 0, 42},
-    {"SW8", SW_BAND_TYPE, 17000, 18000, 17500, 1, 4, 1, 0, 0, 42},
+    {"SW7", SW_BAND_TYPE, 15000, 18000, 15300, 1, 4, 1, 0, 0, 42},
     {"15M", SW_BAND_TYPE, 20000, 21400, 21100, 0, 4, 1, 0, 0, 44},
     {"SW9", SW_BAND_TYPE, 21400, 22800, 21500, 1, 4, 1, 0, 0, 44},
     {"CB ", SW_BAND_TYPE, 26000, 28000, 27500, 0, 4, 1, 0, 0, 44},
@@ -552,7 +545,6 @@ void  rotaryEncoder()
  */
 void showFrequency()
 {
-  char tmp[15];
   char bufferDisplay[15];
   char *unit;
   int col = 4;
@@ -617,7 +609,6 @@ void showStatus()
 void showBandwidth()
 {
   char *bw;
-  char bandwidth[20];
   if (currentMode == LSB || currentMode == USB)
   {
     bw = (char *)bandwidthSSB[bwIdxSSB].desc;
@@ -743,7 +734,6 @@ void showVolume()
  */
 void showSoftMute()
 {
-  char sMute[18];
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Soft Mute: ");
@@ -756,7 +746,6 @@ void showSoftMute()
  */
 void showAvc()
 {
-  char sAvc[18];
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("AVC: ");
@@ -770,7 +759,6 @@ void showAvc()
  */
 void showRdsSetup() 
 {
-  char sRdsStatus[10];
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("RDS: ");
@@ -781,17 +769,20 @@ void showRdsSetup()
  *   RDS
  *   
  */
- 
+
 char *stationName;
 char bufferStatioName[20];
 
 void clearRDS() {
+  /*
    stationName = (char *) "           ";
    showRDSStation();
+   */
 }
 
 void showRDSStation()
 {
+  /*
     int col = 8;
     for (int i = 0; i < 8; i++ ) {
       if (stationName[i] != bufferStatioName[i] ) {
@@ -800,16 +791,16 @@ void showRDSStation()
         bufferStatioName[i] = stationName[i];
       }
     }
-    
     delay(100);
+  */
 }
-
 
 /*
  * Checks the station name is available
  */
 void checkRDS()
 {
+  /*
   rx.getRdsStatus();
   if (rx.getRdsReceived())
   {
@@ -822,6 +813,7 @@ void checkRDS()
       }
     }
   }
+  */
 }
 
 
@@ -850,9 +842,10 @@ void useBand()
     currentMode = FM;
     rx.setTuneFrequencyAntennaCapacitor(0);
     rx.setFM(IF_OFFSET - 1000, IF_OFFSET + 1000, IF_OFFSET, tabFmStep[band[bandIdx].currentStepIdx]);
+    
     rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
-    rx.setRdsConfig(1, 2, 2, 2, 2);
-    rx.setFifoCount(1);
+    // rx.setRdsConfig(1, 2, 2, 2, 2);
+    // rx.setFifoCount(1);
     
     bfoOn = ssbLoaded = false;
     bwIdxFM = band[bandIdx].bandwidthIdx;
@@ -896,6 +889,8 @@ void useBand()
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStepIdx = band[bandIdx].currentStepIdx;
+
+  vfo.set_freq(currentFrequency + IF_OFFSET, SI5351_CLK0); 
 
   rssi = 0;
   showStatus();
