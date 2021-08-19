@@ -2,7 +2,6 @@ User Manual
 
 
 
-
 Commands
 
 1. BAND SELECTION
