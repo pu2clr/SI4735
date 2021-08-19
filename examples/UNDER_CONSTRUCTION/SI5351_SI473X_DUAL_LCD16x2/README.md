@@ -1,4 +1,4 @@
-# MANUAL FOR DIY Dual COnverter All Band Radio (LW, MW, SW, FM)" based on SI5351 and SI473X 
+# MANUAL FOR DIY Dual Converter All Band Radio (LW, MW, SW, FM)" based on SI5351 and SI473X 
 
 
 Sketch developed by Ricardo Lima Caratti - Jul, 2021
