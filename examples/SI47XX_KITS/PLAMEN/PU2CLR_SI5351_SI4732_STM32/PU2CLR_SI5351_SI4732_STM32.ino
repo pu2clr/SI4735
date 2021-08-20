@@ -105,7 +105,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define MIN_ELAPSED_RSSI_TIME 500
 #define ELAPSED_COMMAND 2000 // time to turn off the last command controlled by encoder. Time to goes back to the FVO control
 #define ELAPSED_CLICK 1500   // time to check the double click commands
-#define DEFAULT_VOLUME 22    // change it for your favorite sound volume
+#define DEFAULT_VOLUME 15    // change it for your favorite sound volume
 
 // SI5351 PARAMETERS
 #define XT_CAL_F  39000       //Si5351 calibration factor, adjust to get exatcly 10MHz. 
@@ -113,6 +113,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define IF_FMI_OFFSET 6570           // FM Offset - On FM 6570 means 65,70 MHz
 #define FREQUENCY_UP 1
 #define FREQUENCY_DOWN -1      
+#define MFREQ 100000ULL
 
 #define FM 0
 #define LSB 1
@@ -266,7 +267,7 @@ typedef struct
               Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 */
 Band band[] = {
-    {"VHF", FM_BAND_TYPE, 6600 , 10800, 10390, 1, 0, 1, 0, 0, 0},
+    {"VHF", FM_BAND_TYPE, 13140, 17370, 16960, 1, 0, 1, 0, 0, 0},
     {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 32},
     {"80M", MW_BAND_TYPE, 1700, 4000, 3700, 0, 4, 1, 0, 0, 32},
     {"SW1", SW_BAND_TYPE, 4000, 6500, 6000, 1, 4, 1, 0, 0, 32},
@@ -324,7 +325,7 @@ void setup()
   // Ends Splash
 
   EEPROM.begin();
-
+  /*
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
@@ -333,7 +334,7 @@ void setup()
     display.print("EEPROM RESETED");
     delay(2000);
     display.clearDisplay();
-  }
+  } */
 
   vfo.init(SI5351_CRYSTAL_LOAD_10PF, 27000000, XT_CAL_F);
   vfo.output_enable(SI5351_CLK0, 1);                  //1 - Enable / 0 - Disable CLK
@@ -365,9 +366,13 @@ void setup()
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id)
   {
-    readAllReceiverInformation();
-  } else 
     rx.setVolume(volume);
+    currentFrequency = band[bandIdx].currentFreq;
+    // readAllReceiverInformation();
+  } else {
+    rx.setVolume(volume);
+    currentFrequency = band[bandIdx].currentFreq;
+  }
   
   useBand();
   showStatus();
@@ -555,7 +560,7 @@ void showFrequency()
   char tmp[15];
   char bufferDisplay[15];
   char *unit;
-  sprintf(tmp, "%5.5u", currentFrequency);
+  sprintf(tmp, "%5.5u", currentFrequency - IF_FMI_OFFSET);
   bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
   bufferDisplay[1] = tmp[1];
   if (rx.isCurrentTuneFM())
@@ -844,7 +849,7 @@ void useBand()
     currentStep = tabFmStep[band[bandIdx].currentStepIdx];
 
     rx.setTuneFrequencyAntennaCapacitor(0);
-    rx.setFM(currentIF - 1000, currentIF + 1000, currentIF, tabFmStep[band[bandIdx].currentStepIdx]);
+    rx.setFM(currentIF - 10, currentIF + 10, currentIF, tabFmStep[band[bandIdx].currentStepIdx]);
 
     rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     // rx.setRdsConfig(1, 2, 2, 2, 2);
@@ -893,7 +898,7 @@ void useBand()
   currentFrequency = band[bandIdx].currentFreq;
   currentStepIdx = band[bandIdx].currentStepIdx;
 
-  vfo.set_freq( (currentFrequency +currentIF) * 100000ULL, SI5351_CLK0);
+  vfo.set_freq( (currentFrequency - currentIF) * MFREQ, SI5351_CLK0);
 
   rssi = 0;
   showStatus();
@@ -1274,7 +1279,7 @@ void setVfoFrequency(int direction) {
     else if (currentFrequency < band[bandIdx].minimumFreq) 
       currentFrequency = band[bandIdx].maximumFreq;
 
-    vfo.set_freq( (currentFrequency + currentIF) * 100000ULL, SI5351_CLK0);
+    vfo.set_freq( (currentFrequency - currentIF) * MFREQ, SI5351_CLK0);
 }
 
 /**

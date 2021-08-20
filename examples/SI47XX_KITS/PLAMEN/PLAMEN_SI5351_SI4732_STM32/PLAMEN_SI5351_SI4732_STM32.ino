@@ -420,7 +420,7 @@ void tunegen() {
       }
       if (freq < 170000000)
       {
-        si5351.set_freq((freq + (interfreq_FM * 1000ULL)) * 100ULL, SI5351_CLK0);
+        si5351.set_freq( (freq + (interfreq_FM * 1000ULL)) * 100ULL, SI5351_CLK0);
       }
     }
     else
