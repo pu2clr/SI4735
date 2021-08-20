@@ -251,8 +251,7 @@ void setup()
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
-  // The line below may be necessary to setup I2C pins on ESP32
-
+  // Starts Splash 
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C); // Address 0x3C for 128x32
 
   display.display();
@@ -268,7 +267,7 @@ void setup()
   print(0, 0, NULL, 2, "SI473X");
   print(0, 15, NULL, 2, "Arduino");
   display.display();
-  // End Splash
+  // Ends Splash
 
   delay(2000);
   display.clearDisplay();

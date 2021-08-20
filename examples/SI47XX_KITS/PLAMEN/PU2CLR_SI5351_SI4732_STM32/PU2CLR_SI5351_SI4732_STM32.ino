@@ -75,7 +75,8 @@
 #include <SI4735.h>
 #include <si5351.h>
 #include <EEPROM.h>
-#include <LiquidCrystal.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
 #include "Rotary.h"
 
 // #include "patch_init.h" // SSB patch for whole SSBRX initialization string
@@ -90,19 +91,11 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define SW_BAND_TYPE 2
 #define LW_BAND_TYPE 3
 
-#define RESET_PIN 9
+#define RESET_PIN PB12
 
 // Enconder PINs
-#define ENCODER_PIN_A 2
-#define ENCODER_PIN_B 3
-
-// LCD 16x02 or LCD20x4 PINs
-#define LCD_D7 4
-#define LCD_D6 5
-#define LCD_D5 6
-#define LCD_D4 7
-#define LCD_RS 12
-#define LCD_E 13
+#define ENCODER_PIN_A PA5
+#define ENCODER_PIN_B PA4
 
 // Buttons controllers
 #define ENCODER_PUSH_BUTTON 14 // Pin A0/14
@@ -116,10 +109,10 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 
 // SI5351 PARAMETERS
 #define SI5351_CALIBRATE_VALUE 80000 // See how to calibrate your Si5351A (0 if you do not want).
-#define IF_OFFSET 0         // Set the IF offset you are using. For example: +1070000000LLU (increase 10.7MHz) or -1070000000LLU (decrease 10.7Mhz); +45500000LU (455kHz) or -45500000LU (-455kHz) 
+#define IF_AMI_OFFSET 10700          // AM Offset - Set the IF offset you are using. For example: +1070000000LLU (increase 10.7MHz) or -1070000000LLU (decrease 10.7Mhz); +45500000LU (455kHz) or -45500000LU (-455kHz)
+#define IF_FMI_OFFSET 6570           // FM Offset - On FM 6570 means 65,70 MHz
 #define FREQUENCY_UP 1
 #define FREQUENCY_DOWN -1      
-
 
 #define FM 0
 #define LSB 1
@@ -174,7 +167,7 @@ long elapsedClick = millis();
 volatile int encoderCount = 0;
 uint16_t currentFrequency;
 uint16_t previousFrequency = 0;
-
+int32_t currentIF = IF_AMI_OFFSET;
 
 const uint8_t currentBFOStep = 10;
 
@@ -300,7 +293,8 @@ uint8_t volume = DEFAULT_VOLUME;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
-LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
+Adafruit_SSD1306 display = Adafruit_SSD1306(128, 32, &Wire);
+
 SI4735 rx;
 Si5351 vfo;
 
@@ -310,20 +304,24 @@ void setup()
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
-  lcd.begin(16, 2);
 
-  // Splash - Remove or Change the splash message
-  lcd.setCursor(0, 0);
-  lcd.print("PU2CLR-SI4735");
-  lcd.setCursor(0, 1);
-  lcd.print("Arduino Library");
-  Flash(1500);
-  lcd.setCursor(0, 0);
-  lcd.print("DIY Mirko Radio");
-  lcd.setCursor(0, 1);
-  lcd.print("By RICARDO/2021");
-  Flash(2000);
-  // End splash
+  // Starts Splash
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C); // Address 0x3C for 128x32
+
+  display.display();
+  display.setTextColor(SSD1306_WHITE);
+
+  // Splash - Remove or change it for your introduction text.
+  display.clearDisplay();
+  print(0, 0, NULL, 2, "PU2CLR");
+  print(0, 15, NULL, 2, "Plamen's Kit");
+  display.display();
+  delay(2000);
+  display.clearDisplay();
+  print(0, 0, NULL, 2, "SI5351/SI4732");
+  print(0, 15, NULL, 2, "Dual Conv.");
+  display.display();
+  // Ends Splash
 
   EEPROM.begin();
 
@@ -331,10 +329,10 @@ void setup()
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
     EEPROM.update(eeprom_address, 0);
-    lcd.setCursor(0,0);
-    lcd.print("EEPROM RESETED");
+    display.setCursor(0,0);
+    display.print("EEPROM RESETED");
     delay(2000);
-    lcd.clear();
+    display.clearDisplay();
   }
 
   vfo.init(SI5351_CRYSTAL_LOAD_8PF, 0, 0);
@@ -374,17 +372,6 @@ void setup()
   showStatus();
 }
 
-/**
- *  Cleans the screen with a visual effect.
- */
-void Flash(int d)
-{
-  delay(d);
-  lcd.clear();
-  lcd.noDisplay();
-  delay(500);
-  lcd.display();
-}
 
 /*
    writes the conrrent receiver information into the eeprom.
@@ -541,34 +528,72 @@ void  rotaryEncoder()
 }
 
 /**
+ * Prints a given content on display 
+ */
+void print(uint8_t col, uint8_t lin, const GFXfont *font, uint8_t textSize, const char *msg)
+{
+  display.setFont(font);
+  display.setTextSize(textSize);
+  display.setCursor(col, lin);
+  display.print(msg);
+}
+
+void printParam(const char *msg)
+{
+  display.fillRect(0, 10, 128, 10, SSD1306_BLACK);
+  print(0, 10, NULL, 1, msg);
+  display.display();
+}
+
+
+/**
  * Shows frequency information on Display
  */
 void showFrequency()
 {
+  char tmp[15];
   char bufferDisplay[15];
   char *unit;
-  int col = 4;
+  sprintf(tmp, "%5.5u", currentFrequency);
+  bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
+  bufferDisplay[1] = tmp[1];
   if (rx.isCurrentTuneFM())
   {
-    rx.convertToChar(currentFrequency, bufferDisplay, 5, 3, ',');
-    if ( fmRDS ) { 
-      col = 0;
-      unit = (char *)" ";
-    } else {
-      unit = (char *)"MHz";
-    }
+    bufferDisplay[2] = tmp[2];
+    bufferDisplay[3] = '.';
+    bufferDisplay[4] = tmp[3];
+    unit = (char *)"MHz";
   }
   else
   {
     if (currentFrequency < 1000)
-      rx.convertToChar(currentFrequency, bufferDisplay, 5, 0, '.');
+    {
+      bufferDisplay[1] = ' ';
+      bufferDisplay[2] = tmp[2];
+      bufferDisplay[3] = tmp[3];
+      bufferDisplay[4] = tmp[4];
+    }
     else
-      rx.convertToChar(currentFrequency, bufferDisplay, 5, 2, '.');
+    {
+      bufferDisplay[2] = tmp[2];
+      bufferDisplay[3] = tmp[3];
+      bufferDisplay[4] = tmp[4];
+    }
     unit = (char *)"kHz";
   }
-  strcat(bufferDisplay, unit);
-  lcd.setCursor(col, 1);
-  lcd.print(bufferDisplay);
+  bufferDisplay[5] = '\0';
+  // strcat(bufferDisplay, unit);
+  // display.setTextSize(2);
+  display.setFont(&DSEG7_Classic_Regular_16);
+  display.clearDisplay();
+  display.setCursor(20, 24);
+  display.print(bufferDisplay);
+  display.setCursor(90, 15);
+  display.setFont(NULL);
+  display.setTextSize(1);
+  display.print(unit);
+  display.display();
+
   showMode();
 }
 
@@ -578,19 +603,18 @@ void showFrequency()
 void showMode()
 {
   char *bandMode;
-
-   
   if (currentFrequency < 520)
     bandMode = (char *)"LW  ";
   else
     bandMode = (char *)bandModeDesc[currentMode];
-  lcd.setCursor(0, 0);
-  lcd.print(bandMode);
 
-  if ( currentMode == FM && fmRDS ) return;
-  
-  lcd.setCursor(0, 1);
-  lcd.print(band[bandIdx].bandName);
+  display.setTextSize(1);
+  // display.clearDisplay();
+  display.setCursor(0, 0);
+  display.print(bandMode);
+  display.setCursor(90, 0);
+  display.print(band[bandIdx].bandName);
+  display.display();
 }
 
 /**
@@ -598,7 +622,7 @@ void showMode()
  */
 void showStatus()
 {
-  lcd.clear();
+  display.clearDisplay();
   showFrequency();
   showRSSI();
 }
@@ -609,6 +633,7 @@ void showStatus()
 void showBandwidth()
 {
   char *bw;
+  char bandwidth[20];
   if (currentMode == LSB || currentMode == USB)
   {
     bw = (char *)bandwidthSSB[bwIdxSSB].desc;
@@ -622,11 +647,8 @@ void showBandwidth()
   {
     bw = (char *)bandwidthFM[bwIdxFM].desc;
   }
-
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("BW: ");
-  lcd.print(bw);
+  sprintf(bandwidth, "BW: %s", bw);
+  printParam(bandwidth);
 }
 
 /**
@@ -634,43 +656,20 @@ void showBandwidth()
  */
 void showRSSI()
 {
-  int rssiAux = 0;
-  char sMeter[7];
+  char sMeter[10];
+  sprintf(sMeter, "S:%d ", rssi);
 
+  display.fillRect(0, 25, 128, 10, SSD1306_BLACK);
+  display.setTextSize(1);
+  display.setCursor(80, 25);
+  display.print(sMeter);
   if (currentMode == FM)
   {
-    lcd.setCursor(14, 0);
-    lcd.print((rx.getCurrentPilot()) ? "ST" : "MO");
-    lcd.setCursor(10, 0);
-    if ( fmRDS ) {
-      lcd.print("RDS");
-      return;
-    }
-    else 
-      lcd.print("   ");
+    display.setCursor(0, 25);
+    display.print((rx.getCurrentPilot()) ? "ST" : "MO");
   }
 
-    
-  if (rssi < 2)
-    rssiAux = 4;
-  else if (rssi < 4)
-    rssiAux = 5;
-  else if (rssi < 12)
-    rssiAux = 6;
-  else if (rssi < 25)
-    rssiAux = 7;
-  else if (rssi < 50)
-    rssiAux = 8;
-  else
-    rssiAux = 9;
-
-  sMeter[0] = 'S';
-  sMeter[1] = rssiAux + 48; // Converts number to asc
-  sMeter[2] = (rssi >= 60) ? '+' : '.';
-  sMeter[3] = '\0'; 
-
-  lcd.setCursor(13, 1);
-  lcd.print(sMeter);
+  display.display();
 }
 
 /**
@@ -679,17 +678,14 @@ void showRSSI()
 void showAgcAtt()
 {
   char sAgc[15];
-  lcd.clear();
+  // lcd.clear();
   rx.getAutomaticGainControl();
-  if ( !disableAgc /*agcNdx == 0 && agcIdx == 0 */ )
+  if (agcNdx == 0 && agcIdx == 0)
     strcpy(sAgc, "AGC ON");
-  else {
-    strcpy(sAgc, "ATT: ");
-    rx.convertToChar(agcNdx, &sAgc[5],2,0,'.');
-  }
+  else
+    sprintf(sAgc, "ATT: %2.2d", agcNdx);
 
-  lcd.setCursor(0, 0);
-  lcd.print(sAgc);
+  printParam(sAgc);
 }
 
 
@@ -699,11 +695,15 @@ void showAgcAtt()
 void showStep()
 {
   char sStep[15];
-  int st = (currentMode == FM) ? (tabFmStep[currentStepIdx] * 10) : tabAmStep[currentStepIdx];
-  strcpy(sStep, "Stp: ");
-  rx.convertToChar(st, &sStep[5], 4, 0, '.');
-  lcd.setCursor(0, 0);
-  lcd.print(sStep);
+  if (currentMode == FM)
+  {
+    sprintf(sStep, "Stp:%4d", tabFmStep[currentStepIdx] * 10);
+  }
+  else
+  {
+    sprintf(sStep, "Stp:%4d", tabAmStep[currentStepIdx]);
+  }
+  printParam(sStep);
 }
 
 /**
@@ -711,11 +711,14 @@ void showStep()
  */
 void showBFO()
 {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("BFO: ");
-  lcd.print(currentBFO);
-  elapsedCommand = millis();
+  char bfo[18];
+  
+  if (currentBFO > 0)
+    sprintf(bfo, "BFO: +%4.4d", currentBFO);
+  else
+    sprintf(bfo, "BFO: %4.4d", currentBFO);
+
+  printParam(bfo);
 }
 
 /*
@@ -723,10 +726,9 @@ void showBFO()
  */
 void showVolume()
 {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("VOLUME: ");
-  lcd.print(rx.getVolume());
+  char volAux[12];
+  sprintf(volAux, "VOLUME: %2u", rx.getVolume());
+  printParam(volAux);
 }
 
 /**
@@ -734,10 +736,9 @@ void showVolume()
  */
 void showSoftMute()
 {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Soft Mute: ");
-  lcd.print(softMuteMaxAttIdx);
+  char sMute[18];
+  sprintf(sMute, "Soft Mute: %2d", softMuteMaxAttIdx);
+  printParam(sMute);
 }
 
 
@@ -746,10 +747,9 @@ void showSoftMute()
  */
 void showAvc()
 {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("AVC: ");
-  lcd.print(avcIdx);
+  char sAvc[10];
+  sprintf(sAvc, "AVC: %2d", avcIdx);
+  printParam(sAvc);
 }
 
 
@@ -759,10 +759,9 @@ void showAvc()
  */
 void showRdsSetup() 
 {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("RDS: ");
-  lcd.print((fmRDS) ? "ON " : "OFF");
+  char sRdsSetup[10];
+  sprintf(sRdsSetup, "RDS: %s", (fmRDS) ? "ON " : "OFF"));
+  printParam(sRdsSetup);
 }
 
 /***************  
@@ -840,9 +839,11 @@ void useBand()
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
+    currentIF = IF_FMI_OFFSET;
+
     rx.setTuneFrequencyAntennaCapacitor(0);
-    rx.setFM(IF_OFFSET - 1000, IF_OFFSET + 1000, IF_OFFSET, tabFmStep[band[bandIdx].currentStepIdx]);
-    
+    rx.setFM(currentIF - 1000, currentIF + 1000, currentIF, tabFmStep[band[bandIdx].currentStepIdx]);
+
     rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     // rx.setRdsConfig(1, 2, 2, 2, 2);
     // rx.setFifoCount(1);
@@ -853,7 +854,7 @@ void useBand()
   }
   else
   {
-
+    currentIF = IF_AMI_OFFSET;
     disableAgc = band[bandIdx].disableAgc;
     agcIdx = band[bandIdx].agcIdx;
     agcNdx = band[bandIdx].agcNdx;
@@ -863,7 +864,7 @@ void useBand()
     rx.setTuneFrequencyAntennaCapacitor((band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) ? 0 : 1);
     if (ssbLoaded)
     {
-      rx.setSSB(IF_OFFSET - 1000, IF_OFFSET + 1000, IF_OFFSET, tabAmStep[band[bandIdx].currentStepIdx], currentMode);
+      rx.setSSB(currentIF - 1000, currentIF + 1000, currentIF, tabAmStep[band[bandIdx].currentStepIdx], currentMode);
       rx.setSSBAutomaticVolumeControl(1);
       rx.setSsbSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for SSB
       bwIdxSSB = band[bandIdx].bandwidthIdx;
@@ -874,13 +875,12 @@ void useBand()
     else
     {
       currentMode = AM;
-      rx.setAM(IF_OFFSET - 1000, IF_OFFSET + 1000, IF_OFFSET, tabAmStep[band[bandIdx].currentStepIdx]);
+      rx.setAM(currentIF - 1000, currentIF + 1000, currentIF, tabAmStep[band[bandIdx].currentStepIdx]);
       bfoOn = false;
       bwIdxAM = band[bandIdx].bandwidthIdx;
       rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
       rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Soft Mute for AM or SSB
       rx.setAutomaticGainControl(disableAgc, agcNdx);
-
     }
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
     rx.setSeekAmSpacing(5); // Max 10kHz for spacing
@@ -890,7 +890,7 @@ void useBand()
   currentFrequency = band[bandIdx].currentFreq;
   currentStepIdx = band[bandIdx].currentStepIdx;
 
-  vfo.set_freq(currentFrequency + IF_OFFSET, SI5351_CLK0); 
+  vfo.set_freq(currentFrequency + (currentIF * 1000ULL), SI5351_CLK0);
 
   rssi = 0;
   showStatus();
@@ -965,19 +965,21 @@ void doBandwidth(int8_t v)
  */
 void showCommandStatus(char * currentCmd)
 {
-  lcd.setCursor(5, 0);
-  lcd.print(currentCmd);
+  display.fillRect(40, 0, 50, 8, SSD1306_BLACK);
+  display.setCursor(40, 0);
+  display.print(currentCmd);
+  display.display();
 }
 
 /**
  * Show menu options
  */
 void showMenu() {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.setCursor(0, 1);
-  lcd.print(menu[menuIdx]);
-  showCommandStatus( (char *) "Menu");
+  display.clearDisplay();
+  display.setCursor(0, 10);
+  display.print(menu[menuIdx]);
+  display.display();
+  showCommandStatus((char *)"Menu");
 }
 
 /**
@@ -1117,7 +1119,7 @@ void doSeek()
 {
   if ((currentMode == LSB || currentMode == USB)) return; // It does not work for SSB mode
 
-  lcd.clear();
+  display.clearDisplay();
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   showStatus();
   currentFrequency = rx.getFrequency();
@@ -1217,7 +1219,7 @@ void doCurrentMenuCmd() {
       break;
     case 3:                 // MODE
       cmdMode = true;
-      lcd.clear();
+      display.clearDisplay();
       showMode();
       break;
     case 4:
@@ -1266,9 +1268,9 @@ void setVfoFrequency(int direction) {
     if (currentFrequency > band[bandIdx].maximumFreq) 
       currentFrequency = band[bandIdx].minimumFreq; 
     else if (currentFrequency < band[bandIdx].minimumFreq) 
-      currentFrequency = band[bandIdx].maximumFreq; 
-      
-    vfo.set_freq(currentFrequency + IF_OFFSET, SI5351_CLK0);     
+      currentFrequency = band[bandIdx].maximumFreq;
+
+    vfo.set_freq(currentFrequency + (currentIF * 1000ULL), SI5351_CLK0);
 }
 
 /**
