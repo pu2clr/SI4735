@@ -266,7 +266,7 @@ typedef struct
               Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 */
 Band band[] = {
-    {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0, 1, 0, 0, 0},
+    {"VHF", FM_BAND_TYPE, 6600 , 10800, 10390, 1, 0, 1, 0, 0, 0},
     {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 32},
     {"80M", MW_BAND_TYPE, 1700, 4000, 3700, 0, 4, 1, 0, 0, 32},
     {"SW1", SW_BAND_TYPE, 4000, 6500, 6000, 1, 4, 1, 0, 0, 32},
@@ -893,7 +893,7 @@ void useBand()
   currentFrequency = band[bandIdx].currentFreq;
   currentStepIdx = band[bandIdx].currentStepIdx;
 
-  vfo.set_freq( (currentFrequency - currentIF) * 1000000ULL, SI5351_CLK0);
+  vfo.set_freq( (currentFrequency +currentIF) * 100000ULL, SI5351_CLK0);
 
   rssi = 0;
   showStatus();
@@ -1274,7 +1274,7 @@ void setVfoFrequency(int direction) {
     else if (currentFrequency < band[bandIdx].minimumFreq) 
       currentFrequency = band[bandIdx].maximumFreq;
 
-    vfo.set_freq( (currentFrequency - currentIF) * 1000000ULL, SI5351_CLK0);
+    vfo.set_freq( (currentFrequency + currentIF) * 100000ULL, SI5351_CLK0);
 }
 
 /**
