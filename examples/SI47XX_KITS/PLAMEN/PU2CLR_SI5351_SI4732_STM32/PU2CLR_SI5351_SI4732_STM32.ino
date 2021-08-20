@@ -77,6 +77,7 @@
 #include <EEPROM.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include "DSEG7_Classic_Regular_16.h"
 #include "Rotary.h"
 
 // #include "patch_init.h" // SSB patch for whole SSBRX initialization string
@@ -94,21 +95,20 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define RESET_PIN PB12
 
 // Enconder PINs
-#define ENCODER_PIN_A PA5
-#define ENCODER_PIN_B PA4
+#define ENCODER_PIN_A PA4
+#define ENCODER_PIN_B PA5
 
 // Buttons controllers
-#define ENCODER_PUSH_BUTTON 14 // Pin A0/14
-#define DUMMY_BUTTON 15
+#define ENCODER_PUSH_BUTTON PA3 
 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 500
 #define ELAPSED_COMMAND 2000 // time to turn off the last command controlled by encoder. Time to goes back to the FVO control
 #define ELAPSED_CLICK 1500   // time to check the double click commands
-#define DEFAULT_VOLUME 35    // change it for your favorite sound volume
+#define DEFAULT_VOLUME 22    // change it for your favorite sound volume
 
 // SI5351 PARAMETERS
-#define SI5351_CALIBRATE_VALUE 80000 // See how to calibrate your Si5351A (0 if you do not want).
+#define XT_CAL_F  39000       //Si5351 calibration factor, adjust to get exatcly 10MHz. 
 #define IF_AMI_OFFSET 10700          // AM Offset - Set the IF offset you are using. For example: +1070000000LLU (increase 10.7MHz) or -1070000000LLU (decrease 10.7Mhz); +45500000LU (455kHz) or -45500000LU (-455kHz)
 #define IF_FMI_OFFSET 6570           // FM Offset - On FM 6570 means 65,70 MHz
 #define FREQUENCY_UP 1
@@ -168,7 +168,7 @@ volatile int encoderCount = 0;
 uint16_t currentFrequency;
 uint16_t previousFrequency = 0;
 int32_t currentIF = IF_AMI_OFFSET;
-
+int currentStep = 0;
 const uint8_t currentBFOStep = 10;
 
 const char * menu[] = {"Volume", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "AVC", "Seek Up", "Seek Down"};
@@ -335,11 +335,12 @@ void setup()
     display.clearDisplay();
   }
 
-  vfo.init(SI5351_CRYSTAL_LOAD_8PF, 0, 0);
-  vfo.set_correction(SI5351_CALIBRATE_VALUE, SI5351_PLL_INPUT_XO);
-  vfo.set_pll(SI5351_PLL_FIXED, SI5351_PLLA);
-  vfo.set_freq(10700, SI5351_CLK0); // Start CLK0 (VFO)
-  vfo.update_status();
+  vfo.init(SI5351_CRYSTAL_LOAD_10PF, 27000000, XT_CAL_F);
+  vfo.output_enable(SI5351_CLK0, 1);                  //1 - Enable / 0 - Disable CLK
+  vfo.drive_strength(SI5351_CLK0, SI5351_DRIVE_4MA);  //Output current 2MA, 4MA, 6MA or 8MA
+ 
+  // vfo.update_status();
+  
   delay(100);
 
   // controlling encoder via interrupt
@@ -445,12 +446,12 @@ void readAllReceiverInformation()
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentStepIdx = idxFmStep = band[bandIdx].currentStepIdx;
-    rx.setFrequencyStep(tabFmStep[currentStepIdx]);
+    // rx.setFrequencyStep(tabFmStep[currentStepIdx]);
   }
   else
   {
     currentStepIdx = idxAmStep = band[bandIdx].currentStepIdx;
-    rx.setFrequencyStep(tabAmStep[currentStepIdx]);
+    // rx.setFrequencyStep(tabAmStep[currentStepIdx]);
   }
 
   bwIdx = band[bandIdx].bandwidthIdx;
@@ -760,7 +761,7 @@ void showAvc()
 void showRdsSetup() 
 {
   char sRdsSetup[10];
-  sprintf(sRdsSetup, "RDS: %s", (fmRDS) ? "ON " : "OFF"));
+  sprintf(sRdsSetup, "RDS: %s", (fmRDS) ? "ON " : "OFF");
   printParam(sRdsSetup);
 }
 
@@ -840,6 +841,7 @@ void useBand()
   {
     currentMode = FM;
     currentIF = IF_FMI_OFFSET;
+    currentStep = tabFmStep[band[bandIdx].currentStepIdx];
 
     rx.setTuneFrequencyAntennaCapacitor(0);
     rx.setFM(currentIF - 1000, currentIF + 1000, currentIF, tabFmStep[band[bandIdx].currentStepIdx]);
@@ -855,6 +857,7 @@ void useBand()
   else
   {
     currentIF = IF_AMI_OFFSET;
+    currentStep = tabAmStep[band[bandIdx].currentStepIdx];
     disableAgc = band[bandIdx].disableAgc;
     agcIdx = band[bandIdx].agcIdx;
     agcNdx = band[bandIdx].agcNdx;
@@ -890,7 +893,7 @@ void useBand()
   currentFrequency = band[bandIdx].currentFreq;
   currentStepIdx = band[bandIdx].currentStepIdx;
 
-  vfo.set_freq(currentFrequency + (currentIF * 1000ULL), SI5351_CLK0);
+  vfo.set_freq( (currentFrequency - currentIF) * 1000000ULL, SI5351_CLK0);
 
   rssi = 0;
   showStatus();
@@ -1024,7 +1027,7 @@ void doStep(int8_t v)
         idxFmStep = lastFmStep;
         
       currentStepIdx = idxFmStep;
-      rx.setFrequencyStep(tabFmStep[currentStepIdx]);
+      // rx.setFrequencyStep(tabFmStep[currentStepIdx]);
       
     } else {
       idxAmStep = (v == 1) ? idxAmStep + 1 : idxAmStep - 1;
@@ -1034,7 +1037,7 @@ void doStep(int8_t v)
         idxAmStep = lastAmStep;
 
       currentStepIdx = idxAmStep;
-      rx.setFrequencyStep(tabAmStep[currentStepIdx]);
+      // rx.setFrequencyStep(tabAmStep[currentStepIdx]);
       rx.setSeekAmSpacing(5); // Max 10kHz for spacing
     }
     band[bandIdx].currentStepIdx = currentStepIdx;
@@ -1117,13 +1120,14 @@ void showFrequencySeek(uint16_t freq)
  */
 void doSeek()
 {
+  /*
   if ((currentMode == LSB || currentMode == USB)) return; // It does not work for SSB mode
 
   display.clearDisplay();
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   showStatus();
   currentFrequency = rx.getFrequency();
-  
+  */
 }
 
 /**
@@ -1264,13 +1268,13 @@ void doCurrentMenuCmd() {
 
 void setVfoFrequency(int direction) {
   
-    currentFrequency += band[bandIdx].currentStepIdx * direction;
+    currentFrequency += currentStep * direction;
     if (currentFrequency > band[bandIdx].maximumFreq) 
       currentFrequency = band[bandIdx].minimumFreq; 
     else if (currentFrequency < band[bandIdx].minimumFreq) 
       currentFrequency = band[bandIdx].maximumFreq;
 
-    vfo.set_freq(currentFrequency + (currentIF * 1000ULL), SI5351_CLK0);
+    vfo.set_freq( (currentFrequency - currentIF) * 1000000ULL, SI5351_CLK0);
 }
 
 /**

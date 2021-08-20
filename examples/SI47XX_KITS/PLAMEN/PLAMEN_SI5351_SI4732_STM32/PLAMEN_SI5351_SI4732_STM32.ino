@@ -83,6 +83,7 @@ void setup() {
   si5351.init(SI5351_CRYSTAL_LOAD_10PF, 27000000, XT_CAL_F);
   si5351.output_enable(SI5351_CLK0, 1);                  //1 - Enable / 0 - Disable CLK
   si5351.drive_strength(SI5351_CLK0, SI5351_DRIVE_4MA);  //Output current 2MA, 4MA, 6MA or 8MA
+ 
   si4735.setup(RESET_PIN, 1);
 
   si4735.setI2CFastMode(); // Set I2C bus speed.
