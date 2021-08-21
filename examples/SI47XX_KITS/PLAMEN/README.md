@@ -10,6 +10,6 @@ All you need to know about this project can be found [LZ1PPL website](https://ww
 
 
 * The PLAMEN_SI5351_SI4732_STM32 folder has the original Plamen's firmware.
-* The PU2CLR_SI5351_SI4732_STM32 folder has the Ricardo's version of the firmware for Plamen's Hardware.
+* The PU2CLR_SI5351_SI4732_STM32 folder has the Ricardo's firmware version for Plamen's Hardware.
 
 
