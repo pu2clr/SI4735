@@ -1,11 +1,10 @@
 # MANUAL FOR DIY Dual Converter All Band Radio (LW, MW, SW, FM)" based on SI5351 and SI473X 
 
 
+This receiver is aimed to work from 150kHz to 170MHz on AM, SSB and FM modes
+
 Sketch developed by Ricardo Lima Caratti - Jul, 2021
 
-## SSB MODE
-
-If you are using a __SI4735-D60__ or __SI4732-A10__ based circuit, you can also use this sketch to add the SSB functionality  to the original Pavleski's project. If you are using the original SI4730-D60 based circuit, the SSB will not work. However, the __STEP, FM/RDS, MODE, AGC, Attenuation, bandwidth, Soft Mute, Audio Volume and Shortwave__ will work fine. 
 
 ## PL102BA-S V:2.1 vs NE928-10A V:01
 

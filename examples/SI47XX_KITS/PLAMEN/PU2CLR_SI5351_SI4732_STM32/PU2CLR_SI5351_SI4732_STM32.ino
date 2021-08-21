@@ -1,75 +1,21 @@
 /*
   UNDER CONSTRUCTION... 
-  This sketch was not tested on a hardware so far.
-
+ 
   IMPORTANT:
-  This sketch is an EXPERIMENT with dual converter design.
-  It can be compiled on Arduino ATmega328 and Arduino Mega 
-  Please set the constants SI5351_CALIBRATE_VALUE and IF_OFFSET to the correct values. 
+  This sketch is an EXPERIMENT with dual converter designed by Plamen Panteleev (LZ1PPL).
 
   Features: 
-                1) Dual converter
+                1) Dual converter (from 150kHz to 170MHz)
                 2) The receiver current status is stored into Arduino EEPROM;
-                3) ***FM RDS*** Disabled for while;
-                4) FM frequency step;
-                5) FM Bandwidth control.
 
-
-  On ATmega 328, please, use the MiniCore manager : "LTO enabled" and "No bootloader". 
 
   See user_manual.txt before operating the receiver. 
 
-  This sketch was built to work with the project "DIY Si4730 All Band Radio (LW, MW, SW, FM)" receiver from Mirko Pavleski.
-  The original project can be found on https://create.arduino.cc/projecthub/mircemk/diy-si4730-all-band-radio-lw-mw-sw-fm-1894d9
-  Please, follow the circuit available on that link.
-
-  If you are using a SI4735-D60 or SI4732-A10, you can also use this sketch to add the SSB functionalities to the
-  original Pavleski's project. If you are using another SI4730-D60, the SSB wil not work. But you will still have
-  the SW functionalities.
-
-  It is important to say that this sketch was designed to work with the circuit implemented by Mirko Pavleski (see link above).
-  The visual interface, control commands, band plan, and some functionalities are different if compared with the original
-  sketch. Be sure you are using the SI4735 Arduino Library written by PU2CLR to run this sketch. The library used by the original
-  sketch will not work here. Also, you have to install the LiquidCrystal library.
-
-  It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
-  regular  comercial  stations.
-
-  Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
-              SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
-
-  Wire up on Arduino UNO, Pro mini and SI4735-D60
-  | Device name               | Device Pin / Description      |  Arduino Pin  |
-  | ----------------          | ----------------------------- | ------------  |
-  |    LCD 16x2 or 20x4       |                               |               |
-  |                           | D4                            |     D7        |
-  |                           | D5                            |     D6        |
-  |                           | D6                            |     D5        |
-  |                           | D7                            |     D4        |
-  |                           | RS                            |     D12       |
-  |                           | E/ENA                         |     D13       |
-  |                           | RW & VSS & K (16)             |    GND        |
-  |                           | A (15) & VDD                  |    +Vcc       |
-  |                           | VO (see 20K tripot connection)|   ---------   |
-  |     SS473X                |                               |               |
-  |                           | RESET (pin 15)                |      9        |
-  |                           | SDIO (pin 18)                 |     A4        |
-  |                           | SCLK (pin 17)                 |     A5        |
-  |                           | (*1)SEN (pin 16)              |  +Vcc or GND  |
-  |    Encoder                |                               |               |
-  |                           | A                             |       2       |
-  |                           | B                             |       3       |
-  |                           | PUSH BUTTON (encoder)         |     A0/14     |
-
-  (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
-  (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
-       It seems the original project connect the SEN pin to the +Vcc. By using this sketch, you do
-       not need to worry about this setting.
-  ATTENTION: Read the file user_manual.txt
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
+  LZ1PPL website: https://www.lz1ppl.com/en/2021/04/22/si4735-all-mode-reciver/?fbclid=IwAR10n3x89ayj332m2X3x65AAR6bMVARHZ5VdDtkEzusT_qmUE-F6u9_QIaI
 
-  By PU2CLR, Ricardo, May  2021.
+  By PU2CLR, Ricardo, Jul  2021.
 */
 
 #include <SI4735.h>
@@ -280,7 +226,7 @@ Band band[] = {
     {"CB ", SW_BAND_TYPE, 26000, 28000, 27500, 0, 4, 1, 0, 0, 44},
     {"10M", SW_BAND_TYPE, 28000, 30000, 28400, 0, 4, 1, 0, 0, 44},
     {"6M ", SW_BAND_TYPE, 50000, 55000, 50110, 0, 4, 1, 0, 0, 44},
-    {"AL1", SW_BAND_TYPE, 150, 30000, 170000, 0, 4, 1, 0, 0, 48},    // All band from 150kHz to 170MHz on AM / SSB mode)
+    {"AL1", SW_BAND_TYPE, 150, 30000, 170000, 0, 4, 1, 0, 0, 48},    // All band from 150kHz to 170MHz on AM and SSB modes)
     {"AL2", FM_BAND_TYPE, 150, 30000, 170000, 0, 4, 1, 0, 0, 48}     // All band from 150kHz to 170MHz on FM  mode)
 };
 
