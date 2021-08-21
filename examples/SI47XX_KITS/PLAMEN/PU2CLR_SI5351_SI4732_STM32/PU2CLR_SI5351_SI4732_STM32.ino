@@ -108,12 +108,12 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define DEFAULT_VOLUME 15    // change it for your favorite sound volume
 
 // SI5351 PARAMETERS
-#define XT_CAL_F  39000       //Si5351 calibration factor, adjust to get exatcly 10MHz. 
-#define IF_AMI_OFFSET 10700          // AM Offset - Set the IF offset you are using. For example: +1070000000LLU (increase 10.7MHz) or -1070000000LLU (decrease 10.7Mhz); +45500000LU (455kHz) or -45500000LU (-455kHz)
-#define IF_FMI_OFFSET 6570           // FM Offset - On FM 6570 means 65,70 MHz
+#define SI5351_CALIBRATION_OFFSET  39000  // SI5351 calibration factor 
+#define IF_AMI_OFFSET 10700               // AM Offset - Set the IF offset you are using. For example: +1070000000LLU (increase 10.7MHz) or -1070000000LLU (decrease 10.7Mhz); +45500000LU (455kHz) or -45500000LU (-455kHz)
+#define IF_FMI_OFFSET 6570                // FM Offset - On FM 6570 means 65,70 MHz
 #define FREQUENCY_UP 1
 #define FREQUENCY_DOWN -1      
-#define MFREQ 100000ULL
+#define MFREQ 1000000ULL                 // For example: 65.700.000 * 100ULL
 
 #define FM 0
 #define LSB 1
@@ -246,9 +246,9 @@ typedef struct
 {
   const char *bandName;   // Band description
   uint8_t bandType;       // Band type (FM, MW or SW)
-  uint16_t minimumFreq;   // Minimum frequency of the band
-  uint16_t maximumFreq;   // maximum frequency of the band
-  uint16_t currentFreq;   // Default frequency or current frequency
+  uint32_t minimumFreq;   // Minimum frequency of the band
+  uint32_t maximumFreq;   // maximum frequency of the band
+  uint32_t currentFreq;   // Default frequency or current frequency
   int8_t currentStepIdx;  // Idex of tabStepAM:  Defeult frequency step (See tabStepAM)
   int8_t bandwidthIdx;    // Index of the table bandwidthFM, bandwidthAM or bandwidthSSB;
   uint8_t disableAgc;
@@ -267,7 +267,7 @@ typedef struct
               Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 */
 Band band[] = {
-    {"VHF", FM_BAND_TYPE, 13140, 17370, 16960, 1, 0, 1, 0, 0, 0},
+    {"FM ", FM_BAND_TYPE, 6600, 10800, 10650, 1, 0, 1, 0, 0, 0},
     {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 32},
     {"80M", MW_BAND_TYPE, 1700, 4000, 3700, 0, 4, 1, 0, 0, 32},
     {"SW1", SW_BAND_TYPE, 4000, 6500, 6000, 1, 4, 1, 0, 0, 32},
@@ -279,13 +279,21 @@ Band band[] = {
     {"SW9", SW_BAND_TYPE, 21400, 22800, 21500, 1, 4, 1, 0, 0, 44},
     {"CB ", SW_BAND_TYPE, 26000, 28000, 27500, 0, 4, 1, 0, 0, 44},
     {"10M", SW_BAND_TYPE, 28000, 30000, 28400, 0, 4, 1, 0, 0, 44},
-    {"ALL", SW_BAND_TYPE, 150, 30000, 15000, 0, 4, 1, 0, 0, 48} // All band. LW, MW and SW (from 150kHz to 30MHz)
+    {"6M ", SW_BAND_TYPE, 50000, 55000, 50110, 0, 4, 1, 0, 0, 44},
+    {"AL1", SW_BAND_TYPE, 150, 30000, 170000, 0, 4, 1, 0, 0, 48},    // All band from 150kHz to 170MHz on AM / SSB mode)
+    {"AL2", FM_BAND_TYPE, 150, 30000, 170000, 0, 4, 1, 0, 0, 48}     // All band from 150kHz to 170MHz on FM  mode)
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
+
+// Useful to convert long frequency to sequence of bytes 
+typedef union { 
+    uint32_t frequency;
+    uint8_t  raw[4];
+} LongFrequency; 
 
 
 uint8_t rssi = 0;
@@ -314,13 +322,13 @@ void setup()
 
   // Splash - Remove or change it for your introduction text.
   display.clearDisplay();
-  print(0, 0, NULL, 2, "PU2CLR");
-  print(0, 15, NULL, 2, "Plamen's Kit");
+  print(0, 0, NULL, 1, "PU2CLR");
+  print(0, 15, NULL, 1, "Plamen's Kit");
   display.display();
   delay(2000);
   display.clearDisplay();
-  print(0, 0, NULL, 2, "SI5351/SI4732");
-  print(0, 15, NULL, 2, "Dual Conv.");
+  print(0, 0, NULL, 1, "SI5351/SI4732");
+  print(0, 15, NULL, 1, "Dual Conv.");
   display.display();
   // Ends Splash
 
@@ -336,7 +344,7 @@ void setup()
     display.clearDisplay();
   } */
 
-  vfo.init(SI5351_CRYSTAL_LOAD_10PF, 27000000, XT_CAL_F);
+  vfo.init(SI5351_CRYSTAL_LOAD_10PF, 27000000, SI5351_CALIBRATION_OFFSET);
   vfo.output_enable(SI5351_CLK0, 1);                  //1 - Enable / 0 - Disable CLK
   vfo.drive_strength(SI5351_CLK0, SI5351_DRIVE_4MA);  //Output current 2MA, 4MA, 6MA or 8MA
  
@@ -379,6 +387,7 @@ void setup()
 }
 
 
+
 /*
    writes the conrrent receiver information into the eeprom.
    The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
@@ -386,6 +395,7 @@ void setup()
 void saveAllReceiverInformation()
 {
   int addr_offset;
+  LongFrequency freqAux;
 
   EEPROM.begin();
 
@@ -402,15 +412,18 @@ void saveAllReceiverInformation()
 
   for (int i = 0; i <= lastBand; i++)
   {
-    EEPROM.update(addr_offset++, (band[i].currentFreq >> 8));   // stores the current Frequency HIGH byte for the band
-    EEPROM.update(addr_offset++, (band[i].currentFreq & 0xFF)); // stores the current Frequency LOW byte for the band
+    freqAux.frequency = band[i].currentFreq;
+    EEPROM.update(addr_offset++, freqAux.raw[0]);    // stores the current Frequency HIGH byte for the band
+    EEPROM.update(addr_offset++, freqAux.raw[1]);    // 
+    EEPROM.update(addr_offset++, freqAux.raw[2]);    // 
+    EEPROM.update(addr_offset++, freqAux.raw[3]);    // stores the current Frequency LOW byte for the band
+
     EEPROM.update(addr_offset++, band[i].currentStepIdx);       // Stores current step of the band
     EEPROM.update(addr_offset++, band[i].bandwidthIdx);         // table index (direct position) of bandwidth
     EEPROM.update(addr_offset++, band[i].disableAgc );
     EEPROM.update(addr_offset++, band[i].agcIdx);
     EEPROM.update(addr_offset++, band[i].agcNdx);
     EEPROM.update(addr_offset++, band[i].avcIdx);
-
   }
 
   EEPROM.end();
@@ -424,6 +437,7 @@ void readAllReceiverInformation()
   uint8_t volume;
   int addr_offset;
   int bwIdx;
+  LongFrequency freqAux;
 
   volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
   bandIdx = EEPROM.read(eeprom_address + 2);
@@ -435,8 +449,11 @@ void readAllReceiverInformation()
   addr_offset = 7;
   for (int i = 0; i <= lastBand; i++)
   {
-    band[i].currentFreq = EEPROM.read(addr_offset++) << 8;
-    band[i].currentFreq |= EEPROM.read(addr_offset++);
+    freqAux.raw[0] = EEPROM.read(addr_offset++);
+    freqAux.raw[1] = EEPROM.read(addr_offset++);
+    freqAux.raw[2] = EEPROM.read(addr_offset++);
+    freqAux.raw[3] = EEPROM.read(addr_offset++);
+    band[i].currentFreq = freqAux. frequency;
     band[i].currentStepIdx = EEPROM.read(addr_offset++);
     band[i].bandwidthIdx = EEPROM.read(addr_offset++);
     band[i].disableAgc = EEPROM.read(addr_offset++);
@@ -560,7 +577,7 @@ void showFrequency()
   char tmp[15];
   char bufferDisplay[15];
   char *unit;
-  sprintf(tmp, "%5.5u", currentFrequency - IF_FMI_OFFSET);
+  sprintf(tmp, "%5.5u", currentFrequency);
   bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
   bufferDisplay[1] = tmp[1];
   if (rx.isCurrentTuneFM())
