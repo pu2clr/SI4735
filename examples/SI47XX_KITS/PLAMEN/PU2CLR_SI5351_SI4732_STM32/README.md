@@ -1,5 +1,6 @@
 # MANUAL FOR DIY Dual Converter All Band Radio (LW, MW, SW, FM)" based on SI5351 and SI473X 
 
+## This firmware is UNDER CONSTRUCTION....
 
 ## This receiver is aimed to work from 150kHz to 170MHz on AM, SSB and FM modes
 
