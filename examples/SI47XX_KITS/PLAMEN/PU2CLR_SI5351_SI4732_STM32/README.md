@@ -1,21 +1,9 @@
 # MANUAL FOR DIY Dual Converter All Band Radio (LW, MW, SW, FM)" based on SI5351 and SI473X 
 
 
-This receiver is aimed to work from 150kHz to 170MHz on AM, SSB and FM modes
+## This receiver is aimed to work from 150kHz to 170MHz on AM, SSB and FM modes
 
 Sketch developed by Ricardo Lima Caratti - Jul, 2021
-
-
-## PL102BA-S V:2.1 vs NE928-10A V:01
-
-There are two boards very common on eBay and AlliExpress based on SI4730.
-
-The Mirko Pavleski project can with  NE928 or PL102 boards based on SI4730.  The __NE928-A10 does not__ support SW and FM RDS. The __PL102BA supports__ SW and FM RDS. __Both does not support SSB patches__. See more information about these boards: 
-
-1. “PL102BA-S V:2.1 10628” based on SI4730-D60 with shortwave support and FM / RDS. 
-   See https://pu2clr.github.io/SI4735/extras/BOARD_PL102BA/ for more details.
-2. “NE928-10A V:01” based on SI4730-B20 WITHOUT shortwave and FM / RDS support. 
-   See https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/ for more details. 
 
 
 ## User Manual - Commands
