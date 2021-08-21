@@ -33,10 +33,11 @@
     * Rotate the encoder clockwise or counterclockwise to increment or decrement the BFO (select the offset).
     * If you press the button again or stop rotating the ancoder for about 2 seconds, the control will go back to the VFO. 
 
-__ATTENTION__: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. If you do that, you might alternate the command status (enable and disable) randomly. 
-
 4. EEPROM RESET
 
    The main information of the receiver is stored into the Arduino EEPROM. This way, when you turn the receiver on, the last receiver status is rescued. To RESET the receiver to DEFAULT status, turn it on with the encoder pust button pressed. Check the message "EEPROM RESETED". 
+
+
+__ATTENTION__: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. If you do that, you might alternate the command status (enable and disable) randomly. 
 
 
