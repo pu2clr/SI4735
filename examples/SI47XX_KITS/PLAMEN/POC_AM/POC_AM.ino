@@ -1,7 +1,7 @@
 /*
  * Minimal test for Plamen's design on AM mode
  * Is is not working so far
- * ATTENTION: Even not using the OLED, it have to be connected to the KIT to make the SI4732 starts (maybe due to pull-up resistors on the I2C bus).
+ * ATTENTION: Even this sketch is not using the OLED, it have to be connected to the KIT to make the SI4732 starts (may be due to pull-up resistors on the I2C bus).
  */
 
 #include <SI4735.h>
