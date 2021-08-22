@@ -10,6 +10,8 @@ All you need to know about this project can be found [LZ1PPL website](https://ww
 
 
 * The PLAMEN_SI5351_SI4732_STM32 folder has the original Plamen's firmware.
-* The PU2CLR_SI5351_SI4732_STM32 folder has the Ricardo's firmware version for Plamen's Hardware.
+* The POC_FM is a minimal sketch to check the KIT on FM mode (It is working fine)
+* The POC_AM is a minimal sketch to check the KIT on AM mode (Under construction...)
+* The PU2CLR_SI5351_SI4732_STM32 folder has the Ricardo's firmware version for Plamen's Hardware (under construction...).
 
 
