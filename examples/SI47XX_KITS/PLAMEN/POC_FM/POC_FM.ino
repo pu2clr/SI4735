@@ -10,8 +10,8 @@
 #define SI5351_CALIBRATION_OFFSET 39000 // SI5351 calibration factor
 #define RESET_PIN PB12
 
-#define IF_FMI_OFFSET 65700                 // 65.7MHz
-#define IF_FMI_SI4735 IF_FMI_OFFSET / 10    // Use 6570 to tune SI473X on 65.7mHz
+#define IF_FMI_OFFSET 65400                 // 65.4MHz
+#define IF_FMI_SI4735 IF_FMI_OFFSET / 10    // Use 6540 to tune SI473X on 65.4MHz
 
 SI4735 rx;
 Si5351 vfo(0x62); 

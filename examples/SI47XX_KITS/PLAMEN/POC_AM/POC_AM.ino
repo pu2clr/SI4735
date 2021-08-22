@@ -29,6 +29,7 @@ void setup()
   rx.getDeviceI2CAddress(RESET_PIN); 
   
   rx.setup(RESET_PIN, 1);
+  // rx.reset();
   
   delay(300);
 
@@ -43,13 +44,21 @@ void setup()
   // rx.setAutomaticGainControl(1, 0); 
    
   delay(100);
-  rx.setVolume(30);
+  rx.setVolume(15);
+
 
   // Trying Air band / 127,7 MHz -> It is not working
+  rx.setTuneFrequencyAntennaCapacitor(1); // Sets ATU for HIGH frequency 
   vfo.set_freq( (127700000 + (IF_AMI_OFFSET * 1000ULL)) * 100ULL, SI5351_CLK0); 
   delay(20000); // waits for 20 secounds
+  // Trying SW / 11940kHz. 
+  vfo.set_freq( ( 11940000 +  (IF_AMI_OFFSET * 1000ULL)) * 100ULL, SI5351_CLK0);
+  delay(20000);
   // Trying MW / 810kHz. It is a strong local AM station -> It is not working
+   rx.setTuneFrequencyAntennaCapacitor(0); // Sets ATU for MW 
   vfo.set_freq( (810000 +  (IF_AMI_OFFSET * 1000ULL)) * 100ULL, SI5351_CLK0);
+  delay(20000);
+  rx.setAudioMute(true);
 }
 
 

@@ -4,15 +4,15 @@
 #include <EEPROM.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-// #include "patch_ssb_compressed.h"       // SSB patch for whole SSBRX initialization string
 #include "patch_init.h"
+//#include "patch_ssb_compressed.h"       // SSB patch for whole SSBRX initialization string
 #define I2C_ADDRESS   0x3C    // OLED I2C address
 #define SCREEN_WIDTH  128     // OLED display width, in pixels
 #define SCREEN_HEIGHT  64     // OLED display height, in pixels
 #define OLED_RESET    4       // Reset pin # (or -1 if sharing Arduino reset pin)
 #define MIN_ELAPSED_TIME  150
 #define ELAPSED_COMMAND  3000
-#define IF_FM  65700          //72300 //Enter your IF frequency, from: 64000 to 108000, 0 = to direct convert receiver or RF generator, + will add and - will subtract IF offfset.
+#define IF_FM  64400          //72300 //Enter your IF frequency, from: 64000 to 108000, 0 = to direct convert receiver or RF generator, + will add and - will subtract IF offfset.
 #define IF  10700             //Enter your IF frequency, ex: 455 = 455kHz, 10700 = 10.7MHz, 0 = to direct convert receiver or RF generator, + will add and - will subtract IF offfset.
 #define FREQ_INIT  9300000    //Enter your initial frequency at startup, ex: 7000000 = 7MHz, 10000000 = 10MHz, 840000 = 840kHz.
 #define XT_CAL_F  39000       //Si5351 calibration factor, adjust to get exatcly 10MHz. 
@@ -24,7 +24,7 @@
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 Rotary r = Rotary(PA5, PA4);
 SI4735 si4735;
-Si5351 si5351(0x62);
+Si5351 si5351(0x62); // (0x60)
 
 const uint16_t size_content = sizeof ssb_patch_content;
 
@@ -76,14 +76,13 @@ void setup() {
   display.setCursor(47, 32);
   display.print("Reciver");
   display.setCursor(29, 45);
-  display.print("Si4735/Si5351");
+  display.print("Si4735-Si5351");
   display.display();
   delay(500);
 
   si5351.init(SI5351_CRYSTAL_LOAD_10PF, 27000000, XT_CAL_F);
   si5351.output_enable(SI5351_CLK0, 1);                  //1 - Enable / 0 - Disable CLK
   si5351.drive_strength(SI5351_CLK0, SI5351_DRIVE_4MA);  //Output current 2MA, 4MA, 6MA or 8MA
- 
   si4735.setup(RESET_PIN, 1);
 
   si4735.setI2CFastMode(); // Set I2C bus speed.
@@ -137,7 +136,7 @@ void setup() {
     currentMode = "FM";
     //si4735.reset();
     si4735.setTuneFrequencyAntennaCapacitor(0);
-    si4735.setFM(6500, 6600, IF_FM / 10, 1);
+    si4735.setFM(6400, 10800, IF_FM / 10, 1);
     ssbload = 0;
   }
   if (Mo == 2)
@@ -145,10 +144,7 @@ void setup() {
     currentMode = "AM";
     //si4735.reset();
     si4735.setTuneFrequencyAntennaCapacitor(1);
-    si4735.setAM(10650, 10850, IF, 1);
-    delay(100);
-    si4735.setFrequency(IF);
-    delay(100);
+    si4735.setAM(10650, 10750, IF, 1);
     ssbload = 0;
   }
   if (Mo == 3)
@@ -420,7 +416,7 @@ void tunegen() {
       }
       if (freq < 170000000)
       {
-        si5351.set_freq( (freq + (interfreq_FM * 1000ULL)) * 100ULL, SI5351_CLK0);
+        si5351.set_freq((freq + (interfreq_FM * 1000ULL)) * 100ULL, SI5351_CLK0);
       }
     }
     else
@@ -553,7 +549,7 @@ void menuCheck() {
         currentMode = "FM";
         //si4735.reset();
         si4735.setTuneFrequencyAntennaCapacitor(0);
-        si4735.setFM(6500, 6600, IF_FM / 10, 1);
+        si4735.setFM(6400, 10800, IF_FM / 10, 1);
         ssbload = 0;
       }
     }
@@ -564,10 +560,7 @@ void menuCheck() {
         currentMode = "AM";
         //si4735.reset();
         si4735.setTuneFrequencyAntennaCapacitor(1);
-        si4735.setAM(10650, 10850, IF, 1);
-        delay(100);
-        si4735.setFrequency(IF);
-        delay(100);
+        si4735.setAM(10650, 10750, IF, 1);
         ssbload = 0;
       }
     }
