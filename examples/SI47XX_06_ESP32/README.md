@@ -62,7 +62,7 @@ However, you have pay attention to the new configuration pins on ESP32. See tabl
 
 #### ESP32 basic setup
 
-![ESP32 Schematic](../../extras/images/schematic_esp32_oled_all_in_one.png))
+![ESP32 Schematic](../../extras/images/schematic_esp32_oled_all_in_one.png)
 
 <BR>
 
@@ -174,6 +174,7 @@ Still under construction this sketch will show how to use TFT with ESP32, Si4735
 
 ### ESP32 OLED_IN_ONE_TWO_ENCODERS sketch 
 
+
 #### Wire up 
   
 | Device name               | Device Pin / Description      |  ESP32        |
@@ -188,4 +189,42 @@ Still under construction this sketch will show how to use TFT with ESP32, Si4735
 |    Encoder2               | A                             |  GPIO 25      |
 |                           | B                             |  GPIO 26      |    
 |                           | PUSH BUTTON (encoder)         |  GPIO 32      |
+
+
+
+
+### ESP32 and LCD16x2 (3.3V) or LCD20x4 (3.3V) schematic
+
+
+![ESP32 Schematic](../../extras/images/schematic_esp32_lcd_16x2_OR_lcd20x4.png)
+
+
+#### Wire up 
+
+ESP32 Wire up with LCD, encoder/pushbutton and SI4735-D60
+    
+| Device name               | Device Pin / Description      |  ESP32        |
+| ----------------          | ----------------------------- | ------------- |
+|    LCD 16x2 or 20x4       |                               |               |
+|                           | D4                            |  GPIO18       |
+|                           | D5                            |  GPIO17       |
+|                           | D6                            |  GPIO16       |
+|                           | D7                            |  GPIO15       |
+|                           | RS                            |  GPIO19       |
+|                           | E/ENA                         |  GPIO23       |
+|                           | RW & VSS & K (16)             |  GND          |
+|                           | A (15) & VDD                  |  +Vcc         |
+|                           | VO (see 20K tripot connection)|  ------------ |
+|     SS473X                |                               |               |
+|                           | RESET (pin 15)                |  GPIO12       |
+|                           | SDIO (pin 18)                 |  GPIO21       |
+|                           | SCLK (pin 17)                 |  GPIO22       |
+|                           | (*1)SEN (pin 16)              |  +Vcc or GND  |
+|    Encoder                |                               |               |
+|                           | A                             |  CPIO13       |
+|                           | B                             |  GPIO14       |
+|                           | PUSH BUTTON (encoder)         |  GPIO27       |
+
+
+
 
