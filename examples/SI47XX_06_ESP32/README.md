@@ -130,6 +130,42 @@ void setup() {
 * Frequency step switch (1, 5 and 10kHz).
 
 
+<BR>
+
+### ESP32 and LCD16x2 (3.3V) or LCD20x4 (3.3V) schematic
+
+
+![ESP32 Schematic](../../extras/images/schematic_esp32_lcd_16x2_OR_lcd20x4.png)
+
+
+#### Wire up 
+
+ESP32 Wire up with LCD, encoder/pushbutton and SI4735-D60
+    
+| Device name               | Device Pin / Description      |  ESP32        |
+| ----------------          | ----------------------------- | ------------- |
+|    LCD 16x2 or 20x4       |                               |               |
+|                           | D4                            |  GPIO18       |
+|                           | D5                            |  GPIO17       |
+|                           | D6                            |  GPIO16       |
+|                           | D7                            |  GPIO15       |
+|                           | RS                            |  GPIO19       |
+|                           | E/ENA                         |  GPIO23       |
+|                           | RW & VSS & K (16)             |  GND          |
+|                           | A (15) & VDD                  |  +Vcc         |
+|                           | VO (see 20K tripot connection)|  ------------ |
+|     SS473X                |                               |               |
+|                           | RESET (pin 15)                |  GPIO12       |
+|                           | SDIO (pin 18)                 |  GPIO21       |
+|                           | SCLK (pin 17)                 |  GPIO22       |
+|                           | (*1)SEN (pin 16)              |  +Vcc or GND  |
+|    Encoder                |                               |               |
+|                           | A                             |  CPIO13       |
+|                           | B                             |  GPIO14       |
+|                           | PUSH BUTTON (encoder)         |  GPIO27       |
+
+
+
 ## Example SI47XX_03_ESP32_ALL_IN_ONE_TFT
 
 Still under construction this sketch will show how to use TFT with ESP32, Si4735 device and Si4735 Arduino Library.
@@ -191,39 +227,6 @@ Still under construction this sketch will show how to use TFT with ESP32, Si4735
 |                           | PUSH BUTTON (encoder)         |  GPIO 32      |
 
 
-
-
-### ESP32 and LCD16x2 (3.3V) or LCD20x4 (3.3V) schematic
-
-
-![ESP32 Schematic](../../extras/images/schematic_esp32_lcd_16x2_OR_lcd20x4.png)
-
-
-#### Wire up 
-
-ESP32 Wire up with LCD, encoder/pushbutton and SI4735-D60
-    
-| Device name               | Device Pin / Description      |  ESP32        |
-| ----------------          | ----------------------------- | ------------- |
-|    LCD 16x2 or 20x4       |                               |               |
-|                           | D4                            |  GPIO18       |
-|                           | D5                            |  GPIO17       |
-|                           | D6                            |  GPIO16       |
-|                           | D7                            |  GPIO15       |
-|                           | RS                            |  GPIO19       |
-|                           | E/ENA                         |  GPIO23       |
-|                           | RW & VSS & K (16)             |  GND          |
-|                           | A (15) & VDD                  |  +Vcc         |
-|                           | VO (see 20K tripot connection)|  ------------ |
-|     SS473X                |                               |               |
-|                           | RESET (pin 15)                |  GPIO12       |
-|                           | SDIO (pin 18)                 |  GPIO21       |
-|                           | SCLK (pin 17)                 |  GPIO22       |
-|                           | (*1)SEN (pin 16)              |  +Vcc or GND  |
-|    Encoder                |                               |               |
-|                           | A                             |  CPIO13       |
-|                           | B                             |  GPIO14       |
-|                           | PUSH BUTTON (encoder)         |  GPIO27       |
 
 
 
