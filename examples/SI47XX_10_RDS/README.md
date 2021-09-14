@@ -266,6 +266,14 @@ The videos below can help you to to setup your display.
 
 ## RDS Overview
 
+
+This library implements some RDS features of the SI4735. All function to deal with RDS are documented [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group16.html). Below you have some videos showing the RDS functionalities implemented by the PU2CLR Si4735 Arduino Library.
+
+{% include videoRDS2.html %}
+
+
+{% include videoRDS1.html %} 
+
 The RDS is communication protocol used to send small messages to regular FM radio receivers.  It is capable to send to your receiver messages about the program type, traffic information, local time, alternative frequencies and text. 
 
 RDS runs at 1187.5 bps. It is based on 26-bit information where 16 bits are the information data and 10 bits are used to error detection. Each four data blocks has 104 bits that are sent continuously. 
@@ -313,6 +321,81 @@ The Bloco B has the data structure shown below.
 
 Source: [Wikipedia, Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
 
+
+
+<BR>
+
+__The table below shows the features that this library implements__.
+
+<BR>
+
+#### RDS Features implemented
+
+| Feature | Infoirmation type | Description |  
+| ---------- | --------------- | ---------- |
+| PTY | Program Type | PTY is a 5-bit that indicates the program type (see table below) |
+| PS | Program Service Name | Station name. It has eight static caharacter with the name of the station |
+| RT | Radiotext (under construction...) | String with up to 64 characters with additional information about the content currently being transmitted  |
+| CT | Clock Time (under construction...) | It provides the the current clock |
+
+
+<BR>
+
+#### The table below shows the main group types implemented by this library
+
+| Group Type | Description |
+| ---------- | ----------- |
+| 0A | Basic information [ˆ3] |
+| 0B |  Basic information [ˆ3] |
+| 1A  | Additional information |
+| 3A | Setup open data application |
+| 4A | Date and time (UTC) and Offset to convert UTC to local time |
+| 10A | Program Type Name |
+| 15B | Basic information |
+
+* [ˆ3] The basic information includes the Program Service Name and it has 8 characters. It should identifie just the name of the station. However, some stations might use this resource to show other kind of messages, contradicting what is established by the RDS protocol.
+
+<BR>
+
+#### RDS Program type description
+
+
+| RDS/RBDS Code | European Program Type | North American Program Type |
+| -------- | ---------- | ------ |
+| 0 | No program definition type |	No program definition type |
+| 1 | News	News |
+| 2	 | Current affairs | Information |
+| 3	| Information |	Sport |
+| 4	| Sport | Talk |
+| 5	| Education | Rock |
+| 6	| Drama	| Classic Rock |
+| 7	| Culture |	Adult Hits |
+| 8	| Science |	Soft Rock |
+| 9	| Variable | Top 40 |
+| 10 | Popular Music (Pop) | Country Music |
+| 11 | Rock Music | Oldies Music |
+| 12 | Easy Listening |	Soft Music |
+| 13 | Light Classical | Nostalgia |
+| 14 | Serious Classical | Jazz |
+| 15 | Other Music | Classical |
+| 16 | Weather | Rhythm & Blues Music |
+| 17 | Finance | Soft Rhythm & Blues Music |
+| 18 | Children’s Programs | Language |
+| 19 | Social Affairs | Religious Music |
+| 20 | Religion | Religious Talk |
+| 21 | Phone-in Talk | Personality
+| 22 | Travel |	Public |
+| 23 | Leisure	| College |
+| 24 | Jazz Music | Not assigned |
+| 25 | Country Music | Not assigned |
+| 26 | National Music |	Not assigned |
+| 27 | Oldies Music	Not assigned |
+| 28 | Folk Music |	Not assigned |
+| 29 | Documentary | Weather |
+| 30 | Alarm Test | Emergency Test |
+| 31 | Alarm | Emergency |
+
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 
 ## References
