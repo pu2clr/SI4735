@@ -17,6 +17,7 @@ __DO NOT BUY THIS RECEIVER BEFORE READING COMMENTS AND REPORTS ABOUT IT. FOLLOW 
 * [SI4732 shortwave receiver](https://swli-05940-mi.blogspot.com/2021/04/si4732-shortwave-receiver.html)
 * [Amazon - Customer reviews](https://www.amazon.com/product-reviews/B08ZHXWTS1)
 * [Si4732 ATS-20 Test and Update - Open Source Receiver 0-30 / 64-108](https://youtu.be/381139I2DCg)
+* [ATS-20 Si4732 receiver firmware update](https://blog.marxy.org/2021/06/ats-20-si4732-receiver-firmware-update.html)
 
 
 The photos below show the KIT sold on Aliexpress and eBay.
