@@ -1,5 +1,5 @@
 /*
-    ATTENTION: Use the MiniCore board manager with "LTO Enabled" and "No bootloader" options selected. 
+  ATTENTION: Use the MiniCore board manager with "LTO Enabled" and "No bootloader" options selected. 
              See https://github.com/MCUdude/MiniCore
 
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT ST7735 1.8"
