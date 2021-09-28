@@ -1,6 +1,9 @@
 /*
+    ATTENTION: Use the MiniCore board manager with "LTO Enabled" and "No bootloader" options selected. 
+             See https://github.com/MCUdude/MiniCore
+
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT ST7735 1.8"
-  
+ 
   The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735  and  the 
   "PU2CLR SI4735 Arduino Library" working with the TFT ST7735 display. It is not the purpose of this prototype 
   to provide you a beautiful interface. To be honest, I think you can do it better than me. 
