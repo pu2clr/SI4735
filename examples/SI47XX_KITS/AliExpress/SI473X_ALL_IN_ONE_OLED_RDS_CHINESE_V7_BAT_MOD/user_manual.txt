@@ -22,7 +22,7 @@ Features
 * The frequency on Display is bigger than the previous version
 * Now the bandwidth sequence is ordered by bandwidth values
 * After about 4 seconds, all command buttons are all disabled and the encoder control goes back to the frequency
-
+* added modification to read the battery level (2 resistors of same value are required to mod work, one to the positive wire of battery to A2 pin of arduino and the other at the A2 pin to the GND pin of arduino, a 10K value is fine)
 
 COMMANDS
 
