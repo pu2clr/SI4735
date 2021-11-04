@@ -271,11 +271,11 @@ typedef struct
    Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 */
 Band band[] = {
-  // {FM_BAND_TYPE, 6400, 8400, 7000, 3, 0},     // FM from 64 to 84MHz; default 70MHz; default step frequency index is 3; default bandwidth index AUTO
+  {FM_BAND_TYPE, 6400, 8400, 7000, 3, 0},     // FM from 64 to 84MHz; default 70MHz; default step frequency index is 3; default bandwidth index AUTO
   {FM_BAND_TYPE, 8400, 10800, 10570, 3, 0, "VHF"},   // FM 84-108 MHZ; default 105.7; step 3; bw auto
   {LW_BAND_TYPE, 100, 520, 300, 1, 4, "LW"},        // LW 
   {MW_BAND_TYPE, 520, 1720, 810, 3, 4, "MW"},       // AM/MW from 520 to 1720kHz; default 810kHz; default step frequency index is 3 (10kHz); default bandwidth index is 4 (3kHz)
-  //{MW_BAND_TYPE, 531, 1700, 783, 2, 4},       // MW for Europe, Africa and Asia
+  {MW_BAND_TYPE, 531, 1700, 783, 2, 4},       // MW for Europe, Africa and Asia
   {SW_BAND_TYPE, 1700, 2000, 1850, 0, 5, "160M"},     // 160 meters HAM
   {SW_BAND_TYPE, 2000, 2500, 2250, 1, 4, "120SW"},     // 120 meters BC
   {SW_BAND_TYPE, 2500, 3200, 3000, 1, 4},
