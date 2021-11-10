@@ -238,12 +238,12 @@ Cordova provides an easy way to develop for iOS and Android.
 * Dr. George R Steber, WB9LVI for his great article "NanoSSB RX - An Ultra Low Cost SSB Multiband Receiver" on ARRL QEX Magazine (November/December 2021);  
 * Mr. Jim Reagan, W0CHL, for contributions on circuit design and user interface;  
 * [Mr. Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) for making available the SSBRX patches for SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0);
-* Luiz Carlos, PT2MC, for guiding me  about external mute circuit; 
+* Mr. Luiz Carlos, PT2MC, for guiding me  about external mute circuit; 
+* Mr. Thiago Lima for sharing his board project based on the ESP32 and SI4732-A10 devices;
 * Mr. Francisco Scaramella  for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library;
 * Mr. David Kellmer (USA) for suggesting corrections on the documentation and sketches; 
 * WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode; 
 * Mr. Diego Stanfield for testing the SI4732-A10 with SSB;
-* Mr. Thiago Lima for sharing his board project based on the ESP32 and SI4732-A10 devices;
 * All members of the Facebook groups ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) and ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/) for the  suggestions and corrections during the development of this project.
 
 
