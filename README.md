@@ -131,7 +131,7 @@ The following video is a little joke that shows the trajectory of the constructi
 
 ## Your support is important.
 
-If you would like to support this library development, consider joining this project via Github. Alternatively, make suggestions on new features and report errors if you find them. Thank you!
+If you want to support this library development, consider joining this project via Github. Alternatively, make suggestions on new features and report errors if you find them. Thank you!
 
 
 
