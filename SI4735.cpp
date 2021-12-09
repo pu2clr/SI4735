@@ -2726,7 +2726,7 @@ char *SI4735::getRdsDateTime()
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5 
  */
 
-    /**
+/**
  * @ingroup group17 Patch and SSB support 
  *  
  * @brief Sets the SSB Beat Frequency Offset (BFO). 
