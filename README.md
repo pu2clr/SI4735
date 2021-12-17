@@ -968,8 +968,9 @@ The table below shows the some boards where this library has been successfully t
 | 21 | Seeeduino XIAO | No  | A4 and A5  |  3 |  [More...](https://wiki.seeedstudio.com/Seeeduino-XIAO/)  | 
 | 22 | Teensy 3.1     | No  | A4 and A5  | 12  |  [More...](https://www.pjrc.com/teensy/teensy31.html) | 
 | 23 | Teensy 4.1     | No  | A4 and A5  | 12  |  [More...](https://www.pjrc.com/store/teensy41.html) | 
-| 24 | Atmega32       | No  | PC1 and PC0 | PB6/12 | [More...](https://github.com/MCUdude/MightyCore) |
-| 24 | Atmega128      | No  | PC1 and PC0 | PB6/12 | [More...](https://ww1.microchip.com/downloads/en/DeviceDoc/doc2467.pdf) |
+| 24 | Atmega8        | No  | PC4 and PC5 | PD6/12 | [More...](https://github.com/MCUdude/MightyCore) |
+| 25 | Atmega32       | No  | PC1 and PC0 | PB6/12 | [More...](https://github.com/MCUdude/MightyCore) |
+| 26 | Atmega128      | No  | PC1 and PC0 | PB6/12 | [More...](https://ww1.microchip.com/downloads/en/DeviceDoc/doc2467.pdf) |
 
 
 * [ˆ4] It seams that in some ESP32 board, the I²C bus is not configured prorpelly by default. However, you can set almost any pin on ESP32 to setup I²C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. See see the folder examples to check how to use ESP32 devices. 
