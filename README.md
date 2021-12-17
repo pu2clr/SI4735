@@ -26,12 +26,12 @@ Contact: __pu2clr@gmail.com__.
 ## Contents
 
 1. [SI4735 Library construction history](https://pu2clr.github.io/SI4735/#si4735-library-construction-history)
-2. [Labrary Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
-3. [License Copyright](https://pu2clr.github.io/SI4735/#mit-license)
-4. [Library Installation](https://pu2clr.github.io/SI4735/#library-installation)
-5. [Other Arduino Libraries Developed by the Author](https://pu2clr.github.io/SI4735/#other-arduino-libraries-developed-by-the-author)
-6. [Groups and Forums](https://pu2clr.github.io/SI4735/#groups-and-forums)
-7. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
+2. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
+3. [Labrary Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
+4. [License Copyright](https://pu2clr.github.io/SI4735/#mit-license)
+5. [Library Installation](https://pu2clr.github.io/SI4735/#library-installation)
+6. [Other Arduino Libraries Developed by the Author](https://pu2clr.github.io/SI4735/#other-arduino-libraries-developed-by-the-author)
+7. [Groups and Forums](https://pu2clr.github.io/SI4735/#groups-and-forums)
 8. [Your support is important](https://pu2clr.github.io/SI4735/#your-support-is-important)
 9. [About the SI4732 and SI4735](https://pu2clr.github.io/SI4735/#about-the-si4732-and-si4735)
 10. [Terminology](https://github.com/pu2clr/SI4735#terminology)
@@ -107,6 +107,32 @@ Judging by the groups created around the SI47XX devices, I estimate that this li
 The following video is a little joke that shows the trajectory of the construction of this library. __"PU2CLR SI4735 Arduino Library. IT IS OPEN SOURCE IT IS FREE. IT IS FOR YOU"__.
 
 {% include libhistory.html %}
+
+<BR> 
+
+## Thanks
+
+* Mrs. [Nancy Daniels Yoga](https://github.com/LadyRoninEngineer/Si473x) for sharing experiences and suggestions for noise reduction on the I2C bus and also for sharing the excellent board projects for the SI4732-A10 device;
+* Mr. Tom Nardi for his great article ["Multi-Band Receiver On A Chip Controlled By Arduino"](https://hackaday.com/2020/03/02/multi-band-receiver-on-a-chip-controlled-by-arduino/) on Hackaday website;
+* Mr. Gert Baak, PE0MGB, for library improvements suggestions and the Article [Arduino All band radio with SI4735 by Gert PE0MGB](https://www.pi4raz.nl/razzies/razzies202009.pdf);  
+* Dr. George R Steber, WB9LVI for his great article "NanoSSB RX - An Ultra Low Cost SSB Multiband Receiver" on ARRL QEX Magazine (November/December 2021);  
+* Mr. Jim Reagan, W0CHL, for contributions on circuit design and user interface;  
+* [Mr. Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) for making available the SSBRX patches for SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0);
+* Mr. Luiz Carlos, PT2MC, for guiding me  about external mute circuit; 
+* Mr. Thiago Lima for sharing his board project based on the ESP32 and SI4732-A10 devices;
+* Mr. Francisco Scaramella  for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library;
+* Mr. David Kellmer (USA) for suggesting corrections on the documentation and sketches; 
+* WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode; 
+* Mr. Diego Stanfield for testing the SI4732-A10 with SSB;
+* All members of the Facebook groups ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) and ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/) for the  suggestions and corrections during the development of this project.
+
+
+<BR>
+
+## Your support is important.
+
+If you want to support this library development, consider joining this project via Github. Alternatively, make suggestions on new features and report errors if you find them. Thank you!
+
 
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
@@ -230,32 +256,6 @@ Cordova provides an easy way to develop for iOS and Android.
 
 <BR>
 
-## Thanks
-
-* Mrs. [Nancy Daniels Yoga](https://github.com/LadyRoninEngineer/Si473x) for sharing experiences and suggestions for noise reduction on the I2C bus and also for sharing the excellent board projects for the SI4732-A10 device;
-* Mr. Tom Nardi for his great article ["Multi-Band Receiver On A Chip Controlled By Arduino"](https://hackaday.com/2020/03/02/multi-band-receiver-on-a-chip-controlled-by-arduino/) on Hackaday website;
-* [Mr. Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) for making available the SSBRX patches for SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0);
-* Luiz Carlos, PT2MC, for guiding me  about external mute circuit; 
-* Mr. Francisco Scaramella  for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library;
-* Mr. David Kellmer (USA) for suggesting corrections on the documentation and sketches; 
-* WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode; 
-* Mr. Jim Reagan, W0CHL, for contributions on circuit design and user interface;
-* Mr. Gert Baak, PE0MGB, for library improvements suggestions and the Article [Arduino All band radio with SI4735 by Gert PE0MGB](https://www.pi4raz.nl/razzies/razzies202009.pdf);  
-* Mr. Diego Stanfield for testing the SI4732-A10 with SSB;
-* Mr. Thiago Lima for sharing his board project based on the ESP32 and SI4732-A10 devices;
-* All members of the Facebook groups ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) and ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/) for the  suggestions and corrections during the development of this project.
-
-
-[Go to contents](https://pu2clr.github.io/SI4735/#contents)
-
-<BR>
-
-## Your support is important.
-
-If you would like to support this library development, consider joining this project via Github. Alternatively, make suggestions on new features and report errors if you find them. Thank you!
-
-
-<BR>
 
 ## About the SI4732 and SI4735  
 
@@ -675,7 +675,7 @@ This library has been written for the Arduino platform and has been successfully
 
 ### Schematic
 
-The main purpose of this prototype is to test the Si4735 Arduino Library. It does not intend to be a real radio or an exigent listener. However, it is possible to start with it and then, if you wish, you can include some devices to the circuit to improve, for example,  its sensibility beyond other desired features.
+The main purpose of this prototype is to test the Si4735 Arduino Library. It does not intend to be a real radio for exigent listeners. However, it is possible to start with it and then, if you wish, you can include some devices to the circuit to improve, for example,  its sensibility beyond other desired features.
 
 The image below shows a version of Silicon Labs SSOP Typical Application Schematic connect to the host MCU (Arduino Pro Mini 3.3V). __Pay attention to the Si4735-D60 SEN pin (16).  When the SEN pin is connected to the ground, the I²C bus address is 0x11. When the SEN pin is connected to +3.3V, the I²C bus address is 0x63.  By default, the "Si4735 Arduino Library" uses the 0x11 I²C bus address (SEN pin connected to GND). If you want to use the address 0x63 (SEN connected on +3.3V), see the functions (methods) getDeviceI2CAddress, setDeviceI2CAddress and setDeviceOtherI2CAddress__.   
 
@@ -1201,10 +1201,12 @@ The table below shows some radios based on SI47XX
 | Manufacturer | Model | Device |More information |
 | ------------ | ----- | ---- |----------- | 
 | Tecsun | PL310ET | Si4734 |[About](https://www.tecsunradios.com.au/store/product/tecsun-pl310et-multi-band-radio/)|
+| Tecsun | PL-330 | Si4735 |[Review](https://swling.com/blog/tag/tecsun-pl-330/)|
 | Tecsun | PL-365 | Si4735 |[Review](https://swling.com/blog/2017/02/charlie-reviews-the-tecsun-pl-365/)|
 | Tecsun | PL-360 | Si4734 |[Review](https://www.edn.com/review-tecsun-pl-360-emi-receiver/) |
 | Tecsun | PL380 |  Si4734 |[Reviews](https://www.eham.net/reviews/view-product?id=10240) |
 | Tecsun |  PL880 | Si4735 | [Reviews](https://www.eham.net/reviews/view-product?id=11457) |
+| CountyComm GP-7/SSB | Si4735 | [Reviews](https://youtu.be/NO9hwmGFWfY) | 
 | Degen | DE1103 DSP | Si4735 | [Review](https://swling.com/blog/2015/11/the-new-degen-de1103-dsp-first-impressions-review/)|
 | Degen | DE1123/Kaito KA1123 | Si4734 |[Review](https://frrl.wordpress.com/2009/07/11/review-of-the-degen-de1123-dsp-amfmsw-pocket-radio-with-1gb-mp3-player-recorder/)|
 | Degen | DE1125/Kaito KA801 | Si4734 | [Reviews](https://www.eham.net/reviews/view-product?id=9584)|
