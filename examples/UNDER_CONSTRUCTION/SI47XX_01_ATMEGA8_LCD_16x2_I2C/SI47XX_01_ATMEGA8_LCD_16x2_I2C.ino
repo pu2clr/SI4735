@@ -1,11 +1,38 @@
 /*
-   Test and validation of the SI4735 Arduino Library on ATtiny85.
-   It is a simple AM/FM radio implementation.
+
+  The Atmega8 has the same Atmega328 (Arduino Nano, Uno and Pro Mini) pinout.
+  However, it has memory limitation.
+
+
+
+  ATmega8, SI4735-D60 and encoder wire up. 
+
+  | Device name               | Device Pin / Description      |  Atmega8/Pin  |
+  | ----------------          | ----------------------------- | ------------  |
+  |    LCD 16x2 or 20x4       |                               |               |
+  |                           | D4                            |     D7        |
+  |                           | D5                            |     D6        |
+  |                           | D6                            |     D5        |
+  |                           | D7                            |     D4        |
+  |                           | RS                            |     D12       |
+  |                           | E/ENA                         |     D13       |
+  |                           | RW & VSS & K (16)             |    GND        |
+  |                           | A (15) & VDD                  |    +Vcc       |
+  |                           | VO (see 20K tripot connection)|   ---------   |
+  |     SS473X                |                               |               |
+  |                           | RESET (pin 15)                |      9        |
+  |                           | SDIO (pin 18)                 |     A4        |
+  |                           | SCLK (pin 17)                 |     A5        |
+  |                           | (*1)SEN (pin 16)              |  +Vcc or GND  |
+  |    Encoder                |                               |               |
+  |                           | A                             |       2       |
+  |                           | B                             |       3       |
+  |                           | PUSH BUTTON (encoder)         |     A0/14     |
 
   Prototype documentation : https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
-  By Ricardo Lima Caratti, Jan 2020.
+  By Ricardo Lima Caratti, Dez 2021.
 */
 
 #include <SI4735.h>
