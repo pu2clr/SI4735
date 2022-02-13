@@ -261,7 +261,7 @@ void setup()
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
   rx.setRefClock(32768);
-  rx.setRefClockPrescaler(1);      // will work with 32768KHz => (32768 x 1)
+  rx.setRefClockPrescaler(1);      // will work with 32.768KHz => (32768 x 1)
   // rx.setRefClockPrescaler(150); // will work with 4916.2kHz => 4.9152MHz => (32768 x 150)
   // rx.setRefClockPrescaler(400); // will work with 13107200kHz => 13.107200 MHz => (32768 x 400)
 
