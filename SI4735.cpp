@@ -374,28 +374,30 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
 }
 
 /**
- * @ingroup group07 Device Power Up 
- * 
+ * @ingroup group07 Device Power Up
+ *
  * @brief Powerup the Si47XX
- * 
+ *
  * @details Before call this function call the setPowerUp to set up the parameters.
- * 
+ *
  * @details Parameters you have to set up with setPowerUp
- * 
+ *
  * | Parameter | Description |
  * | --------- | ----------- |
  * | CTSIEN    | Interrupt anabled or disabled |
  * | GPO2OEN   | GPO2 Output Enable or disabled |
  * | PATCH     | Boot normally or patch |
- * | XOSCEN    | Use external crystal oscillator. 1 = Use crystal oscillator;  (crystal oscillator disabled) |
+ * | XOSCEN    | 0 (XOSCEN_RCLK) = external active crystal oscillator. 1 (XOSCEN_CRYSTAL) = passive crystal oscillator;  |
  * | FUNC      | defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver |
  * | OPMODE    | SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011) |
- * 
+ *
  * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note:
  *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
- * 
+ *
  *see setMaxDelaySetFrequency()
- * @see MAX_DELAY_AFTER_POWERUP 
+ * @see MAX_DELAY_AFTER_POWERUP
+ * @see XOSCEN_CRYSTAL
+ * @see XOSCEN_RCLK
  * @see  SI4735::setPowerUp()
  * @see  Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129
  */
@@ -522,14 +524,20 @@ void SI4735::setRefClock(uint16_t refclk)
 
 /**
  * @ingroup group07
- * @brief Sets the number used by the prescaler to divide the external RCLK down to the internal REFCLK. 
- * @details The range may be between 1 and 4095 in 1 unit steps. 
- * @details For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz. The reference clock frequency property would then need to be set to 32500 Hz. 
- * @details ATTENTION by default, this function considers you are using the RCLK pin as clock source. 
- * 
+ * @brief Sets the number used by the prescaler to divide the external RCLK down to the internal REFCLK.
+ * @details The range may be between 1 and 4095 in 1 unit steps.
+ * @details For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz. The reference clock frequency property would then need to be set to 32500 Hz.
+ * @details ATTENTION by default, this function considers you are using the RCLK pin as clock source.
+ * @details Example: The code below shows the setup for an active 4.9152 MHz crystal
+ * @code
+ *   rx.setRefClock(32768);
+ *   rx.setRefClockPrescaler(150); // will work with 4915200Hz active crystal => 4.9152MHz => (32768 x 150)
+ *   rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
+ * @endcode
+ *
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35
- * 
- * @param prescale  Prescaler for Reference Clock value; Between 1 and 4095 in 1 unit steps. Default is 1. 
+ *
+ * @param prescale  Prescaler for Reference Clock value; Between 1 and 4095 in 1 unit steps. Default is 1.
  * @param rclk_sel  0 = RCLK pin is clock source (default); 1 = DCLK pin is clock source
  */
 void SI4735::setRefClockPrescaler(uint16_t prescale, uint8_t rclk_sel)
