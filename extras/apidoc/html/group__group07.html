@@ -224,7 +224,7 @@ Functions</h2></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">PATCH </td><td class="markdownTableBodyNone">Boot normally or patch  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">XOSCEN </td><td class="markdownTableBodyNone">Use external crystal oscillator. 1 = Use crystal oscillator; (crystal oscillator disabled)  </td></tr>
+<td class="markdownTableBodyNone">XOSCEN </td><td class="markdownTableBodyNone">0 (XOSCEN_RCLK) = external active crystal oscillator. 1 (XOSCEN_CRYSTAL) = passive crystal oscillator;  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">FUNC </td><td class="markdownTableBodyNone">defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver  </td></tr>
 <tr class="markdownTableRowEven">
@@ -232,6 +232,10 @@ Functions</h2></td></tr>
 </table>
 <p>ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note: Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.</p>
 <p>see <a class="el" href="group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8" title="Set the Max Delay after Set Frequency.">setMaxDelaySetFrequency()</a> </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="_s_i4735_8h.html#a921cafdf244d2d7db9eeffa524e11663">MAX_DELAY_AFTER_POWERUP</a> </dd>
+<dd>
+<a class="el" href="_s_i4735_8h.html#a33a17dceb88b2b05d8032714a1998368">XOSCEN_CRYSTAL</a> </dd>
+<dd>
+<a class="el" href="_s_i4735_8h.html#a9d2a0e22f5a37d3911eef36581225dd2">XOSCEN_RCLK</a> </dd>
 <dd>
 <a class="el" href="group__group07.html#ga8bc001cb28dc8fbd88ba0fa7024eca39" title="Set the Power Up parameters for si473X.">SI4735::setPowerUp()</a> </dd>
 <dd>
@@ -409,7 +413,10 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129 </dd></dl>
 <p>The range may be between 1 and 4095 in 1 unit steps.</p>
 <p>For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz. The reference clock frequency property would then need to be set to 32500 Hz.</p>
 <p>ATTENTION by default, this function considers you are using the RCLK pin as clock source.</p>
-<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35</dd></dl>
+<p>Example: The code below shows the setup for an active 4.9152 MHz crystal </p><div class="fragment"><div class="line">rx.setRefClock(32768);</div>
+<div class="line">rx.setRefClockPrescaler(150); <span class="comment">// will work with 4915200Hz active crystal =&gt; 4.9152MHz =&gt; (32768 x 150)</span></div>
+<div class="line">rx.setup(RESET_PIN, 0, <a class="code" href="_s_i4735_8h.html#a1c63dbfe18d80af288cc79a5da666993">POWER_UP_AM</a>, <a class="code" href="_s_i4735_8h.html#afd6b0255af56b3deee67ef1fe14d2fd6">SI473X_ANALOG_AUDIO</a>, <a class="code" href="_s_i4735_8h.html#a9d2a0e22f5a37d3911eef36581225dd2">XOSCEN_RCLK</a>);</div>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">prescale</td><td>Prescaler for Reference Clock value; Between 1 and 4095 in 1 unit steps. Default is 1. </td></tr>
@@ -536,6 +543,9 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129 </dd></dl>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="a_s_i4735_8h_html_a1c63dbfe18d80af288cc79a5da666993"><div class="ttname"><a href="_s_i4735_8h.html#a1c63dbfe18d80af288cc79a5da666993">POWER_UP_AM</a></div><div class="ttdeci">#define POWER_UP_AM</div><div class="ttdef"><b>Definition:</b> SI4735.h:27</div></div>
+<div class="ttc" id="a_s_i4735_8h_html_a9d2a0e22f5a37d3911eef36581225dd2"><div class="ttname"><a href="_s_i4735_8h.html#a9d2a0e22f5a37d3911eef36581225dd2">XOSCEN_RCLK</a></div><div class="ttdeci">#define XOSCEN_RCLK</div><div class="ttdef"><b>Definition:</b> SI4735.h:211</div></div>
+<div class="ttc" id="a_s_i4735_8h_html_afd6b0255af56b3deee67ef1fe14d2fd6"><div class="ttname"><a href="_s_i4735_8h.html#afd6b0255af56b3deee67ef1fe14d2fd6">SI473X_ANALOG_AUDIO</a></div><div class="ttdeci">#define SI473X_ANALOG_AUDIO</div><div class="ttdef"><b>Definition:</b> SI4735.h:189</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
