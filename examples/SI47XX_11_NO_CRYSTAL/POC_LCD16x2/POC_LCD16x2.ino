@@ -260,10 +260,26 @@ void setup()
   // rx.setI2CFastMode(); // Set I2C bus speed.
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
-  rx.setRefClock(32768);
-  rx.setRefClockPrescaler(1);      // will work with 32.768KHz => (32768 x 1)
-  // rx.setRefClockPrescaler(150); // will work with 4916.2kHz => 4.9152MHz => (32768 x 150)
-  // rx.setRefClockPrescaler(400); // will work with 13107200kHz => 13.107200 MHz => (32768 x 400)
+  // Example for an active 100kHz crystal (clock  100000Hz) 
+  // rx.setRefClock(33333);           // Ref = 33333Hz
+  // rx.setRefClockPrescaler(3);      // 33333 x 3 = ˜100000Hz 
+    
+  // Example for an active 32.768kHz crystal (32768Hz)
+  rx.setRefClock(32768);           // Ref = 32768Hz
+  rx.setRefClockPrescaler(1);      // 32768 x 1 = 32768Hz
+
+  // Example for an active 4.9152MHz crystal (4915200Hz)
+  // rx.setRefClock(32768);        // Ref = 32768Hz
+  // rx.setRefClockPrescaler(150); // 32768 x 150 = 4915200Hz
+
+  // Example for an active 13.107200MHz crystal (13107200Hz)
+  // rx.setRefClock(32768);        // Ref = 32768Hz
+  // rx.setRefClockPrescaler(400); // 32768 x 400 = 13107200Hz
+
+  // Example for an active 13MHz crystal (13000000Hz)
+  // si4735.setRefClock(32500);          //  32.5kHz
+  // si4735.setRefClockPrescaler(400);   // 32500 x 400 = 13000000 (13MHz)
+
 
   // rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_DIGITAL_AUDIO1, XOSCEN_RCLK); // Digital Audio 
   // rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK); // Digital Audio
