@@ -528,13 +528,18 @@ void SI4735::setRefClock(uint16_t refclk)
  * @details The range may be between 1 and 4095 in 1 unit steps.
  * @details For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz. The reference clock frequency property would then need to be set to 32500 Hz.
  * @details ATTENTION by default, this function considers you are using the RCLK pin as clock source.
- * @details Example: The code below shows the setup for an active 4.9152 MHz crystal
+ * @details Example: The code below shows the setup for an active 4.9152MHz crystal
  * @code
  *   rx.setRefClock(32768);
  *   rx.setRefClockPrescaler(150); // will work with 4915200Hz active crystal => 4.9152MHz => (32768 x 150)
  *   rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
  * @endcode
- *
+ * @details Example: The code below shows the setup for an active 13MHz crystal
+ * @code
+ *   rx.setRefClock(32500);
+ *   rx.setRefClockPrescaler(400); // 32500 x 400 = 13000000 (13MHz)
+ *   rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
+ * @endcode
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35
  *
  * @param prescale  Prescaler for Reference Clock value; Between 1 and 4095 in 1 unit steps. Default is 1.
