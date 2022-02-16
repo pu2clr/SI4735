@@ -377,8 +377,7 @@ See Video:
 
 ## SI473X and external active crystal oscillator or signal generator
 
-You can use a signal generator or a active crystal oscillator instead the passive 32768kHz passive crystal with Si473X devices. This setup can be useful to improve the receiver performance or deal with digital audio output. The schematic below shows this setup. 
-
+You can use a signal generator or a active crystal oscillator instead the passive 32768kHz  crystal with Si473X devices. This setup can be useful to improve the receiver performance or deal with digital audio output. The schematic below shows this setup. 
 
 ![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc.png)
 
@@ -399,6 +398,45 @@ void setup(void)
   .
   .
 }
+```
+
+On SI473X you can use a clock reference between 31130 to 34406Hz. This feature allows you  to use other active crystals with different frequencies.
+
+#### Some examples below
+
+##### 100kHz 
+if you have an active 100kHz crystal, you must select the reference clock of 33333Hz (33kHz) and a prescaler of 3 (3 x 33333 = ~100000Hz). Example: 
+
+```cpp
+rx.setRefClock(33333);           
+rx.setRefClockPrescaler(3);     
+rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);      
+```
+
+__It is important to note the setup function and the parameter XOSCEN_RCLK__. 
+
+##### 4.9152MHz  
+
+```cpp
+rx.setRefClock(32768);        // Ref = 32768Hz
+rx.setRefClockPrescaler(150); // prescaler = 150 ==> 32768 x 150 = 4915200Hz (4.9152MHz)
+rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);      
+```
+
+##### 13MHz
+
+```cpp
+si4735.setRefClock(32500);          // Ref = 32.5kHz
+si4735.setRefClockPrescaler(400);   // prescaler = 400 ==> 32500 x 400 = 13000000 (13MHz)
+rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK); 
+```
+
+##### 13.107200MHz: 
+
+```cpp
+rx.setRefClock(32768);        // Ref = 32768Hz
+rx.setRefClockPrescaler(400); // prescaler = 400 ==> 32768 x 400 = 13.107200MHz 
+rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);      
 ```
 
 See the sketch example: [I47XX_02_RDS_TOUCH_SHIELD_REF_CLOCK](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_99_NO_CRYSTAL)
