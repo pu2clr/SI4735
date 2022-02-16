@@ -43,7 +43,7 @@ Contact: __pu2clr@gmail.com__.
    * [SSB support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band)
    * [EEPROM support](https://pu2clr.github.io/SI4735/#eeprom-support)
    * [Digital Audio Support](https://pu2clr.github.io/SI4735/#digital-audio-support)
-   * [Using an external active crystal or signal generator with SI47XX](https://github.com/pu2clr/SI4735/tree/master/extras/schematic#si473x-and-external-active-crystal-oscillator-or-signal-generator)
+   * [Using an external active crystal or signal generator with SI47XX](extras/schematic#si473x-and-external-active-crystal-oscillator-or-signal-generator)
    * [Customizing PU2CLR Arduino Library](https://pu2clr.github.io/SI4735/#customizing-pu2clr-arduino-library)
 12. [Hardware Requirements and Setup](https://pu2clr.github.io/SI4735/#hardware-requirements-and-setup)
 13. [__SCHEMATIC__](https://pu2clr.github.io/SI4735/#schematic)
