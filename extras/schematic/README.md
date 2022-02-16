@@ -381,17 +381,16 @@ You can use a signal generator or a active crystal oscillator instead the passiv
 
 ![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc.png)
 
-Check the [PU2CLR SI4735 Arduino Library API documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) to deal with external clock reference. The code below shows how to setup external clock. 
+Check the [PU2CLR SI4735 Arduino Library API documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) to deal with external clock reference. The code below shows how to setup 32.768kHz external clock. 
 
 ```cpp
 void setup(void)
 {
-
   .
   .
   .
-  si4735.setRefClock(32768);
-  si4735.setRefClockPrescaler(1);   // will work with 32768  
+  si4735.setRefClock(32768);        // Ref = 32768Hz 
+  si4735.setRefClockPrescaler(1);   // prescaler = 150 =>  32768 x 1 = 32768  
  
   si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
   .
@@ -400,7 +399,7 @@ void setup(void)
 }
 ```
 
-On SI473X you can use a clock reference between 31130 to 34406Hz. This feature allows you  to use other active crystals with different frequencies.
+__IMPORTANT__: You can use a clock reference between 31130Hz to 34406Hz. This feature allows you  to use other active crystals with different frequencies.
 
 #### Some examples below
 
