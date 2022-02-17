@@ -265,12 +265,12 @@ void setup()
   // rx.setRefClockPrescaler(3);      // 33333 x 3 = ˜100000Hz 
     
   // Example for an active 32.768kHz crystal (32768Hz)
-  // rx.setRefClock(32768);           // Ref = 32768Hz
-  // rx.setRefClockPrescaler(1);      // 32768 x 1 = 32768Hz
+  rx.setRefClock(32768);           // Ref = 32768Hz
+  rx.setRefClockPrescaler(1);      // 32768 x 1 = 32768Hz
 
   // Example for an active 4.9152MHz crystal (4915200Hz)
-  rx.setRefClock(32768);        // Ref = 32768Hz
-  rx.setRefClockPrescaler(150); // 32768 x 150 = 4915200Hz
+  // rx.setRefClock(32768);        // Ref = 32768Hz
+  // rx.setRefClockPrescaler(150); // 32768 x 150 = 4915200Hz
 
   // Example for an active 13.107200MHz crystal (13107200Hz)
   // rx.setRefClock(32768);        // Ref = 32768Hz
