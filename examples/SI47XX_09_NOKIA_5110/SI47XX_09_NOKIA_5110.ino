@@ -224,6 +224,8 @@ uint8_t volume = DEFAULT_VOLUME;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 Adafruit_PCD8544 display = Adafruit_PCD8544(NOKIA_DC, NOKIA_CE, NOKIA_RST);
+// Adafruit_PCD8544 display = Adafruit_PCD8544(NOKIA_CLK, NOKIA_DIN, NOKIA_DC, NOKIA_CE, NOKIA_RST);
+
 
 SI4735 rx;
 
@@ -245,7 +247,7 @@ void setup()
 
   // Start the Nokia display device
   display.begin();
-  display.setContrast(80);
+  // display.setContrast(80);
   // Splash
   splash();
   // Encoder interrupt
