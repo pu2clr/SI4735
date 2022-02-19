@@ -51,6 +51,12 @@
                 "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.4/libraries/Wire/src",
                 "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.4/libraries/SPI/src",
                 "/Users/rcaratti/Documents/Arduino/libraries/TFT_ST7735",
+                "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.4/cores/arduino",
+                "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.4/variants/standard",
+                "/Users/rcaratti/Documents/Arduino/libraries/si4735",
+                "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.4/libraries/Wire/src",
+                "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.4/libraries/SPI/src",
+                "/Users/rcaratti/Documents/Arduino/libraries/TFT_ST7735",
                 "/Users/rcaratti/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include",
                 "/Users/rcaratti/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include-fixed",
                 "/Users/rcaratti/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include"
@@ -61,6 +67,10 @@
             "cStandard": "c11",
             "cppStandard": "c++11",
             "defines": [
+                "F_CPU=16000000L",
+                "ARDUINO=10819",
+                "ARDUINO_AVR_UNO",
+                "ARDUINO_ARCH_AVR",
                 "F_CPU=16000000L",
                 "ARDUINO=10819",
                 "ARDUINO_AVR_UNO",

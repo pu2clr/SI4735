@@ -333,10 +333,10 @@ void show(uint8_t col, uint8_t lin, uint8_t textSize, const char *content) {
   display.display();
 }
 
-    /**
+/**
  *  Shows frequency information on Display
  */
-    void showFrequency()
+void showFrequency()
 {
   char tmp[10];
   char bufferDisplay[10];
