@@ -1,7 +1,11 @@
 /*
 
   See user_manual.txt before operating the receiver.
-
+  
+  This sketch uses the display Nokia 5110 compatible device with a very lightweight library to control it. 
+  No grafic resource is used here. To improve the interface implemented here you may need to use another Nokia 5110 Arduino library.
+  
+  To install and to know more about the Nokia 5110 library used here see: https://github.com/baghayi/Nokia_5110 
 
   If you are using a SI4735-D60 or SI4732-A10, you can also use this sketch to add the SSB functionalities to the
   original Pavleski's project. If you are using another SI4730-D60, the SSB wil not work. But you will still have
@@ -11,7 +15,7 @@
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
 
-  Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
+  Features:   EEPROM save and restore of receiver status; AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
 
@@ -33,14 +37,8 @@
   |                           | (*3) SDIO (pin 18)            |     A4        |
   |                           | (*3) SCLK (pin 17)            |     A5        |
   |                           | (*4) SEN (pin 16)             |    GND        |
-  |     Buttons               |                               |               |
-  |                           | (*1)Switch MODE (AM/LSB/AM)   |      4        |
-  |                           | (*1)Banddwith                 |      5        |
-  |                           | (*1)BAND                      |      6        |
-  |                           | (*2)SEEK                      |      7        |
-  |                           | (*1)AGC/Attenuation           |     14 / A0   |
-  |                           | (*1)STEP                      |     15 / A1   |
-  |                           | VFO/VFO Switch (Encoder)      |     16 / A2   |
+  |    Buttons                |                               |               |
+  |                           | Encoder push button           |     A0/14     |  
   |    Encoder                |                               |               |
   |                           | A                             |       2       |
   |                           | B                             |       3       |
@@ -59,12 +57,10 @@
 
 #include <SI4735.h>
 #include <EEPROM.h>
-#include <Adafruit_GFX.h>     //Downlaod it here : https://www.electronoobs.com/eng_arduino_Adafruit_GFX.php
-#include <Adafruit_PCD8544.h> //Download it here: https://www.electronoobs.com/eng_arduino_Adafruit_PCD8544.php
-#include <SPI.h>
+#include <Nokia_5110.h>
+
 #include "Rotary.h"
 #include "patch_ssb_compressed.h"    // Compressed SSB patch version (saving almost 1KB)
-// #include "patch_init.h" // SSB patch for whole SSBRX initialization string
 
 const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
 const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
@@ -82,16 +78,15 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define ENCODER_PIN_B 3
 
 // NOKIA Display pin setup
-#define NOKIA_RST 8  // RESET
-#define NOKIA_CE 9   // Some NOKIA devices show CS
-#define NOKIA_DC 10  //
-#define NOKIA_DIN 11 // MOSI
-#define NOKIA_CLK 13 // SCK
-#define NOKIA_LED 0  // 0 if wired to +3.3V directly
+#define NOKIA_RST   8    // RESET
+#define NOKIA_CE    9    // Some NOKIA devices show CS
+#define NOKIA_DC   10    //
+#define NOKIA_DIN  11    // MOSI
+#define NOKIA_CLK  13    // SCK
+#define NOKIA_LED   0    // 0 if wired to +3.3V directly
 
 // Buttons controllers
 #define ENCODER_PUSH_BUTTON 14 // Pin A0/14
-#define DUMMY_BUTTON 15
 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 500
@@ -153,7 +148,6 @@ volatile int encoderCount = 0;
 uint16_t currentFrequency;
 uint16_t previousFrequency = 0;
 
-
 const uint8_t currentBFOStep = 10;
 
 const char * menu[] = {"Volume", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "AVC", "Seek Up", "Seek Down"};
@@ -201,8 +195,6 @@ Bandwidth bandwidthFM[] = {
     {3, " 60"},
     {4, " 40"}};
 
-
-
 int tabAmStep[] = {1,    // 0
                    5,    // 1
                    9,    // 2
@@ -235,10 +227,10 @@ typedef struct
   uint16_t currentFreq;   // Default frequency or current frequency
   int8_t currentStepIdx;  // Idex of tabStepAM:  Defeult frequency step (See tabStepAM)
   int8_t bandwidthIdx;    // Index of the table bandwidthFM, bandwidthAM or bandwidthSSB;
-  uint8_t disableAgc;
-  int8_t agcIdx;
-  int8_t agcNdx;
-  int8_t avcIdx; 
+  uint8_t disableAgc;     // Stores the disable or enable AGC for the band 
+  int8_t agcIdx;          // Stores AGC value for the band
+  int8_t agcNdx;          // Stores AGC number for the band 
+  int8_t avcIdx;          // Stores AVC for the band
 } Band;
 
 /*
@@ -285,7 +277,7 @@ uint8_t volume = DEFAULT_VOLUME;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
-Adafruit_PCD8544 lcd = Adafruit_PCD8544(NOKIA_DC, NOKIA_CE, NOKIA_RST);
+Nokia_5110 nokia = Nokia_5110(NOKIA_RST, NOKIA_CE, NOKIA_DC, NOKIA_DIN, NOKIA_CLK);
 
 SI4735 rx;
 
@@ -297,19 +289,21 @@ void setup()
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
   // Start the Nokia display device
-  lcd.begin();
-  splash(); // Show Splash - Remove this line if you do not want it. 
 
+  // all the segments are on or the display behaviour is not good fo you,  you may need to increase or decrease the contrast value.
+  nokia.setContrast(40); // It accepts a value between 0 and 127. Default value 60.
+
+
+  splash(); // Show Splash - Remove this line if you do not want it. 
   EEPROM.begin();
 
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
     EEPROM.update(eeprom_address, 0);
-    lcd.setCursor(0,0);
-    lcd.print("EEPROM RESETED");
+    show(0,0,"EEPROM RESETED");
     delay(2000);
-    lcd.clearDisplay();
+    nokia.clear();
   }
 
   // controlling encoder via interrupt
@@ -348,27 +342,23 @@ void setup()
  */
 void splash()
 {
-  lcd.clearDisplay();
-  lcd.display();
-  lcd.setTextColor(BLACK);
+  nokia.clear();
   // Splash - Change it for your introduction text.
-  lcd.setCursor(0, 0);
-  lcd.setTextSize(2);
-  lcd.print("SI4735");
-  lcd.setCursor(0, 15);
-  lcd.print("Arduino");
-  lcd.setCursor(0, 30);
-  lcd.print("Library");
-  lcd.display();
+  nokia.setCursor(0, 0);
+  // nokia.setTextSize(2);
+  nokia.print("SI4735");
+  nokia.setCursor(0, 15);
+  nokia.print("Arduino");
+  nokia.setCursor(0, 30);
+  nokia.print("Library");
   delay(3000);
-  lcd.clearDisplay();
-  lcd.setCursor(30, 0);
-  lcd.print("BY");
-  lcd.setCursor(10, 20);
-  lcd.print("PU2CLR");
-  lcd.display();
+  nokia.clear();
+  nokia.setCursor(30, 0);
+  nokia.print("BY");
+  nokia.setCursor(10, 350);
+  nokia.print("PU2CLR");
   delay(2000);
-  lcd.clearDisplay();
+  nokia.clear();
 }
 
 /*
@@ -525,51 +515,35 @@ void  rotaryEncoder()
     encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
 }
 
+
+void show(uint8_t col, uint8_t lin, const char *content) {
+  nokia.setCursor(col, lin);
+  nokia.print(content);
+}
+
 /**
  * Shows frequency information on Display
  */
 void showFrequency()
 {
-  char tmp[15];
-  char bufferDisplay[15];
   char *unit;
-  int col = 4;
-  // sprintf(tmp, "%5.5u", currentFrequency);
-  bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
-  bufferDisplay[1] = tmp[1];
-  if (rx.isCurrentTuneFM())
+  char freqDisplay[10];
+
+  if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
-    bufferDisplay[2] = tmp[2];
-    bufferDisplay[3] = '.';
-    bufferDisplay[4] = tmp[3];
-    if ( fmRDS ) { 
-      col = 0;
-      unit = (char *)" ";
-    } else {
-      unit = (char *)"MHz";
-    }
+    rx.convertToChar(currentFrequency, freqDisplay, 5, 3, '.');
+    unit = (char *)"MHz";
   }
   else
   {
-    if (currentFrequency < 1000)
-    {
-      bufferDisplay[1] = ' ';
-      bufferDisplay[2] = tmp[2];
-      bufferDisplay[3] = tmp[3];
-      bufferDisplay[4] = tmp[4];
-    }
-    else
-    {
-      bufferDisplay[2] = tmp[2];
-      bufferDisplay[3] = tmp[3];
-      bufferDisplay[4] = tmp[4];
-    }
     unit = (char *)"kHz";
+    if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
+      rx.convertToChar(currentFrequency, freqDisplay, 5, 0, '.');
+    else
+      rx.convertToChar(currentFrequency, freqDisplay, 5, 0, '.');
   }
-  bufferDisplay[5] = '\0';
-  strcat(bufferDisplay, unit);
-  lcd.setCursor(col, 1);
-  lcd.print(bufferDisplay);
+  show(10,3,freqDisplay);
+  show(50,3,unit);
   showMode();
 }
 
@@ -580,18 +554,14 @@ void showMode()
 {
   char *bandMode;
 
-   
   if (currentFrequency < 520)
     bandMode = (char *)"LW  ";
   else
     bandMode = (char *)bandModeDesc[currentMode];
-  lcd.setCursor(0, 0);
-  lcd.print(bandMode);
 
   if ( currentMode == FM && fmRDS ) return;
-  
-  lcd.setCursor(0, 1);
-  lcd.print(band[bandIdx].bandName);
+  show(1,0,band[bandIdx].bandName);
+  show(65,0,bandMode);
 }
 
 /**
@@ -599,7 +569,6 @@ void showMode()
  */
 void showStatus()
 {
-  lcd.clearDisplay();
   showFrequency();
   showRSSI();
 }
@@ -610,7 +579,8 @@ void showStatus()
 void showBandwidth()
 {
   char *bw;
-  char bandwidth[20];
+  char bandwidth[15];
+  
   if (currentMode == LSB || currentMode == USB)
   {
     bw = (char *)bandwidthSSB[bwIdxSSB].desc;
@@ -624,11 +594,10 @@ void showBandwidth()
   {
     bw = (char *)bandwidthFM[bwIdxFM].desc;
   }
-
-  // sprintf(bandwidth, "BW: %s", bw);
-  lcd.clearDisplay();
-  lcd.setCursor(0, 0);
-  lcd.print(bandwidth);
+  nokia.clear();
+  strcpy(bandwidth, "BW: ");
+  strcat(bandwidth, bw);
+  show(1,1,bandwidth);
 }
 
 /**
@@ -641,17 +610,9 @@ void showRSSI()
 
   if (currentMode == FM)
   {
-    lcd.setCursor(14, 0);
-    lcd.print((rx.getCurrentPilot()) ? "ST" : "MO");
-    lcd.setCursor(10, 0);
-    if ( fmRDS ) {
-      lcd.print("RDS");
-      return;
-    }
-    else 
-      lcd.print("   ");
+    show(0,60,(rx.getCurrentPilot()) ? "ST" : "MO");
   }
-
+  show(45,70, (fmRDS? "RDS" : "   ")); 
     
   if (rssi < 2)
     rssiAux = 4;
@@ -666,9 +627,12 @@ void showRSSI()
   else
     rssiAux = 9;
 
-  // sprintf(sMeter, "S%1.1u%c", rssiAux, (rssi >= 60) ? '+' : '.');
-  lcd.setCursor(13, 1);
-  lcd.print(sMeter);
+  sMeter[0] = 'S';
+  sMeter[1] = rssiAux + rssiAux + 48;
+  sMeter[2] = ((rssi >= 60) ? '+' : '.');
+  sMeter[3] = '\0';
+  show(65,5,sMeter);
+
 }
 
 /**
@@ -676,16 +640,16 @@ void showRSSI()
  */
 void showAgcAtt()
 {
-  char sAgc[15];
-  lcd.clearDisplay();
+  char sAgc[11];
+  nokia.clear();
   rx.getAutomaticGainControl();
   if ( !disableAgc /*agcNdx == 0 && agcIdx == 0 */ )
     strcpy(sAgc, "AGC ON");
-  // else 
-  //  sprintf(sAgc, "ATT: %2.2d", agcNdx);
-
-  lcd.setCursor(0, 0);
-  lcd.print(sAgc);
+  else {
+   strcpy(sAgc,"ATT: ");
+   rx.convertToChar(agcNdx, &sAgc[4], 2, 0, '.');
+  }
+  show(1,1,sAgc);
 }
 
 
@@ -694,11 +658,9 @@ void showAgcAtt()
  */
 void showStep()
 {
-  char sStep[15];
-
-  // sprintf(sStep, "Stp:%4d", (currentMode == FM)? (tabFmStep[currentStepIdx] *10) : tabAmStep[currentStepIdx] );
-  lcd.setCursor(0, 0);
-  lcd.print(sStep);
+  nokia.clear();
+  nokia.setCursor(1,1);
+  nokia.print((currentMode == FM)? (tabFmStep[currentStepIdx] *10) : tabAmStep[currentStepIdx]);
 }
 
 /**
@@ -713,9 +675,9 @@ void showBFO()
   // else
   //   sprintf(bfo, "BFO:%4.4d", currentBFO);
 
-  lcd.clearDisplay();
-  lcd.setCursor(0, 0);
-  lcd.print(bfo);
+  // nokia.clear();
+  // nokia.setCursor(0, 0);
+  // nokia.print(bfo);
   elapsedCommand = millis();
 }
 
@@ -725,10 +687,10 @@ void showBFO()
 void showVolume()
 {
   char volAux[12];
-  // sprintf(volAux, "VOLUME: %2u", rx.getVolume());
-  lcd.clearDisplay();
-  lcd.setCursor(0, 0);
-  lcd.print(volAux);
+  nokia.clear();
+  strcpy(volAux,"VOLUME: ");
+  rx.convertToChar(agcNdx, &volAux[7], 2, 0, '.');
+  show(0,0,volAux);
 }
 
 /**
@@ -738,9 +700,9 @@ void showSoftMute()
 {
   char sMute[18];
   // sprintf(sMute, "Soft Mute: %2d", softMuteMaxAttIdx);
-  lcd.clearDisplay();
-  lcd.setCursor(0, 0);
-  lcd.print(sMute);
+  // nokia.clear();
+  // nokia.setCursor(0, 0);
+  // nokia.print(sMute);
 }
 
 
@@ -751,9 +713,9 @@ void showAvc()
 {
   char sAvc[18];
   // sprintf(sAvc, "AVC: %2d", avcIdx);
-  lcd.clearDisplay();
-  lcd.setCursor(0, 0);
-  lcd.print(sAvc);
+  // nokia.clear();
+  // nokia.setCursor(0, 0);
+  // nokia.print(sAvc);
 }
 
 
@@ -765,10 +727,9 @@ void showRdsSetup()
 {
   char sRdsStatus[10];
   // sprintf(sRdsStatus, "RDS: %s", (fmRDS)? "ON ": "OFF");
-  lcd.clearDisplay();
-  lcd.setCursor(0, 0);
-  lcd.print(sRdsStatus);  
-
+  // nokia.clear();
+  // nokia.setCursor(0, 0);
+  // nokia.print(sRdsStatus);  
 }
 
 /***************  
@@ -789,8 +750,8 @@ void showRDSStation()
     int col = 8;
     for (int i = 0; i < 8; i++ ) {
       if (stationName[i] != bufferStatioName[i] ) {
-        lcd.setCursor(col + i, 1);
-        lcd.print(stationName[i]); 
+        // nokia.setCursor(col + i, 1);
+        // nokia.print(stationName[i]); 
         bufferStatioName[i] = stationName[i];
       }
     }
@@ -903,8 +864,8 @@ void useBand()
 */
 void loadSSB()
 {
-  lcd.setCursor(0, 2);
-  lcd.print("  Switching to SSB  ");
+  nokia.setCursor(0, 2);
+  nokia.print("  Switching to SSB  ");
   // si4735.setI2CFastModeCustom(850000); // It is working. Faster, but I'm not sure if it is safe.
   rx.setI2CFastModeCustom(500000);
   rx.queryLibraryId(); // Is it really necessary here? I will check it.
@@ -970,18 +931,19 @@ void doBandwidth(int8_t v)
  */
 void showCommandStatus(char * currentCmd)
 {
-  lcd.setCursor(5, 0);
-  lcd.print(currentCmd);
+  // nokia.clear();
+  nokia.setCursor(5, 0);
+  nokia.print(currentCmd);
 }
 
 /**
  * Show menu options
  */
 void showMenu() {
-  lcd.clearDisplay();
-  lcd.setCursor(0, 0);
-  lcd.setCursor(0, 1);
-  lcd.print(menu[menuIdx]);
+  nokia.clear();
+  nokia.setCursor(0, 0);
+  nokia.setCursor(0, 1);
+  nokia.print(menu[menuIdx]);
   showCommandStatus( (char *) "Menu");
 }
 
@@ -1122,7 +1084,7 @@ void doSeek()
 {
   if ((currentMode == LSB || currentMode == USB)) return; // It does not work for SSB mode
 
-  lcd.clearDisplay();
+  nokia.clear();
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   showStatus();
   currentFrequency = rx.getFrequency();
@@ -1222,7 +1184,7 @@ void doCurrentMenuCmd() {
       break;
     case 3:                 // MODE
       cmdMode = true;
-      lcd.clearDisplay();
+      nokia.clear();
       showMode();
       break;
     case 4:

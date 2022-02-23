@@ -234,20 +234,22 @@ typedef struct
   uint16_t currentFreq;   // Default frequency or current frequency
   int8_t currentStepIdx;  // Idex of tabStepAM:  Defeult frequency step (See tabStepAM)
   int8_t bandwidthIdx;    // Index of the table bandwidthFM, bandwidthAM or bandwidthSSB;
-  uint8_t disableAgc;
-  int8_t agcIdx;
-  int8_t agcNdx;
-  int8_t avcIdx; 
+  uint8_t disableAgc;     // AGC enable or disable
+  int8_t agcIdx;          // AGC index value. See setAutomaticGainControl function
+  int8_t agcNdx;          // AGC value. See setAutomaticGainControl function
+  int8_t avcIdx;          // AVC Index. See setAvcAmMaxGain function 
 } Band;
 
 /*
    Band table
    YOU CAN CONFIGURE YOUR OWN BAND PLAN. Be guided by the comments.
    To add a new band, all you have to do is insert a new line in the table below. No extra code will be needed.
-   You can remove a band by deleting a line if you do not want a given band. 
+   You can remove a band by deleting a line if you do not want a given band.
    Also, you can change the parameters of the band.
-   ATTENTION: You have to RESET the eeprom after adding or removing a line of this table. 
-              Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
+   ATTENTION: You have to RESET the eeprom after adding or removing a line of this table.
+              Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.
+   See Band typedef structure above;
+   See tabAmStep, tabFmStep, bandwidthAM, bandwidthFM 
 */
 Band band[] = {
     {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0, 1, 0, 0, 0},
