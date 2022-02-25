@@ -929,6 +929,34 @@ void convertToChar(uint16_t value, char *strValue, uint8_t len)
 ```
 
 
+* Regarding SSB patch, use the __patch_ssb_compressed.h__ and [downloadCompressedPatch](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html#gaf1b8947db928728ada66ef3edaa79e76) intead __init.h__ and [downloadPatch](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html#gafd1343bd8b4f0c290ef81c418222036c).   
+
+```cpp 
+
+#include "patch_ssb_compressed.h" // SSB patch for whole SSBRX initialization string
+
+const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
+const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
+
+
+
+void loadSSB()
+{
+  .
+  .
+  rx.setI2CFastModeCustom(500000);
+  rx.queryLibraryId(); // Is it really necessary here? I will check it.
+  rx.patchPowerUp();
+  delay(50);
+  rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
+  rx.setSSBConfig(bandwidthSSB[bwIdxSSB].idx, 1, 0, 1, 0, 1);
+  rx.setI2CStandardMode();
+  .
+  .
+
+}
+```
+
 
 
 <BR>

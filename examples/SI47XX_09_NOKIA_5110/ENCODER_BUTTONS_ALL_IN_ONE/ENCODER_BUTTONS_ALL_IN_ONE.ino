@@ -71,9 +71,11 @@
 #include "Rotary.h"
 
 // Test it with patch_init.h 
-#include "patch_init.h" // SSB patch for whole SSBRX initialization string
+#include "patch_ssb_compressed.h" // SSB patch for whole SSBRX initialization string
 
-const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
+const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
+const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
+
 
 // NOKIA Display pin setup
 #define NOKIA_RST  8  // RESET
@@ -139,6 +141,9 @@ uint8_t seekDirection = 1;   // Tells the SEEK direction (botton or upper limit)
 long elapsedRSSI = millis();
 long elapsedButton = millis();
 long elapsedCommand = millis();
+
+char oldFrequency[10];
+
 
 // Encoder control variables
 volatile int encoderCount = 0;
@@ -291,6 +296,10 @@ void splash() {
   display.clearDisplay();
 }
 
+
+void clearOldValues() {
+  oldFrequency[0] = '\0';
+}
 /**
  *  Set all command flags to false
  *  When all flags are disabled (false), the encoder controls the frequency
@@ -333,9 +342,66 @@ void show(uint8_t col, uint8_t lin, uint8_t textSize, const char *content) {
   display.display();
 }
 
+
+/*
+    Prevents blinking during the frequency display.
+    Erases the old digits if it has changed and print the new digit values.
+*/
+void showValue(byte col, byte line, char *oldValue, char *newValue, uint8_t space) {
+  byte c = col;
+  char * pOld;
+  char * pNew;
+
+  pOld = oldValue;
+  pNew = newValue;
+
+  // prints just changed digits
+  while (*pOld && *pNew)
+  {
+    if (*pOld != *pNew)
+    {
+      display.setTextColor(WHITE);
+      display.setCursor(c,line);
+      display.print(*pOld);
+      display.setTextColor(BLACK);
+      display.setCursor(c,line);
+      display.print(*pNew);
+    }
+    pOld++;
+    pNew++;
+    c += space;
+  }
+
+  // Is there anything else to erase?
+  display.setTextColor(WHITE);
+  while (*pOld)
+  {
+    display.setCursor(c,line);
+    display.print(*pOld);
+    pOld++;
+    c += space;
+  }
+
+  // Is there anything else to print?
+      display.setTextColor(BLACK);
+  while (*pNew)
+  {
+    display.setCursor(c,line);
+    display.print(*pNew);
+    pNew++;
+    c += space;
+  }
+
+  // Save the current content to be tested next time
+  strcpy(oldValue, newValue);
+}
+
+
 /**
  *  Shows frequency information on Display
  */
+
+ 
 void showFrequency()
 {
   char tmp[10];
@@ -367,7 +433,8 @@ void showFrequency()
   }
   bufferDisplay[5] = '\0';
 
-  show(0,0,2,bufferDisplay);
+  // show(0,0,2,bufferDisplay);
+  showValue(0,0,oldFrequency,bufferDisplay, 7);
 }
 
 
@@ -426,7 +493,7 @@ void showBandwidth() {
     else {
       bufferDisplay[0] = '\0';
     }
-
+   // show(
 }
 
 /**
@@ -514,31 +581,19 @@ void setBand(int8_t up_down) {
   elapsedCommand = millis();
 }
 
-/**
- *  This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
- *  SSB mode.
- *  See also loadPatch implementation in the SI4735 Arduino Library (SI4735.h/SI4735.cpp) 
- */
+
+
+
 void loadSSB()
 {
-  rx.reset();
+  // si4735.setI2CFastModeCustom(850000); // It is working. Faster, but I'm not sure if it is safe.
+  rx.setI2CFastModeCustom(500000);
   rx.queryLibraryId(); // Is it really necessary here? I will check it.
   rx.patchPowerUp();
   delay(50);
-  rx.setI2CFastMode(); // Recommended
-  // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
-  rx.downloadPatch(ssb_patch_content, size_content);
-  rx.setI2CStandardMode(); // goes back to default (100kHz)
-
-  // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
-  // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
-  // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
-  // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
-  // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
-  // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  rx.setSSBConfig(bandwidthSSB[bwIdxSSB].idx, 1, 0, 0, 0, 1);
-  delay(25);
+  rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
+  rx.setSSBConfig(bandwidthSSB[bwIdxSSB].idx, 1, 0, 1, 0, 1);
+  rx.setI2CStandardMode();
   ssbLoaded = true;
 }
 
