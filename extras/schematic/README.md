@@ -305,7 +305,16 @@ See video:
 
 * [FM, AM and SSB receiver with Arduino and TM1638 7 segments display device](https://youtu.be/VqXkffHu6D8)
 
-{% include schematic_basic_tm1638.html %}
+{% include schematic_basic_tm1638.ht
+
+
+## Arduino / ATmega328 with Nokia 5110
+
+The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display
+
+![Nokia 5110 schematic](../images/schematic_basic_Nokia5110.png)
+
+Sketches on [SI47XX_08_TM1638](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_NOKIA_5110)
 
 
 

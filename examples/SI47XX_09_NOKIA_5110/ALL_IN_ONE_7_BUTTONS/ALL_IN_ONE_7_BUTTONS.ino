@@ -38,7 +38,7 @@
   |                           | (*2)SEEK                      |      7        |
   |                           | (*1)AGC/Attenuation           |     14 / A0   |
   |                           | (*1)STEP                      |     15 / A1   |
-  |                           | VFO/VFO Switch (Encoder)      |     16 / A2   |
+  |                           | VFO/BFO Switch (Encoder)      |     16 / A2   |
   |    Encoder                |                               |               |
   |                           | A                             |       2       |
   |                           | B                             |       3       |
@@ -144,8 +144,9 @@ char oldUnit[6];
 char oldStep[7];
 char oldRSSI[7];
 char oldBW[7];
-char oldAGC[10];
+char oldAGC[7];
 char oldBFO[8];
+char oldSTMO[3];
 
 
 // Encoder control variables
@@ -219,7 +220,7 @@ Band band[] = {
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int bandIdx = 1;
+int bandIdx = 0;
 
 
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
@@ -253,8 +254,6 @@ void setup()
 
   // uncomment the line below if you have external audio mute circuit
   // rx.setAudioMuteMcuPin(AUDIO_MUTE);
-
-  clearBuffers();
 
   // Start the Nokia display device
   display.begin();
@@ -296,7 +295,7 @@ void splash() {
 
 
 void clearBuffers() {
-  oldFrequency[0] = oldBand[0] = oldDesc[0] = oldUnit[0] = oldStep[0] = oldRSSI[0] = oldBW[0] = oldAGC[0] = oldBFO[0] = '\0';
+  oldFrequency[0] = oldBand[0] = oldDesc[0] = oldUnit[0] = oldStep[0] = oldRSSI[0] = oldBW[0] = oldAGC[0] = oldBFO[0] = oldSTMO[0] = '\0';
 }
 /**
     Set all command flags to false
@@ -432,10 +431,11 @@ void showStatus()
   char *unt;
   char bufferDisplay[20];
 
-  // display.clearDisplay();
-
-  showValue(0, 15, oldBand, (char *) band[bandIdx].bandName, 1, 5);
-  showValue(65, 15, oldDesc, (char*) bandModeDesc[currentMode], 1, 5);
+  display.clearDisplay();
+  clearBuffers();
+  
+  showValue(0, 15, oldBand, (char *) band[bandIdx].bandName, 1, 6);
+  showValue(65, 15, oldDesc, (char*) bandModeDesc[currentMode], 1, 6);
 
   if (rx.isCurrentTuneFM()) {
     unt = (char *) "MHz";
@@ -449,7 +449,7 @@ void showStatus()
     showAgcAtt();
   }
 
-  showValue(65, 0, oldUnit, unt, 1, 6);
+  showValue(66, 0, oldUnit, unt, 1, 6);
 
   showRSSI();
   showFrequency();
@@ -489,13 +489,8 @@ void showRSSI()
   uint8_t rssiAux;
   char sRssi[10];
 
-  display.setTextSize(1);
-
   if (currentMode == FM)
-  {
-    display.setCursor(70, 0);
-    display.print((rx.getCurrentPilot()) ? "ST" : "MO");
-  }
+    showValue(65, 15, oldSTMO, (rx.getCurrentPilot()) ? "ST" : "MO", 1, 6);
 
   if (rssi < 2)
     rssiAux = 4;
