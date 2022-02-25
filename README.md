@@ -928,6 +928,38 @@ void convertToChar(uint16_t value, char *strValue, uint8_t len)
 }
 ```
 
+__TIP:__ The SI4735 Arduino Library has a function to format numeric values like frequency, bfo, rssi etc. See [convertToChar documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group18.html#ga133ec11bfc2c68100b47a63da4484767)
+
+
+Example:
+
+```cpp
+.
+.
+.
+void showFrequency()
+{
+  char freqDisplay[10];
+
+  if (band[bandIdx].bandType == FM_BAND_TYPE)
+  {
+    rx.convertToChar(currentFrequency, freqDisplay, 5, 3, ','); // Formats the FM frequency
+  }
+  else
+  {
+    if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
+      rx.convertToChar(currentFrequency, freqDisplay, 5, 0, '.'); // Formats LW and MW frequency
+    else
+      rx.convertToChar(currentFrequency, freqDisplay, 5, 2, '.'); // Formats SW frequency
+  }
+  showValue(0, 0, oldFrequency, freqDisplay, 2, 11);
+}
+.
+.
+.
+
+```
+
 
 * Regarding SSB patch, use the __patch_ssb_compressed.h__ and [downloadCompressedPatch](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html#gaf1b8947db928728ada66ef3edaa79e76) intead __init.h__ and [downloadPatch](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html#gafd1343bd8b4f0c290ef81c418222036c).   
 
