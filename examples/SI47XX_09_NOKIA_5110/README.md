@@ -2,7 +2,7 @@
 
 The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display
 
-![Nokia 5110 schematic](../images/schematic_basic_Nokia5110.png)
+![Nokia 5110 schematic](../extra/images/schematic_basic_Nokia5110.png)
 
 Sketches on [SI47XX_08_TM1638](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_NOKIA_5110)
 
@@ -38,14 +38,10 @@ Sketches on [SI47XX_08_TM1638](https://github.com/pu2clr/SI4735/tree/master/exam
 |                           | A                             |       2       |
 |                           | B                             |       3       |
 
-  (*1) You have to press the push button and after, rotate the encoder to select the parameter.
-       After you activate a command by pressing a push button, it will keep active for 2,5 seconds.
-  (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of
-       the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of
-       the encoder was counterclockwise, the SEEK direction will be towards the lower limit.
-  (*3) - If you are using the SI4732-A10, check the corresponding pin numbers.
-  (*4) - If you are using the SI4735-D60, connect the SEN pin to the ground;
-         If you are using the SI4732-A10, connect the SEN pin to the +Vcc.
+* (*1) You have to press the push button and after, rotate the encoder to select the parameter.      After you activate a command by pressing a push button, it will keep active for 2,5 seconds.
+* (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of       the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of       the encoder was counterclockwise, the SEEK direction will be towards the lower limit.
+* (*3) - If you are using the SI4732-A10, check the corresponding pin numbers.
+* (*4) - If you are using the SI4735-D60, connect the SEN pin to the ground; If you are using the SI4732-A10, connect the SEN pin to the +Vcc.
 
 
 
