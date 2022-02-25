@@ -2,9 +2,7 @@
 
 The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display
 
-![Nokia 5110 schematic](../extras/images/schematic_basic_Nokia5110.png)
-
-Sketches on [SI47XX_08_TM1638](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_NOKIA_5110)
+![Nokia 5110 schematic](../../extras/images/schematic_basic_Nokia5110.png)
 
 
 ## Wire up on Arduino UNO, Pro mini and SI4735-D60
