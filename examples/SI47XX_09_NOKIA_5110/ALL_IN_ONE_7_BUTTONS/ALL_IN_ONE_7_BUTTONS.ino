@@ -1,7 +1,4 @@
 /*
-
-  Under construction...
-
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a display NOKIA.
   To control the Nokia display this sketch uses the libraries Adafruit_GFX and Adafruit_PCD8544.
   Plese, install these libraries before compiling this sketch.
@@ -57,9 +54,8 @@
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
-  Jim Reagan's schematic: https://github.com/JimReagans/Si4735-radio-PCB-s-and-bandpass-filter
 
-  By PU2CLR, Ricardo; and W09CHL, Jim Reagan;  Sep  2020.
+  By PU2CLR, Ricardo  Feb  2022.
 
 */
 
@@ -75,7 +71,6 @@
 
 const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
 const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
-
 
 // NOKIA Display pin setup
 #define NOKIA_RST  8  // RESET
@@ -142,15 +137,15 @@ long elapsedRSSI = millis();
 long elapsedButton = millis();
 long elapsedCommand = millis();
 
-char oldFrequency[12];
+char oldFrequency[9];
 char oldBand[7];
 char oldDesc[7];
 char oldUnit[6];
-char oldStep[10];
-char oldRSSI[10];
-char oldBW[10];
+char oldStep[7];
+char oldRSSI[7];
+char oldBW[7];
 char oldAGC[10];
-char oldBFO[10];
+char oldBFO[8];
 
 
 // Encoder control variables
@@ -240,8 +235,6 @@ uint8_t volume = DEFAULT_VOLUME;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 Adafruit_PCD8544 display = Adafruit_PCD8544(NOKIA_DC, NOKIA_CE, NOKIA_RST);
-// Adafruit_PCD8544 display = Adafruit_PCD8544(NOKIA_CLK, NOKIA_DIN, NOKIA_DC, NOKIA_CE, NOKIA_RST);
-
 
 SI4735 rx;
 
@@ -272,17 +265,10 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
-
   rx.setup(RESET_PIN, 0, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
-  // rx.setup(RESET_PIN, 0, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
 
   // Set up the radio for the current band (see index table variable bandIdx )
-
-
-
-
   useBand();
   rx.setVolume(volume);
   showStatus();
@@ -295,7 +281,7 @@ void splash() {
   display.clearDisplay();
   display.display();
   display.setTextColor(BLACK);
-  // Splash - Change it for your introduction text.
+  // Splash - Change it by the your introduction text.
   display.setCursor(0, 0);
   display.setTextSize(2);
   display.print("SI4735");
@@ -305,13 +291,6 @@ void splash() {
   display.print("Library");
   display.display();
   delay(3000);
-  display.clearDisplay();
-  display.setCursor(30, 0);
-  display.print("BY");
-  display.setCursor(10, 20);
-  display.print("PU2CLR");
-  display.display();
-  delay(2000);
   display.clearDisplay();
 }
 
@@ -353,14 +332,6 @@ void rotaryEncoder()
   if (encoderStatus)
     encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
 }
-
-void show(uint8_t col, uint8_t lin, uint8_t textSize, const char *content) {
-  display.setCursor(col, lin);
-  display.setTextSize(textSize);
-  display.print(content);
-  display.display();
-}
-
 
 /*
     Prevents blinking during the frequency display.
@@ -461,6 +432,8 @@ void showStatus()
   char *unt;
   char bufferDisplay[20];
 
+  // display.clearDisplay();
+
   showValue(0, 15, oldBand, (char *) band[bandIdx].bandName, 1, 5);
   showValue(65, 15, oldDesc, (char*) bandModeDesc[currentMode], 1, 5);
 
@@ -506,8 +479,6 @@ void showBandwidth() {
   showValue(0, 40, oldBW, newBW, 1, 5);
 
 }
-
-
 
 /**
     Shows the current RSSI and SNR status
@@ -556,11 +527,11 @@ void showAgcAtt() {
   rx.getAutomaticGainControl();
   if (agcNdx == 0 && agcIdx == 0)
     strcpy(sAgc, "AGC ON");
-  else { 
-    strcpy(sAgc,"AT");
+  else {
+    strcpy(sAgc, "AT");
     rx.convertToChar(agcNdx, &sAgc[2], 2, 0, '.');
   }
-  
+
   showValue(25, 15, oldAGC, sAgc, 1, 6);
 
 }
@@ -568,7 +539,6 @@ void showAgcAtt() {
 /**
     Shows the current step
 */
-
 void showStep() {
   char sStep[15];
   strcpy(sStep, "Stp");
@@ -582,9 +552,19 @@ void showStep() {
 void showBFO()
 {
   char newBFO[10];
-  newBFO[0] = (currentBFO > 0 )? '+':(currentBFO < 0)? '-':' '; 
-  rx.convertToChar(currentBFO, &newBFO[1], 4, 0, '.');
-  showValue(34, 25, oldBFO, newBFO, 1, 5);
+  uint16_t auxBfo;
+  auxBfo = currentBFO;
+  if (currentBFO < 0 ) {
+    auxBfo = ~currentBFO + 1; // converts to absolute value (ABS) using binary operator
+    newBFO[0] = '-';
+  }
+  else if (currentBFO > 0 )
+    newBFO[0] = '+';
+  else
+    newBFO[0] = ' ';
+
+  rx.convertToChar(auxBfo, &newBFO[1], 4, 0, '.');
+  showValue(50, 25, oldBFO, newBFO, 1, 5);
   elapsedCommand = millis();
 }
 
@@ -603,8 +583,6 @@ void setBand(int8_t up_down) {
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
-
-
 
 
 void loadSSB()
@@ -697,7 +675,6 @@ void doBandwidth(int8_t v) {
   showBandwidth();
   elapsedCommand = millis();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-
 }
 
 /**
