@@ -1,17 +1,17 @@
 /*
 
-  Under construction... 
+  Under construction...
 
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a display NOKIA.
   To control the Nokia display this sketch uses the libraries Adafruit_GFX and Adafruit_PCD8544.
-  Plese, install these libraries before compiling this sketch. 
+  Plese, install these libraries before compiling this sketch.
 
-  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the 
-  "PU2CLR SI4735 Arduino Library" working with NOKIA Diaplsy. It is not the purpose of this prototype 
-  to provide you a beautiful interface. I think you can do it better than me. 
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  "PU2CLR SI4735 Arduino Library" working with NOKIA Diaplsy. It is not the purpose of this prototype
+  to provide you a beautiful interface. I think you can do it better than me.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
-  regular  comercial  stations. 
+  regular  comercial  stations.
 
   Features:   AM; SSB; LW/MW/SW; two super band (from 150kHz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
@@ -26,34 +26,34 @@
   |                           | (3) DC or DO                  |    10         |
   |                           | (4) DIN or DI or MOSI         |    11         |
   |                           | (5) CLK                       |    13         |
-  |                           | (6) VCC  (3V-5V)              |    +VCC       |  
+  |                           | (6) VCC  (3V-5V)              |    +VCC       |
   |                           | (7) BL/DL/LIGHT               |    +VCC       |
   |                           | (8) GND                       |    GND        |
   |     Si4735                |                               |               |
   |                           | (*3) RESET (pin 15)           |     12        |
   |                           | (*3) SDIO (pin 18)            |     A4        |
   |                           | (*3) SCLK (pin 17)            |     A5        |
-  |                           | (*4) SEN (pin 16)             |    GND        | 
+  |                           | (*4) SEN (pin 16)             |    GND        |
   |     Buttons               |                               |               |
   |                           | (*1)Switch MODE (AM/LSB/AM)   |      4        |
   |                           | (*1)Banddwith                 |      5        |
   |                           | (*1)BAND                      |      6        |
   |                           | (*2)SEEK                      |      7        |
   |                           | (*1)AGC/Attenuation           |     14 / A0   |
-  |                           | (*1)STEP                      |     15 / A1   | 
+  |                           | (*1)STEP                      |     15 / A1   |
   |                           | VFO/VFO Switch (Encoder)      |     16 / A2   |
   |    Encoder                |                               |               |
   |                           | A                             |       2       |
   |                           | B                             |       3       |
 
   (*1) You have to press the push button and after, rotate the encoder to select the parameter.
-       After you activate a command by pressing a push button, it will keep active for 2,5 seconds. 
-  (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of 
-       the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of 
-       the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
-  (*3) - If you are using the SI4732-A10, check the corresponding pin numbers.  
-  (*4) - If you are using the SI4735-D60, connect the SEN pin to the ground; 
-         If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
+       After you activate a command by pressing a push button, it will keep active for 2,5 seconds.
+  (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of
+       the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of
+       the encoder was counterclockwise, the SEEK direction will be towards the lower limit.
+  (*3) - If you are using the SI4732-A10, check the corresponding pin numbers.
+  (*4) - If you are using the SI4735-D60, connect the SEN pin to the ground;
+         If you are using the SI4732-A10, connect the SEN pin to the +Vcc.
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
@@ -70,7 +70,7 @@
 #include <SPI.h>
 #include "Rotary.h"
 
-// Test it with patch_init.h 
+// Test it with patch_init.h
 #include "patch_ssb_compressed.h" // SSB patch for whole SSBRX initialization string
 
 const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
@@ -142,7 +142,15 @@ long elapsedRSSI = millis();
 long elapsedButton = millis();
 long elapsedCommand = millis();
 
-char oldFrequency[10];
+char oldFrequency[12];
+char oldBand[7];
+char oldDesc[7];
+char oldUnit[6];
+char oldStep[10];
+char oldRSSI[10];
+char oldBW[10];
+char oldAGC[10];
+char oldBFO[10];
 
 
 // Encoder control variables
@@ -153,7 +161,7 @@ uint16_t currentFrequency;
 
 uint8_t currentBFOStep = 10;
 
-typedef struct 
+typedef struct
 {
   uint8_t idx;      // SI473X device bandwidth index
   const char *desc; // bandwidth description
@@ -161,20 +169,22 @@ typedef struct
 
 int8_t bwIdxSSB = 4;
 Bandwidth bandwidthSSB[] = {{4, "0.5"},   // 0
-                              {5, "1.0"},   // 1
-                              {0, "1.2"},   // 2
-                              {1, "2.2"},   // 3
-                              {2, "3.0"},   // 4
-                              {3, "4.0"}};  // 5
+  {5, "1.0"},   // 1
+  {0, "1.2"},   // 2
+  {1, "2.2"},   // 3
+  {2, "3.0"},   // 4
+  {3, "4.0"}
+};  // 5
 
 int8_t bwIdxAM = 4;
 Bandwidth bandwidthAM[] = {{4, "1.0"},
-                             {5, "1.8"},
-                             {3, "2.0"},
-                             {6, "2.5"},
-                             {2, "3.0"},
-                             {1, "4.0"},
-                             {0, "6.0"}};
+  {5, "1.8"},
+  {3, "2.0"},
+  {6, "2.5"},
+  {2, "3.0"},
+  {1, "4.0"},
+  {0, "6.0"}
+};
 
 const char * bandModeDesc[] = {"   ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
@@ -197,20 +207,21 @@ typedef struct
 /*
    Band table
    Actually, except FM (VHF), the other bands cover the entire LW / MW and SW spectrum.
-   Only the default frequency and step is changed. You can change this setup. 
+   Only the default frequency and step is changed. You can change this setup.
 */
 Band band[] = {
-    {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
-    {"MW ", MW_BAND_TYPE, 150, 1720, 810, 10},
-    {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1}, // Here and below: 150kHz to 30MHz
-    {"SW2", SW_BAND_TYPE, 150, 30000, 9600, 5},
-    {"SW3", SW_BAND_TYPE, 150, 30000, 11940, 5},
-    {"SW4", SW_BAND_TYPE, 150, 30000, 13600, 5},
-    {"SW5", SW_BAND_TYPE, 150, 30000, 14200, 1},
-    {"SW5", SW_BAND_TYPE, 150, 30000, 15300, 5},
-    {"SW6", SW_BAND_TYPE, 150, 30000, 17600, 5},
-    {"SW7", SW_BAND_TYPE, 150, 30000, 21100, 1},
-    {"SW8", SW_BAND_TYPE, 150, 30000, 28400, 1}};
+  {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
+  {"MW ", MW_BAND_TYPE, 150, 1720, 810, 10},
+  {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1}, // Here and below: 150kHz to 30MHz
+  {"SW2", SW_BAND_TYPE, 150, 30000, 9600, 5},
+  {"SW3", SW_BAND_TYPE, 150, 30000, 11940, 5},
+  {"SW4", SW_BAND_TYPE, 150, 30000, 13600, 5},
+  {"SW5", SW_BAND_TYPE, 150, 30000, 14200, 1},
+  {"SW5", SW_BAND_TYPE, 150, 30000, 15300, 5},
+  {"SW6", SW_BAND_TYPE, 150, 30000, 17600, 5},
+  {"SW7", SW_BAND_TYPE, 150, 30000, 21100, 1},
+  {"SW8", SW_BAND_TYPE, 150, 30000, 28400, 1}
+};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 1;
@@ -250,6 +261,8 @@ void setup()
   // uncomment the line below if you have external audio mute circuit
   // rx.setAudioMuteMcuPin(AUDIO_MUTE);
 
+  clearBuffers();
+
   // Start the Nokia display device
   display.begin();
   // display.setContrast(80);
@@ -259,19 +272,25 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  // rx.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
+
+  rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
+
   rx.setup(RESET_PIN, 0, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
   // rx.setup(RESET_PIN, 0, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
 
   // Set up the radio for the current band (see index table variable bandIdx )
+
+
+
+
   useBand();
   rx.setVolume(volume);
   showStatus();
 }
 
 /**
- * Shows splash message
- */
+   Shows splash message
+*/
 void splash() {
   display.clearDisplay();
   display.display();
@@ -297,13 +316,13 @@ void splash() {
 }
 
 
-void clearOldValues() {
-  oldFrequency[0] = '\0';
+void clearBuffers() {
+  oldFrequency[0] = oldBand[0] = oldDesc[0] = oldUnit[0] = oldStep[0] = oldRSSI[0] = oldBW[0] = oldAGC[0] = oldBFO[0] = '\0';
 }
 /**
- *  Set all command flags to false
- *  When all flags are disabled (false), the encoder controls the frequency
- */
+    Set all command flags to false
+    When all flags are disabled (false), the encoder controls the frequency
+*/
 void disableCommands() {
   cmdBand = false;
   bfoOn = false;
@@ -315,8 +334,8 @@ void disableCommands() {
 }
 
 /**
- *  Shows the static content on  display
- */
+    Shows the static content on  display
+*/
 void showTemplate()
 {
 
@@ -324,9 +343,9 @@ void showTemplate()
 
 
 /**
- *   Reads encoder via interrupt
- *   Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
- */
+     Reads encoder via interrupt
+     Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
+*/
 void rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
@@ -347,7 +366,7 @@ void show(uint8_t col, uint8_t lin, uint8_t textSize, const char *content) {
     Prevents blinking during the frequency display.
     Erases the old digits if it has changed and print the new digit values.
 */
-void showValue(byte col, byte line, char *oldValue, char *newValue, uint8_t space) {
+void showValue(byte col, byte line, char *oldValue, char *newValue, uint8_t textSize, uint8_t space) {
   byte c = col;
   char * pOld;
   char * pNew;
@@ -355,16 +374,18 @@ void showValue(byte col, byte line, char *oldValue, char *newValue, uint8_t spac
   pOld = oldValue;
   pNew = newValue;
 
+  display.setTextSize(textSize);
+
   // prints just changed digits
   while (*pOld && *pNew)
   {
     if (*pOld != *pNew)
     {
       display.setTextColor(WHITE);
-      display.setCursor(c,line);
+      display.setCursor(c, line);
       display.print(*pOld);
       display.setTextColor(BLACK);
-      display.setCursor(c,line);
+      display.setCursor(c, line);
       display.print(*pNew);
     }
     pOld++;
@@ -376,21 +397,22 @@ void showValue(byte col, byte line, char *oldValue, char *newValue, uint8_t spac
   display.setTextColor(WHITE);
   while (*pOld)
   {
-    display.setCursor(c,line);
+    display.setCursor(c, line);
     display.print(*pOld);
     pOld++;
     c += space;
   }
 
   // Is there anything else to print?
-      display.setTextColor(BLACK);
+  display.setTextColor(BLACK);
   while (*pNew)
   {
-    display.setCursor(c,line);
+    display.setCursor(c, line);
     display.print(*pNew);
     pNew++;
     c += space;
   }
+  display.display();
 
   // Save the current content to be tested next time
   strcpy(oldValue, newValue);
@@ -398,49 +420,32 @@ void showValue(byte col, byte line, char *oldValue, char *newValue, uint8_t spac
 
 
 /**
- *  Shows frequency information on Display
- */
+    Shows frequency information on Display
+*/
 
- 
+
 void showFrequency()
 {
-  char tmp[10];
-  char bufferDisplay[10];
-  
-  // It is better than use dtostrf or String to save space.
-  sprintf(tmp, "%5.5u", currentFrequency);
+  char freqDisplay[10];
 
-  bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
-  bufferDisplay[1] = tmp[1];
-  if (rx.isCurrentTuneFM())
+  if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
-    bufferDisplay[2] = tmp[2];
-    bufferDisplay[3] = '.';
-    bufferDisplay[4] = tmp[3];
+    rx.convertToChar(currentFrequency, freqDisplay, 5, 3, ',');
   }
   else
   {
-    if ( currentFrequency  < 1000 ) {
-      bufferDisplay[1] = ' ';
-      bufferDisplay[2] = tmp[2] ;
-      bufferDisplay[3] = tmp[3];
-      bufferDisplay[4] = tmp[4];
-    } else {
-      bufferDisplay[2] = tmp[2];
-      bufferDisplay[3] = tmp[3];
-      bufferDisplay[4] = tmp[4];
-    }
+    if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
+      rx.convertToChar(currentFrequency, freqDisplay, 5, 0, '.');
+    else
+      rx.convertToChar(currentFrequency, freqDisplay, 5, 2, '.');
   }
-  bufferDisplay[5] = '\0';
-
-  // show(0,0,2,bufferDisplay);
-  showValue(0,0,oldFrequency,bufferDisplay, 7);
+  showValue(0, 0, oldFrequency, freqDisplay, 2, 11);
 }
 
 
 /**
- *  This function is called by the seek function process.
- */
+    This function is called by the seek function process.
+*/
 void showFrequencySeek(uint16_t freq)
 {
   currentFrequency = freq;
@@ -448,15 +453,16 @@ void showFrequencySeek(uint16_t freq)
 }
 
 /**
- *   Show some basic information on display
- */
+     Show some basic information on display
+*/
+
 void showStatus()
 {
   char *unt;
   char bufferDisplay[20];
 
-  sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
-  show(0,15,1,bufferDisplay);
+  showValue(0, 15, oldBand, (char *) band[bandIdx].bandName, 1, 5);
+  showValue(65, 15, oldDesc, (char*) bandModeDesc[currentMode], 1, 5);
 
   if (rx.isCurrentTuneFM()) {
     unt = (char *) "MHz";
@@ -469,106 +475,123 @@ void showStatus()
     showBandwidth();
     showAgcAtt();
   }
-  show(65,8,1,unt);
+
+  showValue(65, 0, oldUnit, unt, 1, 6);
 
   showRSSI();
   showFrequency();
 }
 
 /**
- * Shows the current Bandwidth status
- */
+   Shows the current Bandwidth status
+*/
 void showBandwidth() {
-    char bufferDisplay[15];
-    // Bandwidth
-    if (currentMode == LSB || currentMode == USB || currentMode == AM) {
-      char * bw;
+  char newBW[10];
 
-      if (currentMode == AM) 
-        bw = (char *) bandwidthAM[bwIdxAM].desc;
-      else 
-        bw = (char *) bandwidthSSB[bwIdxSSB].desc;
-      sprintf(bufferDisplay, "BW: %s kHz", bw);
-    } 
-    else {
-      bufferDisplay[0] = '\0';
-    }
-   // show(
+  // Bandwidth
+  if (currentMode == LSB || currentMode == USB || currentMode == AM) {
+    char * bw;
+
+    if (currentMode == AM)
+      bw = (char *) bandwidthAM[bwIdxAM].desc;
+    else
+      bw = (char *) bandwidthSSB[bwIdxSSB].desc;
+    strcpy(newBW, "BW:");
+    strcat(newBW, bw);
+  }
+  else {
+    newBW[0] = '\0';
+  }
+
+  showValue(0, 40, oldBW, newBW, 1, 5);
+
 }
 
+
+
 /**
- *  Shows the current RSSI and SNR status
- */
+    Shows the current RSSI and SNR status
+*/
 void showRSSI()
 {
-    int rssiLevel;
-    uint8_t rssiAux;
-    char sRssi[7];
-    // int maxAux = tft.width() - 10;
+  int rssiLevel;
+  uint8_t rssiAux;
+  char sRssi[10];
 
-    display.setTextSize(1);
+  display.setTextSize(1);
 
-    if (currentMode == FM)
-    {
-      display.setCursor(70,0);
-      display.print((rx.getCurrentPilot())? "ST" : "MO");
-    }
+  if (currentMode == FM)
+  {
+    display.setCursor(70, 0);
+    display.print((rx.getCurrentPilot()) ? "ST" : "MO");
+  }
 
-    if (rssi < 2) 
-       rssiAux = 4;
-    else if ( rssi < 4)
-       rssiAux = 5;
-    else if ( rssi < 12 ) 
-       rssiAux = 6;
-    else if (rssi < 25) 
-       rssiAux = 7;
-    else if ( rssi < 50 )
-       rssiAux = 8;
-    else if ( rssi >= 50 )
-       rssiAux = 9;
+  if (rssi < 2)
+    rssiAux = 4;
+  else if ( rssi < 4)
+    rssiAux = 5;
+  else if ( rssi < 12 )
+    rssiAux = 6;
+  else if (rssi < 25)
+    rssiAux = 7;
+  else if ( rssi < 50 )
+    rssiAux = 8;
+  else if ( rssi >= 50 )
+    rssiAux = 9;
 
-    sprintf(sRssi,"S%u%c",rssiAux,(rssiAux == 9)? '+': ' ');
-    show(15,70,1,sRssi);
+  sRssi[0] = 'S';
+  sRssi[1] = rssiAux + 48;
+  sRssi[2] = (rssiAux == 9) ? '+' : ' ';
+  sRssi[3] = '\0';
+
+  showValue(65, 40, oldRSSI, sRssi, 1, 6);
 }
 
+
 /**
- *  Shows the current AGC and Attenuation status
- */
+    Shows the current AGC and Attenuation status
+*/
 void showAgcAtt() {
-    char sAgc[10];
-    rx.getAutomaticGainControl();
-    if (agcNdx == 0 && agcIdx == 0)
-      strcpy(sAgc, "AGC ON");
-    else
-      sprintf(sAgc, "ATT: %2d", agcNdx);
+  char sAgc[10];
+  rx.getAutomaticGainControl();
+  if (agcNdx == 0 && agcIdx == 0)
+    strcpy(sAgc, "AGC ON");
+  else { 
+    strcpy(sAgc,"AT");
+    rx.convertToChar(agcNdx, &sAgc[2], 2, 0, '.');
+  }
+  
+  showValue(25, 15, oldAGC, sAgc, 1, 6);
 
-    show(0,20,1,sAgc);   
 }
 
 /**
- *  Shows the current step
- */
+    Shows the current step
+*/
+
 void showStep() {
   char sStep[15];
-  sprintf(sStep, "Stp:%3d", currentStep);
-  show(60,20,1,sStep); 
+  strcpy(sStep, "Stp");
+  rx.convertToChar(currentStep, &sStep[3], 4, 0, '.');
+  showValue(0, 25, oldStep, sStep, 1, 5);
 }
 
 /**
- * Shows the current BFO value
- */
+   Shows the current BFO value
+*/
 void showBFO()
 {
-    char bufferDisplay[10];
-    sprintf(bufferDisplay, "%+4d", currentBFO);
-    show(0,40,1,bufferDisplay);
-    elapsedCommand = millis();
+  char newBFO[10];
+  newBFO[0] = (currentBFO > 0 )? '+':(currentBFO < 0)? '-':' '; 
+  rx.convertToChar(currentBFO, &newBFO[1], 4, 0, '.');
+  showValue(34, 25, oldBFO, newBFO, 1, 5);
+  elapsedCommand = millis();
 }
 
 
 /**
- *  Sets Band up (1) or down (!1)
- */
+    Sets Band up (1) or down (!1)
+*/
 void setBand(int8_t up_down) {
   band[bandIdx].currentFreq = currentFrequency;
   band[bandIdx].currentStep = currentStep;
@@ -598,8 +621,8 @@ void loadSSB()
 }
 
 /**
- *  Switch the radio to current band
- */
+    Switch the radio to current band
+*/
 void useBand()
 {
   if (band[bandIdx].bandType == FM_BAND_TYPE)
@@ -641,8 +664,8 @@ void useBand()
 
 
 /**
- *  Switches the Bandwidth
- */
+    Switches the Bandwidth
+*/
 void doBandwidth(int8_t v) {
   if (currentMode == LSB || currentMode == USB)
   {
@@ -656,9 +679,9 @@ void doBandwidth(int8_t v) {
     rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
     if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
-       rx.setSBBSidebandCutoffFilter(0);
+      rx.setSBBSidebandCutoffFilter(0);
     else
-       rx.setSBBSidebandCutoffFilter(1);
+      rx.setSBBSidebandCutoffFilter(1);
   }
   else if (currentMode == AM)
   {
@@ -678,8 +701,8 @@ void doBandwidth(int8_t v) {
 }
 
 /**
- *  Deal with AGC and attenuattion
- */
+    Deal with AGC and attenuattion
+*/
 void doAgc(int8_t v) {
 
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
@@ -689,7 +712,7 @@ void doAgc(int8_t v) {
     agcIdx = 0;
 
 
-  disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable 
+  disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable
 
   if (agcIdx > 1)
     agcNdx = agcIdx - 1;
@@ -703,8 +726,8 @@ void doAgc(int8_t v) {
 }
 
 /**
- *  Gets the current step index.
- */
+    Gets the current step index.
+*/
 int getStepIndex(int st) {
   for (int i = 0; i < lastStep; i++) {
     if ( st == tabStep[i] ) return i;
@@ -713,14 +736,14 @@ int getStepIndex(int st) {
 }
 
 /**
- *  Switches the current step
- */
+    Switches the current step
+*/
 void doStep(int8_t v) {
   idxStep = ( v == 1 ) ? idxStep + 1 : idxStep - 1;
   if ( idxStep > lastStep)
-     idxStep = 0;
+    idxStep = 0;
   else if ( idxStep < 0 )
-     idxStep = lastStep;
+    idxStep = lastStep;
 
   currentStep = tabStep[idxStep];
 
@@ -733,8 +756,8 @@ void doStep(int8_t v) {
 }
 
 /**
- *  Switches to the AM, LSB or USB modes
- */
+    Switches to the AM, LSB or USB modes
+*/
 void doMode(int8_t v) {
 
   if (currentMode != FM)
@@ -765,8 +788,8 @@ void doMode(int8_t v) {
 }
 
 /**
- *  Find a station. The direction is based on the last encoder move clockwise or counterclockwise
- */
+    Find a station. The direction is based on the last encoder move clockwise or counterclockwise
+*/
 void doSeek() {
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   currentFrequency = rx.getFrequency();
@@ -834,7 +857,7 @@ void loop()
       bfoOn = !bfoOn;
       if ((currentMode == LSB || currentMode == USB))
         showBFO();
-        
+
       showFrequency();
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();

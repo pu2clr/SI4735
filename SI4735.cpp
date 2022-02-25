@@ -3414,7 +3414,7 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
  * @param len final string size (in bytes) 
  * @param dot the decimal or tousand separator position
  * @param separator symbol "." or "," 
- * @param remove_leading_zeros if true removes up to two leading zeros 
+ * @param remove_leading_zeros if true removes up to two leading zeros (default is true)
  */
 void SI4735::convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator, bool remove_leading_zeros)
 {
