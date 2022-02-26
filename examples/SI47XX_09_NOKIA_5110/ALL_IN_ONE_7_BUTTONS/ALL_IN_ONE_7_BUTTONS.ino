@@ -490,7 +490,7 @@ void showRSSI()
   char sRssi[10];
 
   if (currentMode == FM)
-    showValue(65, 15, oldSTMO, (rx.getCurrentPilot()) ? "ST" : "MO", 1, 6);
+    showValue(65, 15, oldSTMO, (rx.getCurrentPilot()) ? (char *) "ST" : (char *) "MO", 1, 6);
 
   if (rssi < 2)
     rssiAux = 4;
