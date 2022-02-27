@@ -133,12 +133,9 @@ bool cmdBandwidth = false;
 bool cmdStep = false;
 bool cmdMode = false;
 bool cmdMenu = false;
-bool cmdRds  =  false;
 bool cmdSoftMuteMaxAtt = false;
 bool cmdAvc = false;
 
-
-bool fmRDS = false;
 
 int16_t currentBFO = 0;
 long elapsedRSSI = millis();
@@ -151,9 +148,9 @@ uint16_t previousFrequency = 0;
 
 const uint8_t currentBFOStep = 10;
 
-const char * menu[] = {"Volume", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "AVC", "Seek Up", "Seek Down"};
+const char * menu[] = {"Volume", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "AVC", "Seek Up", "Seek Down"};
 int8_t menuIdx = 0;
-const int lastMenu = 10;
+const int lastMenu = 9;
 int8_t currentMenuCmd = -1;
 
 typedef struct
@@ -201,7 +198,7 @@ int tabAmStep[] = {1,    // 0
                    9,    // 2
                    10,   // 3
                    50,   // 4
-                   100}; // 5
+                   500}; // 5
 
 const int lastAmStep = (sizeof tabAmStep / sizeof(int)) - 1;
 int idxAmStep = 3;
@@ -245,25 +242,10 @@ typedef struct
 */
 Band band[] = {
     {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0, 1, 0, 0, 0},
-    {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 32},
-    {"MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4, 0, 0, 0, 32},
-    {"MW3", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4, 1, 0, 0, 32},
-    {"80M", MW_BAND_TYPE, 3500, 4000, 3700, 0, 4, 1, 0, 0, 32},
-    {"SW1", SW_BAND_TYPE, 4000, 5500, 4885, 1, 4, 1, 0, 0, 32},
-    {"SW2", SW_BAND_TYPE, 5500, 6500, 6000, 1, 4, 1, 0, 0, 32},
-    {"40M", SW_BAND_TYPE, 6500, 7300, 7100, 0, 4, 1, 0, 0, 40},
-    {"SW3", SW_BAND_TYPE, 7200, 8000, 7200, 1, 4, 1, 0, 0, 40},
-    {"SW4", SW_BAND_TYPE, 9000, 11000, 9500, 1, 4, 1, 0, 0, 40},
-    {"SW5", SW_BAND_TYPE, 11100, 13000, 11900, 1, 4, 1, 0, 0, 40},
-    {"SW6", SW_BAND_TYPE, 13000, 14000, 13500, 1, 4, 1, 0, 0, 40},
-    {"20M", SW_BAND_TYPE, 14000, 15000, 14200, 0, 4, 1, 0, 0, 42},
-    {"SW7", SW_BAND_TYPE, 15000, 17000, 15300, 1, 4, 1, 0, 0, 42},
-    {"SW8", SW_BAND_TYPE, 17000, 18000, 17500, 1, 4, 1, 0, 0, 42},
-    {"15M", SW_BAND_TYPE, 20000, 21400, 21100, 0, 4, 1, 0, 0, 44},
-    {"SW9", SW_BAND_TYPE, 21400, 22800, 21500, 1, 4, 1, 0, 0, 44},
-    {"CB ", SW_BAND_TYPE, 26000, 28000, 27500, 0, 4, 1, 0, 0, 44},
-    {"10M", SW_BAND_TYPE, 28000, 30000, 28400, 0, 4, 1, 0, 0, 44},
-    {"ALL", SW_BAND_TYPE, 150, 30000, 15000, 0, 4, 1, 0, 0, 48} // All band. LW, MW and SW (from 150kHz to 30MHz)
+    {"MW ", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 32},
+    {"SW1", SW_BAND_TYPE, 1700, 10000, 7200, 1, 4, 1, 0, 0, 32},
+    {"SW2", SW_BAND_TYPE, 10000, 20000, 13600, 1, 4, 1, 0, 0, 32},
+    {"SW3", SW_BAND_TYPE, 20000, 30000, 21500, 1, 4, 1, 0, 0, 32} 
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
@@ -296,7 +278,8 @@ void setup()
   // Start the Nokia display device
 
   nokia.InitLCD();
- 
+  // nokia.setContrast(65); // 0 - 120 -> Set the appropriated value for you 
+
 
   splash(); // Show Splash - Remove this line if you do not want it. 
   EEPROM.begin();
@@ -348,13 +331,13 @@ void splash()
 {
   nokia.setFont(SmallFont);
   nokia.clrScr();
-  nokia.print("PU2CLR",30,25);
+  nokia.print(F("PU2CLR"),30,25);
   nokia.update(); 
   delay(2000);  
   nokia.clrScr();
-  nokia.print("SI4735",0,0);
-  nokia.print("Arduino", 0,15);
-  nokia.print("Library", 0, 30);
+  nokia.print(F("SI4735"),0,0);
+  nokia.print(F("Arduino"), 0,15);
+  nokia.print(F("Library"), 0, 30);
   nokia.update();
   delay(2000);
   nokia.clrScr();
@@ -373,7 +356,6 @@ void saveAllReceiverInformation()
   EEPROM.update(eeprom_address, app_id);                 // stores the app id;
   EEPROM.update(eeprom_address + 1, rx.getVolume()); // stores the current Volume
   EEPROM.update(eeprom_address + 2, bandIdx);            // Stores the current band
-  EEPROM.update(eeprom_address + 3, fmRDS);
   EEPROM.update(eeprom_address + 4, currentMode); // Stores the current Mode (FM / AM / SSB)
   EEPROM.update(eeprom_address + 5, currentBFO >> 8);
   EEPROM.update(eeprom_address + 6, currentBFO & 0XFF);
@@ -408,7 +390,6 @@ void readAllReceiverInformation()
 
   volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
   bandIdx = EEPROM.read(eeprom_address + 2);
-  fmRDS = EEPROM.read(eeprom_address + 3);
   currentMode = EEPROM.read(eeprom_address + 4);
   currentBFO = EEPROM.read(eeprom_address + 5) << 8;
   currentBFO |= EEPROM.read(eeprom_address + 6);
@@ -492,7 +473,6 @@ void disableCommands()
   cmdMode = false;
   cmdMenu = false;
   cmdSoftMuteMaxAtt = false;
-  cmdRds = false;
   cmdAvc =  false; 
   countClick = 0;
 
@@ -553,7 +533,7 @@ void showFrequency()
   nokia.setFont(BigNumbers);
   nokia.print(p,0,13);
   nokia.update();
-  
+
   showMode();
 }
 
@@ -568,10 +548,10 @@ void showMode()
     bandMode = (char *)"LW  ";
   else
     bandMode = (char *)bandModeDesc[currentMode];
-
-  if ( currentMode == FM && fmRDS ) return;
+  
   show(1,0,band[bandIdx].bandName);
   show(65,0,bandMode);
+
 }
 
 /**
@@ -580,6 +560,8 @@ void showMode()
 void showStatus()
 {
   nokia.clrScr();
+  nokia.drawLine(0,10,84,10);
+  nokia.drawLine(0,38,84,38);
   nokia.update();
   showFrequency();
   showRSSI();
@@ -624,7 +606,6 @@ void showRSSI()
   {
     show(0,60,(rx.getCurrentPilot()) ? "ST" : "MO");
   }
-  show(45,70, (fmRDS? "RDS" : "   ")); 
     
   if (rssi < 2)
     rssiAux = 4;
@@ -640,10 +621,10 @@ void showRSSI()
     rssiAux = 9;
 
   sMeter[0] = 'S';
-  sMeter[1] = rssiAux + rssiAux + 48;
-  sMeter[2] = ((rssi >= 60) ? '+' : '.');
+  sMeter[1] = rssiAux + 48;
+  sMeter[2] = ((rssi >= 60) ? '+' : ' ');
   sMeter[3] = '\0';
-  show(65,5,sMeter);
+  show(65,40,sMeter);
 
 }
 
@@ -661,7 +642,7 @@ void showAgcAtt()
    strcpy(sAgc,"ATT: ");
    rx.convertToChar(agcNdx, &sAgc[4], 2, 0, '.');
   }
-  show(1,1,sAgc);
+  show(0,0,sAgc);
 }
 
 
@@ -670,8 +651,11 @@ void showAgcAtt()
  */
 void showStep()
 {
+  char sStep[11];
   nokia.clrScr();
-  nokia.print((currentMode == FM)? (tabFmStep[currentStepIdx] *10) : tabAmStep[currentStepIdx], 1,1);
+  strcpy(sStep,"STEP:");
+  rx.convertToChar((currentMode == FM)? (tabFmStep[currentStepIdx] *10) : tabAmStep[currentStepIdx], &sStep[5], 4, 0, '.');
+  show(0,0,sStep);
 }
 
 /**
@@ -679,16 +663,25 @@ void showStep()
  */
 void showBFO()
 {
-  char bfo[15];
-  
-  // if (currentBFO > 0)
-  //   sprintf(bfo, "BFO:+%4.4d", currentBFO);
-  // else
-  //   sprintf(bfo, "BFO:%4.4d", currentBFO);
+  char newBFO[10];
+  uint16_t auxBfo;
+  auxBfo = currentBFO;
 
-  // nokia.clrScr();
-  // nokia.setCursor(0, 0);
-  // nokia.print(bfo);
+  strcpy(newBFO,"BFO:");
+
+  
+  if (currentBFO < 0 ) {
+    auxBfo = ~currentBFO + 1; // converts to absolute value (ABS) using binary operator
+    newBFO[4] = '-';
+  }
+  else if (currentBFO > 0 )
+    newBFO[4] = '+';
+  else
+    newBFO[4] = ' ';
+
+  rx.convertToChar(auxBfo, &newBFO[5], 4, 0, '.');
+  show(0,0,newBFO);
+
   elapsedCommand = millis();
 }
 
@@ -700,7 +693,7 @@ void showVolume()
   char volAux[12];
   nokia.clrScr();
   strcpy(volAux,"VOLUME: ");
-  rx.convertToChar(agcNdx, &volAux[7], 2, 0, '.');
+  rx.convertToChar(rx.getVolume(), &volAux[7], 2, 0, '.');
   show(0,0,volAux);
 }
 
@@ -709,11 +702,11 @@ void showVolume()
  */
 void showSoftMute()
 {
-  char sMute[18];
-  // sprintf(sMute, "Soft Mute: %2d", softMuteMaxAttIdx);
-  // nokia.clrScr();
-  // nokia.setCursor(0, 0);
-  // nokia.print(sMute);
+  char sMute[14];
+  nokia.clrScr();
+  strcpy(sMute,"Soft Mute:");
+  rx.convertToChar(softMuteMaxAttIdx, &sMute[10], 2, 0, '.');
+  show(0,0,sMute);
 }
 
 
@@ -722,72 +715,23 @@ void showSoftMute()
  */
 void showAvc()
 {
-  char sAvc[18];
-  // sprintf(sAvc, "AVC: %2d", avcIdx);
-  // nokia.clrScr();
-  // nokia.setCursor(0, 0);
-  // nokia.print(sAvc);
+  char sAvc[7];
+  nokia.clrScr();
+  strcpy(sAvc,"AVC:");
+  rx.convertToChar(avcIdx, &sAvc[4], 2, 0, '.');
+  show(0,0,sAvc);
 }
 
 
 
 /**
- * Shows RDS ON or OFF
+ * Show menu options
  */
-void showRdsSetup() 
-{
-  char sRdsStatus[10];
-  // sprintf(sRdsStatus, "RDS: %s", (fmRDS)? "ON ": "OFF");
-  // nokia.clrScr();
-  // nokia.setCursor(0, 0);
-  // nokia.print(sRdsStatus);  
-}
-
-/***************  
- *   RDS
- *   
- */
- 
-char *stationName;
-char bufferStatioName[20];
-
-void clearRDS() {
-   stationName = (char *) "           ";
-   showRDSStation();
-}
-
-void showRDSStation()
-{
-    int col = 8;
-    for (int i = 0; i < 8; i++ ) {
-      if (stationName[i] != bufferStatioName[i] ) {
-        // nokia.setCursor(col + i, 1);
-        // nokia.print(stationName[i]); 
-        bufferStatioName[i] = stationName[i];
-      }
-    }
-    
-    delay(100);
-}
-
-
-/*
- * Checks the station name is available
- */
-void checkRDS()
-{
-  rx.getRdsStatus();
-  if (rx.getRdsReceived())
-  {
-    if (rx.getRdsSync() && rx.getRdsSyncFound() && !rx.getRdsSyncLost() && !rx.getGroupLost() )
-    {
-      stationName = rx.getRdsText0A();
-      if (stationName != NULL )
-      {
-        showRDSStation();
-      }
-    }
-  }
+void showMenu() {
+  nokia.clrScr();
+  nokia.print(menu[menuIdx],0,20);
+  nokia.update();
+  showCommandStatus( (char *) "Menu");
 }
 
 
@@ -817,7 +761,6 @@ void useBand()
     rx.setTuneFrequencyAntennaCapacitor(0);
     rx.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, tabFmStep[band[bandIdx].currentStepIdx]);
     rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
-    rx.setRdsConfig(1, 2, 2, 2, 2);
     rx.setFifoCount(1);
     
     bfoOn = ssbLoaded = false;
@@ -949,15 +892,7 @@ void showCommandStatus(char * currentCmd)
 
 }
 
-/**
- * Show menu options
- */
-void showMenu() {
-  nokia.clrScr();
-  nokia.print(menu[menuIdx],0,20);
-  nokia.update();
-  showCommandStatus( (char *) "Menu");
-}
+
 
 /**
  *  AGC and attenuattion setup
@@ -1140,15 +1075,6 @@ void doAvc(int8_t v)
 }
 
 
-/**
- * Turns RDS ON or OFF
- */
-void doRdsSetup(int8_t v)
-{
-  fmRDS = (v == 1)? true:false;
-  showRdsSetup();
-  elapsedCommand = millis();
-}
 
 
 /**
@@ -1172,7 +1098,7 @@ void doMenu( int8_t v) {
  * Return true if the current status is Menu command
  */
 bool isMenuMode() {
-  return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds | cmdAvc);
+  return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdAvc);
 }
 
 
@@ -1186,47 +1112,43 @@ void doCurrentMenuCmd() {
       cmdVolume = true;
       showVolume();
       break;
-    case 1: 
-      cmdRds = true;
-      showRdsSetup();
-      break;
-    case 2:                 // STEP
+    case 1:                 // STEP
       cmdStep = true;
       showStep();
       break;
-    case 3:                 // MODE
+    case 2:                 // MODE
       cmdMode = true;
       nokia.clrScr();
       showMode();
       break;
-    case 4:
+    case 3:
         bfoOn = true;
         if ((currentMode == LSB || currentMode == USB)) {
           showBFO();
         }
       // showFrequency();
       break;      
-    case 5:                 // BW
+    case 4:                 // BW
       cmdBandwidth = true;
       showBandwidth();
       break;
-    case 6:                 // AGC/ATT
+    case 5:                 // AGC/ATT
       cmdAgc = true;
       showAgcAtt();
       break;
-    case 7: 
+    case 6: 
       cmdSoftMuteMaxAtt = true;
       showSoftMute();  
       break;
-    case 8: 
+    case 7: 
       cmdAvc =  true; 
       showAvc();
       break;  
-    case 9:
+    case 8:
       seekDirection = 1;
       doSeek();
       break;  
-    case 10:
+    case 9:
       seekDirection = 0;
       doSeek();
       break;    
@@ -1272,8 +1194,6 @@ void loop()
       doAvc(encoderCount);      
     else if (cmdBand)
       setBand(encoderCount);
-    else if (cmdRds ) 
-      doRdsSetup(encoderCount);  
     else
     {
       if (encoderCount == 1)
@@ -1373,19 +1293,6 @@ void loop()
       itIsTimeToSave = false;
     }
   }
-
-  if (currentMode == FM && fmRDS && !isMenuMode() )
-  {
-      if (currentFrequency != previousFrequency)
-      {
-        clearRDS();
-        previousFrequency = currentFrequency;
-       }
-      else
-      {
-        checkRDS();
-      }
-  }  
 
   delay(2);
 }
