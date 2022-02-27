@@ -257,6 +257,7 @@ void setup()
 
   // Start the Nokia display device
   display.begin();
+  display.setRotation(2);   //  Rotate the display 180 degree
   // display.setContrast(80);
   // Splash
   splash();
@@ -434,8 +435,8 @@ void showStatus()
   display.clearDisplay();
   clearBuffers();
   
-  showValue(0, 15, oldBand, (char *) band[bandIdx].bandName, 1, 6);
-  showValue(65, 15, oldDesc, (char*) bandModeDesc[currentMode], 1, 6);
+  showValue(0, 18, oldBand, (char *) band[bandIdx].bandName, 1, 6);
+  showValue(65, 18, oldDesc, (char*) bandModeDesc[currentMode], 1, 6);
 
   if (rx.isCurrentTuneFM()) {
     unt = (char *) "MHz";
@@ -488,9 +489,9 @@ void showRSSI()
   int rssiLevel;
   uint8_t rssiAux;
   char sRssi[10];
-
+ 
   if (currentMode == FM)
-    showValue(65, 15, oldSTMO, (rx.getCurrentPilot()) ? (char *) "ST" : (char *) "MO", 1, 6);
+    showValue(65, 18, oldSTMO, (rx.getCurrentPilot()) ? (char *) "ST" : (char *) "MO", 1, 6);
 
   if (rssi < 2)
     rssiAux = 4;
@@ -527,7 +528,7 @@ void showAgcAtt() {
     rx.convertToChar(agcNdx, &sAgc[2], 2, 0, '.');
   }
 
-  showValue(25, 15, oldAGC, sAgc, 1, 6);
+  showValue(25, 18, oldAGC, sAgc, 1, 6);
 
 }
 
@@ -538,7 +539,7 @@ void showStep() {
   char sStep[15];
   strcpy(sStep, "Stp");
   rx.convertToChar(currentStep, &sStep[3], 4, 0, '.');
-  showValue(0, 25, oldStep, sStep, 1, 5);
+  showValue(0, 28, oldStep, sStep, 1, 5);
 }
 
 /**
@@ -559,7 +560,7 @@ void showBFO()
     newBFO[0] = ' ';
 
   rx.convertToChar(auxBfo, &newBFO[1], 4, 0, '.');
-  showValue(50, 25, oldBFO, newBFO, 1, 5);
+  showValue(50, 28, oldBFO, newBFO, 1, 5);
   elapsedCommand = millis();
 }
 
