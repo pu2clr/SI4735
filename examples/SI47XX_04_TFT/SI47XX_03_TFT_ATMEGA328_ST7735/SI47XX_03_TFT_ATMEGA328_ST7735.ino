@@ -1,14 +1,14 @@
 /*
-  ATTENTION: Use the MiniCore board manager with "LTO Enabled" and "No bootloader" options selected. 
+  ATTENTION: Use the MiniCore board manager with "LTO Enabled" and "No bootloader" options selected.
              See https://github.com/MCUdude/MiniCore
 
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT ST7735 1.8"
- 
-  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735  and  the 
-  "PU2CLR SI4735 Arduino Library" working with the TFT ST7735 display. It is not the purpose of this prototype 
-  to provide you a beautiful interface. To be honest, I think you can do it better than me. 
 
-  This sketch does not use sprintf or any function to deal with value formatting.  It helped to save Arduino memory.  
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735  and  the
+  "PU2CLR SI4735 Arduino Library" working with the TFT ST7735 display. It is not the purpose of this prototype
+  to provide you a beautiful interface. To be honest, I think you can do it better than me.
+
+  This sketch does not use sprintf or any function to deal with value formatting.  It helped to save Arduino memory.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations. If  you  are  using  the  same  circuit  used  on  examples with OLED and LCD,
@@ -16,12 +16,16 @@
   For this reason, it is necessary change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
-  The libraries Adafruit_GFX and Adafruit_ST7735 and SSB patch take a lot of memory space from Arduino. 
+  The libraries Adafruit_GFX and Adafruit_ST7735 and SSB patch take a lot of memory space from Arduino.
   You have few space to improve your prototype with standard Arduino Pro Mini.
-  However, you can use some approaches:  
+  However, you can use some approaches:
   1. Shrink or remove the boot loader from Arduino Pro Mini;
   2. The Arduino Nano and Uno have smaller bootloader than the Arduino Pro Mini
-  3. Port this sketch to a bigger board like Arduino Mega or DUE. 
+  3. Port this sketch to a bigger board like Arduino Mega or DUE.
+
+
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
 
 
   Features:   AM; SSB; LW/MW/SW; two super band (from 150kHz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
@@ -37,33 +41,33 @@
   |                           | CS or SS                      |     10        |
   |                           | SDI or SDA or MOSI            |     11        |
   |                           | CLK                           |     13        |
-  |                           | BL                            |    +VCC       |  
+  |                           | BL                            |    +VCC       |
   |     Si4735                |                               |               |
   |                           | (*4) RESET (pin 15)           |     12        |
   |                           | (*4) SDIO (pin 18)            |     A4        |
   |                           | (*4) SCLK (pin 17)            |     A5        |
-  |                           | (*5) SEN (pin 16)             |    GND        | 
+  |                           | (*5) SEN (pin 16)             |    GND        |
   |     Buttons               |                               |               |
   |                           | (*1)Switch MODE (AM/LSB/AM)   |      4        |
   |                           | (*1)Banddwith                 |      5        |
   |                           | (*1)BAND                      |      6        |
   |                           | (*2)SEEK                      |      7        |
   |                           | (*1)AGC/Attenuation           |     14 / A0   |
-  |                           | (*1)STEP                      |     15 / A1   | 
+  |                           | (*1)STEP                      |     15 / A1   |
   |                           | VFO/VFO Switch (Encoder)      |     16 / A2   |
   |    Encoder                |                               |               |
   |                           | A                             |       2       |
   |                           | B                             |       3       |
 
   (*1) You have to press the push button and after, rotate the encoder to select the parameter.
-       After you activate a command by pressing a push button, it will keep active for 2,5 seconds. 
-  (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of 
-       the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of 
-       the encoder was counterclockwise, the SEEK direction will be towards the lower limit.  
-  (*3) You might need to switch from 8 to 9  depending of your ST7735 device     
-  (*4) - If you are using the SI4732-A10, check the corresponding pin numbers.  
-  (*5) - If you are using the SI4735-D60, connect the SEN pin to the ground; 
-         If you are using the SI4732-A10, connect the SEN pin to the +Vcc. 
+       After you activate a command by pressing a push button, it will keep active for 2,5 seconds.
+  (*2) The SEEK direction is based on the last movement of the encoder. If the last movement of
+       the encoder was clockwise, the SEEK will be towards the upper limit. If the last movement of
+       the encoder was counterclockwise, the SEEK direction will be towards the lower limit.
+  (*3) You might need to switch from 8 to 9  depending of your ST7735 device
+  (*4) - If you are using the SI4732-A10, check the corresponding pin numbers.
+  (*5) - If you are using the SI4735-D60, connect the SEN pin to the ground;
+         If you are using the SI4732-A10, connect the SEN pin to the +Vcc.
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/

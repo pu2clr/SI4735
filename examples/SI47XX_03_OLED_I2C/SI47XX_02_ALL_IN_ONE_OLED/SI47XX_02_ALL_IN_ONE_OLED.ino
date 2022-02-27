@@ -22,6 +22,9 @@
   2. change the circuit and sketch to use external pull-up on pin 13;
   3. remove the LED or resitor connected to the led from the board (caution). 
 
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
+
   ABOUT SSB PATCH:  
   This sketch will download a SSB patch to your SI4735-D60 or SI4732-A10 devices (patch_init.h). It will take about 8KB of the Arduino memory.
 

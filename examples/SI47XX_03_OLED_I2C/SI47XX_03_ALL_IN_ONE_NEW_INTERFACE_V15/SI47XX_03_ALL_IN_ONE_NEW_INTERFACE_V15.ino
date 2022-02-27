@@ -1,37 +1,42 @@
 /*
-  This sketch SHOULD work with the Chinese KIT sold on AliExpress, eBay and Amazon 
-  ATTENTION:  
-  IT IS NOT TESTED ENOUGH. SO, DO NOT TRY IT IF YOU DON'T KNOW WHAT ARE YOU DOING. 
+  This sketch SHOULD work with the Chinese KIT sold on AliExpress, eBay and Amazon
+  ATTENTION:
+  IT IS NOT TESTED ENOUGH. SO, DO NOT TRY IT IF YOU DON'T KNOW WHAT ARE YOU DOING.
   YOU MUST BE ABLE TO GO BACK TO THE PREVIOUS VERSION IF THIS SKETCH DOES NOT WORK FOR YOU.
-  
-  New features: 
-   1) The final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features); 
+
+  New features:
+   1) The final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features);
    2) All the previous status of the receiver can be rescued when you turn it on (including SSB mode, bandwidth, volume, frequency, BFO etc);
    3) The bandwidth now is a property of the band (you can use different bandwidth for different bands);
-   4) Bandwidth control on FM mode (Auto, 110, 84, 60 and 40 kHz); 
-   5) FM/RDS presentation improved; 
+   4) Bandwidth control on FM mode (Auto, 110, 84, 60 and 40 kHz);
+   5) FM/RDS presentation improved;
    6) The seek function was improved (it is more precise on FM mode). The seek direction is controlled by the encoder (clockwise or counter-clockwise . Press encoder push button for seeking;
    7) Steps: 1, 5, 9, 10 and 50 kHz;
    8) Now you can configure MW band space to 9 or 10 kHz;
    9) New FM band from 64 to 84 MHz;
-  10) Added a MW band for Europe, Africa and Asia 
+  10) Added a MW band for Europe, Africa and Asia
   11) The frequency on Display is bigger than the previous version;
   12) Now the bandwidth sequence is ordered by bandwidth values.
-  ATTENTION: Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
-  ARDUINO LIBRARIES: 
+  ATTENTION: Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.
+  ARDUINO LIBRARIES:
   1) This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included together with this sketch). You do not need to install it;
-  2) Tiny4kOLED Library and TinyOLED-Fonts (on your Arduino IDE, look for this library on Tools->Manage Libraries). 
-  3) PU2CLR SI4735 Arduino Library (on your Arduino IDE look for this library on Tools->Manage Libraries). 
+  2) Tiny4kOLED Library and TinyOLED-Fonts (on your Arduino IDE, look for this library on Tools->Manage Libraries).
+  3) PU2CLR SI4735 Arduino Library (on your Arduino IDE look for this library on Tools->Manage Libraries).
   ABOUT THE EEPROM:
-  ATMEL says the lifetime of an EEPROM memory position is about 100,000 writes.  
-  For this reason, this sketch tries to avoid save unnecessary writes into the eeprom. 
-  So, the condition to store any status of the receiver is changing the frequency,  bandwidth, volume, band or step  and 10 seconds of inactivity. 
-  For example, if you switch the band and turn the receiver off immediately, no news information will be written into the eeprom.  
-  But you wait 10 seconds after changing anything, all new information will be written. 
-  ABOUT SSB PATCH:  
- 
-  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
-  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
+  ATMEL says the lifetime of an EEPROM memory position is about 100,000 writes.
+  For this reason, this sketch tries to avoid save unnecessary writes into the eeprom.
+  So, the condition to store any status of the receiver is changing the frequency,  bandwidth, volume, band or step  and 10 seconds of inactivity.
+  For example, if you switch the band and turn the receiver off immediately, no news information will be written into the eeprom.
+  But you wait 10 seconds after changing anything, all new information will be written.
+
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
+
+
+  ABOUT SSB PATCH:
+
+  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr.
+  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches
   content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
   There is little information available about patching the SI4735 or Si4732 devices. The following information is the understanding of the author of

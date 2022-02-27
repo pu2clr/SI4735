@@ -1,34 +1,38 @@
 /*
   UNDER CONSTRUCTION....
   This sketch runs on ESP32 device.
-  It is a POC of using two encoders with push button to control the system.   
+  It is a POC of using two encoders with push button to control the system.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
 
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
+
+
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-  ESP32 and components wire up. 
-  
+  ESP32 and components wire up.
+
   | Device name               | Device Pin / Description      |  ESP32        |
   | ----------------          | ----------------------------- | ------------  |
   |    OLED                   |                               |               |
-  |                           | SDA/SDIO                      |  GPI21        | 
-  |                           | SCL/SCLK                      |  GPI22        | 
+  |                           | SDA/SDIO                      |  GPI21        |
+  |                           | SCL/SCLK                      |  GPI22        |
   |    Encoder1               |                               |               |
   |                           | A                             |  GPIO 13      |
   |                           | B                             |  GPIO 14      |
-  |                           | PUSH BUTTON                   |  GPIO 27      | 
+  |                           | PUSH BUTTON                   |  GPIO 27      |
   |    Encoder2               | A                             |  GPIO 25      |
-  |                           | B                             |  GPIO 26      |    
+  |                           | B                             |  GPIO 26      |
   |                           | PUSH BUTTON (encoder)         |  GPIO 32      |
 
   ESP32 and SI4735-D60 or SI4732-A10 wire up
 
   | Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
   |---------| -------- |--------|--------------------|
-  | pin 15  |  pin 9   | RESET  |   12 (GPIO12)      |  
+  | pin 15  |  pin 9   | RESET  |   12 (GPIO12)      |
   | pin 18  |  pin 12  | SDIO   |   21 (SDA / GPI21) |
   | pin 17  |  pin 11  | SCLK   |   22 (SCL / GPI22) |
 

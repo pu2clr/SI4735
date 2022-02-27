@@ -12,6 +12,10 @@
   sketch. Be sure you are using the SI4735 Arduino Library written by PU2CLR to run this sketch. The library used by the original
   sketch will not work here. Also, you have to install the LiquidCrystal library.
 
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI473X devices (SI4735-D60, Si4732-A10 etc)  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
+
+
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
 

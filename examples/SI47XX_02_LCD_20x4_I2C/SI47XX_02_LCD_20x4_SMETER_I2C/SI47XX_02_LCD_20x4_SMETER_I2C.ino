@@ -1,9 +1,9 @@
 /*
   SS4735 Arduino Library example with LCD 20x4 and OLED sharing the same I2C bus with SI4735 device.
-  It is an AM and FM radio. 
-  This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included 
-  together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C). 
-  Look for LiquidCrystal I2C on Manager Libraries.   
+  It is an AM and FM radio.
+  This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included
+  together with this sketch) and LiquidCrystal I2C Library by Frank de Brabander (https://github.com/johnrickman/LiquidCrystal_I2C).
+  Look for LiquidCrystal I2C on Manager Libraries.
   You also need to install Adafruit_GFX  (https://github.com/adafruit/Adafruit-GFX-Library) and
   Adafruit_SH1106 (https://github.com/wonho-maker/Adafruit_SH1106).
 
@@ -11,8 +11,12 @@
 
   ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:
   This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal
-  pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. 
-  If this occurs in your project, change the circuit to use external pull-up on pin 13.     
+  pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit.
+  If this occurs in your project, change the circuit to use external pull-up on pin 13.
+
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
+
 
   Prototype documentation : https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/

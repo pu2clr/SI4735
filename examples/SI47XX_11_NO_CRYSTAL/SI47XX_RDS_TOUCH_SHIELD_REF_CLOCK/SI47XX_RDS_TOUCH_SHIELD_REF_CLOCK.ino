@@ -18,6 +18,11 @@
   7) RDS;
   8) Frequency step switch (1, 5 and 10kHz).
 
+
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
+
+
   Wire up
 
   Function                MEGA2560 or DUE  Pin

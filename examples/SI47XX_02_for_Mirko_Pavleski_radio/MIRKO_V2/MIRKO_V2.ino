@@ -1,12 +1,12 @@
 /*
 
-  New features: 
+  New features:
                 1) The receiver current status is stored into Arduino EEPROM;
                 2) FM RDS;
                 2) FM frequency step;
                 3) FM Bandwidth control.
 
-  See user_manual.txt before operating the receiver. 
+  See user_manual.txt before operating the receiver.
 
   This sketch was built to work with the project "DIY Si4730 All Band Radio (LW, MW, SW, FM)" receiver from Mirko Pavleski.
   The original project can be found on https://create.arduino.cc/projecthub/mircemk/diy-si4730-all-band-radio-lw-mw-sw-fm-1894d9
@@ -20,6 +20,9 @@
   The visual interface, control commands, band plan, and some functionalities are different if compared with the original
   sketch. Be sure you are using the SI4735 Arduino Library written by PU2CLR to run this sketch. The library used by the original
   sketch will not work here. Also, you have to install the LiquidCrystal library.
+
+  The  purpose  of  this  example  is  to  demonstrate the receiver based  on  the  SI473X devices (SI4735-D60, Si4732-A10 etc)  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.

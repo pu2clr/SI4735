@@ -1,21 +1,27 @@
 /*
 
+  You will find a better version of this application on SI47XX_10_RDS folder.
+
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220) - ILI9225.
   The Arduino library used to control that display device is TFT_22_ILI9225 (seeL https://github.com/Nkawu/TFT_22_ILI9225).
-  Please, install it before start working  with this sketch. 
-  
+  Please, install it before start working  with this sketch.
+
   It is also a complete radio capable to tune LW, MW, SW on AM and SSB mode and also receive the
-  regular comercial stations. The SSB support works on SI4735-D60 and SI4732-A10 devices. 
+  regular comercial stations. The SSB support works on SI4735-D60 and SI4732-A10 devices.
   If you are using the same circuit used on examples with OLED and LCD,
   you have to change some buttons wire up. This TFT device takes five pins from Arduino.
   For this reason, it is necessary change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
-  ABOUT SSB PATCH:  
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
+
+
+  ABOUT SSB PATCH:
   This sketch will download a SSB patch to your SI4735-D60 or SI4732-A10 devices (patch_init.h). It will take about 8KB of the Arduino memory.
 
-  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
-  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
+  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr.
+  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches
   content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
 
   Read more about SSB patch documentation on https://pu2clr.github.io/SI4735/

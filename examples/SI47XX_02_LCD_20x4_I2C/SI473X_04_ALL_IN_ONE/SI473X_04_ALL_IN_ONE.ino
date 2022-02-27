@@ -18,15 +18,17 @@
 
   ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:
   This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. If you use the internal
-  pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. 
-  If this occurs in your project, change the circuit to use external pull-up on pin 13.     
+  pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit.
+  If this occurs in your project, change the circuit to use external pull-up on pin 13.
 
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
 
-  ABOUT SSB PATCH:  
+  ABOUT SSB PATCH:
   This sketch will download a SSB patch to your SI4735-D60/SI4732-A10 device (patch_init.h). It will take about 8KB of the Arduino memory.
 
-  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
-  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
+  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr.
+  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches
   content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
 
   In this context, a patch is a piece of software used to change the behavior of the SI4735-D60 and SI4732-A10 devices.

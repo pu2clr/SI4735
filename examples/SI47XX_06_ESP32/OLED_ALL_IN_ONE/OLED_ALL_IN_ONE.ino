@@ -1,5 +1,5 @@
 /*
-  This sketch runs on ESP32 device.   
+  This sketch runs on ESP32 device.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
@@ -7,13 +7,18 @@
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-  ESP32 and components wire up. 
-  
+
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
+
+
+  ESP32 and components wire up.
+
   | Device name               | Device Pin / Description      |  ESP32        |
   | ----------------          | ----------------------------- | ------------  |
   |    OLED                   |                               |               |
-  |                           | SDA/SDIO                      |  GPI21        | 
-  |                           | SCL/SCLK                      |  GPI22        | 
+  |                           | SDA/SDIO                      |  GPI21        |
+  |                           | SCL/SCLK                      |  GPI22        |
   |    Encoder                |                               |               |
   |                           | A                             |  GPIO 13      |
   |                           | B                             |  GPIO 14      |
@@ -23,7 +28,7 @@
 
   | Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
   |---------| -------- |--------|--------------------|
-  | pin 15  |  pin 9   | RESET  |   12 (GPIO12)      |  
+  | pin 15  |  pin 9   | RESET  |   12 (GPIO12)      |
   | pin 18  |  pin 12  | SDIO   |   21 (SDA / GPI21) |
   | pin 17  |  pin 11  | SCLK   |   22 (SCL / GPI22) |
 

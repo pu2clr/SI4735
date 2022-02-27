@@ -4,16 +4,20 @@
   Rotary Encoder: This sketch uses the Rotary Encoder Class implementation from Ben Buxton. The source code is included together with this sketch.
 
   ABOUT DIGITAL pin 13 and INPUT PULL-UP on Arduino Pro Mini, UNO or similar:
-  This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on. 
-  If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage 
+  This pin has a LED and a resistor connected on the board. When this pin is set to HIGH the LED comes on.
+  If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage
   caused by the LED circuit. If this occurs in your project you can do:
-  1. use the pin 14. This pin is the A0 (Analog). But you have to refer it by 14 to use it as a digital pin (just change 13 by 14 on the sketch examples); 
+  1. use the pin 14. This pin is the A0 (Analog). But you have to refer it by 14 to use it as a digital pin (just change 13 by 14 on the sketch examples);
   2. change the circuit and sketch to use external pull-up on pin 13;
-  3. remove the LED or resitor connected to the led from the board (caution). 
+  3. remove the LED or resitor connected to the led from the board (caution).
+
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
+
 
   This sketch has been successfully tested on Pro Mini 3.3V.
 
-  SI473X bases device  and Arduino Atmega328 based device wire up. 
+  SI473X bases device  and Arduino Atmega328 based device wire up.
 
   | Device name               | Device Pin / Description  |  Arduino Pin  |
   | ----------------          | --------------------      | ------------  |
@@ -28,8 +32,8 @@
   |                           | AM/FM                     |      4        |
   |                           | Seek Up                   |      6        |
   |                           | Seek Down                 |      7        |
-  |                           | Volume Up                 |      8        | 
-  |                           | Volume Down               |      9        |   
+  |                           | Volume Up                 |      8        |
+  |                           | Volume Down               |      9        |
   |    Encoder                |                           |               |
   |                           | A                         |      2        |
   |                           | B                         |      3        |

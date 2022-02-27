@@ -1,10 +1,10 @@
 /*
-  This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a display NOKIA.
+  This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a display NOKIA. 
   To control the Nokia display this sketch uses the libraries Adafruit_GFX and Adafruit_PCD8544.
-  Plese, install these libraries before compiling this sketch.
+  Plese, install Adafruit_GFX and Adafruit_PCD8544 libraries before compiling this sketch.
 
   The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
-  "PU2CLR SI4735 Arduino Library" working with NOKIA Diaplsy. It is not the purpose of this prototype
+  "PU2CLR SI4735 Arduino Library" working with NOKIA Display. It is not the purpose of this prototype
   to provide you a beautiful interface. I think you can do it better than me.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the

@@ -2,6 +2,9 @@
   This sketch uses the mcufriend TFT touch Display Shield 3.5".
   You can use it on Mega2560 or DUE.
 
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
+
 
   REMEMBER:
   ALL Touch panels and wiring is DIFFERENT
