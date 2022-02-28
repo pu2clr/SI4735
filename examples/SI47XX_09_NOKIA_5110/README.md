@@ -94,9 +94,9 @@ It is not available on Arduino IDE. To install __LCD5110_Graph__ library, downlo
 
 The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and SSB modes.
 
-| | | | | |
+| FM | MW/AM | SW/AM | 40M/LSB | 10M/USB |
 |-|-|-|-|-|
-| ![N101](../../extras/images/N1_01.png) | ![N102](../../extras/images/N1_02.png) | ![N103](../../extras/images/N1_03.png) | ![N104](../../extras/images/N1_05.png) | ![N105](../../extras/images/N1_05.png) |  
+| ![N101](../../extras/images/N1_01.png) | ![N102](../../extras/images/N1_02.png) | ![N103](../../extras/images/N1_03.png) | ![N104](../../extras/images/N1_04.png) | ![N105](../../extras/images/N1_05.png) |  
 
 
 
