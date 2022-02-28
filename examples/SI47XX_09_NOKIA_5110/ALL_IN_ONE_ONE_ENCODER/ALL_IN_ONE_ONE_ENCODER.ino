@@ -191,11 +191,11 @@ int tabAmStep[] = {1,    // 0
                    50,   // 4
                    500}; // 5
 
-const  lastAmStep = (sizeof tabAmStep / sizeof(int)) - 1;
-int idxAmStep = 3;
+const int8_t lastAmStep = (sizeof tabAmStep / sizeof(int)) - 1;
+int8_t idxAmStep = 3;
 
 int tabFmStep[] = {5, 10, 20};
-const int lastFmStep = (sizeof tabFmStep / sizeof(int)) - 1;
+const int8_t lastFmStep = (sizeof tabFmStep / sizeof(int)) - 1;
 int idxFmStep = 1;
 
 uint16_t currentStepIdx = 1;
@@ -236,11 +236,12 @@ Band band[] = {
     {"MW ", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 32},
     {"SW1", SW_BAND_TYPE, 1700, 10000, 7200, 1, 4, 1, 0, 0, 32},
     {"SW2", SW_BAND_TYPE, 10000, 20000, 13600, 1, 4, 1, 0, 0, 32},
-    {"SW3", SW_BAND_TYPE, 20000, 30000, 21500, 1, 4, 1, 0, 0, 32}
+    {"SW3", SW_BAND_TYPE, 20000, 30000, 21500, 1, 4, 1, 0, 0, 32},
+    {"ALL", SW_BAND_TYPE, 150, 30000, 28400, 0, 4, 1, 0, 0, 48}    // ALL (LW, MW and SW - from 150kHz to 30MHz
 };
 
-const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int bandIdx = 0;
+const int8_t lastBand = (sizeof band / sizeof(Band)) - 1;
+int8_t bandIdx = 0;
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 
@@ -757,7 +758,6 @@ void useBand()
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStepIdx = band[bandIdx].currentStepIdx;
-
   rssi = 0;
   showStatus();
   showCommandStatus((char *) "Band");
@@ -770,8 +770,6 @@ void useBand()
 */
 void loadSSB()
 {
-  nokia.print("  Switching to SSB  ", 0, 2);
-  // si4735.setI2CFastModeCustom(850000); // It is working. Faster, but I'm not sure if it is safe.
   rx.setI2CFastModeCustom(500000);
   rx.queryLibraryId(); // Is it really necessary here? I will check it.
   rx.patchPowerUp();
@@ -1000,7 +998,6 @@ void doSoftMute(int8_t v)
   elapsedCommand = millis();
 }
 
-
 /**
  * Sets the Max gain for Automatic Volume Control. 
  */
@@ -1039,7 +1036,6 @@ void doMenu( int8_t v) {
 bool isMenuMode() {
   return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdAvc);
 }
-
 
 /**
  * Starts the MENU action process
@@ -1185,7 +1181,6 @@ void loop()
       elapsedCommand = millis();
     }
   }
-
   // Show RSSI status only if this condition has changed
   if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
   {
@@ -1198,7 +1193,6 @@ void loop()
     }
     elapsedRSSI = millis();
   }
-
   // Disable commands control
   if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
   {
