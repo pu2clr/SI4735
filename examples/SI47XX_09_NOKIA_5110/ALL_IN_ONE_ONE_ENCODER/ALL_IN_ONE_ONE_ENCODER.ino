@@ -134,7 +134,6 @@ bool cmdMenu = false;
 bool cmdSoftMuteMaxAtt = false;
 bool cmdAvc = false;
 
-
 int16_t currentBFO = 0;
 long elapsedRSSI = millis();
 long elapsedButton = millis();
@@ -167,7 +166,6 @@ Bandwidth bandwidthSSB[] = {
   {2, "3.0"},
   {3, "4.0"}
 };
-
 
 int8_t bwIdxAM = 4;
 const int8_t maxAmBw = 6;
@@ -258,7 +256,6 @@ uint8_t volume = DEFAULT_VOLUME;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
-// Nokia_5110 nokia = Nokia_5110(NOKIA_RST, NOKIA_CE, NOKIA_DC, NOKIA_DIN, NOKIA_CLK);
 LCD5110 nokia(NOKIA_CLK,NOKIA_DIN,NOKIA_DC,NOKIA_RST,NOKIA_CE);
 
 extern uint8_t SmallFont[]; // Font Nokia
@@ -309,7 +306,6 @@ void setup()
   delay(300);
   rx.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM/SSB mode (you can use values between 12 and 90dB).
 
-
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id)
   {
@@ -323,7 +319,6 @@ void setup()
 
 /**
  * Shows splash message 
- * 
  */
 void splash()
 {
@@ -342,15 +337,14 @@ void splash()
 }
 
 /*
-   writes the conrrent receiver information into the eeprom.
-   The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
-*/
+ *  writes the conrrent receiver information into the eeprom.
+ *  The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
+ */
 void saveAllReceiverInformation()
 {
   int addr_offset;
 
   EEPROM.begin();
-
   EEPROM.update(eeprom_address, app_id);                 // stores the app id;
   EEPROM.update(eeprom_address + 1, rx.getVolume()); // stores the current Volume
   EEPROM.update(eeprom_address + 2, bandIdx);            // Stores the current band
@@ -373,7 +367,6 @@ void saveAllReceiverInformation()
     EEPROM.update(addr_offset++, band[i].avcIdx);
 
   }
-
   EEPROM.end();
 }
 
@@ -457,9 +450,9 @@ void resetEepromDelay()
 }
 
 /**
-    Set all command flags to false
-    When all flags are disabled (false), the encoder controls the frequency
-*/
+ *   Set all command flags to false
+ *   When all flags are disabled (false), the encoder controls the frequency
+ */
 void disableCommands()
 {
   cmdBand = false;
@@ -492,7 +485,9 @@ void  rotaryEncoder()
     encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
 }
 
-
+/**
+ * Shows a text on the display 
+ */
 void show(uint8_t col, uint8_t lin, const char *content) {
   nokia.setFont(SmallFont);
   nokia.print(content, col, lin);
@@ -643,7 +638,6 @@ void showAgcAtt()
   show(0,0,sAgc);
 }
 
-
 /**
  *   Shows the current step
  */
@@ -709,7 +703,6 @@ void showSoftMute()
   show(0,0,sMute);
 }
 
-
 /**
  * Show Soft Mute 
  */
@@ -722,8 +715,6 @@ void showAvc()
   show(0,0,sAvc);
 }
 
-
-
 /**
  * Show menu options
  */
@@ -733,7 +724,6 @@ void showMenu() {
   nokia.update();
   showCommandStatus( (char *) "Menu");
 }
-
 
 /**
  *   Sets Band up (1) or down (!1)
@@ -889,7 +879,6 @@ void showCommandStatus(char * currentCmd)
   nokia.drawRect(29,0,60,10);
   nokia.print(currentCmd, 35, 2);
   nokia.update();
-
 }
 
 
