@@ -4338,12 +4338,12 @@ for power line</description>
 <attribute name="NAME" x="20.32" y="203.2" size="1.27" layer="95" rot="R180"/>
 <attribute name="VALUE" x="13.97" y="199.39" size="1.27" layer="96" rot="R180"/>
 </instance>
-<instance part="ENCODER_BUTTON_" gate="SW" x="58.42" y="160.02" smashed="yes">
-<attribute name="NAME" x="55.372" y="162.306" size="1.778" layer="95"/>
-<attribute name="VALUE" x="54.61" y="154.432" size="1.778" layer="96"/>
+<instance part="ENCODER_BUTTON_" gate="SW" x="68.58" y="157.48" smashed="yes">
+<attribute name="NAME" x="65.532" y="159.766" size="1.778" layer="95"/>
+<attribute name="VALUE" x="64.77" y="151.892" size="1.778" layer="96"/>
 </instance>
-<instance part="GND8" gate="1" x="73.66" y="152.4" smashed="yes">
-<attribute name="VALUE" x="71.12" y="149.86" size="1.778" layer="96"/>
+<instance part="GND8" gate="1" x="83.82" y="149.86" smashed="yes">
+<attribute name="VALUE" x="81.28" y="147.32" size="1.778" layer="96"/>
 </instance>
 <instance part="SUPPLY4" gate="G$1" x="-17.78" y="101.6" smashed="yes" rot="R180">
 <attribute name="VALUE" x="-15.875" y="98.425" size="1.778" layer="96" rot="R180"/>
@@ -4424,11 +4424,11 @@ for power line</description>
 </segment>
 <segment>
 <pinref part="ENCODER_BUTTON_" gate="SW" pin="E"/>
-<wire x1="68.58" y1="157.48" x2="66.04" y2="157.48" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="154.94" x2="76.2" y2="154.94" width="0.1524" layer="91"/>
 <pinref part="GND8" gate="1" pin="GND"/>
-<wire x1="73.66" y1="154.94" x2="73.66" y2="157.48" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="157.48" x2="66.04" y2="157.48" width="0.1524" layer="91"/>
-<junction x="66.04" y="157.48"/>
+<wire x1="83.82" y1="152.4" x2="83.82" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="154.94" x2="76.2" y2="154.94" width="0.1524" layer="91"/>
+<junction x="76.2" y="154.94"/>
 </segment>
 </net>
 <net name="SDA" class="0">
@@ -4690,10 +4690,10 @@ for power line</description>
 </net>
 <net name="N$17" class="0">
 <segment>
-<pinref part="B1" gate="G$1" pin="A2"/>
-<wire x1="38.1" y1="157.48" x2="53.34" y2="157.48" width="0.1524" layer="91"/>
 <pinref part="ENCODER_BUTTON_" gate="SW" pin="D"/>
-<junction x="53.34" y="157.48"/>
+<wire x1="63.5" y1="154.94" x2="63.5" y2="152.4" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="A0"/>
+<wire x1="63.5" y1="152.4" x2="38.1" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
