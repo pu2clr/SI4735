@@ -1,5 +1,9 @@
 # Arduino / ATmega328 with Nokia 5110
 
+
+
+## Example ALL_IN_ONE_7_BUTTONS (One encoder and 7 buttons) 
+
 The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display
 
 ![Nokia 5110 schematic](../../extras/images/schematic_basic_Nokia5110.png)
@@ -70,3 +74,74 @@ If clockwise, the seek will go up; if counterclockwise, the seek will go down.
 
 To control the VFO and BFO, used the encoder push button. The display will show if you are using VFO or BFO.
 
+
+
+## Example ALL_IN_ONE_ONE_ENCODER 
+
+
+The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display controlled just by one encoder and one push button.
+
+![Nokia 5110 schematic](../../extras/images/schematic_basic_Nokia5110_one_encoder.png)
+
+
+## Wire up on Arduino UNO, Pro mini and SI4735-D60
+
+
+| Device name               | Device Pin / Description      |  Arduino Pin  |
+| ----------------          | ----------------------------- | ------------  |
+| Display NOKIA             |                               |               |
+|                           | (1) RST (RESET)               |     8         |
+|                           | (2) CE or CS                  |     9         |
+|                           | (3) DC or DO                  |    10         |
+|                           | (4) DIN or DI or MOSI         |    11         |
+|                           | (5) CLK                       |    13         |
+|                           | (6) VCC  (3V-5V)              |    +VCC       |
+|                           | (7) BL/DL/LIGHT               |    +VCC       |
+|                           | (8) GND                       |    GND        |
+|     Si4735                |                               |               |
+|                           | (*3) RESET (pin 15)           |     12        |
+|                           | (*3) SDIO (pin 18)            |     A4        |
+|                           | (*3) SCLK (pin 17)            |     A5        |
+|                           | (*4) SEN (pin 16)             |    GND        |
+|     Buttons               |                               |               |
+|                           | Encoder Push button           |     14 / A0   |
+|     Encoder               |                               |               |
+|                           | A                             |       2       |
+|                           | B                             |       3       |
+
+
+
+
+### User Instructions
+
+
+1. BAND SELECTION
+
+   * Select the band by pressing the encoder push button once and then rotate the encoder clockwise or counterclockwise.
+   * When the desired band is shown on display, you  can press the button once again or wait for about 2 seconds.
+   * You will notice the control will go back to the VFO.
+
+2. STEP, MODE, SEEK UP, SEEK DOWN, AGC/Attenuation, bandwidth, Soft Mute and VOLUME
+
+     * Press the encoder push button twice (within 1/2 second).
+     * After that, the display will show you the Menu text. Rotate the encoder clockwise or counterclockwise to select the option (STEP, MODE, AGC/Attenuation, bandwidth, VOLUME, etc).
+     * After that, select the option you want to setup by pressing the encoder push button once again.
+     * After that, rotate the encoder clockwise or counterclockwise to select the parameter.
+     * Finally, you can press the button once again or wait for about 2 seconds.
+     * The control will go back to the VFO.  
+
+3. VFO/BFO Switch
+
+    * Press the encoder push button twice (within 1/2 second).
+    * Rotate the encoder clockwise or counterclockwise and go to the BFO option. This option is shown only on SSB mode.
+    * Press the encoder push button once again.
+    * Rotate the encoder clockwise or counterclockwise to increment or decrement the BFO (select the offset).
+    * If you press the button again or stop rotating the ancoder for about 2 seconds, the control will go back to the VFO.
+
+__ATTENTION__: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. If you do that, you might alternate the command status (enable and disable) randomly.
+
+4. EEPROM RESET
+
+   The main information of the receiver is stored into the Arduino EEPROM. This way, when you turn the receiver on, the last receiver status is rescued. To RESET the receiver to DEFAULT status, turn it on with the encoder pust button pressed. Check the message "EEPROM RESETED".
+
+   
