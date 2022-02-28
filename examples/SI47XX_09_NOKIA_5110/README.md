@@ -103,7 +103,7 @@ The schematic below shows the Arduino board based on ATmega 328 and the Nokia 51
 |                           | (*3) SDIO (pin 18)            |     A4        |
 |                           | (*3) SCLK (pin 17)            |     A5        |
 |                           | (*4) SEN (pin 16)             |    GND        |
-|     Buttons               |                               |               |
+|     Button                |                               |               |
 |                           | Encoder Push button           |     14 / A0   |
 |     Encoder               |                               |               |
 |                           | A                             |       2       |
