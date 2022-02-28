@@ -258,7 +258,7 @@ void setup()
   // Start the Nokia display device
   display.begin();
   display.setRotation(2);   //  Rotate the display 180 degree
-  // display.setContrast(80);
+  display.setContrast(60);
   // Splash
   splash();
   // Encoder interrupt
@@ -433,6 +433,7 @@ void showStatus()
   char bufferDisplay[20];
 
   display.clearDisplay();
+  display.drawLine(0,15,84,15, BLACK); 
   clearBuffers();
   
   showValue(0, 18, oldBand, (char *) band[bandIdx].bandName, 1, 6);
