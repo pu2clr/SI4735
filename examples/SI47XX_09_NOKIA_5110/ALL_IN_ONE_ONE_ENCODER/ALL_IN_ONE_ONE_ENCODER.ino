@@ -1,7 +1,5 @@
 /*
 
-  UNDER CONSTRUCTION...
-
   See user_manual.txt before operating the receiver.
   
   This sketch uses the display Nokia 5110 compatible device with a very lightweight library to control it called LCD5110_Graph. 
@@ -278,7 +276,7 @@ void setup()
   // Start the Nokia display device
 
   nokia.InitLCD();
-  // nokia.setContrast(65); // 0 - 120 -> Set the appropriated value for you 
+  nokia.setContrast(60); // 0 - 120 -> Set the appropriated value for you 
 
 
   splash(); // Show Splash - Remove this line if you do not want it. 
@@ -666,6 +664,8 @@ void showBFO()
   char newBFO[10];
   uint16_t auxBfo;
   auxBfo = currentBFO;
+
+  nokia.clrScr();
 
   strcpy(newBFO,"BFO:");
 
@@ -1270,7 +1270,7 @@ void loop()
     {
       bfoOn = false;
       // showBFO();
-      showStatus();
+      // showStatus();
     } else if (isMenuMode()) 
       showStatus();
     disableCommands();
