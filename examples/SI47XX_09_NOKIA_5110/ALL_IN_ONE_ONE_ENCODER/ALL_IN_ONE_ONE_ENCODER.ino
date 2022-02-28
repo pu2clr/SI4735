@@ -1,15 +1,12 @@
 /*
-
   See user_manual.txt before operating the receiver.
   
   This sketch uses the display Nokia 5110 compatible device with a very lightweight library to control it called LCD5110_Graph. 
   To install and to know more about the Nokia 5110 library used here see: http://www.rinkydinkelectronics.com/library.php?id=47
   
-
   If you are using a SI4735-D60 or SI4732-A10, you can also use this sketch to add the SSB functionalities to the
   original Pavleski's project. If you are using another SI4730-D60, the SSB wil not work. But you will still have
   the SW functionalities.
-
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
@@ -17,12 +14,11 @@
   Features:   EEPROM save and restore of receiver status; AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-
   Wire up on Arduino UNO, Pro mini and SI4735-D60
 
   | Device name               | Device Pin / Description      |  Arduino Pin  |
   | ----------------          | ----------------------------- | ------------  |
-  | Display NOKIA             |                               |               |
+  | Display NOKIA 5110        |                               |               |
   |                           | (1) RST (RESET)               |     8         |
   |                           | (2) CE or CS                  |     9         |
   |                           | (3) DC or DO                  |    10         |
@@ -63,7 +59,6 @@
 
 const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
 const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
-
 
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
@@ -196,7 +191,7 @@ int tabAmStep[] = {1,    // 0
                    50,   // 4
                    500}; // 5
 
-const int lastAmStep = (sizeof tabAmStep / sizeof(int)) - 1;
+const  lastAmStep = (sizeof tabAmStep / sizeof(int)) - 1;
 int idxAmStep = 3;
 
 int tabFmStep[] = {5, 10, 20};
@@ -241,7 +236,7 @@ Band band[] = {
     {"MW ", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 32},
     {"SW1", SW_BAND_TYPE, 1700, 10000, 7200, 1, 4, 1, 0, 0, 32},
     {"SW2", SW_BAND_TYPE, 10000, 20000, 13600, 1, 4, 1, 0, 0, 32},
-    {"SW3", SW_BAND_TYPE, 20000, 30000, 21500, 1, 4, 1, 0, 0, 32} 
+    {"SW3", SW_BAND_TYPE, 20000, 30000, 21500, 1, 4, 1, 0, 0, 32}
 };
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
@@ -249,13 +244,11 @@ int bandIdx = 0;
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 
-
 uint8_t rssi = 0;
 uint8_t volume = DEFAULT_VOLUME;
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
-
 LCD5110 nokia(NOKIA_CLK,NOKIA_DIN,NOKIA_DC,NOKIA_RST,NOKIA_CE);
 
 extern uint8_t SmallFont[]; // Font Nokia
@@ -269,13 +262,9 @@ void setup()
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
-
   // Start the Nokia display device
-
   nokia.InitLCD();
   nokia.setContrast(60); // 0 - 120 -> Set the appropriated value for you 
-
-
   splash(); // Show Splash - Remove this line if you do not want it. 
   EEPROM.begin();
 
@@ -287,25 +276,15 @@ void setup()
     delay(2000);
     nokia.clrScr();
   }
-
   // controlling encoder via interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   rx.setI2CFastModeCustom(100000);
-  
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
-  
   rx.setup(RESET_PIN, MW_BAND_TYPE);
-  // Comment the line above and uncomment the three lines below if you are using external ref clock (active crystal or signal generator)
-  // rx.setRefClock(32768);
-  // rx.setRefClockPrescaler(1);   // will work with 32768  
-  // rx.setup(RESET_PIN, 0, MW_BAND_TYPE, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
-
-  
   delay(300);
   rx.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM/SSB mode (you can use values between 12 and 90dB).
-
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id)
   {
@@ -384,7 +363,6 @@ void readAllReceiverInformation()
   currentMode = EEPROM.read(eeprom_address + 4);
   currentBFO = EEPROM.read(eeprom_address + 5) << 8;
   currentBFO |= EEPROM.read(eeprom_address + 6);
-
   addr_offset = 7;
   for (int i = 0; i <= lastBand; i++)
   {
@@ -397,10 +375,7 @@ void readAllReceiverInformation()
     band[i].agcNdx = EEPROM.read(addr_offset++);
     band[i].avcIdx = EEPROM.read(addr_offset++);
   }
-
-
   currentFrequency = band[bandIdx].currentFreq;
-
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentStepIdx = idxFmStep = band[bandIdx].currentStepIdx;
@@ -411,9 +386,7 @@ void readAllReceiverInformation()
     currentStepIdx = idxAmStep = band[bandIdx].currentStepIdx;
     rx.setFrequencyStep(tabAmStep[currentStepIdx]);
   }
-
   bwIdx = band[bandIdx].bandwidthIdx;
-
   if (currentMode == LSB || currentMode == USB)
   {
     loadSSB();
@@ -435,7 +408,6 @@ void readAllReceiverInformation()
     bwIdxFM = bwIdx;
     rx.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
   }
-
   delay(50);
   rx.setVolume(volume);
 }
@@ -466,11 +438,8 @@ void disableCommands()
   cmdSoftMuteMaxAtt = false;
   cmdAvc =  false; 
   countClick = 0;
-
   showCommandStatus((char *) "VFO ");
 }
-
-
 
 /**
  * Reads encoder via interrupt
@@ -598,8 +567,7 @@ void showRSSI()
   if (currentMode == FM)
   {
     show(0,60,(rx.getCurrentPilot()) ? "ST" : "MO");
-  }
-    
+  } 
   if (rssi < 2)
     rssiAux = 4;
   else if (rssi < 4)
@@ -618,7 +586,6 @@ void showRSSI()
   sMeter[2] = ((rssi >= 60) ? '+' : ' ');
   sMeter[3] = '\0';
   show(65,40,sMeter);
-
 }
 
 /**
@@ -660,10 +627,7 @@ void showBFO()
   auxBfo = currentBFO;
 
   nokia.clrScr();
-
   strcpy(newBFO,"BFO:");
-
-  
   if (currentBFO < 0 ) {
     auxBfo = ~currentBFO + 1; // converts to absolute value (ABS) using binary operator
     newBFO[4] = '-';
@@ -675,7 +639,6 @@ void showBFO()
 
   rx.convertToChar(auxBfo, &newBFO[5], 4, 0, '.');
   show(0,0,newBFO);
-
   elapsedCommand = millis();
 }
 
@@ -759,7 +722,6 @@ void useBand()
   }
   else
   {
-
     disableAgc = band[bandIdx].disableAgc;
     agcIdx = band[bandIdx].agcIdx;
     agcNdx = band[bandIdx].agcNdx;
@@ -802,9 +764,9 @@ void useBand()
 }
 
 /*
-   This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
-   SSB mode.
-   This version uses the compressed SSB patch version.
+ *  This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
+ *  SSB mode.
+ *  This version uses the compressed SSB patch version.
 */
 void loadSSB()
 {
@@ -825,7 +787,6 @@ void loadSSB()
  */
 void doBandwidth(int8_t v)
 {
- 
     if (currentMode == LSB || currentMode == USB)
     {
       bwIdxSSB = (v == 1) ? bwIdxSSB + 1 : bwIdxSSB - 1;
@@ -855,7 +816,6 @@ void doBandwidth(int8_t v)
 
       rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
       band[bandIdx].bandwidthIdx = bwIdxAM;
-      
     } else {
     bwIdxFM = (v == 1) ? bwIdxFM + 1 : bwIdxFM - 1;
     if (bwIdxFM > maxFmBw)
@@ -880,8 +840,6 @@ void showCommandStatus(char * currentCmd)
   nokia.print(currentCmd, 35, 2);
   nokia.update();
 }
-
-
 
 /**
  *  AGC and attenuattion setup
@@ -1019,7 +977,6 @@ void showFrequencySeek(uint16_t freq)
 void doSeek()
 {
   if ((currentMode == LSB || currentMode == USB)) return; // It does not work for SSB mode
-
   nokia.clrScr();
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   showStatus();
@@ -1056,15 +1013,10 @@ void doAvc(int8_t v)
     avcIdx = 90;
 
   rx.setAvcAmMaxGain(avcIdx);
-
   band[bandIdx].avcIdx = avcIdx;
-
   showAvc();
   elapsedCommand = millis();
 }
-
-
-
 
 /**
  *  Menu options selection
@@ -1080,8 +1032,6 @@ void doMenu( int8_t v) {
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
-
-
 
 /**
  * Return true if the current status is Menu command
@@ -1115,7 +1065,6 @@ void doCurrentMenuCmd() {
         if ((currentMode == LSB || currentMode == USB)) {
           showBFO();
         }
-      // showFrequency();
       break;      
     case 4:                 // BW
       cmdBandwidth = true;
@@ -1148,8 +1097,6 @@ void doCurrentMenuCmd() {
   currentMenuCmd = -1;
   elapsedCommand = millis();
 }
-
-
 
 /**
  * Main loop
@@ -1282,6 +1229,5 @@ void loop()
       itIsTimeToSave = false;
     }
   }
-
   delay(2);
 }

@@ -61,8 +61,8 @@
 
 #include <SI4735.h>
 
-#include <Adafruit_GFX.h>    //Downlaod it here : https://www.electronoobs.com/eng_arduino_Adafruit_GFX.php
-#include <Adafruit_PCD8544.h> //Download it here: https://www.electronoobs.com/eng_arduino_Adafruit_PCD8544.php
+#include <Adafruit_GFX.h>     // See: https://www.electronoobs.com/eng_arduino_Adafruit_GFX.php
+#include <Adafruit_PCD8544.h> // See: https://www.electronoobs.com/eng_arduino_Adafruit_PCD8544.php
 #include <SPI.h>
 #include "Rotary.h"
 
