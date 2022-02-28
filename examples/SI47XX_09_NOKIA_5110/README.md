@@ -105,7 +105,7 @@ The schematic below shows the Arduino board based on ATmega 328 and the Nokia 51
 ![Nokia 5110 schematic](../../extras/images/schematic_basic_Nokia5110_one_encoder.png)
 
 
-## Wire up on Arduino UNO, Pro mini and SI4735-D60
+## Wire up on Atmega328 based board (Arduino UNO, Nano or Pro mini) and SI4735-D60
 
 
 | Device name               | Device Pin / Description      |  Arduino Pin  |
@@ -165,4 +165,5 @@ __ATTENTION__: Try press and release the push button fastly. I mean, do not keep
 
    The main information of the receiver is stored into the Arduino EEPROM. This way, when you turn the receiver on, the last receiver status is rescued. To RESET the receiver to DEFAULT status, turn it on with the encoder pust button pressed. Check the message "EEPROM RESETED".
 
-   
+
+  
