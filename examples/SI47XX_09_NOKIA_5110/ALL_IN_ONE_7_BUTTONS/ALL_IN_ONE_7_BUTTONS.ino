@@ -258,7 +258,7 @@ void setup()
   // Start the Nokia display device
   display.begin();
   display.setRotation(2);   //  Rotate the display 180 degree
-  display.setContrast(60);
+  // display.setContrast(60);
   // Splash
   splash();
   // Encoder interrupt

@@ -4,6 +4,16 @@
 
 ## Example ALL_IN_ONE_7_BUTTONS (One encoder and 7 buttons) 
 
+
+This example uses the Adafruit libraries __Adafruit_GFX__ and __Adafruit_PCD8544__. 
+The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and SSB modes.
+
+| | | | | |
+|-|-|-|-|-|
+| ![N701](../../extras/images/N7_01.png) | ![N702](../../extras/images/N7_02.png | ![N703](../../extras/images/N7_03.png| ![N704](../../extras/images/N7_05.png | ![N705](../../extras/images/N7_05.png |  
+
+
+
 The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display
 
 ![Nokia 5110 schematic](../../extras/images/schematic_basic_Nokia5110.png)
@@ -77,6 +87,17 @@ To control the VFO and BFO, used the encoder push button. The display will show 
 
 
 ## Example ALL_IN_ONE_ONE_ENCODER 
+
+This example uses the Adafruit librarie __LCD5110_Graph__ to control the Nokia 5110. 
+It is not available on Arduino IDE. To install __LCD5110_Graph__ library, download that library on [Rinky-Dink Eletronics](http://www.rinkydinkelectronics.com/library.php?id=47) site, unzip the file and move the folder unzipped to your Arduino Libraries folder. 
+
+
+The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and SSB modes.
+
+| | | | | |
+|-|-|-|-|-|
+| ![N101](../../extras/images/N1_01.png) | ![N102](../../extras/images/N1_02.png | ![N103](../../extras/images/N1_03.png| ![N104](../../extras/images/N1_05.png | ![N105](../../extras/images/N1_05.png |  
+
 
 
 The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display controlled just by one encoder and one push button.
