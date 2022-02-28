@@ -8,9 +8,9 @@
 This example uses the Adafruit libraries __Adafruit_GFX__ and __Adafruit_PCD8544__. 
 The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and SSB modes.
 
-| | | | | |
-|-|-|-|-|-|
-| ![N701](../../extras/images/N7_01.png) | ![N702](../../extras/images/N7_02.png) | ![N703](../../extras/images/N7_03.png) | ![N704](../../extras/images/N7_05.png) | ![N705](../../extras/images/N7_05.png) |  
+| FM | MW/AM | SW/AM | 40M/LSB | 10M/USB |
+| -- | ----- | ----- | ------- | ------- |
+| ![N701](../../extras/images/N7_01.png) | ![N702](../../extras/images/N7_02.png) | ![N703](../../extras/images/N7_03.png) | ![N704](../../extras/images/N7_04.png) | ![N705](../../extras/images/N7_05.png) |  
 
 
 
@@ -95,7 +95,7 @@ It is not available on Arduino IDE. To install __LCD5110_Graph__ library, downlo
 The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and SSB modes.
 
 | FM | MW/AM | SW/AM | 40M/LSB | 10M/USB |
-|-|-|-|-|-|
+| -- | ----- | ----- | ------- | ------- |
 | ![N101](../../extras/images/N1_01.png) | ![N102](../../extras/images/N1_02.png) | ![N103](../../extras/images/N1_03.png) | ![N104](../../extras/images/N1_04.png) | ![N105](../../extras/images/N1_05.png) |  
 
 
