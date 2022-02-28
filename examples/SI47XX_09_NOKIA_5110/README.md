@@ -10,7 +10,7 @@ The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and S
 
 | | | | | |
 |-|-|-|-|-|
-| ![N701](../../extras/images/N7_01.png) | ![N702](../../extras/images/N7_02.png | ![N703](../../extras/images/N7_03.png| ![N704](../../extras/images/N7_05.png | ![N705](../../extras/images/N7_05.png |  
+| ![N701](../../extras/images/N7_01.png) | ![N702](../../extras/images/N7_02.png) | ![N703](../../extras/images/N7_03.png) | ![N704](../../extras/images/N7_05.png) | ![N705](../../extras/images/N7_05.png) |  
 
 
 
@@ -96,7 +96,7 @@ The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and S
 
 | | | | | |
 |-|-|-|-|-|
-| ![N101](../../extras/images/N1_01.png) | ![N102](../../extras/images/N1_02.png | ![N103](../../extras/images/N1_03.png| ![N104](../../extras/images/N1_05.png | ![N105](../../extras/images/N1_05.png |  
+| ![N101](../../extras/images/N1_01.png) | ![N102](../../extras/images/N1_02.png) | ![N103](../../extras/images/N1_03.png) | ![N104](../../extras/images/N1_05.png) | ![N105](../../extras/images/N1_05.png) |  
 
 
 
