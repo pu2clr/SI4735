@@ -386,7 +386,9 @@ The schematic below shows the Arduino board based on ATmega 328 and the Nokia 51
 ![Nokia 5110 schematic](../extras/images/schematic_basic_Nokia5110_one_encoder.png)
 
 
+[Video](https://youtu.be/gN06g6vqt8Q)
 {% include nokia5110.html %}
+
 
 
 ## [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://github.com/pu2clr/bluetooth_remote_control)
