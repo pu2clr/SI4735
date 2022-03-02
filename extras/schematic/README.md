@@ -14,9 +14,7 @@ __This project is about a library to control the SI47XX devices and the focus of
 
 ## SI4735 and SI4732 pinout
 
-Check on the SI4735 and SI4732 packages the pins: RESET, SDIO, SCLK and SEN.
-
-If the schematic uses the SI4735 but you have the SI4732, all you have to do is following the lables of those devices to replace them. See pictures below. 
+If the schematic uses the SI4735 but you have the SI4732, all you have to do is following the lables of those devices to replace them. See pictures below. See the table __SI4735-D60 and SI4732-A10 replacement__  below. 
 
 ### The picture below shows the SI4735-D60/SI4730-D60 pinout (SSOP)
 
