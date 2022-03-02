@@ -230,3 +230,125 @@ See videos:
 
 <BR>
 
+## Bluepill - STM32F103C8 basic schematic
+
+
+### STM32F1 and SI4735-D60 or SI4732-A10 wire up
+
+
+| Si4735  | SI4732   | DESC.  | ESP32    | 
+|---------| -------- |--------|----------|
+| pin 15  |  pin 9   | RESET  |   PA12   |  
+| pin 18  |  pin 12  | SDIO   |   B7     |
+| pin 17  |  pin 11  | SCLK   |   B6     |
+
+
+The schematic below guides you to build a SI473X based receiver using the STM32 device. 
+
+The schematics below guide you to build a SI473X based receiver using the STM32 device. 
+
+
+###  Bluepill Basic schematic V1
+
+This version uses a Encoder with Push Button,  and 7 push button.
+
+![Bluepill Basic schematic V1](../images/schematic_bluepill_basic.png)
+
+
+#### OLED, Encoder and Buttons connections
+
+| Device name   | Device Pin / Description |  STM32F1|
+| --------------| -------------------------| --------|
+| OLED          |                          |         |
+|               | SDA/SDIO                 |  B7     | 
+|               | SCL/SCLK                 |  B6     | 
+| Encoder       |                          |         |
+|               | A                        |  PA0    |
+|               | B                        |  PA1    |
+|               | PUSH BUTTON (BFO/VFO)    |  PA15   | BFO_SWITCH
+| Buttons       |                          |         |
+|   MODE_SWITCH | Switch MODE (Am/LSB/USB) |  PA2    |  
+|   BANDWIDTH   | Bandwidth                |  PA3    |  
+|   VOL         | Volume Up                |  PA4    |
+|   VOL_DOWN    | Volume Down              |  PA5    |
+|   BAND_UP     | Next Band                |  PA6    | 
+|   BAND_DOWN   | Previous band            |  PA7    | 
+|   AGC_SWITCH  | Switch AGC               |  PA8    | 
+|   STEP_SWITCH | Step Switch              |  PA11   | 
+
+
+### Bluepill Basic schematic V2
+
+This version uses only a Encoder with Push Button
+
+![Bluepill Basic schematic V2](../images/schematic_bluepill_basicv2.png)
+
+#### OLED and Encoder connections
+
+  
+STM32F1 and components wire up. 
+  
+| Device name   | Device Pin / Description |  STM32F1 |
+| --------------| -------------------------| --------|
+|    OLED       |                          |         |
+|               | SDA/SDIO                 |  B7     | 
+|               | SCL/SCLK                 |  B6     | 
+|    Encoder    |                          |         |
+|               | A                        |  PA9    |
+|               | B                        |  PA10   |
+|               | PUSH BUTTON (encoder)    |  PA11   |
+
+
+
+
+Sketches on [SI47XX_07_STM32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_07_STM32)
+
+
+See video: 
+
+* [Si4735 Arduino Library and Bluepill STM32F103](https://youtu.be/v4o5_lKKATc)
+
+
+{% include schematic_basic_stm32.html %}
+
+
+<BR>
+
+
+## Teensy 3.X and 4.X
+
+The setup bellow works on Teensy 3.X and Teensy 4.X board family. 
+
+### Teensy and components wire up. 
+
+#### OLED and Encoder
+  
+| Device name   | Device Pin / Description |  Teensy |
+| --------------| -------------------------| --------|
+|    OLED       |                          |         |
+|               | SDA/SDIO                 |  A4     | 
+|               | SCL/SCLK                 |  A5     | 
+|    Encoder    |                          |         |
+|               | A                        |   9     |
+|               | B                        |  10     |
+|               | PUSH BUTTON (encoder)    |  11     |
+
+
+#### SI4735-D60 or SI4732-A10 wire up
+
+| Si4735  | SI4732   | DESC.  | Teensy   | 
+|---------| -------- |--------|----------|
+| pin 15  |  pin 9   | RESET  |   12     |  
+| pin 18  |  pin 12  | SDIO   |   A4     |
+| pin 17  |  pin 11  | SCLK   |   A5     |
+
+
+#### Teensy Basic schematic with OLED and Encoder
+
+![Teensy 3.X or 4.X Basic schematic with OLED](../images/schematic_teensy31.png)
+
+
+
+Sketches on [SI47XX_14_TEENSY](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_14_TEENSY)
+
+
