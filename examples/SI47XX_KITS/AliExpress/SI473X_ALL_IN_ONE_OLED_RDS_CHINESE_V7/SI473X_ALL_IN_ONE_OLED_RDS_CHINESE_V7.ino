@@ -383,6 +383,12 @@ void setup()
                                      //    -any other number 'x' specifies the timeout between changes as above (ENCODER_MUTEDELAY)
                                      //    -with a setting of 9, this is roughly 750 ms
 
+#define STEP_DELAY                6  // Controls how long the bandwidth button needs to be longpressed for functionality:
+                                     //    -must be uint8_t (i. e. between 0 and 255)
+                                     //    -if Zero, longpresses will be ignored
+                                     //    -any other number 'x' specifies the timeout between changes as above (ENCODER_MUTEDELAY)
+                                     //    -with a setting of 6, this is roughly 600 ms
+
 
 // Print information about detected button press events on Serial
 // These events can be used to attach specific funtionality to a button
@@ -513,6 +519,38 @@ uint8_t bandwidthEvent(uint8_t event, uint8_t pin) {
       count = (count + 1) % BANDWIDTH_DELAY;
     }
   }
+#endif
+  return event;
+}
+
+uint8_t stepEvent(uint8_t event, uint8_t pin) {
+#ifdef DEBUG
+  buttonEvent(event, pin);
+#endif
+#if (0 != STEP_DELAY)
+  if (FM != currentMode)
+    if (BUTTONEVENT_ISLONGPRESS(event))
+    {
+      static uint8_t direction = 1;
+      static uint8_t count;
+      if (BUTTONEVENT_LONGPRESSDONE == event)
+        direction = 1 - direction;
+      else
+      {
+        if (BUTTONEVENT_FIRSTLONGPRESS == event)
+        {
+          count = 0;
+          if (0 == idxStep)
+            direction = 1;
+          else if (lastStep == idxStep)
+            direction = 0;
+        }
+        if (0 == count++)
+          if (bfoOn || (idxStep != (direction?lastStep:0)))
+            doStep(direction);
+        count = count % STEP_DELAY;
+      }
+    }
 #endif
   return event;
 }
@@ -1108,7 +1146,6 @@ void doStep(int8_t v)
     si4735.setSeekAmSpacing((tabStep[idxStep] > 10) ? 10 : tabStep[idxStep]); // Max 10kHz for spacing
     showStep();
   }
-  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
 /**
@@ -1134,7 +1171,6 @@ void doVolume(int8_t v)
 */
 void doAttenuation(int8_t v)
 {
-  if ( cmdAgcAtt) {
     agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
     if (agcIdx < 0)
       agcIdx = 37;
@@ -1150,7 +1186,6 @@ void doAttenuation(int8_t v)
 
     // Sets AGC on/off and gain
     si4735.setAutomaticGainControl(disableAgc, agcNdx);
-  }
 
   showAttenuation();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
@@ -1240,7 +1275,6 @@ void doBandwidth(uint8_t v)
     si4735.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
   }
   showBandwidth();
-  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
 /**
@@ -1416,7 +1450,7 @@ uint8_t x;
         disableCommand(&cmdAgcAtt, cmdAgcAtt, showAttenuation);
       }
     }
-    if (BUTTONEVENT_SHORTPRESS == btn_Step.checkEvent(buttonEvent))
+    if (BUTTONEVENT_SHORTPRESS == btn_Step.checkEvent(stepEvent))
     {
       if (currentMode != FM)
       {

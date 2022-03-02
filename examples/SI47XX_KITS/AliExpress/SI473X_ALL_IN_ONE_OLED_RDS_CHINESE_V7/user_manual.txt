@@ -27,7 +27,8 @@ NEW:
 * Button presses can now be distinguished between shortpress and longpress
 * If shortpressed, the selected function can be controlled by rotating the encoder as usual
 * If longpressed, some functions can be controlled without using the encoder:
-    - Longpress on Vol+/Vol- will increase/decrease the volume (at fast pace)
+    - Longpress (and hold) on Vol+/Vol- will increase/decrease the volume (at fast pace)
+    - Lomgpress (and hold) on Band+/Band- will switch up/down through the available bands
     - Longpress on Encoder can Mute/Unmute the radio
 
 COMMANDS
@@ -38,7 +39,7 @@ Press the __"VOL+"__ push button and rotate the  encoder. Press the button again
 
 or (NEW)
 
-Longpress __"VOL+"__ or __"VOL-"__ to smoothly increase/decrease the volume.
+Longpress (and hold) __"VOL+"__ or __"VOL-"__ to smoothly increase/decrease the volume.
 Longpress __ENCODER__ to Mute/Unmute the radio.
 * This function must be defined at compile-time, can be disabled altogether or time for longpress 
   might be specified: search for "#define ENCODER_MUTEDELAY" in the main *.ino-file.
@@ -63,7 +64,8 @@ Press the push button labeled __"BAND-"__ and rotate the  encoder. Press the but
 Press the BW  push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
 or (NEW)
-Longpress the BW push button. The bandwidth will change stepwise. The bandwidth setting will not wrap around but
+
+Longpress (and hold) the BW push button. The bandwidth will change stepwise. The bandwidth setting will not wrap around but
 stay at either the upper or lower end of the supported range (defined by current mode). 
 * This function must be defined at compile-time, can be disabled altogether or time for longpress 
   might be specified: search for "#define BANDWIDTH_DELAY" in the main *.ino-file.
@@ -71,6 +73,13 @@ stay at either the upper or lower end of the supported range (defined by current
 6) SWITCHING THE STEP FREQUENCY
 
 Press the STEP push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+or (NEW)
+
+Longpress (and hold) the STEP push button. The step setting will change stepwise. The step setting will not wrap 
+around but stay at either the upper or lower end of the supported range (between 1 and 100 kHz). 
+* This function must be defined at compile-time, can be disabled altogether or time for longpress 
+  might be specified: search for "#define STEP_DELAY" in the main *.ino-file.
 
 7) SWITCHING THE MODE AM, LSB AND USB
 
