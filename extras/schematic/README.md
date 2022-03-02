@@ -20,11 +20,11 @@ If the schematic uses the SI4735 but you have the SI4732, all you have to do is 
 
 ### The picture below shows the SI4735-D60/SI4730-D60 pinout (SSOP)
 
-![Si4735-D60 pinout](../extras/images/Si4735-D60-pinout.png)
+![Si4735-D60 pinout](../images/Si4735-D60-pinout.png)
 
 ### The picture below shows the SI4732-A10 pinout (16L SOIC Package)
 
-![Si4732-A10 pinout](../extras/images/SI4732_A10_pinout.png)
+![Si4732-A10 pinout](../images/SI4732_A10_pinout.png)
 
  
 __ATTENTION__: 
