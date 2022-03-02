@@ -380,6 +380,45 @@ See video:
 ## Arduino / ATmega328 with Nokia 5110
 
 
+### Example One encoder and 7 push buttons to control the receiver
+
+This example uses the Adafruit libraries __Adafruit_GFX__ and __Adafruit_PCD8544__. 
+The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and SSB modes.
+
+| FM | MW/AM | SW/AM | 40M/LSB | 10M/USB |
+| -- | ----- | ----- | ------- | ------- |
+| ![N701](../images/N7_01.png) | ![N702](../images/N7_02.png) | ![N703](../images/N7_03.png) | ![N704](../images/N7_04.png) | ![N705](../images/N7_05.png) |  
+
+
+The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display
+
+![Nokia 5110 schematic](../images/schematic_basic_Nokia5110.png)
+
+Sketches on [SI47XX_08_TM1638](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_NOKIA_5110)
+
+
+### Example one encoder with push button to control the receiver
+
+This example uses the Adafruit librarie __LCD5110_Graph__ to control the Nokia 5110. 
+It is not available on Arduino IDE. To install __LCD5110_Graph__ library, download that library on [Rinky-Dink Eletronics](http://www.rinkydinkelectronics.com/library.php?id=47) site, unzip the file and move the folder unzipped to your Arduino Libraries folder. 
+
+
+The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and SSB modes.
+
+| FM | MW/AM | SW/AM | 40M/LSB | 10M/USB |
+| -- | ----- | ----- | ------- | ------- |
+| ![N101](../images/N1_01.png) | ![N102](../images/N1_02.png) | ![N103](../images/N1_03.png) | ![N104](../images/N1_04.png) | ![N105](../images/N1_05.png) |  
+
+
+
+The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display controlled just by one encoder and one push button.
+
+![Nokia 5110 schematic](../images/schematic_basic_Nokia5110_one_encoder.png)
+
+[Video](https://youtu.be/gN06g6vqt8Q)
+
+{% include nokia5110.html %}
+
 ## [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://github.com/pu2clr/bluetooth_remote_control)
 
 The schematic below is a simple example that shows a way to use your smartphone as a remote control via Bluetooth. You will find more details [here](https://pu2clr.github.io/bluetooth_remote_control/).
