@@ -169,3 +169,64 @@ See  video:
 
 <BR>
 
+## Basic schematic with TFT
+
+The schematic below guides you to build your own receiver based on the SI473X with TFT display. The sketches available on [examples/SI47XX_04_TFT/](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT) folder decribe the wire up used by the TFT selected by the author. Please, read the comments at the beginning of each sketch example.  
+
+
+![Basic schematic with TFT](../images/schematic_tft.png)
+
+Sketches on [examples/SI47XX_04_TFT/](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT)
+
+See video:
+[Si4735 All in One Receiver running on Arduino Pro Mini 3.3V (8MHz) and TFT Display](https://youtu.be/oL8qyRglZ8I)
+
+{% include videoSSB.html %}
+
+<BR>
+
+## Arduino DUE/MEGA and touch TFT display. 
+
+The schematic below shows just the Arduino DUE and SI473X connections. The touch TFT used by this circuit is a shield that can be connected to the Arduino DUE directly. If you intent to use Arduino Mega, you have to add a bidirectional logic level converter. 
+
+
+![Basic schematic with TFT](../images/schematic_arduino_due_mega_basic.png)
+
+
+Sketches on [SI47XX_10_RDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS)
+
+See videos: 
+
+* [Arduino DUE](https://youtu.be/oI9TfJ-8Z9Q)
+* [Arduino MEGA 2560](https://youtu.be/fLA2-WFK6GY)
+
+{% include shcematic_due_mega.html %}
+
+
+<BR>
+
+## Attiny85 basic circuit
+
+You can use de Si4735 Arduino Library on the very small ATtiny85 or Attiny84. The schematic below can guide you to build a receiver based on attiny85 device. 
+
+
+![Attiny85 Basic schematic](../images/schematic_attiny85_basic.png)
+
+
+### Attiny85 with external eeprom
+
+![Attiny85 Basic schematic](../images/schematic_attiny85_ssb_external_eeprom.png)
+
+
+Sketches on [examples/SI47XX_05_ATTINY85](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85)
+
+See videos: 
+
+* [SI4735 Arduino Library working with ATtiny85](https://youtu.be/oI9TfJ-8Z9Q)
+* [How to "SI4735 Arduino Library and ATtiny85"](https://youtu.be/zb9TZtYVu-s)
+
+{% include schematic_attiny85.html %}
+
+
+<BR>
+
