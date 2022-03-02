@@ -74,12 +74,15 @@
 
   By Ricardo Lima Caratti, April  2021.
 */
+#define DEBUG               // Comment/uncomment for disabling/enabling debug output on Serial
+#define DEBUG_BUTTONS_ONLY  // If defined, just do DEBUG output for Buttons (radio will not play at all)
 
 #include <SI4735.h>
 #include <EEPROM.h>
 #include <Tiny4kOLED.h>
 #include <font8x16atari.h> // Please, install the TinyOLED-Fonts library
 #include "Rotary.h"
+#include "SimpleButton.h"
 
 #include "patch_ssb_compressed.h" // Compressed SSB patch version (saving almost 1KB)
 
@@ -150,6 +153,19 @@ bool cmdAvc = false;      // if true, the encoder will control Automatic Volume 
 long countRSSI = 0;
 
 int currentBFO = 0;
+
+// Button handlers for push buttons/encoder
+SimpleButton  btn_Bandwidth(BANDWIDTH_BUTTON);
+SimpleButton  btn_BandUp(BAND_BUTTON);
+SimpleButton  btn_BandDn(SOFTMUTE_BUTTON);
+SimpleButton  btn_VolumeUp(VOLUME_BUTTON);
+SimpleButton  btn_VolumeDn(AVC_BUTTON);
+SimpleButton  btn_Encoder(ENCODER_BUTTON);
+SimpleButton  btn_AGC(AGC_BUTTON);
+SimpleButton  btn_Step(STEP_BUTTON);
+SimpleButton  btn_Mode(MODE_SWITCH);
+
+
 
 long elapsedRSSI = millis();
 long elapsedButton = millis();
@@ -282,6 +298,13 @@ SI4735 si4735;
 
 void setup()
 {
+
+#ifdef DEBUG
+  Serial.begin(115200);
+#ifdef DEBUG_BUTTONS_ONLY
+  return;
+#endif
+#endif
   // Encoder pins
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
@@ -352,6 +375,32 @@ void setup()
   oled.clear();
   showStatus();
 }
+
+
+#if defined(DEBUG)
+
+// Print information about detected button press events on Serial
+// These events can be used to attach specific funtionality to a button
+void buttonEvent(uint8_t event, uint8_t pin) {
+  Serial.print("Event=");Serial.print(event);Serial.print(" on Pin=");Serial.print(pin);Serial.print("==>");
+  if (BUTTONEVENT_ISLONGPRESS(event))
+  { 
+    if (BUTTONEVENT_FIRSTLONGPRESS == event)
+      Serial.println("Longpress started!");
+    else if (BUTTONEVENT_LONGPRESS == event)
+      Serial.println("Longpress repeat!");
+    else if (BUTTONEVENT_LONGPRESSDONE == event)
+      Serial.println("Longpress Done!");
+    else 
+      Serial.println("UNEXPECTED LONGPRESS EVENT!!!!");
+  }
+  else if (event == BUTTONEVENT_SHORTPRESS)
+    Serial.println("Shortpress!");
+  else
+    Serial.println("UNEXPECTED!!!!");
+}
+#endif
+
 
 // Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
 void rotaryEncoder()
@@ -1099,6 +1148,19 @@ void disableCommand(bool *b, bool value, void (*showFunction)())
 
 void loop()
 {
+#if defined(DEBUG) && defined(DEBUG_BUTTONS_ONLY)
+uint8_t x;
+  btn_BandUp.checkEvent(buttonEvent) ;
+  btn_BandDn.checkEvent(buttonEvent) ;
+  btn_VolumeUp.checkEvent(buttonEvent);
+  btn_VolumeDn.checkEvent(buttonEvent);
+  btn_Bandwidth.checkEvent(buttonEvent) ;
+  btn_AGC.checkEvent(buttonEvent) ;
+  btn_Step.checkEvent(buttonEvent) ;
+  btn_Mode.checkEvent(buttonEvent) ;
+  btn_Encoder.checkEvent(buttonEvent) ;
+  return;
+#endif  
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
