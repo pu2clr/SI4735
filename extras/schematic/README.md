@@ -352,3 +352,214 @@ The setup bellow works on Teensy 3.X and Teensy 4.X board family.
 Sketches on [SI47XX_14_TEENSY](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_14_TEENSY)
 
 
+## Arduino Pro Mini 3.3V and 7SEG Display based on TM1638 
+
+
+It is a receiver prototype based on SI4735 controlled by TM1638 based devices with buttons, LEDs and 7 segment display. 
+This receiver covers AM and SSB (LW, MW and SW) and FM from 64 to 108 MHz.  
+
+The photo below shows the TM1638 based device.
+
+![TM1638 photo](../images/TM1638_01.png)
+
+### SI4735, Arduino Pro Mini 3.3V, encoder and TM1638
+
+![Arduino and TM1638 schematic](../images/schematic_schematic_TM1838_png.png)
+
+
+Sketches on [SI47XX_08_TM1638](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_TM1638)
+
+
+See video: 
+
+* [FM, AM and SSB receiver with Arduino and TM1638 7 segments display device](https://youtu.be/VqXkffHu6D8)
+
+{% include schematic_basic_tm1638.html}
+
+
+## Arduino / ATmega328 with Nokia 5110
+
+
+## [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://github.com/pu2clr/bluetooth_remote_control)
+
+The schematic below is a simple example that shows a way to use your smartphone as a remote control via Bluetooth. You will find more details [here](https://pu2clr.github.io/bluetooth_remote_control/).
+
+![Mobile device remote control Schematic](https://pu2clr.github.io/bluetooth_remote_control/extras/schematic_basic.png)
+
+
+See [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://pu2clr.github.io/bluetooth_remote_control/).
+
+See video
+
+* [SI4735 receiver prototype controlled by iPhone via Bluetooth](https://youtu.be/Yc9DHl7yQZ0)
+
+{% include ble_remote_control.html %}
+
+
+<BR>
+
+
+## External Mute Circuit 
+
+The SI47XX devices have about DC bias component in the analog audio output pins (SI4735-D60 pins 23 and 24). When the device goes to power down mode, the voltage on the audio pins drops to 0V.  The device do it internally and there is not a way to avoid that. When the device goes to power up, that audio pins suddenly goes to high DC again. This transition causes the loud pop in the speaker. It is possible to solve this problem by adding an extra __mute__ circuit and control it by the MCU (Atmega, ESP32, STM32, ATtiny85 etc). 
+
+![External Mute Circuit](../images/schematic_mute_circuit_eagle.png)
+
+
+Considering that you are using a MCU based on Atmega328, when the D14 is HIGH the Si47XX output audio will be drained to the ground. At this condition, no audio will be transferred to the amplifier input and, consequently, to the speaker. So, no loud click in the speaker. 
+
+When the D14 is LOW, the most of signal audio output from the Si47XX will be transfered to the input of the amplifier. 
+
+The code below shows all you have to do in your sketch to implement this resource.
+
+
+```cpp
+
+#include <SI4735.h>
+#define AUDIO_MUTE 14      // Pin A0 - Switch AGC ON/OF
+
+Si4735 r;
+
+void setup() {
+  .
+  
+  // It is all you have to do to control a external audio mute circuit if you have one. 
+  r.setAudioMuteMcuPin(AUDIO_MUTE); // Tells the system to control an external audio mute circuit. 
+
+  r.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts on FM mode and ANALOG audio mode. 
+  .
+  .
+  .
+
+} 
+```
+
+Some low power audio amplifiers IC also implement mute circuit that can be controlled externally. You can find this resource on __[LM4906](http://www.ti.com/lit/ds/symlink/lm4906.pdf), [LM4863](https://www.ti.com/lit/ds/symlink/lm4863.pdf?ts=1588602798363), KA8602B, MC34119, PAM8403__ and __HT82V739__ devices.
+
+See Video: 
+
+[Removing the loud click in the speaker during power down and power up](https://youtu.be/Ua8rHA0jAPI)
+
+{% include audiomute.html %}
+
+
+<BR>
+
+
+## SI473X and external active crystal oscillator or signal generator
+
+You can use a signal generator or a active crystal oscillator instead the passive 32768kHz  crystal with Si473X devices. This setup can be useful to improve the receiver performance or deal with digital audio output. The schematic below shows this setup. 
+
+![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc.png)
+
+
+If you have an active crystal or other signal generator that oscillates at Z Hz, where Z is a value greater than 31130Hz, do the follow steps: 
+ * __Choosing a reference clock value between 31130Hz and 34406 Hz that multiplied by N (prescaler) is equal or very close to Z__. 
+ * call the setRefClock(R). Where R (reference clock) have to be a value between 31130Hz and 34406;
+ * call the setRefClockPrescaler(N). Where N (prescaler) is a value that multiplied by R is equal to the frequency of your active crystal or signal renerator;
+ * call the setup() function with the parameter XOSCEN_RCLK
+
+For example:  
+If you have an active crystal that oscillates at 32500Hz (32.5kHz), the N must be equal to 1. 
+So, the right setup for this case is: 
+
+si4735.setRefClock(32500);  // Reference clock = 32500		
+si4735.setRefClockPrescaler(1);   // Prescaler = 1  
+si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
+
+__As you may notice, some active crystals or some frequencies will not work properly, as the product of R and N will result in values far from the oscillation frequency provided by the source__. 
+__For example: A signal generator running at 40kHz__. 
+
+Check the [PU2CLR SI4735 Arduino Library API documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) to deal with external clock reference. The code below shows how to setup 32.768kHz external clock. 
+
+The example below shows the setup to an active crystal that oscillate at 32768Hz. 
+
+```cpp
+void setup(void)
+{
+  .
+  .
+  .
+  si4735.setRefClock(32768);        // Ref = 32768Hz 
+  si4735.setRefClockPrescaler(1);   // prescaler = 150 =>  32768 x 1 = 32768  
+ 
+  si4735.setup(RESET_PIN, -1, POWER_UP_FM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK); // XOSCEN_RCLK means: external clock source setup
+  .
+  .
+  .
+}
+```
+
+__IMPORTANT__: use a reference clock between 31130Hz to 34406Hz;  
+
+#### Some examples below
+
+##### 100kHz 
+if you have an active 100kHz crystal, you must select the reference clock of 33333Hz (33kHz) and a prescaler of 3 (3 x 33333 = ~100000Hz). Example: 
+
+```cpp
+rx.setRefClock(33333);           
+rx.setRefClockPrescaler(3);     
+rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);      
+```
+
+__It is important to note the setup function and the parameter XOSCEN_RCLK__. 
+
+##### 4.9152MHz  
+
+```cpp
+rx.setRefClock(32768);        // Ref = 32768Hz
+rx.setRefClockPrescaler(150); // prescaler = 150 ==> 32768 x 150 = 4915200Hz (4.9152MHz)
+rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);      
+```
+
+##### 13MHz
+
+```cpp
+si4735.setRefClock(32500);          // Ref = 32.5kHz
+si4735.setRefClockPrescaler(400);   // prescaler = 400 ==> 32500 x 400 = 13000000 (13MHz)
+rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK); 
+```
+
+##### 13.107200MHz: 
+
+```cpp
+rx.setRefClock(32768);        // Ref = 32768Hz
+rx.setRefClockPrescaler(400); // prescaler = 400 ==> 32768 x 400 = 13.107200MHz 
+rx.setup(RESET_PIN, 0, POWER_UP_AM, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);      
+```
+
+See the sketch example: [I47XX_02_RDS_TOUCH_SHIELD_REF_CLOCK](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_99_NO_CRYSTAL)
+
+Video: 
+
+[SI4735-D60 and external reference clock test](https://youtu.be/Jgh3ScQUudE)
+
+{% include external_crystal.html %}
+
+
+
+## Band Pass Filter controlled by Arduino
+
+It is a HF band pass filter controlled by Arduino. It is designed for HF receivers. With this project, you can use a set of up to four HF bandpass filters that can be selected by Arduino. To do that you will need just two digital Arduino pins. All about this project on [here](https://pu2clr.github.io/auto_bpf_arduino/).
+
+
+![Band Pass Filter controlled by Arduino](https://pu2clr.github.io/auto_bpf_arduino/images/schematic_01.png)
+
+
+
+See videos: 
+
+* [HF Auto Bandpass filter controlled by Arduino (first test)](https://youtu.be/M1PDRzVvAm0)
+* [HF auto bandpass filter controlled by Arduino (real test)](https://youtu.be/KuAmm0LjUGA)
+
+{% include bpf.html %}
+
+
+## Storing data into the internal EEPROM before shutdowning  
+
+This example uses the Arduino Pro Mini 3.3V (8MHz), the SI4735 and OLED.
+ 
+The EEPROM has a lifetime around 100,000 write/erase cycles. On "Atmel, ATmega328P, 8-bit AVR Microcontroller with 32K Bytes In-System Programmable Flash" DATASHEET, page 19, you will find: "The Atmel® ATmega328P contains 1Kbyte of data EEPROM memory. It is organized as a separate data space, in which single bytes can be read and written. The EEPROM has an endurance of at least 100,000 write/erase cycles". Therefore, writing data to eeprom with each system status change could give an application a very short life. To mitigate this problem, some approaches can be used to save recordings on the EEPROM.
+
+The following circuit illustrates a way to configure an Arduino based on Atmega328 to record useful information on its internal EEPROM.  The idea of this approach is to obtain the last status of the system after turning it on.    Observe  in the circuit that a 1000uF electrolytic capacitor has been added. Depending on the arduino board, the time needed to record the information and the shutdown check time, the capacitor value may be different. This capacitor is powered by the battery voltage or external power supply while the system is working. When the user turns the system off, the capacitor will still keep the arduino running for a few seconds.  Observe also that the Arduino pin 16 (A2), is connected to the power supply. That setup works as a shutdown detector. I mean, the pin 16 status will keep HIGH while the power supply is on. However, when the user turns the system off (no power supply), the pin 16 status will be LOW. In this condition, a few lines of code have to be added to the loop function to check the pin 16 status frequently. If the pin 16  is LOW, the Arduino will have few seconds to save data into the internal EEPROM. Be aware the capacitance of the capacitor must be high enough to allow the arduino to record all needed data. Increase the capacitance value if 1000uF does not provide enough time for your setup.
