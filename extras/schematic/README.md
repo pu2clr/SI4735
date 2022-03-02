@@ -95,3 +95,77 @@ The schematic below shows how to connect the SI4732-A10  circuit with Arduino Pr
 <BR>
 <BR>
 
+## Atmega328 based board and OLED
+
+
+![Atmega328 based board and OLED](../images/schematic_basic_oled_SI47XX_02_ALL_IN_ONE_OLED.png)
+
+Sketche [SI47XX_02_ALL_IN_ONE_OLED](https://github.com/pu2clr/SI4735/blob/master/examples/SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED/)
+
+<BR>
+
+## ESP32 based board 
+
+
+The schematic below guides you to build a SI473X based receiver using the ESP32 device. 
+
+
+#### ESP32 basic setup
+
+![ESP32 Basic schematic](../images/schematic_esp32_basic.png)
+
+#### ESP32 DEVKIT with OLED and Encoder setup
+
+![Esp32 based board schematic](../images/schematic_esp32_oled_all_in_one.png)
+
+
+[All Sketches on SI47XX_06_ESP32 folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR)
+
+
+* [Si4735 Arduino Library - Arduino Mega 2560 and ESP32 LOLIN32 WEMOS](https://youtu.be/HrxR-bUqbjw)
+
+{% include esp32_mega2560.html %}
+
+
+
+## ESP8266 
+
+
+![ESP8266_12_F Basic schematic](../images/schematic_esp8266_12_f.png)
+
+
+
+![ESP8266 Basic schematic](../images/schematic_esp8266_basic.png)
+
+
+## ESP8266 OLED
+
+
+![ESP32 Basic schematic](../images/schematic_esp8266_oled_SI47XX_02_ALL_IN_ONE.png)
+
+
+
+<BR>
+
+## Standalone ATmega328 with or without external Crystal (SI4735-D60 and LCD 16x2). 
+
+The schematic below can be also used with a regular Arduino Board based on ATmega328. It is almost the same circuit posted by Mirko Pavleski on his [Arduino Project repository](https://create.arduino.cc/projecthub/mircemk/diy-si4730-all-band-radio-lw-mw-sw-fm-1894d9). If you use an SI4735-D60 or SI4732-A10, you can have a All band receiver with FM, AM and SSB modes. 
+
+![Standalone ATmega328 with or without external Crystal (LCD 16x2 version)](../images/schematic_basic_atmega328_standalone_12MHz_LCD16x2.png)
+
+
+
+Sketch [SI47XX_02_for_Mirko_Pavleski_radio](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_02_for_Mirko_Pavleski_radio). 
+
+
+Please, use the [MiniCore](https://github.com/MCUdude/MiniCore) setup on your Arduino IDE to deal with standalone Atmega328.
+
+See  video:
+
+* [All band receiver based on SI473X and standalone ATmega328 Modes: FM (VHF) and AM and SSB (HF)](https://youtu.be/H-uIJclH9l8)
+
+{% include atmega328_standalone.html %}
+
+
+<BR>
+
