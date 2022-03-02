@@ -12,6 +12,26 @@ __This project is about a library to control the SI47XX devices and the focus of
 * __group.io__ [SI47XX for hobbyists](https://groups.io/g/si47xx). This group is formed by people with experience in electronics and firmware development. 
   
 
+## SI4735 and SI4732 pinout
+
+Check on the SI4735 and SI4732 packages the pins: RESET, SDIO, SCLK and SEN.
+
+If the schematic uses the SI4735 but you have the SI4732, all you have to do is following the lables of those devices to replace them. See pictures below. 
+
+### The picture below shows the SI4735-D60/SI4730-D60 pinout (SSOP)
+
+![Si4735-D60 pinout](../extras/images/Si4735-D60-pinout.png)
+
+### The picture below shows the SI4732-A10 pinout (16L SOIC Package)
+
+![Si4732-A10 pinout](../extras/images/SI4732_A10_pinout.png)
+
+ 
+__ATTENTION__: 
+
+While the Si4735 device provides the 0x11 I²C bus address when the SEN pin is connected to the ground, the SI4732-A10 provides the same address when the SEN pin is connected to the +VCC.  Also, this library provides the function __getDeviceI2CAddress__ to detect the I²C bus address automatically. This way, you don't need to worry about this setup if you use this function. See [getDeviceI2CAddress()](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group05.html#ga668008457910e916ebadf15bda2e5b29).
+
+
 
 ## Basic Schematic (Atmega328 based board)
 
@@ -310,11 +330,41 @@ See video:
 
 ## Arduino / ATmega328 with Nokia 5110
 
+
+### Example One encoder and 7 push buttons to control the receiver
+
+This example uses the Adafruit libraries __Adafruit_GFX__ and __Adafruit_PCD8544__. 
+The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and SSB modes.
+
+| FM | MW/AM | SW/AM | 40M/LSB | 10M/USB |
+| -- | ----- | ----- | ------- | ------- |
+| ![N701](../extras/images/N7_01.png) | ![N702](../extras/images/N7_02.png) | ![N703](../extras/images/N7_03.png) | ![N704](../extras/images/N7_04.png) | ![N705](../extras/images/N7_05.png) |  
+
+
 The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display
 
 ![Nokia 5110 schematic](../images/schematic_basic_Nokia5110.png)
 
 Sketches on [SI47XX_08_TM1638](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_NOKIA_5110)
+
+
+### Example one encoder with push button to control the receiver
+
+This example uses the Adafruit librarie __LCD5110_Graph__ to control the Nokia 5110. 
+It is not available on Arduino IDE. To install __LCD5110_Graph__ library, download that library on [Rinky-Dink Eletronics](http://www.rinkydinkelectronics.com/library.php?id=47) site, unzip the file and move the folder unzipped to your Arduino Libraries folder. 
+
+
+The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and SSB modes.
+
+| FM | MW/AM | SW/AM | 40M/LSB | 10M/USB |
+| -- | ----- | ----- | ------- | ------- |
+| ![N101](../extras/images/N1_01.png) | ![N102](../extras/images/N1_02.png) | ![N103](../extras/images/N1_03.png) | ![N104](../extras/images/N1_04.png) | ![N105](../extras/images/N1_05.png) |  
+
+
+
+The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display controlled just by one encoder and one push button.
+
+![Nokia 5110 schematic](../extras/images/schematic_basic_Nokia5110_one_encoder.png)
 
 
 
