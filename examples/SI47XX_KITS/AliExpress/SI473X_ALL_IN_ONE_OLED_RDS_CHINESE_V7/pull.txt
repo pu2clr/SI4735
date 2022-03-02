@@ -1,5 +1,9 @@
 Main idea is to assign different funtions to buttons for shortpress (click) or longpress events.
 
+That change is not applicable to the library self, but to the API of the application.
+
+Since I have an ATS-20, I used the version 
+
 To play around (i. e. with the timings), you can switch on Serial output by setting the define "#define DEBUG"
 in the main *.ino file. If set, that will switch on Serial output at 115200 baud.
 If you define (in addition) "#define DEBUG_BUTTONS_ONLY" the software compiled will just report on the button 
@@ -25,3 +29,4 @@ Some things changed in addition:
   using the flag "anyOn". Works OK for me but may be I am missing something here!?  
 - Volume display on screen was wrong if set below "10". Due to missing padding the values shown below "10" where 
   "90" to "00". Fixed in "showVolume()"
+- removed some delay()-calls along the way. I guess the radio is now reacting faster also on encoder turns.

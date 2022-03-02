@@ -40,10 +40,12 @@ Press the __"VOL+"__ push button and rotate the  encoder. Press the button again
 or (NEW)
 
 Longpress (and hold) __"VOL+"__ or __"VOL-"__ to smoothly increase/decrease the volume.
+* This function must be defined at compile-time, can be disabled altogether or time for longpress 
+  might be specified: search for "#define VOLUME_DELAY" in the main *.ino-file.
 Longpress __ENCODER__ to Mute/Unmute the radio.
 * This function must be defined at compile-time, can be disabled altogether or time for longpress 
   might be specified: search for "#define ENCODER_MUTEDELAY" in the main *.ino-file.
-* Mute is shown as Volume==0 on display. However, it is different from switching the volume to 0 by Encoder: 
+* Mute is shown as Volume==0 on display. However, mute is different from switching the volume to 0 by Encoder: 
   If any API is used to change the volume the change will not start from 0 but from the volume level stored before
   the last __Mute__
 
@@ -51,9 +53,22 @@ Longpress __ENCODER__ to Mute/Unmute the radio.
 
 Press the __"BAND+"__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
+or (NEW)
+* This function must be defined at compile-time, can be disabled altogether or time for longpress 
+  might be specified: search for "#define BAND_DELAY" in the main *.ino-file.
+
+Longpress (and hold) __"Band+"__ or __"Band-"__ to switch between bands.
+
 3) DEALING WITH AGC AND ATTENUATION
 
 Press the AGC push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+or (NEW)
+
+Longpress (and hold) the AGC button. The attenuation setting will change stepwise. The setting will not wrap around
+but stay at either the upper or lower end of the possible range. 
+* This function must be defined at compile-time, can be disabled altogether or time for longpress 
+  might be specified: search for "#define AGC_DELAY" in the main *.ino-file.
 
 4) DEALING WITH SOFTMUTE AND ATTENUATION
 
