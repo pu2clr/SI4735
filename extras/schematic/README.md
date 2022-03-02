@@ -48,11 +48,16 @@ If the schematic uses the SI4735 but you have the SI4732, all you have to do is 
 
 (*1) __ATTENTION__: 
 
-While the Si4735 device provides the 0x11 I²C bus address when the SEN pin is connected to the ground, the SI4732-A10 provides the same address when the SEN pin is connected to the +VCC.  The SI4735 Arduino Library provides the function __getDeviceI2CAddress__ to detect the I²C bus address automatically. This way, you don't need to worry about this setup if you use this function. See [getDeviceI2CAddress()](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group05.html#ga668008457910e916ebadf15bda2e5b29). By default, connect SEN/SENB pin to the GND. 
+While the Si4735 device provides the 0x11 I²C bus address when the SEN pin is connected to the ground, the SI4732-A10 provides the same address when the SEN pin is connected to the +VCC.  The SI4735 Arduino Library provides the function __getDeviceI2CAddress__ to detect the I²C bus address automatically. This way, you don't need to worry about this setup if you use this function. See [getDeviceI2CAddress()](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group05.html#ga668008457910e916ebadf15bda2e5b29). By default, connect SEN/SENB pin to the GND. See schematics below.
+
+<BR>
+
+### Basic Schematic (Atmega328 based board) 
+
+The two schematics below show the basic setup. One using the SI4735-D60 and other using the SI4732-A10. These schematics will help you to replace the SI4735-D60 with the SI4732-A10 or vice versa. 
 
 
-
-## Basic Schematic (Atmega328 based board)
+#### SI4735-D60 Version
 
 The schematic below shows how to connect the SI473X (SSOP24 package) circuit with Arduino Pro Mini 3.3V/8MHz.
 
@@ -62,7 +67,32 @@ The schematic below shows how to connect the SI473X (SSOP24 package) circuit wit
 [All Sketches on SI47XX_01_SERIAL_MONITOR folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR)
 
 
+|Part	| Description |
+|-------| ------------ |
+| C1    | 22nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VA pin)|
+| C2    | 1nF Monolithic Multilayer Chip Ceramic non polarized capacitor |
+| C3    | 470nF Monolithic Multilayer Chip Ceramic non polarized capacitor| 
+| C4    | 100nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VD pin)|
+| C5 and C6 | 22pF (Crystal load capacitors) | 
+| C7 and C8 *1 | 4.7uF Monolithic Multilayer Chip Ceramic non polarized capacitor | 
+| R3    | 2.2K |
+| (R4 and R5) *2 | 2.2K to 10K (pull-up resistors) |
+| L1 | Ferrite loop stick (about 500 μH) |
+| X1    | 32.768 kHz crystal |
+| SI4735 | digital CMOS AM(LW, MW and SW)/FM radio receiver IC |
 
+#### SI4732-A10 Version
+
+The schematic below shows how to connect the SI4732-A10  circuit with Arduino Pro Mini 3.3V/8MHz.
+
+
+![Basic Schematic](../images/schematic_basic_SI4732.png)
+
+[All Sketches on SI47XX_01_SERIAL_MONITOR folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR)
+
+
+
+<BR>
 <BR>
 
 ## Atmega328 based board and OLED
@@ -344,51 +374,10 @@ See video:
 
 * [FM, AM and SSB receiver with Arduino and TM1638 7 segments display device](https://youtu.be/VqXkffHu6D8)
 
-{% include schematic_basic_tm1638.ht
+{% include schematic_basic_tm1638.html}
 
 
 ## Arduino / ATmega328 with Nokia 5110
-
-
-### Example One encoder and 7 push buttons to control the receiver
-
-This example uses the Adafruit libraries __Adafruit_GFX__ and __Adafruit_PCD8544__. 
-The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and SSB modes.
-
-| FM | MW/AM | SW/AM | 40M/LSB | 10M/USB |
-| -- | ----- | ----- | ------- | ------- |
-| ![N701](../images/N7_01.png) | ![N702](../images/N7_02.png) | ![N703](../images/N7_03.png) | ![N704](../images/N7_04.png) | ![N705](../images/N7_05.png) |  
-
-
-The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display
-
-![Nokia 5110 schematic](../images/schematic_basic_Nokia5110.png)
-
-Sketches on [SI47XX_08_TM1638](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_NOKIA_5110)
-
-
-### Example one encoder with push button to control the receiver
-
-This example uses the Adafruit librarie __LCD5110_Graph__ to control the Nokia 5110. 
-It is not available on Arduino IDE. To install __LCD5110_Graph__ library, download that library on [Rinky-Dink Eletronics](http://www.rinkydinkelectronics.com/library.php?id=47) site, unzip the file and move the folder unzipped to your Arduino Libraries folder. 
-
-
-The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and SSB modes.
-
-| FM | MW/AM | SW/AM | 40M/LSB | 10M/USB |
-| -- | ----- | ----- | ------- | ------- |
-| ![N101](../images/N1_01.png) | ![N102](../images/N1_02.png) | ![N103](../images/N1_03.png) | ![N104](../images/N1_04.png) | ![N105](../images/N1_05.png) |  
-
-
-
-The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display controlled just by one encoder and one push button.
-
-![Nokia 5110 schematic](../extras/images/schematic_basic_Nokia5110_one_encoder.png)
-
-
-[Video](https://youtu.be/gN06g6vqt8Q)
-{% include nokia5110.html %}
-
 
 
 ## [Android and iOS Remote Control for PU2CLR Arduino Library DSP receivers](https://github.com/pu2clr/bluetooth_remote_control)
@@ -574,211 +563,3 @@ This example uses the Arduino Pro Mini 3.3V (8MHz), the SI4735 and OLED.
 The EEPROM has a lifetime around 100,000 write/erase cycles. On "Atmel, ATmega328P, 8-bit AVR Microcontroller with 32K Bytes In-System Programmable Flash" DATASHEET, page 19, you will find: "The Atmel® ATmega328P contains 1Kbyte of data EEPROM memory. It is organized as a separate data space, in which single bytes can be read and written. The EEPROM has an endurance of at least 100,000 write/erase cycles". Therefore, writing data to eeprom with each system status change could give an application a very short life. To mitigate this problem, some approaches can be used to save recordings on the EEPROM.
 
 The following circuit illustrates a way to configure an Arduino based on Atmega328 to record useful information on its internal EEPROM.  The idea of this approach is to obtain the last status of the system after turning it on.    Observe  in the circuit that a 1000uF electrolytic capacitor has been added. Depending on the arduino board, the time needed to record the information and the shutdown check time, the capacitor value may be different. This capacitor is powered by the battery voltage or external power supply while the system is working. When the user turns the system off, the capacitor will still keep the arduino running for a few seconds.  Observe also that the Arduino pin 16 (A2), is connected to the power supply. That setup works as a shutdown detector. I mean, the pin 16 status will keep HIGH while the power supply is on. However, when the user turns the system off (no power supply), the pin 16 status will be LOW. In this condition, a few lines of code have to be added to the loop function to check the pin 16 status frequently. If the pin 16  is LOW, the Arduino will have few seconds to save data into the internal EEPROM. Be aware the capacitance of the capacitor must be high enough to allow the arduino to record all needed data. Increase the capacitance value if 1000uF does not provide enough time for your setup.
-Actually, the best way to save data immediately is using the interrupt approaching via digital pins 2 or 3 of Atmega328  . However, this example uses with success the pulling approach.  
- 
- Due to the voltage drop caused by the diode D1, it is important to raise the input voltage to 3.7V. This way the Arduino will continue operating steadily with about 3V. The SI4735 and OLED are powered with 3.7V, a safe voltage for both devices. Only the arduino will keep running for a few seconds after system shutdown. See circuit and sketch reference below.
-
-
-<BR>
-
-![Storing data into the internal EEPROM before shutdowning ](../images/schematic_storing_data_eeprom_shutdown.png)
-
-<BR>
-
-### Arduino sketch setup
-
-<BR>
-
-```cpp
-
-#include <SI4735.h>
-#include <EEPROM.h>
-
-#define SHUTDOWN_DETECTOR 16 // A2 - Arduino pin 16 configured as digital
-
-const uint8_t app_id =  35; // Useful to check the EEPROM content before processing useful data
-const int eeprom_address = 0;
-
-void setup() {
-  pinMode(SHUTDOWN_DETECTOR, INPUT); // If HIGH power supply detected; else, no power supply detected
-  pinMode(VOLUME_DOWN, INPUT_PULLUP);
-  pinMode(VOLUME_UP, INPUT_PULLUP);  
-  .
-  .
-  // If you want to reset (erase) the eeprom, keep the VOLUME_UP button pressed during statup
-  if (digitalRead(VOLUME_UP) == LOW)
-  {
-    EEPROM.write(eeprom_address, 0); // In our case, just the app_id is enough.
-    oled.print("EEPROM RESETED");
-    delay(2000);
-  }
-
-  // Checking the EEPROM content 
-  if (EEPROM.read(eeprom_address) == app_id) { // There are useful data stored to rescue
-    volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
-    freqByteHigh = EEPROM.read(eeprom_address + 2); // Gets the frequency high byte
-    freqByteLow = EEPROM.read(eeprom_address + 3);  // Gets the frequency low  byte
-    currentFrequency = (freqByteHigh << 8) | freqByteLow; // Converts the stored frequency to SI473X frequency.
-  } else { // No data found
-    volume = 45;
-    currentFrequency = 10390; // 103.9MHz
-  }
-  .
-  .
-  .
-  rx.setup(RESET_PIN, FM_FUNCTION);
-  rx.setFM(8400, 10800, currentFrequency, 10);
-  rx.setVolume(volume);
-  .
-  .
-  .
-}
-
-/** 
- *  Saves the current volume and frequency into the internal EEPROM
- */
-void writeReceiverData() {
-  EEPROM.write(eeprom_address, app_id); // stores the app id;
-  EEPROM.write(eeprom_address + 1, rx.getVolume()); // stores the current Volume
-  EEPROM.write(eeprom_address + 2, (currentFrequency >> 8) );   // stores the current Frequency HIGH byte
-  EEPROM.write(eeprom_address + 3, (currentFrequency & 0xFF));  // stores the current Frequency LOW byte
-}
-
-
-void loop {
-  .
-  .
-  .
-  // Checks the shutdown status
-  if (digitalRead(SHUTDOWN_DETECTOR) == LOW ) {
-    writeReceiverData();
-    while(1); // Stop working
-  }
-}
-
-
-```
-
-See the complete sketches on [examples/TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN)
-
-
-See video:
-* [Storing the current status of the SI473X based receivers into the Arduino eeprom automatically](https://youtu.be/ahavz9PHjng)
-
-{% include eeprom_receiver_status.html %}
-
-
-
-[Back to the main page](https://pu2clr.github.io/SI4735/)
-
-
-### Another method to store data into the EEPROM  
-
-You also can store useful data without a special circuit. This approach will store data every time some important status changes. The idea is store data only if it is necessary.
-
-Steps: 
-
-* Select the data you want to keep into the EEPROM;
-* Add the code to monitor the data in your sketch;
-* Add code to save the data. In this case, you need to define the criteria that will be used to perform a recording on the EEPROM. In general, a good criteria is:  any change of useful data AND elapsed time. It will depend on your application.   
-* Consider using the method EEPROM.update instead EEPROM.write. It will not write information if it is the same stored before;
-* Add the code to restore data from EEPROM;
-* Add the code to check if exist useful data stored into EEPROM. It can be a single byte indicating that exist valid information for the system. Use an identification number (ID) that will be understood as valid data by the system.  
-* Add code to erase the information in EEPROM. All you have to do is erasing the identification number. Actually just change the ID value. In other words, you do not need erease all data stored into EEPROM to reset the data to the system.
-* Add code to RESET the system. At system start up check if a given button is pressed and then erase the ID;
-
-
-#### Example
-
-```cpp
-
-#define STORE_TIME 10000      // Time of inactivity to make the current receiver status writable (10 seconds).
-
-const uint8_t app_id = 35;     // Application ID. Any value from 1 to 255.  It will be useful to check the EEPROM content before processing useful data
-const int eeprom_address = 0;  // Address where the data will be stored into EEPROM
-long storeTime = millis();     // elapsed time control 
-
-
-void setup() {
-
-  .
-  .
-  .
-
-  // If you want to reset the eeprom, keep the  button pressed during statup
-  if (digitalRead(GIVEN_BUTTON) == LOW)
-  {
-    EEPROM.write(eeprom_address, 0); // Changes the application ID. It invalidates all stotred information. 
-    delay(2000);
-  }
-
-  .
-  .
-  .
-
-  // Checking the EEPROM content and read if it has valid information
-  if (EEPROM.read(eeprom_address) == app_id)
-  {
-    readAllReceiverInformation();
-  }
-
-  .
-  .
-  .
-
-}
-
-
-void saveAllReceiverInformation()
-{
-  EEPROM.update(eeprom_address, app_id);                      // stores the app id;
-  EEPROM.update(eeprom_address + 1, si4735.getVolume());      // stores the current Volume
-  EEPROM.update(eeprom_address + 2, currentMode);             // Stores the current Mode (FM / AM / SSB)
-  EEPROM.update(eeprom_address + 3, currentFrequency >> 8);   // Store the current frequency
-  EEPROM.update(eeprom_address + 4, currentFrequency & 0XFF);
-  .
-  .
-  .
-  
-}
-
-
-void readAllReceiverInformation()
-{
-  volume = EEPROM.read(eeprom_address + 1);                 // Gets the stored volume;
-  currentMode = EEPROM.read(eeprom_address + 2);            // Gets the stored mode
-  currentFrequency = EEPROM.read(eeprom_address + 3) << 8;  // Gets the stored frequency 
-  currentFrequency |= EEPROM.read(eeprom_address + 4);
-  .
-  .
-  .
-}
-
-
-void loop() {
-  .
-  .
-  .
-  // Monitor your data and set statusChanged variable to true if any useful data has changed. 
-  .
-  .
-  .
-  
-  // check if some status was changed  
-  if ( statusChanged )
-  {
-    // If the status has changed and the elapsed time is less than minimal time, wait a bit more for saving new data. 
-    if ((millis() - storeTime) > STORE_TIME) 
-    {
-      saveAllReceiverInformation();
-      storeTime = millis();
-      statusChanged = false;
-    }
-  }
-   
-}
-
-```
-
-See this aproach working on [SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V2](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C/SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V2)
-
