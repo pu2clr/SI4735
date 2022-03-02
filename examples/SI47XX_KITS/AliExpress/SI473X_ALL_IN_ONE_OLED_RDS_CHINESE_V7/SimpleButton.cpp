@@ -25,7 +25,7 @@ SimpleButton::SimpleButton(uint8_t pin)
 }
 
 
-uint8_t SimpleButton::checkEvent(void (*_event)(uint8_t event, uint8_t pin)) {
+uint8_t SimpleButton::checkEvent(uint8_t (*_event)(uint8_t event, uint8_t pin)) {
 uint8_t ret = 0;
 uint16_t timeNow = millis() & 0x3f0;
 uint16_t state = _PinDebounceState & 0xf;
@@ -122,7 +122,7 @@ uint16_t elapsed;
   if (ret)
   {
     if (_event)
-      _event(ret, pin); 
+      ret = _event(ret, pin); 
   }
   else
   {

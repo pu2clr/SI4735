@@ -119,12 +119,6 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 
 #define DEFAULT_VOLUME 45 // change it for your favorite sound volume
 
-#define ENCODER_MUTEDELAY          4 // Controls how long the encoder button needs to be pressed for Mute functionality:
-                                     //    -must be uint8_t (i. e. between 0 and 255)
-                                     //    -if Zero, Encoder longpresses are ignored
-                                     //    -any other number 'x' specifies the timeout to be (roughly, in ms)
-                                     //       BUTTONTIME_LONGPRESS1 + x * BUTTONTIME_LONGPRESSREPEAT i. e.
-                                     //       320 + x * 48 if you did not change the default settings in "SimpleButton.h"
 
 #define FM 0
 #define LSB 1
@@ -376,14 +370,25 @@ void setup()
 }
 
 
+#define ENCODER_MUTEDELAY          4 // Controls how long the encoder button needs to be longpressed for Mute functionality:
+                                     //    -must be uint8_t (i. e. between 0 and 255)
+                                     //    -if Zero, Encoder longpresses will be ignored
+                                     //    -any other number 'x' specifies the timeout to be (roughly, in ms)
+                                     //       BUTTONTIME_LONGPRESS1 + x * BUTTONTIME_LONGPRESSREPEAT i. e.
+                                     //       320 + x * 48 if you did not change the default settings in "SimpleButton.h"
+                                     //    - with a setting of 4, this is roughly 500 ms
+#define BANDWIDTH_DELAY           9  // Controls how long the bandwidth button needs to be longpressed for functionality:
+                                     //    -must be uint8_t (i. e. between 0 and 255)
+                                     //    -if Zero, longpresses will be ignored
+                                     //    -any other number 'x' specifies the timeout between changes as above (ENCODER_MUTEDELAY)
+                                     //    -with a setting of 9, this is roughly 750 ms
+
 
 // Print information about detected button press events on Serial
 // These events can be used to attach specific funtionality to a button
 // DEBUG must be defined for the function to have any effect
 #if defined(DEBUG)
-void buttonEvent(uint8_t event, uint8_t pin) {
-
-
+uint8_t buttonEvent(uint8_t event, uint8_t pin) {
   Serial.print("Event=");Serial.print(event);Serial.print(" on Pin=");Serial.print(pin);Serial.print("==>");
   if (BUTTONEVENT_ISLONGPRESS(event))
   { 
@@ -400,6 +405,7 @@ void buttonEvent(uint8_t event, uint8_t pin) {
     Serial.println("Shortpress!");
   else
     Serial.println("UNEXPECTED!!!!");
+  return event;
 }
 
 #else
@@ -407,7 +413,7 @@ void buttonEvent(uint8_t event, uint8_t pin) {
 #endif
 
 //Handle Longpress of VolumeUp/VolumeDn (shortpress is handled in loop()) 
-void volumeEvent(uint8_t event, uint8_t pin) {
+uint8_t volumeEvent(uint8_t event, uint8_t pin) {
 #ifdef DEBUG
   buttonEvent(event, pin);
 #endif
@@ -420,10 +426,11 @@ void volumeEvent(uint8_t event, uint8_t pin) {
     {
       doVolume(VOLUME_BUTTON == pin?1:-1); 
     }
+  return event;
 }
 
 //Handle Longpress of Encoder (shortpress is handled in loop()) to mute/Unmute
-void encoderEvent(uint8_t event, uint8_t pin) {
+uint8_t encoderEvent(uint8_t event, uint8_t pin) {
 #ifdef DEBUG
   buttonEvent(event, pin);
 #endif
@@ -445,7 +452,71 @@ void encoderEvent(uint8_t event, uint8_t pin) {
       showVolume(); 
     }
 #endif
+  return event;
 }
+
+uint8_t modeEvent(uint8_t event, uint8_t pin) {
+#ifdef DEBUG
+  buttonEvent(event, pin);
+#endif
+  if (BUTTONEVENT_FIRSTLONGPRESS == event)
+    event = BUTTONEVENT_SHORTPRESS;
+  return event;
+}
+
+
+uint8_t bandwidthEvent(uint8_t event, uint8_t pin) {
+#ifdef DEBUG
+  buttonEvent(event, pin);
+#endif
+#if (0 != BANDWIDTH_DELAY)
+  if (BUTTONEVENT_ISLONGPRESS(event))
+  {
+    static uint8_t direction = 1;
+    if (BUTTONEVENT_ISDONE(event))
+      direction = 1 - direction;
+    else
+    {
+      static uint8_t count;
+      static uint8_t* bwFlag;
+      static uint8_t bwMax;
+      if (BUTTONEVENT_FIRSTLONGPRESS == event)
+      {
+        count = 0;
+        if (( AM == currentMode ) || ( LW == currentMode ) )
+        {
+          bwFlag = &bwIdxAM;
+          bwMax = 6;
+        }
+        else if ( FM == currentMode )
+        {
+          bwFlag = &bwIdxFM;
+          bwMax = 4;
+        }
+        else
+        {
+          bwFlag = &bwIdxSSB;
+          bwMax = 5;
+        }
+        if (0 == *bwFlag)
+          direction = 1;
+        else if (*bwFlag == bwMax)
+          direction = 0;
+      }
+      if (0 == count)
+      {
+        if (((direction == 0) && (*bwFlag > 0)) || ((1 == direction) && (*bwFlag < bwMax)))
+        {
+          doBandwidth(direction);
+        }
+      }
+      count = (count + 1) % BANDWIDTH_DELAY;
+    }
+  }
+#endif
+  return event;
+}
+
 
 // Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
 void rotaryEncoder()
@@ -1276,7 +1347,7 @@ uint8_t x;
     // If buttonEvent is used as callback, there is no specific functionality attached to longpress, but info is logged on Serial
     // if the flag "DEBUG" is defined (see above)
     
-    if (BUTTONEVENT_SHORTPRESS == btn_Bandwidth.checkEvent(buttonEvent))
+    if (BUTTONEVENT_SHORTPRESS == btn_Bandwidth.checkEvent(bandwidthEvent))
     {
       cmdBw = !cmdBw;
       disableCommand(&cmdBw, cmdBw, showBandwidth);
@@ -1353,8 +1424,7 @@ uint8_t x;
         disableCommand(&cmdStep, cmdStep, showStep);
       }
     }
-    x = btn_Mode.checkEvent(buttonEvent);
-    if ((BUTTONEVENT_SHORTPRESS == x) || (BUTTONEVENT_FIRSTLONGPRESS == x))
+    if (BUTTONEVENT_SHORTPRESS == btn_Mode.checkEvent(modeEvent))
     {
       if (currentMode != FM)
       {

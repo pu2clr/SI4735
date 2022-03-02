@@ -40,7 +40,8 @@ or (NEW)
 
 Longpress __"VOL+"__ or __"VOL-"__ to smoothly increase/decrease the volume.
 Longpress __ENCODER__ to Mute/Unmute the radio.
-* This function must be defined at compile-time, can be disabled altogether or time for longpress might be specific.
+* This function must be defined at compile-time, can be disabled altogether or time for longpress 
+  might be specified: search for "#define ENCODER_MUTEDELAY" in the main *.ino-file.
 * Mute is shown as Volume==0 on display. However, it is different from switching the volume to 0 by Encoder: 
   If any API is used to change the volume the change will not start from 0 but from the volume level stored before
   the last __Mute__
@@ -60,6 +61,12 @@ Press the push button labeled __"BAND-"__ and rotate the  encoder. Press the but
 5) SELECTING BANDWIDTH
 
 Press the BW  push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+or (NEW)
+Longpress the BW push button. The bandwidth will change stepwise. The bandwidth setting will not wrap around but
+stay at either the upper or lower end of the supported range (defined by current mode). 
+* This function must be defined at compile-time, can be disabled altogether or time for longpress 
+  might be specified: search for "#define BANDWIDTH_DELAY" in the main *.ino-file.
 
 6) SWITCHING THE STEP FREQUENCY
 

@@ -28,16 +28,17 @@ SimpleButton::SimpleButton(uint8_t pin);
   - The given pin number must not exceed 63
   - The given pin is set to pinMode(INPUT_PULLUP). The allplication must not change the pinMode for the given pin!
 
-uint8_t SimpleButton::checkEvent( void (*eventHandler)(uint8_t eventId, uint8_t pin)=NULL );
+uint8_t SimpleButton::checkEvent( uint8_t (*eventHandler)(uint8_t eventId, uint8_t pin)=NULL );
   - Must be called (frequently, i. e. in loop()) to process the button events
-  - will return one the following defines
+  - will return one the return codes described below (note that the return value can be changed by the callback) 
   - an optional callback-function can be passed as argument to SimpleButton::checkEvent():
-     - signature of callback function is void (uint8_t eventId, uint8_t pin);
+     - signature of callback function is uint8_t (uint8_t eventId, uint8_t pin);
      - the first parameter is the event triggering the callback, equivalent to the return code of SimpleButton::checkEvent(), but 
        only the events coded as BUTTONEVENT_*-defines will be reported to the callback function
      - the second parameter is the pin that is attached to the button. This information can be used to use the same callback function
        for different buttons (i. e. for Volume+ or Volume- where the logic is the same but only the direction of change differs)
      - the callback will be called from inside checkEvent() before it returns to the main application loop
+     - the return value of the callback will be returned by checkEvent(). When in doubt, just return the parameter event
  */
 
 
@@ -88,7 +89,7 @@ class SimpleButton
 {
   public:
     SimpleButton(uint8_t pin);
-    uint8_t checkEvent(void (*_event)(uint8_t event, uint8_t pin) = NULL);
+    uint8_t checkEvent(uint8_t (*_event)(uint8_t event, uint8_t pin) = NULL);
   private:
     uint16_t _PinDebounceState;
     // The data is stored as Bitfield:
