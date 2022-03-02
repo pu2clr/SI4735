@@ -352,28 +352,3 @@ The setup bellow works on Teensy 3.X and Teensy 4.X board family.
 Sketches on [SI47XX_14_TEENSY](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_14_TEENSY)
 
 
-## Arduino Pro Mini 3.3V and 7SEG Display based on TM1638 
-
-
-It is a receiver prototype based on SI4735 controlled by TM1638 based devices with buttons, LEDs and 7 segment display. 
-This receiver covers AM and SSB (LW, MW and SW) and FM from 64 to 108 MHz.  
-
-The photo below shows the TM1638 based device.
-
-![TM1638 photo](../images/TM1638_01.png)
-
-### SI4735, Arduino Pro Mini 3.3V, encoder and TM1638
-
-![Arduino and TM1638 schematic](../images/schematic_schematic_TM1838_png.png)
-
-
-Sketches on [SI47XX_08_TM1638](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_08_TM1638)
-
-
-See video: 
-
-* [FM, AM and SSB receiver with Arduino and TM1638 7 segments display device](https://youtu.be/VqXkffHu6D8)
-
-{% include schematic_basic_tm1638.html}
-
-
