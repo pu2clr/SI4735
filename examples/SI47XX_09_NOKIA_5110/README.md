@@ -1,6 +1,8 @@
 # Arduino / ATmega328 with Nokia 5110
 
 
+The schematics shown here use the SI4735-D60 device. If you use the SI4732-A10, please check ["SI4735-D60 and SI4732-A10 replacement" table](https://github.com/pu2clr/SI4735/tree/master/extras/schematic#si4735-and-si4732-pinout).  
+
 
 ## Example ALL_IN_ONE_7_BUTTONS (One encoder and 7 buttons) 
 
