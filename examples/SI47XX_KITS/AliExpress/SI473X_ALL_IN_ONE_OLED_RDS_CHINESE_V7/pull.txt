@@ -1,8 +1,12 @@
-Main idea is to assign different funtions to buttons for shortpress (click) or longpress events.
+Main idea is to assign different functions to buttons for shortpress (click) or longpress events.
 
-That change is not applicable to the library self, but to the API of the application.
+That change is not applicable to the library self, but to the API of the device.
 
-Since I have an ATS-20, I used the version 
+Since I have an ATS-20 (with Arduino NANO), I used the example from 
+/examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V7/ as starting point.
+
+However, the changes should work on any Arduino-Variant...
+I have changed the band-table, so you probably want to reset EEPROM after uploading this version...
 
 To play around (i. e. with the timings), you can switch on Serial output by setting the define "#define DEBUG"
 in the main *.ino file. If set, that will switch on Serial output at 115200 baud.
@@ -20,11 +24,12 @@ For longpress the following applies:
     - it will not wrap around but stop at either the upper or lower bound (depending on direction)
 - For the Mode-Button, longpress will be just like a shortpress.
 
-Details see in user_manual.txt.
+For details see updates in user_manual.txt.
 
 Some things changed in addition:
 - disableCommand(NULL, ...) is called cyclically in the main loop() (see "if (coundRSSI++ > 3)") near the end.
-  This call was updating the whole screen, even if there is no change needed. That resulted in a flickering of the display.
+  This call was updating the whole screen, even if there is no change needed. That resulted in a flickering of 
+  the display.
   This constant refresh is not needed as far as I can tell. I disabled it within the function "disableCommand()"
   using the flag "anyOn". Works OK for me but may be I am missing something here!?  
 - Volume display on screen was wrong if set below "10". Due to missing padding the values shown below "10" where 
