@@ -357,7 +357,7 @@ The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and S
 
 | FM | MW/AM | SW/AM | 40M/LSB | 10M/USB |
 | -- | ----- | ----- | ------- | ------- |
-| ![N701](../extras/images/N7_01.png) | ![N702](../extras/images/N7_02.png) | ![N703](../extras/images/N7_03.png) | ![N704](../extras/images/N7_04.png) | ![N705](../extras/images/N7_05.png) |  
+| ![N701](../images/N7_01.png) | ![N702](../images/N7_02.png) | ![N703](../images/N7_03.png) | ![N704](../images/N7_04.png) | ![N705](../images/N7_05.png) |  
 
 
 The schematic below shows the Arduino board based on ATmega 328 and the Nokia 5110 display
@@ -377,7 +377,7 @@ The receiver works on VFH/FM (broadcast stations), and  LW,MW and SW on AM and S
 
 | FM | MW/AM | SW/AM | 40M/LSB | 10M/USB |
 | -- | ----- | ----- | ------- | ------- |
-| ![N101](../extras/images/N1_01.png) | ![N102](../extras/images/N1_02.png) | ![N103](../extras/images/N1_03.png) | ![N104](../extras/images/N1_04.png) | ![N105](../extras/images/N1_05.png) |  
+| ![N101](../images/N1_01.png) | ![N102](../images/N1_02.png) | ![N103](../images/N1_03.png) | ![N104](../images/N1_04.png) | ![N105](../images/N1_05.png) |  
 
 
 
