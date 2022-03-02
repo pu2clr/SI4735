@@ -54,7 +54,7 @@ While the Si4735 device provides the 0x11 I²C bus address when the SEN pin is c
 
 ### Basic Schematic (Atmega328 based board) 
 
-__The two schematics below show the basic setup. One using the SI4735-D60 and other using the SI4732-A10. These schematics will help you to replace the SI4735-D60 with the SI4732-A10 or vice versa. 
+The two schematics below show the basic setup. One using the SI4735-D60 and other using the SI4732-A10. These schematics will help you to replace the SI4735-D60 with the SI4732-A10 or vice versa. 
 
 
 #### SI4735-D60 Version
@@ -66,6 +66,20 @@ The schematic below shows how to connect the SI473X (SSOP24 package) circuit wit
 
 [All Sketches on SI47XX_01_SERIAL_MONITOR folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR)
 
+
+|Part	| Description |
+|-------| ------------ |
+| C1    | 22nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VA pin)|
+| C2    | 1nF Monolithic Multilayer Chip Ceramic non polarized capacitor |
+| C3    | 470nF Monolithic Multilayer Chip Ceramic non polarized capacitor| 
+| C4    | 100nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VD pin)|
+| C5 and C6 | 22pF (Crystal load capacitors) | 
+| C7 and C8 *1 | 4.7uF Monolithic Multilayer Chip Ceramic non polarized capacitor | 
+| R3    | 2.2K |
+| (R4 and R5) *2 | 2.2K to 10K (pull-up resistors) |
+| L1 | Ferrite loop stick (about 500 μH) |
+| X1    | 32.768 kHz crystal |
+| SI4735 | digital CMOS AM(LW, MW and SW)/FM radio receiver IC |
 
 #### SI4732-A10 Version
 
