@@ -23,6 +23,12 @@ Features
 * Now the bandwidth sequence is ordered by bandwidth values
 * After about 4 seconds, all command buttons are all disabled and the encoder control goes back to the frequency
 
+NEW:
+* Button presses can now be distinguished between shortpress and longpress
+* If shortpressed, the selected function can be controlled by rotating the encoder as usual
+* If longpressed, some functions can be controlled without using the encoder:
+    - Longpress on Vol+/Vol- will increase/decrease the volume (at fast pace)
+    - Longpress on Encoder can Mute/Unmute the radio
 
 COMMANDS
 
@@ -30,6 +36,14 @@ COMMANDS
 
 Press the __"VOL+"__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
 
+or (NEW)
+
+Longpress __"VOL+"__ or __"VOL-"__ to smoothly increase/decrease the volume.
+Longpress __ENCODER__ to Mute/Unmute the radio.
+* This function must be defined at compile-time, can be disabled altogether or time for longpress might be specific.
+* Mute is shown as Volume==0 on display. However, it is different from switching the volume to 0 by Encoder: 
+  If any API is used to change the volume the change will not start from 0 but from the volume level stored before
+  the last __Mute__
 
 2) SELECTING THE BAND
 

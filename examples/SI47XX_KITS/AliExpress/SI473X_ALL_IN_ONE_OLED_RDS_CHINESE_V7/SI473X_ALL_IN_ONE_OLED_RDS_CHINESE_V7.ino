@@ -75,7 +75,7 @@
   By Ricardo Lima Caratti, April  2021.
 */
 #define DEBUG               // Comment/uncomment for disabling/enabling debug output on Serial
-#define DEBUG_BUTTONS_ONLY  // If defined, just do DEBUG output for Buttons (radio will not play at all)
+//#define DEBUG_BUTTONS_ONLY  // If defined (in addition to DEBUG), just do DEBUG output for Buttons (radio will not play at all)
 
 #include <SI4735.h>
 #include <EEPROM.h>
@@ -119,6 +119,13 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 
 #define DEFAULT_VOLUME 45 // change it for your favorite sound volume
 
+#define ENCODER_MUTEDELAY          4 // Controls how long the encoder button needs to be pressed for Mute functionality:
+                                     //    -must be uint8_t (i. e. between 0 and 255)
+                                     //    -if Zero, Encoder longpresses are ignored
+                                     //    -any other number 'x' specifies the timeout to be (roughly, in ms)
+                                     //       BUTTONTIME_LONGPRESS1 + x * BUTTONTIME_LONGPRESSREPEAT i. e.
+                                     //       320 + x * 48 if you did not change the default settings in "SimpleButton.h"
+
 #define FM 0
 #define LSB 1
 #define USB 2
@@ -150,6 +157,8 @@ bool cmdBand = false;     // if true, the encoder will control the band
 bool cmdSoftMute = false; // if true, the encoder will control the Soft Mute attenuation
 bool cmdAvc = false;      // if true, the encoder will control Automatic Volume Control
 
+uint8_t muteVolume = 0;   // restore volume for "un-mute"
+
 long countRSSI = 0;
 
 int currentBFO = 0;
@@ -168,7 +177,7 @@ SimpleButton  btn_Mode(MODE_SWITCH);
 
 
 long elapsedRSSI = millis();
-long elapsedButton = millis();
+//TODO long elapsedButton = millis();
 
 // Encoder control variables
 volatile int encoderCount = 0;
@@ -309,16 +318,6 @@ void setup()
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
-  pinMode(BANDWIDTH_BUTTON, INPUT_PULLUP);
-  pinMode(BAND_BUTTON, INPUT_PULLUP);
-  pinMode(SOFTMUTE_BUTTON, INPUT_PULLUP);
-  pinMode(VOLUME_BUTTON, INPUT_PULLUP);
-  pinMode(AVC_BUTTON, INPUT_PULLUP);
-  pinMode(ENCODER_BUTTON, INPUT_PULLUP);
-  pinMode(AGC_BUTTON, INPUT_PULLUP);
-  pinMode(STEP_BUTTON, INPUT_PULLUP);
-  pinMode(MODE_SWITCH, INPUT_PULLUP);
-
   oled.begin();
   oled.clear();
   oled.on();
@@ -377,11 +376,14 @@ void setup()
 }
 
 
-#if defined(DEBUG)
 
 // Print information about detected button press events on Serial
 // These events can be used to attach specific funtionality to a button
+// DEBUG must be defined for the function to have any effect
+#if defined(DEBUG)
 void buttonEvent(uint8_t event, uint8_t pin) {
+
+
   Serial.print("Event=");Serial.print(event);Serial.print(" on Pin=");Serial.print(pin);Serial.print("==>");
   if (BUTTONEVENT_ISLONGPRESS(event))
   { 
@@ -399,8 +401,51 @@ void buttonEvent(uint8_t event, uint8_t pin) {
   else
     Serial.println("UNEXPECTED!!!!");
 }
+
+#else
+#define buttonEvent NULL
 #endif
 
+//Handle Longpress of VolumeUp/VolumeDn (shortpress is handled in loop()) 
+void volumeEvent(uint8_t event, uint8_t pin) {
+#ifdef DEBUG
+  buttonEvent(event, pin);
+#endif
+  if (muteVolume)                               // currently muted?
+    if (!BUTTONEVENT_ISDONE(event))             // Any event to change the volume?
+      if ((BUTTONEVENT_SHORTPRESS != event) || (VOLUME_BUTTON == pin))
+        doVolume(1);                              // yes-->Unmute
+  if (BUTTONEVENT_ISLONGPRESS(event))           // longpress-Event?
+    if (BUTTONEVENT_LONGPRESSDONE != event)     // but not the final release of button?
+    {
+      doVolume(VOLUME_BUTTON == pin?1:-1); 
+    }
+}
+
+//Handle Longpress of Encoder (shortpress is handled in loop()) to mute/Unmute
+void encoderEvent(uint8_t event, uint8_t pin) {
+#ifdef DEBUG
+  buttonEvent(event, pin);
+#endif
+#if (0 != ENCODER_MUTEDELAY)
+  static uint8_t waitBeforeMute;
+  if (BUTTONEVENT_FIRSTLONGPRESS == event)
+  {
+    waitBeforeMute = ENCODER_MUTEDELAY;
+  }
+  else if ((BUTTONEVENT_LONGPRESS == event) && (0 != waitBeforeMute))
+    if (0 == --waitBeforeMute)
+    {
+#if defined(DEBUG)
+      Serial.println("ToggleMute!");
+#endif
+      uint8_t x = muteVolume;
+      muteVolume = si4735.getVolume();
+      si4735.setVolume(x);
+      showVolume(); 
+    }
+#endif
+}
 
 // Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
 void rotaryEncoder()
@@ -516,7 +561,8 @@ void resetEepromDelay()
 void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator)
 {
   char d;
-  for (int i = (len - 1); i >= 0; i--)
+  int i;
+  for (i = (len - 1); i >= 0; i--)
   {
     d = value % 10;
     value = value / 10;
@@ -530,13 +576,13 @@ void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uin
       strValue[i + 1] = strValue[i];
     }
     strValue[dot] = separator;
+    len = dot;
   }
-
-  if (strValue[0] == '0')
+  i = 0;
+  len--;
+  while ((i < len) && ('0' == strValue[i]))
   {
-    strValue[0] = ' ';
-    if (strValue[1] == '0')
-      strValue[1] = ' ';
+    strValue[i++] = ' ';
   }
 }
 
@@ -661,13 +707,15 @@ void showRSSI()
 */
 void showVolume()
 {
+  char s[3];
   oled.setCursor(58, 3);
   oled.print("  ");
   oled.setCursor(58, 3);
   oled.invertOutput(cmdVolume);
   oled.print(' ');
   oled.invertOutput(false);
-  oled.print(si4735.getCurrentVolume());
+  convertToChar(si4735.getCurrentVolume(), s, 2, 0, 0);
+  oled.print(s);
 }
 
 void showStep()
@@ -997,12 +1045,17 @@ void doStep(int8_t v)
 */
 void doVolume(int8_t v)
 {
-  if (v == 1)
-    si4735.volumeUp();
+  if (muteVolume)
+  {
+    si4735.setVolume(muteVolume);
+    muteVolume = 0;    
+  }
   else
-    si4735.volumeDown();
+    if (v == 1)
+      si4735.volumeUp();
+    else
+      si4735.volumeDown();
   showVolume();
-  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
 
 /**
@@ -1124,21 +1177,25 @@ void doBandwidth(uint8_t v)
 */
 void disableCommand(bool *b, bool value, void (*showFunction)())
 {
-  cmdVolume = false;
-  cmdAgcAtt = false;
-  cmdStep = false;
-  cmdBw = false;
-  cmdBand = false;
-  cmdSoftMute = false;
-  cmdAvc = false;
-  showVolume();
-  showStep();
-  showAttenuation();
-  showBandwidth();
-  showBandDesc();
-
+static bool anyOn = false;
+  if (anyOn)
+  {  
+    cmdVolume = false;
+    cmdAgcAtt = false;
+    cmdStep = false;
+    cmdBw = false;
+    cmdBand = false;
+    cmdSoftMute = false;
+    cmdAvc = false;
+    showVolume();
+    showStep();
+    showAttenuation();
+    showBandwidth();
+    showBandDesc();
+    anyOn = false;
+  }
   if (b != NULL) // rescues the last status of the last command only the parameter is not null
-    *b = value;
+    *b = anyOn = value;
   if (showFunction != NULL) //  show the desired status only if it is necessary.
     showFunction();
 
@@ -1148,8 +1205,8 @@ void disableCommand(bool *b, bool value, void (*showFunction)())
 
 void loop()
 {
-#if defined(DEBUG) && defined(DEBUG_BUTTONS_ONLY)
 uint8_t x;
+#if defined(DEBUG) && defined(DEBUG_BUTTONS_ONLY)
   btn_BandUp.checkEvent(buttonEvent) ;
   btn_BandDn.checkEvent(buttonEvent) ;
   btn_VolumeUp.checkEvent(buttonEvent);
@@ -1213,44 +1270,42 @@ uint8_t x;
   }
 
   // Check button commands
-  if ((millis() - elapsedButton) > MIN_ELAPSED_TIME) // Is that necessary?
-  {
     // check if some button is pressed
-    if (digitalRead(BANDWIDTH_BUTTON) == LOW)
+    // Shortpress-Events are handled direct, longpress-Events by the specific "event-handler" (the callback function passed to
+    // checkEvent
+    // If buttonEvent is used as callback, there is no specific functionality attached to longpress, but info is logged on Serial
+    // if the flag "DEBUG" is defined (see above)
+    
+    if (BUTTONEVENT_SHORTPRESS == btn_Bandwidth.checkEvent(buttonEvent))
     {
       cmdBw = !cmdBw;
       disableCommand(&cmdBw, cmdBw, showBandwidth);
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(BAND_BUTTON) == LOW)
+    if (BUTTONEVENT_SHORTPRESS == btn_BandUp.checkEvent(buttonEvent)) 
     {
       cmdBand = !cmdBand;
       disableCommand(&cmdBand, cmdBand, showBandDesc);
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(SOFTMUTE_BUTTON) == LOW)
+    if (BUTTONEVENT_SHORTPRESS == btn_BandDn.checkEvent(buttonEvent))
     {
       if (currentMode != FM) {
         cmdSoftMute = !cmdSoftMute;
         disableCommand(&cmdSoftMute, cmdSoftMute, showSoftMute);
       }
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(VOLUME_BUTTON) == LOW)
+    if (BUTTONEVENT_SHORTPRESS == btn_VolumeUp.checkEvent(volumeEvent)) 
     {
       cmdVolume = !cmdVolume;
       disableCommand(&cmdVolume, cmdVolume, showVolume);
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(AVC_BUTTON) == LOW)
+    if (BUTTONEVENT_SHORTPRESS == btn_VolumeDn.checkEvent(volumeEvent))
     {
       if (currentMode != FM) {
         cmdAvc = !cmdAvc;
         disableCommand(&cmdAvc, cmdAvc, showAvc);
       }
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(ENCODER_BUTTON) == LOW)
+    if (BUTTONEVENT_SHORTPRESS == btn_Encoder.checkEvent(encoderEvent))
     {
       if (currentMode == LSB || currentMode == USB)
       {
@@ -1282,26 +1337,24 @@ uint8_t x;
         }
         showFrequency();
       }
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(AGC_BUTTON) == LOW)
+    if (BUTTONEVENT_SHORTPRESS == btn_AGC.checkEvent(buttonEvent))
     {
       if ( currentMode != FM) {
         cmdAgcAtt = !cmdAgcAtt;
         disableCommand(&cmdAgcAtt, cmdAgcAtt, showAttenuation);
       }
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(STEP_BUTTON) == LOW)
+    if (BUTTONEVENT_SHORTPRESS == btn_Step.checkEvent(buttonEvent))
     {
       if (currentMode != FM)
       {
         cmdStep = !cmdStep;
         disableCommand(&cmdStep, cmdStep, showStep);
       }
-      delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
     }
-    else if (digitalRead(MODE_SWITCH) == LOW)
+    x = btn_Mode.checkEvent(buttonEvent);
+    if ((BUTTONEVENT_SHORTPRESS == x) || (BUTTONEVENT_FIRSTLONGPRESS == x))
     {
       if (currentMode != FM)
       {
@@ -1327,8 +1380,6 @@ uint8_t x;
         useBand();
       }
     }
-    elapsedButton = millis();
-  }
 
   // Show RSSI status only if this condition has changed
   if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 9)
@@ -1371,5 +1422,5 @@ uint8_t x;
       previousFrequency = currentFrequency;
     }
   }
-  delay(10);
+  //delay(10);
 }
