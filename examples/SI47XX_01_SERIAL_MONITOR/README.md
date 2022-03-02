@@ -104,10 +104,9 @@ The schematic below is the same shown at the main page of this project and shows
 ![Silicon Labs Schematic](../../extras/images/basic_schematic.png)
 
 
-### The picture below shows the SI4735-D60 pinout
+### SI4735-D60 and SI4732-A10 pinout and replacement 
 
-![Si4735-D60 pinout](https://github.com/pu2clr/SI4735/blob/master/extras/images/Si4735-D60-pinout.png)
-
+If you have a SI4732-A10 instead a SI4735-D60 device, [this section can help you](https://github.com/pu2clr/SI4735/tree/master/extras/schematic#si4735-and-si4732-pinout) 
 
 
 __See some shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
