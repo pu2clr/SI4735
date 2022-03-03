@@ -795,11 +795,18 @@ The image below shows a version of Silicon Labs SSOP Typical Application Schemat
 
 <BR>
 
+#### Basic Schematic Eagle version with SI4735-D60
 
-![Basic Schematic Eagle version](./extras/images/schematic_basic_eagle.png)
+![Basic Schematic Eagle version with SI4735-D60](./extras/images/schematic_basic_eagle.png)
 
 
-__Please, check the folder [extras/schematic/](https://pu2clr.github.io/SI4735/extras/schematic)__. There, you will find other schematics with OLED, LCD, TFT, buttons and encoders setup. Also, check the comments at the beginning of each sketch example. You will find the SI473X, button, encoder, display and Arduino settings. 
+#### Basic Schematic Eagle version with SI4732-A10
+
+![Basic Schematic Eagle version with SI4732-A10](./extras/images/schematic_basic_si4732.png)
+
+
+
+__Please, check the folder [extras/schematic/](https://pu2clr.github.io/SI4735/extras/schematic)__. There, you will find other schematics with OLED, LCD, Nokia 5110, TFT, buttons and encoders setup. Also, check the comments at the beginning of each sketch example. You will find the SI473X, button, encoder, display and Arduino settings. 
 
 
 
