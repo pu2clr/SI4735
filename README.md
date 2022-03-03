@@ -795,12 +795,12 @@ The image below shows a version of Silicon Labs SSOP Typical Application Schemat
 
 <BR>
 
-#### Basic Schematic Eagle version with SI4735-D60
+#### Basic Schematic with SI4735-D60
 
 ![Basic Schematic Eagle version with SI4735-D60](./extras/images/schematic_basic_eagle.png)
 
 
-#### Basic Schematic Eagle version with SI4732-A10
+#### Basic Schematic with SI4732-A10
 
 ![Basic Schematic Eagle version with SI4732-A10](./extras/images/schematic_basic_si4732.png)
 
