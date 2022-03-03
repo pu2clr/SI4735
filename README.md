@@ -802,7 +802,7 @@ The image below shows a version of Silicon Labs SSOP Typical Application Schemat
 
 #### Basic Schematic with SI4732-A10
 
-![Basic Schematic Eagle version with SI4732-A10](./extras/images/schematic_basic_si4732.png)
+![Basic Schematic Eagle version with SI4732-A10](./extras/images/schematic_basic_SI4732.png)
 
 
 
