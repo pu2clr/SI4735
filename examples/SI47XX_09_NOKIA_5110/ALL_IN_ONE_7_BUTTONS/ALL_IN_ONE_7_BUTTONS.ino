@@ -103,7 +103,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 150
 #define ELAPSED_COMMAND 2500  // time to turn off the last command controlled by encoder
-#define DEFAULT_VOLUME 50     // change it for your favorite sound volume
+#define DEFAULT_VOLUME 55     // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -302,7 +302,8 @@ void clearBuffers() {
     Set all command flags to false
     When all flags are disabled (false), the encoder controls the frequency
 */
-void disableCommands() {
+/*
+void disableCommands(bool *cmd, value) {
   cmdBand = false;
   bfoOn = false;
   cmdVolume = false;
@@ -310,6 +311,25 @@ void disableCommands() {
   cmdBandwidth = false;
   cmdStep = false;
   cmdMode = false;
+}
+*/
+
+void disableCommands(bool *b, bool value, void (*showFunction)())
+{
+  cmdBand = false;
+  bfoOn = false;
+  cmdVolume = false;
+  cmdAgc = false;
+  cmdBandwidth = false;
+  cmdStep = false;
+  cmdMode = false;
+
+  if (b != NULL) // rescues the last status of the last command only the parameter is not null
+    *b = value;
+  if (showFunction != NULL) //  show the desired status only if it is necessary.
+    showFunction();
+
+  elapsedRSSI = millis();
 }
 
 /**
@@ -436,9 +456,8 @@ void showStatus()
   display.drawLine(0,15,84,15, BLACK); 
   clearBuffers();
   
-  showValue(0, 18, oldBand, (char *) band[bandIdx].bandName, 1, 6);
-  showValue(65, 18, oldDesc, (char*) bandModeDesc[currentMode], 1, 6);
-
+  showMode(); 
+  
   if (rx.isCurrentTuneFM()) {
     unt = (char *) "MHz";
   } else
@@ -455,6 +474,16 @@ void showStatus()
 
   showRSSI();
   showFrequency();
+}
+
+/**
+ * Shows corrent band name and mode
+ */
+void showMode() {
+  
+  showValue(0, 18, oldBand, (char *) band[bandIdx].bandName, 1, 6);
+  showValue(65, 18, oldDesc, (char*) bandModeDesc[currentMode], 1, 6);
+  
 }
 
 /**
@@ -813,12 +842,15 @@ void loop()
     if (digitalRead(BANDWIDTH_BUTTON) == LOW)
     {
       cmdBandwidth = !cmdBandwidth;
+      disableCommands(&cmdBandwidth, cmdBandwidth, showBandwidth);
+      delay(MIN_ELAPSED_TIME);
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
     else if (digitalRead(BAND_BUTTON) == LOW)
     {
       cmdBand = !cmdBand;
+      disableCommands(&cmdBand, cmdBand, NULL);
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
@@ -829,6 +861,8 @@ void loop()
     else if (digitalRead(BFO_SWITCH) == LOW)
     {
       bfoOn = !bfoOn;
+      disableCommands(&bfoOn, bfoOn, NULL);
+      
       if ((currentMode == LSB || currentMode == USB))
         showBFO();
 
@@ -839,18 +873,21 @@ void loop()
     else if (digitalRead(AGC_SWITCH) == LOW)
     {
       cmdAgc = !cmdAgc;
+      disableCommands(&cmdAgc, cmdAgc, showAgcAtt);
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
     else if (digitalRead(STEP_SWITCH) == LOW)
     {
       cmdStep = !cmdStep;
+      disableCommands(&cmdStep, cmdStep, showStep);
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
     else if (digitalRead(MODE_SWITCH) == LOW)
     {
       cmdMode = !cmdMode;
+      disableCommands(&cmdMode, cmdMode, showMode);
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
@@ -878,7 +915,7 @@ void loop()
       showBFO();
       showFrequency();
     }
-    disableCommands();
+    disableCommands(NULL, true, NULL);
     elapsedCommand = millis();
   }
   delay(1);
