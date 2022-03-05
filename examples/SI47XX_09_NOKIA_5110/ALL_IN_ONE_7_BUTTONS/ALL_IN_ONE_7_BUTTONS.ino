@@ -60,7 +60,6 @@
 */
 
 #include <SI4735.h>
-
 #include <Adafruit_GFX.h>     // See: https://www.electronoobs.com/eng_arduino_Adafruit_GFX.php
 #include <Adafruit_PCD8544.h> // See: https://www.electronoobs.com/eng_arduino_Adafruit_PCD8544.php
 #include <SPI.h>
@@ -147,7 +146,6 @@ char oldBW[7];
 char oldAGC[7];
 char oldBFO[8];
 char oldSTMO[3];
-
 
 // Encoder control variables
 volatile int encoderCount = 0;
