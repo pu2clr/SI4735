@@ -100,6 +100,18 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
+
+/*
+ * Signal Icons (Antenna Icon + RSSI level representation) 
+ */
+const uint8_t signalLevel[5][17] PROGMEM= {
+                                            {0xC1, 0xC3, 0xC5, 0xF9, 0xC5, 0xC3, 0xC1, 0xC0, 0xE0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0}, // Level 0 => rssi < 12
+                                            {0xC1, 0xC3, 0xC5, 0xF9, 0xC5, 0xC3, 0xC1, 0xC0, 0xE0, 0xC0, 0xF0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0}, // Level 1 => rssi < 25
+                                            {0xC1, 0xC3, 0xC5, 0xF9, 0xC5, 0xC3, 0xC1, 0xC0, 0xE0, 0xC0, 0xF0, 0xC0, 0xF8, 0xC0, 0xC0, 0xC0, 0xC0}, // Level 2 => rssi < 45
+                                            {0xC1, 0xC3, 0xC5, 0xF9, 0xC5, 0xC3, 0xC1, 0xC0, 0xE0, 0xC0, 0xF0, 0xC0, 0xF8, 0xC0, 0xFC, 0xC0, 0xC0}, // Level 3 => rssi < 60 
+                                            {0xC1, 0xC3, 0xC5, 0xF9, 0xC5, 0xC3, 0xC1, 0xC0, 0xE0, 0xC0, 0xF0, 0xC0, 0xF8, 0xC0, 0xFC, 0xC0, 0xFE}  // Level 4 => rssi >= 60
+                                          };
+
 // EEPROM - Stroring control variables
 const uint8_t app_id = 31; // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
@@ -569,24 +581,19 @@ void showRSSI()
   {
     show(0,60,(rx.getCurrentPilot()) ? "ST" : "MO");
   } 
-  if (rssi < 2)
-    rssiAux = 4;
-  else if (rssi < 4)
-    rssiAux = 5;
-  else if (rssi < 12)
-    rssiAux = 6;
+  if (rssi < 12)
+    rssiAux = 0;
   else if (rssi < 25)
-    rssiAux = 7;
-  else if (rssi < 50)
-    rssiAux = 8;
-  else
-    rssiAux = 9;
+    rssiAux = 1;
+  else if (rssi < 45)
+    rssiAux = 2;
+  else if (rssi < 60)
+    rssiAux = 3;
+  else 
+    rssiAux = 4;
 
-  sMeter[0] = 'S';
-  sMeter[1] = rssiAux + 48;
-  sMeter[2] = ((rssi >= 60) ? '+' : ' ');
-  sMeter[3] = '\0';
-  show(65,40,sMeter);
+  nokia.drawBitmap(67, 42, (uint8_t *) signalLevel[rssiAux], 17 , 6);
+
 }
 
 /**
@@ -979,7 +986,6 @@ void doSeek()
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   showStatus();
   currentFrequency = rx.getFrequency();
-  
 }
 
 /**
