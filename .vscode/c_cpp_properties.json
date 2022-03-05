@@ -46,7 +46,7 @@
             "intelliSenseMode": "gcc-x64",
             "includePath": [
                 "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.4/cores/arduino",
-                "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.4/variants/standard",
+                "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.4/variants/eightanaloginputs",
                 "/Users/rcaratti/Documents/Arduino/libraries/si4735",
                 "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.4/libraries/Wire/src",
                 "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.4/libraries/SPI/src",
@@ -61,9 +61,9 @@
             "cStandard": "c11",
             "cppStandard": "c++11",
             "defines": [
-                "F_CPU=16000000L",
+                "F_CPU=8000000L",
                 "ARDUINO=10819",
-                "ARDUINO_AVR_UNO",
+                "ARDUINO_AVR_PRO",
                 "ARDUINO_ARCH_AVR",
                 "__DBL_MIN_EXP__=(-125)",
                 "__HQ_FBIT__=15",
