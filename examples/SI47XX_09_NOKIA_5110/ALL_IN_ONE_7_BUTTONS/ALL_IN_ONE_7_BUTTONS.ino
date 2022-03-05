@@ -257,7 +257,9 @@ void setup()
 
   // Start the Nokia display device
   display.begin();
-  display.setRotation(2);   //  Rotate the display 180 degree
+  
+  // display.setRotation(2);   //  Rotates the display 180 degree
+  
   // display.setContrast(60);
   // Splash
   splash();
@@ -267,7 +269,7 @@ void setup()
 
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
   rx.setup(RESET_PIN, 0, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
-
+  delay(300);
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
   rx.setVolume(volume);
@@ -290,7 +292,7 @@ void splash() {
   display.setCursor(0, 30);
   display.print("Library");
   display.display();
-  delay(3000);
+  delay(2000);
   display.clearDisplay();
 }
 
