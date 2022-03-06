@@ -1028,7 +1028,7 @@ Some low power audio amplifiers IC also implement mute circuit that can be contr
 
 * Use [MiniCore](https://github.com/MCUdude/MiniCore) board setup instead regular Arduino Atmega328 setup. You can save about 1KB by removing the bootloader and using LTO option;
 * You can also use the regular Arduino setup and use the hex file without bootloader (use xloader application in this case);
-* Do not use the String class, sprintf ou dtostrf functions to format numbers. Use itoa function or you own implementation to convert number to char array. You can save about 2KB.  See example below.
+* Do not use the String class, sprintf or dtostrf functions to format numbers. Use itoa function or your own implementation to convert number to char array. You can save about 2KB.  See example below.
 
 ```cpp
 /**
@@ -1079,7 +1079,6 @@ void showFrequency()
 .
 
 ```
-
 
 * Regarding SSB patch, use the __patch_ssb_compressed.h__ and [downloadCompressedPatch](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html#gaf1b8947db928728ada66ef3edaa79e76) intead __init.h__ and [downloadPatch](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html#gafd1343bd8b4f0c290ef81c418222036c).   
 
