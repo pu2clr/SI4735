@@ -65,8 +65,8 @@ Go to [Arduino website](https://www.arduino.cc/)
 ### Configure the ESP32 on Arduino IDE 
 
 Open the Arduino IDE and select the __Preferences...__ menu item. 
-Go to __Additional Boards Manager URLs:__ and add the URL: https://dl.espressif.com/dl/package_esp32_index.json
- 
+Go to __Additional Boards Manager URLs:__ and add the URL: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+
 After adding the ESP32 URL, go to __Tools__ menu, select the __Boards__ item and then select __Boards Manager...__ option. Finally install ESP32 board.
 
 
