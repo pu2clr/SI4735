@@ -1,30 +1,30 @@
 /*
-  
-  This sketch SHOULD work with the Chinese KIT sold on AliExpress, eBay and Amazon 
-  The author of this sketch and Arduino Library does not know the seller of this kit and does not have a commercial relationship with any commercial product that uses the Arduino Library. 
+
+  This sketch SHOULD work with the Chinese KIT sold on AliExpress, eBay and Amazon
+  The author of this sketch and Arduino Library does not know the seller of this kit and does not have a commercial relationship with any commercial product that uses the Arduino Library.
   It is important you understand that there is no guarantee that this sketch will work correctly in your current product.
   SO, DO NOT TRY IT IF YOU DON'T KNOW WHAT ARE YOU DOING. YOU MUST BE ABLE TO GO BACK TO THE PREVIOUS VERSION IF THIS SKETCH DOES NOT WORK FOR YOU.
 
   Please, read the user_manual.txt for more details about this sketch.
-  ATTENTION: Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
+  ATTENTION: Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.
 
-  ARDUINO LIBRARIES: 
+  ARDUINO LIBRARIES:
   1) This sketch uses the Rotary Encoder Class implementation from Ben Buxton (the source code is included together with this sketch). You do not need to install it;
-  2) Tiny4kOLED Library and TinyOLED-Fonts (on your Arduino IDE, look for this library on Tools->Manage Libraries). 
-  3) PU2CLR SI4735 Arduino Library (on your Arduino IDE look for this library on Tools->Manage Libraries). 
+  2) Tiny4kOLED Library and TinyOLED-Fonts (on your Arduino IDE, look for this library on Tools->Manage Libraries).
+  3) PU2CLR SI4735 Arduino Library (on your Arduino IDE look for this library on Tools->Manage Libraries).
 
   ABOUT THE EEPROM:
 
-  ATMEL says the lifetime of an EEPROM memory position is about 100,000 writes.  
-  For this reason, this sketch tries to avoid save unnecessary writes into the eeprom. 
-  So, the condition to store any status of the receiver is changing the frequency,  bandwidth, volume, band or step  and 10 seconds of inactivity. 
-  For example, if you switch the band and turn the receiver off immediately, no new information will be written into the eeprom.  
-  But you wait 10 seconds after changing anything, all new information will be written. 
+  ATMEL says the lifetime of an EEPROM memory position is about 100,000 writes.
+  For this reason, this sketch tries to avoid save unnecessary writes into the eeprom.
+  So, the condition to store any status of the receiver is changing the frequency,  bandwidth, volume, band or step  and 10 seconds of inactivity.
+  For example, if you switch the band and turn the receiver off immediately, no new information will be written into the eeprom.
+  But you wait 10 seconds after changing anything, all new information will be written.
 
-  ABOUT SSB PATCH:  
- 
-  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
-  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
+  ABOUT SSB PATCH:
+
+  First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr.
+  Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches
   content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
 
   In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
@@ -46,7 +46,7 @@
   |                           | RESET (pin 15)                |     12        |
   |                           | SDIO (pin 18)                 |     A4        |
   |                           | SCLK (pin 17)                 |     A5        |
-  |                           | SEN (pin 16)                  |    GND        | 
+  |                           | SEN (pin 16)                  |    GND        |
   |     (*2) Buttons          |                               |               |
   |                           | Switch MODE (AM/LSB/AM)       |      4        |
   |                           | Banddwith                     |      5        |
@@ -62,15 +62,17 @@
   |                           | B                             |       3       |
 
   *1 - You can use the SI4732-A10. Check on the SI4732 package the pins: RESET, SDIO, SCLK and SEN.
-  *2 - Please, read the file user_manual.txt for more detail. 
+  *2 - Please, read the file user_manual.txt for more detail.
   *3 - You can remove this buttons from your circuit and sketch if you dont want to use them.
-  *4 - Some encoder devices have pins A and B inverted. So, if the clockwise and counterclockwise directions 
-       are not correct for you, please, invert the settings for pins A and B. 
+  *4 - Some encoder devices have pins A and B inverted. So, if the clockwise and counterclockwise directions
+       are not correct for you, please, invert the settings for pins A and B.
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
   By Ricardo Lima Caratti, April  2021.
+  Modified by patomoi (https://github.com/patomoi) 2022
+
 
   ------------------------
 
