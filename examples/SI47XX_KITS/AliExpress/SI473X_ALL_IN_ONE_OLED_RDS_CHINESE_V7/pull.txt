@@ -1,0 +1,37 @@
+Main idea is to assign different functions to buttons for shortpress (click) or longpress events.
+
+That change is not applicable to the library self, but to the API of the device.
+
+Since I have an ATS-20 (with Arduino NANO), I used the example from 
+/examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V7/ as starting point.
+
+However, the changes should work on any Arduino-Variant...
+I have changed the band-table, so you probably want to reset EEPROM after uploading this version...
+
+To play around (i. e. with the timings), you can switch on Serial output by setting the define "#define DEBUG"
+in the main *.ino file. If set, that will switch on Serial output at 115200 baud.
+If you define (in addition) "#define DEBUG_BUTTONS_ONLY" the software compiled will just report on the button 
+presses to Serial (but will not start the radio/display at all).
+
+With a shortpress (click), the functionality is usally retained as before (i. e. toggle a specific function to to be controlled by the encoder).
+
+For longpress the following applies:
+- Band+/Band- and Vol+/Vol- are back to Band/Volume Up/Down (but at a faster speed, volume can swipe throught the whole range in 3 seconds)
+- The Encoder button can be longpressed to Mute/Unmute the radio
+- For buttons with one functionality (bandwidth), a longpress will change between the possible values by the following logic:
+    - if the current value is at either end at the range, it will start to run in the other direction
+    - if it is somewhere in between, the direction will change between presses
+    - it will not wrap around but stop at either the upper or lower bound (depending on direction)
+- For the Mode-Button, longpress will be just like a shortpress.
+
+For details see updates in user_manual.txt.
+
+Some things changed in addition:
+- disableCommand(NULL, ...) is called cyclically in the main loop() (see "if (coundRSSI++ > 3)") near the end.
+  This call was updating the whole screen, even if there is no change needed. That resulted in a flickering of 
+  the display.
+  This constant refresh is not needed as far as I can tell. I disabled it within the function "disableCommand()"
+  using the flag "anyOn". Works OK for me but may be I am missing something here!?  
+- Volume display on screen was wrong if set below "10". Due to missing padding the values shown below "10" where 
+  "90" to "00". Fixed in "showVolume()"
+- removed some delay()-calls along the way. I guess the radio is now reacting faster also on encoder turns.
