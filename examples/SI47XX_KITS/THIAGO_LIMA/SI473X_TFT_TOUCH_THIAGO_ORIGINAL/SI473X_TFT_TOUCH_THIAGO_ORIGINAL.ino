@@ -64,7 +64,6 @@
 
 #include <SI4735.h>
 #include <SPI.h>
-#include "./TFT_eSPI/TFT_eSPI.h"
 #include <TFT_eSPI.h>
 #include "EEPROM.h"
 #include "Rotary.h"
