@@ -600,7 +600,7 @@ See videos:
 
 This example uses the Arduino Pro Mini 3.3V (8MHz), the SI4735 and OLED.
  
-The EEPROM has a lifetime around 100,000 write/erase cycles. On "Atmel, ATmega328P, 8-bit AVR Microcontroller with 32K Bytes In-System Programmable Flash" DATASHEET, page 19, you will find: "The Atmel® ATmega328P contains 1Kbyte of data EEPROM memory. It is organized as a separate data space, in which single bytes can be read and written. The EEPROM has an endurance of at least 100,000 write/erase cycles". Therefore, writing data to eeprom with each system status change could give an application a very short life. To mitigate this problem, some approaches can be used to save recordings on the EEPROM.
+The EEPROM has a lifetime around 100,000 write/erase cycles. On "Atmel, ATmega328P, 8-bit AVR Microcontroller with 32K Bytes In-System Programmable Flash". The DATASHEET, page 19, you will find: "The Atmel® ATmega328P contains 1Kbyte of data EEPROM memory. It is organized as a separate data space, in which single bytes can be read and written. The EEPROM has an endurance of at least 100,000 write/erase cycles". Therefore, writing data to eeprom with each system status change could give an application a very short life. To mitigate this problem, some approaches can be used to save recordings on the EEPROM.
 
 The following circuit illustrates a way to configure an Arduino based on Atmega328 to record useful information on its internal EEPROM.  The idea of this approach is to obtain the last status of the system after turning it on.    Observe  in the circuit that a 1000uF electrolytic capacitor has been added. Depending on the arduino board, the time needed to record the information and the shutdown check time, the capacitor value may be different. This capacitor is powered by the battery voltage or external power supply while the system is working. When the user turns the system off, the capacitor will still keep the arduino running for a few seconds.  Observe also that the Arduino pin 16 (A2), is connected to the power supply. That setup works as a shutdown detector. I mean, the pin 16 status will keep HIGH while the power supply is on. However, when the user turns the system off (no power supply), the pin 16 status will be LOW. In this condition, a few lines of code have to be added to the loop function to check the pin 16 status frequently. If the pin 16  is LOW, the Arduino will have few seconds to save data into the internal EEPROM. Be aware the capacitance of the capacitor must be high enough to allow the arduino to record all needed data. Increase the capacitance value if 1000uF does not provide enough time for your setup.
 Actually, the best way to save data immediately is using the interrupt approaching via digital pins 2 or 3 of Atmega328  . However, this example uses with success the pulling approach.  
@@ -809,5 +809,11 @@ void loop() {
 
 ```
 
-See this aproach working on [SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V2](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C/SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V2)
+See this aproach working on: 
+* [SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V2](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C/SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V2)
+* [Receiver based on SI473X by Mirko Pavleski](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_02_for_Mirko_Pavleski_radio/MIRKO_V2)
+* [KIT based on SI4732 and OLED sold by Aliexpress and eBay](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V7)
+* [ESP32 with SI473X and OLED](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32/OLED_ALL_IN_ONE)
+* [ESP8266 (ESP-12F) and Si473X](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP8266/OLED_ALL_IN_ONE)
+  
 
