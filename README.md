@@ -154,7 +154,7 @@ This library uses the I²C communication protocol and implements most of the fun
 10. [RDS support](https://pu2clr.github.io/SI4735/#rds);
 11. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band);
 12. Clock reference selection (crystal or external clock reference);
-13. FM Receive de-emphasis to 50 or 75 μs selection. 
+13. FM Receive de-emphasis to 50 or 75 μs selection, AGC, AVC and filter controls, and more... 
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
