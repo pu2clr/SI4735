@@ -228,7 +228,7 @@ After, unzip the SI4735-master.zip file in your Arduino Library folder.
 * On __Linux__: ˜/Documents/Arduino/libraries
 
 With that approach, you will have the __most current version__ of the library. However, __it may not be the most stable version__. This is because the current version is always in development. [Prefer releases](https://github.com/pu2clr/SI4735/releases).
-Do you need some old version (release) of this library?  If yes, [check here](https://github.com/pu2clr/SI4735/releases). 
+Do you need some old version (release) of this library?  If, [check here](https://github.com/pu2clr/SI4735/releases). 
 
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
@@ -242,6 +242,8 @@ The SI4732-A10 and SI4735-D60 are DSP radio receivers IC from Silcon Labs. They 
 The SI473X can be programmed by sending commands and getting responses. You can control it via a microcontroller like Arduino using I2C communication protocol. To make the SI473X perform an action, the microcontroller has to send a set of bytes (command and arguments) that the device interprets and executes the given command. The  image below illustrates the interaction between the MCU and the SI473X device. 
 
 <BR>
+
+### Interaction between Arduino based board and SI473X devices via I2C interface
 
 ![SI473x Block Diagram](extras/images/I2C_MCU_SI473X.png)
 
