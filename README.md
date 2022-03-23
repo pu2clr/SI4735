@@ -264,7 +264,7 @@ According to the Si47XX PROGRAMMING GUIDE/AN332, the Si4732-A10 has the same fir
 ![SI4732-A10 Block Diagram](extras/images/si4732_A10_diagram.png)
 
 
-#### SI4732-A10 and descriptions I²C bus address 
+#### SI4735-D60 and SI4732-A10 I²C bus address difference 
 
 While the Si4735 device provides the 0x11 I²C bus address when the SEN pin is connected to the ground, the SI4732-A10 provides the same address when the SEN pin is connected to the +VCC.  Also, this library provides the function __getDeviceI2CAddress__ to detect the I²C bus address automatically. This way, you don't need to worry about this setup if you use this function. See [getDeviceI2CAddress()](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group05.html#ga668008457910e916ebadf15bda2e5b29).
 
