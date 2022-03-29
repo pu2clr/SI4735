@@ -1,4 +1,4 @@
-# Schematics and Sketches
+# [Schematics and Sketches](https://pu2clr.github.io/extras/schematic)
 
 This section presents several prototypes and circuits with different displays and controller boards. The source codes for each prototype are stored in the [examples folder](https://github.com/pu2clr/SI4735/tree/master/examples) of this repository. Please, check the comments at the beginning of each sketch example available in this library. You will find the SI473X, button, encoder, display and Arduino settings. There are more than 20 projects that can help you build your own receiver based on the SI47XX IC family. 
 
