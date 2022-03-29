@@ -54,6 +54,7 @@ Contact: __pu2clr@gmail.com__.
      * [Atmega328 based board and OLED](extras/schematic#atmega328-based-board-and-oled)
      * [ESP32 based board](extras/schematic#esp32-based-board)
      * [Standalone ATmega328 with or without external Crystal (SI4735-D60 and LCD 16x2)](extras/schematic#standalone-atmega328-with-or-without-external-crystal-si4735-d60-and-lcd-16x2)
+     * [Arduino / ATmega328 with Nokia 5110](https://github.com/pu2clr/SI4735/tree/master/extras/schematic#arduino--atmega328-with-nokia-5110)
      * [Basic schematic with TFT](extras/schematic#basic-schematic-with-tft)
      * [Arduino DUE/MEGA and touch TFT display](extras/schematic#arduino-duemega-and-touch-tft-display)
      * [Attiny85 basic circuit](extras/schematic#attiny85-basic-circuit)
