@@ -2256,16 +2256,39 @@ public:
     // AM Seek property configurations
     void setSeekAmLimits(uint16_t bottom, uint16_t top);
     void setSeekAmSpacing(uint16_t spacing);
-    void setSeekAmSrnThreshold(uint16_t value);
-    void inline setSeekAmSNRThreshold(uint16_t value) { setSeekAmSrnThreshold(value); }; // Fixing the function name
+
+    void inline setSeekAmSrnThreshold(uint16_t value) { sendProperty(AM_SEEK_SNR_THRESHOLD, value); }; // Wrong name! Will be removed later  
+
+    /**
+     * @ingroup group08 Seek
+     *
+     * @brief Sets the SNR threshold for a valid AM Seek/Tune.
+     *
+     * @details If the value is zero then SNR threshold is not considered when doing a seek. Default value is 5 dB.
+     * @see Si47XX PROGRAMMING GUIDE;  (REV 1.0); page 127
+     */
+    void inline setSeekAmSNRThreshold(uint16_t value) { sendProperty(AM_SEEK_SNR_THRESHOLD, value); }; // Fixing the function name
 
     void setSeekAmRssiThreshold(uint16_t value);
 
     // FM Seek property configurations
     void setSeekFmLimits(uint16_t bottom, uint16_t top);
     void setSeekFmSpacing(uint16_t spacing);
-    void setSeekFmSrnThreshold(uint16_t value);
-    void inline setSeekFmSNRThreshold(uint16_t value) { setSeekFmSrnThreshold(value); }; // Fixing the function name
+
+    void inline setSeekFmSrnThreshold(uint16_t value) { sendProperty(FM_SEEK_TUNE_SNR_THRESHOLD, value); }; // Wrong name. Will be removed later
+    
+    /**
+     * @ingroup group08 Seek
+     *
+     * @brief Sets the SNR threshold for a valid FM Seek/Tune.
+     *
+     * @details SNR Threshold which determines if a valid channel has been found during Seek/Tune. Specified in units of dB in 1 dB steps (0–127). Default is 3 dB
+     * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 102
+     *
+     * @param value between 0 and 127.
+     */
+    void inline setSeekFmSNRThreshold(uint16_t value) { sendProperty(FM_SEEK_TUNE_SNR_THRESHOLD, value); }; // Fixing the function name
+    
     void setSeekFmRssiThreshold(uint16_t value);
 
     void setFmBlendStereoThreshold(uint8_t parameter);
@@ -2488,8 +2511,8 @@ public:
     void setSSB(uint8_t usblsb);
     void setSSBAudioBandwidth(uint8_t AUDIOBW);
     void setSSBAutomaticVolumeControl(uint8_t AVCEN);
-    void setSBBSidebandCutoffFilter(uint8_t SBCUTFLT);
-    void inline setSSBSidebandCutoffFilter(uint8_t SBCUTFLT) { setSBBSidebandCutoffFilter(SBCUTFLT); }; // Fixing the function name
+    void setSSBSidebandCutoffFilter(uint8_t SBCUTFLT); // Fixing the function name
+    void inline setSBBSidebandCutoffFilter(uint8_t SBCUTFLT) { setSSBSidebandCutoffFilter(SBCUTFLT); }; // Wrong name! will be removed later.
 
     void setSSBAvcDivider(uint8_t AVC_DIVIDER);
     void setSSBDspAfc(uint8_t DSP_AFCDIS);

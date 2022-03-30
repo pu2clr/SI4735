@@ -17,7 +17,7 @@ var group__group17 =
     [ "setSSBSoftMute", "group__group17.html#ga91251dfc2ff9488aaef3aa1a528097d9", null ],
     [ "setSSBAutomaticVolumeControl", "group__group17.html#gacacf1dac4c0ec170d1da629dd1fd30cb", null ],
     [ "setSSBAvcDivider", "group__group17.html#gafc5e87c50a1eba6de9504c114cc1cb70", null ],
-    [ "setSBBSidebandCutoffFilter", "group__group17.html#gae9d50b24642784943fefedbac944a8e8", null ],
+    [ "setSSBSidebandCutoffFilter", "group__group17.html#ga7554815b6d83128c5b15206e69c51f9f", null ],
     [ "setSSBAudioBandwidth", "group__group17.html#ga6b2ad4d027463262350134490d16bf32", null ],
     [ "setSSB", "group__group17.html#ga3e907ddf560a0c8286fa55768701b3da", null ],
     [ "setSSB", "group__group17.html#ga7c48f2af416b1f89dbedbfbe9a637620", null ],

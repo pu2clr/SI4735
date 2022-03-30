@@ -1404,35 +1404,6 @@ void SI4735::setSeekFmSpacing(uint16_t spacing)
     sendProperty(FM_SEEK_FREQ_SPACING, spacing);
 }
 
-/**
- * @ingroup group08 Seek
- *
- * @brief Sets the SNR threshold for a valid AM Seek/Tune.
- *
- * @details If the value is zero then SNR threshold is not considered when doing a seek. Default value is 5 dB.
- * @details please, call setSeekAmSNRThreshold instead setSeekAmSrnThreshold
- * @see Si47XX PROGRAMMING GUIDE;  (REV 1.0); page 127
- */
-void SI4735::setSeekAmSrnThreshold(uint16_t value)
-{
-    sendProperty(AM_SEEK_SNR_THRESHOLD, value);
-}
-
-/**
- * @ingroup group08 Seek
- *
- * @brief Sets the SNR threshold for a valid FM Seek/Tune.
- *
- * @details SNR Threshold which determines if a valid channel has been found during Seek/Tune. Specified in units of dB in 1 dB steps (0–127). Default is 3 dB
- * @details please, call setSeekFmSNRThreshold instead setSeekFmSrnThreshold
- * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 102
- *
- * @param value between 0 and 127.
- */
-void SI4735::setSeekFmSrnThreshold(uint16_t value)
-{
-    sendProperty(FM_SEEK_TUNE_SNR_THRESHOLD, value);
-}
 
 /**
  * @ingroup group08 Seek 
@@ -2882,13 +2853,11 @@ void SI4735::setSSBAvcDivider(uint8_t AVC_DIVIDER)
  * @details 0 = Band pass filter to cutoff both the unwanted side band and high frequency components > 2.0 kHz of the wanted side band. (default)
  * @details 1 = Low pass filter to cutoff the unwanted side band.
  * Other values = not allowed.
- * @details please call setSSBSidebandCutoffFilter instead setSBBSidebandCutoffFilter
- *
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24
  *
  * @param SBCUTFLT 0 or 1; see above
  */
-void SI4735::setSBBSidebandCutoffFilter(uint8_t SBCUTFLT)
+void SI4735::setSSBSidebandCutoffFilter(uint8_t SBCUTFLT)
 {
     currentSSBMode.param.SBCUTFLT = SBCUTFLT;
     sendSSBModeProperty();
