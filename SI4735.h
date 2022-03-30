@@ -2257,12 +2257,15 @@ public:
     void setSeekAmLimits(uint16_t bottom, uint16_t top);
     void setSeekAmSpacing(uint16_t spacing);
     void setSeekAmSrnThreshold(uint16_t value);
+    void inline setSeekAmSNRThreshold(uint16_t value) { setSeekAmSrnThreshold(value); }; // Fixing the function name
+
     void setSeekAmRssiThreshold(uint16_t value);
 
     // FM Seek property configurations
     void setSeekFmLimits(uint16_t bottom, uint16_t top);
     void setSeekFmSpacing(uint16_t spacing);
     void setSeekFmSrnThreshold(uint16_t value);
+    void inline setSeekFmSNRThreshold(uint16_t value) { setSeekFmSrnThreshold(value); }; // Fixing the function name
     void setSeekFmRssiThreshold(uint16_t value);
 
     void setFmBlendStereoThreshold(uint8_t parameter);
@@ -2486,6 +2489,8 @@ public:
     void setSSBAudioBandwidth(uint8_t AUDIOBW);
     void setSSBAutomaticVolumeControl(uint8_t AVCEN);
     void setSBBSidebandCutoffFilter(uint8_t SBCUTFLT);
+    void inline setSSBSidebandCutoffFilter(uint8_t SBCUTFLT) { setSBBSidebandCutoffFilter(SBCUTFLT); }; // Fixing the function name
+
     void setSSBAvcDivider(uint8_t AVC_DIVIDER);
     void setSSBDspAfc(uint8_t DSP_AFCDIS);
     void setSSBSoftMute(uint8_t SMUTESEL);

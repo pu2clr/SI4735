@@ -192,7 +192,7 @@ void setup() {
     {
       si4735.setBandwidth(4, 1);
       si4735.setSSBAudioBandwidth(4);
-      si4735.setSBBSidebandCutoffFilter(0);
+      si4735.setSSBSidebandCutoffFilter(0);
       BandWidth = "0.5kHz";
     }
     if (currentMode == "FM")
@@ -214,7 +214,7 @@ void setup() {
     {
       si4735.setBandwidth(4, 1);
       si4735.setSSBAudioBandwidth(5);
-      si4735.setSBBSidebandCutoffFilter(0);
+      si4735.setSSBSidebandCutoffFilter(0);
       BandWidth = "1kHz";
     }
     if (currentMode == "FM")
@@ -236,7 +236,7 @@ void setup() {
     {
       si4735.setBandwidth(3, 1);
       si4735.setSSBAudioBandwidth(0);
-      si4735.setSBBSidebandCutoffFilter(0);
+      si4735.setSSBSidebandCutoffFilter(0);
       BandWidth = "1.2kHz";
     }
     if (currentMode == "FM")
@@ -258,7 +258,7 @@ void setup() {
     {
       si4735.setBandwidth(6, 1);
       si4735.setSSBAudioBandwidth(1);
-      si4735.setSBBSidebandCutoffFilter(1);
+      si4735.setSSBSidebandCutoffFilter(1);
       BandWidth = "2.2kHz";
     }
     if (currentMode == "FM")
@@ -280,7 +280,7 @@ void setup() {
     {
       si4735.setBandwidth(2, 1);
       si4735.setSSBAudioBandwidth(2);
-      si4735.setSBBSidebandCutoffFilter(1);
+      si4735.setSSBSidebandCutoffFilter(1);
       BandWidth = "3kHz";
     }
     if (currentMode == "FM")
@@ -302,7 +302,7 @@ void setup() {
     {
       si4735.setBandwidth(1, 1);
       si4735.setSSBAudioBandwidth(3);
-      si4735.setSBBSidebandCutoffFilter(1);
+      si4735.setSSBSidebandCutoffFilter(1);
       BandWidth = "4kHz";
     }
   }
@@ -629,7 +629,7 @@ void menuCheck() {
         {
           si4735.setBandwidth(4, 1);
           si4735.setSSBAudioBandwidth(4);
-          si4735.setSBBSidebandCutoffFilter(0);
+          si4735.setSSBSidebandCutoffFilter(0);
           BandWidth = "0.5kHz";
           delay (200);
         }
@@ -661,7 +661,7 @@ void menuCheck() {
         {
           si4735.setBandwidth(4, 1);
           si4735.setSSBAudioBandwidth(5);
-          si4735.setSBBSidebandCutoffFilter(0);
+          si4735.setSSBSidebandCutoffFilter(0);
           BandWidth = "1kHz";
           delay (200);
         }
@@ -693,7 +693,7 @@ void menuCheck() {
         {
           si4735.setBandwidth(3, 1);
           si4735.setSSBAudioBandwidth(0);
-          si4735.setSBBSidebandCutoffFilter(0);
+          si4735.setSSBSidebandCutoffFilter(0);
           BandWidth = "1.2kHz";
           delay (200);
         }
@@ -725,7 +725,7 @@ void menuCheck() {
         {
           si4735.setBandwidth(6, 1);
           si4735.setSSBAudioBandwidth(1);
-          si4735.setSBBSidebandCutoffFilter(1);
+          si4735.setSSBSidebandCutoffFilter(1);
           BandWidth = "2.2kHz";
           delay (200);
         }
@@ -757,7 +757,7 @@ void menuCheck() {
         {
           si4735.setBandwidth(2, 1);
           si4735.setSSBAudioBandwidth(2);
-          si4735.setSBBSidebandCutoffFilter(1);
+          si4735.setSSBSidebandCutoffFilter(1);
           BandWidth = "3kHz";
           delay (200);
         }
@@ -789,7 +789,7 @@ void menuCheck() {
         {
           si4735.setBandwidth(1, 1);
           si4735.setSSBAudioBandwidth(3);
-          si4735.setSBBSidebandCutoffFilter(1);
+          si4735.setSSBSidebandCutoffFilter(1);
           BandWidth = "4kHz";
           delay (200);
         }

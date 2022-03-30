@@ -155,7 +155,7 @@ void loop()
     case 'F':
       rx.setFM(8600, 10800, 10650, 50);
       rx.setSeekAmRssiThreshold(0);
-      rx.setSeekAmSrnThreshold(10);
+      rx.setSeekAmSNRThreshold(10);
       break;
     case '1':
       rx.setAM(100, 30000, 7200, 5);

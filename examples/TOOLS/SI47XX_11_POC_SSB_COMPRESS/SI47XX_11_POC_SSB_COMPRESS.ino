@@ -351,9 +351,9 @@ void loop()
       rx.setSSBAudioBandwidth(bandwidthIdx);
       // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
       if (bandwidthIdx == 0 || bandwidthIdx == 4 || bandwidthIdx == 5)
-        rx.setSBBSidebandCutoffFilter(0);
+        rx.setSSBSidebandCutoffFilter(0);
       else
-        rx.setSBBSidebandCutoffFilter(1);
+        rx.setSSBSidebandCutoffFilter(1);
       showStatus();
     }
     else if (key == '>' || key == '.') // goes to the next band

@@ -387,9 +387,9 @@ void readAllReceiverInformation() {
       si4735.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
       // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
       if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
-          si4735.setSBBSidebandCutoffFilter(0);
+          si4735.setSSBSidebandCutoffFilter(0);
        else
-          si4735.setSBBSidebandCutoffFilter(1);
+          si4735.setSSBSidebandCutoffFilter(1);
    }
    else if (currentMode == AM) {
         bwIdxAM = bwIdx;
@@ -844,9 +844,9 @@ void loop()
         si4735.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
         // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
         if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
-          si4735.setSBBSidebandCutoffFilter(0);
+          si4735.setSSBSidebandCutoffFilter(0);
         else
-          si4735.setSBBSidebandCutoffFilter(1);
+          si4735.setSSBSidebandCutoffFilter(1);
       }
       else if (currentMode == AM)
       {

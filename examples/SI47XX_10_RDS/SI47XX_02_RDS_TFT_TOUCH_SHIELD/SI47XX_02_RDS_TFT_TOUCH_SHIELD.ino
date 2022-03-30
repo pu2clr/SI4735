@@ -770,7 +770,7 @@ void useBand()
     // Define here the best criteria to find a FM station during the seeking process 
     // si4735.setSeekFmSpacing(10); // frequency spacing for FM seek (5, 10 or 20. They mean 50, 100 or 200 kHz)
     // si4735.setSeekAmRssiThreshold(0);
-    // si4735.setSeekFmSrnThreshold(3);
+    // si4735.setSeekFmSNRThreshold(3);
     
     bfoOn = ssbLoaded = false;
     si4735.setRdsConfig(1, 2, 2, 2, 2);
@@ -894,9 +894,9 @@ void switchFilter() {
     si4735.setSSBAudioBandwidth(bwIdxSSB);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
     if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
-      si4735.setSBBSidebandCutoffFilter(0);
+      si4735.setSSBSidebandCutoffFilter(0);
     else
-      si4735.setSBBSidebandCutoffFilter(1);
+      si4735.setSSBSidebandCutoffFilter(1);
   }
   else if (currentMode == AM)
   {

@@ -166,7 +166,7 @@ void loop()
     case 'F':
       si4735.setFM(8600, 10800, 10390, 50);
       si4735.setSeekAmRssiThreshold(0);
-      si4735.setSeekAmSrnThreshold(10);
+      si4735.setSeekAmSNRThreshold(10);
       break;
     case '1':
       si4735.setAM(100, 30000, 7200, 5);

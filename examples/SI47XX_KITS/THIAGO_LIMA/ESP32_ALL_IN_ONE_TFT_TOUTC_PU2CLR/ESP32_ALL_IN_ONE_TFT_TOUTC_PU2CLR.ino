@@ -521,9 +521,9 @@ void readAllReceiverInformation()
     rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
     if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
-      rx.setSBBSidebandCutoffFilter(0);
+      rx.setSSBSidebandCutoffFilter(0);
     else
-      rx.setSBBSidebandCutoffFilter(1);
+      rx.setSSBSidebandCutoffFilter(1);
   }
   else if (currentMode == AM)
   {
@@ -1226,7 +1226,7 @@ void checkRDS()
       // Define here the best criteria to find a FM station during the seeking process
       rx.setSeekFmSpacing(1); // Using space 1 (not documentend). The manual says: 5, 10 or 20. They mean 50, 100 or 200 kHz.
       // rx.setSeekAmRssiThreshold(0);
-      // rx.setSeekFmSrnThreshold(3);
+      // rx.setSeekFmSNRThreshold(3);
       cmdBFO = ssbLoaded = false;
       rx.setRdsConfig(1, 2, 2, 2, 2);
       rx.setFifoCount(1);
@@ -1316,9 +1316,9 @@ void checkRDS()
       rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
       // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
       if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
-        rx.setSBBSidebandCutoffFilter(0);
+        rx.setSSBSidebandCutoffFilter(0);
       else
-        rx.setSBBSidebandCutoffFilter(1);
+        rx.setSSBSidebandCutoffFilter(1);
 
       band[bandIdx].bandwidthIdx = bwIdxSSB;
     }

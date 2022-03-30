@@ -1004,9 +1004,9 @@ tft.init();
   si4735.setSeekFmSpacing(1);        
   si4735.setSeekFmLimits(8750,10790);
   si4735.setSeekAmRssiThreshold(20);
-  si4735.setSeekAmSrnThreshold(10);
+  si4735.setSeekAmSNRThreshold(10);
   si4735.setSeekFmRssiThreshold(5);
-  si4735.setSeekFmSrnThreshold(5);
+  si4735.setSeekFmSNRThreshold(5);
 
   xTaskCreate(SaveInEeprom, "SaveInEeprom", 2048, NULL, 1, NULL);
 
@@ -1136,7 +1136,7 @@ void useBand()  {
       //si4735.setSSBDspAfc(0);
       //si4735.setSSBAvcDivider(3);
       //si4735.setSsbSoftMuteMaxAttenuation(8); // Disable Soft Mute for SSB
-      //si4735.setSBBSidebandCutoffFilter(0);
+      //si4735.setSSBSidebandCutoffFilter(0);
      
       
       si4735.setSSBBfo(currentBFO);     
@@ -1161,9 +1161,9 @@ void setBandWidth()  {
     si4735.setSSBAudioBandwidth(bwIdxSSB);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
     if (bwIdxSSB == 0 || bwIdxSSB == 4 || bwIdxSSB == 5)
-      si4735.setSBBSidebandCutoffFilter(0);
+      si4735.setSSBSidebandCutoffFilter(0);
     else
-      si4735.setSBBSidebandCutoffFilter(1);
+      si4735.setSSBSidebandCutoffFilter(1);
   }
   else if (currentMode == AM)
   {

@@ -450,7 +450,6 @@ void showFrequencySeek(uint16_t freq)
 void showStatus()
 {
   char *unt;
-  char bufferDisplay[20];
 
   display.clearDisplay();
   display.drawLine(0,15,84,15, BLACK); 
@@ -516,7 +515,6 @@ void showBandwidth() {
 */
 void showRSSI()
 {
-  int rssiLevel;
   uint8_t rssiAux;
   char sRssi[10];
  
@@ -683,9 +681,9 @@ void doBandwidth(int8_t v) {
     rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
     if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
-      rx.setSBBSidebandCutoffFilter(0);
+      rx.setSSBSidebandCutoffFilter(0);
     else
-      rx.setSBBSidebandCutoffFilter(1);
+      rx.setSSBSidebandCutoffFilter(1);
   }
   else if (currentMode == AM)
   {
@@ -761,7 +759,7 @@ void doStep(int8_t v) {
 /**
     Switches to the AM, LSB or USB modes
 */
-void doMode(int8_t v) {
+void doMode() {
 
   if (currentMode != FM)
   {
@@ -810,7 +808,7 @@ void loop()
       showBFO();
     }
     else if (cmdMode)
-      doMode(encoderCount);
+      doMode();
     else if (cmdStep)
       doStep(encoderCount);
     else if (cmdAgc)

@@ -91,7 +91,7 @@ void loop()
     case 'F':
       si47xx.setFM(8600, 10800, 10390, 50);
       si47xx.setSeekAmRssiThreshold(0);
-      si47xx.setSeekAmSrnThreshold(10);
+      si47xx.setSeekAmSNRThreshold(10);
       break;
     case '1':
       si47xx.setAM(100, 30000, 7200, 5);

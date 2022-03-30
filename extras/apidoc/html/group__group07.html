@@ -413,10 +413,13 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129 </dd></dl>
 <p>The range may be between 1 and 4095 in 1 unit steps.</p>
 <p>For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz. The reference clock frequency property would then need to be set to 32500 Hz.</p>
 <p>ATTENTION by default, this function considers you are using the RCLK pin as clock source.</p>
-<p>Example: The code below shows the setup for an active 4.9152 MHz crystal </p><div class="fragment"><div class="line">rx.setRefClock(32768);</div>
+<p>Example: The code below shows the setup for an active 4.9152MHz crystal </p><div class="fragment"><div class="line">rx.setRefClock(32768);</div>
 <div class="line">rx.setRefClockPrescaler(150); <span class="comment">// will work with 4915200Hz active crystal =&gt; 4.9152MHz =&gt; (32768 x 150)</span></div>
 <div class="line">rx.setup(RESET_PIN, 0, <a class="code" href="_s_i4735_8h.html#a1c63dbfe18d80af288cc79a5da666993">POWER_UP_AM</a>, <a class="code" href="_s_i4735_8h.html#afd6b0255af56b3deee67ef1fe14d2fd6">SI473X_ANALOG_AUDIO</a>, <a class="code" href="_s_i4735_8h.html#a9d2a0e22f5a37d3911eef36581225dd2">XOSCEN_RCLK</a>);</div>
-</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35</dd></dl>
+</div><!-- fragment --><p>Example: The code below shows the setup for an active 13MHz crystal </p><div class="fragment"><div class="line">rx.setRefClock(32500);</div>
+<div class="line">rx.setRefClockPrescaler(400); <span class="comment">// 32500 x 400 = 13000000 (13MHz)</span></div>
+<div class="line">rx.setup(RESET_PIN, 0, <a class="code" href="_s_i4735_8h.html#a1c63dbfe18d80af288cc79a5da666993">POWER_UP_AM</a>, <a class="code" href="_s_i4735_8h.html#afd6b0255af56b3deee67ef1fe14d2fd6">SI473X_ANALOG_AUDIO</a>, <a class="code" href="_s_i4735_8h.html#a9d2a0e22f5a37d3911eef36581225dd2">XOSCEN_RCLK</a>);</div>
+</div><!-- fragment --> <dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 34 and 35</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">prescale</td><td>Prescaler for Reference Clock value; Between 1 and 4095 in 1 unit steps. Default is 1. </td></tr>

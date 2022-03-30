@@ -317,9 +317,9 @@ void loop()
       si4735.setSSBAudioBandwidth(bandwidthIdx);
       // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
       if (bandwidthIdx == 0 || bandwidthIdx == 4 || bandwidthIdx == 5)
-        si4735.setSBBSidebandCutoffFilter(0);
+        si4735.setSSBSidebandCutoffFilter(0);
       else
-        si4735.setSBBSidebandCutoffFilter(1);
+        si4735.setSSBSidebandCutoffFilter(1);
       showStatus();
     }
     else if (key == '>' || key == '.') // goes to the next band
