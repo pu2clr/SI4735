@@ -47,11 +47,5 @@ arduino-cli compile -b arduino:avr:nano /Users/rcaratti/Desenvolvimento/eu/Ardui
 echo "STM32"
 arduino-cli compile --fqbn STM32:stm32:Nucleo_64 /Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/examples/SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2
 
-# compiles Attiny85
-# echo "Attiny85"
-# echo "***SSB"
-# arduino-cli compile -b arduino-tiny-841:avr /Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/examples/SI47XX_05_ATTINY85/SI47XX_03_SSB_Tiny4kOLED
-# echo "***AM/FM"
-# arduino-cli compile --fqbn attiny:avr:ATtinyX5:cpu=attiny85,clock=internal8 /Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/examples/SI47XX_05_ATTINY85/SI47XX_02_ATTINY85_MINI_OLED_I2C
 
 
