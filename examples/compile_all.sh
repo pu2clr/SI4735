@@ -5,12 +5,16 @@
 # compiles POC
 echo "POC"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC
-
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_02_POC_SW
-
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_03_POC_SSB
-
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/Si4735_04_HARDWARE_MUTE_CIRCUIT
+arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_06_SSB_EEPROM
+
+echo "POC Active Crystal"
+arduino-cli compile -b arduino:avr:nano ./SI47XX_11_NO_CRYSTAL/POC_ACTIVE_CRYSTAL
+arduino-cli compile -b arduino:avr:nano ./SI47XX_11_NO_CRYSTAL/POC_LCD16x2
+arduino-cli compile --fqbn arduino:sam:arduino_due_x ./SI47XX_11_NO_CRYSTAL/SI47XX_RDS_TOUCH_SHIELD_REF_CLOCK
+
 
 # compiles Mirko V2
 echo "Mirko V2"
@@ -47,4 +51,6 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_10_RDS/SI47XX_03_RDS_TFT_ILI922
 echo "STM32"
 arduino-cli compile --fqbn STM32:stm32:Nucleo_64 ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2
 
+echo "STM32 - PLAMEN"
+arduino-cli compile --fqbn STM32:stm32:Nucleo_64 ./SI47XX_KITS/PLAMEN/PU2CLR_SI5351_SI4732_STM32
 
