@@ -304,12 +304,12 @@ void setup()
   drawDial(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentDivider);
 
   // init Button
-  btnAGC = {30, 60, 60, 30, "AGC"};
-  btnPrevBand = {110, 60, 80, 30, "Prev Band"};
-  btnNextBand = {210, 60, 80, 30, "Next Band"};
-  btnMode = {30, 100, 60, 30, (char*) AMMode[idxAMMode]};
-  btnBFO = {110, 100, 80, 30, (char*) "BFO: 0"};
-  btnBandwidth = {210, 100, 80, 30, "BW: 4 kHz"};
+  btnAGC = {30, 60, 60, 30, (char *) "AGC"};
+  btnPrevBand = {110, 60, 80, 30, (char *) "Prev Band"};
+  btnNextBand = {210, 60, 80, 30, (char *) "Next Band"};
+  btnMode = {30, 100, 60, 30, (char *) AMMode[idxAMMode]};
+  btnBFO = {110, 100, 80, 30, (char *) "BFO: 0"};
+  btnBandwidth = {210, 100, 80, 30, (char *) "BW: 4 kHz"};
 
   showButtons();
 
