@@ -1,4 +1,3 @@
-
 # This script uses the arduino-cli to compile the arduino sketches using command line (without Arduino IDE).
 # It is very useful to check the library after bug fixes and improvments. 
 
@@ -46,6 +45,5 @@ arduino-cli compile -b arduino:avr:nano /Users/rcaratti/Desenvolvimento/eu/Ardui
 # compiles STM32 sketch
 echo "STM32"
 arduino-cli compile --fqbn STM32:stm32:Nucleo_64 /Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/examples/SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2
-
 
 
