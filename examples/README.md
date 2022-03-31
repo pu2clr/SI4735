@@ -73,21 +73,23 @@ By using the examples of this folder, you will do not need any external device t
 
 ## Arduino CLI 
 
-Arduino CLI (arduino-cli) is a solution that allows you to compile, build, upload, manage boards and libraries via shell command lines. This way, you do not need to use the traditional Arduino IDE. [Click here for more detail about arduino-cli](https://arduino.github.io/arduino-cli/0.21/).
+Arduino CLI (arduino-cli) is a solution that allows you to compile, build, upload, manage boards and libraries via shell command lines. This way, you do not need to use the traditional Arduino IDE. Depending on the development environment you use, arduino-cli may be more appropriate, as it consumes less computer resources. You will notice that the arduino-cli allows compiles and uploades process faster. There is, however, the drawback of being a less intuitive environment than the Arduino IDE, offering a longer learning time for most users. The links below can help you to know more about arduino-cli. 
 
-[Getting started](https://arduino.github.io/arduino-cli/0.21/getting-started/)
+* [Click here for more detail about arduino-cli](https://arduino.github.io/arduino-cli/0.21/).
+* [Getting started](https://arduino.github.io/arduino-cli/0.21/getting-started/)
+* [Click here to watch a video about the arduino-cli](https://youtu.be/J-qGn1eEidA)
 
-### [Install via Homebrew (macOS/Linux)](https://arduino.github.io/arduino-cli/0.21/installation/)
+### [Installing via Homebrew (macOS/Linux)](https://arduino.github.io/arduino-cli/0.21/installation/)
 
-brew update
-brew install arduino-cli
+The easier way to install arduino-cli on your Linux or MACOS system is shown below.
+
+* brew update
+* brew install arduino-cli
+
+More about installing arduino-cli on Linux, MACOS and Windows, go to [https://arduino.github.io/arduino-cli/0.21/installation/](https://arduino.github.io/arduino-cli/0.21/installation/).
 
 It is important to say that all boards and libraries installed via your Arduino IDE is used by arduino-cli. I mean, all Arrduino environment setup is shared by Arduino IDE and arduino-cli.
 This way, if you install a new board via arduino-cli, it will be seen by Arduino IDE and vice-versa. The same way, if you install a new library via Arduino IDE, it will be seen by arduino-cli and vice-versa.
-
-
-[Click here to watch a nive video about the arduino-cli](https://youtu.be/J-qGn1eEidA)
-
 
 ## Main commands examples
 
@@ -129,15 +131,33 @@ STM32:stm32          1.9.0     1.9.0  STM32 Boards (selected from submenu)
 
 * arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC__
 
-The command below compiles and uploads the sketch into the board 
+### The command below compiles and uploads the sketch into the Arduino Nano board 
 
 * arduino-cli compile  -b arduino:avr:nano -u -p yourPort ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC. Wrere can be COM3, COM4, COM(N) if you are using Microsoft Windows; or /dev/XXX if you are using unix like SO (Linux or  MacOS).
 
+To know the right port you have to use: 
+
+* arduino-cli board list
 
 
 ### Example using Arduino DUE 
 
 * arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/xxx  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+
+### Example using Arduino Mega
+
+arduino-cli compile --fqbn arduino:avr:mega -u -p /dev/xxx ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+
+
+### Example using ESP32
+
+* arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso -u -dev -u -p /dev/xxx ./SI47XX_KITS/THIAGO_LIMA/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2
+
+### Example using STM32 (compiling only)
+
+arduino-cli compile --fqbn STM32:stm32:Nucleo_64 ./SI47XX_KITS/PLAMEN/PU2CLR_SI5351_SI4732_STM32
+
+
 
 
 
