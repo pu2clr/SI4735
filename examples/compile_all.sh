@@ -10,6 +10,23 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_03_POC
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/Si4735_04_HARDWARE_MUTE_CIRCUIT
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_06_SSB_EEPROM
 
+echo "LCD 20x4 All In One"
+arduino-cli compile -b arduino:avr:nano ./SI47XX_02_LCD_20x4_I2C/SI473X_04_ALL_IN_ONE
+echo "LCD_20x4 with SMETER I2C"
+arduino-cli compile -b arduino:avr:nano ./SI47XX_02_LCD_20x4_I2C/SI47XX_02_LCD_20x4_SMETER_I2C
+
+
+echo "OLED"
+arduino-cli compile -b arduino:avr:nano ./SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED
+
+echo "TFT"
+echo "*** Atmega328 and ILI9225"
+arduino-cli compile -b arduino:avr:nano ./SI47XX_04_TFT/SI47XX_01_TFT_ILI9225
+## echo "*** ST7735"
+## arduino-cli compile -b MiniCore:avr:ATmega328PB ./SI47XX_04_TFT/SI47XX_03_TFT_ATMEGA328_ST7735
+
+
+
 echo "POC Active Crystal"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_11_NO_CRYSTAL/POC_ACTIVE_CRYSTAL
 arduino-cli compile -b arduino:avr:nano ./SI47XX_11_NO_CRYSTAL/POC_LCD16x2
@@ -22,7 +39,10 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_02_for_Mirko_Pavleski_radio/MIR
 
 # compiles KIT ATS-20
 echo "ATS-20 KIT"
+echo "*** V7"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V7
+echo "*** V8"
+arduino-cli compile -b arduino:avr:nano ./SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V8
 
 # compiles ESP32 LCD16x2_ALL_IN_ONE
 echo "ESP32 LCD16x2_ALL_IN_ONE"

@@ -70,3 +70,82 @@ By using the examples of this folder, you will do not need any external device t
 
 
 [Back to the main page](https://pu2clr.github.io/SI4735/)
+
+## Arduino CLI 
+
+Arduino CLI (arduino-cli) is a solution that allows you to compile, build, upload, manage boards and libraries via shell command lines. This way, you do not need to use the traditional Arduino IDE. [Click here for more detail about arduino-cli](https://arduino.github.io/arduino-cli/0.21/).
+
+[Getting started](https://arduino.github.io/arduino-cli/0.21/getting-started/)
+
+### [Install via Homebrew (macOS/Linux)](https://arduino.github.io/arduino-cli/0.21/installation/)
+
+brew update
+brew install arduino-cli
+
+It is important to say that all boards and libraries installed via your Arduino IDE is used by arduino-cli. I mean, all Arrduino environment setup is shared by Arduino IDE and arduino-cli.
+This way, if you install a new board via arduino-cli, it will be seen by Arduino IDE and vice-versa. The same way, if you install a new library via Arduino IDE, it will be seen by arduino-cli and vice-versa.
+
+
+[Click here to watch a nive video about the arduino-cli](https://youtu.be/J-qGn1eEidA)
+
+
+## Main commands examples
+
+It is important to say that all boards and libraries installed via your Arduino IDE is used by arduino-cli. I mean, all Arrduino environment setup is shared by Arduino IDE and arduino-cli.
+This way, if you install a new board via arduino-cli, it will be seen by Arduino IDE and vice-versa. The same way, if you install a new library via Arduino IDE, it will be seen by arduino-cli and vice-versa.
+
+### The command below identifies the boards connected to your computer (COM3, COM4, /dev/xxx).
+
+* arduino-cli board list
+
+### The command below shows the board installed in your environment.
+
+* arduino-cli core list
+
+#### Example: 
+
+* $ arduino-cli core list
+
+ID                   Installed Latest Name                                                    
+arduino:avr          1.8.5     1.8.5  Arduino AVR Boards                                      
+arduino:mbed_nano    3.0.0     3.0.0  Arduino Mbed OS Nano Boards                             
+arduino:mbed_rp2040  3.0.0     3.0.0  Arduino Mbed OS RP2040 Boards                           
+arduino:sam          1.6.12    1.6.12 Arduino SAM Boards (32-bits ARM Cortex-M3)              
+arduino:samd         1.8.13    1.8.13 Arduino SAMD Boards (32-bits ARM Cortex-M0+)            
+atmel-avr-xminis:avr 0.6.0     0.6.0  Atmel AVR Xplained-minis                                
+attiny:avr           1.0.2     1.0.2  ATtiny Microcontrollers                                 
+ATTinyCore:avr       1.5.2     1.5.2  ATTinyCore                                              
+esp32:esp32          2.0.2     2.0.2  ESP32 Arduino                                           
+esp8266:esp8266      3.0.2     3.0.2  ESP8266 Boards (3.0.2)                                  
+MegaCore:avr         2.1.3     2.1.3  MegaCore                                                
+MightyCore:avr       2.1.3     2.1.3  MightyCore                                              
+MiniCore:avr         2.1.3     2.1.3  MiniCore                                                
+rp2040:rp2040        1.13.0    1.13.0 Raspberry Pi RP2040 Boards(1.13.0)                      
+Seeeduino:samd       1.8.2     1.8.2  Seeed SAMD (32-bits ARM Cortex-M0+ and Cortex-M4) Boards
+STM32:stm32          1.9.0     1.9.0  STM32 Boards (selected from submenu)                    
+
+
+### The command below just compiles the sketch SI47XX_01_SERIAL_MONITOR/SI4735_01_POC for an Arduino Nano
+
+* arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC__
+
+The command below compiles and uploads the sketch into the board 
+
+* arduino-cli compile  -b arduino:avr:nano -u -p yourPort ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC. Wrere can be COM3, COM4, COM(N) if you are using Microsoft Windows; or /dev/XXX if you are using unix like SO (Linux or  MacOS).
+
+
+
+### Example using Arduino DUE 
+
+* arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/xxx  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+
+
+
+
+
+
+
+
+
+
+
