@@ -202,6 +202,12 @@ __See command arduino-cli board list below to know how to get the port.__
 $ arduino-cli compile --fqbn arduino:avr:mega -u -p /dev/cu.usbserial-1410  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
 ```
 
+If you need the .hex, .elf or  .bin files you can use 
+
+```bash
+$ arduino-cli compile --fqbn arduino:avr:mega -u -p /dev/cu.usbserial-1410 --build-path /Users/UserName/Downloads ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+```
+
 ### Example using ESP32
 
 ```bash

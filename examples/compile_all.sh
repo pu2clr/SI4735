@@ -84,7 +84,7 @@ arduino-cli compile --fqbn STM32:stm32:Nucleo_64 ./SI47XX_KITS/PLAMEN/PU2CLR_SI5
 echo "SEEEDUINO" 
 
 # arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 -u -p /dev/cu.usbmodem14201   ./SI47XX_15_SEEDUINO/OLED_ALL_IN_ONE
-arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 ./SI47XX_15_SEEDUINO/OLED_ALL_IN_ONE
+arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 --build-path /Users/rcaratti/Downloads ./SI47XX_15_SEEDUINO/OLED_ALL_IN_ONE
 
 
 
@@ -93,4 +93,4 @@ echo "ATTINY85"
 echo "*** SSB"
 arduino-cli compile --fqbn ATTinyCore:avr:attinyx5 ./SI47XX_05_ATTINY85/SI47XX_03_SSB_Tiny4kOLED
 echo "*** OLED"
-arduino-cli compile --fqbn ATTinyCore:avr:attinyx5  ./SI47XX_05_ATTINY85/SI47XX_02_ATTINY85_MINI_OLED_I2C
+arduino-cli compile --fqbn ATTinyCore:avr:attinyx5 --build-path /Users/rcaratti/Downloads ./SI47XX_05_ATTINY85/SI47XX_02_ATTINY85_MINI_OLED_I2C
