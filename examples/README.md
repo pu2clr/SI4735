@@ -167,14 +167,21 @@ arduino-cli compile --fqbn STM32:stm32:Nucleo_64 ./SI47XX_KITS/PLAMEN/PU2CLR_SI5
 
 #### arduino-cli board list command example 
 
-* $ arduino-cli board list
-* Port                            Protocol Type              Board Name                     FQBN                          Core       
-* /dev/cu.usbmodem14201           serial   Serial Port (USB) Arduino Due (Programming Port) arduino:sam:arduino_due_x_dbg arduino:sam
+```bash
+arduino-cli board list
+Port                            Protocol Type              Board Name                     FQBN                          Core       
+/dev/cu.usbmodem14201           serial   Serial Port (USB) Arduino Due (Programming Port) arduino:sam:arduino_due_x_dbg arduino:sam
+```
+
+#### arduino-cli compile and upload on Arduino DUE
+
+```bash
+arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/cu.usbmodem14201  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+```
 
 
-* arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/cu.usbmodem14201  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
-
-* arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/cu.usbmodem14201  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+```bash  
+arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/cu.usbmodem14201  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
   
 Sketch uses 90896 bytes (17%) of program storage space. Maximum is 524288 bytes.
 Atmel SMART device 0x285e0a60 found
@@ -186,6 +193,7 @@ Write 93876 bytes to flash (367 pages)
 done in 18.038 seconds
 Set boot flash true
 CPU reset.
+```
 
 ##### arduino-cli board list command with two devices connected to the computer at the same time (Arduino DUE and Arduino Mega)
 
