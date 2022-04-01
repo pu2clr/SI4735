@@ -216,7 +216,8 @@ The table below show some Arduino board FQBN
 
 | Board Name | FQBN | 
 | ---------- | ---- |                                      
-| Arduino BT                          | arduino:avr:bt  |                          
+| Arduino BT                          | arduino:avr:bt  |  
+| Arduino DUE                         | arduino:sam:arduino_due_x |                        
 | Arduino Duemilanove or Diecimila    | arduino:avr:diecimila  |                                    
 | Arduino Ethernet                    | arduino:avr:ethernet   |                                                                
 | Arduino Industrial 101              | arduino:avr:chiwawa    |                   
@@ -236,10 +237,10 @@ The table below show some Arduino board FQBN
 | Arduino Yún                         | arduino:avr:yun          |                 
 | Arduino Yún Mini                    | arduino:avr:yunmini      |                 
 | Arduino Zero (Native USB Port)      | arduino:samd:arduino_zero_native |          
-| Arduino Zero (Programming Port)     | arduino:samd:arduino_zero_edbg  |          
-| LilyPad Arduino                     | arduino:avr:lilypad      |                 
-| LilyPad Arduino USB                 | arduino:avr:LilyPadUSB   |                 
+| Arduino Zero (Programming Port)     | arduino:samd:arduino_zero_edbg  |                        
 | Linino One                          | arduino:avr:one          |
+| ESP32                               | esp32:esp32:esp32-poe-is | 
+| STM32                               | STM32:stm32:Nucleo_64 | 
 
 
 
