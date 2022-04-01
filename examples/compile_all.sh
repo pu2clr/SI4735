@@ -80,3 +80,9 @@ echo "STM32 - PLAMEN"
 arduino-cli compile --fqbn STM32:stm32:Nucleo_64 ./SI47XX_KITS/PLAMEN/PU2CLR_SI5351_SI4732_STM32
 
 
+# compiles SEEEDUINO XIAO
+echo "SEEDUINO" 
+
+#arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 -u -p /dev/cu.usbmodem14201   ./SI47XX_15_SEEDUINO/OLED_ALL_IN_ONE
+arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 ./SI47XX_15_SEEDUINO/OLED_ALL_IN_ONE
+

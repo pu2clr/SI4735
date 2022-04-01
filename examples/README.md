@@ -132,7 +132,8 @@ MightyCore:avr       2.1.3     2.1.3  MightyCore
 MiniCore:avr         2.1.3     2.1.3  MiniCore                                                
 rp2040:rp2040        1.13.0    1.13.0 Raspberry Pi RP2040 Boards(1.13.0)                      
 Seeeduino:samd       1.8.2     1.8.2  Seeed SAMD (32-bits ARM Cortex-M0+ and Cortex-M4) Boards
-STM32:stm32          1.9.0     1.9.0  STM32 Boards (selected from submenu)                    
+STM32:stm32          1.9.0     1.9.0  STM32 Boards (selected from submenu)  
+teensy:avr           1.56.1    1.56.1 Teensyduino                    
 ```
 
 
@@ -259,8 +260,14 @@ The table below show some Arduino board FQBN
 | Arduino Yún Mini                    | arduino:avr:yunmini      |                 
 | Arduino Zero (Native USB Port)      | arduino:samd:arduino_zero_native |          
 | Arduino Zero (Programming Port)     | arduino:samd:arduino_zero_edbg  |                        
-| ESP32                               | esp32:esp32:esp32-poe-is | 
+| ESP32                               | esp32:esp32:esp32-poe-is |
+| Raspberry Pi Pico                   | rp2040:rp2040:rpipico | 
+| Seeeduino XIAO                      | Seeeduino:samd:seeed_XIAO_m0 |          
 | STM32                               | STM32:stm32:Nucleo_64 | 
+
+
+
+arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 -u -p /dev/cu.usbmodem14201   ./SI47XX_15_SEEDUINO/OLED_ALL_IN_ONE
 
 
 
