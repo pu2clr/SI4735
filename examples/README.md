@@ -69,11 +69,12 @@ By using the examples of this folder, you will do not need any external device t
 | [iOS and Android Remote Control](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_MOBILE_PHONE) | This example shows a way to use your smartphone as a remote control. |
 
 
-[Back to the main page](https://pu2clr.github.io/SI4735/)
+<BR>
+<BR>
 
-## Arduino CLI 
+## Arduino CLI - A faster alternative to the Arduino IDE
 
-Arduino CLI (arduino-cli) is a solution that allows you to compile, build, upload, manage boards and libraries via shell command lines. This way, you do not need to use the traditional Arduino IDE. Depending on the development environment you use, arduino-cli may be more appropriate, as it consumes less computer resources. You will notice that the arduino-cli allows compiles and uploades process faster. There is, however, the drawback of being a less intuitive environment than the Arduino IDE, offering a longer learning time for most users. The links below can help you to know more about arduino-cli. 
+Arduino CLI (arduino-cli) is a solution that allows you to compile, build, upload, manage boards and libraries via shell command lines. This way, you do not need to use the traditional Arduino IDE. Depending on the development environment you use, arduino-cli may be more appropriate, given it consumes less computer resources. You will notice that the arduino-cli allows compiles and uploades process faster. There is, however, the drawback of being a less intuitive environment than the Arduino IDE, offering a longer learning time for most users. The links below can help you to know more about arduino-cli. 
 
 * [Click here for more detail about arduino-cli](https://arduino.github.io/arduino-cli/0.21/).
 * [Getting started](https://arduino.github.io/arduino-cli/0.21/getting-started/)
@@ -100,14 +101,48 @@ This way, if you install a new board via arduino-cli, it will be seen by Arduino
 
 ### The command below identifies the boards connected to your computer (COM3, COM4, /dev/xxx).
 
+It is very useful to show the boards connected to your computer
+
 ```bash
 $ arduino-cli board list
+
+Port                            Protocol Type              Board Name                     FQBN                          Core       
+/dev/cu.usbmodem14201           serial   Serial Port (USB) Arduino Due (Programming Port) arduino:sam:arduino_due_x_dbg arduino:sam
+/dev/cu.usbserial-1410          serial   Serial Port (USB) Unknown     
+
+```
+
+### The command below shows all boards available 
+
+It is very useful to give you the FQBN information to compile and upload the right board. 
+
+```bash
+$ arduino-cli board listall
 ```
 
 ### The command below shows the board installed in your environment.
 
 ```bash
 $ arduino-cli core list
+
+Board Name                                       FQBN                                            
+3D printer boards                                STM32:stm32:3dprinter                           
+4D Systems gen4 IoD Range                        esp8266:esp8266:gen4iod                         
+AI Thinker ESP32-CAM                             esp32:esp32:esp32cam
+.
+.
+.
+Arduino Due (Native USB Port)                    arduino:sam:arduino_due_x                       
+Arduino Due (Programming Port)                   arduino:sam:arduino_due_x_dbg   
+.
+.
+.
+Arduino Nano                                     arduino:avr:nano                                
+Arduino Nano 33 BLE                              arduino:mbed_nano:nano33ble      
+.
+.
+.   
+Arduino Uno                                      arduino:avr:uno       
 ```
 
 #### Example: 
@@ -265,12 +300,5 @@ The table below show some Arduino board FQBN
 | Seeeduino XIAO                      | Seeeduino:samd:seeed_XIAO_m0 |          
 | STM32                               | STM32:stm32:Nucleo_64 | 
 
-
-
-arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 -u -p /dev/cu.usbmodem14201   ./SI47XX_15_SEEDUINO/OLED_ALL_IN_ONE
-
-
-
-
-
+type __arduino-cli board listall__ to see all boards available.
 

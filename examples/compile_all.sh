@@ -28,7 +28,7 @@ echo "TFT"
 echo "*** Atmega328 and ILI9225"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_04_TFT/SI47XX_01_TFT_ILI9225
 ## echo "*** ST7735"
-## arduino-cli compile -b MiniCore:avr:ATmega328PB ./SI47XX_04_TFT/SI47XX_03_TFT_ATMEGA328_ST7735
+## arduino-cli compile -b MiniCore:avr:328 ./SI47XX_04_TFT/SI47XX_03_TFT_ATMEGA328_ST7735
 
 
 
@@ -83,6 +83,6 @@ arduino-cli compile --fqbn STM32:stm32:Nucleo_64 ./SI47XX_KITS/PLAMEN/PU2CLR_SI5
 # compiles SEEEDUINO XIAO
 echo "SEEEDUINO" 
 
-#arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 -u -p /dev/cu.usbmodem14201   ./SI47XX_15_SEEDUINO/OLED_ALL_IN_ONE
+# arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 -u -p /dev/cu.usbmodem14201   ./SI47XX_15_SEEDUINO/OLED_ALL_IN_ONE
 arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 ./SI47XX_15_SEEDUINO/OLED_ALL_IN_ONE
 
