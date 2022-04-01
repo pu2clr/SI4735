@@ -215,8 +215,6 @@ Unfortunatly, in some cases, the Arduino IDE and arduino-cli can not show detail
 ```bash
 $ arduino-cli board list
 
-<BR>
-
 Port                            Protocol Type              Board Name                     FQBN                          Core       
 /dev/cu.usbmodem14201           serial   Serial Port (USB) Arduino Due (Programming Port) arduino:sam:arduino_due_x_dbg arduino:sam
 /dev/cu.usbserial-1410          serial   Serial Port (USB) Unknown     
@@ -228,8 +226,6 @@ Port                            Protocol Type              Board Name           
 ```bash
 
 $ arduino-cli board list
-
-<BR>
 
 Port                            Protocol Type              Board Name    FQBN              Core       
 /dev/cu.usbmodem14101           serial   Serial Port (USB) Arduino Yún   arduino:avr:yun   arduino:avr
