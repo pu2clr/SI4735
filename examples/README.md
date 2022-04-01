@@ -181,8 +181,10 @@ $ arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_P
 ### The command below compiles and uploads the sketch into the Arduino Nano board 
 
 ```bash
-$ arduino-cli compile  -b arduino:avr:nano -u -p yourPort ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC. Where __yourPort__ can be COM3, COM4, COM(N) if you are using Microsoft Windows; or /dev/XXX if you are using unix like SO (Linux or  MacOS).
+$ arduino-cli compile  -b arduino:avr:nano -u -p yourPort ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC. 
 ```
+Where __yourPort__ can be COM3, COM4, COM(N) if you are using Microsoft Windows; or /dev/XXX if you are using unix like SO (Linux or  MacOS).
+
 
 ### Example using Arduino DUE connected to a MACOS
 
