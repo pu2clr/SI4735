@@ -208,6 +208,8 @@ $ arduino-cli compile --fqbn arduino:avr:mega -u -p /dev/cu.usbserial-1410  ./SI
 $ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso -u -dev -u -p /dev/xxx ./SI47XX_KITS/THIAGO_LIMA/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2
 ```
 
+where /dev/xxx is the device Port 
+
 ### Example using STM32 (compiling only)
 
 arduino-cli compile --fqbn STM32:stm32:Nucleo_64 ./SI47XX_KITS/PLAMEN/PU2CLR_SI5351_SI4732_STM32
