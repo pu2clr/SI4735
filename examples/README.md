@@ -83,8 +83,10 @@ Arduino CLI (arduino-cli) is a solution that allows you to compile, build, uploa
 
 The easier way to install arduino-cli on your Linux or MACOS system is shown below.
 
-* brew update
-* brew install arduino-cli
+```bash
+$ brew update
+$ brew install arduino-cli
+```
 
 More about installing arduino-cli on Linux, MACOS and Windows, go to [https://arduino.github.io/arduino-cli/0.21/installation/](https://arduino.github.io/arduino-cli/0.21/installation/).
 
@@ -98,17 +100,21 @@ This way, if you install a new board via arduino-cli, it will be seen by Arduino
 
 ### The command below identifies the boards connected to your computer (COM3, COM4, /dev/xxx).
 
-* $ arduino-cli board list
+```bash
+$ arduino-cli board list
+```
 
 ### The command below shows the board installed in your environment.
 
-* $ arduino-cli core list
+```bash
+$ arduino-cli core list
+```
 
 #### Example: 
 
-* $ arduino-cli core list
+```bash
+$ arduino-cli core list
   
-<BR> 
 
 ID                   Installed Latest Name                                                    
 arduino:avr          1.8.5     1.8.5  Arduino AVR Boards                                      
@@ -127,32 +133,42 @@ MiniCore:avr         2.1.3     2.1.3  MiniCore
 rp2040:rp2040        1.13.0    1.13.0 Raspberry Pi RP2040 Boards(1.13.0)                      
 Seeeduino:samd       1.8.2     1.8.2  Seeed SAMD (32-bits ARM Cortex-M0+ and Cortex-M4) Boards
 STM32:stm32          1.9.0     1.9.0  STM32 Boards (selected from submenu)                    
+```
 
 
 ### The command below just compiles the sketch SI47XX_01_SERIAL_MONITOR/SI4735_01_POC for an Arduino Nano
 
-* $ arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC
+```bash
+$ arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC
+```
 
 ### The command below compiles and uploads the sketch into the Arduino Nano board 
 
-* $ arduino-cli compile  -b arduino:avr:nano -u -p yourPort ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC. Where __yourPort__ can be COM3, COM4, COM(N) if you are using Microsoft Windows; or /dev/XXX if you are using unix like SO (Linux or  MacOS).
-
+```bash
+$ arduino-cli compile  -b arduino:avr:nano -u -p yourPort ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC. Where __yourPort__ can be COM3, COM4, COM(N) if you are using Microsoft Windows; or /dev/XXX if you are using unix like SO (Linux or  MacOS).
+```
 
 ### Example using Arduino DUE connected to a MACOS
 
-* $ arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/cu.usbmodem14201  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+```bash
+$ arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/cu.usbmodem14201  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+```
+
 
 __See command arduino-cli board list below to know how to get the port.__
 
 
 ### Example using Arduino Mega
 
-* $ arduino-cli compile --fqbn arduino:avr:mega -u -p /dev/cu.usbserial-1410  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
-
+```bash
+$ arduino-cli compile --fqbn arduino:avr:mega -u -p /dev/cu.usbserial-1410  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+```
 
 ### Example using ESP32
 
-* $ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso -u -dev -u -p /dev/xxx ./SI47XX_KITS/THIAGO_LIMA/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2
+```bash
+$ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso -u -dev -u -p /dev/xxx ./SI47XX_KITS/THIAGO_LIMA/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2
+```
 
 ### Example using STM32 (compiling only)
 
@@ -161,8 +177,9 @@ arduino-cli compile --fqbn STM32:stm32:Nucleo_64 ./SI47XX_KITS/PLAMEN/PU2CLR_SI5
 
 #### To know the right port you have to use, try the command below: 
 
-* $ arduino-cli board list
-
+```bash
+$ arduino-cli board list
+```
 
 
 #### arduino-cli board list command example 
@@ -176,12 +193,7 @@ Port                            Protocol Type              Board Name           
 #### arduino-cli compile and upload on Arduino DUE
 
 ```bash
-arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/cu.usbmodem14201  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
-```
-
-
-```bash  
-arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/cu.usbmodem14201  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+$ arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/cu.usbmodem14201  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
   
 Sketch uses 90896 bytes (17%) of program storage space. Maximum is 524288 bytes.
 Atmel SMART device 0x285e0a60 found
@@ -200,8 +212,8 @@ CPU reset.
 The command below show two Arduino boards connected to the computer at the same time. The first is an Arduino DUE as deteiled below and the second is an Arduino Mega with no details.
 Unfortunatly, in some cases, the Arduino IDE and arduino-cli can not show details about the divice connected to the computer. In this case, you have to conclude this by yourself. 
 
-
-* $ arduino-cli board list
+```bash
+$ arduino-cli board list
 
 <BR>
 
@@ -209,15 +221,20 @@ Port                            Protocol Type              Board Name           
 /dev/cu.usbmodem14201           serial   Serial Port (USB) Arduino Due (Programming Port) arduino:sam:arduino_due_x_dbg arduino:sam
 /dev/cu.usbserial-1410          serial   Serial Port (USB) Unknown     
 
+```
+
 ##### arduino-cli board list command with two devices connected at the same time (Arduino Yún and Arduino Micro)
 
-* $ arduino-cli board list
+```bash
+
+$ arduino-cli board list
 
 <BR>
 
 Port                            Protocol Type              Board Name    FQBN              Core       
 /dev/cu.usbmodem14101           serial   Serial Port (USB) Arduino Yún   arduino:avr:yun   arduino:avr
 /dev/cu.usbmodem14201           serial   Serial Port (USB) Arduino Micro arduino:avr:micro arduino:avr
+```
 
 
 The table below show some Arduino board FQBN
