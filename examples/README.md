@@ -238,7 +238,6 @@ The table below show some Arduino board FQBN
 | Arduino Yún Mini                    | arduino:avr:yunmini      |                 
 | Arduino Zero (Native USB Port)      | arduino:samd:arduino_zero_native |          
 | Arduino Zero (Programming Port)     | arduino:samd:arduino_zero_edbg  |                        
-| Linino One                          | arduino:avr:one          |
 | ESP32                               | esp32:esp32:esp32-poe-is | 
 | STM32                               | STM32:stm32:Nucleo_64 | 
 
