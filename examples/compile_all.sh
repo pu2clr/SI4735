@@ -19,6 +19,11 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_02_LCD_20x4_I2C/SI47XX_02_LCD_2
 echo "OLED"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED
 
+
+echo "Nokia 5110 Pro mini"
+# arduino-cli compile -b arduino:avr:pro -u -p /dev/cu.usbserial-1420 ./SI47XX_09_NOKIA_5110/ALL_IN_ONE_ONE_ENCODER
+arduino-cli compile -b arduino:avr:pro ./SI47XX_09_NOKIA_5110/ALL_IN_ONE_ONE_ENCODER
+
 echo "TFT"
 echo "*** Atmega328 and ILI9225"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_04_TFT/SI47XX_01_TFT_ILI9225
@@ -73,4 +78,5 @@ arduino-cli compile --fqbn STM32:stm32:Nucleo_64 ./SI47XX_07_STM32/STM32_04_OLED
 
 echo "STM32 - PLAMEN"
 arduino-cli compile --fqbn STM32:stm32:Nucleo_64 ./SI47XX_KITS/PLAMEN/PU2CLR_SI5351_SI4732_STM32
+
 

@@ -91,7 +91,7 @@ More about installing arduino-cli on Linux, MACOS and Windows, go to [https://ar
 It is important to say that all boards and libraries installed via your Arduino IDE is used by arduino-cli. I mean, all Arrduino environment setup is shared by Arduino IDE and arduino-cli.
 This way, if you install a new board via arduino-cli, it will be seen by Arduino IDE and vice-versa. The same way, if you install a new library via Arduino IDE, it will be seen by arduino-cli and vice-versa.
 
-## Main commands examples
+### Main commands examples
 
 It is important to say that all boards and libraries installed via your Arduino IDE is used by arduino-cli. I mean, all Arrduino environment setup is shared by Arduino IDE and arduino-cli.
 This way, if you install a new board via arduino-cli, it will be seen by Arduino IDE and vice-versa. The same way, if you install a new library via Arduino IDE, it will be seen by arduino-cli and vice-versa.
@@ -131,20 +131,23 @@ STM32:stm32          1.9.0     1.9.0  STM32 Boards (selected from submenu)
 
 ### The command below just compiles the sketch SI47XX_01_SERIAL_MONITOR/SI4735_01_POC for an Arduino Nano
 
-* $ arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC__
+* $ arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC
 
 ### The command below compiles and uploads the sketch into the Arduino Nano board 
 
-* $ arduino-cli compile  -b arduino:avr:nano -u -p yourPort ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC. Wrere can be COM3, COM4, COM(N) if you are using Microsoft Windows; or /dev/XXX if you are using unix like SO (Linux or  MacOS).
+* $ arduino-cli compile  -b arduino:avr:nano -u -p yourPort ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC. Where __yourPort__ can be COM3, COM4, COM(N) if you are using Microsoft Windows; or /dev/XXX if you are using unix like SO (Linux or  MacOS).
 
 
-### Example using Arduino DUE 
+### Example using Arduino DUE connected to a MACOS
 
-* $ arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/xxx  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+* $ arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/cu.usbmodem14201  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+
+__See command arduino-cli board list below to know how to get the port.__
+
 
 ### Example using Arduino Mega
 
-* $ arduino-cli compile --fqbn arduino:avr:mega -u -p /dev/xxx ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+* $ arduino-cli compile --fqbn arduino:avr:mega -u -p /dev/cu.usbserial-1410  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
 
 
 ### Example using ESP32
@@ -208,6 +211,35 @@ Port                            Protocol Type              Board Name    FQBN   
 /dev/cu.usbmodem14101           serial   Serial Port (USB) Arduino Yún   arduino:avr:yun   arduino:avr
 /dev/cu.usbmodem14201           serial   Serial Port (USB) Arduino Micro arduino:avr:micro arduino:avr
 
+
+The table below show some Arduino board FQBN
+
+| Board Name | FQBN | 
+| ---------- | ---- |                                      
+| Arduino BT                          | arduino:avr:bt  |                          
+| Arduino Duemilanove or Diecimila    | arduino:avr:diecimila  |                                    
+| Arduino Ethernet                    | arduino:avr:ethernet   |                                                                
+| Arduino Industrial 101              | arduino:avr:chiwawa    |                   
+| Arduino Leonardo                    | arduino:avr:leonardo   |                                   
+| Arduino M0                          | arduino:samd:mzero_bl  |                   
+| Arduino M0 Pro (Native USB Port)    | arduino:samd:mzero_pro_bl  |                
+| Arduino M0 Pro (Programming Port)   | arduino:samd:mzero_pro_bl_dbg |                            
+| Arduino MKR WiFi 1010               | arduino:samd:mkrwifi1010 |                                                   
+| Arduino Mega 2560                   | arduino:avr:mega         |                 
+| Arduino Micro                       | arduino:avr:micro        |                 
+| Arduino Mini                        | arduino:avr:mini         |                 
+| Arduino NANO 33 IoT                 | arduino:samd:nano_33_iot |                               
+| Arduino Nano                        | arduino:avr:nano         |                              
+| Arduino Pro or Pro Mini             | arduino:avr:pro          |                                                    
+| Arduino Uno                         | arduino:avr:uno          |                 
+| Arduino Uno WiFi                    | arduino:avr:unowifi      |                                
+| Arduino Yún                         | arduino:avr:yun          |                 
+| Arduino Yún Mini                    | arduino:avr:yunmini      |                 
+| Arduino Zero (Native USB Port)      | arduino:samd:arduino_zero_native |          
+| Arduino Zero (Programming Port)     | arduino:samd:arduino_zero_edbg  |          
+| LilyPad Arduino                     | arduino:avr:lilypad      |                 
+| LilyPad Arduino USB                 | arduino:avr:LilyPadUSB   |                 
+| Linino One                          | arduino:avr:one          |
 
 
 
