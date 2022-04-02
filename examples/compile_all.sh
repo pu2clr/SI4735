@@ -66,7 +66,6 @@ echo "ESP8266 All In One"
 arduino-cli compile --fqbn esp8266:esp8266:generic  ./SI47XX_06_ESP8266/OLED_ALL_IN_ONE
 
 
-
 # compiles SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2 on Arduino DUE and Mega 
 echo "Arduino RDS DUE and MEGA"
 echo "*** DUE"
@@ -91,7 +90,6 @@ echo "SEEEDUINO"
 
 # arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 -u -p /dev/cu.usbmodem14201   ./SI47XX_15_SEEDUINO/OLED_ALL_IN_ONE
 arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 --build-path /Users/rcaratti/Downloads ./SI47XX_15_SEEDUINO/OLED_ALL_IN_ONE
-
 
 
 # compiles ATTiny85

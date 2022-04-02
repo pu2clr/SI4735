@@ -210,11 +210,18 @@ $ arduino-cli compile --fqbn arduino:avr:mega --build-path /Users/UserName/Downl
 
 ### Example using ESP32
 
-```bash
-$ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso -u -dev -u -p /dev/xxx ./SI47XX_KITS/THIAGO_LIMA/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2
-```
+#### Example using ESP32 DEVMODE
 
-where /dev/xxx is the device Port 
+```bash
+$ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso -u -dev -u -p /dev/cu.usbserial-0001  ./SI47XX_KITS/THIAGO_LIMA/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2
+```
+where /dev/cu.usbserial-0001 is the Port device. It can be different in your environment. Check it via __arduino-cli board list__ command. 
+
+#### Example using ESP32 LOLIN32 
+
+```bash
+arduino-cli compile --fqbn esp32:esp32:lolin32 -u -p /dev/cu.usbserial-00874A3C ./SI47XX_KITS/THIAGO_LIMA/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2 -v
+```
 
 ### Example using STM32 (compiling only)
 
@@ -283,7 +290,6 @@ The table below show some Arduino board FQBN
 
 | Board Name | FQBN | 
 | ---------- | ---- |                                      
-| Arduino BT                          | arduino:avr:bt  |  
 | Arduino DUE                         | arduino:sam:arduino_due_x |                        
 | Arduino Duemilanove or Diecimila    | arduino:avr:diecimila  |                                    
 | Arduino Ethernet                    | arduino:avr:ethernet   |                                                                
@@ -305,7 +311,9 @@ The table below show some Arduino board FQBN
 | Arduino Yún Mini                    | arduino:avr:yunmini      |                 
 | Arduino Zero (Native USB Port)      | arduino:samd:arduino_zero_native |          
 | Arduino Zero (Programming Port)     | arduino:samd:arduino_zero_edbg  |                        
-| ESP32                               | esp32:esp32:esp32-poe-is |
+| ESP32 Dev Mode                      | esp32:esp32:esp32-poe-is |
+| ESP32 LOLIN                         | esp32:esp32:lolin32 |
+| ESP8266                             | esp8266:esp8266:generic |  
 | Raspberry Pi Pico                   | rp2040:rp2040:rpipico | 
 | Seeeduino XIAO                      | Seeeduino:samd:seeed_XIAO_m0 |          
 | STM32                               | STM32:stm32:Nucleo_64 | 
