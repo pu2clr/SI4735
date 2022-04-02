@@ -16,7 +16,7 @@ See [Seeeduino XIAO](https://wiki.seeedstudio.com/Seeeduino-XIAO/) for more deta
 
 
 
-## Seeduino XIAO and OLED and Encoder
+## Seeeduino XIAO and OLED and Encoder
 
 | Device  | Seeeduino |
 | --------| ----------|
@@ -29,7 +29,7 @@ See [Seeeduino XIAO](https://wiki.seeedstudio.com/Seeeduino-XIAO/) for more deta
 |  Button |    0 (D0) |
 
 
-## Seeduino XIAO and TFT ST7735
+## Seeeduino XIAO and TFT ST7735
 
 | ST7735  | Seeeduino |
 | --------| ----------|
