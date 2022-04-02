@@ -61,6 +61,12 @@ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/THIAGO_LIMA/G
 echo "FELIX ANGGA"
 arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/THIAGO_LIMA/FELIX_ANGGA/SLAMETRADIO
 
+# compile ESP8266
+echo "ESP8266 All In One"
+arduino-cli compile --fqbn esp8266:esp8266:generic  ./SI47XX_06_ESP8266/OLED_ALL_IN_ONE
+
+
+
 # compiles SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2 on Arduino DUE and Mega 
 echo "Arduino RDS DUE and MEGA"
 echo "*** DUE"
