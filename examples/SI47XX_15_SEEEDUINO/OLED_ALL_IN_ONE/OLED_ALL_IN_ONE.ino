@@ -26,11 +26,11 @@
 
   Seeeduino 3.1 and SI4735-D60 or SI4732-A10 wire up
 
-  | Si4735  | SI4732   | DESC.  | Seeduino | 
-  |---------| -------- |--------|----------|
-  | pin 15  |  pin 9   | RESET  |    3     |  
-  | pin 18  |  pin 12  | SDIO   |   A4     |
-  | pin 17  |  pin 11  | SCLK   |   A5     |
+  | Si4735  | SI4732   | DESC.  | Seeeduino | 
+  |---------| -------- |--------|-----------|
+  | pin 15  |  pin 9   | RESET  |    3      |  
+  | pin 18  |  pin 12  | SDIO   |   A4      |
+  | pin 17  |  pin 11  | SCLK   |   A5      |
 
   (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.

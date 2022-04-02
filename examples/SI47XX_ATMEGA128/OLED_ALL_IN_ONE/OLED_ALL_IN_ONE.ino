@@ -341,7 +341,7 @@ void printParam(const char *msg) {
 }
 
 /*
-   The Seeduino uses a Flash EEPROM emulator library. See FlashStorage_SAMD Arduino Library on: https://github.com/khoih-prog/FlashStorage_SAMD  
+   The Seeeduino uses a Flash EEPROM emulator library. See FlashStorage_SAMD Arduino Library on: https://github.com/khoih-prog/FlashStorage_SAMD  
    
    writes the conrrent receiver information into the eeprom.
    The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
