@@ -444,16 +444,39 @@ void showStatus()
 */
 void showBand() {
   static char oldBand[10];
-  printValue(3, 20, oldBand, (char *) band[bandIdx].bandName, 13, ST77XX_GREEN, 1, &Serif_bold_15);
+  printValue(5, 20, oldBand, (char *) band[bandIdx].bandName, 15, ST77XX_GREEN, 1, &Serif_bold_15);
+}
+
+/**
+ * Shows a single character 
+ */
+void showChar(uint8_t col, uint8_t lin, char content, uint16_t color, const GFXfont *font) {
+  tft.setFont(font);
+  tft.setTextColor(color);
+  tft.setCursor(col, lin);
+  tft.print(content);
 }
 
 /*
-** Shows the current frequency Unit
-*/
-void showUnit() {
+ ** Shows the current frequency Unit
+ */
+void showUnit()
+{
   static char oldUnit[10];
+  static char oldDot[4];
   char *p;
-  p = (rx.isCurrentTuneFM()) ? (char *)"MHZ" : (char *)"kHz";
+
+  showChar(95, 83, ',', ST77XX_BLACK, &Serif_bold_15);
+  showChar(64, 83, '.', ST77XX_BLACK, &Serif_bold_15);
+
+  if (rx.isCurrentTuneFM()) {
+    p = (char *)"MHZ";
+    showChar(95, 83, ',', ST77XX_YELLOW, &Serif_bold_15);
+  } else {
+    p = (char *)"kHz";
+    if (currentFrequency > 1800)
+      showChar(64, 83, '.', ST77XX_YELLOW, &Serif_bold_15);
+  }
   printValue(115, 110, oldUnit, p, 13, ST77XX_GREEN, 1, &Serif_bold_15);
 }
 
@@ -925,7 +948,7 @@ void showCommandStatus(char *currentCmd)
     else
       p = (char *)bandModeDesc[currentMode];
 
-    printValue(3, 110, oldMode, p, 11, ST77XX_GREEN, 1, &Serif_bold_15);
+    printValue(5, 110, oldMode, p, 15, ST77XX_GREEN, 1, &Serif_bold_15);
   }
   /**
    * Switches to the AM, LSB or USB modes
