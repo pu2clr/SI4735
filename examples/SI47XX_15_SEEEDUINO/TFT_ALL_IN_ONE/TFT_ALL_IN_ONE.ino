@@ -353,7 +353,6 @@ void splash() {
  */
 void showTemplate()
 {
- 
   int maxX1 = tft.width() - 2;
   int maxY1 = tft.height() - 5;
   tft.fillScreen(ST77XX_BLACK);
@@ -433,7 +432,6 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
  */
 void showStatus()
 {
-  // lcd.clear();
   showFrequency();
   showRSSI();
   showBand(); 
@@ -441,21 +439,23 @@ void showStatus()
   showUnit();
 }
 
-
-
-
+/*
+** Shows the current band name 
+*/
 void showBand() {
   static char oldBand[10];
   printValue(3, 20, oldBand, (char *) band[bandIdx].bandName, 13, ST77XX_GREEN, 1, &Serif_bold_15);
 }
 
+/*
+** Shows the current frequency Unit
+*/
 void showUnit() {
   static char oldUnit[10];
   char *p;
   p = (rx.isCurrentTuneFM()) ? (char *)"MHZ" : (char *)"kHz";
   printValue(115, 110, oldUnit, p, 13, ST77XX_GREEN, 1, &Serif_bold_15);
 }
-
 
 /**
  * Shows frequency information on Display
@@ -464,19 +464,24 @@ void showFrequency(){
   static char oldFreq[10];
   char freqAux[10];
   convertToChar(currentFrequency, freqAux, 5, 0, '.');
+  // TO DO: Number format
   printValue(3, 82, oldFreq, freqAux, 31, ST77XX_YELLOW, 1, &DSEG14_Classic_Mini_Regular_40);
 }
 
 /**
- * Shows frequency information on Display
+ * Shows SSB frequency information. 
  */
 void showFrequencySSB()
 {
+  // TO DO: To avoid constant Softmute,  VFO and BFO will be shown together; 
 
 }
 
+/**
+ * Shows RSSI signal level
+ */
 void showRSSI() {
-
+  // TO DO: Shows Antenna ICON and Signal level
 }
 
 /**
@@ -666,6 +671,9 @@ void showCommandStatus(char *currentCmd)
       encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
   }
 
+ /**
+  * upload SSB patch into the SI4735-D60 or SI4732-A10 devices
+  */
   void loadSSB()
   {
     rx.setI2CFastModeCustom(400000); // You can try rx.setI2CFastModeCustom(700000); or greater value
@@ -739,6 +747,9 @@ void showCommandStatus(char *currentCmd)
     showCommandStatus((char *)"Band");
   }
 
+  /**
+   * Shows the current Bandwidth
+   */
   void showBandwidth()
   {
     char *bw;
@@ -756,7 +767,7 @@ void showCommandStatus(char *currentCmd)
     {
       bw = (char *)bandwidthFM[bwIdxFM].desc;
     }
-    // sprintf(bandwidth, "BW: %s", bw);
+    // TO DO: sprintf(bandwidth, "BW: %s", bw);
     printParam(bandwidth);
   }
 
@@ -815,6 +826,7 @@ void showCommandStatus(char *currentCmd)
    */
   void showMenu()
   {
+    // TO DO:
     // display.clearDisplay();
     // display.setCursor(0, 10);
     // display.print(menu[menuIdx]);
@@ -834,7 +846,7 @@ void showCommandStatus(char *currentCmd)
       strcpy(sAgc, "AGC ON");
     else
       sprintf(sAgc, "ATT: %2.2d", agcNdx);
-
+    // TO DO: 
     printParam(sAgc);
   }
   /**
