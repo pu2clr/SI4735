@@ -292,6 +292,7 @@ void setup() {
   clearScreen();
   tft.setRotation(1);
   splash();
+
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
