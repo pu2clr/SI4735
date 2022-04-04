@@ -33,8 +33,8 @@ See [Seeeduino XIAO](https://wiki.seeedstudio.com/Seeeduino-XIAO/) for more deta
 
 | ST7735  | Seeeduino |
 | --------| ----------|
-| DC      |   4 (D4)  | 
-| RES     |   5 (D5)  |
+| DC      |   6 (D4)  | 
+| RES     |   7 (D5)  |
 | SDA     |  10 (Mosi)| 
 | SCL     |   8 (SCK) |
 | VCC     |  3V3      | 
