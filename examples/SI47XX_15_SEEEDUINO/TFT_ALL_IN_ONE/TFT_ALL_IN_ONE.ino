@@ -54,7 +54,7 @@
 #include "./fonts/Serif_plain_15.h"
 #include "./fonts/Serif_bold_15.h"
 #include "./fonts/Yellowtail_Regular_25.h"
-#include "./images/world.h"
+#include "./images/world2.h"
 #include <FlashAsEEPROM_SAMD.h> // Install this library from Github: https://github.com/khoih-prog/FlashStorage_SAMD#why-do-we-need-this-flashstorage_samd-library
 #include <SI4735.h>
 #include <LiquidCrystal.h>
@@ -293,8 +293,9 @@ void setup() {
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
   tft.initR(INITR_BLACKTAB);
-  clearScreen();
   tft.setRotation(1);
+  delay(50);
+  clearScreen();
   splash();
 
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
@@ -307,7 +308,6 @@ void setup() {
     clearScreen();
   }
 
-  showTemplate();
   // ICACHE_RAM_ATTR void rotaryEncoder(); see rotaryEncoder implementation below.
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
@@ -350,6 +350,7 @@ void splash() {
   tft.print("You can do it better");
   delay(5000);
   clearScreen();
+  showTemplate();
 }
 
 
@@ -358,14 +359,16 @@ void splash() {
  */
 void showTemplate()
 {
+  /*
   int maxX1 = tft.width() - 2;
   int maxY1 = tft.height() - 5;
 
   // tft.fillScreen(ST77XX_BLACK);
-  tft.fillRect(2, 34, maxX1, 55, ST77XX_BLACK);
+  //tft.fillRect(2, 34, maxX1, 55, ST77XX_BLACK);
   tft.drawRect(2, 2, maxX1, maxY1, ST77XX_YELLOW);
   tft.drawLine(2, 33, maxX1, 33, ST77XX_YELLOW);
   tft.drawLine(2, 89, maxX1, 89, ST77XX_YELLOW);
+  */
 }
 
 /**
@@ -439,6 +442,7 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
  */
 void showStatus()
 {
+  // clearScreen();
   showFrequency();
   showRSSI();
   showBand(); 
