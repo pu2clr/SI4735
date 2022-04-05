@@ -51,8 +51,10 @@
 #include <SPI.h>             //Include SPI control library
 
 #include "./fonts/DSEG14_Classic_Mini_Regular_40.h"
+#include "./fonts/Serif_plain_15.h"
 #include "./fonts/Serif_bold_15.h"
-
+#include "./fonts/Yellowtail_Regular_25.h"
+#include "./images/world.h"
 #include <FlashAsEEPROM_SAMD.h> // Install this library from Github: https://github.com/khoih-prog/FlashStorage_SAMD#why-do-we-need-this-flashstorage_samd-library
 #include <SI4735.h>
 #include <LiquidCrystal.h>
@@ -335,6 +337,7 @@ void setup() {
 ** Remove the call of this function for faster statup
 */
 void splash() {
+  tft.drawRGBBitmap(0, 0, mapa1, 168, 120); // , (uint16_t)ST77XX_BLUE, (uint16_t)ST77XX_BLACK);
   tft.setTextSize(1);
   tft.setTextColor(ST77XX_YELLOW);
   tft.setCursor(40, 10);
@@ -343,7 +346,7 @@ void splash() {
   tft.print("Arduino Library");
   tft.setCursor(27, 60);
   tft.print("You can do it better");
-  delay(4000);
+  delay(5000);
   clearScreen();
 }
 
@@ -355,7 +358,8 @@ void showTemplate()
 {
   int maxX1 = tft.width() - 2;
   int maxY1 = tft.height() - 5;
-  tft.fillScreen(ST77XX_BLACK);
+
+  // tft.fillScreen(ST77XX_BLACK);
   tft.drawRect(2, 2, maxX1, maxY1, ST77XX_YELLOW);
   tft.drawLine(2, 33, maxX1, 33, ST77XX_YELLOW);
   tft.drawLine(2, 89, maxX1, 89, ST77XX_YELLOW);
@@ -444,7 +448,7 @@ void showStatus()
 */
 void showBand() {
   static char oldBand[10];
-  printValue(5, 20, oldBand, (char *) band[bandIdx].bandName, 15, ST77XX_GREEN, 1, &Serif_bold_15);
+  printValue(7, 20, oldBand, (char *)band[bandIdx].bandName, 17, ST77XX_GREEN, 1, &Serif_plain_15);
 }
 
 /**
@@ -477,7 +481,7 @@ void showUnit()
     if (currentFrequency > 1800)
       showChar(64, 83, '.', ST77XX_YELLOW, &Serif_bold_15);
   }
-  printValue(115, 110, oldUnit, p, 13, ST77XX_GREEN, 1, &Serif_bold_15);
+  printValue(115, 110, oldUnit, p, 13, ST77XX_GREEN, 1, &Serif_plain_15);
 }
 
 /**
@@ -948,7 +952,7 @@ void showCommandStatus(char *currentCmd)
     else
       p = (char *)bandModeDesc[currentMode];
 
-    printValue(5, 110, oldMode, p, 15, ST77XX_GREEN, 1, &Serif_bold_15);
+    printValue(4, 115, oldMode, p, 20, ST77XX_GREEN, 1, &Yellowtail_Regular_25);
   }
   /**
    * Switches to the AM, LSB or USB modes
