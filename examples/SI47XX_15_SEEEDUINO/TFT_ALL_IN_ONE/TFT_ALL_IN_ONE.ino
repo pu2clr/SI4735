@@ -282,6 +282,8 @@ Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 void inline clearScreen()
 {
   tft.fillScreen(ST77XX_BLACK);
+  tft.drawRGBBitmap(0, 0, mapa1, 168, 120); // , (uint16_t)ST77XX_BLUE, (uint16_t)ST77XX_BLACK);
+  tft.fillRect(2, 34, tft.width() - 2, 55, ST77XX_BLACK);
 }
 
 void setup() {
@@ -360,6 +362,7 @@ void showTemplate()
   int maxY1 = tft.height() - 5;
 
   // tft.fillScreen(ST77XX_BLACK);
+  tft.fillRect(2, 34, tft.width() - 2, 55, ST77XX_BLACK);
   tft.drawRect(2, 2, maxX1, maxY1, ST77XX_YELLOW);
   tft.drawLine(2, 33, maxX1, 33, ST77XX_YELLOW);
   tft.drawLine(2, 89, maxX1, 89, ST77XX_YELLOW);
