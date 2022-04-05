@@ -70,6 +70,7 @@ By using the examples of this folder, you will do not need any external device t
 
 
 <BR>
+# Arduino Tips
 <BR>
 
 ## Arduino CLI - A faster alternative to the Arduino IDE
@@ -324,14 +325,14 @@ type __arduino-cli board listall__ to see all boards available.
 
 ## Adding images to TFT display
 
-1) First, convert your image to C/C++ code 
-2) Use this link to do that: https://www.mischianti.org/images-to-byte-array-online-converter-cpp-arduino/
-   1) Mains parameters: 
-      1) scretch to fill canvas
-      2) Arduino code, single bitmaps 
-      3) Horizontal - 2 bytes per pixel (565)
-3) Copy and paste of the code generetaed by the app above to a .h file. 
-4) Include the .h file in your sketch code
-5) #include "./images/yourImage.h"
-6) tft.drawRGBBitmap(0, 0, yourImage, 168, 120); // #include <Adafruit_GFX.h>    // Include core graphics library
+* First, convert your image to C/C++ code 
+* Use this link to do that: https://www.mischianti.org/images-to-byte-array-online-converter-cpp-arduino/
+  * Mains parameters:
+    * scretch to fill canvas
+    * Arduino code, single bitmaps 
+    * Horizontal - 2 bytes per pixel (565)
+* Copy and paste of the code generetaed by the app above to a .h file. 
+* Include the .h file in your sketch code
+* #include "./images/yourImage.h"
+* tft.drawRGBBitmap(0, 0, yourImage, 168, 120); // #include <Adafruit_GFX.h>    
 
