@@ -53,8 +53,8 @@
 #include "./fonts/DSEG14_Classic_Mini_Regular_40.h"
 #include "./fonts/Serif_plain_15.h"
 #include "./fonts/Serif_bold_15.h"
-#include "./fonts/Yellowtail_Regular_25.h"
 #include "./images/world2.h"
+#include "./images/signallevel.h"
 #include <FlashAsEEPROM_SAMD.h> // Install this library from Github: https://github.com/khoih-prog/FlashStorage_SAMD#why-do-we-need-this-flashstorage_samd-library
 #include <SI4735.h>
 #include <LiquidCrystal.h>
@@ -89,7 +89,7 @@ static const int TFT_DC = 6;
 #define MIN_ELAPSED_RSSI_TIME 3000
 #define ELAPSED_COMMAND 2000 // time to turn off the last command controlled by encoder. Time to goes back to the FVO control
 #define ELAPSED_CLICK 1500   // time to check the double click commands
-#define DEFAULT_VOLUME 35    // change it for your favorite sound volume
+#define DEFAULT_VOLUME 45    // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -282,8 +282,8 @@ Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 void inline clearScreen()
 {
   tft.fillScreen(ST77XX_BLACK);
-  tft.drawRGBBitmap(0, 0, mapa1, 168, 120); // , (uint16_t)ST77XX_BLUE, (uint16_t)ST77XX_BLACK);
-  tft.fillRect(2, 34, tft.width() - 2, 55, ST77XX_BLACK);
+  tft.drawRGBBitmap(0, 0, mapa1, 168, 120); 
+  // tft.fillRect(2, 34, tft.width() - 2, 55, ST77XX_BLACK);
 }
 
 void setup() {
@@ -334,7 +334,6 @@ void setup() {
 
 }
 
-
 /*
 ** Remove the call of this function for faster statup
 */
@@ -348,7 +347,9 @@ void splash() {
   tft.print("Arduino Library");
   tft.setCursor(27, 60);
   tft.print("You can do it better");
-  delay(5000);
+  // delay(4000);
+  // tft.drawRGBBitmap(0, 0, signalLevel, 168, 120);
+  delay(3000);
   clearScreen();
   showTemplate();
 }
@@ -359,6 +360,7 @@ void splash() {
  */
 void showTemplate()
 {
+  static char aux[10];
   /*
   int maxX1 = tft.width() - 2;
   int maxY1 = tft.height() - 5;
@@ -369,6 +371,7 @@ void showTemplate()
   tft.drawLine(2, 33, maxX1, 33, ST77XX_YELLOW);
   tft.drawLine(2, 89, maxX1, 89, ST77XX_YELLOW);
   */
+  printValue(3, 82, aux, "88888", 31, ST77XX_BLUE, ST77XX_BLUE, 1, &DSEG14_Classic_Mini_Regular_40);
 }
 
 /**
@@ -383,7 +386,7 @@ void printParam(const char *msg)
  * Prevents blinking during the frequency display.
  * Erases the old digits if it has changed and print the new digit values.
  */
-void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space, uint16_t color, uint8_t txtSize, const GFXfont *font)
+void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space, uint16_t color, uint16_t bgColor,  uint8_t txtSize, const GFXfont *font)
 {
   int c = col;
   char *pOld;
@@ -401,7 +404,7 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
     if (*pOld != *pNew)
     {
       // Erases olde value
-      tft.setTextColor(ST77XX_BLACK);
+      tft.setTextColor(bgColor);
       tft.setCursor(c, line);
       tft.print(*pOld);
       // Writes new value
@@ -415,7 +418,7 @@ void printValue(int col, int line, char *oldValue, char *newValue, uint8_t space
   }
 
   // Is there anything else to erase?
-  tft.setTextColor(ST77XX_BLACK);
+  tft.setTextColor(bgColor);
   while (*pOld)
   {
     tft.setCursor(c, line);
@@ -455,7 +458,7 @@ void showStatus()
 */
 void showBand() {
   static char oldBand[10];
-  printValue(7, 20, oldBand, (char *)band[bandIdx].bandName, 17, ST77XX_GREEN, 1, &Serif_plain_15);
+  printValue(7, 20, oldBand, (char *)band[bandIdx].bandName, 17, ST77XX_GREEN, ST77XX_BLUE, 1, &Serif_plain_15);
 }
 
 /**
@@ -488,7 +491,7 @@ void showUnit()
     if (currentFrequency > 1800)
       showChar(64, 83, '.', ST77XX_YELLOW, &Serif_bold_15);
   }
-  printValue(115, 110, oldUnit, p, 13, ST77XX_GREEN, 1, &Serif_plain_15);
+  printValue(115, 110, oldUnit, p, 13, ST77XX_GREEN, ST77XX_BLUE, 1, &Serif_plain_15);
 }
 
 /**
@@ -499,7 +502,7 @@ void showFrequency(){
   char freqAux[10];
   convertToChar(currentFrequency, freqAux, 5, 0, '.');
   // TO DO: Number format
-  printValue(3, 82, oldFreq, freqAux, 31, ST77XX_YELLOW, 1, &DSEG14_Classic_Mini_Regular_40);
+  printValue(3, 82, oldFreq, freqAux, 31, ST77XX_YELLOW, ST77XX_BLUE, 1, &DSEG14_Classic_Mini_Regular_40);
 }
 
 /**
@@ -509,6 +512,51 @@ void showFrequencySSB()
 {
   // TO DO: To avoid constant Softmute,  VFO and BFO will be shown together; 
 
+}
+
+/**
+ * https://github.com/G6EJD/ESP8266-Analogue-Meter/blob/master/ESP8266_METER_DISPLAY_ILI9340_V4.ino
+ *
+ */
+void showSmeter(uint16_t signalLevel)
+{
+  static uint8_t buffer[20];
+  static uint16_t sample;
+  static uint8_t idx = 0;
+  static bool isFull = false;
+  const int hMeter = 65; // horizontal center for needle animation
+  const int vMeter = 85; // vertical center for needle animation (outside of dislay limits)
+  const int rMeter = 80;
+
+  // makes needle movement smoother
+  if (idx < 20 && !isFull)
+  {
+    buffer[idx] = signalLevel;
+    idx++;
+    isFull = true;
+    return;
+  }
+  if (idx >= 20)
+    idx = 0;
+  buffer[idx] = signalLevel;
+  // always get the average of the last 20 readings
+  for (int i = sample = 0; i < 20; i++)
+    sample += buffer[idx];
+
+  // Draw the S Meter with the average value
+  signalLevel = map((sample / 20), 0, 127, 0, 1023);
+  float smeterValue = (signalLevel)*330 / 1024; // convert the signal value to arrow information
+
+  smeterValue = smeterValue - 34; // shifts needle to zero position
+  // display.clearDisplay();                                   // refresh display for next step
+  // display.drawBitmap(0, 0, S_Meter, 128, 64, WHITE);        // draws background
+  int a1 = (hMeter + (sin(smeterValue / 57.296) * rMeter)); // meter needle horizontal coordinate
+  int a2 = (vMeter - (cos(smeterValue / 57.296) * rMeter)); // meter needle vertical coordinate
+  // display.drawLine(a1, a2, hMeter, vMeter, WHITE);          // draws needle
+  // display.display();
+  tft.drawLine(a1, a2, hMeter, vMeter, ST7735_GREEN);
+  idx = 0;
+  sample = 0;
 }
 
 /**
@@ -857,6 +905,8 @@ void showCommandStatus(char *currentCmd)
 
   /**
    * Show menu options
+   * see: tcMenu library
+   * see: https://github.com/russhughes/TFT_Menu/blob/master/TFT_Menu.ino example
    */
   void showMenu()
   {
@@ -959,7 +1009,7 @@ void showCommandStatus(char *currentCmd)
     else
       p = (char *)bandModeDesc[currentMode];
 
-    printValue(4, 115, oldMode, p, 20, ST77XX_GREEN, 1, &Yellowtail_Regular_25);
+    printValue(4, 115, oldMode, p, 20, ST77XX_GREEN, ST77XX_BLUE, 1, &Serif_plain_15);
   }
   /**
    * Switches to the AM, LSB or USB modes

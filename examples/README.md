@@ -70,7 +70,9 @@ By using the examples of this folder, you will do not need any external device t
 
 
 <BR>
+
 # Arduino Tips
+
 <BR>
 
 ## Arduino CLI - A faster alternative to the Arduino IDE
