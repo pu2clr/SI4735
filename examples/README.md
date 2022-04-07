@@ -325,16 +325,19 @@ type __arduino-cli board listall__ to see all boards available.
 
 
 
-## Adding images to TFT display
+## Adding images to TFT display 
 
-* First, convert your image to C/C++ code 
-* Use this link to do that: https://www.mischianti.org/images-to-byte-array-online-converter-cpp-arduino/
-  * Mains parameters:
-    * scretch to fill canvas
-    * Arduino code, single bitmaps 
-    * Horizontal - 2 bytes per pixel (565)
-* Copy and paste of the code generetaed by the app above to a .h file. 
-* Include the .h file in your sketch code
-* #include "./images/yourImage.h"
-* tft.drawRGBBitmap(0, 0, yourImage, 168, 120); // #include <Adafruit_GFX.h>    
+It can be very useful to improve the visual interface to your project.
+
+* First, convert your image to C/C++ code. To do that, you can use this tools:[https://www.mischianti.org/images-to-byte-array-online-converter-cpp-arduino/](https://www.mischianti.org/images-to-byte-array-online-converter-cpp-arduino/).
+  * Use the following parameters to create the C/C++ based on image you want to convert;
+    * scretch to fill canvas;
+    * Arduino code, single bitmaps;
+    * Horizontal - 2 bytes per pixel (565);
+    * User Identifier: yourImage (an C/C++ valiable name);
+    * Click on Generate button
+* Check the firt line genereted by the app: __const uint16_t YourImage [] PROGMEM = {__ ....
+* Copy and paste of the code generetaed by the app to a .h file (create a empity .h file and then paste the C/C++ code. example: yourImage.h);
+* Include the created .h file (yourImage.h) in your sketch main code (example: #include "./images/yourImage.h");
+* Finally, call the Adafruit_GFX function: tft.drawRGBBitmap(0, 0, yourImage, 168, 120); 
 
