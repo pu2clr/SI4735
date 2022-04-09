@@ -109,7 +109,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 
 #define SSB 1
 
-#define EEPROM_SIZE        512
+#define EEPROM_SIZE 512
 
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
@@ -127,7 +127,7 @@ int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 int8_t agcNdx = 0;
 int8_t softMuteMaxAttIdx = 4;
-int8_t avcIdx;   // min 12 and max 90 
+int8_t avcIdx; // min 12 and max 90
 uint8_t countClick = 0;
 
 uint8_t seekDirection = 1;
@@ -139,10 +139,9 @@ bool cmdBandwidth = false;
 bool cmdStep = false;
 bool cmdMode = false;
 bool cmdMenu = false;
-bool cmdRds  =  false;
+bool cmdRds = false;
 bool cmdSoftMuteMaxAtt = false;
 bool cmdAvc = false;
-
 
 bool fmRDS = false;
 
@@ -155,10 +154,9 @@ volatile int encoderCount = 0;
 uint16_t currentFrequency;
 uint16_t previousFrequency = 0;
 
-
 const uint8_t currentBFOStep = 10;
 
-const char * menu[] = {"Volume", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "AVC", "Seek Up", "Seek Down"};
+const char *menu[] = {"Volume", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "AVC", "Seek Up", "Seek Down"};
 int8_t menuIdx = 0;
 const int lastMenu = 10;
 int8_t currentMenuCmd = -1;
@@ -172,26 +170,23 @@ typedef struct
 int8_t bwIdxSSB = 4;
 const int8_t maxSsbBw = 5;
 Bandwidth bandwidthSSB[] = {
-  {4, "0.5"},
-  {5, "1.0"},
-  {0, "1.2"},
-  {1, "2.2"},
-  {2, "3.0"},
-  {3, "4.0"}
-};
-
+    {4, "0.5"},
+    {5, "1.0"},
+    {0, "1.2"},
+    {1, "2.2"},
+    {2, "3.0"},
+    {3, "4.0"}};
 
 int8_t bwIdxAM = 4;
 const int8_t maxAmBw = 6;
 Bandwidth bandwidthAM[] = {
-  {4, "1.0"},
-  {5, "1.8"},
-  {3, "2.0"},
-  {6, "2.5"},
-  {2, "3.0"},
-  {1, "4.0"},
-  {0, "6.0"}
-};
+    {4, "1.0"},
+    {5, "1.8"},
+    {3, "2.0"},
+    {6, "2.5"},
+    {2, "3.0"},
+    {1, "4.0"},
+    {0, "6.0"}};
 
 int8_t bwIdxFM = 0;
 const int8_t maxFmBw = 4;
@@ -202,8 +197,6 @@ Bandwidth bandwidthFM[] = {
     {2, " 84"},
     {3, " 60"},
     {4, " 40"}};
-
-
 
 int tabAmStep[] = {1,    // 0
                    5,    // 1
@@ -221,7 +214,6 @@ int idxFmStep = 1;
 
 uint16_t currentStepIdx = 1;
 
-
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
 
@@ -230,17 +222,17 @@ uint8_t currentMode = FM;
  */
 typedef struct
 {
-  const char *bandName;   // Band description
-  uint8_t bandType;       // Band type (FM, MW or SW)
-  uint16_t minimumFreq;   // Minimum frequency of the band
-  uint16_t maximumFreq;   // maximum frequency of the band
-  uint16_t currentFreq;   // Default frequency or current frequency
-  int8_t currentStepIdx;  // Idex of tabStepAM:  Defeult frequency step (See tabStepAM)
-  int8_t bandwidthIdx;    // Index of the table bandwidthFM, bandwidthAM or bandwidthSSB;
-  uint8_t disableAgc;     // AGC enable or disable
-  int8_t agcIdx;          // AGC index value. See setAutomaticGainControl function
-  int8_t agcNdx;          // AGC value. See setAutomaticGainControl function
-  int8_t avcIdx;          // AVC Index. See setAvcAmMaxGain function 
+  const char *bandName;  // Band description
+  uint8_t bandType;      // Band type (FM, MW or SW)
+  uint16_t minimumFreq;  // Minimum frequency of the band
+  uint16_t maximumFreq;  // maximum frequency of the band
+  uint16_t currentFreq;  // Default frequency or current frequency
+  int8_t currentStepIdx; // Idex of tabStepAM:  Defeult frequency step (See tabStepAM)
+  int8_t bandwidthIdx;   // Index of the table bandwidthFM, bandwidthAM or bandwidthSSB;
+  uint8_t disableAgc;    // AGC enable or disable
+  int8_t agcIdx;         // AGC index value. See setAutomaticGainControl function
+  int8_t agcNdx;         // AGC value. See setAutomaticGainControl function
+  int8_t avcIdx;         // AVC Index. See setAvcAmMaxGain function
 } Band;
 
 /*
@@ -252,7 +244,7 @@ typedef struct
    ATTENTION: You have to RESET the eeprom after adding or removing a line of this table.
               Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.
    See Band typedef structure above;
-   See tabAmStep, tabFmStep, bandwidthAM, bandwidthFM 
+   See tabAmStep, tabFmStep, bandwidthAM, bandwidthFM
 */
 Band band[] = {
     {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0, 1, 0, 0, 0},
@@ -281,7 +273,6 @@ const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
-
 
 uint8_t rssi = 0;
 uint8_t volume = DEFAULT_VOLUME;
@@ -319,7 +310,7 @@ void setup()
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
     EEPROM.update(eeprom_address, 0);
-    lcd.setCursor(0,0);
+    lcd.setCursor(0, 0);
     lcd.print("EEPROM RESETED");
     delay(2000);
     lcd.clear();
@@ -330,27 +321,26 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
   rx.setI2CFastModeCustom(100000);
-  
+
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
-  
+
   rx.setup(RESET_PIN, MW_BAND_TYPE);
   // Comment the line above and uncomment the three lines below if you are using external ref clock (active crystal or signal generator)
   // rx.setRefClock(32768);
-  // rx.setRefClockPrescaler(1);   // will work with 32768  
+  // rx.setRefClockPrescaler(1);   // will work with 32768
   // rx.setup(RESET_PIN, 0, MW_BAND_TYPE, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
 
-  
   delay(300);
   rx.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM/SSB mode (you can use values between 12 and 90dB).
-
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id)
   {
     readAllReceiverInformation();
-  } else 
+  }
+  else
     rx.setVolume(volume);
-  
+
   useBand();
   showStatus();
 }
@@ -377,9 +367,9 @@ void saveAllReceiverInformation()
 
   EEPROM.begin();
 
-  EEPROM.update(eeprom_address, app_id);                 // stores the app id;
+  EEPROM.update(eeprom_address, app_id);             // stores the app id;
   EEPROM.update(eeprom_address + 1, rx.getVolume()); // stores the current Volume
-  EEPROM.update(eeprom_address + 2, bandIdx);            // Stores the current band
+  EEPROM.update(eeprom_address + 2, bandIdx);        // Stores the current band
   EEPROM.update(eeprom_address + 3, fmRDS);
   EEPROM.update(eeprom_address + 4, currentMode); // Stores the current Mode (FM / AM / SSB)
   EEPROM.update(eeprom_address + 5, currentBFO >> 8);
@@ -394,18 +384,17 @@ void saveAllReceiverInformation()
     EEPROM.update(addr_offset++, (band[i].currentFreq & 0xFF)); // stores the current Frequency LOW byte for the band
     EEPROM.update(addr_offset++, band[i].currentStepIdx);       // Stores current step of the band
     EEPROM.update(addr_offset++, band[i].bandwidthIdx);         // table index (direct position) of bandwidth
-    EEPROM.update(addr_offset++, band[i].disableAgc );
+    EEPROM.update(addr_offset++, band[i].disableAgc);
     EEPROM.update(addr_offset++, band[i].agcIdx);
     EEPROM.update(addr_offset++, band[i].agcNdx);
     EEPROM.update(addr_offset++, band[i].avcIdx);
-
   }
 
   EEPROM.end();
 }
 
 /**
- * reads the last receiver status from eeprom. 
+ * reads the last receiver status from eeprom.
  */
 void readAllReceiverInformation()
 {
@@ -432,7 +421,6 @@ void readAllReceiverInformation()
     band[i].agcNdx = EEPROM.read(addr_offset++);
     band[i].avcIdx = EEPROM.read(addr_offset++);
   }
-
 
   currentFrequency = band[bandIdx].currentFreq;
 
@@ -500,21 +488,19 @@ void disableCommands()
   cmdMenu = false;
   cmdSoftMuteMaxAtt = false;
   cmdRds = false;
-  cmdAvc =  false; 
+  cmdAvc = false;
   countClick = 0;
 
-  showCommandStatus((char *) "VFO ");
+  showCommandStatus((char *)"VFO ");
 }
-
-
 
 /**
  * Reads encoder via interrupt
  * Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
- * if you do not add ICACHE_RAM_ATTR declaration, the system will reboot during attachInterrupt call. 
+ * if you do not add ICACHE_RAM_ATTR declaration, the system will reboot during attachInterrupt call.
  * With ICACHE_RAM_ATTR macro you put the function on the RAM.
  */
-void  rotaryEncoder()
+void rotaryEncoder()
 { // rotary encoder events
   uint8_t encoderStatus = encoder.process();
   if (encoderStatus)
@@ -538,10 +524,13 @@ void showFrequency()
     bufferDisplay[2] = tmp[2];
     bufferDisplay[3] = '.';
     bufferDisplay[4] = tmp[3];
-    if ( fmRDS ) { 
+    if (fmRDS)
+    {
       col = 0;
       unit = (char *)" ";
-    } else {
+    }
+    else
+    {
       unit = (char *)"MHz";
     }
   }
@@ -576,7 +565,6 @@ void showMode()
 {
   char *bandMode;
 
-   
   if (currentFrequency < 520)
     bandMode = (char *)"LW  ";
   else
@@ -584,8 +572,9 @@ void showMode()
   lcd.setCursor(0, 0);
   lcd.print(bandMode);
 
-  if ( currentMode == FM && fmRDS ) return;
-  
+  if (currentMode == FM && fmRDS)
+    return;
+
   lcd.setCursor(0, 1);
   lcd.print(band[bandIdx].bandName);
 }
@@ -640,15 +629,15 @@ void showRSSI()
     lcd.setCursor(14, 0);
     lcd.print((rx.getCurrentPilot()) ? "ST" : "MO");
     lcd.setCursor(10, 0);
-    if ( fmRDS ) {
+    if (fmRDS)
+    {
       lcd.print("RDS");
       return;
     }
-    else 
+    else
       lcd.print("   ");
   }
 
-    
   if (rssi < 2)
     rssiAux = 4;
   else if (rssi < 4)
@@ -675,7 +664,7 @@ void showAgcAtt()
   char sAgc[15];
   lcd.clear();
   rx.getAutomaticGainControl();
-  if ( !disableAgc /*agcNdx == 0 && agcIdx == 0 */ )
+  if (!disableAgc /*agcNdx == 0 && agcIdx == 0 */)
     strcpy(sAgc, "AGC ON");
   else
     sprintf(sAgc, "ATT: %2.2d", agcNdx);
@@ -684,7 +673,6 @@ void showAgcAtt()
   lcd.print(sAgc);
 }
 
-
 /**
  *   Shows the current step
  */
@@ -692,7 +680,7 @@ void showStep()
 {
   char sStep[15];
 
-  sprintf(sStep, "Stp:%4d", (currentMode == FM)? (tabFmStep[currentStepIdx] *10) : tabAmStep[currentStepIdx] );
+  sprintf(sStep, "Stp:%4d", (currentMode == FM) ? (tabFmStep[currentStepIdx] * 10) : tabAmStep[currentStepIdx]);
   lcd.setCursor(0, 0);
   lcd.print(sStep);
 }
@@ -727,7 +715,7 @@ void showVolume()
 }
 
 /**
- * Show Soft Mute 
+ * Show Soft Mute
  */
 void showSoftMute()
 {
@@ -738,9 +726,8 @@ void showSoftMute()
   lcd.print(sMute);
 }
 
-
 /**
- * Show Soft Mute 
+ * Show Soft Mute
  */
 void showAvc()
 {
@@ -751,48 +738,47 @@ void showAvc()
   lcd.print(sAvc);
 }
 
-
-
 /**
  * Shows RDS ON or OFF
  */
-void showRdsSetup() 
+void showRdsSetup()
 {
   char sRdsStatus[10];
-  sprintf(sRdsStatus, "RDS: %s", (fmRDS)? "ON ": "OFF");
+  sprintf(sRdsStatus, "RDS: %s", (fmRDS) ? "ON " : "OFF");
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print(sRdsStatus);  
-
+  lcd.print(sRdsStatus);
 }
 
-/***************  
+/***************
  *   RDS
- *   
+ *
  */
- 
+
 char *stationName;
 char bufferStatioName[20];
 
-void clearRDS() {
-   stationName = (char *) "           ";
-   showRDSStation();
+void clearRDS()
+{
+  stationName = (char *)"           ";
+  showRDSStation();
 }
 
 void showRDSStation()
 {
-    int col = 8;
-    for (int i = 0; i < 8; i++ ) {
-      if (stationName[i] != bufferStatioName[i] ) {
-        lcd.setCursor(col + i, 1);
-        lcd.print(stationName[i]); 
-        bufferStatioName[i] = stationName[i];
-      }
+  int col = 8;
+  for (int i = 0; i < 8; i++)
+  {
+    if (stationName[i] != bufferStatioName[i])
+    {
+      lcd.setCursor(col + i, 1);
+      lcd.print(stationName[i]);
+      bufferStatioName[i] = stationName[i];
     }
-    
-    delay(100);
-}
+  }
 
+  delay(100);
+}
 
 /*
  * Checks the station name is available
@@ -802,17 +788,16 @@ void checkRDS()
   rx.getRdsStatus();
   if (rx.getRdsReceived())
   {
-    if (rx.getRdsSync() && rx.getRdsSyncFound() && !rx.getRdsSyncLost() && !rx.getGroupLost() )
+    if (rx.getRdsSync() && rx.getRdsSyncFound() && !rx.getRdsSyncLost() && !rx.getGroupLost())
     {
       stationName = rx.getRdsText0A();
-      if (stationName != NULL )
+      if (stationName != NULL)
       {
         showRDSStation();
       }
     }
   }
 }
-
 
 /**
  *   Sets Band up (1) or down (!1)
@@ -842,10 +827,10 @@ void useBand()
     rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     rx.setRdsConfig(1, 2, 2, 2, 2);
     rx.setFifoCount(1);
-    
+
     bfoOn = ssbLoaded = false;
     bwIdxFM = band[bandIdx].bandwidthIdx;
-    rx.setFmBandwidth(bandwidthFM[bwIdxFM].idx);    
+    rx.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
   }
   else
   {
@@ -854,7 +839,7 @@ void useBand()
     agcIdx = band[bandIdx].agcIdx;
     agcNdx = band[bandIdx].agcNdx;
     avcIdx = band[bandIdx].avcIdx;
-    
+
     // set the tuning capacitor for SW or MW/LW
     rx.setTuneFrequencyAntennaCapacitor((band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE) ? 0 : 1);
     if (ssbLoaded)
@@ -876,10 +861,9 @@ void useBand()
       rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
       rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Soft Mute for AM or SSB
       rx.setAutomaticGainControl(disableAgc, agcNdx);
-
     }
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
-    rx.setSeekAmSpacing(5); // Max 10kHz for spacing
+    rx.setSeekAmSpacing(5);                                                   // Max 10kHz for spacing
     rx.setAvcAmMaxGain(avcIdx);
   }
   delay(100);
@@ -888,15 +872,15 @@ void useBand()
 
   rssi = 0;
   showStatus();
-  showCommandStatus((char *) "Band");
+  showCommandStatus((char *)"Band");
 }
 
-
-void loadSSB() {
-   rx.setI2CFastModeCustom(400000); // You can try rx.setI2CFastModeCustom(700000); or greater value
-   rx.loadPatch(ssb_patch_content, size_content, bandwidthSSB[bwIdxSSB].idx);
-   rx.setI2CFastModeCustom(100000);  
-   ssbLoaded =  true; 
+void loadSSB()
+{
+  rx.setI2CFastModeCustom(400000); // You can try rx.setI2CFastModeCustom(700000); or greater value
+  rx.loadPatch(ssb_patch_content, size_content, bandwidthSSB[bwIdxSSB].idx);
+  rx.setI2CFastModeCustom(100000);
+  ssbLoaded = true;
 }
 
 /**
@@ -904,37 +888,38 @@ void loadSSB() {
  */
 void doBandwidth(int8_t v)
 {
-    if (currentMode == LSB || currentMode == USB)
-    {
-      bwIdxSSB = (v == 1) ? bwIdxSSB + 1 : bwIdxSSB - 1;
+  if (currentMode == LSB || currentMode == USB)
+  {
+    bwIdxSSB = (v == 1) ? bwIdxSSB + 1 : bwIdxSSB - 1;
 
-      if (bwIdxSSB > maxSsbBw)
-        bwIdxSSB = 0;
-      else if (bwIdxSSB < 0)
-        bwIdxSSB = maxSsbBw;
+    if (bwIdxSSB > maxSsbBw)
+      bwIdxSSB = 0;
+    else if (bwIdxSSB < 0)
+      bwIdxSSB = maxSsbBw;
 
-      rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
-      // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-      if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
-        rx.setSSBSidebandCutoffFilter(0);
-      else
-        rx.setSSBSidebandCutoffFilter(1);
+    rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
+    // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+    if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
+      rx.setSSBSidebandCutoffFilter(0);
+    else
+      rx.setSSBSidebandCutoffFilter(1);
 
-      band[bandIdx].bandwidthIdx = bwIdxSSB;
-    }
-    else if (currentMode == AM)
-    {
-      bwIdxAM = (v == 1) ? bwIdxAM + 1 : bwIdxAM - 1;
+    band[bandIdx].bandwidthIdx = bwIdxSSB;
+  }
+  else if (currentMode == AM)
+  {
+    bwIdxAM = (v == 1) ? bwIdxAM + 1 : bwIdxAM - 1;
 
-      if (bwIdxAM > maxAmBw)
-        bwIdxAM = 0;
-      else if (bwIdxAM < 0)
-        bwIdxAM = maxAmBw;
+    if (bwIdxAM > maxAmBw)
+      bwIdxAM = 0;
+    else if (bwIdxAM < 0)
+      bwIdxAM = maxAmBw;
 
-      rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
-      band[bandIdx].bandwidthIdx = bwIdxAM;
-      
-    } else {
+    rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
+    band[bandIdx].bandwidthIdx = bwIdxAM;
+  }
+  else
+  {
     bwIdxFM = (v == 1) ? bwIdxFM + 1 : bwIdxFM - 1;
     if (bwIdxFM > maxFmBw)
       bwIdxFM = 0;
@@ -949,9 +934,9 @@ void doBandwidth(int8_t v)
 }
 
 /**
- * Show cmd on display. It means you are setting up something.  
+ * Show cmd on display. It means you are setting up something.
  */
-void showCommandStatus(char * currentCmd)
+void showCommandStatus(char *currentCmd)
 {
   lcd.setCursor(5, 0);
   lcd.print(currentCmd);
@@ -960,30 +945,32 @@ void showCommandStatus(char * currentCmd)
 /**
  * Show menu options
  */
-void showMenu() {
+void showMenu()
+{
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.setCursor(0, 1);
   lcd.print(menu[menuIdx]);
-  showCommandStatus( (char *) "Menu");
+  showCommandStatus((char *)"Menu");
 }
 
 /**
  *  AGC and attenuattion setup
  */
-void doAgc(int8_t v) {
+void doAgc(int8_t v)
+{
   agcIdx = (v == 1) ? agcIdx + 1 : agcIdx - 1;
-  if (agcIdx < 0 )
+  if (agcIdx < 0)
     agcIdx = 37;
-  else if ( agcIdx > 37)
+  else if (agcIdx > 37)
     agcIdx = 0;
   disableAgc = (agcIdx > 0); // if true, disable AGC; esle, AGC is enable
   if (agcIdx > 1)
     agcNdx = agcIdx - 1;
   else
     agcNdx = 0;
-  if ( currentMode == AM ) 
-     rx.setAutomaticGainControl(disableAgc, agcNdx); // if agcNdx = 0, no attenuation
+  if (currentMode == AM)
+    rx.setAutomaticGainControl(disableAgc, agcNdx); // if agcNdx = 0, no attenuation
   else
     rx.setSsbAgcOverrite(disableAgc, agcNdx, 0B1111111);
 
@@ -996,37 +983,38 @@ void doAgc(int8_t v) {
   elapsedCommand = millis();
 }
 
-
 /**
  * Switches the current step
  */
 void doStep(int8_t v)
 {
-    if ( currentMode == FM ) {
-      idxFmStep = (v == 1) ? idxFmStep + 1 : idxFmStep - 1;
-      if (idxFmStep > lastFmStep)
-        idxFmStep = 0;
-      else if (idxFmStep < 0)
-        idxFmStep = lastFmStep;
-        
-      currentStepIdx = idxFmStep;
-      rx.setFrequencyStep(tabFmStep[currentStepIdx]);
-      
-    } else {
-      idxAmStep = (v == 1) ? idxAmStep + 1 : idxAmStep - 1;
-      if (idxAmStep > lastAmStep)
-        idxAmStep = 0;
-      else if (idxAmStep < 0)
-        idxAmStep = lastAmStep;
+  if (currentMode == FM)
+  {
+    idxFmStep = (v == 1) ? idxFmStep + 1 : idxFmStep - 1;
+    if (idxFmStep > lastFmStep)
+      idxFmStep = 0;
+    else if (idxFmStep < 0)
+      idxFmStep = lastFmStep;
 
-      currentStepIdx = idxAmStep;
-      rx.setFrequencyStep(tabAmStep[currentStepIdx]);
-      rx.setSeekAmSpacing(5); // Max 10kHz for spacing
-    }
-    band[bandIdx].currentStepIdx = currentStepIdx;
-    showStep();
-    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-    elapsedCommand = millis();
+    currentStepIdx = idxFmStep;
+    rx.setFrequencyStep(tabFmStep[currentStepIdx]);
+  }
+  else
+  {
+    idxAmStep = (v == 1) ? idxAmStep + 1 : idxAmStep - 1;
+    if (idxAmStep > lastAmStep)
+      idxAmStep = 0;
+    else if (idxAmStep < 0)
+      idxAmStep = lastAmStep;
+
+    currentStepIdx = idxAmStep;
+    rx.setFrequencyStep(tabAmStep[currentStepIdx]);
+    rx.setSeekAmSpacing(5); // Max 10kHz for spacing
+  }
+  band[bandIdx].currentStepIdx = currentStepIdx;
+  showStep();
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();
 }
 
 /**
@@ -1036,7 +1024,8 @@ void doMode(int8_t v)
 {
   if (currentMode != FM)
   {
-    if (v == 1)  { // clockwise
+    if (v == 1)
+    { // clockwise
       if (currentMode == AM)
       {
         // If you were in AM mode, it is necessary to load SSB patch (avery time)
@@ -1051,7 +1040,9 @@ void doMode(int8_t v)
         currentMode = AM;
         bfoOn = ssbLoaded = false;
       }
-    } else { // and counterclockwise
+    }
+    else
+    { // and counterclockwise
       if (currentMode == AM)
       {
         // If you were in AM mode, it is necessary to load SSB patch (avery time)
@@ -1079,8 +1070,9 @@ void doMode(int8_t v)
 /**
  * Sets the audio volume
  */
-void doVolume( int8_t v ) {
-  if ( v == 1)
+void doVolume(int8_t v)
+{
+  if (v == 1)
     rx.volumeUp();
   else
     rx.volumeDown();
@@ -1103,13 +1095,13 @@ void showFrequencySeek(uint16_t freq)
  */
 void doSeek()
 {
-  if ((currentMode == LSB || currentMode == USB)) return; // It does not work for SSB mode
+  if ((currentMode == LSB || currentMode == USB))
+    return; // It does not work for SSB mode
 
   lcd.clear();
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   showStatus();
   currentFrequency = rx.getFrequency();
-  
 }
 
 /**
@@ -1128,9 +1120,8 @@ void doSoftMute(int8_t v)
   elapsedCommand = millis();
 }
 
-
 /**
- * Sets the Max gain for Automatic Volume Control. 
+ * Sets the Max gain for Automatic Volume Control.
  */
 void doAvc(int8_t v)
 {
@@ -1148,22 +1139,21 @@ void doAvc(int8_t v)
   elapsedCommand = millis();
 }
 
-
 /**
  * Turns RDS ON or OFF
  */
 void doRdsSetup(int8_t v)
 {
-  fmRDS = (v == 1)? true:false;
+  fmRDS = (v == 1) ? true : false;
   showRdsSetup();
   elapsedCommand = millis();
 }
 
-
 /**
  *  Menu options selection
  */
-void doMenu( int8_t v) {
+void doMenu(int8_t v)
+{
   menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
   if (menuIdx > lastMenu)
     menuIdx = 0;
@@ -1175,79 +1165,78 @@ void doMenu( int8_t v) {
   elapsedCommand = millis();
 }
 
-
-
 /**
  * Return true if the current status is Menu command
  */
-bool isMenuMode() {
+bool isMenuMode()
+{
   return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds | cmdAvc);
 }
-
 
 /**
  * Starts the MENU action process
  */
-void doCurrentMenuCmd() {
+void doCurrentMenuCmd()
+{
   disableCommands();
-  switch (currentMenuCmd) {
-     case 0:                 // VOLUME
-      cmdVolume = true;
-      showVolume();
-      break;
-    case 1: 
-      cmdRds = true;
-      showRdsSetup();
-      break;
-    case 2:                 // STEP
-      cmdStep = true;
-      showStep();
-      break;
-    case 3:                 // MODE
-      cmdMode = true;
-      lcd.clear();
-      showMode();
-      break;
-    case 4:
-        bfoOn = true;
-        if ((currentMode == LSB || currentMode == USB)) {
-          showBFO();
-        }
-      // showFrequency();
-      break;      
-    case 5:                 // BW
-      cmdBandwidth = true;
-      showBandwidth();
-      break;
-    case 6:                 // AGC/ATT
-      cmdAgc = true;
-      showAgcAtt();
-      break;
-    case 7: 
-      cmdSoftMuteMaxAtt = true;
-      showSoftMute();  
-      break;
-    case 8: 
-      cmdAvc =  true; 
-      showAvc();
-      break;  
-    case 9:
-      seekDirection = 1;
-      doSeek();
-      break;  
-    case 10:
-      seekDirection = 0;
-      doSeek();
-      break;    
-    default:
-      showStatus();
-      break;
+  switch (currentMenuCmd)
+  {
+  case 0: // VOLUME
+    cmdVolume = true;
+    showVolume();
+    break;
+  case 1:
+    cmdRds = true;
+    showRdsSetup();
+    break;
+  case 2: // STEP
+    cmdStep = true;
+    showStep();
+    break;
+  case 3: // MODE
+    cmdMode = true;
+    lcd.clear();
+    showMode();
+    break;
+  case 4:
+    bfoOn = true;
+    if ((currentMode == LSB || currentMode == USB))
+    {
+      showBFO();
+    }
+    // showFrequency();
+    break;
+  case 5: // BW
+    cmdBandwidth = true;
+    showBandwidth();
+    break;
+  case 6: // AGC/ATT
+    cmdAgc = true;
+    showAgcAtt();
+    break;
+  case 7:
+    cmdSoftMuteMaxAtt = true;
+    showSoftMute();
+    break;
+  case 8:
+    cmdAvc = true;
+    showAvc();
+    break;
+  case 9:
+    seekDirection = 1;
+    doSeek();
+    break;
+  case 10:
+    seekDirection = 0;
+    doSeek();
+    break;
+  default:
+    showStatus();
+    break;
   }
   currentMenuCmd = -1;
   elapsedCommand = millis();
 }
-
-
 
 /**
  * Main loop
@@ -1278,11 +1267,11 @@ void loop()
     else if (cmdSoftMuteMaxAtt)
       doSoftMute(encoderCount);
     else if (cmdAvc)
-      doAvc(encoderCount);      
+      doAvc(encoderCount);
     else if (cmdBand)
       setBand(encoderCount);
-    else if (cmdRds ) 
-      doRdsSetup(encoderCount);  
+    else if (cmdRds)
+      doRdsSetup(encoderCount);
     else
     {
       if (encoderCount == 1)
@@ -1318,7 +1307,8 @@ void loop()
           showStatus();
           showCommandStatus((char *)"VFO ");
         }
-        else if ( bfoOn ) {
+        else if (bfoOn)
+        {
           bfoOn = false;
           showStatus();
         }
@@ -1355,12 +1345,13 @@ void loop()
   // Disable commands control
   if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
   {
-    if ((currentMode == LSB || currentMode == USB) )
+    if ((currentMode == LSB || currentMode == USB))
     {
       bfoOn = false;
       // showBFO();
       showStatus();
-    } else if (isMenuMode()) 
+    }
+    else if (isMenuMode())
       showStatus();
     disableCommands();
     elapsedCommand = millis();
@@ -1383,18 +1374,13 @@ void loop()
     }
   }
 
-  if (currentMode == FM && fmRDS && !isMenuMode() )
+  if (currentMode == FM && fmRDS && !isMenuMode())
   {
-      if (currentFrequency != previousFrequency)
-      {
-        clearRDS();
-        previousFrequency = currentFrequency;
-       }
-      else
-      {
-        checkRDS();
-      }
-  }  
+    if (currentFrequency != previousFrequency)
+      previousFrequency = currentFrequency;
+
+    checkRDS();
+  }
 
   delay(2);
 }
