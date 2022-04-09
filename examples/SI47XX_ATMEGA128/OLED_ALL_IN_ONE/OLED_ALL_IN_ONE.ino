@@ -1,6 +1,6 @@
 /*
 
-  UNDER CONSTRUCTION...
+  UNDER CONSTRUCTION....
 
   This sketch runs on Atmega128 devices.   
 

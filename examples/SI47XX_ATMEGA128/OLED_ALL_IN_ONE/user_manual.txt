@@ -8,6 +8,7 @@ Commands
    When the desired band is shown on display, you  can press the button once again or wait for about 2 seconds. 
    You will notice the control will go back to the VFO.
 
+
 2. STEP, MODE, AGC/Attenuation, bandwidth, Soft Mute and VOLUME
 
      2.1. Press the encoder push button twice (within 1/2 second).
