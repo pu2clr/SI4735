@@ -401,6 +401,7 @@ void setup()
 
   useBand();
   showStatus();
+  showCommandStatus((char *)" VFO ");
 }
 
 /*
@@ -862,8 +863,7 @@ void useBand()
   currentStepIdx = band[bandIdx].currentStepIdx;
 
   rssi = 0;
-  showStatus();
-  showCommandStatus((char *)"BAND ");
+  // showStatus();
 }
 
 /**
@@ -1076,6 +1076,7 @@ void showModeMenu()
  */
 void doMode(int8_t v)
 {
+  showModeMenu();
   if (currentMode != FM)
   {
     if (v == 1)
@@ -1117,6 +1118,7 @@ void doMode(int8_t v)
     band[bandIdx].currentStepIdx = currentStepIdx;
     useBand();
   }
+  showModeMenu();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
@@ -1341,8 +1343,7 @@ void doCurrentMenuCmd()
     break;
   case 3: // MODE
     cmdMode = true;
-    clearScreen();
-    showMode();
+    showModeMenu();
     break;
   case 4:
     bfoOn = true;
@@ -1425,8 +1426,11 @@ void loop()
       doSoftMute(encoderCount);
     else if (cmdAvc)
       doAvc(encoderCount);
-    else if (cmdBand)
+    else if (cmdBand) {
       setBand(encoderCount);
+      showCommandStatus((char *)" BAND ");
+      showStatus();
+    }
     else if (cmdRds)
       doRdsSetup(encoderCount);
     else
@@ -1461,8 +1465,6 @@ void loop()
         if (isMenuMode())
         {
           disableCommands();
-          // showStatus();
-          // showCommandStatus((char *)"VFO ");
           cmdMenu = true;
           menuSelection = false;
           showMenu();
@@ -1475,7 +1477,10 @@ void loop()
         else
         {
           cmdBand = !cmdBand;
-          showCommandStatus((char *)"Band");
+          if (!cmdBand )
+            showCommandStatus((char *)" VFO ");
+          else
+            showCommandStatus((char *)" BAND ");
         }
       }
       else
