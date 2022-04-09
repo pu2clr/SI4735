@@ -116,7 +116,7 @@ int8_t agcIdx = 0;
 int8_t disableAgc = 0;
 int8_t agcNdx = 0;
 int8_t softMuteMaxAttIdx = 4;
-int8_t avcIdx; // min 12 and max 90
+int8_t avcIdx = 42; // min 12 and max 90
 uint8_t countClick = 0;
 
 uint8_t seekDirection = 1;
