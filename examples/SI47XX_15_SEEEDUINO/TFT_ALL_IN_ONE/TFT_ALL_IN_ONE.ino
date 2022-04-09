@@ -1370,11 +1370,11 @@ void doCurrentMenuCmd()
     showAvc();
     break;
   case 9:
-    seekDirection = 1;
-    doSeek();
-    break;
   case 10:
-    seekDirection = 0;
+    seekDirection = 10 - currentMenuCmd; // 1 Up; 0 Down
+    clearScreen();
+    clearBuffer();
+    showStatus();
     doSeek();
     break;
   case 11:
