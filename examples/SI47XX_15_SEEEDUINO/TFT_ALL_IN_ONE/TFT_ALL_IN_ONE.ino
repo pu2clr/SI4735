@@ -343,14 +343,13 @@ void inline clearScreen()
 {
   tft.fillScreen(ST77XX_BLACK);
   tft.drawRGBBitmap(0, 0, mapa1, 168, 120);
-  // tft.fillRect(2, 34, tft.width() - 2, 55, ST77XX_BLACK);
 }
 
 void inline clearBuffer()
 {
   oldFreq[0] = oldUnit[0] = oldMode[0] = oldBand[0] = oldAux[0] = oldDummy[0] = '\0';
   oldStep[0] = oldVolume[0] = oldSoftMute[0] = oldBandwidth[0] = oldAgcAtt[0] = '\0';
-  oldAvc[0] = oldTime[0] = oldRds[0] =  '\0';
+  oldAvc[0] = oldTime[0] = oldRds[0] = oldBFO[0] = '\0';
 }
 
 
@@ -583,7 +582,25 @@ void showFrequency()
  */
 void showFrequencySSB()
 {
-  // TO DO: To avoid constant Softmute,  VFO and BFO will be shown together;
+  char tmp[6];
+  uint16_t auxBfo;
+  auxBfo = currentBFO;
+  char newBFO[10];
+
+  if (currentBFO < 0)
+  {
+    auxBfo = ~currentBFO + 1; // converts to absolute value (ABS) using binary operator
+    newBFO[0] = '-';
+  }
+  else if (currentBFO > 0)
+    newBFO[0] = '+';
+  else
+    newBFO[0] = ' ';
+
+  rx.convertToChar(auxBfo, tmp, 4, 0, '.');
+  strcpy(&newBFO[1], tmp);
+  printValue(menu[menuIdx].colContent, menu[menuIdx].linItem, oldBFO, newBFO, 10, ST7735_YELLOW, ST7735_BLUE, 1, NULL);
+  elapsedCommand = millis();
 }
 
 /**
@@ -1466,8 +1483,10 @@ void loop()
         }
         else if (bfoOn)
         {
+          disableCommands();
+          cmdMenu = true;
           bfoOn = false;
-          showStatus();
+          showMenu();
         }
         else
         {
