@@ -180,6 +180,7 @@ char oldAgcAtt[10];
 char oldSoftMute[10];
 char oldAvc[10];
 char oldDummy[10];
+char oldTime[10];
 
 typedef struct
 {
@@ -349,7 +350,7 @@ void inline clearBuffer()
 {
   oldFreq[0] = oldUnit[0] = oldMode[0] = oldBand[0] = oldAux[0] = oldDummy[0] = '\0';
   oldStep[0] = oldVolume[0] = oldSoftMute[0] = oldBandwidth[0] = oldAgcAtt[0] = '\0';
-  oldAvc[0] = '\0';
+  oldAvc[0] = oldTime[0] = oldRds[0] =  '\0';
 }
 
 
@@ -1236,13 +1237,12 @@ void showRdsSetup()
 
 void showRDSTime()
 {
-  // lcd.setCursor(8, 1);
-  // lcd.print(localTime);
+  printValue(105, 120, oldTime, localTime, 11, ST7735_YELLOW, ST7735_BLACK, 1, NULL);
   delay(200);
 }
 void showRDSStation()
 {
-  printValue(5,100,bufferStatioName,stationName,11,ST7735_YELLOW,ST7735_BLACK,1,NULL);
+  printValue(5,120,bufferStatioName,stationName,11,ST7735_YELLOW,ST7735_BLACK,1,NULL);
   delay(100);
 }
 
@@ -1523,7 +1523,7 @@ void loop()
     }
   }
 
-  if (currentMode == FM && fmRDS && !isMenuMode() )
+  if (currentMode == FM && fmRDS && !isMenuMode())
   {
     if (currentFrequency != previousFrequency)
     {
