@@ -1377,9 +1377,14 @@ void loop()
   if (currentMode == FM && fmRDS && !isMenuMode())
   {
     if (currentFrequency != previousFrequency)
+    {
+      clearRDS();
       previousFrequency = currentFrequency;
-
-    checkRDS();
+    }
+    else
+    {
+      checkRDS();
+    }
   }
 
   delay(2);

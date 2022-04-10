@@ -832,6 +832,8 @@ void useBand()
     bfoOn = ssbLoaded = false;
     bwIdxFM = band[bandIdx].bandwidthIdx;
     rx.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
+    rx.setRdsConfig(1, 2, 2, 2, 2);
+    rx.setFifoCount(1);
   }
   else
   {
@@ -1225,8 +1227,11 @@ void doAvc(int8_t v)
  */
 void showRdsSetup()
 {
-  char sRdsStatus[10];
-  sprintf(sRdsStatus, "RDS: %s", (fmRDS) ? "ON " : "OFF");
+  char *p;
+
+  p = (fmRDS) ? (char *) "ON " : (char *) "OFF";
+  printValue(menu[menuIdx].colContent, menu[menuIdx].linItem, oldRds , p, 10, ST7735_YELLOW, ST7735_BLUE, 1, NULL);
+
 }
 
 void showRDSTime()
@@ -1237,17 +1242,7 @@ void showRDSTime()
 }
 void showRDSStation()
 {
-  int col = 7;
-  for (int i = 0; i < 8; i++)
-  {
-    if (stationName[i] != bufferStatioName[i])
-    {
-      // lcd.setCursor(col + i, 1);
-      // lcd.print(stationName[i]);
-      bufferStatioName[i] = stationName[i];
-    }
-  }
-
+  printValue(5,100,bufferStatioName,stationName,11,ST7735_YELLOW,ST7735_BLACK,1,NULL);
   delay(100);
 }
 
@@ -1528,11 +1523,17 @@ void loop()
     }
   }
 
-  if (currentMode == FM && fmRDS && !isMenuMode())
+  if (currentMode == FM && fmRDS && !isMenuMode() )
   {
     if (currentFrequency != previousFrequency)
+    {
+      clearRDS();
       previousFrequency = currentFrequency;
-    clearRDS();
+    }
+    else
+    {
+      checkRDS();
+    }
   }
 
   delay(5);
