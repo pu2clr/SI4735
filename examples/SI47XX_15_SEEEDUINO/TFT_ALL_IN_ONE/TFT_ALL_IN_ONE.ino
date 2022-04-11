@@ -1,5 +1,5 @@
 /*
-  UNDER CONSTRUCTION ...
+  This example explores the use of images and an encoder-controlled menu.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
