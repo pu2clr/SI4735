@@ -1,6 +1,10 @@
 /*
   You will find a better version of this application on SI47XX_10_RDS.
 
+  Driver LCD: ST7781
+  Controller: SPFD5408
+  Resolution: 240 x 320
+  
   This sketch uses the mcufriend TFT touch Display Shield.
   You can use it on Mega2560 and Arduino DUE
   The SSB support works on SI4735-D60 and SI4732-A10 devices.

@@ -1,5 +1,12 @@
 /*
   This sketch uses the mcufriend TFT touch Display Shield.
+
+  Driver LCD: ST7781
+  Controller: ILI9341 (ili9481 ili9468, ili9488 hx8357, or r61581)
+   Resolution: 240 x 320
+
+
+
   You can use it on Mega2560 or DUE.
   It is a RDS example.
 
@@ -7,7 +14,7 @@
   "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
 
 
-  It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices. 
+  It is important to know the SSB support works on SI4735-D60 and SI4732-A10 devices.
 
   Features:
   1) This sketch has been successfully tested on Arduino Mega2560 and Arduino DUE;
@@ -31,10 +38,10 @@
   ENCODER PUSH BUTTON     23
   AUDIO MUTE CIRCUIT      24        - Optional external audio mute circuit (avoid click/pop in the speaker)
 
-  ATTENTION: Your toutch screen needs to be calibrated to work properly. 
+  ATTENTION: Your toutch screen needs to be calibrated to work properly.
              To do that, use the TouchScreen_Calibr_native.ino that comes with MCUFRIEND_kbv library.
              Read the TouchScreen_Calibr_native.ino and check the XP, XM , YP and YM pins configuration.
-             You might need to change the XP, XM , YP and YM values in the TouchScreen_Calibr_native.ino 
+             You might need to change the XP, XM , YP and YM values in the TouchScreen_Calibr_native.ino
              depending on the display you are using.
 
   This sketch will download a SSB patch to your SI4735-D60 or SI4732-A10 devices (patch_init.h). It will take about 8KB of memory.
