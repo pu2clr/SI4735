@@ -1,6 +1,6 @@
 /*
-  This example explores the use of images and an encoder-controlled menu.
-
+  This example explores the use of images and an on  encoder to conttoll the menu.
+ 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
 
@@ -25,17 +25,14 @@
   |     SS473X                |                               |                  |
   |                           | RESET (pin 15)                |  D3              |
   |                           | SDIO (pin 18)                 |  D4/A4           |
-  |                           | SCLK (pin 17)                 |  D4/A5           |
+  |                           | SCLK (pin 17)                 |  D5/A5           |
   |                           | (*1)SEN (pin 16)              |  +Vcc or GND     |
   |    Encoder                |                               |                  |
   |                           | A                             |  D1              |
   |                           | B                             |  D2              |
   |                           | PUSH BUTTON (encoder)         |  D0              |
 
-  (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
-  (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
-       It seems the original project connect the SEN pin to the +Vcc. By using this sketch, you do
-       not need to worry about this setting.
+  The Seeeduino pin 9 is free. You can use a push button to improve the user interface. 
 
   ATTENTION: Read the file user_manual.txt
 
@@ -86,7 +83,6 @@ static const int TFT_DC = 6;
 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 3000
-#define ELAPSED_COMMAND 2000 // time to turn off the last command controlled by encoder. Time to goes back to the FVO control
 #define ELAPSED_CLICK 1800   // time to check the double click commands
 #define DEFAULT_VOLUME 45    // change it for your favorite sound volume
 
@@ -441,13 +437,6 @@ void showTemplate()
   tft.drawLine(2, 89, maxX1, 89, ST77XX_YELLOW);
   */
   printValue(3, 82, oldAux, "88888", 31, ST77XX_BLUE, ST77XX_BLUE, 1, &DSEG14_Classic_Mini_Regular_40);
-}
-
-/**
- * prints parameter values
- */
-void printParam(const char *msg)
-{
 }
 
 /**
@@ -1478,7 +1467,6 @@ void loop()
         {
           disableCommands();
           cmdMenu = true;
-          menuSelection = false;
           showMenu();
         }
         else if (bfoOn)
