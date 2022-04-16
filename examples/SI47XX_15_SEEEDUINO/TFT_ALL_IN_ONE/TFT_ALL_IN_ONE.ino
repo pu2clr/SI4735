@@ -198,10 +198,11 @@ Menu menu[] = {{0, "Volume", 4, 60, 10},
                {8, "AVC", 4, 60, 90},
                {9, "Seek Up", 4, 60, 100},
                {10, "Seek Down", 4, 60, 110},
-               {11, "Exit", 110, 110, 10}};
+               {11, "Scan", 110, 110, 10},
+               {12, "Exit", 110, 110, 20}};
 
 int8_t menuIdx = 0;
-const int lastMenu = 11;
+const int lastMenu = 12;
 // const int lastMenu = (sizeof menu / sizeof(Menu)) - 1;
 int8_t currentMenuCmd = -1;
 
@@ -291,7 +292,7 @@ typedef struct
               Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.
 */
 Band band[] = {
-    {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0, 1, 0, 0, 0},
+    {"VHF", FM_BAND_TYPE, 8800, 10800, 10390, 1, 0, 1, 0, 0, 0},
     {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 32},
     {"MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4, 0, 0, 0, 32},
     {"MW3", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4, 1, 0, 0, 32},
@@ -1294,20 +1295,71 @@ void doRdsSetup(int8_t v)
   elapsedCommand = millis();
 }
 
+void doGrid() {
+  // UNDER CONSTRUCTION...
+  int maxX1 = tft.width() - 2;
+  int maxY1 = tft.height() - 2;
+
+  tft.drawRect(0, 0, maxX1, maxY1, ST77XX_YELLOW);
+
+  for (int lin = 20; lin < maxY1; lin += 21)
+  {
+    tft.drawLine(0, lin, maxX1, lin, ST77XX_YELLOW);
+  }
+  for (int col = 20; col <= maxX1; col += 20 ) {
+    tft.drawLine(col, 0, col, maxY1, ST77XX_YELLOW);
+  }
+
+}
+void doScan() {
+  // UNDER CONSTRUCTION....
+  int tftHight  = tft.height();
+  int tftWidth = tft.width();
+  uint16_t freq_tmp;
+  float incRate;
+  float pos = 1.0;
+  uint16_t step;
+  tft.fillScreen(ST77XX_BLACK);
+  doGrid();
+  freq_tmp = currentFrequency;
+
+  if (band[bandIdx].bandType == FM_BAND_TYPE)
+    step = tabFmStep[band[bandIdx].currentStepIdx];
+  else
+    step  = tabAmStep[band[bandIdx].currentStepIdx];
+
+  // Adjusts the amount of channels (current bandwidth / steps) to the width of the display in pixels
+  // The increment rate (incdRate) comprises the number of channels that correspond to a pixel (a value <= 1).
+  incRate = (float)tftWidth / ((band[bandIdx].maximumFreq - band[bandIdx].minimumFreq) / (float)step);
+  for (uint16_t i = band[bandIdx].minimumFreq; i < band[bandIdx].maximumFreq; i += step)
+  {
+    int x;
+    rx.getCurrentReceivedSignalQuality(1);
+    rx.setFrequency(i);
+    delay(10);
+    // Use map function to adjust the RSSI
+    x = map(rx.getCurrentRSSI(), 0, tftHight, 128, 0);
+    tft.drawLine((int)pos, tftHight - 10, (int)pos, x - 10, ST7735_BLUE);
+    pos += incRate;
+  }
+  doGrid();
+  rx.setFrequency(freq_tmp);
+}
+
 /**
  *  Menu options selection
  */
-void doMenu(int8_t v)
-{
-  menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
-  if (menuIdx > lastMenu)
-    menuIdx = 0;
-  else if (menuIdx < 0)
-    menuIdx = lastMenu;
+  void doMenu(int8_t v)
+  {
+    menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
+    if (menuIdx > lastMenu)
+      menuIdx = 0;
+    else if (menuIdx < 0)
+      menuIdx = lastMenu;
 
-  showMenu();
-  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-  elapsedCommand = millis();
+    showMenu();
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+    elapsedCommand = millis();
 }
 
 /**
@@ -1378,7 +1430,10 @@ void doCurrentMenuCmd()
     showStatus();
     doSeek();
     break;
-  case 11:
+  case 11: 
+    doScan();
+    break;  
+  case 12:
     doExitMenu();
     break;
   default:

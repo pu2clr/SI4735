@@ -1350,6 +1350,7 @@ Here you can see some experiments using this library. Watch them.
 * [si4735 betatest radio](https://youtu.be/Gkh1zHn8NgE)
 * [Dual Conversion HF Receiver Silabs Si4732/Si4735 and Si5351](https://lu7ads.blogspot.com/?fbclid=IwAR0TNxYh9SkS5T7RA_0mm2rZs4ycP7e0Y-SH6ORsT5Uj0C0wFKSEg6Gqd20)
 * [Manufacture of 50MHz AM QRP transceiver TRX-505 / JR0DBK](https://yuki-lab.jp/hw/trx-505/index.html?fbclid=IwAR2IWnGjvKpN4LBfQiB4-6j4hDODlqzjMvfZbzB5DdnWvzJHcDYc2AbrFrU)
+* [Rádio FM V3 (LCD 16x2) by Andersom](https://create.arduino.cc/projecthub/acardosodasilva/radio-fm-v3-e80a57)
 
 #### Videos that powered the standalone SI473X devices: 
 
