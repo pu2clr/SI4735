@@ -1300,8 +1300,9 @@ void doGrid() {
   int maxX1 = tft.width() - 2;
   int maxY1 = tft.height() - 2;
 
-  tft.drawRect(0, 0, maxX1, maxY1, ST77XX_YELLOW);
+  tft.drawRect(0, 0, maxX1, maxY1 / 2 , ST77XX_YELLOW);
 
+  /*
   for (int lin = 20; lin < maxY1; lin += 21)
   {
     tft.drawLine(0, lin, maxX1, lin, ST77XX_YELLOW);
@@ -1309,7 +1310,7 @@ void doGrid() {
   for (int col = 20; col <= maxX1; col += 20 ) {
     tft.drawLine(col, 0, col, maxY1, ST77XX_YELLOW);
   }
-
+  */
 }
 void doScan() {
   // UNDER CONSTRUCTION....
@@ -1342,7 +1343,6 @@ void doScan() {
     tft.drawLine((int)pos, tftHight - 10, (int)pos, x - 10, ST7735_BLUE);
     pos += incRate;
   }
-  doGrid();
   rx.setFrequency(freq_tmp);
 }
 
