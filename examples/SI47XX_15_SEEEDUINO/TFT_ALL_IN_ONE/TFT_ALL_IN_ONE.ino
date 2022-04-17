@@ -298,7 +298,7 @@ typedef struct
               Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.
 */
 Band band[] = {
-    {"VHF", FM_BAND_TYPE, 8800, 10800, 10390, 1, 0, 1, 0, 0, 0},
+    {"VHF", FM_BAND_TYPE, 8410, 10810, 10390, 1, 0, 1, 0, 0, 0},
     {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 32},
     {"MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4, 0, 0, 0, 32},
     {"MW3", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4, 1, 0, 0, 32},
@@ -341,6 +341,9 @@ SI4735 rx;
 
 // Create display:
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
+
+const int tftHight = 128;
+const int tftWidth = 160;
 
 void inline clearScreen()
 {
@@ -433,16 +436,6 @@ void splash()
  */
 void showTemplate()
 {
-  /*
-  int maxX1 = tft.width() - 2;
-  int maxY1 = tft.height() - 5;
-
-  // tft.fillScreen(ST77XX_BLACK);
-  //tft.fillRect(2, 34, maxX1, 55, ST77XX_BLACK);
-  tft.drawRect(2, 2, maxX1, maxY1, ST77XX_YELLOW);
-  tft.drawLine(2, 33, maxX1, 33, ST77XX_YELLOW);
-  tft.drawLine(2, 89, maxX1, 89, ST77XX_YELLOW);
-  */
   printValue(3, 82, oldAux, "88888", 31, ST77XX_BLUE, ST77XX_BLUE, 1, &DSEG14_Classic_Mini_Regular_40);
 }
 
@@ -968,9 +961,7 @@ void doBandwidth(int8_t v)
 void showMenu()
 {
   uint16_t color;
-  char dummy[10];
-  dummy[0] = '\0';
-
+  clearBuffer();
   if (!menuSelection)
   {
     clearScreen();
@@ -988,8 +979,6 @@ void showMenu()
     tft.setTextColor((menuIdx == i) ? ST77XX_ORANGE : ST7735_CYAN);
     tft.print(menu[i].itemName);
     tft.setCursor(menu[i].colContent, menu[i].linItem);
-    // tft.setTextColor(ST7735_CYAN);
-    // tft.print(menu[i].content);
   }
 }
 
@@ -1311,8 +1300,6 @@ void showPlot() {
 
   static float oldPos = 0.0;
 
-  int tftHight = tft.height();
-  int tftWidth = tft.width();
   int step;
 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
@@ -1331,25 +1318,11 @@ void showPlot() {
 
 void doGrid() {
   // UNDER CONSTRUCTION...
-  int maxX1 = tft.width() - 2;
-  int maxY1 = tft.height() - 2;
-
-  tft.drawRect(0, 0, maxX1, maxY1 / 3 , ST77XX_YELLOW);
-
-  /*
-  for (int lin = 20; lin < maxY1; lin += 21)
-  {
-    tft.drawLine(0, lin, maxX1, lin, ST77XX_YELLOW);
-  }
-  for (int col = 20; col <= maxX1; col += 20 ) {
-    tft.drawLine(col, 0, col, maxY1, ST77XX_YELLOW);
-  }
-  */
+  tft.drawRect(0, 0, (tftWidth - 2), (tftHight - 2) / 3, ST77XX_YELLOW);
 }
 void doScan() {
   // UNDER CONSTRUCTION....
-  int tftHight  = tft.height();
-  int tftWidth = tft.width();
+
   uint16_t freq_tmp;
   float incRate;
   float pos = 1.0;
@@ -1394,7 +1367,7 @@ void doScan() {
     delay(10);
     // Use map function to adjust the RSSI
     x = map(rx.getCurrentRSSI(), 0, tftHight, 128, 0);
-    tft.drawLine((int)pos, tftHight - 10, (int)pos, x - 10, ST7735_BLUE);
+    tft.drawLine((int)pos, tftHight - 10, (int)pos, x - 10, ST7735_WHITE);
     pos += incRate;
   }
   rx.setFrequency(freq_tmp);
