@@ -1,4 +1,6 @@
 /*
+  UNDER CONSTRUCTION....
+  
   This example explores the use of images and an on  encoder to conttoll the menu.
  
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
@@ -48,6 +50,7 @@
 #include <SPI.h>             //Include SPI control library
 
 #include "./fonts/DSEG14_Classic_Mini_Regular_40.h"
+#include "./fonts/DSEG7_Classic_Regular_16.h"
 #include "./fonts/Serif_plain_15.h"
 #include "./fonts/Serif_bold_15.h"
 #include "./images/world2.h"
@@ -84,7 +87,7 @@ static const int TFT_DC = 6;
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 3000
 #define ELAPSED_CLICK 1800   // time to check the double click commands
-#define DEFAULT_VOLUME 45    // change it for your favorite sound volume
+#define DEFAULT_VOLUME 35    // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -130,6 +133,9 @@ bool cmdAvc = false;
 
 bool fmRDS = false;
 bool menuSelection = false;
+
+bool scanScop = false; 
+
 
 int16_t currentBFO = 0;
 long elapsedRSSI = millis();
@@ -564,7 +570,12 @@ void showFrequency()
   char freqAux[10];
   rx.convertToChar(currentFrequency, freqAux, 5, 0, '.');
   // TO DO: Number format
-  printValue(3, 82, oldFreq, freqAux, 31, ST77XX_YELLOW, ST77XX_BLUE, 1, &DSEG14_Classic_Mini_Regular_40);
+  if (scanScop) {
+    printValue(25, 30, oldFreq, freqAux, 20, ST77XX_YELLOW, ST77XX_BLACK, 1, &DSEG7_Classic_Regular_16);
+    showPlot();
+  } else {
+    printValue(3, 82, oldFreq, freqAux, 31, ST77XX_YELLOW, ST77XX_BLUE, 1, &DSEG14_Classic_Mini_Regular_40);
+  }
 }
 
 /**
@@ -782,6 +793,7 @@ void disableCommands()
   countClick = 0;
 
   menuSelection = false;
+  scanScop =  false;
 
   showCommandStatus((char *)" VFO ");
 }
@@ -1295,12 +1307,34 @@ void doRdsSetup(int8_t v)
   elapsedCommand = millis();
 }
 
+void showPlot() {
+
+  static float oldPos = 0.0;
+
+  int tftHight = tft.height();
+  int tftWidth = tft.width();
+  int step;
+
+  if (band[bandIdx].bandType == FM_BAND_TYPE)
+    step = tabFmStep[band[bandIdx].currentStepIdx];
+  else
+    step = tabAmStep[band[bandIdx].currentStepIdx];
+
+  float  incRate = (float)tftWidth / ((band[bandIdx].maximumFreq - band[bandIdx].minimumFreq) / (float)step);
+  float pos = ((float)(currentFrequency - band[bandIdx].minimumFreq) / (float) step)  * incRate;
+  tft.fillCircle((int)oldPos, 55,2, ST7735_BLACK);
+  tft.fillCircle((int)pos, 55, 2, ST7735_YELLOW);
+
+  oldPos = pos;
+}
+
+
 void doGrid() {
   // UNDER CONSTRUCTION...
   int maxX1 = tft.width() - 2;
   int maxY1 = tft.height() - 2;
 
-  tft.drawRect(0, 0, maxX1, maxY1 / 2 , ST77XX_YELLOW);
+  tft.drawRect(0, 0, maxX1, maxY1 / 3 , ST77XX_YELLOW);
 
   /*
   for (int lin = 20; lin < maxY1; lin += 21)
@@ -1320,6 +1354,12 @@ void doScan() {
   float incRate;
   float pos = 1.0;
   uint16_t step;
+  char oldAux[10];
+
+  scanScop = true;
+
+  rx.setAudioMute(true);
+
   tft.fillScreen(ST77XX_BLACK);
   doGrid();
   freq_tmp = currentFrequency;
@@ -1332,11 +1372,25 @@ void doScan() {
   // Adjusts the amount of channels (current bandwidth / steps) to the width of the display in pixels
   // The increment rate (incdRate) comprises the number of channels that correspond to a pixel (a value <= 1).
   incRate = (float)tftWidth / ((band[bandIdx].maximumFreq - band[bandIdx].minimumFreq) / (float)step);
+  oldFreq[0] = '\0';
+  showChar(78, 28, ',', ST7735_BLACK, NULL);
+  showChar(60, 28, '.', ST7735_BLACK, &Serif_bold_15);
+  if (rx.isCurrentTuneFM())
+  {
+    showChar(78, 28, ',', ST7735_YELLOW, NULL);
+  }
+  else
+  {
+    if (currentFrequency > 1800)
+      showChar(60, 28, '.', ST77XX_YELLOW, &Serif_bold_15);
+  }
   for (uint16_t i = band[bandIdx].minimumFreq; i < band[bandIdx].maximumFreq; i += step)
   {
     int x;
     rx.getCurrentReceivedSignalQuality(1);
     rx.setFrequency(i);
+    currentFrequency = rx.getFrequency();
+    showFrequency();
     delay(10);
     // Use map function to adjust the RSSI
     x = map(rx.getCurrentRSSI(), 0, tftHight, 128, 0);
@@ -1344,6 +1398,9 @@ void doScan() {
     pos += incRate;
   }
   rx.setFrequency(freq_tmp);
+  currentFrequency = rx.getFrequency();
+  rx.setAudioMute(false);
+  showFrequency();
 }
 
 /**
