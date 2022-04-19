@@ -1,8 +1,10 @@
 /*
   UNDER CONSTRUCTION....
-  
+
+  It is important to know that this example is just a Proof of Concept. Is does not intend to be a real application.
+
   This example explores the use of images and an on  encoder to conttoll the menu.
- 
+
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
 
@@ -34,7 +36,7 @@
   |                           | B                             |  D2              |
   |                           | PUSH BUTTON (encoder)         |  D0              |
 
-  The Seeeduino pin 9 is free. You can use a push button to improve the user interface. 
+  The Seeeduino pin 9 is free. You can use a push button to improve the user interface.
 
   ATTENTION: Read the file user_manual.txt
 
@@ -49,15 +51,20 @@
 #include <Adafruit_ST7735.h> // Include Adafruit_ST7735 library to drive the display
 #include <SPI.h>             //Include SPI control library
 
+// Dealing with font type
 #include "./fonts/DSEG14_Classic_Mini_Regular_40.h"
 #include "./fonts/DSEG7_Classic_Regular_16.h"
 #include "./fonts/Serif_plain_15.h"
 #include "./fonts/Serif_bold_15.h"
+
+// Dealing with images. This approach consumes a lot of memory resources.
 #include "./images/world2.h"
-#include "./images/signallevel.h"
-#include <FlashAsEEPROM_SAMD.h> // Install this library from Github: https://github.com/khoih-prog/FlashStorage_SAMD#why-do-we-need-this-flashstorage_samd-library
+// #include "./images/signallevel.h"
+
+// Install this library from Github: https://github.com/khoih-prog/FlashStorage_SAMD
+#include <FlashAsEEPROM_SAMD.h> // You have to install the ptch too. See section "For Seeeduino SAMD boards" https://github.com/khoih-prog/FlashStorage_SAMD#3-for-seeeduino-samd-boards
+
 #include <SI4735.h>
-#include <LiquidCrystal.h>
 #include "Rotary.h"
 #include "patch_init.h" // SSB patch for whole SSBRX initialization string
 
@@ -87,7 +94,7 @@ static const int TFT_DC = 6;
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 3000
 #define ELAPSED_CLICK 1800   // time to check the double click commands
-#define DEFAULT_VOLUME 35    // change it for your favorite sound volume
+#define DEFAULT_VOLUME 42    // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -303,8 +310,8 @@ Band band[] = {
     {"MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4, 0, 0, 0, 32},
     {"MW3", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4, 1, 0, 0, 32},
     {"80M", MW_BAND_TYPE, 3500, 4000, 3700, 0, 4, 1, 0, 0, 32},
-    {"SW1", SW_BAND_TYPE, 4000, 5500, 4885, 1, 4, 1, 0, 0, 32},
-    {"SW2", SW_BAND_TYPE, 5500, 6500, 6000, 1, 4, 1, 0, 0, 32},
+    {"SW1", SW_BAND_TYPE, 4500, 5200, 4885, 1, 4, 1, 0, 0, 32},
+    {"SW2", SW_BAND_TYPE, 5700, 6300, 6000, 1, 4, 1, 0, 0, 32},
     {"40M", SW_BAND_TYPE, 6500, 7300, 7100, 0, 4, 1, 0, 0, 40},
     {"SW3", SW_BAND_TYPE, 7200, 7900, 7200, 1, 4, 1, 0, 0, 40},
     {"SW4", SW_BAND_TYPE, 9200, 10000, 9500, 1, 4, 1, 0, 0, 40},
@@ -358,10 +365,8 @@ void inline clearBuffer()
   oldAvc[0] = oldTime[0] = oldRds[0] = oldBFO[0] = '\0';
 }
 
-
 void setup()
 {
-
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
@@ -398,12 +403,11 @@ void setup()
   delay(300);
 
   // Checking the EEPROM content
-  // if (EEPROM.read(eeprom_address) == app_id)
-  // {
-  //   readAllReceiverInformation();
-  // } else
-
-  rx.setVolume(volume);
+  if (EEPROM.read(eeprom_address) == app_id)
+  {
+     readAllReceiverInformation();
+  } else
+    rx.setVolume(volume);
 
   useBand();
   showStatus();
@@ -878,7 +882,6 @@ void useBand()
   currentStepIdx = band[bandIdx].currentStepIdx;
 
   rssi = 0;
-  // showStatus();
 }
 
 /**
