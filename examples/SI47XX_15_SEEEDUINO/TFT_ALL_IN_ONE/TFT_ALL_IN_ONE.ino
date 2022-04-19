@@ -5,6 +5,20 @@
 
   This example explores the use of images and an on  encoder to conttoll the menu.
 
+  ATTENTION:
+  This sketch uses a Flash EEPROM emulator library.
+  See FlashStorage_SAMD Arduino Library on: https://github.com/khoih-prog/FlashStorage_SAMD
+  It is importante to know that the flash memory has a limited amount of write cycles. Typical flash memories
+  can perform about 10000 writes cycles to the same flash block before starting losing the ability to retain data.
+  To try to save cycles, this sketch implements some advices:
+   * The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
+   * Avoid call write() and commit() to store the EEPROM data in flash as possible as you can.
+   * Use write() and commit() functions with care: Every call writes the complete emulated-EEPROM data to flash.
+   * Take care when you call these function in a loop or you will lose your flash soon.
+
+  ATTENTION: The author of this sketch is not responsible for damages caused to your devices.
+
+
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
 
@@ -663,12 +677,15 @@ void showCommandStatus(char *currentCmd)
   printValue(60, 0, oldStatus, currentCmd, 11, ST77XX_RED, ST7735_BLACK, 1, NULL);
 }
 
-
 /*
    The Seeduino uses a Flash EEPROM emulator library. See FlashStorage_SAMD Arduino Library on: https://github.com/khoih-prog/FlashStorage_SAMD
-
-   writes the conrrent receiver information into the eeprom.
+   writes the conrrent receiver information into the eeprom/Flash Memory.
    The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
+   ATTENTION: avoid call write() and commit() to store the EEPROM data in flash as possible as you can.
+              Use these function with care: Every call writes the complete emulated-EEPROM data to flash.
+              This will reduce the remaining flash-write-cycles.
+              Take care when you call these function in a loop or you will lose your flash soon.
+
 */
 void saveAllReceiverInformation()
 {

@@ -43,6 +43,32 @@ See [Seeeduino XIAO](https://wiki.seeedstudio.com/Seeeduino-XIAO/) for more deta
 
  
 
+## About EEPROM on Seeeduino
+
+There is no EEPROM memory into Seeeduino. However, you can emulate the EEPROM features by using the Seeeduino flash memory. To do that, the best approach is using a library that emulates the flash memory as an EEPROM memory.
+The sketches of this folders (OLED_ALL_IN_ONE and TFT_ALL_IN_ONE) use the [FlashStorage_SAMD library for Arduino](https://github.com/khoih-prog/FlashStorage_SAMD). To run these sketches you have to install FlashStorage_SAMD library for Arduino and follow the instructions available on [Packages' Patches section "For Seeeduino SAMD boards"](https://github.com/khoih-prog/FlashStorage_SAMD#3-for-seeeduino-samd-boards).
+
+__ATTENTION:__ 
+
+* Unlike eeprom memory, flash memory information will be lost when you upload a new firmware version. That means the receiver will back to the default configuration when you upload a new sketch;
+* Like EEPROM, the flash memory has a limited amount of write cycles. Typical flash memories can perform about 10000 writes cycles to the same flash block before starting losing the ability to retain data. So, avoid to call the write() function (use update() function instead);
+
+### To try to save cycles, this sketch implements some advices:
+
+* The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
+* Avoid call write() and commit() to store the EEPROM data in flash as possible as you can.
+* Use write() and commit() functions with care: Every call writes the complete emulated-EEPROM data to flash.
+* Take care when you call these function in a loop or you will lose your flash soon.
+
+__ATTENTION__: The author of the Seeeduino examples is not responsible for damages caused to your devices. 
+               You need to know what are you doing before starting playing with FlashStorage_SAMD library for Arduino. 
+
+
+
+
+
+
+
 
  
 
