@@ -299,22 +299,22 @@ typedef struct
 */
 Band band[] = {
     {"VHF", FM_BAND_TYPE, 8410, 10810, 10390, 1, 0, 1, 0, 0, 0},
-    {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4, 0, 0, 0, 32},
+    {"MW1", MW_BAND_TYPE, 520, 1720, 810, 3, 4, 0, 0, 0, 32},
     {"MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4, 0, 0, 0, 32},
     {"MW3", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4, 1, 0, 0, 32},
     {"80M", MW_BAND_TYPE, 3500, 4000, 3700, 0, 4, 1, 0, 0, 32},
     {"SW1", SW_BAND_TYPE, 4000, 5500, 4885, 1, 4, 1, 0, 0, 32},
     {"SW2", SW_BAND_TYPE, 5500, 6500, 6000, 1, 4, 1, 0, 0, 32},
     {"40M", SW_BAND_TYPE, 6500, 7300, 7100, 0, 4, 1, 0, 0, 40},
-    {"SW3", SW_BAND_TYPE, 7200, 8000, 7200, 1, 4, 1, 0, 0, 40},
-    {"SW4", SW_BAND_TYPE, 9000, 11000, 9500, 1, 4, 1, 0, 0, 40},
-    {"SW5", SW_BAND_TYPE, 11100, 13000, 11900, 1, 4, 1, 0, 0, 40},
-    {"SW6", SW_BAND_TYPE, 13000, 14000, 13500, 1, 4, 1, 0, 0, 40},
+    {"SW3", SW_BAND_TYPE, 7200, 7900, 7200, 1, 4, 1, 0, 0, 40},
+    {"SW4", SW_BAND_TYPE, 9200, 10000, 9500, 1, 4, 1, 0, 0, 40},
+    {"SW5", SW_BAND_TYPE, 11300, 12300, 11900, 1, 4, 1, 0, 0, 40},
+    {"SW6", SW_BAND_TYPE, 13400, 13900, 13500, 1, 4, 1, 0, 0, 40},
     {"20M", SW_BAND_TYPE, 14000, 15000, 14200, 0, 4, 1, 0, 0, 42},
-    {"SW7", SW_BAND_TYPE, 15000, 17000, 15300, 1, 4, 1, 0, 0, 42},
-    {"SW8", SW_BAND_TYPE, 17000, 18000, 17500, 1, 4, 1, 0, 0, 42},
+    {"SW7", SW_BAND_TYPE, 15000, 16000, 15300, 1, 4, 1, 0, 0, 42},
+    {"SW8", SW_BAND_TYPE, 17300, 17900, 17500, 1, 4, 1, 0, 0, 42},
     {"15M", SW_BAND_TYPE, 20000, 21400, 21100, 0, 4, 1, 0, 0, 44},
-    {"SW9", SW_BAND_TYPE, 21400, 22800, 21500, 1, 4, 1, 0, 0, 44},
+    {"SW9", SW_BAND_TYPE, 21450, 21900, 21500, 1, 4, 1, 0, 0, 44},
     {"CB ", SW_BAND_TYPE, 26000, 28000, 27500, 0, 4, 1, 0, 0, 44},
     {"10M", SW_BAND_TYPE, 28000, 30000, 28400, 0, 4, 1, 0, 0, 44},
     {"ALL", SW_BAND_TYPE, 150, 30000, 15000, 0, 4, 1, 0, 0, 48} // All band. LW, MW and SW (from 150kHz to 30MHz)
@@ -1309,6 +1309,8 @@ void showPlot() {
 
   float  incRate = (float)tftWidth / ((band[bandIdx].maximumFreq - band[bandIdx].minimumFreq) / (float)step);
   float pos = ((float)(currentFrequency - band[bandIdx].minimumFreq) / (float) step)  * incRate;
+  tft.drawLine((int)oldPos, 55, (int)oldPos, 65, ST7735_BLACK);
+  tft.drawLine((int)pos, 55, (int)pos, 65, ST7735_YELLOW);
   tft.fillCircle((int)oldPos, 55,2, ST7735_BLACK);
   tft.fillCircle((int)pos, 55, 2, ST7735_YELLOW);
 
