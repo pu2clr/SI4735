@@ -1336,6 +1336,20 @@ void doGrid()
 {
   // UNDER CONSTRUCTION...
   tft.drawRect(0, 0, (tftWidth - 2), (tftHight - 2) / 3, ST77XX_YELLOW);
+
+  oldFreq[0] = '\0';
+  showChar(78, 28, ',', ST7735_BLACK, NULL);
+  showChar(60, 28, '.', ST7735_BLACK, &Serif_bold_15);
+  if (rx.isCurrentTuneFM())
+  {
+    showChar(78, 28, ',', ST7735_YELLOW, NULL);
+  }
+  else
+  {
+    if (currentFrequency > 1800)
+      showChar(60, 28, '.', ST77XX_YELLOW, &Serif_bold_15);
+  }
+
 }
 void doScan()
 {
@@ -1353,7 +1367,6 @@ void doScan()
   tft.fillScreen(ST77XX_BLACK);
   doGrid();
   freq_tmp = currentFrequency;
-
   if (band[bandIdx].bandType == FM_BAND_TYPE)
     step = tabFmStep[band[bandIdx].currentStepIdx];
   else
@@ -1362,21 +1375,10 @@ void doScan()
   // Adjusts the amount of channels (current bandwidth / steps) to the width of the display in pixels
   // The increment rate (incdRate) comprises the number of channels that correspond to a pixel (a value <= 1).
   incRate = (float)tftWidth / ((band[bandIdx].maximumFreq - band[bandIdx].minimumFreq) / (float)step);
-  oldFreq[0] = '\0';
-  showChar(78, 28, ',', ST7735_BLACK, NULL);
-  showChar(60, 28, '.', ST7735_BLACK, &Serif_bold_15);
-  if (rx.isCurrentTuneFM())
-  {
-    showChar(78, 28, ',', ST7735_YELLOW, NULL);
-  }
-  else
-  {
-    if (currentFrequency > 1800)
-      showChar(60, 28, '.', ST77XX_YELLOW, &Serif_bold_15);
-  }
+
   for (uint16_t i = band[bandIdx].minimumFreq; i < band[bandIdx].maximumFreq; i += step)
   {
-    int x;
+    int x, y;
     rx.getCurrentReceivedSignalQuality(1);
     rx.setFrequency(i);
     currentFrequency = rx.getFrequency();
@@ -1384,10 +1386,11 @@ void doScan()
     delay(10);
     // Use map function to adjust the RSSI
     x = map(rx.getCurrentRSSI(), 0, tftHight, 128, 0);
-    tft.drawLine((int)pos, tftHight - 10, (int)pos, x - 10, ST7735_WHITE);
+    y = (int)pos + 1; // Adjusts column position 
+    tft.drawLine(y, tftHight - 10, y, x - 10, ST7735_WHITE);
     pos += incRate;
   }
-  rx.setFrequency(freq_tmp);
+  rx.setFrequency(freq_tmp); // Goes back to the frequency before scanning.
   currentFrequency = rx.getFrequency();
   rx.setAudioMute(false);
   showFrequency();

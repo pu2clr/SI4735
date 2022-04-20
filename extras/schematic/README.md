@@ -139,11 +139,13 @@ The schematic below guides you to build a SI473X based receiver using the ESP32 
 ![ESP8266 Basic schematic](../images/schematic_esp8266_basic.png)
 
 
-## ESP8266 OLED
+### ESP8266 OLED
 
 
 ![ESP32 Basic schematic](../images/schematic_esp8266_oled_SI47XX_02_ALL_IN_ONE.png)
 
+
+[All Seeeduino sketches on /examples/SI47XX_06_ESP8266 folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP8266)
 
 
 ## Seeeduino XIAO
@@ -152,6 +154,10 @@ The schematic below guides you to build a SI473X based receiver using the ESP32 
 ![ESP32 Basic schematic](../images/schematic_seeeduino_tft7735.png)
 
 
+[Youtube](https://youtu.be/hua0JLIlTeA)
+
+
+[All Seeeduino sketches on examples/SI47XX_15_SEEEDUINOX_06_ESP32 folder](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_15_SEEEDUINO)
 
 
 <BR>
