@@ -107,8 +107,8 @@ static const int TFT_DC = 6;
 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 3000
-#define ELAPSED_CLICK 1800   // time to check the double click commands
-#define DEFAULT_VOLUME 42    // change it for your favorite sound volume
+#define ELAPSED_CLICK 1800 // time to check the double click commands
+#define DEFAULT_VOLUME 42  // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -155,8 +155,7 @@ bool cmdAvc = false;
 bool fmRDS = false;
 bool menuSelection = false;
 
-bool scanScop = false; 
-
+bool scanScop = false;
 
 int16_t currentBFO = 0;
 long elapsedRSSI = millis();
@@ -182,7 +181,7 @@ void showBandwidth();
 void showAgcAtt();
 void showSoftMute();
 void showAvc();
-void showDummy() {};
+void showDummy(){};
 
 /**
  * Buffers to store the current parameter values
@@ -208,10 +207,10 @@ char oldTime[10];
 typedef struct
 {
   uint8_t itemId;
-  char *itemName;         // Menu item description
-  uint8_t colItem;        // Column that the item name will be shown
-  uint8_t colContent;     // Column that the item value will be shown
-  uint8_t linItem;        // Line that the item will be shown
+  char *itemName;     // Menu item description
+  uint8_t colItem;    // Column that the item name will be shown
+  uint8_t colContent; // Column that the item value will be shown
+  uint8_t linItem;    // Line that the item will be shown
 } Menu;
 
 Menu menu[] = {{0, "Volume", 4, 60, 10},
@@ -326,7 +325,7 @@ Band band[] = {
     {"80M", MW_BAND_TYPE, 3500, 4000, 3700, 0, 4, 1, 0, 0, 32},
     {"SW1", SW_BAND_TYPE, 4500, 5200, 4885, 1, 4, 1, 0, 0, 32},
     {"SW2", SW_BAND_TYPE, 5700, 6300, 6000, 1, 4, 1, 0, 0, 32},
-    {"40M", SW_BAND_TYPE, 6500, 7300, 7100, 0, 4, 1, 0, 0, 40},
+    {"40M", SW_BAND_TYPE, 7000, 7200, 7100, 0, 4, 1, 0, 0, 40},
     {"SW3", SW_BAND_TYPE, 7200, 7900, 7200, 1, 4, 1, 0, 0, 40},
     {"SW4", SW_BAND_TYPE, 9200, 10000, 9500, 1, 4, 1, 0, 0, 40},
     {"SW5", SW_BAND_TYPE, 11300, 12300, 11900, 1, 4, 1, 0, 0, 40},
@@ -363,6 +362,7 @@ SI4735 rx;
 // Create display:
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 
+// Adjust here the size of the TFT display you are using.
 const int tftHight = 128;
 const int tftWidth = 160;
 
@@ -401,7 +401,6 @@ void setup()
     clearScreen();
   }
 
-  // ICACHE_RAM_ATTR void rotaryEncoder(); see rotaryEncoder implementation below.
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
@@ -419,8 +418,9 @@ void setup()
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id)
   {
-     readAllReceiverInformation();
-  } else
+    readAllReceiverInformation();
+  }
+  else
     rx.setVolume(volume);
 
   useBand();
@@ -557,7 +557,6 @@ void showUnit()
 
   showChar(95, 83, ',', ST77XX_BLACK, &Serif_bold_15);
   showChar(64, 83, '.', ST77XX_BLACK, &Serif_bold_15);
-
   if (rx.isCurrentTuneFM())
   {
     p = (char *)"MHZ";
@@ -581,10 +580,13 @@ void showFrequency()
   char freqAux[10];
   rx.convertToChar(currentFrequency, freqAux, 5, 0, '.');
   // TO DO: Number format
-  if (scanScop) {
+  if (scanScop)
+  {
     printValue(25, 30, oldFreq, freqAux, 20, ST77XX_YELLOW, ST77XX_BLACK, 1, &DSEG7_Classic_Regular_16);
     showPlot();
-  } else {
+  }
+  else
+  {
     printValue(3, 82, oldFreq, freqAux, 31, ST77XX_YELLOW, ST77XX_BLUE, 1, &DSEG14_Classic_Mini_Regular_40);
   }
 }
@@ -773,7 +775,6 @@ void readAllReceiverInformation()
     bwIdxFM = bwIdx;
     rx.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
   }
-
   delay(50);
   rx.setVolume(volume);
 }
@@ -805,10 +806,8 @@ void disableCommands()
   cmdRds = false;
   cmdAvc = false;
   countClick = 0;
-
   menuSelection = false;
-  scanScop =  false;
-
+  scanScop = false;
   showCommandStatus((char *)" VFO ");
 }
 
@@ -897,7 +896,6 @@ void useBand()
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStepIdx = band[bandIdx].currentStepIdx;
-
   rssi = 0;
 }
 
@@ -975,8 +973,6 @@ void doBandwidth(int8_t v)
 
 /**
  * Show menu options
- * see: tcMenu library
- * see: https://github.com/russhughes/TFT_Menu/blob/master/TFT_Menu.ino example
  */
 void showMenu()
 {
@@ -1170,7 +1166,8 @@ void showVolume()
 void doVolume(int8_t v)
 {
   int8_t vol = rx.getVolume() + ((v == 1) ? 2 : -2);
-  if ( vol > 63 ) vol = 63; 
+  if (vol > 63)
+    vol = 63;
   rx.setVolume(vol);
   showVolume();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
@@ -1258,9 +1255,8 @@ void showRdsSetup()
 {
   char *p;
 
-  p = (fmRDS) ? (char *) "ON " : (char *) "OFF";
-  printValue(menu[menuIdx].colContent, menu[menuIdx].linItem, oldRds , p, 10, ST7735_YELLOW, ST7735_BLUE, 1, NULL);
-
+  p = (fmRDS) ? (char *)"ON " : (char *)"OFF";
+  printValue(menu[menuIdx].colContent, menu[menuIdx].linItem, oldRds, p, 10, ST7735_YELLOW, ST7735_BLUE, 1, NULL);
 }
 
 void showRDSTime()
@@ -1270,7 +1266,7 @@ void showRDSTime()
 }
 void showRDSStation()
 {
-  printValue(5,120,bufferStatioName,stationName,11,ST7735_YELLOW,ST7735_BLACK,1,NULL);
+  printValue(5, 120, bufferStatioName, stationName, 11, ST7735_YELLOW, ST7735_BLACK, 1, NULL);
   delay(100);
 }
 
@@ -1316,10 +1312,9 @@ void doRdsSetup(int8_t v)
   elapsedCommand = millis();
 }
 
-void showPlot() {
-
+void showPlot()
+{
   static float oldPos = 0.0;
-
   int step;
 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
@@ -1327,22 +1322,23 @@ void showPlot() {
   else
     step = tabAmStep[band[bandIdx].currentStepIdx];
 
-  float  incRate = (float)tftWidth / ((band[bandIdx].maximumFreq - band[bandIdx].minimumFreq) / (float)step);
-  float pos = ((float)(currentFrequency - band[bandIdx].minimumFreq) / (float) step)  * incRate;
+  float incRate = (float)tftWidth / ((band[bandIdx].maximumFreq - band[bandIdx].minimumFreq) / (float)step);
+  float pos = ((float)(currentFrequency - band[bandIdx].minimumFreq) / (float)step) * incRate;
   tft.drawLine((int)oldPos, 55, (int)oldPos, 65, ST7735_BLACK);
   tft.drawLine((int)pos, 55, (int)pos, 65, ST7735_YELLOW);
-  tft.fillCircle((int)oldPos, 55,2, ST7735_BLACK);
+  tft.fillCircle((int)oldPos, 55, 2, ST7735_BLACK);
   tft.fillCircle((int)pos, 55, 2, ST7735_YELLOW);
 
   oldPos = pos;
 }
 
-
-void doGrid() {
+void doGrid()
+{
   // UNDER CONSTRUCTION...
   tft.drawRect(0, 0, (tftWidth - 2), (tftHight - 2) / 3, ST77XX_YELLOW);
 }
-void doScan() {
+void doScan()
+{
   // UNDER CONSTRUCTION....
 
   uint16_t freq_tmp;
@@ -1354,7 +1350,6 @@ void doScan() {
   scanScop = true;
 
   rx.setAudioMute(true);
-
   tft.fillScreen(ST77XX_BLACK);
   doGrid();
   freq_tmp = currentFrequency;
@@ -1362,7 +1357,7 @@ void doScan() {
   if (band[bandIdx].bandType == FM_BAND_TYPE)
     step = tabFmStep[band[bandIdx].currentStepIdx];
   else
-    step  = tabAmStep[band[bandIdx].currentStepIdx];
+    step = tabAmStep[band[bandIdx].currentStepIdx];
 
   // Adjusts the amount of channels (current bandwidth / steps) to the width of the display in pixels
   // The increment rate (incdRate) comprises the number of channels that correspond to a pixel (a value <= 1).
@@ -1401,17 +1396,17 @@ void doScan() {
 /**
  *  Menu options selection
  */
-  void doMenu(int8_t v)
-  {
-    menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
-    if (menuIdx > lastMenu)
-      menuIdx = 0;
-    else if (menuIdx < 0)
-      menuIdx = lastMenu;
+void doMenu(int8_t v)
+{
+  menuIdx = (v == 1) ? menuIdx + 1 : menuIdx - 1;
+  if (menuIdx > lastMenu)
+    menuIdx = 0;
+  else if (menuIdx < 0)
+    menuIdx = lastMenu;
 
-    showMenu();
-    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
-    elapsedCommand = millis();
+  showMenu();
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();
 }
 
 /**
@@ -1482,9 +1477,9 @@ void doCurrentMenuCmd()
     showStatus();
     doSeek();
     break;
-  case 11: 
+  case 11:
     doScan();
-    break;  
+    break;
   case 12:
     doExitMenu();
     break;
@@ -1534,7 +1529,8 @@ void loop()
       doSoftMute(encoderCount);
     else if (cmdAvc)
       doAvc(encoderCount);
-    else if (cmdBand) {
+    else if (cmdBand)
+    {
       setBand(encoderCount);
       showCommandStatus((char *)" BAND ");
       showStatus();
@@ -1586,7 +1582,7 @@ void loop()
         else
         {
           cmdBand = !cmdBand;
-          if (!cmdBand )
+          if (!cmdBand)
             showCommandStatus((char *)" VFO ");
           else
             showCommandStatus((char *)" BAND ");
@@ -1594,12 +1590,15 @@ void loop()
       }
       else
       { // GO to MENU if more than one click in less than 1/2 seconds.
-        if (countClick > 2) {
+        if (countClick > 2)
+        {
           doExitMenu();
-        } else {
-        cmdMenu = !cmdMenu;
-        if (cmdMenu)
-          showMenu();
+        }
+        else
+        {
+          cmdMenu = !cmdMenu;
+          if (cmdMenu)
+            showMenu();
         }
       }
       delay(MIN_ELAPSED_TIME);
@@ -1649,6 +1648,5 @@ void loop()
       checkRDS();
     }
   }
-
   delay(5);
 }
