@@ -146,6 +146,14 @@ The schematic below guides you to build a SI473X based receiver using the ESP32 
 
 
 
+## Seeeduino XIAO
+
+
+![ESP32 Basic schematic](../images/schematic_seeeduino_tft7735.png)
+
+
+
+
 <BR>
 
 ## Standalone ATmega328 with or without external Crystal (SI4735-D60 and LCD 16x2). 
