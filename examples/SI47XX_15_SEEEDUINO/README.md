@@ -45,7 +45,7 @@ See [Seeeduino XIAO](https://wiki.seeedstudio.com/Seeeduino-XIAO/) for more deta
 ## Schematic
 
 
-![Seeeduino Basic Schematic with TFT 7735](../extras/images/schematic_seeeduino_tft7735.png)
+![Seeeduino Basic Schematic with TFT 7735](../../extras/images/schematic_seeeduino_tft7735.png)
 
 
 
