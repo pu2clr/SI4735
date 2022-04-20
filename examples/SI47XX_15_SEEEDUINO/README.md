@@ -42,6 +42,12 @@ See [Seeeduino XIAO](https://wiki.seeedstudio.com/Seeeduino-XIAO/) for more deta
 | BLK     |  3V3      |  
 
  
+## Schematic
+
+
+![Seeeduino Basic Schematic with TFT 7735](../images/schematic_seeeduino_tft7735.png)
+
+
 
 ## About EEPROM and Seeeduino
 
