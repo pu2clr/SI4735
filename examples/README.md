@@ -76,13 +76,19 @@ By using the examples of this folder, you will do not need any external device t
 
 ## How to compile and upload sketches
 
-This library was developed to work with Arduino environment. There are many enviroment that you can use to compile and upload sketch to your board.  The list below shows some of them: 
+This library was developed to work with Arduino environment. There are many enviroment that you can use to compile and upload Arduino sketches to your board.  The list below shows some of them: 
 
 * [Arduino IDE](https://www.arduino.cc/en/software)
 * [Visual Studio with Arduino extensions](https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio)
 * [PlatformIO](https://dronebotworkshop.com/platformio/)
 * [Arduino Command Line - arduino-cli](https://www.arduino.cc/pro/cli) 
   
+
+The most popular environment to write sketch, compile and upload is the [Arduino IDE](https://www.arduino.cc/en/software).
+After installing the [PU2CLR Si4735 Library on Arduino IDE](https://youtu.be/M9h-tlV_l-k) you can compile and upload any sketch available here by using the Menu examples of the Arduino IDE. Whatch the video [Installing PU2CLR Si4735 Library on Arduino IDE](https://youtu.be/M9h-tlV_l-k) to know how to compile, upload and run Arduino Application.
+
+Another way to compile and upload sketches to Arduino board is using the [arduino-cli](https://www.arduino.cc/pro/cli). 
+See the section below for details.  
 
 <BR>
 
@@ -106,13 +112,12 @@ $ brew install arduino-cli
 
 More about installing arduino-cli on Linux, MACOS and Windows, go to [https://arduino.github.io/arduino-cli/0.21/installation/](https://arduino.github.io/arduino-cli/0.21/installation/).
 
-It is important to say that all boards and libraries installed via your Arduino IDE is used by arduino-cli. I mean, all Arrduino environment setup is shared by Arduino IDE and arduino-cli.
-This way, if you install a new board via arduino-cli, it will be seen by Arduino IDE and vice-versa. The same way, if you install a new library via Arduino IDE, it will be seen by arduino-cli and vice-versa.
 
 ### Main commands examples
 
-It is important to say that all boards and libraries installed via your Arduino IDE is used by arduino-cli. I mean, all Arrduino environment setup is shared by Arduino IDE and arduino-cli.
-This way, if you install a new board via arduino-cli, it will be seen by Arduino IDE and vice-versa. The same way, if you install a new library via Arduino IDE, it will be seen by arduino-cli and vice-versa.
+It is important to say that all boards and libraries installed via your Arduino IDE is used by arduino-cli. I mean, all Arduino environment setup is shared by Arduino IDE and arduino-cli.
+This way, if you install a new board via arduino-cli, it will be seen by Arduino IDE and vice-versa. 
+
 
 ### The command below identifies the boards connected to your computer (COM3, COM4, /dev/xxx).
 
