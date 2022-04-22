@@ -1,5 +1,9 @@
 # ESP8266 (ESP-12F) and Si473X Arduino Library
 
+
+The [ESP8266](https://www.espressif.com/en/products/socs/esp8266) is based on a 32-bit RISC processor, low power consumption;  up to 160 MHz clock speed; Wi-Fi integrated; 64K RAM; 512KB to 4MB flash memory; and 16 GPIO pins.
+
+
 This folder show some examples with Si473X Arduino Library  and ESP8266 platform.
 
 Before start compiling ESP8266 based sketches, you have to configure your Arduino IDE. 

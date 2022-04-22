@@ -73,6 +73,17 @@ By using the examples of this folder, you will do not need any external device t
 
 # Arduino Tips
 
+
+## How to compile and upload sketches
+
+This library was developed to work with Arduino environment. There are many enviroment that you can use to compile and upload sketch to your board.  The list below shows some of them: 
+
+* [Arduino IDE](https://www.arduino.cc/en/software)
+* [Visual Studio with Arduino extensions](https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio)
+* [PlatformIO](https://dronebotworkshop.com/platformio/)
+* [Arduino Command Line - arduino-cli](https://www.arduino.cc/pro/cli) 
+  
+
 <BR>
 
 ## Arduino CLI - A faster alternative to the Arduino IDE
@@ -82,6 +93,7 @@ Arduino CLI (arduino-cli) is a solution that allows you to compile, build, uploa
 * [Click here for more detail about arduino-cli](https://arduino.github.io/arduino-cli/0.21/).
 * [Getting started](https://arduino.github.io/arduino-cli/0.21/getting-started/)
 * [Click here to watch a video about the arduino-cli](https://youtu.be/J-qGn1eEidA)
+
 
 ### [Installing via Homebrew (macOS/Linux)](https://arduino.github.io/arduino-cli/0.21/installation/)
 
