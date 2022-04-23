@@ -98,7 +98,7 @@
 #include <Adafruit_GFX.h>
 #include <MCUFRIEND_kbv.h>
 #include <TouchScreen.h>
-#include "DSEG7_Classic_Mini_Regular_30.h"
+#include "DSEG7_Classic_Mini_Regular_48.h"
 
 #include "Rotary.h"
 
@@ -139,6 +139,14 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define LW 4
 #define SSB 1
 
+
+#define RSSI_DISPLAY_COL_OFFSET 35
+#define RSSI_DISPLAY_LIN_OFFSET 90
+
+#define KEYBOARD_LIN_OFFSET 50
+#define STATUS_DISPLAY_COL_OFFSET 5
+#define STATUS_DISPLAY_LIN_OFFSET 430
+
 bool cmdBFO = false;
 bool cmdAudioMute = false;
 bool cmdSlop = false;
@@ -150,7 +158,7 @@ bool cmdStep = false;
 bool cmdBand = false;
 bool cmdSoftMuteMaxAtt = false;
 
-bool cmdDE = false;
+bool cmdSync = false;
 
 bool ssbLoaded = false;
 bool fmStereo = true;
@@ -198,8 +206,8 @@ Band band[] = {
     {"AM  ", MW_BAND_TYPE, 520, 1720, 810, 10},
     {"160m", SW_BAND_TYPE, 1800, 3500, 1900, 1}, // 160 meters
     {"80m ", SW_BAND_TYPE, 3500, 4500, 3700, 1}, // 80 meters
-    {"60m ", SW_BAND_TYPE, 4500, 5500, 4850, 5},
-    {"49m ", SW_BAND_TYPE, 5600, 6300, 6000, 5},
+    {"60m ", SW_BAND_TYPE, 4500, 5500, 4885, 5},
+    {"49m ", SW_BAND_TYPE, 5600, 6300, 6100, 5},
     {"40m ", SW_BAND_TYPE, 6800, 7200, 7100, 1}, // 40 meters
     {"41m ", SW_BAND_TYPE, 7200, 7900, 7205, 5}, // 41 meters
     {"31m ", SW_BAND_TYPE, 9200, 10000, 9600, 5},
@@ -248,13 +256,30 @@ Bandwidth bandwidthSSB[] = {{4, "0.5"},  //  4 = 0.5kHz
                               {3, "4.0"}}; // 3 = 4kHz
 
 int8_t bwIdxAM = 4;
+const int maxFilterAM = 15;
 Bandwidth bandwidthAM[] = {{4, "1.0"}, // 4 = 1kHz
                              {5, "1.8"},
                              {3, "2.0"},
                              {6, "2.5"},
                              {2, "3.0"},
                              {1, "4.0"},
-                             {0, "6.0"}}; // 0 = 6kHz
+                             {0, "6.0"}, // 0 = 6kHz
+                             {7, "U07"}, // 7–15 = Reserved (Do not use) says the manual.
+                             {8, "U08"},
+                             {9, "U09"},
+                             {10, "U10"},
+                             {11, "U11"},
+                             {12, "U12"},
+                             {13, "U13"},
+                             {14, "U14"},
+                             {15, "U15"}};
+
+int8_t bwIdxFM = 0;
+Bandwidth bandwidthFM[] = {{0, "AUT"}, // Automatic
+                             {1, "110"}, // Force wide (110 kHz) channel filter.
+                             {2, " 84"},
+                             {3, " 60"},
+                             {4, " 40"}};
 
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
@@ -262,27 +287,18 @@ uint8_t currentMode = FM;
 char buffer[255];
 char bufferFreq[10];
 char bufferStereo[10];
-char bufferCapacitor[10];
-char bufferCapacitorRead[10];
 char bufferBFO[15];
-char bufferStep[15];
 char bufferUnit[10];
-char bufferVolume[10];
 
-char bufferAGC[15];
-char bufferBW[20];
 char bufferMode[15];
 char bufferBandName[15];
-char bufferSoftMute[15];
 
-char bufferSlop[10];
-char bufferMuteRate[10];
 
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 MCUFRIEND_kbv tft;
 SI4735 si4735;
 
-// ALL Touch panels and wiring is DIFFERENT
+// ALL Touch panels and wiring can be DIFFERENT. Please, check it with careful before start working.
 // copy-paste results from TouchScreen_Calibr_native.ino
 // ATTENTION: if you do not get success at first, check and change the XP, XM , YP and YM pins.
 // Read TouchScreen_Calibr_native.ino  (MCUFRIEND shield shares pins with the TFT).
@@ -300,7 +316,7 @@ const int XP = 7, XM = A1, YP = A2, YM = 6; //320x480 ID=0x6814
 const int TS_LEFT = 149, TS_RT = 846, TS_TOP = 120, TS_BOT = 918;
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 480);
-Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeLevel, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC, bSoftMute, bSlop, bSMuteRate, bBFO, bEmphasis;
+Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeLevel, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC, bSoftMute, bSlop, bSMuteRate, bBFO, bSync;
 
 int pixel_x, pixel_y; //Touch_getXY() updates global vars
 bool Touch_getXY(void)
@@ -327,6 +343,16 @@ bool Touch_getXY(void)
 #define MAGENTA 0xF81F
 #define YELLOW 0xFFE0
 #define WHITE 0xFFFF
+
+void showBandwidth(bool drawAfter = false);
+void showAgcAtt(bool drawAfter = false);
+void showStep(bool drawAfter = false);
+void showSoftMute(bool drawAfter = false);
+void showMuteRate(bool drawAfter = false);
+void showSlop(bool drawAfter = false);
+void showVolume(bool drawAfter = false);
+
+
 
 void setup(void)
 {
@@ -371,8 +397,6 @@ void setup(void)
 
   tft.fillScreen(BLACK);
 
-  showTemplate();
-
   // Atach Encoder pins interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
@@ -382,6 +406,9 @@ void setup(void)
 
   // Set up the radio for the current band (see index table variable bandIdx )
   delay(100);
+
+  showTemplate();
+  
   useBand();
   currentFrequency = previousFrequency = si4735.getFrequency();
   si4735.setVolume(DEFAULT_VOLUME);
@@ -419,7 +446,7 @@ void disableCommands()
 {
 
   // Redraw if necessary
-  if (cmdVolume)
+  if (cmdVolume) 
     bVolumeLevel.drawButton(true);
   if (cmdStep)
     bStep.drawButton(true);
@@ -521,69 +548,117 @@ void printText(int col, int line, int sizeText, char *oldValue, const char *newV
   strcpy(oldValue, newValue);
 }
 
+
+void setDrawButtons( bool value) {
+  bNextBand.drawButton(value);
+  bPreviousBand.drawButton(value);
+  bVolumeLevel.drawButton(value);
+  bAudioMute.drawButton(value);
+  bSeekUp.drawButton(value);
+  bSeekDown.drawButton(value);
+  bStep.drawButton(value);
+  bBFO.drawButton(value);
+  bFM.drawButton(value);
+  bMW.drawButton(value);
+  bSW.drawButton(value);
+  bAM.drawButton(value);
+  bLSB.drawButton(value);
+  bUSB.drawButton(value);
+  bFilter.drawButton(value);
+  bAGC.drawButton(value);
+  bSoftMute.drawButton(value);
+  bSlop.drawButton(value);
+  bSMuteRate.drawButton(value);
+  bSync.drawButton(value);
+}
+
+/**
+ * Sets a given button
+ */
+void setButton(Adafruit_GFX_Button *button, int16_t col, int16_t lin, int16_t width, int16_t high, char *label, bool drawAfter)
+{
+  tft.setFont(NULL);
+  button->initButton(&tft, col, lin, width, high, WHITE, CYAN, BLACK, (char *)label, 1);
+  button->drawButton(drawAfter);
+}
+
+
+void setButtonsFM() {
+  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "BW", true);
+  setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&bAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "AGC On", true);
+}
+
 void showTemplate()
 {
 
   int w = tft.width();
 
   // Area used to show the frequency
-  tft.drawRect(0, 0, w, 50, WHITE);
+  tft.drawRect(0, 0, w, 75, WHITE);
 
-  tft.drawRect(0, 100, w, 290, CYAN);
+  tft.drawRect(0, KEYBOARD_LIN_OFFSET + 100, w, 280, CYAN);
   tft.setFont(NULL);
 
+  /*
   bPreviousBand.initButton(&tft, 45, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Band-", 1);
   bNextBand.initButton(&tft, 120, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Band+", 1);
   bVolumeLevel.initButton(&tft, 195, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Vol", 1);
   bAudioMute.initButton(&tft, 270, 130, 70, 49, WHITE, CYAN, BLACK, (char *)"Mute", 1);
-
   bSeekDown.initButton(&tft, 45, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"Seek-", 1);
   bSeekUp.initButton(&tft, 120, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"Seek+", 1);
   bBFO.initButton(&tft, 195, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"BFO", 1);
   bStep.initButton(&tft, 270, 185, 70, 49, WHITE, CYAN, BLACK, (char *)"Step", 1);
-
   bFM.initButton(&tft, 45, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"FM", 1);
   bMW.initButton(&tft, 120, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"MW", 1);
   bSW.initButton(&tft, 195, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"SW", 1);
   bAGC.initButton(&tft, 270, 240, 70, 49, WHITE, CYAN, BLACK, (char *)"ATT", 1);
-
   bAM.initButton(&tft, 45, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"AM", 1);
   bLSB.initButton(&tft, 120, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"LSB", 1);
   bUSB.initButton(&tft, 195, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"USB", 1);
-  bFilter.initButton(&tft, 270, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"|Y|", 1);
-
+  bFilter.initButton(&tft, 270, 295, 70, 49, WHITE, CYAN, BLACK, (char *)"BW", 1);
   bSoftMute.initButton(&tft, 45, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"SM Att", 1);
   bSMuteRate.initButton(&tft, 120, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"SM Rate", 1);
   bSlop.initButton(&tft, 195, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"Slop", 1);
-  bEmphasis.initButton(&tft, 270, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"DE", 1);
+  bSync.initButton(&tft, 270, 350, 70, 49, WHITE, CYAN, BLACK, (char *)"DE", 1);
+  */
+
+  setButton(&bPreviousBand, 45, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Band-", true);
+  setButton(&bNextBand, 120, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Band+", true);
+  setButton(&bVolumeLevel, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Vol", true);
+  setButton(&bAudioMute, 270, KEYBOARD_LIN_OFFSET + 130, 70, 49, (char *) "Mute", true);
+  setButton(&bSeekDown, 45, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Seek-", true);
+  setButton(&bSeekUp, 120, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Seek+", true);
+  setButton(&bBFO, 195, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "BFO", true);
+  setButton(&bStep, 270, KEYBOARD_LIN_OFFSET + 185, 70, 49, (char *) "Step", true);
+  setButton(&bFM, 45, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "FM", true);
+  setButton(&bMW, 120, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "MW", true);
+  setButton(&bSW, 195, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "SW", true);
+  setButton(&bAGC, 270, KEYBOARD_LIN_OFFSET + 240, 70, 49, (char *) "AGC On", true);
+  setButton(&bAM, 45, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "AM", true);
+  setButton(&bLSB, 120, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "LSB", true);
+  setButton(&bUSB, 195, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "USB", true);
+  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, (char *) "BW", true);
+  setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "---", true);
+  setButton(&bSync, 270, KEYBOARD_LIN_OFFSET + 350, 70, 49, (char *) "SYNC", true);
 
   // Exibe os botões (teclado touch)
-  bNextBand.drawButton(true);
-  bPreviousBand.drawButton(true);
-  bVolumeLevel.drawButton(true);
-  bAudioMute.drawButton(true);
-  bSeekUp.drawButton(true);
-  bSeekDown.drawButton(true);
-  bStep.drawButton(true);
-  bBFO.drawButton(true);
-  bFM.drawButton(true);
-  bMW.drawButton(true);
-  bSW.drawButton(true);
-  bAM.drawButton(true);
-  bLSB.drawButton(true);
-  bUSB.drawButton(true);
-  bFilter.drawButton(true);
-  bAGC.drawButton(true);
-  bSoftMute.drawButton(true);
-  bSlop.drawButton(true);
-  bSMuteRate.drawButton(true);
-  bEmphasis.drawButton(true);
+  setDrawButtons(true);
 
+  /*
   showText(0, 397, 1, NULL, GREEN, "RSSI");
   tft.drawRect(30, 393, (w - 32), 14, CYAN);
+  */
 
-  showText(0, 450, 1, NULL, YELLOW, "PU2CLR-Si4535 Arduino Library-Example");
-  showText(0, 465, 1, NULL, YELLOW, "DIY - You can do it better.");
+  // tft.drawRect(0, STATUS_DISPLAY_LIN_OFFSET -5, w , 45, CYAN);
+
+  // DrawSmeter();
+
+  showText(0, 470, 1, NULL, YELLOW, "PU2CLR SI4735 Arduino Library - You can do it better!");
 
   tft.setFont(NULL);
 }
@@ -645,7 +720,7 @@ void showFrequency()
   char aux[15];
   char sFreq[15];
 
-  tft.setFont(&DSEG7_Classic_Mini_Regular_30);
+  tft.setFont(&DSEG7_Classic_Mini_Regular_48);
   tft.setTextSize(1);
   if (si4735.isCurrentTuneFM())
   {
@@ -656,17 +731,17 @@ void showFrequency()
     sFreq[3] = aux[3];
     sFreq[4] = '\0';
 
-    tft.drawChar(139, 37, '.', YELLOW, BLACK, 1);
+    tft.drawChar(180, 55, '.', YELLOW, BLACK, 1);
   }
   else
   {
     sprintf(sFreq, "%5d", currentFrequency);
-    tft.drawChar(139, 37, '.', BLACK, BLACK, 1);
+    tft.drawChar(180, 55, '.', BLACK, BLACK, 1);
   }
 
   color = (cmdBFO) ? CYAN : YELLOW;
 
-  showFrequencyValue(50, 37, bufferFreq, sFreq, color, 30, 1);
+  showFrequencyValue(45, 58, bufferFreq, sFreq, color, 45, 1);
 
   if (currentMode == LSB || currentMode == USB)
   {
@@ -702,7 +777,7 @@ bool checkStopSeeking() {
  */
 void clearStatusArea()
 {
-  tft.fillRect(0, 60, tft.width(), 36, BLACK); // Clear all status area
+  tft.fillRect(STATUS_DISPLAY_COL_OFFSET, STATUS_DISPLAY_LIN_OFFSET, tft.width() -8, 36, BLACK); // Clear all status area
 }
 
 /**
@@ -711,7 +786,7 @@ void clearStatusArea()
  */
 void clearFrequencyArea()
 {
-  tft.fillRect(2, 2, tft.width() - 4, 46, BLACK);
+  tft.fillRect(2, 2, tft.width() - 4, 70, BLACK);
 }
 
 int getStepIndex(int st)
@@ -730,21 +805,12 @@ int getStepIndex(int st)
  */
 void clearBuffer()
 {
-  bufferAGC[0] = '\0';
-  bufferBW[0] = '\0';
   bufferMode[0] = '\0';
   bufferBandName[0] = '\0';
   bufferMode[0] = '\0';
   bufferBFO[0] = '\0';
   bufferFreq[0] = '\0';
   bufferUnit[0] = '\0';
-  bufferCapacitorRead[0] = '\0';
-  bufferVolume[0] = '\0';
-  bufferStep[0] = '\0';
-  bufferSoftMute[0] = '\0';
-
-  bufferSlop[0] = '\0';
-  bufferMuteRate[0] = '\0';
 }
 
 /**
@@ -757,14 +823,15 @@ void showStatus()
   clearFrequencyArea();
   clearStatusArea();
 
+  DrawSmeter();
+
   si4735.getStatus();
   si4735.getCurrentReceivedSignalQuality();
 
   si4735.getFrequency();
   showFrequency();
 
-  showVolume();
-
+  showVolume(true);
   tft.setFont(NULL); // default font
   printText(5, 5, 2, bufferBandName, band[bandIdx].bandName, CYAN, 11);
 
@@ -779,49 +846,54 @@ void showStatus()
 
   if (si4735.isCurrentTuneFM())
   {
-    printText(250, 30, 2, bufferUnit, "MHz", WHITE, 12);
+    printText(280, 55, 2, bufferUnit, "MHz", WHITE, 12);
+    setButtonsFM();
+    // setDrawButtons(true);
     return;
   }
 
-  printText(250, 30, 2, bufferUnit, "kHz", WHITE, 12);
+  printText(280, 55, 2, bufferUnit, "kHz", WHITE, 12);
 
-  showBandwidth();
-  showAgcAtt();
-  showStep();
-  showSoftMute();
-  showSlop();
-  showMuteRate();
-}
+  showBandwidth(true);
+  showAgcAtt(true);
+  showStep(true);
+  showSoftMute(true);
+  showSlop(true);
+  showMuteRate(true);
+  // setDrawButtons(true);
+ }
 
 /**
  * SHow bandwidth on AM or SSB mode
  * 
  */
-void showBandwidth()
+void showBandwidth(bool drawAfter)
 {
   char bw[20];
-
-  tft.setFont(NULL);
+    
   if (currentMode == LSB || currentMode == USB)
   {
-    sprintf(bw, "BW:%s kHz", bandwidthSSB[bwIdxSSB].desc);
-    printText(5, 85, 1, bufferBW, bw, GREEN, 7);
+    sprintf(bw, "BW:%s", bandwidthSSB[bwIdxSSB].desc);
     showBFO();
   }
-  else if (currentMode == AM)
-  {
-    sprintf(bw, "BW:%s kHz", bandwidthAM[bwIdxAM].desc);
-    printText(5, 85, 1, bufferBW, bw, GREEN, 7);
+  else if (currentMode == AM) {
+    sprintf(bw, "BW:%s", bandwidthAM[bwIdxAM].desc);
   }
+  else {
+    sprintf(bw, "BW:%s", bandwidthFM[bwIdxFM].desc);
+  }
+  setButton(&bFilter, 270, KEYBOARD_LIN_OFFSET + 295, 70, 49, bw, drawAfter);
 }
 
 /**
  * Shows AGC and Attenuation status
  * 
  */
-void showAgcAtt()
+void showAgcAtt(bool drawAfter)
 {
   char sAgc[15];
+
+  if (currentMode == FM) return;
 
   si4735.getAutomaticGainControl();
   if (agcNdx == 0 && agcIdx == 0)
@@ -830,108 +902,173 @@ void showAgcAtt()
   {
     sprintf(sAgc, "ATT: %2d", agcNdx);
   }
-  tft.setFont(NULL);
-  printText(90, 85, 1, bufferAGC, sAgc, GREEN, 7);
+  setButton(&bAGC, 270, KEYBOARD_LIN_OFFSET +  240, 70, 49, sAgc, drawAfter);
+}
+
+/**
+ * Draws the Smeter 
+ * This function is based on Mr. Gert Baak's sketch available on his github repository 
+ * See: https://github.com/pe0mgb/SI4735-Radio-ESP32-Touchscreen-Arduino 
+ */
+void DrawSmeter()
+{
+  tft.setTextSize(1);
+  tft.setTextColor(WHITE, BLACK);
+  for (int i = 0; i < 10; i++)
+  {
+    tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15 + (i * 12), RSSI_DISPLAY_LIN_OFFSET + 24, 4, 8, YELLOW);
+    tft.setCursor((RSSI_DISPLAY_COL_OFFSET + 14 + (i * 12)), RSSI_DISPLAY_LIN_OFFSET + 13);
+    tft.print(i);
+  }
+  for (int i = 1; i < 7; i++)
+  {
+    tft.fillRect((RSSI_DISPLAY_COL_OFFSET + 123 + (i * 16)), RSSI_DISPLAY_LIN_OFFSET + 24, 4, 8, RED);
+    tft.setCursor((RSSI_DISPLAY_COL_OFFSET + 117 + (i * 16)), RSSI_DISPLAY_LIN_OFFSET + 13);
+    if ((i == 2) or (i == 4) or (i == 6))
+    {
+      tft.print("+");
+      tft.print(i * 10);
+    }
+  }
+  tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15, RSSI_DISPLAY_LIN_OFFSET + 32, 112, 4, YELLOW);
+  tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 127, RSSI_DISPLAY_LIN_OFFSET + 32, 100, 4, RED);
 }
 
 /**
  * Shows RSSI level
- * 
+ * This function shows the RSSI level based on the function DrawSmeter above. 
  */
 void showRSSI()
 {
-
-  int w = tft.width() - 34;
-  int signalLevel;
-  uint8_t rssiAux;
-  char sMeter[7];
-  char sTmp[7];
-
-  if (currentMode == FM)
+  int spoint;
+  if (currentMode != FM)
   {
-    sprintf(buffer, "%s", (si4735.getCurrentPilot()) ? "STEREO" : "MONO");
-    printText(240, 10, 1, bufferStereo, buffer, GREEN, 11);
+    //dBuV to S point conversion HF
+    if (rssi <= 1) 
+      spoint = 12; // S0
+    if ((rssi > 1) and (rssi <= 1))
+      spoint = 24; // S1
+    if ((rssi > 2) and (rssi <= 3))
+      spoint = 36; // S2
+    if ((rssi > 3) and (rssi <= 4))
+      spoint = 48; // S3
+    if ((rssi > 4) and (rssi <= 10))
+      spoint = 48 + (rssi - 4) * 2; // S4
+    if ((rssi > 10) and (rssi <= 16))
+      spoint = 60 + (rssi - 10) * 2; // S5
+    if ((rssi > 16) and (rssi <= 22))
+      spoint = 72 + (rssi - 16) * 2; // S6
+    if ((rssi > 22) and (rssi <= 28))
+      spoint = 84 + (rssi - 22) * 2; // S7
+    if ((rssi > 28) and (rssi <= 34))
+      spoint = 96 + (rssi - 28) * 2; // S8
+    if ((rssi > 34) and (rssi <= 44))
+      spoint = 108 + (rssi - 34) * 2; // S9
+    if ((rssi > 44) and (rssi <= 54))
+      spoint = 124 + (rssi - 44) * 2; // S9 +10
+    if ((rssi > 54) and (rssi <= 64))
+      spoint = 140 + (rssi - 54) * 2; // S9 +20
+    if ((rssi > 64) and (rssi <= 74))
+      spoint = 156 + (rssi - 64) * 2; // S9 +30
+    if ((rssi > 74) and (rssi <= 84))
+      spoint = 172 + (rssi - 74) * 2; // S9 +40
+    if ((rssi > 84) and (rssi <= 94))
+      spoint = 188 + (rssi - 84) * 2; // S9 +50
+    if (rssi > 94)
+      spoint = 204; // S9 +60
+    if (rssi > 95)
+      spoint = 208; //>S9 +60
   }
   else
   {
-    sprintf(buffer, "%s", "      ");
-    printText(240, 10, 1, bufferStereo, buffer, BLACK, 11);
+    //dBuV to S point conversion FM
+    if (rssi < 1)
+      spoint = 36;
+    if ((rssi > 1) and (rssi <= 2))
+      spoint = 60; // S6
+    if ((rssi > 2) and (rssi <= 8))
+      spoint = 84 + (rssi - 2) * 2; // S7
+    if ((rssi > 8) and (rssi <= 14))
+      spoint = 96 + (rssi - 8) * 2; // S8
+    if ((rssi > 14) and (rssi <= 24))
+      spoint = 108 + (rssi - 14) * 2; // S9
+    if ((rssi > 24) and (rssi <= 34))
+      spoint = 124 + (rssi - 24) * 2; // S9 +10
+    if ((rssi > 34) and (rssi <= 44))
+      spoint = 140 + (rssi - 34) * 2; // S9 +20
+    if ((rssi > 44) and (rssi <= 54))
+      spoint = 156 + (rssi - 44) * 2; // S9 +30
+    if ((rssi > 54) and (rssi <= 64))
+      spoint = 172 + (rssi - 54) * 2; // S9 +40
+    if ((rssi > 64) and (rssi <= 74))
+      spoint = 188 + (rssi - 64) * 2; // S9 +50
+    if (rssi > 74)
+      spoint = 204; // S9 +60
+    if (rssi > 76)
+      spoint = 208; //>S9 +60
   }
-
-  if (rssi < 2)
-    rssiAux = 4;
-  else if (rssi < 4)
-    rssiAux = 5;
-  else if (rssi < 12)
-    rssiAux = 6;
-  else if (rssi < 25)
-    rssiAux = 7;
-  else if (rssi < 50)
-    rssiAux = 8;
-  else if (rssi >= 50)
-    rssiAux = 9;
-
-  signalLevel = map(rssiAux, 0, 9, 0, w);
-  tft.fillRect(30, 395, w, 10, BLACK);
-  tft.fillRect(30, 395, signalLevel, 10, (rssiAux > 4) ? YELLOW : RED);
-  sTmp[0] = '\0';
-  sprintf(sMeter, "S%1u%c", rssiAux, (rssiAux > 8) ? '+' : ' ');
-  printText(signalLevel + 15, 396, 1, sTmp, sMeter, BLACK, 6);
+  tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 15, RSSI_DISPLAY_LIN_OFFSET + 38, (2 + spoint), 6, RED);
+  tft.fillRect(RSSI_DISPLAY_COL_OFFSET + 17 + spoint, RSSI_DISPLAY_LIN_OFFSET + 38, 212 - (2 + spoint), 6, GREEN);
 }
 
-void showStep()
+void showStep(bool drawAfter)
 {
-
   char sStep[15];
-  tft.setFont(NULL); // default font
-
-  sprintf(sStep, "Step: %4d", currentStep);
-  printText(240, 60, 1, bufferStep, sStep, GREEN, 7);
+  sprintf(sStep, "Stp:%4d", currentStep);
+  setButton(&bStep, 270, KEYBOARD_LIN_OFFSET +  185, 70, 49, sStep, drawAfter);
 }
 
-void showSoftMute()
+void showSoftMute(bool drawAfter)
 {
-
   char sMute[15];
-  tft.setFont(NULL); // default font
 
-  sprintf(sMute, "SMute: %2d", softMuteMaxAttIdx);
-  printText(160, 85, 1, bufferSoftMute, sMute, GREEN, 7);
+  if (currentMode == FM) return;
+  
+  sprintf(sMute, "SM: %2d", softMuteMaxAttIdx);
+  setButton(&bSoftMute, 45, KEYBOARD_LIN_OFFSET + 350, 70, 49, sMute, drawAfter);
 }
 
+/**
+ * Shows the BFO offset on frequency area
+ */
 void showBFO()
 {
   tft.setFont(NULL); // default font
   sprintf(buffer, "%c%d", (currentBFO >= 0) ? '+' : '-', abs(currentBFO));
-  printText(200, 4, 2, bufferBFO, buffer, YELLOW, 11);
+  printText(262, 6, 2, bufferBFO, buffer, YELLOW, 11);
 }
 
 /**
  * Shows the current volume level
- * 
  */
-void showVolume()
+void showVolume(bool drawAfter)
 {
   char sVolume[15];
-
   sprintf(sVolume, "Vol: %2.2d", si4735.getVolume());
-  printText(260, 85, 1, bufferVolume, sVolume, GREEN, 7);
+  setButton(&bVolumeLevel, 195, KEYBOARD_LIN_OFFSET + 130, 70, 49, sVolume, drawAfter);
 }
 
-void showSlop()
+/**
+ * Shows slop parameter
+ */
+void showSlop(bool drawAfter)
 {
   char sSlop[10];
-  tft.setFont(NULL); // default font
+
+  if (currentMode == FM) return; 
+    
   sprintf(sSlop, "Sl:%2.2u", slopIdx);
-  printText(180, 60, 1, bufferSlop, sSlop, GREEN, 7);
+  setButton(&bSlop, 195, KEYBOARD_LIN_OFFSET + 350, 70, 49, sSlop, drawAfter);
 }
 
-void showMuteRate()
+void showMuteRate(bool drawAfter)
 {
   char sMRate[10];
-  tft.setFont(NULL); // default font
+
+  if (currentMode == FM) return; 
+    
   sprintf(sMRate, "MR:%3.3u", muteRateIdx);
-  printText(120, 60, 1, bufferMuteRate, sMRate, GREEN, 7);
+  setButton(&bSMuteRate, 120, KEYBOARD_LIN_OFFSET + 350, 70, 49, sMRate, drawAfter);
 }
 
 char *rdsMsg;
@@ -945,25 +1082,24 @@ void showRDSMsg()
 {
   if (strcmp(bufferRdsMsg, rdsMsg) == 0)
     return;
-  printText(5, 85, 1, bufferRdsMsg, rdsMsg, GREEN, 6);
-  delay(250);
+  printText(STATUS_DISPLAY_COL_OFFSET + 5, STATUS_DISPLAY_LIN_OFFSET + 20, 1, bufferRdsMsg, rdsMsg, GREEN, 6);
+  delay(100);
 }
 
 void showRDSStation()
 {
   if (strcmp(bufferStatioName, stationName) == 0)
     return;
-  printText(5, 60, 1, bufferStatioName, stationName, GREEN, 6);
+  printText(STATUS_DISPLAY_COL_OFFSET + 5, STATUS_DISPLAY_LIN_OFFSET + 5, 1, bufferStatioName, stationName, GREEN, 6);
   delay(250);
 }
 
 void showRDSTime()
 {
-
   if (strcmp(bufferRdsTime, rdsTime) == 0)
     return;
-  printText(150, 60, 1, bufferRdsTime, rdsTime, GREEN, 6);
-  delay(250);
+  printText(STATUS_DISPLAY_COL_OFFSET + 150, STATUS_DISPLAY_LIN_OFFSET + 5, 1, bufferRdsTime, rdsTime, GREEN, 6);
+  delay(100);
 }
 
 void checkRDS()
@@ -1094,13 +1230,15 @@ void useBand()
       si4735.setSSB(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep, currentMode);
       si4735.setSSBAutomaticVolumeControl(1);
       si4735.setSsbSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for SSB
+      si4735.setAvcAmMaxGain(60);                             // Sets the maximum gain for automatic volume control on AM/SSB mode (between 12 and 90dB)
       showBFO();
     }
     else
     {
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
-      si4735.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // // Disable Soft Mute for AM
+      si4735.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Disable Soft Mute for AM
+      si4735.setAvcAmMaxGain(42);                            // Sets the maximum gain for automatic volume control on AM/SSB mode (between 12 and 90dB)
       cmdBFO = false;
     }
 
@@ -1166,17 +1304,45 @@ void switchFilter(uint8_t v)
   {
     bwIdxAM = (v == 1) ? bwIdxAM + 1 : bwIdxAM - 1;
 
-    if (bwIdxAM > 6)
+    if (bwIdxAM > maxFilterAM)
       bwIdxAM = 0;
     else if (bwIdxAM < 0)
-      bwIdxAM = 6;
+      bwIdxAM = maxFilterAM;
 
     si4735.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
+  } else {
+    bwIdxFM = (v == 1) ? bwIdxFM + 1 : bwIdxFM - 1;
+    if (bwIdxFM > 4)
+      bwIdxFM = 0;
+    else if (bwIdxFM < 0)
+      bwIdxFM = 4;
+
+    si4735.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
   }
   showBandwidth();
   elapsedCommand = millis();
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
 }
+
+void switchSync( /*int8_t v */) {
+  if (currentMode != FM)
+  {
+    currentBFO = 0;
+    if (!ssbLoaded)
+    {
+      loadSSB();
+    }
+    currentMode = (currentMode == LSB)? USB:LSB;
+    band[bandIdx].currentFreq = currentFrequency;
+    band[bandIdx].currentStep = currentStep;
+    useBand();
+    si4735.setSSBDspAfc(0);
+    si4735.setSSBAvcDivider(3);
+  }
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();
+}
+
 
 void switchStep(int8_t v)
 {
@@ -1255,12 +1421,14 @@ void doBFO()
 void doSlop(int8_t v)
 {
   slopIdx = (v == 1) ? slopIdx + 1 : slopIdx - 1;
-  if (slopIdx < 1)
+
+   if (slopIdx < 1)
     slopIdx = 5;
   else if (slopIdx > 5)
     slopIdx = 1;
 
   si4735.setAMSoftMuteSlop(slopIdx);
+  
   showSlop();
   elapsedCommand = millis();
 }
@@ -1273,7 +1441,9 @@ void doMuteRate(int8_t v)
   else if (slopIdx > 255)
     muteRateIdx = 1;
 
-  si4735.setAMSoftMuteRate((uint8_t)muteRateIdx);
+  // si4735.setAMSoftMuteRate((uint8_t)muteRateIdx);
+  si4735.setAmNoiseBlank(muteRateIdx);
+  
   showMuteRate();
   elapsedCommand = millis();
 }
@@ -1305,7 +1475,7 @@ void checkTouch()
   bSoftMute.press(down && bSoftMute.contains(pixel_x, pixel_y));
   bSlop.press(down && bSlop.contains(pixel_x, pixel_y));
   bSMuteRate.press(down && bSMuteRate.contains(pixel_x, pixel_y));
-  bEmphasis.press(down && bEmphasis.contains(pixel_x, pixel_y));
+  bSync.press(down && bSync.contains(pixel_x, pixel_y));
 }
 
 /* two buttons are quite simple
@@ -1332,6 +1502,8 @@ void loop(void)
       switchStep(encoderCount);
     else if (cmdSoftMuteMaxAtt)
       switchSoftMute(encoderCount);
+    // else if (cmdSync) 
+    //   switchSync(encoderCount);  
     else if (cmdBand)
     {
       if (encoderCount == 1)
@@ -1346,12 +1518,14 @@ void loop(void)
       doMuteRate(encoderCount);
     else
     {
-      if (encoderCount == 1)
+      if (encoderCount == 1) 
         si4735.frequencyUp();
       else
         si4735.frequencyDown();
       // currentFrequency = si4735.getFrequency();      // Queries the Si473X device.
       currentFrequency = si4735.getCurrentFrequency(); // Just get the last setFrequency value (faster but can not be accurate sometimes).
+      // if (loadSSB) // Checking a bug on SSB patch
+      //   si4735.setAutomaticGainControl(disableAgc, agcNdx);
       showFrequency();
       elapsedCommand = millis();
     }
@@ -1528,13 +1702,10 @@ void loop(void)
       delay(MIN_ELAPSED_TIME);
       elapsedCommand = millis();
     }
-    else if (bEmphasis.justPressed())
+    else if (bSync.justPressed())
     {
-      cmdDE = !cmdDE;
-      if (currentMode == FM)
-        si4735.setFMDeEmphasis(cmdDE);
-      else
-        si4735.setAMDeEmphasis(cmdDE);
+      cmdSync = !cmdSync;
+      switchSync(/*0*/);
       delay(MIN_ELAPSED_TIME);
     }
   }
@@ -1572,8 +1743,6 @@ void loop(void)
     if (currentFrequency != previousFrequency)
     {
       clearStatusArea();
-      bufferVolume[0] = '\0';
-      showVolume();
       bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] = bufferRdsTime[0] = rdsMsg[0] = stationName[0] = '\0';
       showRDSMsg();
       showRDSStation();
