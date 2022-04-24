@@ -81,6 +81,7 @@ Contact: __pu2clr@gmail.com__.
     * [About the board based on SI4730-D60 labeled "PL102BA-S V:2.1 10628"](https://pu2clr.github.io/SI4735/extras/BOARD_PL102BA/)
     * [About the board based on Si4730 labeled "NE928-10A V:01"](https://pu2clr.github.io/SI4735/extras/BOARD_NE928_10A_V_01/)
     * [Mobile Device as Remote Control to the SI4735 prototype](https://github.com/pu2clr/bluetooth_remote_control)
+    * [Auto Band Pass Filter examples](examples/SI47XX_99_AUTO_BANDPASS_FILTER)
     * [Famous sketches and kits from third parties based on this Library](examples/SI47XX_KITS)
     * [Tools](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS)
 19. [Third Party Projects](https://pu2clr.github.io/SI4735/extras/Third_Party_Projects)
