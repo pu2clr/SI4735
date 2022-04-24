@@ -9,6 +9,7 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_02_POC
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_03_POC_SSB
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/Si4735_04_HARDWARE_MUTE_CIRCUIT
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_06_SSB_EEPROM
+arduino-cli compile -b arduino:avr:nano ./SI47XX_99_AUTO_BANDPASS_FILTER/SI473X_01_POC_SERIAL_MONITOR
 
 echo "LCD 20x4 All In One"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_02_LCD_20x4_I2C/SI473X_04_ALL_IN_ONE
@@ -69,9 +70,11 @@ arduino-cli compile --fqbn esp8266:esp8266:generic  ./SI47XX_06_ESP8266/OLED_ALL
 # compiles SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2 on Arduino DUE and Mega 
 echo "Arduino RDS DUE and MEGA"
 echo "*** DUE"
-arduino-cli compile --fqbn arduino:sam:arduino_due_x ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+arduino-cli compile --fqbn arduino:sam:arduino_due_x ./SI47XX_16_ARDUINO_DUE_MEGA/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
 echo "*** Mega"
-arduino-cli compile --fqbn arduino:avr:mega ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+arduino-cli compile --fqbn arduino:avr:mega ./SI47XX_16_ARDUINO_DUE_MEGA/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
+
+examples/SI47XX_16_ARDUINO_DUE_MEGA
 
 # compiles SI47XX_03_RDS_TFT_ILI9225_NEW on Arduino Nano
 echo "Arduino Nano - RDS TFT"
@@ -98,3 +101,5 @@ echo "*** SSB"
 arduino-cli compile --fqbn ATTinyCore:avr:attinyx5 ./SI47XX_05_ATTINY85/SI47XX_03_SSB_Tiny4kOLED
 echo "*** OLED"
 arduino-cli compile --fqbn ATTinyCore:avr:attinyx5 --build-path /Users/rcaratti/Downloads ./SI47XX_05_ATTINY85/SI47XX_02_ATTINY85_MINI_OLED_I2C
+
+
