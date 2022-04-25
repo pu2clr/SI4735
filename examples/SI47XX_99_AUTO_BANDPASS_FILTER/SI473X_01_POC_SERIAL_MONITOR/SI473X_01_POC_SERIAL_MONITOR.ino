@@ -12,13 +12,18 @@
 */
 
 #include <SI4735.h>
+#include "AutoBPF.h"
+
 
 #define RESET_PIN 12
 
 #define AM_FUNCTION 1
+#define AUDIO_MUTE 1   
 
-#define S0_PIN   4 // FST3253 or SN74CBT3253D S0 pin
-#define S1_PIN   5 // FST3253 or SN74CBT3253D S1 pin
+
+
+#define FILTER_PIN1   14
+#define FILTER_PIN2   15
 
 typedef struct
 {
@@ -45,11 +50,11 @@ const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int currentFreqIdx = 3; // Default SW band is 31M
 
 uint16_t currentFrequency;
-uint8_t bpf;
+uint8_t bpfValue;
 
+AutoBPF bpf;            // Declare the Auto bandpass filter class.
 
 SI4735 si4735;
-
 
 void setup()
 {
@@ -58,12 +63,12 @@ void setup()
 
   Serial.println("\nTest and validation of the Band Pass Filter working with the SI473X based receiver.\n");
 
-  pinMode(S0_PIN, OUTPUT);
-  pinMode(S1_PIN, OUTPUT);
+  si4735.setAudioMuteMcuPin(AUDIO_MUTE);    // avoiding pop in the speaker
 
-  // Select the BPF 0
-  digitalWrite(S0_PIN, LOW);
-  digitalWrite(S1_PIN, LOW);
+  bpf.setup(FILTER_PIN1, FILTER_PIN2);
+  bpf.setFilter(0);
+
+
 
   // gets and sets the Si47XX I2C bus address.
   int16_t si4735Addr = si4735.getDeviceI2CAddress(RESET_PIN);
@@ -80,6 +85,7 @@ void setup()
     Serial.println(si4735Addr, HEX);
   }
 
+
   delay(500);
   si4735.setup(RESET_PIN, AM_FUNCTION);
 
@@ -89,7 +95,7 @@ void setup()
   delay(500);
 
   currentFrequency = si4735.getFrequency();
-  si4735.setVolume(45);
+  si4735.setVolume(50);
   showHelp();
   showStatus();
 }
@@ -132,7 +138,7 @@ void showStatus()
   Serial.println("dBuV]");
    
   Serial.print("Current BPF: ");
-  Serial.println(bpf);
+  Serial.println(bpfValue);
 }
 
 
@@ -216,11 +222,10 @@ void loop()
     case '1':
     case '2':
     case '3':
-      bpf = key - '0'; // Converts char digit number to integer value.
+      bpfValue = key - '0'; // Converts char digit number to integer value.
       Serial.print("\nYou selected the BPF ");
-      Serial.print(bpf);
-      digitalWrite(S0_PIN, (bpf & 1)); // Sets the S0 HIGH or LOW
-      digitalWrite(S1_PIN, (bpf & 2)); // Sets the S1 HIGH or LOW
+      Serial.print(bpfValue);  
+      bpf.setFilter(bpfValue);
       Serial.print("\n\nCheck the receiver...\n\n");
       showStatus();
       break;
