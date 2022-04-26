@@ -36,8 +36,7 @@ typedef struct
   uint8_t filter;       // Filter number used by the band (0 - 3)
 } Band;
 
-Band band[] = {{" MW", 520, 1700, 810, 10, 0},
-               {"90m", 3200,3500, 3300, 5, 0},  
+Band band[] = {{"90m", 3200,3500, 3300, 5, 0},  
                {"75m", 3900,4500, 4100, 5, 0},  
                {"60m", 4700, 5200, 4850, 5, 1},
                {"49m", 5700, 6200, 6000, 5, 1},
@@ -90,6 +89,7 @@ void setup()
 
   si4735.setup(RESET_PIN, AM_FUNCTION);
   setBand(); // Switches to the default band (check currentFreqIdx)
+  si4735.setAutomaticGainControl(1, 0); // Disables the AGC.
   delay(500);
 
   currentFrequency = si4735.getFrequency();
