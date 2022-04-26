@@ -1,5 +1,11 @@
 /*
 
+  SI473X and Band Pass Filter Proof of Concept .
+
+  This example uses four Band Pass Filter (BPF) controlled by Arduino. 
+  Two FST3253 or two SN74CBT3253D device switches are used to select one of four BPF. 
+  For more information about Band Pass Filter controlled by Arduino see: https://github.com/pu2clr/auto_bpf_arduino
+
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220) - ILI9225.
   The Arduino library used to control that display device is TFT_22_ILI9225 (seeL https://github.com/Nkawu/TFT_22_ILI9225).
   Please, install it before start working  with this sketch.
@@ -112,18 +118,18 @@ const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content
 #define ENCODER_PIN_A 2
 #define ENCODER_PIN_B 3
 
-#define FILERT_PIN1   14
-#define FILERT_PIN2   15
+#define FILERT_PIN1   14       // Pin A0 
+#define FILERT_PIN2   15       // Pin A1 
 
 // Buttons controllers
-#define MODE_SWITCH 4         // Switch MODE (Am/LSB/USB)
-#define BANDWIDTH_BUTTON 5    // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz
-#define BAND_BUTTON 6         // Band switch button
+#define MODE_SWITCH 4           // Switch MODE (Am/LSB/USB)
+#define BANDWIDTH_BUTTON 5      // Used to select the banddwith. Values: 1.2, 2.2, 3.0, 4.0, 0.5, 1.0 kHz
+#define BAND_BUTTON 6           // Band switch button
 // #define SEEK_BUTTON          // Previous band
-#define AGC_SWITCH 0          // Pin A0 - Switch AGC ON/OF
-#define STEP_SWITCH 7         // Pin A1 - Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
-#define ENCODER_PUSH_BUTTON 16         // Pin A2 - Used to select the enconder control (BFO or VFO)
-#define AUDIO_MUTE 1          // External AUDIO MUTE circuit control
+#define AGC_SWITCH 0            // Pin 0 - Switch AGC ON/OF
+#define STEP_SWITCH 7           // Used to select the increment or decrement frequency step (1, 5 or 10 kHz)
+#define ENCODER_PUSH_BUTTON 16  // Pin A2 - Used to select the enconder control (BFO or VFO)
+#define AUDIO_MUTE 1            // Pin 1 - External AUDIO MUTE circuit control - Should be disconnected from arduino for uploading
 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 150

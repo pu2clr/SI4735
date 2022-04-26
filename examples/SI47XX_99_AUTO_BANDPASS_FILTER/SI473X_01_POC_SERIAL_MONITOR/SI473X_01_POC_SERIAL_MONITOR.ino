@@ -1,9 +1,13 @@
 
 /**
-   
+
    Bandpass filter circuit tester.
 
-   This receiver / sketch use only AM mode MW and SW bands. 
+   This example uses four Band Pass Filter (BPF) controlled by Arduino.
+   Two FST3253 or two SN74CBT3253D device switches are used to select one of four BPF.
+   For more information about Band Pass Filter controlled by Arduino see: https://github.com/pu2clr/auto_bpf_arduino
+
+   This receiver / sketch use only AM mode MW and SW bands.
 
    This sketch uses the Arduino IDE serial monitor to check the switches.
    You can select the bandpass filter by using the keyboard and typing 0, 1, 2 or 3.
