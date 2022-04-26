@@ -5,7 +5,7 @@
  * The author of this Si4735 Arduino Library does not encourage anyone to use the SSB patches content for commercial purposes.
  * In other words, that library only supports SSB patches, the patches themselves are not part of this library.
  *
- * This file was adapted to C/C++ from  the original file (amrx_6_0_1_ssbrx_patch_full_0x9D29.csg) made available by
+ * This file was adapted to C/C++ from  the original file (amrx_6_0_1_ssbrx_patch_init_0xA902.csg) made available by
  * Mr Vadim Afonkin on his Dropbox repository (https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0).
  *
  * I would like to thank [Mr Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) for making available the SSBRX patches for
@@ -16,6 +16,7 @@
  * If you are not using C/C++ or if you want to load the files directly to the SI4735, you must convert
  * the values to numeric values of the hexadecimal constants. For example: 0x15 = 21 (00010101);
  * 0x16 = 22 (00010110); 0x01 = 1 (00000001); 0xFF = 255 (11111111);
+ *
  */
 
 // SSB patch for whole SSBRX initialization string
