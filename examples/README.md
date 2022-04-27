@@ -342,7 +342,7 @@ type __arduino-cli board listall__ to see all boards available.
 
 
 
-## Adding images to TFT display 
+## Dealing images with TFT display 
 
 It can be very useful to improve the visual interface to your project.
 
