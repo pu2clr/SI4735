@@ -2280,7 +2280,7 @@ public:
     /**
      * @ingroup group08 Seek
      *
-     * @brief Sets the SNR threshold for a valid FM Seek/Tune.
+     * @brief Sets the SNR threshold for a valid FM Seek/Tune. X 
      *
      * @details SNR Threshold which determines if a valid channel has been found during Seek/Tune. Specified in units of dB in 1 dB steps (0–127). Default is 3 dB
      * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); page 102
