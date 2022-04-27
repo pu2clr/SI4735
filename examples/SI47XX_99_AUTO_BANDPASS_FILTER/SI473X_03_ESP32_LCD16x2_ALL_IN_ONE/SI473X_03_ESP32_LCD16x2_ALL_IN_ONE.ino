@@ -146,6 +146,7 @@ bool cmdMenu = false;
 bool cmdRds  =  false;
 bool cmdSoftMuteMaxAtt = false;
 bool cmdAvc = false;
+bool cmdBPF = false;
 
 bool fmRDS = false;
 
@@ -158,12 +159,14 @@ volatile int encoderCount = 0;
 uint16_t currentFrequency;
 uint16_t previousFrequency = 0;
 
+uint8_t currentBPF;
+
 
 const uint8_t currentBFOStep = 10;
 
-const char * menu[] = {"Volume", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "AVC", "Seek Up", "Seek Down"};
+const char * menu[] = {"Volume", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "AVC", "Seek Up", "Seek Down", "BPF"};
 int8_t menuIdx = 0;
-const int lastMenu = 10;
+const int lastMenu = 11;
 int8_t currentMenuCmd = -1;
 
 typedef struct
@@ -505,6 +508,7 @@ void disableCommands()
   cmdSoftMuteMaxAtt = false;
   cmdRds = false;
   cmdAvc =  false; 
+  cmdBPF = false;
   countClick = 0;
 
   showCommandStatus((char *) "VFO ");
@@ -740,7 +744,7 @@ void showSoftMute()
 }
 
 /**
- * Show Soft Mute 
+ * Shows Soft Mute 
  */
 void showAvc()
 {
@@ -751,6 +755,16 @@ void showAvc()
   lcd.print(sAvc);
 }
 
+/**
+ * Shows the current Band Pass Filter
+ */
+void showBPF() {
+  char sBPF[5];
+  sprintf(sBPF, "BPF: %2d", currentBPF);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(sBPF);
+}
 
 /**
  * Shows RDS ON or OFF
@@ -906,8 +920,9 @@ void useBand()
 
   // Select the right filter for the band
   bpf.setFilter(band[bandIdx].filter);
+  currentBPF = bpf.getCurrentFilter();
 
-      rssi = 0;
+  rssi = 0;
   showStatus();
   showCommandStatus((char *) "Band");
 }
@@ -1178,6 +1193,23 @@ void doRdsSetup(int8_t v)
   elapsedCommand = millis();
 }
 
+/**
+ * Switch the current BPF
+ */
+void doBPF(int8_t v)
+{
+  int8_t aux = currentBPF;
+  aux = (v == 1) ? (currentBPF + 1) : (currentBPF-1);
+  if (aux > 3)
+    currentBPF = 0;
+  else if ( aux < 0)
+    currentBPF = 3;
+  else 
+    currentBPF = (uint8_t) aux; 
+
+  bpf.setFilter(currentBPF);   
+  showBPF(); 
+}
 
 /**
  *  Menu options selection
@@ -1200,7 +1232,7 @@ void doMenu( int8_t v) {
  * Return true if the current status is Menu command
  */
 bool isMenuMode() {
-  return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds | cmdAvc);
+  return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds | cmdAvc | cmdBPF);
 }
 
 /**
@@ -1256,7 +1288,10 @@ void doCurrentMenuCmd() {
     case 10:
       seekDirection = 0;
       doSeek();
-      break;    
+      break; 
+    case 11: 
+      showBPF();
+      break;     
     default:
       showStatus();
       break;
@@ -1264,8 +1299,6 @@ void doCurrentMenuCmd() {
   currentMenuCmd = -1;
   elapsedCommand = millis();
 }
-
-
 
 /**
  * Main loop
@@ -1298,22 +1331,24 @@ void loop()
     else if (cmdAvc)
       doAvc(encoderCount);
     else if (cmdBand)
-          setBand(encoderCount);
+      setBand(encoderCount);
     else if (cmdRds ) 
       doRdsSetup(encoderCount);  
+    else if (cmdBPF)
+      doBPF(encoderCount);
     else
-    {
-      if (encoderCount == 1)
       {
-        rx.frequencyUp();
-      }
-      else
-      {
-        rx.frequencyDown();
-      }
-      // Show the current frequency only if it has changed
-      currentFrequency = rx.getFrequency();
-      showFrequency();
+        if (encoderCount == 1)
+        {
+          rx.frequencyUp();
+        }
+        else
+        {
+          rx.frequencyDown();
+        }
+        // Show the current frequency only if it has changed
+        currentFrequency = rx.getFrequency();
+        showFrequency();
     }
     encoderCount = 0;
     resetEepromDelay();
