@@ -62,9 +62,7 @@ SI4735 si4735;
 void setup()
 {
   Serial.begin(9600);
-  while (!Serial)
-  {
-  };
+  while (!Serial);
 
   Serial.println("\nTest and validation of the Band Pass Filter working with the SI473X based receiver.\n");
 
