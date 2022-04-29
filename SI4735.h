@@ -1457,6 +1457,27 @@ public:
     };
 
     void setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX);
+
+    /**
+     * @ingroup group08 AGC
+     *
+     * @brief Automatic Gain Control setup (alternative name for setAutomaticGainControl )
+     *
+     * @details If FM, overrides AGC setting by disabling the AGC and forcing the LNA to have a certain gain that ranges between 0
+     * (minimum attenuation) and 26 (maximum attenuation).
+     * @details If AM/SSB, Overrides the AGC setting by disabling the AGC and forcing the gain index that ranges between 0
+     * (minimum attenuation) and 37+ATTN_BACKUP (maximum attenuation).
+     *
+     * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); For FM page 81; for AM page 143
+     * @see setAutomaticGainControl
+     *
+     * @param uint8_t AGCDIS This param selects whether the AGC is enabled or disabled (0 = AGC enabled; 1 = AGC disabled);
+     * @param uint8_t AGCIDX AGC Index (0 = Minimum attenuation (max gain); 1 – 36 = Intermediate attenuation);
+     *                if >greater than 36 - Maximum attenuation (min gain) ).
+     */
+    inline void setAGC(uint8_t AGCDIS, uint8_t AGCIDX) { setAutomaticGainControl( AGCDIS, AGCIDX); };
+
+
     void setSsbAgcOverrite(uint8_t SSBAGCDIS, uint8_t SSBAGCNDX, uint8_t reserved = 0);
 
     void getCurrentReceivedSignalQuality(uint8_t INTACK);

@@ -56,6 +56,7 @@ var class_s_i4735 =
     [ "isAgcEnabled", "group__group08.html#gaea08b7e553212cbe01bf6f4ec9e02de7", null ],
     [ "getAgcGainIndex", "group__group08.html#ga4eceaf5745e87fcca6cf31c04c5635bd", null ],
     [ "setAutomaticGainControl", "group__group08.html#ga27c22f5671ce3229e925e5fbe93ba0a6", null ],
+    [ "setAGC", "group__group08.html#ga2389f02cd293155c245c992607b57834", null ],
     [ "setSsbAgcOverrite", "group__group17.html#ga2da03a7257b7ca821f984bfa7fef97fa", null ],
     [ "getCurrentReceivedSignalQuality", "group__group08.html#gabf59183da13c72384093fc238c3114cf", null ],
     [ "getCurrentReceivedSignalQuality", "group__group08.html#ga7393fa4f9d7811c8d0c0f48283ef6435", null ],

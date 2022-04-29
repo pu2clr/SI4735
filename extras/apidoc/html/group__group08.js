@@ -13,6 +13,7 @@ var group__group08 =
     [ "getStatusMULT", "group__group08.html#ga0f9b5438a6f92c8f2e538ee640f353ab", null ],
     [ "isAgcEnabled", "group__group08.html#gaea08b7e553212cbe01bf6f4ec9e02de7", null ],
     [ "getAgcGainIndex", "group__group08.html#ga4eceaf5745e87fcca6cf31c04c5635bd", null ],
+    [ "setAGC", "group__group08.html#ga2389f02cd293155c245c992607b57834", null ],
     [ "getCurrentRSSI", "group__group08.html#ga4f5abf562ec00767a3b84f74eba5ac4d", null ],
     [ "getCurrentSNR", "group__group08.html#gadb3fe55583dafeac7439a303b637d162", null ],
     [ "getCurrentRssiDetectLow", "group__group08.html#ga0c9ae82012cdc97c4080b84e37fa1820", null ],
