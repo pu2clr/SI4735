@@ -230,7 +230,7 @@ After, unzip the SI4735-master.zip file in your Arduino Library folder.
 * On __Linux__: ˜/Documents/Arduino/libraries
 
 With that approach, you will have the __most current version__ of the library. However, __it may not be the most stable version__. This is because the current version is always in development. [Prefer releases](https://github.com/pu2clr/SI4735/releases).
-Do you need some old version (release) of this library?  If, [check here](https://github.com/pu2clr/SI4735/releases). 
+Do you need some old version (release) of this library?  If so, [check here](https://github.com/pu2clr/SI4735/releases). 
 
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
@@ -240,7 +240,7 @@ Do you need some old version (release) of this library?  If, [check here](https:
 
 ## About the SI4732 and SI4735  
 
-The SI4732-A10 and SI4735-D60 are DSP radio receivers IC from Silcon Labs. They have great performance on AM, SSB (LW/MW/SW) from 150kHz to 30MHz and  FM (VHF) from 64 to 108 MHz. __It is important to note that the engineers and programmers at Silicon Labs did an excellent job by implementing all the internal resources in this IC family. This library implements just the interface  that allows you to use the SI473X resources with  Arduino based board controller__. 
+The SI4732-A10 and SI4735-D60 are DSP receivers IC from Silcon Labs. They have great performance on AM, SSB (LW/MW/SW) from 150kHz to 30MHz and  FM (VHF) from 64 to 108 MHz. __It is important to note that the engineers and programmers at Silicon Labs did an excellent job by implementing all the internal resources in this IC family. This library implements just the interface  that allows you to use the SI473X resources with  Arduino based board controller__. 
 The SI473X can be programmed by sending commands and getting responses. You can control it via a microcontroller like Arduino using  I²C  communication protocol. To make the SI473X perform an action, the microcontroller has to send a set of bytes (command and arguments) that the device interprets and executes the given command. The  image below illustrates the interaction between the MCU and the SI473X device. 
 
 <BR>
@@ -260,7 +260,7 @@ The image below shows the SI473X-D60 block diagram. It was extracted from Silico
 ![SI473x Block Diagram](extras/images/block_diagram.png)
 
 
-According to the Si47XX PROGRAMMING GUIDE/AN332, the Si4732-A10 has the same firmware FMRX component and AM_SW_LW RX component as that of Si4735-D60. It is considered as the most recent revision as D60. So, __All descriptions related to the SI4735-D60 also apply to Si4732-A10__. __Including SSB patch support__. See the Si4732-A10 block diagram below.  
+According to the Si47XX PROGRAMMING GUIDE/AN332, the Si4732-A10 has the same firmware FMRX component and AM_SW_LW RX component as that of Si4735-D60. It is considered as the most recent revision as D60. So, __all descriptions related to the SI4735-D60 also apply to Si4732-A10__. __Including SSB patch support__. See the Si4732-A10 block diagram below.  
 
 
 ![SI4732-A10 Block Diagram](extras/images/si4732_A10_diagram.png)
@@ -523,117 +523,16 @@ __The EEPROM device used for testing was the AT24C256 Serial I²C Interface__
 {% include eeprom.html %} 
 
 
+<BR>
+<BR>
+
 #### SAVING RECEIVER STATUS INTO THE INTERNAL EEPROM
 
-You also can store useful data without a special circuit. This approach will store data every time some important status changes. The idea is store data only if it is necessary.
 
-Steps: 
-
-* Select the data you want to keep into the EEPROM;
-* Add the code to monitor the data in your sketch;
-* Add code to save the data. In this case, you need to define the criteria that will be used to perform a recording on the EEPROM. In general, a good criteria is:  any change of useful data AND elapsed time. It will depend on your application.   
-* Consider using the method EEPROM.update instead EEPROM.write. It will not write information if it is the same stored before;
-* Add the code to restore data from EEPROM;
-* Add the code to check if exist useful data stored into EEPROM. It can be a single byte indicating that exist valid information for the system. Use an identification number (ID) that will be understood as valid data by the system.  
-* Add code to erase the information in EEPROM. All you have to do is erasing the identification number. Actually just change the ID value. In other words, you do not need erease all data stored into EEPROM to reset the data to the system.
-* Add code to RESET the system. At system start up check if a given button is pressed and then erase the ID;
+You can store useful the receiver data into the internal Arduino based board EEPROM. See the section [Storing data into the internal EEPROM before shutdowning](extras/schematic#storing-data-into-the-internal-eeprom-before-shutdowning) for details. 
 
 
-#### Example
-
-```cpp
-
-#define STORE_TIME 10000      // Time of inactivity to make the current receiver status writable (10 seconds).
-
-const uint8_t app_id = 35;     // Application ID. Any value from 1 to 255.  It will be useful to check the EEPROM content before processing useful data
-const int eeprom_address = 0;  // Address where the data will be stored into EEPROM
-long storeTime = millis();     // elapsed time control 
-
-
-void setup() {
-
-  .
-  .
-  .
-
-  // If you want to reset the eeprom, keep the  button pressed during statup
-  if (digitalRead(GIVEN_BUTTON) == LOW)
-  {
-    EEPROM.write(eeprom_address, 0); // Changes the application ID. It invalidates all stotred information. 
-    delay(2000);
-  }
-
-  .
-  .
-  .
-
-  // Checking the EEPROM content and read if it has valid information
-  if (EEPROM.read(eeprom_address) == app_id)
-  {
-    readAllReceiverInformation();
-  }
-
-  .
-  .
-  .
-
-}
-
-
-void saveAllReceiverInformation()
-{
-  EEPROM.update(eeprom_address, app_id);                      // stores the app id;
-  EEPROM.update(eeprom_address + 1, si4735.getVolume());      // stores the current Volume
-  EEPROM.update(eeprom_address + 2, currentMode);             // Stores the current Mode (FM / AM / SSB)
-  EEPROM.update(eeprom_address + 3, currentFrequency >> 8);   // Store the current frequency
-  EEPROM.update(eeprom_address + 4, currentFrequency & 0XFF);
-  .
-  .
-  .
-  
-}
-
-
-void readAllReceiverInformation()
-{
-  volume = EEPROM.read(eeprom_address + 1);                 // Gets the stored volume;
-  currentMode = EEPROM.read(eeprom_address + 2);            // Gets the stored mode
-  currentFrequency = EEPROM.read(eeprom_address + 3) << 8;  // Gets the stored frequency 
-  currentFrequency |= EEPROM.read(eeprom_address + 4);
-  .
-  .
-  .
-}
-
-
-void loop() {
-  .
-  .
-  .
-  // Monitor your data and set statusChanged variable to true if any useful data has changed. 
-  .
-  .
-  .
-  
-  // check if some status was changed  
-  if ( statusChanged )
-  {
-    // If the status has changed and the elapsed time is less than minimal time, wait a bit more for saving new data. 
-    if ((millis() - storeTime) > STORE_TIME) 
-    {
-      saveAllReceiverInformation();
-      storeTime = millis();
-      statusChanged = false;
-    }
-  }
-   
-}
-
-```
-
-See this aproach working on [SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V2](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C/SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V20)
-
-
+<BR>
 
 
 ### Digital Audio support 
