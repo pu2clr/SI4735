@@ -52,6 +52,9 @@ Band band[] = {{"90m", 3200,3500, 3300, 5, 0},
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int currentFreqIdx = 5; // Default SW band is 41M
 
+
+bool agcDisabled = false;  
+
 uint16_t currentFrequency;
 uint8_t bpfValue;
 
@@ -87,7 +90,7 @@ void setup()
 
   si4735.setup(RESET_PIN, AM_FUNCTION);
   setBand(); // Switches to the default band (check currentFreqIdx)
-  si4735.setAutomaticGainControl(1, 0); // Disables the AGC.
+  si4735.setAutomaticGainControl(agcDisabled, 0);
   delay(500);
 
   currentFrequency = si4735.getFrequency();
@@ -98,14 +101,15 @@ void setup()
 
 void showHelp()
 {
-  Serial.println("Type U to increase and D to decrease the frequency");
-  Serial.println("Type + or - to volume Up or Down");
-  Serial.println("Type S to show current status");
-  Serial.println("Type W go direct to MW/AM");
-  Serial.println("Type > to go to the next SW band");
-  Serial.println("Type < to go to the previous SW band");
-  Serial.println("\nType 0, 1, 2 or 3 to select the bandpass filter");
-  Serial.println("Type ? to this help.");
+  Serial.println("Type: U to increase and D to decrease the frequency");
+  Serial.println("      + or - to volume Up or Down");
+  Serial.println("      S to show current status");
+  Serial.println("      W go direct to MW/AM");
+  Serial.println("      A to switch AGC ON/OFF");
+  Serial.println("      > to go to the next SW band");
+  Serial.println("      < to go to the previous SW band\n");
+  Serial.println("      0, 1, 2 or 3 to select the bandpass filter");
+  Serial.println("      ? to this help.");
   Serial.println("==================================================");
 }
 
@@ -114,7 +118,7 @@ void showStatus()
 {
   delay(250);
   band[currentFreqIdx].currentFreq = currentFrequency = si4735.getFrequency();
-  Serial.print("You are tuned on ");
+  Serial.print("\nYou are tuned on ");
   Serial.println("Band: ");
   Serial.println(band[currentFreqIdx].freqName);
 
@@ -131,6 +135,9 @@ void showStatus()
 
   Serial.print("Current BPF: ");
   Serial.println(bpfValue);
+  Serial.print("AGC: ");
+  Serial.print( (agcDisabled == 0)? "ON": "OFF");
+  
 }
 
 /**
@@ -199,6 +206,12 @@ void loop()
     case 'S':
       showStatus();
       break;
+    case 'A':
+    case 'a':
+        agcDisabled = !agcDisabled;
+        si4735.setAutomaticGainControl(agcDisabled, agcDisabled); // Disables or enable the AGC. 
+        showStatus();
+        break; 
     case '?':
       showHelp();
       break;

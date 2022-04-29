@@ -277,7 +277,7 @@ void setup()
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
   // Start the Nokia display device
   nokia.InitLCD();
-  nokia.setContrast(60); // 0 - 120 -> Set the appropriated value for you 
+  nokia.setContrast(70); // 0 - 120 -> Set the appropriated value for your Nokia 5110 display 
   splash(); // Show Splash - Remove this line if you do not want it. 
   EEPROM.begin();
 

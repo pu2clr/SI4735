@@ -258,7 +258,7 @@ void setup()
   
   // display.setRotation(2);   //  Rotates the display 180 degree
   
-  // display.setContrast(60);
+  display.setContrast(60);    // You may need adjust this value for you Nokia 5110
   // Splash
   splash();
   // Encoder interrupt
