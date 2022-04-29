@@ -529,7 +529,7 @@ __The EEPROM device used for testing was the AT24C256 Serial I²C Interface__
 #### SAVING RECEIVER STATUS INTO THE INTERNAL EEPROM
 
 
-You can store useful the receiver data into the internal Arduino based board EEPROM. See the section [Storing data into the internal EEPROM before shutdowning](extras/schematic#storing-data-into-the-internal-eeprom-before-shutdowning) for details. 
+You can store useful receiver data into the internal Arduino EEPROM. Currente band information, Bandthwith, step, mode, audio volume and filter are examples of data that can be stored into the internal EEPROM and restored when you turn the receiver on again. See the section [Storing data into the internal EEPROM before shutdowning](extras/schematic#storing-data-into-the-internal-eeprom-before-shutdowning) for details. 
 
 
 <BR>
