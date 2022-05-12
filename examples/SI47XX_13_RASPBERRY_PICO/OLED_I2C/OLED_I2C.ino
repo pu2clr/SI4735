@@ -1,5 +1,12 @@
 /*
-  This sketch runs on Raspberry Pi Pico device.   
+  
+  UNDER CONSTRUCTION... Is is not working so far.
+  
+  This sketch runs on Raspberry Pi Pico device.
+
+  You can also compile it via arduino-cli
+  arduino-cli compile --fqbn rp2040:rp2040:seeed_xiao_rp2040  ./SI47XX_13_RASPBERRY_PICO/OLED_I2C 
+  arduino-cli compile --fqbn rp2040:rp2040:rpipico  ./SI47XX_13_RASPBERRY_PICO/OLED_I2C 
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
@@ -11,13 +18,13 @@
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-  RPi Pico and components wire up. 
-  
+  RPi Pico and components wire up.
+
   | Device name | Device Pin / Description  |  RPi Pico  |
   | ------------| --------------------------| -----------|
   |    OLED     |                           |            |
-  |             | SDA/SDIO                  |  GP0       | 
-  |             | SCL/SCLK                  |  GP1       | 
+  |             | SDA/SDIO                  |  GP0       |
+  |             | SCL/SCLK                  |  GP1       |
   |    Encoder  |                           |            |
   |             | A                         |  GP19      |
   |             | B                         |  GP20      |
@@ -27,7 +34,7 @@
 
   | Si4735  | SI4732   | DESC.  | RPi Pico (GPIO) |
   |---------| -------- |--------|-----------------|
-  | pin 15  |  pin 9   | RESET  |   GP16          |  
+  | pin 15  |  pin 9   | RESET  |   GP16          |
   | pin 18  |  pin 12  | SDIO   |   GP0           |
   | pin 17  |  pin 11  | SCLK   |   GP1           |
 
@@ -241,8 +248,8 @@ uint8_t volume = DEFAULT_VOLUME;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
-Adafruit_SSD1306 display = Adafruit_SSD1306(128, 32, &Wire);
-
+// Adafruit_SSD1306 display = Adafruit_SSD1306(128, 32, &Wire, -1);
+Adafruit_SSD1306 display(128, 32, &Wire, -1);
 SI4735 rx;
 
 void setup()
@@ -252,9 +259,6 @@ void setup()
 
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
-
-
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C); // Address 0x3C for 128x32
 
   display.display();
   display.setTextColor(SSD1306_WHITE);

@@ -2,8 +2,9 @@
 
   ATTENTION: Under Construction....
 
-  arduino-cli command line: 
+  arduino-cli command line:
   arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI473X_03_ESP32_LCD16x2_ALL_IN_ONE
+  
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
@@ -40,8 +41,8 @@
   |    Band Pass Filter       |                               |               |
   |                           | S0                            | GPIO25        |
   |                           | S1                            | GPIO26        |
-  |    External Audio Mute    |                               |               |  
-  |                           | External Audio Mute  Optional | GPIO35        | 
+  |    External Audio Mute    |                               |               |
+  |                           | External Audio Mute  Optional | GPIO35        |
 
 
   (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
