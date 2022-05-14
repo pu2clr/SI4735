@@ -102,4 +102,7 @@ arduino-cli compile --fqbn ATTinyCore:avr:attinyx5 ./SI47XX_05_ATTINY85/SI47XX_0
 echo "*** OLED"
 arduino-cli compile --fqbn ATTinyCore:avr:attinyx5 --build-path /Users/rcaratti/Downloads ./SI47XX_05_ATTINY85/SI47XX_02_ATTINY85_MINI_OLED_I2C
 
+# compile Atmega128
 
+echo "ATMega128"
+arduino-cli compile -b MegaCore:avr:128 ./SI47XX_17_ATMEGA128/OLED_ALL_IN_ONE
