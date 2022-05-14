@@ -280,7 +280,7 @@ void setup()
   display.display();
   // Ends Splash
 
-  EEPROM.begin();
+  // EEPROM.begin();
  
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
@@ -345,7 +345,7 @@ void saveAllReceiverInformation()
   int addr_offset;
   LongFrequency freqAux;
 
-  EEPROM.begin();
+  // EEPROM.begin();
 
   EEPROM.update(eeprom_address, app_id);                 // stores the app id;
   EEPROM.update(eeprom_address + 1, rx.getVolume()); // stores the current Volume
@@ -374,7 +374,7 @@ void saveAllReceiverInformation()
     EEPROM.update(addr_offset++, band[i].avcIdx);
   }
 
-  EEPROM.end();
+  // EEPROM.end();
 }
 
 /**
