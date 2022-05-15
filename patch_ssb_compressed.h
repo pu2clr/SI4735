@@ -11,7 +11,7 @@
   content is a command 0x15 or 0x16. To shrink the original patch size stored into the controller (MCU) the first byte will 
   be ommited and a new array is added to indicate the position where the command 0x15 occours.
   For the other lines, the downloadCompressedPatch method will include the value 0x16.
-  The value 0x16 occurs on most lines in the patch. This approatch will save about 1K of memory. 
+  The value 0x16 occurs on most lines in the patch. This approach will save about 1K of memory. 
 */
 
 const PROGMEM uint16_t cmd_0x15[] = {
