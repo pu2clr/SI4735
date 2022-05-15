@@ -84,8 +84,8 @@ Follow the source code documentation added to each sketch
 
 One of the two Boards Manager URLs below can be used. 
 
-* Option 1: https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json
-* Option 2: http://dan.drown.org/stm32duino/package_STM32duino_index.json
+* Option 1: http://dan.drown.org/stm32duino/package_STM32duino_index.json
+* Option 2: https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json 
 
 
 
