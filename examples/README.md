@@ -346,7 +346,7 @@ type __arduino-cli board listall__ to see all boards available.
 * [Getting Started with arduino-cli](https://create.arduino.cc/projecthub/B45i/getting-started-with-arduino-cli-7652a5)
 * [Getting started](https://arduino.github.io/arduino-cli/0.21/getting-started/)
 * [Arduino CLI: Getting Started](https://youtu.be/J-qGn1eEidA)
-* [arduino-cli - github.com](https://github.com/arduino/arduino-cli)
+* [Arduino-cli - github.com](https://github.com/arduino/arduino-cli)
 * [Arduino-cli: compile, upload and manage libraries, cores, and boards](https://www.pcbway.com/blog/Activities/Arduino_cli__compile__upload_and_manage_libraries__cores__and_boards.html)
 
 
