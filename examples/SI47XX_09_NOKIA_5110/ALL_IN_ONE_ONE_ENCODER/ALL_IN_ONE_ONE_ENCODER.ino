@@ -55,7 +55,7 @@
 #include <LCD5110_Graph.h> // you can download this library on http://www.rinkydinkelectronics.com/library.php?id=47
 
 #include "Rotary.h"
-#include "patch_ssb_compressed.h"    // Compressed SSB patch version (saving almost 1KB)
+#include <patch_ssb_compressed.h>    // Compressed SSB patch version (saving almost 1KB)
 
 const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
 const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.

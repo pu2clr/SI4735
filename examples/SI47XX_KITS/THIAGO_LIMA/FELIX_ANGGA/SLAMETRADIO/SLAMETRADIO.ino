@@ -56,7 +56,7 @@
 #include <Adafruit_GFX.h>
 #include "DSEG7_Classic_Mini_Regular_20.h"
 
-#include "patch_init.h" // SSB patch for whole SSBRX initialization string
+#include <patch_init.h> // SSB patch for whole SSBRX initialization string
 
 const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h
 

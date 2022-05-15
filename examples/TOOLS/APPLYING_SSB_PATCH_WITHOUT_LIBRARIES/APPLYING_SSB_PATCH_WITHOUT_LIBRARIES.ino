@@ -32,7 +32,7 @@
  * By Ricardo Lima Caratti, Nov 2019
 */
 #include <Wire.h>
-#include "patch_init.h"
+#include <patch_init.h>
 
 #define SI473X_ADDR 0x11   // SI473X I2C buss address
 #define POWER_UP 0x01      // Power up device and mode selection.

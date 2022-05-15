@@ -87,7 +87,7 @@
 
 #include "Rotary.h"
 
-#include "patch_ssb_compressed.h" // Compressed SSB patch version (saving almost 1KB)
+#include <patch_ssb_compressed.h> // Compressed SSB patch version (saving almost 1KB)
 
 const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
 const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.const uint16_t size_content = sizeof ssb_patch_content; // see ssb_patch_content in patch_full.h or patch_init.h

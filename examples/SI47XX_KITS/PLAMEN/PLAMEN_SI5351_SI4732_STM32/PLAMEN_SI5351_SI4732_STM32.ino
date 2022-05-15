@@ -4,8 +4,8 @@
 #include <EEPROM.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include "patch_init.h"
-//#include "patch_ssb_compressed.h"       // SSB patch for whole SSBRX initialization string
+#include <patch_init.h>
+//#include <patch_ssb_compressed.h>       // SSB patch for whole SSBRX initialization string
 #define I2C_ADDRESS   0x3C    // OLED I2C address
 #define SCREEN_WIDTH  128     // OLED display width, in pixels
 #define SCREEN_HEIGHT  64     // OLED display height, in pixels

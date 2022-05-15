@@ -63,7 +63,7 @@
 
 #include "Rotary.h"
 
-#include "patch_init.h" // SSB patch for whole SSBRX initialization string
+#include <patch_init.h> // SSB patch for whole SSBRX initialization string
 
 #define MINPRESSURE 200
 #define MAXPRESSURE 1000

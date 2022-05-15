@@ -80,7 +80,7 @@
 
 #include <SI4735.h>
 #include "Rotary.h"
-#include "patch_init.h" // SSB patch for whole SSBRX initialization string
+#include <patch_init.h> // SSB patch for whole SSBRX initialization string
 
 const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 

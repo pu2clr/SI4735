@@ -66,7 +66,7 @@
 #include "Rotary.h"
 
 // Test it with patch_init.h
-#include "patch_ssb_compressed.h" // SSB patch for whole SSBRX initialization string
+#include <patch_ssb_compressed.h> // SSB patch for whole SSBRX initialization string
 
 const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
 const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
