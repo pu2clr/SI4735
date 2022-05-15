@@ -9,9 +9,12 @@
 
   If you see the patch_init.h and patch_full.h files you will notice that the  first byte of each line of the content of 
   the patch has the value 0x15 or 0x16. To shrink the original patch size stored into the controller (MCU) the first byte
-  is ommited and a new array is added to indicate the position where the command 0x15 occours.
+  is ommited and a new array is added to indicate the position where the value 0x15 occours.
   For the other lines, the downloadCompressedPatch method will include the value 0x16.
   The value 0x16 occurs on most lines in the patch. This approach will save about 1K of memory. 
+
+  See downloadCompressedPatch implementation for more details in SI4735.cpp. 
+
 */
 
 const PROGMEM uint16_t cmd_0x15[] = {

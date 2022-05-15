@@ -3231,10 +3231,31 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
  * @brief Same downloadPatch.
  * @details Transfers the content of a patch stored in a compressed array of bytes to the SI4735 device.
  * @details If you see the patch_init.h and patch_full.h files you will notice that the  first byte of each line of the content of 
- * @details the patch has the value 0x15 or 0x16. To shrink the original patch size stored into the controller (MCU) the first byte
- * @details is ommited and a new array is added to indicate the position where the command 0x15 occours.
+ * @details the patch has the value 0x15 or 0x16. To shrink the original patch size stored into the master MCU (Arduino) the first byte
+ * @details is ommited and a new array is added to indicate the position where the value 0x15 occours.
  * @details For the other lines, the downloadCompressedPatch method will include the value 0x16.
  * @details The value 0x16 occurs on most lines in the patch. This approach will save about 1K of memory. 
+ * @details The example code below shows how to use compressed SSB patch.
+ * @code 
+ *   #include <patch_ssb_compressed.h> // SSB patch for whole SSBRX initialization string
+ *   const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
+ *   const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
+ *
+ *   void loadSSB()
+ *   {
+ *     .
+ *     .
+ *     rx.setI2CFastModeCustom(500000);
+ *     rx.queryLibraryId(); // Is it really necessary here? I will check it.
+ *     rx.patchPowerUp();
+ *     delay(50);
+ *     rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
+ *     rx.setSSBConfig(bandwidthSSB[bwIdxSSB].idx, 1, 0, 1, 0, 1);
+ *     rx.setI2CStandardMode();
+ *     .
+ *     .
+ *   }
+ * @endcode 
  * @see  patch_ssb_compressed.h, patch_init.h, patch_full.h
  * @param ssb_patch_content         point to array of bytes content patch.
  * @param ssb_patch_content_size    array size (number of bytes). The maximum size allowed for a patch is 15856 bytes
