@@ -3,15 +3,15 @@
 	The paches used here were made available by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his
 	[Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0).
 	The author of this Si4735 Arduino Library does not encourage anyone to use the SSB patches content for commercial purposes.
-	In other words, that library only supports SSB patches, the patches themselves are not part of this library.
+	In other words, this library only supports SSB patches, the patches themselves are not part of this library.
 
 	This file was adapted to C/C++ from  the original file (amrx_6_0_1_ssbrx_patch_init_0xA902.csg).
 
-  The first byte of each line of the original patch content is a command 0x15 or 0x16.
-  To shrink the original patch size stored into the controller the first byte will be
-  ommited and a new array will be added to indicate the position where the command 0x15 occours.
+  If you see the patch_init.h and patch_full.h files you will notice that the  first byte of each line of the original patch 
+  content is a command 0x15 or 0x16. To shrink the original patch size stored into the controller (MCU) the first byte will 
+  be ommited and a new array is added to indicate the position where the command 0x15 occours.
   For the other lines, the downloadCompressedPatch method will include the value 0x16.
-  The value 0x16 occurs on most lines in the patch.
+  The value 0x16 occurs on most lines in the patch. This approatch will save about 1K of memory. 
 */
 
 const PROGMEM uint16_t cmd_0x15[] = {
