@@ -3257,6 +3257,8 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
  *   }
  * @endcode 
  * @see  patch_ssb_compressed.h, patch_init.h, patch_full.h
+ * @see  SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V15.ino
+ * @see  SI47XX_09_NOKIA_5110/ALL_IN_ONE_7_BUTTONS/ALL_IN_ONE_7_BUTTONS.ino
  * @param ssb_patch_content         point to array of bytes content patch.
  * @param ssb_patch_content_size    array size (number of bytes). The maximum size allowed for a patch is 15856 bytes
  * @param cmd_0x15                  Array of lines where the first byte of each patch content line is 0x15

@@ -218,7 +218,7 @@
  * @details The goal of this approach is separating data from code. 
  * The Si47XX family works with many internal data that can be represented by data structure 
  * or defined data type in C/C++. These C/C++ resources have been used widely here.  
- * This aproach made the library easier to build and maintain.  Each data structure created 
+ * This approach made the library easier to build and maintain.  Each data structure created 
  * here has its reference (name of the document and page on which it was based). 
  * In other words, to make the SI47XX device easier to deal, some defined data types were 
  * created to handle byte and bits to process  commands, properties and responses.

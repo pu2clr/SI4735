@@ -15,6 +15,32 @@
 
   See downloadCompressedPatch implementation for more details in SI4735.cpp. 
 
+  The example code below shows how to use compressed SSB patch.
+
+  #include <patch_ssb_compressed.h> // SSB patch for whole SSBRX initialization string
+  const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
+  const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
+ 
+  void loadSSB()
+  {
+     .
+     .
+     rx.setI2CFastModeCustom(500000);
+     rx.queryLibraryId(); // Is it really necessary here? I will check it.
+     rx.patchPowerUp();
+     delay(50);
+     rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
+     rx.setSSBConfig(bandwidthSSB[bwIdxSSB].idx, 1, 0, 1, 0, 1);
+     rx.setI2CStandardMode();
+     .
+     .
+  }
+
+  Some examples where the compressed approach is used:  
+    1. examples/SI47XX_03_OLED_I2C/SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V15/SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V15.ino
+    2. examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V7_g/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V7_g.ino
+    3. examples/SI47XX_09_NOKIA_5110/ALL_IN_ONE_7_BUTTONS/ALL_IN_ONE_7_BUTTONS.ino
+
 */
 
 const PROGMEM uint16_t cmd_0x15[] = {
