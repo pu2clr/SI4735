@@ -3247,7 +3247,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
  *     .
  *     .
  *     rx.setI2CFastModeCustom(500000);
- *     rx.queryLibraryId(); // Is it really necessary here? I will check it.
+ *     rx.queryLibraryId(); 
  *     rx.patchPowerUp();
  *     delay(50);
  *     rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
