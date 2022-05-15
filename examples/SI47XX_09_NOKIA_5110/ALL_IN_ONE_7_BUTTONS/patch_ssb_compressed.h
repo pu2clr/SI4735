@@ -7,9 +7,11 @@
 
 	This file was adapted to C/C++ from  the original file (amrx_6_0_1_ssbrx_patch_init_0xA902.csg).
 
-	The first byte of each line of the patch content is a command 0x15 or 0x16.
-	To shrink the patch size stored into the controller he first byte will be ommited and a new array will be added
-	to indicate the position where the command 0x15 occours.
+  The first byte of each line of the original patch content is a command 0x15 or 0x16.
+  To shrink the original patch size stored into the controller the first byte will be
+  ommited and a new array will be added to indicate the position where the command 0x15 occours.
+  For the other lines, the downloadCompressedPatch method will include the value 0x16.
+  The value 0x16 occurs on most lines in the patch.
 */
 
 const PROGMEM uint16_t cmd_0x15[] = {
