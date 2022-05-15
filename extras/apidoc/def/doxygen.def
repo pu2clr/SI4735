@@ -91,7 +91,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga7751b076ce0bcb62eade4f92cd8d93a6';
-        sec-mem-ref-line = '3315';
+        sec-mem-ref-line = '3338';
         sec-mem-ref-name = 'downloadPatchFromEeprom';
     };
       sec-mem-referencedby = {
@@ -146,7 +146,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gabed83f2c503dc3b35ca115ef6b08d552';
-        sec-mem-ref-line = '3481';
+        sec-mem-ref-line = '3504';
         sec-mem-ref-name = 'patchPowerUpNBFM';
     };
       sec-mem-referencedby = {
@@ -201,7 +201,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga5c8c57c727fd102f0eb3d59ec995692f';
-        sec-mem-ref-line = '3583';
+        sec-mem-ref-line = '3606';
         sec-mem-ref-name = 'setFrequencyNBFM';
     };
       sec-mem-referencedby = {
@@ -965,7 +965,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga505445484e643ae95a2a9300eac9c4c1';
-        sec-mem-ref-line = '3524';
+        sec-mem-ref-line = '3547';
         sec-mem-ref-name = 'setNBFM';
     };
       sec-mem-referencedby = {
@@ -6359,7 +6359,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga22adda493bc8278a376c1ba6f6ea4668';
-        sec-mem-ref-line = '3555';
+        sec-mem-ref-line = '3578';
         sec-mem-ref-name = 'setNBFM';
     };
     }; /* sec-member */
@@ -6416,7 +6416,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga505445484e643ae95a2a9300eac9c4c1';
-        sec-mem-ref-line = '3524';
+        sec-mem-ref-line = '3547';
         sec-mem-ref-name = 'setNBFM';
     };
     }; /* sec-member */
@@ -6450,7 +6450,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadd298b10c6c7e760e7233b50500773c3';
-        sec-mem-ref-line = '3500';
+        sec-mem-ref-line = '3523';
         sec-mem-ref-name = 'loadPatchNBFM';
     };
     }; /* sec-member */
@@ -6488,7 +6488,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gabed83f2c503dc3b35ca115ef6b08d552';
-        sec-mem-ref-line = '3481';
+        sec-mem-ref-line = '3504';
         sec-mem-ref-name = 'patchPowerUpNBFM';
     };
       sec-mem-referenceto = {
@@ -6582,12 +6582,12 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga591bbfe4dbd39a6de29a37935a6abee5';
-        sec-mem-ref-line = '3285';
+        sec-mem-ref-line = '3308';
         sec-mem-ref-name = 'loadPatch';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadd298b10c6c7e760e7233b50500773c3';
-        sec-mem-ref-line = '3500';
+        sec-mem-ref-line = '3523';
         sec-mem-ref-name = 'loadPatchNBFM';
     };
     }; /* sec-member */
@@ -6621,7 +6621,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga591bbfe4dbd39a6de29a37935a6abee5';
-        sec-mem-ref-line = '3285';
+        sec-mem-ref-line = '3308';
         sec-mem-ref-name = 'loadPatch';
     };
     }; /* sec-member */
@@ -6729,11 +6729,34 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  Transfers the content of a patch stored in a compressed array of bytes to the SI4735 device.
 \ilinebr\ilinebr If you see the patch_init.h and patch_full.h files you will notice that the  first byte of each line of the content of 
-\ilinebr\ilinebr the patch has the value 0x15 or 0x16. To shrink the original patch size stored into the controller (MCU) the first byte
-\ilinebr\ilinebr is ommited and a new array is added to indicate the position where the command 0x15 occours.
+\ilinebr\ilinebr the patch has the value 0x15 or 0x16. To shrink the original patch size stored into the master MCU (Arduino) the first byte
+\ilinebr\ilinebr is ommited and a new array is added to indicate the position where the value 0x15 occours.
 \ilinebr\ilinebr For the other lines, the downloadCompressedPatch method will include the value 0x16.
 \ilinebr\ilinebr The value 0x16 occurs on most lines in the patch. This approach will save about 1K of memory. 
+\ilinebr\ilinebr The example code below shows how to use compressed SSB patch.
+@code 
+  #include <patch_ssb_compressed.h> // SSB patch for whole SSBRX initialization string
+  const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
+  const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
+
+  void loadSSB()
+  {
+    .
+    .
+    rx.setI2CFastModeCustom(500000);
+    rx.queryLibraryId(); // Is it really necessary here? I will check it.
+    rx.patchPowerUp();
+    delay(50);
+    rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
+    rx.setSSBConfig(bandwidthSSB[bwIdxSSB].idx, 1, 0, 1, 0, 1);
+    rx.setI2CStandardMode();
+    .
+    .
+  }
+@endcode 
 @see  patch_ssb_compressed.h, patch_init.h, patch_full.h
+@see  SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V15.ino
+@see  SI47XX_09_NOKIA_5110/ALL_IN_ONE_7_BUTTONS/ALL_IN_ONE_7_BUTTONS.ino
 @param ssb_patch_content         point to array of bytes content patch.
 @param ssb_patch_content_size    array size (number of bytes). The maximum size allowed for a patch is 15856 bytes
 @param cmd_0x15                  Array of lines where the first byte of each patch content line is 0x15
@@ -18300,7 +18323,7 @@ _EnD_oF_dEf_TeXt_;
  1076, 1078, 1081, 1084, 1088, 1091, 1093, 1097, 1099, 1102, 1104}
 _EnD_oF_dEf_TeXt_;
       var-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/patch_ssb_compressed.h';
-      var-mem-desc-line = '17';
+      var-mem-desc-line = '46';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -19426,7 +19449,7 @@ _EnD_oF_dEf_TeXt_;
  0x00, 0x00, 0x00, 0x00, 0x00, 0xA9, 0x02}
 _EnD_oF_dEf_TeXt_;
       var-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/patch_ssb_compressed.h';
-      var-mem-desc-line = '23';
+      var-mem-desc-line = '52';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
