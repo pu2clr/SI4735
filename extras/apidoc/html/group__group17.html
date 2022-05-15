@@ -181,7 +181,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:gafd1343bd8b4f0c290ef81c418222036c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers the content of a patch stored in a array of bytes to the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> device.  <a href="group__group17.html#gafd1343bd8b4f0c290ef81c418222036c">More...</a><br /></td></tr>
 <tr class="separator:gafd1343bd8b4f0c290ef81c418222036c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf1b8947db928728ada66ef3edaa79e76"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#gaf1b8947db928728ada66ef3edaa79e76">SI4735::downloadCompressedPatch</a> (const uint8_t *<a class="el" href="patch__ssb__compressed_8h.html#ac93dbb1ad937fa1d43e7f5589b2e997e">ssb_patch_content</a>, const uint16_t ssb_patch_content_size, const uint16_t *<a class="el" href="patch__ssb__compressed_8h.html#aa53e4395accdd894bda0ffc72219f8cb">cmd_0x15</a>, const int16_t cmd_0x15_size)</td></tr>
-<tr class="memdesc:gaf1b8947db928728ada66ef3edaa79e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same downloadPatch.  <a href="group__group17.html#gaf1b8947db928728ada66ef3edaa79e76">More...</a><br /></td></tr>
+<tr class="memdesc:gaf1b8947db928728ada66ef3edaa79e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deal with compressed SSB patch.  <a href="group__group17.html#gaf1b8947db928728ada66ef3edaa79e76">More...</a><br /></td></tr>
 <tr class="separator:gaf1b8947db928728ada66ef3edaa79e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga591bbfe4dbd39a6de29a37935a6abee5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5">SI4735::loadPatch</a> (const uint8_t *<a class="el" href="patch__ssb__compressed_8h.html#ac93dbb1ad937fa1d43e7f5589b2e997e">ssb_patch_content</a>, const uint16_t ssb_patch_content_size, uint8_t ssb_audiobw=1)</td></tr>
 <tr class="memdesc:ga591bbfe4dbd39a6de29a37935a6abee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a given SSB patch content.  <a href="group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5">More...</a><br /></td></tr>
@@ -1240,7 +1240,8 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM 
       </table>
 </div><div class="memdoc">
 
-<p>Same downloadPatch. </p>
+<p>Deal with compressed SSB patch. </p>
+<p >It works like the downloadPatch method but it is very useful when you need to save memory.</p>
 <p >Transfers the content of a patch stored in a compressed array of bytes to the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> device.</p>
 <p >If you see the <a class="el" href="patch__init_8h.html">patch_init.h</a> and <a class="el" href="patch__full_8h.html">patch_full.h</a> files you will notice that the first byte of each line of the content of</p>
 <p >the patch has the value 0x15 or 0x16. To shrink the original patch size stored into the master MCU (Arduino) the first byte</p>
@@ -1268,7 +1269,9 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM 
 <div class="ttc" id="apatch__full_8h_html_a52825929f968bc7a855a559fa9ebba7b"><div class="ttname"><a href="patch__full_8h.html#a52825929f968bc7a855a559fa9ebba7b">ssb_patch_content</a></div><div class="ttdeci">const PROGMEM uint8_t ssb_patch_content[]</div><div class="ttdef"><b>Definition:</b> patch_full.h:22</div></div>
 <div class="ttc" id="apatch__ssb__compressed_8h_html"><div class="ttname"><a href="patch__ssb__compressed_8h.html">patch_ssb_compressed.h</a></div></div>
 <div class="ttc" id="apatch__ssb__compressed_8h_html_aa53e4395accdd894bda0ffc72219f8cb"><div class="ttname"><a href="patch__ssb__compressed_8h.html#aa53e4395accdd894bda0ffc72219f8cb">cmd_0x15</a></div><div class="ttdeci">const PROGMEM uint16_t cmd_0x15[]</div><div class="ttdef"><b>Definition:</b> patch_ssb_compressed.h:46</div></div>
-</div><!-- fragment --> <dl class="section see"><dt>See also</dt><dd><a class="el" href="patch__ssb__compressed_8h.html">patch_ssb_compressed.h</a>, <a class="el" href="patch__init_8h.html">patch_init.h</a>, <a class="el" href="patch__full_8h.html">patch_full.h</a> </dd>
+</div><!-- fragment --> <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group17.html#gafd1343bd8b4f0c290ef81c418222036c" title="Transfers the content of a patch stored in a array of bytes to the SI4735 device.">downloadPatch</a> </dd>
+<dd>
+<a class="el" href="patch__ssb__compressed_8h.html">patch_ssb_compressed.h</a>, <a class="el" href="patch__init_8h.html">patch_init.h</a>, <a class="el" href="patch__full_8h.html">patch_full.h</a> </dd>
 <dd>
 SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V15.ino </dd>
 <dd>
