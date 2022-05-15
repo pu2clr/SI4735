@@ -1035,12 +1035,13 @@ The table below shows the some boards where this library has been successfully t
 | 18 | STM32F103 Series  |  No | PB6 (SCL) and PB7(SDA) | PA12 | [More...](https://circuitdigest.com/microcontroller-projects/getting-started-with-stm32-development-board-stm32f103c8-using-arduino-ide) |
 | 19 | STM32F411 Series  |  No | PB6 (SCL) and PB7(SDA) | PA12 | [More...](https://hackaday.com/2021/01/20/blue-pill-vs-black-pill-transitioning-from-stm32f103-to-stm32f411/) |
 | 20 | Raspberry Pi Pico  | No | GP0 (0) and GP1 (1) | GP16 (16) | [More...](https://www.tomshardware.com/how-to/program-raspberry-pi-pico-with-arduino-ide) | 
-| 21 | Seeeduino XIAO | No  | A4 and A5  |  3 |  [More...](https://wiki.seeedstudio.com/Seeeduino-XIAO/)  | 
-| 22 | Teensy 3.1     | No  | A4 and A5  | 12  |  [More...](https://www.pjrc.com/teensy/teensy31.html) | 
-| 23 | Teensy 4.1     | No  | A4 and A5  | 12  |  [More...](https://www.pjrc.com/store/teensy41.html) | 
-| 24 | Atmega8        | No  | PC4 and PC5 | PD6/12 | [More...](https://github.com/MCUdude/MightyCore) |
-| 25 | Atmega32       | No  | PC1 and PC0 | PB6/12 | [More...](https://github.com/MCUdude/MightyCore) |
-| 26 | Atmega128      | No  | PC1 and PC0 | PB6/12 | [More...](https://ww1.microchip.com/downloads/en/DeviceDoc/doc2467.pdf) |
+| 21 | WeAct Studio RP2040 Pico  | No | GP0 (0) and GP1 (1) | GP16 (16) | More...](https://productreview.click/shop/raspberry-pi-pico-board-rp2040-2mb-4mb-8mb-16mb-support-micropython-c-c、circuitpython/) | 
+| 22 | Seeeduino XIAO | No  | A4 and A5  |  3 |  [More...](https://wiki.seeedstudio.com/Seeeduino-XIAO/)  | 
+| 23 | Teensy 3.1     | No  | A4 and A5  | 12  |  [More...](https://www.pjrc.com/teensy/teensy31.html) | 
+| 24 | Teensy 4.1     | No  | A4 and A5  | 12  |  [More...](https://www.pjrc.com/store/teensy41.html) | 
+| 25 | Atmega8        | No  | PC4 and PC5 | PD6/12 | [More...](https://github.com/MCUdude/MightyCore) |
+| 26 | Atmega32       | No  | PC1 and PC0 | PB6/12 | [More...](https://github.com/MCUdude/MightyCore) |
+| 27 | Atmega128      | No  | PC1 and PC0 | PB6/12 | [More...](https://ww1.microchip.com/downloads/en/DeviceDoc/doc2467.pdf) |
 
 
 * [ˆ4] It seams that in some ESP32 board, the I²C bus is not configured prorpelly by default. However, you can set almost any pin on ESP32 to setup I²C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. See see the folder examples to check how to use ESP32 devices. 
