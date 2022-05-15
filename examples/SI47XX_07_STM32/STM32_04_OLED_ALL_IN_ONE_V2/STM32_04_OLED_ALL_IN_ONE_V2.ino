@@ -276,7 +276,7 @@ void setup()
   delay(2000);
   display.clearDisplay();
 
-  EEPROM.begin();
+  // EEPROM.begin();
 
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
