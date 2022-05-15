@@ -32,7 +32,6 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_04_TFT/SI47XX_01_TFT_ILI9225
 ## arduino-cli compile -b MiniCore:avr:328 ./SI47XX_04_TFT/SI47XX_03_TFT_ATMEGA328_ST7735
 
 
-
 echo "POC Active Crystal"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_11_NO_CRYSTAL/POC_ACTIVE_CRYSTAL
 arduino-cli compile -b arduino:avr:nano ./SI47XX_11_NO_CRYSTAL/POC_LCD16x2
