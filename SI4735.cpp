@@ -3230,11 +3230,11 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
  *
  * @brief Same downloadPatch.
  * @details Transfers the content of a patch stored in a compressed array of bytes to the SI4735 device.
- * @details If you see the patch_init.h and patch_full.h files you will notice that the  first byte of each line of the original patch
- * @details content is a command 0x15 or 0x16. To shrink the original patch size stored into the controller (MCU) the first byte will
- * @details be ommited and a new array is added to indicate the position where the command 0x15 occours.
+ * @details If you see the patch_init.h and patch_full.h files you will notice that the  first byte of each line of the content of 
+ * @details the patch has the value 0x15 or 0x16. To shrink the original patch size stored into the controller (MCU) the first byte
+ * @details is ommited and a new array is added to indicate the position where the command 0x15 occours.
  * @details For the other lines, the downloadCompressedPatch method will include the value 0x16.
- * @details The value 0x16 occurs on most lines in the patch. This approach will save about 1K of memory.
+ * @details The value 0x16 occurs on most lines in the patch. This approach will save about 1K of memory. 
  * @see  patch_ssb_compressed.h, patch_init.h, patch_full.h
  * @param ssb_patch_content         point to array of bytes content patch.
  * @param ssb_patch_content_size    array size (number of bytes). The maximum size allowed for a patch is 15856 bytes
