@@ -928,15 +928,15 @@ _EnD_oF_dEf_TeXt_;
 <tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> FUNC \ilinebr </td>    <td class="markdownTableBodyNone"> defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver \ilinebr </td>  </tr>
 <tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> OPMODE \ilinebr </td>    <td class="markdownTableBodyNone"> SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011) \ilinebr </td>  </tr></table>
 
- ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note:
-            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
+ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note:
+           Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
 
-see setMaxDelaySetFrequency()
- @see MAX_DELAY_AFTER_POWERUP
- @see XOSCEN_CRYSTAL
- @see XOSCEN_RCLK
- @see  SI4735::setPowerUp()
- @see  Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129
+@see setMaxDelaySetFrequency()
+@see MAX_DELAY_AFTER_POWERUP
+@see XOSCEN_CRYSTAL
+@see XOSCEN_RCLK
+@see  SI4735::setPowerUp()
+@see  Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 64, 129
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8h_1ga54a3a0f412aa6318df0046d478bd134f';

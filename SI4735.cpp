@@ -394,7 +394,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note:
  *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
  *
- *see setMaxDelaySetFrequency()
+ * @see setMaxDelaySetFrequency()
  * @see MAX_DELAY_AFTER_POWERUP
  * @see XOSCEN_CRYSTAL
  * @see XOSCEN_RCLK
