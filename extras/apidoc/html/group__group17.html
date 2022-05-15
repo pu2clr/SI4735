@@ -1242,9 +1242,9 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM 
 
 <p>Same downloadPatch. </p>
 <p >Transfers the content of a patch stored in a compressed array of bytes to the <a class="el" href="class_s_i4735.html" title="SI4735 Class.">SI4735</a> device.</p>
-<p >If you see the <a class="el" href="patch__init_8h.html">patch_init.h</a> and <a class="el" href="patch__full_8h.html">patch_full.h</a> files you will notice that the first byte of each line of the original patch</p>
-<p >content is a command 0x15 or 0x16. To shrink the original patch size stored into the controller (MCU) the first byte will</p>
-<p >be ommited and a new array is added to indicate the position where the command 0x15 occours.</p>
+<p >If you see the <a class="el" href="patch__init_8h.html">patch_init.h</a> and <a class="el" href="patch__full_8h.html">patch_full.h</a> files you will notice that the first byte of each line of the content of</p>
+<p >the patch has the value 0x15 or 0x16. To shrink the original patch size stored into the controller (MCU) the first byte</p>
+<p >is ommited and a new array is added to indicate the position where the command 0x15 occours.</p>
 <p >For the other lines, the downloadCompressedPatch method will include the value 0x16.</p>
 <p >The value 0x16 occurs on most lines in the patch. This approach will save about 1K of memory. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="patch__ssb__compressed_8h.html">patch_ssb_compressed.h</a>, <a class="el" href="patch__init_8h.html">patch_init.h</a>, <a class="el" href="patch__full_8h.html">patch_full.h</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
