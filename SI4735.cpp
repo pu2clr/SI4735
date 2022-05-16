@@ -1,7 +1,7 @@
 /**
  * @mainpage SI47XX Arduino Library implementation 
  * 
- * This is a library for the SI4735, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
+ * This is a library for the SI473X and SI474X, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
  * Arduino development environment.  It works with I2C protocol and can provide an easier interface for controlling the SI47XX CI family.<br>
  * 
  * This library was built based on [Si47XX PROGRAMMING GUIDE-AN332 (REV 1.0)](https://www.silabs.com/documents/public/application-notes/AN332.pdf) document from Silicon Labs. 
@@ -26,7 +26,7 @@
  * @details 9. RDS support.
  * @details 10. SSB (Single Side Band) patch support (SI4735-D60 and SI4732-A10). 
  * @details 11. Digital Audio (__Attention__: Crystal and digital audio mode cannot be used at the same time).
- * @details 12. More than 20 example available.  See <https://github.com/pu2clr/SI4735/tree/master/examples><br>
+ * @details 12. More than 30 example available.  See <https://github.com/pu2clr/SI4735/tree/master/examples><br>
  * 
  *  Some texts were extracted directly from the Silicon Labs documentation. The name of the Silicon Labs document and pages are described in the source code comments.
  * 
@@ -36,7 +36,7 @@
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
  * 
  * @author PU2CLR - Ricardo Lima Caratti 
- * @date  2019-2020
+ * @date  2019-2022
  * @copyright MIT Free Software model. See [Copyright (c) 2019 Ricardo Lima Caratti](https://pu2clr.github.io/SI4735/#mit-license). 
  */
 

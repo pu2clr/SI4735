@@ -1,12 +1,12 @@
 /**
  * @brief SI4735 ARDUINO LIBRARY  
  * 
- * @details This is an Arduino library for the SI47XX, BROADCAST AM/FM/SW RADIO RECEIVER IC family from Silicon Labs. 
- * @details This library is intended to provide an easier interface for controlling the SI47XX by using Arduino platform. 
+ * @details This is an Arduino library for the SI473X and SI474X, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
+ * @details Arduino development environment 
  * @details The communication used by this library is I2C.
  * @details This file contains: const (#define), Defined Data type and Methods declarations
  * @details You can see a complete documentation on <https://github.com/pu2clr/SI4735>
- * @details The are more than 20 examples on <https://github.com/pu2clr/SI4735/tree/master/examples>
+ * @details The are more than 30 examples on <https://github.com/pu2clr/SI4735/tree/master/examples>
  *   
  * @see [General Documentation](https://pu2clr.github.io/SI4735/)
  * @see [Schematics](https://pu2clr.github.io/SI4735/extras/schematic/)
@@ -14,7 +14,7 @@
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES
  * 
  * @author PU2CLR - Ricardo Lima Caratti 
- * @date  2019-2020
+ * @date  2019-2022
  */
 
 #ifndef _SI4735_H // Prevent this file from being compiled more than once
