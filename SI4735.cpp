@@ -2927,7 +2927,9 @@ void SI4735::setSSB(uint8_t usblsb)
 /**
  * @ingroup group17 Patch and SSB support
  *  
- * @details Tunes the SSB (LSB or USB) receiver to a frequency between 520 and 30 MHz in 1 kHz steps. 
+ * @details Tunes the SSB (LSB or USB) receiver to a frequency between 150 and 30 MHz. 
+ * @details Via VFO you have 1kHz steps. 
+ * @details Via BFO you have 8Hz steps. 
  * 
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14
  * @see setAM()
