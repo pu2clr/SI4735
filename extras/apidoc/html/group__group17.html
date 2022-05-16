@@ -928,7 +928,9 @@ void <a class="el" href="group__group08.html#ga63d205f2d3169ba877a2bd2ee28d224f"
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Tunes the SSB (LSB or USB) receiver to a frequency between 520 and 30 MHz in 1 kHz steps.</p>
+<p >Tunes the SSB (LSB or USB) receiver to a frequency between 150 and 30 MHz.</p>
+<p >Via VFO you have 1kHz steps.</p>
+<p >Via BFO you have 8Hz steps.</p>
 <dl class="section see"><dt>See also</dt><dd>AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 13 and 14 </dd>
 <dd>
 <a class="el" href="group__group08.html#ga753390952a1f2c2a98343979f1f3daa0" title="Sets the radio to AM function. It means: LW MW and SW.">setAM()</a> </dd>
@@ -1257,7 +1259,7 @@ AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM 
 <div class="line">  .</div>
 <div class="line">  .</div>
 <div class="line">  rx.setI2CFastModeCustom(500000);</div>
-<div class="line">  rx.queryLibraryId(); <span class="comment">// Is it really necessary here? I will check it.</span></div>
+<div class="line">  rx.queryLibraryId(); </div>
 <div class="line">  rx.patchPowerUp();</div>
 <div class="line">  delay(50);</div>
 <div class="line">  rx.downloadCompressedPatch(<a class="code hl_variable" href="patch__full_8h.html#a52825929f968bc7a855a559fa9ebba7b">ssb_patch_content</a>, size_content, <a class="code hl_variable" href="patch__ssb__compressed_8h.html#aa53e4395accdd894bda0ffc72219f8cb">cmd_0x15</a>, cmd_0x15_size);</div>
