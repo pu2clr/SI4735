@@ -150,7 +150,7 @@ var class_s_i4735 =
     [ "setSeekAmRssiThreshold", "group__group08.html#gae206ce900e59c6e5ff3ad5ea8cb72a12", null ],
     [ "setSeekFmLimits", "group__group08.html#gaf66b9851297e6884d70a7e40dd1367c4", null ],
     [ "setSeekFmSpacing", "group__group08.html#ga6269e74b72ec1a1c3630b2800bad66b1", null ],
-    [ "setSeekFmSrnThreshold", "class_s_i4735.html#a4ed12cebaf51a7379fc06623991b2d51", null ],
+    [ "setSeekFmSrnThreshold", "group__group08.html#ga4ed12cebaf51a7379fc06623991b2d51", null ],
     [ "setSeekFmSNRThreshold", "group__group08.html#ga8fe968baf9aac540e2d234141b564650", null ],
     [ "setSeekFmRssiThreshold", "group__group08.html#ga97c3887e96fe32426e974c0b2cb33bad", null ],
     [ "setFmBlendStereoThreshold", "group__group12.html#gac598865516ca09db7dbfa6a84da7f179", null ],

@@ -90,7 +90,7 @@ var searchData=
   ['setseekfmrssithreshold_87',['setSeekFmRssiThreshold',['../group__group08.html#ga97c3887e96fe32426e974c0b2cb33bad',1,'SI4735']]],
   ['setseekfmsnrthreshold_88',['setSeekFmSNRThreshold',['../group__group08.html#ga8fe968baf9aac540e2d234141b564650',1,'SI4735']]],
   ['setseekfmspacing_89',['setSeekFmSpacing',['../group__group08.html#ga6269e74b72ec1a1c3630b2800bad66b1',1,'SI4735']]],
-  ['setseekfmsrnthreshold_90',['setSeekFmSrnThreshold',['../class_s_i4735.html#a4ed12cebaf51a7379fc06623991b2d51',1,'SI4735']]],
+  ['setseekfmsrnthreshold_90',['setSeekFmSrnThreshold',['../group__group08.html#ga4ed12cebaf51a7379fc06623991b2d51',1,'SI4735']]],
   ['setssb_91',['setSSB',['../group__group17.html#ga7c48f2af416b1f89dbedbfbe9a637620',1,'SI4735::setSSB(uint16_t fromFreq, uint16_t toFreq, uint16_t intialFreq, uint16_t step, uint8_t usblsb)'],['../group__group17.html#ga3e907ddf560a0c8286fa55768701b3da',1,'SI4735::setSSB(uint8_t usblsb)']]],
   ['setssbagcattackrate_92',['setSsbAgcAttackRate',['../group__group17.html#ga211bb7fb7b339e005e8a0ae2e2813b79',1,'SI4735']]],
   ['setssbagcoverrite_93',['setSsbAgcOverrite',['../group__group17.html#ga2da03a7257b7ca821f984bfa7fef97fa',1,'SI4735']]],
