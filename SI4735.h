@@ -2303,6 +2303,7 @@ public:
     void setSeekFmSpacing(uint16_t spacing);
 
     /**
+     * @ingroup group08 Seek
      * @brief Set the Seek Fm Srn Threshold object
      * @deprecated Use setSeekFmSNRThreshold instead.
      * @param value 
