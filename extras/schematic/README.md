@@ -1,6 +1,6 @@
 # [Schematics and Sketches](https://pu2clr.github.io/extras/schematic)
 
-This section presents several prototypes and circuits with different displays and controller boards. The source codes for each prototype are stored in the [examples folder](https://github.com/pu2clr/SI4735/tree/master/examples) of this repository. Please, check the comments at the beginning of each sketch example available in this library. You will find the SI473X, button, encoder, display and Arduino settings. There are more than 20 projects that can help you build your own receiver based on the SI47XX IC family. 
+This section presents several prototypes and circuits with different displays and controller boards. The source codes for each prototype are stored in the [examples folder](https://github.com/pu2clr/SI4735/tree/master/examples) of this repository. Please, check the comments at the beginning of each sketch example available in this library. You will find the SI473X, button, encoder, display and Arduino settings. There are more than 30 projects that can help you to build your own receiver based on the SI47XX IC family. 
 
 
 __IT IS IMPORTANT TO SAY THAT THE CIRCUITS DESIGN BUILT BY THE AUTHOR ARE NOT INTEND TO BE A FINAL PRODUCT. SOME IMPORTANT ASPECTS AND DETAILS ABOUT A GOOD RECEIVER WERE OMITTED HERE. THE IDEA OF THE CIRCUITS MADE BY THE AUTHOR WERE ORIENTED TO BE A PROOF OF CONCEPT OF THE FUNCTIONS IMPLEMENTED IN THE ARDUINO LIBRARY. SO, COMPONENTS LIKE RF FRONT-END, BAND PASS FILTER,  ESD, ANTENNA DESIGN ARE NOT THE MAIN PART OF THIS PROJECT__.
@@ -15,7 +15,7 @@ __This project is about a library to control the SI47XX devices and the focus of
 
 ## SI4735 and SI4732 pinout
 
-If the schematic uses the SI4735 device but you have the SI4732 device, all you have to do is following the lables of those devices to replace them. See pictures and the table __SI4735-D60 and SI4732-A10 replacement__  below. 
+If the schematic uses the SI4735 device but you have the SI4732 device or vice-versa, all you have to do is following the lables of those devices to replace them. See pictures and the table __SI4735-D60 and SI4732-A10 replacement__  below. 
 
 ### The picture below shows the SI4735-D60/SI4730-D60 pinout (SSOP)
 

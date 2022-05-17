@@ -303,9 +303,11 @@ While the Si4735-D60 provides the 0x11 I²C bus address when the SEN pin is conn
 | ---- | ----- |
 | API  | Application Programming Interface (API). In this context, it is an interface that you can use to simplify the implementation and maintenance of your software (Arduino sketch). All API documentation about this library can be found on [https://pu2clr.github.io/SI4735/extras/apidoc/html/index.html](https://pu2clr.github.io/SI4735/extras/apidoc/html/index.html). | 
 | Arduino Libraries|Libraries are files written in C or C++ (.c, .cpp) which provide your sketches with extra functionality. The SI4735 Library provides extra functionalities to make easier the Arduino deal with Si473X devices| 
+| BPF  | Band Pass Filter |
 | DFS  | I²S - digital frame synchronization input |
 | DIN  | I²S - digital data input |
 | DCLK | I²S - digital bit synchronization input clock |
+| ESD  | Electrostatic discharge. Device used to protect the receiver from static electricity discharge |
 | IDE  | Integrated Development Environment|    
 | I²C  | [I²C - Inter-Integrated Circuit](https://pt.wikipedia.org/wiki/I²C)|  
 | I²S  | Serial bus interface used for connecting digital audio devices 
