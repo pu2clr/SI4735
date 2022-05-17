@@ -2282,6 +2282,7 @@ public:
      * @ingroup group08 Seek
      * @brief Set the Seek Am Srn Threshold object
      * @deprecated Use setSeekAmSNRThreshold instead.
+     * @see setSeekAmSNRThreshold
      * @param value 
      */
     void inline setSeekAmSrnThreshold(uint16_t value) { sendProperty(AM_SEEK_SNR_THRESHOLD, value); }; // Wrong name! Will be removed later  
@@ -2306,6 +2307,7 @@ public:
      * @ingroup group08 Seek
      * @brief Set the Seek Fm Srn Threshold object
      * @deprecated Use setSeekFmSNRThreshold instead.
+     * @see setSeekFmSNRThreshold
      * @param value 
      */
     void inline setSeekFmSrnThreshold(uint16_t value) { sendProperty(FM_SEEK_TUNE_SNR_THRESHOLD, value); }; // Wrong name. Will be removed later
@@ -2549,6 +2551,7 @@ public:
     /**
      * @ingroup group17 Patch and SSB support
      * @deprecated Use setSSBSidebandCutoffFilter instead.
+     * @see setSSBSidebandCutoffFilter
      * @param SBCUTFLT 
      */
     void inline setSBBSidebandCutoffFilter(uint8_t SBCUTFLT) { setSSBSidebandCutoffFilter(SBCUTFLT); }; // Wrong name! will be removed later.
