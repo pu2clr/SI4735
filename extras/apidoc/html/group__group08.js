@@ -52,6 +52,7 @@ var group__group08 =
     [ "SI4735::setMaxSeekTime", "group__group08.html#gaed67e2cee4e20551f3d522eea45fb7f5", null ],
     [ "SI4735::seekStationUp", "group__group08.html#gaad5211e3fff28141473442f59008e415", null ],
     [ "SI4735::seekStationDown", "group__group08.html#ga1eeaa09670cdbdc7ddd724c940d2506b", null ],
+    [ "SI4735::setSeekAmSrnThreshold", "group__group08.html#ga8107cc84409dcdad0c931368734ece3e", null ],
     [ "SI4735::setSeekAmSNRThreshold", "group__group08.html#ga82f15d07f6c9d1ae963b66f57e0f43f9", null ],
     [ "SI4735::setSeekFmSNRThreshold", "group__group08.html#ga8fe968baf9aac540e2d234141b564650", null ],
     [ "SI4735::setMaxDelaySetFrequency", "group__group08.html#ga7bf47d3aab5952fa8895bd9094256dd8", null ],

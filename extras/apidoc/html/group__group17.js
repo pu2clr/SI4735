@@ -11,6 +11,7 @@ var group__group17 =
     [ "SI4735::setSsbIfAgcAttackRate", "group__group17.html#ga2852abc7a2469362f1c1fe64758693a6", null ],
     [ "SI4735::setSsbAgcAttackRate", "group__group17.html#ga211bb7fb7b339e005e8a0ae2e2813b79", null ],
     [ "SI4735::setSsbAgcReleaseRate", "group__group17.html#ga65ae2ed5be90932da9b26073f87a8bda", null ],
+    [ "SI4735::setSBBSidebandCutoffFilter", "group__group17.html#gae9d50b24642784943fefedbac944a8e8", null ],
     [ "SI4735::setSSBBfo", "group__group17.html#ga55cf9a091d314a1aa21552f2254f756f", null ],
     [ "SI4735::setSSBConfig", "group__group17.html#ga9224e7d4ef14c887da96dbefd2dcefd3", null ],
     [ "SI4735::setSSBDspAfc", "group__group17.html#ga6cde26a5abf759a628012d1457d85c72", null ],

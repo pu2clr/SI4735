@@ -249,6 +249,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga1eeaa09670cdbdc7ddd724c940d2506b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga1eeaa09670cdbdc7ddd724c940d2506b">SI4735::seekStationDown</a> ()</td></tr>
 <tr class="memdesc:ga1eeaa09670cdbdc7ddd724c940d2506b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search the previous station.  <a href="group__group08.html#ga1eeaa09670cdbdc7ddd724c940d2506b">More...</a><br /></td></tr>
 <tr class="separator:ga1eeaa09670cdbdc7ddd724c940d2506b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8107cc84409dcdad0c931368734ece3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga8107cc84409dcdad0c931368734ece3e">SI4735::setSeekAmSrnThreshold</a> (uint16_t value)</td></tr>
+<tr class="memdesc:ga8107cc84409dcdad0c931368734ece3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Seek Am Srn Threshold object.  <a href="group__group08.html#ga8107cc84409dcdad0c931368734ece3e">More...</a><br /></td></tr>
+<tr class="separator:ga8107cc84409dcdad0c931368734ece3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga82f15d07f6c9d1ae963b66f57e0f43f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga82f15d07f6c9d1ae963b66f57e0f43f9">SI4735::setSeekAmSNRThreshold</a> (uint16_t value)</td></tr>
 <tr class="memdesc:ga82f15d07f6c9d1ae963b66f57e0f43f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the SNR threshold for a valid AM Seek/Tune.  <a href="group__group08.html#ga82f15d07f6c9d1ae963b66f57e0f43f9">More...</a><br /></td></tr>
 <tr class="separator:ga82f15d07f6c9d1ae963b66f57e0f43f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2002,6 +2005,41 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 124, 137, 139, 278 </dd></dl>
 
 </div>
 </div>
+<a id="ga8107cc84409dcdad0c931368734ece3e" name="ga8107cc84409dcdad0c931368734ece3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8107cc84409dcdad0c931368734ece3e">&#9670;&nbsp;</a></span>setSeekAmSrnThreshold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::setSeekAmSrnThreshold </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the Seek Am Srn Threshold object. </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated:</a></b></dt><dd>Use setSeekAmSNRThreshold instead. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ga82f15d07f6c9d1ae963b66f57e0f43f9" name="ga82f15d07f6c9d1ae963b66f57e0f43f9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga82f15d07f6c9d1ae963b66f57e0f43f9">&#9670;&nbsp;</a></span>setSeekAmSNRThreshold()</h2>
 
@@ -2137,7 +2175,7 @@ Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 124, 137, 139, 278 </dd></dl>
 <div class="line">.</div>
 <div class="line">setAM(7000,7600,7100,5); </div>
 <div class="line"><a class="code hl_function" href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">setFrequencyStep</a>(1); <span class="comment">// the step will be 1kHz (you are usin AM or SSB mode)  </span></div>
-<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:2612</div></div>
+<div class="ttc" id="agroup__group08_html_ga794f6fe7987e146a0135b8e6fabec55c"><div class="ttname"><a href="group__group08.html#ga794f6fe7987e146a0135b8e6fabec55c">SI4735::setFrequencyStep</a></div><div class="ttdeci">void setFrequencyStep(uint16_t step)</div><div class="ttdoc">Sets the current step value.</div><div class="ttdef"><b>Definition:</b> SI4735.h:2629</div></div>
 <div class="ttc" id="agroup__group08_html_gacd89e7b8adefcbc4e89f802acb915906"><div class="ttname"><a href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906">SI4735::setFM</a></div><div class="ttdeci">void setFM()</div><div class="ttdoc">Sets the radio to FM function.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:785</div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group08.html#gacd89e7b8adefcbc4e89f802acb915906" title="Sets the radio to FM function.">setFM()</a> </dd>
 <dd>
