@@ -2278,6 +2278,12 @@ public:
     void setSeekAmLimits(uint16_t bottom, uint16_t top);
     void setSeekAmSpacing(uint16_t spacing);
 
+    /**
+     * @ingroup group08 Seek
+     * @brief Set the Seek Am Srn Threshold object
+     * @deprecated Use setSeekAmSNRThreshold instead.
+     * @param value 
+     */
     void inline setSeekAmSrnThreshold(uint16_t value) { sendProperty(AM_SEEK_SNR_THRESHOLD, value); }; // Wrong name! Will be removed later  
 
     /**
@@ -2296,6 +2302,11 @@ public:
     void setSeekFmLimits(uint16_t bottom, uint16_t top);
     void setSeekFmSpacing(uint16_t spacing);
 
+    /**
+     * @brief Set the Seek Fm Srn Threshold object
+     * @deprecated Use setSeekFmSNRThreshold instead.
+     * @param value 
+     */
     void inline setSeekFmSrnThreshold(uint16_t value) { sendProperty(FM_SEEK_TUNE_SNR_THRESHOLD, value); }; // Wrong name. Will be removed later
     
     /**
@@ -2533,6 +2544,12 @@ public:
     void setSSBAudioBandwidth(uint8_t AUDIOBW);
     void setSSBAutomaticVolumeControl(uint8_t AVCEN);
     void setSSBSidebandCutoffFilter(uint8_t SBCUTFLT); // Fixing the function name
+
+    /**
+     * @ingroup group17 Patch and SSB support
+     * @deprecated Use setSSBSidebandCutoffFilter instead.
+     * @param SBCUTFLT 
+     */
     void inline setSBBSidebandCutoffFilter(uint8_t SBCUTFLT) { setSSBSidebandCutoffFilter(SBCUTFLT); }; // Wrong name! will be removed later.
 
     void setSSBAvcDivider(uint8_t AVC_DIVIDER);
