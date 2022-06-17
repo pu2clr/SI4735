@@ -10,11 +10,11 @@
 
   Compression strategy
 
-  If you see the patch_init.h and patch_full.h files you will notice that the first  byte  of  each line of 
-  the content of the original patch has the values 0x15 or 0x16. So,  to  shrink  the patch  size that will 
-  be stored into the controller (MCU/Ar4duino), the  first  byte  (0x15 or 0X16) is omitted in each line of 
+  If you see the patch_init.h  and patch_full.h files you will notice that the first  byte  of  each line of 
+  the content of the original  patch has the values 0x15 or 0x16. So,  to  shrink  the patch  size that will 
+  be stored into the controller  (MCU/Ar4duino), the  first  byte  (0x15 or 0X16) is omitted in each line of 
   the array and a new array is added to indicate the position (line) where the value 0x15 occurs. 
-  The downloadCompressedPatch function/method (see SI4735.cpp)  will  insert the values 0x15 or 0x16 guided 
+  The downloadCompressedPatch  function/method (see SI4735.cpp)  will  insert the values 0x15 or 0x16 guided 
   by the array cmd_0x15 (see below). When  the  line  number  of  the array ssb_patch_content (see below) is 
   in  cmd_0x15 array, then the value inserted will be 0x15. For the other lines, the downloadCompressedPatch 
   method will include the value 0x16. It is important to say that the value 0x16 occurs on most lines in the 
