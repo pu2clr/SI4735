@@ -7,18 +7,25 @@
 
 	This file was adapted to C/C++ from  the original file (amrx_6_0_1_ssbrx_patch_init_0xA902.csg).
 
-  If you see the patch_init.h and patch_full.h files you will notice that the  first byte of each line of the content of 
-  the patch has the value 0x15 or 0x16. To shrink the original patch size stored into the controller (MCU) the first byte
-  is ommited and a new array is added to indicate the position where the value 0x15 occours.
-  For the other lines, the downloadCompressedPatch method will include the value 0x16.
-  The value 0x16 occurs on most lines in the patch. This approach will save about 1K of memory. 
+
+  Compression strategy
+
+  If you see the patch_init.h and patch_full.h files you will notice that the first  byte  of  each line of 
+  the content of the original patch has the values 0x15 or 0x16. So,  to  shrink  the patch  size that will 
+  be stored into the controller (MCU/Ar4duino), the  first  byte  (0x15 or 0X16) is omitted in each line of 
+  the array and a new array is added to indicate the position (line) where the value 0x15 occurs. 
+  The downloadCompressedPatch function/method (see SI4735.cpp)  will  insert the values 0x15 or 0x16 guided 
+  by the array cmd_0x15 (see below). When  the  line  number  of  the array ssb_patch_content (see below) is 
+  in  cmd_0x15 array, then the value inserted will be 0x15. For the other lines, the downloadCompressedPatch 
+  method will include the value 0x16. It is important to say that the value 0x16 occurs on most lines in the 
+  patch. This approach will save about 1K of memory.
 
   See downloadCompressedPatch implementation for more details in SI4735.cpp. 
 
   The example code below shows how to use compressed SSB patch.
 
   #include <patch_ssb_compressed.h> // SSB patch for whole SSBRX initialization string
-  const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content.h
+  const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content array below
   const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
  
   void loadSSB()
