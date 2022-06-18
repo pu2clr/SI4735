@@ -1,12 +1,13 @@
 /*
 	First of all, it is important to say that the SSB patch content is not part of this library.
-	The paches used here were made available by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his
+	The  paches  used  here  were made available  by  Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his
 	[Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0).
-	The author of this Si4735 Arduino Library does not encourage anyone to use the SSB patches content for commercial purposes.
-	In other words, this library only supports SSB patches, the patches themselves are not part of this library.
+  
+	The author of  this  Si4735  Arduino  Library does  not encourage anyone to use the SSB patches content for 
+  commercial purposes. In other words,  this  library  only  supports SSB patches, the patches themselves are 
+  not part of this library.
 
 	This file was adapted to C/C++ from  the original file (amrx_6_0_1_ssbrx_patch_init_0xA902.csg).
-
 
   Compression strategy
 
@@ -26,7 +27,7 @@
 
   #include <patch_ssb_compressed.h> // SSB patch for whole SSBRX initialization string
   const uint16_t size_content = sizeof ssb_patch_content; // See ssb_patch_content array below
-  const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where the 0x15 command occurs in the patch content.
+  const uint16_t cmd_0x15_size = sizeof cmd_0x15; // Array of lines where the 0x15 command occurs in the patch content.
  
   void loadSSB()
   {
