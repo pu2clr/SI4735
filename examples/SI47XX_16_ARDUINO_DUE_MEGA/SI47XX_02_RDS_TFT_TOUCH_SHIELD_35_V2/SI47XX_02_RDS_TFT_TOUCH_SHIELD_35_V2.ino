@@ -303,17 +303,15 @@ SI4735 si4735;
 // ATTENTION: if you do not get success at first, check and change the XP, XM , YP and YM pins.
 // Read TouchScreen_Calibr_native.ino  (MCUFRIEND shield shares pins with the TFT).
 
-// TFT Touch shield  (my old and original MFUFIEND toutch screen)
-// const int XP = 6, XM = A2, YP = A1, YM = 7; //240x320 ID=0x9328
-// const int TS_LEFT = 170, TS_RT = 827, TS_TOP = 130, TS_BOT = 868;
-
-// TFT Touch shield 2 (my new kind of mcufriend toutch screen)
-//const int XP=7,XM=A1,YP=A2,YM=6; //240x320 ID=0x2053
-// const int TS_LEFT=155,TS_RT=831,TS_TOP=158,TS_BOT=892;
-
 // TFT 3.5" MCUFRIEND
-const int XP = 7, XM = A1, YP = A2, YM = 6; //320x480 ID=0x6814
-const int TS_LEFT = 149, TS_RT = 846, TS_TOP = 120, TS_BOT = 918;
+// My First TFT
+// const int XP = 7, XM = A1, YP = A2, YM = 6; //320x480 ID=0x6814
+// const int TS_LEFT = 149, TS_RT = 846, TS_TOP = 120, TS_BOT = 918;
+// My Second TFT
+const int XP=6,XM=A2,YP=A1,YM=7; //320x480 ID=0x9486
+const int TS_LEFT=891,TS_RT=173,TS_TOP=913,TS_BOT=88;
+
+
 
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 480);
 Adafruit_GFX_Button bNextBand, bPreviousBand, bVolumeLevel, bSeekUp, bSeekDown, bStep, bAudioMute, bAM, bLSB, bUSB, bFM, bMW, bSW, bFilter, bAGC, bSoftMute, bSlop, bSMuteRate, bBFO, bSync;

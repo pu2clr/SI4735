@@ -1,6 +1,6 @@
 /*
 
-  UNDER CONSTRUCTION....
+  UNDER CONSTRUCTION...
 
   This sketch runs on Atmega128 devices.   
 
@@ -47,7 +47,7 @@
 #include <SI4735.h>
 #include "DSEG7_Classic_Regular_16.h"
 #include "Rotary.h"
-#include <patch_init.h> // SSB patch for whole SSBRX initialization string
+#include "patch_init.h" // SSB patch for whole SSBRX initialization string
 
 const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 
@@ -341,7 +341,7 @@ void printParam(const char *msg) {
 }
 
 /*
-   The Seeeduino uses a Flash EEPROM emulator library. See FlashStorage_SAMD Arduino Library on: https://github.com/khoih-prog/FlashStorage_SAMD  
+   The Seeduino uses a Flash EEPROM emulator library. See FlashStorage_SAMD Arduino Library on: https://github.com/khoih-prog/FlashStorage_SAMD  
    
    writes the conrrent receiver information into the eeprom.
    The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
@@ -420,9 +420,9 @@ void readAllReceiverInformation()
     rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
     if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
-      rx.setSSBSidebandCutoffFilter(0);
+      rx.setSBBSidebandCutoffFilter(0);
     else
-      rx.setSSBSidebandCutoffFilter(1);
+      rx.setSBBSidebandCutoffFilter(1);
   }
   else if (currentMode == AM)
   {
@@ -754,9 +754,9 @@ void doBandwidth(int8_t v)
       rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
       // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
       if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
-        rx.setSSBSidebandCutoffFilter(0);
+        rx.setSBBSidebandCutoffFilter(0);
       else
-        rx.setSSBSidebandCutoffFilter(1);
+        rx.setSBBSidebandCutoffFilter(1);
 
       band[bandIdx].bandwidthIdx = bwIdxSSB;
     }
