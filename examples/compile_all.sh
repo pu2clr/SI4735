@@ -73,7 +73,6 @@ arduino-cli compile --fqbn arduino:sam:arduino_due_x ./SI47XX_16_ARDUINO_DUE_MEG
 echo "*** Mega"
 arduino-cli compile --fqbn arduino:avr:mega ./SI47XX_16_ARDUINO_DUE_MEGA/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
 
-examples/SI47XX_16_ARDUINO_DUE_MEGA
 
 # compiles SI47XX_03_RDS_TFT_ILI9225_NEW on Arduino Nano
 echo "Arduino Nano - RDS TFT"
