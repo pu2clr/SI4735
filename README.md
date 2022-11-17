@@ -103,7 +103,7 @@ Contact: __pu2clr@gmail.com__.
 
 I started my work on building an Arduino library for SI375 in early November 2019. The initial idea was to build a receiver by using an Arduino board, few components and the SI4735 device from Silicon Labs. Checking some videos on Youtube, I realized that the receiver besed on Si4735-D60 could go far beyond the initial proposal, __including listening to amateur radio and citizens band stations on SSB mode__. Via forums and websites, I also realized that there was a great demand for experimenters who would like to see the SI4735 device working on SSB mode. So, instead of developing a simple receiver based on the SI4735, __I decided to develop a library for Arduino platform that would provide full support to the SI4735 and all SI473X device family as well__.
 
-With this library, more than 30 examples were developed using various display types. [These examples can assist the experimenter in building their own receiver](https://github.com/pu2clr/SI4735/tree/master/examples).
+With this library, more than 60 examples were developed using various display types. [These examples can assist the experimenter in building their own receiver](https://github.com/pu2clr/SI4735/tree/master/examples).
 
 Judging by the groups created around the SI47XX devices, I estimate that this library is currently being used by thousands of experimenters, applications and commercial receivers. If you are an experimenter or a radio enthusiast and want to try to build your own receiver based on the SI473X devices, then this library is for you.  
 
@@ -155,7 +155,7 @@ This library uses the I²C communication protocol and implements most of the fun
 6. Simplifies projects based on SI4735;
 7. __I²C communication protocol__ and Automatic I²C bus address detection; 
 8. [More than __120__ functions implemented](https://pu2clr.github.io/SI4735/extras/apidoc/html/). You can customize almost every feature available on Si47XX family; 
-9. [More than 30 examples to guide the user](https://github.com/pu2clr/SI4735/tree/master/examples);
+9. [More than 60 examples to guide the user](https://github.com/pu2clr/SI4735/tree/master/examples);
 10. [RDS support](https://pu2clr.github.io/SI4735/#rds);
 11. [SSB (Single Side Band) patch support](https://pu2clr.github.io/SI4735/#si4735-patch-support-for-single-side-band);
 12. Clock reference selection (crystal or external clock reference);
@@ -1296,6 +1296,7 @@ The table below shows some radios based on SI47XX
 | C Crane |  CC Skywave |  |[Review](https://swling.com/blog/2014/12/review-of-the-c-crane-cc-skywave-portable-radio/) |
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
+
 
 
 ## Other Arduino Libraries Developed by the Author
