@@ -576,7 +576,7 @@ uint8_t response[0]
 rx.sendCommand(0x81,1,args);
 .
 .
-rs.getCommandResponse(1,response);
+rx.getCommandResponse(1,response);
 .
 .
 .
