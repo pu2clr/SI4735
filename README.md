@@ -119,6 +119,7 @@ The following video is a little joke that shows the trajectory of the constructi
 * Mr. Tom Nardi for his great article ["Multi-Band Receiver On A Chip Controlled By Arduino"](https://hackaday.com/2020/03/02/multi-band-receiver-on-a-chip-controlled-by-arduino/) on Hackaday website;
 * Mr. Gert Baak, PE0MGB, for library improvements suggestions and the Article [Arduino All band radio with SI4735 by Gert PE0MGB](https://www.pi4raz.nl/razzies/razzies202009.pdf);  
 * Dr. George R Steber, WB9LVI for his great article "NanoSSB RX - An Ultra Low Cost SSB Multiband Receiver" on ARRL QEX Magazine (November/December 2021);  
+* Mr. Benjamin Neveu for his article “SSB Receiver Controlled by a Smartphone” publised on ARRL QEX Magazine (September/October 2022);  
 * Mr. Jim Reagan, W0CHL, for contributions on circuit design and user interface;  
 * [Mr. Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) for making available the SSBRX patches for SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0);
 * Mr. Luiz Carlos, PT2MC, for guiding me  about external mute circuit; 
