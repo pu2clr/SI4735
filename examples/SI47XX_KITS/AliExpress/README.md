@@ -312,7 +312,20 @@ Follow theses setup: a)Board:"Atmega328"; b)Clock:"External 16MHz"; c)BOD:"BOD D
 
 On Arduino Menu; Programmer: select USBasp (MiniCore) or USBasp slow (MiniCore).
 
+
 #### STEP 10
+
+Connect the USBasp device to the Arduino Board (ISP interface) and to the computer. See photos below.
+
+![Firmware Update via USBasp connected to Arduino Nano 01](./images/USBasp_Nano_01.jpeg)
+
+Arrow-shaped bump highlighted in red.
+
+![Firmware Update via USBasp connected to Arduino Nano 02](./images/USBasp_Nano_02.jpeg)
+
+
+
+#### STEP 11
 
 Finally, click on the Upload icon or on the Sketch menu, select the option Upload. 
     
