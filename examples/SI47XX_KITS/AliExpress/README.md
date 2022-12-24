@@ -317,17 +317,24 @@ On Arduino Menu; Programmer: select USBasp (MiniCore) or USBasp slow (MiniCore).
 
 Connect the USBasp device to the Arduino Board (ISP interface) and to the computer. See photos below.
 
-![Firmware Update via USBasp connected to Arduino Nano 01](./images/USBasp_Nano_01.jpeg)
+##### USBasp device connected to Arduino Nano board
+
+![Firmware Update via USBasp connected to the Arduino Nano 01](./images/USBasp_Nano_01.jpeg)
 
 Arrow-shaped bump highlighted in red.
 
-![Firmware Update via USBasp connected to Arduino Nano 02](./images/USBasp_Nano_02.jpeg)
+![Firmware Update via USBasp connected to the Arduino Nano 02](./images/USBasp_Nano_02.jpeg)
 
+
+##### USBasp device connected to the computer
+
+
+![Firmware Update via USBasp connected to the computer](./images/USBasp_computer_01.jpeg)
 
 
 #### STEP 11
 
-Finally, click on the Upload icon or on the Sketch menu, select the option Upload. 
+Finally, turn the receiver on and click on the Upload icon or on the Sketch menu, select the option Upload. 
     
  
 
