@@ -239,9 +239,12 @@ See also:
 * [#205 Si4732 ATS-20 Test and Update - Open Source Receiver 0-30 / 64-108](https://youtu.be/381139I2DCg)
 
 
+<BR>
+<BR>
 
 ## UPDATING THE FIRMWARE WITH USBasp interface
 
+This method can be useful when the regular approach does not work. 
 
 You can find the USBasp device on eBay and AliExpress.  The photos below show the USBasp device used to update the ATS-20 and ATS-20+ receivers. 
 
