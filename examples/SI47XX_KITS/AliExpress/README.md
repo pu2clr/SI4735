@@ -219,7 +219,16 @@ See also:
 
 ## UPDATING THE FIRMWARE WITH USBasp interface
 
- 
+
+![Firmware Update via USBasp 01](./images/USBasp_03.jpeg)
+
+
+![Firmware Update via USBasp 02](./images/USBasp_02.jpeg)
+
+
+![Firmware Update via USBasp 03](./images/USBasp_01.jpeg)
+
+
 One year ago I published a tutorial (sections above) on how to update the ATS-20 Firmware using the regular way. I mean, via Arduino board USB. However, some experimenters have been telling me that this approach doesn't work in some cases, especially with the ATS-20+. At first, I thought this might be a problem with the configuration of these experimenters' computers. But, later, I noticed that the number of occurrences was higher than expected. So, more recently I decided to check it out for myself.
  
 In fact, when I tried to update the firmware of a ATS-20+ device got from AliExpress, I noticed that the Arduino Nano, for some reason, I do not know why, is not recognized by the Arduino IDE as usual.
