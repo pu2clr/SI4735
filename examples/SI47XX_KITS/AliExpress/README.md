@@ -279,6 +279,21 @@ Get a USBasp interface with the 10-pin to 6-pin converter. You can find it on eB
 Install the latest version of the "PU2CLR SI4735 Arduino Library".[This video shows how you can do that](https://youtu.be/M9h-tlV_l-k).
 
 
+#### Open the Arduino IDE and go to the __Tools__ menu and select  __Manage Libraries…__
+
+![Firmware Update 01](./images/p01.png)
+
+#### Look for SI4735 library, select __PU2CLR SI4735__ and click on Install or Update
+
+![Firmware Update 02](./images/p02.png)
+
+
+#### Also install the Libraries __Tiny4kOLED__ and __TinyOLED-Fonts__ Arduino libraries for OLED. Use the same approach shown before. 
+
+![Firmware Update 04](./images/p04.png)
+
+
+
 #### STEP 3
 
 Check THE youtube tutorials below to know how to use USBasp on Arduino Boards. 
@@ -321,7 +336,7 @@ Connect the USBasp device to the Arduino Board (ISP interface) and to the comput
 
 ![Firmware Update via USBasp connected to the Arduino Nano 01](./images/USBasp_Nano_01.jpeg)
 
-Arrow-shaped bump highlighted in red.
+Please, attention to the arrow-shaped bump highlighted in red. See photo below.
 
 ![Firmware Update via USBasp connected to the Arduino Nano 02](./images/USBasp_Nano_02.jpeg)
 
@@ -337,15 +352,3 @@ Arrow-shaped bump highlighted in red.
 Finally, turn the receiver on and click on the Upload icon or on the Sketch menu, select the option Upload. 
     
  
-
-
-
-
-
-
-
-
-
-
-
-
