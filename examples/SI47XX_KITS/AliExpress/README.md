@@ -214,4 +214,76 @@ __Turn your receiver on with the encoder push button pressed__.
 
 See also: 
 * [#205 Si4732 ATS-20 Test and Update - Open Source Receiver 0-30 / 64-108](https://youtu.be/381139I2DCg)
-  
+
+
+
+## UPDATING THE FIRMWARE WITH USBasp interface
+
+ 
+One year ago I published a tutorial (sections above) on how to update the ATS-20 Firmware using the regular way. I mean, via Arduino board USB. However, some experimenters have been telling me that this approach doesn't work in some cases, especially with the ATS-20+. At first, I thought this might be a problem with the configuration of these experimenters' computers. But, later, I noticed that the number of occurrences was higher than expected. So, more recently I decided to check it out for myself.
+ 
+In fact, when I tried to update the firmware of a ATS-20+ device got from AliExpress, I noticed that the Arduino Nano, for some reason, I do not know why, is not recognized by the Arduino IDE as usual.
+ 
+Normally, when we connect the Arduino board to the computer via the USB port, a serial port is created, allowing the computer to communicate with the Arduino board. However, that's not happening in my case with an ATS-20+ that I get.
+ 
+There are many reasons why the traditional method of updating is not working on this device, including a USB interface problem on the Arduino board.
+
+If that is your issue and assuming you've already installed the Arduino IDE on your computer, please, follow these instruction:
+
+### STEP 1
+
+Get a USBasp interface with the 10-pin to 6-pin converter. You can find it on eBay or AliExpress (look for USBasp).
+
+### STEP 2
+
+Install the latest version of the "PU2CLR SI4735 Arduino Library".[This video shows how you can do that](https://youtu.be/M9h-tlV_l-k).
+
+
+### STEP 3
+
+Check THE youtube tutorials below to know how to use USBasp on Arduino Boards. 
+
+* (How to Use USBasp Programmer with Arduino Boards)[https://youtu.be/ToKerwRR-70]
+* (Programming Arduino Nano with V2.0 USBASP ICSP :DAControl)[https://youtu.be/T1OkdPMRBzA]
+
+### STEP 4
+
+Remove the top cover. You don't need to remove all the screws. Only these top four. Be careful when removing the top cover. There is a speaker connected to the board and the wires can be broken.
+
+### STEP 5
+
+Configure the Arduino IDE to install the MiniCore Board. (See hot to do this here)[https://github.com/MCUdude/MiniCore#how-to-install].
+
+### STEP 6
+
+On Arduino IDE; menu Tools; Board:; Boards Manager, Install MiniCore (An Arduino core for the ATmega328, ATmega168, ATmega88, ATmega48 and ATmega8, all running a custom version of Optiboot for increased functionality). See this video to know more: (Install MiniCore Arduino IDE Additional Boards for ATmega328, ATmega168, ATmega88, ATmega48 ATmega8)[https://youtu.be/YLTuRN1GjCU].
+
+### STEP 7
+
+On Arduino IDE, menu File, open the source code of the firmware you want to use on ATS-20 or ATS-20+
+
+### STEP 8
+
+On Arduino IDE; menu Tools; Board:, select the MiniCore board; 
+
+Follow theses setup: a)Board:"Atmega328"; b)Clock:"External 16MHz"; c)BOD:"BOD Disabled"; c) EEPROM: "EEPROM retained"; d)Compiler LTO: "LTO enabled"; e) Variant: "328P / 328PA"; f) Bootloader: "No bootloader".
+
+### STEP 9 
+
+On Arduino Menu; Programmer: select USBasp (MiniCore) or USBasp slow (MiniCore).
+
+### STEP 10
+
+Finally, click on the Upload icon or on the Sketch menu, select the option Upload. 
+    
+ 
+
+
+
+
+
+
+
+
+
+
