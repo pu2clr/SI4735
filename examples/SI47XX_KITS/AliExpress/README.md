@@ -13,9 +13,9 @@ __DO NOT BUY THIS RECEIVER BEFORE READING COMMENTS AND REPORTS ABOUT IT. FOLLOW 
 
 ## Summary 
 
-* (Firmware Update via Desktop Arduino IDE)[https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#firmware-update-via-desktop-arduino-ide]
-* (Steps to update the firmware using the regular approach)[https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#steps-to-update-the-firmware-using-the-regular-approach]
-* (UPDATING THE FIRMWARE WITH USBasp interface)[https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#updating-the-firmware-with-usbasp-interface]
+* [Firmware Update via Desktop Arduino IDE](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#firmware-update-via-desktop-arduino-ide)
+* [Steps to update the firmware using the regular approach](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#steps-to-update-the-firmware-using-the-regular-approach)
+* [UPDATING THE FIRMWARE WITH USBasp interface](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#updating-the-firmware-with-usbasp-interface)
 
 
 
@@ -298,8 +298,8 @@ Install the latest version of the "PU2CLR SI4735 Arduino Library".[This video sh
 
 Check THE youtube tutorials below to know how to use USBasp on Arduino Boards. 
 
-* (How to Use USBasp Programmer with Arduino Boards)[https://youtu.be/ToKerwRR-70]
-* (Programming Arduino Nano with V2.0 USBASP ICSP :DAControl)[https://youtu.be/T1OkdPMRBzA]
+* [How to Use USBasp Programmer with Arduino Boards](https://youtu.be/ToKerwRR-70)
+* [Programming Arduino Nano with V2.0 USBASP ICSP :DAControl](https://youtu.be/T1OkdPMRBzA)
 
 #### STEP 4
 
@@ -311,7 +311,7 @@ Configure the Arduino IDE to install the MiniCore Board. (See hot to do this her
 
 #### STEP 6
 
-On Arduino IDE; menu Tools; Board:; Boards Manager, Install MiniCore (An Arduino core for the ATmega328, ATmega168, ATmega88, ATmega48 and ATmega8, all running a custom version of Optiboot for increased functionality). See this video to know more: (Install MiniCore Arduino IDE Additional Boards for ATmega328, ATmega168, ATmega88, ATmega48 ATmega8)[https://youtu.be/YLTuRN1GjCU].
+On Arduino IDE; menu Tools; Board:; Boards Manager, Install MiniCore (An Arduino core for the ATmega328, ATmega168, ATmega88, ATmega48 and ATmega8, all running a custom version of Optiboot for increased functionality). See this video to know more: [Install MiniCore Arduino IDE Additional Boards for ATmega328, ATmega168, ATmega88, ATmega48 ATmega8](https://youtu.be/YLTuRN1GjCU).
 
 #### STEP 7
 
