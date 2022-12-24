@@ -10,12 +10,16 @@ __IN NO EVENT SHALL THE AUTHOR OF THIS LIBRARY BE LIABLE FOR ANY CLAIM, DAMAGES 
 
 __DO NOT BUY THIS RECEIVER BEFORE READING COMMENTS AND REPORTS ABOUT IT. FOLLOW THE REFERENCES BELOW:__
 
+
 ## Summary 
 
-* (Steps to update the firmware using the regular approach)[]
-* (UPDATING THE FIRMWARE WITH USBasp interface)[]
+* (Firmware Update via Desktop Arduino IDE)[https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#firmware-update-via-desktop-arduino-ide]
+* (Steps to update the firmware using the regular approach)[https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#steps-to-update-the-firmware-using-the-regular-approach]
+* (UPDATING THE FIRMWARE WITH USBasp interface)[https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#updating-the-firmware-with-usbasp-interface]
 
 
+
+## Related Content
 
 
 * [SWLing - Any thoughts on this inexpensive Si4732-based receiver?](https://swling.com/blog/2021/04/any-thoughts-on-this-inexpensive-si4732-based-receiver/)
