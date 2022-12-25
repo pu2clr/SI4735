@@ -327,7 +327,7 @@ void setup()
   oled.print("All in One Radio");
   delay(500);
   oled.setCursor(10, 3);
-  oled.print("V3.0.7F-By PU2CLR");
+  oled.print("V3.0.8-By PU2CLR");
   delay(2000);
   // end Splash
 
@@ -538,17 +538,17 @@ uint8_t bandwidthEvent(uint8_t event, uint8_t pin) {
         count = 0;
         if (( AM == currentMode ) || ( LW == currentMode ) )
         {
-          bwFlag = &bwIdxAM;
+          bwFlag = ( unsigned char *) &bwIdxAM;
           bwMax = 6;
         }
         else if ( FM == currentMode )
         {
-          bwFlag = &bwIdxFM;
+          bwFlag = ( unsigned char *) &bwIdxFM;
           bwMax = 4;
         }
         else
         {
-          bwFlag = &bwIdxSSB;
+          bwFlag = ( unsigned char *) &bwIdxSSB;
           bwMax = 5;
         }
         if (0 == *bwFlag)
