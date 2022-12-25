@@ -10,6 +10,20 @@ __IN NO EVENT SHALL THE AUTHOR OF THIS LIBRARY BE LIABLE FOR ANY CLAIM, DAMAGES 
 
 __DO NOT BUY THIS RECEIVER BEFORE READING COMMENTS AND REPORTS ABOUT IT. FOLLOW THE REFERENCES BELOW:__
 
+__PLEASE READ ALL TEXT BELOW BEFORE UPDATING THE FIRMWARE__
+
+
+## Summary 
+
+* [Firmware Update via Desktop Arduino IDE](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#firmware-update-via-desktop-arduino-ide)
+* [Steps to update the firmware using the regular approach](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#steps-to-update-the-firmware-using-the-regular-approach)
+* [UPDATING THE FIRMWARE WITH USBasp interface](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#updating-the-firmware-with-usbasp-interface)
+
+
+
+## Related Content
+
+
 * [SWLing - Any thoughts on this inexpensive Si4732-based receiver?](https://swling.com/blog/2021/04/any-thoughts-on-this-inexpensive-si4732-based-receiver/)
 * [Kevin O'Reilly: SI4732 The end of the line?](https://youtu.be/A3Mus-7lTrk)
 * [Si47XX for Radio Experimenters](https://www.facebook.com/groups/532613604253401)
@@ -68,27 +82,30 @@ Be sure you are using the last version of the Arduino IDE.
 Read the comments of the sketch before uploading. 
 
 
-## Step 1
+## Steps to update the firmware using the regular approach
+
+
+### Step 1
 
 Open the Arduino IDE and go to the __Tools__ menu and select  __Manage Libraries…__
 
 ![Firmware Update 01](./images/p01.png)
 
-## Step 2
+### Step 2
 
 Look for SI4735 library, select __PU2CLR SI4735__ and click on Update
 
 ![Firmware Update 02](./images/p02.png)
 
 
-## Sept 3 
+### Sept 3 
 
 Check the version installed. The last version should be 2.0.9 or greater. 
 
 ![Firmware Update 03](./images/p03.png)
 
 
-## Step 4
+### Step 4
 
 Install the Libraries __Tiny4kOLED__ and __TinyOLED-Fonts__ Arduino libraries for OLED. Use the same approach shown before. 
 
@@ -96,7 +113,7 @@ Install the Libraries __Tiny4kOLED__ and __TinyOLED-Fonts__ Arduino libraries fo
 ![Firmware Update 04](./images/p04.png)
 
 
-## Step 5
+### Step 5
 
 Go to the File Menu, select Examples item and look for the firmware for this receiver / KIT
 
@@ -105,7 +122,7 @@ Go to the File Menu, select Examples item and look for the firmware for this rec
 
 
 
-## Step 6
+### Step 6
 
 Check the sketch you have just loaded from PU2CLR_SI4735 Examples folder
 
@@ -113,7 +130,7 @@ Check the sketch you have just loaded from PU2CLR_SI4735 Examples folder
 ![Firmware Update 07](./images/p07.png)
 
 
-## Step 7
+### Step 7
 
 Select the right Arduino Board.  On Tools Menu, select Arduino AVR Boards and __Arduino Nano__. 
 Read the comments of the sketche. 
@@ -123,7 +140,7 @@ Read the comments of the sketche.
 
 
 
-## Step 8 
+### Step 8 
 
 Select the right Processor. On Tools menu, select __“Processor:”__ item. 
 Depending on the version of the Arduino Nano used by your KIT, it can be __ATmega328p (Old Bootloader)__ or just __ATmega328p__.
@@ -133,21 +150,21 @@ Select __ATmega328p (Old Bootloader)__ first. If you get error during uploading,
 ![Firmware Update 09](./images/p09.png)
 
 
-## Setup 9
+### Setup 9
 
 Connect your Receiver (Arduino device) to your computer and select the right COM port. The COM number will depend on your computer setup.
 
 ![Firmware Update 10](./images/p10.png)
 
 
-## Step 10
+### Step 10
 
 Finally, run the upload. 
 
 ![Firmware Update 11](./images/p11.png)
 
 
-## Final result
+### Final result
 
 
 ![Firmware Update 12](./images/OLED01.png)
@@ -155,6 +172,12 @@ Finally, run the upload.
 
 
 ![Firmware Update 12](./images/OLED02.png)
+
+
+### Video about update the firmware via regular approach
+
+* (KIT ST4732 from China - Firmware Update)[https://youtu.be/K3T6GfjZH8E]
+
 
 
 # User Manual 
@@ -214,4 +237,123 @@ __Turn your receiver on with the encoder push button pressed__.
 
 See also: 
 * [#205 Si4732 ATS-20 Test and Update - Open Source Receiver 0-30 / 64-108](https://youtu.be/381139I2DCg)
-  
+
+
+<BR>
+<BR>
+
+## UPDATING THE FIRMWARE WITH USBasp interface
+
+This method can be useful when the regular approach does not work. 
+
+You can find the USBasp device on eBay and AliExpress.  The photos below show the USBasp device used to update the ATS-20 and ATS-20+ receivers. 
+
+
+
+![Firmware Update via USBasp 01](./images/USBasp_03.jpeg)
+
+
+![Firmware Update via USBasp 02](./images/USBasp_02.jpeg)
+
+
+![Firmware Update via USBasp 03](./images/USBasp_01.jpeg)
+
+
+### Contextualization
+
+One year ago I published a tutorial (sections above) on how to update the ATS-20 Firmware using the regular way. I mean, via Arduino board USB. However, some experimenters have been telling me that this approach doesn't work in some cases, especially with the ATS-20+. At first, I thought this might be a problem with the configuration of these experimenters' computers. But, later, I noticed that the number of occurrences was higher than expected. So, more recently I decided to check it out for myself.
+ 
+In fact, when I tried to update the firmware of a ATS-20+ device got from AliExpress, I noticed that the Arduino Nano, for some reason, I do not know why, is not recognized by the Arduino IDE as usual.
+ 
+Normally, when we connect the Arduino board to the computer via the USB port, a serial port is created, allowing the computer to communicate with the Arduino board. However, that's not happening in my case with an ATS-20+ that I get.
+ 
+There are many reasons why the traditional method of updating is not working on this device, including a USB interface problem on the Arduino board.
+
+If that is your issue and assuming you've already installed the Arduino IDE on your computer, please, follow these instruction:
+
+
+### Steps to update the firmware using USBasp
+
+
+#### STEP 1
+
+Get a USBasp interface with the 10-pin to 6-pin converter. You can find it on eBay or AliExpress (look for USBasp).
+
+### STEP 2
+
+Install the latest version of the "PU2CLR SI4735 Arduino Library".[This video shows how you can do that](https://youtu.be/M9h-tlV_l-k).
+
+
+#### Open the Arduino IDE and go to the __Tools__ menu and select  __Manage Libraries…__
+
+![Firmware Update 01](./images/p01.png)
+
+#### Look for SI4735 library, select __PU2CLR SI4735__ and click on Install or Update
+
+![Firmware Update 02](./images/p02.png)
+
+
+#### Also install the Libraries __Tiny4kOLED__ and __TinyOLED-Fonts__ Arduino libraries for OLED. Use the same approach shown before. 
+
+![Firmware Update 04](./images/p04.png)
+
+
+
+#### STEP 3
+
+Check THE youtube tutorials below to know how to use USBasp on Arduino Boards. 
+
+* [How to Use USBasp Programmer with Arduino Boards](https://youtu.be/ToKerwRR-70)
+* [Programming Arduino Nano with V2.0 USBASP ICSP :DAControl](https://youtu.be/T1OkdPMRBzA)
+
+#### STEP 4
+
+Remove the top cover. You don't need to remove all the screws. Only these top four. Be careful when removing the top cover. There is a speaker connected to the board and the wires can be broken.
+
+#### STEP 5
+
+Configure the Arduino IDE to install the MiniCore Board. (See hot to do this here)[https://github.com/MCUdude/MiniCore#how-to-install].
+
+#### STEP 6
+
+On Arduino IDE; menu Tools; Board:; Boards Manager, Install MiniCore (An Arduino core for the ATmega328, ATmega168, ATmega88, ATmega48 and ATmega8, all running a custom version of Optiboot for increased functionality). See this video to know more: [Install MiniCore Arduino IDE Additional Boards for ATmega328, ATmega168, ATmega88, ATmega48 ATmega8](https://youtu.be/YLTuRN1GjCU).
+
+#### STEP 7
+
+On Arduino IDE, menu File, open the source code of the firmware you want to use on ATS-20 or ATS-20+
+
+#### STEP 8
+
+On Arduino IDE; menu Tools; Board:, select the MiniCore board; 
+
+Follow theses setup: a)Board:"Atmega328"; b)Clock:"External 16MHz"; c)BOD:"BOD Disabled"; c) EEPROM: "EEPROM retained"; d)Compiler LTO: "LTO enabled"; e) Variant: "328P / 328PA"; f) Bootloader: "No bootloader".
+
+#### STEP 9 
+
+On Arduino Menu; Programmer: select USBasp (MiniCore) or USBasp slow (MiniCore).
+
+
+#### STEP 10
+
+Connect the USBasp device to the Arduino Board (ISP interface) and to the computer. See photos below.
+
+##### USBasp device connected to Arduino Nano board
+
+![Firmware Update via USBasp connected to the Arduino Nano 01](./images/USBasp_Nano_01.jpeg)
+
+Please, attention to the arrow-shaped bump highlighted in red. See photo below.
+
+![Firmware Update via USBasp connected to the Arduino Nano 02](./images/USBasp_Nano_02.jpeg)
+
+
+##### USBasp device connected to the computer
+
+
+![Firmware Update via USBasp connected to the computer](./images/USBasp_computer_01.jpeg)
+
+
+#### STEP 11
+
+Finally, turn the receiver on and click on the Upload icon or on the Sketch menu, select the option Upload. 
+    
+ 
