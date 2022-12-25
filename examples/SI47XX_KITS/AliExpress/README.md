@@ -281,7 +281,7 @@ Get a USBasp interface with the 10-pin to 6-pin converter. You can find it on eB
 
 ### STEP 2
 
-Install the latest version of the "PU2CLR SI4735 Arduino Library".[This video shows how you can do that](https://youtu.be/M9h-tlV_l-k).
+Install the latest version of the "PU2CLR SI4735 Arduino Library". [This video shows how you can do that](https://youtu.be/M9h-tlV_l-k).
 
 
 #### Open the Arduino IDE and go to the __Tools__ menu and select  __Manage Libraries…__
@@ -312,7 +312,7 @@ Remove the top cover. You don't need to remove all the screws. Only these top fo
 
 #### STEP 5
 
-Configure the Arduino IDE to install the MiniCore Board. (See hot to do this here)[https://github.com/MCUdude/MiniCore#how-to-install].
+Configure the Arduino IDE to install the MiniCore Board. (See how to do this here)[https://github.com/MCUdude/MiniCore#how-to-install].
 
 #### STEP 6
 
