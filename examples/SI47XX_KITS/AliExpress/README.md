@@ -308,7 +308,7 @@ Check THE youtube tutorials below to know how to use USBasp on Arduino Boards.
 
 #### STEP 4
 
-Remove the top cover. You don't need to remove all the screws. Only these top four. Be careful when removing the top cover. There is a speaker connected to the board and the wires can be broken.
+Remove the top cover. You don't need to remove all the screws. Only the top four. Be careful when removing the top cover. There is a speaker connected to the board and the wires can be broken.
 
 #### STEP 5
 
@@ -355,5 +355,9 @@ Please, attention to the arrow-shaped bump highlighted in red. See photo below.
 #### STEP 11
 
 Finally, turn the receiver on and click on the Upload icon or on the Sketch menu, select the option Upload. 
+
+
+
+[See this video about this tutorial](https://youtu.be/7e9yp1MgGI8) 
     
  
