@@ -361,3 +361,11 @@ Finally, turn the receiver on and click on the Upload icon or on the Sketch menu
 [See this video about this tutorial](https://youtu.be/7e9yp1MgGI8) 
     
  
+
+
+### Problems and solutions reported for some experimenters
+
+By Pierangelo Cosimo Dal Maso: 
+
+* MiniCore didn't recognise my USBAsp clone, was looking for usbvendor/usbproduct tags on usb device. I had to comment the corrisponding two lines in AppData\Local\Arduino15\packages\MiniCore\hardware\avr\2.1.3\avrdude.conf file.
+* MiniCore fails when generating source listing if your user home directory have spaces in its name. I removed the listing generating step from file c:\Users\xxx yyy\AppData\Local\Arduino15\packages\MiniCore\hardware\avr\2.1.3\platform.txt
