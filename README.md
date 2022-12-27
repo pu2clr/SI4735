@@ -1266,6 +1266,8 @@ Here you can see some experiments using this library. Watch them.
 * [HAM RADIO  -  ARDUINO SI4735 Based Radio](https://www.i2sdd.net/ARDUINO/SI4735/si4735.HTML)
 * [RECEIVER FM/MW/SW(AM SSB and CW) with SI4735 prototype](https://www.qsl.net/py2ohh/trx/si4735/SI4735.html)
 * [ATS-25 / ATS25 / LW / MW / SW / FM DSP Receiver (with Bernard Binns FREE 4.0 Firmware review](https://www.qsl.net/n9ewo/ats25.html)
+* [SI4735 D60 TFT 2.8" ESP32 ALL BAND RADIO](https://www.tindie.com/products/jasonkits/si4735-d60-tft-28-esp32-all-band-radio/)
+* [DSP RADIO Multi Band AM/MW/LW/SW-SSB/FM with RDS](https://www.tindie.com/products/jasonkits/dsp-radio-multi-band-ammwlwsw-ssbfm-with-rds/)
 
 
 

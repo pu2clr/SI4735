@@ -1,5 +1,7 @@
 USER MANUAL
 
+User interface Improved by EFWob (https://github.com/EFWob) Jan 2022.
+
 Features
 
 * Modes: FM, AM and SSB
