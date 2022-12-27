@@ -322,13 +322,13 @@ void setup()
   oled.print("SI473X");
   oled.setCursor(20, 1);
   oled.print("Arduino Library");
-  delay(500);
+  delay(100);
   oled.setCursor(15, 2);
   oled.print("All in One Radio");
-  delay(500);
+  delay(100);
   oled.setCursor(10, 3);
   oled.print("V3.0.8-By PU2CLR");
-  delay(2000);
+  delay(1000);
   // end Splash
 
   // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
@@ -722,6 +722,12 @@ void saveAllReceiverInformation()
     EEPROM.update(addr_offset++, band[i].currentStepIdx);       // Stores current step of the band
     EEPROM.update(addr_offset++, band[i].bandwidthIdx);        // table index (direct position) of bandwidth
   }
+
+  // Saves AVC and AGC/Att status
+  EEPROM.update(addr_offset++,avcIdx);
+  EEPROM.update(addr_offset++,agcIdx);
+  EEPROM.update(addr_offset++,agcNdx);
+  
 }
 
 /**
@@ -746,6 +752,12 @@ void readAllReceiverInformation()
     band[i].bandwidthIdx = EEPROM.read(addr_offset++);
   }
 
+  // Rescues the previous  AVC and AGC/Att status
+  avcIdx = EEPROM.read(addr_offset++);
+  agcIdx = EEPROM.read(addr_offset++);
+  agcNdx = EEPROM.read(addr_offset++);
+  
+
   previousFrequency = currentFrequency = band[bandIdx].currentFreq;
   idxStep = tabStep[band[bandIdx].currentStepIdx];
   bwIdx = band[bandIdx].bandwidthIdx;
@@ -760,17 +772,23 @@ void readAllReceiverInformation()
       si4735.setSSBSidebandCutoffFilter(0);
     else
       si4735.setSSBSidebandCutoffFilter(1);
+
+    si4735.setAvcAmMaxGain(avcIdx);
   }
   else if (currentMode == AM)
   {
     bwIdxAM = bwIdx;
     si4735.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
+    si4735.setAvcAmMaxGain(avcIdx);
+    si4735.setAutomaticGainControl((agcIdx > 0), agcNdx);
   }
   else
   {
     bwIdxFM = bwIdx;
     si4735.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
   }
+
+  
 }
 
 /*
