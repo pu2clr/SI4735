@@ -21,6 +21,10 @@ After, on Tools menu, select the option "Board:", "Boards Manager...".
 Look for esp32 and install it.
 
 
+[Go to LilyGo T-Embed github repository](https://github.com/Xinyuan-LilyGO/T-Embed) and download it. 
+Unzip the downloaded file, go to lib folder, copy and paste all files to ypu Arduino installation, libraries folder. 
+
+
 
 
 
