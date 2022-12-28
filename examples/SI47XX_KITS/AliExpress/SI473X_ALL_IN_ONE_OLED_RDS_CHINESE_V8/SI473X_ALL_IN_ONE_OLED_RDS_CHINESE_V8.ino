@@ -772,15 +772,11 @@ void readAllReceiverInformation()
       si4735.setSSBSidebandCutoffFilter(0);
     else
       si4735.setSSBSidebandCutoffFilter(1);
-
-    si4735.setAvcAmMaxGain(avcIdx);
   }
   else if (currentMode == AM)
   {
     bwIdxAM = bwIdx;
     si4735.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
-    si4735.setAvcAmMaxGain(avcIdx);
-    si4735.setAutomaticGainControl((agcIdx > 0), agcNdx);
   }
   else
   {
@@ -1249,7 +1245,7 @@ void useBand()
     {
       currentMode = AM;
       si4735.setAM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, tabStep[band[bandIdx].currentStepIdx]);
-      si4735.setAutomaticGainControl(disableAgc, agcNdx);
+      si4735.setAutomaticGainControl( (disableAgc = (agcIdx > 0)), agcNdx);
       si4735.setAmSoftMuteMaxAttenuation(smIdx); // // Disable Soft Mute for AM
       bwIdxAM = band[bandIdx].bandwidthIdx;
       si4735.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
@@ -1257,6 +1253,8 @@ void useBand()
     }
     si4735.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);                                       // Consider the range all defined current band
     si4735.setSeekAmSpacing((tabStep[band[bandIdx].currentStepIdx] > 10) ? 10 : tabStep[band[bandIdx].currentStepIdx]); // Max 10kHz for spacing
+
+    si4735.setAvcAmMaxGain(avcIdx);
   }
   //delay(100);
   //oled.clear();
