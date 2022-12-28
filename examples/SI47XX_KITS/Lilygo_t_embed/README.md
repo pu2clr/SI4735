@@ -17,3 +17,6 @@ Look for esp32 and install it.
 
 
 
+![LilyGo T-Embed](./images/ESP32_S.jpg)
+
+

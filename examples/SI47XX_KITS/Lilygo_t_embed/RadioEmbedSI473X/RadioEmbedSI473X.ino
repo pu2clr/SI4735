@@ -19,7 +19,7 @@ TFT_eSprite spr = TFT_eSprite(&tft);
 #define MW_BAND_TYPE 1
 #define SW_BAND_TYPE 2
 #define LW_BAND_TYPE 3
-#define RESET_PIN 12  // To be selected the right ppin
+#define RESET_PIN 16  // To be checked ... not sure
 
 
 #define PIN_IN1 2
