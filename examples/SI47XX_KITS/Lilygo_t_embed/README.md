@@ -1,5 +1,9 @@
 # LilyGO/T-Embed setup
 
+LilyGO/T-Embed  is a panel that uses the ESP32S, an rotary encoder with push button, and a TFT ST7789 display, all together,  for application development. The picture below shows LilyGO/T-Embed.
+
+<BR> 
+
 ![LilyGo T-Embed](./images/t_embed.jpg)
 
 
@@ -7,6 +11,8 @@ As you can see in the picture above, the LilyGO/T-Embed has some extra pins that
 
 
 ![ESP32 S](./images/ESP32_S.jpg)
+
+<BR>
 
 
 [See this link for more details about LilyGo T-Embed](https://github.com/Xinyuan-LilyGO/T-Embed)
@@ -22,9 +28,13 @@ Look for esp32 and install it.
 
 
 [Go to LilyGo T-Embed github repository](https://github.com/Xinyuan-LilyGO/T-Embed) and download it. 
-Unzip the downloaded file, go to lib folder, copy and paste all files to ypu Arduino installation, libraries folder. 
+Unzip the downloaded file, go to lib folder, copy and paste all files and folders to the your Arduino installation, libraries folder. 
 
 
+## References 
+
+* [Go to LilyGo T-Embed github repository](https://github.com/Xinyuan-LilyGO/T-Embed)
+* [LILYGO Unveils the T-Embed ESP32-S3-Powered Universal Remote for Smart Home Projects and More](https://www.hackster.io/news/lilygo-unveils-the-t-embed-esp32-s3-powered-universal-remote-for-smart-home-projects-and-more-cad2e701d640)
 
 
 
