@@ -7,7 +7,7 @@ LilyGO/T-Embed  is a panel that uses the ESP32S, an rotary encoder with push but
 ![LilyGo T-Embed](./images/t_embed.jpg)
 
 
-As you can see in the picture above, the LilyGO/T-Embed has some extra pins that you can use in your application. See Grove, GPIO PINOUT, and TFT Card Slot.  Preferably, use the pins SDA (IO21), SCL (IO22), IO16, IO17, IO40, IO38 and IO41.  The picture below shows the ESP32 pinout.    
+As you can see in the picture above, the LilyGO/T-Embed has some extra pins that you can use in your application. See Grove, GPIO PINOUT, and TFT Card Slot.  Preferably, use the pins SDA (IO18), SCL (IO8), IO16, IO17, IO40, IO38 and IO41.  The picture below shows the ESP32 pinout.    
 
 
 ![ESP32 S](./images/ESP32_S.jpg)
