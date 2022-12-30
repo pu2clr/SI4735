@@ -297,7 +297,6 @@ int getStrength()
 
 void loop()
 {
-
   readEncoder();
   radio.getCurrentReceivedSignalQuality();
   strength = getStrength();
