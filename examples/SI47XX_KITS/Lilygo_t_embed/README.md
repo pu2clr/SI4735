@@ -37,7 +37,7 @@ Unzip the downloaded file, go to lib folder, copy and paste all files and folder
 The table and pictures below show the LilyGo T-Embed and SI473X devices connection. 
 
 
-### LilyGo device wire up
+### LilyGo T-Embed device wire up
 
   | Device name      | Device Pin / Description  |  ESP32        |
   | ---------------- | --------------------------| ------------  |
