@@ -122,7 +122,7 @@ void readEncoder() {
     if(deb==0){
       deb=1;
       muted=!muted;
-      radio.setAudioMode(muted);
+      radio.setAudioMute(muted);
       drawSprite();
       delay(200);
     }
@@ -160,8 +160,8 @@ else if ( encoderCount == -1 )
 freq=radio.getFrequency() / 100.0;
 value = freq * 10;
 
-radio.getCurrentReceivedSignalQuality();
-strength=radio.getCurrentRSSI();
+
+// strength=getStrength();
 
 spr.fillSprite(TFT_BLACK);
 spr.setTextColor(TFT_WHITE,TFT_BLACK);
@@ -185,7 +185,7 @@ spr.fillCircle(16,31+(i*12),2,0xFBAE);
 }
 spr.setTextColor(TFT_WHITE,TFT_BLACK);
 
-spr.drawString("SIGNAL:",266,54);
+spr.drawString("SIGNAL",266,54);
 spr.drawString("MUTED",260,102,2);
 spr.fillRoundRect(288,96,20,20,3,0xCC40);
 
@@ -193,8 +193,12 @@ if(muted==1)
 spr.fillCircle(297,105,6,TFT_WHITE);
 
 
-for(int i=0;i<strength;i++)
-spr.fillRect(244+(i*4),80-(i*1),2,4+(i*1),0x3526);
+for(int i=0;i<strength;i++) {
+    if (i<9)
+      spr.fillRect(244+(i*4),80-(i*1),2,4+(i*1),TFT_GREEN);
+    else
+      spr.fillRect(244+(i*4),80-(i*1),2,4+(i*1),TFT_RED);
+}
 
 
 
@@ -220,9 +224,11 @@ spr.fillTriangle(156,104,160,114,164,104,TFT_RED);
  
   temp=temp+1;
  }
-spr.drawString("Stereo: "+String(radio.getCurrentPilot()),275,31,2);
 
-
+if (radio.getCurrentPilot()) 
+  spr.drawString("Stereo",275,31,2);
+else
+  spr.drawString("Mono",275,31,2);
 
 
 spr.drawLine(160,114,160,170,TFT_RED);
@@ -230,7 +236,40 @@ spr.pushSprite(0,0);
 
 }
 
+
+int getStrength () {
+
+      uint8_t rssi;
+      int newStrength;
+
+      rssi = radio.getCurrentRSSI();
+       
+       if ((rssi >= 0) and (rssi <=  1)) newStrength =  1; // S0
+      if ((rssi >  1) and (rssi <=  1))  newStrength =  2;  // S1
+      if ((rssi >  2) and (rssi <=  3)) newStrength =  3;  // S2
+      if ((rssi >  3) and (rssi <=  4)) newStrength =  4;  // S3
+      if ((rssi >  4) and (rssi <= 10)) newStrength =  5;  // S4
+      if ((rssi > 10) and (rssi <= 16)) newStrength =  6;  // S5
+      if ((rssi > 16) and (rssi <= 22)) newStrength =  7;  // S6
+      if ((rssi > 22) and (rssi <= 28)) newStrength =  8;  // S7
+      if ((rssi > 28) and (rssi <= 34)) newStrength =  9;  // S8
+      if ((rssi > 34) and (rssi <= 44)) newStrength = 10;  // S9
+      if ((rssi > 44) and (rssi <= 54)) newStrength = 11;  // S9 +10
+      if ((rssi > 54) and (rssi <= 64)) newStrength = 12;  // S9 +20
+      if ((rssi > 64) and (rssi <= 74)) newStrength = 13;  // S9 +30
+      if ((rssi > 74) and (rssi <= 84)) newStrength = 14;  // S9 +40
+      if ((rssi > 84) and (rssi <= 94)) newStrength = 15;  // S9 +50
+      if  (rssi > 94)                   newStrength = 16;  // S9 +60
+      if  (rssi > 95)                   newStrength = 17;  //>S9 +60
+
+      return newStrength;
+}
+
 void loop() { 
 
   readEncoder();
+  radio.getCurrentReceivedSignalQuality();
+  strength=getStrength();
+  
+  delay(5);
 }
