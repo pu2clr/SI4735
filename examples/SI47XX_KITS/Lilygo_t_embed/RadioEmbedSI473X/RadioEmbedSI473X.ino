@@ -122,7 +122,7 @@ void readEncoder() {
     if(deb==0){
       deb=1;
       muted=!muted;
-      // radio.setMuted(muted);
+      radio.setAudioMode(muted);
       drawSprite();
       delay(200);
     }
@@ -150,7 +150,7 @@ void readEncoder() {
 void drawSprite()
 {
 
-if(muted==false)
+// if(muted==false) 
 
 if ( encoderCount == 1 ) 
   radio.frequencyUp();
@@ -160,7 +160,9 @@ else if ( encoderCount == -1 )
 freq=radio.getFrequency() / 100.0;
 value = freq * 10;
 
-// strength=radio.getSignalLevel();
+radio.getCurrentReceivedSignalQuality();
+strength=radio.getCurrentRSSI();
+
 spr.fillSprite(TFT_BLACK);
 spr.setTextColor(TFT_WHITE,TFT_BLACK);
 
@@ -218,7 +220,7 @@ spr.fillTriangle(156,104,160,114,164,104,TFT_RED);
  
   temp=temp+1;
  }
-spr.drawString("Stereo: "+String(/*radio.isStereo()*/ 10),275,31,2);
+spr.drawString("Stereo: "+String(radio.getCurrentPilot()),275,31,2);
 
 
 
