@@ -1,3 +1,12 @@
+/*
+  This sketch was an adaptation of the VolosR's sketch.
+  The original VolosR's sketch works with TEA5767 device and Arduino Library.
+  This sketch works with SI473X CI family and PU2CLR SI4735 Arduino Library  
+
+  
+  See VolosR's original project here: https://github.com/VolosR/TEmbedFMRadio
+*/
+
 #include <Wire.h>
 #include <SI4735.h>
 #include <FastLED.h>
