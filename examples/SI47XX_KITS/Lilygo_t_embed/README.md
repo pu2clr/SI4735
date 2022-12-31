@@ -91,6 +91,7 @@ esp_err_t espErr = ESP_OK;
 <BR>
 esp_err_t espErr = ESP_OK;
 <BR>
+<BR>
 cc1plus: some warnings being treated as errors
 
 </B>
@@ -118,8 +119,22 @@ Replace from FASTLED_RMT_SERIAL_DEBUG 0 to  FASTLED_RMT_SERIAL_DEBUG 1 as shown 
 
 #### Methode two
 
-```c++
+Replace 
+<BR>
 
+```c++
+#if FASTLED_RMT_SERIAL_DEBUG == 1
+#define FASTLED_DEBUG(format, errcode, ...) if (errcode != ESP_OK) { Serial.printf(PSTR("FASTLED: " format "\n"), errcode, ##__VA_ARGS__); }
+#else
+#define FASTLED_DEBUG(format, ...)
+#endif
+```
+
+<BR>
+to
+<BR>
+
+```c++
 #if FASTLED_RMT_SERIAL_DEBUG == 1
 #define FASTLED_DEBUG(format, errcode, ...) if (errcode != ESP_OK) { Serial.printf(PSTR("FASTLED: " format "\n"), errcode, ##__VA_ARGS__); }
 #else
