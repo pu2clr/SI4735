@@ -39,6 +39,10 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 Look for esp32 and install it.
 
 
+![LilyGO libraries](./images/lib00A.png)
+
+
+
 * [Go to LilyGo T-Embed github repository](https://github.com/Xinyuan-LilyGO/T-Embed) and download it. 
 Unzip the downloaded file, go to __lib__ folder, copy and paste __RotaryEncoder__ and __TFT_eSPI__ folders to the your Arduino installation, libraries folder (in general Documents/Arduino/libraries/). See picture below.
 
