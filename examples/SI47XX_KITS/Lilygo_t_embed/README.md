@@ -101,6 +101,21 @@ To solve that problem edit the file Documents/Arduino/libraries/FastLED/src/plat
 #endif
 ```
 
+You can also alter the lines below from 
+
+```c++
+#ifndef FASTLED_RMT_SERIAL_DEBUG
+#define FASTLED_RMT_SERIAL_DEBUG 0
+#endif
+```
+
+to
+
+```c++
+#ifndef FASTLED_RMT_SERIAL_DEBUG
+#define FASTLED_RMT_SERIAL_DEBUG 1
+#endif
+```
 
 
 
