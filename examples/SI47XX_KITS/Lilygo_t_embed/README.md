@@ -69,6 +69,41 @@ The table and pictures below show the LilyGo T-Embed and SI473X devices connecti
 <BR>
 
 
+### ISSUES
+
+
+In some cases you can get the compiler error below
+
+
+<B>
+/Users/XXXXX/Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.cpp: In static member function 'static void ESP32RMTController::init(gpio_num_t)':
+/Users/XXXXX/Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.cpp:111:15: error: variable 'espErr' set but not used [-Werror=unused-but-set-variable]
+     esp_err_t espErr = ESP_OK;
+               ^~~~~~
+/Users/XXXXX/Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.cpp: In member function 'void ESP32RMTController::startOnChannel(int)':
+/Users/XXXXX/Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.cpp:239:15: error: variable 'espErr' set but not used [-Werror=unused-but-set-variable]
+     esp_err_t espErr = ESP_OK;
+               ^~~~~~
+cc1plus: some warnings being treated as errors
+</B>
+
+To solve that problem edit the file Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32 and make the code like the lines below: 
+
+```c++
+#ifndef FASTLED_RMT_SERIAL_DEBUG
+#define FASTLED_RMT_SERIAL_DEBUG 0
+#endif
+
+#if FASTLED_RMT_SERIAL_DEBUG == 1
+#define FASTLED_DEBUG(format, errcode, ...) if (errcode != ESP_OK) { Serial.printf(PSTR("FASTLED: " format "\n"), errcode, ##__VA_ARGS__); }
+#else
+#define FASTLED_DEBUG(format, errcode, ...) if (errcode != ESP_OK) {  }
+#endif
+```
+
+
+
+
 ## References 
 
 * [Go to LilyGo T-Embed github repository](https://github.com/Xinyuan-LilyGO/T-Embed)
