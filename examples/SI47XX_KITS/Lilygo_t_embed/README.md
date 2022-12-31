@@ -2,6 +2,14 @@
 
 LilyGO/T-Embed  is a panel that uses the ESP32S, an rotary encoder with push button, and a TFT ST7789 display, all together,  for application development. The picture below shows LilyGO/T-Embed.
 
+
+## Preface
+
+This document is about the LilyGo T-Embed device as a receiver based on the SI473X IC family. The main parts of the sketch used here was written by [Volos](https://github.com/VolosR/TEmbedFMRadio). The Volos' project is a receiver based on the TEA5767 device and I have just adapted and documented the needed steps to port the Volos' project to work with a receiver based on the SI473X device. 
+
+All you have to know to use this project with your LilyGo T-Embed panel can be found here. 
+
+
 <BR> 
 
 ![LilyGo T-Embed](./images/t_embed.png)
