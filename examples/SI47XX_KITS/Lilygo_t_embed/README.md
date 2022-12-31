@@ -175,7 +175,7 @@ to
 * [LILYGO Unveils the T-Embed ESP32-S3-Powered Universal Remote for Smart Home Projects and More](https://www.hackster.io/news/lilygo-unveils-the-t-embed-esp32-s3-powered-universal-remote-for-smart-home-projects-and-more-cad2e701d640)
 * [Vols's receiver based on TEA5767 Youtube Video](https://youtu.be/bg2Ysrh85Ek)
 * [VolosR's Repository](https://github.com/VolosR/TEmbedFMRadio)
-
+* [Introduction to ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html)
 
 
 
