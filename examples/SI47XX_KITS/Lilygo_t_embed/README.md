@@ -28,18 +28,15 @@ Look for esp32 and install it.
 
 
 * [Go to LilyGo T-Embed github repository](https://github.com/Xinyuan-LilyGO/T-Embed) and download it. 
-Unzip the downloaded file, go to __lib__ folder, copy and paste RotaryEncoder and TFT_eSPI folders to the your Arduino installation, libraries folder (in general Documents/Arduino/libraries/). See picture below.
-
+Unzip the downloaded file, go to __lib__ folder, copy and paste __RotaryEncoder__ and __TFT_eSPI__ folders to the your Arduino installation, libraries folder (in general Documents/Arduino/libraries/). See picture below.
 
 <BR>
 
 ![LilyGO libraries](./images/lib01.png)
 
-
 <BR>
 
-* __Install the Arduino library FastLED.__
-
+* __Install the Arduino library FastLED using Arduino IDE, tools menu, Manager libraries... option.__
 
 
 ## LilyGo T-Embed and SI473X connection
