@@ -36,7 +36,9 @@ Unzip the downloaded file, go to __lib__ folder, copy and paste __RotaryEncoder_
 
 <BR>
 
-* __Install the Arduino library FastLED using Arduino IDE, tools menu, Manager libraries... option.__
+* __Install the Arduino library FastLED using Arduino IDE, tools menu, Manager libraries... option.__ See picture below.
+
+![LilyGO libraries](./images/lib02.png)
 
 
 ## LilyGo T-Embed and SI473X connection
