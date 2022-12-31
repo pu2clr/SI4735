@@ -29,6 +29,9 @@ Look for esp32 and install it.
 
 [Go to LilyGo T-Embed github repository](https://github.com/Xinyuan-LilyGO/T-Embed) and download it. 
 Unzip the downloaded file, go to lib folder, copy and paste all files and folders to the your Arduino installation, libraries folder. 
+<BR>
+
+__Install the Arduino library FastLED.__
 
 
 
@@ -72,7 +75,7 @@ The table and pictures below show the LilyGo T-Embed and SI473X devices connecti
 ### ISSUES
 
 
-In some cases you can get the compiler error below
+In some cases you can get errors below during FastLED compilation. 
 
 
 <B>
@@ -85,9 +88,11 @@ In some cases you can get the compiler error below
      esp_err_t espErr = ESP_OK;
                ^~~~~~
 cc1plus: some warnings being treated as errors
-</B>
 
-To solve that problem edit the file Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.h and make the code as shown the options and lines below: 
+</B>
+<BR>
+
+To solve that problem edit the file Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.h (See the right path of your Arduino installation) and choose one of the following two methods:
 
 
 #### Methode one
@@ -109,10 +114,6 @@ Replace from FASTLED_RMT_SERIAL_DEBUG 0 to  FASTLED_RMT_SERIAL_DEBUG 1 as shown 
 #### Methode two
 
 ```c++
-#ifndef FASTLED_RMT_SERIAL_DEBUG
-#define FASTLED_RMT_SERIAL_DEBUG 0
-#endif
-
 
 #if FASTLED_RMT_SERIAL_DEBUG == 1
 #define FASTLED_DEBUG(format, errcode, ...) if (errcode != ESP_OK) { Serial.printf(PSTR("FASTLED: " format "\n"), errcode, ##__VA_ARGS__); }

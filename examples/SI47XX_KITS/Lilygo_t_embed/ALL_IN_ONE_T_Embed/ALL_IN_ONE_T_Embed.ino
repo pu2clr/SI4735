@@ -55,7 +55,6 @@
 #include "EEPROM.h"
 #include <SI4735.h>
 
-#define FASTLED_RMT_SERIAL_DEBUG 1
 #include <FastLED.h>
 #include "TFT_eSPI.h"
 
