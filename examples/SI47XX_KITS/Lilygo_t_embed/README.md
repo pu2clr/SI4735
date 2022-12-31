@@ -75,7 +75,7 @@ The table and pictures below show the LilyGo T-Embed and SI473X devices connecti
 ### ISSUES
 
 
-In some cases you can get errors below during FastLED compilation. 
+In some cases you can get errors below during FastLED library compilation. 
 
 
 <B>
