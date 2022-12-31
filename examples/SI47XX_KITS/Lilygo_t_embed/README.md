@@ -80,16 +80,21 @@ In some cases you can get errors below during FastLED compilation.
 
 <B>
 /Users/XXXXX/Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.cpp: In static member function 'static void ESP32RMTController::init(gpio_num_t)':
+<BR>
 /Users/XXXXX/Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.cpp:111:15: error: variable 'espErr' set but not used [-Werror=unused-but-set-variable]
-     esp_err_t espErr = ESP_OK;
-               ^~~~~~
+<BR>
+esp_err_t espErr = ESP_OK;
+<BR>
 /Users/XXXXX/Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.cpp: In member function 'void ESP32RMTController::startOnChannel(int)':
+<BR>
 /Users/XXXXX/Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.cpp:239:15: error: variable 'espErr' set but not used [-Werror=unused-but-set-variable]
-     esp_err_t espErr = ESP_OK;
-               ^~~~~~
+<BR>
+esp_err_t espErr = ESP_OK;
+<BR>
 cc1plus: some warnings being treated as errors
 
 </B>
+
 <BR>
 
 To solve that problem edit the file Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.h (See the right path of your Arduino installation) and choose one of the following two methods:
