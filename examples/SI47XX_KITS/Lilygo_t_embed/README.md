@@ -87,12 +87,32 @@ In some cases you can get the compiler error below
 cc1plus: some warnings being treated as errors
 </B>
 
-To solve that problem edit the file Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32 and make the code like the lines below: 
+To solve that problem edit the file Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.h and make the code as shown the options and lines below: 
+
+
+#### Methode one
 
 ```c++
 #ifndef FASTLED_RMT_SERIAL_DEBUG
 #define FASTLED_RMT_SERIAL_DEBUG 0
 #endif
+```
+
+Replace from FASTLED_RMT_SERIAL_DEBUG 0 to  FASTLED_RMT_SERIAL_DEBUG 1 as shown below
+
+```c++
+#ifndef FASTLED_RMT_SERIAL_DEBUG
+#define FASTLED_RMT_SERIAL_DEBUG 1
+#endif
+```
+
+#### Methode two
+
+```c++
+#ifndef FASTLED_RMT_SERIAL_DEBUG
+#define FASTLED_RMT_SERIAL_DEBUG 0
+#endif
+
 
 #if FASTLED_RMT_SERIAL_DEBUG == 1
 #define FASTLED_DEBUG(format, errcode, ...) if (errcode != ESP_OK) { Serial.printf(PSTR("FASTLED: " format "\n"), errcode, ##__VA_ARGS__); }
@@ -101,21 +121,7 @@ To solve that problem edit the file Documents/Arduino/libraries/FastLED/src/plat
 #endif
 ```
 
-You can also alter the lines below from 
 
-```c++
-#ifndef FASTLED_RMT_SERIAL_DEBUG
-#define FASTLED_RMT_SERIAL_DEBUG 0
-#endif
-```
-
-to
-
-```c++
-#ifndef FASTLED_RMT_SERIAL_DEBUG
-#define FASTLED_RMT_SERIAL_DEBUG 1
-#endif
-```
 
 
 
