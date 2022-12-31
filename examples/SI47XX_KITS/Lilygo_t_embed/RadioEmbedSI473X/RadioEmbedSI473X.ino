@@ -293,6 +293,8 @@ int getStrength()
   if (rssi > 95)
     return 17; //>S9 +60
 
+  return 0;
+
 }
 
 void loop()

@@ -75,8 +75,8 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define ENCODER_PIN_B  1           // GPIO1
 
 // I2C bus pin on ESP32
-#define ESP32_I2C_SDA 21
-#define ESP32_I2C_SCL 22
+#define ESP32_I2C_SDA 18
+#define ESP32_I2C_SCL 8
 
 // Buttons controllers
 #define ENCODER_PUSH_BUTTON 0     // GPIO0
@@ -315,7 +315,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  rx.setI2CFastModeCustom(100000);
+  // rx.setI2CFastModeCustom(100000);
   
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
   
