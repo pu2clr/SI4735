@@ -2,7 +2,10 @@
 
   UNDER CONSTRUCTION...
 
-  This sketch runs on ESP32 device.
+  It is porting to TFT ST7789 display....
+  
+  
+  This sketch runs on ESP32 device LilyGO T-Embed panel.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
@@ -45,20 +48,16 @@
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
-  By PU2CLR, Ricardo, May  2022.
+  By PU2CLR, Ricardo, Dec  2022.
 */
 
 
 #include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
 #include "EEPROM.h"
 #include <SI4735.h>
-
 #include <FastLED.h>
 #include "TFT_eSPI.h"
 
-#include "DSEG7_Classic_Regular_16.h"
 #include "Rotary.h"
 #include <patch_init.h> // SSB patch for whole SSBRX initialization string
 
@@ -138,6 +137,9 @@ long elapsedClick = millis();
 long elapsedCommand = millis();
 volatile int encoderCount = 0;
 uint16_t currentFrequency;
+
+char * dummy;
+
 
 const uint8_t currentBFOStep = 10;
 
@@ -265,7 +267,6 @@ uint8_t volume = DEFAULT_VOLUME;
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
-Adafruit_SSD1306 display = Adafruit_SSD1306(128, 32, &Wire);
 
 TFT_eSPI tft = TFT_eSPI();
 TFT_eSprite spr = TFT_eSprite(&tft);
@@ -284,25 +285,19 @@ void setup()
   // The line below may be necessary to setup I2C pins on ESP32
   Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
 
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C); // Address 0x3C for 128x32
 
-  display.display();
-  display.setTextColor(SSD1306_WHITE);
+  tft.begin();
+  tft.writecommand(0x11);
+  tft.setRotation(3);
+  tft.fillScreen(TFT_BLACK);
+
 
   // Splash - Remove or change it for your introduction text.
-  display.clearDisplay();
-  print(0, 0, NULL, 2, "PU2CLR");
-  print(0, 15, NULL, 2, "ESP32");
-  display.display();
-  delay(2000);
-  display.clearDisplay();
-  print(0, 0, NULL, 2, "SI473X");
-  print(0, 15, NULL, 2, "Arduino");
-  display.display();
+  splash(); 
   // End Splash
 
-  delay(2000);
-  display.clearDisplay();
+  delay(1000);
+
 
   EEPROM.begin(EEPROM_SIZE);
 
@@ -313,7 +308,7 @@ void setup()
     EEPROM.commit();
     print(0, 0, NULL, 2, "EEPROM RESETED");
     delay(3000);
-    display.clearDisplay();
+    // display.clearDisplay();
   }
 
   // ICACHE_RAM_ATTR void rotaryEncoder(); see rotaryEncoder implementation below.
@@ -344,21 +339,25 @@ void setup()
   showStatus();
 }
 
+void splash() {
+
+}
+
 
 /**
  * Prints a given content on display 
  */
 void print(uint8_t col, uint8_t lin, const GFXfont *font, uint8_t textSize, const char *msg) {
-  display.setFont(font);
-  display.setTextSize(textSize);
-  display.setCursor(col,lin);
-  display.print(msg);
+  // display.setFont(font);
+  // display.setTextSize(textSize);
+  // display.setCursor(col,lin);
+  // display.print(msg);
 }
 
 void printParam(const char *msg) {
- display.fillRect(0, 10, 128, 10, SSD1306_BLACK); 
- print(0,10,NULL,1, msg);
- display.display(); 
+ // display.fillRect(0, 10, 128, 10, SSD1306_BLACK); 
+ // print(0,10,NULL,1, msg);
+ // display.display(); 
 }
 
 /*
@@ -538,17 +537,18 @@ void showFrequency()
     unit = (char *) "kHz";
   }
   bufferDisplay[5] = '\0';
-  // strcat(bufferDisplay, unit);
+  strcat(bufferDisplay, unit);
   // display.setTextSize(2);
-  display.setFont(&DSEG7_Classic_Regular_16);
-  display.clearDisplay();
-  display.setCursor(20, 24);
-  display.print(bufferDisplay);
-  display.setCursor(90,15);
-  display.setFont(NULL);
-  display.setTextSize(1);
-  display.print(unit);
-  display.display();
+
+  // display.setFont(&DSEG7_Classic_Regular_16);
+  // display.clearDisplay();
+  // display.setCursor(20, 24);
+  // display.print(bufferDisplay);
+  // display.setCursor(90,15);
+  // display.setFont(NULL);
+  // display.setTextSize(1);
+  // display.print(unit);
+  // display.display();
 
   showMode();
 }
@@ -563,13 +563,14 @@ void showMode() {
   else
     bandMode = (char *) bandModeDesc[currentMode];
 
-  display.setTextSize(1);
+  // display.setTextSize(1);
   // display.clearDisplay();
-  display.setCursor(0, 0);
-  display.print(bandMode);
-  display.setCursor(90,0);
-  display.print(band[bandIdx].bandName);
-  display.display();
+  // display.setCursor(0, 0);
+  // display.print(bandMode);
+  // display.setCursor(90,0);
+  // display.print(band[bandIdx].bandName);
+  // display.display();
+  dummy = bandMode; // to be removed...
 }
 
 /**
@@ -614,17 +615,18 @@ void showRSSI()
   char sMeter[10];
   sprintf(sMeter, "S:%d ", rssi);
 
-  display.fillRect(0, 25, 128, 10, SSD1306_BLACK);  
-  display.setTextSize(1);
-  display.setCursor(80, 25);
-  display.print(sMeter);
+  // display.fillRect(0, 25, 128, 10, SSD1306_BLACK);  
+  // display.setTextSize(1);
+  // display.setCursor(80, 25);
+  // display.print(sMeter);
+
   if (currentMode == FM)
   {
-    display.setCursor(0, 25);
-    display.print((rx.getCurrentPilot()) ? "ST" : "MO");
+    // display.setCursor(0, 25);
+    // display.print((rx.getCurrentPilot()) ? "ST" : "MO");
   }
 
-  display.display();
+  // display.display();
 }
 
 /**
@@ -817,20 +819,20 @@ void doBandwidth(int8_t v)
  */
 void showCommandStatus(char * currentCmd)
 {
-  display.fillRect(40, 0, 50, 8, SSD1306_BLACK); 
-  display.setCursor(40, 0);
-  display.print(currentCmd);
-  display.display();  
+  // display.fillRect(40, 0, 50, 8, SSD1306_BLACK); 
+  // display.setCursor(40, 0);
+  // display.print(currentCmd);
+  // display.display();  
 }
 
 /**
  * Show menu options
  */
 void showMenu() {
-  display.clearDisplay();
-  display.setCursor(0, 10);
-  display.print(menu[menuIdx]);
-  display.display();
+  // display.clearDisplay();
+  // display.setCursor(0, 10);
+  // display.print(menu[menuIdx]);
+  // display.display();
   showCommandStatus( (char *) "Menu");
 }
 
