@@ -170,7 +170,8 @@ to
 
 ## References 
 
-* [Go to LilyGo T-Embed github repository](https://github.com/Xinyuan-LilyGO/T-Embed)
+* [Vídeo about this project](https://youtu.be/hMyZkXs8gW4) 
+[Go to LilyGo T-Embed github repository](https://github.com/Xinyuan-LilyGO/T-Embed)
 * [LILYGO Unveils the T-Embed ESP32-S3-Powered Universal Remote for Smart Home Projects and More](https://www.hackster.io/news/lilygo-unveils-the-t-embed-esp32-s3-powered-universal-remote-for-smart-home-projects-and-more-cad2e701d640)
 * [Vols's receiver based on TEA5767 Youtube Video](https://youtu.be/bg2Ysrh85Ek)
 * [VolosR's Repository](https://github.com/VolosR/TEmbedFMRadio)
