@@ -20,18 +20,18 @@ As you can see in the picture above, the LilyGO/T-Embed has some extra pins that
 
 ## Arduino setup
 
-On Arduino IDE, go to Preferences, edit the field "Additional Boards Manager URLs:" and add the URL 
+* On Arduino IDE, go to Preferences, edit the field "Additional Boards Manager URLs:" and add the URL 
 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json . 
 
-After, on Tools menu, select the option "Board:", "Boards Manager...". 
+* After, on Tools menu, select the option "Board:", "Boards Manager...". 
 Look for esp32 and install it.
 
 
-[Go to LilyGo T-Embed github repository](https://github.com/Xinyuan-LilyGO/T-Embed) and download it. 
+* [Go to LilyGo T-Embed github repository](https://github.com/Xinyuan-LilyGO/T-Embed) and download it. 
 Unzip the downloaded file, go to lib folder, copy and paste all files and folders to the your Arduino installation, libraries folder. 
 <BR>
 
-__Install the Arduino library FastLED.__
+* __Install the Arduino library FastLED.__
 
 
 
