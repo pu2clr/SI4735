@@ -47,12 +47,15 @@
 
   By PU2CLR, Ricardo, May  2022.
 */
+
+
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include "EEPROM.h"
 #include <SI4735.h>
 
+#define FASTLED_RMT_SERIAL_DEBUG 1
 #include <FastLED.h>
 #include "TFT_eSPI.h"
 
