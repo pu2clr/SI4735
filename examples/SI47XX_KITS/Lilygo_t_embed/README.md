@@ -82,16 +82,6 @@ The table and pictures below show the LilyGo T-Embed and SI473X devices connecti
 
 
 
- ### LilyGo T-Embed and ESP32 internal PINS (GPIO) and functions
-
- | GPIO  | Description  | 
- | ----- | ------------ |
- |   0   | Encoder Push Button  |
- |   1   | Encoder B |
- |   2   | Encoder A | 
- |  15   | Display LED (LCD_BL)  | 
- |  46   | Power On  (turn it high) |  
-
 
 <BR>
 
@@ -104,6 +94,18 @@ The table and pictures below show the LilyGo T-Embed and SI473X devices connecti
 ![LilyGo and Si473X connection 01](./images/lily02.jpg)
 
 <BR>
+
+
+
+ ### LilyGo T-Embed and ESP32 internal PINS (GPIO) and functions
+
+ | GPIO  | Description  | 
+ | ----- | ------------ |
+ |   0   | Encoder Push Button  |
+ |   1   | Encoder B |
+ |   2   | Encoder A | 
+ |  15   | Display LED (LCD_BL)  | 
+ |  46   | Power On  (turn it high) |  
 
 
 ### ISSUES
