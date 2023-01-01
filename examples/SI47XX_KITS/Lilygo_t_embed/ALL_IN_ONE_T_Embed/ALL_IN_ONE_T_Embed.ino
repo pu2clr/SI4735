@@ -56,7 +56,7 @@
 #include "EEPROM.h"
 #include <SI4735.h>
 #include <FastLED.h>
-#include "TFT_eSPI.h"
+#include <TFT_eSPI.h>
 
 #include "Rotary.h"
 #include <patch_init.h> // SSB patch for whole SSBRX initialization string
@@ -85,7 +85,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define MIN_ELAPSED_RSSI_TIME 200
 #define ELAPSED_COMMAND 2000  // time to turn off the last command controlled by encoder. Time to goes back to the FVO control
 #define ELAPSED_CLICK 1500    // time to check the double click commands
-#define DEFAULT_VOLUME 35    // change it for your favorite sound volume
+#define DEFAULT_VOLUME 60    // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
@@ -98,6 +98,10 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define EEPROM_SIZE        512
 
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
+
+
+#define color1 0xC638
+#define color2 0xC638
 
 // EEPROM - Stroring control variables
 const uint8_t app_id = 47; // Useful to check the EEPROM content before processing useful data
@@ -234,7 +238,7 @@ typedef struct
               Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
 */
 Band band[] = {
-    {"VHF", FM_BAND_TYPE, 6400, 10800, 10390, 1, 0},
+    {"VHF", FM_BAND_TYPE, 6400, 10800, 10270, 1, 0},
     {"MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4},
     {"MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4},
     {"MW2", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4},
@@ -278,7 +282,6 @@ void setup()
 {
   // Encoder pins
   pinMode(ENCODER_PUSH_BUTTON, INPUT_PULLUP);
-  
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
@@ -290,6 +293,16 @@ void setup()
   tft.writecommand(0x11);
   tft.setRotation(3);
   tft.fillScreen(TFT_BLACK);
+  
+  turnDisplay(true);
+
+
+
+  spr.createSprite(320, 170);
+  spr.setTextDatum(4);
+  spr.setSwapBytes(true);
+  spr.setFreeFont(&Orbitron_Light_24);
+  spr.setTextColor(color1, TFT_BLACK);
 
 
   // Splash - Remove or change it for your introduction text.
@@ -339,9 +352,91 @@ void setup()
   showStatus();
 }
 
+// Turn the display on (true) or off (false)
+void turnDisplay(bool v) {
+  pinMode(15, OUTPUT);
+  digitalWrite(15, v);   
+  pinMode(46, OUTPUT);
+  digitalWrite(46, v);
+}
+
+
 void splash() {
 
+  spr.fillSprite(TFT_BLACK);
+  spr.setTextColor(TFT_WHITE, TFT_BLACK);
+
+  spr.drawString("TEST",160, 64);
+  spr.setFreeFont(&Orbitron_Light_24);
+  spr.drawString("SI473X", 160, 12);
+  spr.drawString("STATIONS", 38, 14, 2);
+  spr.drawRoundRect(1, 1, 76, 110, 4, 0xAD55);
+  spr.drawRoundRect(240, 20, 76, 22, 4, TFT_WHITE);
+
+  spr.drawRect(290, 6, 20, 9, TFT_WHITE);
+  spr.fillRect(291, 7, 12, 7, 0x34CD);
+  spr.fillRect(310, 8, 2, 5, TFT_WHITE);
+
+  spr.setTextFont(0);
+  spr.setTextColor(0xBEDF, TFT_BLACK);
+  for (int i = 0; i < 6; i++)
+  {
+    // spr.drawString(sta[i], 38, 32 + (i * 12));
+    spr.fillCircle(16, 31 + (i * 12), 2, 0xFBAE);
+  }
+  spr.setTextColor(TFT_WHITE, TFT_BLACK);
+
+  spr.drawString("SIGNAL", 266, 54);
+  spr.drawString("MUTED", 260, 102, 2);
+  spr.fillRoundRect(288, 96, 20, 20, 3, 0xCC40);
+
+  // if (muted == 1)
+    spr.fillCircle(297, 105, 6, TFT_WHITE);
+
+  for (int i = 0; i < 17; i++)
+  {
+    if (i < 9)
+      spr.fillRect(244 + (i * 4), 80 - (i * 1), 2, 4 + (i * 1), TFT_GREEN);
+    else
+      spr.fillRect(244 + (i * 4), 80 - (i * 1), 2, 4 + (i * 1), TFT_RED);
+  }
+
+  spr.fillTriangle(156, 104, 160, 114, 164, 104, TFT_RED);
+
+  int temp = 102.70 - 20;
+  for (int i = 0; i < 40; i++)
+  {
+    if ((temp % 10) == 0)
+    {
+      spr.drawLine(i * 8, 170, i * 8, 140, color1);
+
+      spr.drawLine((i * 8) + 1, 170, (i * 8) + 1, 140, color1);
+      spr.drawFloat(temp / 10.0, 1, i * 8, 130, 2);
+    }
+    else if ((temp % 5) == 0 && (temp % 10) != 0)
+    {
+      spr.drawLine(i * 8, 170, i * 8, 150, color1);
+      spr.drawLine((i * 8) + 1, 170, (i * 8) + 1, 150, color1);
+      // spr.drawFloat(temp/10.0,1,i*8,144);
+    }
+    else
+    {
+      spr.drawLine(i * 8, 170, i * 8, 160, color1);
+    }
+
+    temp = temp + 1;
+  }
+
+  if (rx.getCurrentPilot())
+    spr.drawString("Stereo", 275, 31, 2);
+  else
+    spr.drawString("Mono", 275, 31, 2);
+
+  spr.drawLine(160, 114, 160, 170, TFT_RED);
+  spr.pushSprite(0, 0);
+
 }
+
 
 
 /**
