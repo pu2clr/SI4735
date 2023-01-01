@@ -71,8 +71,8 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define RESET_PIN   16      // GPIO16
 
 // Enconder PINs
-#define ENCODER_PIN_A  2           // GPIO2 
-#define ENCODER_PIN_B  1           // GPIO1
+#define ENCODER_PIN_A  1           // GPIO2 
+#define ENCODER_PIN_B  2           // GPIO1
 
 // I2C bus pin on ESP32
 #define ESP32_I2C_SDA 18
@@ -366,7 +366,7 @@ void splash() {
   spr.fillSprite(TFT_BLACK);
   spr.setTextColor(TFT_WHITE, TFT_BLACK);
 
-  spr.drawString("TEST",160, 64);
+  // spr.drawString("TEST",160, 64);
   spr.setFreeFont(&Orbitron_Light_24);
   spr.drawString("SI473X", 160, 12);
   spr.drawString("MENU", 38, 14, 2);
@@ -393,7 +393,7 @@ void splash() {
   // if (muted == 1)
     spr.fillCircle(297, 105, 6, TFT_WHITE);
 
-  for (int i = 0; i < 17; i++)
+  for (int i = 0; i < 17; i++) // Signal level
   {
     if (i < 9)
       spr.fillRect(244 + (i * 4), 80 - (i * 1), 2, 4 + (i * 1), TFT_GREEN);
@@ -401,31 +401,6 @@ void splash() {
       spr.fillRect(244 + (i * 4), 80 - (i * 1), 2, 4 + (i * 1), TFT_RED);
   }
 
-  spr.fillTriangle(156, 104, 160, 114, 164, 104, TFT_RED);
-
-  int temp = 1027.0 - 20;
-  for (int i = 0; i < 40; i++)
-  {
-    if ((temp % 10) == 0)
-    {
-      spr.drawLine(i * 8, 170, i * 8, 140, color1);
-
-      spr.drawLine((i * 8) + 1, 170, (i * 8) + 1, 140, color1);
-      spr.drawFloat(temp / 10.0, 1, i * 8, 130, 2);
-    }
-    else if ((temp % 5) == 0 && (temp % 10) != 0)
-    {
-      spr.drawLine(i * 8, 170, i * 8, 150, color1);
-      spr.drawLine((i * 8) + 1, 170, (i * 8) + 1, 150, color1);
-      // spr.drawFloat(temp/10.0,1,i*8,144);
-    }
-    else
-    {
-      spr.drawLine(i * 8, 170, i * 8, 160, color1);
-    }
-
-    temp = temp + 1;
-  }
 
   if (rx.getCurrentPilot())
     spr.drawString("Stereo", 275, 31, 2);
@@ -433,6 +408,7 @@ void splash() {
     spr.drawString("Mono", 275, 31, 2);
 
   spr.drawLine(160, 114, 160, 170, TFT_RED);
+  
   spr.pushSprite(0, 0);
 
 }
@@ -604,46 +580,44 @@ ICACHE_RAM_ATTR void  rotaryEncoder()
  */
 void showFrequency()
 {
-  char tmp[15];
-  char bufferDisplay[15];
-  char * unit;
-  sprintf(tmp, "%5.5u", currentFrequency);
-  bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
-  bufferDisplay[1] = tmp[1];
-  if (rx.isCurrentTuneFM())
-  {
-    bufferDisplay[2] = tmp[2];
-    bufferDisplay[3] = '.';
-    bufferDisplay[4] = tmp[3];
-    unit = (char *) "MHz";
-  }
-  else
-  {
-    if ( currentFrequency  < 1000 ) {
-      bufferDisplay[1] = ' ';
-      bufferDisplay[2] = tmp[2] ;
-      bufferDisplay[3] = tmp[3];
-      bufferDisplay[4] = tmp[4];
-    } else {
-      bufferDisplay[2] = tmp[2];
-      bufferDisplay[3] = tmp[3];
-      bufferDisplay[4] = tmp[4];
-    }
-    unit = (char *) "kHz";
-  }
-  bufferDisplay[5] = '\0';
-  strcat(bufferDisplay, unit);
-  // display.setTextSize(2);
 
-  // display.setFont(&DSEG7_Classic_Regular_16);
-  // display.clearDisplay();
-  // display.setCursor(20, 24);
-  // display.print(bufferDisplay);
-  // display.setCursor(90,15);
-  // display.setFont(NULL);
-  // display.setTextSize(1);
-  // display.print(unit);
-  // display.display();
+  float freq = currentFrequency / 100.0;
+  float value = freq * 10;
+
+
+  spr.fillSprite(TFT_BLACK);
+
+
+
+  spr.drawFloat(freq, 2, 160, 64, 7);
+
+  spr.fillTriangle(156, 104, 160, 114, 164, 104, TFT_RED);
+  spr.drawLine(160, 114, 160, 170, TFT_RED);
+ 
+
+  int temp = value - 20;
+  for (int i = 0; i < 40; i++)
+  {
+    if ((temp % 10) == 0)
+    {
+      spr.drawLine(i * 8, 170, i * 8, 140, color1);
+
+      spr.drawLine((i * 8) + 1, 170, (i * 8) + 1, 140, color1);
+      spr.drawFloat(temp / 10.0, 1, i * 8, 130, 2);
+    }
+    else if ((temp % 5) == 0 && (temp % 10) != 0)
+    {
+      spr.drawLine(i * 8, 170, i * 8, 150, color1);
+      spr.drawLine((i * 8) + 1, 170, (i * 8) + 1, 150, color1);
+    }
+    else
+    {
+      spr.drawLine(i * 8, 170, i * 8, 160, color1);
+    }
+    temp = temp + 1;
+  }
+
+  spr.pushSprite(0, 0);
 
   showMode();
 }
@@ -1287,5 +1261,5 @@ void loop()
     }
   }
 
-  delay(5);
+  delay(2);
 }
