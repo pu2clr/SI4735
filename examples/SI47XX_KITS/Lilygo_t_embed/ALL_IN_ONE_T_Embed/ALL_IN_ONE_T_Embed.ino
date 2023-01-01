@@ -147,9 +147,9 @@ char * dummy;
 
 const uint8_t currentBFOStep = 10;
 
-const char *menu[] = {"Volume", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "Seek Up", "Seek Down"};
+const char *menu[] = {"Volume", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "Seek"};
 int8_t menuIdx = 0;
-const int lastMenu = 8;
+const int lastMenu = 7;
 int8_t currentMenuCmd = -1;
 
 typedef struct
@@ -369,7 +369,7 @@ void splash() {
   spr.drawString("TEST",160, 64);
   spr.setFreeFont(&Orbitron_Light_24);
   spr.drawString("SI473X", 160, 12);
-  spr.drawString("STATIONS", 38, 14, 2);
+  spr.drawString("MENU", 38, 14, 2);
   spr.drawRoundRect(1, 1, 76, 110, 4, 0xAD55);
   spr.drawRoundRect(240, 20, 76, 22, 4, TFT_WHITE);
 
@@ -379,10 +379,10 @@ void splash() {
 
   spr.setTextFont(0);
   spr.setTextColor(0xBEDF, TFT_BLACK);
-  for (int i = 0; i < 6; i++)
+  for (int i = 0; i < lastMenu; i++)
   {
-    // spr.drawString(sta[i], 38, 32 + (i * 12));
-    spr.fillCircle(16, 31 + (i * 12), 2, 0xFBAE);
+    spr.drawString(menu[i], 44, 32 + (i * 12));
+    spr.fillCircle(13, 31 + (i * 12), 2, 0xFBAE);
   }
   spr.setTextColor(TFT_WHITE, TFT_BLACK);
 
@@ -403,7 +403,7 @@ void splash() {
 
   spr.fillTriangle(156, 104, 160, 114, 164, 104, TFT_RED);
 
-  int temp = 102.70 - 20;
+  int temp = 1027.0 - 20;
   for (int i = 0; i < 40; i++)
   {
     if ((temp % 10) == 0)
