@@ -319,7 +319,7 @@ void setup()
   {
     EEPROM.write(eeprom_address, 0);
     EEPROM.commit();
-    print(0, 0, NULL, 2, "EEPROM RESETED");
+    print(20, 20, &Orbitron_Light_24, "EEPROM RESETED");
     delay(3000);
     // display.clearDisplay();
   }
@@ -418,17 +418,15 @@ void splash() {
 /**
  * Prints a given content on display 
  */
-void print(uint8_t col, uint8_t lin, const GFXfont *font, uint8_t textSize, const char *msg) {
-  // display.setFont(font);
-  // display.setTextSize(textSize);
-  // display.setCursor(col,lin);
-  // display.print(msg);
+void print(uint8_t col, uint8_t lin, const GFXfont *font, const char *msg) {
+  spr.setFreeFont(font);
+  spr.drawString(msg, col, lin);
+  spr.pushSprite(0, 0);
 }
 
 void printParam(const char *msg) {
- // display.fillRect(0, 10, 128, 10, SSD1306_BLACK); 
- // print(0,10,NULL,1, msg);
- // display.display(); 
+
+ print(80,130,&Orbitron_Light_32, msg);
 }
 
 /*
@@ -559,7 +557,7 @@ void disableCommands()
   cmdMenu = false;
   cmdSoftMuteMaxAtt = false;
   countClick = 0;
-  // showCommandStatus((char *) "VFO ");
+  showCommandStatus((char *) "VFO ");
 }
 
 /**
@@ -672,7 +670,7 @@ void showBandwidth()
   {
     bw = (char *)bandwidthFM[bwIdxFM].desc;
   }
-  sprintf(bandwidth,"BW: %s", bw);
+  sprintf(bandwidth,"%s", bw);
   printParam(bandwidth);
 }
 
@@ -720,7 +718,7 @@ void showAgcAtt()
 void showStep()
 {
     char sStep[15];
-    sprintf(sStep, "Stp:%4d", (currentMode == FM )? ( tabFmStep[currentStepIdx] * 10) : tabAmStep[currentStepIdx]);
+    sprintf(sStep, "%4d", (currentMode == FM )? ( tabFmStep[currentStepIdx] * 10) : tabAmStep[currentStepIdx]);
     printParam(sStep);
 }
 
@@ -732,9 +730,9 @@ void showBFO()
   char bfo[18];
   
   if (currentBFO > 0)
-    sprintf(bfo, "BFO: +%4.4d", currentBFO);
+    sprintf(bfo, "+%4.4d", currentBFO);
   else
-    sprintf(bfo, "BFO: %4.4d", currentBFO);
+    sprintf(bfo, " %4.4d", currentBFO);
 
   printParam(bfo);
   elapsedCommand = millis();
@@ -746,7 +744,7 @@ void showBFO()
 void showVolume()
 {
   char volAux[12];
-  sprintf(volAux, "VOLUME: %2u", rx.getVolume());
+  sprintf(volAux, "%2u", rx.getVolume());
   printParam(volAux);
 }
 
@@ -756,7 +754,7 @@ void showVolume()
 void showSoftMute()
 {
   char sMute[18];
-  sprintf(sMute, "Soft Mute: %2d", softMuteMaxAttIdx);
+  sprintf(sMute, "%2d", softMuteMaxAttIdx);
   printParam(sMute);
 }
 
@@ -886,23 +884,23 @@ void doBandwidth(int8_t v)
 /**
  * Show cmd on display. It means you are setting up something.  
  */
-void showCommandStatus(char * currentCmd)
+void showCommandStatus(char * currentCmd )
 {
-  // display.fillRect(40, 0, 50, 8, SSD1306_BLACK); 
-  // display.setCursor(40, 0);
-  // display.print(currentCmd);
-  // display.display();  
+  spr.setFreeFont(&Orbitron_Light_24);
+  spr.drawString(currentCmd, 160, 12);
+  spr.pushSprite(0, 0);
 }
 
 /**
  * Show menu options
  */
 void showMenu() {
-  // display.clearDisplay();
-  // display.setCursor(0, 10);
-  // display.print(menu[menuIdx]);
-  // display.display();
+  spr.fillSprite(TFT_BLACK);
+  spr.setTextColor(TFT_WHITE, TFT_BLACK);
+  spr.setFreeFont(&Orbitron_Light_32);
+  spr.drawString(menu[menuIdx], 100, 50);
   showCommandStatus( (char *) "Menu");
+  spr.pushSprite(0, 0);
 }
 
 /**
