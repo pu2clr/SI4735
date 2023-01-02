@@ -97,6 +97,9 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 
+#define NUM_LEDS 7
+#define DATA_PIN 42
+#define CLOCK_PIN 45
 
 #define color1 0xC638
 #define color2 0xC638
@@ -266,6 +269,10 @@ const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
 uint8_t rssi = 0;
 uint8_t volume = DEFAULT_VOLUME;
 
+
+CRGB leds[NUM_LEDS];
+
+
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
@@ -286,6 +293,7 @@ void setup()
   // The line below may be necessary to setup I2C pins on ESP32
   Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
 
+  FastLED.addLeds<APA102, DATA_PIN, CLOCK_PIN, RGB>(leds, NUM_LEDS);
 
   tft.begin();
   tft.writecommand(0x11);
@@ -293,8 +301,6 @@ void setup()
   tft.fillScreen(TFT_BLACK);
   
   turnDisplay(true);
-
-
 
   spr.createSprite(320, 170);
   spr.setTextDatum(4);
@@ -344,6 +350,25 @@ void setup()
     readAllReceiverInformation();
   } else 
     rx.setVolume(volume);
+/*
+  leds[0] = CRGB::Red;
+  leds[1] = CRGB::White;
+  leds[2] = CRGB::Red;
+  leds[3] = CRGB::Green;
+  leds[4] = CRGB::Red;
+  leds[5] = CRGB::Blue;
+  leds[6] = CRGB::Red;
+*/
+
+  leds[0] = CRGB::Green;
+  leds[1] = CRGB::Green;
+  leds[2] = CRGB::Green;
+  leds[3] = CRGB::Green;
+  leds[4] = CRGB::Green;
+  leds[5] = CRGB::Green;
+  leds[6] = CRGB::Green;
+  
+  FastLED.show();
   
   useBand();
   showStatus();
