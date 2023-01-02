@@ -321,7 +321,6 @@ void setup()
     EEPROM.commit();
     print(20, 20, &Orbitron_Light_24, "EEPROM RESETED");
     delay(3000);
-    // display.clearDisplay();
   }
 
   // ICACHE_RAM_ATTR void rotaryEncoder(); see rotaryEncoder implementation below.
@@ -385,27 +384,6 @@ void splash() {
     spr.fillCircle(13, 31 + (i * 12), 2, 0xFBAE);
   }
   spr.setTextColor(TFT_WHITE, TFT_BLACK);
-
-  spr.drawString("SIGNAL", 266, 54);
-  spr.drawString("MUTED", 260, 102, 2);
-  spr.fillRoundRect(288, 96, 20, 20, 3, 0xCC40);
-
-  // if (muted == 1)
-    spr.fillCircle(297, 105, 6, TFT_WHITE);
-
-  for (int i = 0; i < 17; i++) // Signal level
-  {
-    if (i < 9)
-      spr.fillRect(244 + (i * 4), 80 - (i * 1), 2, 4 + (i * 1), TFT_GREEN);
-    else
-      spr.fillRect(244 + (i * 4), 80 - (i * 1), 2, 4 + (i * 1), TFT_RED);
-  }
-
-
-  if (rx.getCurrentPilot())
-    spr.drawString("Stereo", 275, 31, 2);
-  else
-    spr.drawString("Mono", 275, 31, 2);
 
   spr.drawLine(160, 114, 160, 170, TFT_RED);
   
@@ -587,7 +565,7 @@ void showFrequency()
 
 
 
-  spr.drawFloat(freq, 2, 160, 64, 7);
+  spr.drawFloat(freq, 2, 150, 64, 7);
 
   spr.fillTriangle(156, 104, 160, 114, 164, 104, TFT_RED);
   spr.drawLine(160, 114, 160, 170, TFT_RED);
@@ -616,7 +594,8 @@ void showFrequency()
   }
 
   spr.pushSprite(0, 0);
-
+  showRSSI();
+  
   showMode();
 }
 
@@ -674,26 +653,77 @@ void showBandwidth()
   printParam(bandwidth);
 }
 
+
+/*
+ * Concert rssi to VU
+*/
+int getStrength(uint8_t rssi)
+{
+  if ((rssi >= 0) and (rssi <= 1))
+    return 1; // S0
+  if ((rssi > 1) and (rssi <= 1))
+    return 2; // S1
+  if ((rssi > 2) and (rssi <= 3))
+    return  3; // S2
+  if ((rssi > 3) and (rssi <= 4))
+    return  4; // S3
+  if ((rssi > 4) and (rssi <= 10))
+    return  5; // S4
+  if ((rssi > 10) and (rssi <= 16))
+    return 6; // S5
+  if ((rssi > 16) and (rssi <= 22))
+    return 7; // S6
+  if ((rssi > 22) and (rssi <= 28))
+    return  8; // S7
+  if ((rssi > 28) and (rssi <= 34))
+    return 9; // S8
+  if ((rssi > 34) and (rssi <= 44))
+    return 10; // S9
+  if ((rssi > 44) and (rssi <= 54))
+    return 11; // S9 +10
+  if ((rssi > 54) and (rssi <= 64))
+    return 12; // S9 +20
+  if ((rssi > 64) and (rssi <= 74))
+    return 13; // S9 +30
+  if ((rssi > 74) and (rssi <= 84))
+    return 14; // S9 +40
+  if ((rssi > 84) and (rssi <= 94))
+    return 15; // S9 +50
+  if (rssi > 94)
+    return 16; // S9 +60
+  if (rssi > 95)
+    return 17; //>S9 +60
+
+  return 0;
+
+}
 /**
  *   Shows the current RSSI and SNR status
  */
 void showRSSI()
 {
-  char sMeter[10];
-  sprintf(sMeter, "S:%d ", rssi);
 
-  // display.fillRect(0, 25, 128, 10, SSD1306_BLACK);  
-  // display.setTextSize(1);
-  // display.setCursor(80, 25);
-  // display.print(sMeter);
+  spr.fillRect(240,20,76,88,TFT_BLACK); // Clear the indicator areas 
+  
+  for (int i = 0; i < getStrength(rssi); i++)
+  {
+    if (i < 9)
+      spr.fillRect(244 + (i * 4), 80 - i, 2, 4 + i, TFT_GREEN);
+    else
+      spr.fillRect(244 + (i * 4), 80 - i, 2, 4 + i, TFT_RED);
+  }
 
   if (currentMode == FM)
   {
-    // display.setCursor(0, 25);
-    // display.print((rx.getCurrentPilot()) ? "ST" : "MO");
-  }
+       spr.drawRoundRect(240, 20, 76, 22, 4, TFT_WHITE);
+      if (rx.getCurrentPilot())
+         spr.drawString("Stereo", 275, 31, 2);
+      else
+        spr.drawString("Mono", 275, 31, 2);
+  } 
+  
+  spr.pushSprite(0, 0);
 
-  // display.display();
 }
 
 /**
@@ -1216,7 +1246,7 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
-  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
+  if ((millis() - elapsedRSSI) > (MIN_ELAPSED_RSSI_TIME * 6))
   {
     rx.getCurrentReceivedSignalQuality();
     int aux = rx.getCurrentRSSI();
