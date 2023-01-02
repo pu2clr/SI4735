@@ -365,27 +365,12 @@ void splash() {
   spr.fillSprite(TFT_BLACK);
   spr.setTextColor(TFT_WHITE, TFT_BLACK);
 
-  // spr.drawString("TEST",160, 64);
   spr.setFreeFont(&Orbitron_Light_24);
-  spr.drawString("SI473X", 160, 12);
-  spr.drawString("MENU", 38, 14, 2);
-  spr.drawRoundRect(1, 1, 76, 110, 4, 0xAD55);
-  spr.drawRoundRect(240, 20, 76, 22, 4, TFT_WHITE);
-
-  spr.drawRect(290, 6, 20, 9, TFT_WHITE);
-  spr.fillRect(291, 7, 12, 7, 0x34CD);
-  spr.fillRect(310, 8, 2, 5, TFT_WHITE);
-
-  spr.setTextFont(0);
-  spr.setTextColor(0xBEDF, TFT_BLACK);
-  for (int i = 0; i < lastMenu; i++)
-  {
-    spr.drawString(menu[i], 44, 32 + (i * 12));
-    spr.fillCircle(13, 31 + (i * 12), 2, 0xFBAE);
-  }
-  spr.setTextColor(TFT_WHITE, TFT_BLACK);
-
-  spr.drawLine(160, 114, 160, 170, TFT_RED);
+  spr.drawString(" PU2CLR SI4735", 140, 12);
+  spr.drawString("Arduino Library", 140, 60);
+  
+  // spr.drawRoundRect(1, 1, 76, 110, 4, 0xAD55);
+  // spr.drawRoundRect(240, 20, 76, 22, 4, TFT_WHITE);
   
   spr.pushSprite(0, 0);
 
@@ -403,8 +388,8 @@ void print(uint8_t col, uint8_t lin, const GFXfont *font, const char *msg) {
 }
 
 void printParam(const char *msg) {
-
- print(80,130,&Orbitron_Light_32, msg);
+  spr.fillRect(10, 120, 220, 40, TFT_BLACK);
+  print(80,130,&Orbitron_Light_32, msg);
 }
 
 /*
@@ -626,14 +611,13 @@ void showMode() {
   else
     bandMode = (char *) bandModeDesc[currentMode];
 
-  // display.setTextSize(1);
-  // display.clearDisplay();
-  // display.setCursor(0, 0);
-  // display.print(bandMode);
-  // display.setCursor(90,0);
-  // display.print(band[bandIdx].bandName);
-  // display.display();
-  dummy = bandMode; // to be removed...
+   spr.setTextColor(TFT_YELLOW, TFT_BLACK);   
+   spr.setTextFont(0);
+   spr.drawString(bandMode, 38, 32);
+   spr.drawString(band[bandIdx].bandName, 38, 45); 
+   spr.setTextColor(TFT_WHITE, TFT_BLACK);  
+   spr.pushSprite(0, 0);
+
 }
 
 /**
@@ -641,7 +625,6 @@ void showMode() {
  */
 void showStatus()
 {
-  // lcd.clear();
   showFrequency();
   showRSSI();
 }
@@ -934,6 +917,7 @@ void doBandwidth(int8_t v)
 void showCommandStatus(char * currentCmd )
 {
   spr.setFreeFont(&Orbitron_Light_24);
+  spr.fillRect(110, 0, 90, 25, TFT_BLACK);
   spr.drawString(currentCmd, 160, 12);
   spr.pushSprite(0, 0);
 }
