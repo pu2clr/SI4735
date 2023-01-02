@@ -557,15 +557,32 @@ ICACHE_RAM_ATTR void  rotaryEncoder()
 void showFrequency()
 {
 
-  float freq = currentFrequency / 100.0;
-  float value = freq * 10;
+  float freq;  
+  float value; 
+  int decimals; 
 
+
+  if (rx.isCurrentTuneFM())
+  {
+      freq = currentFrequency / 100.0;
+      decimals = 1;
+  }
+  else
+  {
+    if ( currentFrequency  < 1000 ) { // LW or MW
+      freq = (float) currentFrequency;
+      decimals = 0;
+    } else {
+      freq = (float) currentFrequency / 1000.0;
+      decimals = 3;
+    }
+  }
+
+  value = freq * 10;
 
   spr.fillSprite(TFT_BLACK);
 
-
-
-  spr.drawFloat(freq, 2, 150, 64, 7);
+  spr.drawFloat(freq, decimals, 150, 64, 7);
 
   spr.fillTriangle(156, 104, 160, 114, 164, 104, TFT_RED);
   spr.drawLine(160, 114, 160, 170, TFT_RED);
