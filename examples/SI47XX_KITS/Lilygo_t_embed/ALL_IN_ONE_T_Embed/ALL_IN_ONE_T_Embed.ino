@@ -331,8 +331,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  // rx.setI2CFastModeCustom(100000);
-  
+  // rx.setI2CFastModeCustom(800000);  
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
   
   rx.setup(RESET_PIN, MW_BAND_TYPE);
@@ -635,9 +634,9 @@ void showMode() {
     bandMode = (char *) bandModeDesc[currentMode];
 
    spr.setTextColor(TFT_YELLOW, TFT_BLACK);   
-   spr.setTextFont(0);
-   spr.drawString(bandMode, 38, 32);
-   spr.drawString(band[bandIdx].bandName, 38, 45); 
+   spr.setFreeFont(&FreeMono9pt7b);
+   spr.drawString(bandMode, 25, 20);
+   spr.drawString(band[bandIdx].bandName, 25, 35); 
    spr.setTextColor(TFT_WHITE, TFT_BLACK);  
    spr.pushSprite(0, 0);
 
@@ -1286,12 +1285,7 @@ void loop()
   if ((millis() - elapsedCommand) > ELAPSED_COMMAND)
   {
     if ((currentMode == LSB || currentMode == USB) )
-    {
       bfoOn = false;
-      // showBFO();
-      showStatus();
-    } else if (isMenuMode()) 
-      showStatus();
     disableCommands();
     elapsedCommand = millis();
   }
