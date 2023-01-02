@@ -1,10 +1,8 @@
 /*
 
-  UNDER CONSTRUCTION...
+  Working but still in CONSTRUCTION...
 
-  It is porting to TFT ST7789 display....
-  
-  
+
   This sketch runs on ESP32 device LilyGO T-Embed panel.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
