@@ -134,10 +134,18 @@ cc1plus: some warnings being treated as errors
 
 <BR>
 
-To solve that problem edit the file Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.h (See the right path of your Arduino installation) and choose one of the following two methods:
+To solve that problem edit the file Documents/Arduino/libraries/FastLED/src/platforms/esp/32/clockless_rmt_esp32.h (See the right path of your Arduino installation) and choose one of the following three methods:
 
 
 #### Methode one
+
+On Arduino IDE, preferences, select __Default__ option for Compiler warnings field. See picture below.
+
+![LilyGO libraries](./images/lib04.png)
+
+
+
+#### Methode two
 
 ```c++
 #ifndef FASTLED_RMT_SERIAL_DEBUG
@@ -153,7 +161,7 @@ Replace from FASTLED_RMT_SERIAL_DEBUG 0 to  FASTLED_RMT_SERIAL_DEBUG 1 as shown 
 #endif
 ```
 
-#### Methode two
+#### Methode three
 
 Replace 
 <BR>
