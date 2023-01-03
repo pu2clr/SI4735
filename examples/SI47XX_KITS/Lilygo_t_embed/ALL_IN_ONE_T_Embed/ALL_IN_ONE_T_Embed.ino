@@ -9,7 +9,7 @@
   regular  comercial  stations.
 
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
-              SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
+              SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz step on SSB
 
 
   The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
@@ -1286,7 +1286,7 @@ void loop()
   {
     if ((currentMode == LSB || currentMode == USB) )
       bfoOn = false;
-    disableCommands();
+    // disableCommands();
     elapsedCommand = millis();
   }
 
