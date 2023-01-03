@@ -298,6 +298,9 @@ Install the latest version of the "PU2CLR SI4735 Arduino Library". [This video s
 ![Firmware Update 04](./images/p04.png)
 
 
+__ ATTENTION: If you are using Windows, please install the USBasp driver. See [USBASP Installation in Windows 10](https://www.instructables.com/USBASP-Installation-in-Windows-10/)__. It can work for oldest windows version. 
+
+
 
 #### STEP 3
 
