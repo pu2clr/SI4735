@@ -15,7 +15,7 @@ After compiling and installing the ALL_IN_ONE_T_Embed.ino sketch on the ESP32 or
    When the desired band is shown on display, you  can press the button once again to select the band. 
 
 
-### 2. STEP, MODE, AGC/Attenuation, bandwidth, Soft Mute and VOLUME
+### 2. STEP, MODE, AGC/Attenuation, Automatic Volume Control (AVC), bandwidth, Soft Mute and VOLUME
 
      2.1. Press the encoder push button twice (within 1/2 second).
      2.2. After that, the display will show you the Menu text. Rotate the encoder clockwise or counterclockwise 
@@ -34,9 +34,11 @@ After compiling and installing the ALL_IN_ONE_T_Embed.ino sketch on the ESP32 or
 
 ### 4. SEEK 
 
+   It is important to know that the direction of the last movement of the encoder will define the direction of the station search (from the current position to lower or higher frequencies).
+
    4.1. Select the menu by pressing twice the encoder push button. 
-   4.2. Rotate the encoder clockwise or counterclockwise to select "Seek Up"  or "Seek Down".
-   4.3. Press the encoder push button once on "Seek Up"  or "Seek Down".
+   4.2. Rotate the encoder clockwise or counterclockwise to select the "Seek" option.
+   4.3. Press the encoder push button once.
 
 
 ATTENTION: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. 

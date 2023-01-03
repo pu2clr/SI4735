@@ -2,7 +2,6 @@
 
   Working but still in CONSTRUCTION...
 
-
   This sketch runs on ESP32 device LilyGO T-Embed panel.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
@@ -131,6 +130,7 @@ bool cmdStep = false;
 bool cmdMode = false;
 bool cmdMenu = false;
 bool cmdSoftMuteMaxAtt = false;
+bool cmdAvc = false;      
 
 bool fmRDS = false;
 
@@ -148,10 +148,12 @@ char * dummy;
 
 const uint8_t currentBFOStep = 10;
 
-const char *menu[] = {"Volume", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "Seek"};
+const char *menu[] = {"Volume", "Step", "Mode", "BFO", "BW", "AGC/Att", "AVC", "SoftMute", "Seek"};
 int8_t menuIdx = 0;
-const int lastMenu = 7;
+const int lastMenu = 8;
 int8_t currentMenuCmd = -1;
+
+int8_t avcIdx = 38;
 
 typedef struct
 {
@@ -541,6 +543,7 @@ void disableCommands()
   cmdMode = false;
   cmdMenu = false;
   cmdSoftMuteMaxAtt = false;
+  cmdAvc = false;   
   countClick = 0;
   showCommandStatus((char *) "VFO ");
 }
@@ -764,6 +767,18 @@ void showAgcAtt()
   printParam(sAgc);  
 }
 
+
+/**
+   Shows current Automatic Volume Control
+*/
+void showAvc() {
+  char sAvc[10];
+  if ( currentMode != FM ) {
+    sprintf(sAvc, "%2.2d", avcIdx);    
+    printParam(sAvc);  
+  }
+}
+
 /**
  *   Shows the current step
  */
@@ -865,7 +880,7 @@ void useBand()
     rx.setAutomaticGainControl(disableAgc, agcNdx);
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
     rx.setSeekAmSpacing(5); // Max 10kHz for spacing
-
+    rx.setAvcAmMaxGain(avcIdx);
   }
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
@@ -972,6 +987,27 @@ void doAgc(int8_t v) {
     agcNdx = 0;
   rx.setAutomaticGainControl(disableAgc, agcNdx); // if agcNdx = 0, no attenuation
   showAgcAtt();
+  delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  elapsedCommand = millis();
+}
+
+
+/**
+   sets the Automatic Volume Control
+*/
+void doAvc(int8_t v)
+{
+  if ( currentMode != FM ) {
+    avcIdx = (v == 1) ? avcIdx + 2 : avcIdx - 2;
+    if (avcIdx > 90)
+      avcIdx = 12;
+    else if (avcIdx < 12)
+      avcIdx = 90;
+
+    rx.setAvcAmMaxGain(avcIdx);
+    showAvc();
+    delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
+  }
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
@@ -1155,16 +1191,15 @@ void doCurrentMenuCmd() {
       cmdAgc = true;
       showAgcAtt();
       break;
-    case 6: 
+    case 6:
+       cmdAvc =  true;
+       showAvc();
+       break;
+    case 7: 
       cmdSoftMuteMaxAtt = true;
       showSoftMute();  
       break;
-    case 7:
-      seekDirection = 1;
-      doSeek();
-      break;  
     case 8:
-      seekDirection = 0;
       doSeek();
       break;    
     default:
@@ -1179,7 +1214,7 @@ void doCurrentMenuCmd() {
  * Return true if the current status is Menu command
  */
 bool isMenuMode() {
-  return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode);
+  return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdAvc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode);
 }
 
 /**
@@ -1204,6 +1239,8 @@ void loop()
       doStep(encoderCount);
     else if (cmdAgc)
       doAgc(encoderCount);
+    else if (cmdAvc)
+      doAvc(encoderCount);
     else if (cmdBandwidth)
       doBandwidth(encoderCount);
     else if (cmdVolume)
@@ -1216,10 +1253,12 @@ void loop()
     {
       if (encoderCount == 1)
       {
+        seekDirection = 1;
         rx.frequencyUp();
       }
       else
       {
+        seekDirection = 0;
         rx.frequencyDown();
       }
       // Show the current frequency only if it has changed
