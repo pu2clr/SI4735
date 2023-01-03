@@ -1286,7 +1286,6 @@ void loop()
   {
     if ((currentMode == LSB || currentMode == USB) )
       bfoOn = false;
-    // disableCommands();
     elapsedCommand = millis();
   }
 
