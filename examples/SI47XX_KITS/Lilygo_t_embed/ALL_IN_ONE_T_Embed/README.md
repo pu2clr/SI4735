@@ -3,7 +3,7 @@
 It is  a  complete  receiver  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
 regular  comercial  stations.
 
-This sketch runs on ESP32 device LilyGO T-Embed panel and it was based on Volos' project and adapted to SI473X platform. 
+This sketch runs on ESP32 device LilyGO T-Embed panel and it was based on [Volos'](https://youtu.be/bg2Ysrh85Ek) project and adapted to SI473X platform. 
 
 ## Receiver Commands
 
