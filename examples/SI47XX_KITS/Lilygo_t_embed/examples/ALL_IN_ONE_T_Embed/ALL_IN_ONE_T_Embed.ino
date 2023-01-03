@@ -1,7 +1,4 @@
 /*
-
-  Working but still in CONSTRUCTION...
-
   This sketch runs on ESP32 device LilyGO T-Embed panel.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
@@ -10,10 +7,8 @@
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz step on SSB
 
-
   The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
   "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
-
 
   ESP32 and components wire up.
 
@@ -47,7 +42,6 @@
 
   By PU2CLR, Ricardo, Dec  2022.
 */
-
 
 #include <Wire.h>
 #include "EEPROM.h"
@@ -110,7 +104,6 @@ long storeTime = millis();
 
 bool itIsTimeToSave = false;
 
-
 bool bfoOn = false;
 bool ssbLoaded = false;
 
@@ -143,9 +136,6 @@ long elapsedCommand = millis();
 volatile int encoderCount = 0;
 uint16_t currentFrequency;
 
-char * dummy;
-
-
 const uint8_t currentBFOStep = 10;
 
 const char *menu[] = {"Volume", "Step", "Mode", "BFO", "BW", "AGC/Att", "AVC", "SoftMute", "Seek"};
@@ -172,7 +162,6 @@ Bandwidth bandwidthSSB[] = {
   {3, "4.0"}
 };
 
-
 int8_t bwIdxAM = 4;
 const int8_t maxAmBw = 6;
 Bandwidth bandwidthAM[] = {
@@ -195,8 +184,6 @@ Bandwidth bandwidthFM[] = {
     {3, " 60"},
     {4, " 40"}};
 
-
-
 int tabAmStep[] = {1,    // 0
                    5,    // 1
                    9,    // 2
@@ -212,7 +199,6 @@ const int lastFmStep = (sizeof tabFmStep / sizeof(int)) - 1;
 int idxFmStep = 1;
 
 uint16_t currentStepIdx = 1;
-
 
 const char *bandModeDesc[] = {"FM ", "LSB", "USB", "AM "};
 uint8_t currentMode = FM;
@@ -267,23 +253,18 @@ const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
 int tabStep[] = {1, 5, 10, 50, 100, 500, 1000};
 const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
-
 uint8_t rssi = 0;
 uint8_t volume = DEFAULT_VOLUME;
 
-
 CRGB leds[NUM_LEDS];
-
 
 // Devices class declarations
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
-
 
 TFT_eSPI tft = TFT_eSPI();
 TFT_eSprite spr = TFT_eSprite(&tft);
 
 SI4735 rx;
-
 
 void setup()
 {
@@ -310,13 +291,8 @@ void setup()
   spr.setFreeFont(&Orbitron_Light_24);
   spr.setTextColor(color1, TFT_BLACK);
 
-
-  // Splash - Remove or change it for your introduction text.
+  // Splash - Remove or change it for your own introduction.
   splash(); 
-  // End Splash
-
-  delay(1000);
-
 
   EEPROM.begin(EEPROM_SIZE);
 
@@ -333,15 +309,8 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  // rx.setI2CFastModeCustom(800000);  
-  rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
-  
+  rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error 
   rx.setup(RESET_PIN, MW_BAND_TYPE);
-  // Comment the line above and uncomment the three lines below if you are using external ref clock (active crystal or signal generator)
-  // rx.setRefClock(32768);
-  // rx.setRefClockPrescaler(1);   // will work with 32768  
-  // rx.setup(RESET_PIN, 0, MW_BAND_TYPE, SI473X_ANALOG_AUDIO, XOSCEN_RCLK);
-
   
   delay(300);
 
@@ -351,15 +320,6 @@ void setup()
     readAllReceiverInformation();
   } else 
     rx.setVolume(volume);
-/*
-  leds[0] = CRGB::Red;
-  leds[1] = CRGB::White;
-  leds[2] = CRGB::Red;
-  leds[3] = CRGB::Green;
-  leds[4] = CRGB::Red;
-  leds[5] = CRGB::Blue;
-  leds[6] = CRGB::Red;
-*/
 
   leds[0] = CRGB::Green;
   leds[1] = CRGB::Green;
@@ -368,7 +328,6 @@ void setup()
   leds[4] = CRGB::Green;
   leds[5] = CRGB::Green;
   leds[6] = CRGB::Green;
-  
   FastLED.show();
   
   useBand();
@@ -383,24 +342,20 @@ void turnDisplay(bool v) {
   digitalWrite(46, v);
 }
 
-
+/**
+ * Shows the first screen with some message.
+ * Remove all code of this function if you do not wish it.
+ */
 void splash() {
 
   spr.fillSprite(TFT_BLACK);
   spr.setTextColor(TFT_WHITE, TFT_BLACK);
-
   spr.setFreeFont(&Orbitron_Light_24);
   spr.drawString(" PU2CLR SI4735", 140, 12);
   spr.drawString("Arduino Library", 140, 60);
-  
-  // spr.drawRoundRect(1, 1, 76, 110, 4, 0xAD55);
-  // spr.drawRoundRect(240, 20, 76, 22, 4, TFT_WHITE);
-  
   spr.pushSprite(0, 0);
-
+  delay(700);
 }
-
-
 
 /**
  * Prints a given content on display 
@@ -425,7 +380,6 @@ void saveAllReceiverInformation()
   int addr_offset;
 
   EEPROM.begin(EEPROM_SIZE);
-
   EEPROM.write(eeprom_address, app_id);                 // stores the app id;
   EEPROM.write(eeprom_address + 1, rx.getVolume()); // stores the current Volume
   EEPROM.write(eeprom_address + 2, bandIdx);            // Stores the current band
@@ -446,12 +400,10 @@ void saveAllReceiverInformation()
     EEPROM.write(addr_offset++, band[i].bandwidthIdx);         // table index (direct position) of bandwidth
     EEPROM.commit();
   }
-
   // Saves AVC and AGC/Att status
   EEPROM.write(addr_offset++,avcIdx);
   EEPROM.write(addr_offset++,agcIdx);
   EEPROM.write(addr_offset++,agcNdx);
-
   EEPROM.end();
 }
 
@@ -480,15 +432,11 @@ void readAllReceiverInformation()
     band[i].currentStepIdx = EEPROM.read(addr_offset++);
     band[i].bandwidthIdx = EEPROM.read(addr_offset++);
   }
-
-
   // Rescues the previous  AVC and AGC/Att status
   avcIdx = EEPROM.read(addr_offset++);
   agcIdx = EEPROM.read(addr_offset++);
   agcNdx = EEPROM.read(addr_offset++);
-  
   EEPROM.end();
-
   currentFrequency = band[bandIdx].currentFreq;
 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
@@ -577,12 +525,10 @@ ICACHE_RAM_ATTR void  rotaryEncoder()
  */
 void showFrequency()
 {
-
-  float freq;  
-  float value; 
+  float freq, value;  
   int decimals; 
 
-
+  // defines the frequency display format depending on the used band
   if (rx.isCurrentTuneFM())
   {
       freq = currentFrequency / 100.0;
@@ -601,21 +547,19 @@ void showFrequency()
 
   value = freq * 10;
 
-  spr.fillSprite(TFT_BLACK);
+  spr.fillSprite(TFT_BLACK); // clear screen
+  spr.drawFloat(freq, decimals, 150, 64, 7); // shows the frequency
 
-  spr.drawFloat(freq, decimals, 150, 64, 7);
-
-  spr.fillTriangle(156, 104, 160, 114, 164, 104, TFT_RED);
+  // Builds the frequency ruler
+  spr.fillTriangle(156, 104, 160, 114, 164, 104, TFT_RED); 
   spr.drawLine(160, 114, 160, 170, TFT_RED);
  
-
   int temp = value - 20;
   for (int i = 0; i < 40; i++)
   {
     if ((temp % 10) == 0)
     {
       spr.drawLine(i * 8, 170, i * 8, 140, color1);
-
       spr.drawLine((i * 8) + 1, 170, (i * 8) + 1, 140, color1);
       spr.drawFloat(temp / 10.0, 1, i * 8, 130, 2);
     }
@@ -630,10 +574,9 @@ void showFrequency()
     }
     temp = temp + 1;
   }
-
   spr.pushSprite(0, 0);
+
   showRSSI();
-  
   showMode();
 }
 
@@ -653,7 +596,6 @@ void showMode() {
    spr.drawString(band[bandIdx].bandName, 25, 35); 
    spr.setTextColor(TFT_WHITE, TFT_BLACK);  
    spr.pushSprite(0, 0);
-
 }
 
 /**
@@ -688,7 +630,6 @@ void showBandwidth()
   sprintf(bandwidth,"%s", bw);
   printParam(bandwidth);
 }
-
 
 /*
  * Concert rssi to VU
@@ -731,14 +672,13 @@ int getStrength(uint8_t rssi)
     return 17; //>S9 +60
 
   return 0;
-
 }
+
 /**
  *   Shows the current RSSI and SNR status
  */
 void showRSSI()
 {
-
   spr.fillRect(240,20,76,88,TFT_BLACK); // Clear the indicator areas 
   
   for (int i = 0; i < getStrength(rssi); i++)
@@ -756,10 +696,8 @@ void showRSSI()
          spr.drawString("Stereo", 275, 31, 2);
       else
         spr.drawString("Mono", 275, 31, 2);
-  } 
-  
+  }  
   spr.pushSprite(0, 0);
-
 }
 
 /**
@@ -777,7 +715,6 @@ void showAgcAtt()
 
   printParam(sAgc);  
 }
-
 
 /**
    Shows current Automatic Volume Control
@@ -896,12 +833,10 @@ void useBand()
   delay(100);
   currentFrequency = band[bandIdx].currentFreq;
   currentStepIdx = band[bandIdx].currentStepIdx;
-
   rssi = 0;
   showStatus();
   showCommandStatus((char *) "Band");
 }
-
 
 void loadSSB() {
   rx.setI2CFastModeCustom(400000); // You can try rx.setI2CFastModeCustom(700000); or greater value
@@ -1002,7 +937,6 @@ void doAgc(int8_t v) {
   elapsedCommand = millis();
 }
 
-
 /**
    sets the Automatic Volume Control
 */
@@ -1022,7 +956,6 @@ void doAvc(int8_t v)
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
-
 
 /**
  * Switches the current step
@@ -1167,7 +1100,6 @@ void doMenu( int8_t v) {
   delay(MIN_ELAPSED_TIME); // waits a little more for releasing the button.
   elapsedCommand = millis();
 }
-
 
 /**
  * Starts the MENU action process
@@ -1355,6 +1287,5 @@ void loop()
       itIsTimeToSave = false;
     }
   }
-
-  delay(1);
+  delay(3);
 }
