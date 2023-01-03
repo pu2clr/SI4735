@@ -447,6 +447,11 @@ void saveAllReceiverInformation()
     EEPROM.commit();
   }
 
+  // Saves AVC and AGC/Att status
+  EEPROM.write(addr_offset++,avcIdx);
+  EEPROM.write(addr_offset++,agcIdx);
+  EEPROM.write(addr_offset++,agcNdx);
+
   EEPROM.end();
 }
 
@@ -476,6 +481,12 @@ void readAllReceiverInformation()
     band[i].bandwidthIdx = EEPROM.read(addr_offset++);
   }
 
+
+  // Rescues the previous  AVC and AGC/Att status
+  avcIdx = EEPROM.read(addr_offset++);
+  agcIdx = EEPROM.read(addr_offset++);
+  agcNdx = EEPROM.read(addr_offset++);
+  
   EEPROM.end();
 
   currentFrequency = band[bandIdx].currentFreq;
@@ -877,7 +888,7 @@ void useBand()
       rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
       rx.setAmSoftMuteMaxAttenuation(softMuteMaxAttIdx); // Soft Mute for AM or SSB
     }
-    rx.setAutomaticGainControl(disableAgc, agcNdx);
+    rx.setAutomaticGainControl( (disableAgc = (agcIdx > 0)), agcNdx);
     rx.setSeekAmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq); // Consider the range all defined current band
     rx.setSeekAmSpacing(5); // Max 10kHz for spacing
     rx.setAvcAmMaxGain(avcIdx);
