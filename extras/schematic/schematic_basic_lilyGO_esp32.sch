@@ -3798,410 +3798,171 @@ for power line</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="SparkFun-Boards" urn="urn:adsk.eagle:library:509">
-<description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
-This library contains footprints for SparkFun breakout boards, microcontrollers (Arduino, Particle, Teensy, etc.),  breadboards, non-RF modules, etc.
-&lt;br&gt;
-&lt;br&gt;
-We've spent an enormous amount of time creating and checking these footprints and parts, but it is &lt;b&gt; the end user's responsibility&lt;/b&gt; to ensure correctness and suitablity for a given componet or application. 
-&lt;br&gt;
-&lt;br&gt;If you enjoy using this library, please buy one of our products at &lt;a href=" www.sparkfun.com"&gt;SparkFun.com&lt;/a&gt;.
-&lt;br&gt;
-&lt;br&gt;
-&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
-&lt;br&gt;
-&lt;br&gt;
-You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
+<library name="ESP32-DEVKITC-32D">
 <packages>
-<package name="ESP32_THING" urn="urn:adsk.eagle:footprint:37309/1" library_version="1">
-<description>&lt;h3&gt;SparkFun ESP32 Thing Board&lt;/h3&gt;
-&lt;p&gt;Pins, silkscreen, and logos matching the layout of the &lt;a href=https://www.sparkfun.com/products/13907&gt;SparkFun ESP32 Thing&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Specifications:
-&lt;ul&gt;&lt;li&gt;Pin count: 40&lt;/li&gt;
-&lt;li&gt;Area: 2.32" x 1.00"&lt;/li&gt;
-&lt;/p&gt;</description>
-<pad name="1" x="1.27" y="1.27" drill="1.016" diameter="1.8796" shape="square" rot="R180"/>
-<pad name="2" x="1.27" y="3.81" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="3" x="1.27" y="6.35" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="4" x="1.27" y="8.89" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="5" x="1.27" y="11.43" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="6" x="1.27" y="13.97" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="7" x="1.27" y="16.51" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="8" x="1.27" y="19.05" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="9" x="1.27" y="21.59" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="10" x="1.27" y="24.13" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="11" x="1.27" y="26.67" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="12" x="1.27" y="29.21" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="13" x="1.27" y="31.75" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="14" x="1.27" y="34.29" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="15" x="1.27" y="36.83" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="16" x="1.27" y="39.37" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="17" x="1.27" y="41.91" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="18" x="1.27" y="44.45" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="19" x="1.27" y="46.99" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="20" x="1.27" y="49.53" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="40" x="24.13" y="1.27" drill="1.016" diameter="1.8796" shape="square" rot="R180"/>
-<pad name="39" x="24.13" y="3.81" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="38" x="24.13" y="6.35" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="37" x="24.13" y="8.89" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="36" x="24.13" y="11.43" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="35" x="24.13" y="13.97" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="34" x="24.13" y="16.51" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="33" x="24.13" y="19.05" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="32" x="24.13" y="21.59" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="31" x="24.13" y="24.13" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="30" x="24.13" y="26.67" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="29" x="24.13" y="29.21" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="28" x="24.13" y="31.75" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="27" x="24.13" y="34.29" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="26" x="24.13" y="36.83" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="25" x="24.13" y="39.37" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="24" x="24.13" y="41.91" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="23" x="24.13" y="44.45" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="22" x="24.13" y="46.99" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="21" x="24.13" y="49.53" drill="1.016" diameter="1.8796" rot="R180"/>
-<wire x1="0" y1="0" x2="0" y2="51.435" width="0.2032" layer="51"/>
-<wire x1="0" y1="51.435" x2="0" y2="58.293" width="0.2032" layer="51"/>
-<wire x1="0" y1="58.293" x2="0.635" y2="58.928" width="0.2032" layer="51" curve="-90"/>
-<wire x1="0.635" y1="58.928" x2="24.765" y2="58.928" width="0.2032" layer="51"/>
-<wire x1="24.765" y1="58.928" x2="25.4" y2="58.293" width="0.2032" layer="51" curve="-90"/>
-<wire x1="25.4" y1="58.293" x2="25.4" y2="51.435" width="0.2032" layer="51"/>
-<wire x1="25.4" y1="51.435" x2="25.4" y2="0" width="0.2032" layer="51"/>
-<wire x1="25.4" y1="0" x2="0" y2="0" width="0.2032" layer="51"/>
-<wire x1="0" y1="51.435" x2="25.4" y2="51.435" width="0.127" layer="51"/>
-<text x="2.413" y="34.29" size="0.889" layer="51" font="vector" ratio="15" align="center-left">34</text>
-<text x="2.413" y="31.75" size="0.889" layer="51" font="vector" ratio="15" align="center-left">35</text>
-<text x="2.413" y="39.37" size="0.889" layer="51" font="vector" ratio="15" align="center-left">32</text>
-<text x="2.413" y="36.83" size="0.889" layer="51" font="vector" ratio="15" align="center-left">33</text>
-<text x="2.413" y="29.21" size="0.889" layer="51" font="vector" ratio="15" align="center-left">25</text>
-<text x="2.413" y="26.67" size="0.889" layer="51" font="vector" ratio="15" align="center-left">26</text>
-<text x="2.3876" y="24.13" size="0.889" layer="51" font="vector" ratio="15" align="center-left">27</text>
-<text x="2.3876" y="21.59" size="0.889" layer="51" font="vector" ratio="15" align="center-left">14</text>
-<text x="2.3876" y="19.05" size="0.889" layer="51" font="vector" ratio="15" align="center-left">12</text>
-<text x="2.413" y="16.637" size="0.889" layer="51" font="vector" ratio="15" align="center-left">13</text>
-<text x="2.413" y="6.477" size="0.889" layer="51" font="vector" ratio="15" align="center-left">VBAT</text>
-<text x="23.2029" y="36.83" size="0.889" layer="51" font="vector" ratio="15" align="center-right">19</text>
-<text x="23.2029" y="46.99" size="0.889" layer="51" font="vector" ratio="15" align="center-right">21</text>
-<text x="23.2283" y="39.37" size="0.889" layer="51" font="vector" ratio="15" align="center-right">22</text>
-<text x="23.2537" y="41.91" size="0.889" layer="51" font="vector" ratio="15" align="center-right">RX</text>
-<text x="23.2029" y="44.45" size="0.889" layer="51" font="vector" ratio="15" align="center-right">TX</text>
-<text x="23.2029" y="34.29" size="0.889" layer="51" font="vector" ratio="15" align="center-right">23</text>
-<text x="23.2029" y="31.75" size="0.889" layer="51" font="vector" ratio="15" align="center-right">18</text>
-<text x="23.2029" y="29.21" size="0.889" layer="51" font="vector" ratio="15" align="center-right">5</text>
-<text x="23.2029" y="26.67" size="0.889" layer="51" font="vector" ratio="15" align="center-right">15</text>
-<text x="23.2029" y="24.13" size="0.889" layer="51" font="vector" ratio="15" align="center-right">2</text>
-<text x="23.2029" y="21.59" size="0.889" layer="51" font="vector" ratio="15" align="center-right">0</text>
-<text x="23.2029" y="19.05" size="0.889" layer="51" font="vector" ratio="15" align="center-right">4</text>
-<text x="23.2029" y="16.51" size="0.889" layer="51" font="vector" ratio="15" align="center-right">17</text>
-<text x="23.2029" y="13.97" size="0.889" layer="51" font="vector" ratio="15" align="center-right">16</text>
-<text x="2.413" y="41.91" size="0.889" layer="51" font="vector" ratio="15" align="center-left">39</text>
-<text x="2.413" y="44.45" size="0.889" layer="51" font="vector" ratio="15" align="center-left">38</text>
-<text x="2.413" y="46.99" size="0.889" layer="51" font="vector" ratio="15" align="center-left">37</text>
-<text x="2.413" y="49.53" size="0.889" layer="51" font="vector" ratio="15" align="center-left">36</text>
-<text x="23.1267" y="49.53" size="0.889" layer="51" font="vector" ratio="15" align="center-right">GND</text>
-<text x="2.413" y="14.097" size="0.889" layer="51" font="vector" ratio="15" align="center-left">!RST!</text>
-<text x="2.413" y="11.557" size="0.889" layer="51" font="vector" ratio="15" align="center-left">3V3</text>
-<text x="2.413" y="9.017" size="0.889" layer="51" font="vector" ratio="15" align="center-left">GND</text>
-<text x="2.413" y="3.937" size="0.889" layer="51" font="vector" ratio="15" align="center-left">VUSB</text>
-<text x="2.413" y="1.397" size="0.889" layer="51" font="vector" ratio="15" align="center-left">GND</text>
-<text x="23.2029" y="11.43" size="0.889" layer="51" font="vector" ratio="15" align="center-right">3V3</text>
-<text x="23.2029" y="8.89" size="0.889" layer="51" font="vector" ratio="15" align="center-right">GND</text>
-<text x="23.2029" y="6.35" size="0.889" layer="51" font="vector" ratio="15" align="center-right">VBAT</text>
-<text x="23.2029" y="3.81" size="0.889" layer="51" font="vector" ratio="15" align="center-right">VUSB</text>
-<text x="23.2029" y="1.27" size="0.889" layer="51" font="vector" ratio="15" align="center-right">GND</text>
-<text x="12.7" y="2.54" size="0.6096" layer="25" font="vector" ratio="20" align="top-center">&gt;Name</text>
-<text x="12.7" y="1.27" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;Value</text>
-<text x="12.7" y="52.324" size="0.889" layer="51" font="vector" align="center">Antenna Keepout</text>
-<polygon width="0.127" layer="41">
-<vertex x="0" y="51.435"/>
-<vertex x="25.4" y="51.435"/>
-<vertex x="25.4" y="58.928"/>
-<vertex x="21.463" y="58.928"/>
-<vertex x="0" y="58.928"/>
-</polygon>
-<polygon width="0.127" layer="42">
-<vertex x="0" y="51.435"/>
-<vertex x="25.4" y="51.435"/>
-<vertex x="25.4" y="58.928"/>
-<vertex x="21.463" y="58.928"/>
-<vertex x="0" y="58.928"/>
-</polygon>
-</package>
-<package name="ESP32_THING_NO_ANT" urn="urn:adsk.eagle:footprint:37310/1" library_version="1">
-<pad name="1" x="1.27" y="1.27" drill="1.016" diameter="1.8796" shape="square" rot="R180"/>
-<pad name="2" x="1.27" y="3.81" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="3" x="1.27" y="6.35" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="4" x="1.27" y="8.89" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="5" x="1.27" y="11.43" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="6" x="1.27" y="13.97" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="7" x="1.27" y="16.51" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="8" x="1.27" y="19.05" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="9" x="1.27" y="21.59" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="10" x="1.27" y="24.13" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="11" x="1.27" y="26.67" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="12" x="1.27" y="29.21" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="13" x="1.27" y="31.75" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="14" x="1.27" y="34.29" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="15" x="1.27" y="36.83" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="16" x="1.27" y="39.37" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="17" x="1.27" y="41.91" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="18" x="1.27" y="44.45" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="19" x="1.27" y="46.99" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="20" x="1.27" y="49.53" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="40" x="24.13" y="1.27" drill="1.016" diameter="1.8796" shape="square" rot="R180"/>
-<pad name="39" x="24.13" y="3.81" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="38" x="24.13" y="6.35" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="37" x="24.13" y="8.89" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="36" x="24.13" y="11.43" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="35" x="24.13" y="13.97" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="34" x="24.13" y="16.51" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="33" x="24.13" y="19.05" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="32" x="24.13" y="21.59" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="31" x="24.13" y="24.13" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="30" x="24.13" y="26.67" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="29" x="24.13" y="29.21" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="28" x="24.13" y="31.75" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="27" x="24.13" y="34.29" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="26" x="24.13" y="36.83" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="25" x="24.13" y="39.37" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="24" x="24.13" y="41.91" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="23" x="24.13" y="44.45" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="22" x="24.13" y="46.99" drill="1.016" diameter="1.8796" rot="R180"/>
-<pad name="21" x="24.13" y="49.53" drill="1.016" diameter="1.8796" rot="R180"/>
-<wire x1="0" y1="0" x2="0" y2="51.435" width="0.2032" layer="51"/>
-<wire x1="0" y1="51.435" x2="0" y2="58.293" width="0.2032" layer="51"/>
-<wire x1="0" y1="58.293" x2="0.635" y2="58.928" width="0.2032" layer="51" curve="-90"/>
-<wire x1="0.635" y1="58.928" x2="24.765" y2="58.928" width="0.2032" layer="51"/>
-<wire x1="24.765" y1="58.928" x2="25.4" y2="58.293" width="0.2032" layer="51" curve="-90"/>
-<wire x1="25.4" y1="58.293" x2="25.4" y2="51.435" width="0.2032" layer="51"/>
-<wire x1="25.4" y1="51.435" x2="25.4" y2="0" width="0.2032" layer="51"/>
-<wire x1="25.4" y1="0" x2="0" y2="0" width="0.2032" layer="51"/>
-<text x="2.413" y="34.29" size="0.889" layer="51" font="vector" ratio="15" align="center-left">34</text>
-<text x="2.413" y="31.75" size="0.889" layer="51" font="vector" ratio="15" align="center-left">35</text>
-<text x="2.413" y="39.37" size="0.889" layer="51" font="vector" ratio="15" align="center-left">32</text>
-<text x="2.413" y="36.83" size="0.889" layer="51" font="vector" ratio="15" align="center-left">33</text>
-<text x="2.413" y="29.21" size="0.889" layer="51" font="vector" ratio="15" align="center-left">25</text>
-<text x="2.413" y="26.67" size="0.889" layer="51" font="vector" ratio="15" align="center-left">26</text>
-<text x="2.3876" y="24.13" size="0.889" layer="51" font="vector" ratio="15" align="center-left">27</text>
-<text x="2.3876" y="21.59" size="0.889" layer="51" font="vector" ratio="15" align="center-left">14</text>
-<text x="2.3876" y="19.05" size="0.889" layer="51" font="vector" ratio="15" align="center-left">12</text>
-<text x="2.413" y="16.637" size="0.889" layer="51" font="vector" ratio="15" align="center-left">13</text>
-<text x="2.413" y="6.477" size="0.889" layer="51" font="vector" ratio="15" align="center-left">VBAT</text>
-<text x="23.2029" y="36.83" size="0.889" layer="51" font="vector" ratio="15" align="center-right">19</text>
-<text x="23.2029" y="46.99" size="0.889" layer="51" font="vector" ratio="15" align="center-right">21</text>
-<text x="23.2283" y="39.37" size="0.889" layer="51" font="vector" ratio="15" align="center-right">22</text>
-<text x="23.2537" y="41.91" size="0.889" layer="51" font="vector" ratio="15" align="center-right">RX</text>
-<text x="23.2029" y="44.45" size="0.889" layer="51" font="vector" ratio="15" align="center-right">TX</text>
-<text x="23.2029" y="34.29" size="0.889" layer="51" font="vector" ratio="15" align="center-right">23</text>
-<text x="23.2029" y="31.75" size="0.889" layer="51" font="vector" ratio="15" align="center-right">18</text>
-<text x="23.2029" y="29.21" size="0.889" layer="51" font="vector" ratio="15" align="center-right">5</text>
-<text x="23.2029" y="26.67" size="0.889" layer="51" font="vector" ratio="15" align="center-right">15</text>
-<text x="23.2029" y="24.13" size="0.889" layer="51" font="vector" ratio="15" align="center-right">2</text>
-<text x="23.2029" y="21.59" size="0.889" layer="51" font="vector" ratio="15" align="center-right">0</text>
-<text x="23.2029" y="19.05" size="0.889" layer="51" font="vector" ratio="15" align="center-right">4</text>
-<text x="23.2029" y="16.51" size="0.889" layer="51" font="vector" ratio="15" align="center-right">17</text>
-<text x="23.2029" y="13.97" size="0.889" layer="51" font="vector" ratio="15" align="center-right">16</text>
-<text x="2.413" y="41.91" size="0.889" layer="51" font="vector" ratio="15" align="center-left">39</text>
-<text x="2.413" y="44.45" size="0.889" layer="51" font="vector" ratio="15" align="center-left">38</text>
-<text x="2.413" y="46.99" size="0.889" layer="51" font="vector" ratio="15" align="center-left">37</text>
-<text x="2.413" y="49.53" size="0.889" layer="51" font="vector" ratio="15" align="center-left">36</text>
-<text x="23.1267" y="49.53" size="0.889" layer="51" font="vector" ratio="15" align="center-right">GND</text>
-<text x="2.413" y="14.097" size="0.889" layer="51" font="vector" ratio="15" align="center-left">!RST!</text>
-<text x="2.413" y="11.557" size="0.889" layer="51" font="vector" ratio="15" align="center-left">3V3</text>
-<text x="2.413" y="9.017" size="0.889" layer="51" font="vector" ratio="15" align="center-left">GND</text>
-<text x="2.413" y="3.937" size="0.889" layer="51" font="vector" ratio="15" align="center-left">VUSB</text>
-<text x="2.413" y="1.397" size="0.889" layer="51" font="vector" ratio="15" align="center-left">GND</text>
-<text x="23.2029" y="11.43" size="0.889" layer="51" font="vector" ratio="15" align="center-right">3V3</text>
-<text x="23.2029" y="8.89" size="0.889" layer="51" font="vector" ratio="15" align="center-right">GND</text>
-<text x="23.2029" y="6.35" size="0.889" layer="51" font="vector" ratio="15" align="center-right">VBAT</text>
-<text x="23.2029" y="3.81" size="0.889" layer="51" font="vector" ratio="15" align="center-right">VUSB</text>
-<text x="23.2029" y="1.27" size="0.889" layer="51" font="vector" ratio="15" align="center-right">GND</text>
-<text x="12.7" y="2.54" size="0.6096" layer="25" font="vector" ratio="20" align="top-center">&gt;Name</text>
-<text x="12.7" y="1.27" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;Value</text>
+<package name="MODULE_ESP32-DEVKITC-32D">
+<wire x1="-13.95" y1="27.15" x2="13.95" y2="27.15" width="0.127" layer="51"/>
+<wire x1="13.95" y1="27.15" x2="13.95" y2="-27.25" width="0.127" layer="51"/>
+<wire x1="13.95" y1="-27.25" x2="-13.95" y2="-27.25" width="0.127" layer="51"/>
+<wire x1="-13.95" y1="-27.25" x2="-13.95" y2="27.15" width="0.127" layer="51"/>
+<wire x1="-13.95" y1="-27.25" x2="-13.95" y2="27.15" width="0.127" layer="21"/>
+<wire x1="-13.95" y1="27.15" x2="13.95" y2="27.15" width="0.127" layer="21"/>
+<wire x1="13.95" y1="27.15" x2="13.95" y2="-27.25" width="0.127" layer="21"/>
+<wire x1="13.95" y1="-27.25" x2="-13.95" y2="-27.25" width="0.127" layer="21"/>
+<wire x1="-14.2" y1="27.4" x2="14.2" y2="27.4" width="0.05" layer="39"/>
+<wire x1="14.2" y1="27.4" x2="14.2" y2="-27.5" width="0.05" layer="39"/>
+<wire x1="14.2" y1="-27.5" x2="-14.2" y2="-27.5" width="0.05" layer="39"/>
+<wire x1="-14.2" y1="-27.5" x2="-14.2" y2="27.4" width="0.05" layer="39"/>
+<text x="-14.0054" y="27.8108" size="1.270490625" layer="25">&gt;NAME</text>
+<text x="-14.0146" y="-28.9302" size="1.27133125" layer="27">&gt;VALUE</text>
+<circle x="-14.6" y="19.9" radius="0.14" width="0.28" layer="27"/>
+<circle x="-14.6" y="19.9" radius="0.14" width="0.28" layer="51"/>
+<pad name="1" x="-12.7" y="19.76" drill="1.04" shape="square"/>
+<pad name="2" x="-12.7" y="17.22" drill="1.04"/>
+<pad name="19" x="-12.7" y="-25.96" drill="1.04"/>
+<pad name="3" x="-12.7" y="14.68" drill="1.04"/>
+<pad name="4" x="-12.7" y="12.14" drill="1.04"/>
+<pad name="5" x="-12.7" y="9.6" drill="1.04"/>
+<pad name="6" x="-12.7" y="7.06" drill="1.04"/>
+<pad name="7" x="-12.7" y="4.52" drill="1.04"/>
+<pad name="8" x="-12.7" y="1.98" drill="1.04"/>
+<pad name="9" x="-12.7" y="-0.56" drill="1.04"/>
+<pad name="10" x="-12.7" y="-3.1" drill="1.04"/>
+<pad name="11" x="-12.7" y="-5.64" drill="1.04"/>
+<pad name="12" x="-12.7" y="-8.18" drill="1.04"/>
+<pad name="13" x="-12.7" y="-10.72" drill="1.04"/>
+<pad name="14" x="-12.7" y="-13.26" drill="1.04"/>
+<pad name="15" x="-12.7" y="-15.8" drill="1.04"/>
+<pad name="16" x="-12.7" y="-18.34" drill="1.04"/>
+<pad name="17" x="-12.7" y="-20.88" drill="1.04"/>
+<pad name="18" x="-12.7" y="-23.42" drill="1.04"/>
+<pad name="20" x="12.7" y="19.76" drill="1.04"/>
+<pad name="21" x="12.7" y="17.22" drill="1.04"/>
+<pad name="22" x="12.7" y="14.68" drill="1.04"/>
+<pad name="23" x="12.7" y="12.14" drill="1.04"/>
+<pad name="24" x="12.7" y="9.6" drill="1.04"/>
+<pad name="25" x="12.7" y="7.06" drill="1.04"/>
+<pad name="26" x="12.7" y="4.52" drill="1.04"/>
+<pad name="27" x="12.7" y="1.98" drill="1.04"/>
+<pad name="28" x="12.7" y="-0.56" drill="1.04"/>
+<pad name="29" x="12.7" y="-3.1" drill="1.04"/>
+<pad name="30" x="12.7" y="-5.64" drill="1.04"/>
+<pad name="31" x="12.7" y="-8.18" drill="1.04"/>
+<pad name="32" x="12.7" y="-10.72" drill="1.04"/>
+<pad name="33" x="12.7" y="-13.26" drill="1.04"/>
+<pad name="34" x="12.7" y="-15.8" drill="1.04"/>
+<pad name="35" x="12.7" y="-18.34" drill="1.04"/>
+<pad name="36" x="12.7" y="-20.88" drill="1.04"/>
+<pad name="37" x="12.7" y="-23.42" drill="1.04"/>
+<pad name="38" x="12.7" y="-25.96" drill="1.04"/>
 </package>
 </packages>
-<packages3d>
-<package3d name="ESP32_THING" urn="urn:adsk.eagle:package:37350/1" type="box" library_version="1">
-<description>SparkFun ESP32 Thing Board
-Pins, silkscreen, and logos matching the layout of the SparkFun ESP32 Thing
-
-Specifications:
-Pin count: 40
-Area: 2.32" x 1.00"
-</description>
-<packageinstances>
-<packageinstance name="ESP32_THING"/>
-</packageinstances>
-</package3d>
-<package3d name="ESP32_THING_NO_ANT" urn="urn:adsk.eagle:package:37351/1" type="box" library_version="1">
-<packageinstances>
-<packageinstance name="ESP32_THING_NO_ANT"/>
-</packageinstances>
-</package3d>
-</packages3d>
 <symbols>
-<symbol name="ESP32_THING" urn="urn:adsk.eagle:symbol:37308/1" library_version="1">
-<description>&lt;h3&gt;SparkFun ESP32 Thing Board&lt;/h3&gt;
-&lt;p&gt;Pins, silkscreen, and logos matching the layout of the &lt;a href=https://www.sparkfun.com/products/13907&gt;SparkFun ESP32 Thing&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Dimensions: 2.32" x 1.00"&lt;/p&gt;</description>
-<pin name="GND@1" x="-12.7" y="-22.86" length="short"/>
-<pin name="VUSB@2" x="-12.7" y="-20.32" length="short"/>
-<pin name="VBAT@3" x="-12.7" y="-17.78" length="short"/>
-<pin name="GND@4" x="-12.7" y="-15.24" length="short"/>
-<pin name="3V3@5" x="-12.7" y="-12.7" length="short"/>
-<pin name="!RST!" x="-12.7" y="-10.16" length="short"/>
-<pin name="13" x="-12.7" y="-7.62" length="short"/>
-<pin name="12" x="-12.7" y="-5.08" length="short"/>
-<pin name="14" x="-12.7" y="-2.54" length="short"/>
-<pin name="27" x="-12.7" y="0" length="short"/>
-<pin name="26" x="-12.7" y="2.54" length="short"/>
-<pin name="25" x="-12.7" y="5.08" length="short"/>
-<pin name="35" x="-12.7" y="7.62" length="short"/>
-<pin name="34" x="-12.7" y="10.16" length="short"/>
-<pin name="33" x="-12.7" y="12.7" length="short"/>
-<pin name="32" x="-12.7" y="15.24" length="short"/>
-<pin name="39" x="-12.7" y="17.78" length="short"/>
-<pin name="38" x="-12.7" y="20.32" length="short"/>
-<pin name="37" x="-12.7" y="22.86" length="short"/>
-<pin name="36" x="-12.7" y="25.4" length="short"/>
-<pin name="GND@40" x="12.7" y="-22.86" length="short" rot="R180"/>
-<pin name="VUSB@39" x="12.7" y="-20.32" length="short" rot="R180"/>
-<pin name="VBAT@38" x="12.7" y="-17.78" length="short" rot="R180"/>
-<pin name="GND@37" x="12.7" y="-15.24" length="short" rot="R180"/>
-<pin name="3V3@36" x="12.7" y="-12.7" length="short" rot="R180"/>
-<pin name="16" x="12.7" y="-10.16" length="short" rot="R180"/>
-<pin name="17" x="12.7" y="-7.62" length="short" rot="R180"/>
-<pin name="4" x="12.7" y="-5.08" length="short" rot="R180"/>
-<pin name="0" x="12.7" y="-2.54" length="short" rot="R180"/>
-<pin name="2" x="12.7" y="0" length="short" rot="R180"/>
-<pin name="15" x="12.7" y="2.54" length="short" rot="R180"/>
-<pin name="5" x="12.7" y="5.08" length="short" rot="R180"/>
-<pin name="18" x="12.7" y="7.62" length="short" rot="R180"/>
-<pin name="23" x="12.7" y="10.16" length="short" rot="R180"/>
-<pin name="19" x="12.7" y="12.7" length="short" rot="R180"/>
-<pin name="22" x="12.7" y="15.24" length="short" rot="R180"/>
-<pin name="RX" x="12.7" y="17.78" length="short" rot="R180"/>
-<pin name="TX" x="12.7" y="20.32" length="short" rot="R180"/>
-<pin name="21" x="12.7" y="22.86" length="short" rot="R180"/>
-<pin name="GND@21" x="12.7" y="25.4" length="short" rot="R180"/>
-<wire x1="-10.16" y1="-25.4" x2="-10.16" y2="27.94" width="0.254" layer="94"/>
-<wire x1="-10.16" y1="27.94" x2="10.16" y2="27.94" width="0.254" layer="94"/>
-<wire x1="10.16" y1="27.94" x2="10.16" y2="-25.4" width="0.254" layer="94"/>
-<wire x1="10.16" y1="-25.4" x2="-10.16" y2="-25.4" width="0.254" layer="94"/>
-<text x="-10.16" y="28.194" size="1.778" layer="95" font="vector">&gt;Name</text>
-<text x="-10.16" y="-25.654" size="1.778" layer="96" font="vector" align="top-left">&gt;Value</text>
+<symbol name="ESP32-DEVKITC-32D">
+<wire x1="-15.24" y1="25.4" x2="15.24" y2="25.4" width="0.254" layer="94"/>
+<wire x1="15.24" y1="25.4" x2="15.24" y2="-25.4" width="0.254" layer="94"/>
+<wire x1="15.24" y1="-25.4" x2="-15.24" y2="-25.4" width="0.254" layer="94"/>
+<wire x1="-15.24" y1="-25.4" x2="-15.24" y2="25.4" width="0.254" layer="94"/>
+<text x="-15.2572" y="26.0643" size="1.78" layer="95">&gt;NAME</text>
+<text x="-15.2563" y="-27.9698" size="1.7799" layer="96">&gt;VALUE</text>
+<pin name="3V3" x="-20.32" y="22.86" length="middle" direction="pwr"/>
+<pin name="EN" x="-20.32" y="20.32" length="middle" direction="in"/>
+<pin name="SENSOR_VP" x="-20.32" y="17.78" length="middle" direction="in"/>
+<pin name="SENSOR_VN" x="-20.32" y="15.24" length="middle" direction="in"/>
+<pin name="IO34" x="-20.32" y="12.7" length="middle"/>
+<pin name="IO35" x="-20.32" y="10.16" length="middle"/>
+<pin name="IO32" x="-20.32" y="7.62" length="middle"/>
+<pin name="IO33" x="-20.32" y="5.08" length="middle"/>
+<pin name="IO25" x="-20.32" y="2.54" length="middle"/>
+<pin name="IO26" x="-20.32" y="0" length="middle"/>
+<pin name="IO27" x="-20.32" y="-2.54" length="middle"/>
+<pin name="IO14" x="-20.32" y="-5.08" length="middle"/>
+<pin name="IO12" x="-20.32" y="-7.62" length="middle"/>
+<pin name="GND1" x="-20.32" y="-10.16" length="middle" direction="pwr"/>
+<pin name="IO13" x="-20.32" y="-12.7" length="middle"/>
+<pin name="SD2" x="-20.32" y="-15.24" length="middle"/>
+<pin name="SD3" x="-20.32" y="-17.78" length="middle"/>
+<pin name="CMD" x="-20.32" y="-20.32" length="middle"/>
+<pin name="EXT_5V" x="-20.32" y="-22.86" length="middle" direction="pwr"/>
+<pin name="CLK" x="20.32" y="-22.86" length="middle" direction="in" function="clk" rot="R180"/>
+<pin name="SD0" x="20.32" y="-20.32" length="middle" rot="R180"/>
+<pin name="SD1" x="20.32" y="-17.78" length="middle" rot="R180"/>
+<pin name="IO15" x="20.32" y="-15.24" length="middle" rot="R180"/>
+<pin name="IO2" x="20.32" y="-12.7" length="middle" rot="R180"/>
+<pin name="IO0" x="20.32" y="-10.16" length="middle" rot="R180"/>
+<pin name="IO4" x="20.32" y="-7.62" length="middle" rot="R180"/>
+<pin name="IO16" x="20.32" y="-5.08" length="middle" rot="R180"/>
+<pin name="IO17" x="20.32" y="-2.54" length="middle" rot="R180"/>
+<pin name="IO5" x="20.32" y="0" length="middle" rot="R180"/>
+<pin name="IO18" x="20.32" y="2.54" length="middle" rot="R180"/>
+<pin name="IO19" x="20.32" y="5.08" length="middle" rot="R180"/>
+<pin name="GND2" x="20.32" y="7.62" length="middle" direction="pwr" rot="R180"/>
+<pin name="IO21" x="20.32" y="10.16" length="middle" rot="R180"/>
+<pin name="RXD0" x="20.32" y="12.7" length="middle" direction="in" rot="R180"/>
+<pin name="TXD0" x="20.32" y="15.24" length="middle" direction="out" rot="R180"/>
+<pin name="IO22" x="20.32" y="17.78" length="middle" rot="R180"/>
+<pin name="IO23" x="20.32" y="20.32" length="middle" rot="R180"/>
+<pin name="GND3" x="20.32" y="22.86" length="middle" direction="pwr" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="ESP32_THING" urn="urn:adsk.eagle:component:37380/1" prefix="B" library_version="1">
-<description>&lt;h3&gt;SparkFun ESP32 Thing Board&lt;/h3&gt;
-&lt;p&gt;Pins, silkscreen, and logos matching the layout of the &lt;a href=https://www.sparkfun.com/products/13907&gt;SparkFun ESP32 Thing&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Dimensions: 2.32" x 1.00"&lt;/p&gt;</description>
+<deviceset name="ESP32-DEVKITC-32D" prefix="U">
+<description>Eval Board For Esp-Wroom-32 &lt;a href="https://pricing.snapeda.com/parts/ESP32-DEVKITC-32D/Espressif%20Systems/view-part?ref=eda"&gt;Check prices&lt;/a&gt;</description>
 <gates>
-<gate name="G$1" symbol="ESP32_THING" x="0" y="0"/>
+<gate name="G$1" symbol="ESP32-DEVKITC-32D" x="0" y="0"/>
 </gates>
 <devices>
-<device name="_W_ANT_KEEPOUT" package="ESP32_THING">
+<device name="" package="MODULE_ESP32-DEVKITC-32D">
 <connects>
-<connect gate="G$1" pin="!RST!" pad="6"/>
-<connect gate="G$1" pin="0" pad="32"/>
-<connect gate="G$1" pin="12" pad="8"/>
-<connect gate="G$1" pin="13" pad="7"/>
-<connect gate="G$1" pin="14" pad="9"/>
-<connect gate="G$1" pin="15" pad="30"/>
-<connect gate="G$1" pin="16" pad="35"/>
-<connect gate="G$1" pin="17" pad="34"/>
-<connect gate="G$1" pin="18" pad="28"/>
-<connect gate="G$1" pin="19" pad="26"/>
-<connect gate="G$1" pin="2" pad="31"/>
-<connect gate="G$1" pin="21" pad="22"/>
-<connect gate="G$1" pin="22" pad="25"/>
-<connect gate="G$1" pin="23" pad="27"/>
-<connect gate="G$1" pin="25" pad="12"/>
-<connect gate="G$1" pin="26" pad="11"/>
-<connect gate="G$1" pin="27" pad="10"/>
-<connect gate="G$1" pin="32" pad="16"/>
-<connect gate="G$1" pin="33" pad="15"/>
-<connect gate="G$1" pin="34" pad="14"/>
-<connect gate="G$1" pin="35" pad="13"/>
-<connect gate="G$1" pin="36" pad="20"/>
-<connect gate="G$1" pin="37" pad="19"/>
-<connect gate="G$1" pin="38" pad="18"/>
-<connect gate="G$1" pin="39" pad="17"/>
-<connect gate="G$1" pin="3V3@36" pad="36"/>
-<connect gate="G$1" pin="3V3@5" pad="5"/>
-<connect gate="G$1" pin="4" pad="33"/>
-<connect gate="G$1" pin="5" pad="29"/>
-<connect gate="G$1" pin="GND@1" pad="1"/>
-<connect gate="G$1" pin="GND@21" pad="21"/>
-<connect gate="G$1" pin="GND@37" pad="37"/>
-<connect gate="G$1" pin="GND@4" pad="4"/>
-<connect gate="G$1" pin="GND@40" pad="40"/>
-<connect gate="G$1" pin="RX" pad="24"/>
-<connect gate="G$1" pin="TX" pad="23"/>
-<connect gate="G$1" pin="VBAT@3" pad="3"/>
-<connect gate="G$1" pin="VBAT@38" pad="38"/>
-<connect gate="G$1" pin="VUSB@2" pad="2"/>
-<connect gate="G$1" pin="VUSB@39" pad="39"/>
+<connect gate="G$1" pin="3V3" pad="1"/>
+<connect gate="G$1" pin="CLK" pad="38"/>
+<connect gate="G$1" pin="CMD" pad="18"/>
+<connect gate="G$1" pin="EN" pad="2"/>
+<connect gate="G$1" pin="EXT_5V" pad="19"/>
+<connect gate="G$1" pin="GND1" pad="14"/>
+<connect gate="G$1" pin="GND2" pad="26"/>
+<connect gate="G$1" pin="GND3" pad="20"/>
+<connect gate="G$1" pin="IO0" pad="33"/>
+<connect gate="G$1" pin="IO12" pad="13"/>
+<connect gate="G$1" pin="IO13" pad="15"/>
+<connect gate="G$1" pin="IO14" pad="12"/>
+<connect gate="G$1" pin="IO15" pad="35"/>
+<connect gate="G$1" pin="IO16" pad="31"/>
+<connect gate="G$1" pin="IO17" pad="30"/>
+<connect gate="G$1" pin="IO18" pad="28"/>
+<connect gate="G$1" pin="IO19" pad="27"/>
+<connect gate="G$1" pin="IO2" pad="34"/>
+<connect gate="G$1" pin="IO21" pad="25"/>
+<connect gate="G$1" pin="IO22" pad="22"/>
+<connect gate="G$1" pin="IO23" pad="21"/>
+<connect gate="G$1" pin="IO25" pad="9"/>
+<connect gate="G$1" pin="IO26" pad="10"/>
+<connect gate="G$1" pin="IO27" pad="11"/>
+<connect gate="G$1" pin="IO32" pad="7"/>
+<connect gate="G$1" pin="IO33" pad="8"/>
+<connect gate="G$1" pin="IO34" pad="5"/>
+<connect gate="G$1" pin="IO35" pad="6"/>
+<connect gate="G$1" pin="IO4" pad="32"/>
+<connect gate="G$1" pin="IO5" pad="29"/>
+<connect gate="G$1" pin="RXD0" pad="24"/>
+<connect gate="G$1" pin="SD0" pad="37"/>
+<connect gate="G$1" pin="SD1" pad="36"/>
+<connect gate="G$1" pin="SD2" pad="16"/>
+<connect gate="G$1" pin="SD3" pad="17"/>
+<connect gate="G$1" pin="SENSOR_VN" pad="4"/>
+<connect gate="G$1" pin="SENSOR_VP" pad="3"/>
+<connect gate="G$1" pin="TXD0" pad="23"/>
 </connects>
-<package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:37350/1"/>
-</package3dinstances>
 <technologies>
 <technology name="">
-<attribute name="SF_ID" value="DEV-13907"/>
+<attribute name="AVAILABILITY" value="Warning"/>
+<attribute name="DESCRIPTION" value=" WiFi Development Tools (802.11) ESP32 General Development Kit, ESP32-WROOM-32D on the board "/>
+<attribute name="MF" value="Espressif Systems"/>
+<attribute name="MP" value="ESP32-DEVKITC-32D"/>
+<attribute name="PACKAGE" value="None"/>
+<attribute name="PRICE" value="None"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ESP32-DEVKITC-32D/?ref=eda"/>
 </technology>
-</technologies>
-</device>
-<device name="_WO_ANT_KEEPOUT" package="ESP32_THING_NO_ANT">
-<connects>
-<connect gate="G$1" pin="!RST!" pad="6"/>
-<connect gate="G$1" pin="0" pad="32"/>
-<connect gate="G$1" pin="12" pad="8"/>
-<connect gate="G$1" pin="13" pad="7"/>
-<connect gate="G$1" pin="14" pad="9"/>
-<connect gate="G$1" pin="15" pad="30"/>
-<connect gate="G$1" pin="16" pad="35"/>
-<connect gate="G$1" pin="17" pad="34"/>
-<connect gate="G$1" pin="18" pad="28"/>
-<connect gate="G$1" pin="19" pad="26"/>
-<connect gate="G$1" pin="2" pad="31"/>
-<connect gate="G$1" pin="21" pad="22"/>
-<connect gate="G$1" pin="22" pad="25"/>
-<connect gate="G$1" pin="23" pad="27"/>
-<connect gate="G$1" pin="25" pad="12"/>
-<connect gate="G$1" pin="26" pad="11"/>
-<connect gate="G$1" pin="27" pad="10"/>
-<connect gate="G$1" pin="32" pad="16"/>
-<connect gate="G$1" pin="33" pad="15"/>
-<connect gate="G$1" pin="34" pad="14"/>
-<connect gate="G$1" pin="35" pad="13"/>
-<connect gate="G$1" pin="36" pad="20"/>
-<connect gate="G$1" pin="37" pad="19"/>
-<connect gate="G$1" pin="38" pad="18"/>
-<connect gate="G$1" pin="39" pad="17"/>
-<connect gate="G$1" pin="3V3@36" pad="36"/>
-<connect gate="G$1" pin="3V3@5" pad="5"/>
-<connect gate="G$1" pin="4" pad="33"/>
-<connect gate="G$1" pin="5" pad="29"/>
-<connect gate="G$1" pin="GND@1" pad="1"/>
-<connect gate="G$1" pin="GND@21" pad="21"/>
-<connect gate="G$1" pin="GND@37" pad="37"/>
-<connect gate="G$1" pin="GND@4" pad="4"/>
-<connect gate="G$1" pin="GND@40" pad="40"/>
-<connect gate="G$1" pin="RX" pad="24"/>
-<connect gate="G$1" pin="TX" pad="23"/>
-<connect gate="G$1" pin="VBAT@3" pad="3"/>
-<connect gate="G$1" pin="VBAT@38" pad="38"/>
-<connect gate="G$1" pin="VUSB@2" pad="2"/>
-<connect gate="G$1" pin="VUSB@39" pad="39"/>
-</connects>
-<package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:37351/1"/>
-</package3dinstances>
-<technologies>
-<technology name=""/>
 </technologies>
 </device>
 </devices>
@@ -4241,10 +4002,10 @@ Area: 2.32" x 1.00"
 <part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="R3" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="2.2KOHM" device="-0603-1/10W-1%" package3d_urn="urn:adsk.eagle:package:39650/1" value="2.2k"/>
 <part name="GND7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="ESP32" library="SparkFun-Boards" library_urn="urn:adsk.eagle:library:509" deviceset="ESP32_THING" device="_WO_ANT_KEEPOUT" package3d_urn="urn:adsk.eagle:package:37351/1" value="See your ESP32 pinout"/>
 <part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="SUPPLY3" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
+<part name="U2" library="ESP32-DEVKITC-32D" deviceset="ESP32-DEVKITC-32D" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4339,18 +4100,18 @@ Area: 2.32" x 1.00"
 <instance part="GND7" gate="1" x="-152.4" y="132.08" smashed="yes">
 <attribute name="VALUE" x="-154.94" y="129.54" size="1.778" layer="96"/>
 </instance>
-<instance part="ESP32" gate="G$1" x="-2.54" y="165.1" smashed="yes">
-<attribute name="NAME" x="-12.7" y="193.294" size="1.778" layer="95" font="vector"/>
-<attribute name="VALUE" x="-15.24" y="136.906" size="1.778" layer="96" font="vector" align="top-left"/>
-</instance>
 <instance part="SUPPLY2" gate="G$1" x="-33.02" y="101.6" smashed="yes" rot="R180">
 <attribute name="VALUE" x="-31.115" y="98.425" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="GND2" gate="1" x="12.7" y="203.2" smashed="yes" rot="R180">
-<attribute name="VALUE" x="15.24" y="205.74" size="1.778" layer="96" rot="R180"/>
+<instance part="GND2" gate="1" x="25.4" y="205.74" smashed="yes" rot="R180">
+<attribute name="VALUE" x="27.94" y="208.28" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="SUPPLY3" gate="G$1" x="-20.32" y="154.94" smashed="yes">
-<attribute name="VALUE" x="-22.225" y="158.115" size="1.778" layer="96"/>
+<instance part="SUPPLY3" gate="G$1" x="-25.4" y="172.72" smashed="yes">
+<attribute name="VALUE" x="-27.305" y="175.895" size="1.778" layer="96"/>
+</instance>
+<instance part="U2" gate="G$1" x="0" y="172.72" smashed="yes">
+<attribute name="NAME" x="-15.2572" y="198.7843" size="1.78" layer="95"/>
+<attribute name="VALUE" x="-15.2563" y="144.7502" size="1.7799" layer="96"/>
 </instance>
 </instances>
 <busses>
@@ -4412,29 +4173,26 @@ Area: 2.32" x 1.00"
 <junction x="-127" y="139.7"/>
 </segment>
 <segment>
-<pinref part="ESP32" gate="G$1" pin="GND@21"/>
-<wire x1="10.16" y1="190.5" x2="12.7" y2="190.5" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="GND3"/>
+<wire x1="20.32" y1="195.58" x2="25.4" y2="195.58" width="0.1524" layer="91"/>
 <pinref part="GND2" gate="1" pin="GND"/>
-<wire x1="12.7" y1="190.5" x2="12.7" y2="200.66" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="195.58" x2="25.4" y2="203.2" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SDA" class="0">
 <segment>
 <pinref part="R5" gate="G$1" pin="2"/>
-<wire x1="-27.94" y1="129.54" x2="-27.94" y2="127" width="0.1524" layer="91"/>
 <pinref part="U1" gate="A" pin="SDIO"/>
-<wire x1="-27.94" y1="127" x2="-27.94" y2="119.38" width="0.1524" layer="91"/>
+<wire x1="-27.94" y1="129.54" x2="-27.94" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="-27.94" y1="124.46" x2="-27.94" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="-60.96" y1="147.32" x2="-33.02" y2="147.32" width="0.1524" layer="91"/>
 <wire x1="-33.02" y1="147.32" x2="-33.02" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="-33.02" y1="129.54" x2="-27.94" y2="129.54" width="0.1524" layer="91"/>
-<pinref part="ESP32" gate="G$1" pin="22"/>
-<wire x1="10.16" y1="180.34" x2="10.16" y2="177.8" width="0.1524" layer="91"/>
-<wire x1="10.16" y1="177.8" x2="27.94" y2="177.8" width="0.1524" layer="91"/>
-<wire x1="27.94" y1="177.8" x2="27.94" y2="127" width="0.1524" layer="91"/>
-<wire x1="27.94" y1="127" x2="-27.94" y2="127" width="0.1524" layer="91"/>
-<junction x="-27.94" y="127"/>
-<pinref part="ESP32" gate="G$1" pin="19"/>
-<junction x="10.16" y="177.8"/>
+<pinref part="U2" gate="G$1" pin="IO18"/>
+<wire x1="20.32" y1="175.26" x2="27.94" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="175.26" x2="27.94" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="124.46" x2="-27.94" y2="124.46" width="0.1524" layer="91"/>
+<junction x="-27.94" y="124.46"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -4442,13 +4200,13 @@ Area: 2.32" x 1.00"
 <pinref part="R4" gate="G$1" pin="2"/>
 <pinref part="U1" gate="A" pin="SCLK"/>
 <wire x1="-60.96" y1="144.78" x2="-38.1" y2="144.78" width="0.1524" layer="91"/>
-<wire x1="-38.1" y1="144.78" x2="-38.1" y2="121.92" width="0.1524" layer="91"/>
-<pinref part="ESP32" gate="G$1" pin="21"/>
-<wire x1="-38.1" y1="121.92" x2="-38.1" y2="119.38" width="0.1524" layer="91"/>
-<wire x1="10.16" y1="187.96" x2="30.48" y2="187.96" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="187.96" x2="30.48" y2="121.92" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="121.92" x2="-38.1" y2="121.92" width="0.1524" layer="91"/>
-<junction x="-38.1" y="121.92"/>
+<wire x1="-38.1" y1="144.78" x2="-38.1" y2="132.08" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="SD1"/>
+<wire x1="-38.1" y1="132.08" x2="-38.1" y2="119.38" width="0.1524" layer="91"/>
+<wire x1="20.32" y1="154.94" x2="25.4" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="154.94" x2="25.4" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="132.08" x2="-38.1" y2="132.08" width="0.1524" layer="91"/>
+<junction x="-38.1" y="132.08"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -4477,11 +4235,6 @@ Area: 2.32" x 1.00"
 <junction x="-33.02" y="109.22"/>
 <pinref part="SUPPLY2" gate="G$1" pin="VCC"/>
 <junction x="-33.02" y="104.14"/>
-</segment>
-<segment>
-<pinref part="ESP32" gate="G$1" pin="3V3@5"/>
-<pinref part="SUPPLY3" gate="G$1" pin="VCC"/>
-<wire x1="-15.24" y1="152.4" x2="-20.32" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -4593,10 +4346,10 @@ Area: 2.32" x 1.00"
 <net name="N$1" class="0">
 <segment>
 <pinref part="U1" gate="A" pin="!RST"/>
-<wire x1="-60.96" y1="139.7" x2="-25.4" y2="139.7" width="0.1524" layer="91"/>
-<pinref part="ESP32" gate="G$1" pin="12"/>
-<wire x1="-25.4" y1="139.7" x2="-25.4" y2="160.02" width="0.1524" layer="91"/>
-<wire x1="-25.4" y1="160.02" x2="-15.24" y2="160.02" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="IO16"/>
+<wire x1="20.32" y1="167.64" x2="30.48" y2="167.64" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="167.64" x2="30.48" y2="139.7" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="139.7" x2="-60.96" y2="139.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
