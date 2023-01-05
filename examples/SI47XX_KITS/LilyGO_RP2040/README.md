@@ -1,6 +1,6 @@
 # LilyGO T-Display RP2040
 
-UNDER CONSTRUCTION....
+UNDER CONSTRUCTION...
 
 
 LilyGO T-Display RP2040 is a board based on Raspberry Pi RP2040 that comes with a 1.14-inch TFT display (ST7789V SPI driver - 240×135).

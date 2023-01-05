@@ -38,9 +38,8 @@ TFT_eSprite spr = TFT_eSprite(&tft);
 #define ENCODER_PUSH_BUTTON 21
 
 #define RESET_PIN 16
-#define RPI_SDA 0               // to be checked
-#define RPI_CLK 1               // to be checked
-
+#define I2C_SDA 8               
+#define I2C_SCL 9               
 
 // LilyGO T-Display reserved pins
 #define TFT_BL 4
@@ -90,13 +89,16 @@ void setup()
   pinMode(TFT_BL, OUTPUT);
   digitalWrite(TFT_BL, HIGH);
 
-  pinMode(0, INPUT_PULLUP);
+  // pinMode(0, INPUT_PULLUP);
 
-  // Wire.begin(); 
-
+  Wire.setSDA(I2C_SDA);
+  Wire.setSCL(I2C_SCL);
+  Wire.begin();
+  
+  delay(500);
   // radio.setI2CFastModeCustom(100000);
-  // radio.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
-  // radio.setup(RESET_PIN, MW_BAND_TYPE);
+  radio.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
+  radio.setup(RESET_PIN, MW_BAND_TYPE);
   // delay(200);
   // radio.setTuneFrequencyAntennaCapacitor(0);
   // radio.setFM(6400, 10800, 10390, 10);
@@ -179,6 +181,7 @@ void drawSprite()
   spr.drawFloat(freq, 1, 100, 40, 7);
   spr.setTextColor(TFT_WHITE, TFT_BLACK);
 
+  /*
   for (int i = 0; i < strength; i++)
   {
     if (i < 9)
@@ -186,8 +189,6 @@ void drawSprite()
     else
       spr.fillRect(100 + (i * 4), 50 - (i * 1), 2, 4 + (i * 1), TFT_RED);
   }
-
-
   */
   // if (radio.getCurrentPilot())
   //   spr.drawString("Stereo", 275, 31, 2);
