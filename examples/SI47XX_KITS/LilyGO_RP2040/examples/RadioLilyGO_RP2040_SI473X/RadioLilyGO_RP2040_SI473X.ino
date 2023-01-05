@@ -1,5 +1,6 @@
 /*
 
+  UNDER CONSTRUCTION...
 
   LilyGO T-Display and SI4735 wire up 
   
@@ -8,6 +9,14 @@
   | RESET (pin 15) |     GP16   |
   | SDIO (pin 18)  |     GP0    |
   | CLK (pin 17)   |     GP1    |
+
+
+  | Rotary Encoder  |  PICO Pin  |
+  | ----------------| ---------- |
+  | RESET (pin 15)  |     GP16   |
+  | SDIO (pin 18)   |     GP0    |
+  | CLK (pin 17)    |     GP1    |
+
 
  
   Copy the lib/TFT_eSPI folder from the  https://github.com/Xinyuan-LilyGO/LILYGO-T-display-RP2040 to you Arduino IDE, libraries folder
@@ -24,17 +33,14 @@
 TFT_eSPI tft = TFT_eSPI();
 TFT_eSprite spr = TFT_eSprite(&tft);
 
-#define PIN_IN1 27
-#define PIN_IN2 28
+#define ENCODER_PIN_A   9       // to be checked
+#define ENCODER_PIN_B  10       // to be checked
+#define ENCODER_PUSH_BUTTON 21
 
 #define RESET_PIN 16
-#define RPI_SDA 0
-#define RPI_CLK 1
+#define RPI_SDA 0               // to be checked
+#define RPI_CLK 1               // to be checked
 
-#define FM_BAND_TYPE 0
-#define MW_BAND_TYPE 1
-#define SW_BAND_TYPE 2
-#define LW_BAND_TYPE 3
 
 // LilyGO T-Display reserved pins
 #define TFT_BL 4
@@ -44,7 +50,13 @@ TFT_eSprite spr = TFT_eSprite(&tft);
 #define PIN_RED_LED 25
 #define PIN_BAT_VOL 26
 
-RotaryEncoder encoder(PIN_IN1, PIN_IN2, RotaryEncoder::LatchMode::TWO03);
+#define FM_BAND_TYPE 0
+#define MW_BAND_TYPE 1
+#define SW_BAND_TYPE 2
+#define LW_BAND_TYPE 3
+
+
+RotaryEncoder encoder(ENCODER_PIN_A, ENCODER_PIN_B, RotaryEncoder::LatchMode::TWO03);
 
 #define color1 0xC638
 #define color2 0xC638
