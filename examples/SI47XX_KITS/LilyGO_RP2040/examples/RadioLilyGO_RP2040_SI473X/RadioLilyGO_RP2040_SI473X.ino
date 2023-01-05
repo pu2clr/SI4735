@@ -1,29 +1,18 @@
 /*
-  This sketch was an adaptation of the Volos's sketch.
-  The original VolosR's sketch works with TEA5767 device and Arduino Library.
-  This sketch works with SI473X CI family and PU2CLR SI4735 Arduino Library
-
-  LilyGo T-Embed device wire up
-
-  | Device name      | Device Pin / Description  |  ESP32        |
-  | ---------------- | --------------------------| ------------  |
-  |    LilyGo        | GPIO16 used for resetting |               |
-  |                  | SDA/SDIO                  |  GPI18        |
-  |                  | SCL/SCLK                  |  GPI8         |
 
 
-  ESP32 and SI4735-D60 or SI4732-A10 wire up
+  LilyGO T-Display and SI4735 wire up 
+  
+  | Si4735 pin     |  PICO Pin  |
+  | ---------------| ---------- |
+  | RESET (pin 15) |     GP16   |
+  | SDIO (pin 18)  |     GP0    |
+  | CLK (pin 17)   |     GP1    |
 
+ 
+  Copy the lib/TFT_eSPI folder from the  https://github.com/Xinyuan-LilyGO/LILYGO-T-display-RP2040 to you Arduino IDE, libraries folder
 
-  | Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
-  |---------| -------- |--------|--------------------|
-  | pin 15  |  pin 9   | RESET  | 16 (GPIO16)        |
-  | pin 18  |  pin 12  | SDIO   | 18 (SDA / GPIO18)  |
-  | pin 17  |  pin 11  | SCLK   |  8 (SCL / GPIO8)   |
-
-
-  See Volos's original project here: https://github.com/VolosR/TEmbedFMRadio
-
+  
 */
 
 #include <Wire.h>
@@ -35,22 +24,19 @@
 TFT_eSPI tft = TFT_eSPI();
 TFT_eSprite spr = TFT_eSprite(&tft);
 
-#define PIN_IN1 2
-#define PIN_IN2 1
-
-#define NUM_LEDS 7
-#define DATA_PIN 42
-#define CLOCK_PIN 45
+#define PIN_IN1 27
+#define PIN_IN2 28
 
 #define RESET_PIN 16
-#define ESP32_SDA 18
-#define ESP32_CLK 8
+#define RPI_SDA 0
+#define RPI_CLK 1
 
 #define FM_BAND_TYPE 0
 #define MW_BAND_TYPE 1
 #define SW_BAND_TYPE 2
 #define LW_BAND_TYPE 3
 
+// LilyGO T-Display reserved pins
 #define TFT_BL 4
 #define PIN_PWR_ON 22
 #define PIN_BOTTON1 6
@@ -80,6 +66,7 @@ int deb = 0;
 void setup()
 {
 
+  // Turn the 
   pinMode(PIN_PWR_ON, OUTPUT);
   digitalWrite(PIN_PWR_ON, HIGH);
 
@@ -93,7 +80,7 @@ void setup()
 
   pinMode(0, INPUT_PULLUP);
 
-  // Wire.begin(); //ESP32_SDA, ESP32_CLK);
+  // Wire.begin(); 
 
   // radio.setI2CFastModeCustom(100000);
   // radio.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
@@ -177,73 +164,25 @@ void drawSprite()
   spr.fillSprite(TFT_BLACK);
   spr.setTextColor(TFT_WHITE, TFT_BLACK);
 
-  spr.drawFloat(freq, 1, 160, 64, 7);
-  spr.setFreeFont(&Orbitron_Light_24);
-  spr.drawString("SI473X", 160, 12);
-  spr.drawString("STATIONS", 38, 14, 2);
-  spr.drawRoundRect(1, 1, 76, 110, 4, 0xAD55);
-  spr.drawRoundRect(240, 20, 76, 22, 4, TFT_WHITE);
-
-  spr.drawRect(290, 6, 20, 9, TFT_WHITE);
-  spr.fillRect(291, 7, 12, 7, 0x34CD);
-  spr.fillRect(310, 8, 2, 5, TFT_WHITE);
-
-  spr.setTextFont(0);
-  spr.setTextColor(0xBEDF, TFT_BLACK);
-  for (int i = 0; i < 6; i++)
-  {
-    spr.drawString(sta[i], 38, 32 + (i * 12));
-    spr.fillCircle(16, 31 + (i * 12), 2, 0xFBAE);
-  }
+  spr.drawFloat(freq, 1, 100, 40, 7);
   spr.setTextColor(TFT_WHITE, TFT_BLACK);
-
-  spr.drawString("SIGNAL", 266, 54);
-  spr.drawString("MUTED", 260, 102, 2);
-  spr.fillRoundRect(288, 96, 20, 20, 3, 0xCC40);
-
-  if (muted == 1)
-    spr.fillCircle(297, 105, 6, TFT_WHITE);
 
   for (int i = 0; i < strength; i++)
   {
     if (i < 9)
-      spr.fillRect(244 + (i * 4), 80 - (i * 1), 2, 4 + (i * 1), TFT_GREEN);
+      spr.fillRect(100 + (i * 4), 50 - (i * 1), 2, 4 + (i * 1), TFT_GREEN);
     else
-      spr.fillRect(244 + (i * 4), 80 - (i * 1), 2, 4 + (i * 1), TFT_RED);
+      spr.fillRect(100 + (i * 4), 50 - (i * 1), 2, 4 + (i * 1), TFT_RED);
   }
 
-  spr.fillTriangle(156, 104, 160, 114, 164, 104, TFT_RED);
 
-  int temp = value - 20;
-  for (int i = 0; i < 40; i++)
-  {
-    if ((temp % 10) == 0)
-    {
-      spr.drawLine(i * 8, 170, i * 8, 140, color1);
-
-      spr.drawLine((i * 8) + 1, 170, (i * 8) + 1, 140, color1);
-      spr.drawFloat(temp / 10.0, 1, i * 8, 130, 2);
-    }
-    else if ((temp % 5) == 0 && (temp % 10) != 0)
-    {
-      spr.drawLine(i * 8, 170, i * 8, 150, color1);
-      spr.drawLine((i * 8) + 1, 170, (i * 8) + 1, 150, color1);
-      // spr.drawFloat(temp/10.0,1,i*8,144);
-    }
-    else
-    {
-      spr.drawLine(i * 8, 170, i * 8, 160, color1);
-    }
-
-    temp = temp + 1;
-  }
-
+  */
   // if (radio.getCurrentPilot())
   //   spr.drawString("Stereo", 275, 31, 2);
   // else
   //   spr.drawString("Mono", 275, 31, 2);
 
-  spr.drawLine(160, 114, 160, 170, TFT_RED);
+  // spr.drawLine(160, 114, 160, 170, TFT_RED);
   spr.pushSprite(0, 0);
 }
 
@@ -289,7 +228,7 @@ int getStrength()
   if (rssi > 95)
     return 17; //>S9 +60
 
-  return 0;
+  return 17;
 
 }
 
