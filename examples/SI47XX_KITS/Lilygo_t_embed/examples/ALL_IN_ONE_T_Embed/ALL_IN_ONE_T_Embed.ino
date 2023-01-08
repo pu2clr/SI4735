@@ -21,8 +21,14 @@
   |                        | A                            |  GPIO  2  |
   |                        | B                            |  GPIO  1  |
   |                        | PUSH BUTTON (encoder)        |  GPIO  0  |
+  |                        |                              |           |  
+  | Battery Indicator      |                              |  GPIO  4  |
+  | LCD LED                |                              |  GPIO 15  |  
+  | Power ON               |                              |  GPIO 46  |
+  |                        |                              |           |
   | SI453X MCU RESET PIN   |                              |           |
   |  See table below       | ESP32 PIN USED FOR RESETTING |  GPIO 16  |  
+
 
   ESP32 and SI4735-D60 or SI4732-A10 wire up
 
@@ -48,6 +54,7 @@
 #include <SI4735.h>
 #include <FastLED.h>
 #include <TFT_eSPI.h>
+#include <Battery18650Stats.h> // Install it from: https://github.com/danilopinotti/Battery18650Stats
 
 #include "Rotary.h"
 #include <patch_init.h> // SSB patch for whole SSBRX initialization string
@@ -68,6 +75,10 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 // I2C bus pin on ESP32
 #define ESP32_I2C_SDA 18
 #define ESP32_I2C_SCL 8
+
+#define PIN_BAT_VOLT   4
+#define PIN_POWER_ON  46
+#define PIN_LCD_BL    15 
 
 // Buttons controllers
 #define ENCODER_PUSH_BUTTON 0     // GPIO0
@@ -96,6 +107,8 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 
 #define color1 0xC638
 #define color2 0xC638
+
+Battery18650Stats battery(PIN_BAT_VOLT);
 
 // EEPROM - Stroring control variables
 const uint8_t app_id = 47; // Useful to check the EEPROM content before processing useful data
@@ -334,12 +347,12 @@ void setup()
   showStatus();
 }
 
-// Turn the display on (true) or off (false)
+// Turn the device and display on (true) or off (false)
 void turnDisplay(bool v) {
-  pinMode(15, OUTPUT);
-  digitalWrite(15, v);   
-  pinMode(46, OUTPUT);
-  digitalWrite(46, v);
+  pinMode(PIN_LCD_BL, OUTPUT);
+  digitalWrite(PIN_LCD_BL, v);   
+  pinMode(PIN_POWER_ON, OUTPUT);
+  digitalWrite(PIN_POWER_ON, v);
 }
 
 /**
@@ -347,7 +360,6 @@ void turnDisplay(bool v) {
  * Remove all code of this function if you do not wish it.
  */
 void splash() {
-
   spr.fillSprite(TFT_BLACK);
   spr.setTextColor(TFT_WHITE, TFT_BLACK);
   spr.setFreeFont(&Orbitron_Light_24);
@@ -574,6 +586,8 @@ void showFrequency()
     }
     temp = temp + 1;
   }
+
+  showBattery();
   spr.pushSprite(0, 0);
 
   showRSSI();
@@ -598,13 +612,25 @@ void showMode() {
    spr.pushSprite(0, 0);
 }
 
+void showBattery() {
+
+  int value = map(battery.getBatteryChargeLevel(),0,100,0,16);
+  
+  spr.drawRect(290, 6, 20, 9, TFT_WHITE);
+  spr.fillRect(291, 7, value, 7, (value < 5)? TFT_RED:TFT_GREEN);
+  spr.fillRect(310, 8, 2, 5, TFT_WHITE);
+}
+
 /**
  * Shows some basic information on display
  */
 void showStatus()
 {
+  showBattery();
   showFrequency();
   showRSSI();
+
+
 }
 
 /**

@@ -57,6 +57,12 @@ Unzip the downloaded file, go to __lib__ folder, copy and paste __RotaryEncoder_
 ![LilyGO libraries](./images/lib02.png)
 
 
+* Install the library [Battery 18650 Stats](https://github.com/danilopinotti/Battery18650Stats). See picture below.
+
+
+![LilyGO libraries](./images/lib05.png)
+
+
 ## LilyGo T-Embed and SI473X connection
 
 The table and pictures below show the LilyGo T-Embed and SI473X devices connection. 
@@ -64,11 +70,24 @@ The table and pictures below show the LilyGo T-Embed and SI473X devices connecti
 
 ### LilyGo T-Embed device wire up
 
-  | Device name      | Device Pin / Description  |  ESP32        |
-  | ---------------- | --------------------------| ------------  |
-  |    LilyGo        | GPIO16 used for resetting |               |
-  |                  | SDA/SDIO                  |  GPI18        |
-  |                  | SCL/SCLK                  |  GPI8         |
+  ESP32 and components wire up.
+
+  | Device name            | Device Pin / Description     |  ESP32    |
+  | -----------------------| -----------------------------| ----------|
+  | LilyGo Painel I2C      |                              |           |
+  |                        | SDA/SDIO                     |  GPIO 18  |
+  |                        | SCL/SCLK                     |  GPIO  8  |
+  | Encoder  LilyGo Painel |                              |           |
+  |                        | A                            |  GPIO  2  |
+  |                        | B                            |  GPIO  1  |
+  |                        | PUSH BUTTON (encoder)        |  GPIO  0  |
+  |                        |                              |           |  
+  | Battery Indicator      |                              |  GPIO  4  |
+  | LCD LED                |                              |  GPIO 15  |  
+  | Power ON               |                              |  GPIO 46  |
+  |                        |                              |           |
+  | SI453X MCU RESET PIN   |                              |           |
+  |  See table below       | ESP32 PIN USED FOR RESETTING |  GPIO 16  |  
   
 
 ### ESP32 and SI4735-D60 or SI4732-A10 wire up
@@ -104,6 +123,7 @@ The table and pictures below show the LilyGo T-Embed and SI473X devices connecti
  |   0   | Encoder Push Button  |
  |   1   | Encoder B |
  |   2   | Encoder A | 
+ |   4   | Battery Indicator | 
  |  15   | Display LED (LCD_BL)  | 
  |  46   | Power On  (turn it high) |  
 
