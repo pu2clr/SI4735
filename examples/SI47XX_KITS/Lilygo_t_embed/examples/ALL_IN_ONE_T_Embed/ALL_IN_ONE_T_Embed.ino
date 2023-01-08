@@ -1324,14 +1324,13 @@ void loop()
       storeTime = millis();
       itIsTimeToSave = false;
     }
-
-    if ((millis() - elapsedBattery) > ELAPSED_TIME_BATERRY )
-    {
-      elapsedBattery = millis();
-      showBattery();
-    }
   }
 
+  if ((millis() - elapsedBattery) > ELAPSED_TIME_BATERRY )
+  {
+      elapsedBattery = millis();
+      showBattery();
+  }
   
   delay(3);
 }
