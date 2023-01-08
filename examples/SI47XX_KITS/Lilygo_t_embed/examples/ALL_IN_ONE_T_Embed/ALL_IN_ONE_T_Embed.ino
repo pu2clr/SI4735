@@ -88,6 +88,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define ELAPSED_COMMAND 2000  // time to turn off the last command controlled by encoder. Time to goes back to the FVO control
 #define ELAPSED_CLICK 1500    // time to check the double click commands
 #define DEFAULT_VOLUME 60    // change it for your favorite sound volume
+#define ELAPSED_TIME_BATERRY 60000
 
 #define FM 0
 #define LSB 1
@@ -143,7 +144,7 @@ bool fmRDS = false;
 int16_t currentBFO = 0;
 long elapsedRSSI = millis();
 long elapsedButton = millis();
-
+long elapsedBattery = millis();
 long elapsedClick = millis();
 long elapsedCommand = millis();
 volatile int encoderCount = 0;
@@ -342,7 +343,7 @@ void setup()
   leds[5] = CRGB::Green;
   leds[6] = CRGB::Green;
   FastLED.show();
-  
+
   useBand();
   showStatus();
 }
@@ -588,6 +589,7 @@ void showFrequency()
   }
 
   showBattery();
+
   spr.pushSprite(0, 0);
 
   showRSSI();
@@ -614,11 +616,22 @@ void showMode() {
 
 void showBattery() {
 
-  int value = map(battery.getBatteryChargeLevel(),0,100,0,16);
+  uint16_t colorBattery;
+  int value = map(battery.getBatteryChargeLevel(true),0,100, 0,18);
+  // int value = map(battery.getBatteryVolts() * 10,32,42,0,18);
+
+  if (value < 5) 
+     colorBattery = TFT_RED;
+  else if (value < 11) 
+     colorBattery = TFT_YELLOW;
+  else 
+     colorBattery = TFT_GREEN;      
   
   spr.drawRect(290, 6, 20, 9, TFT_WHITE);
-  spr.fillRect(291, 7, value, 7, (value < 5)? TFT_RED:TFT_GREEN);
+  spr.fillRect(291, 7, 18, 7, TFT_BLACK);
+  spr.fillRect(291, 7, value, 7, colorBattery);
   spr.fillRect(310, 8, 2, 5, TFT_WHITE);
+  spr.pushSprite(0, 0);
 }
 
 /**
@@ -626,7 +639,6 @@ void showBattery() {
  */
 void showStatus()
 {
-  showBattery();
   showFrequency();
   showRSSI();
 
@@ -1312,6 +1324,14 @@ void loop()
       storeTime = millis();
       itIsTimeToSave = false;
     }
+
+    if ((millis() - elapsedBattery) > ELAPSED_TIME_BATERRY )
+    {
+      elapsedBattery = millis();
+      showBattery();
+    }
   }
+
+  
   delay(3);
 }
