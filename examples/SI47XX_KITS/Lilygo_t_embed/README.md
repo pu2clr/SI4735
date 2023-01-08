@@ -70,7 +70,7 @@ The table and pictures below show the LilyGo T-Embed and SI473X devices connecti
 
 ### LilyGo T-Embed device wire up
 
-  ESP32 and components wire up.
+  ESP32-S3 wire up and internal used pins.
 
   | Device name            | Device Pin / Description     |  ESP32    |
   | -----------------------| -----------------------------| ----------|
@@ -90,7 +90,7 @@ The table and pictures below show the LilyGo T-Embed and SI473X devices connecti
   |  See table below       | ESP32 PIN USED FOR RESETTING |  GPIO 16  |  
   
 
-### ESP32 and SI4735-D60 or SI4732-A10 wire up
+### ESP32-S3 and SI4735-D60 or SI4732-A10 wire up
 
 
   | Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
