@@ -97,8 +97,8 @@ void setup()
   
   delay(500);
   // radio.setI2CFastModeCustom(100000);
-  radio.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
-  radio.setup(RESET_PIN, MW_BAND_TYPE);
+  // radio.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
+  // radio.setup(RESET_PIN, MW_BAND_TYPE);
   // delay(200);
   // radio.setTuneFrequencyAntennaCapacitor(0);
   // radio.setFM(6400, 10800, 10390, 10);
