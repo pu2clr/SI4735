@@ -1,11 +1,12 @@
 /*
   This sketch runs on ESP32 device LilyGO T-Embed panel.
+  
+  The main parts of the sketch used here was written by Volos (https://github.com/VolosR/TEmbedFMRadio). 
+  The Volos' project is a receiver based on the TEA5767 device and I have adapted it to the SI473X device.
+  This sketch implements the main functions of the SI4732/SI4735. It is  a  complete  radio  capable  to  
+  tune  on  AM  and  SSB  modes from 150 to 30.000 kHz  and also FM mode from 64 to 108 MHz.
 
-  It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
-  regular  comercial  stations.
-
-  Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
-              SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz step on SSB
+  Please, read the file user_manual.txt or README.md files for more details. 
 
   The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
   "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
@@ -38,12 +39,10 @@
   | pin 18  |  pin 12  | SDIO   |   21 (SDA / GPI21) |
   | pin 17  |  pin 11  | SCLK   |   22 (SCL / GPI22) |
 
-  (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
-  (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
-       It seems the original project connect the SEN pin to the +Vcc. By using this sketch, you do
-       not need to worry about this setting.
-  ATTENTION: Read the file user_manual.txt
-  Prototype documentation: https://pu2clr.github.io/SI4735/
+  If you are using the SI4732-A10, check the corresponding pin numbers.
+
+  About LilyGO T-Embed and SI473X: https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/Lilygo_t_embed
+  About PU2CLR SI4735 Arduino Library: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
   By PU2CLR, Ricardo, Dec  2022.
