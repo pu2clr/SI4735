@@ -1,7 +1,7 @@
 /*
   This sketch runs on ESP32 device LilyGO T-Embed panel.
   
-  The main parts of the sketch used here was written by Volos (https://github.com/VolosR/TEmbedFMRadio). 
+  The interface design of the sketch used here was written by Volos (https://github.com/VolosR/TEmbedFMRadio). 
   The Volos' project is a receiver based on the TEA5767 device and I have adapted it to the SI473X device.
   This sketch implements the main functions of the SI4732/SI4735. It is  a  complete  radio  capable  to  
   tune  on  AM  and  SSB  modes from 150 to 30.000 kHz  and also FM mode from 64 to 108 MHz.
@@ -41,6 +41,7 @@
 
   If you are using the SI4732-A10, check the corresponding pin numbers.
 
+  References: 
   About LilyGO T-Embed and SI473X: https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/Lilygo_t_embed
   About PU2CLR SI4735 Arduino Library: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
@@ -342,6 +343,8 @@ void setup()
   leds[5] = CRGB::Green;
   leds[6] = CRGB::Green;
   FastLED.show();
+
+  // rx.setMaxDelaySetFrequency(20); // Sets the Max Delay after Set Frequency 
 
   useBand();
   showStatus();
@@ -1331,6 +1334,5 @@ void loop()
       elapsedBattery = millis();
       showBattery();
   }
-  
-  delay(3);
+
 }
