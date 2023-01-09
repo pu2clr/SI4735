@@ -632,6 +632,7 @@ void showBattery() {
   spr.fillRect(291, 7, value, 7, colorBattery);
   spr.fillRect(310, 8, 2, 5, TFT_WHITE);
   spr.pushSprite(0, 0);
+  
 }
 
 /**
