@@ -1,7 +1,7 @@
 # [Antonio's githup repository](https://github.com/IU4ALH/IU4ALH)
 
 
-![Antonio's interface](./images/li9341.jpg)
+![Antonio's interface](./images/ili9341.jpg)
 
 This sketch runs on ESP32 device on a ili9341 display.  It is an adaptation written by IU4ALH, Antonio.
 
