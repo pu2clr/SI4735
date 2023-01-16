@@ -2452,7 +2452,7 @@ char *SI4735::getRdsTime()
         minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
         hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
 
-        offset_sign = (dt.refined.offset_sense == 1) ? '+' : '-';
+        offset_sign = (dt.refined.offset_sense == 1) ? '-' : '+';
         offset_h = (dt.refined.offset * 30) / 60;
         offset_m = (dt.refined.offset * 30) - (offset_h * 60);
         // sprintf(rds_time, "%02u:%02u %c%02u:%02u", dt.refined.hour, dt.refined.minute, offset_sign, offset_h, offset_m);
@@ -2633,7 +2633,7 @@ char *SI4735::getRdsDateTime()
         mjdConverter(mjd, &year, &month, &day);
 
         // Calculating hour, minute and offset
-        offset_sign = (dt.refined.offset_sense == 1) ? '+' : '-';
+        offset_sign = (dt.refined.offset_sense == 1) ? '-' : '+';
         offset_h = (dt.refined.offset * 30) / 60;
         offset_m = (dt.refined.offset * 30) - (offset_h * 60);
 
