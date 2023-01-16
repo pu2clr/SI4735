@@ -17,7 +17,7 @@ __You also ca have the Antonio's skect [here](https://github.com/pu2clr/SI4735/t
 
 ## Schematic 
 
-![Antonio's interface](./images/SI4735_Radio_Schema_con_piedinatura ESP32.png)
+![Antonio's schematic](./images/schematic01.png)
 
 
 
