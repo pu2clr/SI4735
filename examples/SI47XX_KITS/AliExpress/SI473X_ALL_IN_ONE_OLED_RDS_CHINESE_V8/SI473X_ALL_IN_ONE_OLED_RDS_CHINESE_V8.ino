@@ -659,7 +659,8 @@ uint8_t bandEvent(uint8_t event, uint8_t pin) {
         {
           count = 0;
         }
-        if (count++ == 0)
+        if (count++ == 0) 
+        {
           if (BAND_BUTTON == pin)
           {
             if (bandIdx < lastBand)
@@ -670,6 +671,7 @@ uint8_t bandEvent(uint8_t event, uint8_t pin) {
            if (bandIdx)
             bandDown();
           }
+        }
         count = count % BAND_DELAY;
       }
 #else
@@ -1454,7 +1456,6 @@ static bool anyOn = false;
 
 void loop()
 {
-uint8_t x;
 #if defined(DEBUG) && defined(DEBUG_BUTTONS_ONLY)
   btn_BandUp.checkEvent(buttonEvent) ;
   btn_BandDn.checkEvent(buttonEvent) ;
