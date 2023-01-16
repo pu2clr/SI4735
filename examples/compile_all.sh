@@ -55,11 +55,11 @@ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/LCD16x2_A
 
 # compiles Gert's KIT
 echo "Gert's KIT (ESP32)"
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/THIAGO_LIMA/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2
 
 # compiles 
 echo "FELIX ANGGA"
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/THIAGO_LIMA/FELIX_ANGGA/SLAMETRADIO
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/FELIX_ANGGA/SLAMETRADIO
 
 # compile ESP8266
 echo "ESP8266 All In One"
