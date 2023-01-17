@@ -18,6 +18,3 @@ __You also can have the Antonio's sketch [here](https://github.com/pu2clr/SI4735
 ## Schematic 
 
 ![Antonio's schematic](./images/schematic01.png)
-
-
-
