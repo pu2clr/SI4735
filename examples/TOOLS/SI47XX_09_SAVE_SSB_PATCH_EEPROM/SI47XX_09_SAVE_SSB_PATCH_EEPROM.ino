@@ -1,6 +1,6 @@
 /*
   This sketch stores the SI4735 SSB patch content in an EEPROM. You can run this sketch on an Arduino PRO MINI,
-  NANO or similar. The EEPROM with SSB patch content can be useful for  applications for Board or MCU with few 
+  NANO or similar. The EEPROM with SSB patch content can be useful for  applications on Boards or MCU with few 
   memory. The Idea is saving memory of your MCU by storing a SI47XX patch in an external memory (EEPROM)
 
   The PU2CLR SI4735 Arduino Library has the downloadPatchFromEeprom methods that can be used to load the eeprom 
