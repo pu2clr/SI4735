@@ -1,5 +1,5 @@
 /*
-   Test and validation of the SI4735 Arduino Library and EXTRA mute circuit test.
+   Test and validation of the SI4735 Arduino Library and EXTRA/EXTERNAL mute circuit.
    Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some Si47XX device commands. 
    This problem occurs during the receiver transition from the power down to power up internal commands. 
    Also, every time the user changes the mode (FM to AM or AM to FM) the sequence power down and power up internal commands is required by the Si47XX devices.
@@ -31,8 +31,8 @@
 
 #include <SI4735.h>
 
-#define RESET_PIN 12
-#define AUDIO_MUTE_PIN 5
+#define RESET_PIN 12      // Digital arduino pin used to reset the SI473X device. 
+#define AUDIO_MUTE_PIN 5  // Digital arduino pin used to external mute circuit.
 
 
 #define AM_FUNCTION 1
