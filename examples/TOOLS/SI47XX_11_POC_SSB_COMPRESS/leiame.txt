@@ -13,4 +13,4 @@ biblioteca. Dito disso, algumas informações colocadas aqui podem não ser prec
 SI4735. Como a RAM é uma memória volátil, essa atualização deve ser carregada sempre que você 
 retornar o sistema para o modo SSB. Isto  é, se  você  mudar  o  modo  de SSB para FM ou AM e 
 depois  retornar   para  o  modo  SSB,  essa  ação exigirá   que  você   recarregue  o  patch 
-novamente antes começar a operar com SSB. O mesmo vale para os comandos reset ou power down.
+novamente antes de começar a operar com SSB. O mesmo vale para os comandos reset ou power down.
