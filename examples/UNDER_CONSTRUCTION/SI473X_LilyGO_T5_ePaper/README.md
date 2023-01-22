@@ -12,5 +12,5 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 5. On Arduino IDE, select __ESP32 Dev Module__
 6. Connect the LilyGO T5 ePaper board
 7. select the correspondent port (COM(X) or /dev/xxx.yyy )
-8. compile and upload the sketch
+8. Compile and upload the sketch
 
