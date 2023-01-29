@@ -1050,7 +1050,7 @@ The table below shows the some boards where this library has been successfully t
 | 26 | Atmega32       | No  | PC1 and PC0 | PB6/12 | [More...](https://github.com/MCUdude/MightyCore) |
 | 27 | Atmega128      | No  | PC1 and PC0 | PB6/12 | [More...](https://ww1.microchip.com/downloads/en/DeviceDoc/doc2467.pdf) |
 | 28 | LGT8F328P      | No  |  A4 and A5 | 12 | [More...](https://ett.co.th/prodAVR/NANO-F328-C/LGT8F328P.pdf) |
-| 29 | LUATOS ESP32C3 | No  |  GPI4 and GPIO5 | GPIO8 | [More...](https://templates.blakadder.com/luatos_CORE-ESP32.html) |
+| 29 | LUATOS ESP32C3 | No  |  GPIO4 and GPIO5 | GPIO8 | [More...](https://templates.blakadder.com/luatos_CORE-ESP32.html) |
 
 
 
