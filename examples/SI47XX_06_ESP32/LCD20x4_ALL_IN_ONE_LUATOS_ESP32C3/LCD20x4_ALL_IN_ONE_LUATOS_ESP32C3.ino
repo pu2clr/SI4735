@@ -38,7 +38,11 @@
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
        It seems the original project connect the SEN pin to the +Vcc. By using this sketch, you do
        not need to worry about this setting.
-  (*2) remove the LEDs D4 and D5 from the LUATOS board.
+  (*2) the pins 12 and 13 have a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on.
+       You might experiment problem due to the drop voltage caused by the LED circuit. 
+       You can remove the LEDs D4 and D5 from the board if you dont have another pin.
+  
+  remove the LEDs D4 and D5 from the LUATOS board.
   ATTENTION: Read the file user_manual.txt
 
   Prototype documentation: https://pu2clr.github.io/SI4735/
@@ -53,7 +57,6 @@
 #include <SI4735.h>
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
-// #include <LiquidCrystal_I2C.h>
 #include "Rotary.h"
 #include <patch_init.h> // SSB patch for whole SSBRX initialization string
 
@@ -83,7 +86,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define LCD_E  8
 
 // Buttons controllers
-#define ENCODER_PUSH_BUTTON 13 // 
+#define ENCODER_PUSH_BUTTON 13
 #define DUMMY_BUTTON 15
 
 #define MIN_ELAPSED_TIME 300
