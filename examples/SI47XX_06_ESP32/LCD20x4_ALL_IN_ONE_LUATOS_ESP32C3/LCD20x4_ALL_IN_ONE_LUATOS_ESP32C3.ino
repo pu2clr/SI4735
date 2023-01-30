@@ -10,7 +10,7 @@
   Features:   AM; SSB; LW/MW/SW; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-  ESP32 Wire up with LCD, encoder/pushbutton and SI4735-D60
+  ESP32C3 (LUATOS: https://templates.blakadder.com/luatos_CORE-ESP32.html) wire up with LCD, encoder/pushbutton and SI4735-D60
 
   | Device name               | Device Pin / Description      |  ESP32        |
   | ----------------          | ----------------------------- | ------------- |
