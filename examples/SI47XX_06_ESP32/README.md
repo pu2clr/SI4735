@@ -16,6 +16,7 @@ Before start compiling ESP32 based sketches, you have to configure your Arduino 
   * Go to __Tools__ menu and select __Manage libraries...__. Finally install the PU2CLR SI4735 Arduino Library.
 
 * Before compiling, select the ESP32 Board on Arduino IDE.  Go to __Tools__ menu and select __Board__ item. Then, select __ESP32 Arduino__. Finally, select __"ESP32 Dev Module"__ or your specific ESP32 board. You need to know what ESP32 board you are using.  
+* If you are using other versions of the ESP32 (ESP32S3, ESP32C3 etc), please check its pinout before. In general the pin setup are not the same shown here.  
 
 ## Example SI47XX_01_ESP32_AM_FM_TOUCH_SERIAL_MONITOR
 
