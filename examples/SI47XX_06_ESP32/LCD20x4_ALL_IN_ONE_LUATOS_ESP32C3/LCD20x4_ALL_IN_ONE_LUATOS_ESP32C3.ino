@@ -87,7 +87,7 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define DUMMY_BUTTON 15
 
 #define MIN_ELAPSED_TIME 300
-#define MIN_ELAPSED_RSSI_TIME 150
+#define MIN_ELAPSED_RSSI_TIME 3000
 #define ELAPSED_COMMAND 2000 // time to turn off the last command controlled by encoder. Time to goes back to the FVO control
 #define ELAPSED_CLICK 1500   // time to check the double click commands
 #define DEFAULT_VOLUME 35    // change it for your favorite sound volume
@@ -905,8 +905,8 @@ void showCommandStatus(char * currentCmd)
  */
 void showMenu() {
   lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.setCursor(0, 1);
+  // lcd.setCursor(0, 0);
+  lcd.setCursor(0, 2);
   lcd.print(menu[menuIdx]);
   showCommandStatus( (char *) "Menu");
 }
@@ -1236,7 +1236,7 @@ void loop()
   }
 
   // Show RSSI status only if this condition has changed
-  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 6)
+  if ((millis() - elapsedRSSI) > MIN_ELAPSED_RSSI_TIME * 2)
   {
     rx.getCurrentReceivedSignalQuality();
     int aux = rx.getCurrentRSSI();
@@ -1256,7 +1256,7 @@ void loop()
       bfoOn = false;
       showBFO();
     }
-    showStatus();
+    // showStatus();
     disableCommands();
     elapsedCommand = millis();
   }
