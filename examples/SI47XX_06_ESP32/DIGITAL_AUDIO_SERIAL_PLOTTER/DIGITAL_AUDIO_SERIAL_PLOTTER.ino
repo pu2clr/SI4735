@@ -17,7 +17,8 @@
 
   I2S setup and Serial plotter code from https://dronebotworkshop.com/esp32-i2s/
 
-  By Avatar Jarno Lehtinen, Fev, 2023. 
+  By Jarno Lehtinen, Fev, 2023. 
+
 */
 
 #include <SI4735.h>
