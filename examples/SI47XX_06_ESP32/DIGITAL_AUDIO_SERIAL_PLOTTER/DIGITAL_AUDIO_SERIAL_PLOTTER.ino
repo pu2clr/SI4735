@@ -1,4 +1,5 @@
 /*
+
   | Si4735    | Function              | ESP LOLIN32 WEMOS (GPIO) |
   |-----------| ----------------------|--------------------------|
   | pin 15    |   RESET               |   17 (GPIO17)            |  
@@ -15,6 +16,8 @@
   note!: if you use PCM5102-module, connect SCK to GND
 
   I2S setup and Serial plotter code from https://dronebotworkshop.com/esp32-i2s/
+
+  By Avatar Jarno Lehtinen, Fev, 2023. 
 */
 
 #include <SI4735.h>
