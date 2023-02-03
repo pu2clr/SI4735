@@ -4,12 +4,12 @@
 
 # compiles POC
 echo "POC"
-arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC --output-dir ~/Downloads/atmega_bin
-arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_02_POC_SW
-arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_03_POC_SSB
-arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/Si4735_04_HARDWARE_MUTE_CIRCUIT
-arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_06_SSB_EEPROM
-arduino-cli compile -b arduino:avr:nano ./SI47XX_99_AUTO_BANDPASS_FILTER/SI473X_01_POC_SERIAL_MONITOR
+arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC --output-dir ~/Downloads/hex/atmega_bin/x1
+arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_02_POC_SW --output-dir ~/Downloads/hex/atmega_bin/x2
+arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_03_POC_SSB --output-dir ~/Downloads/hex/atmega_bin/x3
+arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/Si4735_04_HARDWARE_MUTE_CIRCUIT --output-dir ~/Downloads/hex/atmega_bin/x4
+arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_06_SSB_EEPROM --output-dir ~/Downloads/hex/atmega_bin/x5
+arduino-cli compile -b arduino:avr:nano ./SI47XX_99_AUTO_BANDPASS_FILTER/SI473X_01_POC_SERIAL_MONITOR --output-dir ~/Downloads/hex/atmega_bin/x5
 
 echo "LCD 20x4 All In One"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_02_LCD_20x4_I2C/SI473X_04_ALL_IN_ONE
@@ -56,7 +56,7 @@ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/LCD16x2_A
 
 # compiles Gert's KIT
 echo "Gert's KIT (ESP32)"
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2  --output-dir ~/Downloads/esp_bin
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2  --output-dir ~/Downloads/hex/esp_bin
 
 
 # compiles 
