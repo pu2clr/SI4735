@@ -568,6 +568,9 @@ void showBandwidth()
   {
     bw = (char *)bandwidthFM[bwIdxFM].desc;
   }
+  strcpy(bandwidth,"BW: ");
+  strcat(bandwidth,bw);
+
   printParam(bandwidth);
 }
 
