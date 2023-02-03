@@ -1,8 +1,9 @@
 /*
+  This sketch runs on Atmega32 devices.   
 
-  UNDER CONSTRUCTION...
-
-  This sketch runs on Atmega128 devices.   
+  Compile using the options below: 
+    Bootloader = No bootload
+    Compile LTO = LTO Enabled
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
@@ -487,40 +488,28 @@ void  rotaryEncoder()
  */
 void showFrequency()
 {
-  char tmp[15];
-  char bufferDisplay[15];
-  char * unit;
-  // sprintf(tmp,  (const char *) F("%5.5u"), currentFrequency);
-  bufferDisplay[0] = (tmp[0] == '0') ? ' ' : tmp[0];
-  bufferDisplay[1] = tmp[1];
-  if (rx.isCurrentTuneFM())
+  char *unit;
+  char freqDisplay[10];
+
+  if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
-    bufferDisplay[2] = tmp[2];
-    bufferDisplay[3] = '.';
-    bufferDisplay[4] = tmp[3];
-    unit = (char *) F("MHz");
+    rx.convertToChar(currentFrequency, freqDisplay, 5, 3, ',');
+    unit = (char *)"MHz";
   }
   else
   {
-    if ( currentFrequency  < 1000 ) {
-      bufferDisplay[1] = ' ';
-      bufferDisplay[2] = tmp[2] ;
-      bufferDisplay[3] = tmp[3];
-      bufferDisplay[4] = tmp[4];
-    } else {
-      bufferDisplay[2] = tmp[2];
-      bufferDisplay[3] = tmp[3];
-      bufferDisplay[4] = tmp[4];
-    }
-    unit = (char *) F("kHz");
+    unit = (char *)"kHz";
+    if (band[bandIdx].bandType == MW_BAND_TYPE || band[bandIdx].bandType == LW_BAND_TYPE)
+      rx.convertToChar(currentFrequency, freqDisplay, 5, 0, '.');
+    else
+      rx.convertToChar(currentFrequency, freqDisplay, 5, 2, ',');
   }
-  bufferDisplay[5] = '\0';
   // strcat(bufferDisplay, unit);
   // display.setTextSize(2);
   display.setFont(&DSEG7_Classic_Regular_16);
   display.clearDisplay();
   display.setCursor(20, 24);
-  display.print(bufferDisplay);
+  display.print(freqDisplay);
   display.setCursor(90,15);
   display.setFont(NULL);
   display.setTextSize(1);
@@ -579,7 +568,6 @@ void showBandwidth()
   {
     bw = (char *)bandwidthFM[bwIdxFM].desc;
   }
-  // sprintf(bandwidth, (const char *) F("BW: %s"), bw);
   printParam(bandwidth);
 }
 
@@ -589,7 +577,10 @@ void showBandwidth()
 void showRSSI()
 {
   char sMeter[10];
-  // sprintf(sMeter, "S:%d ", rssi);
+
+  sMeter[0] = 'S';
+  sMeter[1] = ':';
+  rx.convertToChar(rssi, &sMeter[2], 3, 0, ' ', false);
 
   display.fillRect(0, 25, 128, 10, SSD1306_BLACK);  
   display.setTextSize(1);
@@ -614,9 +605,10 @@ void showAgcAtt()
   rx.getAutomaticGainControl();
   if (agcNdx == 0 && agcIdx == 0)
     strcpy(sAgc, (const char *) F("AGC ON"));
-  else
-    // sprintf(sAgc,  (const char *) F("ATT: %2.2d"), agcNdx);
-
+  else {
+    strcpy(sAgc,"ATT: ");
+    rx.convertToChar(agcNdx, &sAgc[4], 2, 0, ' ', true);
+  }
   printParam(sAgc);  
 }
 
@@ -626,7 +618,9 @@ void showAgcAtt()
 void showStep()
 {
     char sStep[15];
-    // sprintf(sStep,  (const char *) F("Stp:%4d"), (currentMode == FM )? ( tabFmStep[currentStepIdx] * 10) : tabAmStep[currentStepIdx]);
+
+    strcpy(sStep, "Stp:");
+    rx.convertToChar((currentMode == FM )? ( tabFmStep[currentStepIdx] * 10) : tabAmStep[currentStepIdx], &sStep[4], 4, 0, ' ', false);
     printParam(sStep);
 }
 
@@ -637,10 +631,9 @@ void showBFO()
 {
   char bfo[18];
   
-  //if (currentBFO > 0)
-    // sprintf(bfo,  (const char *) F("BFO: +%4.4d"), currentBFO);
-  // else
-    // sprintf(bfo,  (const char *) F("BFO: %4.4d"), currentBFO);
+  strcpy(bfo,"BFO:");
+  bfo[4] = (currentBFO > 0)? '+':'-'; 
+  rx.convertToChar(currentBFO, &bfo[5], 4, 0,' ', false);
 
   printParam(bfo);
   elapsedCommand = millis();
@@ -652,7 +645,8 @@ void showBFO()
 void showVolume()
 {
   char volAux[12];
-  // sprintf(volAux,  (const char *) F("VOLUME: %2u"), rx.getVolume());
+  strcpy(volAux,"VOLUME:");
+  rx.convertToChar(rx.getVolume(),&volAux[7],2,0,' ',false);
   printParam(volAux);
 }
 
@@ -662,7 +656,9 @@ void showVolume()
 void showSoftMute()
 {
   char sMute[18];
-  // sprintf(sMute, (const char *) F("Soft Mute: %2d"), softMuteMaxAttIdx);
+  strcpy(sMute,"Soft Mute:");
+  rx.convertToChar(softMuteMaxAttIdx, &sMute[10], 2, 0, ' ', false);  
+
   printParam(sMute);
 }
 
