@@ -112,8 +112,10 @@ arduino-cli compile --fqbn ATTinyCore:avr:attinyx5 ./SI47XX_05_ATTINY85/SI47XX_0
 echo "*** OLED"
 arduino-cli compile --fqbn ATTinyCore:avr:attinyx5  ./SI47XX_05_ATTINY85/SI47XX_02_ATTINY85_MINI_OLED_I2C --output-dir ~/Downloads/hex/ATTIMY85/SI47XX_02_ATTINY85_MINI_OLED_I2C
 
-# compile Atmega128
-
-echo "ATMega128"
+# compile Atmega128 e Atmega32
+echo "ATMega128 MegaCore"
 arduino-cli compile -b MegaCore:avr:128 ./SI47XX_17_ATMEGA128/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ATMEGA128/OLED_ALL_IN_ONE
+
+echo "ATMega32  MightyCore"
+arduino-cli compile --build-property "build.extra_flags=-Os -g -w -std=gnu++17  -Wextra -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto" -b MightyCore:avr:32 ./SI47XX_17_ATMEGA32/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ATMEGA32/OLED_ALL_IN_ONE
 
