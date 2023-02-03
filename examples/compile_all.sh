@@ -51,12 +51,13 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_KITS/AliExpress/SI473X_ALL_IN_O
 
 # compiles ESP32 LCD16x2_ALL_IN_ONE
 echo "ESP32 LCD16x2_ALL_IN_ONE"
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/LCD16x2_ALL_IN_ONE 
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/LCD16x2_ALL_IN_ONE --output-dir ~/Downloads/esp_bin
 
 
 # compiles Gert's KIT
 echo "Gert's KIT (ESP32)"
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2  --output-dir ~/Downloads/esp_bin
+
 
 # compiles 
 echo "FELIX ANGGA"
