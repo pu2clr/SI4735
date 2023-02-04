@@ -1,8 +1,15 @@
 /*
 
-  UNDER CONSTRUCTION...
-
   This sketch runs on Atmega128 devices.   
+
+  Before compiling, please, install the MegaCore board in your Arduino IDE (https://github.com/MCUdude/MegaCore)
+  Hpow to Install: https://github.com/MCUdude/MegaCore#boards-manager-installation
+
+  Compile using the options below: 
+    Bootloader = No bootload
+    Compile LTO = LTO Enabled
+    Clock = Select the right crystal setup you are using
+
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
