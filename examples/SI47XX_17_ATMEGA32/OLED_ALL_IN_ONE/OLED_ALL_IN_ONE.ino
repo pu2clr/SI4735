@@ -29,7 +29,7 @@
   |               | B                        |  11 (PD3) |
   |               | PUSH BUTTON (encoder)    |  0 (PB0)  |
 
-  ATmega128 and SI4735-D60 or SI4732-A10 wire up
+  ATmega32 and SI4735-D60 or SI4732-A10 wire up
 
   | Si4735  | SI4732   | DESC.  | ATmega32 | 
   |---------| -------- |--------|----------|
