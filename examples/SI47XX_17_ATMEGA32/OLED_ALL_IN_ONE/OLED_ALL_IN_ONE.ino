@@ -1,9 +1,15 @@
 /*
   This sketch runs on Atmega32 devices.   
 
+  Before compiling, please, install the MightyCore board in your Arduino IDE (https://github.com/MCUdude/MightyCore)
+  See: https://github.com/MCUdude/MightyCore#how-to-install
+
+
   Compile using the options below: 
     Bootloader = No bootload
     Compile LTO = LTO Enabled
+    Pinout = Standard pinout
+    Clock = Select the right crystal setup you are using
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
   regular  comercial  stations.
@@ -11,30 +17,32 @@
   Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
 
-  Atmega128 and components wire up. 
+  Atmega32 and components wire up. 
   
   | Device name   | Device Pin / Description | ATmega32  |
   | --------------| -------------------------| ----------|
   |    OLED       |                          |           |
-  |               | SDA/SDIO                 |  PC1      | 
-  |               | SCL/SCLK                 |  PC0      | 
+  |               | SDA/SDIO                 |  17 (PC1) | 
+  |               | SCL/SCLK                 |  16 (PC0) | 
   |    Encoder    |                          |           |
-  |               | A                        |  PB4      |
-  |               | B                        |  PB5      |
-  |               | PUSH BUTTON (encoder)    |  PB0      |
+  |               | A                        |  10 (PD2) |
+  |               | B                        |  11 (PD3) |
+  |               | PUSH BUTTON (encoder)    |  0 (PB0)  |
 
   ATmega128 and SI4735-D60 or SI4732-A10 wire up
 
   | Si4735  | SI4732   | DESC.  | ATmega32 | 
   |---------| -------- |--------|----------|
-  | pin 15  |  pin 9   | RESET  |   PB2 |  
-  | pin 18  |  pin 12  | SDIO   |   PC1    |
-  | pin 17  |  pin 11  | SCLK   |   PC0    |
+  | pin 15  |  pin 9   | RESET  |   2 (PB2)|  
+  | pin 18  |  pin 12  | SDIO   |  17 (PC1)|
+  | pin 17  |  pin 11  | SCLK   |  16 (PC0)|
 
   (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
        It seems the original project connect the SEN pin to the +Vcc. By using this sketch, you do
        not need to worry about this setting.
+  (*2) use a 22K pull-up on Arduino Board pin used for reseting (RESET PIN). It may be needed if 
+       you are using some Arduino based boards like (Atmega32, Atmega128 etc)
   ATTENTION: Read the file user_manual.txt
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
@@ -60,17 +68,14 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define SW_BAND_TYPE 2
 #define LW_BAND_TYPE 3
 
-
-
 // Enconder PINs
-#define ENCODER_PIN_A PB4           
-#define ENCODER_PIN_B PB5           
-
+#define ENCODER_PIN_A 10           
+#define ENCODER_PIN_B 11           
 
 // Buttons controllers
-#define ENCODER_PUSH_BUTTON PB0  
+#define ENCODER_PUSH_BUTTON 0  
 
-#define RESET_PIN PB2              // 12
+#define RESET_PIN 2              
 
 #define MIN_ELAPSED_TIME 300
 #define MIN_ELAPSED_RSSI_TIME 200
@@ -276,13 +281,13 @@ void setup()
 
   // Splash - Remove or change it for your introduction text.
   display.clearDisplay();
-  print(0, 0, NULL, 2, (const char *) F("PU2CLR"));
-  print(0, 15, NULL, 2, (const char *) F("Atmega32"));
+  print(0, 0, NULL, 2, "PU2CLR");
+  print(0, 15, NULL, 2, "Atmega32");
   display.display();
   delay(2000);
   display.clearDisplay();
-  print(0, 0, NULL, 2, (const char *) F("SI473X"));
-  print(0, 15, NULL, 2, (const char *) F("Arduino"));
+  print(0, 0, NULL, 2, "SI473X");
+  print(0, 15, NULL, 2, "Arduino");
   display.display();
   // End Splash
 
@@ -301,6 +306,7 @@ void setup()
 
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
+
 
   rx.setI2CFastModeCustom(100000);
   
@@ -508,7 +514,7 @@ void showFrequency()
   // display.setTextSize(2);
   display.setFont(&DSEG7_Classic_Regular_16);
   display.clearDisplay();
-  display.setCursor(20, 24);
+  display.setCursor(10, 24);
   display.print(freqDisplay);
   display.setCursor(90,15);
   display.setFont(NULL);
@@ -525,7 +531,7 @@ void showFrequency()
 void showMode() {
   char * bandMode;
   if (currentFrequency < 520)
-    bandMode = (char *) F("LW  ");
+    bandMode = (char *) "LW  ";
   else
     bandMode = (char *) bandModeDesc[currentMode];
 
@@ -592,7 +598,7 @@ void showRSSI()
   if (currentMode == FM)
   {
     display.setCursor(0, 25);
-    display.print((rx.getCurrentPilot()) ? (const char *) F("ST") : (const char *) F("MO"));
+    display.print((rx.getCurrentPilot()) ? (const char *) "ST" : (const char *) "MO");
   }
 
   display.display();
@@ -607,7 +613,7 @@ void showAgcAtt()
   // lcd.clear();
   rx.getAutomaticGainControl();
   if (agcNdx == 0 && agcIdx == 0)
-    strcpy(sAgc, (const char *) F("AGC ON"));
+    strcpy(sAgc, (const char *) "AGC ON");
   else {
     strcpy(sAgc,"ATT: ");
     rx.convertToChar(agcNdx, &sAgc[4], 2, 0, ' ', true);
@@ -728,7 +734,7 @@ void useBand()
 
   rssi = 0;
   showStatus();
-  showCommandStatus((char *) F("Band"));
+  showCommandStatus((char *) "Band");
 }
 
 
@@ -811,7 +817,7 @@ void showMenu() {
   display.setCursor(0, 10);
   display.print(menu[menuIdx]);
   display.display();
-  showCommandStatus( (char *) F("Menu"));
+  showCommandStatus( (char *) "Menu");
 }
 
 /**
@@ -1102,7 +1108,7 @@ void loop()
         {
           disableCommands();
           showStatus();
-          showCommandStatus(( char *) F("VFO "));
+          showCommandStatus(( char *) "VFO ");
         }
         else if (bfoOn) {
           bfoOn = false;
@@ -1111,7 +1117,7 @@ void loop()
         else
         {
           cmdBand = !cmdBand;
-          showCommandStatus((char *) F("Band"));
+          showCommandStatus((char *) "Band");
         }
       }
       else
