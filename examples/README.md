@@ -344,6 +344,7 @@ type __arduino-cli board listall__ to see all boards available.
 ### arcuino-cli references
 
 * [Getting Started with arduino-cli](https://create.arduino.cc/projecthub/B45i/getting-started-with-arduino-cli-7652a5)
+* [Arduino CLI and the art of command line](https://youtu.be/cVod8k713_8)
 * [Getting started](https://arduino.github.io/arduino-cli/0.21/getting-started/)
 * [Arduino CLI: Getting Started](https://youtu.be/J-qGn1eEidA)
 * [Arduino-cli - github.com](https://github.com/arduino/arduino-cli)
