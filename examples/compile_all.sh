@@ -19,8 +19,12 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_99_AUTO_BANDPASS_FILTER/SI473X_
 
 echo "LCD 20x4 All In One"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_02_LCD_20x4_I2C/SI473X_04_ALL_IN_ONE
+
 echo "LCD_20x4 with SMETER I2C"
-arduino-cli compile -b arduino:avr:nano ./SI47XX_02_LCD_20x4_I2C/SI47XX_02_LCD_20x4_SMETER_I2C
+echo "**** Atmega328 - Nano"
+arduino-cli compile -b arduino:avr:nano ./SI47XX_02_LCD_20x4_I2C/SI47XX_02_LCD_20x4_SMETER_I2C --output-dir ~/Downloads/hex/atmega/SI47XX_02_LCD_20x4_SMETER_I2C
+echo "**** LGT8FX - Nano"
+arduino-cli compile -b lgt8fx:avr:328 ./SI47XX_02_LCD_20x4_I2C/SI47XX_02_LCD_20x4_SMETER_I2C  --output-dir ~/Downloads/hex/lgt8fx/SI47XX_02_LCD_20x4_SMETER_I2C
 
 
 echo "OLED"
@@ -129,8 +133,7 @@ arduino-cli compile --fqbn ATTinyCore:avr:attinyx5  ./SI47XX_05_ATTINY85/SI47XX_
 
 # compile Atmega128 e Atmega32
 echo "ATMega128 MegaCore"
-arduino-cli compile -b MegaCore:avr:128 ./SI47XX_17_ATMEGA128/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ATMEGA128/OLED_ALL_IN_ONE
+arduino-cli compile -b MegaCore:avr:128 ./SI47XX_17_ATMEGA128/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ATMEGA128/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/atmega128/OLED_ALL_IN_ONE
 
 # echo "ATMega32  MightyCore"
-# arduino-cli compile --build-property "build.extra_flags=-Os -w -std=gnu++17  -Wextra -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto" -b MightyCore:avr:32 ./SI47XX_17_ATMEGA32/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ATMEGA32/OLED_ALL_IN_ONE
-
+# arduino-cli compile --build-property "build.extra_flags= -Os -w -flto" -b MightyCore:avr:32 ./SI47XX_17_ATMEGA32/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ATMEGA32/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/atmega32/OLED_ALL_IN_ONE
