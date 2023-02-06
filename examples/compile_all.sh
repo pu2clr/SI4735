@@ -78,6 +78,9 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_KITS/AliExpress/SI473X_ALL_IN_O
 echo "ESP32 LCD16x2_ALL_IN_ONE"
 arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/LCD16x2_ALL_IN_ONE --output-dir ~/Downloads/hex/ESP32/LCD16x2_ALL_IN_ONE
 
+echo "ESP32 I2S Audio Example"
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER --output-dir ~/Downloads/hex/ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER
+
 
 # compiles Gert's KIT
 echo "Gert's KIT (ESP32)"
@@ -116,13 +119,11 @@ arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C ./SI47XX_07_STM3
 echo "STM32 - PLAMEN"
 arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C ./SI47XX_KITS/PLAMEN/PU2CLR_SI5351_SI4732_STM32 --output-dir ~/Downloads/hex/STM32/PU2CLR_SI5351_SI4732_STM32
 
-
 # compiles SEEEDUINO XIAO
 echo "SEEEDUINO" 
 
 # arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 -u -p /dev/cu.usbmodem14201   ./SI47XX_15_SEEEDUINO/OLED_ALL_IN_ONE
 arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0  ./SI47XX_15_SEEEDUINO/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/SEEEDUINO/OLED_ALL_IN_ONE
-
 
 # compiles ATTiny85
 echo "ATTINY85"
