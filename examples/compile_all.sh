@@ -100,7 +100,6 @@ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/FELIX_ANGGA/S
 echo "ESP8266 All In One"
 arduino-cli compile --fqbn esp8266:esp8266:generic  ./SI47XX_06_ESP8266/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ESP8266/OLED_ALL_IN_ONE
 
-
 # compiles SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2 on Arduino DUE and Mega 
 echo "Arduino RDS DUE and MEGA"
 echo "*** DUE"
@@ -115,6 +114,7 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_10_RDS/SI47XX_03_RDS_TFT_ILI922
 
 # compiles STM32 sketch
 echo "STM32"
+# arduino-cli board -b stm32duino:STM32F1:genericSTM32F103C  details
 arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2 --output-dir ~/Downloads/hex/STM32/STM32_04_OLED_ALL_IN_ONE_V2
 
 echo "STM32 - PLAMEN"
@@ -129,13 +129,14 @@ arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0  ./SI47XX_15_SEEEDUINO/O
 # compiles ATTiny85
 echo "ATTINY85"
 echo "*** SSB"
-arduino-cli compile --fqbn ATTinyCore:avr:attinyx5 ./SI47XX_05_ATTINY85/SI47XX_03_SSB_Tiny4kOLED
+# arduino-cli board -b ATTinyCore:avr:attinyx5  details   
+arduino-cli compile --fqbn ATTinyCore:avr:attinyx5:clock=1internal ./SI47XX_05_ATTINY85/SI47XX_03_SSB_Tiny4kOLED --output-dir ~/Downloads/hex/ATTIMY85/SI47XX_03_SSB_Tiny4kOLED
 echo "*** OLED"
 arduino-cli compile --fqbn ATTinyCore:avr:attinyx5  ./SI47XX_05_ATTINY85/SI47XX_02_ATTINY85_MINI_OLED_I2C --output-dir ~/Downloads/hex/ATTIMY85/SI47XX_02_ATTINY85_MINI_OLED_I2C
 
 # compile Atmega128 e Atmega32
 echo "ATMega128 MegaCore"
-arduino-cli compile -b MegaCore:avr:128 ./SI47XX_17_ATMEGA128/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ATMEGA128/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/atmega128/OLED_ALL_IN_ONE
+arduino-cli compile -b MegaCore:avr:128:bootloader=no_bootloader,LTO=Os_flto ./SI47XX_17_ATMEGA128/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ATMEGA128/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/atmega128/OLED_ALL_IN_ONE
 
 # echo "ATMega32  MightyCore"
 # To know more option  run: arduino-cli board -b MightyCore:avr:32 details
