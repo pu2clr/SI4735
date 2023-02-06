@@ -28,6 +28,7 @@
   I2S Communication on ESP32 to Transmit and Receive Audio Data Using MAX98357A: https://circuitdigest.com/microcontroller-projects/i2s-communication-on-esp32-to-transmit-and-receive-audio-data-using-max98357a
   I2S Sound Tutorial for ESP32: https://diyi0t.com/i2s-sound-tutorial-for-esp32/
   Bluetooth A2DP – Streaming from an Digital I2S Microphone: https://www.pschatzmann.ch/home/2021/04/29/bluetooth-a2dp-streaming-from-an-digital-i2s-microphone/
+  A Simple Arduino Bluetooth Music Receiver and Sender for the ESP32: https://github.com/pschatzmann/ESP32-A2DP
 
   This sketch was written By Jarno Lehtinen, Fev, 2023 (https://github.com/mcgurk?tab=repositories). 
 
