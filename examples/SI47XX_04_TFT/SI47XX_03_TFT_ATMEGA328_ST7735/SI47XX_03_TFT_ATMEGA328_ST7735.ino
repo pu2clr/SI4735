@@ -2,6 +2,16 @@
   ATTENTION: Use the MiniCore board manager with "LTO Enabled" and "No bootloader" options selected.
              See https://github.com/MCUdude/MiniCore
 
+
+  Install the libraries Adafruit_GFX, Adafruit_ST7735 and SI4735
+
+  You can use the arduino-cli instead Arduino IDE: Using the shell, from example folder, 
+  run: arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  -u -p </dev/XXXX>  ./SI47XX_04_TFT/SI47XX_03_TFT_ATMEGA328_ST7735 
+  
+  Where /dev/XXXX is the port of your computer (COM1, COM2 ... if you are using Windows OS)
+  Run arduino-cli board list to know the port connected to the board.
+
+
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT ST7735 1.8"
 
   The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735  and  the

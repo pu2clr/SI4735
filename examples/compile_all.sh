@@ -45,7 +45,8 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_04_TFT/SI47XX_01_TFT_ILI9225
 ## arduino-cli compile -b lgt8fx:avr:328 --build-property "build.extra_flags=-Os -w -Wextra -fno-exceptions  -fno-threadsafe-statics -flto" ./SI47XX_04_TFT/SI47XX_01_TFT_ILI9225
 
 ## echo "*** ST7735"
-## arduino-cli compile -b MiniCore:avr:328  --build-property "build.extra_flags=-Os -w -std=gnu++17  -Wextra -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto" ./SI47XX_04_TFT/SI47XX_03_TFT_ATMEGA328_ST7735
+## 
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./SI47XX_04_TFT/SI47XX_03_TFT_ATMEGA328_ST7735 --output-dir ~/Downloads/hex/atmega/SI47XX_03_TFT_ATMEGA328_ST7735
 
 
 echo "POC Active Crystal"
@@ -137,4 +138,5 @@ echo "ATMega128 MegaCore"
 arduino-cli compile -b MegaCore:avr:128 ./SI47XX_17_ATMEGA128/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ATMEGA128/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/atmega128/OLED_ALL_IN_ONE
 
 # echo "ATMega32  MightyCore"
-# arduino-cli compile --build-property "build.extra_flags= -Os -w -flto" -b MightyCore:avr:32 ./SI47XX_17_ATMEGA32/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ATMEGA32/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/atmega32/OLED_ALL_IN_ONE
+# To know more option  run: arduino-cli board -b MightyCore:avr:32 details
+arduino-cli compile -b MightyCore:avr:32:bootloader=no_bootloader,LTO=Os_flto,clock=16MHz_external  ./SI47XX_17_ATMEGA32/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ATMEGA32/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/atmega32/OLED_ALL_IN_ONE
