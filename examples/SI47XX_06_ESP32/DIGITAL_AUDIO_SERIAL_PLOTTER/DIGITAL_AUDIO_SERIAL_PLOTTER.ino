@@ -15,6 +15,11 @@
   (analog audio out: ROUT 23, LOUT 24)
   note!: if you use PCM5102-module, connect SCK to GND
 
+  IMPORTANT: This setup does not work with regular crystal setup. 
+             You need a external active crystal or signal generator. 
+             See: https://github.com/pu2clr/SI4735/tree/master/extras/schematic#si473x-and-external-active-crystal-oscillator-or-signal-generator
+             
+
   By Jarno Lehtinen, Fev, 2023 (https://github.com/mcgurk?tab=repositories). 
 
   Reference
