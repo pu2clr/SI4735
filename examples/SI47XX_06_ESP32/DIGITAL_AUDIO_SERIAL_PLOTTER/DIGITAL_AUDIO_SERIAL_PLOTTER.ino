@@ -16,11 +16,9 @@
   note!: if you use PCM5102-module, connect SCK to GND
 
   IMPORTANT: This setup does not work with regular crystal setup. 
-             You need a external active crystal or signal generator. 
-             See: https://github.com/pu2clr/SI4735/tree/master/extras/schematic#si473x-and-external-active-crystal-oscillator-or-signal-generator
-             
-
-  By Jarno Lehtinen, Fev, 2023 (https://github.com/mcgurk?tab=repositories). 
+             You need a external active crystal or signal generator setup. 
+             See Digital Audio support: https://pu2clr.github.io/SI4735/#digital-audio-support
+             See SI473X and external active crystal oscillator or signal generator: https://github.com/pu2clr/SI4735/tree/master/extras/schematic#si473x-and-external-active-crystal-oscillator-or-signal-generator
 
   Reference
   I2S setup and Serial plotter code from https://dronebotworkshop.com/esp32-i2s/
@@ -30,6 +28,8 @@
   I2S Communication on ESP32 to Transmit and Receive Audio Data Using MAX98357A: https://circuitdigest.com/microcontroller-projects/i2s-communication-on-esp32-to-transmit-and-receive-audio-data-using-max98357a
   I2S Sound Tutorial for ESP32: https://diyi0t.com/i2s-sound-tutorial-for-esp32/
   Bluetooth A2DP – Streaming from an Digital I2S Microphone: https://www.pschatzmann.ch/home/2021/04/29/bluetooth-a2dp-streaming-from-an-digital-i2s-microphone/
+
+  This sketch was written By Jarno Lehtinen, Fev, 2023 (https://github.com/mcgurk?tab=repositories). 
 
 */
 
