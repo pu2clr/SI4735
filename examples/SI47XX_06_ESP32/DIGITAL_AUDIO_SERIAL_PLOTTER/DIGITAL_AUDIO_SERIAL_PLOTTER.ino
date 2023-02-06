@@ -22,6 +22,7 @@
 
   Reference
   I2S setup and Serial plotter code from https://dronebotworkshop.com/esp32-i2s/
+  ESP32-audioI2S library: https://github.com/schreibfaul1/ESP32-audioI2S
   I2S from espressif ESP32:  https://espressif-docs.readthedocs-hosted.com/projects/arduino-esp32/en/latest/api/i2s.html
 
   Other references: 
