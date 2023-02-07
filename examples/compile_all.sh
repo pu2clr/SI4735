@@ -13,6 +13,7 @@ echo "POC"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC --output-dir ~/Downloads/hex/atmega/SI4735_01_POC
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_02_POC_SW --output-dir ~/Downloads/hex/atmega/SI4735_02_POC_SW
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_03_POC_SSB --output-dir ~/Downloads/hex/atmega/SI4735_03_POC_SSB
+arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_03_POC_SSB_COMPRESSED --output-dir ~/Downloads/hex/atmega/SI4735_03_POC_SSB_COMPRESSED
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/Si4735_04_HARDWARE_MUTE_CIRCUIT --output-dir ~/Downloads/hex/atmega/Si4735_04_HARDWARE_MUTE_CIRCUIT
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_06_SSB_EEPROM --output-dir ~/Downloads/hex/atmega/SI4735_06_SSB_EEPROM
 arduino-cli compile -b arduino:avr:nano ./SI47XX_99_AUTO_BANDPASS_FILTER/SI473X_01_POC_SERIAL_MONITOR --output-dir ~/Downloads/hex/atmega/SI473X_01_POC_SERIAL_MONITOR
