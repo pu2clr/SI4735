@@ -313,20 +313,9 @@ void bandDown()
  */
 void loadSSB()
 {
-  si4735.setI2CFastModeCustom(500000);
-  si4735.queryLibraryId(); // Is it really necessary here? I will check it.
-  si4735.patchPowerUp();
-  delay(50);
-  si4735.downloadPatch(ssb_patch_content, size_content);
-  // Parameters
-  // AUDIOBW - SSB Audio bandwidth; 0 = 1.2kHz (default); 1=2.2kHz; 2=3kHz; 3=4kHz; 4=500Hz; 5=1kHz;
-  // SBCUTFLT SSB - side band cutoff filter for band passand low pass filter ( 0 or 1)
-  // AVC_DIVIDER  - set 0 for SSB mode; set 3 for SYNC mode.
-  // AVCEN - SSB Automatic Volume Control (AVC) enable; 0=disable; 1=enable (default).
-  // SMUTESEL - SSB Soft-mute Based on RSSI or SNR (0 or 1).
-  // DSP_AFCDIS - DSP AFC Disable or enable; 0=SYNC MODE, AFC enable; 1=SSB MODE, AFC disable.
-  si4735.setSSBConfig(bandwidthIdx, 1, 0, 1, 0, 1);
-  si4735.setI2CFastModeCustom(100000);
+  si4735.setI2CFastModeCustom(500000); // Increase the transfer I2C speed
+  si4735.loadPatch(ssb_patch_content, size_content); // It is a legacy function. See loadCompressedPatch 
+  si4735.setI2CFastModeCustom(100000); // Set standard transfer I2C speed
 }
 
 /*
