@@ -2571,6 +2571,7 @@ public:
     bool downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size);
     bool downloadCompressedPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, const uint16_t *cmd_0x15, const int16_t cmd_0x15_size);
     void loadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, uint8_t ssb_audiobw = 1);
+    void loadCompressedPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_patch_content_size, const uint16_t *cmd_0x15, const int16_t cmd_0x15_size, uint8_t ssb_audiobw = 1);
     si4735_eeprom_patch_header downloadPatchFromEeprom(int eeprom_i2c_address);
     void ssbPowerUp();
 
