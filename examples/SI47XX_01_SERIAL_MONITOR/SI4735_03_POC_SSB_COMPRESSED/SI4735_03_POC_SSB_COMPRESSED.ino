@@ -33,7 +33,7 @@
     | SCLK (pin 17)   |     A5        |
 
 
-This sketch will download a SSB patch to your SI4735 device (patch_content.h). It will take about 15KB of the Arduino memory.
+This sketch will download a SSB patch to your SI4735 device (patch_ssb_compressed.h). It will take about 15KB of the Arduino memory.
 
 First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
 Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
