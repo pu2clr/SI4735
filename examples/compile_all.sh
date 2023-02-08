@@ -18,6 +18,11 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/Si4735_04_HAR
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_06_SSB_EEPROM --output-dir ~/Downloads/hex/atmega/SI4735_06_SSB_EEPROM
 arduino-cli compile -b arduino:avr:nano ./SI47XX_99_AUTO_BANDPASS_FILTER/SI473X_01_POC_SERIAL_MONITOR --output-dir ~/Downloads/hex/atmega/SI473X_01_POC_SERIAL_MONITOR
 
+arduino-cli compile -b arduino:avr:nano ./TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN --output-dir ~/Downloads/hex/atmega/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN
+
+# arduino-cli compile -b lgt8fx:avr:328 ./TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN --output-dir ~/Downloads/hex/lgt8fx/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN
+
+
 echo "LCD 20x4 All In One"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_02_LCD_20x4_I2C/SI473X_04_ALL_IN_ONE
 
