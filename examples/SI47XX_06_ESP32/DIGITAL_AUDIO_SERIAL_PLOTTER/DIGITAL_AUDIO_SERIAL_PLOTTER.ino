@@ -6,11 +6,21 @@
   | pin 18    |   SDIO                |   21 (SDA / GPIO21)      |
   | pin 17    |   SCLK                |   22 (SCL / GPIO22)      |
 
+  If you are using the SI4735-D60 device
+
   | Si4735    | Function              | DAC       | ESP LOLIN32 WEMOS (GPIO)              |
   |-----------| ----------------------|-----------|---------------------------------------|
   | pin 1     |   DIO                 |  DIN      |  23 (SerialData / GPIO23)             |
   | pin 2     |   DFS                 |  LRCK     |  25 (WordSelect / GPIO25)             |
   | pin 3     |   DCLK                |  BCK      |  26 (ContinuousSerialClock) / GPIO26) |
+
+  if you are using the SI4732-A10 device 
+
+  | SI474732  | Function              | DAC       | ESP LOLIN32 WEMOS (GPIO)              |
+  |-----------| ----------------------|-----------|---------------------------------------|  
+  | pin  1    |  DFS                  | LRCK      |  25 (WordSelect / GPIO25)             |
+  | pin 16    |  DIO                  | DIN       |  23 (SerialData / GPIO23)             |
+  | pin  2    |  DCLK                 | BSK       |  26 (ContinuousSerialClock) / GPIO26) |     
 
   (analog audio out: ROUT 23, LOUT 24)
   note!: if you use PCM5102-module, connect SCK to GND
@@ -79,6 +89,13 @@ void setup() {
 
   delay(500);
   Serial.println("\nsi4735.setup..."); 
+
+
+  // Use SI473X_DIGITAL_AUDIO1       - Digital audio output (SI4735 device pins: 3/DCLK, 24/LOUT/DFS, 23/ROUT/DIO )
+  // Use SI473X_DIGITAL_AUDIO2       - Digital audio output (SI4735 device pins: 3/DCLK, 2/DFS, 1/DIO)
+  // Use SI473X_ANALOG_DIGITAL_AUDIO - Analog and digital audio outputs (24/LOUT/ 23/ROUT and 3/DCLK, 2/DFS, 1/DIO)
+  // XOSCEN_RCLK                     - Use external source clock (active crystal or signal generator)
+
   // si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK); // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
   si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK); 
   Serial.println(" Done!");
