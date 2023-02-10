@@ -2,7 +2,7 @@
 
   | Si4735    | Function              | ESP LOLIN32 WEMOS (GPIO) |
   |-----------| ----------------------|--------------------------|
-  | pin 15    |   RESET               |   17 (GPIO17)            |  
+  | pin 15    |   RESET               |   12 (GPIO17)            |  
   | pin 18    |   SDIO                |   21 (SDA / GPIO21)      |
   | pin 17    |   SCLK                |   22 (SCL / GPIO22)      |
 
@@ -86,6 +86,7 @@ void setup() {
   delay(500);
   Serial.print("si4735.getFrequency: "); 
   Serial.println(si4735.getFrequency());
+  delay(5000);
   si4735.setVolume(63);
 
   i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
@@ -109,7 +110,7 @@ void loop() {
   Serial.print(" ");
   Serial.print(rangelimit);
   Serial.print(" ");
-  while(1);
+
 
   // Get I2S data and place in data buffer
   size_t bytesIn = 0;

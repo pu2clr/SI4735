@@ -40,7 +40,8 @@ ECHO OFF
 ECHO "ESP32 based board"
 ECHO ON 
 arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso .\SI47XX_06_ESP32\LCD16x2_ALL_IN_ONE --output-dir %homepath%\Downloads\hex\esp32\OLED_ALL_IN_ONE 
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2  --output-dir %homepath%\Downloads\hex\esp32\GERT_BAAK
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso .\SI47XX_KITS\GERT_BAAK\SI4735_2.8_TFT_SI5351_V4.2  --output-dir %homepath%\Downloads\hex\esp32\GERT_BAAK
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso .\SI47XX_06_ESP32\DIGITAL_AUDIO_SERIAL_PLOTTER  --output-dir %homepath%\Downloads\hex\esp32\DIGITAL_AUDIO_SERIAL_PLOTTER
 ECHO OFF
 
 ECHO "Seeeduino:samd based board"
