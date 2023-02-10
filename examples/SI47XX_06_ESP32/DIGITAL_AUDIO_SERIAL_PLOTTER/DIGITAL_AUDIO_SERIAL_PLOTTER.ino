@@ -38,7 +38,7 @@
 #include <SI4735.h>
 #include <driver/i2s.h>
 
-#define RESET_PIN 17
+#define RESET_PIN 12
 
 SI4735 si4735;
 
@@ -80,11 +80,12 @@ void setup() {
   delay(500);
   Serial.print("si4735.setup...");
   //si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK); // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
-  si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_CRYSTAL); // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), crystal
+  si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK); 
   Serial.println(" Done!");
-  si4735.setFM(8400, 10800, 9430, 10); // frequency/station 94.30MHz
+  si4735.setFM(8400, 10800, 10650, 10); // frequency/station 94.30MHz
   delay(500);
-  Serial.print("si4735.getFrequency: "); Serial.println(si4735.getFrequency());
+  Serial.print("si4735.getFrequency: "); 
+  Serial.println(si4735.getFrequency());
   si4735.setVolume(63);
 
   i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
@@ -108,6 +109,7 @@ void loop() {
   Serial.print(" ");
   Serial.print(rangelimit);
   Serial.print(" ");
+  while(1);
 
   // Get I2S data and place in data buffer
   size_t bytesIn = 0;
