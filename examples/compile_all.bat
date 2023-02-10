@@ -57,3 +57,7 @@ ECHO ON
 arduino-cli compile --fqbn arduino:sam:arduino_due_x .\SI47XX_16_ARDUINO_DUE_MEGA\SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2 --output-dir %homepath%\Downloads\hex\due\SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2 
 arduino-cli compile --fqbn arduino:avr:mega .\SI47XX_16_ARDUINO_DUE_MEGA\SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2 --output-dir %homepath%\Downloads\hex\mega\SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2 
 ECHO OFF
+
+ECHO "MiniCore"
+ECHO ON 
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  .\SI47XX_04_TFT/SI47XX_03_TFT_ATMEGA328_ST7735 --output-dir %homepath%\Downloads\hex\MiniCore\SI47XX_03_TFT_ATMEGA328_ST7735
