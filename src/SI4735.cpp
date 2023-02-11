@@ -1789,7 +1789,6 @@ void SI4735::digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, ui
  * @ingroup group13 Digital Audio setup
  * 
  * @brief Enables digital audio output and configures digital audio output sample rate in samples per second (sps).
- * @details Enables digital audio output and configures digital audio output sample rate in samples per second (sps). 
  * @details When DOSR[15:0] is 0, digital audio output is disabled. The over-sampling rate must be set in order to 
  * @details satisfy a minimum DCLK of 1 MHz. To enable digital audio output, program DOSR[15:0] with the sample rate 
  * @details in samples per second. The system controller must establish DCLK and DFS prior to enabling the digital 

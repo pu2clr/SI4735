@@ -31,5 +31,6 @@ var group__group17 =
     [ "SI4735::downloadPatch", "group__group17.html#gafd1343bd8b4f0c290ef81c418222036c", null ],
     [ "SI4735::downloadCompressedPatch", "group__group17.html#gaf1b8947db928728ada66ef3edaa79e76", null ],
     [ "SI4735::loadPatch", "group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5", null ],
+    [ "SI4735::loadCompressedPatch", "group__group17.html#ga03bfe4b1e5ec84b7a933309095215f38", null ],
     [ "SI4735::downloadPatchFromEeprom", "group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6", null ]
 ];

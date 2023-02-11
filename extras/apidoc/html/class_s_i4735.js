@@ -220,6 +220,7 @@ var class_s_i4735 =
     [ "downloadPatch", "group__group17.html#gafd1343bd8b4f0c290ef81c418222036c", null ],
     [ "downloadCompressedPatch", "group__group17.html#gaf1b8947db928728ada66ef3edaa79e76", null ],
     [ "loadPatch", "group__group17.html#ga591bbfe4dbd39a6de29a37935a6abee5", null ],
+    [ "loadCompressedPatch", "group__group17.html#ga03bfe4b1e5ec84b7a933309095215f38", null ],
     [ "downloadPatchFromEeprom", "group__group17.html#ga7751b076ce0bcb62eade4f92cd8d93a6", null ],
     [ "ssbPowerUp", "group__group17.html#ga0fcfd8e487c594707b3f2aaa71a86d68", null ],
     [ "setMaxDelayPowerUp", "group__group06.html#gacfbec075648206fbe25834d998ed9e64", null ],
