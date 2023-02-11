@@ -111,7 +111,7 @@ void setup() {
   Serial.println(si4735.getFrequency());
   Serial.flush();
   delay(15000);
-  si4735.setVolume(63);
+  si4735.setVolume(55);
 
   i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
   i2s_set_pin(I2S_NUM_0, &pin_config);
