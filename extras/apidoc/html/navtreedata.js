@@ -24,37 +24,12 @@
 */
 var NAVTREE =
 [
-  [ "PU2CLR Si4735 Arduino Library", "index.html", [
-    [ "SI47XX Arduino Library implementation", "index.html", null ],
-    [ "Deprecated List", "deprecated.html", null ],
-    [ "Todo List", "todo.html", null ],
-    [ "Modules", "modules.html", "modules" ],
-    [ "Data Structures", "annotated.html", [
-      [ "Data Structures", "annotated.html", "annotated_dup" ],
-      [ "Data Structure Index", "classes.html", null ],
-      [ "Data Fields", "functions.html", [
-        [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ]
-      ] ]
-    ] ],
-    [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ],
-      [ "Globals", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Variables", "globals_vars.html", null ],
-        [ "Macros", "globals_defs.html", null ]
-      ] ]
-    ] ]
-  ] ]
+  [ "PU2CLR Si4735 Arduino Library", "index.html", ]
 ];
 
 var NAVTREEINDEX =
 [
-"_s_i4735_8cpp.html",
-"group__group01.html#a0d093ad5e587811b66f0047303ec86a9",
-"group__group01.html#ae16433ffd3adc248f0ce2608a95c3c76",
-"group__group13.html#gaea652d358b4b586b6d5964ceb8eb7c81"
+"index.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

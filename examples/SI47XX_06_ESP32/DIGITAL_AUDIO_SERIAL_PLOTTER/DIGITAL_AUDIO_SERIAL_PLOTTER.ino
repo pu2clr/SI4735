@@ -5,30 +5,41 @@
   I would like to thank Mr. Jarno for his contribution. 
 
 
-  | Si4735    | Function              | ESP LOLIN32 WEMOS (GPIO) |
-  |-----------| ----------------------|--------------------------|
-  | pin 15    |   RESET               |   12 (GPIO17)            |  
-  | pin 18    |   SDIO                |   21 (SDA / GPIO21)      |
-  | pin 17    |   SCLK                |   22 (SCL / GPIO22)      |
+  SI4735 and ESP32 I2C wireup
 
-  If you are using the SI4735-D60 device
+  | Si4735    | Function  | ESP32               |
+  |-----------| ----------|---------------------|
+  | pin 15    |   RESET   |   12 (GPIO17)       |  
+  | pin 18    |   SDIO    |   21 (SDA / GPIO21) |
+  | pin 17    |   SCLK    |   22 (SCL / GPIO22) |
 
-  | Si4735    | Function              | DAC       | ESP LOLIN32 WEMOS (GPIO)              |
-  |-----------| ----------------------|-----------|---------------------------------------|
-  | pin 1     |   DIO                 |  DIN      |  23 (SerialData / GPIO23)             |
-  | pin 2     |   DFS                 |  LRCK     |  25 (WordSelect / GPIO25)             |
-  | pin 3     |   DCLK                |  BCK      |  26 (ContinuousSerialClock) / GPIO26) |
+  SI4735 and ESP32 I2S wireup 
 
-  if you are using the SI4732-A10 device 
+  | Si4735    | Function  |  DAC      | ESP LOLIN32 WEMOS (GPIO)              |
+  |-----------| ----------|-----------|---------------------------------------|
+  | pin 1     |   DIO     |  DIN      |  23 (SerialData / GPIO23)             |
+  | pin 2     |   DFS     |  LRCK     |  25 (WordSelect / GPIO25)             |
+  | pin 3     |   DCLK    |  BCK      |  26 (ContinuousSerialClock) / GPIO26) |
 
-  | SI474732  | Function              | DAC       | ESP LOLIN32 WEMOS (GPIO)              |
-  |-----------| ----------------------|-----------|---------------------------------------|  
-  | pin  1    |  DFS                  | LRCK      |  25 (WordSelect / GPIO25)             |
-  | pin 16    |  DIO                  | DIN       |  23 (SerialData / GPIO23)             |
-  | pin  2    |  DCLK                 | BSK       |  26 (ContinuousSerialClock) / GPIO26) |     
 
-  (analog audio out: ROUT 23, LOUT 24)
-  note!: if you use PCM5102-module, connect SCK to GND
+  SI4732 and ESP32 I2C wireup
+
+  | SI4732    | Function  | ESP32               |
+  |-----------| ----------|---------------------|
+  | pin  9    |   RESET   |   12 (GPIO17)       |  
+  | pin 12    |   SDIO    |   21 (SDA / GPIO21) |
+  | pin 11    |   SCLK    |   22 (SCL / GPIO22) |
+
+  SI4732 and ESP32 I2S wireup
+
+  | SI4732   | Function   | DAC      | ESP LOLIN32 WEMOS (GPIO)              |
+  |-----------| ----------|----------|---------------------------------------|  
+  | pin  1    |  DFS      | LRCK     |  25 (WordSelect / GPIO25)             |
+  | pin 16    |  DIO      | DIN      |  23 (SerialData / GPIO23)             |
+  | pin  2    |  DCLK     | BSK      |  26 (ContinuousSerialClock) / GPIO26) |     
+
+
+  NOTE: if you use PCM5102-module, connect SCK to GND
 
   IMPORTANT: This setup does not work with regular crystal setup. 
              You need a external active crystal or signal generator setup. 
@@ -105,7 +116,7 @@ void setup() {
   si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK); 
   Serial.println(" Done!");
   delay(500);
-  si4735.setFM(8400, 10800, 10650, 10); // frequency/station 94.30MHz
+  si4735.setFM(8400, 10800, 10650, 10); // frequency station 10650 (106.50 MHz)
   delay(500);
   Serial.print("\nsi4735.getFrequency: "); 
   Serial.println(si4735.getFrequency());
@@ -117,12 +128,14 @@ void setup() {
   i2s_set_pin(I2S_NUM_0, &pin_config);
   i2s_start(I2S_NUM_0);
 
-  si4735.digitalOutputSampleRate(48000);
-  si4735.digitalOutputFormat(0, 0, 0, 0);
-  /* uint8_t	OSIZE Dgital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
-     uint8_t	OMONO Digital Output Mono Mode (0=Use mono/stereo blend ).
-     uint8_t	OMODE Digital Output Mode (0=I2S, 6 = Left-justified, 8 = MSB at second DCLK after DFS pulse, 12 = MSB at first DCLK after DFS pulse).
-     uint8_t	OFALL Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge) */
+  si4735.digitalOutputSampleRate(48000); // 48 or 48000? To be checked
+
+  // OSIZE Dgital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
+  // OMONO Digital Output Mono Mode (0=Use mono/stereo blend ).
+  // OMODE Digital Output Mode (0=I2S, 6 = Left-justified, 8 = MSB at second DCLK after DFS pulse, 12 = MSB at first DCLK after DFS pulse).
+  // OFALL Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge) 
+  si4735.digitalOutputFormat(0 /* OSIZE */, 0 /* OMONO */, 0 /* OMODE */, 0/* OFALL*/);
+ 
 }
 
 void loop() {
