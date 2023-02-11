@@ -4,7 +4,6 @@
   Also I have refenrenced the documentations where this sketch was based on.
   I would like to thank Mr. Jarno for his contribution. 
 
-
   SI4735 and ESP32 I2C wireup
 
   | Si4735    | Function  | ESP32               |
@@ -37,7 +36,6 @@
   | pin  1    |  DFS      | LRCK     |  25 (WordSelect / GPIO25)             |
   | pin 16    |  DIO      | DIN      |  23 (SerialData / GPIO23)             |
   | pin  2    |  DCLK     | BSK      |  26 (ContinuousSerialClock) / GPIO26) |     
-
 
   NOTE: if you use PCM5102-module, connect SCK to GND
 
