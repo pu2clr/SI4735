@@ -16,9 +16,9 @@
 
   | Si4735    | Function  |  DAC      | ESP LOLIN32 WEMOS (GPIO)              |
   |-----------| ----------|-----------|---------------------------------------|
-  | pin 1     |   DIO     |  DIN      |  23 (SerialData / GPIO23)             |
+  | pin 1     |   DIO     |  DIN      |  33 (SerialData / GPIO23)             |
   | pin 2     |   DFS     |  LRCK     |  25 (WordSelect / GPIO25)             |
-  | pin 3     |   DCLK    |  BCK      |  26 (ContinuousSerialClock) / GPIO26) |
+  | pin 3     |   DCLK    |  BCK      |  32 (ContinuousSerialClock) / GPIO26) |
 
 
   SI4732 and ESP32 I2C wireup
@@ -34,8 +34,8 @@
   | SI4732   | Function   | DAC      | ESP LOLIN32 WEMOS (GPIO)              |
   |-----------| ----------|----------|---------------------------------------|  
   | pin  1    |  DFS      | LRCK     |  25 (WordSelect / GPIO25)             |
-  | pin 16    |  DIO      | DIN      |  23 (SerialData / GPIO23)             |
-  | pin  2    |  DCLK     | BSK      |  26 (ContinuousSerialClock) / GPIO26) |     
+  | pin 16    |  DIO      | DIN      |  33 (SerialData / GPIO23)             |
+  | pin  2    |  DCLK     | BSK      |  32 (ContinuousSerialClock) / GPIO26) |     
 
   NOTE: if you use PCM5102-module, connect SCK to GND
 
