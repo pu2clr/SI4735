@@ -67,8 +67,8 @@
 SI4735 si4735;
 
 #define I2S_WS 25
-#define I2S_SD 23
-#define I2S_SCK 26
+#define I2S_SD 33
+#define I2S_SCK 32
 
 // Define input buffer length
 #define bufferLen 64
@@ -119,20 +119,34 @@ void setup() {
   Serial.print("\nsi4735.getFrequency: "); 
   Serial.println(si4735.getFrequency());
   Serial.flush();
-  delay(15000);
-  si4735.setVolume(55);
+  delay(1000);
+  si4735.setVolume(63);
 
-  i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
-  i2s_set_pin(I2S_NUM_0, &pin_config);
-  i2s_start(I2S_NUM_0);
 
-  si4735.digitalOutputSampleRate(48000); // 48 or 48000? To be checked
+  // si4735.digitalOutputSampleRate(48000); // 48 or 48000? To be checked
+  si4735.digitalOutputSampleRate(48); // 48 or 48000? To be checked
+  
 
   // OSIZE Dgital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
   // OMONO Digital Output Mono Mode (0=Use mono/stereo blend ).
   // OMODE Digital Output Mode (0=I2S, 6 = Left-justified, 8 = MSB at second DCLK after DFS pulse, 12 = MSB at first DCLK after DFS pulse).
   // OFALL Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge) 
   si4735.digitalOutputFormat(0 /* OSIZE */, 0 /* OMONO */, 0 /* OMODE */, 0/* OFALL*/);
+
+  delay(500);
+
+  // Set up I2S
+  
+  // i2s_install();
+  // i2s_setpin();
+  // i2s_start(I2S_PORT);
+
+  
+  i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
+  i2s_set_pin(I2S_NUM_0, &pin_config);
+  i2s_start(I2S_NUM_0);
+  
+
  
 }
 
