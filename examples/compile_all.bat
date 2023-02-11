@@ -56,18 +56,23 @@ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso .\SI47XX_KITS\GERT_BAAK\SI4
 arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso .\SI47XX_06_ESP32\DIGITAL_AUDIO_SERIAL_PLOTTER  --output-dir %homepath%\Downloads\hex\esp32\DIGITAL_AUDIO_SERIAL_PLOTTER
 ECHO OFF
 
+ECHO "Raspbery Pico / RP2040 based board"
+ECHO ON 
+arduino-cli compile --fqbn rp2040:rp2040:rpipico .\SI47XX_13_RASPBERRY_PICO\POC_01  --output-dir %homepath%\Downloads\hex\RP2040\POC_01
+arduino-cli compile --fqbn rp2040:rp2040:rpipico .\SI47XX_13_RASPBERRY_PICO\OLED_I2C  --output-dir %homepath%\Downloads\hex\RP2040\OLED_I2C
+ECHO OFF
+
+
 ECHO "Seeeduino:samd based board"
 ECHO ON 
 arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0  .\SI47XX_15_SEEEDUINO\OLED_ALL_IN_ONE --output-dir %homepath%\Downloads\hex\seeeduino\OLED_ALL_IN_ONE 
 ECHO OFF
+
 ECHO "STM32 based board"
 ECHO ON 
-
 arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C .\SI47XX_07_STM32\STM32_04_OLED_ALL_IN_ONE_V2 --output-dir %homepath%\Downloads\hex\stm32\F1\STM32_04_OLED_ALL_IN_ONE_V2 
 arduino-cli compile --fqbn STM32:stm32:Disco .\SI47XX_07_STM32\STM32_04_OLED_ALL_IN_ONE_V2 --output-dir %homepath%\Downloads\hex\stm32\Disco\STM32_04_OLED_ALL_IN_ONE_V2 
 arduino-cli compile --fqbn STM32:stm32:GenF4 .\SI47XX_07_STM32\STM32_04_OLED_ALL_IN_ONE_V2 --output-dir %homepath%\Downloads\hex\stm32\F4\STM32_04_OLED_ALL_IN_ONE_V2 
-
-
 ECHO OFF
 
 ECHO "Arduino DUE and MEGA"
