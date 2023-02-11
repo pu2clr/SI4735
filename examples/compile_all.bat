@@ -19,6 +19,18 @@ arduino-cli compile -b arduino:avr:nano .\SI47XX_03_OLED_I2C\SI47XX_02_ALL_IN_ON
 arduino-cli compile -b arduino:avr:pro .\SI47XX_09_NOKIA_5110\ALL_IN_ONE_ONE_ENCODER --output-dir %homepath%\Downloads\hex\atmega\SI47XX_09_NOKIA_5110
 arduino-cli compile -b lgt8fx:avr:328  .\SI47XX_09_NOKIA_5110\ALL_IN_ONE_ONE_ENCODER --output-dir %homepath%\Downloads\hex\lgt8fx\SI47XX_09_NOKIA_5110
 arduino-cli compile -b arduino:avr:nano .\SI47XX_04_TFT\SI47XX_01_TFT_ILI9225 --output-dir %homepath%\Downloads\hex\atmega\SI47XX_01_TFT_ILI9225
+arduino-cli compile -b arduino:avr:nano .\TOOLS\APPLYING_SSB_PATCH_WITHOUT_LIBRARIES --output-dir %homepath%\Downloads\hex\atmega\APPLYING_SSB_PATCH_WITHOUT_LIBRARIES
+arduino-cli compile -b lgt8fx:avr:328 .\TOOLS\APPLYING_SSB_PATCH_WITHOUT_LIBRARIES --output-dir %homepath%\Downloads\hex\atmega\APPLYING_SSB_PATCH_WITHOUT_LIBRARIES
+arduino-cli compile -b arduino:avr:nano .\TOOLS\SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN --output-dir %homepath%\Downloads\hex\atmega\SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN
+arduino-cli compile -b lgt8fx:avr:328 .\TOOLS\SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN --output-dir %homepath%\Downloads\hex\atmega\SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN
+arduino-cli compile -b arduino:avr:nano .\TOOLS\SI47XX_01_MUTE_CIRCUIT_TEST --output-dir %homepath%\Downloads\hex\atmega\SI47XX_01_MUTE_CIRCUIT_TEST
+arduino-cli compile -b lgt8fx:avr:328 .\TOOLS\SI47XX_01_MUTE_CIRCUIT_TEST --output-dir %homepath%\Downloads\hex\atmega\SI47XX_01_MUTE_CIRCUIT_TEST
+arduino-cli compile -b arduino:avr:nano .\TOOLS\SI47XX_90_FIRMWARE_INFORMATION --output-dir %homepath%\Downloads\hex\atmega\SI47XX_90_FIRMWARE_INFORMATION
+arduino-cli compile -b lgt8fx:avr:328 .\TOOLS\SI47XX_90_FIRMWARE_INFORMATION --output-dir %homepath%\Downloads\hex\atmega\SI47XX_90_FIRMWARE_INFORMATION
+arduino-cli compile -b arduino:avr:nano .\SI47XX_12_MORSE_CODE_READOUT --output-dir %homepath%\Downloads\hex\atmega\SI47XX_12_MORSE_CODE_READOUT
+arduino-cli compile -b lgt8fx:avr:328 .\SI47XX_12_MORSE_CODE_READOUT --output-dir %homepath%\Downloads\hex\atmega\SI47XX_12_MORSE_CODE_READOUT
+
+
 ECHO OFF
 ECHO "ATmega 32 and 128 based boards"
 
