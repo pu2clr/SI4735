@@ -62,7 +62,12 @@ arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0  .\SI47XX_15_SEEEDUINO\O
 ECHO OFF
 ECHO "STM32 based board"
 ECHO ON 
-arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C .\SI47XX_07_STM32\STM32_04_OLED_ALL_IN_ONE_V2 --output-dir %homepath%\Downloads\hex\stm32\STM32_04_OLED_ALL_IN_ONE_V2 
+
+arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C .\SI47XX_07_STM32\STM32_04_OLED_ALL_IN_ONE_V2 --output-dir %homepath%\Downloads\hex\stm32\F1\STM32_04_OLED_ALL_IN_ONE_V2 
+arduino-cli compile --fqbn STM32:stm32:Disco .\SI47XX_07_STM32\STM32_04_OLED_ALL_IN_ONE_V2 --output-dir %homepath%\Downloads\hex\stm32\Disco\STM32_04_OLED_ALL_IN_ONE_V2 
+arduino-cli compile --fqbn STM32:stm32:GenF4 .\SI47XX_07_STM32\STM32_04_OLED_ALL_IN_ONE_V2 --output-dir %homepath%\Downloads\hex\stm32\F4\STM32_04_OLED_ALL_IN_ONE_V2 
+
+
 ECHO OFF
 
 ECHO "Arduino DUE and MEGA"
@@ -71,6 +76,10 @@ arduino-cli compile --fqbn arduino:sam:arduino_due_x .\SI47XX_16_ARDUINO_DUE_MEG
 arduino-cli compile --fqbn arduino:avr:mega .\SI47XX_16_ARDUINO_DUE_MEGA\SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2 --output-dir %homepath%\Downloads\hex\mega\SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2 
 ECHO OFF
 
-ECHO "MiniCore"
+ECHO "MiniCore - You can save memory with this approach on ATmega328" 
 ECHO ON 
 arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  .\SI47XX_04_TFT/SI47XX_03_TFT_ATMEGA328_ST7735 --output-dir %homepath%\Downloads\hex\MiniCore\SI47XX_03_TFT_ATMEGA328_ST7735
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  .\SI47XX_04_TFT\SI47XX_01_TFT_ILI9225 --output-dir %homepath%\Downloads\hex\MiniCore\SI47XX_01_TFT_ILI9225
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  .\SI47XX_02_for_Mirko_Pavleski_radio\MIRKO_V2 --output-dir %homepath%\Downloads\hex\MiniCore\MIRKO_V2
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  .\SI47XX_03_OLED_I2C\SI47XX_02_ALL_IN_ONE_OLED --output-dir %homepath%\Downloads\hex\MiniCore\SI47XX_02_ALL_IN_ONE_OLED
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  .\SI47XX_09_NOKIA_5110\ALL_IN_ONE_ONE_ENCODER --output-dir %homepath%\Downloads\hex\MiniCore\SI47XX_09_NOKIA_5110
