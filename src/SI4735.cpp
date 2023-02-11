@@ -1789,6 +1789,13 @@ void SI4735::digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, ui
  * @ingroup group13 Digital Audio setup
  * 
  * @brief Enables digital audio output and configures digital audio output sample rate in samples per second (sps).
+ * @details Enables digital audio output and configures digital audio output sample rate in samples per second (sps). 
+ * @details When DOSR[15:0] is 0, digital audio output is disabled. The over-sampling rate must be set in order to 
+ * @details satisfy a minimum DCLK of 1 MHz. To enable digital audio output, program DOSR[15:0] with the sample rate 
+ * @details in samples per second. The system controller must establish DCLK and DFS prior to enabling the digital 
+ * @details audio output else the device will not respond and will require reset. The sample rate must be set to 0 
+ * @details before the DCLK/DFS is removed. FM_TUNE_FREQ command must be sent after the POWER_UP command to start 
+ * @details the internal clocking before setting this property.
  * 
  * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note:
  *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
@@ -1796,7 +1803,7 @@ void SI4735::digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, ui
  * @see Si47XX PROGRAMINGGUIDE; AN332 (REV 1.0); page 196. 
  * @see Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383; rev 0.8; page 6
  * 
- * @param uint16_t DOSR Diital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
+ * @param uint16_t DOSR Digital Output Sample Rate(32–48 ksps .0 to disable digital audio output).
  */
 void SI4735::digitalOutputSampleRate(uint16_t DOSR)
 {
