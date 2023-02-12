@@ -98,7 +98,6 @@ Contact: __pu2clr@gmail.com__.
 
 
 
-
 ## SI4735 Library construction history
 
 I started my work on building an Arduino library for SI375 in early November 2019. The initial idea was to build a receiver by using an Arduino board, few components and the SI4735 device from Silicon Labs. Checking some videos on Youtube, I realized that the receiver besed on Si4735-D60 could go far beyond the initial proposal, __including listening to amateur radio and citizens band stations on SSB mode__. Via forums and websites, I also realized that there was a great demand for experimenters who would like to see the SI4735 device working on SSB mode. So, instead of developing a simple receiver based on the SI4735, __I decided to develop a library for Arduino platform that would provide full support to the SI4735 and all SI473X device family as well__.
@@ -108,6 +107,22 @@ With this library, more than 60 examples were developed using various display ty
 Judging by the groups created around the SI47XX devices, I estimate that this library is currently being used by thousands of experimenters, applications and commercial receivers. If you are an experimenter or a radio enthusiast and want to try to build your own receiver based on the SI473X devices, then this library is for you.  
 
 The following video is a little joke that shows the trajectory of the construction of this library. [__"PU2CLR SI4735 Arduino Library. IT IS OPEN SOURCE IT IS FREE. IT IS FOR YOU"__](https://www.youtube.com/embed/aB02Qry5-bU).
+
+
+## Why do skilled developers generally use libraries?
+
+Technically, no Arduino application needs a library.  In some cases, not using libraries may be a nice choice. However, why do skilled developers generally use libraries?
+
+There are several reasons to use an Arduino library. It seems to be common sense that the most important of using libraries is reducing the effort of an application development. 
+
+Imagine that you want to use an LCD device to show information about something you are creating, for example, an application that monitors temperature and atmospheric pressure conditions. It is known that there are several libraries for controlling the LCD available on Arduino environment. Given that, why would you build the code to control the LCD? Your application's focus is on monitoring temperature and pressure conditions, not controlling the LCD. Well... unless you need an LCD feature that hasn't been implemented in any of the available libraries, there's no point in developing your own code to control the LCD in my opinion. 
+
+Having said that, if you use a library to deal with IC2 bus (Wire.h); TFT, OLED, SPI devices, and Serial UART communication as well, why not use a library to deal with SI4735 devices? 
+
+Another reason to use an Arduino Library is reducing the complexity of a given application.  It makes life easier for the developers. You do not have to be a software engineer, to understand this. To make an analogy with Electronics, using a library is not very different of using a CI with several encapsulated functions. Said that, why do many technicians and engineers use the TDA1072 IC to build a receiver? Certainly because building a complete circuit to do the same functions as a TDA1072 do would take a lot of time and money. To interact with TDA1072 IC, the user just need to understand the functions of the pins (interface), without worrying about the internal implementation details of this IC. Libraries use the same paradigm. That is, you just need to understand how to interact with the library through its functions. You don't need to know the implementation details.
+
+Finally, using the PU2CLR Arduino Library can offer more comfort, development agility and robustness to your project.
+
 
 {% include libhistory.html %}
 
