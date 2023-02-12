@@ -9,7 +9,7 @@
 # Ricardo Lima Caratti Mar 2022
 
 # compiles POC
-echo "POC"
+echo "Arduino ATmega328 based board"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC --output-dir ~/Downloads/hex/atmega/SI4735_01_POC
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_02_POC_SW --output-dir ~/Downloads/hex/atmega/SI4735_02_POC_SW
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_03_POC_SSB --output-dir ~/Downloads/hex/atmega/SI4735_03_POC_SSB
@@ -17,8 +17,20 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_03_POC
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/Si4735_04_HARDWARE_MUTE_CIRCUIT --output-dir ~/Downloads/hex/atmega/Si4735_04_HARDWARE_MUTE_CIRCUIT
 arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_06_SSB_EEPROM --output-dir ~/Downloads/hex/atmega/SI4735_06_SSB_EEPROM
 arduino-cli compile -b arduino:avr:nano ./SI47XX_99_AUTO_BANDPASS_FILTER/SI473X_01_POC_SERIAL_MONITOR --output-dir ~/Downloads/hex/atmega/SI473X_01_POC_SERIAL_MONITOR
-
 arduino-cli compile -b arduino:avr:nano ./TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN --output-dir ~/Downloads/hex/atmega/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN
+
+
+echo "Arduino LGT8FX based board"
+arduino-cli compile -b lgt8fx:avr:328 ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC --output-dir ~/Downloads/hex/lgt8fx/SI4735_01_POC
+arduino-cli compile -b lgt8fx:avr:328 ./SI47XX_01_SERIAL_MONITOR/SI4735_02_POC_SW --output-dir ~/Downloads/hex/lgt8fx/SI4735_02_POC_SW
+arduino-cli compile -b lgt8fx:avr:328 ./SI47XX_01_SERIAL_MONITOR/SI4735_03_POC_SSB --output-dir ~/Downloads/hex/lgt8fx/SI4735_03_POC_SSB
+arduino-cli compile -b lgt8fx:avr:328 ./SI47XX_01_SERIAL_MONITOR/SI4735_03_POC_SSB_COMPRESSED --output-dir ~/Downloads/hex/lgt8fx/SI4735_03_POC_SSB_COMPRESSED
+arduino-cli compile -b lgt8fx:avr:328 ./SI47XX_01_SERIAL_MONITOR/Si4735_04_HARDWARE_MUTE_CIRCUIT --output-dir ~/Downloads/hex/lgt8fx/Si4735_04_HARDWARE_MUTE_CIRCUIT
+arduino-cli compile -b lgt8fx:avr:328 ./SI47XX_01_SERIAL_MONITOR/SI4735_06_SSB_EEPROM --output-dir ~/Downloads/hex/lgt8fx/SI4735_06_SSB_EEPROM
+arduino-cli compile -b lgt8fx:avr:328 ./SI47XX_99_AUTO_BANDPASS_FILTER/SI473X_01_POC_SERIAL_MONITOR --output-dir ~/Downloads/hex/lgt8fx/SI473X_01_POC_SERIAL_MONITOR
+# arduino-cli compile -b lgt8fx:avr:328 ./TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN --output-dir ~/Downloads/hex/lgt8fx/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN
+
+
 
 # arduino-cli compile -b lgt8fx:avr:328 ./TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN --output-dir ~/Downloads/hex/lgt8fx/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN
 
@@ -50,9 +62,13 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_04_TFT/SI47XX_01_TFT_ILI9225
 ## echo "*** LGT8FX and ILI9225"
 ## arduino-cli compile -b lgt8fx:avr:328 --build-property "build.extra_flags=-Os -w -Wextra -fno-exceptions  -fno-threadsafe-statics -flto" ./SI47XX_04_TFT/SI47XX_01_TFT_ILI9225
 
-## echo "*** ST7735"
-## 
-arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./SI47XX_04_TFT/SI47XX_03_TFT_ATMEGA328_ST7735 --output-dir ~/Downloads/hex/atmega/SI47XX_03_TFT_ATMEGA328_ST7735
+echo "MiniCore - It can help you to save memory on ATmega328"
+
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./SI47XX_04_TFT/SI47XX_03_TFT_ATMEGA328_ST7735 --output-dir ~/Downloads/hex/MiniCore/SI47XX_03_TFT_ATMEGA328_ST7735
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./SI47XX_04_TFT/SI47XX_01_TFT_ILI9225 --output-dir ~/Downloads/hex/MiniCore/SI47XX_01_TFT_ILI9225
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./SI47XX_02_for_Mirko_Pavleski_radio/MIRKO_V2 --output-dir ~/Downloads/hex/MiniCore/MIRKO_V2
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED --output-dir ~/Downloads/hex/MiniCore/SI47XX_02_ALL_IN_ONE_OLED
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./SI47XX_09_NOKIA_5110/ALL_IN_ONE_ONE_ENCODER --output-dir ~/Downloads/hex/MiniCore/SI47XX_09_NOKIA_5110
 
 
 echo "POC Active Crystal"
@@ -82,21 +98,28 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_KITS/AliExpress/SI473X_ALL_IN_O
 
 
 # compiles ESP32 LCD16x2_ALL_IN_ONE
+echo "ESP32"
 echo "ESP32 LCD16x2_ALL_IN_ONE"
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/LCD16x2_ALL_IN_ONE --output-dir ~/Downloads/hex/ESP32/LCD16x2_ALL_IN_ONE
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/LCD16x2_ALL_IN_ONE --output-dir ~/Downloads/hex/ESP32/DEVM/LCD16x2_ALL_IN_ONE
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/AM_FM_TOUCH_SERIAL_MONITOR --output-dir ~/Downloads/hex/ESP32/DEVM/AM_FM_TOUCH_SERIAL_MONITOR
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/CAPACITIVE_TOUCH_ALL_IN_ONE --output-dir ~/Downloads/hex/ESP32/DEVM/CAPACITIVE_TOUCH_ALL_IN_ONE
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/OLED_ALL_IN_ONE_TWO_ENCODERS --output-dir ~/Downloads/hex/ESP32/DEVM/OLED_ALL_IN_ONE_TWO_ENCODERS
 
 echo "ESP32 I2S Audio Example"
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER --output-dir ~/Downloads/hex/ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER --output-dir ~/Downloads/hex/ESP32/DEVM/DIGITAL_AUDIO_SERIAL_PLOTTER
+
+echo "ESP32-C3 - LUATOS Board"
+arduino-cli compile --fqbn esp32:esp32:esp32c3 ./SI47XX_06_ESP32/LCD20x4_ALL_IN_ONE_LUATOS_ESP32C3 --output-dir ~/Downloads/hex/ESP32/C3/LCD20x4_ALL_IN_ONE_LUATOS_ESP32C3
 
 
 # compiles Gert's KIT
 echo "Gert's KIT (ESP32)"
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2  --output-dir ~/Downloads/hex/ESP32/GERT_BAAK
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2  --output-dir ~/Downloads/hex/ESP32/DEVM/GERT_BAAK
 
 
 # compiles 
 echo "FELIX ANGGA"
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/FELIX_ANGGA/SLAMETRADIO
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/FELIX_ANGGA/SLAMETRADIO --output-dir ~/Downloads/hex/ESP32/DEVM/FELIX_ANGGA
 
 
 # echo "LilyGO T-Embed - Needs the right TFT_eSPI library setup"
@@ -105,6 +128,9 @@ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_KITS/FELIX_ANGGA/S
 # compile ESP8266
 echo "ESP8266 All In One"
 arduino-cli compile --fqbn esp8266:esp8266:generic  ./SI47XX_06_ESP8266/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/ESP8266/OLED_ALL_IN_ONE
+arduino-cli compile --fqbn esp8266:esp8266:generic  ./SI47XX_06_ESP8266/AM_FM_SERIAL_MONITOR --output-dir ~/Downloads/hex/ESP8266/AM_FM_SERIAL_MONITOR
+
+
 
 # compiles SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2 on Arduino DUE and Mega 
 echo "Arduino RDS DUE and MEGA"
@@ -121,10 +147,18 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_10_RDS/SI47XX_03_RDS_TFT_ILI922
 # compiles STM32 sketch
 echo "STM32"
 # arduino-cli board -b stm32duino:STM32F1:genericSTM32F103C  details
-arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2 --output-dir ~/Downloads/hex/STM32/STM32_04_OLED_ALL_IN_ONE_V2
+arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2 --output-dir ~/Downloads/hex/STM32/F1/STM32_04_OLED_ALL_IN_ONE_V2
+arduino-cli compile --fqbn STM32:stm32:Disco ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2 --output-dir ~/Downloads/hex/stm32/Disco/STM32_04_OLED_ALL_IN_ONE_V2 
+arduino-cli compile --fqbn STM32:stm32:GenF4 ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2 --output-dir ~/Downloads/hex/stm32/F4/STM32_04_OLED_ALL_IN_ONE_V2 
 
 echo "STM32 - PLAMEN"
 arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C ./SI47XX_KITS/PLAMEN/PU2CLR_SI5351_SI4732_STM32 --output-dir ~/Downloads/hex/STM32/PU2CLR_SI5351_SI4732_STM32
+
+echo "Raspbery Pico / RP2040 based board"
+
+arduino-cli compile --fqbn rp2040:rp2040:rpipico ./SI47XX_13_RASPBERRY_PICO/POC_01  --output-dir ~/Downloads/hex/RP2040/POC_01
+arduino-cli compile --fqbn rp2040:rp2040:rpipico ./SI47XX_13_RASPBERRY_PICO/OLED_I2C  --output-dir ~/Downloads/hex/RP2040/OLED_I2C
+
 
 # compiles SEEEDUINO XIAO
 echo "SEEEDUINO" 
