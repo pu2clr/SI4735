@@ -1,8 +1,15 @@
+# PLEASE, read each comment before runing this script.
+#
 # This script install all libraries available on Arduino platform that is used by the examples.
-# This may be an option to configure your programming environment for arduino.
+# This may be an option to configure your programming environment for arduino and the PU2CLR SI473X library.
 # Install the arduino-cli before running this script. 
-# You do not need to install all libraries below. Consider to install only the libraries used by 
-# the example you intend to run. 
+#
+# run: arduino-cli config init
+# check if the folder .arduinoIDE (or similar) was created in your user account.
+# check if the file arduino-cli.yaml was created
+#
+# You do not need to install all libraries below. Consider to install only the libraries used by # the example 
+# you intend to run. 
 
 arduino-cli lib install "PU2CLR SI4735"
 arduino-cli lib install "Adafruit BusIO"
