@@ -22,5 +22,25 @@ arduino-cli lib install "TinyOLED-Fonts"
 # Nokia 5110 - The library LCD5110_Graph has to be installed manually. See: http://www.RinkyDinkElectronics.com/
 # The "Adafruit_SH1106" has to be installed manually. See: https://github.com/wonho-maker/Adafruit_SH1106
 
-  
+# Istalling all boards used by the examnples
+# copy/overwrite the file arduino-cli.yaml from the current folder to you .arduinoIDE folder 
+arduino-cli core update-index
+arduino-cli core install arduino:avr
+arduino-cli core install lgt8fx:avr
+arduino-cli core install MiniCore:avr:328
+arduino-cli core install arduino:sam
+arduino-cli core install esp32:esp32
+arduino-cli core install esp8266:esp8266
+arduino-cli core install stm32duino:STM32F1
+arduino-cli core install stm32duino:STM32F4
+arduino-cli core install STM32:stm32
+arduino-cli core install rp2040:rp2040
+arduino-cli core install Seeeduino:samd
+arduino-cli core install ATTinyCore:avr
+arduino-cli core install MegaCore:avr
+arduino-cli core install MightyCore:avr
+
+
+
+
 
