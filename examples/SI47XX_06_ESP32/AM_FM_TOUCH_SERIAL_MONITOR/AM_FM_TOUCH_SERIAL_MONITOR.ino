@@ -112,7 +112,7 @@ int readX(int pin) {
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while(!Serial);
 
   digitalWrite(RESET_PIN, HIGH);

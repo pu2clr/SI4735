@@ -103,7 +103,7 @@ void setup() {
 
   delay(500);
   Serial.println("\nsi4735.setup..."); 
-
+  Serial.flush();
 
   // Use SI473X_DIGITAL_AUDIO1       - Digital audio output (SI4735 device pins: 3/DCLK, 24/LOUT/DFS, 23/ROUT/DIO )
   // Use SI473X_DIGITAL_AUDIO2       - Digital audio output (SI4735 device pins: 3/DCLK, 2/DFS, 1/DIO)
@@ -114,17 +114,17 @@ void setup() {
   si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK); 
   Serial.println(" Done!");
   delay(500);
-  si4735.setFM(8400, 10800, 10650, 10); // frequency station 10650 (106.50 MHz)
+  si4735.setFM(8400, 10800, 10390, 10); // frequency station 10650 (106.50 MHz)
   delay(500);
   Serial.print("\nsi4735.getFrequency: "); 
   Serial.println(si4735.getFrequency());
   Serial.flush();
   delay(1000);
-  si4735.setVolume(63);
+  si4735.setVolume(50);
 
 
-  // si4735.digitalOutputSampleRate(48000); // 48 or 48000? To be checked
-  si4735.digitalOutputSampleRate(48); // 48 or 48000? To be checked
+  si4735.digitalOutputSampleRate(48000); // 48 or 48000? To be checked
+  // si4735.digitalOutputSampleRate(48); // 48 or 48000? To be checked
   
 
   // OSIZE Dgital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
@@ -154,7 +154,7 @@ void loop() {
 
   // False print statements to "lock range" on serial plotter display
   // Change rangelimit value to adjust "sensitivity"
-  int rangelimit = 3000;
+  int rangelimit = 20000;
   Serial.print(rangelimit * -1);
   Serial.print(" ");
   Serial.print(rangelimit);
