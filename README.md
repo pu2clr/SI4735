@@ -97,18 +97,6 @@ Contact: __pu2clr@gmail.com__.
 * __The Si47XX IC family  functionalities__ can be seen in the comparison matrix shown in table 1 (__Product Family Function__); pages 2 and 3 of the [“Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0)”](https://web.engr.oregonstate.edu/~traylor/ece473/data_sheets/AN332.pdf).
 
 
-
-## SI4735 Library construction history
-
-I started my work on building an Arduino library for SI375 in early November 2019. The initial idea was to build a receiver by using an Arduino board, few components and the SI4735 device from Silicon Labs. Checking some videos on Youtube, I realized that the receiver besed on Si4735-D60 could go far beyond the initial proposal, __including listening to amateur radio and citizens band stations on SSB mode__. Via forums and websites, I also realized that there was a great demand for experimenters who would like to see the SI4735 device working on SSB mode. So, instead of developing a simple receiver based on the SI4735, __I decided to develop a library for Arduino platform that would provide full support to the SI4735 and all SI473X device family as well__.
-
-With this library, more than 60 examples were developed using various display types. [These examples can assist the experimenter in building their own receiver](https://github.com/pu2clr/SI4735/tree/master/examples).
-
-Judging by the groups created around the SI47XX devices, I estimate that this library is currently being used by thousands of experimenters, applications and commercial receivers. If you are an experimenter or a radio enthusiast and want to try to build your own receiver based on the SI473X devices, then this library is for you.  
-
-The following video is a little joke that shows the trajectory of the construction of this library. [__"PU2CLR SI4735 Arduino Library. IT IS OPEN SOURCE IT IS FREE. IT IS FOR YOU"__](https://www.youtube.com/embed/aB02Qry5-bU).
-
-
 ## Why do skilled developers generally use libraries?
 
 Technically, no Arduino application needs a library.  In some cases, not using libraries may be a nice choice. However, why do skilled developers generally use libraries?
@@ -122,9 +110,21 @@ Other reasons to use an Arduino Library is reducing the programming complexity a
 Finally, if you use a library to deal with IC2 bus (Wire.h); TFT, OLED, SPI devices, and Serial UART communication as well, why do not use a library to deal with SI473X devices? Well, using the PU2CLR Arduino Library can offer more comfort, development agility and robustness to your project. It is important to remember that, unlike closed solutions, this library is open source. So, if you want, you can know the implementation details by studying the source code.
 
 
+## SI4735 Library construction history
+
+I started my work on building an Arduino library for SI375 in early November 2019. The initial idea was to build a receiver by using an Arduino board, few components and the SI4735 device from Silicon Labs. Checking some videos on Youtube, I realized that the receiver besed on Si4735-D60 could go far beyond the initial proposal, __including listening to amateur radio and citizens band stations on SSB mode__. Via forums and websites, I also realized that there was a great demand for experimenters who would like to see the SI4735 device working on SSB mode. So, instead of developing a simple receiver based on the SI4735, __I decided to develop a library for Arduino platform that would provide full support to the SI4735 and all SI473X device family as well__.
+
+With this library, more than 60 examples were developed using various display types. [These examples can assist the experimenter in building their own receiver](https://github.com/pu2clr/SI4735/tree/master/examples).
+
+Judging by the groups created around the SI47XX devices, I estimate that this library is currently being used by thousands of experimenters, applications and commercial receivers. If you are an experimenter or a radio enthusiast and want to try to build your own receiver based on the SI473X devices, then this library is for you.  
+
+The following video is a little joke that shows the trajectory of the construction of this library. [__"PU2CLR SI4735 Arduino Library. IT IS OPEN SOURCE IT IS FREE. IT IS FOR YOU"__](https://www.youtube.com/embed/aB02Qry5-bU).
+
+
 {% include libhistory.html %}
 
 <BR> 
+
 
 ## Thanks
 
