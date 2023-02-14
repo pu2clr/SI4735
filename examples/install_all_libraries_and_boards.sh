@@ -1,4 +1,5 @@
 <<TodoBefore
+
 PLEASE, read each comment before runing this script.
 This script runs on Mac OS and Linux and installs all libraries and boards available on Arduino platform that is used by the examples.
 This may be an option to configure your programming environment for arduino and the PU2CLR SI473X library.
