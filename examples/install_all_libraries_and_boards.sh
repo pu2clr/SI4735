@@ -16,9 +16,8 @@ After install run:
 
 arduino-cli config init
 
-Check if the folder .arduinoIDE (~/Library/.arduino15, ˜/snap/.. ) was created in your user account;
-Check if the file arduino-cli.yaml was created
-edit  the section below of your arduino-cli.yaml. Replace the section additional_urls: [] as shown below
+On Mac OS system, the file __/<Your User Home Folder>/Library/Arduino15/arduino-cli.yaml__ will be created. 
+On Linux Ubuntu, the file __/<Your User Home Folder>/.arduino15/arduino-cli.yaml__ will be created.
 
 board_manager:
   additional_urls:[ http://arduino.esp8266.com/stable/package_esp8266com_index.json
