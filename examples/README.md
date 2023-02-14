@@ -140,7 +140,7 @@ $ arduino-cli config init
 * On Windows the file __C:\Your User\AppData\Local\Arduino15\arduino-cli.yaml__ will be created.
 
 
-### Edit the file arduino-cli.yaml and replace the content of additional_urls as shown below: 
+### Edit the file arduino-cli.yaml and replace the content of additional_urls section as shown below: 
 
 
 ```javascript 
