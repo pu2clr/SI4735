@@ -118,10 +118,10 @@ or
 $ curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 ```
 
-#### On Windows system you ca download the [msi install file](https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.msi) or download [the EXE file](https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip) and run it. 
+#### On Windows system you can download the [msi install file](https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.msi) or download [the EXE file](https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip) and run it. 
 
-Download the install file: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.msi
-Download the exe (binary)file: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip
+* Download the install file: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.msi
+* Download the exe (binary)file: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip
 
 
 More about installing arduino-cli on Linux, MACOS and Windows, go to [https://arduino.github.io/arduino-cli/0.30/installation/](https://arduino.github.io/arduino-cli/0.30/installation/).
@@ -135,12 +135,12 @@ run the command arduino-cli as shown below:
 $ arduino-cli config init
 ```
 
-On MacOS system the file __/Your User home folder/Library/Arduino15/arduino-cli.yaml__ will be created. 
-On Linux Ubuntu the file __/Your User home folder/.arduino15/arduino-cli.yaml__ will be created.
-On Windows the file __C:\Your User\AppData\Local\Arduino15\arduino-cli.yaml__ will be created.
+* On MacOS system the file __/Your User home folder/Library/Arduino15/arduino-cli.yaml__ will be created. 
+* On Linux Ubuntu the file __/Your User home folder/.arduino15/arduino-cli.yaml__ will be created.
+* On Windows the file __C:\Your User\AppData\Local\Arduino15\arduino-cli.yaml__ will be created.
 
 
-Edit the file arduino-cli.yaml and replace its content as shown below: 
+### Edit the file arduino-cli.yaml and replace the content of additional_urls as shown below: 
 
 
 ```javascript 
@@ -161,30 +161,7 @@ board_manager:
   https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json,
   https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json,
   https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json ]
-daemon:
-  port: "50051"
-directories:
-  builtin:
-    libraries: /Users/rcaratti/Library/Arduino15/libraries
-  data: /Users/rcaratti/Library/Arduino15
-  downloads: /Users/rcaratti/Library/Arduino15/staging
-  user: /Users/rcaratti/Documents/Arduino
-library:
-  enable_unsafe_install: false
-locale: en
-logging:
-  file: ""
-  format: text
-  level: info
-metrics:
-  addr: :9090
-  enabled: true
-output:
-  no_color: false
-sketch:
-  always_export_binaries: false
-updater:
-  enable_notification: true 
+
 ```
 
 #### Go to the folder __/Your User Home folder/the your si4735 library folder location/examples__ and run the install_all_libraries_and_boards as shown below: 
@@ -195,7 +172,7 @@ updater:
 $install_all_libraries_and_boards.sh
 ```
 
-#### On Windows install_all_libraries_and_boards.bat
+##### On Windows install_all_libraries_and_boards.bat
 
 ```bash
 $install_all_libraries_and_boards.bat
