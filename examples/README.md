@@ -175,7 +175,7 @@ $install_all_libraries_and_boards.sh
 ##### On Windows install_all_libraries_and_boards.bat
 
 ```bash
-$install_all_libraries_and_boards.bat
+>install_all_libraries_and_boards.bat
 ```
 
 
