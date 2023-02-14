@@ -1,6 +1,6 @@
 <<TodoBefore
 PLEASE, read each comment before runing this script.
-This script install all libraries and boards available on Arduino platform that is used by the examples.
+This script runs on Mac OS and Linux and installs all libraries and boards available on Arduino platform that is used by the examples.
 This may be an option to configure your programming environment for arduino and the PU2CLR SI473X library.
 
 First, install the arduino-cli before running this script.
@@ -8,15 +8,16 @@ First, install the arduino-cli before running this script.
 Examples: curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
           or
           brew install
-          or
-          see https://arduino.github.io/arduino-cli/0.30/installation/ for more details
+
+
+          See: https://arduino.github.io/arduino-cli/0.30/installation/ for more details
 
 After install run:
 
 arduino-cli config init
 
-check if the folder .arduinoIDE (~/Library/.arduino15, ˜/snap/.. ) was created in your user account.
-check if the file arduino-cli.yaml was created
+Check if the folder .arduinoIDE (~/Library/.arduino15, ˜/snap/.. ) was created in your user account;
+Check if the file arduino-cli.yaml was created
 edit  the section below of your arduino-cli.yaml. Replace the section additional_urls: [] as shown below
 
 board_manager:
