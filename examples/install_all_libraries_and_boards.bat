@@ -5,7 +5,8 @@ ECHO OFF
 ::
 :: First, install the arduino-cli before running this script.
 ::
-:: See: https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | 
+:: Download the install file: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.msi
+:: Download the exe (binary)file: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip
 ::
 :: After install run:
 ::
@@ -35,13 +36,20 @@ ECHO OFF
 ::
 :: Finally
 ::
+:: ATTENTION... Before running the command below you need to know: 
+::              You can remove libraries and boards you do not intend to use from the script (install_all_libraries_and_boards.bat);
+::              All board installed will consume about 6GB of storage space;
+::              It may take several minutes or hours if you want to run the command below withou adapting it for your needs.
+::
 :: run this script
 ::
-:: ./install_all_libraries_and_boards.bat
+:: .\install_all_libraries_and_boards.bat
 
 ECHO ON
 
-echo "This may take several minutes. Please wait!"
+echo "This may take several minutes or hours. Please wait!"
+echo "All board installed will consume about 6GB of storage space."
+
 echo "Installing the libraries"
 arduino-cli core update-index
 arduino-cli lib install "PU2CLR SI4735"
