@@ -1,6 +1,6 @@
 # [Examples](https://pu2clr.github.io/SI4735/examples)
 
-[This folder](https://github.com/pu2clr/SI4735/tree/master/examples) and subfolders have more than 30 examples that might help you to use the Si4735 Arduino Library in your project. Please, be guided by the comments inserted in each sketch.
+[This folder](https://github.com/pu2clr/SI4735/tree/master/examples) and subfolders have more than 60 examples that might help you to use the Si4735 Arduino Library in your project. Please, be guided by the comments inserted in each sketch.
 
 If you find some error or problem during your implementation, please let me know. 
 
@@ -17,7 +17,8 @@ __This project is about a library to control the SI47XX devices and the focus of
 __IT IS IMPORTANT TO SAY THAT THE CIRCUITS DESIGN BUILT BY THE AUTHOR ARE NOT INTEND TO BE A FINAL PRODUCT. SOME IMPORTANT ASPECTS AND DETAILS ABOUT A GOOD RECEIVER WERE OMITTED HERE. THE IDEA OF THE CIRCUITS MADE BY THE AUTHOR WERE ORIENTED TO BE A PROOF OF CONCEPT OF THE FUNCTIONS IMPLEMENTED IN THE ARDUINO LIBRARY. SO, COMPONENTS LIKE FRONT-ENDS, BAND PASS FILTER,  ESD, ANTENNA DESIGN ARE NOT THE MAIN PART OF THIS PROJECT__.
 
 
-Before using this examples, you most install the ["PU2CLR SI3735 Arduino Library"](https://github.com/pu2clr/SI4735#library-installation) on your Arduino IDE. Also be aware about other libraries that are eventually used to control LCD, OLED, TFT display, encoder etc. These libraries are referenced in the sample sketches themselves.
+Before using this examples, you most install the ["PU2CLR SI3735 Arduino Library"](https://github.com/pu2clr/SI4735#library-installation) on your Arduino IDE. Also be aware about other libraries that are eventually used to control LCD, OLED, TFT display, encoder etc. These libraries are referenced in the sample sketches themselves. You can use the tools [arduino-cli](https://github.com/pu2clr/SI4735/tree/master/examples#arduino-cli---a-faster-alternative-to-the-arduino-ide) to configure your computer with all needed library and boards you intend to use.
+
 
 It is important to know tha the author of this library  just try to show how you can use this library and the Si4735 device in your appication. Other devices used in some examples like encoders, buttons and display (OLED, LCD or TFT) are not the focus of this subject. Said that, it is possible some implementation using theses devices might need different approaches used here.
 
@@ -101,16 +102,104 @@ Arduino CLI (arduino-cli) is a solution that allows you to compile, build, uploa
 * [Click here to watch a video about the arduino-cli](https://youtu.be/J-qGn1eEidA)
 
 
-### [Installing via Homebrew (macOS/Linux)](https://arduino.github.io/arduino-cli/0.21/installation/)
+### [Installing on Linux, MacOS or Windows)](https://arduino.github.io/arduino-cli/0.30/installation/)
 
-The easier way to install arduino-cli on your Linux or MACOS system is shown below.
+#### The easiest way to install arduino-cli on your Linux or MacOS system is shown below.
+
 
 ```bash
 $ brew update
 $ brew install arduino-cli
 ```
 
-More about installing arduino-cli on Linux, MACOS and Windows, go to [https://arduino.github.io/arduino-cli/0.21/installation/](https://arduino.github.io/arduino-cli/0.21/installation/).
+or
+
+```bash 
+$ curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+```
+
+#### On Windows system you ca download the [msi install file](https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.msi) or download [the EXE file](https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip) and run it. 
+
+Download the install file: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.msi
+Download the exe (binary)file: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip
+
+
+More about installing arduino-cli on Linux, MACOS and Windows, go to [https://arduino.github.io/arduino-cli/0.30/installation/](https://arduino.github.io/arduino-cli/0.30/installation/).
+
+
+## After install arduino-cli in your system
+
+run the command arduino-cli as shown below: 
+
+```bash
+$ arduino-cli config init
+```
+
+On MacOS system the file __/Your User home folder/Library/Arduino15/arduino-cli.yaml__ will be created. 
+On Linux Ubuntu the file __/Your User home folder/.arduino15/arduino-cli.yaml__ will be created.
+On Windows the file __C:\Your User\AppData\Local\Arduino15\arduino-cli.yaml__ will be created.
+
+
+Edit the file arduino-cli.yaml and replace its content as shown below: 
+
+
+```javascript 
+board_manager:
+  additional_urls: [http://arduino.esp8266.com/stable/package_esp8266com_index.json,
+  http://dan.drown.org/stm32duino/package_STM32duino_index.json,
+  http://drazzy.com/package_drazzy.com_index.json,
+  https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json,
+  https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json,
+  https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json,
+  https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json,
+  https://mcudude.github.io/MegaCore/package_MCUdude_MegaCore_index.json,
+  https://mcudude.github.io/MightyCore/package_MCUdude_MightyCore_index.json,
+  https://mcudude.github.io/MiniCore/package_MCUdude_MiniCore_index.json,
+  https://raw.githubusercontent.com/DavidGuo-CS/OSOYOO_Arduino/main/package_osoyoo_boards_index.json,
+  https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json,
+  https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json,
+  https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json,
+  https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json,
+  https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json ]
+daemon:
+  port: "50051"
+directories:
+  builtin:
+    libraries: /Users/rcaratti/Library/Arduino15/libraries
+  data: /Users/rcaratti/Library/Arduino15
+  downloads: /Users/rcaratti/Library/Arduino15/staging
+  user: /Users/rcaratti/Documents/Arduino
+library:
+  enable_unsafe_install: false
+locale: en
+logging:
+  file: ""
+  format: text
+  level: info
+metrics:
+  addr: :9090
+  enabled: true
+output:
+  no_color: false
+sketch:
+  always_export_binaries: false
+updater:
+  enable_notification: true 
+```
+
+#### Go to the folder __/Your User Home folder/the your si4735 library folder location/examples__ and run the install_all_libraries_and_boards as shown below: 
+
+##### On Mac OS or Linux: 
+
+```bash
+$install_all_libraries_and_boards.sh
+```
+
+#### On Windows install_all_libraries_and_boards.bat
+
+```bash
+$install_all_libraries_and_boards.bat
+```
 
 
 ### Main commands examples
