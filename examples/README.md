@@ -164,17 +164,37 @@ board_manager:
 
 ```
 
-#### Go to the folder __/Your User Home folder/the your si4735 library folder location/examples__ and run the install_all_libraries_and_boards as shown below: 
+
+#### Download the SI4735 Arduino Library from github
+
+Exemplo: 
+
+```bash
+wget https://github.com/pu2clr/SI4735/archive/refs/heads/master.zip -O SI4735.zip
+```
+
+#### unzip the SI4735.zip 
+
+```bash
+unzip SI4735.zip 
+```
+
+#### Go to the folder SI4735-master/examples and run the install_all_libraries_and_boards script as shown below: 
 
 ##### On Mac OS or Linux: 
 
 ```bash
+cd ./SI4735-master/examples
+
 $install_all_libraries_and_boards.sh
+
 ```
 
 ##### On Windows install_all_libraries_and_boards.bat
 
 ```bash
+cd .\SI4735-master\examples
+
 install_all_libraries_and_boards.bat
 ```
 
