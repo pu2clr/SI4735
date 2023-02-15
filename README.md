@@ -106,14 +106,14 @@ There are several reasons to use an Arduino library. It seems to be common sense
 
 Imagine that you want to use an LCD device to show information about something you are creating, for example, an application that monitors temperature and atmospheric pressure conditions. It is known that there are several libraries for controlling the LCD available on Arduino environment. Given that, why would you build the code to control the LCD? Your application's focus is on monitoring temperature and pressure conditions, not controlling the LCD. Well... unless you need an LCD feature that hasn't been implemented in any of the available libraries, there's no point in developing your own code to control the LCD in my opinion. 
 
-Other reasons to use an Arduino Library is to reduce the programming complexity and to increase the robustness of your application.  It makes life easier for the developers. You do not have to be a software engineer, to understand that. To make an analogy with Electronics, using a library is not very different of using a IC with several encapsulated functions. Said that, why do many technicians and engineers use the TDA1072 IC to build a receiver? Certainly because building a complete circuit to do the same functions as a TDA1072 do would take a lot of time and money. To interact with TDA1072 IC, the user just need to understand the functions of the TDA1072 pins (interface), without worrying about the internal implementation details of this IC. Libraries use the same paradigm. That is, you just need to understand how to interact with the library through its functions. You don't need to know the implementation details.
+Other reasons to use an Arduino Library is to reduce the programming complexity and to increase the robustness of your application.  It makes life easier for the developers. You do not have to be a software engineer to understand that. To make an analogy with Electronics, using a library is not very different of using a IC with several encapsulated functions. Said that, why do many technicians and engineers use the TDA1072 IC to build a receiver? Certainly because building a complete circuit to do the same functions as a TDA1072 does, would take a lot of time and money. To interact with TDA1072 IC, the user just need to understand the functions of the TDA1072 pins (interface), without worrying about the internal implementation details of this IC. Libraries use the same paradigm. That is, you just need to understand how to interact with the library through its functions. You don't needs to know the implementation details.
 
 Finally, if you use a library to deal with IC2 bus (Wire.h); TFT, OLED, SPI devices, and Serial UART communication as well, why do not use a library to deal with SI473X devices? Well, the PU2CLR Arduino Library can offer more comfort, development agility and robustness to your project. It is important to remember that, unlike closed solutions, this library is open source. So, if you want, you can know the implementation details by studying the source code. To use this library or not, that is the question and your choice. 
 
 
 ## SI4735 Library construction history
 
-I started my work on building an Arduino library for SI473X family devices in early November 2019. The initial idea was to build a receiver by using an Arduino board, few components and the SI4735 device made by Silicon Labs. Checking some videos on Youtube, I realized that the receiver besed on Si4735-D60 could go far beyond the initial proposal, __including listening to amateur radio and citizens band stations on SSB mode__. Via forums and websites, I also realized that there was a great demand for experimenters who would like to see the SI4735 device working on SSB mode. So, instead of developing a simple receiver based on the SI4735, __I decided to develop a library for Arduino platform that would provide full support to the SI4735 and all SI473X device family as well__.
+I started my work on building an Arduino library for SI473X family devices in early November 2019. The initial idea was to build a receiver by using an Arduino board, a few components and the SI4735 device made by Silicon Labs. Checking some videos on Youtube, I realized that the receiver besed on Si4735-D60 could go far beyond the initial proposal, __including listening to amateur radio and citizens band stations on SSB mode__. Via forums and websites, I also realized that there was a great demand for experimenters who would like to see the SI4735 device working on SSB mode. So, instead of developing a simple receiver based on the SI4735, __I decided to develop a library for the Arduino platform that would provide full support to the SI4735 and all SI473X device family as well__.
 
 With this library, more than 60 examples were developed using various display types. [These examples can assist the experimenter in building their own receiver](https://github.com/pu2clr/SI4735/tree/master/examples).
 
@@ -199,7 +199,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE ARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <BR>
 
@@ -331,7 +331,7 @@ While the Si4735-D60 provides the 0x11 I²C bus address when the SEN pin is conn
 | I²C  | [I²C - Inter-Integrated Circuit](https://pt.wikipedia.org/wiki/I²C)|  
 | I²S  | Serial bus interface used for connecting digital audio devices 
 | Sketch |Name that Arduino environment uses for a program|
-| Interrupt |In this context, it is a Arduino Resource. Allows important tasks to be performed regardless of the flow of your program|
+| Interrupt |In this context, it is an Arduino Resource. Allows important tasks to be performed regardless of the flow of your program|
 | C++ | A object-oriented programming (OOP) language. It is a superset of the C language with an additional concept of "classes." |
 | programming guide | In this context it refers to [Si47XX PROGRAMMING GUIDE (REV 1.0)](https://web.engr.oregonstate.edu/~traylor/ece473/data_sheets/AN332.pdf)|
 | LNA | Low Noise Amplifier |
@@ -347,7 +347,7 @@ While the Si4735-D60 provides the 0x11 I²C bus address when the SEN pin is conn
 | Attack | attack-time delay -  the time needed for a receiver to respond to an incoming signal |
 | SDIO | Serial data in/data out pin|
 | SCLK | Serial clock pin |
-| Soft Mute | Resource used to attenuate the audiooutputs and minimize audible noise in very weak signalconditions | 
+| Soft Mute | Resource used to attenuate the audio outputs and minimize audible noise in very weak signal conditions | 
 | Firmware Upgrades | The Si4732-A10 and SI4735-D60 contain on-chip program  RAM to accommodate minor changes to the firmware | 
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
@@ -404,7 +404,7 @@ This library has more than 120 functions. The table below shows the mains functi
 | reset                             | Reset the SI473X.  |
 | queryLibraryId                    | Queries the library information of the Si47XX device. | 
 | patchPowerUp                      | This method can be used to prepare the device to apply SSBRX patch. |
-| downloadPatch                     | Transfers the content of a SSB patch stored in a array of bytes to the SI4735 device. |
+| downloadPatch                     | Transfers the content of a SSB patch stored in an array of bytes to the SI4735 device. |
 | downloadPatchFromEeprom           | Transfers the content of a SSB patch stored in an eeprom to the SI4735 device. |
 | setSSBConfig                      | Sets the SSB receiver mode. |
 | setSSB                            | Tunes the SSB (LSB or USB) receiver to a frequency between 520 and 30 MHz in 1 kHz steps.|
@@ -430,7 +430,7 @@ All data types defined in Si4735 Arduino Library are explained [here](https://pu
 
 This library was developed using the C++ language and the Object-oriented Programming approach. Methods are functions that belong to the class, in this case SI4735 class. Click [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group01.html) to go to API docummentation.
 
-All methods defined in Si4735 class are explained [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/). The list below refer to the method groups implemented by the Si4735 class.   
+All methods defined in Si4735 class are explained [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/). The list below refers to the method groups implemented by the Si4735 class.   
 
 
 #### Si47XX device setup and startup
@@ -461,7 +461,7 @@ Methods to setup the audio mode (Digital or Analog), volume, mute etc.
 
 ### RDS
 
-This library implements some RDS features of the SI4735. All function to deal with RDS are documented [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group16.html). Below you have some videos showing the RDS functionalities implemented by the PU2CLR Si4735 Arduino Library.
+This library implements some RDS features of the SI4735. All functions to deal with RDS are documented [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group16.html). Below you have some videos showing the RDS functionalities implemented by the PU2CLR Si4735 Arduino Library.
 
 {% include videoRDS2.html %}
 
@@ -476,22 +476,22 @@ See [RDS example implementations for more details](https://github.com/pu2clr/SI4
 
 The SI4735 class implements a set of methods to apply patches and deal with SSB mode. All API documentation about pathces can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html).
 
-The SSB patches used in some examples of this library were tested only on SI4735-D60 and SI4732-A10 devices.  __The updates used in that examples are unlikely to work on other SI47XX devices__.
+The SSB patches used in some examples of this library were tested only on SI4735-D60 and SI4732-A10 devices.  __The updates used in those examples are unlikely to work on other SI47XX devices__.
 
-__First of all, it is important to say that the SSB patch content is not part of this library__. The patches used with test purpose here were made available by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). Also, on Silcon Labs website, [support and community](https://www.silabs.com/community/audio-radio/forum.topic.20.10.html/ssb_and_or_ask_fskn-nJpo), there is a topic called "__SSB and/or ASK/FSK/nPSK demodulation on Si radio chips__". If you follow that topic, you will see a post from a member called "__DASM__" making available a [link to a patch](https://www.silabs.com/content/usergenerated/asi/cloud/attachments/siliconlabs/en/community/groups/audio-radio/forum/jcr:content/content/primary/qna/ssb_and_or_ask_fskn-nJpo/lookattachment_p216-Fwrr/si4735_patch.txt) for the SI4735-D60 and SI4732-A10. The structure of this file is a bit different if compared with Vadim's files __amrx_6_0_1_ssbrx_patch_full_0x9D29.csg__ and __amrx_6_0_1_ssbrx_patch_init_0xA902.csg__. However, they have the same idea and can be easily adjusted for patching. If you have some experience with C, all you have to do is following the recommendations of the SI47XX PROGRAMMING GUIDE AN332; page 219.
+__First of all, it is important to say that the SSB patch content is not part of this library__. The patches used with test purpose here were made available by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). Also, on Silcon Labs website, [support and community](https://www.silabs.com/community/audio-radio/forum.topic.20.10.html/ssb_and_or_ask_fskn-nJpo), there is a topic called "__SSB and/or ASK/FSK/nPSK demodulation on Si radio chips__". If you follow that topic, you will see a post from a member called "__DASM__" making available a [link to a patch](https://www.silabs.com/content/usergenerated/asi/cloud/attachments/siliconlabs/en/community/groups/audio-radio/forum/jcr:content/content/primary/qna/ssb_and_or_ask_fskn-nJpo/lookattachment_p216-Fwrr/si4735_patch.txt) for the SI4735-D60 and SI4732-A10. The structure of this file is a bit different if compared with Vadim's files __amrx_6_0_1_ssbrx_patch_full_0x9D29.csg__ and __amrx_6_0_1_ssbrx_patch_init_0xA902.csg__. However, they have the same idea and can be easily adjusted for patching. If you have some experience with C, all you have to do is follow the recommendations of the SI47XX PROGRAMMING GUIDE AN332; page 219.
 
 IT IS IMPORTANT TO NOTE THAT THE AUTHOR OF THIS LIBRARY DOES NOT ENCOURAGE ANYONE TO USE THE SSB PATCHES CONTENT FOR COMMERCIAL PURPOSES. __IN OTHER WORDS, THIS LIBRARY ONLY SUPPORTS SSB PATCHES, THE PATCHES THEMSELVES ARE NOT PART OF THIS LIBRARY__.
 
-#### What does SSB patch means?
+#### What does SSB patch mean?
 
 In this context, a patch is a piece of software used to change the behavior of the SI4735-D60 and SI4732-A10 device.
 
 There is little information available about patching the SI4735-D60 and SI4732-A10. The following information is the understanding of the author of this project and it is not necessarily correct.
 
-A patch is executed internally (run by internal MCU) of the device. Usually, patches are  used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device. Patches to the SI473X are distributed in binary form and have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino boards). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn the system off. Consequently, the content of the patch has to be transferred again to the device each time after turn the system on or reset the device.
+A patch is executed internally (run by internal MCU) of the device. Usually, patches are  used to fix bugs or add improvements and new features of the firmware installed in the internal ROM of the device. Patches to the SI473X are distributed in binary form and have to be transferred to the internal RAM of the device by the host MCU (in this case Arduino boards). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn the system off. Consequently, the content of the patch has to be transferred again to the device each time after turning the system on or resetting the device.
 
 I would like to thank [Mr Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) for making available the SSBRX patches for
-SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). On this repository you have two files, __amrx_6_0_1_ssbrx_patch_full_0x9D29.csg__ and __amrx_6_0_1_ssbrx_patch_init_0xA902.csg__.  It is important to know that the patch content of the original files is constant hexadecimal representation used by the language C/C++. Actally, the original files are in ASCII format (not in binary format).  If you are not using C/C++ or if you want to load the files directly to the SI4735-D60 or SI4732-A10, you must convert the values to numeric value of the hexadecimal constants. 
+SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). On this repository you have two files, __amrx_6_0_1_ssbrx_patch_full_0x9D29.csg__ and __amrx_6_0_1_ssbrx_patch_init_0xA902.csg__.  It is important to know that the patch content of the original files is constant hexadecimal representation used by the language C/C++. Actally, the original files are in ASCII format (not in binary format).  If you are not using C/C++ or if you want to load the files directly to the SI4735-D60 or SI4732-A10, you must convert the values to numeric values of the hexadecimal constants. 
 
 ##### For example: 
 
@@ -527,7 +527,7 @@ See SSB example implementations [here](https://github.com/pu2clr/SI4735/tree/mas
 
 ### EEPROM support
 
-Depending on your MCU memory size, to use SSB mode may not be possible due to the large amount of memory required by the patch. To solve this problem this library implemented the function __downloadPatchFromEeprom__. This function reads the patch content from an external EEPROM and transfer it to the SI4732-A10 or SI4735-D60 devices. To run this function you must have a external I2C EEPROM device well configured with your MCU and the Si4732/35 device on I²C bus. Also, the EEPROM must have the patch content generated by the sketch  SI47XX_09_SAVE_SSB_PATCH_EEPROM stored in it. [See folder TOOLS](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM).
+Depending on your MCU memory size, to use SSB mode may not be possible due to the large amount of memory required by the patch. To solve this problem this library implemented the function __downloadPatchFromEeprom__. This function reads the patch content from an external EEPROM and transfers it to the SI4732-A10 or SI4735-D60 devices. To run this function you must have an external I2C EEPROM device well configured with your MCU and the Si4732/35 device on I²C bus. Also, the EEPROM must have the patch content generated by the sketch  SI47XX_09_SAVE_SSB_PATCH_EEPROM stored in it. [See folder TOOLS](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM).
 
 The example [SI4735_06_SSB_EEPROM](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR/SI4735_06_SSB_EEPROM) shows this functionality on an Arduino Pro Mini. 
 
@@ -601,7 +601,7 @@ rx.getCommandResponse(1,response);
 
 #### Extending the SI4735 class
 
-The best way to customize the PU2CLR SI4735 Arduino Library for your needs is extending the current version of the library by using C++ OOP approaching.  For example: 
+The best way to customize the PU2CLR SI4735 Arduino Library for your needs is extending the current version of the library by using C++ OOP approach.  For example: 
 
 ```cpp
 #include <SI4735.h>
@@ -656,7 +656,7 @@ void loop() {
 }
 ```
 
-If you use that approach, all you have to do is download the current version of PU2CLR SI4735 Arduino Library. Instead of using PU2CLR SI4735 Arduino Library class directly, you can use your own class that extends the original class.  This way, you always have the current version of the library customized for your needs. So, no extra work will be needed when you update the PU2CLR SI4735 Arduino Library. In other words, your custom code will be always synchronized with the PU2CLR SI4735 Arduino Library code.
+If you use that approach, all you have to do is download the current version of PU2CLR SI4735 Arduino Library. Instead of using the PU2CLR SI4735 Arduino Library class directly, you can use your own class that extends the original class.  This way, you always have the current version of the library customized for your needs. So, no extra work will be needed when you update the PU2CLR SI4735 Arduino Library. In other words, your custom code will always be synchronized with the PU2CLR SI4735 Arduino Library code.
 
 
 __Please, check the [API documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) before implementing something you think is new. It is possible that what you want has already been implemented__. 
@@ -769,18 +769,18 @@ The table below shows the component parts used to build the radio prototype base
 | X1    | 32.768 kHz crystal |
 | SI4735 | digital CMOS AM(LW, MW and SW)/FM radio receiver IC |
 
-  * *1: C7 and C8 are ceramic capacitors included by the author of this project. They are not present on original Silicon Labs schematic. Actually, you can use also electrolytic capacitors. Values between 2.2uF to 10uF will work well. 
-  * *2: R4 and R5 are pull-up resistor included by the author of this project. They are not present on original Silicon Labs schematic.  This will also depend on other devices connected to the same I²C bus.  __Always try to use the lowest possible value__.
+  * *1: C7 and C8 are ceramic capacitors included by the author of this project. They are not present on the original Silicon Labs schematic. Actually, you can use also electrolytic capacitors. Values between 2.2uF to 10uF will work well. 
+  * *2: R4 and R5 are pull-up resistor included by the author of this project. They are not present on the original Silicon Labs schematic.  This will also depend on other devices connected to the same I²C bus.  __Always try to use the lowest possible value__.
 
 __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (page 12)__:
 * Place C1 close to VA and C4 close to VD pin.
 * All grounds connect directly to GND plane on PCB.
-* Pins 6 and 7 are no connects, leave floating.
+* Pins 6 and 7 are not connects, leave floating.
 * Pins 10 and 11 are unused. Tie these pins to GND.
 * To ensure proper operation and receiver performance, follow the guidelines in “AN383: Si47xx Antenna, Schematic,
 * Layout, and Design Guidelines.” Silicon Laboratories will evaluate schematics and layouts for qualified customers.
 * Pin 8 connects to the FM antenna interface, and pin 12 connects to the AM antenna interface.
-* Place Si473x-D60 as close as possible to antenna and keep the FMI and AMI traces as short as possible.
+* Place Si473x-D60 as close as possible to the antenna and keep the FMI and AMI traces as short as possible.
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
@@ -790,7 +790,7 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 
 * Try to follow what the Silicon Labs recommends; 
 * Start building the minimum circuit and test it;
-* Check if the Si47XX RESET pin (15 on SSOP version or 5 on QFN version) is connected on  your MCU (Arduino) pin defined as RESET the (the most of schematics and examples of this project this pin is the digital pin 12);
+* Check if the Si47XX RESET pin (15 on SSOP version or 5 on QFN version) is connected on  your MCU (Arduino) pin defined as RESET the (most of schematics and examples of this project this pin is the digital pin 12);
 * Use the minimum sketch to test the minimum circuit. The first three examples of this project (see  examples folder) can be used to test the minimum circuit; 
 * Try not improvising the I²C bus connection. Start using a 3.3V MCU (Arduino Pro Mini 8MHz or DUE,  ESP32 or other 3.3V device) to connect with SI4735;
 * If you are using the __Arduino Pro Mini__ 3.3V board, select the correct __Processor__ on Arduino IDE (ATmega328, 3.3V, 8MHz); 
@@ -798,7 +798,7 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 * I²C bus devices are available in different speeds. If you are using an I²C display device, check if its speed is compatible with the Si47XX and also with the current speed used by the master MCU;
 * Using different voltage levels between I²C devices can be unsafe and can destroy parts connected on I²C bus, specially the Si47XX;
 * It is important to wire all your I²C devices on the same common ground. 
-* If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 and the use of internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, you can do: 
+* If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 and the use of an internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problems due to the drop voltage caused by the LED circuit. If this occurs in your project, you can do: 
   *  Use the pin 14 instead pin 13. This pin is the A0 (Analog). But you have to refer it by 14 to use it as digital pin; 
   *  Change the circuit and sketch to use external pull-up on pin 13;
   *  Remove the LED or resitor connected to the LED from the board.   
@@ -824,7 +824,7 @@ It has been observed in several tests. Some tips:
 5. Check if the pins 17 (SCLK / SCL) and 18 (SDIO / SDA) of the SI47XX device are correctly connected to the Arduino board pins;
 6. Check the pull-up resistors connected to the pins 17 (SCLK / SCL) and 18 (SDIO / SDA) of the SI47XX device;
 7. Check the voltage on SI47XX pin 15 (RST).  It should be 3.3V. All digital pins of your Arduino must have 3.3v when in HIGH condition. If it is greater than 3.3V, probably you are using an 5V board; 
-8. If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on Arduino IDE Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version; 
+8. If you are using the Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on Arduino IDE Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version; 
 9. Do not try to power an ATmega328 Arduino Board designed to work with 5V and 16MHz with a 3.3V supply. That configuration will make your system unstable. See [ATmega328P Datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf);  
 10. Do not try to power your Arduino based board designed to work with 3.3V with greater voltage. See the technical specifications of your Arduino Board and remember that the maximum voltage of the SI47XX MCU CONTROL INTERFACE is 3.6V;
 11. Check the external crystal and its capacitors connections. 
@@ -835,8 +835,8 @@ __Attention__: The pins numbers above is considering Si473x-D60(SSOP) package.
 
 ### On FM mode, the receiver jump from a station to another station without any action.
 
-If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 and the use of internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, do one of the following:
-  *  Use the pin 14 instead pin 13. This pin is the A0 (Analog). But you have to refer it by 14 to use it as digital pin; 
+If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 and the use of on internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, do one of the following:
+  *  Use the pin 14 instead of pin 13. This pin is the A0 (Analog). But you have to refer it by 14 to use it as digital pin; 
   *  Change the circuit and sketch to use external pull-up on pin 13; or
   *  Remove the LED or the resitor connected to the LED from the Arduino Board.   
 
@@ -845,7 +845,7 @@ If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 a
 This problem can be a little complicated to solve. It can occur in many situations. I have observed that very few times in my experiments: 
  
 * When I am powering the system using the computer USB and the computer is connected to the grid, it might occur. __Please, test your system using only batteries__.
-* If you are using the board Arduino Pro Mini 3.3V (8MHz), be sure you have selected the correct board on the IDE Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version.
+* If you are using the Arduino Pro Mini 3.3V (8MHz), be sure you have selected the correct board on the IDE Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the 5V processor version.
 * Check if the RESET pin of the SI473X and the controller are well connected.  
 * This problem also can be caused by the external crystal connected to the SI473X device (in general 32768K). This crystal needs a minimum delay to become stable after a reset or power up command. Currently, this delay is 10ms. Try to increase that delay by using the method setMaxDelayPowerUp.
 
@@ -887,7 +887,7 @@ void setup() {
 
 Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some Si47XX device commands. This problem occurs during the receiver transition from the power down to power up internal commands. Also, every time the user changes the mode (FM to AM or AM to FM) the sequence power down and power up internal commands is required by the Si47XX devices. 
 
-The SI473X devices have HIGH DC (DC bias) component in the analog audio output pins (SI4735-D60 pins 23 and 24). When the device goes to power down mode, the voltage on the audio pins drops to 0V.  The device do it internally and there is no  way to avoid that. When the device goes to power up, that audio pins suddenly goes to the  HIGH DC again. This transition causes the loud pop in the speaker. So far, the author of this library have not found an internal SI473X device solution to solve the loud popping of the speaker. It is important to say that internal SI473X mute or volume commands will not work for this purpose. However, it is possible to solve this problem by adding an extra __mute__ circuit and control it by the MCU (Atmega, ESP32, STM32, ATtiny85 etc). 
+The SI473X devices have HIGH DC (DC bias) component in the analog audio output pins (SI4735-D60 pins 23 and 24). When the device goes to power down mode, the voltage on the audio pins drops to 0V.  The device does it internally and there is no  way to avoid that. When the device goes to power up, those audio pins suddenly go to the  HIGH DC again. This transition causes the loud pop in the speaker. So far, the author of this library have not found an internal SI473X device solution to solve the loud popping of the speaker. It is important to say that internal SI473X mute or volume commands will not work for this purpose. However, it is possible to solve this problem by adding an extra __mute__ circuit and control it by the MCU (Atmega, ESP32, STM32, ATtiny85 etc). 
 
 The schematic below shows this approach.
 
@@ -897,7 +897,7 @@ The schematic below shows this approach.
 
 Considering that you are using a MCU based on Atmega328. When the D14 (A0) is HIGH the Si47XX output audio will be drained to the ground. At that condition, no audio will be transferred to the amplifier input and, consequently, to the speaker. So, no loud click in the speaker. 
 
-When the D14 is LOW, the most of signal audio output from the Si47XX will be transfered to the input of the amplifier. 
+When the D14 is LOW, most of signal audio output from the Si47XX will be transfered to the input of the amplifier. 
 
 The code below shows all you have to do in your sketch to implement this resource.
 
@@ -912,7 +912,7 @@ Si4735 r;
 void setup() {
   .
   
-  // It is all you have to do to control a external audio mute circuit if you have one. 
+  // It is all you have to do to control an external audio mute circuit if you have one. 
   r.setAudioMuteMcuPin(AUDIO_MUTE); // Tells the system to control an external audio mute circuit. 
 
   r.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO); // Starts on FM mode and ANALOG audio mode. 
@@ -1026,7 +1026,7 @@ void loadSSB()
 ## Boards where this library has been successfully tested
 
 
-This library can be useful to develop a cross-platform software. So far, it has been successfully tested on the architectures shown below.    
+This library can be useful to develop cross-platform software. So far, it has been successfully tested on the architectures shown below.    
 
 ![Silicon Labs Schematic](./extras/images/multiplatform_SI47XX_photo_05.png)
 
@@ -1129,7 +1129,7 @@ This item describes some tools and accessories you might need to build your radi
 |---------------|---------------|   
 |![FT232 USB A](./extras/images/tools_FT232_usb_a.png)|![SI4735 on adapter 05](./extras/images/tools_FT232_usb_b.png)|
 
-* FT232RL 3.3V/5.5V FTDI USB to TTL Serial Adapter Module for Arduino Mini Port 
+* FT232RL 3.3V/5.5V FTDI USB to TTL Serial Adapter Module for the Arduino Mini Port 
 
 <BR>
 
