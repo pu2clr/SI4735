@@ -27,7 +27,7 @@ Contact: __pu2clr@gmail.com__.
 
 1. [SI4735 Library construction history](https://pu2clr.github.io/SI4735/#si4735-library-construction-history)
 2. [Thanks](https://pu2clr.github.io/SI4735/#thanks)
-3. [Labrary Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
+3. [Library Features](https://pu2clr.github.io/SI4735/#si4735-arduino-library-features)
 4. [License Copyright](https://pu2clr.github.io/SI4735/#mit-license)
 5. [Library Installation](https://pu2clr.github.io/SI4735/#library-installation)
 6. [Command line arduino-cli and setup](https://github.com/pu2clr/SI4735/tree/master/examples#arduino-cli---a-faster-alternative-to-the-arduino-ide)
