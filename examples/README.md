@@ -170,7 +170,7 @@ board_manager:
 Exemplo: 
 
 ```bash
-wget https://github.com/pu2clr/SI4735/archive/refs/heads/master.zip -O SI4735.zip
+curl -fsSL https://github.com/pu2clr/SI4735/archive/refs/heads/master.zip --output SI4735.zip
 ```
 
 #### unzip the SI4735.zip 
