@@ -118,7 +118,7 @@ or
 $ curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 ```
 
-The command below install the arduino-cli and also the basic PU2CLR SI4735 Arduino library (it works on Linux and macOS)
+The command below install the arduino-cli and also the PU2CLR SI4735 Arduino library (it works on Linux and macOS)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.sh | sh
