@@ -117,7 +117,7 @@ The command above will install arduino-cli, the SI4735 Arduino Library, the basi
 If you want to install all boards (esp32, ESP8266, STM32 etc) and all libraries used by the SI473X examples, run the command below.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/install_all_libraries_and_boards.sh | sh
 ```
 
 
