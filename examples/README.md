@@ -124,12 +124,12 @@ $ curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/instal
 curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.sh | sh
 ```
 
-or 
+or you can download lib_si4735_basic_install.sh file and edit/customize it before running. 
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.sh --output lib_si4735_basic_install.sh
-chmod 755 lib_si4735_basic_install.sh
-./lib_si4735_basic_install.sh
+# nano lib_si4735_basic_install.sh  # Edit/Customize lib_si4735_basic_install.sh 
+sh ./lib_si4735_basic_install.sh
 ``` 
 
 
