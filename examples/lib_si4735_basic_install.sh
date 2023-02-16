@@ -1,3 +1,4 @@
+#!/bin/bash
 <<TodoBefore
 
 This script runs on Linux and MacOS and it is useful to install the basic enviroment to develop
