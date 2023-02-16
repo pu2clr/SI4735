@@ -118,12 +118,13 @@ or
 $ curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 ```
 
-#### The command below install the arduino-cli and also the  PU2CLR SI4735 Arduino library setup (it works on Linux and macOS). Including: some display libraries and boards used by some examples.  
+#### The command below install the arduino-cli and also the  PU2CLR SI4735 Arduino library setup. Including: some display libraries and boards used by some examples (it works on Linux and macOS).  
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.sh | sh
 ```
 
+__ATTENTION:__ If you are using Linux or macOS and executed de command above, you do not need to run the steps below. 
 
 
 #### On Windows system you can download the [msi install file](https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.msi) or download [the EXE file](https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip) and run it. 
@@ -171,6 +172,27 @@ board_manager:
   https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json ]
 
 ```
+
+#### Instead edit arduino-cli.yaml file you can run the command below
+
+arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json \
+http://dan.drown.org/stm32duino/package_STM32duino_index.json \
+http://drazzy.com/package_drazzy.com_index.json \
+https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json \
+https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json \
+https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json \
+https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json \
+https://mcudude.github.io/MegaCore/package_MCUdude_MegaCore_index.json \
+https://mcudude.github.io/MightyCore/package_MCUdude_MightyCore_index.json \
+https://mcudude.github.io/MiniCore/package_MCUdude_MiniCore_index.json \
+https://raw.githubusercontent.com/DavidGuo-CS/OSOYOO_Arduino/main/package_osoyoo_boards_index.json \
+https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json \
+https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json \
+https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json \
+https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json \
+https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json 
+
+
 
 
 #### Download the SI4735 Arduino Library from github
