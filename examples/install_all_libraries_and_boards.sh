@@ -27,6 +27,7 @@ run the scripts below
 
 TodoBefore
 
+export PATH=~/bin:$PATH
 
 ## Please.. run the script lib_si4735_basic_install.sh before running it.
 
