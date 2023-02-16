@@ -102,144 +102,72 @@ Arduino CLI (arduino-cli) is a solution that allows you to compile, build, uploa
 * [Click here to watch a video about the arduino-cli](https://youtu.be/J-qGn1eEidA)
 
 
+### Fast way to setup your enviroment with PU2CLR SI4735 Arduino Library and accessories 
+
+#### On macOS and Linux
+
+Open the terminal and run the command below.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.sh | sh
+```
+
+The command above will install arduino-cli, the SI4735 Arduino Library, the basic libraries for OLED, LCD and TFT used in some examples, and the basic boards for Atmega328 and LGT8F328. 
+
+If you want to install all boards (esp32, ESP8266, STM32 etc) and all libraries used by the SI473X examples, run the command below.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.sh | sh
+```
+
+
+
+#### On Windows 10 and 11
+
+Open the cmd (terminal) and run 
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.bat --output lib_si4735_basic_install.bat
+.\lib_si4735_basic_install.bat
+```
+The commands above will install arduino-cli.exe in your home direcory, the SI4735 Arduino Library and the basic libraries for OLED, LCD and TFT used in some examples (in you Documents/Arduino folder), and the basic boards for Atmega328 and LGT8F328 (in AppData\local\Arduino15 folder). 
+
+After running the previous steps, if you want to configure the SI4735 Arduino Library for all libraries and boards used by the examples, run the command below.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/install_all_libraries_and_boards.bat --output install_all_libraries_and_boards.bat
+.\install_all_libraries_and_boards.bat
+```
+
+
+### Othe ways to install the arduino-cli (without PU2CLR SI4735 Arduino Library setup)
+
+
 ### [Installing on Linux, MacOS or Windows)](https://arduino.github.io/arduino-cli/0.30/installation/)
 
-#### The easiest way to install arduino-cli on your Linux or MacOS system is shown below.
 
+#### On macOS
 
 ```bash
 $ brew update
 $ brew install arduino-cli
 ```
 
-or
+#### On Linux or macOS
 
 ```bash 
 $ curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 ```
 
-#### The command below install the arduino-cli and also the  PU2CLR SI4735 Arduino library setup. Including: some display libraries and boards used by some examples (it works on Linux and macOS).  
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.sh | sh
-```
-
-or you can download lib_si4735_basic_install.sh file and edit/customize it before running. 
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.sh --output lib_si4735_basic_install.sh
-# nano lib_si4735_basic_install.sh  # Edit/Customize lib_si4735_basic_install.sh 
-sh ./lib_si4735_basic_install.sh
-``` 
-
-
-
-__ATTENTION:__ If you are using Linux or macOS and executed de command above, you do not need to run the steps below. 
-
-
-#### On Windows system you can download the [msi install file](https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.msi) or download [the EXE file](https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip) and run it. 
+#### On Windows 
 
 * Download the install file: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.msi
 * Download the exe (binary)file: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip
 
 
-More about installing arduino-cli on Linux, MACOS and Windows, go to [https://arduino.github.io/arduino-cli/0.30/installation/](https://arduino.github.io/arduino-cli/0.30/installation/).
 
-
-## After install arduino-cli in your system
-
-run the command arduino-cli as shown below: 
-
-```bash
-$ arduino-cli config init
-```
-
-* On MacOS system the file __/Your User home folder/Library/Arduino15/arduino-cli.yaml__ will be created. 
-* On Linux Ubuntu the file __/Your User home folder/.arduino15/arduino-cli.yaml__ will be created.
-* On Windows the file __C:\Your User\AppData\Local\Arduino15\arduino-cli.yaml__ will be created.
-
-
-### Edit the file arduino-cli.yaml and replace the content of additional_urls section as shown below: 
-
-
-```javascript 
-board_manager:
-  additional_urls: [http://arduino.esp8266.com/stable/package_esp8266com_index.json,
-  http://dan.drown.org/stm32duino/package_STM32duino_index.json,
-  http://drazzy.com/package_drazzy.com_index.json,
-  https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json,
-  https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json,
-  https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json,
-  https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json,
-  https://mcudude.github.io/MegaCore/package_MCUdude_MegaCore_index.json,
-  https://mcudude.github.io/MightyCore/package_MCUdude_MightyCore_index.json,
-  https://mcudude.github.io/MiniCore/package_MCUdude_MiniCore_index.json,
-  https://raw.githubusercontent.com/DavidGuo-CS/OSOYOO_Arduino/main/package_osoyoo_boards_index.json,
-  https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json,
-  https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json,
-  https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json,
-  https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json,
-  https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json ]
-
-```
-
-#### Instead edit arduino-cli.yaml file you can run the command below
-
-arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json \
-http://dan.drown.org/stm32duino/package_STM32duino_index.json \
-http://drazzy.com/package_drazzy.com_index.json \
-https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json \
-https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json \
-https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json \
-https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json \
-https://mcudude.github.io/MegaCore/package_MCUdude_MegaCore_index.json \
-https://mcudude.github.io/MightyCore/package_MCUdude_MightyCore_index.json \
-https://mcudude.github.io/MiniCore/package_MCUdude_MiniCore_index.json \
-https://raw.githubusercontent.com/DavidGuo-CS/OSOYOO_Arduino/main/package_osoyoo_boards_index.json \
-https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json \
-https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json \
-https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json \
-https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json \
-https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json 
-
-
-
-
-#### Download the SI4735 Arduino Library from github
-
-Exemplo: 
-
-```bash
-curl -fsSL https://github.com/pu2clr/SI4735/archive/refs/heads/master.zip --output SI4735.zip
-```
-
-#### unzip the SI4735.zip 
-
-```bash
-unzip SI4735.zip 
-```
-
-#### Go to the folder SI4735-master/examples and run the install_all_libraries_and_boards script as shown below: 
-
-##### On Mac OS or Linux: 
-
-```bash
-cd ./SI4735-master/examples
-
-$install_all_libraries_and_boards.sh
-
-```
-
-##### On Windows install_all_libraries_and_boards.bat
-
-```bash
-cd .\SI4735-master\examples
-
-install_all_libraries_and_boards.bat
-```
-
-
-### Main commands examples
+### arduino-cli and main command examples
 
 It is important to say that all boards and libraries installed via your Arduino IDE is used by arduino-cli. I mean, all Arduino environment setup is shared by Arduino IDE and arduino-cli.
 This way, if you install a new board via arduino-cli, it will be seen by Arduino IDE and vice-versa. 

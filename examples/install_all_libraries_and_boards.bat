@@ -15,24 +15,7 @@ ECHO OFF
 :: Check if the folder <User>\AppData\Local\Arduino15\  was created in your user account.
 :: Check if the file <User>\AppData\Local\Arduino15\arduino-cli.yaml was created
 :: Edit  the section below of your <User>\AppData\Local\Arduino15\arduino-cli.yaml and replace the section additional_urls as shown below
-:: 
-:: board_manager:
-::  additional_urls:[ http://arduino.esp8266.com/stable/package_esp8266com_index.json
-::  , http://dan.drown.org/stm32duino/package_STM32duino_index.json
-::  , http://drazzy.com/package_drazzy.com_index.json
-::  , https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json
-::  , https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
-::  , https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json
-::  , https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json
-::  , https://mcudude.github.io/MegaCore/package_MCUdude_MegaCore_index.json
-::  , https://mcudude.github.io/MightyCore/package_MCUdude_MightyCore_index.json
-::  , https://mcudude.github.io/MiniCore/package_MCUdude_MiniCore_index.json
-::  , https://raw.githubusercontent.com/DavidGuo-CS/OSOYOO_Arduino/main/package_osoyoo_boards_index.json
-::  , https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json
-::  , https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json
-::  , https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json
-::  , https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
-::  , https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json ]
+::
 ::
 :: Finally
 ::
@@ -41,8 +24,8 @@ ECHO OFF
 ::              All board installed will consume about 6GB of storage space;
 ::              It may take several minutes or hours if you want to run the command below withou adapting it for your needs.
 ::
-:: run this script
-::
+:: run the scripts below
+:: .\lib_si4735_basic_install.bat
 :: .\install_all_libraries_and_boards.bat
 
 ECHO ON

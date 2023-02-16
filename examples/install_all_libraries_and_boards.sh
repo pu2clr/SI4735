@@ -20,36 +20,20 @@ ATTENTION... Before running the command below you need to know:
              All board installed will consume about 6GB of storage space;
              It may take several minutes or hours if you want to run the command below withou adapting it for your needs.
                   
-run this script
+run the scripts below
 
+./lib_si4735_basic_install.sh
 ./install_all_libraries_and_boards.sh
 
 TodoBefore
 
 
-echo "This may take several minutes or hours. Please wait!"
-echo "Installing the libraries"
+## Please.. run the script lib_si4735_basic_install.sh before running it.
 
-# Add all boards used by the examples (ATmega, Attiny, ESP32, STM32 etc)
-arduino-cli config init 
-arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json \
-http://dan.drown.org/stm32duino/package_STM32duino_index.json \
-http://drazzy.com/package_drazzy.com_index.json \
-https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json \
-https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json \
-https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json \
-https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json \
-https://mcudude.github.io/MegaCore/package_MCUdude_MegaCore_index.json \
-https://mcudude.github.io/MightyCore/package_MCUdude_MightyCore_index.json \
-https://mcudude.github.io/MiniCore/package_MCUdude_MiniCore_index.json \
-https://raw.githubusercontent.com/DavidGuo-CS/OSOYOO_Arduino/main/package_osoyoo_boards_index.json \
-https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json \
-https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json \
-https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json \
-https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json \
-https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json 
 arduino-cli core update-index
 # Install the PU2CLR SI4735 Arduino Library and all other libraries used by the examples
+echo "Installing all libraries needed by the PU2CLR Arduino Library examples"
+echo "It can take a long time and 6GB of your storage space"
 arduino-cli lib install "PU2CLR SI4735"
 arduino-cli lib install "Adafruit BusIO"
 arduino-cli lib install "Adafruit SH110X"
@@ -70,7 +54,7 @@ echo "The LCD5110_Graph library needs to be installed manually. See: http://www.
 echo "The Adafruit_SH1106 library needs to be installed manually. See: https://github.com/wonho-maker/Adafruit_SH1106"
 
 # Install all boards used by the examples
-echo "Installing the boards"
+echo "Installing all boards needed by the PU2CLR SI4735 Arduino examples"
 arduino-cli core install arduino:avr
 arduino-cli core install lgt8fx:avr
 arduino-cli core install MiniCore:avr
