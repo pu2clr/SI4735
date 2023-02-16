@@ -7,7 +7,7 @@
 :: go to homefolder
 cd %homepath%
 :: Download and install the arduino command line - arduino-cli
-curl -fsSL https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip --putput arduinocli.zip
+curl -fsSL https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip --output arduinocli.zip
 tar -xf arduinocli.zip 
 :: It should be installed in the ~/bin folder
 set PATH=%homepath%\bin;%PATH%
