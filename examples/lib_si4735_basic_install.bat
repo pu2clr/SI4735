@@ -42,6 +42,19 @@ arduino-cli lib install "TFT_22_ILI9225"
 ::arduino-cli lib install "TFT_eSPI_ES32Lab"
 arduino-cli lib install "Tiny4kOLED"
 arduino-cli lib install "TinyOLED-Fonts"
+echo "----------------------------------------------------"
+echo "Installing the library Adafruit_SH1106 via zip file"
+SET ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
+curl -fsSL https://github.com/wonho-maker/Adafruit_SH1106/archive/refs/heads/master.zip --output SU1106.zip
+arduino-cli lib install --zip-path ./SU1106.zip
+echo "----------------------------------------------------"
+echo "The site of library LCD5110_Graph does not allow deep linking."
+echo "So, if you need to run the example with Nokia 5110 display, please, install library LCD5110_Graph library manually." 
+echo "See: http://www.rinkydinkelectronics.com/library.php?id=47"
+echo "Download the file and run arduino-cli lib install --zip-path ~Downloads/LCD5110_Graph.zip"
+echo "----------------------------------------------------"
+
+
 
 echo "The LCD5110_Graph library needs to be installed manually. See: http://www.rinkydinkelectronics.com/library.php?id=47"
 echo "The Adafruit_SH1106 library needs to be installed manually. See: https://github.com/wonho-maker/Adafruit_SH1106"
