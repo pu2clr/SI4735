@@ -118,11 +118,12 @@ or
 $ curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 ```
 
-The command below install the arduino-cli and also the PU2CLR SI4735 Arduino library (it works on Linux and macOS)
+#### The command below install the arduino-cli and also the  PU2CLR SI4735 Arduino library setup (it works on Linux and macOS). Including: some display libraries and boards used by some examples.  
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.sh | sh
 ```
+
 
 
 #### On Windows system you can download the [msi install file](https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.msi) or download [the EXE file](https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip) and run it. 
