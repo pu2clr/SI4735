@@ -4,16 +4,8 @@ PLEASE, read each comment before runing this script.
 This script runs on Mac OS and Linux and installs all libraries and boards available on Arduino platform that is used by the examples.
 This may be an option to configure your programming environment for arduino and the PU2CLR SI473X library.
 
-First, install the arduino-cli before running this script.
-
-Examples: curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
-          or
-          brew install
-
-
-          See: https://arduino.github.io/arduino-cli/0.30/installation/ for more details
-
-Finally
+First, run the script ./lib_si4735_basic_install.sh 
+It will install the arduino-cli and configure your Arduino enviroment (basic libraries and boards) for SI4735 Arduino Library
 
 ATTENTION... Before running the command below you need to know: 
              You can remove libraries and boards you do not intend to use from the script;
