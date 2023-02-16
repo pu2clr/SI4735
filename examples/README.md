@@ -132,6 +132,8 @@ chmod 755 lib_si4735_basic_install.sh
 ./lib_si4735_basic_install.sh
 ``` 
 
+
+
 __ATTENTION:__ If you are using Linux or macOS and executed de command above, you do not need to run the steps below. 
 
 
