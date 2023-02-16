@@ -102,7 +102,7 @@ Arduino CLI (arduino-cli) is a solution that allows you to compile, build, uploa
 * [Click here to watch a video about the arduino-cli](https://youtu.be/J-qGn1eEidA)
 
 
-### Fast way to setup your enviroment with PU2CLR SI4735 Arduino Library and accessories 
+### Fast way to install arduino-cli and setup your enviroment with PU2CLR SI4735 Arduino Library and accessories 
 
 #### On macOS and Linux
 
@@ -114,7 +114,7 @@ curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_s
 
 The command above will install arduino-cli, the SI4735 Arduino Library, the basic libraries for OLED, LCD and TFT used in some examples, and the basic boards for Atmega328 and LGT8F328. 
 
-If you want to install all boards (esp32, ESP8266, STM32 etc) and all libraries used by the SI473X examples, run the command below.
+If you want to install all boards (esp32, ESP8266, STM32 etc) and all libraries used by the SI473X examples, run the command below after running the previous command.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/install_all_libraries_and_boards.sh | sh
