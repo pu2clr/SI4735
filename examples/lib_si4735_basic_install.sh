@@ -67,14 +67,12 @@ echo "So, if you need to run the example with Nokia 5110 display, please, instal
 echo "See: http://www.rinkydinkelectronics.com/library.php?id=47"
 echo "Download the file and run arduino-cli lib install --zip-path ~Downloads/LCD5110_Graph.zip"
 echo "----------------------------------------------------"
-
-
 # uncomment the lines below if you want some additional boards 
 echo "Installing the boards"
 arduino-cli core install arduino:avr
 arduino-cli core install lgt8fx:avr
-# arduino-cli core install MiniCore:avr
-# arduino-cli core install arduino:sam
+arduino-cli core install MiniCore:avr
+arduino-cli core install arduino:sam
 # arduino-cli core install esp32:esp32
 # arduino-cli core install esp8266:esp8266
 # arduino-cli core install stm32duino:STM32F1
