@@ -70,9 +70,16 @@ ECHO OFF
 
 ECHO "STM32 based board"
 ECHO ON 
-arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C .\SI47XX_07_STM32\STM32_04_OLED_ALL_IN_ONE_V2 --output-dir %homepath%\Downloads\hex\stm32\F1\STM32_04_OLED_ALL_IN_ONE_V2 
-arduino-cli compile --fqbn STM32:stm32:Disco .\SI47XX_07_STM32\STM32_04_OLED_ALL_IN_ONE_V2 --output-dir %homepath%\Downloads\hex\stm32\Disco\STM32_04_OLED_ALL_IN_ONE_V2 
-arduino-cli compile --fqbn STM32:stm32:GenF4 .\SI47XX_07_STM32\STM32_04_OLED_ALL_IN_ONE_V2 --output-dir %homepath%\Downloads\hex\stm32\F4\STM32_04_OLED_ALL_IN_ONE_V2 
+arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2 --output-dir ~/Downloads/hex/STM32/F1/STM32_04_OLED_ALL_IN_ONE_V2
+arduino-cli compile --fqbn STMicroelectronics:stm32:Disco    ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2 --output-dir ~/Downloads/hex/STM32/Disco/STM32_04_OLED_ALL_IN_ONE_V2 
+arduino-cli compile --fqbn STMicroelectronics:stm32:GenF4 ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2 --output-dir ~/Downloads/hex/STM32/F4/STM32_04_OLED_ALL_IN_ONE_V2 
+echo "STM32 - PLAMEN"
+arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C ./SI47XX_KITS/PLAMEN/PU2CLR_SI5351_SI4732_STM32 --output-dir ~/Downloads/hex/STM32/PU2CLR_SI5351_SI4732_STM32
+ECHO OFF
+
+echo "Teensy"
+ECHO ON
+arduino-cli compile --fqbn teensy:avr:teensy41   ./SI47XX_14_TEENSY/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/TEENSY/OLED_ALL_IN_ONE
 ECHO OFF
 
 ECHO "Arduino DUE and MEGA"
