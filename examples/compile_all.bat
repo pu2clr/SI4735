@@ -41,7 +41,11 @@ ECHO OFF
 
 ECHO "ATtiny Core"
 ECHO ON 
-arduino-cli compile --fqbn ATTinyCore:avr:attinyx5  .\SI47XX_05_ATTINY85\SI47XX_02_ATTINY85_MINI_OLED_I2C --output-dir %homepath%\Downloads\hex\attiny\SI47XX_02_ATTINY85_MINI_OLED_I2C 
+arduino-cli compile --fqbn ATTinyCore:avr:attinyx5  .\SI47XX_05_ATTINY85\SI47XX_02_ATTINY85_MINI_OLED_I2C --output-dir %homepath%\Downloads\hex\ATTIMY85\SI47XX_02_ATTINY85_MINI_OLED_I2C 
+echo "*** SSB"
+arduino-cli compile --fqbn ATTinyCore:avr:attinyx5:clock=1internal .\SI47XX_05_ATTINY85\SI47XX_03_SSB_Tiny4kOLED --output-dir  %homepath%\Downloads\hex\ATTIMY85\SI47XX_03_SSB_Tiny4kOLED
+
+
 ECHO OFF
 
 ECHO "ESP8266 based board"
