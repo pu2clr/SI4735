@@ -166,6 +166,12 @@ echo "SEEEDUINO"
 # arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0 -u -p /dev/cu.usbmodem14201   ./SI47XX_15_SEEEDUINO/OLED_ALL_IN_ONE
 arduino-cli compile --fqbn Seeeduino:samd:seeed_XIAO_m0  ./SI47XX_15_SEEEDUINO/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/SEEEDUINO/OLED_ALL_IN_ONE
 
+
+# Teensy
+echo "Teensy"
+arduino-cli compile --fqbn teensy:avr:teensy41   ./SI47XX_14_TEENSY/OLED_ALL_IN_ONE --output-dir ~/Downloads/hex/TEENSY/OLED_ALL_IN_ONE
+
+
 # compiles ATTiny85
 echo "ATTINY85"
 echo "*** SSB"
