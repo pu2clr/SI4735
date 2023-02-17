@@ -31,10 +31,6 @@ arduino-cli compile -b lgt8fx:avr:328 ./SI47XX_99_AUTO_BANDPASS_FILTER/SI473X_01
 # arduino-cli compile -b lgt8fx:avr:328 ./TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN --output-dir ~/Downloads/hex/lgt8fx/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN
 
 
-
-# arduino-cli compile -b lgt8fx:avr:328 ./TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN --output-dir ~/Downloads/hex/lgt8fx/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN
-
-
 echo "LCD 20x4 All In One"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_02_LCD_20x4_I2C/SI473X_04_ALL_IN_ONE
 
@@ -148,7 +144,7 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_10_RDS/SI47XX_03_RDS_TFT_ILI922
 echo "STM32"
 # arduino-cli board -b stm32duino:STM32F1:genericSTM32F103C  details
 arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2 --output-dir ~/Downloads/hex/STM32/F1/STM32_04_OLED_ALL_IN_ONE_V2
-arduino-cli compile --fqbn stm32duino:STM32F4:disco_f411  ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2 --output-dir ~/Downloads/hex/STM32/Disco/STM32_04_OLED_ALL_IN_ONE_V2 
+arduino-cli compile --fqbn STMicroelectronics:stm32:Disco    ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2 --output-dir ~/Downloads/hex/STM32/Disco/STM32_04_OLED_ALL_IN_ONE_V2 
 arduino-cli compile --fqbn STMicroelectronics:stm32:GenF4 ./SI47XX_07_STM32/STM32_04_OLED_ALL_IN_ONE_V2 --output-dir ~/Downloads/hex/STM32/F4/STM32_04_OLED_ALL_IN_ONE_V2 
 
 echo "STM32 - PLAMEN"
