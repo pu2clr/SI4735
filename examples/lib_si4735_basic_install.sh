@@ -84,7 +84,7 @@ arduino-cli core install arduino:sam
 # arduino-cli core install ATTinyCore:avr
 # arduino-cli core install MegaCore:avr
 # arduino-cli core install MightyCore:avr
-# arduino-cli core installteensy:avr
+# arduino-cli core install teensy:avr
 
 echo "Run the command below if you want all libraries and boards used by all the examples of SI4735 Arduino Library"
 echo "curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/install_all_libraries_and_boards.sh | sh"

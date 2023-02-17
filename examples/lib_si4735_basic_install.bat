@@ -70,5 +70,6 @@ arduino-cli core install arduino:sam
 :: arduino-cli core install ATTinyCore:avr
 :: arduino-cli core install MegaCore:avr
 :: arduino-cli core install MightyCore:avr
+:: arduino-cli core install teensy:avr
 
 echo "Finish"
