@@ -51,8 +51,6 @@ arduino-cli lib install "TFT_22_ILI9225"
 arduino-cli lib install "TFT_eSPI_ES32Lab"
 arduino-cli lib install "Tiny4kOLED"
 arduino-cli lib install "TinyOLED-Fonts"
-echo "The LCD5110_Graph library needs to be installed manually. See: http://www.rinkydinkelectronics.com/library.php?id=47"
-echo "The Adafruit_SH1106 library needs to be installed manually. See: https://github.com/wonho-maker/Adafruit_SH1106"
 
 echo "Installing the boards"
 arduino-cli core install arduino:avr
@@ -69,5 +67,6 @@ arduino-cli core install Seeeduino:samd
 arduino-cli core install ATTinyCore:avr
 arduino-cli core install MegaCore:avr
 arduino-cli core install MightyCore:avr
+arduino-cli core install teensy:avr
 
 echo "Finish"

@@ -18,7 +18,7 @@ echo on
 echo "Configuring Arduino boards and libraries. It can take a long time...." 
 arduino-cli config init 
 :: Add all boards used by the examples (ATmega, Attiny, ESP32, STM32 etc) to the board list
-arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json http://dan.drown.org/stm32duino/package_STM32duino_index.json  http://drazzy.com/package_drazzy.com_index.json https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json https://mcudude.github.io/MegaCore/package_MCUdude_MegaCore_index.json https://mcudude.github.io/MightyCore/package_MCUdude_MightyCore_index.json https://mcudude.github.io/MiniCore/package_MCUdude_MiniCore_index.json https://raw.githubusercontent.com/DavidGuo-CS/OSOYOO_Arduino/main/package_osoyoo_boards_index.json https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json  https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json  https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json 
+arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json http://dan.drown.org/stm32duino/package_STM32duino_index.json  http://drazzy.com/package_drazzy.com_index.json https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json https://mcudude.github.io/MegaCore/package_MCUdude_MegaCore_index.json https://mcudude.github.io/MightyCore/package_MCUdude_MightyCore_index.json https://mcudude.github.io/MiniCore/package_MCUdude_MiniCore_index.json https://raw.githubusercontent.com/DavidGuo-CS/OSOYOO_Arduino/main/package_osoyoo_boards_index.json https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json  https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json  https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json https://www.pjrc.com/teensy/package_teensy_index.json
 
 :: Update the index of boards that can be installed
 arduino-cli core update-index
@@ -31,7 +31,7 @@ arduino-cli lib install "Adafruit BusIO"
 arduino-cli lib install "Adafruit SH110X"
 arduino-cli lib install "Adafruit SSD1306"
 arduino-cli lib install "Adafruit ST7735 and ST7789 Library"
-arduino-cli lib install "Adafruit TouchScreen"
+:: arduino-cli lib install "Adafruit TouchScreen"
 :: arduino-cli lib install "ES32Lab"
 :: arduino-cli lib install "Etherkit Si5351"
 :: arduino-cli lib install "FlashStorage_SAMD"
