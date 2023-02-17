@@ -32,7 +32,8 @@ https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_az
 https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json \
 https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json \
 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json \
-https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json 
+https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json \
+https://www.pjrc.com/teensy/package_teensy_index.json
 
 # Update the index of boards that can be installed
 arduino-cli core update-index
@@ -83,6 +84,7 @@ arduino-cli core install arduino:sam
 # arduino-cli core install ATTinyCore:avr
 # arduino-cli core install MegaCore:avr
 # arduino-cli core install MightyCore:avr
+# arduino-cli core installteensy:avr
 
 echo "Run the command below if you want all libraries and boards used by all the examples of SI4735 Arduino Library"
 echo "curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/install_all_libraries_and_boards.sh | sh"
