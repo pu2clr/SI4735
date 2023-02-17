@@ -54,6 +54,7 @@ arduino-cli core install esp32:esp32
 arduino-cli core install esp8266:esp8266
 arduino-cli core install stm32duino:STM32F1
 arduino-cli core install stm32duino:STM32F4
+arduino-cli core install STMicroelectronics:stm32
 arduino-cli core install stm32:stm32
 arduino-cli core install rp2040:rp2040
 arduino-cli core install Seeeduino:samd
