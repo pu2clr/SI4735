@@ -120,11 +120,7 @@ If you want to install all boards (esp32, ESP8266, STM32 etc) and all libraries 
 curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/install_all_libraries_and_boards.sh | sh
 ```
 
-The command below compiles some examples for each board tested with SI4735 Arduino Library 
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/compile_all.sh | sh
-```
 
 
 #### On Windows 10 and 11
