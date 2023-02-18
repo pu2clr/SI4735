@@ -252,6 +252,38 @@ With that approach, you will have the __most current version__ of the library. H
 Do you need some old version (release) of this library?  If so, [check here](https://github.com/pu2clr/SI4735/releases). 
 
 
+## Installing the most current version via arduino-cli
+
+The commands below Install the latest version of the PU2CLR SI4735 Arduino Library from github. 
+As said before, unlike a release (installed from Arduino IDE) this method installs the current situation of the PU2CLR SI4535 Arduino Library (latest modifications but not yet released). 
+
+### On macOS or Linux
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+export ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
+./bin/arduino-cli lib install --git-url https://github.com/pu2clr/SI4735
+```
+
+### On Windows 10 or 11
+
+Run the command shell (cmd) and follow the steps below.
+
+```bash
+echo off  
+curl -fsSL https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip --output arduinocli.zip
+tar -xf arduinocli.zip 
+set ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
+.\arduino-cli lib install --git-url https://github.com/pu2clr/SI4735
+```
+
+
+
+
+To know more about arduino-cli click [here] (https://github.com/pu2clr/SI4735/tree/master/examples#arduino-cli---a-faster-alternative-to-the-arduino-ide).
+
+
+
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
