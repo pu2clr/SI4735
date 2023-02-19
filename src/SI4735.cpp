@@ -213,8 +213,9 @@ void SI4735::setGpioIen(uint8_t STCIEN, uint8_t RSQIEN, uint8_t ERRIEN, uint8_t 
  * @brief I2C bus address setup
  * 
  * @details Scans for two possible addresses for the Si47XX (0x11 or 0x63).
- * @details This function also sets the system to the found I2C bus address of Si47XX.
- * @details You do not need to use this function if the SEN PIN is configured to ground (GND). The default I2C address is 0x11.
+ * @details This function also sets the system to use the found I2C bus address of Si47XX.
+ * @details The default I2C address is 0x11. So, you do not need to use this function if you are using an SI4735 and the 
+ * @details SEN PIN is configured to ground (GND) or you are using the SI4732 and tnhe SEN PIN is configured to Vcc. 
  * @details Use this function if you do not know how the SEN pin is configured.
  * 
  * @param uint8_t  resetPin MCU Mater (Arduino) reset pin
@@ -257,14 +258,17 @@ int16_t SI4735::getDeviceI2CAddress(uint8_t resetPin)
  * 
  * @brief Sets the I2C Bus Address
  *
- * @details The parameter senPin is not the I2C bus address. It is the SEN pin setup of the schematic (eletronic circuit).
- * @details If it is connected to the ground, call this function with senPin = 0; else senPin = 1.
- * @details You do not need to use this function if the SEN PIN configured to ground (GND).
- * @details The default value is 0x11 (senPin = 0). In this case you have to ground the pin SEN of the SI473X. 
- * @details If you want to change this address, call this function with senPin = 1.
+ * @details The parameter senPin  can be 0 or 1 (is not the I2C bus address). 
+ * @details It refers to the SEN pin setup of your schematic (eletronic circuit).
+ * @details If are using an SI4735 and SEN pin is connected to the ground, call this function with senPin = 0; else senPin = 1.
+ * @details If are using an SI4732 and SEN pin is connected to the Vcc, call this function with senPin = 0; else senPin = 1.
+ * @details Consider using the getDeviceI2CAddress function instead.
  *  
- * @param senPin 0 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to low (GND - 0V);
- *               1 -  when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to high (+3.3V).
+ * @param senPin 0 -  SI4735 device: when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to low (GND - 0V);
+ *               1 -  Si4735 device: when the pin SEN (16 on SSOP version or pin 6 on QFN version) is set to high (+3.3V).
+ *               If you are using an SI4732 device, reverse the above logic (1 - GND or 0 - +3.3V).   
+ * 
+ * @see: getDeviceI2CAddress
  */
 void SI4735::setDeviceI2CAddress(uint8_t senPin)
 {
@@ -274,9 +278,10 @@ void SI4735::setDeviceI2CAddress(uint8_t senPin)
 /**
  * @ingroup group05 I2C bus address
  * 
- * @brief Sets the onther I2C Bus Address (for Si470X) 
+ * @brief Sets the other I2C Bus Address (for Si470X) 
  * 
  * @details You can set another I2C address different of 0x11  and 0x63
+ * @details It can be useful if another device made by Silicon Labs uses another address setup
  * 
  * @param uint8_t i2cAddr (example 0x10)
  */
