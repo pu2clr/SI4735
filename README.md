@@ -279,7 +279,7 @@ set ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
 
 ### About library installation and programming setup see also:
 
-* More about arduino-cli click [here] (https://github.com/pu2clr/SI4735/tree/master/examples#arduino-cli---a-faster-alternative-to-the-arduino-ide).
+* More about arduino-cli click [here](https://github.com/pu2clr/SI4735/tree/master/examples#arduino-cli---a-faster-alternative-to-the-arduino-ide).
 * About Arduino IDE, arduino-cli, SI4735 Arduino Library examples and programming setup, see the scripts below 
   * On macOS or Linux 
     * examples/__lib_si4735_basic_install.sh__ - Installs arduino-cli and some libraries and boards used by some the examples
