@@ -290,6 +290,31 @@ set ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
     * examples/__install_all_libraries_and_boards.bat__ - Installs all libraries and all boards used by the examples
     * examples/__compile_all.bat__ - compiles all examples and save the binaries in your Downloads folder
 
+### Bords setup on your Arduino IDE
+
+It will be useful if you intend to use ESP32, ESP8266, Teensy, Raspbery PI PICO, Arduino DUE, ATTiny etc. 
+
+On Arduino IDE, preferences, Aditional boards manager URls, add the lines below.
+
+```bash
+http://arduino.esp8266.com/stable/package_esp8266com_index.json 
+http://dan.drown.org/stm32duino/package_STM32duino_index.json 
+http://drazzy.com/package_drazzy.com_index.json 
+https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json 
+https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json 
+https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json 
+https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json 
+https://mcudude.github.io/MegaCore/package_MCUdude_MegaCore_index.json 
+https://mcudude.github.io/MightyCore/package_MCUdude_MightyCore_index.json 
+https://mcudude.github.io/MiniCore/package_MCUdude_MiniCore_index.json 
+https://raw.githubusercontent.com/DavidGuo-CS/OSOYOO_Arduino/main/package_osoyoo_boards_index.json 
+https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json 
+https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json 
+https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json 
+https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json 
+https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json 
+https://www.pjrc.com/teensy/package_teensy_index.json
+``` 
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
