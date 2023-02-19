@@ -267,7 +267,7 @@ export ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
 
 ### On Windows 10 or 11
 
-Run the command shell (cmd) and follow the steps below.
+Run the command shell (cmd / Command Prompt) and follow the steps below.
 
 ```bash
 echo off  
@@ -277,11 +277,18 @@ set ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
 .\arduino-cli lib install --git-url https://github.com/pu2clr/SI4735
 ```
 
+### About library installation and programming setup see also:
 
-
-
-To know more about arduino-cli click [here] (https://github.com/pu2clr/SI4735/tree/master/examples#arduino-cli---a-faster-alternative-to-the-arduino-ide).
-
+* More about arduino-cli click [here] (https://github.com/pu2clr/SI4735/tree/master/examples#arduino-cli---a-faster-alternative-to-the-arduino-ide).
+* About Arduino IDE, arduino-cli, SI4735 Arduino Library examples and programming setup, see the scripts below 
+  * On macOS or Linux 
+    * examples/__lib_si4735_basic_install.sh__ - Installs arduino-cli and some libraries and boards used by some the examples
+    * examples/__install_all_libraries_and_boards.sh__ - Installs all libraries and all boards used by the examples
+    * examples/__compile_all.sh__ - compiles all examples and save the binaries in your Downloads folder
+  * On Windows 10 or 11 
+    * examples/__lib_si4735_basic_install.bat__ - Installs arduino-cli and some libraries and boards used by some the examples
+    * examples/__install_all_libraries_and_boards.bat__ - Installs all libraries and all boards used by the examples
+    * examples/__compile_all.bat__ - compiles all examples and save the binaries in your Downloads folder
 
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
