@@ -323,6 +323,8 @@ https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_null
 https://www.pjrc.com/teensy/package_teensy_index.json
 ``` 
 
+After adding the Board URL you want to use, go to Tools menu, select the Boards item and then select Boards Manager... option. Finally,  look for your board and install it.
+
 
 [See the ESP32 setup example on Arduino IDE](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32) 
 
