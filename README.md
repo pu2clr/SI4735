@@ -323,6 +323,10 @@ https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_null
 https://www.pjrc.com/teensy/package_teensy_index.json
 ``` 
 
+
+[See the ESP32 setup example on Arduino IDE](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32) 
+
+
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
