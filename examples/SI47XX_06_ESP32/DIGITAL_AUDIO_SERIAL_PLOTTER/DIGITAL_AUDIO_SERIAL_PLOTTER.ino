@@ -163,7 +163,7 @@ void loop() {
 
   // False print statements to "lock range" on serial plotter display
   // Change rangelimit value to adjust "sensitivity"
-  int rangelimit = 20000;
+  int rangelimit = 5000;
   Serial.print(rangelimit * -1);
   Serial.print(" ");
   Serial.print(rangelimit);
