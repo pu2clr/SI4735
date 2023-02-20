@@ -290,11 +290,18 @@ set ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
     * examples/__install_all_libraries_and_boards.bat__ - Installs all libraries and all boards used by the examples
     * examples/__compile_all.bat__ - compiles all examples and save the binaries in your Downloads folder
 
-### Bords setup on your Arduino IDE
+## Bords setup on your Arduino IDE
 
 It will be useful if you intend to use ESP32, ESP8266, Teensy, Raspbery PI PICO, Arduino DUE, ATTiny etc. 
 
-On Arduino IDE, preferences, Aditional boards manager URls, add the lines below.
+On Arduino IDE, preferences, Aditional boards manager URls. See image below.
+
+
+![Installing boards used by examples](extras/images/arduino_board_install.png)
+
+
+The list below refers to the board URLs used by the examples. You can remove the boards you do not want to use.
+
 
 ```bash
 http://arduino.esp8266.com/stable/package_esp8266com_index.json 
