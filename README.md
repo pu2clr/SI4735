@@ -297,7 +297,7 @@ It will be useful if you intend to use ESP32, ESP8266, Teensy, Raspbery PI PICO,
 On Arduino IDE, preferences, Aditional boards manager URls. See image below.
 
 
-![Installing boards used by examples](extras/images/arduino_board_install.png)
+![Installing boards used by examples](extras/images/arduino_board_install.jpg)
 
 
 The list below refers to the board URLs used by the examples. You can remove the boards you do not want to use.
