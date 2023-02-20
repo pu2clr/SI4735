@@ -8,7 +8,7 @@
 
   | Si4735    | Function  | ESP32               |
   |-----------| ----------|---------------------|
-  | pin 15    |   RESET   |   12 (GPIO17)       |  
+  | pin 15    |   RESET   |   GPIO17            |  
   | pin 18    |   SDIO    |   21 (SDA / GPIO21) |
   | pin 17    |   SCLK    |   22 (SCL / GPIO22) |
 
@@ -27,7 +27,7 @@
 
   | SI4732    | Function  | ESP32               |
   |-----------| ----------|---------------------|
-  | pin  9    |   RESET   |   12 (GPIO17)       |  
+  | pin  9    |   RESET   |   GPIO17            |  
   | pin 12    |   SDIO    |   21 (SDA / GPIO21) |
   | pin 11    |   SCLK    |   22 (SCL / GPIO22) |
 
@@ -66,13 +66,16 @@
 #include <SI4735.h>
 #include <driver/i2s.h>
 
-#define RESET_PIN 12
+#define RESET_PIN 17
 
 SI4735 si4735;
 
 #define I2S_WS 25
 #define I2S_SD 33
 #define I2S_SCK 32
+
+#define I2C_SDA 21
+#define I2C_CLK 22 
 
 // Define input buffer length
 #define bufferLen 64
@@ -103,7 +106,7 @@ void setup() {
 
   digitalWrite(RESET_PIN, HIGH);
   
-  Wire.begin();
+  Wire.begin(I2C_SDA,I2C_CLK);
 
   delay(500);
   Serial.println("\nsi4735.setup..."); 
