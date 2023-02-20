@@ -18,9 +18,9 @@
 
   | Si4735    | Function  |  DAC      | ESP LOLIN32 WEMOS (GPIO)              |
   |-----------| ----------|-----------|---------------------------------------|
-  | pin 1     |   DIO     |  DIN      |  SerialData / GPIO32                  |
+  | pin 1     |   DIO     |  DIN      |  SerialData / GPIO33                  |
   | pin 2     |   DFS     |  LRCK     |  WordSelect / GPIO25                  |
-  | pin 3     |   DCLK    |  BCK      |  ContinuousSerialClock) / GPIO33)     |
+  | pin 3     |   DCLK    |  BCK      |  ContinuousSerialClock) / GPIO32)     |
 
 
   SI4732 and ESP32 I2C wireup
@@ -36,8 +36,8 @@
   | SI4732   | Function   | DAC      | ESP LOLIN32 WEMOS (GPIO)              |
   |-----------| ----------|----------|---------------------------------------|  
   | pin  1    |  DFS      | LRCK     |  WordSelect / GPIO25                  |
-  | pin 16    |  DIO      | DIN      |  SerialData / GPIO32                  |
-  | pin  2    |  DCLK     | BSK      |  ContinuousSerialClock) / GPIO33      |     
+  | pin 16    |  DIO      | DIN      |  SerialData / GPIO33                  |
+  | pin  2    |  DCLK     | BSK      |  ContinuousSerialClock) / GPIO32      |     
 
 
   On SI4732, the active crystal or external clock must be connected to the pin 13
@@ -71,8 +71,8 @@
 SI4735 si4735;
 
 #define I2S_WS 25
-#define I2S_SD 32
-#define I2S_SCK 33
+#define I2S_SD 33
+#define I2S_SCK 32
 
 #define I2C_SDA 21
 #define I2C_CLK 22 
@@ -119,20 +119,24 @@ void setup() {
 
   // si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK); // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
   si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK); 
-  Serial.println(" Done!");
+  Serial.println("SI473X device started with Digital Audio setup!");
   delay(500);
   si4735.setFM(8400, 10800, 10390, 10); // frequency station 10650 (106.50 MHz)
   delay(500);
   Serial.print("\nsi4735.getFrequency: "); 
   Serial.println(si4735.getFrequency());
   Serial.flush();
-  delay(1000);
+  delay(2000);
+  Serial.print("\nThe current frequency is: "); 
+  Serial.println(si4735.getFrequency());
+  Serial.flush();
+  delay(2000);
   si4735.setVolume(63);
 
-
+  Serial.print("\nSetting SI473X Sample rate to 48K."); 
   si4735.digitalOutputSampleRate(48000); // 48 or 48000? To be checked
   // si4735.digitalOutputSampleRate(48); // 48 or 48000? To be checked
-  
+  delay(2000);
 
   // OSIZE Dgital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
   // OMONO Digital Output Mono Mode (0=Use mono/stereo blend ).
@@ -140,20 +144,18 @@ void setup() {
   // OFALL Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge) 
   si4735.digitalOutputFormat(0 /* OSIZE */, 0 /* OMONO */, 0 /* OMODE */, 0/* OFALL*/);
 
-  delay(500);
+  Serial.print("\nSI473X device is setted to digital Audio."); 
 
-  // Set up I2S
-  
-  // i2s_install();
-  // i2s_setpin();
-  // i2s_start(I2S_PORT);
+  delay(2000);
 
-  
+  Serial.print("\nSetting ESP32 I2S."); 
+
   i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
   i2s_set_pin(I2S_NUM_0, &pin_config);
   i2s_start(I2S_NUM_0);
-  
 
+  Serial.print("\nI2S setup is done!. Now you can open the Serial Plot Monitor."); 
+  delay(2000);
  
 }
 
