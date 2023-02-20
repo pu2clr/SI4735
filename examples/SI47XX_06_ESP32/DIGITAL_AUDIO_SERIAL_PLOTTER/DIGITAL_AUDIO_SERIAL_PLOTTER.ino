@@ -18,9 +18,9 @@
 
   | Si4735    | Function  |  DAC      | ESP LOLIN32 WEMOS (GPIO)              |
   |-----------| ----------|-----------|---------------------------------------|
-  | pin 1     |   DIO     |  DIN      |  SerialData / GPIO23                  |
+  | pin 1     |   DIO     |  DIN      |  SerialData / GPIO32                  |
   | pin 2     |   DFS     |  LRCK     |  WordSelect / GPIO25                  |
-  | pin 3     |   DCLK    |  BCK      |  ContinuousSerialClock) / GPIO26)     |
+  | pin 3     |   DCLK    |  BCK      |  ContinuousSerialClock) / GPIO33)     |
 
 
   SI4732 and ESP32 I2C wireup
@@ -36,8 +36,8 @@
   | SI4732   | Function   | DAC      | ESP LOLIN32 WEMOS (GPIO)              |
   |-----------| ----------|----------|---------------------------------------|  
   | pin  1    |  DFS      | LRCK     |  WordSelect / GPIO25                  |
-  | pin 16    |  DIO      | DIN      |  SerialData / GPIO23                  |
-  | pin  2    |  DCLK     | BSK      |  ContinuousSerialClock) / GPIO26      |     
+  | pin 16    |  DIO      | DIN      |  SerialData / GPIO32                  |
+  | pin  2    |  DCLK     | BSK      |  ContinuousSerialClock) / GPIO33      |     
 
 
   On SI4732, the active crystal or external clock must be connected to the pin 13
@@ -71,8 +71,8 @@
 SI4735 si4735;
 
 #define I2S_WS 25
-#define I2S_SD 23
-#define I2S_SCK 26
+#define I2S_SD 32
+#define I2S_SCK 33
 
 #define I2C_SDA 21
 #define I2C_CLK 22 
