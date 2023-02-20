@@ -12,6 +12,8 @@
   | pin 18    |   SDIO    |   21 (SDA / GPIO21) |
   | pin 17    |   SCLK    |   22 (SCL / GPIO22) |
 
+  On SI4735, the active crystal or external clock must be connected to the pin 19
+
   SI4735 and ESP32 I2S wireup 
 
   | Si4735    | Function  |  DAC      | ESP LOLIN32 WEMOS (GPIO)              |
@@ -37,7 +39,9 @@
   | pin 16    |  DIO      | DIN      |  33 (SerialData / GPIO23)             |
   | pin  2    |  DCLK     | BSK      |  32 (ContinuousSerialClock) / GPIO26) |     
 
-  NOTE: if you use PCM5102-module, connect SCK to GND
+
+  On SI4732, the active crystal or external clock must be connected to the pin 13
+
 
   IMPORTANT: This setup does not work with regular crystal setup. 
              You need a external active crystal or signal generator setup. 
