@@ -21,8 +21,6 @@
    This sketch has been successfully tested on:
     1) Pro Mini 3.3V; 
 
-
-
     The table below shows the Si4735 and Arduino Pro Mini pin connections 
     
     | Si4735 pin      |  Arduino Pin  |
@@ -93,7 +91,7 @@ void setup()
   // 0 -> Output DCLK Edge (0 = use DCLK rising edge)
   si4735.digitalOutputFormat(2, 0, 0, 0);
   // Digital Output Sample Rate(32–48 ksps)
-  si4735.digitalOutputSampleRate(48); 
+  si4735.digitalOutputSampleRate(48000); 
 
   // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
   si4735.setFM(8400, 10800, 10570, 10);

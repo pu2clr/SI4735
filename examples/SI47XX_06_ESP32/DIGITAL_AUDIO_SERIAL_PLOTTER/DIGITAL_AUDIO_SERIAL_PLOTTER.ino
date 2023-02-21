@@ -87,8 +87,8 @@ int16_t sBuffer[bufferLen];
 const i2s_config_t i2s_config = {
   .mode = i2s_mode_t(I2S_MODE_MASTER | I2S_MODE_RX),
   .sample_rate = 48000,
-  .bits_per_sample = i2s_bits_per_sample_t(16),
-  .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
+  .bits_per_sample = i2s_bits_per_sample_t(16),  // Resolution: More bits better quality  
+  .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT, 
   .communication_format = i2s_comm_format_t(I2S_COMM_FORMAT_STAND_I2S),
   .intr_alloc_flags = 0,
   .dma_buf_count = 8,
@@ -119,7 +119,6 @@ void setup() {
   // Use SI473X_DIGITAL_AUDIO2       - Digital audio output (SI4735 device pins: 3/DCLK, 2/DFS, 1/DIO)
   // Use SI473X_ANALOG_DIGITAL_AUDIO - Analog and digital audio outputs (24/LOUT/ 23/ROUT and 3/DCLK, 2/DFS, 1/DIO)
   // XOSCEN_RCLK                     - Use external source clock (active crystal or signal generator)
-
   // si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK); // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
   si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK); 
   Serial.println("SI473X device started with Digital Audio setup!");
@@ -137,8 +136,8 @@ void setup() {
   si4735.setVolume(63);
 
   Serial.print("\nSetting SI473X Sample rate to 48K."); 
-  si4735.digitalOutputSampleRate(48000); // 48 or 48000? To be checked
-  // si4735.digitalOutputSampleRate(48); // 48 or 48000? To be checked
+  si4735.digitalOutputSampleRate(48000); 
+
   delay(2000);
 
   // OSIZE Dgital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
