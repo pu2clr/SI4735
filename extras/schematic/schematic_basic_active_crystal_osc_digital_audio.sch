@@ -9068,9 +9068,10 @@ Metric Code Size 5664</description>
 <text x="22.86" y="55.88" size="1.778" layer="91">If GND, I2C addr =  0x11</text>
 <text x="22.86" y="50.8" size="1.778" layer="91">If VCC, I2C addr =  0x63</text>
 <text x="40.64" y="104.14" size="1.778" layer="91">external clock</text>
-<text x="-60.96" y="132.08" size="1.778" layer="91">SD / DIO</text>
-<text x="-76.2" y="121.92" size="1.778" layer="91">DFS / WS</text>
-<text x="-73.66" y="109.22" size="1.778" layer="91">DCLK / SCK</text>
+<text x="-60.96" y="144.78" size="1.778" layer="91">SD / DIO</text>
+<text x="-78.74" y="127" size="1.778" layer="91">DFS / WS</text>
+<text x="-81.28" y="111.76" size="1.778" layer="91">DCLK / SCK</text>
+<rectangle x1="-83.82" y1="109.22" x2="-27.94" y2="154.94" layer="204"/>
 </plain>
 <instances>
 <instance part="B1" gate="G$1" x="76.2" y="101.6" smashed="yes">
@@ -9130,9 +9131,9 @@ Metric Code Size 5664</description>
 <attribute name="NAME" x="-67.056" y="104.521" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-67.056" y="99.441" size="1.778" layer="96"/>
 </instance>
-<instance part="FM" gate="A" x="-81.28" y="111.76" smashed="yes">
-<attribute name="NAME" x="-83.82" y="113.03" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-78.74" y="106.68" size="1.778" layer="96"/>
+<instance part="FM" gate="A" x="-86.36" y="111.76" smashed="yes">
+<attribute name="NAME" x="-88.9" y="113.03" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-83.82" y="106.68" size="1.778" layer="96"/>
 </instance>
 <instance part="AM" gate="A" x="-12.7" y="76.2" smashed="yes">
 <attribute name="NAME" x="-15.24" y="77.47" size="1.778" layer="95"/>
@@ -9161,20 +9162,20 @@ Metric Code Size 5664</description>
 <attribute name="NAME" x="-46.99" y="146.2786" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-46.99" y="141.478" size="1.778" layer="96"/>
 </instance>
-<instance part="R2" gate="G$1" x="-58.42" y="121.92" smashed="yes">
-<attribute name="NAME" x="-62.23" y="123.4186" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-62.23" y="118.618" size="1.778" layer="96"/>
+<instance part="R2" gate="G$1" x="-58.42" y="127" smashed="yes">
+<attribute name="NAME" x="-62.23" y="128.4986" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-62.23" y="123.698" size="1.778" layer="96"/>
 </instance>
-<instance part="R3" gate="G$1" x="-53.34" y="109.22" smashed="yes">
-<attribute name="NAME" x="-57.15" y="110.7186" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-57.15" y="105.918" size="1.778" layer="96"/>
+<instance part="R3" gate="G$1" x="-60.96" y="111.76" smashed="yes">
+<attribute name="NAME" x="-64.77" y="113.2586" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-59.69" y="113.538" size="1.778" layer="96"/>
 </instance>
-<instance part="C5" gate="G$1" x="-45.72" y="119.38" smashed="yes">
-<attribute name="NAME" x="-44.704" y="120.015" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-44.704" y="115.189" size="1.778" layer="96"/>
+<instance part="C5" gate="G$1" x="-45.72" y="124.46" smashed="yes">
+<attribute name="NAME" x="-44.704" y="125.095" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-44.704" y="120.269" size="1.778" layer="96"/>
 </instance>
-<instance part="GND2" gate="1" x="-45.72" y="127" smashed="yes" rot="R180">
-<attribute name="VALUE" x="-43.18" y="129.54" size="1.778" layer="96" rot="R180"/>
+<instance part="GND2" gate="1" x="-45.72" y="132.08" smashed="yes" rot="R180">
+<attribute name="VALUE" x="-43.18" y="134.62" size="1.778" layer="96" rot="R180"/>
 </instance>
 </instances>
 <busses>
@@ -9234,7 +9235,7 @@ Metric Code Size 5664</description>
 <segment>
 <pinref part="C5" gate="G$1" pin="1"/>
 <pinref part="GND2" gate="1" pin="GND"/>
-<wire x1="-45.72" y1="121.92" x2="-45.72" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="-45.72" y1="127" x2="-45.72" y2="129.54" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SDA" class="0">
@@ -9362,7 +9363,7 @@ Metric Code Size 5664</description>
 <net name="N$14" class="0">
 <segment>
 <pinref part="C2" gate="G$1" pin="1"/>
-<wire x1="-68.58" y1="106.68" x2="-81.28" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="106.68" x2="-86.36" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="FM" gate="A" pin="1"/>
 </segment>
 </net>
@@ -9408,20 +9409,38 @@ Metric Code Size 5664</description>
 <net name="N$11" class="0">
 <segment>
 <pinref part="R2" gate="G$1" pin="2"/>
+<wire x1="-53.34" y1="127" x2="-53.34" y2="114.3" width="0.1524" layer="91"/>
 <pinref part="U1" gate="A" pin="DFS"/>
-<wire x1="-53.34" y1="121.92" x2="-53.34" y2="114.3" width="0.1524" layer="91"/>
-<wire x1="-53.34" y1="114.3" x2="-45.72" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="-33.02" y1="114.3" x2="-45.72" y2="114.3" width="0.1524" layer="91"/>
 <pinref part="C5" gate="G$1" pin="2"/>
-<wire x1="-45.72" y1="114.3" x2="-33.02" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="-45.72" y1="114.3" x2="-53.34" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="-45.72" y1="119.38" x2="-45.72" y2="114.3" width="0.1524" layer="91"/>
 <junction x="-45.72" y="114.3"/>
 </segment>
 </net>
 <net name="N$16" class="0">
 <segment>
 <pinref part="U1" gate="A" pin="GPO3/[DCLK]"/>
-<wire x1="-33.02" y1="111.76" x2="-48.26" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="-33.02" y1="111.76" x2="-55.88" y2="111.76" width="0.1524" layer="91"/>
 <pinref part="R3" gate="G$1" pin="2"/>
-<wire x1="-48.26" y1="111.76" x2="-48.26" y2="109.22" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$17" class="0">
+<segment>
+<pinref part="R1" gate="G$1" pin="1"/>
+<junction x="-48.26" y="144.78"/>
+</segment>
+</net>
+<net name="N$18" class="0">
+<segment>
+<pinref part="R2" gate="G$1" pin="1"/>
+<junction x="-63.5" y="127"/>
+</segment>
+</net>
+<net name="N$19" class="0">
+<segment>
+<pinref part="R3" gate="G$1" pin="1"/>
+<junction x="-66.04" y="111.76"/>
 </segment>
 </net>
 </nets>
