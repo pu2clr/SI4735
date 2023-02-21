@@ -21,9 +21,9 @@
 
   | Si4735    | Function  |  DAC      | ESP LOLIN32 WEMOS (GPIO)              |
   |-----------| ----------|-----------|---------------------------------------|
-  | pin 1     |   DIO     |  DIN      |  SerialData / GPIO33                  |
+  | pin 1     | DIO /  SD |  DIN      |  SerialData / GPIO32                  |
   | pin 2     |   DFS     |  LRCK     |  WordSelect / GPIO25                  |
-  | pin 3     |   DCLK    |  BCK      |  ContinuousSerialClock) / GPIO32)     |
+  | pin 3     | DCLK / SCK|  BCK      |  ContinuousSerialClock) / GPIO33)     |
 
 
   SI4732 and ESP32 I2C wireup
@@ -38,9 +38,9 @@
 
   | SI4732   | Function   | DAC      | ESP LOLIN32 WEMOS (GPIO)              |
   |-----------| ----------|----------|---------------------------------------|  
-  | pin  1    |  DFS      | LRCK     |  WordSelect / GPIO25      |
-  | pin 16    |  DIO      | DIN      |  SerialData / GPIO33                  |
-  | pin  2    |  DCLK     | BSK      |  ContinuousSerialClock)  / GPIO32                  |     
+  | pin  1    |  DFS/WS   | LRCK     |  WordSelect / GPIO25                  |
+  | pin 16    |  DIO/SD   | DIN      |  SerialData / GPIO32                  |
+  | pin  2    |  DCLK/SCK | BSK      |  ContinuousSerialClock)  / GPIO33     |     
 
 
   On SI4732, the active crystal or external clock must be connected to the pin 13
@@ -74,8 +74,8 @@
 SI4735 si4735;
 
 #define I2S_WS 25
-#define I2S_SD 33
-#define I2S_SCK 32
+#define I2S_SD 32
+#define I2S_SCK 33
 
 #define I2C_SDA 21
 #define I2C_CLK 22 
@@ -123,7 +123,7 @@ void setup() {
   si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK); 
   Serial.println("SI473X device started with Digital Audio setup!");
   delay(500);
-  si4735.setFM(8400, 10800, 10390, 10); // frequency station 10650 (106.50 MHz)
+  si4735.setFM(8400, 10800, 10650, 10); // frequency station 10650 (106.50 MHz)
   delay(500);
   Serial.print("\nsi4735.getFrequency: "); 
   Serial.println(si4735.getFrequency());
