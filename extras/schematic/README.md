@@ -512,6 +512,13 @@ You can use a signal generator or a active crystal oscillator instead the passiv
 ![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc.png)
 
 
+The schematic  velow shows the Digital Audio setup. 
+
+
+![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc_digital_audio.png)
+
+
+
 If you have an active crystal or other signal generator that oscillates at Z Hz, where Z is a value greater than 31130Hz, do the follow steps: 
  * __Choosing a reference clock value between 31130Hz and 34406 Hz that multiplied by N (prescaler) is equal or very close to Z__. 
  * call the setRefClock(R). Where R (reference clock) have to be a value between 31130Hz and 34406;
