@@ -11,7 +11,7 @@
 
   | Si4735    | Function  | ESP32               |
   |-----------| ----------|---------------------|
-  | pin 15    |   RESET   |   GPIO17            |  
+  | pin 15    |   RESET   |   GPIO12            |  
   | pin 18    |   SDIO    |   21 (SDA / GPIO21) |
   | pin 17    |   SCLK    |   22 (SCL / GPIO22) |
 
@@ -30,7 +30,7 @@
 
   | SI4732    | Function  | ESP32               |
   |-----------| ----------|---------------------|
-  | pin  9    |   RESET   |   GPIO17            |  
+  | pin  9    |   RESET   |   GPIO12            |  
   | pin 12    |   SDIO    |   21 (SDA / GPIO21) |
   | pin 11    |   SCLK    |   22 (SCL / GPIO22) |
 
@@ -69,7 +69,7 @@
 #include <SI4735.h>
 #include <driver/i2s.h>
 
-#define RESET_PIN 17
+#define RESET_PIN 12
 
 SI4735 si4735;
 
