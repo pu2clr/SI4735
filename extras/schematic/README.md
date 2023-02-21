@@ -512,7 +512,7 @@ You can use a signal generator or a active crystal oscillator instead the passiv
 ![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc.png)
 
 
-The schematic  velow shows the Digital Audio setup. 
+The schematic  below shows the Digital Audio setup. 
 
 
 ![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc_digital_audio.png)
