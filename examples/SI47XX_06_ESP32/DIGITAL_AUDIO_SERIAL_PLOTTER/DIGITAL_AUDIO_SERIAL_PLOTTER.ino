@@ -35,9 +35,9 @@
 
   | SI4732   | Function   | DAC      | ESP LOLIN32 WEMOS (GPIO)              |
   |-----------| ----------|----------|---------------------------------------|  
-  | pin  1    |  DFS      | LRCK     |  WordSelect / GPIO25                  |
+  | pin  1    |  DFS      | LRCK     |  WordSelect / GPIO25      |
   | pin 16    |  DIO      | DIN      |  SerialData / GPIO33                  |
-  | pin  2    |  DCLK     | BSK      |  ContinuousSerialClock) / GPIO32      |     
+  | pin  2    |  DCLK     | BSK      |  ContinuousSerialClock)  / GPIO32                  |     
 
 
   On SI4732, the active crystal or external clock must be connected to the pin 13
