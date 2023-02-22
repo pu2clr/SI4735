@@ -512,11 +512,6 @@ You can use a signal generator or a active crystal oscillator instead the passiv
 ![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc.png)
 
 
-The schematic  below shows the Digital Audio setup. 
-
-
-![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc_digital_audio.png)
-
 
 
 If you have an active crystal or other signal generator that oscillates at Z Hz, where Z is a value greater than 31130Hz, do the follow steps: 
@@ -602,6 +597,14 @@ Video:
 [SI4735-D60 and external reference clock test](https://youtu.be/Jgh3ScQUudE)
 
 {% include external_crystal.html %}
+
+
+## Digital Audio (I2S) setup
+
+To use I2S with SI473X device family, you must use the external clock or active crystal setup (see previous section). The schematic  below shows the Digital Audio setup. 
+
+
+![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc_digital_audio.png)
 
 
 
