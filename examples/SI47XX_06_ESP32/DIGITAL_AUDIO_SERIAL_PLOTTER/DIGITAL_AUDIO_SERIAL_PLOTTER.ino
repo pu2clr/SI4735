@@ -116,6 +116,10 @@ void setup() {
   Serial.println("\nsi4735.setup..."); 
   Serial.flush();
 
+  // Sets active 32.768kHz crystal (32768Hz)
+  si4735.setRefClock(32768);           // Ref = 32768Hz
+  si4735.setRefClockPrescaler(1);      // 32768 x 1 = 32768Hz
+
   // Use SI473X_DIGITAL_AUDIO1       - Digital audio output (SI4735 device pins: 3/DCLK, 24/LOUT/DFS, 23/ROUT/DIO )
   // Use SI473X_DIGITAL_AUDIO2       - Digital audio output (SI4735 device pins: 3/DCLK, 2/DFS, 1/DIO)
   // Use SI473X_ANALOG_DIGITAL_AUDIO - Analog and digital audio outputs (24/LOUT/ 23/ROUT and 3/DCLK, 2/DFS, 1/DIO)
