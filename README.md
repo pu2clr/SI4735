@@ -368,6 +368,121 @@ While the Si4735-D60 provides the 0x11 I²C bus address when the SEN pin is conn
 
 
 
+## Hardware Requirements and Setup
+
+This library has been written for the Arduino platform and has been successfully tested on many boards. See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
+
+
+### Arduino 5V and Si4735
+
+* __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO or anothe board, YOU HAVE TO USE A KIND OF 5V-3.3V BIDIRECTIONAL CONVERTER. Also pay attention to the appropriated pinout of your board to select the correct interrupt (IRQ- if you are using), RST, SDIO and SCLK pins. The table below shows some Arduino board pinout.__ 
+
+<BR>
+
+|Board | InterrupT (IRQ) Pins| I²C / TWI pins | successfully tested | Voltage converter |
+|------|---------------------| ---------------| ------------------- | ----------------- | 
+|328-based <br> (Nano, Uno or Mini 5V) |	D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | Yes | 
+|328-based <br> (Pro Mini 3.3 / 8Mhz) | D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | No | 
+| Mega 2560 | 2, 3, 18, 19, 20 and  21 | 20 (SDA/SDIO), 21 (SCL/SCLK) | Yes | Yes |
+| 32u4-based <br> (Micro, Leonardo or Yum)	| 0, 1, 2, 3 and 7 | 2 (SDA/SDIO), 3 (SCL/SCLK) |  Yes | Yes |
+| Zero | all digital pins except pin 4 | D8 (SDA/SDIO) and D9 (SCL/SCLK)  | Not tested | No |
+| Due	| all digital pins | 20 (SDA/SDIO), 21 (SCL/SCLK) | Yes  |  No |
+| 101	| all digital pins. <br> Only pins 2, 5, 7, 8, 10, 11, 12, 13 work with CHANGE| -  | Not tested | No |
+| ESPRESSIF ESP32 | all GPIO pins |  Most pins (usually 21 and 22) | Yes | No | 
+| STM32F103  | PA0, PA1 | PB6 (SCL) and PB7(SDA) | Yes | No |
+
+
+
+### Schematic
+
+The main purpose of this prototype is to test the Si4735 Arduino Library. It does not intend to be a real radio for exigent listeners. However, it is possible to start with it and then, if you wish, you can include some devices to the circuit to improve, for example,  its sensibility beyond other desired features.
+[Click here to see a complete set of schematics and tips](https://pu2clr.github.io/SI4735/extras/schematic)
+
+The image below shows a version of Silicon Labs SSOP Typical Application Schematic connect to the host MCU (Arduino Pro Mini 3.3V). __Pay attention to the Si4735-D60 SEN pin (16).  When the SEN pin is connected to the ground, the I²C bus address is 0x11. When the SEN pin is connected to +3.3V, the I²C bus address is 0x63.  By default, the "Si4735 Arduino Library" uses the 0x11 I²C bus address (SEN pin connected to GND). If you want to use the address 0x63 (SEN connected on +3.3V), see the functions (methods) getDeviceI2CAddress, setDeviceI2CAddress and setDeviceOtherI2CAddress__.   
+
+<BR>
+
+#### Basic Schematic with SI4735-D60
+
+![Basic Schematic Eagle version with SI4735-D60](./extras/images/schematic_basic_eagle.png)
+
+
+#### Basic Schematic with SI4732-A10
+
+![Basic Schematic Eagle version with SI4732-A10](./extras/images/schematic_basic_SI4732.png)
+
+
+
+__Please, check the folder [extras/schematic/](https://pu2clr.github.io/SI4735/extras/schematic)__. There, you will find other schematics with OLED, LCD, Nokia 5110, TFT, buttons and encoders setup. Also, check the comments at the beginning of each sketch example. You will find the SI473X, button, encoder, display and Arduino settings. 
+
+
+
+#### The picture below shows the SI4735-D60/SI4730-D60 pinout (SSOP)
+
+![Si4735-D60 pinout](./extras/images/Si4735-D60-pinout.png)
+
+#### The picture below shows the SI4732-A10 pinout (16L SOIC Package)
+
+![Si4732-A10 pinout](./extras/images/SI4732_A10_pinout.png)
+
+ 
+
+#### The picture below shows the SI473X pinout (QFN)
+
+![Si4735-D60 pinout](./extras/images/SI4735_D50_QFN.png)
+
+
+
+* The SI4735-D60 and SI4732-A10 have SSB patch support
+* __See some Shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
+
+* __Pay attention to the appropriated Arduino pinout to select the correct interrupt (IRQ), RST, SDIO and SCLK pins. The previous table shows some Arduino board pinout__.  
+* __Be sure about the pinout of your device and Arduino connections. For example: the Si4735-D60/Si4730_D60 SEN pin (16 on SSOP version and 6 on QFN version) when connected to the ground, the I²C bus address is 0x11. When this pin is connected to +3.3V, the I²C bus address is 0x63__. See the functions [getDeviceI2CAddress](https://pu2clr.github.io/SI4735/#getdevicei2caddress) and [setDeviceI2CAddress](https://pu2clr.github.io/SI4735/#setdevicei2caddress) to correct setup. If you follow the schematic used in this project, you do not need to do anything (the default I²C bus address is 0x11). If you do not know how this pin is configured on the board, use [getDeviceI2CAddress](https://pu2clr.github.io/SI4735/#getdevicei2caddress).  
+
+<BR>
+
+#### The image bellow shows the Silicon Labs SSOP Typical Application Schematic.
+
+![Silicon Labs Schematic](./extras/images/silicon_labs_schematic_pag_19.png)
+
+
+
+<BR>
+
+### Parts
+
+The table below shows the component parts used to build the radio prototype based on Si4735 and used the Silicon Labs SSOP Typical Application Schematic as main source. However, some parts were included by the author of this project. 
+
+
+|Part	| Description |
+|-------| ------------ |
+| C1    | 22nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VA pin)|
+| C2    | 1nF Monolithic Multilayer Chip Ceramic non polarized capacitor |
+| C3    | 470nF Monolithic Multilayer Chip Ceramic non polarized capacitor| 
+| C4    | 100nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VD pin)|
+| C5 and C6 | 22pF (Crystal load capacitors) | 
+| C7 and C8 *1 | 4.7uF Monolithic Multilayer Chip Ceramic non polarized capacitor | 
+| R3    | 2.2K |
+| (R4 and R5) *2 | 2.2K to 10K (pull-up resistors) |
+| L1 | Ferrite loop stick (about 500 μH) |
+| X1    | 32.768 kHz crystal |
+| SI4735 | digital CMOS AM(LW, MW and SW)/FM radio receiver IC |
+
+  * *1: C7 and C8 are ceramic capacitors included by the author of this project. They are not present on the original Silicon Labs schematic. Actually, you can use also electrolytic capacitors. Values between 2.2uF to 10uF will work well. 
+  * *2: R4 and R5 are pull-up resistor included by the author of this project. They are not present on the original Silicon Labs schematic.  This will also depend on other devices connected to the same I²C bus.  __Always try to use the lowest possible value__.
+
+__Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (page 12)__:
+* Place C1 close to VA and C4 close to VD pin.
+* All grounds connect directly to GND plane on PCB.
+* Pins 6 and 7 are not connects, leave floating.
+* Pins 10 and 11 are unused. Tie these pins to GND.
+* To ensure proper operation and receiver performance, follow the guidelines in “AN383: Si47xx Antenna, Schematic,
+* Layout, and Design Guidelines.” Silicon Laboratories will evaluate schematics and layouts for qualified customers.
+* Pin 8 connects to the FM antenna interface, and pin 12 connects to the AM antenna interface.
+* Place Si473x-D60 as close as possible to the antenna and keep the FMI and AMI traces as short as possible.
+
+[Go to contents](https://pu2clr.github.io/SI4735/#contents)
+
 
 <BR>
 
@@ -755,120 +870,6 @@ See also:
 
 <BR>
 
-## Hardware Requirements and Setup
-
-This library has been written for the Arduino platform and has been successfully tested on many boards. See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested)
-
-
-### Arduino 5V and Si4735
-
-* __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO or anothe board, YOU HAVE TO USE A KIND OF 5V-3.3V BIDIRECTIONAL CONVERTER. Also pay attention to the appropriated pinout of your board to select the correct interrupt (IRQ- if you are using), RST, SDIO and SCLK pins. The table below shows some Arduino board pinout.__ 
-
-<BR>
-
-|Board | InterrupT (IRQ) Pins| I²C / TWI pins | successfully tested | Voltage converter |
-|------|---------------------| ---------------| ------------------- | ----------------- | 
-|328-based <br> (Nano, Uno or Mini 5V) |	D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | Yes | 
-|328-based <br> (Pro Mini 3.3 / 8Mhz) | D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | No | 
-| Mega 2560 | 2, 3, 18, 19, 20 and  21 | 20 (SDA/SDIO), 21 (SCL/SCLK) | Yes | Yes |
-| 32u4-based <br> (Micro, Leonardo or Yum)	| 0, 1, 2, 3 and 7 | 2 (SDA/SDIO), 3 (SCL/SCLK) |  Yes | Yes |
-| Zero | all digital pins except pin 4 | D8 (SDA/SDIO) and D9 (SCL/SCLK)  | Not tested | No |
-| Due	| all digital pins | 20 (SDA/SDIO), 21 (SCL/SCLK) | Yes  |  No |
-| 101	| all digital pins. <br> Only pins 2, 5, 7, 8, 10, 11, 12, 13 work with CHANGE| -  | Not tested | No |
-| ESPRESSIF ESP32 | all GPIO pins |  Most pins (usually 21 and 22) | Yes | No | 
-| STM32F103  | PA0, PA1 | PB6 (SCL) and PB7(SDA) | Yes | No |
-
-
-
-### Schematic
-
-The main purpose of this prototype is to test the Si4735 Arduino Library. It does not intend to be a real radio for exigent listeners. However, it is possible to start with it and then, if you wish, you can include some devices to the circuit to improve, for example,  its sensibility beyond other desired features.
-[Click here to see a complete set of schematics and tips](https://pu2clr.github.io/SI4735/extras/schematic)
-
-The image below shows a version of Silicon Labs SSOP Typical Application Schematic connect to the host MCU (Arduino Pro Mini 3.3V). __Pay attention to the Si4735-D60 SEN pin (16).  When the SEN pin is connected to the ground, the I²C bus address is 0x11. When the SEN pin is connected to +3.3V, the I²C bus address is 0x63.  By default, the "Si4735 Arduino Library" uses the 0x11 I²C bus address (SEN pin connected to GND). If you want to use the address 0x63 (SEN connected on +3.3V), see the functions (methods) getDeviceI2CAddress, setDeviceI2CAddress and setDeviceOtherI2CAddress__.   
-
-<BR>
-
-#### Basic Schematic with SI4735-D60
-
-![Basic Schematic Eagle version with SI4735-D60](./extras/images/schematic_basic_eagle.png)
-
-
-#### Basic Schematic with SI4732-A10
-
-![Basic Schematic Eagle version with SI4732-A10](./extras/images/schematic_basic_SI4732.png)
-
-
-
-__Please, check the folder [extras/schematic/](https://pu2clr.github.io/SI4735/extras/schematic)__. There, you will find other schematics with OLED, LCD, Nokia 5110, TFT, buttons and encoders setup. Also, check the comments at the beginning of each sketch example. You will find the SI473X, button, encoder, display and Arduino settings. 
-
-
-
-#### The picture below shows the SI4735-D60/SI4730-D60 pinout (SSOP)
-
-![Si4735-D60 pinout](./extras/images/Si4735-D60-pinout.png)
-
-#### The picture below shows the SI4732-A10 pinout (16L SOIC Package)
-
-![Si4732-A10 pinout](./extras/images/SI4732_A10_pinout.png)
-
- 
-
-#### The picture below shows the SI473X pinout (QFN)
-
-![Si4735-D60 pinout](./extras/images/SI4735_D50_QFN.png)
-
-
-
-* The SI4735-D60 and SI4732-A10 have SSB patch support
-* __See some Shortwave antenna configuration on__  [Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES; AN383](https://www.silabs.com/documents/public/application-notes/AN383.pdf)
-
-* __Pay attention to the appropriated Arduino pinout to select the correct interrupt (IRQ), RST, SDIO and SCLK pins. The previous table shows some Arduino board pinout__.  
-* __Be sure about the pinout of your device and Arduino connections. For example: the Si4735-D60/Si4730_D60 SEN pin (16 on SSOP version and 6 on QFN version) when connected to the ground, the I²C bus address is 0x11. When this pin is connected to +3.3V, the I²C bus address is 0x63__. See the functions [getDeviceI2CAddress](https://pu2clr.github.io/SI4735/#getdevicei2caddress) and [setDeviceI2CAddress](https://pu2clr.github.io/SI4735/#setdevicei2caddress) to correct setup. If you follow the schematic used in this project, you do not need to do anything (the default I²C bus address is 0x11). If you do not know how this pin is configured on the board, use [getDeviceI2CAddress](https://pu2clr.github.io/SI4735/#getdevicei2caddress).  
-
-<BR>
-
-#### The image bellow shows the Silicon Labs SSOP Typical Application Schematic.
-
-![Silicon Labs Schematic](./extras/images/silicon_labs_schematic_pag_19.png)
-
-
-
-<BR>
-
-### Parts
-
-The table below shows the component parts used to build the radio prototype based on Si4735 and used the Silicon Labs SSOP Typical Application Schematic as main source. However, some parts were included by the author of this project. 
-
-
-|Part	| Description |
-|-------| ------------ |
-| C1    | 22nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VA pin)|
-| C2    | 1nF Monolithic Multilayer Chip Ceramic non polarized capacitor |
-| C3    | 470nF Monolithic Multilayer Chip Ceramic non polarized capacitor| 
-| C4    | 100nF Monolithic Multilayer Chip Ceramic non polarized capacitor (Place it close to VD pin)|
-| C5 and C6 | 22pF (Crystal load capacitors) | 
-| C7 and C8 *1 | 4.7uF Monolithic Multilayer Chip Ceramic non polarized capacitor | 
-| R3    | 2.2K |
-| (R4 and R5) *2 | 2.2K to 10K (pull-up resistors) |
-| L1 | Ferrite loop stick (about 500 μH) |
-| X1    | 32.768 kHz crystal |
-| SI4735 | digital CMOS AM(LW, MW and SW)/FM radio receiver IC |
-
-  * *1: C7 and C8 are ceramic capacitors included by the author of this project. They are not present on the original Silicon Labs schematic. Actually, you can use also electrolytic capacitors. Values between 2.2uF to 10uF will work well. 
-  * *2: R4 and R5 are pull-up resistor included by the author of this project. They are not present on the original Silicon Labs schematic.  This will also depend on other devices connected to the same I²C bus.  __Always try to use the lowest possible value__.
-
-__Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (page 12)__:
-* Place C1 close to VA and C4 close to VD pin.
-* All grounds connect directly to GND plane on PCB.
-* Pins 6 and 7 are not connects, leave floating.
-* Pins 10 and 11 are unused. Tie these pins to GND.
-* To ensure proper operation and receiver performance, follow the guidelines in “AN383: Si47xx Antenna, Schematic,
-* Layout, and Design Guidelines.” Silicon Laboratories will evaluate schematics and layouts for qualified customers.
-* Pin 8 connects to the FM antenna interface, and pin 12 connects to the AM antenna interface.
-* Place Si473x-D60 as close as possible to the antenna and keep the FMI and AMI traces as short as possible.
-
-[Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 <BR>
 
