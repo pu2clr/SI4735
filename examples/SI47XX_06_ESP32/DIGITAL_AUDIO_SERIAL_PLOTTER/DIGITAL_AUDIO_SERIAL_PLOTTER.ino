@@ -138,7 +138,7 @@ void setup() {
   Serial.println(si4735.getFrequency());
   Serial.flush();
   delay(2000);
-  si4735.setVolume(63);
+  si4735.setVolume(62);
 
   Serial.print("\nSetting SI473X Sample rate to 48K."); 
   si4735.digitalOutputSampleRate(48000); 
