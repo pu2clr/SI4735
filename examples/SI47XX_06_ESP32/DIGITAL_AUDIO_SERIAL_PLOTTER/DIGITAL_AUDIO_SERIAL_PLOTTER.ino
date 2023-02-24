@@ -128,7 +128,7 @@ void setup() {
   // si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK); 
   Serial.println("SI473X device started with Digital Audio setup!");
   delay(1000);
-  si4735.setFM(8400, 10800, 10650, 10); // frequency station 10650 (106.50 MHz)
+  si4735.setFM(8400, 10800, 9390, 10); // frequency station 10650 (106.50 MHz)
   delay(500);
   Serial.print("\nsi4735.getFrequency: "); 
   Serial.println(si4735.getFrequency());
@@ -138,7 +138,7 @@ void setup() {
   Serial.println(si4735.getFrequency());
   Serial.flush();
   delay(2000);
-  si4735.setVolume(62);
+  si4735.setVolume(40);
 
   Serial.print("\nSetting SI473X Sample rate to 48K."); 
   si4735.digitalOutputSampleRate(48000); 
