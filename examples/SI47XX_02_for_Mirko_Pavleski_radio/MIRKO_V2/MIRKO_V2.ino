@@ -324,7 +324,8 @@ void setup()
 
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
 
-  rx.setup(RESET_PIN, MW_BAND_TYPE);
+
+ rx.setup(RESET_PIN, MW_BAND_TYPE);
   // Comment the line above and uncomment the three lines below if you are using external ref clock (active crystal or signal generator)
   // rx.setRefClock(32768);
   // rx.setRefClockPrescaler(1);   // will work with 32768
