@@ -382,21 +382,24 @@ This library has been written for the Arduino platform and has been successfully
 
 |Board | InterrupT (IRQ) Pins| I²C / TWI pins | successfully tested | Voltage converter |
 |------|---------------------| ---------------| ------------------- | ----------------- | 
-|328-based <br> (Nano, Uno or Mini 5V) |	D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | Yes | 
-|328-based <br> (Pro Mini 3.3 / 8Mhz) | D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | No | 
+| 328-based <br> (Nano, Uno or Mini 5V) |	D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | Yes | 
+| 328-based <br> (Pro Mini 3.3 / 8Mhz) | D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | No | 
+| LTG8F328 <br> based board | D2 and D3 | A4 (SDA) and A5 (SCL) | Yes | No | 
 | Mega 2560 | 2, 3, 18, 19, 20 and  21 | 20 (SDA/SDIO), 21 (SCL/SCLK) | Yes | Yes |
 | 32u4-based <br> (Micro, Leonardo or Yum)	| 0, 1, 2, 3 and 7 | 2 (SDA/SDIO), 3 (SCL/SCLK) |  Yes | Yes |
-| Zero | all digital pins except pin 4 | D8 (SDA/SDIO) and D9 (SCL/SCLK)  | Not tested | No |
-| Due	| all digital pins | 20 (SDA/SDIO), 21 (SCL/SCLK) | Yes  |  No |
-| 101	| all digital pins. <br> Only pins 2, 5, 7, 8, 10, 11, 12, 13 work with CHANGE| -  | Not tested | No |
-| ESPRESSIF ESP32 | all GPIO pins |  Most pins (usually 21 and 22) | Yes | No | 
-| STM32F103  | PA0, PA1 | PB6 (SCL) and PB7(SDA) | Yes | No |
+| Zero | Any digital pins except pin 4 | D8 (SDA/SDIO) and D9 (SCL/SCLK)  | Not tested | No |
+| Due	| Any digital pins | 20 (SDA/SDIO), 21 (SCL/SCLK) | Yes  |  No |
+| ESPRESSIF ESP32 | Any GPIO pins |  Most pins (usually 21 and 22) | Yes | No | 
+| ESPRESSIF ESP8366 | GPIO13 and GPIO14 | GPIO4 (SDA) and GPIO5 (SCL) | Yes | No | 
+| STM32F103  | PA0, PA1 | PB6 (SCL) and PB7 (SDA) | Yes | No |
+| STM32F104  | PA0, PA1 | PB6 (SCL) and PB7 (SDA) | Yes | No |
+| RP2050 <br> Rpi Pico| Any GPIO pins | GP1 (SCL) and GP0 (SDA) | Yes | No |  
 
 
 
 ### Schematic
 
-The main purpose of this prototype is to test the Si4735 Arduino Library. It does not intend to be a real radio for exigent listeners. However, it is possible to start with it and then, if you wish, you can include some devices to the circuit to improve, for example,  its sensibility beyond other desired features.
+The main purpose of the schematic below (prototype) is to test the Si4735 Arduino Library. It does not intend to be a real radio for exigent listeners. However, it is possible to start with it and then, if you wish, you can include some devices to the circuit to improve, for example,  its sensibility beyond other desired features.
 [Click here to see a complete set of schematics and tips](https://pu2clr.github.io/SI4735/extras/schematic)
 
 The image below shows a version of Silicon Labs SSOP Typical Application Schematic connect to the host MCU (Arduino Pro Mini 3.3V). __Pay attention to the Si4735-D60 SEN pin (16).  When the SEN pin is connected to the ground, the I²C bus address is 0x11. When the SEN pin is connected to +3.3V, the I²C bus address is 0x63.  By default, the "Si4735 Arduino Library" uses the 0x11 I²C bus address (SEN pin connected to GND). If you want to use the address 0x63 (SEN connected on +3.3V), see the functions (methods) getDeviceI2CAddress, setDeviceI2CAddress and setDeviceOtherI2CAddress__.   
