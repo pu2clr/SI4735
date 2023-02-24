@@ -640,6 +640,15 @@ First of all, it is important to say that passive Crystal and digital audio mode
 This library supports the external clock reference and has implemented the digital audio functions. 
 You can configure digital audio and external clock reference by using the functions: __setup, radioPowerUp, digitalOutputFormat, digitalOutputSampleRate, setRefClock and setRefClockPrescaler__. 
 
+The schematic below shows the Digital Audio setup using an SI4735-D60 with an ESP32 Devkit. 
+
+![SI473X and external active crystal oscillator or signal generator](extras/images/schematic_basic_active_crystal_osc_digital_audio_esp32.png)
+
+
+You can check the schematic above via [SI47XX_06_ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER example](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER)
+
+
+
 See the [API Documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) for more details. 
 
 <BR>
