@@ -601,10 +601,10 @@ Video:
 
 ## Digital Audio (I2S) setup
 
-To use I2S with SI473X device family, you must use the external clock or active crystal setup (see previous section). The schematic  below shows the Digital Audio setup. 
+To use I2S with SI473X device family, you must use the external clock or active crystal setup (see previous section). The schematic  below shows the Digital Audio setup using an SI4735-D60 with an ESP32 Devkit. 
 
 
-![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc_digital_audio.png)
+![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc_digital_audio_esp32.png)
 
 
 
