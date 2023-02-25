@@ -1,6 +1,7 @@
 {
-    "board": "arduino:avr:pro",
+    "board": "esp32:esp32:fm-devkit",
     "port": "/dev/tty.usbmodem14201",
     "sketch": "examples/",
-    "configuration": "cpu=8MHzatmega328"
+    "configuration": "UploadSpeed=115200,DebugLevel=none,EraseFlash=none",
+    "programmer": "esptool"
 }

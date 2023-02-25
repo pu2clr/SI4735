@@ -767,6 +767,25 @@ The schematic below shows the Digital Audio setup using an SI4735-D60 with an ES
 You can check the schematic above via [SI47XX_06_ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER example](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER)
 
 
+The table below show the SI4735,  DAC MAX98357A and ESP32 wireup
+
+| Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+|-----------| ----------|-----------------|---------------------------------------|
+| pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
+| pin 2     | DFS       |  RC             |  WordSelect / GPIO25                  |
+| pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
+
+
+
+The table below show the SI4735,  DAC CJMCU and ESP32 wireup
+
+| Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+|-----------| ----------|-----------------|---------------------------------------|
+| pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
+| pin 2     | DFS       |  WSEL           |  WordSelect / GPIO25                  |
+| pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
+
+
 
 See the [API Documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) for more details. 
 
