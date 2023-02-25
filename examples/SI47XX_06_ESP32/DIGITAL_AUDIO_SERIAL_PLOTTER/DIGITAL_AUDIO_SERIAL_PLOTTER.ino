@@ -1,10 +1,9 @@
 /*
   
-  UNDER CONSTRUCTION....
-
   This sketch was a  Jarno's contribution. 
-  I added the SI4732 wireup dicumentation and changed the RESET pin setup. 
-  Also I have refenrenced the documentations where this sketch was based on.
+  I added the SI4732 wireup documentation and changed the RESET pin setup. 
+  I also added some controls to allow change frequency and band. 
+  I have refenrenced the documentations where this sketch was based on.
   I would like to thank Mr. Jarno for his contribution. 
 
   SI4735 and ESP32 I2C wireup
@@ -19,11 +18,21 @@
 
   SI4735 and ESP32 I2S wireup 
 
-  | Si4735    | Function  |  DAC      | ESP LOLIN32 WEMOS (GPIO)              |
-  |-----------| ----------|-----------|---------------------------------------|
-  | pin 1     | DIO /  SD |  DIN      |  SerialData / GPIO32                  |
-  | pin 2     |   DFS     |  LRCK     |  WordSelect / GPIO25                  |
-  | pin 3     | DCLK / SCK|  BCK      |  ContinuousSerialClock) / GPIO33)     |
+  The table below show the SI4735,  DAC MAX98357A and ESP32 wireup
+
+  | Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+  |-----------| ----------|-----------------|---------------------------------------|
+  | pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
+  | pin 2     | DFS       |  RC             |  WordSelect / GPIO25                  |
+  | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
+
+  The table below show the SI4735,  DAC CJMCU and ESP32 wireup
+
+  | Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+  |-----------| ----------|-----------------|---------------------------------------|
+  | pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
+  | pin 2     | DFS       |  WSEL           |  WordSelect / GPIO25                  |
+  | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
 
 
   SI4732 and ESP32 I2C wireup
@@ -72,7 +81,7 @@
 
 #define RESET_PIN 12
 
-SI4735 si4735;
+SI4735 rx;
 
 #define I2S_WS 25
 #define I2S_SD 32
@@ -83,7 +92,16 @@ SI4735 si4735;
 
 // Define input buffer length
 #define bufferLen 64
+
+
 int16_t sBuffer[bufferLen];
+
+uint16_t currentFrequency;
+uint16_t previousFrequency;
+uint8_t bandwidthIdx = 0;
+const char *bandwidth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+
+
 
 const i2s_config_t i2s_config = {
   .mode = i2s_mode_t(I2S_MODE_MASTER | I2S_MODE_RX),
@@ -104,6 +122,47 @@ const i2s_pin_config_t pin_config = {
   .data_in_num = I2S_SD
 };
 
+
+void showHelp()
+{
+  Serial.println("Type F to FM; A to MW; L to LW; and 1 to SW");
+  Serial.println("Type U to increase and D to decrease the frequency");
+  Serial.println("Type S or s to seek station Up or Down");
+  Serial.println("Type + or - to volume Up or Down");
+  Serial.println("Type 0 to show current status");
+  Serial.println("Type B to change Bandwidth filter");
+  Serial.println("Type ? to this help.");
+  Serial.println("==================================================");
+  delay(1000);
+}
+
+
+void showStatus()
+{
+  rx.getStatus();
+  rx.getCurrentReceivedSignalQuality();
+  Serial.print("You are tuned on ");
+  if (rx.isCurrentTuneFM())
+  {
+    Serial.print(String(currentFrequency / 100.0, 2));
+    Serial.print("MHz ");
+    Serial.print((rx.getCurrentPilot()) ? "STEREO" : "MONO");
+  }
+  else
+  {
+    Serial.print(currentFrequency);
+    Serial.print("kHz");
+  }
+  Serial.print(" [SNR:");
+  Serial.print(rx.getCurrentSNR());
+  Serial.print("dB");
+
+  Serial.print(" Signal:");
+  Serial.print(rx.getCurrentRSSI());
+  Serial.println("dBuV]");
+}
+
+
 void setup() {
   Serial.begin(115200);
   while(!Serial);
@@ -113,35 +172,35 @@ void setup() {
   Wire.begin(I2C_SDA,I2C_CLK);
 
   delay(500);
-  Serial.println("\nsi4735.setup..."); 
+  Serial.println("\nrx.setup..."); 
   Serial.flush();
 
   // Sets active 32.768kHz crystal (32768Hz)
-  si4735.setRefClock(32768);           // Ref = 32768Hz
-  si4735.setRefClockPrescaler(1);      // 32768 x 1 = 32768Hz
+  rx.setRefClock(32768);           // Ref = 32768Hz
+  rx.setRefClockPrescaler(1);      // 32768 x 1 = 32768Hz
 
   // Use SI473X_DIGITAL_AUDIO1       - Digital audio output (SI4735 device pins: 3/DCLK, 24/LOUT/DFS, 23/ROUT/DIO )
   // Use SI473X_DIGITAL_AUDIO2       - Digital audio output (SI4735 device pins: 3/DCLK, 2/DFS, 1/DIO)
   // Use SI473X_ANALOG_DIGITAL_AUDIO - Analog and digital audio outputs (24/LOUT/ 23/ROUT and 3/DCLK, 2/DFS, 1/DIO)
   // XOSCEN_RCLK                     - Use external source clock (active crystal or signal generator)
-  si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK); // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
-  // si4735.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK); 
+  rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK); // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
+  // rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK); 
   Serial.println("SI473X device started with Digital Audio setup!");
   delay(1000);
-  si4735.setFM(8400, 10800, 9390, 10); // frequency station 10650 (106.50 MHz)
+  rx.setFM(8400, 10800, 10650, 10); // frequency station 10650 (106.50 MHz)
   delay(500);
-  Serial.print("\nsi4735.getFrequency: "); 
-  Serial.println(si4735.getFrequency());
+  Serial.print("\nrx.getFrequency: "); 
+  Serial.println(rx.getFrequency());
   Serial.flush();
   delay(2000);
   Serial.print("\nThe current frequency is: "); 
-  Serial.println(si4735.getFrequency());
+  Serial.println(rx.getFrequency());
   Serial.flush();
   delay(2000);
-  si4735.setVolume(40);
+  rx.setVolume(40);
 
   Serial.print("\nSetting SI473X Sample rate to 48K."); 
-  si4735.digitalOutputSampleRate(48000); 
+  rx.digitalOutputSampleRate(48000); 
 
   delay(2000);
 
@@ -149,7 +208,7 @@ void setup() {
   // OMONO Digital Output Mono Mode (0=Use mono/stereo blend ).
   // OMODE Digital Output Mode (0=I2S, 6 = Left-justified, 8 = MSB at second DCLK after DFS pulse, 12 = MSB at first DCLK after DFS pulse).
   // OFALL Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge) 
-  si4735.digitalOutputFormat(0 /* OSIZE */, 0 /* OMONO */, 0 /* OMODE */, 0/* OFALL*/);
+  rx.digitalOutputFormat(0 /* OSIZE */, 0 /* OMONO */, 0 /* OMODE */, 0/* OFALL*/);
 
   Serial.print("\nSI473X device is setted to digital Audio."); 
 
@@ -163,6 +222,9 @@ void setup() {
 
   Serial.print("\nI2S setup is done!. Now you can open the Serial Plot Monitor."); 
   delay(2000);
+
+  showHelp();
+  showStatus();
  
 }
 
@@ -198,4 +260,69 @@ void loop() {
       Serial.println(mean);
     }
   }
+
+  if (Serial.available() > 0)
+  {
+    char key = Serial.read();
+    switch (key)
+    {
+    case '+':
+      rx.volumeUp();
+      break;
+    case '-':
+      rx.volumeDown();
+      break;
+    case 'a':
+    case 'A':
+      rx.setAM(570, 1710, 810, 10);
+      break;
+    case 'f':
+    case 'F':
+      rx.setFM(8600, 10800, 10390, 10);
+      break;
+    case '1':
+      rx.setAM(9400, 9990, 9600, 5);
+      break;
+    case 'U':
+    case 'u':
+      rx.frequencyUp();
+      break;
+    case 'D':
+    case 'd':
+      rx.frequencyDown();
+      break;
+    case 'b':
+    case 'B':
+      if (rx.isCurrentTuneFM())
+      {
+        Serial.println("Not valid for FM");
+      }
+      else
+      {
+        if (bandwidthIdx > 6)
+          bandwidthIdx = 0;
+        rx.setBandwidth(bandwidthIdx, 1);
+        Serial.print("Filter - Bandwidth: ");
+        Serial.print(String(bandwidth[bandwidthIdx]));
+        Serial.println(" kHz");
+        bandwidthIdx++;
+      }
+      break;
+    case 'S':
+      rx.seekStationUp();
+      break;
+    case 's':
+      rx.seekStationDown();
+      break;
+    case '0':
+      showStatus();
+      break;
+    case '?':
+      showHelp();
+      break;
+    default:
+      break;
+    }
+  }
+
 }
