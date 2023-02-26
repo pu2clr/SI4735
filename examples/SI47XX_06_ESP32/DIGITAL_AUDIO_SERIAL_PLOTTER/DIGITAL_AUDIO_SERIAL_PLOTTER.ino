@@ -100,6 +100,7 @@ uint16_t currentFrequency;
 uint16_t previousFrequency;
 uint8_t bandwidthIdx = 0;
 const char *bandwidth[] = { "6", "4", "3", "2", "1", "1.8", "2.5" };
+uint8_t currentVolume = 40;
 
 
 
@@ -184,7 +185,7 @@ void setup() {
   // rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);
   Serial.println("SI473X device started with Digital Audio setup!");
   delay(1000);
-  rx.setFM(8400, 10800, 10650, 10);  // frequency station 10650 (106.50 MHz)
+  rx.setFM(8400, 10800, 10270, 10);  // frequency station 10650 (106.50 MHz)
   // rx.setAM(570, 1710, 810, 10);
   delay(500);
   Serial.print("\nrx.getFrequency: ");
@@ -195,7 +196,7 @@ void setup() {
   Serial.println(rx.getFrequency());
   Serial.flush();
   delay(2000);
-  rx.setVolume(40);
+  rx.setVolume(currentVolume);
 
   Serial.print("\nSetting SI473X Sample rate to 48K.");
   rx.digitalOutputSampleRate(48000);
@@ -231,21 +232,31 @@ void loop() {
     char key = Serial.read();
     switch (key) {
       case '+':
-        rx.volumeUp();
+        rx.setVolume(++currentVolume);
+        currentVolume = rx.getVolume();
         break;
       case '-':
-        rx.volumeDown();
+        rx.setVolume(--currentVolume);
+        currentVolume = rx.getVolume();
         break;
       case 'a':
       case 'A':
+        rx.setup(RESET_PIN, -1, AM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
         rx.setAM(570, 1710, 810, 10);
+        rx.digitalOutputSampleRate(48000);
+        rx.digitalOutputFormat(0 /* OSIZE */, 0 /* OMONO */, 0 /* OMODE */, 0 /* OFALL*/);
+        rx.setVolume(currentVolume);  
         break;
       case 'f':
       case 'F':
-        rx.setFM(8600, 10800, 10650, 10);
+        rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK           
+        rx.setFM(8600, 10800, 10270, 10);
+        rx.digitalOutputSampleRate(48000);
+        rx.digitalOutputFormat(0 /* OSIZE */, 0 /* OMONO */, 0 /* OMODE */, 0 /* OFALL*/);
+        rx.setVolume(currentVolume);
         break;
       case '1':
-        rx.setAM(9400, 9990, 9600, 5);
+        rx.setAM(9400, 9990, 9600, 5);        
         break;
       case 'U':
       case 'u':
