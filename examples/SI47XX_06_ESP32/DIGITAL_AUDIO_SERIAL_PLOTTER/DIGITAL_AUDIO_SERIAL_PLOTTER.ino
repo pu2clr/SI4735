@@ -102,6 +102,10 @@ uint8_t bandwidthIdx = 0;
 const char *bandwidth[] = { "6", "4", "3", "2", "1", "1.8", "2.5" };
 uint8_t currentVolume = 40;
 
+uint16_t amLastFrequency;
+uint16_t fmLastFrequency;
+
+
 
 
 const i2s_config_t i2s_config = {
@@ -156,7 +160,36 @@ void showStatus() {
 
   Serial.print(" Signal:");
   Serial.print(rx.getCurrentRSSI());
-  Serial.println("dBuV]");
+  Serial.println("dBuV");
+
+  Serial.print(" Volume:");
+  Serial.print(rx.getVolume());
+  Serial.println("]");
+
+}
+
+/**
+ * Switch from FM to AM or AM to FM mode using Digital Audio Setup
+ */
+void switchModeAmFm( ) {
+
+  if ( rx.isCurrentTuneFM() ) {
+        fmLastFrequency = currentFrequency;
+        rx.setup(RESET_PIN, -1, AM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);  
+        rx.setAM(570, 1710, amLastFrequency, 10);
+        rx.digitalOutputSampleRate(48000);
+        rx.digitalOutputFormat(0 , 0 , 0 , 0 );
+        rx.setVolume(currentVolume);  
+  } else {
+        amLastFrequency = currentFrequency;
+        rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);  
+        rx.setFM(8400, 10800, fmLastFrequency, 10);  
+        rx.digitalOutputSampleRate(48000);
+        rx.digitalOutputFormat(0 , 0 , 0 , 0 );
+        rx.setVolume(currentVolume);
+  }
+  showStatus();
+  delay(1000);
 }
 
 
@@ -241,22 +274,11 @@ void loop() {
         break;
       case 'a':
       case 'A':
-        rx.setup(RESET_PIN, -1, AM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
-        rx.setAM(570, 1710, 810, 10);
-        rx.digitalOutputSampleRate(48000);
-        rx.digitalOutputFormat(0 /* OSIZE */, 0 /* OMONO */, 0 /* OMODE */, 0 /* OFALL*/);
-        rx.setVolume(currentVolume);  
+        switchModeAmFm();
         break;
       case 'f':
       case 'F':
-        rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK           
-        rx.setFM(8600, 10800, 10270, 10);
-        rx.digitalOutputSampleRate(48000);
-        rx.digitalOutputFormat(0 /* OSIZE */, 0 /* OMONO */, 0 /* OMODE */, 0 /* OFALL*/);
-        rx.setVolume(currentVolume);
-        break;
-      case '1':
-        rx.setAM(9400, 9990, 9600, 5);        
+        switchModeAmFm();  
         break;
       case 'U':
       case 'u':
