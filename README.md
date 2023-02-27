@@ -101,15 +101,15 @@ Contact: __pu2clr@gmail.com__.
 
 ## Why do skilled developers generally use libraries?
 
-Technically, no Arduino application needs a library.  In some cases, do not use libraries may be a nice choice. However, why do skilled developers generally use libraries?
+Technically, no Arduino application needs a library. In some cases, not using libraries may be the correct decision. But there are some good reasons to consider using a library.
 
-There are several reasons to use an Arduino library. It seems to be common sense that the most important of using libraries is reducing the effort of an application development. 
+Libraries typically allow for easier design and maintenance of code. A library may also implement the functionality you need on multiple hardware choices, thus making the code more portable.
 
-Imagine that you want to use an LCD device to show information about something you are creating, for example, an application that monitors temperature and atmospheric pressure conditions. It is known that there are several libraries for controlling the LCD available on Arduino environment. Given that, why would you build the code to control the LCD? Your application's focus is on monitoring temperature and pressure conditions, not controlling the LCD. Well... unless you need an LCD feature that hasn't been implemented in any of the available libraries, there's no point in developing your own code to control the LCD in my opinion. 
+Imagine that you want to use an LCD or other display device in a project that monitors temperature and atmospheric pressure conditions. There are several good libraries for display devices available for Arduino users, most of the features you might want are implemented in these libraries. There is no point in re-inventing the wheel by avoiding a library. Unless you have require a feature that no library supports, it is generally wise to use a library, especially since a library can make porting code to different hardware easier.
 
-Other reasons to use an Arduino Library is to reduce the programming complexity and to increase the robustness of your application.  It makes life easier for the developers. You do not have to be a software engineer to understand that. To make an analogy with Electronics, using a library is not very different of using a IC with several encapsulated functions. Said that, why do many technicians and engineers use the TDA1072 IC to build a receiver? Certainly because building a complete circuit to do the same functions as a TDA1072 does, would take a lot of time and money. To interact with TDA1072 IC, the user just need to understand the functions of the TDA1072 pins (interface), without worrying about the internal implementation details of this IC. Libraries use the same paradigm. That is, you just need to understand how to interact with the library through its functions. You don't needs to know the implementation details.
+Use of a library can reduce the programming complexity and boost application robustness. It makes life easier for other developers, and also for youself. You do not have to be a software engineer to understand why this is the case. A library in this way is similar to an IC. It is often possible to manually implement the functionality of many IC chips in a circuit, but it would dramatically increase cost, complexity, size and sometimes failure rate of a project. Circuits are often better when some functions are abstracted away inside an off-the-shelf IC chip. The user of an IC only needs to know how to interact with the chip, and not how the chip itself is wired. 
 
-Finally, if you use a library to deal with IC2 bus (Wire.h); TFT, OLED, SPI devices, and Serial UART communication as well, why do not use a library to deal with SI473X devices? Well, the PU2CLR Arduino Library can offer more comfort, development agility and robustness to your project. It is important to remember that, unlike closed solutions, this library is open source. So, if you want, you can know the implementation details by studying the source code. To use this library or not, that is the question and your choice. 
+Finally, if you already use a library to handle the IC2 bus (Wire.h); TFT, OLED, SPI devices, and Serial UART communication, then it makes sense to use a library to handle the SI473X devices. The PU2CLR Arduino Library can offer more comfort, development agility, and robustness to your project. Unlike closed source solutions, this library is open source. This means you can learn how the library works by studying the code, if you choose. 
 
 
 ## SI4735 Library construction history
@@ -161,14 +161,14 @@ If you want to support this library development, consider joining this project v
 
 ## SI4735 Arduino Library Features
 
-This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs. This library also has primitive functions that make it easier for you to implement commands that may not have been implemented yet. See [setProperty, getProperty sendCommand, getCommandResponse and getStatusResponse](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group10.html) functions and also [How to customize PU2CLR Arduino Library](https://pu2clr.github.io/SI4735/#customizing-pu2clr-arduino-library). It is worth noting, however, that this library is constantly improving. Check the API documentation before implementing a new function. It is likely that your demand is already implemented. [See the API documentation for this library](https://pu2clr.github.io/SI4735/extras/apidoc/html/). __The main features of this library are listed below__.
+This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs. This library also has primitive functions that make it easier for you to implement commands that may not have been implemented yet. See [setProperty, getProperty sendCommand, getCommandResponse and getStatusResponse](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group10.html) functions and also [How to customize PU2CLR Arduino Library](https://pu2clr.github.io/SI4735/#customizing-pu2clr-arduino-library). It is worth noting, however, that this library is constantly improving. Check the API documentation before implementing a new function. It is likely that your function is already implemented. [See the API documentation for this library](https://pu2clr.github.io/SI4735/extras/apidoc/html/). __The main features of this library are listed below__.
 
 
 1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://pu2clr.github.io/SI4735/#mit-license) to know more.   
 2. Built based on [AN332 SI47XX PROGRAMMING GUIDE (REV 1.0)](https://web.engr.oregonstate.edu/~traylor/ece473/data_sheets/AN332.pdf) and __AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60 SSB AND NBFM PATCHES__;
 3. C++ Language and Object-oriented programming. You can easily extend the SI4735 class by adding more functionalities. See [Customizing PU2CLR Arduino Library](https://pu2clr.github.io/SI4735/#customizing-pu2clr-arduino-library); 
 4. Available on Arduino IDE (via Manage Libraries). Easy to install and use. See [Library Installation](https://pu2clr.github.io/SI4735/#library-installation);
-5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, ARM Cortex, STM32, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested);
+5. Cross-platform. You can compile and run this library on most of boards supported by the Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, ARM Cortex, STM32, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested);
 6. Simplifies projects based on SI4735;
 7. __I²C communication protocol__ and Automatic I²C bus address detection; 
 8. [More than __120__ functions implemented](https://pu2clr.github.io/SI4735/extras/apidoc/html/). You can customize almost every feature available on Si47XX family; 
@@ -256,7 +256,7 @@ Do you need some old version (release) of this library?  If so, [check here](htt
 ## Installing the most current version via arduino-cli
 
 The commands below Install the latest version of the PU2CLR SI4735 Arduino Library from github. 
-As said before, unlike a release (installed from Arduino IDE) this method installs the current situation of the PU2CLR SI4535 Arduino Library (latest modifications but not yet released). 
+As said before, unlike a release (installed from Arduino IDE) this method installs the current version of the PU2CLR SI4535 Arduino Library (latest modifications even if not yet released).
 
 ### On macOS or Linux
 

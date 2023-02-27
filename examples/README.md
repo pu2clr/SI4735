@@ -1,6 +1,6 @@
 # [Examples](https://pu2clr.github.io/SI4735/examples)
 
-[This folder](https://github.com/pu2clr/SI4735/tree/master/examples) and subfolders have more than 60 examples that might help you to use the Si4735 Arduino Library in your project. Please, be guided by the comments inserted in each sketch.
+[This folder](https://github.com/pu2clr/SI4735/tree/master/examples) and subfolders have more than 60 examples that might help you to use the Si4735 Arduino Library in your project. Please, use the comments in each sketch as a guide.
 
 If you find some error or problem during your implementation, please let me know. 
 
@@ -14,22 +14,22 @@ __This project is about a library to control the SI47XX devices and the focus of
 * __group.io__ [SI47XX for hobbyists](https://groups.io/g/si47xx). This group is formed by people with experience in electronics and firmware development. 
   
 
-__IT IS IMPORTANT TO SAY THAT THE CIRCUITS DESIGN BUILT BY THE AUTHOR ARE NOT INTEND TO BE A FINAL PRODUCT. SOME IMPORTANT ASPECTS AND DETAILS ABOUT A GOOD RECEIVER WERE OMITTED HERE. THE IDEA OF THE CIRCUITS MADE BY THE AUTHOR WERE ORIENTED TO BE A PROOF OF CONCEPT OF THE FUNCTIONS IMPLEMENTED IN THE ARDUINO LIBRARY. SO, COMPONENTS LIKE FRONT-ENDS, BAND PASS FILTER,  ESD, ANTENNA DESIGN ARE NOT THE MAIN PART OF THIS PROJECT__.
+__THE CIRCUIT DESIGNS BUILT BY THE AUTHOR ARE NOT INTEND TO BE A FINAL PRODUCT. SOME IMPORTANT ASPECTS AND DETAILS OF A GOOD RECEIVER WERE OMITTED HERE. THE CIRCUITS IN THESE EXAMPLES ARE A PROOF OF CONCEPT OF THE LIBRARY AND ITS FEATURES. IMPORTANT CONSIDERATIONS FOR PRODUCTION PRODUCTS SUCH AS BAND PASS FILTERS, ESD PROTECTION, AND USER INTERFACE DESIGN ARE NOT THE FOCUS OF THESE EXAMPLES__.
 
 
 Before using this examples, you most install the ["PU2CLR SI3735 Arduino Library"](https://github.com/pu2clr/SI4735#library-installation) on your Arduino IDE. Also be aware about other libraries that are eventually used to control LCD, OLED, TFT display, encoder etc. These libraries are referenced in the sample sketches themselves. You can use the tools [arduino-cli](https://github.com/pu2clr/SI4735/tree/master/examples#arduino-cli---a-faster-alternative-to-the-arduino-ide) to configure your computer with all needed library and boards you intend to use.
 
 
-It is important to know tha the author of this library  just try to show how you can use this library and the Si4735 device in your appication. Other devices used in some examples like encoders, buttons and display (OLED, LCD or TFT) are not the focus of this subject. Said that, it is possible some implementation using theses devices might need different approaches used here.
+The author of this library is demonstrating how to use the library with the Si4735 device. Other devices used in some examples like encoders, buttons and displays (OLED, LCD or TFT) are not the focus of this set of examples. That said, it is possible to use some of these devices, though they may require some different approaches depending on your application.
 
-The most of the sketches has been developed to run on cross-plataform (ATmega328, Mega2560, DUE, ATmega-32u4, ESP32, ATtiny85 etc). However, in some cases, it was not possible due to hardware limitations in some board. Each sketch has the set of boards you can run it.  
+The most of the sketches has been developed to run on cross-plataform (ATmega328, Mega2560, DUE, ATmega-32u4, ESP32, ATtiny85 etc). However, in some cases, hardware limitations mean that some boards cannot run some sketches. Each sketch has the set of boards you can run it on.
 
-### It is strongly recommended running these examples with the latest version of the Si4735 Arduino Library. If you are using earlier versions of this library, some examples may not work correctly. Please, check if you are using the last release of this library.
+### It is strongly recommended to run these examples with the latest version of the Si4735 Arduino Library. If you are using earlier versions of this library, some examples may not work correctly. Please, check if you are using the last release of this library.
 
 {% include serialmonitor.html %}
 
 
-#### If you have saved the examples in your personal folder, it is important to know the last versions of these examples come with the each new release of the library. Probably, some examples was also fixed or optimized. So, check if you are using the last version of the example too.
+#### If you have saved the examples in your personal folder, be sure to update the examples with the library, as some changes and optimizations are made to the examples as they are made to the library.
 
 
 The folder [extra/schematic](https://github.com/pu2clr/SI4735/tree/master/extras/schematic) can guide you on circuits and components settings.  
@@ -38,7 +38,7 @@ The folder [extra/schematic](https://github.com/pu2clr/SI4735/tree/master/extras
 ## About the examples folders
 
 * The folder [SI47XX_01_SERIAL_MONITOR](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR) has basic examples using the Arduino Serial Monitor as the human interface.
-By using the examples of this folder, you will do not need any external device to control the Si4735. All you have to do is turning on the Serial Monitor. These examples are usefull to test your circuit board and help you understand the use of the Si4735 Arduino Lirary.
+By using the examples of this folder, you will do not need any external device to control the Si4735. All you have to do is open the Serial Monitor. These examples are usefull to test your circuit board and help you understand the use of the Si4735 Arduino Lirary.
 * The folther [SI47XX_02_LCD_20x4_I2C](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_02_LCD_20x4_I2C) has some examples that show how you can build a radio based on Si473X using the regular LCD20x4 with a I2C adapter device.
 * The folder [SI47XX_03_OLED_I2C](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C) has some examples that show how you can build a radio based on Si473X using the regular I2C OLED. They are very similar to the LCD20x4 sketches. The main difference is the Arduino Library controller of these devices.  
 * The folder [SI47XX_04_TFT](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT) has some example with TFT and touch screen as an human interface to control the radio based on Si473X.

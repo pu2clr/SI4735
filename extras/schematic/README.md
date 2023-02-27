@@ -15,7 +15,7 @@ __This project is about a library to control the SI47XX devices and the focus of
 
 ## SI4735 and SI4732 pinout
 
-If the schematic uses the SI4735 device but you have the SI4732 device or vice-versa, all you have to do is following the lables of those devices to replace them. See pictures and the table __SI4735-D60 and SI4732-A10 replacement__  below. 
+If a schematic uses the SI4735 device but you have the SI4732 device or vice-versa, then reference the table below to correct the pinout for your specific IC model. See pictures and the table __SI4735-D60 and SI4732-A10 replacement__  below. 
 
 ### The picture below shows the SI4735-D60/SI4730-D60 pinout (SSOP)
 
@@ -49,13 +49,13 @@ If the schematic uses the SI4735 device but you have the SI4732 device or vice-v
 
 (*1) __ATTENTION__: 
 
-While the Si4735 device provides the 0x11 I²C bus address when the SEN pin is connected to the ground, the SI4732-A10 provides the same address when the SENB pin is connected to the +VCC.  The SI4735 Arduino Library provides the function __getDeviceI2CAddress__ to detect the I²C bus address automatically. This way, you don't need to worry about this setup if you use this function. See [getDeviceI2CAddress()](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group05.html#ga668008457910e916ebadf15bda2e5b29). By default, connect SEN/SENB pin to the GND. See schematics below.
+While the Si4735 device provides the 0x11 I²C bus address when the SEN pin is connected to ground, the SI4732-A10 provides the same address when the SENB pin is connected to +VCC. The SI4735 Arduino Library provides the function __getDeviceI2CAddress__ to detect the I²C bus address automatically. The library will detect and use the correct address if you use this function. See [getDeviceI2CAddress()](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group05.html#ga668008457910e916ebadf15bda2e5b29). By default, connect SEN/SENB pin to the GND. See schematics below.
 
 <BR>
 
 ### Basic Schematic (Atmega328 based board) 
 
-The two schematics below show the basic setup. The frist schematic  uses the SI4735-D60 and the secound schematic uses the SI4732-A10. These schematics will help you to replace the SI4735-D60 with the SI4732-A10 or vice versa. 
+The two schematics below show the basic setup. The first schematic uses the SI4735-D60 and the secound schematic uses the SI4732-A10. These schematics will help you to replace the SI4735-D60 with the SI4732-A10 or vice versa. 
 
 
 #### SI4735-D60 Version
@@ -84,7 +84,7 @@ The schematic below shows how to connect the SI473X (SSOP24 package) circuit wit
 
 #### SI4732-A10 Version
 
-The schematic below shows how to connect the SI4732-A10  circuit with Arduino Pro Mini 3.3V/8MHz.
+The schematic below shows how to connect the SI4732-A10 circuit with Arduino Pro Mini 3.3V/8MHz.
 
 
 ![Basic Schematic](../images/schematic_basic_SI4732.png)
@@ -169,7 +169,7 @@ The schematic below guides you to build a SI473X based receiver using the ESP32 
 
 ## Standalone ATmega328 with or without external Crystal (SI4735-D60 and LCD 16x2). 
 
-The schematic below can be also used with a regular Arduino Board based on ATmega328. It is almost the same circuit posted by Mirko Pavleski on his [Arduino Project repository](https://create.arduino.cc/projecthub/mircemk/diy-si4730-all-band-radio-lw-mw-sw-fm-1894d9). If you use an SI4735-D60 or SI4732-A10, you can have a All band receiver with FM, AM and SSB modes. 
+The schematic below can be also used with a regular Arduino Board based on ATmega328. It is almost the same circuit posted by Mirko Pavleski on his [Arduino Project repository](https://create.arduino.cc/projecthub/mircemk/diy-si4730-all-band-radio-lw-mw-sw-fm-1894d9). If you use an SI4735-D60 or SI4732-A10, you can have an All band receiver with FM, AM and SSB modes. 
 
 ![Standalone ATmega328 with or without external Crystal (LCD 16x2 version)](../images/schematic_basic_atmega328_standalone_12MHz_LCD16x2.png)
 
@@ -191,7 +191,7 @@ See  video:
 
 ## Basic schematic with TFT
 
-The schematic below guides you to build your own receiver based on the SI473X with TFT display. The sketches available on [examples/SI47XX_04_TFT/](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT) folder decribe the wire up used by the TFT selected by the author. Please, read the comments at the beginning of each sketch example.  
+The schematic below demonstrates how to build your own receiver based on the SI473X with TFT display. The sketches are available on [examples/SI47XX_04_TFT/](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT) folder decribe the wire up used by the TFT selected by the author. Please, read the comments at the beginning of each sketch example.  
 
 
 ![Basic schematic with TFT](../images/schematic_tft.png)
@@ -227,7 +227,7 @@ See videos:
 
 ## Attiny85 basic circuit
 
-You can use de Si4735 Arduino Library on the very small ATtiny85 or Attiny84. The schematic below can guide you to build a receiver based on attiny85 device. 
+You can use the Si4735 Arduino Library on the very small ATtiny85 or Attiny84. The schematic below can guide you to build a receiver based on attiny85 device. 
 
 
 ![Attiny85 Basic schematic](../images/schematic_attiny85_basic.png)
@@ -270,7 +270,7 @@ The schematics below guide you to build a SI473X based receiver using the STM32 
 
 ###  Bluepill Basic schematic V1
 
-This version uses a Encoder with Push Button,  and 7 push button.
+This version uses a Encoder with Push Button, and 7 push button.
 
 ![Bluepill Basic schematic V1](../images/schematic_bluepill_basic.png)
 
@@ -460,7 +460,7 @@ See video
 
 ## External Mute Circuit 
 
-The SI47XX devices have about 0,7V DC bias component in the analog audio output pins (SI4735-D60 pins 23 and 24). When the device goes to power down mode, the voltage on the audio pins drops to 0V.  The device do it internally and there is not a way to avoid that. When the device goes to power up, that audio pins suddenly goes to high DC again. This transition causes the loud pop in the speaker. It is possible to solve this problem by adding an extra __mute__ circuit and control it by the MCU (Atmega, ESP32, STM32, ATtiny85 etc). 
+The SI47XX devices have about 0,7V DC bias component in the analog audio output pins (SI4735-D60 pins 23 and 24). When the device goes to power down mode, the voltage on the audio pins drops to 0V.  The devices do it internally so there is not a way to avoid that. When the device goes to power up, the audio pins suddenly go to high DC again. This transition causes the loud pop in the speaker. It is possible to solve this problem by adding an extra __mute__ circuit and control it by the MCU (Atmega, ESP32, STM32, ATtiny85 etc). 
 
 ![External Mute Circuit](../images/schematic_mute_circuit_eagle.png)
 
@@ -663,7 +663,7 @@ void setup() {
   pinMode(VOLUME_UP, INPUT_PULLUP);  
   .
   .
-  // If you want to reset (erase) the eeprom, keep the VOLUME_UP button pressed during statup
+  // If you want to reset (erase) the eeprom, keep the VOLUME_UP button pressed during startup
   if (digitalRead(VOLUME_UP) == LOW)
   {
     EEPROM.write(eeprom_address, 0); // In our case, just the app_id is enough.

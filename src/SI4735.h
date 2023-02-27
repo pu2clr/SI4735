@@ -1315,7 +1315,7 @@ public:
      * @ingroup group17
      * @brief Get the Antenna Tuning Capacitor value
      * @details Returns the current antenna tuning capacitor value. The tuning capacitance is 95 fF x READANTCAP + 7 pF.
-     * @details ON AM or SSB mode, the MULT attribute sotores the high byte of READANTCAP and the attribute READANTCAP by itself stores the low byte.
+     * @details ON AM or SSB mode, the MULT attribute stores the high byte of READANTCAP and the attribute READANTCAP by itself stores the low byte.
      * 
      * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 74,74, 140 and 141.
      * @return uint8_t capacitance 
@@ -2611,7 +2611,7 @@ public:
      * 
      * @brief Sets the current step value. 
      * 
-     * @details This function does not check the limits of the current band. Please, don't take a step bigger than your legs.
+     * @details This function does not check the limits of the current band. Do not take a step that will extend past the limit of the band.
      * @details Example:
      * @code
      * setFM(6400,10800,10390,10);
@@ -2670,7 +2670,7 @@ public:
     /******************************************************************************* 
      * The functions below modify the clock frequency for I2C communication. 
      * 100kHz  is usually the baseline.
-     * Use one of these funcition if you have problem on you default configuration. 
+     * Use one of these funcition if you have a problem on the default configuration. 
      *******************************************************************************/
 
     /**
@@ -2703,7 +2703,7 @@ public:
      * @ingroup group18 MCU I2C Speed  
      * 
      * @brief Sets the I2C bus to a given value.
-     * ATTENTION: use this function with cation
+     * ATTENTION: use this function with caution
      * 
      * @param value in Hz. For example: The values 500000 sets the bus to 500kHz.
      */
@@ -2716,11 +2716,11 @@ public:
      * @details This function sets the mcu digital pin you want to use to control the external audio mute circuit.
      * @details Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some SI47XX commands.  
      * @details This problem occurs during the transition from the power down to power up. 
-     * @details Every time the user changes the mode (FM to AM or AM to FM) the power down and power up commands are required by the Si47XX devices.
-     * @details If you have a extra circuit in your receiver to mute the audio on amplifier input, you can configure a MCU pin to control it by using this function.
+     * @details For example, when the user changes bands (FM to AM or AM to FM), the Si47XX devices must be powered down and powered up again.
+     * @details If you have a mute circuit attached to a pin on teh MCU, then you can control the mute circuit from the MCU with this function.
      * 
      * @see setHardwareAudioMute
-     * @param pin if 0 ou greater sets the MCU digital pin will be used to control de external circuit.  
+     * @param pin if 0 or greater, sets the MCU digital pin that controls the external circuit.  
      */
     inline void setAudioMuteMcuPin(int8_t pin)
     {

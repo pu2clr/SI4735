@@ -2,24 +2,24 @@
  * @mainpage SI47XX Arduino Library implementation 
  * 
  * This is a library for the SI473X and SI474X, BROADCAST AM/FM/SW RADIO RECEIVER, IC from Silicon Labs for the 
- * Arduino development environment.  It works with I2C protocol and can provide an easier interface for controlling the SI47XX IC family.<br>
+ * Arduino development environment.  It works with I2C protocol and provides an easy-to-use interface for controlling the SI47XX IC family.<br>
  * 
  * This library was built based on [Si47XX PROGRAMMING GUIDE-AN332 (REV 1.0)](https://www.silabs.com/documents/public/application-notes/AN332.pdf) document from Silicon Labs. 
  *
- * It also can be used on **all members of the SI473X and SI474X family** respecting, of course, the features available for each IC version. 
- * These functionalities can be seen in the comparison matrix shown in table 1 (Product Family Function); pages 2 and 3 of the programming guide.
+ * It also can be used on **all members of the SI473X and SI474X family**, though the features you can use depend on which IC version you have.
+ * The functionality of each IC is outlined in the comparison matrix in table 1 (Product Family Function); pages 2 and 3 of the programming guide.
  * If you need to build a prototype based on SI47XX device, see <https://pu2clr.github.io/SI4735/><br>
  * 
- * This library has more than 30 examples and it can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://pu2clr.github.io/SI4735/#mit-license).  
+ * This library has more than 30 examples, and it can be freely distributed using the MIT Free Software model. [Copyright (c) 2019 Ricardo Lima Caratti](https://pu2clr.github.io/SI4735/#mit-license).  
  * Contact: pu2clr@gmail.com
  * 
  * @details This library uses the I²C communication protocol and implements most of the functions offered by Si47XX (BROADCAST AM / FM / SW / LW RADIO RECEIVER) IC family from Silicon Labs. 
  * @details The main features of this library are listed below. 
- * @details 1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://pu2clr.github.io/SI4735/#mit-license) to know more.   
+ * @details 1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://pu2clr.github.io/SI4735/#mit-license) to learn more.   
  * @details 2. Built Based on [Si47XX PROGRAMMING GUIDE](https://www.silabs.com/documents/public/application-notes/AN332.pdf).
- * @details 3. C++ Language and Object-oriented programming. You can easily extend the SI4735 class by adding more functionalities.
+ * @details 3. C++ Language and Object-oriented programming. You can easily extend the SI4735 class if you need new functionality.
  * @details 4. Available on Arduino IDE (Manage Libraries).
- * @details 5. Cross-platform. You can compile and run this library on most of board available on Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested).
+ * @details 5. Cross-platform. You can compile and run this library on most of boards which Arduino IDE supports (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, 32 ARM Cortex, Arduino DUE, ESP32 and more). See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested).
  * @details 6. Simplifies projects based on SS4735-D60, SI4732-A10, SI4730-D60, and other SI473X devices;
  * @details 7. I²C communication and Automatic I²C bus address detection. 
  * @details 8. More than 120 functions implemented. You can customize almost every feature available on Si47XX family. 
@@ -55,7 +55,7 @@
  * each data byte by driving SDIO low for one cycle on the next falling edge of SCLK. 
  * The system controller may write up to 8 data bytes in a single 2-wire transaction. 
  * The first byte is a command, and the next seven bytes are arguments. Writing more than 8 bytes results 
- * in unpredictable device behavior". So, If you are extending this library, consider that restriction presented earlier.
+ * in unpredictable device behavior". If you extend this library, remember the 8 byte restriction.
  */
 SI4735::SI4735()
 {
@@ -532,7 +532,7 @@ void SI4735::setRefClock(uint16_t refclk)
  * @brief Sets the number used by the prescaler to divide the external RCLK down to the internal REFCLK.
  * @details The range may be between 1 and 4095 in 1 unit steps.
  * @details For example, an RCLK of 13 MHz would require a prescaler value of 400 to divide it to 32500 Hz. The reference clock frequency property would then need to be set to 32500 Hz.
- * @details ATTENTION by default, this function considers you are using the RCLK pin as clock source.
+ * @details ATTENTION by default, this function assumes you are using the RCLK pin as clock source.
  * @details Example: The code below shows the setup for an active 4.9152MHz crystal
  * @code
  *   rx.setRefClock(32768);
@@ -2457,7 +2457,7 @@ char *SI4735::getRdsTime()
         dt.raw[0] = currentRdsStatus.resp.BLOCKDL;
         dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
 
-        // Unfortunately it was necessary dues to  the GCC compiler on 32-bit platform.
+        // Unfortunately it was necessary due to the GCC compiler on 32-bit platform.
         // See si47x_rds_date_time (typedef union) and CGG “Crosses boundary” issue/features.
         // Now it is working on Atmega328, STM32, Arduino DUE, ESP32 and more.
         minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
@@ -2630,7 +2630,7 @@ char *SI4735::getRdsDateTime()
         dt.raw[0] = currentRdsStatus.resp.BLOCKDL;
         dt.raw[1] = currentRdsStatus.resp.BLOCKDH;
 
-        // Unfortunately the resource below was necessary dues to  the GCC compiler on 32-bit platform.
+        // Unfortunately, the resource below was required by the GCC compiler on 32-bit platform.
         // See si47x_rds_date_time (typedef union) and CGG “Crosses boundary” issue/features.
         // Now it is working on Atmega328, STM32, Arduino DUE, ESP32 and more.
 
@@ -2677,10 +2677,10 @@ char *SI4735::getRdsDateTime()
  * @defgroup group17 Si4735-D60 Single Side Band (SSB) support
  * 
  * @brief Single Side Band (SSB) implementation.<br>  
- * First of all, it is important to say that the SSB patch content **is not part of this library**. 
+ * First of all, the SSB patch content **is not part of this library**. 
  * The paches used here were made available by Mr. Vadim Afonkin on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). 
- * It is important to note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes.
- * In other words, this library only supports SSB patches, the patches themselves are not part of this library.  
+ * Please note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes.
+ * In other words, while this library supports SSB patches, the patches themselves are not part of this library.  
  * 
  * @details This implementation was tested only on Si4735-D60  and SI4732-A10 devices. 
  * @details SSB modulation is a refinement of amplitude modulation that one of the side band and the carrier are suppressed.
@@ -2690,34 +2690,33 @@ char *SI4735::getRdsDateTime()
  * There is little information available about patching the SI4735-D60/SI4732-A10.
  *  
  * The following information is the understanding of the author of this project and 
- * it is not necessarily correct. 
+ * is not necessarily correct. 
  * 
  * A patch is executed internally (run by internal MCU) of the device. Usually, 
- * patches are used to fixes bugs or add improvements and new features of the firmware
- * installed in the internal ROM of the device. Patches to the SI4735 are distributed
- * in binary form and have to be transferred to the internal RAM of the device by the 
- * host MCU (in this case Arduino boards). 
+ * patches are used to fix bugs or add improvements and new features over what the firmware
+ * installed in the internal ROM of the device offers. Patches for the SI4735 are distributed
+ * in binary form and are transferred to the internal RAM of the device by the host MCU 
+ * (in this case, Arduino boards).
+ *
  * Since the RAM is volatile memory, the patch stored into the device gets lost when 
  * you turn off the system. Consequently, the content of the patch has to be transferred
- * again to the device each time after turn on the system or reset the device.
+ * to the device every time the device is powered up.
  * 
- * I would like to thank Mr Vadim Afonkin for making available the SSBRX patches for 
+ * I would like to thank Mr Vadim Afonkin for making the SSBRX patches available for 
  * SI4735-D60/SI4732-A10 on his Dropbox repository. On this repository you have two files, 
  * amrx_6_0_1_ssbrx_patch_full_0x9D29.csg and amrx_6_0_1_ssbrx_patch_init_0xA902.csg. 
- * It is important to know that the patch content of the original files is constant 
- * hexadecimal representation used by the language C/C++. Actally, the original files 
- * are in ASCII format (not in binary format). 
+ * The patch content of the original files is in hexadecimal format, stored in an 
+ * ASCII text file. 
  * If you are not using C/C++ or if you want to load the files directly to the SI4735, 
- * you must convert the values to numeric value of the hexadecimal constants. 
+ * you must convert the hexadecimal values to numeric values from 0 to 255. 
  * For example: 0x15 = 21 (00010101); 0x16 = 22 (00010110); 0x01 = 1 (00000001); 
  * 0xFF = 255 (11111111);
  * 
- * @details ATTENTION: The author of this project does not guarantee that procedures shown 
- * here will work in your development environment. Given this, it is at your own risk 
- * to continue with the procedures suggested here. This library works with the I²C 
- * communication protocol and it is designed to apply a SSB extension PATCH to  
- * SI4735-D60 and SI4732-A10 devices. Once again, the author disclaims any liability for any damage this 
- * procedure may cause to your SI4735-D60 or SI4732-A10 or other devices that you are using.
+ * @details ATTENTION: The author of this project cannot guarantee that procedures shown 
+ * here will work in your development environment. Proceed at your own risk.
+ * This library works with the I²C communication protocol to send an SSB extension PATCH to
+ * SI4735-D60 and SI4732-A10 devices. Once again, the author disclaims any and all liability for any
+ * damage or effects this procedure may have on your devices. Procced at your own risk.
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5 
  */
 
