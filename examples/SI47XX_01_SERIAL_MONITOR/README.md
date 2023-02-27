@@ -152,12 +152,12 @@ Features of this sketch:
 6) Frequency step switch (1, 5 and 10kHz);
 
   Main Parts: 
-  Encoder with push button; 
-  Seven bush buttons;
-  OLED Display with I2C protocol;
-  Arduino Pro mini 3.3V;  
+  Encoder with push button
+  Seven bush buttons
+  OLED Display with I2C protocol
+  Arduino Pro mini 3.3V
 
-### Commands tha you can use via Arduino Serial Monitor
+### Commands that you can use via Arduino Serial Monitor
 | key | Description  |
 | --- | -----------  |
 | U   | frequency up | 

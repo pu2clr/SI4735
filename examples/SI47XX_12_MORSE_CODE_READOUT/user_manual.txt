@@ -11,7 +11,7 @@ Commands
 
    Select the band by pressing the encoder push button once and then rotate the encoder clockwise or counterclockwise.
    When the desired band is shown on display, you  can press the button once again or wait for about 2 seconds. 
-   You will notice the control will go back to the VFO.
+   The control will then go back to the VFO.
 
 2. STEP, MODE, AGC/Attenuation, bandwidth, Soft Mute and VOLUME
 
@@ -37,7 +37,7 @@ Commands
         movement. If clockwise, the seek will go up; if counterclockwise, the seek will go down.  
 
 
-ATTENTION: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. 
+ATTENTION: Try press and release the push button quickly, that is, do not keep the button pressed for a long time. 
            If you do that, you might alternate the command status (enable and disable) randomly. 
            After about 2 seconds, the current command or action is disabled automatically and the interface goes back
            to VFO control. 

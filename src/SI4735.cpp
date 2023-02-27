@@ -2678,9 +2678,9 @@ char *SI4735::getRdsDateTime()
  * 
  * @brief Single Side Band (SSB) implementation.<br>  
  * First of all, the SSB patch content **is not part of this library**. 
- * The paches used here were made available by Mr. Vadim Afonkin on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). 
+ * The patches used here were made available by Mr. Vadim Afonkin on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). 
  * Please note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes.
- * In other words, while this library supports SSB patches, the patches themselves are not part of this library.  
+ * In other words, while this library supports SSB patches, the patches themselves are not a part of this library.  
  * 
  * @details This implementation was tested only on Si4735-D60  and SI4732-A10 devices. 
  * @details SSB modulation is a refinement of amplitude modulation that one of the side band and the carrier are suppressed.
