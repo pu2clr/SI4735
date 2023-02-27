@@ -38,8 +38,8 @@ The folder [extra/schematic](https://github.com/pu2clr/SI4735/tree/master/extras
 ## About the examples folders
 
 * The folder [SI47XX_01_SERIAL_MONITOR](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR) has basic examples using the Arduino Serial Monitor as the human interface.
-By using the examples of this folder, you will do not need any external device to control the Si4735. All you have to do is open the Serial Monitor. These examples are usefull to test your circuit board and help you understand the use of the Si4735 Arduino Lirary.
-* The folther [SI47XX_02_LCD_20x4_I2C](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_02_LCD_20x4_I2C) has some examples that show how you can build a radio based on Si473X using the regular LCD20x4 with a I2C adapter device.
+By using the examples of this folder, you will do not need any external device to control the Si4735. All you have to do is open the Serial Monitor. These examples are useful to test your circuit board and help you understand the use of the Si4735 Arduino Lirary.
+* The folder [SI47XX_02_LCD_20x4_I2C](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_02_LCD_20x4_I2C) has some examples that show how you can build a radio based on Si473X using the regular LCD20x4 with a I2C adapter device.
 * The folder [SI47XX_03_OLED_I2C](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C) has some examples that show how you can build a radio based on Si473X using the regular I2C OLED. They are very similar to the LCD20x4 sketches. The main difference is the Arduino Library controller of these devices.  
 * The folder [SI47XX_04_TFT](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT) has some example with TFT and touch screen as an human interface to control the radio based on Si473X.
 * The folder [SI47XX_05_ATTINY85](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85) has examples of using the Si4735 Arduino Library running on ATtiny85.
@@ -77,7 +77,7 @@ By using the examples of this folder, you will do not need any external device t
 
 ## How to compile and upload sketches
 
-This library was developed to work with Arduino environment. There are many enviroment that you can use to compile and upload Arduino sketches to your board.  The list below shows some of them: 
+This library was developed to work with Arduino environment. There are many enviroments that you can use to compile and upload Arduino sketches to your board. The list below shows some of them: 
 
 * [Arduino IDE](https://www.arduino.cc/en/software)
 * [Visual Studio with Arduino extensions](https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio)
@@ -95,7 +95,7 @@ See the section below for details.
 
 ## Arduino CLI - A faster alternative to the Arduino IDE
 
-Arduino CLI (arduino-cli) is a solution that allows you to compile, build, upload, manage boards and libraries via shell command lines. This way, you do not need to use the traditional Arduino IDE. Depending on the development environment you use, arduino-cli may be more appropriate, given it consumes less computer resources. You will notice that the arduino-cli allows compiles and uploades process faster. There is, however, the drawback of being a less intuitive environment than the Arduino IDE, offering a longer learning time for most users. The links below can help you to know more about arduino-cli. 
+Arduino CLI (arduino-cli) is a solution that allows you to compile, build, upload, manage boards and libraries via shell command line. This way, you do not need to use the traditional Arduino IDE. Depending on the development environment you use, arduino-cli may be a good choice given it is conservative on system resources. You will notice that the arduino-cli compiles and uploades code faster. However, it is a command line program, and may present a steeper learning curve over teh Arduio IDE. The links below can help you to learn more about arduino-cli. 
 
 * [Click here for more detail about arduino-cli](https://arduino.github.io/arduino-cli/0.21/).
 * [Getting started](https://arduino.github.io/arduino-cli/0.21/getting-started/)
@@ -170,8 +170,7 @@ $ curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/instal
 
 ### arduino-cli and main command examples
 
-It is important to say that all boards and libraries installed via your Arduino IDE is used by arduino-cli. I mean, all Arduino environment setup is shared by Arduino IDE and arduino-cli.
-This way, if you install a new board via arduino-cli, it will be seen by Arduino IDE and vice-versa. 
+All boards and libraries installed in either the Arduino IDE and arduino-cli are available in the other. If you install a library or board in the arduino-cli, the Arduino IDE will have access to it as well, and vice-versa. 
 
 
 ### The command below identifies the boards connected to your computer (COM3, COM4, /dev/xxx).
@@ -413,14 +412,14 @@ type __arduino-cli board listall__ to see all boards available.
 It can be very useful to improve the visual interface to your project.
 
 * First, convert your image to C/C++ code. To do that, you can use this tools:[https://www.mischianti.org/images-to-byte-array-online-converter-cpp-arduino/](https://www.mischianti.org/images-to-byte-array-online-converter-cpp-arduino/).
-  * Use the following parameters to create the C/C++ based on image you want to convert;
-    * scretch to fill canvas;
-    * Arduino code, single bitmaps;
-    * Horizontal - 2 bytes per pixel (565);
-    * User Identifier: yourImage (an C/C++ valiable name);
+  * Use the following parameters to create the C/C++ based on image you want to convert
+    * scretch to fill canvas
+    * Arduino code, single bitmaps
+    * Horizontal - 2 bytes per pixel (565)
+    * User Identifier: yourImage (an C/C++ valiable name)
     * Click on Generate button
 * Check the firt line genereted by the app: __const uint16_t YourImage [] PROGMEM = {__ ....
-* Copy and paste of the code generetaed by the app to a .h file (create a empity .h file and then paste the C/C++ code. example: yourImage.h);
-* Include the created .h file (yourImage.h) in your sketch main code (example: #include "./images/yourImage.h");
-* Finally, call the Adafruit_GFX function: tft.drawRGBBitmap(0, 0, yourImage, 168, 120); 
+* Copy and paste of the code generetaed by the app to a .h file (create a empity .h file and then paste the C/C++ code. example: yourImage.h)
+* Include the created .h file (yourImage.h) in your sketch main code (example: #include "./images/yourImage.h")
+* Finally, call the Adafruit_GFX function: tft.drawRGBBitmap(0, 0, yourImage, 168, 120)
 
