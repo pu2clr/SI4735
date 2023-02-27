@@ -729,7 +729,7 @@ The example [SI4735_06_SSB_EEPROM](https://github.com/pu2clr/SI4735/tree/master/
 
 The example [SI47XX_03_SSB_Tiny4kOLED](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85/SI47XX_03_SSB_Tiny4kOLED) implements this functionality on an ATtiny85.
 
-To store the SSB patch content into an EEPROM, [See sketch SI47XX_09_SAVE_SSB_PATCH_EEPROM](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM). 
+To store the SSB patch content into an external EEPROM connected to your MCU via I2C bus, you need to run a special schetch before. [See sketch SI47XX_09_SAVE_SSB_PATCH_EEPROM](https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM). 
 
 __Attention__: The full ssb patch needs about 16KB on eeprom.  __All data that you have stored before into your eeprom device will be lost after the execution of the sketch SI47XX_09_SAVE_SSB_PATCH_EEPROM__.  
 
@@ -767,7 +767,7 @@ The schematic below shows the Digital Audio setup using an SI4735-D60 with an ES
 You can check the schematic above via [SI47XX_06_ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER example](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER)
 
 
-The table below show the SI4735,  DAC MAX98357A and ESP32 wireup
+The table below shows the SI4735,  DAC MAX98357A and ESP32 wireup
 
 | Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
 |-----------| ----------|-----------------|---------------------------------------|
@@ -777,7 +777,7 @@ The table below show the SI4735,  DAC MAX98357A and ESP32 wireup
 
 
 
-The table below show the SI4735,  DAC CJMCU and ESP32 wireup
+The table below shows the SI4735,  DAC CJMCU and ESP32 wireup
 
 | Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
 |-----------| ----------|-----------------|---------------------------------------|
