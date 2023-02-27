@@ -5,7 +5,7 @@ This folder has some basic examples that will help you to test your board.
 __All sketches of this folder have been successfully tested on Pro Mini 3.3V; UNO (by using a voltage converter); Arduino Yún (by using a voltage converter); Arduino Micro (see the operating voltage of your Micro); Arduino Mega (by using a voltage converter); Arduino DUE; and ESP32 (Dev Kit and LOLIN32 WEMOS)__
 
 
-__Regarding SSB support, it is important to say that the SSB patch content is not part of this library__. The paches used here were made available by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). Please note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. __In other words, while this library supports SSB patches, the patches themselves are not a part of this library__.
+__Regarding SSB support, the SSB patch content is not part of this library__. The patches used here were made available by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). Please note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. __In other words, while this library supports SSB patches, the patches themselves are not a part of this library__.
 
 
 The table below show the Si4735 and Arduino Pro Mini pin connections 

@@ -94,7 +94,7 @@ Contact: __pu2clr@gmail.com__.
 
 
 ## Attention
-* __The SI473X device can work from 1.6V to 3.6V. If you are not using a 3.3V version of Arduino, you have to use a kind of 5V to 3.3V bidirectional converter. It is important to say that just power the Si47XX device with 3.3V from Arduino board is not enough. You have to be aware that the Arduino that operates with 5V will send 5V signals to the SI473X device through the digital pins and the I2C bus. That configuration can make the system unstable or damage the Si473X device__.  
+* __The SI473X device can work from 1.6V to 3.6V. If you are not using a 3.3V Arduino board, that Arduino will send 5V signals to the SI473X device through the digital pins and the I2C bus. That configuration can make the system unstable or damage the Si473X device__. To fix this, use a logic shifter chip that converts between 3.3V and 5V logic.  
 * __This library has been successfully tested on many boards including:  ESP32; STM32; Mega 2560;  DUE; ATmega328 and Atmega32u4 based boards; ATtiny85, Raspberry Pi Pico (RP2040) and more__. See [Boards where this library has been successfully tested](https://pu2clr.github.io/SI4735/#boards-where-this-library-has-been-successfully-tested).  
 * __The Si47XX IC family  functionalities__ can be seen in the comparison matrix shown in table 1 (__Product Family Function__); pages 2 and 3 of the [“Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0)”](https://web.engr.oregonstate.edu/~traylor/ece473/data_sheets/AN332.pdf).
 
@@ -130,24 +130,24 @@ The following video is a little joke that shows the trajectory of the constructi
 
 ## Thanks
 
-* Mrs. [Nancy Daniels Yoga](https://github.com/LadyRoninEngineer/Si473x) for sharing experiences and suggestions for noise reduction on the I2C bus and also for sharing the excellent board projects for the SI4732-A10 device
-* Mr. Tom Nardi for his great article ["Multi-Band Receiver On A Chip Controlled By Arduino"](https://hackaday.com/2020/03/02/multi-band-receiver-on-a-chip-controlled-by-arduino/) on Hackaday website
+* Mrs. [Nancy Daniels Yoga](https://github.com/LadyRoninEngineer/Si473x), for sharing experiences and suggestions for noise reduction on the I2C bus and also for sharing the excellent board projects for the SI4732-A10 device
+* Mr. Tom Nardi, for his great article ["Multi-Band Receiver On A Chip Controlled By Arduino"](https://hackaday.com/2020/03/02/multi-band-receiver-on-a-chip-controlled-by-arduino/) on Hackaday website
 * Mr. Gert Baak, [PE0MGB](https://www.qrz.com/db/PE0MGB), for library improvements suggestions and the Article [Arduino All band radio with SI4735 by Gert PE0MGB](https://www.pi4raz.nl/razzies/razzies202009.pdf)
 * Dr. George R Steber, [WB9LVI](https://www.qrz.com/db/WB9LVI) for his great article __NanoSSB RX - An Ultra Low Cost SSB Multiband Receiver__ on __ARRL QEX Magazine__ (November/December 2021)
-* Mr. Benjamin Neveu for his article __SSB Receiver Controlled by a Smartphone__ publised on __ARRL QEX Magazine__(September/October 2022)
+* Mr. Benjamin Neveu, for his article __SSB Receiver Controlled by a Smartphone__ publised on __ARRL QEX Magazine__(September/October 2022)
 * Mr. Jim Reagan, [W0CHL](https://www.qrz.com/db/W0CHL), for contributions on circuit design and user interface
-* [Mr. Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) for making available the SSBRX patches for SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0)
+* [Mr. Vadim Afonkin](https://youtu.be/fgjPGnTAVgM), for making available the SSBRX patches for SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0)
 * Mr. Luiz Carlos, [PT2MC](https://www.qrz.com/db/PT2MC), for guidance on external mute circuits
-* Mr. Thiago Lima for sharing his board project based on the ESP32 and SI4732-A10 devices
-* Mr. Francisco Scaramella for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library
-* Mr. David Kellmer (USA) for suggesting corrections on the documentation and sketches 
+* Mr. Thiago Lima, for sharing his board project based on the ESP32 and SI4732-A10 devices
+* Mr. Francisco Scaramella, for the suggestions and contributions provided in the electronics field as well as for the testing of the functions implemented in this library
+* Mr. David Kellmer (USA), for suggesting corrections on the documentation and sketches 
 * WH2Q, Morikaku Gotoh, for his suggestion about Automatic Volume Control on AM mode
-* Mr. Diego Stanfield for testing the SI4732-A10 with SSB
+* Mr. Diego Stanfield, for testing the SI4732-A10 with SSB
 * All members of the Facebook groups ["Si47XX for radio experimenters"](https://www.facebook.com/groups/532613604253401/) and ["Si47XX para radioescutas"](https://www.facebook.com/groups/1121785218031286/) for the suggestions and corrections during the development of this project.
-* Mr. Toni for his post [SI4735 SI4732 all band radio receiver LW MW FM SW](https://xtronic.org/circuit/audio/si4735-si4732-all-band-radio-receiver-mw-fm-sw/)
-* Mr. Scacchi Ugo for the post [HAM RADIO  -  ARDUINO SI4735 Based Radio](https://www.i2sdd.net/ARDUINO/SI4735/si4735.HTML)
+* Mr. Toni, for his post [SI4735 SI4732 all band radio receiver LW MW FM SW](https://xtronic.org/circuit/audio/si4735-si4732-all-band-radio-receiver-mw-fm-sw/)
+* Mr. Scacchi Ugo, for the post [HAM RADIO  -  ARDUINO SI4735 Based Radio](https://www.i2sdd.net/ARDUINO/SI4735/si4735.HTML)
 * Mr. Miguel Angelo Bartié, PY2OHH, for the post [RECEIVER FM/MW/SW(AM SSB and CW) with SI4735 prototype](https://www.qsl.net/py2ohh/trx/si4735/SI4735.html)   
-* Mr. Felix Angga for his great receiver based on SI4735 interface - [SlametRadio](https://github.com/felangga/slametradio) 
+* Mr. Felix Angga, for his great receiver based on SI4735 interface - [SlametRadio](https://github.com/felangga/slametradio) 
 * Mr. DAVID W ZANTOW, [N9EWO](https://www.qrz.com/db/N9EWO), for his Reviews about [ATS-25 / ATS25 / LW / MW / SW / FM DSP Receiver](https://www.qsl.net/n9ewo/ats25.html)
 
 <BR>
@@ -337,8 +337,8 @@ After adding the Board URL you want to use, go to Tools menu, select the Boards 
 
 ## About the SI4732 and SI4735  
 
-The SI4732-A10 and SI4735-D60 are DSP receivers IC from Silcon Labs. They have great performance on AM, SSB (LW/MW/SW) from 150kHz to 30MHz and  FM (VHF) from 64 to 108 MHz. __It is important to note that the engineers and programmers at Silicon Labs did an excellent job by implementing all the internal resources in this IC family. This library implements just the interface  that allows you to use the SI473X resources with  Arduino based board controller__. 
-The SI473X can be programmed by sending commands and getting responses. You can control it via a microcontroller like Arduino using  I²C  communication protocol. To make the SI473X perform an action, the microcontroller has to send a set of bytes (command and arguments) that the device interprets and executes the given command. The  image below illustrates the interaction between the MCU and the SI473X device. 
+The SI4732-A10 and SI4735-D60 are DSP receivers IC from Silcon Labs. They have great performance on AM, SSB (LW/MW/SW) from 150kHz to 30MHz and  FM (VHF) from 64 to 108 MHz. __It is important to note that the engineers and programmers at Silicon Labs did an excellent job by implementing all the internal resources in this IC family. This library implements just the interface that allows you to use the SI473X resources with Arduino based board controller__. 
+The SI473X can be programmed by sending commands and getting responses. You can control it via a microcontroller like Arduino using  I²C  communication protocol. To make the SI473X perform an action, the microcontroller has to send a set of bytes (command and arguments) that the device interprets and executes the given command. The image below illustrates the interaction between the MCU and the SI473X device. 
 
 <BR>
 
@@ -618,7 +618,7 @@ This library has more than 120 functions. The table below shows the mains functi
 
 ### Defined Data Types and Structures
 
-The Si47XX family works with many internal data that can be represented by data structure or defined data type in C/C++. These C/C++ resources have been used widely here. This approach made the library easier to build and maintain. Each data structure created here has its reference (name of the document and page on which it was based). In other words, to make the SI47XX device easier to deal with, some defined data types were created to handle  byte and bits to process  commands, properties and responses. __The goal of this approach is separating data from code__. 
+The Si47XX family works with many internal data that can be represented by data structure or defined data type in C/C++. These C/C++ resources have been used widely here. This approach made the library easier to build and maintain. Each data structure created here has its reference (name of the document and page on which it was based). In other words, to make the SI47XX device easier to deal with, some defined data types were created to handle  byte and bits to process commands, properties and responses. __The goal of this approach is separating data from code__. 
 
 All data types defined in Si4735 Arduino Library are explained [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
 
@@ -794,7 +794,7 @@ See the [API Documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
 
 ### Customizing PU2CLR Arduino Library
 
-Maybe you need some Si47XX device functions that the __PU2CLR SI4735 Arduino Library__ has not implemented so far. Also, you may want to change some existent function behaviors. This topic describes some approaches to add new SI473X features to your application.
+Maybe you need some Si47XX device functions that the __PU2CLR SI4735 Arduino Library__ has not yet implemented. Also, you may want to change some existent function behaviors. This topic describes some approaches to add new SI473X features to your application.
 
 
 __Please, check the [API documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) before implementing something you think is new. It is possible that what you want has already been implemented__. 
@@ -899,17 +899,17 @@ See also:
 
 ### Tips to build 
 
-* Try to follow what the Silicon Labs recommends
+* Try to follow what Silicon Labs recommends
 * Start building the minimum circuit and test it
-* Check if the Si47XX RESET pin (15 on SSOP version or 5 on QFN version) is connected on  your MCU (Arduino) pin defined as RESET the (most of schematics and examples of this project this pin is the digital pin 12)
+* Check if the Si47XX RESET pin (15 on SSOP version or 5 on QFN version) is connected on your MCU (Arduino) pin defined as RESET the (most of schematics and examples of this project this pin is the digital pin 12)
 * Use the minimum sketch to test the minimum circuit. The first three examples of this project (see  examples folder) can be used to test the minimum circuit
 * Try not improvising the I²C bus connection. Start using a 3.3V MCU (Arduino Pro Mini 8MHz or DUE,  ESP32 or other 3.3V device) to connect with SI4735
 * If you are using the __Arduino Pro Mini__ 3.3V board, select the correct __Processor__ on Arduino IDE (ATmega328, 3.3V, 8MHz)
-* Some devices provide internal pull-up resistors that in some cases can be enabled or disabled. Also, the capacitance of the I²C bus is another variable that have be considered to select the right resistor values. However, that capacitance is not easy to be measured. For these reasons, it can be a liitle dificult calculate the right resitor values at first. That said, start with a high pullup resistor to I²C bus and then reduce it until the best value. For example: start with 10K and try to reduce the value to 4,7K, 3,3K, 2.2K etc. Select the lowest resistor you can.
+* Select the correct pullup resistor. Two variables to consider: the internal pullup resistors in some micro controllers, and the capacitance of the I²C bus. Some devices can enable or disable their pullup resistors. However, the bus capacitance is not easy to measure. As a result, it might be difficult to calculate the correct resistor value. To find a usable resistor value, start with a high pullup resistor to I²C bus and then reduce it until the best value. For example: start with 10K and try to reduce the value to 4,7K, 3,3K, 2.2K etc. Select the lowest resistor you can.
 * I²C bus devices are available in different speeds. If you are using an I²C display device, check if its speed is compatible with the Si47XX and also with the current speed used by the master MCU
 * Using different voltage levels between I²C devices can be unsafe and can destroy parts connected on I²C bus, specially the Si47XX
 * It is important to wire all your I²C devices on the same common ground. 
-* If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 and the use of an internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problems due to the drop voltage caused by the LED circuit. If this occurs in your project, you can do: 
+* If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 and the use of an internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experience problems due to the voltage drop caused by the LED circuit. If this occurs in your project, you can do: 
   *  Use the pin 14 instead pin 13. This pin is the A0 (Analog). But you have to refer it by 14 to use it as digital pin
   *  Change the circuit and sketch to use external pull-up on pin 13
   *  Remove the LED or resitor connected to the LED from the board.   
@@ -928,9 +928,9 @@ Depending on your setup, the system can hang at the beginning.
 
 It has been observed in several tests. Some tips:
 
-1. Avoid using the computer connected to the mains during testing. The electrical grid can disturb the communication between the Arduino based board and the SI47XX device
+1. Avoid using a computer connected to the mains during testing. The electrical grid can disturb the communication between the Arduino based board and the SI47XX device
 2. The RESET pin is not configured properly. Check the connection of the SI47XX pin 15 (RST) and the Arduino based board
-3. Try to use a 22K pull-up on Arduino Board pin used for reseting (RESET PIN). It may be needed if you are using some Arduino based boards like (Atmega32, Atmega128 etc)
+3. Try to use a 22K pull-up on Arduino Board pin used for resetting (RESET PIN). It may be needed if you are using some Arduino based boards like (Atmega32, Atmega128 etc)
 4. If the SI47XX pin 16 (SEN) is grounded, the I²C bus address must be 0x11, otherwise it must be 0x63 (the default I2C bus address is 0x11). Preferably, keep this pin grounded
 5. Check if the pins 17 (SCLK / SCL) and 18 (SDIO / SDA) of the SI47XX device are correctly connected to the Arduino board pins
 6. Check the pull-up resistors connected to the pins 17 (SCLK / SCL) and 18 (SDIO / SDA) of the SI47XX device
@@ -946,7 +946,7 @@ __Attention__: The pins numbers above is considering Si473x-D60(SSOP) package.
 
 ### On FM mode, the receiver jump from a station to another station without any action.
 
-If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 and the use of on internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the drop voltage caused by the LED circuit. If this occurs in your project, do one of the following:
+If you are using Arduino Mini Pro, UNO or similar, pay attention to the pin 13 and the use of on internal pull-up resistor. This pin has a LED and a resistor connected on the board. When this pin is set to HIGH, the LED comes on. If you use the internal pull-up resistor of the pin 13, you might experiment problem due to the voltage drop caused by the LED circuit. If this occurs in your project, do one of the following:
   *  Use the pin 14 instead of pin 13. This pin is the A0 (Analog). But you have to refer it by 14 to use it as digital pin
   *  Change the circuit and sketch to use external pull-up on pin 13 or
   *  Remove the LED or the resitor connected to the LED from the Arduino Board.   
@@ -996,9 +996,9 @@ void setup() {
 
 ### When the receiver starts or when I switches it from FM to AM and vice-versa, I have loud click in the speaker  
 
-Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some Si47XX device commands. This problem occurs during the receiver transition from the power down to power up internal commands. Also, every time the user changes the mode (FM to AM or AM to FM) the sequence power down and power up internal commands is required by the Si47XX devices. 
+Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some Si47XX device commands. This problem occurs during the receivers transition from the power down to power up. Every time the user changes the mode (FM to AM or AM to FM, Si47XX devices mnust be powered down and powered back up which causes the click sound. 
 
-The SI473X devices have HIGH DC (DC bias) component in the analog audio output pins (SI4735-D60 pins 23 and 24). When the device goes to power down mode, the voltage on the audio pins drops to 0V.  The device does it internally and there is no  way to avoid that. When the device goes to power up, those audio pins suddenly go to the HIGH DC again. This transition causes the loud pop in the speaker. So far, the author of this library has not found an internal SI473X device solution to solve the loud popping of the speaker. It is important to say that internal SI473X mute or volume commands will not work for this purpose. However, it is possible to solve this problem by adding an extra __mute__ circuit and control it by the MCU (Atmega, ESP32, STM32, ATtiny85 etc). 
+The SI473X devices have HIGH DC (DC bias) component in the analog audio output pins (SI4735-D60 pins 23 and 24). When the device goes to power down mode, the voltage on the audio pins drops to 0V. The device does it internally and there is no way to avoid that. When the device goes to power up, those audio pins suddenly go to the HIGH DC again. This transition causes the loud pop in the speaker. So far, the author of this library has not found an internal SI473X device solution to solve the loud popping of the speaker. The internal SI473X mute or volume commands will not stop the clicking sound. However, it is possible to solve this problem by adding an extra __mute__ circuit and control it by the MCU (Atmega, ESP32, STM32, ATtiny85 etc). 
 
 The schematic below shows this approach.
 
@@ -1037,7 +1037,7 @@ void setup() {
 {% include audiomute.html %}
 
 
-Some low power audio amplifiers IC also implement mute circuit that can be controlled externally. You can find this resource on __[LM4906](http://www.ti.com/lit/ds/symlink/lm4906.pdf), [LM4863](https://www.ti.com/lit/ds/symlink/lm4863.pdf?ts=1588602798363), KA8602B, MC34119, PAM8403__ and __HT82V739__ devices.
+Some low power audio amplifiers IC also implement a mute circuit that can be controlled externally. You can find this resource on __[LM4906](http://www.ti.com/lit/ds/symlink/lm4906.pdf), [LM4863](https://www.ti.com/lit/ds/symlink/lm4863.pdf?ts=1588602798363), KA8602B, MC34119, PAM8403__ and __HT82V739__ devices.
 
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
@@ -1101,7 +1101,7 @@ void showFrequency()
 
 * Regarding SSB patch, use the __patch_ssb_compressed.h__ and [downloadCompressedPatch](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html#gaf1b8947db928728ada66ef3edaa79e76) instead __init.h__ and [downloadPatch](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html#gafd1343bd8b4f0c290ef81c418222036c). It will save about 1K of memory.  
 
-Explanation: The first byte of each line of the original patch content is a command 0x15 or 0x16. To shrink the patch size stored into the controller the first byte is ommited and a new array will be added to indicate the position where the command 0x15 occours (which occurs much less often). For the other lines, the downloadCompressedPatch method will include the value 0x16. The value 0x16 occurs on most lines in the patch. 
+Explanation: The first byte of each line of the original patch content is either a 0x15 or 0x16 command. To shrink the patch size stored on the controller, the first byte on each line is omitted. Since the first byte on each line is either 0x15 or 0x16, it is not necessary to explicitly store them. Since most lines start with the 0x16 byte, only the line numbers beginning with 0x15 must be stored. The downloadCompressedPatch method will insert the value 0x15 when it's on a line that is marked as beginning with 0x15, and will insert 0x16 on all other lines.
 
 
 ```cpp 
@@ -1182,7 +1182,7 @@ The table below shows the some boards where this library has been successfully t
 1. More about ESP boards on [ESPRESSIF Development Boards](https://www.espressif.com/en/products/hardware/development-boards).
 2. More about BlueDuino on [Seed](https://www.seeedstudio.com/Blueduino-Rev2-Arduino-compatible-pius-BLE-CC2540-p-2550.html).
 3. On [Arduino.cc](https://www.arduino.cc/) you can see the technical specification about many board. 
-4. It seams that in some ESP32 board, the I²C bus is not configured prorpelly by default. However, you can set almost any pin on ESP32 to setup I²C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. See the folder examples to check how to use ESP32 devices. 
+4. It seams that in some ESP32 board, the I²C bus is not configured properly by default. However, you can set almost any pin on ESP32 to setup I²C capabilities. All you have to do is call __Wire.begin(SDA, SCL);__ where SDA and SCL are the ESP32 GPIO pins. See the folder examples to check how to use ESP32 devices. 
 5. You can use the pin 12 too.  
 6. Arduino Nano 33 BLE only supports 3.3V I/Os and is NOT 5V tolerant so please make sure you are not directly connecting 5V
 signals to this board or it will be damaged. Also, as opposed to Arduino Nano boards that support 5V operation, the 5V pin does NOT
