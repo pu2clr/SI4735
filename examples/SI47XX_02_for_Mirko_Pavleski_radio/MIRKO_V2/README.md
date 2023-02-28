@@ -59,8 +59,8 @@ This sketch is very similar to the previous sketch (MIRKO_V1.ino). The new featu
 1. BAND SELECTION
 
    * Select the band by pressing the encoder push button once and then rotate the encoder clockwise or counterclockwise.
-   * When the desired band is shown on display, you  can press the button once again or wait for about 2 seconds. 
-   * You will notice the control will go back to the VFO.
+   * When the desired band is shown on display, you can press the button once again or wait for about 2 seconds. 
+   * The control will then go back to the VFO.
 
 2. STEP, MODE, SEEK UP, SEEK DOWN, AGC/Attenuation, bandwidth, FM/RDS, Soft Mute and VOLUME
 
@@ -79,7 +79,7 @@ This sketch is very similar to the previous sketch (MIRKO_V1.ino). The new featu
     * Rotate the encoder clockwise or counterclockwise to increment or decrement the BFO (select the offset).
     * If you press the button again or stop rotating the ancoder for about 2 seconds, the control will go back to the VFO. 
 
-__ATTENTION__: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. If you do that, you might alternate the command status (enable and disable) randomly. 
+__ATTENTION__: Try press and release the push button quickly. If you hold the button for too long, you might alternate the command status (enable and disable) randomly. 
 
 4. EEPROM RESET
 

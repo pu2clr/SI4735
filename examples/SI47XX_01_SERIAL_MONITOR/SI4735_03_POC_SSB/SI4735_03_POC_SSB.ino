@@ -5,7 +5,8 @@
  This example shows you how to setup the radio on SW/SSB by using the Si4735 Arduino Library.
  It uses the Serial Monitor to get the commands and show the information. 
 
- ATTENTION:  Please, avoid using the computer connected to the mains during testing. 
+ ATTENTION:  Please, avoid using a computer connected to the mains during testing. Doing so may result
+             in interference which may interefere with the radio tuner chip.
 
  This sketch has been successfully tested on:
  1) Tested on Arduino Pro Mini 3.3V 

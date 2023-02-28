@@ -6,7 +6,8 @@
  This example shows you how to setup the radio on SW/SSB by using the Si4735 Arduino Library.
  It uses the Serial Monitor to get the commands and show the information. 
 
- ATTENTION:  Please, avoid using the computer connected to the mains during testing. 
+ ATTENTION:  Please, avoid using a computer connected to the mains during testing. Doing so may result
+             in interference which may interefere with the radio tuner chip.
 
  This sketch has been successfully tested on:
  1) Tested on Arduino Pro Mini 3.3V; 
@@ -18,11 +19,11 @@
 
  For SSB use SI4735-D60 or SI4732-A10.
 
- The main advantages of using this sketch are: 
- 1) It is a easy way to check if your circuit is working;
- 2) You do not need to connect any display device to make your radio works;
- 3) You do not need connect any push buttons or encoders to change volume and frequency;
- 4) The Arduino IDE is all you need to control the radio.  
+ With this sketch, you only need the Arduino IDE and its Serial monitor to test and control the circuit.
+ This means:
+    1) You don't need buttons, rotary encoders, potentiometers, etc. to control the circuit
+    2) You don't need a screen to see output from the Arduino board
+    3) All functions supported by this sketch can be accessed over the serial monitor  
 
  The table below shows the Si4735 and Arduino Pro Mini pin connections 
     

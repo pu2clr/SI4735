@@ -1,12 +1,12 @@
 /*
 
   This sketch shows how to control the external audio mute circuit.
-  Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some SI47XX commands.  
-  This problem occurs during the transition from the power down to power up. 
-  Every time the user changes the mode (FM to AM or AM to FM) the power down and power up commands are required by the Si47XX devices.
-  If you have a extra circuit in your receiver to mute the audio on amplifier input, you can configure an Arduino pin to control it by this library.
+  Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some SI47XX commands.
+  This problem occurs during the transition from power down to power up states. 
+  Every time the user changes the mode (FM to AM or AM to FM) the Si47XX devices must be powered down and powered up again.
+  If you have a extra circuit in your receiver to mute the audio on amplifier input, you can configure an Arduino pin to control it as shown in this example.
 
-  All you have to do is calling the setAudioMuteMcuPin( <digital_arduino_pin> ) before call the receiver setup.
+  All you have to do is call the setAudioMuteMcuPin( <digital_arduino_pin> ) method before call the receiver setup.
    
   Test and validation of the SI4735 Arduino Library.
   It is a FM, MW and SW (1700kHz to 30000kHz)

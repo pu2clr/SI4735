@@ -2,7 +2,8 @@
    Test and validation of the SI4735 Arduino Library.
    It is an FM, MW and SW (1700kHz to 30000kHz)
    
-   ATTENTION:  Please, avoid using a computer connected to the mains during testing.
+   ATTENTION:  Please, avoid using a computer connected to the mains during testing. Doing so may result
+                in interference which may interefere with the radio tuner chip.
 
    With this sketch, you only need the Arduino IDE and its Serial monitor to test and
    control the circuit.

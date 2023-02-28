@@ -3,7 +3,8 @@
    This example shows how can setup the radio on SW by using the Si4735 Arduino Library.
    This sketch divides the HF spectrum in many bands. See band table.
    
-   ATTENTION:  Please, avoid using a computer connected to the mains during testing.
+   ATTENTION:  Please, avoid using a computer connected to the mains during testing. Doing so may result
+                in interference which may interefere with the radio tuner chip.
 
    With this sketch, you only need the Arduino IDE and its Serial monitor to test and
    control the circuit.

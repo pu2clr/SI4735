@@ -3,9 +3,9 @@
 This section presents several prototypes and circuits with different displays and controller boards. The source codes for each prototype are stored in the [examples folder](https://github.com/pu2clr/SI4735/tree/master/examples) of this repository. Please, check the comments at the beginning of each sketch example available in this library. You will find the SI473X, button, encoder, display and Arduino settings. There are more than 30 projects that can help you to build your own receiver based on the SI47XX IC family. 
 
 
-__IT IS IMPORTANT TO SAY THAT THE CIRCUITS DESIGN BUILT BY THE AUTHOR ARE NOT INTEND TO BE A FINAL PRODUCT. SOME IMPORTANT ASPECTS AND DETAILS ABOUT A GOOD RECEIVER WERE OMITTED HERE. THE IDEA OF THE CIRCUITS MADE BY THE AUTHOR WERE ORIENTED TO BE A PROOF OF CONCEPT OF THE FUNCTIONS IMPLEMENTED IN THE ARDUINO LIBRARY. SO, COMPONENTS LIKE RF FRONT-END, BAND PASS FILTER,  ESD, ANTENNA DESIGN ARE NOT THE MAIN PART OF THIS PROJECT__.
+__THE CIRCUIT DESIGNS CREATED BY THE AUTHOR ARE NOT INTEND TO BE A FINAL PRODUCT. SOME IMPORTANT ASPECTS OF A GOOD RECEIVER ARE OUTSIDE THE SCOPE OF THESE EXAMPLES. THE CIRCUITS MADE BY THE AUTHOR ARE A PROOF OF CONCEPT OF THE FUNCTIONS IMPLEMENTED IN THE ARDUINO LIBRARY. SO, COMPONENTS LIKE RF FRONT-END, BAND PASS FILTER, ESD, ANTENNA DESIGN ARE NOT THE MAIN PART OF THIS PROJECT__.
 
-__This project is about a library to control the SI47XX devices and the focus of this project is the library and its functionalities. Please, don't ask the author to assist you with displays, encoders, buttons or something else out of the "PU2CLR SI4735 Arduino Library" scope. Thanks.__
+__This project is about a library to control the SI47XX devices and the focus of this project is the library and its functionalities. Please, don't ask the author to assist you with displays, encoders, buttons or something else outside of the "PU2CLR SI4735 Arduino Library" scope. Thanks.__
 
 ### Use the following groups to guide you in your projects
 
