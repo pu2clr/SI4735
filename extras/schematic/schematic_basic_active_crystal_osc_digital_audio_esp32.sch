@@ -890,12 +890,32 @@ In this library the device names are the same as the pin names of the symbols, t
 <text x="-1.905" y="3.175" size="1.778" layer="96">&gt;VALUE</text>
 <pin name="VCC" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
 </symbol>
+<symbol name="GND" urn="urn:adsk.eagle:symbol:26990/1" library_version="2">
+<wire x1="-1.27" y1="0" x2="1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="0" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="0" y1="-1.27" x2="-1.27" y2="0" width="0.254" layer="94"/>
+<text x="-1.905" y="-3.175" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="GND" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="VCC" urn="urn:adsk.eagle:component:27060/1" prefix="SUPPLY" library_version="2">
 <description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
 <gates>
 <gate name="G$1" symbol="VCC" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="GND" urn="urn:adsk.eagle:component:27037/1" prefix="SUPPLY" library_version="2">
+<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
+<gates>
+<gate name="GND" symbol="GND" x="0" y="0"/>
 </gates>
 <devices>
 <device name="">
@@ -8686,12 +8706,11 @@ Metric Code Size 5664</description>
 <part name="C1" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="22NF/22,000PF" device="-0603-50V-10%" package3d_urn="urn:adsk.eagle:package:37414/1" value="22nF"/>
 <part name="GND4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="C4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1" value="100nF"/>
-<part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1"/>
+<part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1" value="470nF"/>
 <part name="L1" library="ngspice-simulation" library_urn="urn:adsk.eagle:library:527439" deviceset="L" device=""/>
-<part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1"/>
+<part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CX" device="XC10B6" package3d_urn="urn:adsk.eagle:package:23700/1" value="1nF"/>
 <part name="FM" library="discrete" library_urn="urn:adsk.eagle:library:211" deviceset="ANTENNA" device="" package3d_urn="urn:adsk.eagle:package:12928/1"/>
 <part name="AM" library="discrete" library_urn="urn:adsk.eagle:library:211" deviceset="ANTENNA" device="" package3d_urn="urn:adsk.eagle:package:12928/1"/>
-<part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 <part name="GND7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
@@ -8704,6 +8723,9 @@ Metric Code Size 5664</description>
 <part name="C5" library="adafruit" deviceset="C-US" device="025-024X044" value="5pF"/>
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="U2" library="ESP32-DEVKITC-32D" deviceset="ESP32-DEVKITC-32D" device=""/>
+<part name="SUPPLY5" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device="">
+<attribute name="RFGND" value="0"/>
+</part>
 </parts>
 <sheets>
 <sheet>
@@ -8757,20 +8779,17 @@ Metric Code Size 5664</description>
 <attribute name="NAME" x="-33.02" y="58.42" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-27.94" y="58.42" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="C2" gate="G$1" x="-68.58" y="104.14" smashed="yes">
-<attribute name="NAME" x="-67.056" y="104.521" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-67.056" y="99.441" size="1.778" layer="96"/>
+<instance part="C2" gate="G$1" x="-68.58" y="99.06" smashed="yes" rot="R90">
+<attribute name="NAME" x="-71.501" y="100.584" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-63.881" y="100.584" size="1.778" layer="96"/>
 </instance>
-<instance part="FM" gate="A" x="-86.36" y="111.76" smashed="yes">
-<attribute name="NAME" x="-88.9" y="113.03" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-83.82" y="106.68" size="1.778" layer="96"/>
+<instance part="FM" gate="A" x="-86.36" y="104.14" smashed="yes">
+<attribute name="NAME" x="-88.9" y="105.41" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-83.82" y="99.06" size="1.778" layer="96"/>
 </instance>
 <instance part="AM" gate="A" x="-12.7" y="76.2" smashed="yes">
 <attribute name="NAME" x="-15.24" y="77.47" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-10.16" y="71.12" size="1.778" layer="96"/>
-</instance>
-<instance part="GND5" gate="1" x="-58.42" y="76.2" smashed="yes">
-<attribute name="VALUE" x="-60.96" y="73.66" size="1.778" layer="96"/>
 </instance>
 <instance part="GND6" gate="1" x="116.84" y="157.48" smashed="yes" rot="R180">
 <attribute name="VALUE" x="119.38" y="160.02" size="1.778" layer="96" rot="R180"/>
@@ -8811,6 +8830,9 @@ Metric Code Size 5664</description>
 <attribute name="NAME" x="81.2628" y="140.3643" size="1.78" layer="95"/>
 <attribute name="VALUE" x="81.2637" y="86.3302" size="1.7799" layer="96"/>
 </instance>
+<instance part="SUPPLY5" gate="GND" x="-58.42" y="76.2" smashed="yes">
+<attribute name="RFGND" x="-55.88" y="73.66" size="1.778" layer="96" display="name"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -8828,17 +8850,6 @@ Metric Code Size 5664</description>
 <wire x1="33.02" y1="68.58" x2="33.02" y2="88.9" width="0.1524" layer="91"/>
 <wire x1="38.1" y1="68.58" x2="33.02" y2="68.58" width="0.1524" layer="91"/>
 <junction x="33.02" y="68.58"/>
-</segment>
-<segment>
-<pinref part="U1" gate="A" pin="RFGND"/>
-<wire x1="-33.02" y1="96.52" x2="-38.1" y2="96.52" width="0.1524" layer="91"/>
-<wire x1="-38.1" y1="96.52" x2="-38.1" y2="78.74" width="0.1524" layer="91"/>
-<pinref part="L1" gate="G$1" pin="1"/>
-<wire x1="-38.1" y1="78.74" x2="-38.1" y2="55.88" width="0.1524" layer="91"/>
-<wire x1="-38.1" y1="55.88" x2="-30.48" y2="55.88" width="0.1524" layer="91"/>
-<pinref part="GND5" gate="1" pin="GND"/>
-<wire x1="-58.42" y1="78.74" x2="-38.1" y2="78.74" width="0.1524" layer="91"/>
-<junction x="-38.1" y="78.74"/>
 </segment>
 <segment>
 <pinref part="U1" gate="A" pin="NC_4"/>
@@ -8864,6 +8875,17 @@ Metric Code Size 5664</description>
 <pinref part="C4" gate="G$1" pin="1"/>
 <pinref part="GND4" gate="1" pin="GND"/>
 <wire x1="55.88" y1="129.54" x2="55.88" y2="132.08" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="RFGND"/>
+<wire x1="-33.02" y1="96.52" x2="-38.1" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="-38.1" y1="96.52" x2="-38.1" y2="78.74" width="0.1524" layer="91"/>
+<pinref part="L1" gate="G$1" pin="1"/>
+<wire x1="-38.1" y1="78.74" x2="-38.1" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="-38.1" y1="55.88" x2="-30.48" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="-58.42" y1="78.74" x2="-38.1" y2="78.74" width="0.1524" layer="91"/>
+<junction x="-38.1" y="78.74"/>
+<pinref part="SUPPLY5" gate="GND" pin="GND"/>
 </segment>
 </net>
 <net name="SDA" class="0">
@@ -8955,14 +8977,14 @@ Metric Code Size 5664</description>
 <net name="N$13" class="0">
 <segment>
 <pinref part="U1" gate="A" pin="FMI"/>
-<wire x1="-33.02" y1="99.06" x2="-68.58" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="-33.02" y1="99.06" x2="-63.5" y2="99.06" width="0.1524" layer="91"/>
 <pinref part="C2" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$14" class="0">
 <segment>
 <pinref part="C2" gate="G$1" pin="1"/>
-<wire x1="-68.58" y1="106.68" x2="-86.36" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="-71.12" y1="99.06" x2="-86.36" y2="99.06" width="0.1524" layer="91"/>
 <pinref part="FM" gate="A" pin="1"/>
 </segment>
 </net>
