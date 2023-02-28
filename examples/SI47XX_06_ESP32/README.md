@@ -24,9 +24,9 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 
 ### The main advantages of using this sketch are: 
 
-* It is a easy way to check if your setup is working;
-* You do not need to connect any display device to make your radio works;
-* You do not need connect any push buttons or encoders to change volume and frequency;
+* It is a easy way to check if your setup is working
+* You do not need to connect any display device to make your radio works
+* You do not need connect any push buttons or encoders to change volume and frequency
 * The Arduino IDE is all you need to control the radio.  
 
 
@@ -132,13 +132,13 @@ void setup() {
 
 ### Main features:
 
-* This sketch has been successfully tested on ESP LOLIN32 (WEMOS) and ESP32 Devkit;
-* It uses the capacitive touch ESP32 resource;
-* I2C LiquidCrystal/LCD 20x4;
-* Encoder;
-* FM, AM (MW and SW) and SSB (LSB and USB);
-* Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz;
-* BFO Control; and
+* This sketch has been successfully tested on ESP LOLIN32 (WEMOS) and ESP32 Devkit
+* It uses the capacitive touch ESP32 resource
+* I2C LiquidCrystal/LCD 20x4
+* Encoder
+* FM, AM (MW and SW) and SSB (LSB and USB)
+* Audio bandwidth filter 0.5, 1, 1.2, 2.2, 3 and 4kHz
+* BFO Control
 * Frequency step switch (1, 5 and 10kHz).
 
 
@@ -237,9 +237,4 @@ Still under construction this sketch will show how to use TFT with ESP32, Si4735
 |    Encoder2               | A                             |  GPIO 25      |
 |                           | B                             |  GPIO 26      |    
 |                           | PUSH BUTTON (encoder)         |  GPIO 32      |
-
-
-
-
-
 

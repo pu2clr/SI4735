@@ -12,8 +12,8 @@ To switch the mode (AM, LSB or USB), press mode button and then rotate the encod
 
 The same idea you can use to AGC/Attenuation, STEP and Banddwith.
 
-Tip: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time.
-     If you do that, you might alternate the command status (enable and disable) randomly.
+Tip: Try press and release the push button quickly. If you hold the button too long, then the board may 
+     randomly alternate the command status (enable and disable).
 
 
 2. SEEK COMMAND

@@ -38,8 +38,9 @@ Read the documentation available in each ino file. The control of the radio is 1
 * Automatic gain control (AGC)
 * Manual gain control by the rotary encoder
  
-To save power from the battery, display is switching off after 5 minutes. 
-Display is waking up by the use of one of the controllers e.g. screen, rotary controller or rotary controller switch.  Power consumption 120 mA and 80 mA when display is switched off.
+To save power from the battery, the display switches off after 5 minutes. 
+The display will wake up by the use of one of the controllers e.g. screen, rotary controller or rotary
+controller switch.  Power consumption 120 mA and 80 mA when display is switched off.
 
 
 ## Schematic 
@@ -94,10 +95,4 @@ __After installing the TFT_eSPI Arduino Library, copy the files Setup1_ILI9341.h
 
 
 [Check this video on Youtube](https://youtu.be/Gv8bHQbzdO4)
-
-
-
-
-
-
 

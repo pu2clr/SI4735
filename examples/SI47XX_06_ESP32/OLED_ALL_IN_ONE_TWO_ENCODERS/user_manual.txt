@@ -32,6 +32,6 @@ Commands
         movement. If clockwise, the seek will go up; if counterclockwise, the seek will go down.  
 
 
-ATTENTION: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. 
-           If you do that, you might alternate the command status (enable and disable) randomly. 
+ATTENTION: Try to press and release the push button quickly. If you hold the button too long, the board might 
+            alternate the command status (enable and disable) randomly. 
 
