@@ -1,7 +1,7 @@
 {
-    "board": "esp32:esp32:fm-devkit",
+    "board": "arduino:avr:nano",
     "port": "/dev/tty.usbmodem14201",
-    "sketch": "examples/",
-    "configuration": "UploadSpeed=115200,DebugLevel=none,EraseFlash=none",
+    "sketch": "examples/SI47XX_02_for_Mirko_Pavleski_radio/MIRKO_V2/MIRKO_V2.ino",
+    "configuration": "cpu=atmega328",
     "programmer": "esptool"
 }

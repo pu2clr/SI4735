@@ -31,7 +31,7 @@
         },
         {
             "name": "Arduino",
-            "compilerPath": "/Users/rcaratti/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
+            "compilerPath": "/home/ricardo/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
             "compilerArgs": [
                 "-w",
                 "-std=gnu++11",
@@ -44,23 +44,25 @@
             ],
             "intelliSenseMode": "gcc-x64",
             "includePath": [
-                "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/cores/arduino",
-                "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/variants/eightanaloginputs",
-                "/Users/rcaratti/Documents/Arduino/libraries/si4735",
-                "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/libraries/Wire/src",
-                "/Users/rcaratti/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include",
-                "/Users/rcaratti/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include-fixed",
-                "/Users/rcaratti/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include"
+                "/home/ricardo/.arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
+                "/home/ricardo/.arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
+                "/home/ricardo/Arduino/libraries/PU2CLR_SI4735/src",
+                "/home/ricardo/.arduino15/packages/arduino/hardware/avr/1.8.6/libraries/Wire/src",
+                "/home/ricardo/.arduino15/packages/arduino/hardware/avr/1.8.6/libraries/EEPROM/src",
+                "/home/ricardo/Arduino/libraries/LiquidCrystal/src",
+                "/home/ricardo/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include",
+                "/home/ricardo/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include-fixed",
+                "/home/ricardo/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include"
             ],
             "forcedInclude": [
-                "/Users/rcaratti/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/cores/arduino/Arduino.h"
+                "/home/ricardo/.arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/Arduino.h"
             ],
             "cStandard": "c11",
             "cppStandard": "c++11",
             "defines": [
-                "F_CPU=8000000L",
-                "ARDUINO=10819",
-                "ARDUINO_AVR_PRO",
+                "F_CPU=16000000L",
+                "ARDUINO=10607",
+                "ARDUINO_AVR_NANO",
                 "ARDUINO_ARCH_AVR",
                 "__DBL_MIN_EXP__=(-125)",
                 "__HQ_FBIT__=15",
