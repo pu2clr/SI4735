@@ -34,35 +34,34 @@
             "compilerPath": "/home/ricardo/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
             "compilerArgs": [
                 "-w",
-                "-std=gnu++11",
-                "-fpermissive",
+                "-std=gnu++17",
                 "-fno-exceptions",
                 "-ffunction-sections",
                 "-fdata-sections",
-                "-fno-threadsafe-statics",
-                "-Wno-error=narrowing"
+                "-fno-threadsafe-statics"
             ],
             "intelliSenseMode": "gcc-x64",
             "includePath": [
-                "/home/ricardo/.arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
-                "/home/ricardo/.arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
+                "/home/ricardo/.arduino15/packages/MiniCore/hardware/avr/2.2.1/cores/MCUdude_corefiles",
+                "/home/ricardo/.arduino15/packages/MiniCore/hardware/avr/2.2.1/variants/standard",
                 "/home/ricardo/Arduino/libraries/PU2CLR_SI4735/src",
-                "/home/ricardo/.arduino15/packages/arduino/hardware/avr/1.8.6/libraries/Wire/src",
-                "/home/ricardo/.arduino15/packages/arduino/hardware/avr/1.8.6/libraries/EEPROM/src",
-                "/home/ricardo/Arduino/libraries/LiquidCrystal/src",
+                "/home/ricardo/.arduino15/packages/MiniCore/hardware/avr/2.2.1/libraries/Wire/src",
+                "/home/ricardo/.arduino15/packages/MiniCore/hardware/avr/2.2.1/libraries/EEPROM/src",
+                "/home/ricardo/Arduino/libraries/Tiny4kOLED/src",
+                "/home/ricardo/Arduino/libraries/TinyOLED-Fonts/src",
                 "/home/ricardo/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include",
                 "/home/ricardo/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include-fixed",
                 "/home/ricardo/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include"
             ],
             "forcedInclude": [
-                "/home/ricardo/.arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/Arduino.h"
+                "/home/ricardo/.arduino15/packages/MiniCore/hardware/avr/2.2.1/cores/MCUdude_corefiles/Arduino.h"
             ],
             "cStandard": "c11",
-            "cppStandard": "c++11",
+            "cppStandard": "c++17",
             "defines": [
                 "F_CPU=16000000L",
                 "ARDUINO=10607",
-                "ARDUINO_AVR_NANO",
+                "ARDUINO_AVR_ATmega328",
                 "ARDUINO_ARCH_AVR",
                 "__DBL_MIN_EXP__=(-125)",
                 "__HQ_FBIT__=15",

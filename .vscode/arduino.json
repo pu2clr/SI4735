@@ -1,7 +1,7 @@
 {
-    "board": "arduino:avr:nano",
-    "port": "/dev/tty.usbmodem14201",
-    "sketch": "examples/SI47XX_02_for_Mirko_Pavleski_radio/MIRKO_V2/MIRKO_V2.ino",
-    "configuration": "cpu=atmega328",
+    "board": "MiniCore:avr:328",
+    "port": "/dev/ttyUSB0",
+    "sketch": "examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V8/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V8.ino",
+    "configuration": "bootloader=no_bootloader,eeprom=keep,variant=modelP,BOD=2v7,LTO=Os_flto,clock=16MHz_external",
     "programmer": "esptool"
 }
