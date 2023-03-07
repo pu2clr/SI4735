@@ -51,6 +51,7 @@ arduino-cli lib install "TFT_22_ILI9225"
 arduino-cli lib install "TFT_eSPI_ES32Lab"
 arduino-cli lib install "Tiny4kOLED"
 arduino-cli lib install "TinyOLED-Fonts"
+arduino-cli lib install "Adafruit PCD8544 Nokia 5110 LCD library"
 
 echo "Installing the boards"
 arduino-cli core install arduino:avr
