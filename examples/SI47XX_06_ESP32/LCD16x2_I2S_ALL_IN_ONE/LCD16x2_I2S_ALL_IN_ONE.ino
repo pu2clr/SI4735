@@ -1,14 +1,17 @@
 /*
-  It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
-  regular  comercial  stations.
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10, Digital Audio (I2S) 
+  and  the  "PU2CLR SI4735 Arduino Library". 
 
-  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
-  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
+  It is not the purpose of this example to provide you a beautiful interface. You must do it by yourself.
 
-  Features:   AM; SSB; LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
-              SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
+  It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  mode  and  FM mode (regular  comercial  stations).
+  Unfortunately the Si473X I2S setup does not work on SSB mode.
 
-  ESP32 Wire up with LCD, encoder/pushbutton and SI4735-D60
+
+  Features:   AM;LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
+              AM filter; 1, 5, 10, 50 and 500kHz step on AM 
+
+  ## ESP32 Wire up with LCD, encoder/pushbutton and SI4735-D60
 
   | Device name               | Device Pin / Description      |  ESP32        |
   | ----------------          | ----------------------------- | ------------- |
@@ -32,6 +35,25 @@
   |                           | B                             |  GPIO14       |
   |                           | PUSH BUTTON (encoder)         |  GPIO27       |
 
+
+  The table below show the SI4735,  DAC MAX98357A and ESP32 wireup
+
+  | Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+  |-----------| ----------|-----------------|---------------------------------------|
+  | pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
+  | pin 2     | DFS       |  RC             |  WordSelect / GPIO25                  |
+  | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
+
+  The table below show the SI4735,  DAC CJMCU and ESP32 wireup
+
+  | Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+  |-----------| ----------|-----------------|---------------------------------------|
+  | pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
+  | pin 2     | DFS       |  WSEL           |  WordSelect / GPIO25                  |
+  | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
+
+
+
   (*1) If you are using the SI4732-A10, check the corresponding pin numbers.
   (*1) The PU2CLR SI4735 Arduino Library has resources to detect the I2C bus address automatically.
        It seems the original project connect the SEN pin to the +Vcc. By using this sketch, you do
@@ -39,21 +61,38 @@
 
   ATTENTION: Read the file user_manual.txt
 
+  IMPORTANT: This setup does not work with regular crystal setup. 
+             You need a external active crystal or signal generator setup. 
+             See Digital Audio support: https://pu2clr.github.io/SI4735/#digital-audio-support
+             See SI473X and external active crystal oscillator or signal generator: https://github.com/pu2clr/SI4735/tree/master/extras/schematic#si473x-and-external-active-crystal-oscillator-or-signal-generator
+
+  References: 
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
   LCD16x2 (3.3V version) and ESP32 wireup: https://www.circuitschools.com/interfacing-16x2-lcd-module-with-esp32-with-and-without-i2c/
   LCD custom character: https://maxpromer.github.io/LCD-Character-Creator/
 
-  By PU2CLR, Ricardo, May  2021.
+  I2S setup and Serial plotter code from https://dronebotworkshop.com/esp32-i2s/
+  ESP32-audioI2S library: https://github.com/schreibfaul1/ESP32-audioI2S
+  I2S from espressif ESP32:  https://espressif-docs.readthedocs-hosted.com/projects/arduino-esp32/en/latest/api/i2s.html
+
+  Other references: 
+  I2S Communication on ESP32 to Transmit and Receive Audio Data Using MAX98357A: https://circuitdigest.com/microcontroller-projects/i2s-communication-on-esp32-to-transmit-and-receive-audio-data-using-max98357a
+  I2S Sound Tutorial for ESP32: https://diyi0t.com/i2s-sound-tutorial-for-esp32/
+  Bluetooth A2DP – Streaming from an Digital I2S Microphone: https://www.pschatzmann.ch/home/2021/04/29/bluetooth-a2dp-streaming-from-an-digital-i2s-microphone/
+  A Simple Arduino Bluetooth Music Receiver and Sender for the ESP32: https://github.com/pschatzmann/ESP32-A2DP
+  Si4735 I2S module - https://gitlab.com/retrojdm/si4735-i2s-module
+
+  By PU2CLR, Ricardo, May  2023.
 */
 
 #include <SI4735.h>
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
-// #include <LiquidCrystal_I2C.h>
+#include <driver/i2s.h> 
 #include "Rotary.h"
-#include <patch_init.h> // SSB patch for whole SSBRX initialization string
 
+#include <patch_init.h> // SSB patch for whole SSBRX initialization string
 const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 
 #define FM_BAND_TYPE 0
@@ -96,6 +135,20 @@ const uint16_t size_content = sizeof ssb_patch_content; // see patch_init.h
 #define EEPROM_SIZE        512
 
 #define STORE_TIME 10000 // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
+
+
+#define I2S_WS 25
+#define I2S_SD 32
+#define I2S_SCK 33
+
+#define I2C_SDA 21
+#define I2C_CLK 22
+
+// Define input I2S buffer length
+#define bufferLen 64
+
+int16_t i2sBuffer[bufferLen];
+
 
 // EEPROM - Stroring control variables
 const uint8_t app_id = 37; // Useful to check the EEPROM content before processing useful data
@@ -273,7 +326,30 @@ Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 // LiquidCrystal_I2C lcd(0x27, 20, 4); 
 
+
 SI4735 rx;
+
+// ESP32 I2S setup 
+
+const i2s_config_t i2s_config = {
+  .mode = i2s_mode_t(I2S_MODE_MASTER | I2S_MODE_RX),
+  .sample_rate = 48000,
+  .bits_per_sample = i2s_bits_per_sample_t(16),  // Resolution: More bits better quality
+  .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
+  .communication_format = i2s_comm_format_t(I2S_COMM_FORMAT_STAND_I2S),
+  .intr_alloc_flags = 0,
+  .dma_buf_count = 8,
+  .dma_buf_len = bufferLen,
+  .use_apll = false
+};
+
+const i2s_pin_config_t pin_config = {
+  .bck_io_num = I2S_SCK,
+  .ws_io_num = I2S_WS,
+  .data_out_num = -1,
+  .data_in_num = I2S_SD
+};
+
 
             
 void setup()
@@ -287,15 +363,18 @@ void setup()
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
-  lcd.begin(16, 2);
 
+  // ESP32 I2C setup
+  Wire.begin(I2C_SDA, I2C_CLK); 
+
+  lcd.begin(16, 2);
 
   // Splash - Remove or Change the splash message
   lcd.setCursor(0, 0);
-  lcd.print("PU2CLR-SI47XX");
+  lcd.print("PU2CLR-SI473X");
   lcd.setCursor(0, 1);
-  lcd.print("Arduino Library");
-  delay(1500);
+  lcd.print("I2S AUDIO SETUP");
+  delay(1000);
 
   // End splash
 
@@ -321,17 +400,28 @@ void setup()
   rx.setI2CFastModeCustom(100000);
   rx.getDeviceI2CAddress(RESET_PIN); // Looks for the I2C bus address and set it.  Returns 0 if error
   
-  rx.setup(RESET_PIN, MW_BAND_TYPE);
-  // Comment the line above and uncomment the lines below if you are using external ref clock (active crystal or signal generator)
-  // rx.setRefClock(32768);
-  // rx.setRefClockPrescaler(1);   // will work with 32768  
-  // select one audio mode below: regular audio analog mode or digital audio mode
-  // rx.setup(RESET_PIN, 0, FM_BAND_TYPE, SI473X_ANALOG_AUDIO, XOSCEN_RCLK); // Analog mode
-  // rx.setup(RESET_PIN, -1, FM_BAND_TYPE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK);  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
+  rx.setRefClock(32768);
+  rx.setRefClockPrescaler(1);   // will work with 32768  
+  rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK);  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
+  delay(500); // Wait the oscillator becomes stable. To be checked...
 
+  // rx.setFM(8400, 10800, 10650, 10); // You may need this line here. To be checked...
+  // delay(5000); // to be checked...
 
-  
-  delay(300);
+  // Setting SI473X Sample rate to 48K.
+  rx.digitalOutputSampleRate(48000);
+
+  // OSIZE Dgital Output Audio Sample Precision (0=16 bits, 1=20 bits, 2=24 bits, 3=8bits).
+  // OMONO Digital Output Mono Mode (0=Use mono/stereo blend ).
+  // OMODE Digital Output Mode (0=I2S, 6 = Left-justified, 8 = MSB at second DCLK after DFS pulse, 12 = MSB at first DCLK after DFS pulse).
+  // OFALL Digital Output DCLK Edge (0 = use DCLK rising edge, 1 = use DCLK falling edge)
+  rx.digitalOutputFormat(0 /* OSIZE */, 0 /* OMONO */, 0 /* OMODE */, 0 /* OFALL*/);
+
+  // Setting ESP32 I2S.
+  i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
+  i2s_set_pin(I2S_NUM_0, &pin_config);
+  i2s_start(I2S_NUM_0);
+  delay(500);
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id)
@@ -824,6 +914,9 @@ void setBand(int8_t up_down)
  */
 void useBand()
 {
+
+  rx.digitalOutputSampleRate(0);
+
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -882,6 +975,11 @@ void useBand()
   currentStepIdx = band[bandIdx].currentStepIdx;
 
   rssi = 0;
+
+  // Set again I2S after switch band
+  rx.digitalOutputSampleRate(48000);
+  rx.digitalOutputFormat(0 , 0 , 0 , 0 );
+
   showStatus();
   showCommandStatus((char *) "Band");
 }
@@ -1246,6 +1344,30 @@ void doCurrentMenuCmd() {
  */
 void loop()
 {
+
+  
+  // Get I2S data and place in data buffer
+  size_t bytesIn = 0;
+  esp_err_t result = i2s_read(I2S_NUM_0, &i2sBuffer, bufferLen, &bytesIn, portMAX_DELAY);
+  
+  if (result == ESP_OK) {
+      // Read I2S data buffer
+      int16_t samples_read = bytesIn / 8;
+      if (samples_read > 0) {
+        float mean = 0;
+        for (int16_t i = 0; i < samples_read; ++i) {
+          mean += (i2sBuffer[i]);
+        }
+
+        // Average the data reading
+        mean /= samples_read;
+
+        // Print to serial plotter
+        // Serial.println(mean);
+      }
+   } 
+  
+
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
