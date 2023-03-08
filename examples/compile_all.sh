@@ -102,7 +102,7 @@ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/CAPACITIV
 arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/OLED_ALL_IN_ONE_TWO_ENCODERS --output-dir ~/Downloads/hex/ESP32/DEVM/OLED_ALL_IN_ONE_TWO_ENCODERS
 
 echo "ESP32 I2S Audio Example"
-arduino-cli compile --fqbn esp32:esp32:esp32c3 ./SI47XX_06_ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER --output-dir ~/Downloads/hex/ESP32/DEVM/DIGITAL_AUDIO_SERIAL_PLOTTER
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./SI47XX_06_ESP32/LCD16x2_I2S_ALL_IN_ONE --output-dir ~/Downloads/hex/ESP32/DEVM/LCD16x2_I2S_ALL_IN_ONE
 
 
 echo "ESP32-C3 - LUATOS Board"
