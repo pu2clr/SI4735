@@ -19,7 +19,7 @@ Commands
      2.5. Finally, you can press the button once again or wait for about 2 seconds. 
           The control will go back to the VFO.  
 
-3. VFO/BFO Switch 
+3. VFO/BFO Switch (IT DOES NOT WORK ON DIGITAL MODE)
 
     3.1. Press the encoder push button twice (within 1/2 second).
     3.2. Rotate the encoder clockwise or counterclockwise and go to the BFO option. This option is shown only on SSB mode. 
