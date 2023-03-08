@@ -34,6 +34,7 @@ https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.jso
 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json \
 https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json \
 https://www.pjrc.com/teensy/package_teensy_index.json
+http://arduino.esp8266.com/stable/package_esp8266com_index.json
 
 # Update the index of boards that can be installed
 arduino-cli core update-index
