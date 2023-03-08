@@ -1,10 +1,12 @@
 /*
+  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10, Digital Audio (I2S) 
+  and  the  "PU2CLR SI4735 Arduino Library". 
+
+  It is not the purpose of this example to provide you a beautiful interface. You must do it by yourself.
+
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  mode  and  FM mode (regular  comercial  stations).
   Unfortunately the Si473X I2S setup does not work on SSB mode.
 
-  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
-  "PU2CLR SI4735 Arduino Library". 
-  It is not the purpose of this example to provide you a beautiful interface. You must do it by yourself.
 
   Features:   AM;LW/MW/SW; external mute circuit control; AGC; Attenuation gain control;
               AM filter; 1, 5, 10, 50 and 500kHz step on AM 
