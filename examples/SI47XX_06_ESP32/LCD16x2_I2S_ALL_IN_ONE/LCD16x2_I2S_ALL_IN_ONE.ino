@@ -42,7 +42,7 @@
   |-----------| ----------|-----------------|---------------------------------------|
   | pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
   | pin 2     | DFS       |  RC             |  WordSelect / GPIO25                  |
-  | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
+  | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock / GPIO33       |
 
   The table below show the SI4735,  DAC CJMCU and ESP32 wireup
 
@@ -50,7 +50,7 @@
   |-----------| ----------|-----------------|---------------------------------------|
   | pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
   | pin 2     | DFS       |  WSEL           |  WordSelect / GPIO25                  |
-  | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
+  | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock / GPIO33       |
 
 
 

@@ -178,10 +178,61 @@ ESP32 Wire up with LCD, encoder/pushbutton and SI4735-D60
 
 
 
+### ESP32 and SI4735-D60 Digital Audio setup (I2S)
+
+
+
+![ESP32 and SI4735-D60 Digital Audio setup](../../extras/images/schematic_esp32_I2S_lcd_16x2_OR_lcd_20x4.png)
+
+####  ESP32 Wire up with LCD, encoder/pushbutton and SI4735-D60
+
+| Device name               | Device Pin / Description      |  ESP32        |
+| ----------------          | ----------------------------- | ------------- |
+|    LCD 16x2 or 20x4       |                               |               |
+|                           | D4                            |  GPIO18       |
+|                           | D5                            |  GPIO17       |
+|                           | D6                            |  GPIO16       |
+|                           | D7                            |  GPIO15       |
+|                           | RS                            |  GPIO19       |
+|                           | E/ENA                         |  GPIO23       |
+|                           | RW & VSS & K (16)             |  GND          |
+|                           | A (15) & VDD                  |  +Vcc         |
+|                           | VO (see 20K tripot connection)|  ------------ |
+|     SS473X                |                               |               |
+|                           | RESET (pin 15)                |  GPIO12       |
+|                           | SDIO (pin 18)                 |  GPIO21       |
+|                           | SCLK (pin 17)                 |  GPIO22       |
+|                           | (*1)SEN (pin 16)              |  +Vcc or GND  |
+|    Encoder                |                               |               |
+|                           | A                             |  CPIO13       |
+|                           | B                             |  GPIO14       |
+|                           | PUSH BUTTON (encoder)         |  GPIO27       |
+
+
+####  The table below show the SI4735,  DAC MAX98357A and ESP32 wireup
+
+| Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+|-----------| ----------|-----------------|---------------------------------------|
+| pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
+| pin 2     | DFS       |  RC             |  WordSelect / GPIO25                  |
+| pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock / GPIO33       |
+
+
+#### The table below show the SI4735,  DAC CJMCU and ESP32 wireup
+
+| Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+|-----------| ----------|-----------------|---------------------------------------|
+| pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
+| pin 2     | DFS       |  WSEL           |  WordSelect / GPIO25                  |
+| pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock / GPIO33       |
+
+
+
+
+
 ## Example SI47XX_03_ESP32_ALL_IN_ONE_TFT
 
 Still under construction this sketch will show how to use TFT with ESP32, Si4735 device and Si4735 Arduino Library.
-
 
 
 ### ESP32 and TFT  wire up 
