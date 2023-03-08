@@ -218,7 +218,7 @@ void setup() {
   // rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);
   Serial.println("SI473X device started with Digital Audio setup!");
   delay(1000);
-  rx.setFM(8400, 10800, 10270, 10);  // frequency station 10650 (106.50 MHz)
+  rx.setFM(8400, 10800, 10650, 10);  // frequency station 10650 (106.50 MHz)
   // rx.setAM(570, 1710, 810, 10);
   delay(500);
   Serial.print("\nrx.getFrequency: ");

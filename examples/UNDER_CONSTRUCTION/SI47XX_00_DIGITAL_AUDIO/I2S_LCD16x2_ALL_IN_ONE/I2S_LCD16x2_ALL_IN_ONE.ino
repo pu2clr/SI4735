@@ -400,11 +400,11 @@ void setup()
   
   rx.setRefClock(32768);
   rx.setRefClockPrescaler(1);   // will work with 32768  
-  rx.setup(RESET_PIN, -1, FM_BAND_TYPE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK);  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
+  rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK);  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
   delay(500); // Wait the oscillator becomes stable. To be checked...
 
-  // rx.setFM(8400, 10800, 10390, 10); // You may need this line here. To be checked...
-  // delay(500); // to be checked...
+  // rx.setFM(8400, 10800, 10650, 10); // You may need this line here. To be checked...
+  // delay(5000); // to be checked...
 
   // Setting SI473X Sample rate to 48K.
   rx.digitalOutputSampleRate(48000);
@@ -419,6 +419,7 @@ void setup()
   i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
   i2s_set_pin(I2S_NUM_0, &pin_config);
   i2s_start(I2S_NUM_0);
+  delay(500);
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id)
@@ -911,6 +912,9 @@ void setBand(int8_t up_down)
  */
 void useBand()
 {
+
+  rx.digitalOutputSampleRate(0);
+
   if (band[bandIdx].bandType == FM_BAND_TYPE)
   {
     currentMode = FM;
@@ -969,6 +973,11 @@ void useBand()
   currentStepIdx = band[bandIdx].currentStepIdx;
 
   rssi = 0;
+
+  // Set again I2S after switch band
+  rx.digitalOutputSampleRate(48000);
+  rx.digitalOutputFormat(0 , 0 , 0 , 0 );
+
   showStatus();
   showCommandStatus((char *) "Band");
 }
@@ -1333,6 +1342,30 @@ void doCurrentMenuCmd() {
  */
 void loop()
 {
+
+  
+  // Get I2S data and place in data buffer
+  size_t bytesIn = 0;
+  esp_err_t result = i2s_read(I2S_NUM_0, &i2sBuffer, bufferLen, &bytesIn, portMAX_DELAY);
+  
+  if (result == ESP_OK) {
+      // Read I2S data buffer
+      int16_t samples_read = bytesIn / 8;
+      if (samples_read > 0) {
+        float mean = 0;
+        for (int16_t i = 0; i < samples_read; ++i) {
+          mean += (i2sBuffer[i]);
+        }
+
+        // Average the data reading
+        mean /= samples_read;
+
+        // Print to serial plotter
+        // Serial.println(mean);
+      }
+   } 
+  
+
   // Check if the encoder has moved.
   if (encoderCount != 0)
   {
