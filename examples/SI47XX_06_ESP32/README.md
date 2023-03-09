@@ -1,10 +1,10 @@
 # ESP32 and Si4735 Arduino Library
 
-This folder show some examples with Si4735 Arduino Library  and ESP32 platform.
+This folder shows some examples with Si4735 Arduino Library  and ESP32 platform.
 
 ## Tips to use ESP32 with Arduino:
 
-Before start compiling ESP32 based sketches, you have to configure your Arduino IDE. Follow the steps below:  
+Before starting compiling ESP32 based sketches, you must configure your Arduino IDE. Follow the steps below:  
 
 * Install the last version of Arduino IDE
 * Configure the ESP32 on Arduino IDE 
