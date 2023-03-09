@@ -9,14 +9,22 @@ Before starting compiling ESP32 based sketches, you must configure your Arduino 
 * Install the last version of Arduino IDE
 * Configure the ESP32 on Arduino IDE 
   * Open the Arduino IDE and select the __Preferences...__ menu item. 
-  * Go to __Additional Boards Manager URLs:__ and add the URL: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+  * Go to __Additional Boards Manager URLs:__ and add the URL: http://arduino.esp8266.com/stable/package_esp8266com_index.json
   * After adding the ESP32 URL, go to __Tools__ menu, select the __Boards__ item and then select __Boards Manager...__ option. Finally install ESP32 board .
-  
 * Install the PU2CLR SI4735 Arduino Library
   * Go to __Tools__ menu and select __Manage libraries...__. Finally install the PU2CLR SI4735 Arduino Library.
-
 * Before compiling, select the ESP32 Board on Arduino IDE.  Go to __Tools__ menu and select __Board__ item. Then, select __ESP32 Arduino__. Finally, select __"ESP32 Dev Module"__ or your specific ESP32 board. You need to know what ESP32 board you are using.  
 * If you are using other versions of the ESP32 (ESP32S3, ESP32C3 etc), please check its pinout before. In general the pin setup are not the same shown here.  
+
+
+#### if you use the arduino-cli, you can follow the steps below: 
+
+```bash
+$ arduino-cli config set board_manager.additional_urls arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json 
+$ arduino-cli core update-index
+$ arduino-cli core install esp8266:esp8266
+```
+
 
 ## Example SI47XX_01_ESP32_AM_FM_TOUCH_SERIAL_MONITOR
 
@@ -288,9 +296,4 @@ Still under construction this sketch will show how to use TFT with ESP32, Si4735
 |    Encoder2               | A                             |  GPIO 25      |
 |                           | B                             |  GPIO 26      |    
 |                           | PUSH BUTTON (encoder)         |  GPIO 32      |
-
-
-
-
-
 
