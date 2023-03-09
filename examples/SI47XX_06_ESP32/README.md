@@ -9,7 +9,7 @@ Before starting compiling ESP32 based sketches, you must configure your Arduino 
 * Install the last version of Arduino IDE
 * Configure the ESP32 on Arduino IDE 
   * Open the Arduino IDE and select the __Preferences...__ menu item. 
-  * Go to __Additional Boards Manager URLs:__ and add the URL: http://arduino.esp8266.com/stable/package_esp8266com_index.json
+  * Go to __Additional Boards Manager URLs:__ and add the URL: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
   * After adding the ESP32 URL, go to __Tools__ menu, select the __Boards__ item and then select __Boards Manager...__ option. Finally install ESP32 board .
 * Install the PU2CLR SI4735 Arduino Library
   * Go to __Tools__ menu and select __Manage libraries...__. Finally install the PU2CLR SI4735 Arduino Library.
@@ -20,7 +20,7 @@ Before starting compiling ESP32 based sketches, you must configure your Arduino 
 #### if you use the arduino-cli, you can follow the steps below: 
 
 ```bash
-$ arduino-cli config set board_manager.additional_urls arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json 
+$ arduino-cli config set board_manager.additional_urls arduino-cli config set board_manager.additional_urls https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
 $ arduino-cli core update-index
 $ arduino-cli core install esp8266:esp8266
 ```

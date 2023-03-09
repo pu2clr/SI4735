@@ -16,8 +16,16 @@ Before starting compiling ESP8266 based sketches, you must configure your Arduin
   * After adding the ESP32 URL, go to __Tools__ menu, select the __Boards__ item and then select __Boards Manager...__ option. Finally install ESP32 board .
 * Install the PU2CLR SI4735 Arduino Library
   * Go to __Tools__ menu and select __Manage libraries...__. Finally install the PU2CLR SI4735 Arduino Library.
-* Before compiling, select the ESP32 Board on Arduino IDE.  Go to __Tools__ menu and select __Board__ item. Then, select __ESP32 Arduino__. Finally, select __"ESP32 Dev Module"__ or your specific ESP32 board. You need to know what ESP32 board you are using.  
-* If you are using other versions of the ESP32 (ESP32S3, ESP32C3 etc), please check its pinout before. In general the pin setup are not the same shown here.  
+* Before compiling, select the ESP8266 Board on Arduino IDE.  Go to __Tools__ menu and select __Board__ item. Then, select __ESP8266 Arduino__. Finally, select __"Generic ESP8266 Module"__ or your specific ESP8266 board. You need to know what ESP8266 board you are using.  
+ 
+
+#### if you use the arduino-cli, you can follow the steps below: 
+
+```bash
+$ arduino-cli config set board_manager.additional_urls arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json 
+$ arduino-cli core update-index
+$ arduino-cli core install esp8266:esp8266
+```
 
 
 
