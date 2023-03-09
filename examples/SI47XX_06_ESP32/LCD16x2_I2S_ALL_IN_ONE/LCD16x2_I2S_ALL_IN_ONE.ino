@@ -915,6 +915,7 @@ void setBand(int8_t up_down)
 void useBand()
 {
 
+  // Disable Digital audio before chaging band.
   rx.digitalOutputSampleRate(0);
 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
@@ -976,7 +977,7 @@ void useBand()
 
   rssi = 0;
 
-  // Set again I2S after switch band
+  // Set again Digital Audio after changing band
   rx.digitalOutputSampleRate(48000);
   rx.digitalOutputFormat(0 , 0 , 0 , 0 );
 
