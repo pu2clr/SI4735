@@ -876,7 +876,7 @@ void setup()
 }
 
 void loop() {
-  // Your code with your custom SI4734 library.
+  // Your code with your custom SI4735 library.
 }
 ```
 
