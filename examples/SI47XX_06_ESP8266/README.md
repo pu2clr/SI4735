@@ -22,7 +22,7 @@ Before starting compiling ESP8266 based sketches, you must configure your Arduin
 #### if you use the arduino-cli, you can follow the steps below: 
 
 ```bash
-$ arduino-cli config set board_manager.additional_urls arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json 
+$ arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json 
 $ arduino-cli core update-index
 $ arduino-cli core install esp8266:esp8266
 ```
