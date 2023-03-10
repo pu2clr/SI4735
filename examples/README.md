@@ -2,17 +2,17 @@
 
 [This folder](https://github.com/pu2clr/SI4735/tree/master/examples) and subfolders have more than 60 examples that might help you to use the Si4735 Arduino Library in your project. Please, use the comments in each sketch as a guide.
 
-If you find some error or problem during your implementation, please let me know. 
+If you find an error or problem during your implementation, please let me know.
 
 ### IMPORTANT
 
 __This project is about a library to control the SI47XX devices and the focus of this project is the "PU2CLR Si4735 Arduino Library" and its functionalities. Please, don't ask the author of this project to assist you with displays, encoders, buttons or something else out of the "PU2CLR SI4735 Arduino Library" scope. Thanks.__
 
-#### Use the following groups to guide you in your projects: 
+#### Use the following groups to guide you in your projects:
 
-* __Facebook__ group called [__Si47XX for Radio Experimenters__](https://www.facebook.com/groups/532613604253401/). The purpose is exchanging experiences with projects based on Silicon Labs  SI47XX IC family. 
-* __group.io__ [SI47XX for hobbyists](https://groups.io/g/si47xx). This group is formed by people with experience in electronics and firmware development. 
-  
+* __Facebook__ group called [__Si47XX for Radio Experimenters__](https://www.facebook.com/groups/532613604253401/). The purpose is exchanging experiences with projects based on Silicon Labs  SI47XX IC family.
+* __group.io__ [SI47XX for hobbyists](https://groups.io/g/si47xx). This group is formed by people with experience in electronics and firmware development.
+
 
 __THE CIRCUIT DESIGNS BUILT BY THE AUTHOR ARE NOT INTEND TO BE A FINAL PRODUCT. SOME IMPORTANT ASPECTS AND DETAILS OF A GOOD RECEIVER WERE OMITTED HERE. THE CIRCUITS IN THESE EXAMPLES ARE A PROOF OF CONCEPT OF THE LIBRARY AND ITS FEATURES. IMPORTANT CONSIDERATIONS FOR PRODUCTION PRODUCTS SUCH AS BAND PASS FILTERS, ESD PROTECTION, AND USER INTERFACE DESIGN ARE NOT THE FOCUS OF THESE EXAMPLES__.
 
@@ -28,19 +28,17 @@ The most of the sketches has been developed to run on cross-plataform (ATmega328
 
 {% include serialmonitor.html %}
 
-
 #### If you have saved the examples in your personal folder, be sure to update the examples with the library, as some changes and optimizations are made to the examples as they are made to the library.
 
 
-The folder [extra/schematic](https://github.com/pu2clr/SI4735/tree/master/extras/schematic) can guide you on circuits and components settings.  
-
+The folder [extra/schematic](https://github.com/pu2clr/SI4735/tree/master/extras/schematic) can guide you on circuits and components settings.
 
 ## About the examples folders
 
 * The folder [SI47XX_01_SERIAL_MONITOR](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_01_SERIAL_MONITOR) has basic examples using the Arduino Serial Monitor as the human interface.
 By using the examples of this folder, you will do not need any external device to control the Si4735. All you have to do is open the Serial Monitor. These examples are useful to test your circuit board and help you understand the use of the Si4735 Arduino Lirary.
 * The folder [SI47XX_02_LCD_20x4_I2C](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_02_LCD_20x4_I2C) has some examples that show how you can build a radio based on Si473X using the regular LCD20x4 with a I2C adapter device.
-* The folder [SI47XX_03_OLED_I2C](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C) has some examples that show how you can build a radio based on Si473X using the regular I2C OLED. They are very similar to the LCD20x4 sketches. The main difference is the Arduino Library controller of these devices.  
+* The folder [SI47XX_03_OLED_I2C](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C) has some examples that show how you can build a radio based on Si473X using the regular I2C OLED. They are very similar to the LCD20x4 sketches. The main difference is the Arduino Library controller of these devices.
 * The folder [SI47XX_04_TFT](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_04_TFT) has some example with TFT and touch screen as an human interface to control the radio based on Si473X.
 * The folder [SI47XX_05_ATTINY85](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_05_ATTINY85) has examples of using the Si4735 Arduino Library running on ATtiny85.
 * The folder [SI47XX_06_ESP32](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32) has examples that use some great resources of the ESP32 boards. It is worth mentioning that the most of the other examples can also run on ESP32.
@@ -77,32 +75,32 @@ By using the examples of this folder, you will do not need any external device t
 
 ## How to compile and upload sketches
 
-This library was developed to work with Arduino environment. There are many enviroments that you can use to compile and upload Arduino sketches to your board. The list below shows some of them: 
+This library was developed to work with Arduino environment. There are many enviroments that you can use to compile and upload Arduino sketches to your board. The list below shows some of them:
 
 * [Arduino IDE](https://www.arduino.cc/en/software)
 * [Visual Studio with Arduino extensions](https://marketplace.visualstudio.com/items?itemName=VisualMicro.ArduinoIDEforVisualStudio)
 * [PlatformIO](https://dronebotworkshop.com/platformio/)
-* [Arduino Command Line - arduino-cli](https://www.arduino.cc/pro/cli) 
-  
+* [Arduino Command Line - arduino-cli](https://www.arduino.cc/pro/cli)
+
 
 The most popular environment to write sketch, compile and upload is the [Arduino IDE](https://www.arduino.cc/en/software).
 After installing the [PU2CLR Si4735 Library on Arduino IDE](https://youtu.be/M9h-tlV_l-k) you can compile and upload any sketch available here by using the Menu examples of the Arduino IDE. Whatch the video [Installing PU2CLR Si4735 Library on Arduino IDE](https://youtu.be/M9h-tlV_l-k) to know how to compile, upload and run Arduino Application.
 
-Another way to compile and upload sketches to Arduino board is using the [arduino-cli](https://www.arduino.cc/pro/cli). 
-See the section below for details.  
+Another way to compile and upload sketches to Arduino board is using the [arduino-cli](https://www.arduino.cc/pro/cli).
+See the section below for details.
 
 <BR>
 
 ## Arduino CLI - A faster alternative to the Arduino IDE
 
-Arduino CLI (arduino-cli) is a solution that allows you to compile, build, upload, manage boards and libraries via shell command line. This way, you do not need to use the traditional Arduino IDE. Depending on the development environment you use, arduino-cli may be a good choice given it is conservative on system resources. You will notice that the arduino-cli compiles and uploades code faster. However, it is a command line program, and may present a steeper learning curve over teh Arduio IDE. The links below can help you to learn more about arduino-cli. 
+Arduino CLI (arduino-cli) is a solution that allows you to compile, build, upload, manage boards and libraries via shell command line. This way, you do not need to use the traditional Arduino IDE. Depending on the development environment you use, arduino-cli may be a good choice given it is conservative on system resources. You will notice that the arduino-cli compiles and uploades code faster. However, it is a command line program, and may present a steeper learning curve over teh Arduio IDE. The links below can help you to learn more about arduino-cli.
 
 * [Click here for more detail about arduino-cli](https://arduino.github.io/arduino-cli/0.21/).
 * [Getting started](https://arduino.github.io/arduino-cli/0.21/getting-started/)
 * [Click here to watch a video about the arduino-cli](https://youtu.be/J-qGn1eEidA)
 
 
-### Fast way to install arduino-cli and setup your enviroment with PU2CLR SI4735 Arduino Library and accessories 
+### Fast way to install arduino-cli and setup your enviroment with PU2CLR SI4735 Arduino Library and accessories
 
 #### On macOS and Linux
 
@@ -112,7 +110,7 @@ Open the terminal and run the command below.
 curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.sh | sh
 ```
 
-The command above will install arduino-cli, the SI4735 Arduino Library, the basic libraries for OLED, LCD and TFT used in some examples, and the basic boards for Atmega328 and LGT8F328. 
+The command above will install arduino-cli, the SI4735 Arduino Library, the basic libraries for OLED, LCD and TFT used in some examples, and the basic boards for Atmega328 and LGT8F328.
 
 If you want to install all boards (esp32, ESP8266, STM32 etc) and all libraries used by the SI473X examples, run the command below after running the previous command.
 
@@ -121,17 +119,15 @@ curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/insta
 ```
 
 
-
-
 #### On Windows 10 and 11
 
-Open the cmd (terminal) and run 
+Open the cmd (terminal) and run
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/lib_si4735_basic_install.bat --output lib_si4735_basic_install.bat
 .\lib_si4735_basic_install.bat
 ```
-The commands above will install arduino-cli.exe in your home direcory, the SI4735 Arduino Library and the basic libraries for OLED, LCD and TFT used in some examples (in you Documents/Arduino folder), and the basic boards for Atmega328 and LGT8F328 (in AppData\local\Arduino15 folder). 
+The commands above will install arduino-cli.exe in your home direcory, the SI4735 Arduino Library and the basic libraries for OLED, LCD and TFT used in some examples (in you Documents/Arduino folder), and the basic boards for Atmega328 and LGT8F328 (in AppData\local\Arduino15 folder).
 
 After running the previous steps, if you want to configure the SI4735 Arduino Library for all libraries and boards used by the examples, run the command below.
 
@@ -139,7 +135,6 @@ After running the previous steps, if you want to configure the SI4735 Arduino Li
 curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/install_all_libraries_and_boards.bat --output install_all_libraries_and_boards.bat
 .\install_all_libraries_and_boards.bat
 ```
-
 
 ### Othe ways to install the arduino-cli (without PU2CLR SI4735 Arduino Library setup)
 
@@ -156,22 +151,19 @@ $ brew install arduino-cli
 
 #### On Linux or macOS
 
-```bash 
+```bash
 $ curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 ```
 
 
-#### On Windows 
+#### On Windows
 
 * Download the install file: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.msi
 * Download the exe (binary)file: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip
 
-
-
 ### arduino-cli and main command examples
 
-All boards and libraries installed in either the Arduino IDE and arduino-cli are available in the other. If you install a library or board in the arduino-cli, the Arduino IDE will have access to it as well, and vice-versa. 
-
+All boards and libraries installed in either the Arduino IDE and arduino-cli are available in the other. If you install a library or board in the arduino-cli, the Arduino IDE will have access to it as well, and vice-versa.
 
 ### The command below identifies the boards connected to your computer (COM3, COM4, /dev/xxx).
 
@@ -182,13 +174,13 @@ $ arduino-cli board list
 
 Port                            Protocol Type              Board Name                     FQBN                          Core       
 /dev/cu.usbmodem14201           serial   Serial Port (USB) Arduino Due (Programming Port) arduino:sam:arduino_due_x_dbg arduino:sam
-/dev/cu.usbserial-1410          serial   Serial Port (USB) Unknown     
+/dev/cu.usbserial-1410          serial   Serial Port (USB) Unknown
 
 ```
 
-### The command below shows all boards available 
+### The command below shows all boards available
 
-It is very useful to give you the FQBN information to compile and upload the right board. 
+It is very useful to give you the FQBN information to compile and upload the right board.
 
 ```bash
 $ arduino-cli board listall
@@ -199,50 +191,50 @@ $ arduino-cli board listall
 ```bash
 $ arduino-cli core list
 
-Board Name                                       FQBN                                            
-3D printer boards                                STM32:stm32:3dprinter                           
-4D Systems gen4 IoD Range                        esp8266:esp8266:gen4iod                         
+Board Name                                       FQBN
+3D printer boards                                STM32:stm32:3dprinter
+4D Systems gen4 IoD Range                        esp8266:esp8266:gen4iod
 AI Thinker ESP32-CAM                             esp32:esp32:esp32cam
 .
 .
 .
-Arduino Due (Native USB Port)                    arduino:sam:arduino_due_x                       
-Arduino Due (Programming Port)                   arduino:sam:arduino_due_x_dbg   
+Arduino Due (Native USB Port)                    arduino:sam:arduino_due_x
+Arduino Due (Programming Port)                   arduino:sam:arduino_due_x_dbg
 .
 .
 .
-Arduino Nano                                     arduino:avr:nano                                
-Arduino Nano 33 BLE                              arduino:mbed_nano:nano33ble      
+Arduino Nano                                     arduino:avr:nano
+Arduino Nano 33 BLE                              arduino:mbed_nano:nano33ble
 .
 .
-.   
-Arduino Uno                                      arduino:avr:uno       
+.
+Arduino Uno                                      arduino:avr:uno
 ```
 
-#### Example: 
+#### Example:
 
 ```bash
 $ arduino-cli core list
-  
 
-ID                   Installed Latest Name                                                    
-arduino:avr          1.8.5     1.8.5  Arduino AVR Boards                                      
-arduino:mbed_nano    3.0.0     3.0.0  Arduino Mbed OS Nano Boards                             
-arduino:mbed_rp2040  3.0.0     3.0.0  Arduino Mbed OS RP2040 Boards                           
-arduino:sam          1.6.12    1.6.12 Arduino SAM Boards (32-bits ARM Cortex-M3)              
-arduino:samd         1.8.13    1.8.13 Arduino SAMD Boards (32-bits ARM Cortex-M0+)            
-atmel-avr-xminis:avr 0.6.0     0.6.0  Atmel AVR Xplained-minis                                
-attiny:avr           1.0.2     1.0.2  ATtiny Microcontrollers                                 
-ATTinyCore:avr       1.5.2     1.5.2  ATTinyCore                                              
-esp32:esp32          2.0.2     2.0.2  ESP32 Arduino                                           
-esp8266:esp8266      3.0.2     3.0.2  ESP8266 Boards (3.0.2)                                  
-MegaCore:avr         2.1.3     2.1.3  MegaCore                                                
-MightyCore:avr       2.1.3     2.1.3  MightyCore                                              
-MiniCore:avr         2.1.3     2.1.3  MiniCore                                                
-rp2040:rp2040        1.13.0    1.13.0 Raspberry Pi RP2040 Boards(1.13.0)                      
+
+ID                   Installed Latest Name
+arduino:avr          1.8.5     1.8.5  Arduino AVR Boards
+arduino:mbed_nano    3.0.0     3.0.0  Arduino Mbed OS Nano Boards
+arduino:mbed_rp2040  3.0.0     3.0.0  Arduino Mbed OS RP2040 Boards
+arduino:sam          1.6.12    1.6.12 Arduino SAM Boards (32-bits ARM Cortex-M3)
+arduino:samd         1.8.13    1.8.13 Arduino SAMD Boards (32-bits ARM Cortex-M0+)
+atmel-avr-xminis:avr 0.6.0     0.6.0  Atmel AVR Xplained-minis
+attiny:avr           1.0.2     1.0.2  ATtiny Microcontrollers
+ATTinyCore:avr       1.5.2     1.5.2  ATTinyCore
+esp32:esp32          2.0.2     2.0.2  ESP32 Arduino
+esp8266:esp8266      3.0.2     3.0.2  ESP8266 Boards (3.0.2)
+MegaCore:avr         2.1.3     2.1.3  MegaCore
+MightyCore:avr       2.1.3     2.1.3  MightyCore
+MiniCore:avr         2.1.3     2.1.3  MiniCore
+rp2040:rp2040        1.13.0    1.13.0 Raspberry Pi RP2040 Boards(1.13.0)
 Seeeduino:samd       1.8.2     1.8.2  Seeed SAMD (32-bits ARM Cortex-M0+ and Cortex-M4) Boards
-STM32:stm32          1.9.0     1.9.0  STM32 Boards (selected from submenu)  
-teensy:avr           1.56.1    1.56.1 Teensyduino                    
+STM32:stm32          1.9.0     1.9.0  STM32 Boards (selected from submenu)
+teensy:avr           1.56.1    1.56.1 Teensyduino
 ```
 
 
@@ -252,10 +244,10 @@ teensy:avr           1.56.1    1.56.1 Teensyduino
 $ arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC
 ```
 
-### The command below compiles and uploads the sketch into the Arduino Nano board 
+### The command below compiles and uploads the sketch into the Arduino Nano board
 
 ```bash
-$ arduino-cli compile  -b arduino:avr:nano -u -p yourPort ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC. 
+$ arduino-cli compile  -b arduino:avr:nano -u -p yourPort ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC.
 ```
 Where __yourPort__ can be COM3, COM4, COM(N) if you are using Microsoft Windows; or /dev/XXX if you are using unix like SO (Linux or  MacOS).
 
@@ -276,7 +268,7 @@ __See command arduino-cli board list below to know how to get the port.__
 $ arduino-cli compile --fqbn arduino:avr:mega -u -p /dev/cu.usbserial-1410  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
 ```
 
-If you need the .hex, .elf or  .bin files you can use 
+If you need the .hex, .elf or  .bin files you can use
 
 ```bash
 $ arduino-cli compile --fqbn arduino:avr:mega --build-path /Users/UserName/Downloads ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
@@ -289,9 +281,9 @@ $ arduino-cli compile --fqbn arduino:avr:mega --build-path /Users/UserName/Downl
 ```bash
 $ arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso -u -dev -u -p /dev/cu.usbserial-0001  ./SI47XX_KITS/THIAGO_LIMA/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2
 ```
-where /dev/cu.usbserial-0001 is the Port device. It can be different in your environment. Check it via __arduino-cli board list__ command. 
+where /dev/cu.usbserial-0001 is the Port device. It can be different in your environment. Check it via __arduino-cli board list__ command.
 
-#### Example using ESP32 LOLIN32 
+#### Example using ESP32 LOLIN32
 
 ```bash
 arduino-cli compile --fqbn esp32:esp32:lolin32 -u -p /dev/cu.usbserial-00874A3C ./SI47XX_KITS/THIAGO_LIMA/GERT_BAAK/SI4735_2.8_TFT_SI5351_V4.2 -v
@@ -302,14 +294,14 @@ arduino-cli compile --fqbn esp32:esp32:lolin32 -u -p /dev/cu.usbserial-00874A3C 
 arduino-cli compile --fqbn STM32:stm32:Nucleo_64 ./SI47XX_KITS/PLAMEN/PU2CLR_SI5351_SI4732_STM32
 
 
-#### To know the right port you have to use, try the command below: 
+#### To know the right port you have to use, try the command below:
 
 ```bash
 $ arduino-cli board list
 ```
 
 
-#### arduino-cli board list command example 
+#### arduino-cli board list command example
 
 ```bash
 arduino-cli board list
@@ -321,7 +313,7 @@ Port                            Protocol Type              Board Name           
 
 ```bash
 $ arduino-cli compile --fqbn arduino:sam:arduino_due_x -u -p /dev/cu.usbmodem14201  ./SI47XX_10_RDS/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2
-  
+
 Sketch uses 90896 bytes (17%) of program storage space. Maximum is 524288 bytes.
 Atmel SMART device 0x285e0a60 found
 Erase flash
@@ -337,14 +329,14 @@ CPU reset.
 ##### arduino-cli board list command with two devices connected to the computer at the same time (Arduino DUE and Arduino Mega)
 
 The command below show two Arduino boards connected to the computer at the same time. The first is an Arduino DUE as deteiled below and the second is an Arduino Mega with no details.
-Unfortunatly, in some cases, the Arduino IDE and arduino-cli can not show details about the divice connected to the computer. In this case, you have to conclude this by yourself. 
+Unfortunatly, in some cases, the Arduino IDE and arduino-cli can not show details about the divice connected to the computer. In this case, you have to conclude this by yourself.
 
 ```bash
 $ arduino-cli board list
 
 Port                            Protocol Type              Board Name                     FQBN                          Core       
 /dev/cu.usbmodem14201           serial   Serial Port (USB) Arduino Due (Programming Port) arduino:sam:arduino_due_x_dbg arduino:sam
-/dev/cu.usbserial-1410          serial   Serial Port (USB) Unknown     
+/dev/cu.usbserial-1410          serial   Serial Port (USB) Unknown
 
 ```
 
@@ -354,7 +346,7 @@ Port                            Protocol Type              Board Name           
 
 $ arduino-cli board list
 
-Port                            Protocol Type              Board Name    FQBN              Core       
+Port                            Protocol Type              Board Name    FQBN              Core
 /dev/cu.usbmodem14101           serial   Serial Port (USB) Arduino Yún   arduino:avr:yun   arduino:avr
 /dev/cu.usbmodem14201           serial   Serial Port (USB) Arduino Micro arduino:avr:micro arduino:avr
 ```
@@ -362,35 +354,35 @@ Port                            Protocol Type              Board Name    FQBN   
 
 The table below show some Arduino board FQBN
 
-| Board Name | FQBN | 
-| ---------- | ---- |                                      
-| Arduino DUE                         | arduino:sam:arduino_due_x |                        
-| Arduino Duemilanove or Diecimila    | arduino:avr:diecimila  |                                    
-| Arduino Ethernet                    | arduino:avr:ethernet   |                                                                
-| Arduino Industrial 101              | arduino:avr:chiwawa    |                   
-| Arduino Leonardo                    | arduino:avr:leonardo   |                                   
-| Arduino M0                          | arduino:samd:mzero_bl  |                   
-| Arduino M0 Pro (Native USB Port)    | arduino:samd:mzero_pro_bl  |                
-| Arduino M0 Pro (Programming Port)   | arduino:samd:mzero_pro_bl_dbg |                            
-| Arduino MKR WiFi 1010               | arduino:samd:mkrwifi1010 |                                                   
-| Arduino Mega 2560                   | arduino:avr:mega         |                 
-| Arduino Micro                       | arduino:avr:micro        |                 
-| Arduino Mini                        | arduino:avr:mini         |                 
-| Arduino NANO 33 IoT                 | arduino:samd:nano_33_iot |                               
-| Arduino Nano                        | arduino:avr:nano         |                              
-| Arduino Pro or Pro Mini             | arduino:avr:pro          |                                                    
-| Arduino Uno                         | arduino:avr:uno          |                 
-| Arduino Uno WiFi                    | arduino:avr:unowifi      |                                
-| Arduino Yún                         | arduino:avr:yun          |                 
-| Arduino Yún Mini                    | arduino:avr:yunmini      |                 
-| Arduino Zero (Native USB Port)      | arduino:samd:arduino_zero_native |          
-| Arduino Zero (Programming Port)     | arduino:samd:arduino_zero_edbg  |                        
-| ESP32 Dev Mode                      | esp32:esp32:esp32-poe-is |
-| ESP32 LOLIN                         | esp32:esp32:lolin32 |
-| ESP8266                             | esp8266:esp8266:generic |  
-| Raspberry Pi Pico                   | rp2040:rp2040:rpipico | 
-| Seeeduino XIAO                      | Seeeduino:samd:seeed_XIAO_m0 |          
-| STM32                               | STM32:stm32:Nucleo_64 | 
+| Board Name | FQBN |
+| ---------- | ---- |
+| Arduino DUE                         | arduino:sam:arduino_due_x |
+| Arduino Duemilanove or Diecimila    | arduino:avr:diecimila     |
+| Arduino Ethernet                    | arduino:avr:ethernet      |                                                                
+| Arduino Industrial 101              | arduino:avr:chiwawa       |
+| Arduino Leonardo                    | arduino:avr:leonardo      |
+| Arduino M0                          | arduino:samd:mzero_bl     |
+| Arduino M0 Pro (Native USB Port)    | arduino:samd:mzero_pro_bl |
+| Arduino M0 Pro (Programming Port)   | arduino:samd:mzero_pro_bl_dbg |
+| Arduino MKR WiFi 1010               | arduino:samd:mkrwifi1010  |
+| Arduino Mega 2560                   | arduino:avr:mega          |
+| Arduino Micro                       | arduino:avr:micro         |
+| Arduino Mini                        | arduino:avr:mini          |
+| Arduino NANO 33 IoT                 | arduino:samd:nano_33_iot  |
+| Arduino Nano                        | arduino:avr:nano          |
+| Arduino Pro or Pro Mini             | arduino:avr:pro           |
+| Arduino Uno                         | arduino:avr:uno           |
+| Arduino Uno WiFi                    | arduino:avr:unowifi       |
+| Arduino Yún                         | arduino:avr:yun           |
+| Arduino Yún Mini                    | arduino:avr:yunmini       |
+| Arduino Zero (Native USB Port)      | arduino:samd:arduino_zero_native |
+| Arduino Zero (Programming Port)     | arduino:samd:arduino_zero_edbg  |
+| ESP32 Dev Mode                      | esp32:esp32:esp32-poe-is  |
+| ESP32 LOLIN                         | esp32:esp32:lolin32       |
+| ESP8266                             | esp8266:esp8266:generic   |
+| Raspberry Pi Pico                   | rp2040:rp2040:rpipico     |
+| Seeeduino XIAO                      | Seeeduino:samd:seeed_XIAO_m0 |
+| STM32                               | STM32:stm32:Nucleo_64 |
 
 type __arduino-cli board listall__ to see all boards available.
 
@@ -407,11 +399,11 @@ type __arduino-cli board listall__ to see all boards available.
 
 
 
-## Dealing images with TFT display 
+## Dealing images with TFT display
 
 It can be very useful to improve the visual interface to your project.
 
-* First, convert your image to C/C++ code. To do that, you can use this tools:[https://www.mischianti.org/images-to-byte-array-online-converter-cpp-arduino/](https://www.mischianti.org/images-to-byte-array-online-converter-cpp-arduino/).
+* First, convert your image to C/C++ code. To do that, you can use this tool:[https://www.mischianti.org/images-to-byte-array-online-converter-cpp-arduino/](https://www.mischianti.org/images-to-byte-array-online-converter-cpp-arduino/).
   * Use the following parameters to create the C/C++ based on image you want to convert
     * scretch to fill canvas
     * Arduino code, single bitmaps

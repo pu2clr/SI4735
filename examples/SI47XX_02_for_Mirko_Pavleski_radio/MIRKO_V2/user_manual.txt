@@ -32,8 +32,8 @@ Commands
 4. SEEK 
 
    4.1. Select the menu by pressing twice the encoder push button. 
-   4.2. Rotate the encoder clockwise or counterclockwise to select "Seek Up"  or "Seek Down".
-   4.3. Press the encoder push button once on "Seek Up"  or "Seek Down".
+   4.2. Rotate the encoder clockwise or counterclockwise to select "Seek Up" or "Seek Down".
+   4.3. Press the encoder push button once on "Seek Up" or "Seek Down".
 
 5. RESET 
 
@@ -42,8 +42,8 @@ Commands
    This way, when you turn the receiver on again, that setup will be restored to that given band. 
    To reset the EEPROM content, folow the steps below: 
 
-   5.1. Turn the receiver off;
-   5.2. Press and keep pressing the encoder push button;
+   5.1. Turn the receiver off
+   5.2. Press and keep pressing the encoder push button
    5.3. Turn the receiver on and wait for the message "EEPROM RESETED".
 
    ATTENTION: To save EEPROM write cycles, any receiver parameter change will only be saved after 10 seconds of inactivity
