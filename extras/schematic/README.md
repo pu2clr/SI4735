@@ -607,6 +607,54 @@ To use I2S with SI473X device family, you must use the external clock or active 
 ![SI473X and external active crystal oscillator or signal generator](../images/schematic_basic_active_crystal_osc_digital_audio_esp32.png)
 
 
+### ESP32 and SI4735-D60 Digital Audio setup (I2S) with LCD 16x2
+
+![ESP32 and SI4735-D60 Digital Audio setup](../images/schematic_esp32_I2S_lcd_16x2_OR_lcd_20x4.png)
+
+####  ESP32 Wire up with LCD, encoder/pushbutton and SI4735-D60
+
+| Device name               | Device Pin / Description      |  ESP32        |
+| ----------------          | ----------------------------- | ------------- |
+|    LCD 16x2 or 20x4       |                               |               |
+|                           | D4                            |  GPIO18       |
+|                           | D5                            |  GPIO17       |
+|                           | D6                            |  GPIO16       |
+|                           | D7                            |  GPIO15       |
+|                           | RS                            |  GPIO19       |
+|                           | E/ENA                         |  GPIO23       |
+|                           | RW & VSS & K (16)             |  GND          |
+|                           | A (15) & VDD                  |  +Vcc         |
+|                           | VO (see 20K tripot connection)|  ------------ |
+|     SS473X                |                               |               |
+|                           | RESET (pin 15)                |  GPIO12       |
+|                           | SDIO (pin 18)                 |  GPIO21       |
+|                           | SCLK (pin 17)                 |  GPIO22       |
+|                           | (*1)SEN (pin 16)              |  +Vcc or GND  |
+|    Encoder                |                               |               |
+|                           | A                             |  CPIO13       |
+|                           | B                             |  GPIO14       |
+|                           | PUSH BUTTON (encoder)         |  GPIO27       |
+
+
+####  The table below show the SI4735,  DAC MAX98357A and ESP32 wireup
+
+| Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+|-----------| ----------|-----------------|---------------------------------------|
+| pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
+| pin 2     | DFS       |  RC             |  WordSelect / GPIO25                  |
+| pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock / GPIO33       |
+
+
+#### The table below show the SI4735,  DAC CJMCU and ESP32 wireup
+
+| Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+|-----------| ----------|-----------------|---------------------------------------|
+| pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
+| pin 2     | DFS       |  WSEL           |  WordSelect / GPIO25                  |
+| pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock / GPIO33       |
+
+
+
 
 ## Band Pass Filter controlled by Arduino
 

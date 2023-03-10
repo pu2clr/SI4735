@@ -44,6 +44,16 @@ arduino-cli lib install "TFT_eSPI_ES32Lab"
 arduino-cli lib install "Tiny4kOLED"
 arduino-cli lib install "TinyOLED-Fonts"
 arduino-cli lib install "Adafruit PCD8544 Nokia 5110 LCD library"
+arduino-cli lib install "FastLED"
+arduino-cli lib install "RotaryEncoder"
+arduino-cli lib install "TM1638lite"
+arduino-cli lib install "TM1638plus"
+
+
+
+export ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
+arduino-cli lib install --git-url https://github.com/schreibfaul1/ESP32-audioI2S.git
+
 
 # Install all boards used by the examples
 echo "Installing all boards needed by the PU2CLR SI4735 Arduino examples"

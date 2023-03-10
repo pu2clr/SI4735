@@ -35,6 +35,7 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json \
 https://www.pjrc.com/teensy/package_teensy_index.json
 
+
 # Update the index of boards that can be installed
 arduino-cli core update-index
 

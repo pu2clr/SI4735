@@ -42,7 +42,7 @@
   |-----------| ----------|-----------------|---------------------------------------|
   | pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
   | pin 2     | DFS       |  RC             |  WordSelect / GPIO25                  |
-  | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
+  | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock / GPIO33       |
 
   The table below show the SI4735,  DAC CJMCU and ESP32 wireup
 
@@ -50,7 +50,7 @@
   |-----------| ----------|-----------------|---------------------------------------|
   | pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
   | pin 2     | DFS       |  WSEL           |  WordSelect / GPIO25                  |
-  | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
+  | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock / GPIO33       |
 
 
 
@@ -915,6 +915,7 @@ void setBand(int8_t up_down)
 void useBand()
 {
 
+  // Disable Digital audio before chaging band.
   rx.digitalOutputSampleRate(0);
 
   if (band[bandIdx].bandType == FM_BAND_TYPE)
@@ -976,7 +977,7 @@ void useBand()
 
   rssi = 0;
 
-  // Set again I2S after switch band
+  // Set again Digital Audio after changing band
   rx.digitalOutputSampleRate(48000);
   rx.digitalOutputFormat(0 , 0 , 0 , 0 );
 

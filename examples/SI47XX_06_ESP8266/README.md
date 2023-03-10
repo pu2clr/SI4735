@@ -6,8 +6,27 @@ The [ESP8266](https://www.espressif.com/en/products/socs/esp8266) is based on a 
 
 This folder show some examples with Si473X Arduino Library  and ESP8266 platform.
 
-Before start compiling ESP8266 based sketches, you have to configure your Arduino IDE. 
-To do this, check [Installing the ESP8266 Board in Arduino IDE (Windows, Mac OS X, Linux)](https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/).
+
+Before starting compiling ESP8266 based sketches, you must configure your Arduino IDE. Follow the steps below:  
+
+* Install the last version of Arduino IDE
+* Configure the ESP32 on Arduino IDE 
+  * Open the Arduino IDE and select the __Preferences...__ menu item. 
+  * Go to __Additional Boards Manager URLs:__ and add the URL: http://arduino.esp8266.com/stable/package_esp8266com_index.json
+  * After adding the ESP32 URL, go to __Tools__ menu, select the __Boards__ item and then select __Boards Manager...__ option. Finally install ESP32 board .
+* Install the PU2CLR SI4735 Arduino Library
+  * Go to __Tools__ menu and select __Manage libraries...__. Finally install the PU2CLR SI4735 Arduino Library.
+* Before compiling, select the ESP8266 Board on Arduino IDE.  Go to __Tools__ menu and select __Board__ item. Then, select __ESP8266 Arduino__. Finally, select __"Generic ESP8266 Module"__ or your specific ESP8266 board. You need to know what ESP8266 board you are using.  
+ 
+
+#### if you use the arduino-cli, you can follow the steps below: 
+
+```bash
+$ arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json 
+$ arduino-cli core update-index
+$ arduino-cli core install esp8266:esp8266
+```
+
 
 
 ## Example SI47XX_01_ESP12F_AM_FM_TOUCH_SERIAL_MONITOR

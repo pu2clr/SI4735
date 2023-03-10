@@ -1,22 +1,30 @@
 # ESP32 and Si4735 Arduino Library
 
-This folder show some examples with Si4735 Arduino Library  and ESP32 platform.
+This folder shows some examples with Si4735 Arduino Library  and ESP32 platform.
 
 ## Tips to use ESP32 with Arduino:
 
-Before start compiling ESP32 based sketches, you have to configure your Arduino IDE. Follow the steps below:  
+Before starting compiling ESP32 based sketches, you must configure your Arduino IDE. Follow the steps below:  
 
 * Install the last version of Arduino IDE
 * Configure the ESP32 on Arduino IDE 
   * Open the Arduino IDE and select the __Preferences...__ menu item. 
   * Go to __Additional Boards Manager URLs:__ and add the URL: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
   * After adding the ESP32 URL, go to __Tools__ menu, select the __Boards__ item and then select __Boards Manager...__ option. Finally install ESP32 board .
-  
 * Install the PU2CLR SI4735 Arduino Library
   * Go to __Tools__ menu and select __Manage libraries...__. Finally install the PU2CLR SI4735 Arduino Library.
-
 * Before compiling, select the ESP32 Board on Arduino IDE.  Go to __Tools__ menu and select __Board__ item. Then, select __ESP32 Arduino__. Finally, select __"ESP32 Dev Module"__ or your specific ESP32 board. You need to know what ESP32 board you are using.  
 * If you are using other versions of the ESP32 (ESP32S3, ESP32C3 etc), please check its pinout before. In general the pin setup are not the same shown here.  
+
+
+#### if you use the arduino-cli, you can follow the steps below: 
+
+```bash
+$ arduino-cli config set board_manager.additional_urls https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+$ arduino-cli core update-index
+$ arduino-cli core install esp32:esp32
+```
+
 
 ## Example SI47XX_01_ESP32_AM_FM_TOUCH_SERIAL_MONITOR
 
@@ -178,10 +186,61 @@ ESP32 Wire up with LCD, encoder/pushbutton and SI4735-D60
 
 
 
+### ESP32 and SI4735-D60 Digital Audio setup (I2S)
+
+
+
+![ESP32 and SI4735-D60 Digital Audio setup](../../extras/images/schematic_esp32_I2S_lcd_16x2_OR_lcd_20x4.png)
+
+####  ESP32 Wire up with LCD, encoder/pushbutton and SI4735-D60
+
+| Device name               | Device Pin / Description      |  ESP32        |
+| ----------------          | ----------------------------- | ------------- |
+|    LCD 16x2 or 20x4       |                               |               |
+|                           | D4                            |  GPIO18       |
+|                           | D5                            |  GPIO17       |
+|                           | D6                            |  GPIO16       |
+|                           | D7                            |  GPIO15       |
+|                           | RS                            |  GPIO19       |
+|                           | E/ENA                         |  GPIO23       |
+|                           | RW & VSS & K (16)             |  GND          |
+|                           | A (15) & VDD                  |  +Vcc         |
+|                           | VO (see 20K tripot connection)|  ------------ |
+|     SS473X                |                               |               |
+|                           | RESET (pin 15)                |  GPIO12       |
+|                           | SDIO (pin 18)                 |  GPIO21       |
+|                           | SCLK (pin 17)                 |  GPIO22       |
+|                           | (*1)SEN (pin 16)              |  +Vcc or GND  |
+|    Encoder                |                               |               |
+|                           | A                             |  CPIO13       |
+|                           | B                             |  GPIO14       |
+|                           | PUSH BUTTON (encoder)         |  GPIO27       |
+
+
+####  The table below show the SI4735,  DAC MAX98357A and ESP32 wireup
+
+| Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+|-----------| ----------|-----------------|---------------------------------------|
+| pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
+| pin 2     | DFS       |  RC             |  WordSelect / GPIO25                  |
+| pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock / GPIO33       |
+
+
+#### The table below show the SI4735,  DAC CJMCU and ESP32 wireup
+
+| Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+|-----------| ----------|-----------------|---------------------------------------|
+| pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
+| pin 2     | DFS       |  WSEL           |  WordSelect / GPIO25                  |
+| pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock / GPIO33       |
+
+
+
+
+
 ## Example SI47XX_03_ESP32_ALL_IN_ONE_TFT
 
 Still under construction this sketch will show how to use TFT with ESP32, Si4735 device and Si4735 Arduino Library.
-
 
 
 ### ESP32 and TFT  wire up 
