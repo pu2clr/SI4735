@@ -1405,8 +1405,8 @@ void loop()
 
         // Average the data reading
         mean /= samples_read;
-
-        // Print to serial plotter
+        // You can show the output signal here. 
+        // For example: Using the Arduino serial plotter
         // Serial.println(mean);
       }
    } 
