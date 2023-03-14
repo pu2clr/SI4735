@@ -178,8 +178,9 @@ void setupWiFi() {
   Serial.print("UDP Listening on IP: ");
   Serial.println(WiFi.localIP());
 
+  // UDP connection 
   if (udp.connect(WiFi.localIP(), udpPort)) {
-      Serial.println(" * Connected to host via UDP");
+      Serial.println("Connected to host via UDP");
   }
 
   if (udp.listen(udpPort)) {
