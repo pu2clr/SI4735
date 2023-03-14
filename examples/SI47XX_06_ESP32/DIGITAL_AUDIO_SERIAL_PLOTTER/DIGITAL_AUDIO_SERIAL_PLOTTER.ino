@@ -334,7 +334,7 @@ void loop() {
 
     // Get I2S data and place in data buffer
     size_t bytesIn = 0;
-    esp_err_t result = i2s_read(I2S_NUM_0, &sBuffer, bufferLen, &bytesIn, portMAX_DELAY);
+    esp_err_t result = i2s_read(I2S_NUM_0, sBuffer, bufferLen, &bytesIn, portMAX_DELAY);
 
     if (result == ESP_OK) {
       // Read I2S data buffer

@@ -104,25 +104,21 @@ SI4735 rx;
 #define I2C_CLK 22
 
 // Define input buffer length
-#define BUFFER_SIZE 64
+#define BUFFER_SIZE 1024
 
 // WiFi connection - Network name and password
 const char *ssidName = "NETVIRTUA201";
 const char *ssidPswd = "15830970";
 
 // UDP Destination
-IPAddress udpAddress(192, 168, 0, 34);
 const int udpPort = 1234;
-
 boolean connected = false;
 
-const i2s_port_t I2S_PORT = I2S_NUM_0;
-const int BLOCK_SIZE = 128;
 
 // UDP
 AsyncUDP udp;
 
-int16_t stream_buffer[BUFFER_SIZE];
+uint8_t stream_buffer[BUFFER_SIZE];
 
 uint16_t currentFrequency;
 uint16_t previousFrequency;
@@ -214,7 +210,10 @@ void si473x_streaming() {
   esp_err_t result = i2s_read(I2S_NUM_0, stream_buffer, BUFFER_SIZE, &bytesIn, portMAX_DELAY);
   if (result == ESP_OK) {
       // udp.write((uint8_t *)stream_buffer, sizeof(stream_buffer));
-      udp.write((uint8_t *)stream_buffer, 1024);
+      for (int i = 0; i < 10; i++)
+        Serial.print(stream_buffer[i]);
+      Serial.println(">");  
+      udp.write((uint8_t *)stream_buffer, bytesIn);
   }
 }
 
