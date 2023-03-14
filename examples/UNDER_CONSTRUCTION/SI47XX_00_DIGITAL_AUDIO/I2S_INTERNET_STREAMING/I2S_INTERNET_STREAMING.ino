@@ -111,8 +111,8 @@ const char *ssidName = "NETVIRTUA201";
 const char *ssidPswd = "15830970";
 
 // UDP Destination
+
 const int udpPort = 1234;
-boolean connected = false;
 
 
 // UDP
@@ -174,15 +174,22 @@ void setupWiFi() {
     }
   }
 
+  Serial.println("Connected!");
+  Serial.print("UDP Listening on IP: ");
+  Serial.println(WiFi.localIP());
+
+  if (udp.connect(WiFi.localIP(), udpPort)) {
+      Serial.println(" * Connected to host via UDP");
+  }
+
   if (udp.listen(udpPort)) {
-    Serial.print("UDP Listening on IP: ");
+    Serial.print("UDP Listening to IP: ");
     Serial.println(WiFi.localIP());
     Serial.println("UDP Port: ");
     Serial.println(udpPort);
     udp.onPacket([](AsyncUDPPacket packet) {
       Serial.print("UDP Packet Type: ");
-      Serial.print(packet.isBroadcast() ? "Broadcast" : packet.isMulticast() ? "Multicast"
-                                                                             : "Unicast");
+      Serial.print(packet.isBroadcast() ? "Broadcast" : packet.isMulticast() ? "Multicast" : "Unicast");
       Serial.print(", From: ");
       Serial.print(packet.remoteIP());
       Serial.print(":");
@@ -200,19 +207,12 @@ void setupWiFi() {
       packet.printf("Got %u bytes of data", packet.length());
     });
   }
-  Serial.println("Connected!");
-  Serial.print("UDP Listening on IP: ");
-  Serial.println(WiFi.localIP());
 }
 
-void si473x_streaming() {
+void inline si473x_streaming() {
   size_t bytesIn = 0;
   esp_err_t result = i2s_read(I2S_NUM_0, stream_buffer, BUFFER_SIZE, &bytesIn, portMAX_DELAY);
   if (result == ESP_OK) {
-      // udp.write((uint8_t *)stream_buffer, sizeof(stream_buffer));
-      for (int i = 0; i < 10; i++)
-        Serial.print(stream_buffer[i]);
-      Serial.println(">");  
       udp.write((uint8_t *)stream_buffer, bytesIn);
   }
 }
