@@ -19,7 +19,7 @@ const char* ssidPswd = "<WiFiPassword>";
 
 // UDP Destination
 IPAddress udpAddress(192, 168, 0, 46);
-const int udpPort = 1234;
+const int udpPort = 4735;
 
 // Connection state
 boolean connected = false;
