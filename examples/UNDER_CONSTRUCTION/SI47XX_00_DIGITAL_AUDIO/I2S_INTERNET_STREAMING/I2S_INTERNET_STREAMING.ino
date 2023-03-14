@@ -2,8 +2,6 @@
 
   Under construction... 
 
-  This sketch is based on the Graham's Mic UDP project: https://gist.github.com/GrahamM/1d5ded26b23f808a80520e8c1510713a
-
   The station received by the SI473X device will be streaming via Internet.
 
 
@@ -70,7 +68,8 @@
   Streaming: 
 
   https://www.hackster.io/julianfschroeter/stream-your-audio-on-the-esp32-2e4661
-  https://www.dobitaobyte.com.br/como-usar-microfone-no-esp32-esp32-voice-streamer/
+  * Como usar microfone no ESP32 (ESP32 voice streamer): https://www.dobitaobyte.com.br/como-usar-microfone-no-esp32-esp32-voice-streamer/
+  https://gist.github.com/GrahamM/1d5ded26b23f808a80520e8c1510713a
   
 
 
@@ -181,6 +180,7 @@ void setupWiFi() {
   // UDP connection 
   if (udp.connect(WiFi.localIP(), udpPort)) {
       Serial.println("Connected to host via UDP");
+      delay(500);
   }
 
   if (udp.listen(udpPort)) {
