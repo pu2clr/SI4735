@@ -94,7 +94,7 @@ SI4735 rx;
 #define bufferLen 64
 
 
-int16_t sBuffer[bufferLen];
+int16_t data_buffer[bufferLen];
 
 uint16_t currentFrequency;
 uint16_t previousFrequency;
@@ -333,16 +333,16 @@ void loop() {
 
 
     // Get I2S data and place in data buffer
-    size_t bytesIn = 0;
-    esp_err_t result = i2s_read(I2S_NUM_0, sBuffer, bufferLen, &bytesIn, portMAX_DELAY);
+    size_t bytes_read = 0;
+    esp_err_t result = i2s_read(I2S_NUM_0, data_buffer, bufferLen, &bytes_read, portMAX_DELAY);
 
     if (result == ESP_OK) {
       // Read I2S data buffer
-      int16_t samples_read = bytesIn / 8;
+      int16_t samples_read = bytes_read / 8;
       if (samples_read > 0) {
         float mean = 0;
         for (int16_t i = 0; i < samples_read; ++i) {
-          mean += (sBuffer[i]);
+          mean += (data_buffer[i]);
         }
 
         // Average the data reading
