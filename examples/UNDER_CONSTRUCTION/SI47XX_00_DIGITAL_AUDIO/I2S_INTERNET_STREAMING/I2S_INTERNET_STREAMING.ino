@@ -147,6 +147,10 @@ const i2s_pin_config_t pin_config = {
   .data_in_num = I2S_SD
 };
 
+void doHalt() { 
+  while(1) delay(1);
+}
+
 void showHelp() {
   Serial.println("Type F to FM; A to MW; L to LW; and 1 to SW");
   Serial.println("Type U to increase and D to decrease the frequency");
@@ -167,10 +171,8 @@ void setupWiFi() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssidName, ssidPswd);
   if (WiFi.waitForConnectResult() != WL_CONNECTED) {
-    Serial.println("WiFi Failed");
-    while (1) {
-      delay(1000);
-    }
+    Serial.println("WiFi connection Failed");
+    doHalt();
   }
 
   Serial.println("Connected!");
@@ -181,6 +183,9 @@ void setupWiFi() {
   if (udp.connect(WiFi.localIP(), udpPort)) {
       Serial.println("Connected to host via UDP");
       delay(500);
+  } else {
+    Serial.println("UDP setup Failed");
+    doHalt();
   }
 
   if (udp.listen(udpPort)) {
@@ -268,6 +273,7 @@ void switchModeAmFm(uint16_t f) {
   delay(1000);
 }
 
+
 void setup() {
   Serial.begin(115200);
   while (!Serial)
@@ -323,10 +329,26 @@ void setup() {
 
   Serial.print("\nSetting ESP32 I2S.");
 
-  i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
-  i2s_set_pin(I2S_NUM_0, &pin_config);
-  i2s_start(I2S_NUM_0);
+  if ( i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL) != ESP_OK ) {
+    Serial.println("I2S driver error during installing!");
+    doHalt();
+  }
+  delay(500);
 
+
+   // Alterations for SPH0645 to ensure we receive MSB correctly.
+  REG_SET_BIT(I2S_TIMING_REG(I2S_NUM_0), BIT(9));   // I2S_RX_SD_IN_DELAY
+  REG_SET_BIT(I2S_CONF_REG(I2S_NUM_0), I2S_RX_MSB_SHIFT);  // Phillips I2S - WS changes a cycle earlier
+
+  if ( i2s_set_pin(I2S_NUM_0, &pin_config) !=  ESP_OK) { 
+    Serial.println("I2S set pin error during!");
+    doHalt();   
+  } 
+  delay(500);
+
+  i2s_start(I2S_NUM_0);
+  delay(500);
+  
   Serial.print("\nI2S setup is done!");
 
   setupWiFi();
