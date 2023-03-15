@@ -1,22 +1,21 @@
 /*
-  
-  This sketch was a  Jarno's contribution. 
-  I added the SI4732 wireup documentation and changed the RESET pin setup. 
-  I also added some controls to allow change frequency and band. 
-  I have refenrenced the documentations where this sketch was based on.
-  I would like to thank Mr. Jarno for his contribution. 
+
+  Under construction... 
+
+  The station received by the SI473X device will be streaming via Internet.
+
 
   SI4735 and ESP32 I2C wireup
 
   | Si4735    | Function  | ESP32               |
   |-----------| ----------|---------------------|
-  | pin 15    |   RESET   |   GPIO12            |  
+  | pin 15    |   RESET   |   GPIO12            |
   | pin 18    |   SDIO    |   21 (SDA / GPIO21) |
   | pin 17    |   SCLK    |   22 (SCL / GPIO22) |
 
   On SI4735, the active crystal or external clock must be connected to the pin 19
 
-  SI4735 and ESP32 I2S wireup 
+  SI4735 and ESP32 I2S wireup
 
   The table below show the SI4735,  DAC MAX98357A and ESP32 wireup
 
@@ -39,24 +38,24 @@
 
   | SI4732    | Function  | ESP32               |
   |-----------| ----------|---------------------|
-  | pin  9    |   RESET   |   GPIO12            |  
+  | pin  9    |   RESET   |   GPIO12            |
   | pin 12    |   SDIO    |   21 (SDA / GPIO21) |
   | pin 11    |   SCLK    |   22 (SCL / GPIO22) |
 
   SI4732 and ESP32 I2S wireup
 
   | SI4732   | Function   | DAC      | ESP LOLIN32 WEMOS (GPIO)              |
-  |-----------| ----------|----------|---------------------------------------|  
+  |-----------| ----------|----------|---------------------------------------|
   | pin  1    |  DFS/WS   | LRCK     |  WordSelect / GPIO25                  |
   | pin 16    |  DIO/SD   | DIN      |  SerialData / GPIO32                  |
-  | pin  2    |  DCLK/SCK | BSK      |  ContinuousSerialClock)  / GPIO33     |     
+  | pin  2    |  DCLK/SCK | BSK      |  ContinuousSerialClock)  / GPIO33     |
 
 
   On SI4732, the active crystal or external clock must be connected to the pin 13
 
 
-  IMPORTANT: This setup does not work with regular crystal setup. 
-             You need a external active crystal or signal generator setup. 
+  IMPORTANT: This setup does not work with regular crystal setup.
+             You need a external active crystal or signal generator setup.
              See Digital Audio support: https://pu2clr.github.io/SI4735/#digital-audio-support
              See SI473X and external active crystal oscillator or signal generator: https://github.com/pu2clr/SI4735/tree/master/extras/schematic#si473x-and-external-active-crystal-oscillator-or-signal-generator
 
@@ -65,19 +64,32 @@
   ESP32-audioI2S library: https://github.com/schreibfaul1/ESP32-audioI2S
   I2S from espressif ESP32:  https://espressif-docs.readthedocs-hosted.com/projects/arduino-esp32/en/latest/api/i2s.html
 
-  Other references: 
+
+  Streaming: 
+
+  https://www.hackster.io/julianfschroeter/stream-your-audio-on-the-esp32-2e4661
+  * Como usar microfone no ESP32 (ESP32 voice streamer): https://www.dobitaobyte.com.br/como-usar-microfone-no-esp32-esp32-voice-streamer/
+  https://gist.github.com/GrahamM/1d5ded26b23f808a80520e8c1510713a
+  
+
+
+
+  Other references:
   I2S Communication on ESP32 to Transmit and Receive Audio Data Using MAX98357A: https://circuitdigest.com/microcontroller-projects/i2s-communication-on-esp32-to-transmit-and-receive-audio-data-using-max98357a
   I2S Sound Tutorial for ESP32: https://diyi0t.com/i2s-sound-tutorial-for-esp32/
   Bluetooth A2DP – Streaming from an Digital I2S Microphone: https://www.pschatzmann.ch/home/2021/04/29/bluetooth-a2dp-streaming-from-an-digital-i2s-microphone/
   A Simple Arduino Bluetooth Music Receiver and Sender for the ESP32: https://github.com/pschatzmann/ESP32-A2DP
   Si4735 I2S module - https://gitlab.com/retrojdm/si4735-i2s-module
 
-  This sketch was written By Jarno Lehtinen, Fev, 2023 (https://github.com/mcgurk?tab=repositories). 
+  This sketch was written By Jarno Lehtinen, Fev, 2023 (https://github.com/mcgurk?tab=repositories).
 
 */
 
 #include <SI4735.h>
 #include <driver/i2s.h>
+#include <soc/i2s_reg.h>
+#include "WiFi.h"
+#include "AsyncUDP.h"
 
 #define RESET_PIN 12
 
@@ -91,10 +103,21 @@ SI4735 rx;
 #define I2C_CLK 22
 
 // Define input buffer length
-#define bufferLen 64
+#define BUFFER_SIZE 1024
+
+// WiFi connection - Network name and password
+const char *ssidName = "NETVIRTUA201";
+const char *ssidPswd = "15830970";
+
+// UDP Destination
+
+const int udpPort = 1234;
 
 
-int16_t dataBuffer[bufferLen];
+// UDP
+AsyncUDP udp;
+
+uint8_t stream_buffer[BUFFER_SIZE];
 
 uint16_t currentFrequency;
 uint16_t previousFrequency;
@@ -105,9 +128,6 @@ uint8_t currentVolume = 40;
 uint16_t amLastFrequency = 810;
 uint16_t fmLastFrequency = 10390;
 
-
-
-
 const i2s_config_t i2s_config = {
   .mode = i2s_mode_t(I2S_MODE_MASTER | I2S_MODE_RX),
   .sample_rate = 48000,
@@ -116,7 +136,7 @@ const i2s_config_t i2s_config = {
   .communication_format = i2s_comm_format_t(I2S_COMM_FORMAT_STAND_I2S),
   .intr_alloc_flags = 0,
   .dma_buf_count = 8,
-  .dma_buf_len = bufferLen,
+  .dma_buf_len = BUFFER_SIZE,
   .use_apll = false
 };
 
@@ -126,7 +146,6 @@ const i2s_pin_config_t pin_config = {
   .data_out_num = -1,
   .data_in_num = I2S_SD
 };
-
 
 void showHelp() {
   Serial.println("Type F to FM; A to MW; L to LW; and 1 to SW");
@@ -140,6 +159,64 @@ void showHelp() {
   delay(1000);
 }
 
+// WiFi setup
+void setupWiFi() {
+
+  Serial.println("\nWifi - Network setup!");
+
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssidName, ssidPswd);
+  if (WiFi.waitForConnectResult() != WL_CONNECTED) {
+    Serial.println("WiFi Failed");
+    while (1) {
+      delay(1000);
+    }
+  }
+
+  Serial.println("Connected!");
+  Serial.print("UDP Listening on IP: ");
+  Serial.println(WiFi.localIP());
+
+  // UDP connection 
+  if (udp.connect(WiFi.localIP(), udpPort)) {
+      Serial.println("Connected to host via UDP");
+      delay(500);
+  }
+
+  if (udp.listen(udpPort)) {
+    Serial.print("UDP Listening to IP: ");
+    Serial.println(WiFi.localIP());
+    Serial.println("UDP Port: ");
+    Serial.println(udpPort);
+    udp.onPacket([](AsyncUDPPacket packet) {
+      Serial.print("UDP Packet Type: ");
+      Serial.print(packet.isBroadcast() ? "Broadcast" : packet.isMulticast() ? "Multicast" : "Unicast");
+      Serial.print(", From: ");
+      Serial.print(packet.remoteIP());
+      Serial.print(":");
+      Serial.print(packet.remotePort());
+      Serial.print(", To: ");
+      Serial.print(packet.localIP());
+      Serial.print(":");
+      Serial.print(packet.localPort());
+      Serial.print(", Length: ");
+      Serial.print(packet.length());
+      Serial.print(", Data: ");
+      Serial.write(packet.data(), packet.length());
+      Serial.println();
+      //reply to the client
+      packet.printf("Got %u bytes of data", packet.length());
+    });
+  }
+}
+
+void inline si473x_streaming() {
+  size_t bytesIn = 0;
+  esp_err_t result = i2s_read(I2S_NUM_0, stream_buffer, BUFFER_SIZE, &bytesIn, portMAX_DELAY);
+  if (result == ESP_OK) {
+      udp.write((uint8_t *)stream_buffer, bytesIn);
+  }
+}
 
 void showStatus() {
   currentFrequency = rx.getFrequency();
@@ -165,33 +242,31 @@ void showStatus() {
   Serial.print(" Volume:");
   Serial.print(rx.getVolume());
   Serial.println("]");
-
 }
 
 /**
  * Switch from FM to AM or AM to FM mode using Digital Audio Setup
  */
-void switchModeAmFm(uint16_t f ) {
+void switchModeAmFm(uint16_t f) {
 
-  if ( rx.isCurrentTuneFM() ) {
-        fmLastFrequency = currentFrequency;
-        rx.setup(RESET_PIN, -1, AM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);  
-        rx.setAM(570, 1710, f, 10);
-        rx.digitalOutputSampleRate(48000);
-        rx.digitalOutputFormat(0 , 0 , 0 , 0 );
-        rx.setVolume(currentVolume);  
+  if (rx.isCurrentTuneFM()) {
+    fmLastFrequency = currentFrequency;
+    rx.setup(RESET_PIN, -1, AM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);
+    rx.setAM(570, 1710, f, 10);
+    rx.digitalOutputSampleRate(48000);
+    rx.digitalOutputFormat(0, 0, 0, 0);
+    rx.setVolume(currentVolume);
   } else {
-        amLastFrequency = currentFrequency;
-        rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);  
-        rx.setFM(8400, 10800, f, 10);  
-        rx.digitalOutputSampleRate(48000);
-        rx.digitalOutputFormat(0 , 0 , 0 , 0 );
-        rx.setVolume(currentVolume);
+    amLastFrequency = currentFrequency;
+    rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);
+    rx.setFM(8400, 10800, f, 10);
+    rx.digitalOutputSampleRate(48000);
+    rx.digitalOutputFormat(0, 0, 0, 0);
+    rx.setVolume(currentVolume);
   }
   showStatus();
   delay(1000);
 }
-
 
 void setup() {
   Serial.begin(115200);
@@ -218,7 +293,7 @@ void setup() {
   // rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);
   Serial.println("SI473X device started with Digital Audio setup!");
   delay(1000);
-  rx.setFM(8400, 10800, 10270, 10);  // frequency station 10650 (106.50 MHz)
+  rx.setFM(8400, 10800, 10650, 10);  // frequency station 10650 (106.50 MHz)
   // rx.setAM(570, 1710, 810, 10);
   delay(500);
   Serial.print("\nrx.getFrequency: ");
@@ -252,7 +327,10 @@ void setup() {
   i2s_set_pin(I2S_NUM_0, &pin_config);
   i2s_start(I2S_NUM_0);
 
-  Serial.print("\nI2S setup is done!. Now you can open the Serial Plot Monitor.");
+  Serial.print("\nI2S setup is done!");
+
+  setupWiFi();
+
   delay(2000);
 
   showHelp();
@@ -260,6 +338,7 @@ void setup() {
 }
 
 void loop() {
+  si473x_streaming();
 
   if (Serial.available() > 0) {
     char key = Serial.read();
@@ -278,7 +357,7 @@ void loop() {
         break;
       case 'f':
       case 'F':
-        switchModeAmFm(fmLastFrequency);  
+        switchModeAmFm(fmLastFrequency);
         break;
       case 'U':
       case 'u':
@@ -321,36 +400,6 @@ void loop() {
         break;
       default:
         break;
-    }
-  } else {
-    // False print statements to "lock range" on serial plotter display
-    // Change rangelimit value to adjust "sensitivity"
-    int rangelimit = 3000;
-    Serial.print(rangelimit * -1);
-    Serial.print(" ");
-    Serial.print(rangelimit);
-    Serial.print(" ");
-
-
-    // Get I2S data and place in data buffer
-    size_t bytesRead = 0;
-    esp_err_t result = i2s_read(I2S_NUM_0, dataBuffer, bufferLen, &bytesRead, portMAX_DELAY);
-
-    if (result == ESP_OK) {
-      // Process I2S data buffer
-      int16_t samples_read = bytesRead / 8;
-      if (samples_read > 0) {
-        float mean = 0;
-        for (int16_t i = 0; i < samples_read; ++i) {
-          mean += (dataBuffer[i]);
-        }
-
-        // Average the data reading
-        mean /= samples_read;
-
-        // Print to serial plotter
-        Serial.println(mean);
-      }
     }
   }
 }

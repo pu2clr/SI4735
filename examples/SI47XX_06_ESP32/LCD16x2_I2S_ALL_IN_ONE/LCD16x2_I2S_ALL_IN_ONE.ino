@@ -179,8 +179,10 @@ bool cmdMenu = false;
 bool cmdRds  =  false;
 bool cmdSoftMuteMaxAtt = false;
 bool cmdAvc = false;
+bool cmdI2S = false;
 
-bool fmRDS = false;
+bool fmRDS = false;  // saves the RDS on or off
+bool i2s = true;     // saves the i2s setup on or off
 
 int16_t currentBFO = 0;
 long elapsedRSSI = millis();
@@ -194,9 +196,9 @@ uint16_t previousFrequency = 0;
 
 const uint8_t currentBFOStep = 10;
 
-const char * menu[] = {"Volume", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "AVC", "Seek Up", "Seek Down"};
+const char * menu[] = {"Volume", "I2S", "FM RDS", "Step", "Mode", "BFO", "BW", "AGC/Att", "SoftMute", "AVC", "Seek Up", "Seek Down"};
 int8_t menuIdx = 0;
-const int lastMenu = 10;
+const int lastMenu = 11;
 int8_t currentMenuCmd = -1;
 
 typedef struct
@@ -448,11 +450,12 @@ void saveAllReceiverInformation()
   EEPROM.write(eeprom_address + 1, rx.getVolume()); // stores the current Volume
   EEPROM.write(eeprom_address + 2, bandIdx);            // Stores the current band
   EEPROM.write(eeprom_address + 3, fmRDS);
-  EEPROM.write(eeprom_address + 4, currentMode); // Stores the current Mode (FM / AM / SSB)
-  EEPROM.write(eeprom_address + 5, currentBFO >> 8);
-  EEPROM.write(eeprom_address + 6, currentBFO & 0XFF);
+  EEPROM.write(eeprom_address + 4, i2s);
+  EEPROM.write(eeprom_address + 5, currentMode); // Stores the current Mode (FM / AM / SSB)
+  EEPROM.write(eeprom_address + 6, currentBFO >> 8);
+  EEPROM.write(eeprom_address + 7, currentBFO & 0XFF);
 
-  addr_offset = 7;
+  addr_offset = 8;
   band[bandIdx].currentFreq = currentFrequency;
 
   for (int i = 0; i <= lastBand; i++)
@@ -482,11 +485,12 @@ void readAllReceiverInformation()
   volume = EEPROM.read(eeprom_address + 1); // Gets the stored volume;
   bandIdx = EEPROM.read(eeprom_address + 2);
   fmRDS = EEPROM.read(eeprom_address + 3);
-  currentMode = EEPROM.read(eeprom_address + 4);
-  currentBFO = EEPROM.read(eeprom_address + 5) << 8;
-  currentBFO |= EEPROM.read(eeprom_address + 6);
+  i2s = EEPROM.read(eeprom_address + 4);
+  currentMode = EEPROM.read(eeprom_address + 5);
+  currentBFO = EEPROM.read(eeprom_address + 6) << 8;
+  currentBFO |= EEPROM.read(eeprom_address + 7);
 
-  addr_offset = 7;
+  addr_offset = 8;
   for (int i = 0; i <= lastBand; i++)
   {
     band[i].currentFreq = EEPROM.read(addr_offset++) << 8;
@@ -571,6 +575,7 @@ void disableCommands()
   cmdMenu = false;
   cmdSoftMuteMaxAtt = false;
   cmdRds = false;
+  cmdI2S =  false;
   cmdAvc =  false; 
   countClick = 0;
 
@@ -665,6 +670,10 @@ void showMode()
 void showStatus()
 {
   lcd.clear();
+
+  lcd.setCursor(3, 0);
+  lcd.print( (i2s)? 'D':'A'); 
+  
   showFrequency();
   showRSSI();
 }
@@ -807,7 +816,7 @@ void showSoftMute()
 }
 
 /**
- * Show Soft Mute 
+ * Shows Soft Mute 
  */
 void showAvc()
 {
@@ -816,6 +825,17 @@ void showAvc()
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print(sAvc);
+}
+
+/**
+ * Shows I2S On or Off 
+ */
+void showI2SSetup() {
+  char sI2SStatus[10];
+  sprintf(sI2SStatus, "I2S: %s", (i2s)? "ON ": "OFF");
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(sI2SStatus);  
 }
 
 
@@ -884,7 +904,7 @@ void checkRDS()
         showRDSStation();
       }
       if ( rx.getRdsDateTime(&localYear, &localMonth, &localDay, &localHour, &localMinute) ) {
-        sprintf(localTime,"%02u:%02u", localHour, localMinute);
+        sprintf(localTime,"%02u:%02u", (uint8_t) localHour, (uint8_t) localMinute);
         showRDSTime();
         delay(500);
         clearRDS();
@@ -977,9 +997,11 @@ void useBand()
 
   rssi = 0;
 
-  // Set again Digital Audio after changing band
-  rx.digitalOutputSampleRate(48000);
-  rx.digitalOutputFormat(0 , 0 , 0 , 0 );
+  if ( i2s ) {
+    // Set again Digital Audio after changing band
+    rx.digitalOutputSampleRate(48000);
+    rx.digitalOutputFormat(0 , 0 , 0 , 0 );
+  } 
 
   showStatus();
   showCommandStatus((char *) "Band");
@@ -1251,6 +1273,23 @@ void doRdsSetup(int8_t v)
   elapsedCommand = millis();
 }
 
+/**
+ * Turns I2S ON or OFF
+ */
+void doI2SSetup(int8_t v)
+{
+  i2s = (v == 1)? true:false;
+
+  if (i2s)
+    rx.digitalOutputSampleRate(48000);
+  else
+    rx.digitalOutputSampleRate(0);
+
+  showI2SSetup();
+  elapsedCommand = millis();
+}
+
+
 
 /**
  *  Menu options selection
@@ -1273,7 +1312,7 @@ void doMenu( int8_t v) {
  * Return true if the current status is Menu command
  */
 bool isMenuMode() {
-  return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds | cmdAvc);
+  return (cmdMenu | cmdStep | cmdBandwidth | cmdAgc | cmdVolume | cmdSoftMuteMaxAtt | cmdMode | cmdRds | cmdI2S |  cmdAvc);
 }
 
 /**
@@ -1287,46 +1326,50 @@ void doCurrentMenuCmd() {
       showVolume();
       break;
     case 1: 
+      cmdI2S = true;
+      showI2SSetup();
+      break;      
+    case 2: 
       cmdRds = true;
       showRdsSetup();
       break;
-    case 2:                 // STEP
+    case 3:                 // STEP
       cmdStep = true;
       showStep();
       break;
-    case 3:                 // MODE
+    case 4:                 // MODE
       cmdMode = true;
       lcd.clear();
       showMode();
       break;
-    case 4:
+    case 5:
         bfoOn = true;
         if ((currentMode == LSB || currentMode == USB)) {
           showBFO();
         }
       // showFrequency();
       break;      
-    case 5:                 // BW
+    case 6:                 // BW
       cmdBandwidth = true;
       showBandwidth();
       break;
-    case 6:                 // AGC/ATT
+    case 7:                 // AGC/ATT
       cmdAgc = true;
       showAgcAtt();
       break;
-    case 7: 
+    case 8: 
       cmdSoftMuteMaxAtt = true;
       showSoftMute();  
       break;
-    case 8: 
+    case 9: 
       cmdAvc =  true; 
       showAvc();
       break;  
-    case 9:
+    case 10:
       seekDirection = 1;
       doSeek();
       break;  
-    case 10:
+    case 11:
       seekDirection = 0;
       doSeek();
       break;    
@@ -1362,8 +1405,8 @@ void loop()
 
         // Average the data reading
         mean /= samples_read;
-
-        // Print to serial plotter
+        // You can show the output signal here. 
+        // For example: Using the Arduino serial plotter
         // Serial.println(mean);
       }
    } 
@@ -1398,6 +1441,8 @@ void loop()
           setBand(encoderCount);
     else if (cmdRds ) 
       doRdsSetup(encoderCount);  
+    else if (cmdI2S) 
+      doI2SSetup(encoderCount);  
     else
     {
       if (encoderCount == 1)
