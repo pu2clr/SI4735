@@ -10,25 +10,40 @@
  Link: https://github.com/pu2clr/SI4735/tree/master/examples/TOOLS/SI47XX_09_SAVE_SSB_PATCH_EEPROM
 
 
- First of all, it is important to say that the SSB patch content is not part of this library. The paches used here were made available by Mr. 
- Vadim Afonkin on his Dropbox repository. It is important to note that the author of this library does not encourage anyone to use the SSB patches 
- content for commercial purposes. In other words, this library only supports SSB patches, the patches themselves are not part of this library.
+ Firstly, the SSB patch content is not part of this library.
+ These patches were published by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his Dropbox repository.
+ The author of this Si4735 Arduino Library does not encourage anyone to use the SSB patches content for 
+ commercial purposes. In other words, while this library supports SSB patches, the patches themselves 
+ should not be considered a part of this library.
 
  In this context, a patch is a piece of software used to change the behavior of the SI4735 device.
- There is little information available about patching the SI4735-D60/SI4732-A10. The following information is the understanding of the author of
- this project and it is not necessarily correct. A patch is executed internally (run by internal MCU) of the device.
- Usually, patches are used to fixes bugs or add improvements and new features of the firmware installed in the internal ROM of the device.
- Patches to the SI4735 are distributed in binary form and have to be transferred to the internal RAM of the device by
- the host MCU (in this case Arduino). Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off the system.
- Consequently, the content of the patch has to be transferred again to the device each time after turn on the system or reset the device.
+ There is little information available about patching the SI4735. The following information is the
+ understanding of the author of this project and is not necessarily correct. 
+
+ A patch is executed internally (run by internal MCU) of the device. Usually, patches
+ are used to fix bugs or add improvements and new features over what the firmware installed
+ in the internal ROM of the device offers. Patches for the SI4735 are distributed in binary
+ form and are transferred to the internal RAM of the device by the host MCU (in this case, Arduino boards).
+
+ Since the RAM is volatile memory, the patch stored into the device gets lost when you turn off
+ the system. Consequently, the content of the patch has to be transferred to the device every
+ time the device is powered up.
+
+ ATTENTION: The author of this project cannot guarantee that procedures shown
+ here will work in your development environment. Proceed at your own risk.
+ This library works with the I²C communication protocol to send an SSB extension
+ PATCH to SI4735-D60 and SI4732-A10 devices. Once again, the author disclaims any
+ and all liability for any damage or effects this procedure may have on your devices.
+ Procced at your own risk.
 
  This sketch has been successfully tested on tested on Arduino Pro Mini 3.3V; 
 
- The main advantages of using this sketch are: 
- 1) It is a easy way to check if your circuit is working;
- 2) You do not need to connect any display device to make your radio works;
- 3) You do not need connect any push buttons or encoders to change volume and frequency;
- 4) The Arduino IDE is all you need to control the radio.  
+ With this sketch, you only need the Arduino IDE and its Serial monitor to test and
+   control the circuit.
+   This means:
+    1) You don't need buttons, rotary encoders, potentiometers, etc. to control the circuit
+    2) You don't need a screen to see output from the Arduino board
+    3) All functions supported by this sketch can be accessed over the serial monitor 
 
  The table below shows the Si4735-D60 and Arduino Pro Mini pin connections 
     

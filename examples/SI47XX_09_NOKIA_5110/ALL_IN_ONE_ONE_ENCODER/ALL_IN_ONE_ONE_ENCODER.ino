@@ -285,7 +285,7 @@ void setup()
   if (digitalRead(ENCODER_PUSH_BUTTON) == LOW)
   {
     EEPROM.update(eeprom_address, 0);
-    show(0,0,"EEPROM RESETED");
+    show(0,0,"EEPROM RESET");
     delay(2000);
     nokia.clrScr();
   }

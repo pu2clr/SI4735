@@ -21,9 +21,9 @@ There are two boards very common on eBay and AlliExpress based on SI4730.
 
 1. BAND SELECTION
 
-   * Select the band by pressing the encoder push button once and then rotate the encoder clockwise or counterclockwise.
-   * When the desired band is shown on display, you  can press the button once again or wait for about 2 seconds.
-   * You will notice the control will go back to the VFO.
+    * Select the band by pressing the encoder push button once and then rotate the encoder clockwise or counterclockwise.
+    * When the desired band is shown on display, you  can press the button once again or wait for about 2 seconds.
+    * You will notice the control will go back to the VFO.
 
 2. STEP, MODE, SEEK UP, SEEK DOWN, AGC/Attenuation, bandwidth, Soft Mute and VOLUME
 
@@ -32,7 +32,7 @@ There are two boards very common on eBay and AlliExpress based on SI4730.
      * After that, select the option you want to setup by pressing the encoder push button once again.
      * After that, rotate the encoder clockwise or counterclockwise to select the parameter.
      * Finally, you can press the button once again or wait for about 2 seconds.
-     * The control will go back to the VFO.  
+     * The control will go back to the VFO.
 
 3. VFO/BFO Switch
 
@@ -42,8 +42,8 @@ There are two boards very common on eBay and AlliExpress based on SI4730.
     * Rotate the encoder clockwise or counterclockwise to increment or decrement the BFO (select the offset).
     * If you press the button again or stop rotating the ancoder for about 2 seconds, the control will go back to the VFO.
 
-__ATTENTION__: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time. If you do that, you might alternate the command status (enable and disable) randomly.
+    __ATTENTION__: Try press and release the push button quickly. If you hold the button too long, the board may randomly alternate the command status (enable and disable).
 
 4. EEPROM RESET
 
-   The main information of the receiver is stored into the Arduino EEPROM. This way, when you turn the receiver on, the last receiver status is rescued. To RESET the receiver to DEFAULT status, turn it on with the encoder pust button pressed. Check the message "EEPROM RESETED".
+    The main information of the receiver is stored into the Arduino EEPROM. This way, when you turn the receiver on, the last receiver status is recalled. To RESET the receiver to DEFAULT status, turn it on with the encoder pust button pressed. Check the message "EEPROM RESET".

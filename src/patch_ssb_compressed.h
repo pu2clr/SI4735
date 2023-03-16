@@ -1,27 +1,27 @@
 /*
-	First of all, it is important to say that the SSB patch content is not part of this library.
-	The  paches  used  here  were made available  by  Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his
+	Firstly, the SSB patch content is not part of this library.
+	The patches used here were made published by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his
 	[Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0).
   
-	The author of  this  Si4735  Arduino  Library does  not encourage anyone to use the SSB patches content for 
-  commercial purposes. In other words,  this  library  only  supports SSB patches, the patches themselves are 
-  not part of this library.
+  The author of this Si4735 Arduino Library does not encourage anyone to use the SSB patches content for 
+  commercial purposes. In other words, this library only supports SSB patches, the patches themselves are 
+  not a part of this library.
 
-	This file was adapted to C/C++ from  the original file (amrx_6_0_1_ssbrx_patch_init_0xA902.csg).
+	This file was adapted to C/C++ from the original file (amrx_6_0_1_ssbrx_patch_init_0xA902.csg).
 
   Compression strategy
 
-  If you see the patch_init.h  and patch_full.h files you will notice that the first  byte  of  each line of 
-  the content of the original  patch has the values 0x15 or 0x16. So,  to  shrink  the patch  size that will 
-  be stored into the controller  (MCU/Arduino), the  first  byte  (0x15 or 0X16) is omitted in each line of 
-  the array and a new array is added to indicate the position (line) where the value 0x15 occurs. 
-  The downloadCompressedPatch  function/method (see SI4735.cpp)  will  insert the values 0x15 or 0x16 guided 
-  by the array cmd_0x15 (see below). When  the  line  number  of  the array ssb_patch_content (see below) is 
-  in  cmd_0x15 array, then the value inserted will be 0x15. For the other lines, the downloadCompressedPatch 
-  method will include the value 0x16. It is important to say that the value 0x16 occurs on most lines in the 
-  patch. This approach will save about 1K of memory.
+  In the patch_init.h and patch_full.h files, the first byte of each line of the original patch has the values
+  0x15 or 0x16. To reduce wasted memory, these values are omitted from the patch array in this file. A second
+  array stores which lines should begin with 0x15, and all other lines are assumed to begin with 0x16.
+  
+  The downloadCompressedPatch function/method (see SI4735.cpp) will insert the values 0x15 or 0x16 based
+  on the cmd_0x15 array. On lines which match a value in the array, the function will begin the line with 0x15.
+  And for line numbers not in the array, the function will begin the line with 0x16. Most of the lines in this 
+  patch begin with 0x16, so only the lines which begin with 0x15 are stored. 
+  This approach saves about 1K of memory.
 
-  See downloadCompressedPatch implementation for more details in SI4735.cpp. 
+  See downloadCompressedPatch implementation in the SI4735.cpp file for more details. 
 
   The example code below shows how to use compressed SSB patch.
 

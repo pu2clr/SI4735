@@ -7,12 +7,13 @@ This folder show some examples with PU2CLR SI4735 Arduino Library and Teensy pla
 
 This sketch uses just the Serial Monitor as the human interface to test and validation of the PU2CLR SI4735 Arduino Library on Teensy platform. It can be very useful to test your circuit. 
 
-### The main advantages of using this sketch are: 
+### With this sketch, you only need the Arduino IDE to control the circuit
 
-* It is a easy way to check if your setup is working;
-* You do not need to connect any display device to make your radio works;
-* You do not need connect any push buttons or encoders to change volume and frequency;
-* The Arduino IDE is all you need to control the radio.  
+This is great for testing your circuit because:
+
+1) You don't need buttons, rotary encoders, potentiometers, etc. to control the circuit
+2) You don't need a screen to see output from the Arduino board
+3) All functions supported by this sketch can be accessed over the serial monitor
 
 
 ### SI4732 / SI4735 Wire up

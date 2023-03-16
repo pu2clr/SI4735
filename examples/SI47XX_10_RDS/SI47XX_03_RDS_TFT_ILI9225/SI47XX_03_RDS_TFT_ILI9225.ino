@@ -1,12 +1,12 @@
 /*
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220) - ILI9225.
   The Arduino library used to control that display device is TFT_22_ILI9225 (seeL https://github.com/Nkawu/TFT_22_ILI9225).
-  Please, install it before start working  with this sketch. 
+  Please, install it before start working with this sketch. 
 
-  It is a complete radio capable to tune FM/RDS; LW, MW, SW on AM and SSB mode and also receive the
-  regular comercial stations. If you are using the same circuit used on examples with OLED and LCD,
+  It is a complete radio capable of tuning to FM/RDS, LW, MW, and SW on AM and SSB modes, and also receive 
+  the regular comercial stations. If you are using the same circuit used on examples with OLED and LCD,
   you have to change some buttons wire up. This TFT device takes five pins from Arduino.
-  For this reason, it is necessary change the pins of some buttons.
+  For this reason, it is necessary to change the pins of some buttons.
   Fortunately, you can use the ATmega328 analog pins as digital pins.
 
   The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the

@@ -3,12 +3,12 @@
   To control the Nokia display this sketch uses the libraries Adafruit_GFX and Adafruit_PCD8544.
   Plese, install Adafruit_GFX and Adafruit_PCD8544 libraries before compiling this sketch.
 
-  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
+  The purpose of this example is to demonstrate a prototype receiver based on the  SI4735-D60 or Si4732-A10 and the
   "PU2CLR SI4735 Arduino Library" working with NOKIA Display. It is not the purpose of this prototype
   to provide you a beautiful interface. I think you can do it better than me.
 
-  It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
-  regular  comercial  stations.
+  It is a complete radio capable of tuning to LW, MW, and SW  on  AM  and  SSB  modes, and also
+  receive regular comercial stations.
 
   Features:   AM; SSB; LW/MW/SW; two super band (from 150kHz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB

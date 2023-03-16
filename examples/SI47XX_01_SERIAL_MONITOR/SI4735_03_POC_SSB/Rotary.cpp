@@ -5,8 +5,8 @@
 
    A typical mechanical rotary encoder emits a two bit gray code
    on 3 output pins. Every step in the output (often accompanied
-   by a physical 'click') generates a specific sequence of output
-   codes on the pins.
+   by a physical tactile 'click') generates a specific sequence of
+   output codes on the pins.
 
    There are 3 pins used for the rotary encoding - one common and
    two 'bit' pins.
@@ -30,8 +30,8 @@
    - Then Bit1 goes low, but Bit2 stays high.
    - Finally at the end of the step, both bits return to 0.
 
-   Detecting the direction is easy - the table simply goes in the other
-   direction (read up instead of down).
+   Detecting the direction is easy - the table is followed forwards or
+   backwards depending on which way the encoder is rotated.
 
    To decode this, we use a simple state machine. Every time the output
    code changes, it follows state, until finally a full steps worth of

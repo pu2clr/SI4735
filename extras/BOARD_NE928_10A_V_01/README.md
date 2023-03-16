@@ -2,7 +2,7 @@
 
 This board is an AM (MW) and FM receiver. __It is based on SI4730-B20__. The PU2CLR SI4735 Arduino Library is compatible with it.  
 
-Unlike the [PL102B board based on SI4730-D60](https://pu2clr.github.io/SI4735/extras/BOARD_PL102BA/), a very similar board and also supported by the Si4735 Arduino Library, __the NE928-10A DOES NOT SUPPORT LW, SW and FM/RDS__. Actually, judging by the Silicon Labs, the NE928-10A, PL102B or any board based on SI4730 device should not support LW, SW and FM/RDS. However, some tests with the __PL102B breakout and IC SI4730-D60__ have been received SW stations with success. It is iportante to say the author of this document does not guarantee that his experiments with boards based on the SI4730-D60 will work for you. See more [about the breakout board based on SI4730-D60 labeled “PL102BA-S V:2.1 10628”](https://pu2clr.github.io/SI4735/extras/BOARD_PL102BA/)
+Unlike the [PL102B board based on SI4730-D60](https://pu2clr.github.io/SI4735/extras/BOARD_PL102BA/), a very similar board and also supported by the Si4735 Arduino Library, __the NE928-10A DOES NOT SUPPORT LW, SW and FM/RDS__. Actually, judging by the Silicon Labs, the NE928-10A, PL102B or any board based on SI4730 device should not support LW, SW and FM/RDS. However, some tests with the __PL102B breakout and IC SI4730-D60__ have been received SW stations with success. The author of this document cannot guarantee that his experiments with boards based on the SI4730-D60 will work for you. See more [about the breakout board based on SI4730-D60 labeled “PL102BA-S V:2.1 10628”](https://pu2clr.github.io/SI4735/extras/BOARD_PL102BA/)
 
 
 ## The photos bellow show the "NE928-10A V:01" based on SI4730-B20
@@ -61,7 +61,7 @@ The table below shows the query result of Firmware Information command.
 
 ## Video
 
-The video below shows the __"NE928-10A V:01"__ device working with the sketch [SI47XX_02_ALL_IN_ONE_OLED](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED). That sketch was built to work on SI4735-D60 and SI4735-A10. So, some functions will not work. To add the encoder and push buttons, follow the schamatic below.
+The video below shows the __"NE928-10A V:01"__ device working with the sketch [SI47XX_02_ALL_IN_ONE_OLED](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED). That sketch was built to work on SI4735-D60 and SI4735-A10. So, some functions will not work. To add the encoder and push buttons, follow the schematic below.
 
 ![schematic to guide you to add buttons and encoder](../images/schematic_basic_oled_SI47XX_02_ALL_IN_ONE_OLED.png)
 

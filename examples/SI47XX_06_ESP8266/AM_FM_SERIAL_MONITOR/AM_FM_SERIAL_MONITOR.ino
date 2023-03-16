@@ -4,10 +4,10 @@
    ATTENTION:  Please, avoid using the computer connected to the mains during testing.
 
    The main advantages of using this sketch are: 
-    1) It is a easy way to check if your circuit is working;
-    2) You do not need to connect any display device to make your radio works;
-    3) You do not need connect any push buttons or encoders to change volume and frequency;
-    4) The Arduino IDE is all you need to control the radio.  
+    1) It is an easy way to check if your circuit is working
+    2) You do not need to connect any display device to make your radio works
+    3) You do not need connect any push buttons or encoders to change volume and frequency
+    4) The Arduino IDE is all you need to control the radio
    
    This sketch has been successfully tested on ESP8266 on SI4735-G60 or SI4732-A10
 

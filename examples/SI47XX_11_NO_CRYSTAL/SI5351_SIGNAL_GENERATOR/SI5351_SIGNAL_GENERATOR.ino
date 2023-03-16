@@ -1,10 +1,9 @@
-
 /*
   Program to control the "Adafruit Si5351A Clock Generator" or similar via Arduino.
   This program control the frequencies of two clocks (CLK) output of the Si5351A
   The CLK 0 can be used as a VFO (535kHz to 160MHz)
   The CLK 1 can be used as a BFO (400kHz to 500kHz)
-  See on https://github.com/etherkit/Si5351Arduino  and know how to calibrate your Si5351
+  See how to calibrate your Si5351 on https://github.com/etherkit/Si5351Arduino
   See also the example Etherkit/si5251_calibration
   Author: Ricardo Lima Caratti (PU2CLR) -   April, 2019
 */
