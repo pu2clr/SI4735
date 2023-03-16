@@ -8,7 +8,7 @@ __All sketches of this folder have been successfully tested on Pro Mini 3.3V, UN
 __Regarding SSB support, the SSB patch content is not part of this library__. The patches used here were made available by Mr. [Vadim Afonkin](https://youtu.be/fgjPGnTAVgM) on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh59/AAA5au2_CVdi50NBtt0IivyIa?dl=0). Please note that the author of this library does not encourage anyone to use the SSB patches content for commercial purposes. __In other words, while this library supports SSB patches, the patches themselves are not a part of this library__.
 
 
-The table below show the Si4735 and Arduino Pro Mini pin connections
+The table below shows the Si4735 and Arduino Pro Mini pin connections
 
 | Si4735 pin      |  Arduino Pin  |
 | ----------------| ------------  |

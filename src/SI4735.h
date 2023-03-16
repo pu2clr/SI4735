@@ -1786,7 +1786,7 @@ public:
      * @ingroup group13 Digital Audio setup
      * @brief Sets the Audio Mode. See table below. 
      * @details If you want to change the audio mode, call this function before call setAM(), setFM() or setSSB(). 
-     * @details Sets the Si47XX device to use ANALOG or DIGITAL audio output. The table below show the valid values. 
+     * @details Sets the Si47XX device to use ANALOG or DIGITAL audio output. The table below shows the valid values. 
      * @details This function will only take effect after calling setAM(), setFM() or setSSB().
      * 
      * 
