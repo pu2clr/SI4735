@@ -149,7 +149,7 @@ The following video is a little joke that shows the trajectory of the constructi
 * Mr. Miguel Angelo Bartié, PY2OHH, for the post [RECEIVER FM/MW/SW(AM SSB and CW) with SI4735 prototype](https://www.qsl.net/py2ohh/trx/si4735/SI4735.html)   
 * Mr. Felix Angga, for his great receiver based on SI4735 interface - [SlametRadio](https://github.com/felangga/slametradio) 
 * Mr. DAVID W ZANTOW, [N9EWO](https://www.qrz.com/db/N9EWO), for his Reviews about [ATS-25 / ATS25 / LW / MW / SW / FM DSP Receiver](https://www.qsl.net/n9ewo/ats25.html)
-* Mr. Dalton Herrewynen for documentation corrections and improvments.
+* Mr. Dalton Herrewynen for documentation corrections and improvements.
 
 <BR>
 
