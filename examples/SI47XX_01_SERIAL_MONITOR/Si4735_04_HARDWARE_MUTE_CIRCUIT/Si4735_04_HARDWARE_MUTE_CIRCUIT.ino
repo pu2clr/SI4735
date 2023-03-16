@@ -9,7 +9,7 @@
   All you have to do is call the setAudioMuteMcuPin( <digital_arduino_pin> ) method before call the receiver setup.
    
   Test and validation of the SI4735 Arduino Library.
-  It is a FM, MW and SW (1700kHz to 30000kHz)
+  It is an FM, MW and SW (1700kHz to 30000kHz)
    
 
     The table below shows the Si4735 and Arduino Pro Mini pin connections 

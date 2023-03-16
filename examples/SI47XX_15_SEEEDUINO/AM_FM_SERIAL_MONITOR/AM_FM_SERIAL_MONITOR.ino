@@ -1,6 +1,6 @@
 /*
   Test and validation of the PU2CLR SI4735 Arduino Library on SEEEDUINO XIAO devices.
-  It is a FM, MW and SW (1700kHz to 30000kHz)
+  It is an FM, MW and SW (1700kHz to 30000kHz)
    
   ATTENTION:  Please, avoid using the computer connected to the mains during testing.
 

@@ -1,6 +1,6 @@
 /*
    Test and validation of the SI4735 Arduino Library.
-   It is a FM, MW and SW (up to 30000kHz)
+   It is an FM, MW and SW (up to 30000kHz)
    
    ATTENTION:  Please, avoid using the computer connected to the mains during testing.
 
