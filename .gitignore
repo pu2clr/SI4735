@@ -1,5 +1,6 @@
 # ignore system files
 *.DS_Store
+*_Store
 *debug_custom.json
 *debug.cfg
 *esp32c3.svd
