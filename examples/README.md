@@ -352,7 +352,7 @@ Port                            Protocol Type              Board Name    FQBN   
 ```
 
 
-The table below show some Arduino board FQBN
+The table below shows some Arduino board FQBN
 
 | Board Name | FQBN |
 | ---------- | ---- |

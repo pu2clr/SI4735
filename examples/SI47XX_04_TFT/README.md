@@ -37,7 +37,7 @@ If you are using the same circuit used on examples with OLED and LCD, you have t
 
 ### Wire up and functions
 
-The table below show the pins wire up for this example on Arduino Pro Mini.
+The table below shows the pins wire up for this example on Arduino Pro Mini.
 
 | Device name               | Device Pin / Description  |  Arduino Pin  |
 | ----------------          | --------------------      | ------------  |

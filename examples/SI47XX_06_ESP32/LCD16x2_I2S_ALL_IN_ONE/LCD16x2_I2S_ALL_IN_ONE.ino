@@ -36,7 +36,7 @@
   |                           | PUSH BUTTON (encoder)         |  GPIO27       |
 
 
-  The table below show the SI4735,  DAC MAX98357A and ESP32 wireup
+  The table below shows the SI4735,  DAC MAX98357A and ESP32 wireup
 
   | Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
   |-----------| ----------|-----------------|---------------------------------------|
@@ -44,7 +44,7 @@
   | pin 2     | DFS       |  RC             |  WordSelect / GPIO25                  |
   | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock / GPIO33       |
 
-  The table below show the SI4735,  DAC CJMCU and ESP32 wireup
+  The table below shows the SI4735,  DAC CJMCU and ESP32 wireup
 
   | Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
   |-----------| ----------|-----------------|---------------------------------------|

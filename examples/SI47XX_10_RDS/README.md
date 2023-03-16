@@ -27,7 +27,7 @@ It is also a complete radio capable of tuning in on LW, MW, SW on AM and SSB mod
 
 ### Wire up and functions
 
-The table below show the pins wire up for this example on Arduino Pro Mini.
+The table below shows the pins wire up for this example on Arduino Pro Mini.
 
 | Device name               | Device Pin / Description  |  Arduino Pin  |
 | ----------------          | --------------------      | ------------  |
