@@ -1,3 +1,8 @@
 # ignore system files
 *.DS_Store
-
+*debug_custom.json
+*debug.cfg
+*esp32c3.svd
+*esp32.svd
+*esp32s3.svd
+*.gitignore
