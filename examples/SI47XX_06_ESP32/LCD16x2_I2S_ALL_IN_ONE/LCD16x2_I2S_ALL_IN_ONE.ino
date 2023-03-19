@@ -2,6 +2,8 @@
   The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10, Digital Audio (I2S) 
   and  the  "PU2CLR SI4735 Arduino Library". 
 
+  So far, this sketch was tested on SI4735-D60 device. 
+  
   It is not the purpose of this example to provide you a beautiful interface. You must do it by yourself.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  mode  and  FM mode (regular  comercial  stations).
@@ -404,7 +406,10 @@ void setup()
   
   rx.setRefClock(32768);
   rx.setRefClockPrescaler(1);   // will work with 32768  
-  rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK);  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
+  rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_ANALOG_DIGITAL_AUDIO, XOSCEN_RCLK); // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS, DIO), external RCLK
+  // rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO1, XOSCEN_RCLK);    // Digital audio output (DCLK, LOUT/DFS, ROUT/DIO)
+  // rx.setup(RESET_PIN, -1, FM_CURRENT_MODE, SI473X_DIGITAL_AUDIO2, XOSCEN_RCLK);    // Digital audio outputs (DCLK, DFS, DIO)
+
   delay(500); // Wait the oscillator becomes stable. To be checked...
 
   // rx.setFM(8400, 10800, 10650, 10); // You may need this line here. To be checked...
