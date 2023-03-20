@@ -12,4 +12,5 @@
 *s#3
 *s#4
 *s#5
-
+.vscode/c_cpp_properties.json
+.gitignore
