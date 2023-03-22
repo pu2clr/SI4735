@@ -28,14 +28,14 @@
 
   The table below shows the SI4735,  DAC CJMCU and ESP32 wireup
 
-  | Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+  | Si4735    | Function  |  DAC CJMCU      | ESP32                                 |
   |-----------| ----------|-----------------|---------------------------------------|
   | pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
   | pin 2     | DFS       |  WSEL           |  WordSelect / GPIO25                  |
   | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
 
 
-  SI4732 and ESP32 I2C wireup
+  SI4732 and ESP32 I2C wireup (not checked so far)
 
   | SI4732    | Function  | ESP32               |
   |-----------| ----------|---------------------|
