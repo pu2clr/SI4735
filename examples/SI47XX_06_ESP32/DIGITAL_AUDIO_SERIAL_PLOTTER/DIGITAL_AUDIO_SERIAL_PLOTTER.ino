@@ -35,13 +35,14 @@
   | pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
 
 
-  SI4732 and ESP32 I2C wireup (not checked so far)
+  SI4732 and ESP32 I2C and RCLK wireup (not checked so far)
 
   | SI4732    | Function  | ESP32               |
   |-----------| ----------|---------------------|
   | pin  9    |   RESET   |   GPIO12            |  
   | pin 12    |   SDIO    |   21 (SDA / GPIO21) |
   | pin 11    |   SCLK    |   22 (SCL / GPIO22) |
+  | pin 19    |   RCLK    |   26                |
 
   SI4732 and ESP32 I2S wireup
 
@@ -50,9 +51,6 @@
   | pin  1    |  DFS/WS   | LRCK     |  WordSelect / GPIO25                  |
   | pin 16    |  DIO/SD   | DIN      |  SerialData / GPIO32                  |
   | pin  2    |  DCLK/SCK | BSK      |  ContinuousSerialClock)  / GPIO33     |     
-
-
-  On SI4732, the active crystal or external clock must be connected to the pin 13
 
 
   IMPORTANT: This setup does not work with regular crystal setup. 
@@ -78,8 +76,10 @@
 
 #include <SI4735.h>
 #include <driver/i2s.h>
+#include "driver/ledc.h"
 
 #define RESET_PIN 12
+#define RCLK_PIN 26
 
 SI4735 rx;
 
@@ -127,6 +127,20 @@ const i2s_pin_config_t pin_config = {
   .data_in_num = I2S_SD
 };
 
+ledc_timer_config_t ledc_timer = {
+    .speed_mode = LEDC_HIGH_SPEED_MODE,
+    .duty_resolution = LEDC_TIMER_2_BIT,
+    .timer_num  = LEDC_TIMER_0,
+	  .freq_hz    = 32768
+};
+
+ledc_channel_config_t ledc_channel = {
+    .gpio_num   = RCLK_PIN,
+    .speed_mode = LEDC_HIGH_SPEED_MODE,
+    .channel    = LEDC_CHANNEL_0,
+    .timer_sel  = LEDC_TIMER_0,
+    .duty       = 2
+};
 
 void showHelp() {
   Serial.println("Type F to FM; A to MW; L to LW; and 1 to SW");
@@ -206,6 +220,10 @@ void setup() {
   Serial.println("\nrx.setup...");
   Serial.flush();
 
+  // create 32768 clock with ESP32
+  ledc_timer_config(&ledc_timer);
+  ledc_channel_config(&ledc_channel);
+  
   // Sets active 32.768kHz crystal (32768Hz)
   rx.setRefClock(32768);       // Ref = 32768Hz
   rx.setRefClockPrescaler(1);  // 32768 x 1 = 32768Hz
