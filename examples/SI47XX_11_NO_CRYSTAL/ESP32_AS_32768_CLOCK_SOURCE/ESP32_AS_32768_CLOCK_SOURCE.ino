@@ -25,7 +25,7 @@
   | pin 11    |   SCLK    |   22 (SCL / GPIO22) |
   | pin 13    |   RCLK    |   26                |
 
-
+  On SI4732, the active crystal or external clock must be connected to the pin 13
 
   Ricardo Lima Caratti - Apr, 2023
 
