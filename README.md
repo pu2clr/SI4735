@@ -1401,6 +1401,7 @@ Here you can see some experiments using this library. Watch them.
 * [ATS-25 / ATS25 / LW / MW / SW / FM DSP Receiver (with Bernard Binns FREE 4.0 Firmware review](https://www.qsl.net/n9ewo/ats25.html)
 * [SI4735 D60 TFT 2.8" ESP32 ALL BAND RADIO](https://www.tindie.com/products/jasonkits/si4735-d60-tft-28-esp32-all-band-radio/)
 * [DSP RADIO Multi Band AM/MW/LW/SW-SSB/FM with RDS](https://www.tindie.com/products/jasonkits/dsp-radio-multi-band-ammwlwsw-ssbfm-with-rds/)
+* [M5StickC Si4730 RADIO](https://www.hackster.io/priluzhnikov/m5stickc-si4730-radio-7e0e70)
 
 
 
