@@ -1,9 +1,8 @@
 /*
   
-  This sketch was a  Jarno's contribution. 
-  I added the SI4732 wireup documentation and changed the RESET pin setup. 
-  I also added some controls to allow change frequency and band. 
-  I have refenrenced the documentations where this sketch was based on.
+  This sketch use the ESP32 32768 kHz clock source and I2S setup. It is a Jarno's contribution. 
+  You do not need an Active Crystal or other signal generator.  Check the ESP32 and SI473X  wireup below.
+
   I would like to thank Mr. Jarno for his contribution. 
 
 
@@ -14,6 +13,7 @@
   | pin 15    |   RESET   |   GPIO12            |  
   | pin 18    |   SDIO    |   21 (SDA / GPIO21) |
   | pin 17    |   SCLK    |   22 (SCL / GPIO22) |
+  | pin 19    |   RCLK    |   26                | 
 
   On SI4735, the active crystal or external clock must be connected to the pin 19
 
@@ -43,7 +43,9 @@
   | pin  9    |   RESET   |   GPIO12            |  
   | pin 12    |   SDIO    |   21 (SDA / GPIO21) |
   | pin 11    |   SCLK    |   22 (SCL / GPIO22) |
-  | pin 19    |   RCLK    |   26                |
+  | pin 13    |   RCLK    |   26                |
+
+  On SI4732, the active crystal or external clock must be connected to the pin 13
 
   SI4732 and ESP32 I2S wireup
 
@@ -71,7 +73,7 @@
   A Simple Arduino Bluetooth Music Receiver and Sender for the ESP32: https://github.com/pschatzmann/ESP32-A2DP
   Si4735 I2S module - https://gitlab.com/retrojdm/si4735-i2s-module
 
-  This sketch was written By Jarno Lehtinen, Fev, 2023 (https://github.com/mcgurk?tab=repositories). 
+  The main part of this sketch was written By Jarno Lehtinen, Fev, 2023 (https://github.com/mcgurk?tab=repositories). 
 
 */
 
