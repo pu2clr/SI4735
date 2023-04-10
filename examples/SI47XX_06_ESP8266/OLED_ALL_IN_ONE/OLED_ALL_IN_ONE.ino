@@ -1,4 +1,7 @@
 /*
+
+  UNDER CONSTRUCTION...
+
   This sketch runs on ESP8266 device.
 
   It is  a  complete  radio  capable  to  tune  LW,  MW,  SW  on  AM  and  SSB  mode  and  also  receive  the
