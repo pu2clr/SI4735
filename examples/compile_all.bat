@@ -1,6 +1,6 @@
 ECHO OFF
 Rem This script uses the arduino-cli to compile the arduino sketches using command line (without Arduino IDE).
-Rem It is very useful to check the library on multiple boards types  after bug fixes and improvments. 
+Rem It is very useful to check the library on multiple board types  after bug fixes and improvements. 
 Rem It runs on a Windows CMD/Shell.
 Rem Some compilation results (bin and hex files) will be stores in your Download directory (\Users\<username>\Downloads\hex)
 Rem ATTENTION: be careful with --output-dir arduino-cli option. Before compiling, this option removes all the contents of the last level folder. 

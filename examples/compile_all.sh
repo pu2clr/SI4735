@@ -1,5 +1,5 @@
 # This script uses the arduino-cli to compile the arduino sketches using command line (without Arduino IDE).
-# It is very useful to check the library on multiple boards types  after bug fixes and improvments. 
+# It is very useful to check the library on multiple board types  after bug fixes and improvements. 
 # It runs on a MacOS but you can port it to Linux o Windows easily.
 # Some compilation results (bin and hex files) will be stores in your Download directory (/Users/<username>/Downloads/hex)
 # ATTENTION: be careful with --output-dir arduino-cli option. Before compiling, this option removes all the contents of the last level folder. 
