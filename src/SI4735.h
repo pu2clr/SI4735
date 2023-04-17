@@ -187,7 +187,7 @@
 #define SI473X_DIGITAL_AUDIO2 0b10110000        // Digital audio output (DCLK, DFS, DIO)
 #define SI473X_ANALOG_DIGITAL_AUDIO 0b10110101  // Analog and digital audio outputs (LOUT/ROUT and DCLK, DFS,DIO)
 
-// Digital and Occilator parameters for AM and FM modes
+// Digital and Occilator parameters for AM and FM modes See AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE - pages 56, 87, 125, 148, 150, 175, 208, 221, 243, 
 #define DIGITAL_OUTPUT_FORMAT 0x0102            // Configure digital audio outputs.            
 #define DIGITAL_OUTPUT_SAMPLE_RATE 0x0104       // Configure digital audio output sample rate
 #define REFCLK_FREQ 0x0201                      // Sets frequency of reference clock in Hz. The range is 31130 to 34406 Hz, or 0 to disable the AFC. Default is 32768 Hz.
