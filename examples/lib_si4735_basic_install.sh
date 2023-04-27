@@ -59,6 +59,8 @@ arduino-cli lib install "TFT_22_ILI9225"
 # arduino-cli lib install "TFT_eSPI_ES32Lab"
 arduino-cli lib install "Tiny4kOLED"
 arduino-cli lib install "TinyOLED-Fonts"
+arduino-cli lib install "TM1638lite"
+
 echo "----------------------------------------------------"
 echo "Installing the library Adafruit_SH1106 via github repository"
 export ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
