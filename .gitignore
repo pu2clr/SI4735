@@ -14,3 +14,5 @@
 *s#5
 .vscode/c_cpp_properties.json
 .gitignore
+examples/{sketch_path}
+.gitignore
