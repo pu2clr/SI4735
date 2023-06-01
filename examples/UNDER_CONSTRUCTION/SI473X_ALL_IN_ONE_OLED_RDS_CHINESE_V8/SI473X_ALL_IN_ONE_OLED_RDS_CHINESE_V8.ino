@@ -1050,7 +1050,7 @@ void showStationName() {
 
 void showProgramInfo() {
   char aux[15];
-  if ( programInfo != NULL && strlen(programInfo) > 1 && (millis() - delayProgramInfo ) > 1000 ) {
+  if ( programInfo != NULL && strlen(programInfo) > 1 && (millis() - delayProgramInfo ) > 500 ) {
     cleanBfoRdsInfo();
     oled.setCursor(0, 2); 
     strncpy(aux, &programInfo[idxProgInfo],19);
