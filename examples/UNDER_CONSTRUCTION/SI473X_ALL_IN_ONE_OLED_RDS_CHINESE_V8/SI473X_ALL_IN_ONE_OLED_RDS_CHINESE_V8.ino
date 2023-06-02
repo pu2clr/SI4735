@@ -1022,8 +1022,6 @@ long delayMessageType = millis();
 uint8_t idxProgInfo = 0;
 uint8_t messageType = 0;  // 0 = Station Name ; 1 = Radio Text (Program information)
 
-char oldBuffer[15];
-
 /*
    Clean the content of the third line (line 2 - remember the first line is 0)
 */
@@ -1036,7 +1034,7 @@ void cleanBfoRdsInfo() {
  *  Shows the Station Name.
 */
 void showStationName() {
-  if ( stationName != NULL && strlen(stationName) > 1 && (millis() - delayStationName ) > 3000 ) {
+  if ( stationName != NULL && strlen(stationName) > 1 && (millis() - delayStationName ) > 3000L ) {
     cleanBfoRdsInfo();
     oled.setCursor(0, 2); 
     oled.print(stationName);
@@ -1050,7 +1048,7 @@ void showStationName() {
 
 void showProgramInfo() {
   char aux[15];
-  if ( programInfo != NULL && strlen(programInfo) > 1 && (millis() - delayProgramInfo ) > 500 ) {
+  if ( programInfo != NULL && strlen(programInfo) > 1 && (millis() - delayProgramInfo ) > 500L ) {
     cleanBfoRdsInfo();
     oled.setCursor(0, 2); 
     strncpy(aux, &programInfo[idxProgInfo],19);
@@ -1080,8 +1078,8 @@ void checkRDS() {
     }
   }
   // Changes the message type each 30s
-  if ( (millis() - delayMessageType) > 30000 ) {
-     messageType = !messageType;
+  if ( (millis() - delayMessageType) > 30000L ) {
+     messageType = (messageType == 0)? 1:0;
      delayMessageType = millis();
      idxProgInfo = 0;
   }
