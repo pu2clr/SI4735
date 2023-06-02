@@ -1,4 +1,7 @@
 /*
+  Under testing... 
+  Trying to improve RDS processing.
+
   This sketch SHOULD work with the Chinese KIT sold on AliExpress, eBay and Amazon
   The author of this sketch and Arduino Library does not know the seller of this kit and does not have a commercial relationship with any commercial product that uses the Arduino Library.
   It is important you understand that there is no guarantee that this sketch will work correctly in your current product.
@@ -1066,8 +1069,8 @@ void showProgramInfo() {
 */
 void checkRDS() {
   si4735.getRdsStatus();
-  if (si4735.getRdsReceived()) {
-    if (si4735.getRdsSync() ) { //&& si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost()) {
+  // if (si4735.getRdsReceived()) {
+    // if (si4735.getRdsSync() ) { //&& si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost()) {
       if (messageType == 0) {
         stationName = si4735.getRdsText0A();  // Station Name
         showStationName();
@@ -1075,8 +1078,8 @@ void checkRDS() {
         programInfo = si4735.getRdsText2A();  // Radio Text - Program information
         showProgramInfo();
       }
-    }
-  }
+    // }
+  // }
   // Changes the message type each 30s
   if ( (millis() - delayMessageType) > 30000L ) {
      messageType = (messageType == 0)? 1:0;
@@ -1152,7 +1155,7 @@ void useBand() {
     si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     si4735.setSeekFmSpacing(1);
     bfoOn = ssbLoaded = false;
-    si4735.setRdsConfig(1, 2, 2, 2, 2);
+    si4735.setRdsConfig(1, 3, 3, 3, 3);
     si4735.setFifoCount(1);
     bwIdxFM = band[bandIdx].bandwidthIdx;
     si4735.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
