@@ -1125,9 +1125,46 @@ protected:
 
     void sendSSBModeProperty();
     void disableFmDebug();
-    void clearRdsBuffer2A();
-    void clearRdsBuffer2B();
-    void clearRdsBuffer0A();
+    /**
+     * @ingroup group16 RDS setup
+     * @brief Clear RDS buffer 2A (Radio Text / Program Information)
+     * @details same clearRdsProgramInformation
+    */
+    inline void clearRdsBuffer2A() {memset(rds_buffer2A, 0, sizeof(rds_buffer2A));};
+    /**
+     * @ingroup group16 RDS setup
+     * @brief Clear RDS buffer 2A (Radio Text / Program Information)
+     * @details same clearRdsBuffer2A
+    */
+    inline void clearRdsProgramInformation() {memset(rds_buffer2A, 0, sizeof(rds_buffer2A));};
+
+    /**
+     * @ingroup group16 RDS setup
+     * @brief Clear RDS buffer 2B (text / Station INformation 32 bytes)
+     * @details Same clearRdsStationInformation 
+    */
+    inline void clearRdsBuffer2B(){memset(rds_buffer2B, 0, sizeof(rds_buffer2B));};
+    /**
+     * @ingroup group16 RDS setup
+     * @brief Clear RDS buffer 2B (text / Station INformation 32 bytes)
+     * @details Same clearRdsBuffer2B 
+    */
+    inline void clearRdsStationInformation(){memset(rds_buffer2B, 0, sizeof(rds_buffer2B));};
+
+    /**
+     * @ingroup group16 RDS setup
+     * @brief Clear RDS buffer 0A (text / Station Name)
+     * @details clearRdsStationName
+     */
+    inline void clearRdsBuffer0A() {memset(rds_buffer0A, 0, sizeof(rds_buffer0A));};
+    /**
+     * @ingroup group16 RDS setup
+     * @brief Clear RDS buffer 0A (text / Station Name)
+     * @details clearRdsBuffer0A
+     */    
+    inline void clearRdsStationName() {memset(rds_buffer0A, 0, sizeof(rds_buffer0A));};
+
+
     void getSsbAgcStatus();
 
 public:

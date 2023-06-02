@@ -1070,7 +1070,7 @@ void showProgramInfo() {
 void checkRDS() {
   si4735.getRdsStatus();
   // if (si4735.getRdsReceived()) {
-    // if (si4735.getRdsSync() ) { //&& si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost()) {
+     if (si4735.getRdsSync() ) { //&& si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost()) {
       if (messageType == 0) {
         stationName = si4735.getRdsText0A();  // Station Name
         showStationName();
@@ -1078,7 +1078,7 @@ void checkRDS() {
         programInfo = si4735.getRdsText2A();  // Radio Text - Program information
         showProgramInfo();
       }
-    // }
+    }
   // }
   // Changes the message type each 30s
   if ( (millis() - delayMessageType) > 30000L ) {

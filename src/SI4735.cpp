@@ -1910,49 +1910,12 @@ void SI4735::volumeDown()
  */
 void SI4735::RdsInit()
 {
-    clearRdsBuffer2A();
-    clearRdsBuffer2B();
-    clearRdsBuffer0A();
+    this->clearRdsBuffer2A();
+    this->clearRdsBuffer2B();
+    this->clearRdsBuffer0A();
     rdsTextAdress2A = rdsTextAdress2B = lastTextFlagAB = rdsTextAdress0A = 0;
 }
 
-/**
- * @ingroup group16 RDS setup
- *
- * @brief Clear RDS buffer 2A (text)
- *
- */
-void SI4735::clearRdsBuffer2A()
-{
-    for (int i = 0; i < 65; i++)
-        rds_buffer2A[i] = ' '; // Radio Text buffer - Program Information
-    rds_buffer2A[64] = '\0';
-}
-
-/**
- * @ingroup group16 RDS setup
- *
- * @brief Clear RDS buffer 2B (text)
- *
- */
-void SI4735::clearRdsBuffer2B()
-{
-    for (int i = 0; i < 33; i++)
-        rds_buffer2B[i] = ' '; // Radio Text buffer - Station Informaation
-    rds_buffer2B[32] = '\0';
-}
-/**
- * @ingroup group16 RDS setup
- *
- * @brief Clear RDS buffer 0A (text)
- *
- */
-void SI4735::clearRdsBuffer0A()
-{
-    for (int i = 0; i < 9; i++)
-        rds_buffer0A[i] = ' '; // Station Name buffer
-    rds_buffer0A[8] = '\0';
-}
 
 /**
  * @ingroup group16 RDS setup
@@ -2016,7 +1979,7 @@ void SI4735::setRdsConfig(uint8_t RDSEN, uint8_t BLETHA, uint8_t BLETHB, uint8_t
     Wire.endTransmission();
     delayMicroseconds(550);
 
-    RdsInit();
+    this->RdsInit();
 }
 
 /**
