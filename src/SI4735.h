@@ -864,6 +864,7 @@ typedef union {
  * To make it compatible with 8, 16 and 32 bits platforms and avoid Crosses boundary, it was necessary to
  * split minute and hour representation. 
  */
+/*
 typedef union
 {
     struct
@@ -876,6 +877,18 @@ typedef union
         uint8_t hour2 : 1;        // UTC Hours - 4 bits more significant (void “Crosses boundary”)
         uint16_t mjd1 : 15;        // Modified Julian Day Code - 15  bits less significant (void “Crosses boundary”)
         uint16_t mjd2 : 2;         // Modified Julian Day Code - 2 bits more significant (void “Crosses boundary”)
+    } refined;
+    uint8_t raw[6];
+} si47x_rds_date_time;
+*/
+typedef union {
+    struct
+    {
+        uint32_t offset : 5;       // Local Time Offset
+        uint32_t offset_sense : 1; // Local Offset Sign ( 0 = + , 1 = - )
+        uint32_t minute : 6;       // UTC Minutes
+        uint32_t hour : 5;         // UTC Hours
+        uint32_t mjd : 17;        // Modified Julian Day Code
     } refined;
     uint8_t raw[6];
 } si47x_rds_date_time;
@@ -2380,6 +2393,7 @@ public:
     void RdsInit();
     void setRdsIntSource(uint8_t RDSRECV, uint8_t RDSSYNCLOST, uint8_t RDSSYNCFOUND, uint8_t RDSNEWBLOCKA, uint8_t RDSNEWBLOCKB);
     void getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY);
+    void rdsBeginQuery();
 
     /**
      * @ingroup group16 RDS
@@ -2571,6 +2585,36 @@ public:
     char *getRdsText0A(void); // Gets the Station name
     char *getRdsText2A(void); // Gets the Radio Text
     char *getRdsText2B(void);
+
+    /**
+     * @ingroup group16 
+     * @brief Gets the Station Name
+     * @details Alias for getRdsText0A
+     * @details ATTENTION: You must call getRdsReady before calling this function.
+     * @return char* should return a string with the station name. However, some stations send other kind of messages
+     * @see getRdsText0A
+     */
+    inline char *getRdsStationName(void) { return getRdsText0A(); };
+
+    /**
+     * @ingroup group16
+     * @brief Gets the Program Information (RT - Radio Text)
+     * @details Process the program information data. Same getRdsText2A(). It is a alias for getRdsText2A.
+     * @details ATTENTION: You must call getRdsReady before calling this function.
+     * @return char array with the program information (63 bytes)
+     * @see getRdsText2A
+     */
+    inline char *getRdsProgramInformation(void) { return getRdsText2A(); };
+
+
+    /**
+     * @ingroup group16
+     * @brief Gets the Station Information.
+     * @details ATTENTION: You must call getRdsReady before calling this function.
+     * @return char array with the Text of Station Information (33 bytes)
+     * @see getRdsReady
+     */
+    inline char *getRdsStationInformation(void) { return getRdsText2B(); };
 
     void mjdConverter(uint32_t mjd, uint32_t *year, uint32_t *month, uint32_t *day);
     char *getRdsTime(void);

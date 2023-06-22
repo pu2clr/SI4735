@@ -2037,7 +2037,8 @@ void SI4735::setRdsIntSource(uint8_t RDSRECV, uint8_t RDSSYNCLOST, uint8_t RDSSY
  *
  * @param INTACK Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT.
  * @param MTFIFO 0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO.
- * @param STATUSONLY Determines if data should be removed from the RDS FIFO.
+ * @param STATUSONLY Determines if data should be removed from the RDS FIFO. If 1, data in BLOCKA will contain the last valid block A data received for the current station. 
+ * 
  */
 void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
 {
@@ -2077,15 +2078,51 @@ void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
     delayMicroseconds(550);
 }
 
+/**
+ * @ingroup group16 RDS status
+ *
+ * @brief Retrieves the current RDS data to be utilized by other RDS functions.
+ * @details this function is similar to the getRdsStatus. Both do the same thing. 
+ * @details This function must be called before calling any RDS function.
+ * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 55 and 77
+ * @see getRdsStatus
+ */
+void SI4735::rdsBeginQuery()
+{
+    si47x_rds_command rds_cmd;
+
+    waitToSend();
+
+    rds_cmd.arg.INTACK = 0;     // RDSINT status preserved.
+    rds_cmd.arg.MTFIFO = 0;     // If FIFO not empty, read and remove oldest FIFO entry.
+    rds_cmd.arg.STATUSONLY = 1; // Data in BLOCKA will contain the last valid block A data received for the current station. 
+                                // Data in BLOCKB will contain the last valid block B data received for the current station.
+                                // Data in BLE will describe the bit errors for the data in BLOCKA and BLOCKB.
+
+    Wire.beginTransmission(deviceAddress);
+    Wire.write(FM_RDS_STATUS);
+    Wire.write(rds_cmd.raw);
+    Wire.endTransmission();
+
+    do
+    {
+        waitToSend();
+        // Gets response information
+        Wire.requestFrom(deviceAddress, 13);
+        for (uint8_t i = 0; i < 13; i++)
+            currentRdsStatus.raw[i] = Wire.read();
+    } while (currentRdsStatus.resp.ERR);
+    delayMicroseconds(550);
+}
+
 // See inlines methods / functions on SI4735.h
 
 /**
  * @ingroup group16 RDS status
  *
  * @brief Returns the programa type.
- *
  * @details Read the Block A content
- *
+ * @details Please, call rdsBeginQuery or getRdsStatus before calling this function.
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 77 and 78
  *
  * @return BLOCKAL
@@ -2103,7 +2140,7 @@ uint16_t SI4735::getRdsPI(void)
  * @ingroup group16 RDS status
  *
  * @brief Returns the Group Type (extracted from the Block B)
- *
+ * @details Please, call rdsBeginQuery or getRdsStatus before calling this function.
  * @return BLOCKBL
  */
 uint8_t SI4735::getRdsGroupType(void)
@@ -2120,7 +2157,7 @@ uint8_t SI4735::getRdsGroupType(void)
  * @ingroup group16 RDS status
  *
  * @brief Returns the current Text Flag A/B
- *
+ * @details Please, call rdsBeginQuery or getRdsStatus before calling this function.
  * @return uint8_t current Text Flag A/B
  */
 uint8_t SI4735::getRdsFlagAB(void)
@@ -2142,7 +2179,7 @@ uint8_t SI4735::getRdsFlagAB(void)
  * have up to 64 characters.
  * @details 2B - In version 2B groups, each text segment consists of only two characters. When the current RDS status is
  *      using this version, the maximum message length will be 32 characters.
- *
+ * @details Please, call rdsBeginQuery or getRdsStatus before calling this function.
  * @return uint8_t the address of the text segment.
  */
 uint8_t SI4735::getRdsTextSegmentAddress(void)
@@ -2158,7 +2195,7 @@ uint8_t SI4735::getRdsTextSegmentAddress(void)
  * @ingroup group16 RDS status
  *
  * @brief Gets the version code (extracted from the Block B)
- *
+ * @details Please, call rdsBeginQuery or getRdsStatus before calling this function.
  * @returns  0=A or 1=B
  */
 uint8_t SI4735::getRdsVersionCode(void)
@@ -2175,7 +2212,7 @@ uint8_t SI4735::getRdsVersionCode(void)
  * @ingroup group16 RDS status
  *
  * @brief Returns the Program Type (extracted from the Block B)
- *
+ * @details Please, call rdsBeginQuery or getRdsStatus before calling this function.
  * @see https://en.wikipedia.org/wiki/Radio_Data_System
  *
  * @return program type (an integer betwenn 0 and 31)
@@ -2199,30 +2236,8 @@ uint8_t SI4735::getRdsProgramType(void)
  */
 void SI4735::getNext2Block(char *c)
 {
-    char raw[2];
-    int i, j;
-
-    raw[1] = currentRdsStatus.resp.BLOCKDL;
-    raw[0] = currentRdsStatus.resp.BLOCKDH;
-
-    for (i = j = 0; i < 2; i++)
-    {
-        if (raw[i] == 0xD || raw[i] == 0xA)
-        {
-            rdsEndGroupB =  true;
-            c[j] = '\0';
-            return;
-        }
-        if (raw[i] >= 32)
-        {
-            c[j] = raw[i];
-            j++;
-        }
-        else
-        {
-            c[i] = ' ';
-        }
-    }
+    c[1] = currentRdsStatus.resp.BLOCKDL;
+    c[0] = currentRdsStatus.resp.BLOCKDH;
 }
 
 /**
@@ -2234,38 +2249,17 @@ void SI4735::getNext2Block(char *c)
  */
 void SI4735::getNext4Block(char *c)
 {
-    char raw[4];
-    int i, j;
-
-    raw[0] = currentRdsStatus.resp.BLOCKCH;
-    raw[1] = currentRdsStatus.resp.BLOCKCL;
-    raw[2] = currentRdsStatus.resp.BLOCKDH;
-    raw[3] = currentRdsStatus.resp.BLOCKDL;
-    for (i = j = 0; i < 4; i++)
-    {
-        if (raw[i] == 0xD || raw[i] == 0xA)
-        {
-            rdsEndGroupA =  true;
-            c[j] = '\0';
-            return;
-        }
-        if (raw[i] >= 32)
-        {
-            c[j] = raw[i];
-            j++;
-        }
-        else
-        {
-            c[i] = ' ';
-        }
-    }
+    c[0] = currentRdsStatus.resp.BLOCKCH;
+    c[1] = currentRdsStatus.resp.BLOCKCL;
+    c[2] = currentRdsStatus.resp.BLOCKDH;
+    c[3] = currentRdsStatus.resp.BLOCKDL;
 }
 
 /**
  * @ingroup group16 RDS status
  *
  * @brief Gets the RDS Text when the message is of the Group Type 2 version A
- *
+ * @details Please, call rdsBeginQuery or getRdsStatus before calling this function.
  * @return char*  The string (char array) with the content (Text) received from group 2A
  */
 char *SI4735::getRdsText(void)
@@ -2288,16 +2282,13 @@ char *SI4735::getRdsText(void)
  * @ingroup group16 RDS status
  * @todo RDS Dynamic PS or Scrolling PS
  * @brief Gets the station name and other messages.
- *
+ * @details Please, call rdsBeginQuery or getRdsStatus before calling this function.
  * @return char* should return a string with the station name.
  *         However, some stations send other kind of messages
  */
 char *SI4735::getRdsText0A(void)
 {
     si47x_rds_blockb blkB;
-
-    // getRdsStatus();
-
     if (getRdsReceived())
     {
         if (getRdsGroupType() == 0)
@@ -2322,14 +2313,12 @@ char *SI4735::getRdsText0A(void)
  * @ingroup group16 RDS status
  *
  * @brief Gets the Text processed for the 2A group
- *
+ * @details Please, call rdsBeginQuery or getRdsStatus before calling this function.
  * @return char* string with the Text of the group A2
  */
 char *SI4735::getRdsText2A(void)
 {
     si47x_rds_blockb blkB;
-
-    // getRdsStatus();
     if (getRdsReceived())
     {
         if (getRdsGroupType() == 2 /* && getRdsVersionCode() == 0 */)
@@ -2355,18 +2344,13 @@ char *SI4735::getRdsText2A(void)
  * @ingroup group16 RDS status
  *
  * @brief Gets the Text processed for the 2B group
- *
+ * @details Please, call rdsBeginQuery or getRdsStatus before calling this function.
  * @return char* string with the Text of the group AB
  */
 char *SI4735::getRdsText2B(void)
 {
     si47x_rds_blockb blkB;
 
-    // getRdsStatus();
-    // if (getRdsReceived())
-    // {
-    // if (getRdsNewBlockB())
-    // {
     if (getRdsGroupType() == 2 /* && getRdsVersionCode() == 1 */)
     {
         // Process group 2B
@@ -2380,8 +2364,6 @@ char *SI4735::getRdsText2B(void)
             return rds_buffer2B;
         }
     }
-    //  }
-    // }
     return NULL;
 }
 
@@ -2393,7 +2375,7 @@ char *SI4735::getRdsText2B(void)
  * @details return examples:
  * @details                 12:31 +03:00
  * @details                 21:59 -02:30
- *
+ * @details Please, call rdsBeginQuery or getRdsStatus before calling this function.
  * @return  point to char array. Format:  +/-hh:mm (offset)
  */
 char *SI4735::getRdsTime()
@@ -2423,8 +2405,8 @@ char *SI4735::getRdsTime()
         // Unfortunately it was necessary due to the GCC compiler on 32-bit platform.
         // See si47x_rds_date_time (typedef union) and CGG “Crosses boundary” issue/features.
         // Now it is working on Atmega328, STM32, Arduino DUE, ESP32 and more.
-        minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
-        hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
+        minute = dt.refined.minute;
+        hour = dt.refined.hour;
 
         offset_sign = (dt.refined.offset_sense == 1) ? '-' : '+';
         offset_h = (dt.refined.offset * 30) / 60;
@@ -2482,6 +2464,7 @@ void SI4735::mjdConverter(uint32_t mjd, uint32_t *year, uint32_t *month, uint32_
  * @brief   Decodes the RDS time to LOCAL Julian Day and time
  * @details This method gets the RDS date time massage and converts it from MJD to JD and UTC time to local time
  * @details The Date and Time service may not work correctly depending on the FM station that provides the service.
+ * @details Please, call rdsBeginQuery or getRdsStatus before calling this function.
  * @details I have noticed that some FM stations do not use the service properly in my location.
  * @details Example:
  * @code
@@ -2523,11 +2506,11 @@ bool SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
         // See si47x_rds_date_time (typedef union) and CGG “Crosses boundary” issue/features.
         // Now it is working on Atmega328, STM32, Arduino DUE, ESP32 and more.
 
-        mjd = (uint32_t)dt.refined.mjd2 << 15;
-        mjd |= dt.refined.mjd1;
+        mjd = dt.refined.mjd; 
 
-        minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
-        hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
+
+        minute =  dt.refined.minute;
+        hour =  dt.refined.hour;
 
         // calculates the jd Year, Month and Day base on mjd number
         // mjdConverter(mjd, &year, &month, &day);
@@ -2597,11 +2580,10 @@ char *SI4735::getRdsDateTime()
         // See si47x_rds_date_time (typedef union) and CGG “Crosses boundary” issue/features.
         // Now it is working on Atmega328, STM32, Arduino DUE, ESP32 and more.
 
-        mjd = (uint32_t) dt.refined.mjd2 << 15;
-        mjd |= dt.refined.mjd1;
+        mjd = dt.refined.mjd;
 
-        minute = (dt.refined.minute2 << 2) | dt.refined.minute1;
-        hour = (dt.refined.hour2 << 4) | dt.refined.hour1;
+        minute = dt.refined.minute;
+        hour = dt.refined.hour;
 
         // calculates the jd (Year, Month and Day) base on mjd number
         mjdConverter(mjd, &year, &month, &day);
