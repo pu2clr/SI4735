@@ -41,9 +41,8 @@
 
 #include <SI4735.h>
 
-#define RESET_PIN 12
+#define RESET_PIN 15
 
-#define AM_FUNCTION 1
 #define FM_FUNCTION 0
 
 #define PULLING_RDS 40
@@ -64,7 +63,7 @@ void setup()
 
   digitalWrite(RESET_PIN, HIGH);
   
-  Serial.println("AM and FM station tuning test.");
+  Serial.println(" FM station tuning and RDS test.");
 
   showHelp();
 
@@ -84,6 +83,7 @@ void setup()
 
   rx.setFM(8400, 10800, currentFrequency, 10);
   delay(500);
+  rx.setRdsConfig(1, 2, 2, 2, 2);
   rx.setVolume(32);
   showStatus();
 }
@@ -123,11 +123,11 @@ void checkRds() {
   programInfo = rx.getRdsProgramInformation();
   buffer[0] = '\n'; // New line control
   buffer[1] = '\0'; // end of string char array
+  
   if ( stationName != NULL ) {
     strcat(buffer,"| Station Name: ");
     strcat(buffer, stationName);
   }
-
   if ( programInfo != NULL ) {
     strcat(buffer," | Program information: ");
     strcat(buffer, programInfo);

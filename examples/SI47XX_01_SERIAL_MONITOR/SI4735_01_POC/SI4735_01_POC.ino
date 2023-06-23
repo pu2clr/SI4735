@@ -41,7 +41,7 @@
 
 #include <SI4735.h>
 
-#define RESET_PIN 12
+#define RESET_PIN 15
 // #define RESET_PIN 9
 
 
