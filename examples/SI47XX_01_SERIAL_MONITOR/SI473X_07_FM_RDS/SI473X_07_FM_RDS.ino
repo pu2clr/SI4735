@@ -24,7 +24,7 @@
     
     | Si4735 pin      |  Arduino Pin  |
     | ----------------| ------------  |
-    | RESET (pin 15)  |     12        |
+    | RESET (pin 15)  |     15/A1     |
     | SDIO (pin 18)   |     A4        |
     | CLK (pin 17)    |     A5        |
 
@@ -41,7 +41,7 @@
 
 #include <SI4735.h>
 
-#define RESET_PIN 15
+#define RESET_PIN 14
 
 #define FM_FUNCTION 0
 
@@ -83,8 +83,8 @@ void setup()
 
   rx.setFM(8400, 10800, currentFrequency, 10);
   delay(500);
-  rx.setRdsConfig(1, 2, 2, 2, 2);
-  rx.setVolume(32);
+  rx.setRdsConfig(3, 3, 3, 3, 3);
+  rx.setVolume(40);
   showStatus();
 }
 

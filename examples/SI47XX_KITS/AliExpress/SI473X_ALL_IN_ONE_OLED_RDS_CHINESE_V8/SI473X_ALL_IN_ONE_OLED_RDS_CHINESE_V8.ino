@@ -1009,7 +1009,7 @@ void showBFO() {
 }
 
 char *stationName;
-char bufferStatioName[20];
+
 long rdsElapsed = millis();
 
 char oldBuffer[15];
@@ -1026,24 +1026,15 @@ void cleanBfoRdsInfo() {
    Show the Station Name.
 */
 void showRDSStation() {
-  char *po, *pc;
-  int col = 0;
 
-  po = oldBuffer;
-  pc = stationName;
-  while (*pc) {
-    if (*po != *pc) {
-      oled.setCursor(col, 2);
-      oled.print(*pc);
-    }
-    *po = *pc;
-    po++;
-    pc++;
-    col += 10;
-  }
-  strcpy(oldBuffer, stationName);
-  delay(100);
+  if ( (millis() - rdsElapsed ) < 3000 ) return;
+
+  cleanBfoRdsInfo();
+  oled.setCursor(0, 2);
+  oled.print(stationName);
+  rdsElapsed = millis();
 }
+
 
 /*
    Checks the station name is available
@@ -1051,11 +1042,9 @@ void showRDSStation() {
 void checkRDS() {
   si4735.rdsBeginQuery();
   if (si4735.getRdsReceived()) {
-    stationName = si4735.getRdsProgramInformation();
+    stationName = si4735.getRdsStationName();
     if (stationName != NULL) {
       showRDSStation();
-      // si4735.resetEndGroupB();
-      rdsElapsed = millis();
     }
   }
 }
@@ -1126,7 +1115,7 @@ void useBand() {
     si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     si4735.setSeekFmSpacing(1);
     bfoOn = ssbLoaded = false;
-    si4735.setRdsConfig(1, 2, 2, 2, 2);
+    si4735.setRdsConfig(3, 3, 3, 3, 3);
     bwIdxFM = band[bandIdx].bandwidthIdx;
     si4735.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
   } else {

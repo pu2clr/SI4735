@@ -114,7 +114,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
 
-#define DEFAULT_VOLUME 45 // change it for your favorite sound volume
+#define DEFAULT_VOLUME 35 // change it for your favorite sound volume
 
 #define FM 0
 #define LSB 1
