@@ -1,0 +1,116 @@
+USER MANUAL
+
+User interface Improved by EFWob (https://github.com/EFWob) Jan 2022.
+
+Features
+
+* Modes: FM, AM and SSB
+* Two FM bands covering from 64 to 108 MHz
+* LW band
+* Two MW bands (one for Europe, Africa and Asia)
+* Twenty three bands. Two VHF(FM); one LW; two MW; and Nineteen SW bands covering from 1800 to 30000 kHz
+* FM/RDS
+* Bandwidth control on FM mode (Auto, 110, 84, 60 and 40 kHz)
+* Bandwidth control on AM mode (1, 2, 2.5, 3, 4 and 6 kHz)
+* Bandwidth control on SSB mode (0.5, 1, 1.2, 2.2, 3 and 4 kHz)
+* Receiver status stored into the EEPROM
+* The final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features)
+* All the previous status of the receiver can be rescued when you turn it on (including SSB mode, bandwidth, volume, frequency, BFO etc)
+* The bandwidth is a property of the band (you can use different bandwidth for different bands)
+* The seek function was improved (it is more precise on FM mode). The seek direction is controlled by the encoder (clockwise or counter-clockwise . Press encoder push button for seeking
+* Steps: 1, 5, 9, 10 and 50 kHz
+* Now you can configure MW band space to 9 or 10 kHz
+* Added a MW band for Europe, Africa and Asia
+* The frequency on Display is bigger than the previous version
+* Now the bandwidth sequence is ordered by bandwidth values
+* After about 4 seconds, all command buttons are all disabled and the encoder control goes back to the frequency
+
+NEW:
+* Button presses can now be distinguished between shortpress and longpress
+* If shortpressed, the selected function can be controlled by rotating the encoder as usual
+* If longpressed, some functions can be controlled without using the encoder:
+    - Longpress (and hold) on Vol+/Vol- will increase/decrease the volume (at fast pace)
+    - Lomgpress (and hold) on Band+/Band- will switch up/down through the available bands
+    - Longpress on Encoder can Mute/Unmute the radio
+
+COMMANDS
+
+1) DEALING WITH AUDIO VOLUME
+
+Press the __"VOL+"__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+or (NEW)
+
+Longpress (and hold) __"VOL+"__ or __"VOL-"__ to smoothly increase/decrease the volume.
+* This function must be defined at compile-time, can be disabled altogether or time for longpress 
+  might be specified: search for "#define VOLUME_DELAY" in the main *.ino-file.
+Longpress __ENCODER__ to Mute/Unmute the radio.
+* This function must be defined at compile-time, can be disabled altogether or time for longpress 
+  might be specified: search for "#define ENCODER_MUTEDELAY" in the main *.ino-file.
+* Mute is shown as Volume==0 on display. However, mute is different from switching the volume to 0 by Encoder: 
+  If any API is used to change the volume the change will not start from 0 but from the volume level stored before
+  the last __Mute__
+
+2) SELECTING THE BAND
+
+Press the __"BAND+"__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+or (NEW)
+* This function must be defined at compile-time, can be disabled altogether or time for longpress 
+  might be specified: search for "#define BAND_DELAY" in the main *.ino-file.
+
+Longpress (and hold) __"Band+"__ or __"Band-"__ to switch between bands.
+
+3) DEALING WITH AGC AND ATTENUATION
+
+Press the AGC push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+or (NEW)
+
+Longpress (and hold) the AGC button. The attenuation setting will change stepwise. The setting will not wrap around
+but stay at either the upper or lower end of the possible range. 
+* This function must be defined at compile-time, can be disabled altogether or time for longpress 
+  might be specified: search for "#define AGC_DELAY" in the main *.ino-file.
+
+4) DEALING WITH SOFTMUTE AND ATTENUATION
+
+Press the push button labeled __"BAND-"__ and rotate the  encoder. Press the button again to disable the command or wait for 4s. This button was used to control the band switch. Due to the new interface, this button has lost its original function.
+
+5) SELECTING BANDWIDTH
+
+Press the BW  push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+or (NEW)
+
+Longpress (and hold) the BW push button. The bandwidth will change stepwise. The bandwidth setting will not wrap around but
+stay at either the upper or lower end of the supported range (defined by current mode). 
+* This function must be defined at compile-time, can be disabled altogether or time for longpress 
+  might be specified: search for "#define BANDWIDTH_DELAY" in the main *.ino-file.
+
+6) SWITCHING THE STEP FREQUENCY
+
+Press the STEP push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+or (NEW)
+
+Longpress (and hold) the STEP push button. The step setting will change stepwise. The step setting will not wrap 
+around but stay at either the upper or lower end of the supported range (between 1 and 100 kHz). 
+* This function must be defined at compile-time, can be disabled altogether or time for longpress 
+  might be specified: search for "#define STEP_DELAY" in the main *.ino-file.
+
+7) SWITCHING THE MODE AM, LSB AND USB
+
+On AM mode press MODE push button to switch to LSB mode; press MODE push button again to switch to USB mode; and finally press MODE push button again to switch AM mode.
+
+8) VFO/BFO Switch
+
+To control the VFO and BFO, you can use the encoder push button on SSB mode. The display will show you if you are using VFO or BFO.
+
+9) SEEK COMMAND
+
+On FM or AM modes press the encoder push button.
+The direction of the seek up or seek down will  depend on the last rotating movement of the encoder, clockwise and counterclockwise respectively.
+
+10) RESET EEPROM
+
+Turn your receiver on with the encoder push button pressed.
