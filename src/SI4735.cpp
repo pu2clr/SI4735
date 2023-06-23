@@ -2204,30 +2204,8 @@ uint8_t SI4735::getRdsProgramType(void)
  */
 void SI4735::getNext2Block(char *c)
 {
-    char raw[2];
-    int i, j;
-
-    raw[1] = currentRdsStatus.resp.BLOCKDL;
-    raw[0] = currentRdsStatus.resp.BLOCKDH;
-
-    for (i = j = 0; i < 2; i++)
-    {
-        if (raw[i] == 0xD || raw[i] == 0xA)
-        {
-            rdsEndGroupB =  true;
-            c[j] = '\0';
-            return;
-        }
-        if (raw[i] >= 32)
-        {
-            c[j] = raw[i];
-            j++;
-        }
-        else
-        {
-            c[i] = ' ';
-        }
-    }
+    c[1] = currentRdsStatus.resp.BLOCKDL;
+    c[0] = currentRdsStatus.resp.BLOCKDH;
 }
 
 /**
@@ -2239,31 +2217,11 @@ void SI4735::getNext2Block(char *c)
  */
 void SI4735::getNext4Block(char *c)
 {
-    char raw[4];
-    int i, j;
+    c[0] = currentRdsStatus.resp.BLOCKCH;
+    c[1] = currentRdsStatus.resp.BLOCKCL;
+    c[2] = currentRdsStatus.resp.BLOCKDH;
+    c[3] = currentRdsStatus.resp.BLOCKDL;
 
-    raw[0] = currentRdsStatus.resp.BLOCKCH;
-    raw[1] = currentRdsStatus.resp.BLOCKCL;
-    raw[2] = currentRdsStatus.resp.BLOCKDH;
-    raw[3] = currentRdsStatus.resp.BLOCKDL;
-    for (i = j = 0; i < 4; i++)
-    {
-        if (raw[i] == 0xD || raw[i] == 0xA)
-        {
-            rdsEndGroupA =  true;
-            c[j] = '\0';
-            return;
-        }
-        if (raw[i] >= 32)
-        {
-            c[j] = raw[i];
-            j++;
-        }
-        else
-        {
-            c[i] = ' ';
-        }
-    }
 }
 
 /**
