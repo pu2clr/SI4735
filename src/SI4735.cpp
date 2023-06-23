@@ -2390,6 +2390,46 @@ char *SI4735::getRdsText2B(void)
     return NULL;
 }
 
+
+/**
+ * @ingroup group16 RDS 
+ * @brief Gets Station Name, Station Information, Program Information and utcTime
+ * @details This function populates four char pointer variable parameters with Station Name, Station Information, Programa Information and UTC time.
+ * @details You must call  setRDS(true), setRdsFifo(true) before calling getRdsAllData(...)
+ * @details ATTENTION: the parameters below are point to point to array of char.
+ * @details the right way to call this function is shown below.
+ * @code {.cpp}
+ *
+ * char *stationName, *stationInfo, *programInfo, *rdsTime;
+ * // The char pointers above will be populate by the call below. So, the char pointers need to be passed by reference (pointer to pointer).
+ * if (rx.getRdsAllData(&stationName, &stationInfo , &programInfo, &rdsTime) ) {
+ *     showProgramaInfo(programInfo);
+ *     showStationName(stationName);
+ *     showStationInfo(stationInfo);
+ *     showUtcTime(rdsTime);
+ * }
+ * @endcode
+ * @param stationName (reference)  - if NOT NULL,  point to Name of the Station (char array -  9 bytes)
+ * @param stationInformation (reference)  - if NOT NULL, point to Station information (char array - 33 bytes)
+ * @param programInformation (reference)  - if NOT NULL, point to program information (char array - 65 nytes)
+ * @param utcTime  (reference)  - if NOT NULL, point to char array containing the current UTC time (format HH:MM:SS +HH:MM)
+ * @return True if found at least one valid data
+ * @see setRDS, setRdsFifo, getRdsAllData
+ */
+bool SI4735::getRdsAllData(char **stationName, char **stationInformation, char **programInformation, char **utcTime)
+{
+
+    this->rdsBeginQuery();
+    if (!this->getRdsReceived())
+        return false;
+    *stationName = this->getRdsText0A();        // returns NULL if no information
+    *stationInformation = this->getRdsText2B(); // returns NULL if no information
+    *programInformation = this->getRdsText2A(); // returns NULL if no information
+    *utcTime = this->getRdsTime();              // returns NULL if no information
+
+    return (bool)stationName | (bool)stationInformation | (bool)programInformation | (bool)utcTime;
+}
+
 /**
  * @ingroup group16 RDS Time and Date 
  * 

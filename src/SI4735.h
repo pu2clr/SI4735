@@ -2603,6 +2603,7 @@ public:
     char *getRdsText0A(void); // Gets the Station name
     char *getRdsText2A(void); // Gets the Radio Text
     char *getRdsText2B(void);
+    bool getRdsAllData(char **stationName, char **stationInformation, char **programInformation, char **utcTime);
 
     /**
      * @ingroup group16
