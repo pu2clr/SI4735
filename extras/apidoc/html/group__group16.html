@@ -117,6 +117,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga1c0ebbb5eef2b5384c7d1caa9ebe22c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga1c0ebbb5eef2b5384c7d1caa9ebe22c0">SI4735::clearRdsStationName</a> ()</td></tr>
 <tr class="memdesc:ga1c0ebbb5eef2b5384c7d1caa9ebe22c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear RDS buffer 0A (text / Station Name)  <br /></td></tr>
 <tr class="separator:ga1c0ebbb5eef2b5384c7d1caa9ebe22c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga59122f18fd887bbcb888ecf785871635"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga59122f18fd887bbcb888ecf785871635">SI4735::rdsBeginQuery</a> ()</td></tr>
+<tr class="memdesc:ga59122f18fd887bbcb888ecf785871635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the current RDS data to be utilized by other RDS functions.  <br /></td></tr>
+<tr class="separator:ga59122f18fd887bbcb888ecf785871635"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6e8405ea5846fab586080a7be696178e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived</a> ()</td></tr>
 <tr class="memdesc:ga6e8405ea5846fab586080a7be696178e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Rds Received FIFO.  <br /></td></tr>
 <tr class="separator:ga6e8405ea5846fab586080a7be696178e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -186,9 +189,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ga350a2033671a7620d4b9290a2347e185"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga350a2033671a7620d4b9290a2347e185">SI4735::getRdsStatus</a> (uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)</td></tr>
 <tr class="memdesc:ga350a2033671a7620d4b9290a2347e185"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS.  <br /></td></tr>
 <tr class="separator:ga350a2033671a7620d4b9290a2347e185"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga59122f18fd887bbcb888ecf785871635"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga59122f18fd887bbcb888ecf785871635">SI4735::rdsBeginQuery</a> ()</td></tr>
-<tr class="memdesc:ga59122f18fd887bbcb888ecf785871635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the current RDS data to be utilized by other RDS functions.  <br /></td></tr>
-<tr class="separator:ga59122f18fd887bbcb888ecf785871635"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf1e67b201799a9e8d7208a32a65656b5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gaf1e67b201799a9e8d7208a32a65656b5">SI4735::getRdsPI</a> (void)</td></tr>
 <tr class="memdesc:gaf1e67b201799a9e8d7208a32a65656b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the programa type.  <br /></td></tr>
 <tr class="separator:gaf1e67b201799a9e8d7208a32a65656b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -196,7 +196,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:gaa35366e5cded7b864f7268a7e4a8dbe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Group Type (extracted from the Block B)  <br /></td></tr>
 <tr class="separator:gaa35366e5cded7b864f7268a7e4a8dbe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga05f76a0a0ebda813483f1df24e890904"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga05f76a0a0ebda813483f1df24e890904">SI4735::getRdsFlagAB</a> (void)</td></tr>
-<tr class="memdesc:ga05f76a0a0ebda813483f1df24e890904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current Text Flag A/B.  <br /></td></tr>
+<tr class="memdesc:ga05f76a0a0ebda813483f1df24e890904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current Text Flag A/B <br  />
+  <br /></td></tr>
 <tr class="separator:ga05f76a0a0ebda813483f1df24e890904"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab1ed04a109330e7e9206483c7cdf5ef9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gab1ed04a109330e7e9206483c7cdf5ef9">SI4735::getRdsTextSegmentAddress</a> (void)</td></tr>
 <tr class="memdesc:gab1ed04a109330e7e9206483c7cdf5ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the address of the text segment.  <br /></td></tr>
@@ -225,6 +226,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga806d5cfbbeb6ca1299ce20b1220fdb18"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">SI4735::getRdsText2B</a> (void)</td></tr>
 <tr class="memdesc:ga806d5cfbbeb6ca1299ce20b1220fdb18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Text processed for the 2B group.  <br /></td></tr>
 <tr class="separator:ga806d5cfbbeb6ca1299ce20b1220fdb18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac1f149a2778baa8f6c933482526830a4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gac1f149a2778baa8f6c933482526830a4">SI4735::getRdsAllData</a> (char **stationName, char **stationInformation, char **programInformation, char **utcTime)</td></tr>
+<tr class="memdesc:gac1f149a2778baa8f6c933482526830a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Station Name, Station Information, Program Information and utcTime.  <br /></td></tr>
+<tr class="separator:gac1f149a2778baa8f6c933482526830a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa8436bb156f3ac8321c65941be42fdba"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gaa8436bb156f3ac8321c65941be42fdba">SI4735::getRdsTime</a> (void)</td></tr>
 <tr class="memdesc:gaa8436bb156f3ac8321c65941be42fdba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the RDS time and date when the Group type is 4.  <br /></td></tr>
 <tr class="separator:gaa8436bb156f3ac8321c65941be42fdba"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -239,7 +243,8 @@ Functions</h2></td></tr>
 <tr class="separator:ga5579fd16c75370bf36b1633fc00ec033"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>RDS Dynamic PS or Scrolling PS support </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>RDS Dynamic PS or Scrolling PS support <br  />
+ </dd></dl>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gac65c552004f5e5e646638e37a5a68213" name="gac65c552004f5e5e646638e37a5a68213"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gac65c552004f5e5e646638e37a5a68213">&#9670;&#160;</a></span>clearRdsBuffer2A()</h2>
@@ -427,6 +432,41 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ga59122f18fd887bbcb888ecf785871635" name="ga59122f18fd887bbcb888ecf785871635"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga59122f18fd887bbcb888ecf785871635">&#9670;&#160;</a></span>rdsBeginQuery()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::rdsBeginQuery </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves the current RDS data to be utilized by other RDS functions. </p>
+<p>Just another way to call getRdsStatus. Both do the same thing.</p>
+<p>This function must be called before calling any RDS function. </p><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 55 and 77 </dd>
+<dd>
+<a class="el" href="group__group16.html#ga350a2033671a7620d4b9290a2347e185" title="Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS.">getRdsStatus</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="group__group16.html#ga94cce3834f85fc127e8c2dab3a03e875">SI4735::getRdsStatus()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gac1f149a2778baa8f6c933482526830a4">SI4735::getRdsAllData()</a>.</p>
+
+</div>
+</div>
 <a id="ga6e8405ea5846fab586080a7be696178e" name="ga6e8405ea5846fab586080a7be696178e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga6e8405ea5846fab586080a7be696178e">&#9670;&#160;</a></span>getRdsReceived()</h2>
 
@@ -453,7 +493,7 @@ Functions</h2></td></tr>
 <p>Get the Rds Received FIFO. </p>
 <p>if FIFO is 1, it means the minimum number of groups was filled </p><dl class="section return"><dt>Returns</dt><dd>true if minimum number of groups was filled. </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="group__group16.html#gaf1e67b201799a9e8d7208a32a65656b5">SI4735::getRdsPI()</a>, <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">SI4735::getRdsText0A()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">SI4735::getRdsText2A()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gac1f149a2778baa8f6c933482526830a4">SI4735::getRdsAllData()</a>, <a class="el" href="group__group16.html#gaf1e67b201799a9e8d7208a32a65656b5">SI4735::getRdsPI()</a>, <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">SI4735::getRdsText0A()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">SI4735::getRdsText2A()</a>.</p>
 
 </div>
 </div>
@@ -841,7 +881,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="group__group16.html#ga94cce3834f85fc127e8c2dab3a03e875">SI4735::getRdsStatus()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__group16.html#ga94cce3834f85fc127e8c2dab3a03e875">SI4735::getRdsStatus()</a>, <a class="el" href="group__group16.html#ga13cd4540eff45acbc4252875edda75ed">SI4735::rdsClearFifo()</a>, and <a class="el" href="group__group16.html#ga358ae7318679b5a47b04d1f672bf3257">SI4735::rdsClearInterrupt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group16.html#ga94cce3834f85fc127e8c2dab3a03e875">SI4735::getRdsStatus()</a>, <a class="el" href="group__group16.html#ga59122f18fd887bbcb888ecf785871635">SI4735::rdsBeginQuery()</a>, <a class="el" href="group__group16.html#ga13cd4540eff45acbc4252875edda75ed">SI4735::rdsClearFifo()</a>, and <a class="el" href="group__group16.html#ga358ae7318679b5a47b04d1f672bf3257">SI4735::rdsClearInterrupt()</a>.</p>
 
 </div>
 </div>
@@ -1104,9 +1144,12 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">uint8_t</td><td>RDSEN RDS Processing Enable; 1 = RDS processing enabled. </td></tr>
-    <tr><td class="paramname">uint8_t</td><td>BLETHA Block Error Threshold BLOCKA. </td></tr>
-    <tr><td class="paramname">uint8_t</td><td>BLETHB Block Error Threshold BLOCKB. </td></tr>
-    <tr><td class="paramname">uint8_t</td><td>BLETHC Block Error Threshold BLOCKC. </td></tr>
+    <tr><td class="paramname">uint8_t</td><td>BLETHA Block Error Threshold BLOCKA. <br  />
+ </td></tr>
+    <tr><td class="paramname">uint8_t</td><td>BLETHB Block Error Threshold BLOCKB. <br  />
+ </td></tr>
+    <tr><td class="paramname">uint8_t</td><td>BLETHC Block Error Threshold BLOCKC. <br  />
+ </td></tr>
     <tr><td class="paramname">uint8_t</td><td>BLETHD Block Error Threshold BLOCKD. </td></tr>
   </table>
   </dd>
@@ -1216,37 +1259,12 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">INTACK</td><td>Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT. </td></tr>
     <tr><td class="paramname">MTFIFO</td><td>0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO. </td></tr>
-    <tr><td class="paramname">STATUSONLY</td><td>Determines if data should be removed from the RDS FIFO. If 1, data in BLOCKA will contain the last valid block A data received for the current station. </td></tr>
+    <tr><td class="paramname">STATUSONLY</td><td>Determines if data should be removed from the RDS FIFO. </td></tr>
   </table>
   </dd>
 </dl>
 
 <p class="reference">References <a class="el" href="group__group16.html#gadede134b96fd5650b87673ce413babb2">SI4735::clearRdsBuffer0A()</a>, <a class="el" href="group__group16.html#gac65c552004f5e5e646638e37a5a68213">SI4735::clearRdsBuffer2A()</a>, <a class="el" href="group__group16.html#gaed0988165057aa2880f41b88ac236cd7">SI4735::clearRdsBuffer2B()</a>, and <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">SI4735::waitToSend()</a>.</p>
-
-</div>
-</div>
-<a id="ga59122f18fd887bbcb888ecf785871635" name="ga59122f18fd887bbcb888ecf785871635"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga59122f18fd887bbcb888ecf785871635">&#9670;&#160;</a></span>rdsBeginQuery()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SI4735::rdsBeginQuery </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retrieves the current RDS data to be utilized by other RDS functions. </p>
-<p>this function is similar to the getRdsStatus. Both do the same thing.</p>
-<p>This function must be called before calling any RDS function. </p><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 55 and 77 </dd>
-<dd>
-<a class="el" href="group__group16.html#ga350a2033671a7620d4b9290a2347e185" title="Gets the RDS status. Store the status in currentRdsStatus member. RDS COMMAND FM_RDS_STATUS.">getRdsStatus</a> </dd></dl>
-
-<p class="reference">References <a class="el" href="group__group06.html#ga7b45c1b22c3c1a3f2326bee913d1e1e0">SI4735::waitToSend()</a>.</p>
 
 </div>
 </div>
@@ -1268,7 +1286,7 @@ Functions</h2></td></tr>
 
 <p>Returns the programa type. </p>
 <p>Read the Block A content</p>
-<p>Please, call rdsBeginQuery or getRdsStatus before calling this function. </p><dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 77 and 78</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 77 and 78</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>BLOCKAL </dd></dl>
 
 <p class="reference">References <a class="el" href="group__group16.html#ga561a052a8c737302368274c774d8c129">SI4735::getRdsNewBlockA()</a>, and <a class="el" href="group__group16.html#ga6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived()</a>.</p>
@@ -1292,7 +1310,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the Group Type (extracted from the Block B) </p>
-<p>Please, call rdsBeginQuery or getRdsStatus before calling this function. </p><dl class="section return"><dt>Returns</dt><dd>BLOCKBL </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>BLOCKBL </dd></dl>
 
 </div>
 </div>
@@ -1312,8 +1330,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the current Text Flag A/B. </p>
-<p>Please, call rdsBeginQuery or getRdsStatus before calling this function. </p><dl class="section return"><dt>Returns</dt><dd>uint8_t current Text Flag A/B </dd></dl>
+<p>Returns the current Text Flag A/B <br  />
+ </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t current Text Flag A/B <br  />
+ </dd></dl>
 
 </div>
 </div>
@@ -1336,7 +1356,7 @@ Functions</h2></td></tr>
 <p>Returns the address of the text segment. </p>
 <p>2A - Each text segment in version 2A groups consists of four characters. A messages of this group can be have up to 64 characters.</p>
 <p>2B - In version 2B groups, each text segment consists of only two characters. When the current RDS status is using this version, the maximum message length will be 32 characters.</p>
-<p>Please, call rdsBeginQuery or getRdsStatus before calling this function. </p><dl class="section return"><dt>Returns</dt><dd>uint8_t the address of the text segment. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t the address of the text segment. </dd></dl>
 
 </div>
 </div>
@@ -1357,7 +1377,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the version code (extracted from the Block B) </p>
-<p>Please, call rdsBeginQuery or getRdsStatus before calling this function. </p><dl class="section return"><dt>Returns</dt><dd>0=A or 1=B </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0=A or 1=B </dd></dl>
 
 </div>
 </div>
@@ -1378,7 +1398,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the Program Type (extracted from the Block B) </p>
-<p>Please, call rdsBeginQuery or getRdsStatus before calling this function. </p><dl class="section see"><dt>See also</dt><dd><a href="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipedia.org/wiki/Radio_Data_System</a></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipedia.org/wiki/Radio_Data_System</a></dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>program type (an integer betwenn 0 and 31) </dd></dl>
 
 </div>
@@ -1406,6 +1426,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="reference">References <a class="el" href="class_s_i4735.html#a07ac2f7392dceae88cf87cf34d9960d1">SI4735::rdsEndGroupB</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">SI4735::getRdsText0A()</a>, and <a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">SI4735::getRdsText2B()</a>.</p>
 
@@ -1435,6 +1457,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="reference">References <a class="el" href="class_s_i4735.html#a4b777d713357d2595e8617a63a32adbe">SI4735::rdsEndGroupA</a>.</p>
+
 <p class="reference">Referenced by <a class="el" href="group__group16.html#ga71cbaa3e0c103db7cee5969d162bec5d">SI4735::getRdsText()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">SI4735::getRdsText2A()</a>.</p>
 
 </div>
@@ -1456,7 +1480,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the RDS Text when the message is of the Group Type 2 version A. </p>
-<p>Please, call rdsBeginQuery or getRdsStatus before calling this function. </p><dl class="section return"><dt>Returns</dt><dd>char* The string (char array) with the content (Text) received from group 2A </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>char* The string (char array) with the content (Text) received from group 2A </dd></dl>
 
 <p class="reference">References <a class="el" href="group__group16.html#gadb0a3c39aeacba0faf39aadd9465021f">SI4735::getNext4Block()</a>, <a class="el" href="class_s_i4735.html#a0b40791484c47c0bf90d8dc255a20269">SI4735::rds_buffer2A</a>, and <a class="el" href="class_s_i4735.html#a1c7ec3559a78c5ef1bda49cb0abdf1de">SI4735::rdsTextAdress2A</a>.</p>
 
@@ -1480,11 +1504,11 @@ Functions</h2></td></tr>
 
 <p>Gets the station name and other messages. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>RDS Dynamic PS or Scrolling PS </dd></dl>
-<p>Please, call rdsBeginQuery or getRdsStatus before calling this function. </p><dl class="section return"><dt>Returns</dt><dd>char* should return a string with the station name. However, some stations send other kind of messages </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>char* should return a string with the station name. However, some stations send other kind of messages </dd></dl>
 
 <p class="reference">References <a class="el" href="group__group16.html#gab1f4f137139b40fe386ca51586999e50">SI4735::getNext2Block()</a>, <a class="el" href="group__group16.html#ga6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived()</a>, <a class="el" href="class_s_i4735.html#ac24a8bbd39628c2981208cb452165a0e">SI4735::rds_buffer0A</a>, and <a class="el" href="class_s_i4735.html#a11477d1eb13efb348395a4984b67f392">SI4735::rdsTextAdress0A</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__group16.html#gaca1e5684a4d331411fa10d72926bf39b">SI4735::getRdsStationName()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gac1f149a2778baa8f6c933482526830a4">SI4735::getRdsAllData()</a>, and <a class="el" href="group__group16.html#gaca1e5684a4d331411fa10d72926bf39b">SI4735::getRdsStationName()</a>.</p>
 
 </div>
 </div>
@@ -1505,11 +1529,12 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the Text processed for the 2A group. </p>
-<p>Please, call rdsBeginQuery or getRdsStatus before calling this function. </p><dl class="section return"><dt>Returns</dt><dd>char* string with the Text of the group A2 </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>char* string with the Text of the group A2 <br  />
+ </dd></dl>
 
 <p class="reference">References <a class="el" href="group__group16.html#gadb0a3c39aeacba0faf39aadd9465021f">SI4735::getNext4Block()</a>, <a class="el" href="group__group16.html#ga6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived()</a>, <a class="el" href="class_s_i4735.html#a0b40791484c47c0bf90d8dc255a20269">SI4735::rds_buffer2A</a>, and <a class="el" href="class_s_i4735.html#a1c7ec3559a78c5ef1bda49cb0abdf1de">SI4735::rdsTextAdress2A</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__group16.html#gabce6da2400060fd8adceb4fe3287667d">SI4735::getRdsProgramInformation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gac1f149a2778baa8f6c933482526830a4">SI4735::getRdsAllData()</a>, and <a class="el" href="group__group16.html#gabce6da2400060fd8adceb4fe3287667d">SI4735::getRdsProgramInformation()</a>.</p>
 
 </div>
 </div>
@@ -1530,11 +1555,78 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the Text processed for the 2B group. </p>
-<p>Please, call rdsBeginQuery or getRdsStatus before calling this function. </p><dl class="section return"><dt>Returns</dt><dd>char* string with the Text of the group AB </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>char* string with the Text of the group AB <br  />
+ </dd></dl>
 
 <p class="reference">References <a class="el" href="group__group16.html#gab1f4f137139b40fe386ca51586999e50">SI4735::getNext2Block()</a>, <a class="el" href="class_s_i4735.html#a7aa607f80e97d45ac7a80cdcbdeb09f9">SI4735::rds_buffer2B</a>, and <a class="el" href="class_s_i4735.html#adecc2478d73cd7d18e1f88fd70d1488d">SI4735::rdsTextAdress2B</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__group16.html#ga81f852104170f7477fe96ff314e52273">SI4735::getRdsStationInformation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gac1f149a2778baa8f6c933482526830a4">SI4735::getRdsAllData()</a>, and <a class="el" href="group__group16.html#ga81f852104170f7477fe96ff314e52273">SI4735::getRdsStationInformation()</a>.</p>
+
+</div>
+</div>
+<a id="gac1f149a2778baa8f6c933482526830a4" name="gac1f149a2778baa8f6c933482526830a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac1f149a2778baa8f6c933482526830a4">&#9670;&#160;</a></span>getRdsAllData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SI4735::getRdsAllData </td>
+          <td>(</td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>stationName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>stationInformation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>programInformation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>utcTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets Station Name, Station Information, Program Information and utcTime. </p>
+<p>This function populates four char pointer variable parameters with Station Name, Station Information, Programa Information and UTC time.</p>
+<p>You must call setRDS(true), setRdsFifo(true) before calling getRdsAllData(...)</p>
+<p>ATTENTION: the parameters below are point to point to array of char.</p>
+<p>the right way to call this function is shown below. </p><div class="fragment"><div class="line"><span class="keywordtype">char</span> *stationName, *stationInfo, *programInfo, *rdsTime;</div>
+<div class="line"><span class="comment">// The char pointers above will be populate by the call below. So, the char pointers need to be passed by reference (pointer to pointer).</span></div>
+<div class="line"><span class="keywordflow">if</span> (rx.getRdsAllData(&amp;stationName, &amp;stationInfo , &amp;programInfo, &amp;rdsTime) ) {</div>
+<div class="line">    showProgramaInfo(programInfo);</div>
+<div class="line">    showStationName(stationName);</div>
+<div class="line">    showStationInfo(stationInfo);</div>
+<div class="line">    showUtcTime(rdsTime);</div>
+<div class="line">}</div>
+</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stationName</td><td>(reference) - if NOT NULL, point to Name of the Station (char array - 9 bytes) </td></tr>
+    <tr><td class="paramname">stationInformation</td><td>(reference) - if NOT NULL, point to Station information (char array - 33 bytes) </td></tr>
+    <tr><td class="paramname">programInformation</td><td>(reference) - if NOT NULL, point to program information (char array - 65 nytes) </td></tr>
+    <tr><td class="paramname">utcTime</td><td>(reference) - if NOT NULL, point to char array containing the current UTC time (format HH:MM:SS +HH:MM) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if found at least one valid data </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>setRDS, setRdsFifo, <a class="el" href="group__group16.html#gac1f149a2778baa8f6c933482526830a4" title="Gets Station Name, Station Information, Program Information and utcTime.">getRdsAllData</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="group__group16.html#ga6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived()</a>, <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">SI4735::getRdsText0A()</a>, <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">SI4735::getRdsText2A()</a>, <a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">SI4735::getRdsText2B()</a>, <a class="el" href="group__group16.html#gaa8436bb156f3ac8321c65941be42fdba">SI4735::getRdsTime()</a>, and <a class="el" href="group__group16.html#ga59122f18fd887bbcb888ecf785871635">SI4735::rdsBeginQuery()</a>.</p>
 
 </div>
 </div>
@@ -1559,9 +1651,11 @@ Functions</h2></td></tr>
 <p>return examples:</p>
 <p>12:31 +03:00</p>
 <p>21:59 -02:30</p>
-<p>Please, call rdsBeginQuery or getRdsStatus before calling this function. </p><dl class="section return"><dt>Returns</dt><dd>point to char array. Format: +/-hh:mm (offset) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>point to char array. Format: +/-hh:mm (offset) </dd></dl>
 
 <p class="reference">References <a class="el" href="class_s_i4735.html#af722be88a23730082909000dba8002ae">SI4735::rds_time</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gac1f149a2778baa8f6c933482526830a4">SI4735::getRdsAllData()</a>.</p>
 
 </div>
 </div>
@@ -1665,15 +1759,15 @@ Functions</h2></td></tr>
 <p>Decodes the RDS time to LOCAL Julian Day and time. </p>
 <p>This method gets the RDS date time massage and converts it from MJD to JD and UTC time to local time</p>
 <p>The Date and Time service may not work correctly depending on the FM station that provides the service.</p>
-<p>Please, call rdsBeginQuery or getRdsStatus before calling this function.</p>
-<p>I have noticed that some FM stations do not use the service properly in my location.</p>
+<p>I have noticed that some FM stations do not use the service properly in my location. <br  />
+</p>
 <p>Example: </p><div class="fragment"><div class="line">uint16_t year, month, day, hour, minute;</div>
 <div class="line">.</div>
 <div class="line">.</div>
 <div class="line">si4735.getRdsStatus();</div>
 <div class="line">si4735.getRdsDateTime(&amp;year, &amp;month, &amp;day, &amp;hour, &amp;minute);</div>
 <div class="line">.</div>
-<div class="line">.</div>
+<div class="line">.        </div>
 </div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">rYear</td><td>year variable reference </td></tr>

@@ -457,8 +457,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ga7bb16741b03d8f1fb14348dce14c1a6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the FAST tuning status.  <br /></td></tr>
 <tr class="separator:ga7bb16741b03d8f1fb14348dce14c1a6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga51d816112d974f10306d9d001667395a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga51d816112d974f10306d9d001667395a">setTuneFrequencyFast</a> (uint8_t FAST)</td></tr>
-<tr class="memdesc:ga51d816112d974f10306d9d001667395a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the FAST Tuning. <br  />
-  <br /></td></tr>
+<tr class="memdesc:ga51d816112d974f10306d9d001667395a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the FAST Tuning.  <br /></td></tr>
 <tr class="separator:ga51d816112d974f10306d9d001667395a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga96d83cfe35e5fb5db4719d604871e8cc"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group08.html#ga96d83cfe35e5fb5db4719d604871e8cc">getTuneFrequecyFreeze</a> ()</td></tr>
 <tr class="memdesc:ga96d83cfe35e5fb5db4719d604871e8cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the FREEZE status.  <br /></td></tr>
@@ -638,7 +637,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:gaa35366e5cded7b864f7268a7e4a8dbe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Group Type (extracted from the Block B)  <br /></td></tr>
 <tr class="separator:gaa35366e5cded7b864f7268a7e4a8dbe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga05f76a0a0ebda813483f1df24e890904"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga05f76a0a0ebda813483f1df24e890904">getRdsFlagAB</a> (void)</td></tr>
-<tr class="memdesc:ga05f76a0a0ebda813483f1df24e890904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current Text Flag A/B.  <br /></td></tr>
+<tr class="memdesc:ga05f76a0a0ebda813483f1df24e890904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current Text Flag A/B <br  />
+  <br /></td></tr>
 <tr class="separator:ga05f76a0a0ebda813483f1df24e890904"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf9b6cb614d1b01b11bb23c19e6deb8b9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gaf9b6cb614d1b01b11bb23c19e6deb8b9">getRdsVersionCode</a> (void)</td></tr>
 <tr class="memdesc:gaf9b6cb614d1b01b11bb23c19e6deb8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the version code (extracted from the Block B)  <br /></td></tr>
@@ -661,6 +661,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ga806d5cfbbeb6ca1299ce20b1220fdb18"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">getRdsText2B</a> (void)</td></tr>
 <tr class="memdesc:ga806d5cfbbeb6ca1299ce20b1220fdb18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Text processed for the 2B group.  <br /></td></tr>
 <tr class="separator:ga806d5cfbbeb6ca1299ce20b1220fdb18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac1f149a2778baa8f6c933482526830a4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gac1f149a2778baa8f6c933482526830a4">getRdsAllData</a> (char **stationName, char **stationInformation, char **programInformation, char **utcTime)</td></tr>
+<tr class="memdesc:gac1f149a2778baa8f6c933482526830a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Station Name, Station Information, Program Information and utcTime.  <br /></td></tr>
+<tr class="separator:gac1f149a2778baa8f6c933482526830a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaca1e5684a4d331411fa10d72926bf39b"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#gaca1e5684a4d331411fa10d72926bf39b">getRdsStationName</a> (void)</td></tr>
 <tr class="memdesc:gaca1e5684a4d331411fa10d72926bf39b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Station Name.  <br /></td></tr>
 <tr class="separator:gaca1e5684a4d331411fa10d72926bf39b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1574,7 +1577,7 @@ in unpredictable device behavior". If you extend this library, remember the 8 by
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="group__group16.html#gadbc1132450ca79ed53e8e8cc0d2fe1d1">getEndIndicatorGroupA()</a>, and <a class="el" href="group__group16.html#ga339af59bbaefd8d60ba9b26e742bc01e">resetEndIndicatorGroupA()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gadbc1132450ca79ed53e8e8cc0d2fe1d1">getEndIndicatorGroupA()</a>, <a class="el" href="group__group16.html#gadb0a3c39aeacba0faf39aadd9465021f">getNext4Block()</a>, and <a class="el" href="group__group16.html#ga339af59bbaefd8d60ba9b26e742bc01e">resetEndIndicatorGroupA()</a>.</p>
 
 </div>
 </div>
@@ -1598,7 +1601,7 @@ in unpredictable device behavior". If you extend this library, remember the 8 by
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="group__group16.html#ga1cd6e6388fbb853cc24d3e0dc0df1eb6">getEndIndicatorGroupB()</a>, and <a class="el" href="group__group16.html#ga11a5d5eb070466b488e5adec650e625e">resetEndIndicatorGroupB()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group16.html#ga1cd6e6388fbb853cc24d3e0dc0df1eb6">getEndIndicatorGroupB()</a>, <a class="el" href="group__group16.html#gab1f4f137139b40fe386ca51586999e50">getNext2Block()</a>, and <a class="el" href="group__group16.html#ga11a5d5eb070466b488e5adec650e625e">resetEndIndicatorGroupB()</a>.</p>
 
 </div>
 </div>

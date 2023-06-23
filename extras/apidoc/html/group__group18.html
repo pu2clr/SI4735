@@ -178,7 +178,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets I2C bus to 100kHz. </p>
-<p>&lt;&gt; </p>
 
 </div>
 </div>
@@ -235,7 +234,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets the I2C bus to a given value. ATTENTION: use this function with caution. </p>
-<p>&lt;&gt;</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>in Hz. For example: The values 500000 sets the bus to 500kHz. </td></tr>
@@ -270,18 +268,15 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets the Audio Mute Mcu Pin. </p>
-<p>&lt;&gt;</p>
 <p>This function sets the mcu digital pin you want to use to control the external audio mute circuit.</p>
-<p>Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some SI47XX commands. <br  />
-</p>
+<p>Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some SI47XX commands.</p>
 <p>This problem occurs during the transition from the power down to power up.</p>
 <p>For example, when the user changes bands (FM to AM or AM to FM), the Si47XX devices must be powered down and powered up again.</p>
 <p>If you have a mute circuit attached to a pin on teh MCU, then you can control the mute circuit from the MCU with this function.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group18.html#ga54a3a0f412aa6318df0046d478bd134f" title="Sets the Hardware Audio Mute.">setHardwareAudioMute</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pin</td><td>if 0 or greater, sets the MCU digital pin that controls the external circuit. <br  />
- </td></tr>
+    <tr><td class="paramname">pin</td><td>if 0 or greater, sets the MCU digital pin that controls the external circuit. </td></tr>
   </table>
   </dd>
 </dl>

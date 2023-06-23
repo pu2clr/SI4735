@@ -197,6 +197,7 @@ var class_s_i4735 =
     [ "getRdsText0A", "group__group16.html#ga12d917629b78fffebac5ecf8f2936921", null ],
     [ "getRdsText2A", "group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4", null ],
     [ "getRdsText2B", "group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18", null ],
+    [ "getRdsAllData", "group__group16.html#gac1f149a2778baa8f6c933482526830a4", null ],
     [ "getRdsStationName", "group__group16.html#gaca1e5684a4d331411fa10d72926bf39b", null ],
     [ "getRdsProgramInformation", "group__group16.html#gabce6da2400060fd8adceb4fe3287667d", null ],
     [ "getRdsStationInformation", "group__group16.html#ga81f852104170f7477fe96ff314e52273", null ],
