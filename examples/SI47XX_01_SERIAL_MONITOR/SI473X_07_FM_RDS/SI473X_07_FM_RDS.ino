@@ -1,5 +1,5 @@
 /*
-   Test and validation of the SI4735 Arduino Library.
+   RDS test and validation u thesing the SI4735 Arduino Library.
    It is an FM, MW and SW (1700kHz to 30000kHz)
    
    ATTENTION:  Please, avoid using a computer connected to the mains during testing. Doing so may result
@@ -42,17 +42,18 @@
 #include <SI4735.h>
 
 #define RESET_PIN 12
-// #define RESET_PIN 9
-
 
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
 
-uint16_t currentFrequency;
-uint16_t previousFrequency;
-uint8_t bandwidthIdx = 0;
-const char *bandwidth[] = {"6", "4", "3", "2", "1", "1.8", "2.5"};
+#define PULLING_RDS 40
 
+long pulling_rds = millis();
+
+
+uint16_t currentFrequency = 9470; // Your local FM station with RDS/RBDS service
+
+char buffer[120];
 
 SI4735 rx;
 
@@ -78,28 +79,21 @@ void setup()
     Serial.println(si4735Addr, HEX);
   }
 
-
   delay(500);
   rx.setup(RESET_PIN, FM_FUNCTION);
-  // rx.setup(RESET_PIN, -1, 1, SI473X_ANALOG_AUDIO);
-  // Starts defaul radio function and band (FM; from 84 to 108 MHz; 103.9 MHz; step 100kHz)
-  rx.setFM(8400, 10800, 10650, 10);
+
+  rx.setFM(8400, 10800, currentFrequency, 10);
   delay(500);
-  currentFrequency = previousFrequency = rx.getFrequency();
-  rx.setVolume(45);
+  rx.setVolume(32);
   showStatus();
 }
 
 void showHelp()
 {
-  Serial.println("The SI473X / SI474X I2C circuit test");
-  Serial.println("Type F to FM; A to MW; 1 to All Band (100kHz to 30MHz)");
+  Serial.println("FM RDS test");
   Serial.println("Type U to increase and D to decrease the frequency");
   Serial.println("Type S or s to seek station Up or Down");
   Serial.println("Type + or - to volume Up or Down");
-  Serial.println("Type 0 to show current status");
-  Serial.println("Type B to change Bandwidth filter");
-  Serial.println("Type 4 to 8 (4 to step 1; 5 to step 5kHz; 6 to 10kHz; 7 to 100kHz; 8 to 1000kHz)");
   Serial.println("Type ? to this help.");
   Serial.println("==================================================");
   delay(1000);
@@ -108,47 +102,48 @@ void showHelp()
 // Show current frequency
 void showStatus()
 {
-  // rx.getStatus();
-  previousFrequency = currentFrequency = rx.getFrequency();
+  rx.getStatus();
   rx.getCurrentReceivedSignalQuality();
-  Serial.print("You are tuned on ");
-  if (rx.isCurrentTuneFM())
-  {
-    Serial.print(String(currentFrequency / 100.0, 2));
-    Serial.print("MHz ");
-    Serial.print((rx.getCurrentPilot()) ? "STEREO" : "MONO");
-  }
-  else
-  {
-    Serial.print(currentFrequency);
-    Serial.print("kHz");
-  }
-  Serial.print(" [SNR:");
-  Serial.print(rx.getCurrentSNR());
-  Serial.print("dB");
 
-  Serial.print(" Signal:");
-  Serial.print(rx.getCurrentRSSI());
-  Serial.println("dBuV]");
+  currentFrequency = rx.getFrequency();
+  rx.getCurrentReceivedSignalQuality();
+  sprintf(buffer,"\n> %f5.2 MHz | SNR: %d db | RSSI: %d dBuV", (currentFrequency / 100.0), rx.getCurrentSNR(), rx.getCurrentRSSI() );
+  Serial.print(buffer);
 }
 
-void showFrequency( uint16_t freq ) {
+// Begin RDS 
+char *utcTime;
+char *stationName;
+char *programInfo;
 
-  if (rx.isCurrentTuneFM())
-  {
-    Serial.print(String(freq / 100.0, 2));
-    Serial.println("MHz ");
+void checkRds() {
+  rx.rdsBeginQuery(); // gets RDS information
+  utcTime = rx.getRdsDateTime();
+  stationName = rx.getRdsStationName();
+  programInfo = rx.getRdsProgramInformation();
+  buffer[0] = '\n'; // New line control
+  buffer[1] = '\0'; // end of string char array
+  if ( stationName != NULL ) {
+    strcat(buffer,"| Station Name: ");
+    strcat(buffer, stationName);
   }
-  else
-  {
-    Serial.print(freq);
-    Serial.println("kHz");
+
+  if ( programInfo != NULL ) {
+    strcat(buffer," | Program information: ");
+    strcat(buffer, programInfo);
   }
-  
+
+  if ( utcTime != NULL ) {
+    strcat(buffer," | Time (UTC): ");
+    strcat(buffer, utcTime);
+  }
+
+  Serial.print(buffer);
+
 }
 
+// End RDS
 
-// Main
 void loop()
 {
   if (Serial.available() > 0)
@@ -162,25 +157,6 @@ void loop()
     case '-':
       rx.volumeDown();
       break;
-    case 'a':
-    case 'A':
-      rx.setAM(520, 1750, 810, 10);
-      rx.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM mode.
-      rx.setSeekAmLimits(520, 1750);
-      rx.setSeekAmSpacing(10); // spacing 10kHz
-      break;
-    case 'f':
-    case 'F':
-      rx.setFM(8600, 10800, 10390, 50);
-      rx.setSeekAmRssiThreshold(0);
-      rx.setSeekAmSNRThreshold(10);
-      break;
-    case '1':
-      rx.setAM(100, 30000, 7200, 5);
-      rx.setSeekAmLimits(100, 30000);   // Range for seeking.
-      rx.setSeekAmSpacing(1); // spacing 1kHz
-      Serial.println("\nALL - LW/MW/SW");
-      break;
     case 'U':
     case 'u':
       rx.frequencyUp();
@@ -189,67 +165,27 @@ void loop()
     case 'd':
       rx.frequencyDown();
       break;
-    case 'b':
-    case 'B':
-      if (rx.isCurrentTuneFM())
-      {
-        Serial.println("Not valid for FM");
-      }
-      else
-      {
-        if (bandwidthIdx > 6)
-          bandwidthIdx = 0;
-        rx.setBandwidth(bandwidthIdx, 1);
-        Serial.print("Filter - Bandwidth: ");
-        Serial.print(String(bandwidth[bandwidthIdx]));
-        Serial.println(" kHz");
-        bandwidthIdx++;
-      }
-      break;
     case 'S':
-      rx.seekStationProgress(showFrequency,1);
-      // rx.seekStationUp();
+      rx.seekNextStation();
       break;
     case 's':
-      rx.seekStationProgress(showFrequency,0);
-      // rx.seekStationDown();
-      break;
-    case '0':
-      showStatus();
-      break;
-    case '4':
-      rx.setFrequencyStep(1);
-      Serial.println("\nStep 1");
-      break;  
-    case '5':
-      rx.setFrequencyStep(5);
-      Serial.println("\nStep 5");
-      break;    
-    case '6':
-      rx.setFrequencyStep(10);
-      Serial.println("\nStep 10");
-      break;
-    case '7':
-      rx.setFrequencyStep(100);
-      Serial.println("\nStep 100");      
-      break;
-    case '8':
-      rx.setFrequencyStep(1000);
-      Serial.println("\nStep 1000");    
+      rx.seekPreviousStation();
       break;
     case '?':
       showHelp();
       break;
     default:
+      Serial.println("Command error.");
+      showHelp();
       break;
     }
-  }
-  delay(100);
-  currentFrequency = rx.getCurrentFrequency();
-  if (currentFrequency != previousFrequency)
-  {
-    previousFrequency = currentFrequency;
     showStatus();
-    delay(300);
   }
+
+  if ( (millis() - pulling_rds) > PULLING_RDS ) {
+    checkRds();
+    pulling_rds = millis();
+  }  
+
+  delay(5);
 }
