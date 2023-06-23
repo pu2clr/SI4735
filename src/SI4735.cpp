@@ -581,7 +581,7 @@ void SI4735::setup(uint8_t resetPin, uint8_t ctsIntEnable, uint8_t defaultFuncti
     Wire.begin();
 
     this->resetPin = resetPin;
-    this->ctsIntEnable = (ctsIntEnable != 0)? 1:0; // Keeps old versions of the sketches running
+    this->ctsIntEnable = (ctsIntEnable != 0) ? 1 : 0; // Keeps old versions of the sketches running
     this->gpo2Enable = gpo2Enable;
     this->currentAudioMode = audioMode;
 
@@ -618,7 +618,7 @@ void SI4735::setup(uint8_t resetPin, uint8_t ctsIntEnable, uint8_t defaultFuncti
  */
 void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
 {
-    setup(resetPin, 0, defaultFunction, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL,0);
+    setup(resetPin, 0, defaultFunction, SI473X_ANALOG_AUDIO, XOSCEN_CRYSTAL, 0);
     delay(250);
 }
 
@@ -771,8 +771,8 @@ void SI4735::setAM()
         powerDown();
         setPowerUp(this->ctsIntEnable, 0, 0, this->currentClockType, AM_CURRENT_MODE, this->currentAudioMode);
         radioPowerUp();
-        setAvcAmMaxGain(currentAvcAmMaxGain);    // Set AM Automatic Volume Gain (default value is DEFAULT_CURRENT_AVC_AM_MAX_GAIN)
-        setVolume(volume);                       // Set to previus configured volume
+        setAvcAmMaxGain(currentAvcAmMaxGain); // Set AM Automatic Volume Gain (default value is DEFAULT_CURRENT_AVC_AM_MAX_GAIN)
+        setVolume(volume);                    // Set to previus configured volume
     }
     currentSsbStatus = 0;
     lastMode = AM_CURRENT_MODE;
@@ -963,7 +963,8 @@ void SI4735::getStatus(uint8_t INTACK, uint8_t CANCEL)
         cmd = FM_TUNE_STATUS;
     else if (currentTune == AM_TUNE_FREQ)
         cmd = AM_TUNE_STATUS;
-    else if (currentTune == NBFM_TUNE_FREQ) {
+    else if (currentTune == NBFM_TUNE_FREQ)
+    {
         cmd = NBFM_TUNE_STATUS;
         limitResp = 6;
     }
@@ -1005,13 +1006,16 @@ void SI4735::getAutomaticGainControl()
 {
     uint8_t cmd;
 
-    if (currentTune == FM_TUNE_FREQ) { // FM TUNE
+    if (currentTune == FM_TUNE_FREQ)
+    { // FM TUNE
         cmd = FM_AGC_STATUS;
     }
-    else if (currentTune == NBFM_TUNE_FREQ) {
+    else if (currentTune == NBFM_TUNE_FREQ)
+    {
         cmd = NBFM_AGC_STATUS;
     }
-    else { // AM TUNE - SAME COMMAND used on SSB mode
+    else
+    { // AM TUNE - SAME COMMAND used on SSB mode
         cmd = AM_AGC_STATUS;
     }
 
@@ -1056,7 +1060,7 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
 
     if (currentTune == FM_TUNE_FREQ)
         cmd = FM_AGC_OVERRIDE;
-    else if (currentTune ==  NBFM_TUNE_FREQ)
+    else if (currentTune == NBFM_TUNE_FREQ)
         cmd = NBFM_AGC_OVERRIDE;
     else
         cmd = AM_AGC_OVERRIDE;
@@ -1088,7 +1092,8 @@ void SI4735::setAutomaticGainControl(uint8_t AGCDIS, uint8_t AGCIDX)
  */
 void SI4735::setAvcAmMaxGain(uint8_t gain)
 {
-    if (gain < 12 || gain > 90) return;
+    if (gain < 12 || gain > 90)
+        return;
     currentAvcAmMaxGain = gain;
     sendProperty(AM_AUTOMATIC_VOLUME_CONTROL_MAX_GAIN, gain * 340);
 }
@@ -1118,7 +1123,8 @@ void SI4735::getCurrentReceivedSignalQuality(uint8_t INTACK)
         cmd = FM_RSQ_STATUS;
         sizeResponse = 8;
     }
-    else if (currentTune == NBFM_TUNE_FREQ) {
+    else if (currentTune == NBFM_TUNE_FREQ)
+    {
         cmd = NBFM_RSQ_STATUS;
         sizeResponse = 8; // Check it
     }
@@ -1343,8 +1349,9 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), bool (*stopSeking
         currentWorkFrequency = freq.value;
         if (showFunc != NULL)
             showFunc(freq.value);
-        if (stopSeking != NULL )
-           if ( stopSeking() ) return;
+        if (stopSeking != NULL)
+            if (stopSeking())
+                return;
 
     } while (!currentStatus.resp.VALID && !currentStatus.resp.BLTF && (millis() - elapsed_seek) < maxSeekTime);
 }
@@ -1409,7 +1416,6 @@ void SI4735::setSeekFmSpacing(uint16_t spacing)
     sendProperty(FM_SEEK_FREQ_SPACING, spacing);
 }
 
-
 /**
  * @ingroup group08 Seek
  *
@@ -1440,7 +1446,7 @@ void SI4735::setSeekFmRssiThreshold(uint16_t value)
 
 /** @defgroup group10 Generic SI473X Command and Property methods
  * @details A set of functions used to support other functions
-*/
+ */
 
 /**
  * @ingroup group10 Generic send property
@@ -1846,8 +1852,6 @@ void SI4735::setAudioMute(bool off)
     sendProperty(RX_HARD_MUTE, value);
 }
 
-
-
 /**
  * @ingroup group13 Aud volume
  *
@@ -1915,7 +1919,6 @@ void SI4735::RdsInit()
     this->clearRdsBuffer0A();
     rdsTextAdress2A = rdsTextAdress2B = lastTextFlagAB = rdsTextAdress0A = 0;
 }
-
 
 /**
  * @ingroup group16 RDS setup
@@ -2037,8 +2040,8 @@ void SI4735::setRdsIntSource(uint8_t RDSRECV, uint8_t RDSSYNCLOST, uint8_t RDSSY
  *
  * @param INTACK Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT.
  * @param MTFIFO 0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO.
- * @param STATUSONLY Determines if data should be removed from the RDS FIFO. If 1, data in BLOCKA will contain the last valid block A data received for the current station. 
- * 
+ * @param STATUSONLY Determines if data should be removed from the RDS FIFO. If 1, data in BLOCKA will contain the last valid block A data received for the current station.
+ *
  */
 void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
 {
@@ -2082,7 +2085,7 @@ void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
  * @ingroup group16 RDS status
  *
  * @brief Retrieves the current RDS data to be utilized by other RDS functions.
- * @details this function is similar to the getRdsStatus. Both do the same thing. 
+ * @details this function is similar to the getRdsStatus. Both do the same thing.
  * @details This function must be called before calling any RDS function.
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 55 and 77
  * @see getRdsStatus
@@ -2095,7 +2098,7 @@ void SI4735::rdsBeginQuery()
 
     rds_cmd.arg.INTACK = 0;     // RDSINT status preserved.
     rds_cmd.arg.MTFIFO = 0;     // If FIFO not empty, read and remove oldest FIFO entry.
-    rds_cmd.arg.STATUSONLY = 1; // Data in BLOCKA will contain the last valid block A data received for the current station. 
+    rds_cmd.arg.STATUSONLY = 1; // Data in BLOCKA will contain the last valid block A data received for the current station.
                                 // Data in BLOCKB will contain the last valid block B data received for the current station.
                                 // Data in BLE will describe the bit errors for the data in BLOCKA and BLOCKB.
 
@@ -2289,21 +2292,18 @@ char *SI4735::getRdsText(void)
 char *SI4735::getRdsText0A(void)
 {
     si47x_rds_blockb blkB;
-    if (getRdsReceived())
+    if (getRdsGroupType() == 0)
     {
-        if (getRdsGroupType() == 0)
-        {
-            // Process group type 0
-            blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-            blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+        // Process group type 0
+        blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+        blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
 
-            rdsTextAdress0A = blkB.group0.address;
-            if (rdsTextAdress0A >= 0 && rdsTextAdress0A < 4)
-            {
-                getNext2Block(&rds_buffer0A[rdsTextAdress0A * 2]);
-                rds_buffer0A[8] = '\0';
-                return rds_buffer0A;
-            }
+        rdsTextAdress0A = blkB.group0.address;
+        if (rdsTextAdress0A >= 0 && rdsTextAdress0A < 4)
+        {
+            getNext2Block(&rds_buffer0A[rdsTextAdress0A * 2]);
+            rds_buffer0A[8] = '\0';
+            return rds_buffer0A;
         }
     }
     return NULL;
@@ -2319,22 +2319,19 @@ char *SI4735::getRdsText0A(void)
 char *SI4735::getRdsText2A(void)
 {
     si47x_rds_blockb blkB;
-    if (getRdsReceived())
+    if (getRdsGroupType() == 2 /* && getRdsVersionCode() == 0 */)
     {
-        if (getRdsGroupType() == 2 /* && getRdsVersionCode() == 0 */)
-        {
-            // Process group 2A
-            // Decode B block information
-            blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
-            blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
-            rdsTextAdress2A = blkB.group2.address;
+        // Process group 2A
+        // Decode B block information
+        blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
+        blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
+        rdsTextAdress2A = blkB.group2.address;
 
-            if (rdsTextAdress2A >= 0 && rdsTextAdress2A < 16)
-            {
-                getNext4Block(&rds_buffer2A[rdsTextAdress2A * 4]);
-                rds_buffer2A[63] = '\0';
-                return rds_buffer2A;
-            }
+        if (rdsTextAdress2A >= 0 && rdsTextAdress2A < 16)
+        {
+            getNext4Block(&rds_buffer2A[rdsTextAdress2A * 4]);
+            rds_buffer2A[63] = '\0';
+            return rds_buffer2A;
         }
     }
     return NULL;
@@ -2426,7 +2423,6 @@ char *SI4735::getRdsTime()
         this->convertToChar(offset_m, &rds_time[10], 2, 0, ' ', false);
         rds_time[12] = '\0';
 
-
         return rds_time;
     }
 
@@ -2506,20 +2502,20 @@ bool SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
         // See si47x_rds_date_time (typedef union) and CGG “Crosses boundary” issue/features.
         // Now it is working on Atmega328, STM32, Arduino DUE, ESP32 and more.
 
-        mjd = dt.refined.mjd; 
+        mjd = dt.refined.mjd;
 
-
-        minute =  dt.refined.minute;
-        hour =  dt.refined.hour;
+        minute = dt.refined.minute;
+        hour = dt.refined.hour;
 
         // calculates the jd Year, Month and Day base on mjd number
         // mjdConverter(mjd, &year, &month, &day);
 
         // Converting UTC to local time
         local_minute = ((hour * 60) + minute) + ((dt.refined.offset * 30) * ((dt.refined.offset_sense == 1) ? -1 : 1));
-        if (local_minute < 0) {
+        if (local_minute < 0)
+        {
             local_minute += 1440;
-            mjd--;  // drecreases one day
+            mjd--; // drecreases one day
         }
         else if (local_minute > 1440)
         {
@@ -2531,16 +2527,15 @@ bool SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
         mjdConverter(mjd, &year, &month, &day);
 
         hour = (uint16_t)local_minute / 60;
-        minute = local_minute - ( hour * 60);
+        minute = local_minute - (hour * 60);
 
         *rYear = (uint16_t)year;
-        *rMonth = (uint16_t) month;
-        *rDay = (uint16_t) day;
+        *rMonth = (uint16_t)month;
+        *rDay = (uint16_t)day;
         *rHour = hour;
         *rMinute = minute;
 
         return true;
-
     }
     return false;
 }
@@ -2674,8 +2669,7 @@ char *SI4735::getRdsDateTime()
  *
  * @param offset 16-bit signed value (unit in Hz). The valid range is -16383 to +16383 Hz.
  */
-    void
-    SI4735::setSSBBfo(int offset)
+void SI4735::setSSBBfo(int offset)
 {
 
     si47x_property property;
@@ -2992,8 +2986,6 @@ void SI4735::setSsbAgcOverrite(uint8_t SSBAGCDIS, uint8_t SSBAGCNDX, uint8_t res
     waitToSend();
 }
 
-
-
 /***************************************************************************************
  * SI47XX PATCH RESOURCES
  **************************************************************************************/
@@ -3019,7 +3011,7 @@ void SI4735::setSsbAgcOverrite(uint8_t SSBAGCDIS, uint8_t SSBAGCNDX, uint8_t res
  * @see struct si47x_firmware_query_library
  *
  * @return a struct si47x_firmware_query_library (see it in SI4735.h)
-*/
+ */
 si47x_firmware_query_library SI4735::queryLibraryId()
 {
     si47x_firmware_query_library libraryID;
@@ -3087,12 +3079,12 @@ void SI4735::ssbPowerUp()
     Wire.endTransmission();
     delayMicroseconds(2500);
 
-    powerUp.arg.CTSIEN = this->ctsIntEnable; // 1 -> Interrupt anabled;
-    powerUp.arg.GPO2OEN = 0;                           // 1 -> GPO2 Output Enable;
-    powerUp.arg.PATCH = 0;                             // 0 -> Boot normally;
-    powerUp.arg.XOSCEN = this->currentClockType;       // 1 -> Use external crystal oscillator;
-    powerUp.arg.FUNC = 1;                              // 0 = FM Receive; 1 = AM/SSB (LW/MW/SW) Receiver.
-    powerUp.arg.OPMODE = 0b00000101;                   // 0x5 = 00000101 = Analog audio outputs (LOUT/ROUT).
+    powerUp.arg.CTSIEN = this->ctsIntEnable;     // 1 -> Interrupt anabled;
+    powerUp.arg.GPO2OEN = 0;                     // 1 -> GPO2 Output Enable;
+    powerUp.arg.PATCH = 0;                       // 0 -> Boot normally;
+    powerUp.arg.XOSCEN = this->currentClockType; // 1 -> Use external crystal oscillator;
+    powerUp.arg.FUNC = 1;                        // 0 = FM Receive; 1 = AM/SSB (LW/MW/SW) Receiver.
+    powerUp.arg.OPMODE = 0b00000101;             // 0x5 = 00000101 = Analog audio outputs (LOUT/ROUT).
 }
 
 /**
@@ -3139,7 +3131,7 @@ bool SI4735::downloadPatch(const uint8_t *ssb_patch_content, const uint16_t ssb_
 {
     uint8_t content;
     // Send patch to the SI4735 device
-    for (uint16_t offset = 0; offset <  ssb_patch_content_size; offset += 8)
+    for (uint16_t offset = 0; offset < ssb_patch_content_size; offset += 8)
     {
         Wire.beginTransmission(deviceAddress);
         for (uint16_t i = 0; i < 8; i++)
@@ -3235,7 +3227,7 @@ bool SI4735::downloadCompressedPatch(const uint8_t *ssb_patch_content, const uin
         for (uint16_t i = 0; i < cmd_0x15_size / sizeof(uint16_t); i++)
         {
             if (pgm_read_word_near(cmd_0x15 + i) == command_line)
-            {   // it needs performance improvement: save the last "i" value to be used next time
+            { // it needs performance improvement: save the last "i" value to be used next time
                 cmd = 0x15;
                 break;
             }
@@ -3308,7 +3300,6 @@ void SI4735::loadCompressedPatch(const uint8_t *ssb_patch_content, const uint16_
     setSSBConfig(ssb_audiobw, 1, 0, 0, 0, 1);
     delay(25);
 }
-
 
 /**
  * @ingroup group17 Patch and SSB support
@@ -3384,7 +3375,7 @@ si4735_eeprom_patch_header SI4735::downloadPatchFromEeprom(int eeprom_i2c_addres
 
 /** @defgroup group18 Tools method
  * @details A set of functions used to support other functions
-*/
+ */
 
 /**
  * @ingroup group18 Covert numbers to char array
@@ -3418,7 +3409,8 @@ void SI4735::convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t 
         strValue[dot] = separator;
     }
 
-    if (remove_leading_zeros) {
+    if (remove_leading_zeros)
+    {
         if (strValue[0] == '0')
         {
             strValue[0] = ' ';
@@ -3609,5 +3601,5 @@ void SI4735::setFrequencyNBFM(uint16_t freq)
     Wire.endTransmission();
     waitToSend();                // Wait for the si473x is ready.
     currentWorkFrequency = freq; // check it
-    delay(250); // For some reason I need to delay here.
+    delay(250);                  // For some reason I need to delay here.
 }
