@@ -1040,7 +1040,7 @@ void cleanBfoRdsInfo() {
 void showProgramInfo() {
   char txtAux[21];
 
-  if (programInfo == NULL || strlen(programInfo) < 2 || (millis() - delayProgramInfo) < 1000) return;
+  if (programInfo == NULL || strlen(programInfo) < 2 || (millis() - delayProgramInfo) < 500) return;
   cleanBfoRdsInfo();
   programInfo[61] = '\0';  // Truncate the message to fit on display line
   strncpy(txtAux, &programInfo[progInfoIdx], 21);
