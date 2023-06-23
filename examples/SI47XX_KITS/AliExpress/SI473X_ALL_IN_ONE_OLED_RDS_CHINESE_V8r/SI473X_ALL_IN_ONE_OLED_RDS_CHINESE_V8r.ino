@@ -117,7 +117,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;          // Array of lines where
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
 
-#define DEFAULT_VOLUME 45  // change it for your favorite sound volume
+#define DEFAULT_VOLUME 36  // change it for your favorite sound volume
 
 
 #define FM 0
@@ -1040,14 +1040,13 @@ void cleanBfoRdsInfo() {
 void showProgramInfo() {
   char txtAux[21];
 
-  if (programInfo == NULL || strlen(programInfo) < 2 || (millis() - delayProgramInfo) < 500) return;
+  if (programInfo == NULL || (millis() - delayProgramInfo) < 500) return;
   cleanBfoRdsInfo();
   programInfo[61] = '\0';  // Truncate the message to fit on display line
-  strncpy(txtAux, &programInfo[progInfoIdx], 21);
-  clearRdsText(txtAux,20); // replace unwanted ASCII symbol to space. 
+  strncpy(txtAux, &programInfo[progInfoIdx], sizeof(txtAux));
   txtAux[20] = '\0';
   progInfoIdx += 2;
-  if (progInfoIdx > 60) progInfoIdx = 0;
+  if (progInfoIdx > (60 - sizeof(txtAux)) ) progInfoIdx = 0;
   oled.setCursor(0, 2);
   oled.print(txtAux);
   delayProgramInfo = millis();
@@ -1055,7 +1054,7 @@ void showProgramInfo() {
 
 
 void showStationName() {
-   if (stationName == NULL || strlen(stationName) < 2 || (millis() - delayStationName) < 3000) return;
+    if (stationName == NULL || (millis() - delayStationName) < 3000) return;
     cleanBfoRdsInfo();
     oled.setCursor(0, 2);
     oled.print(stationName);

@@ -117,7 +117,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;          // Array of lines where
 #define MIN_ELAPSED_TIME 100
 #define MIN_ELAPSED_RSSI_TIME 150
 
-#define DEFAULT_VOLUME 45  // change it for your favorite sound volume
+#define DEFAULT_VOLUME 32  // change it for your favorite sound volume
 
 
 #define FM 0
@@ -1059,7 +1059,7 @@ void checkRDS()
   {
     if (si4735.getRdsSync() && si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost())
     {
-      stationName = si4735.getRdsText0A();
+      stationName = si4735.getRdsStationName();
       if (stationName != NULL )
       {
         showRDSStation();

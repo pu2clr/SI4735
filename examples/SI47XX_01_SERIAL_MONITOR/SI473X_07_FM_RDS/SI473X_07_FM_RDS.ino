@@ -50,7 +50,8 @@
 long pulling_rds = millis();
 
 
-uint16_t currentFrequency = 9470; // Your local FM station with RDS/RBDS service
+// uint16_t currentFrequency = 9470; // Your local FM station with RDS/RBDS service
+uint16_t currentFrequency = 9390; // Your local FM station with RDS/RBDS service
 
 char buffer[120];
 
@@ -106,8 +107,9 @@ void showStatus()
   rx.getCurrentReceivedSignalQuality();
 
   currentFrequency = rx.getFrequency();
+
   rx.getCurrentReceivedSignalQuality();
-  sprintf(buffer,"\n> %f5.2 MHz | SNR: %d db | RSSI: %d dBuV", (currentFrequency / 100.0), rx.getCurrentSNR(), rx.getCurrentRSSI() );
+  sprintf(buffer,"\n %u | SNR: %d db | RSSI: %d dBuV", currentFrequency, rx.getCurrentSNR(), rx.getCurrentRSSI() );
   Serial.print(buffer);
 }
 
@@ -138,7 +140,7 @@ void checkRds() {
     strcat(buffer, utcTime);
   }
 
-  Serial.print(buffer);
+  if (strlen(buffer) > 4)  Serial.print(buffer);
 
 }
 
