@@ -51,7 +51,7 @@ long pulling_rds = millis();
 
 
 // uint16_t currentFrequency = 9470; // Your local FM station with RDS/RBDS service
-uint16_t currentFrequency = 9390; // Your local FM station with RDS/RBDS service
+uint16_t currentFrequency = 8990; // Your local FM station with RDS/RBDS service
 
 char buffer[120];
 
@@ -85,6 +85,7 @@ void setup()
   rx.setFM(8400, 10800, currentFrequency, 10);
   delay(500);
   rx.setRdsConfig(3, 3, 3, 3, 3);
+  rx.setFifoCount(1);
   rx.setVolume(40);
   showStatus();
 }
@@ -140,11 +141,13 @@ void checkRds() {
     strcat(buffer, utcTime);
   }
 
-  Serial.print("\nNew Block A: ")
-  Serial.print(rx.getRdsNewBlockA() );
-  Serial.print("\nNew Block B: ")
-  Serial.print(rx.getRdsNewBlockB() );
+  Serial.print("\ngetNumRdsFifoUsed: ");
+  Serial.print(rx.getNumRdsFifoUsed() );
+  Serial.print("\nSync: ");
+  if ( rx.getNumRdsFifoUsed() > 0 ) {
+  Serial.print(rx.getRdsSync() );
   if (strlen(buffer) > 4)  Serial.print(buffer);
+  }
 
 }
 

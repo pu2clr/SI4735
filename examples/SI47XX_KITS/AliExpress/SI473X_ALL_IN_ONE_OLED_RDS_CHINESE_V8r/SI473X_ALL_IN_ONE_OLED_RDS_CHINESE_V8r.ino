@@ -1070,7 +1070,7 @@ void checkRDS()
   si4735.getRdsStatus();
   if (si4735.getRdsReceived())
   {
-    if (si4735.getRdsSync() && si4735.getRdsSyncFound() && !si4735.getRdsSyncLost() && !si4735.getGroupLost())
+    if (si4735.getRdsSync() && si4735.getNumRdsFifoUsed() > 0)
     {
         if ( (millis() - delayMsgTurn) > 30000 ) {
           bShowStationName = !bShowStationName;
@@ -1154,7 +1154,7 @@ void useBand() {
     si4735.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     si4735.setSeekFmSpacing(1);
     bfoOn = ssbLoaded = false;
-    si4735.setRdsConfig(1, 2, 2, 2, 2);
+    si4735.setRdsConfig(3, 3, 3, 3, 3);
     si4735.setFifoCount(1);
     bwIdxFM = band[bandIdx].bandwidthIdx;
     si4735.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
