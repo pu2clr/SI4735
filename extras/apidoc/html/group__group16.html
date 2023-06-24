@@ -1259,7 +1259,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">INTACK</td><td>Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT. </td></tr>
     <tr><td class="paramname">MTFIFO</td><td>0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO. </td></tr>
-    <tr><td class="paramname">STATUSONLY</td><td>Determines if data should be removed from the RDS FIFO. </td></tr>
+    <tr><td class="paramname">STATUSONLY</td><td>Determines if data should be removed from the RDS FIFO. 0 = Data in BLOCKA, BLOCKB, BLOCKC, BLOCKD, and BLE contain the oldest data in the RDS FIFO. 1 = Data in BLOCKA will contain the last valid block A data received for the cur- rent station. Data in BLOCKB will contain the last valid block B data received for the current station. Data in BLE will describe the bit errors for the data in BLOCKA and BLOCKB. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1427,8 +1427,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="class_s_i4735.html#a07ac2f7392dceae88cf87cf34d9960d1">SI4735::rdsEndGroupB</a>.</p>
-
 <p class="reference">Referenced by <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">SI4735::getRdsText0A()</a>, and <a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">SI4735::getRdsText2B()</a>.</p>
 
 </div>
@@ -1456,8 +1454,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="reference">References <a class="el" href="class_s_i4735.html#a4b777d713357d2595e8617a63a32adbe">SI4735::rdsEndGroupA</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__group16.html#ga71cbaa3e0c103db7cee5969d162bec5d">SI4735::getRdsText()</a>, and <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">SI4735::getRdsText2A()</a>.</p>
 
