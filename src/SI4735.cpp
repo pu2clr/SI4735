@@ -2041,7 +2041,9 @@ void SI4735::setRdsIntSource(uint8_t RDSRECV, uint8_t RDSSYNCLOST, uint8_t RDSSY
  * 
  * @param INTACK Interrupt Acknowledge; 0 = RDSINT status preserved. 1 = Clears RDSINT.
  * @param MTFIFO 0 = If FIFO not empty, read and remove oldest FIFO entry; 1 = Clear RDS Receive FIFO.
- * @param STATUSONLY Determines if data should be removed from the RDS FIFO.
+ * @param STATUSONLY Determines if data should be removed from the RDS FIFO. 
+ *                   0 = Data in BLOCKA, BLOCKB, BLOCKC, BLOCKD, and BLE contain the oldest data in the RDS FIFO.
+ *                   1 = Data in BLOCKA will contain the last valid block A data received for the cur- rent station. Data in BLOCKB will contain the last valid block B data received for the current station. Data in BLE will describe the bit errors for the data in BLOCKA and BLOCKB.
  */
 void SI4735::getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY)
 {

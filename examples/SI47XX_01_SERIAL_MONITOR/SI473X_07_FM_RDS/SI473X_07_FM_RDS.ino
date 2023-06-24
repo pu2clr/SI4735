@@ -140,6 +140,10 @@ void checkRds() {
     strcat(buffer, utcTime);
   }
 
+  Serial.print("\nNew Block A: ")
+  Serial.print(rx.getRdsNewBlockA() );
+  Serial.print("\nNew Block B: ")
+  Serial.print(rx.getRdsNewBlockB() );
   if (strlen(buffer) > 4)  Serial.print(buffer);
 
 }
