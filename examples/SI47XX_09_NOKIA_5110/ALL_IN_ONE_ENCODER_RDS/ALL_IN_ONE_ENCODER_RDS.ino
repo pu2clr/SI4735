@@ -591,7 +591,7 @@ void showRSSI()
   else
     rssiAux = 4;
 
-  nokia.drawBitmap(67, 42, (uint8_t *)signalLevel[rssiAux], 17, 6);
+  nokia.drawBitmap(65, 42, (uint8_t *)signalLevel[rssiAux], 17, 6);
 }
 
 /**
@@ -779,17 +779,51 @@ char *stationName;
 char *programInfo;
 char *stationInfo;
 
+bool bShowStationName = true;  
+int  progInfoIdx = 0;
+
 long delayStationName = millis();
+long delayProgramInfo = millis();
 long delayRdsPulling = millis();
+long delayMsgTurn = millis();
+
+
+void clearRdsText(char *txt, int size) {
+  for (int i = 0; i < (size - 1); i++) 
+    if ( txt[i] < 32 ) txt[i] = ' ';
+}
+
+void showRdsText( char *text ) {
+  show(0, 40, "           ");
+  show(0, 40, text);
+}
 
 void showStationName()
 {
   if (stationName == NULL || (millis() - delayStationName) < 3000)
     return;
-  show(0, 40, "              ");
-  show(0, 40, stationName);
+  showRdsText(stationName);
   delayStationName = millis();
 }
+
+
+/**
+  showProgramInfo - Shows the Program Information
+*/
+void showProgramInfo() {
+  char txtAux[11];
+
+  if (programInfo == NULL || (millis() - delayProgramInfo) < 500) return;
+  programInfo[61] = '\0';  // Truncate the message to fit on display line
+  strncpy(txtAux, &programInfo[progInfoIdx], sizeof(txtAux));
+  txtAux[10] = '\0';
+  progInfoIdx += 2;
+  if (progInfoIdx > (60 - sizeof(txtAux)) ) progInfoIdx = 0;
+  clearRdsText(txtAux,sizeof(txtAux));
+  showRdsText(txtAux);
+  delayProgramInfo = millis();
+}
+
 
 void checkRds()
 {
@@ -798,8 +832,19 @@ void checkRds()
   {
     if (rx.getRdsSync() && rx.getNumRdsFifoUsed() > 0)
     {
-      stationName = rx.getRdsStationName();
-      showStationName()
+
+        if ( (millis() - delayMsgTurn) > 30000 ) {
+          bShowStationName = !bShowStationName;
+          progInfoIdx = 0;
+          delayMsgTurn = millis();
+        } 
+        if (bShowStationName) { // time to show Station Name 
+           stationName = rx.getRdsStationName();
+           showStationName();
+        } else { // time to show Program Information
+          programInfo = rx.getRdsProgramInformation();
+          showProgramInfo();
+        }
     }
   }
   delayRdsPulling = millis();
