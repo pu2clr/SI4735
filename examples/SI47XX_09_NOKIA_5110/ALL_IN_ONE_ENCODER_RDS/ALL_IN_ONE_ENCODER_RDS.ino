@@ -735,15 +735,17 @@ void checkRds() {
 
 
   if ((millis() - delayRdsPulling) < 40) return;
-  if (rx.getRdsAllData(&stationName, &stationInfo, &programInfo, &utcTime)) {
-    if (!rx.getRdsSync()) return;
+  // if (rx.getRdsAllData(&stationName, &stationInfo, &programInfo, &utcTime)) {
+    rx.rdsBeginQuery();
+    if (!rx.getRdsSync() || !rx.getNumRdsFifoUsed() < 1) return;
+    stationName = rx.getRdsStationName();
     if (stationName == NULL) return;
-    if (strlen(stationName) < 2 ) return;
-    // if ( (millis() - delayStationName) < 1000 ) return;
-    show(0, 40, "          ");
+    // if (strlen(stationName) < 2 ) return;
+    if ( (millis() - delayStationName) < 1000 ) return;
+    show(0, 40, "              ");
     show(0, 40, stationName);
-    // delayStationName = millis();
-  }
+    delayStationName = millis();
+  //}
   delayRdsPulling = millis();
 }
 
