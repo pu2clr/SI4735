@@ -677,6 +677,84 @@ The list below points to some sketch examples that use RDS implementation.
 * [TFT and Touch examples with RDS support](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS)
 
 
+__ATTENTION:__ 
+While utilizing interrupts is often the preferred approach for capturing RDS messages, applications using Arduino based on ATmega328 face limitations as they can only utilize two pins for interrupts (D2 and D2). These pins are typically allocated for encoder control, leaving no interrupt-capable pins available for FM/RDS application control. In such scenarios, resorting to the polling approach becomes necessary for retrieving RDS messages.
+
+The code below shows the polling approach to get RDS messages.
+
+```cpp
+
+#include <SI4735.h>
+
+#define RESET_PIN 16 // Arduino Nano / UNO pin A2
+
+SI4735 rx;
+void setup()
+{
+  rx.setup(RESET_PIN, FM_FUNCTION);
+  rx.setFM(8400, 10800, currentFrequency, 10);
+  delay(500);
+  rx.setRdsConfig(3, 3, 3, 3, 3);
+  rx.setFifoCount(1);
+}
+
+
+char *utcTime;
+char *stationName;
+char *programInfo;
+char *stationInfo;
+
+void showStationName() {
+  if (stationName != NULL) {
+    // do something
+  }
+}
+
+void showStationInfo() {
+  if (stationInfo != NULL) {
+    // do something
+  }
+}
+
+void showProgramaInfo() {
+  if (programInfo != NULL) {
+    // do something
+  }
+}
+
+void showUtcTime() {
+  if (rdsTime != NULL) {
+    // do something
+  }
+}
+
+void checkRds() {
+ // The char pointer variables above will be populate by the call below. So, these variable (pointers) need to be passed by reference (pointer to pointer). 
+ if (rx.getRdsAllData(&stationName, &stationInfo , &programInfo, &rdsTime) ) {
+      showStationName(stationName); // you need check if stationName is null in showStationName
+      showStationInfo(stationInfo); // you need check if stationInfo is null in showStationInfo
+      showProgramaInfo(programInfo); // you need check if programInfo is null in showProgramaInfo
+      showUtcTime(rdsTime); // you need check if rdsTime is null in showUtcTime
+ }
+}
+
+void loop()
+{
+  .
+  .
+  .
+  if (rx.isCurrentTuneFM()) {
+    checkRds();
+  }
+  .
+  .
+  .
+  delay(5);
+}
+```
+
+
+
 ### SI4735 Patch Support for Single Side Band
 
 The SI4735 class implements a set of methods to apply patches and deal with SSB mode. All API documentation about patches can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html).

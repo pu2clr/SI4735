@@ -1605,7 +1605,43 @@ Functions</h2></td></tr>
 <p>You must call setRDS(true), setRdsFifo(true) before calling getRdsAllData(...)</p>
 <p>ATTENTION: You don't need to call any additional function to obtain the RDS information; simply follow the steps outlined below.</p>
 <p>ATTENTION: If no data is found for the given parameter, it is assigned a NULL value. Prior to using the pointers variable, make sure to check if it is null.</p>
-<p>the right way to call this function is shown below. </p><div class="fragment"><div class="line"><span class="keywordtype">char</span> *stationName, *stationInfo, *programInfo, *rdsTime;</div>
+<p>the right way to call this function is shown below. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group07.html#ga944ed704e2175a6cf660ad65ca5bbad5">setup</a>() {</div>
+<div class="line">  rx.setup(RESET_PIN, FM_FUNCTION);</div>
+<div class="line">  rx.setFM(8400, 10800, <a class="code hl_variable" href="class_s_i4735.html#a4439c40db789f02371ea0fb9b22650c5">currentFrequency</a>, 10);</div>
+<div class="line">  delay(500);</div>
+<div class="line">  rx.setRdsConfig(3, 3, 3, 3, 3);</div>
+<div class="line">  rx.setFifoCount(1);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">char</span> *utcTime;</div>
+<div class="line"><span class="keywordtype">char</span> *stationName;</div>
+<div class="line"><span class="keywordtype">char</span> *programInfo;</div>
+<div class="line"><span class="keywordtype">char</span> *stationInfo;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> showStationName() {</div>
+<div class="line">  <span class="keywordflow">if</span> (stationName != NULL) {</div>
+<div class="line">    <span class="comment">// do something</span></div>
+<div class="line">   }</div>
+<div class="line"> }</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> showStationInfo() {</div>
+<div class="line">  <span class="keywordflow">if</span> (stationInfo != NULL) {</div>
+<div class="line">    <span class="comment">// do something</span></div>
+<div class="line">   }</div>
+<div class="line"> }</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> showProgramaInfo() {</div>
+<div class="line"> <span class="keywordflow">if</span> (programInfo != NULL) {</div>
+<div class="line">   <span class="comment">// do something</span></div>
+<div class="line"> }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> showUtcTime() {</div>
+<div class="line">  <span class="keywordflow">if</span> (rdsTime != NULL) {</div>
+<div class="line">    <span class="comment">// do something</span></div>
+<div class="line">  }</div>
+<div class="line">}</div>
+<div class="line"> </div>
 <div class="line"><span class="comment">// The char pointers above will be populate by the call below. So, the char pointers need to be passed by reference (pointer to pointer).</span></div>
 <div class="line"><span class="keywordflow">if</span> (rx.getRdsAllData(&amp;stationName, &amp;stationInfo , &amp;programInfo, &amp;rdsTime) ) {</div>
 <div class="line">    showProgramaInfo(programInfo); <span class="comment">// you need check if programInfo is null in showProgramaInfo</span></div>
@@ -1613,6 +1649,21 @@ Functions</h2></td></tr>
 <div class="line">    showStationInfo(stationInfo); <span class="comment">// you need check if stationInfo is null in showStationInfo</span></div>
 <div class="line">    showUtcTime(rdsTime); <span class="comment">// // you need check if rdsTime is null in showUtcTime</span></div>
 <div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> loop() {</div>
+<div class="line">  .</div>
+<div class="line">  .</div>
+<div class="line">  .</div>
+<div class="line">  <span class="keywordflow">if</span> (rx.isCurrentTuneFM()) {</div>
+<div class="line">    checkRds();</div>
+<div class="line">  }</div>
+<div class="line">  .</div>
+<div class="line">  .</div>
+<div class="line">  .</div>
+<div class="line">  delay(5);</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_s_i4735_html_a4439c40db789f02371ea0fb9b22650c5"><div class="ttname"><a href="class_s_i4735.html#a4439c40db789f02371ea0fb9b22650c5">SI4735::currentFrequency</a></div><div class="ttdeci">si47x_frequency currentFrequency</div><div class="ttdoc">data structure to get current frequency</div><div class="ttdef"><b>Definition:</b> SI4735.h:1109</div></div>
+<div class="ttc" id="agroup__group07_html_ga944ed704e2175a6cf660ad65ca5bbad5"><div class="ttname"><a href="group__group07.html#ga944ed704e2175a6cf660ad65ca5bbad5">SI4735::setup</a></div><div class="ttdeci">void setup(uint8_t resetPin, uint8_t defaultFunction)</div><div class="ttdoc">Starts the Si473X device.</div><div class="ttdef"><b>Definition:</b> SI4735.cpp:619</div></div>
 </div><!-- fragment --><p>ATTENTION: the parameters below are point to point to array of char. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">stationName</td><td>(reference) - if NOT NULL, point to Name of the Station (char array - 9 bytes) </td></tr>

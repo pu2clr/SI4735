@@ -2361,13 +2361,62 @@ char *SI4735::getRdsText2B(void)
  * @details the right way to call this function is shown below.
  * @code {.cpp}
  *
- * char *stationName, *stationInfo, *programInfo, *rdsTime;
+ * void setup() {
+ *   rx.setup(RESET_PIN, FM_FUNCTION);
+ *   rx.setFM(8400, 10800, currentFrequency, 10);
+ *   delay(500);
+ *   rx.setRdsConfig(3, 3, 3, 3, 3);
+ *   rx.setFifoCount(1);
+ * }
+ *
+ * char *utcTime;
+ * char *stationName;
+ * char *programInfo;
+ * char *stationInfo;
+ * 
+ * void showStationName() {
+ *   if (stationName != NULL) {
+ *     // do something
+ *    }
+ *  }
+ * 
+ * void showStationInfo() {
+ *   if (stationInfo != NULL) {
+ *     // do something
+*     }
+ *  }
+ * 
+ * void showProgramaInfo() {
+ *  if (programInfo != NULL) {
+ *    // do something
+ *  }
+ * }
+ * 
+ * void showUtcTime() {
+ *   if (rdsTime != NULL) {
+ *     // do something
+ *   }
+ * }
+ * 
  * // The char pointers above will be populate by the call below. So, the char pointers need to be passed by reference (pointer to pointer).
  * if (rx.getRdsAllData(&stationName, &stationInfo , &programInfo, &rdsTime) ) {
  *     showProgramaInfo(programInfo); // you need check if programInfo is null in showProgramaInfo
  *     showStationName(stationName); // you need check if stationName is null in showStationName
  *     showStationInfo(stationInfo); // you need check if stationInfo is null in showStationInfo
  *     showUtcTime(rdsTime); // // you need check if rdsTime is null in showUtcTime
+ * }
+ * 
+ * void loop() {
+ *   .
+ *   .
+ *   .
+ *   if (rx.isCurrentTuneFM()) {
+ *     checkRds();
+ *   }
+ *   .
+ *   .
+ *   .
+ *   delay(5);
  * }
  * @endcode
  * @details ATTENTION: the parameters below are point to point to array of char.
