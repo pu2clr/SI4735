@@ -669,6 +669,14 @@ This library implements some RDS features of the SI4735. All functions to deal w
 See [RDS example implementations for more details](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS).
 
 
+The list below points to some sketch examples that use RDS implementation. 
+
+* [ATS-20 and 20+](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V8r) 
+* [All band receiver with Nokia Display and RDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_09_NOKIA_5110/ALL_IN_ONE_ENCODER_RDS) 
+* [All Band receiver with Arduino DUE or Arduino Mega2560, TFT Touch and RDS](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_16_ARDUINO_DUE_MEGA/SI47XX_02_RDS_TFT_TOUCH_SHIELD_35_V2)
+* [TFT and Touch examples with RDS support](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_10_RDS)
+
+
 ### SI4735 Patch Support for Single Side Band
 
 The SI4735 class implements a set of methods to apply patches and deal with SSB mode. All API documentation about patches can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html).
