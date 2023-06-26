@@ -1642,20 +1642,18 @@ Functions</h2></td></tr>
 <div class="line">  }</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// The char pointers above will be populate by the call below. So, the char pointers need to be passed by reference (pointer to pointer).</span></div>
-<div class="line"><span class="keywordflow">if</span> (rx.getRdsAllData(&amp;stationName, &amp;stationInfo , &amp;programInfo, &amp;rdsTime) ) {</div>
-<div class="line">    showProgramaInfo(programInfo); <span class="comment">// you need check if programInfo is null in showProgramaInfo</span></div>
-<div class="line">    showStationName(stationName); <span class="comment">// you need check if stationName is null in showStationName</span></div>
-<div class="line">    showStationInfo(stationInfo); <span class="comment">// you need check if stationInfo is null in showStationInfo</span></div>
-<div class="line">    showUtcTime(rdsTime); <span class="comment">// // you need check if rdsTime is null in showUtcTime</span></div>
-<div class="line">}</div>
-<div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">  .</div>
 <div class="line">  .</div>
 <div class="line">  .</div>
 <div class="line">  <span class="keywordflow">if</span> (rx.isCurrentTuneFM()) {</div>
-<div class="line">    checkRds();</div>
+<div class="line">    <span class="comment">// The char pointers above will be populate by the call below. So, the char pointers need to be passed by reference (pointer to pointer).</span></div>
+<div class="line">    <span class="keywordflow">if</span> (rx.getRdsAllData(&amp;stationName, &amp;stationInfo , &amp;programInfo, &amp;rdsTime) ) {</div>
+<div class="line">        showProgramaInfo(programInfo); <span class="comment">// you need check if programInfo is null in showProgramaInfo</span></div>
+<div class="line">        showStationName(stationName); <span class="comment">// you need check if stationName is null in showStationName</span></div>
+<div class="line">        showStationInfo(stationInfo); <span class="comment">// you need check if stationInfo is null in showStationInfo</span></div>
+<div class="line">        showUtcTime(rdsTime); <span class="comment">// // you need check if rdsTime is null in showUtcTime</span></div>
+<div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line">  .</div>
 <div class="line">  .</div>
