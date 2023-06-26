@@ -97,7 +97,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga7751b076ce0bcb62eade4f92cd8d93a6';
-        sec-mem-ref-line = '3345';
+        sec-mem-ref-line = '3346';
         sec-mem-ref-name = 'downloadPatchFromEeprom';
     };
       sec-mem-referencedby = {
@@ -137,7 +137,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga5507f4d98f389247320eb19b16395a27';
-        sec-mem-ref-line = '2971';
+        sec-mem-ref-line = '2972';
         sec-mem-ref-name = 'getSsbAgcStatus';
     };
       sec-mem-referencedby = {
@@ -147,12 +147,12 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gafaabd6c73b7ad7c20ae959d5b75c1e71';
-        sec-mem-ref-line = '3084';
+        sec-mem-ref-line = '3085';
         sec-mem-ref-name = 'patchPowerUp';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gabed83f2c503dc3b35ca115ef6b08d552';
-        sec-mem-ref-line = '3515';
+        sec-mem-ref-line = '3516';
         sec-mem-ref-name = 'patchPowerUpNBFM';
     };
       sec-mem-referencedby = {
@@ -162,7 +162,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadfc2c82524918224cf19fec5b7fcf6d1';
-        sec-mem-ref-line = '3043';
+        sec-mem-ref-line = '3044';
         sec-mem-ref-name = 'queryLibraryId';
     };
       sec-mem-referencedby = {
@@ -187,7 +187,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2945';
+        sec-mem-ref-line = '2946';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
       sec-mem-referencedby = {
@@ -207,7 +207,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga5c8c57c727fd102f0eb3d59ec995692f';
-        sec-mem-ref-line = '3617';
+        sec-mem-ref-line = '3618';
         sec-mem-ref-name = 'setFrequencyNBFM';
     };
       sec-mem-referencedby = {
@@ -232,17 +232,17 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga2da03a7257b7ca821f984bfa7fef97fa';
-        sec-mem-ref-line = '2998';
+        sec-mem-ref-line = '2999';
         sec-mem-ref-name = 'setSsbAgcOverrite';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga55cf9a091d314a1aa21552f2254f756f';
-        sec-mem-ref-line = '2700';
+        sec-mem-ref-line = '2701';
         sec-mem-ref-name = 'setSSBBfo';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga0fcfd8e487c594707b3f2aaa71a86d68';
-        sec-mem-ref-line = '3100';
+        sec-mem-ref-line = '3101';
         sec-mem-ref-name = 'ssbPowerUp';
     };
     }; /* sec-member */
@@ -989,12 +989,12 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga505445484e643ae95a2a9300eac9c4c1';
-        sec-mem-ref-line = '3558';
+        sec-mem-ref-line = '3559';
         sec-mem-ref-name = 'setNBFM';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga3e907ddf560a0c8286fa55768701b3da';
-        sec-mem-ref-line = '2890';
+        sec-mem-ref-line = '2891';
         sec-mem-ref-name = 'setSSB';
     };
       sec-mem-referencedby = {
@@ -1073,7 +1073,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadfc2c82524918224cf19fec5b7fcf6d1';
-        sec-mem-ref-line = '3043';
+        sec-mem-ref-line = '3044';
         sec-mem-ref-name = 'queryLibraryId';
     };
       sec-mem-referencedby = {
@@ -5063,7 +5063,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gac1f149a2778baa8f6c933482526830a4';
-        sec-mem-ref-line = '2379';
+        sec-mem-ref-line = '2381';
         sec-mem-ref-name = 'getRdsAllData';
     };
     }; /* sec-member */
@@ -5087,7 +5087,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gac1f149a2778baa8f6c933482526830a4';
-        sec-mem-ref-line = '2379';
+        sec-mem-ref-line = '2381';
         sec-mem-ref-name = 'getRdsAllData';
     };
       sec-mem-referencedby = {
@@ -5207,6 +5207,11 @@ _EnD_oF_dEf_TeXt_;
  Returns true if RDS currently synchronized.
 @return true or false
 _EnD_oF_dEf_TeXt_;
+      sec-mem-referencedby = {
+        sec-mem-ref-id = '_s_i4735_8cpp_1gac1f149a2778baa8f6c933482526830a4';
+        sec-mem-ref-line = '2381';
+        sec-mem-ref-name = 'getRdsAllData';
+    };
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
@@ -5807,7 +5812,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gac1f149a2778baa8f6c933482526830a4';
-        sec-mem-ref-line = '2379';
+        sec-mem-ref-line = '2381';
         sec-mem-ref-name = 'getRdsAllData';
     };
       sec-mem-referencedby = {
@@ -5862,7 +5867,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gac1f149a2778baa8f6c933482526830a4';
-        sec-mem-ref-line = '2379';
+        sec-mem-ref-line = '2381';
         sec-mem-ref-name = 'getRdsAllData';
     };
       sec-mem-referencedby = {
@@ -5912,7 +5917,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gac1f149a2778baa8f6c933482526830a4';
-        sec-mem-ref-line = '2379';
+        sec-mem-ref-line = '2381';
         sec-mem-ref-name = 'getRdsAllData';
     };
       sec-mem-referencedby = {
@@ -5962,19 +5967,21 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  This function populates four char pointer variable parameters with Station Name, Station Information, Programa Information and UTC time.
 \ilinebr\ilinebr You must call  setRDS(true), setRdsFifo(true) before calling getRdsAllData(...)
-\ilinebr\ilinebr ATTENTION: the parameters below are point to point to array of char.
+\ilinebr\ilinebr ATTENTION: You don't need to call any additional function to obtain the RDS information; simply follow the steps outlined below. 
+\ilinebr\ilinebr ATTENTION: If no data is found for the given parameter, it is assigned a NULL value. Prior to using the pointers variable, make sure to check if it is null.
 \ilinebr\ilinebr the right way to call this function is shown below.
 @code {.cpp}
 
 char *stationName, *stationInfo, *programInfo, *rdsTime;
 // The char pointers above will be populate by the call below. So, the char pointers need to be passed by reference (pointer to pointer).
 if (rx.getRdsAllData(&stationName, &stationInfo , &programInfo, &rdsTime) ) {
-    showProgramaInfo(programInfo);
-    showStationName(stationName);
-    showStationInfo(stationInfo);
-    showUtcTime(rdsTime);
+    showProgramaInfo(programInfo); // you need check if programInfo is null in showProgramaInfo
+    showStationName(stationName); // you need check if stationName is null in showStationName
+    showStationInfo(stationInfo); // you need check if stationInfo is null in showStationInfo
+    showUtcTime(rdsTime); // // you need check if rdsTime is null in showUtcTime
 }
 @endcode
+\ilinebr\ilinebr ATTENTION: the parameters below are point to point to array of char.
 @param stationName (reference)  - if NOT NULL,  point to Name of the Station (char array -  9 bytes)
 @param stationInformation (reference)  - if NOT NULL, point to Station information (char array - 33 bytes)
 @param programInformation (reference)  - if NOT NULL, point to program information (char array - 65 nytes)
@@ -5986,6 +5993,11 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-ref-id = '_s_i4735_8h_1ga6e8405ea5846fab586080a7be696178e';
         sec-mem-ref-line = '2420';
         sec-mem-ref-name = 'getRdsReceived';
+    };
+      sec-mem-referenceto = {
+        sec-mem-ref-id = '_s_i4735_8h_1ga6e899b37cbc3dcd0ab969724e4008f0f';
+        sec-mem-ref-line = '2476';
+        sec-mem-ref-name = 'getRdsSync';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga12d917629b78fffebac5ecf8f2936921';
@@ -6004,7 +6016,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaa8436bb156f3ac8321c65941be42fdba';
-        sec-mem-ref-line = '2404';
+        sec-mem-ref-line = '2405';
         sec-mem-ref-name = 'getRdsTime';
     };
       sec-mem-referenceto = {
@@ -6187,7 +6199,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gac1f149a2778baa8f6c933482526830a4';
-        sec-mem-ref-line = '2379';
+        sec-mem-ref-line = '2381';
         sec-mem-ref-name = 'getRdsAllData';
     };
     }; /* sec-member */
@@ -6388,7 +6400,7 @@ _EnD_oF_dEf_TeXt_;
 Sets the SSB Beat Frequency Offset (BFO).
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 2694 
+\iline 2695 
 
 @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 5 and 23
 
@@ -6451,7 +6463,7 @@ _EnD_oF_dEf_TeXt_;
 Sets the SSB receiver mode.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 2729 
+\iline 2730 
 
 \ilinebr\ilinebr You can use this method for:
 \ilinebr\ilinebr 1) Enable or disable AFC track to carrier function for receiving normal AM signals;
@@ -6473,7 +6485,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2945';
+        sec-mem-ref-line = '2946';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -6562,7 +6574,7 @@ _EnD_oF_dEf_TeXt_;
 Set the radio to AM function.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 2877 
+\iline 2878 
 
  \xrefitem todo 7.
 
@@ -6602,7 +6614,7 @@ _EnD_oF_dEf_TeXt_;
 SSB Audio Bandwidth for SSB mode.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 2846 
+\iline 2847 
 
 \ilinebr\ilinebr 0 = 1.2 kHz low-pass filter  (default).
 \ilinebr\ilinebr 1 = 2.2 kHz low-pass filter.
@@ -6625,7 +6637,7 @@ to enable the band pass filter for better high- cut performance on the wanted si
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2945';
+        sec-mem-ref-line = '2946';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -6650,7 +6662,7 @@ _EnD_oF_dEf_TeXt_;
 Sets SSB Automatic Volume Control (AVC) for SSB mode.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 2798 
+\iline 2799 
 
 @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24
 
@@ -6658,7 +6670,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2945';
+        sec-mem-ref-line = '2946';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -6683,7 +6695,7 @@ _EnD_oF_dEf_TeXt_;
 Sets SBB Sideband Cutoff Filter for band pass and low pass filters.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 2828 
+\iline 2829 
 
 \ilinebr\ilinebr 0 = Band pass filter to cutoff both the unwanted side band and high frequency components > 2.0 kHz of the wanted side band. (default)
 \ilinebr\ilinebr 1 = Low pass filter to cutoff the unwanted side band.
@@ -6694,7 +6706,7 @@ Other values = not allowed.
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2945';
+        sec-mem-ref-line = '2946';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -6744,7 +6756,7 @@ _EnD_oF_dEf_TeXt_;
 Sets AVC Divider.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 2813 
+\iline 2814 
 
 @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24
 
@@ -6752,7 +6764,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2945';
+        sec-mem-ref-line = '2946';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -6777,7 +6789,7 @@ _EnD_oF_dEf_TeXt_;
 Sets DSP AFC disable or enable.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 2768 
+\iline 2769 
 
 @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24
 
@@ -6785,7 +6797,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2945';
+        sec-mem-ref-line = '2946';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -6810,7 +6822,7 @@ _EnD_oF_dEf_TeXt_;
 Sets SSB Soft-mute Based on RSSI or SNR Selection:
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 2783 
+\iline 2784 
 
 @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; page 24
 
@@ -6818,7 +6830,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gae1d866bfc4cb37c4268c8942b4b4d062';
-        sec-mem-ref-line = '2945';
+        sec-mem-ref-line = '2946';
         sec-mem-ref-name = 'sendSSBModeProperty';
     };
     }; /* sec-member */
@@ -6837,7 +6849,7 @@ _EnD_oF_dEf_TeXt_;
 Set the radio to FM function.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 3547 
+\iline 3548 
 
  \xrefitem todo 8.
 
@@ -6855,7 +6867,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga22adda493bc8278a376c1ba6f6ea4668';
-        sec-mem-ref-line = '3589';
+        sec-mem-ref-line = '3590';
         sec-mem-ref-name = 'setNBFM';
     };
     }; /* sec-member */
@@ -6912,7 +6924,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga505445484e643ae95a2a9300eac9c4c1';
-        sec-mem-ref-line = '3558';
+        sec-mem-ref-line = '3559';
         sec-mem-ref-name = 'setNBFM';
     };
     }; /* sec-member */
@@ -6931,7 +6943,7 @@ _EnD_oF_dEf_TeXt_;
 This method can be used to prepare the device to apply NBFM patch.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 3505 
+\iline 3506 
 
 \ilinebr\ilinebr Call queryLibraryId before call this method. Powerup the device by issuing the POWER_UP
 command with FUNC = 0 (FM Receiver).
@@ -6948,7 +6960,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadd298b10c6c7e760e7233b50500773c3';
-        sec-mem-ref-line = '3534';
+        sec-mem-ref-line = '3535';
         sec-mem-ref-name = 'loadPatchNBFM';
     };
     }; /* sec-member */
@@ -6986,12 +6998,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gabed83f2c503dc3b35ca115ef6b08d552';
-        sec-mem-ref-line = '3515';
+        sec-mem-ref-line = '3516';
         sec-mem-ref-name = 'patchPowerUpNBFM';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadfc2c82524918224cf19fec5b7fcf6d1';
-        sec-mem-ref-line = '3043';
+        sec-mem-ref-line = '3044';
         sec-mem-ref-name = 'queryLibraryId';
     };
     }; /* sec-member */
@@ -7049,7 +7061,7 @@ _EnD_oF_dEf_TeXt_;
 SI47XX PATCH RESOURCES
     
 
-\iline 3024 
+\iline 3025 
 
 \ilinebr\ilinebr Used to confirm if the patch is compatible with the internal device library revision.
 
@@ -7080,17 +7092,17 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga03bfe4b1e5ec84b7a933309095215f38';
-        sec-mem-ref-line = '3315';
+        sec-mem-ref-line = '3316';
         sec-mem-ref-name = 'loadCompressedPatch';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga591bbfe4dbd39a6de29a37935a6abee5';
-        sec-mem-ref-line = '3287';
+        sec-mem-ref-line = '3288';
         sec-mem-ref-name = 'loadPatch';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadd298b10c6c7e760e7233b50500773c3';
-        sec-mem-ref-line = '3534';
+        sec-mem-ref-line = '3535';
         sec-mem-ref-name = 'loadPatchNBFM';
     };
     }; /* sec-member */
@@ -7109,7 +7121,7 @@ _EnD_oF_dEf_TeXt_;
 This method can be used to prepare the device to apply SSBRX patch.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 3074 
+\iline 3075 
 
 \ilinebr\ilinebr Call queryLibraryId before call this method. Powerup the device by issuing the POWER_UP
 command with FUNC = 1 (AM/SW/LW Receive).
@@ -7126,12 +7138,12 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga03bfe4b1e5ec84b7a933309095215f38';
-        sec-mem-ref-line = '3315';
+        sec-mem-ref-line = '3316';
         sec-mem-ref-name = 'loadCompressedPatch';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga591bbfe4dbd39a6de29a37935a6abee5';
-        sec-mem-ref-line = '3287';
+        sec-mem-ref-line = '3288';
         sec-mem-ref-name = 'loadPatch';
     };
     }; /* sec-member */
@@ -7162,7 +7174,7 @@ _EnD_oF_dEf_TeXt_;
 Transfers the content of a patch stored in a array of bytes to the SI4735 device.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 3121 
+\iline 3122 
 
 \ilinebr\ilinebr You must mount an array as shown below and know the size of that array as well.
 
@@ -7321,12 +7333,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gafaabd6c73b7ad7c20ae959d5b75c1e71';
-        sec-mem-ref-line = '3084';
+        sec-mem-ref-line = '3085';
         sec-mem-ref-name = 'patchPowerUp';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadfc2c82524918224cf19fec5b7fcf6d1';
-        sec-mem-ref-line = '3043';
+        sec-mem-ref-line = '3044';
         sec-mem-ref-name = 'queryLibraryId';
     };
     }; /* sec-member */
@@ -7388,12 +7400,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gafaabd6c73b7ad7c20ae959d5b75c1e71';
-        sec-mem-ref-line = '3084';
+        sec-mem-ref-line = '3085';
         sec-mem-ref-name = 'patchPowerUp';
     };
       sec-mem-referenceto = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gadfc2c82524918224cf19fec5b7fcf6d1';
-        sec-mem-ref-line = '3043';
+        sec-mem-ref-line = '3044';
         sec-mem-ref-name = 'queryLibraryId';
     };
     }; /* sec-member */
@@ -8089,37 +8101,37 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga6b2ad4d027463262350134490d16bf32';
-        sec-mem-ref-line = '2867';
+        sec-mem-ref-line = '2868';
         sec-mem-ref-name = 'setSSBAudioBandwidth';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gacacf1dac4c0ec170d1da629dd1fd30cb';
-        sec-mem-ref-line = '2804';
+        sec-mem-ref-line = '2805';
         sec-mem-ref-name = 'setSSBAutomaticVolumeControl';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gafc5e87c50a1eba6de9504c114cc1cb70';
-        sec-mem-ref-line = '2819';
+        sec-mem-ref-line = '2820';
         sec-mem-ref-name = 'setSSBAvcDivider';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga9224e7d4ef14c887da96dbefd2dcefd3';
-        sec-mem-ref-line = '2749';
+        sec-mem-ref-line = '2750';
         sec-mem-ref-name = 'setSSBConfig';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga6cde26a5abf759a628012d1457d85c72';
-        sec-mem-ref-line = '2774';
+        sec-mem-ref-line = '2775';
         sec-mem-ref-name = 'setSSBDspAfc';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga7554815b6d83128c5b15206e69c51f9f';
-        sec-mem-ref-line = '2837';
+        sec-mem-ref-line = '2838';
         sec-mem-ref-name = 'setSSBSidebandCutoffFilter';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga91251dfc2ff9488aaef3aa1a528097d9';
-        sec-mem-ref-line = '2789';
+        sec-mem-ref-line = '2790';
         sec-mem-ref-name = 'setSSBSoftMute';
     };
     }; /* sec-member */
@@ -8470,12 +8482,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1ga5579fd16c75370bf36b1633fc00ec033';
-        sec-mem-ref-line = '2579';
+        sec-mem-ref-line = '2580';
         sec-mem-ref-name = 'getRdsDateTime';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_s_i4735_8cpp_1gaa8436bb156f3ac8321c65941be42fdba';
-        sec-mem-ref-line = '2404';
+        sec-mem-ref-line = '2405';
         sec-mem-ref-name = 'getRdsTime';
     };
     }; /* sec-member */

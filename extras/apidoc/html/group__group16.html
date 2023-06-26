@@ -637,6 +637,8 @@ Functions</h2></td></tr>
 <p>Get the Rds Sync. </p>
 <p>Returns true if RDS currently synchronized. </p><dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
 
+<p class="reference">Referenced by <a class="el" href="group__group16.html#gac1f149a2778baa8f6c933482526830a4">SI4735::getRdsAllData()</a>.</p>
+
 </div>
 </div>
 <a id="ga8db437efc42a81466d8daf4dcc35c50c" name="ga8db437efc42a81466d8daf4dcc35c50c"></a>
@@ -1601,16 +1603,17 @@ Functions</h2></td></tr>
 <p>Gets Station Name, Station Information, Program Information and utcTime. </p>
 <p>This function populates four char pointer variable parameters with Station Name, Station Information, Programa Information and UTC time.</p>
 <p>You must call setRDS(true), setRdsFifo(true) before calling getRdsAllData(...)</p>
-<p>ATTENTION: the parameters below are point to point to array of char.</p>
+<p>ATTENTION: You don't need to call any additional function to obtain the RDS information; simply follow the steps outlined below.</p>
+<p>ATTENTION: If no data is found for the given parameter, it is assigned a NULL value. Prior to using the pointers variable, make sure to check if it is null.</p>
 <p>the right way to call this function is shown below. </p><div class="fragment"><div class="line"><span class="keywordtype">char</span> *stationName, *stationInfo, *programInfo, *rdsTime;</div>
 <div class="line"><span class="comment">// The char pointers above will be populate by the call below. So, the char pointers need to be passed by reference (pointer to pointer).</span></div>
 <div class="line"><span class="keywordflow">if</span> (rx.getRdsAllData(&amp;stationName, &amp;stationInfo , &amp;programInfo, &amp;rdsTime) ) {</div>
-<div class="line">    showProgramaInfo(programInfo);</div>
-<div class="line">    showStationName(stationName);</div>
-<div class="line">    showStationInfo(stationInfo);</div>
-<div class="line">    showUtcTime(rdsTime);</div>
+<div class="line">    showProgramaInfo(programInfo); <span class="comment">// you need check if programInfo is null in showProgramaInfo</span></div>
+<div class="line">    showStationName(stationName); <span class="comment">// you need check if stationName is null in showStationName</span></div>
+<div class="line">    showStationInfo(stationInfo); <span class="comment">// you need check if stationInfo is null in showStationInfo</span></div>
+<div class="line">    showUtcTime(rdsTime); <span class="comment">// // you need check if rdsTime is null in showUtcTime</span></div>
 <div class="line">}</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><p>ATTENTION: the parameters below are point to point to array of char. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">stationName</td><td>(reference) - if NOT NULL, point to Name of the Station (char array - 9 bytes) </td></tr>
     <tr><td class="paramname">stationInformation</td><td>(reference) - if NOT NULL, point to Station information (char array - 33 bytes) </td></tr>
@@ -1622,7 +1625,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>True if found at least one valid data </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>setRDS, setRdsFifo, <a class="el" href="group__group16.html#gac1f149a2778baa8f6c933482526830a4" title="Gets Station Name, Station Information, Program Information and utcTime.">getRdsAllData</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="group__group16.html#ga6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived()</a>, <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">SI4735::getRdsText0A()</a>, <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">SI4735::getRdsText2A()</a>, <a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">SI4735::getRdsText2B()</a>, <a class="el" href="group__group16.html#gaa8436bb156f3ac8321c65941be42fdba">SI4735::getRdsTime()</a>, and <a class="el" href="group__group16.html#ga59122f18fd887bbcb888ecf785871635">SI4735::rdsBeginQuery()</a>.</p>
+<p class="reference">References <a class="el" href="group__group16.html#ga6e8405ea5846fab586080a7be696178e">SI4735::getRdsReceived()</a>, <a class="el" href="group__group16.html#ga6e899b37cbc3dcd0ab969724e4008f0f">SI4735::getRdsSync()</a>, <a class="el" href="group__group16.html#ga12d917629b78fffebac5ecf8f2936921">SI4735::getRdsText0A()</a>, <a class="el" href="group__group16.html#gae54d0f5562ca7615c3b90bee00c29ab4">SI4735::getRdsText2A()</a>, <a class="el" href="group__group16.html#ga806d5cfbbeb6ca1299ce20b1220fdb18">SI4735::getRdsText2B()</a>, <a class="el" href="group__group16.html#gaa8436bb156f3ac8321c65941be42fdba">SI4735::getRdsTime()</a>, and <a class="el" href="group__group16.html#ga59122f18fd887bbcb888ecf785871635">SI4735::rdsBeginQuery()</a>.</p>
 
 </div>
 </div>
