@@ -1318,7 +1318,7 @@ void loop()
   if (rx.isCurrentTuneFM()) {
     checkRds();
     if (previousFrequency != currentFrequency) {
-      showRdsText("SI473X");
+      showRdsText((char *) "SI473X");
       previousFrequency = currentFrequency;
     }
   }

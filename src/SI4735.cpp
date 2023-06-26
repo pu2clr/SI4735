@@ -2382,7 +2382,7 @@ bool SI4735::getRdsAllData(char **stationName, char **stationInformation, char *
 {
     this->rdsBeginQuery();
     if (!this->getRdsReceived())  return false;
-    if (!rx.getRdsSync() || rx.getNumRdsFifoUsed() == 0) return false;
+    if (!this->getRdsSync() || this->getNumRdsFifoUsed() == 0) return false;
     *stationName = this->getRdsText0A();        // returns NULL if no information
     *stationInformation = this->getRdsText2B(); // returns NULL if no information
     *programInformation = this->getRdsText2A(); // returns NULL if no information
