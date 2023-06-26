@@ -1315,8 +1315,13 @@ void loop()
     elapsedClick = millis();
   }
 
-  if (rx.isCurrentTuneFM())
+  if (rx.isCurrentTuneFM()) {
     checkRds();
+    if (previousFrequency != currentFrequency) {
+      showRdsText("SI473X");
+      previousFrequency = currentFrequency;
+    }
+  }
 
   // Show the current frequency only if it has changed
   if (itIsTimeToSave)
