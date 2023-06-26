@@ -2398,20 +2398,18 @@ char *SI4735::getRdsText2B(void)
  *   }
  * }
  * 
- * // The char pointers above will be populate by the call below. So, the char pointers need to be passed by reference (pointer to pointer).
- * if (rx.getRdsAllData(&stationName, &stationInfo , &programInfo, &rdsTime) ) {
- *     showProgramaInfo(programInfo); // you need check if programInfo is null in showProgramaInfo
- *     showStationName(stationName); // you need check if stationName is null in showStationName
- *     showStationInfo(stationInfo); // you need check if stationInfo is null in showStationInfo
- *     showUtcTime(rdsTime); // // you need check if rdsTime is null in showUtcTime
- * }
- * 
  * void loop() {
  *   .
  *   .
  *   .
  *   if (rx.isCurrentTuneFM()) {
- *     checkRds();
+ *     // The char pointers above will be populate by the call below. So, the char pointers need to be passed by reference (pointer to pointer).
+ *     if (rx.getRdsAllData(&stationName, &stationInfo , &programInfo, &rdsTime) ) {
+ *         showProgramaInfo(programInfo); // you need check if programInfo is null in showProgramaInfo
+ *         showStationName(stationName); // you need check if stationName is null in showStationName
+ *         showStationInfo(stationInfo); // you need check if stationInfo is null in showStationInfo
+ *         showUtcTime(rdsTime); // // you need check if rdsTime is null in showUtcTime
+ *     }
  *   }
  *   .
  *   .
