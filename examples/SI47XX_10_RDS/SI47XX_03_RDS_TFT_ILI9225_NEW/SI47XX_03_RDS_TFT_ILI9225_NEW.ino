@@ -568,20 +568,18 @@ long delatRdsTime = millis();
 bool bShowStationName = true;  
 int  progInfoIdx = 0;
 
-
-
 /**
   showProgramInfo - Shows the Program Information
 */
 void showProgramInfo() {
-  char txtAux[25];
-  if (programInfo == NULL || (millis() - delayProgramInfo) < 500) return;
-  programInfo[60] = '\0';  // Truncate the message to fit on display line
+  char txtAux[30];
+  if (programInfo == NULL || (millis() - delayProgramInfo) < 300) return;
+  programInfo[60] = '\0';  // Removes unwanted characters from the RDS program information 
+  rx.removeUnwantedChar(programInfo,60);
   strncpy(txtAux, &programInfo[progInfoIdx], sizeof(txtAux));
   txtAux[sizeof(txtAux) - 1] = '\0';
-  progInfoIdx += 2;
+  progInfoIdx++;
   if (progInfoIdx > (60 - sizeof(txtAux) -1) ) progInfoIdx = 0;
-  memset(bufferRdsMsg,0,sizeof(bufferRdsMsg)); // just testing
   printValue(5, 90, bufferRdsMsg, txtAux, COLOR_GREEN, 6);
   delayProgramInfo = millis();
 }
@@ -596,9 +594,14 @@ void showRDSStation() {
 }
 
 void showRDSTime() {
-  if ( rdsTime == NULL || (millis() - delayProgramInfo) < 55000) return;
+  if ( rdsTime == NULL || (millis() - delatRdsTime) < 55000) return;
   printValue(100, 110, bufferRdsTime, rdsTime, COLOR_GREEN, 6);
-  delayProgramInfo = millis();
+  delatRdsTime = millis();
+}
+
+void clearRdsBuffer() {
+      bufferStatioName[0] = bufferRdsMsg[0] =  bufferRdsTime[0] = '\0';
+      programInfo = stationName = rdsTime = NULL;  
 }
 
 void checkRDS() {
@@ -746,6 +749,7 @@ void useBand()
     rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     bfoOn = ssbLoaded = false;
     rx.setRdsConfig(3, 3, 3, 3, 3);
+    clearRdsBuffer();
   }
   else
   {
@@ -831,6 +835,7 @@ void doStep(int8_t v) {
 void doSeek() {
   rx.seekStationProgress(showFrequencySeek, seekDirection);
   currentFrequency = rx.getFrequency();
+  if ( currentMode == FM) clearRdsBuffer() ;   
 }
 
 
@@ -1044,7 +1049,7 @@ void loop()
   if ( currentMode == FM) {
     if ( currentFrequency != previousFrequency ) {
       tft.fillRectangle(3, 90,  tft.maxX() - 5, 120, COLOR_BLACK);
-      bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] =  bufferRdsTime[0] = programInfo[0] = stationName[0] = '\0';
+      clearRdsBuffer();
       showProgramInfo();
       showRDSStation();
       previousFrequency = currentFrequency;

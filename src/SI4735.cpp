@@ -2691,6 +2691,7 @@ char *SI4735::getRdsDateTime()
 
 
 
+
 /**
  * @defgroup group17 Si4735-D60 Single Side Band (SSB) support
  *
@@ -3496,6 +3497,20 @@ void SI4735::convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t 
                 strValue[1] = ' ';
         }
     }
+}
+
+
+/**
+ * @ingroup group18 
+ * @brief  Removes unwanted character from char array 
+ * @details replaces non-printable characters to spaces
+ * @param *str - string char array
+ * @param size - char array size
+ */
+void SI4735::removeUnwantedChar(char *str, int size) {
+  for (int i = 0; str[i] != '\0' && i < size; i++) 
+    if ( str[i] != 0 && str[i] < 32 ) str[i] = ' ';
+    str[size-1] = '\0';
 }
 
 /**

@@ -2847,5 +2847,6 @@ public:
     }
 
     void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator, bool remove_leading_zeros = true);
+    void removeUnwantedChar(char *str, int size);
 };
 #endif // _SI4735_H
