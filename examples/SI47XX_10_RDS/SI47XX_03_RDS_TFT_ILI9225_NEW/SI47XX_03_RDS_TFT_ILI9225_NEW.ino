@@ -554,53 +554,63 @@ void showBandwidth() {
 }
 
 
-char *rdsMsg;
+char *programInfo;
 char *stationName;
 char *rdsTime;
 char bufferStatioName[40];
-char bufferRdsMsg[40];
+char bufferRdsMsg[65];
 char bufferRdsTime[32];
 
-long stationNameElapsed = millis();
+long delayStationName = millis();
+long delayProgramInfo = millis(); 
+long delatRdsTime = millis();
 
-void showRDSMsg() {
-  rdsMsg[35] = bufferRdsMsg[35] = '\0';
-  if (strcmp(bufferRdsMsg, rdsMsg) == 0) return;
-  printValue(5, 90, bufferRdsMsg, rdsMsg, COLOR_GREEN, 6);
-  delay(250);
+bool bShowStationName = true;  
+int  progInfoIdx = 0;
+
+
+
+/**
+  showProgramInfo - Shows the Program Information
+*/
+void showProgramInfo() {
+  char txtAux[25];
+  if (programInfo == NULL || (millis() - delayProgramInfo) < 500) return;
+  programInfo[61] = '\0';  // Truncate the message to fit on display line
+  strncpy(txtAux, &programInfo[progInfoIdx], sizeof(txtAux) - 2);
+    bufferRdsMsg[0] = txtAux[sizeof(txtAux) - 1] = '\0';
+  progInfoIdx += 2;
+  if (progInfoIdx > (60 - sizeof(txtAux)) ) progInfoIdx = 0;
+  printValue(5, 90, bufferRdsMsg, txtAux, COLOR_GREEN, 6);
+  delayProgramInfo = millis();
 }
 
 /**
    TODO: process RDS Dynamic PS or Scrolling PS
 */
 void showRDSStation() {
-  if (strncmp(bufferStatioName, stationName, 3) == 0 ) return;
-  printValue(5, 110, bufferStatioName, stationName, COLOR_GREEN, 6);
-  // for( int i = 0; i < 8; i++ ) stationName[i] = '\0';
+    if (stationName == NULL || (millis() - delayStationName) < 3000) return;
+    printValue(5, 110, bufferStatioName, stationName, COLOR_GREEN, 6);
+    delayStationName = millis();  
 }
 
 void showRDSTime() {
-  if (strcmp(bufferRdsTime, rdsTime) == 0 ) return;
+  if ( rdsTime == NULL || (millis() - delayProgramInfo) < 55000) return;
   printValue(100, 110, bufferRdsTime, rdsTime, COLOR_GREEN, 6);
-  delay(100);
+  delayProgramInfo = millis();
 }
 
 void checkRDS() {
   tft.setFont(Terminal6x8);
   rx.getRdsStatus();
   if (rx.getRdsReceived()) {
-    if (rx.getRdsSync() && rx.getRdsSyncFound() ) {
-      rdsMsg = rx.getRdsText2A();
-      stationName = rx.getRdsText0A();
+    if (rx.getRdsSync() && rx.getNumRdsFifoUsed() > 0 ) {
+      programInfo = rx.getRdsProgramInformation();
+      stationName = rx.getRdsStationName();
       rdsTime = rx.getRdsTime();
-      if ( rdsMsg != NULL )   showRDSMsg();
-
-      if ( (millis() - stationNameElapsed) > 2000 ) {
-        if ( stationName != NULL && rx.getRdsNewBlockA() )   showRDSStation();
-        stationNameElapsed = millis();
-      }
-
-      if ( rdsTime != NULL ) showRDSTime();
+      showProgramInfo();
+      showRDSStation();
+      showRDSTime();
     }
   }
 }
@@ -734,7 +744,7 @@ void useBand()
     rx.setFM(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq, band[bandIdx].currentFreq, band[bandIdx].currentStep);
     rx.setSeekFmLimits(band[bandIdx].minimumFreq, band[bandIdx].maximumFreq);
     bfoOn = ssbLoaded = false;
-    rx.setRdsConfig(1, 2, 2, 2, 2);
+    rx.setRdsConfig(3, 3, 3, 3, 3);
   }
   else
   {
@@ -1033,8 +1043,8 @@ void loop()
   if ( currentMode == FM) {
     if ( currentFrequency != previousFrequency ) {
       tft.fillRectangle(3, 90,  tft.maxX() - 5, 120, COLOR_BLACK);
-      bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] =  bufferRdsTime[0] = rdsMsg[0] = stationName[0] = '\0';
-      showRDSMsg();
+      bufferStatioName[0] = bufferRdsMsg[0] = rdsTime[0] =  bufferRdsTime[0] = programInfo[0] = stationName[0] = '\0';
+      showProgramInfo();
       showRDSStation();
       previousFrequency = currentFrequency;
     }
