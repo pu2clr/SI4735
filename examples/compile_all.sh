@@ -139,7 +139,7 @@ arduino-cli compile --fqbn arduino:avr:mega ./SI47XX_16_ARDUINO_DUE_MEGA/SI47XX_
 
 # compiles SI47XX_03_RDS_TFT_ILI9225_NEW on Arduino Nano
 echo "Arduino Nano - RDS TFT"
-arduino-cli compile -b arduino:avr:nano ./SI47XX_10_RDS/SI47XX_03_RDS_TFT_ILI9225_NEW
+arduino-cli compile -b arduino:avr:nano ./SI47XX_10_RDS/SI47XX_03_RDS_TFT_ILI9225
 
 # compiles STM32 sketch
 echo "STM32"
