@@ -2489,6 +2489,9 @@ char *SI4735::getRdsTime()
 
         // Using convertToChar instead sprintf to save space (about 1.2K on ATmega328 compiler tools).
     
+        if (offset_h > 12 || offset_m > 60 || hour > 24 || minute > 60)
+            return NULL;
+
         this->convertToChar(hour, rds_time, 2, 0, ' ', false);
         rds_time[2] = ':';
         this->convertToChar(minute, &rds_time[3], 2, 0, ' ', false);
@@ -2604,6 +2607,9 @@ bool SI4735::getRdsDateTime(uint16_t *rYear, uint16_t *rMonth, uint16_t *rDay, u
         hour = (uint16_t)local_minute / 60;
         minute = local_minute - ( hour * 60);
 
+        if (hour > 24 || minute > 60 || day > 31 || month > 12 )
+            return false;
+
         *rYear = (uint16_t)year;
         *rMonth = (uint16_t) month;
         *rDay = (uint16_t) day;
@@ -2666,6 +2672,9 @@ char *SI4735::getRdsDateTime()
 
         // Converting the result to array char - 
         // Using convertToChar instead sprintf to save space (about 1.2K on ATmega328 compiler tools).
+
+        if (offset_h > 12 || offset_m > 60 || hour > 24 || minute > 60 || day > 31 || month > 12 )
+            return NULL;
 
         this->convertToChar(year, rds_time, 4, 0, ' ', false);
         rds_time[4] = '-';
