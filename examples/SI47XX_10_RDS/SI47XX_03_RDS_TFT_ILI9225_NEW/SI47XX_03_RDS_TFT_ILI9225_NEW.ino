@@ -576,11 +576,12 @@ int  progInfoIdx = 0;
 void showProgramInfo() {
   char txtAux[25];
   if (programInfo == NULL || (millis() - delayProgramInfo) < 500) return;
-  programInfo[61] = '\0';  // Truncate the message to fit on display line
-  strncpy(txtAux, &programInfo[progInfoIdx], sizeof(txtAux) - 2);
-    bufferRdsMsg[0] = txtAux[sizeof(txtAux) - 1] = '\0';
+  programInfo[60] = '\0';  // Truncate the message to fit on display line
+  strncpy(txtAux, &programInfo[progInfoIdx], sizeof(txtAux));
+  txtAux[sizeof(txtAux) - 1] = '\0';
   progInfoIdx += 2;
-  if (progInfoIdx > (60 - sizeof(txtAux)) ) progInfoIdx = 0;
+  if (progInfoIdx > (60 - sizeof(txtAux) -1) ) progInfoIdx = 0;
+  memset(bufferRdsMsg,0,sizeof(bufferRdsMsg)); // just testing
   printValue(5, 90, bufferRdsMsg, txtAux, COLOR_GREEN, 6);
   delayProgramInfo = millis();
 }
