@@ -21,11 +21,12 @@ var searchData=
   ['refclockprescale_18',['refClockPrescale',['../class_s_i4735.html#a9a9b7b8edceaf2bba16766c29af3b0a2',1,'SI4735']]],
   ['refclocksourcepin_19',['refClockSourcePin',['../class_s_i4735.html#a57f9da1eec6479f905f34e83f69eb3b6',1,'SI4735']]],
   ['refined_20',['refined',['../group__group01.html#a1ac420bbf82359094748a4f97304adb8',1,'si47x_status::refined()'],['../group__group01.html#ab5540a81bf1596dbbc015ef2f458a5b1',1,'si47x_rds_int_source::refined()'],['../group__group01.html#a404ba554979caaf39c11a7783a596bd1',1,'si47x_rds_blocka::refined()'],['../group__group01.html#ad3111bc05fa4a108d7d7eadf0dbe94ba',1,'si47x_rds_blockb::refined()'],['../group__group01.html#aca88dde0784fe180c29a66b4e0b65104',1,'si47x_rds_date_time::refined()'],['../group__group01.html#aac4fc78ed4e4f265c74a9e50c2e63592',1,'si47x_agc_status::refined()'],['../group__group01.html#a2f5af498b9dfe1e33765207842b3796d',1,'si4735_digital_output_format::refined()'],['../group__group01.html#a206c5907140c242eff43969fdbf1ee39',1,'si4735_eeprom_patch_header::refined()']]],
-  ['reset_21',['reset',['../group__group06.html#gadc6014674bd4d1ee3aab56c605926db1',1,'SI4735']]],
-  ['resetendindicatorgroupa_22',['resetEndIndicatorGroupA',['../group__group16.html#ga339af59bbaefd8d60ba9b26e742bc01e',1,'SI4735']]],
-  ['resetendindicatorgroupb_23',['resetEndIndicatorGroupB',['../group__group16.html#ga11a5d5eb070466b488e5adec650e625e',1,'SI4735']]],
-  ['resetpin_24',['resetPin',['../class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e',1,'SI4735']]],
-  ['resp_25',['resp',['../group__group01.html#aa8d3424f318eb0c292eed612f5710c44',1,'si47x_response_status::resp()'],['../group__group01.html#a4f71bb27ff0e3ba8de0412d43a63010e',1,'si47x_firmware_information::resp()'],['../group__group01.html#a4b1bc1ed10aa884ede69b0ae5561cbba',1,'si47x_firmware_query_library::resp()'],['../group__group01.html#af86aa3d6afe48037aa0a364388d29d57',1,'si47x_rqs_status::resp()'],['../group__group01.html#a48fe19756bd1b858964dd8a74c5651a3',1,'si47x_rds_status::resp()']]],
-  ['rx_5fhard_5fmute_26',['RX_HARD_MUTE',['../_s_i4735_8h.html#a5d8cbc8d5c6630e874f1f8b14b897be2',1,'SI4735.h']]],
-  ['rx_5fvolume_27',['RX_VOLUME',['../_s_i4735_8h.html#aeb1de40ffb7cb51cf4a151f5d1b746d7',1,'SI4735.h']]]
+  ['removeunwantedchar_21',['removeUnwantedChar',['../group__group18.html#ga8a42350f66c17582b3346198f041e301',1,'SI4735']]],
+  ['reset_22',['reset',['../group__group06.html#gadc6014674bd4d1ee3aab56c605926db1',1,'SI4735']]],
+  ['resetendindicatorgroupa_23',['resetEndIndicatorGroupA',['../group__group16.html#ga339af59bbaefd8d60ba9b26e742bc01e',1,'SI4735']]],
+  ['resetendindicatorgroupb_24',['resetEndIndicatorGroupB',['../group__group16.html#ga11a5d5eb070466b488e5adec650e625e',1,'SI4735']]],
+  ['resetpin_25',['resetPin',['../class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e',1,'SI4735']]],
+  ['resp_26',['resp',['../group__group01.html#aa8d3424f318eb0c292eed612f5710c44',1,'si47x_response_status::resp()'],['../group__group01.html#a4f71bb27ff0e3ba8de0412d43a63010e',1,'si47x_firmware_information::resp()'],['../group__group01.html#a4b1bc1ed10aa884ede69b0ae5561cbba',1,'si47x_firmware_query_library::resp()'],['../group__group01.html#af86aa3d6afe48037aa0a364388d29d57',1,'si47x_rqs_status::resp()'],['../group__group01.html#a48fe19756bd1b858964dd8a74c5651a3',1,'si47x_rds_status::resp()']]],
+  ['rx_5fhard_5fmute_27',['RX_HARD_MUTE',['../_s_i4735_8h.html#a5d8cbc8d5c6630e874f1f8b14b897be2',1,'SI4735.h']]],
+  ['rx_5fvolume_28',['RX_VOLUME',['../_s_i4735_8h.html#aeb1de40ffb7cb51cf4a151f5d1b746d7',1,'SI4735.h']]]
 ];

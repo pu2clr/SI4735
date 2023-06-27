@@ -246,6 +246,7 @@ var class_s_i4735 =
     [ "setAudioMuteMcuPin", "group__group18.html#ga0a4b4ffbb7e3f2555a16e194eecfc6a1", null ],
     [ "setHardwareAudioMute", "group__group18.html#ga54a3a0f412aa6318df0046d478bd134f", null ],
     [ "convertToChar", "group__group18.html#ga133ec11bfc2c68100b47a63da4484767", null ],
+    [ "removeUnwantedChar", "group__group18.html#ga8a42350f66c17582b3346198f041e301", null ],
     [ "rds_buffer2A", "class_s_i4735.html#a0b40791484c47c0bf90d8dc255a20269", null ],
     [ "rds_buffer2B", "class_s_i4735.html#a7aa607f80e97d45ac7a80cdcbdeb09f9", null ],
     [ "rds_buffer0A", "class_s_i4735.html#ac24a8bbd39628c2981208cb452165a0e", null ],
