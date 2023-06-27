@@ -2261,12 +2261,14 @@ char *SI4735::getRdsText0A(void)
 {
     si47x_rds_blockb blkB;
 
-    // getRdsStatus();
-
     if (getRdsReceived())
     {
         if (getRdsGroupType() == 0)
         {
+            if ( lastTextFlagAB != this->getRdsFlagAB() )  {
+                 lastTextFlagAB = this->getRdsFlagAB(); 
+                 this->clearRdsBuffer0A();
+            } 
             // Process group type 0
             blkB.raw.highValue = currentRdsStatus.resp.BLOCKBH;
             blkB.raw.lowValue = currentRdsStatus.resp.BLOCKBL;
