@@ -6,5 +6,6 @@ var group__group18 =
     [ "SI4735::setI2CFastModeCustom", "group__group18.html#ga7433b4e80fd3b501efeae7973d29c985", null ],
     [ "SI4735::setAudioMuteMcuPin", "group__group18.html#ga0a4b4ffbb7e3f2555a16e194eecfc6a1", null ],
     [ "SI4735::setHardwareAudioMute", "group__group18.html#ga54a3a0f412aa6318df0046d478bd134f", null ],
-    [ "SI4735::convertToChar", "group__group18.html#ga133ec11bfc2c68100b47a63da4484767", null ]
+    [ "SI4735::convertToChar", "group__group18.html#ga133ec11bfc2c68100b47a63da4484767", null ],
+    [ "SI4735::removeUnwantedChar", "group__group18.html#ga8a42350f66c17582b3346198f041e301", null ]
 ];
