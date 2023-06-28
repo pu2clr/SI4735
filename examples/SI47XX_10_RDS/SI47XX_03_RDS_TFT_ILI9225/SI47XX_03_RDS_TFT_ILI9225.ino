@@ -90,10 +90,12 @@
 #include "TFT_22_ILI9225.h"  //  See https://github.com/Nkawu/TFT_22_ILI9225/wiki
 #include "Rotary.h"
 
-// Test it with patch_init.h or patch_full.h. Do not try load both.
-#include <patch_init.h>  // SSB patch for whole SSBRX initialization string
+#include <patch_ssb_compressed.h>  // Compressed SSB patch version (saving almost 1KB)
 
-const uint16_t size_content = sizeof ssb_patch_content;  // see ssb_patch_content in patch_full.h or patch_init.h
+const uint16_t size_content = sizeof ssb_patch_content;  // See ssb_patch_content.h
+const uint16_t cmd_0x15_size = sizeof cmd_0x15;          // Array of lines where the 0x15 command occurs in the patch content.
+
+
 
 // TFT MICROYUM or ILI9225 based device pin setup
 #define TFT_RST 8
@@ -414,33 +416,14 @@ void rotaryEncoder() {  // rotary encoder events
 */
 void showFrequency() {
   uint16_t color;
-  char tmp[15];
-
-  // It is better than use dtostrf or String to save space.
-
-  sprintf(tmp, "%5.5u", currentFrequency);
 
   if (rx.isCurrentTuneFM()) {
-    bufferDisplay[0] = tmp[0];
-    bufferDisplay[1] = tmp[1];
-    bufferDisplay[2] = tmp[2];
-    bufferDisplay[3] = '.';
-    bufferDisplay[4] = tmp[3];
-    bufferDisplay[5] = '\0';
+    rx.convertToChar(currentFrequency, bufferDisplay, 5, 3, '.',false);
   } else {
     if (currentFrequency < 1000) {
-      bufferDisplay[0] = tmp[2];
-      bufferDisplay[1] = tmp[3];
-      bufferDisplay[2] = tmp[4];
-      bufferDisplay[3] = '\0';
+      rx.convertToChar(currentFrequency, bufferDisplay, 5, 0, '.', false);
     } else {
-      bufferDisplay[0] = tmp[0];
-      bufferDisplay[1] = tmp[1];
-      bufferDisplay[2] = '.';
-      bufferDisplay[3] = tmp[2];
-      bufferDisplay[4] = tmp[3];
-      bufferDisplay[5] = tmp[4];
-      bufferDisplay[6] = '\0';
+      rx.convertToChar(currentFrequency, bufferDisplay, 5, 2, '.', false);
     }
   }
 
@@ -478,10 +461,16 @@ void showStatus() {
     showStep();
   }
 
-  if (band[bandIdx].bandType == SW_BAND_TYPE)
-    sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
+  if (band[bandIdx].bandType == SW_BAND_TYPE) {
+    //sprintf(bufferDisplay, "%s %s", band[bandIdx].bandName, bandModeDesc[currentMode]);
+    strcpy(bufferDisplay,band[bandIdx].bandName);
+    strcat(bufferDisplay, " ");
+    strcat(bufferDisplay,bandModeDesc[currentMode]);
+
+  }
   else
-    sprintf(bufferDisplay, "%s", band[bandIdx].bandName);
+    strcpy(bufferDisplay, band[bandIdx].bandName);
+
   printValue(4, 60, bufferBand, bufferDisplay, COLOR_CYAN, 6);
 
   showAgcAtt();
@@ -492,9 +481,13 @@ void showStatus() {
     Shows the current AGC and Attenuation status
 */
 void showAgcAtt() {
+  char tmp[5];
   tft.setFont(Terminal6x8);
   rx.getAutomaticGainControl();
-  sprintf(bufferDisplay, "%s %2d", (rx.isAgcEnabled()) ? "AGC" : "ATT", agcNdx);
+  //sprintf(bufferDisplay, "%s %2d", (rx.isAgcEnabled()) ? "AGC" : "ATT", agcNdx);
+  strcpy(bufferDisplay,(rx.isAgcEnabled()) ? "AGC" : "ATT");
+  rx.convertToChar(agcNdx, tmp, 2, 0, '.');
+  strcat(bufferDisplay,tmp);
   printValue(65, 60, bufferAGC, bufferDisplay, COLOR_CYAN, 6);
 }
 
@@ -503,8 +496,13 @@ void showAgcAtt() {
     Shows the current step
 */
 void showStep() {
+  char tmp[10];
   tft.setFont(Terminal6x8);
-  sprintf(bufferDisplay, "Stp: %3d", tabStep[idxStep]);
+  //sprintf(bufferDisplay, "Stp: %3d", tabStep[idxStep]);
+  strcpy(bufferDisplay,"Stp:");
+  strcat(bufferDisplay," ");
+  rx.convertToChar(tabStep[idxStep], tmp, 3, 0,'.');
+  strcat(bufferDisplay,tmp);
   printValue(153, 10, bufferStepVFO, bufferDisplay, COLOR_YELLOW, 6);
   tft.drawText(153, 30, "kHz", COLOR_RED);
 }
@@ -527,7 +525,11 @@ void showBandwidth() {
       showBFOTemplate(COLOR_CYAN);
       showBFO();
     }
-    sprintf(bufferDisplay, "BW: %s kHz", bw);
+    //sprintf(bufferDisplay, "BW: %s kHz", bw);
+    strcpy(bufferDisplay,"BW ");
+    strcat(bufferDisplay,bw);
+    strcat(bufferDisplay," kHz");
+
     printValue(124, 45, bufferBW, bufferDisplay, COLOR_CYAN, 6);
   }
 }
@@ -570,8 +572,8 @@ void showProgramInfo() {
 */
 void showRDSStation() {
   if (stationName == NULL || (millis() - delayStationName) < 3000) return;
-  rx.removeUnwantedChar(stationName, 8);
-  rx.removeUnwantedChar(bufferStatioName, 8);
+  rx.removeUnwantedChar(stationName, 9);
+  rx.removeUnwantedChar(bufferStatioName, 9);
   printValue(5, 110, bufferStatioName, stationName, COLOR_GREEN, 6);
   delayStationName = millis();
 }
@@ -616,7 +618,8 @@ void showRSSI() {
 
   tft.setFont(Terminal6x8);
   if (currentMode == FM) {
-    sprintf(bufferDisplay, "%s", (rx.getCurrentPilot()) ? "STEREO" : "MONO");
+    //sprintf(bufferDisplay, "%s", (rx.getCurrentPilot()) ? "STEREO" : "MONO");
+    strcpy(bufferDisplay,(rx.getCurrentPilot()) ? "STEREO" : "MONO");
     printValue(150, 60, bufferStereo, bufferDisplay, COLOR_CYAN, 7);
   }
 
@@ -661,9 +664,20 @@ void clearBFO() {
 }
 
 void showBFO() {
-  tft.setFont(Terminal6x8);
+    uint16_t auxBfo;
+    auxBfo = currentBFO;
+    if (currentBFO < 0 ) {
+        auxBfo = ~currentBFO + 1; // converts to absolute value (ABS) using binary operator
+        bufferDisplay[0] = '-';
+    }
+    else if (currentBFO > 0 )  
+      bufferDisplay[0] = '+';
+    else 
+      bufferDisplay[0] = ' ';      
 
-  sprintf(bufferDisplay, "%+4d", currentBFO);
+    rx.convertToChar(auxBfo, &bufferDisplay[1], 4, 0, '.'); 
+
+  //sprintf(bufferDisplay, "%+4d", currentBFO);
   printValue(160, 55, bufferBFO, bufferDisplay, COLOR_CYAN, 7);
 
   elapsedCommand = millis();
@@ -698,7 +712,7 @@ void loadSSB() {
   delay(50);
   rx.setI2CFastMode();  // Recommended
   // rx.setI2CFastModeCustom(500000); // It is a test and may crash.
-  rx.downloadPatch(ssb_patch_content, size_content);
+  rx.downloadCompressedPatch(ssb_patch_content, size_content, cmd_0x15, cmd_0x15_size);
   rx.setI2CStandardMode();  // goes back to default (100kHz)
 
   // Parameters
