@@ -1,5 +1,4 @@
 /*
-
   This sketch uses an Arduino Pro Mini, 3.3V (8MZ) with a SPI TFT from MICROYUM (2" - 176 x 220) - ILI9225.
   The Arduino library used to control that display device is TFT_22_ILI9225 (seeL https://github.com/Nkawu/TFT_22_ILI9225).
   Please, install it before start working  with this sketch.
@@ -12,7 +11,6 @@
 
   The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
   "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
-
 
   Features:   FM/RDS; AM; SSB; LW/MW/SW; two super band (from 150kHz to 30 MHz); external mute circuit control; Seek (Automatic tuning)
               AGC; Attenuation gain control; SSB filter; CW; AM filter; 1, 5, 10, 50 and 500kHz step on AM and 10Hhz sep on SSB
@@ -86,6 +84,7 @@
 */
 
 #include <SI4735.h>
+#include <EEPROM.h>
 #include <SPI.h>
 #include "TFT_22_ILI9225.h" //  See https://github.com/Nkawu/TFT_22_ILI9225/wiki
 #include "Rotary.h"
@@ -138,7 +137,13 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 
 #define SSB 1
 
+#define STORE_TIME 10000  // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
+
 #define CLEAR_BUFFER(x) (x[0] = '\0');
+
+const uint8_t app_id = 32;  // Useful to check the EEPROM content before processing useful data
+const int eeprom_address = 0;
+long storeTime = millis();
 
 bool bfoOn = false;
 bool ssbLoaded = false;
@@ -149,6 +154,7 @@ bool fmStereo = true;
 int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 int8_t agcNdx = 0;
+
 
 bool cmdBand = false;
 bool cmdVolume = false;
@@ -284,6 +290,12 @@ void setup()
 
   showTemplate();
 
+  // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
+  if (digitalRead(ENCODER_PUSH_BUTTON) == LOW) {
+    EEPROM.write(eeprom_address, 0);
+    delay(2000);
+  }
+
   // Encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
@@ -291,6 +303,12 @@ void setup()
   // rx.setup(RESET_PIN, 1); // Starts FM mode and ANALOG audio mode
   // rx.setup(RESET_PIN, 0, 1, SI473X_ANALOG_AUDIO); // Starts FM mode and ANALOG audio mode.
   rx.setup(RESET_PIN, 0, 1, SI473X_ANALOG_DIGITAL_AUDIO); // Starts FM mode and ANALOG and DIGITAL audio mode.
+
+  delay(500);
+  // Checking the EEPROM content
+  if (EEPROM.read(eeprom_address) == app_id) {
+    readAllReceiverInformation();
+  }
 
   // Set up the radio for the current band (see index table variable bandIdx )
   useBand();
@@ -312,6 +330,81 @@ void disableCommands()
   cmdStep = false;
   cmdMode = false;
 }
+
+/*
+   writes the conrrent receiver information into the eeprom.
+   The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
+*/
+void saveAllReceiverInformation() {
+  int addr_offset;
+  EEPROM.update(eeprom_address, app_id);                  // stores the app id;
+  EEPROM.update(eeprom_address + 1, rx.getVolume());  // stores the current Volume
+  EEPROM.update(eeprom_address + 2, bandIdx);             // Stores the current band
+  EEPROM.update(eeprom_address + 3, currentMode);         // Stores the current Mode (FM / AM / SSB)
+  EEPROM.update(eeprom_address + 4, currentBFO >> 8);
+  EEPROM.update(eeprom_address + 5, currentBFO & 0XFF);
+
+  addr_offset = 6;
+  band[bandIdx].currentFreq = currentFrequency;
+
+  for (int i = 0; i <= lastBand; i++) {
+    EEPROM.update(addr_offset++, (band[i].currentFreq >> 8));    // stores the current Frequency HIGH byte for the band
+    EEPROM.update(addr_offset++, (band[i].currentFreq & 0xFF));  // stores the current Frequency LOW byte for the band
+  }
+
+  // Saves AVC and AGC/Att status
+  EEPROM.update(addr_offset++, agcIdx);
+  EEPROM.update(addr_offset++, agcNdx);
+}
+
+/**
+   reads the last receiver status from eeprom.
+*/
+void readAllReceiverInformation() {
+  int addr_offset;
+  int bwIdx;
+  volume = EEPROM.read(eeprom_address + 1);  // Gets the stored volume;
+  bandIdx = EEPROM.read(eeprom_address + 2);
+  currentMode = EEPROM.read(eeprom_address + 3);
+  currentBFO = EEPROM.read(eeprom_address + 4) << 8;
+  currentBFO |= EEPROM.read(eeprom_address + 5);
+
+  addr_offset = 6;
+  for (int i = 0; i <= lastBand; i++) {
+    band[i].currentFreq = EEPROM.read(addr_offset++) << 8;
+    band[i].currentFreq |= EEPROM.read(addr_offset++);
+  }
+
+  // Rescues the previous  AVC and AGC/Att status
+  agcIdx = EEPROM.read(addr_offset++);
+  agcNdx = EEPROM.read(addr_offset++);
+
+  previousFrequency = currentFrequency = band[bandIdx].currentFreq;
+
+  if (currentMode == LSB || currentMode == USB) {
+    loadSSB();
+    bwIdxSSB = (bwIdx > 5) ? 5 : bwIdx;
+    rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
+    // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+    if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
+      rx.setSSBSidebandCutoffFilter(0);
+    else
+      rx.setSSBSidebandCutoffFilter(1);
+  } else if (currentMode == AM) {
+    bwIdxAM = bwIdx;
+    rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
+  } 
+}
+
+
+/*
+   To store any change into the EEPROM, it is needed at least STORE_TIME  milliseconds of inactivity.
+*/
+void  resetEepromDelay() {
+  storeTime = millis();
+  previousFrequency = 0;
+}
+
 
 /**
     Gets the current step index.
@@ -728,7 +821,7 @@ void setBand(uint8_t up_down)
 /**
     This function loads the contents of the ssb_patch_content array into the CI (Si4735) and starts the radio on
     SSB mode.
-    See also loadPatch implementation in the SI4735 Arduino Library (SI4735.h/SI4735.cpp)
+    See also loadPatch implementation in the SI4735 Arduino Library (rx.h/rx.cpp)
 */
 void loadSSB()
 {
@@ -798,6 +891,8 @@ void useBand()
   rssi = 0;
   clearBFO();
   tft.fillRectangle(153, 3, 216, 20, COLOR_BLACK); // Clear Step field
+
+  resetEepromDelay();
   showStatus();
 }
 
@@ -990,6 +1085,7 @@ void loop()
     }
     showFrequency();
     encoderCount = 0;
+    resetEepromDelay();
   }
   else
   {
@@ -1079,6 +1175,15 @@ void loop()
       previousFrequency = currentFrequency;
     }
     checkRDS();
+  }
+
+  // Show the current frequency only if it has changed
+  if (currentFrequency != previousFrequency) {
+    if ((millis() - storeTime) > STORE_TIME) {
+      saveAllReceiverInformation();
+      storeTime = millis();
+      previousFrequency = currentFrequency;
+    }
   }
 
   delay(5);
