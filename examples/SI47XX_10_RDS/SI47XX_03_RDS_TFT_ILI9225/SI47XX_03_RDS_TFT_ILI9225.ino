@@ -86,7 +86,7 @@
 #include <SI4735.h>
 #include <EEPROM.h>
 #include <SPI.h>
-#include "TFT_22_ILI9225.h" //  See https://github.com/Nkawu/TFT_22_ILI9225/wiki
+#include <TFT_22_ILI9225.h> //  See https://github.com/Nkawu/TFT_22_ILI9225/wiki
 #include "Rotary.h"
 
 #include <patch_ssb_compressed.h> // Compressed SSB patch version (saving almost 1KB)
@@ -150,7 +150,7 @@ bool ssbLoaded = false;
 bool fmStereo = true;
 
 // AGC and attenuation control
-// AGC and attenuation control
+
 int8_t agcIdx = 0;
 uint8_t disableAgc = 0;
 int8_t agcNdx = 0;
@@ -176,6 +176,8 @@ volatile int encoderCount = 0;
 // Some variables to check the SI4735 status
 uint16_t currentFrequency;
 uint16_t previousFrequency = 0;
+
+bool someThingChanged = false;
 
 const uint8_t currentBFOStep = 20;
 
@@ -402,7 +404,7 @@ void readAllReceiverInformation() {
 */
 void  resetEepromDelay() {
   storeTime = millis();
-  previousFrequency = 0;
+  someThingChanged = true;
 }
 
 
@@ -531,7 +533,7 @@ void showFrequency()
   }
 
   color = (bfoOn && (currentMode == LSB || currentMode == USB)) ? COLOR_CYAN : COLOR_YELLOW;
-  tft.setFont(Trebuchet_MS16x21);
+  tft.setFont(Trebuchet_MS16x21); 
   printValue(10, 10, bufferFreq, bufferDisplay, color, 20);
 }
 
@@ -654,6 +656,8 @@ long delayStationName = millis();
 long delayProgramInfo = millis();
 long delatRdsTime = millis();
 
+uint16_t timeToShowProgram = 1000;
+
 bool bShowStationName = true;
 int progInfoIdx = 0;
 
@@ -662,18 +666,21 @@ int progInfoIdx = 0;
 */
 void showProgramInfo()
 {
-  char txtAux[30];
-  if (programInfo == NULL || (millis() - delayProgramInfo) < 300)
+  char txtAux[35];
+  if (programInfo == NULL || (millis() - delayProgramInfo) < timeToShowProgram)
     return;
+
+  timeToShowProgram = ( progInfoIdx == 0 )? 1500:300;   
+
   programInfo[60] = '\0'; // Removes unwanted characters from the RDS program information
   rx.removeUnwantedChar(programInfo, 60);
-  rx.removeUnwantedChar(bufferRdsMsg, 30);
+  rx.removeUnwantedChar(bufferRdsMsg, sizeof(txtAux));
   strncpy(txtAux, &programInfo[progInfoIdx], sizeof(txtAux));
   txtAux[sizeof(txtAux) - 1] = '\0';
   progInfoIdx++;
   if (progInfoIdx > 30)
     progInfoIdx = 0;
-  rx.removeUnwantedChar(txtAux, 30);
+  rx.removeUnwantedChar(txtAux, sizeof(txtAux));
   printValue(5, 90, bufferRdsMsg, txtAux, COLOR_GREEN, 6);
   delayProgramInfo = millis();
 }
@@ -950,6 +957,7 @@ void doSeek()
   currentFrequency = rx.getFrequency();
   if (currentMode == FM)
     clearRdsBuffer();
+  resetEepromDelay();  
 }
 
 /**
@@ -1082,10 +1090,10 @@ void loop()
       }
       // Show the current frequency only if it has changed
       currentFrequency = rx.getFrequency();
+      resetEepromDelay();
     }
     showFrequency();
     encoderCount = 0;
-    resetEepromDelay();
   }
   else
   {
@@ -1177,14 +1185,14 @@ void loop()
     checkRDS();
   }
 
-  // Show the current frequency only if it has changed
-  if (currentFrequency != previousFrequency) {
+  // Stores in eeprom only if something changed 10 seconds or more ago.
+  if (someThingChanged) {
     if ((millis() - storeTime) > STORE_TIME) {
       saveAllReceiverInformation();
       storeTime = millis();
       previousFrequency = currentFrequency;
+      someThingChanged = false;
     }
   }
-
   delay(5);
 }
