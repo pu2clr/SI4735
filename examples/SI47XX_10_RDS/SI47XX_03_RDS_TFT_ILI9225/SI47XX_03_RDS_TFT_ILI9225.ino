@@ -141,7 +141,7 @@ const uint16_t cmd_0x15_size = sizeof cmd_0x15;         // Array of lines where 
 
 #define CLEAR_BUFFER(x) (x[0] = '\0');
 
-const uint8_t app_id = 32;  // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id = 35;  // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
@@ -243,15 +243,17 @@ typedef struct
 Band band[] = {
     {"FM ", FM_BAND_TYPE, 6400, 10800, 10390, 10},
     {"MW ", MW_BAND_TYPE, 150, 1720, 810, 10},
-    {"SW1", SW_BAND_TYPE, 150, 30000, 7100, 1}, // Here and below: 150kHz to 30MHz
-    {"SW2", SW_BAND_TYPE, 150, 30000, 9600, 5},
-    {"SW3", SW_BAND_TYPE, 150, 30000, 11940, 5},
-    {"SW4", SW_BAND_TYPE, 150, 30000, 13600, 5},
-    {"SW5", SW_BAND_TYPE, 150, 30000, 14200, 1},
-    {"SW5", SW_BAND_TYPE, 150, 30000, 15300, 5},
-    {"SW6", SW_BAND_TYPE, 150, 30000, 17600, 5},
-    {"SW7", SW_BAND_TYPE, 150, 30000, 21100, 1},
-    {"SW8", SW_BAND_TYPE, 150, 30000, 28400, 1}};
+    {"SW1", SW_BAND_TYPE, 4500, 5200, 4885, 5},
+    {"SW2", SW_BAND_TYPE, 5600, 6300, 6180, 5},
+    {"40M", SW_BAND_TYPE, 6800, 7800, 7100, 1}, 
+    {"SW3", SW_BAND_TYPE, 9000, 10100, 9600, 5},
+    {"SW4", SW_BAND_TYPE, 150, 30000, 11940, 5},
+    {"SW5", SW_BAND_TYPE, 150, 30000, 13600, 5},
+    {"20M", SW_BAND_TYPE, 150, 30000, 14200, 1},
+    {"SW6", SW_BAND_TYPE, 15000, 16200, 15300, 5},
+    {"SW7", SW_BAND_TYPE, 16900, 19000, 17600, 5},
+    {"SW8", SW_BAND_TYPE, 150, 30000, 21100, 1},
+    {"10M", SW_BAND_TYPE, 24000, 30000, 28400, 1}};
 
 const int lastBand = (sizeof band / sizeof(Band)) - 1;
 int bandIdx = 0;
@@ -357,6 +359,8 @@ void saveAllReceiverInformation() {
   // Saves AVC and AGC/Att status
   EEPROM.update(addr_offset++, agcIdx);
   EEPROM.update(addr_offset++, agcNdx);
+  EEPROM.update(addr_offset++, bwIdxSSB);
+  EEPROM.update(addr_offset++, bwIdxAM);
 }
 
 /**
@@ -380,12 +384,13 @@ void readAllReceiverInformation() {
   // Rescues the previous  AVC and AGC/Att status
   agcIdx = EEPROM.read(addr_offset++);
   agcNdx = EEPROM.read(addr_offset++);
+  bwIdxSSB = EEPROM.read(addr_offset++);
+  bwIdxAM = EEPROM.read(addr_offset++);
 
   previousFrequency = currentFrequency = band[bandIdx].currentFreq;
 
   if (currentMode == LSB || currentMode == USB) {
     loadSSB();
-    bwIdxSSB = (bwIdx > 5) ? 5 : bwIdx;
     rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
     // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
     if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
@@ -393,7 +398,6 @@ void readAllReceiverInformation() {
     else
       rx.setSSBSidebandCutoffFilter(1);
   } else if (currentMode == AM) {
-    bwIdxAM = bwIdx;
     rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
   } 
 }
@@ -804,7 +808,8 @@ void showBFO()
   else
     bufferDisplay[0] = ' ';
 
-  rx.convertToChar(auxBfo, &bufferDisplay[1], 4, 0, '.');
+  rx.convertToChar(auxBfo, &bufferDisplay[1], 4, 0, '.', false);
+  tft.setFont(Terminal6x8);
   printValue(160, 55, bufferBFO, bufferDisplay, COLOR_CYAN, 7);
   elapsedCommand = millis();
 }
