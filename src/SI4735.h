@@ -2398,6 +2398,7 @@ public:
     void setFmStereoOff();
 
     void RdsInit();
+    void inline clearRdsBuffer() { RdsInit();};
     void setRdsIntSource(uint8_t RDSRECV, uint8_t RDSSYNCLOST, uint8_t RDSSYNCFOUND, uint8_t RDSNEWBLOCKA, uint8_t RDSNEWBLOCKB);
     void getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY);
     /**
