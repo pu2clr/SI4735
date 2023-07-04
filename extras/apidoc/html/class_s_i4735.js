@@ -167,6 +167,7 @@ var class_s_i4735 =
     [ "setFmStereoOn", "group__group12.html#ga52c7b7b1f0ed9121b0e64516b2bd2a55", null ],
     [ "setFmStereoOff", "group__group12.html#ga59ce1008944ff9a51b6c5baeb3a3e2cb", null ],
     [ "RdsInit", "group__group16.html#gaffdba9ca9fb9bf5bb671ac3d448a7e89", null ],
+    [ "clearRdsBuffer", "group__group16.html#ga255346df9690b34c305187065466acdb", null ],
     [ "setRdsIntSource", "group__group16.html#gaddfe8c89101b4859eca31ad68ad9de2e", null ],
     [ "getRdsStatus", "group__group16.html#ga350a2033671a7620d4b9290a2347e185", null ],
     [ "rdsBeginQuery", "group__group16.html#ga59122f18fd887bbcb888ecf785871635", null ],

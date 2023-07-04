@@ -117,6 +117,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga1c0ebbb5eef2b5384c7d1caa9ebe22c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga1c0ebbb5eef2b5384c7d1caa9ebe22c0">SI4735::clearRdsStationName</a> ()</td></tr>
 <tr class="memdesc:ga1c0ebbb5eef2b5384c7d1caa9ebe22c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear RDS buffer 0A (text / Station Name)  <br /></td></tr>
 <tr class="separator:ga1c0ebbb5eef2b5384c7d1caa9ebe22c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga255346df9690b34c305187065466acdb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga255346df9690b34c305187065466acdb">SI4735::clearRdsBuffer</a> ()</td></tr>
+<tr class="memdesc:ga255346df9690b34c305187065466acdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the control member variables for RDS. It is an alias to RdsInit.  <br /></td></tr>
+<tr class="separator:ga255346df9690b34c305187065466acdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga59122f18fd887bbcb888ecf785871635"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group16.html#ga59122f18fd887bbcb888ecf785871635">SI4735::rdsBeginQuery</a> ()</td></tr>
 <tr class="memdesc:ga59122f18fd887bbcb888ecf785871635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the current RDS data to be utilized by other RDS functions.  <br /></td></tr>
 <tr class="separator:ga59122f18fd887bbcb888ecf785871635"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -429,6 +432,36 @@ Functions</h2></td></tr>
 <p>clearRdsBuffer0A </p>
 
 <p class="reference">References <a class="el" href="class_s_i4735.html#ac24a8bbd39628c2981208cb452165a0e">SI4735::rds_buffer0A</a>.</p>
+
+</div>
+</div>
+<a id="ga255346df9690b34c305187065466acdb" name="ga255346df9690b34c305187065466acdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga255346df9690b34c305187065466acdb">&#9670;&#160;</a></span>clearRdsBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SI4735::clearRdsBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Starts the control member variables for RDS. It is an alias to RdsInit. </p>
+<p>This method is called by <a class="el" href="group__group16.html#gad9718a85c79a311c26997bbda20f2351" title="Sets RDS property.">setRdsConfig()</a> </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__group16.html#gad9718a85c79a311c26997bbda20f2351" title="Sets RDS property.">setRdsConfig()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="group__group16.html#gaffdba9ca9fb9bf5bb671ac3d448a7e89">SI4735::RdsInit()</a>.</p>
 
 </div>
 </div>
@@ -1067,7 +1100,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="group__group16.html#gadede134b96fd5650b87673ce413babb2">SI4735::clearRdsBuffer0A()</a>, <a class="el" href="group__group16.html#gac65c552004f5e5e646638e37a5a68213">SI4735::clearRdsBuffer2A()</a>, and <a class="el" href="group__group16.html#gaed0988165057aa2880f41b88ac236cd7">SI4735::clearRdsBuffer2B()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__group16.html#gad9718a85c79a311c26997bbda20f2351">SI4735::setRdsConfig()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group16.html#ga255346df9690b34c305187065466acdb">SI4735::clearRdsBuffer()</a>, and <a class="el" href="group__group16.html#gad9718a85c79a311c26997bbda20f2351">SI4735::setRdsConfig()</a>.</p>
 
 </div>
 </div>

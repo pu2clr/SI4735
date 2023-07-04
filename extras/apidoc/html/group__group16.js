@@ -6,6 +6,7 @@ var group__group16 =
     [ "SI4735::clearRdsStationInformation", "group__group16.html#ga1ab4a1ae27bb27f9bffefa51fab4cfba", null ],
     [ "SI4735::clearRdsBuffer0A", "group__group16.html#gadede134b96fd5650b87673ce413babb2", null ],
     [ "SI4735::clearRdsStationName", "group__group16.html#ga1c0ebbb5eef2b5384c7d1caa9ebe22c0", null ],
+    [ "SI4735::clearRdsBuffer", "group__group16.html#ga255346df9690b34c305187065466acdb", null ],
     [ "SI4735::rdsBeginQuery", "group__group16.html#ga59122f18fd887bbcb888ecf785871635", null ],
     [ "SI4735::getRdsReceived", "group__group16.html#ga6e8405ea5846fab586080a7be696178e", null ],
     [ "SI4735::getRdsSyncLost", "group__group16.html#gac283a8a89cc885c2740c65a7128ff7ef", null ],
