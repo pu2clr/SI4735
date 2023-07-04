@@ -2398,6 +2398,12 @@ public:
     void setFmStereoOff();
 
     void RdsInit();
+    /**
+     * @ingroup group16 RDS setup 
+     * @brief  Starts the control member variables for RDS. It is an alias to RdsInit 
+     * @details This method is called by setRdsConfig()
+     * @see setRdsConfig()
+     */
     void inline clearRdsBuffer() { RdsInit();};
     void setRdsIntSource(uint8_t RDSRECV, uint8_t RDSSYNCLOST, uint8_t RDSSYNCFOUND, uint8_t RDSNEWBLOCKA, uint8_t RDSNEWBLOCKB);
     void getRdsStatus(uint8_t INTACK, uint8_t MTFIFO, uint8_t STATUSONLY);
