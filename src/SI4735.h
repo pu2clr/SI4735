@@ -2400,7 +2400,7 @@ public:
     void RdsInit();
     /**
      * @ingroup group16 RDS setup 
-     * @brief  Starts the control member variables for RDS. It is an alias to RdsInit 
+     * @brief  Starts the control member variables for RDS. It is an alias to RdsInit  (a better name to RdsInit)
      * @details This method is called by setRdsConfig()
      * @see setRdsConfig()
      */
