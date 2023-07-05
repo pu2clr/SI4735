@@ -1327,7 +1327,7 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
  *
  * @see seekStation, seekStationUp, seekStationDown, getStatus, setMaxSeekTime
  * @param showFunc  function that you have to implement to show the frequency during the seeking process. Set NULL if you do not want to show the progress.
- * @param stopSeeking functionthat you have to implement if you want to control the stop seeking action.
+ * @param stopSeeking functionthat you have to implement if you want to control the stop seeking action. Useful if you want abort the seek process.
  * @param up_down   set up_down = 1 for seeking station up; set up_down = 0 for seeking station down
  */
 void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), bool (*stopSeking)(), uint8_t up_down)

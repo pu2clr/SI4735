@@ -826,6 +826,7 @@ void showFrequencySeek(uint16_t freq) {
 
 /**
    Checks the stop seeking criterias.
+   Used to abort the seek process.
    Returns true if the user press the touch or rotates the encoder during the seek process.
 */
 bool checkStopSeeking() {
