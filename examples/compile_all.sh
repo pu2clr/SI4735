@@ -45,11 +45,11 @@ echo "OLED"
 arduino-cli compile -b arduino:avr:nano ./SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED
 
 echo "Nokia 5110 with Pro mini / Atmega328"
-# arduino-cli compile -b arduino:avr:pro -u -p /dev/cu.usbserial-1420 ./SI47XX_09_NOKIA_5110/ALL_IN_ONE_ONE_ENCODER
-arduino-cli compile -b arduino:avr:pro ./SI47XX_09_NOKIA_5110/ALL_IN_ONE_ONE_ENCODER  --output-dir ~/Downloads/hex/atmega/SI47XX_09_NOKIA_5110
+# arduino-cli compile -b arduino:avr:pro -u -p /dev/cu.usbserial-1420 ./SI47XX_09_NOKIA_5110/ALL_IN_ONE_ENCODER_RDS
+arduino-cli compile -b arduino:avr:pro ./SI47XX_09_NOKIA_5110/ALL_IN_ONE_ENCODER_RDS  --output-dir ~/Downloads/hex/atmega/SI47XX_09_NOKIA_5110
 
 echo "Nokia 5110 with LGT8FX"
-arduino-cli compile  -b lgt8fx:avr:328  ./SI47XX_09_NOKIA_5110/ALL_IN_ONE_ONE_ENCODER --output-dir ~/Downloads/hex/lgt8fx/SI47XX_09_NOKIA_5110
+arduino-cli compile  -b lgt8fx:avr:328  ./SI47XX_09_NOKIA_5110/ALL_IN_ONE_ENCODER_RDS --output-dir ~/Downloads/hex/lgt8fx/SI47XX_09_NOKIA_5110
 
 echo "TFT"
 echo "*** Atmega328 and ILI9225"
@@ -64,7 +64,7 @@ arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./
 arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./SI47XX_04_TFT/SI47XX_01_TFT_ILI9225 --output-dir ~/Downloads/hex/MiniCore/SI47XX_01_TFT_ILI9225
 arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./SI47XX_02_for_Mirko_Pavleski_radio/MIRKO_V2 --output-dir ~/Downloads/hex/MiniCore/MIRKO_V2
 arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./SI47XX_03_OLED_I2C/SI47XX_02_ALL_IN_ONE_OLED --output-dir ~/Downloads/hex/MiniCore/SI47XX_02_ALL_IN_ONE_OLED
-arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./SI47XX_09_NOKIA_5110/ALL_IN_ONE_ONE_ENCODER --output-dir ~/Downloads/hex/MiniCore/SI47XX_09_NOKIA_5110
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./SI47XX_09_NOKIA_5110/ALL_IN_ONE_ENCODER_RDS --output-dir ~/Downloads/hex/MiniCore/SI47XX_09_NOKIA_5110
 
 
 echo "POC Active Crystal"
@@ -83,14 +83,12 @@ arduino-cli compile  -b lgt8fx:avr:328  ./SI47XX_02_for_Mirko_Pavleski_radio/MIR
 
 # compiles KIT ATS-20
 echo "ATS-20 KIT"
-echo "*** V7"
-arduino-cli compile -b arduino:avr:nano ./SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V7
 echo "*** V8"
-arduino-cli compile -b arduino:avr:nano ./SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V8
+arduino-cli compile -b arduino:avr:nano ./SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V8r
 
 
 # The command below will work if you fix the Tiny4kOLED_common.h error: macro "nop" passed 1 arguments, but takes just 0  void nop(void);
-# arduino-cli compile -b lgt8fx:avr:328 ./SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V8
+# arduino-cli compile -b lgt8fx:avr:328 ./SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V8r
 
 
 # compiles ESP32 LCD16x2_ALL_IN_ONE

@@ -3,7 +3,7 @@ Main idea is to assign different functions to buttons for shortpress (click) or 
 That change is not applicable to the library self, but to the API of the device.
 
 Since I have an ATS-20 (with Arduino NANO), I used the example from 
-/examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V7/ as starting point.
+/examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V8r/ as starting point.
 
 However, the changes should work on any Arduino-Variant...
 I have changed the band-table, so you probably want to reset EEPROM after uploading this version...

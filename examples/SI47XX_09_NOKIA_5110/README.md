@@ -88,7 +88,7 @@ To control the VFO and BFO, used the encoder push button. The display will show 
 
 
 
-## Example ALL_IN_ONE_ONE_ENCODER 
+## Example ALL_IN_ONE_ENCODER_RDS 
 
 This example uses the Adafruit librarie __LCD5110_Graph__ to control the Nokia 5110. 
 It is not available on Arduino IDE. To install __LCD5110_Graph__ library, download that library on [Rinky-Dink Eletronics](http://www.rinkydinkelectronics.com/library.php?id=47) site, unzip the file and move the folder unzipped to your Arduino Libraries folder. 

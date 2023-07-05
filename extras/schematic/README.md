@@ -887,7 +887,7 @@ void loop() {
 
 See this approach working on: 
 * [Receiver based on SI473X by Mirko Pavleski](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_02_for_Mirko_Pavleski_radio/MIRKO_V2)
-* [KIT based on SI4732 and OLED sold by Aliexpress and eBay](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V7)
+* [KIT based on SI4732 and OLED sold by Aliexpress and eBay](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress/SI473X_ALL_IN_ONE_OLED_RDS_CHINESE_V8r)
 * [ESP32 with SI473X and OLED](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32/OLED_ALL_IN_ONE)
 * [ESP8266 (ESP-12F) and Si473X](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP8266/OLED_ALL_IN_ONE)
 * [SI47XX ALL IN ONE NEW INTERFACE V2](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_03_OLED_I2C/SI47XX_03_ALL_IN_ONE_NEW_INTERFACE_V2)
