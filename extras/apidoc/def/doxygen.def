@@ -4297,7 +4297,7 @@ void loop() {
 
 @see seekStation, seekStationUp, seekStationDown, getStatus, setMaxSeekTime
 @param showFunc  function that you have to implement to show the frequency during the seeking process. Set NULL if you do not want to show the progress.
-@param stopSeeking functionthat you have to implement if you want to control the stop seeking action.
+@param stopSeeking functionthat you have to implement if you want to control the stop seeking action. Useful if you want abort the seek process.
 @param up_down   set up_down = 1 for seeking station up; set up_down = 0 for seeking station down
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
@@ -4926,7 +4926,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/src/SI4735.h';
       sec-mem-desc-line = '2407';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Starts the control member variables for RDS. It is an alias to RdsInit.
+Starts the control member variables for RDS. It is an alias to RdsInit  (a better name to RdsInit)
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  This method is called by setRdsConfig()
