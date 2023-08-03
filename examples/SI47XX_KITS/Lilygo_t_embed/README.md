@@ -18,6 +18,8 @@ If you find this project useful, consider making a donation so that the author o
 ![Donate](../../../extras/images/QR_Code.png) 
 
 
+## The LilyGo T-Embed device
+
 <BR> 
 
 ![LilyGo T-Embed](./images/t_embed.png)
