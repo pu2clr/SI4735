@@ -71,8 +71,14 @@
   Prototype documentation: https://pu2clr.github.io/SI4735/
   PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
 
+  Donate 
+  If you find this project useful, consider making a donation so that the author of this library can purchase components
+  and modules for improvements and testing of this library. 
+  Click here to donate: https://www.paypal.com/donate/?business=LLV4PHKTXC4JW&no_recurring=0&item_name=Consider+making+a+donation.+So%2C+I+can+purchase+components+and+modules+for+improvements+and+testing+of+this+library.&currency_code=USD
+
   By Ricardo Lima Caratti, April  2021.
   Improved by EFWob (https://github.com/EFWob) Jan 2022.
+  
 */
 #define DEBUG  // Comment/uncomment for disabling/enabling debug output on Serial
 //#define DEBUG_BUTTONS_ONLY  // If defined (in addition to DEBUG), just do DEBUG output for Buttons (radio will not play at all)
