@@ -13,6 +13,15 @@ __This project is about a library to control the SI47XX devices and the focus of
 * __group.io__ [SI47XX for hobbyists](https://groups.io/g/si47xx). This group is formed by people with experience in electronics and firmware development.
 
 
+## Donate 
+
+If you find this project useful, consider making a donation so that the author of this library can purchase components and modules for improvements and testing of this library. [Click here to donate](https://www.paypal.com/donate/?business=LLV4PHKTXC4JW&no_recurring=0&item_name=Consider+making+a+donation.+So%2C+I+can+purchase+components+and+modules+for+improvements+and+testing+of+this+library.&currency_code=USD) or use the QR code below.
+
+
+![Donate](../images/QR_Code.png) 
+
+
+
 ## SI4735 and SI4732 pinout
 
 If a schematic uses the SI4735 device but you have the SI4732 device or vice-versa, then reference the table below to correct the pinout for your specific IC model. See pictures and the table __SI4735-D60 and SI4732-A10 replacement__  below.

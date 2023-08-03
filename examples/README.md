@@ -4,7 +4,7 @@
 
 If you find an error or problem during your implementation, please let me know.
 
-### IMPORTANT
+## IMPORTANT
 
 __This project is about a library to control the SI47XX devices and the focus of this project is the "PU2CLR Si4735 Arduino Library" and its functionalities. Please, don't ask the author of this project to assist you with displays, encoders, buttons or something else out of the "PU2CLR SI4735 Arduino Library" scope. Thanks.__
 
@@ -23,6 +23,16 @@ Before using this examples, you most install the ["PU2CLR SI3735 Arduino Library
 The author of this library is demonstrating how to use the library with the Si4735 device. Other devices used in some examples like encoders, buttons and displays (OLED, LCD or TFT) are not the focus of this set of examples. That said, it is possible to use some of these devices, though they may require some different approaches depending on your application.
 
 The most of the sketches has been developed to run on cross-plataform (ATmega328, Mega2560, DUE, ATmega-32u4, ESP32, ATtiny85 etc). However, in some cases, hardware limitations mean that some boards cannot run some sketches. Each sketch has the set of boards you can run it on.
+
+
+## Donate 
+
+If you find this project useful, consider making a donation so that the author of this library can purchase components and modules for improvements and testing of this library. [Click here to donate](https://www.paypal.com/donate/?business=LLV4PHKTXC4JW&no_recurring=0&item_name=Consider+making+a+donation.+So%2C+I+can+purchase+components+and+modules+for+improvements+and+testing+of+this+library.&currency_code=USD) or use the QR code below.
+
+
+![Donate](../extras/images/QR_Code.png) 
+
+
 
 ### It is strongly recommended to run these examples with the latest version of the Si4735 Arduino Library. If you are using earlier versions of this library, some examples may not work correctly. Please, check if you are using the last release of this library.
 
