@@ -78,8 +78,9 @@
 
   By Ricardo Lima Caratti, April  2021.
   Improved by EFWob (https://github.com/EFWob) Jan 2022.
-  
+
 */
+
 #define DEBUG  // Comment/uncomment for disabling/enabling debug output on Serial
 //#define DEBUG_BUTTONS_ONLY  // If defined (in addition to DEBUG), just do DEBUG output for Buttons (radio will not play at all)
 
