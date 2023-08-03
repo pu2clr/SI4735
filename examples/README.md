@@ -34,9 +34,9 @@ If you find this project useful, consider making a donation so that the author o
 
 
 
-## Important
+## Keep the library updated
 
-### It is strongly recommended to run these examples with the latest version of the Si4735 Arduino Library. If you are using earlier versions of this library, some examples may not work correctly. Please, check if you are using the last release of this library.
+### It is strongly recommended to run these examples with the latest version of the Si4735 Arduino Library. If you are using earlier versions of this library, some examples may not work correctly. Please, check if you are using the latest release of this library.
 
 {% include serialmonitor.html %}
 
