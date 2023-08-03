@@ -10,6 +10,14 @@ This document is about the LilyGo T-Embed device as a receiver based on the SI47
 All you have to know to use this project with your LilyGo T-Embed panel can be found here. 
 
 
+## Donate 
+
+If you find this project useful, consider making a donation so that the author of this library can purchase components and modules for improvements and testing of this library. [Click here to donate](https://www.paypal.com/donate/?business=LLV4PHKTXC4JW&no_recurring=0&item_name=Consider+making+a+donation.+So%2C+I+can+purchase+components+and+modules+for+improvements+and+testing+of+this+library.&currency_code=USD) or use the QR code below.
+
+
+![Donate](../../../extras/images/QR_Code.png) 
+
+
 <BR> 
 
 ![LilyGo T-Embed](./images/t_embed.png)
