@@ -19,6 +19,7 @@ This library is intended to provide an easy-to-use interface for controlling the
 This library was built based on ["AN332 Si47XX PROGRAMMING GUIDE REV 1.0"](https://web.engr.oregonstate.edu/~traylor/ece473/data_sheets/AN332.pdf) and __AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE AMENDMENT FOR SI4735-D60/SI4732-A10 SSB AND NBFM PATCHES__. It also can be used on __all members of the SI473X family__ respecting, of course, the features available in each IC version. Please, follow the [contents below](https://pu2clr.github.io/SI4735/#contents) to get the most out of this document. 
 
 This library can be freely distributed using the MIT Free Software model. 
+By using or installing Library you are agreeing to the terms of the [MIT licence](https://pu2clr.github.io/SI4735/#mit-license).
 
 [Copyright (c) 2019 Ricardo Lima Caratti](https://pu2clr.github.io/SI4735/#mit-license). 
 
