@@ -80,6 +80,23 @@ That's it! Your code should now be running on the NUCLEO-F103RB board. Remember 
 | PA9, PA10         | I2C1                  | SDA, SCL    |
 
 
+### Example code
+
+```cpp
+const int ledPin = PA4;  // D4 (Arduino Uno)
+
+void setup() {
+  pinMode(ledPin, OUTPUT); 
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH); // Turn the LED ON
+  delay(1000); 
+  digitalWrite(ledPin, LOW); // Turn the LED off
+  delay(1000); 
+}
+```
+
 
 ## REFERENCES
 
