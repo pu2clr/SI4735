@@ -97,6 +97,33 @@ void loop() {
 }
 ```
 
+
+```cpp
+#include <Arduino.h>
+#include <U8g2lib.h>
+
+// Initialize U8g2 library
+U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);
+
+void setup() {
+  // Initialize the OLED display
+  u8g2.begin();
+}
+
+void loop() {
+  // Draw the "Hello, World!" message
+  u8g2.firstPage();
+  do {
+    u8g2.setFont(u8g2_font_ncenB14_tr);
+    u8g2.drawStr(0,24,"Hello,");
+    u8g2.drawStr(0,48,"World!");
+  } while ( u8g2.nextPage() );
+  
+  // Add a delay
+  delay(1000);
+}
+```
+
 ## Advantages of NUCLEO-F103RB vs. Regular STM32F103 Boards
 
 The NUCLEO-F103RB and regular STM32F103 boards are both development boards based on the STM32F103 microcontroller series by STMicroelectronics. They are designed for embedded applications and are commonly used for prototyping, testing, and development of microcontroller-based systems. While they are similar in their core capabilities, there are advantages to each depending on your specific needs. Here's a breakdown to help you understand the advantages of each platform:
