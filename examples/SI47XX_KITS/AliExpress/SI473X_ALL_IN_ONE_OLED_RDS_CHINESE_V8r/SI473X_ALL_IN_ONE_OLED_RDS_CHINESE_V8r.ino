@@ -1535,6 +1535,7 @@ void loop() {
 
   // Show the current frequency only if it has changed
   if (currentFrequency != previousFrequency) {
+    if (currentMode == FM) cleanBfoRdsInfo();
     if ((millis() - storeTime) > STORE_TIME) {
       saveAllReceiverInformation();
       storeTime = millis();
