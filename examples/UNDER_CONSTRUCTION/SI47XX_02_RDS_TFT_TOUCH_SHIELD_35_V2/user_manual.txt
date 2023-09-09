@@ -1,0 +1,36 @@
+
+User manual
+
+Before start using:
+
+Your toutch screen needs to be calibrated to work properly. To do that, use the TouchScreen_Calibr_native.ino that comes with MCUFRIEND_kbv library.
+Read the TouchScreen_Calibr_native.ino and check the XP, XM , YP and YM pins configuration. You might need to change the XP, XM , YP and YM values
+in the TouchScreen_Calibr_native.ino depending on the display you are using.
+
+1. BAND selection
+
+You can use the command Band+ or Band- to select the band you want. If you are on AM or FM modes, the Encoder Push Button can also be use to band
+selection. To do that, press the encoder push button and then, rotate the encoder clockwise or counterclockwise to select the band you want.
+
+2. MODE
+
+Press the command FM, AM, LSB or MSB to select the mode. FM mode can be used only to listen to local FM broadcast (commercial station).
+
+3. AGC/Attenuation, bandwidth and STEP
+
+Press the desired command on touch screen and after, rotate the encoder to select the option you want.
+For example:
+To switch the bandwidth, press the command on touch screen and then rotate the encoder clockwise or counterclockwise.
+The display will show you the current bandwidth. Use the same idea to select AGC/Attenuation and STEP.
+
+4. SEEK COMMAND
+
+Use Seek or Seek- to start searching a station.
+
+5. VFO/VFO Switch
+
+To control the VFO and BFO, used the encoder push button. The display will show if you are using VFO or BFO.
+Also you can press the command BFO/VFO on touch screen.
+
+Tip: Try press and release the push button fastly. I mean, do not keep the button pressed for a long time.
+     If you do that, you might alternate the command status (enable and disable) randomly.
