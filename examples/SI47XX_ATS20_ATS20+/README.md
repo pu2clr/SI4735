@@ -1,6 +1,6 @@
 # ATS-20 and ATS-20+ sold on Aliexpress and eBay
 
-This firmware was specially developed to run on ATS-20 and ATS-20+ receivers. For more details, follow the instructions below. Click [aqui](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress) to see previous versions and initiatives from other contributors.
+This firmware was specially developed to run on ATS-20 and ATS-20+ receivers. For more details, follow the instructions below. Click [here](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress) to see previous versions and initiatives from other contributors.
 
 Although the seller does not explicitly mention that the Arduino sketch used by the ATS-20 and ARS-20+ is based on this library (PU2CLR SI4735 Arduino Library), I’ve been testing successfully the sketch of this folder on some KITs acquired by some Brazilians experimenters. __The author of this library does not know the seller of this kit and does not have a commercial relationship with any commercial product that uses the PU2CLR SI4735 Arduino Library. It is important you understand that there is no guarantee that this sketch will work correctly in your current product__.
 
