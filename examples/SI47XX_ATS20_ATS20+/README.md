@@ -2,7 +2,7 @@
 
 This firmware was specially developed for ATS-20 and ATS-20+ receivers. For more details, follow the instructions below. Click [here](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress) to see previous versions and contributions from other contributors. I would like to thank [EFWob](https://github.com/EFWob) for some interface improvements.
 
-Although the seller does not explicitly mention that the Arduino sketch used by the ATS-20 and ARS-20+ is based on this library (PU2CLR SI4735 Arduino Library), I’ve been testing successfully the sketch of this folder on some KITs acquired by some Brazilians experimenters. __The author of this library does not know the seller of this kit and does not have a commercial relationship with any commercial product that uses the PU2CLR SI4735 Arduino Library. It is important you understand that there is no guarantee that this sketch will work correctly in your current product__.
+Although the seller does not explicitly mention that the Arduino sketch used by the ATS-20 and ARS-20+ is based on this library (PU2CLR SI4735 Arduino Library), I’ve been testing successfully the sketch of this folder on some KITs and devices acquired by some Brazilians experimenters. __The author of this library does not know the seller of these kit or devices and does not have a commercial relationship with any commercial product that uses the PU2CLR SI4735 Arduino Library. It is important you understand that there is no guarantee that this sketch will work correctly in your current product__.
 
 __THE SSB PATCH CONTENT IS NOT PART OF THIS LIBRARY. THE AUTHOR OF THIS LIBRARY DOES NOT ENCOURAGE ANYONE TO USE THE SSB PATCHES CONTENT FOR COMMERCIAL PURPOSES. IN OTHER WORDS, WHILE THIS LIBRARY SUPPORTS SSB PATCHES, THE PATCHES THEMSELVES ARE NOT A PART OF THIS LIBRARY__.
 
@@ -10,7 +10,7 @@ __THE SSB PATCH CONTENT IS NOT PART OF THIS LIBRARY. THE AUTHOR OF THIS LIBRARY 
 
 __IN NO EVENT SHALL THE AUTHOR OF THIS LIBRARY BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT__.
 
-__DO NOT BUY THIS RECEIVER BEFORE READING COMMENTS AND REPORTS ABOUT IT. FOLLOW THE REFERENCES BELOW:__
+__Again: The author of this library is not responsible for any claims, damages, or other liabilities that may arise, whether through a contract, tort, or otherwise, related to the product. In summary, the author is disclaiming any legal responsibility related to the use or consequences of using the product that utilizes the PU2CLR SI4735 Arduino Library.__
 
 __PLEASE READ ALL TEXT BELOW BEFORE UPDATING THE FIRMWARE__
 
