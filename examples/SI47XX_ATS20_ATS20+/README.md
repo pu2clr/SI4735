@@ -55,8 +55,8 @@ __PLEASE READ ALL TEXT BELOW BEFORE UPDATING THE FIRMWARE__
 * The final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features);
 * Twenty three bands. Two VHF(FM); one LW; two MW; and Nineteen SW bands covering from 1800 to 30000 kHz;
 * Band, Volume, Step, Bandwidth, AGC/Attenuation are now controlled by encoder;
-* __"Vol-"__ buttons is free to implement new features. It has no function for while; 
-* __"BAND-" __now is used to control Softmute Attenuation__; 
+* __"Vol-" now can be used to control Automatic Volume Control (AVC) too se the manual below__; 
+* __"BAND-" now can be used to control Softmute Attenuation too see manual below__; 
 * All the previous status of the receiver can be rescued when you turn it on (including SSB mode, bandwidth, volume, frequency, BFO etc);
 * __The bandwidth now is a property of the band (you can use different bandwidth for different bands)__;
 * Bandwidth control on FM mode (Auto, 110, 84, 60 and 40 kHz);
@@ -74,6 +74,9 @@ __PLEASE READ ALL TEXT BELOW BEFORE UPDATING THE FIRMWARE__
 * Now the bandwidth sequence is ordered by bandwidth values;
 * After about 4 seconds, all command buttons are all disabled and the encoder control goes back to the frequency;
 * The current status of the receiver will be stored only after 10 seconds of inactivity.
+
+__Please, read the manual below for more details__.
+
 
 The steps below will guide you to update the firmware of the KIT
 
