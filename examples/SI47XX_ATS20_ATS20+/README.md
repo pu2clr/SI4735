@@ -55,8 +55,8 @@ __PLEASE READ ALL TEXT BELOW BEFORE UPDATING THE FIRMWARE__
 * The final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features);
 * Twenty three bands. Two VHF(FM); one LW; two MW; and Nineteen SW bands covering from 1800 to 30000 kHz;
 * Band, Volume, Step, Bandwidth, AGC/Attenuation are now controlled by encoder;
-* __"Vol-" now can be used to control Automatic Volume Control (AVC) too se the manual below__; 
-* __"BAND-" now can be used to control Softmute Attenuation too see manual below__; 
+* __"Vol-" now can be used to control Automatic Volume Control (AVC) too. See the manual below__; 
+* __"BAND-" now can be used to control Softmute Attenuation too. See manual below__; 
 * All the previous status of the receiver can be rescued when you turn it on (including SSB mode, bandwidth, volume, frequency, BFO etc);
 * __The bandwidth now is a property of the band (you can use different bandwidth for different bands)__;
 * Bandwidth control on FM mode (Auto, 110, 84, 60 and 40 kHz);
