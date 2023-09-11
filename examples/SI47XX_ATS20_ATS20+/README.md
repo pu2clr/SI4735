@@ -89,6 +89,9 @@ Read the comments of the sketch before uploading.
 
 ## Steps to update the firmware using the regular approach
 
+For some reason, the standard method of firmware updating doesn't work on some versions of the ATS-20+. In this case, you should use the approach demonstrated in [this video](https://youtu.be/7e9yp1MgGI8?si=2t2k9sJHBDw1WZva).
+
+__Follow the steps below to the regular approach.__
 
 ### Step 1
 
@@ -140,10 +143,7 @@ Check the sketch you have just loaded from PU2CLR_SI4735 Examples folder
 Select the right Arduino Board.  On Tools Menu, select Arduino AVR Boards and __Arduino Nano__. 
 Read the comments of the sketche. 
 
-
 ![Firmware Update 08](./images/p08.png)
-
-
 
 ### Step 8 
 
@@ -378,7 +378,6 @@ Finally, turn the receiver on and click on the Upload icon or on the Sketch menu
 [See this video about this tutorial](https://youtu.be/7e9yp1MgGI8) 
     
  
-
 
 ### Problems and solutions reported for some experimenters
 
