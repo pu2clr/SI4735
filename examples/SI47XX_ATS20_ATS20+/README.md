@@ -1,6 +1,6 @@
 # ATS-20 and ATS-20+ sold on Aliexpress and eBay
 
-This firmware was specially developed to run on ATS-20 and ATS-20+ receivers. For more details, follow the instructions below. Click [here](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress) to see previous versions and initiatives from other contributors.
+This firmware was specially developed for ATS-20 and ATS-20+ receivers. For more details, follow the instructions below. Click [here](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress) to see previous versions and contributions from other contributors. I would like to thank [EFWob](https://github.com/EFWob) for some interface improvements.
 
 Although the seller does not explicitly mention that the Arduino sketch used by the ATS-20 and ARS-20+ is based on this library (PU2CLR SI4735 Arduino Library), I’ve been testing successfully the sketch of this folder on some KITs acquired by some Brazilians experimenters. __The author of this library does not know the seller of this kit and does not have a commercial relationship with any commercial product that uses the PU2CLR SI4735 Arduino Library. It is important you understand that there is no guarantee that this sketch will work correctly in your current product__.
 
@@ -17,9 +17,9 @@ __PLEASE READ ALL TEXT BELOW BEFORE UPDATING THE FIRMWARE__
 
 ## Summary 
 
-* [Firmware Update via Desktop Arduino IDE](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#firmware-update-via-desktop-arduino-ide)
-* [Steps to update the firmware using the regular approach](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#steps-to-update-the-firmware-using-the-regular-approach)
-* [UPDATING THE FIRMWARE WITH USBasp interface](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/AliExpress#updating-the-firmware-with-usbasp-interface)
+* [Firmware Update via Desktop Arduino IDE](./#firmware-update-via-desktop-arduino-ide)
+* [Steps to update the firmware using the regular approach](./#steps-to-update-the-firmware-using-the-regular-approach)
+* [UPDATING THE FIRMWARE WITH USBasp interface](./#updating-the-firmware-with-usbasp-interface)
 
 
 
@@ -184,18 +184,26 @@ Finally, run the upload.
 
 # User Manual 
 
+The functions of the ATS-20 and ATS-20+ buttons have been changed in order to allow the device to provide more features. Therefore, some buttons may offer more than one function. Please read carefully the commands available on the receiver implemented by this firmware.
+
 
 ## COMMANDS
 
 Follow the instruction to operate with the receiver. 
 
-###  DEALING WITH AUDIO VOLUME
+###  DEALING WITH AUDIO VOLUME and Automatic Volume Control (AVC)
 
-Press the __VOL+__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+Press the __VOL+__ push button quickly and rotate the  encoder. Press the button again to disable the command or wait for 4s. If you keep this button pressed the volume audio will increase faster.
 
-### SELECTING THE BAND
+Press the __VOL-__ push button quickly and rotate the encoder to increase or decrease the Automatic Volume Control parameter. This function can improve the Audio Quality.  If you keep this button pressed the volume audio will decrease faster.
 
-Press the __BAND+__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+### SELECTING THE BAND and SoftMute Index
+
+Press the __BAND+__ push button quickly and rotate the  encoder. Press the button again to disable the command or wait for 4s; Keep this button pressed to go to the next band faster.
+
+Press the __BAND-__ push button quickly and rotate the encoder to increase or decrease the Soft Mute Index  parameter. This function improves the behavior of the station selection process.  Keep this button pressed the go to  the previous  band faster.
+
 
 ### DEALING WITH AGC (Automatic Gain Control) AND ATTENUATION
 
@@ -203,8 +211,7 @@ Press the __AGC__ push button and rotate the  encoder. Press the button again to
 
 ### DEALING WITH AVC (Automatic Volume Control) 
 
-Press the __AVC__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
-
+Press the __VOL-__ push button quickly and rotate the encoder to increase or decrease the Automatic Volume Control parameter. This function can improve the Audio Quality.
 
 ###  DEALING WITH SOFTMUTE AND ATTENUATION
 
@@ -218,6 +225,8 @@ Press the __BW__  push button and rotate the  encoder. Press the button again to
 ### SWITCHING THE STEP FREQUENCY
 
 Press the __STEP__  push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+It you are using SSB and BFO is enabled, this button will change the BFO frequency step (10 or 25 Hz).  
+
 
 ### SWITCHING THE MODE AM, LSB AND USB
 
