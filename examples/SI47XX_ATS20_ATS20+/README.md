@@ -127,7 +127,11 @@ Install the Libraries __Tiny4kOLED__ and __TinyOLED-Fonts__ Arduino libraries fo
 
 ### Step 5
 
+Select the right firmware source (.ino). Follow the exaple below. 
+
 Go to the File Menu, select Examples item and look for the firmware for this receiver / KIT
+
+__Please, select the last version of the firmware.__ 
 
 
 ![Firmware Update 06](./images/p06.png)
