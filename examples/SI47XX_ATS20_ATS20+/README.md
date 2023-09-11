@@ -50,6 +50,10 @@ The photos below show the KIT sold on Aliexpress and eBay.
 __PLEASE READ ALL TEXT BELOW BEFORE UPDATING THE FIRMWARE__
 
 
+1) For some reason, the standard method of firmware updating doesn't work on some versions of the ATS-20+. In this case, you should use the approach demonstrated in [this video](https://youtu.be/7e9yp1MgGI8?si=2t2k9sJHBDw1WZva).
+2) For regular approach see [this video](https://youtu.be/K3T6GfjZH8E).
+
+
 ## New features
 
 * The final code (HEX file) is about 2.5K smaller than the previous one (now  you have more memory to add new features);
