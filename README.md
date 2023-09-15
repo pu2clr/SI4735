@@ -116,16 +116,16 @@ Technically, no Arduino application needs a library. In some cases, not using li
 
 Libraries typically allow for easier design and maintenance of code. A library may also implement the functionality you need on multiple hardware choices, thus making the code more portable.
 
-Imagine that you want to use an LCD or other display device in a project that monitors temperature and atmospheric pressure conditions. There are several good libraries for display devices available for Arduino users, most of the features you might want are implemented in these libraries. There is no point in re-inventing the wheel by avoiding a library. Unless you have require a feature that no library supports, it is generally wise to use a library, especially since a library can make porting code to different hardware easier.
+Imagine that you want to use an LCD or other display device in a project that monitors temperature and atmospheric pressure conditions. There are several good libraries for display devices available for Arduino users, and most of the features you might want are implemented in these libraries. There is no point in re-inventing the wheel by avoiding a library. Unless you require a feature that no library supports, it is generally wise to use a library, especially since a library can make porting code to different hardware easier.
 
-Use of a library can reduce the programming complexity and boost application robustness. It makes life easier for other developers, and also for youself. You do not have to be a software engineer to understand why this is the case. A library in this way is similar to an IC. It is often possible to manually implement the functionality of many IC chips in a circuit, but it would dramatically increase cost, complexity, size and sometimes failure rate of a project. Circuits are often better when some functions are abstracted away inside an off-the-shelf IC chip. The user of an IC only needs to know how to interact with the chip, and not how the chip itself is wired. 
+Use of a library can reduce programming complexity and boost application robustness. It makes life easier for other developers, and also for yourself. You do not have to be a software engineer to understand why this is the case. A library, in this way, is similar to an IC. It is often possible to manually implement the functionality of many IC chips in a circuit, but doing so would dramatically increase the cost, complexity, size, and sometimes the failure rate of a project. Circuits are often better when some functions are abstracted away inside an off-the-shelf IC chip. The user of an IC only needs to know how to interact with the chip, and not how the chip itself is wired.
 
-Finally, if you already use a library to handle the IC2 bus (Wire.h), TFT, OLED, SPI devices, and Serial UART communication, then it makes sense to use a library to handle the SI473X devices. The PU2CLR Arduino Library can offer more comfort, development agility, and robustness to your project. Unlike closed source solutions, this library is open source. This means you can learn how the library works by studying the code, if you choose. 
-
+Finally, if you already use a library to handle the I2C bus (Wire.h), TFT, OLED, SPI devices, and Serial UART communication, then it makes sense to use a library to handle the SI473X devices. The PU2CLR Arduino Library can offer more comfort, development agility, and robustness to your project. Unlike closed-source solutions, this library is open-source. This means you can learn how the library works by studying the code, if you choose.
 
 ## SI4735 Library construction history
 
-I started my work on building an Arduino library for SI473X family devices in early November 2019. The initial idea was to build a receiver by using an Arduino board, a few components and the SI4735 device made by Silicon Labs. Checking some videos on Youtube, I realized that the receiver besed on Si4735-D60 could go far beyond the initial proposal, __including listening to amateur radio and citizens band stations on SSB mode__. Via forums and websites, I also realized that there was a great demand for experimenters who would like to see the SI4735 device working on SSB mode. So, instead of developing a simple receiver based on the SI4735, __I decided to develop a library for the Arduino platform that would provide full support to the SI4735 and all SI473X device family as well__.
+I began my journey to create an Arduino library for the SI473X family of devices in early November 2019. The initial plan was to construct a receiver using an Arduino board, a handful of components, and the SI4735 device manufactured by Silicon Labs. After watching some videos on YouTube, it became clear that a receiver based on the SI4735-D60 had the potential to exceed the original scope of the project—__it could even receive amateur radio and citizens band stations in SSB mode__. Through forums and websites, I discovered a significant demand from hobbyists and experimenters interested in using the SI4735 device, particularly for SSB mode. With this in mind, I shifted my focus. Instead of merely developing a basic receiver around the SI4735, __I opted to create a comprehensive Arduino library that would fully support not only the SI4735 but the entire SI473X device family__.
+
 
 With this library, more than 60 examples were developed using various display types. [These examples can assist the experimenter in building their own receiver](https://github.com/pu2clr/SI4735/tree/master/examples).
 
@@ -208,11 +208,23 @@ You can also be a member of __group.io__ [SI47XX for hobbyists](https://groups.i
 
 Copyright (c) 2019 Ricardo Lima Caratti
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 <BR>
 
