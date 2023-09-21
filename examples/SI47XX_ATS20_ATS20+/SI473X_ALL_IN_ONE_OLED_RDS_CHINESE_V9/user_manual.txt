@@ -1,0 +1,63 @@
+# User Manual 
+
+The functions of the ATS-20 and ATS-20+ buttons have been changed in order to allow the device to provide more features. Therefore, some buttons may offer more than one function. Please read carefully the commands available on the receiver implemented by this firmware.
+
+
+## COMMANDS
+
+Follow the instruction to operate with the receiver. 
+
+###  DEALING WITH AUDIO VOLUME and Automatic Volume Control (AVC)
+
+Press the __VOL+__ push button quickly and rotate the  encoder. Press the button again to disable the command or wait for 4s. If you keep this button pressed the volume audio will increase faster.
+
+Press the __VOL-__ push button quickly and rotate the encoder to increase or decrease the Automatic Volume Control parameter. This function can improve the Audio Quality.  If you keep this button pressed the volume audio will decrease faster.
+
+
+### SELECTING THE BAND and SoftMute Index
+
+Press the __BAND+__ push button quickly and rotate the  encoder. Press the button again to disable the command or wait for 4s; Keep this button pressed to go to the next band faster.
+
+Press the __BAND-__ push button quickly and rotate the encoder to increase or decrease the Soft Mute Index  parameter. This function improves the behavior of the station selection process.  Keep this button pressed the go to  the previous  band faster.
+
+
+### DEALING WITH AGC (Automatic Gain Control) AND ATTENUATION
+
+Press the __AGC__ push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+### DEALING WITH AVC (Automatic Volume Control) 
+
+Press the __VOL-__ push button quickly and rotate the encoder to increase or decrease the Automatic Volume Control parameter. This function can improve the Audio Quality.
+
+###  DEALING WITH SOFTMUTE AND ATTENUATION
+
+Press the push button labeled __"BAND-"__ and rotate the  encoder. Press the button again to disable the command or wait for 4s. This button was used to control the band switch. Due to the new interface, this button has lost its original function. 
+
+
+### SELECTING BANDWIDTH
+
+Press the __BW__  push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+
+### SWITCHING THE STEP FREQUENCY
+
+Press the __STEP__  push button and rotate the  encoder. Press the button again to disable the command or wait for 4s;
+It you are using SSB and BFO is enabled, this button will change the BFO frequency step (10 or 25 Hz).  
+
+
+### SWITCHING THE MODE AM, LSB AND USB
+
+On AM mode press __MODE__ push button to switch to LSB mode; press MODE push button again to switch to USB mode; and finally press MODE push button again to switch AM mode.
+
+### VFO/BFO Switch
+
+To control the VFO and BFO, you can use the encoder push button on SSB mode. The display will show you if you are using VFO or BFO.
+
+### SEEK COMMAND
+
+On FM or AM modes press the encoder push button.
+The direction of the seek up or seek down will  depend on the last rotating movement of the encoder, clockwise and counterclockwise respectively.
+
+### RESET EEPROM
+
+__Turn your receiver on with the encoder push button pressed__.    
+
