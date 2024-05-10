@@ -34,6 +34,11 @@ If you find this project useful, consider making a donation so that the author o
 ![Donate](./extras/images/QR_Code.png) 
 
 
+## About Me
+
+I hold a Master's degree in Educational Technology from the Federal University of Ceará, where I delved into the ways technology can enhance learning experiences. My passion for computer science led me to specialize in it, focusing on Distributed Systems Development with an Object-Oriented approach, at the University of Brasília. My academic journey began with a Bachelor's degree in Information Systems from the União Pioneira de Integração Social (UPIS-Brasília). Outside the classroom, my main hobbies are electronics and Amateur Radio. 
+
+
 ## Contents
 
 1. [SI4735 Library construction history](https://pu2clr.github.io/SI4735/#si4735-library-construction-history)
