@@ -53,4 +53,4 @@ To save EEPROM write cycles:
 
 ### ATTENTION:
 
-Try press and release the push button quickly. if you hold the button too long, the board may randomly alternate the command status (enable and disable).
+Press and release the push button quickly. If you hold the button down, the microcontroller will think the button is being rapidly pressed, this will make it rapidly alternate whichever setting the button was operating. Just a quick press and release is the best way to operate the button.
