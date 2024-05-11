@@ -8,7 +8,7 @@
 
 |          |            |
 |----------|------------|
-|  ![SI4735 Prototypes](extras/images/multiplatform_SI47XX_photo_05.png)  | This document is aimed at the Arduino developers, radio experimenters, hobbyists and anyone interested in building a receiver based on the Si473X IC family from Silicon Labs. This project is about an Arduino library for the SI473X BROADCAST AM, SSB and FM/RDS RADIO RECEIVERS. Frequency ranges of AM and SSB modes are 150kHz to 30MHz, and FM mode is 64 to 108 MHz.
+|  ![SI4735 Prototypes](extras/images/multiplatform_SI47XX_photo_05.png)  | This document is aimed at the Arduino developers, radio experimenters, hobbyists and anyone interested in building a receiver based on the Si473X IC family from Silicon Labs. This project is an Arduino library for the SI473X BROADCAST AM, SSB and FM/RDS RADIO RECEIVERS. Frequency ranges of AM and SSB modes are 150kHz to 30MHz, and FM mode is 64 to 108 MHz.|
 
 
 
@@ -171,7 +171,7 @@ The following video is a little joke that shows the trajectory of the constructi
 
 ## Your support is important.
 
-If you want to support this library development, consider joining this project via Github. Alternatively, make suggestions on new features and report errors if you find them. Thank you!
+If you want to support this library development, consider joining this project via GitHub. Alternatively, make suggestions on new features and report errors if you find them. Thank you!
 
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
@@ -284,7 +284,7 @@ Do you need some old version (release) of this library?  If so, [check here](htt
 
 ## Installing the most current version via arduino-cli
 
-The commands below Install the latest version of the PU2CLR SI4735 Arduino Library from github. 
+The commands below Install the latest version of the PU2CLR SI4735 Arduino Library from GitHub. 
 As said before, unlike a release (installed from Arduino IDE) this method installs the current version of the PU2CLR SI4535 Arduino Library (latest modifications even if not yet released).
 
 ### On macOS or Linux
@@ -320,11 +320,11 @@ set ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
     * examples/__install_all_libraries_and_boards.bat__ - Installs all libraries and all boards used by the examples
     * examples/__compile_all.bat__ - compiles all examples and save the binaries in your Downloads folder
 
-## Bords setup on your Arduino IDE
+## Boards setup on your Arduino IDE
 
-It will be useful if you intend to use ESP32, ESP8266, Teensy, Raspbery PI PICO, Arduino DUE, ATTiny etc. 
+It will be useful if you intend to use ESP32, ESP8266, Teensy, Raspberry PI PICO, Arduino DUE, ATTiny etc. 
 
-On Arduino IDE, preferences, Aditional boards manager URls. See image below.
+On Arduino IDE, preferences, Additional boards manager URLs. See image below.
 
 
 ![Installing boards used by examples](extras/images/arduino_board_install.jpg)
@@ -366,7 +366,7 @@ After adding the Board URL you want to use, go to Tools menu, select the Boards 
 
 ## About the SI4732 and SI4735  
 
-The SI4732-A10 and SI4735-D60 are DSP receivers IC from Silcon Labs. They have great performance on AM, SSB (LW/MW/SW) from 150kHz to 30MHz and FM (VHF) from 64 to 108 MHz. __It is important to note that the engineers and programmers at Silicon Labs did an excellent job by implementing all the internal resources in this IC family. This library implements just the interface that allows you to use the SI473X resources with Arduino based board controller__. 
+The SI4732-A10 and SI4735-D60 are DSP receivers IC from Silicon Labs. They have great performance on AM, SSB (LW/MW/SW) from 150kHz to 30MHz and FM (VHF) from 64 to 108 MHz. __It is important to note that the engineers and programmers at Silicon Labs did an excellent job by implementing all the internal resources in this IC family. This library implements just the interface that allows you to use the SI473X resources with Arduino based board controller__. 
 The SI473X can be programmed by sending commands and getting responses. You can control it via a microcontroller like Arduino using I²C communication protocol. To make the SI473X perform an action, the microcontroller has to send a set of bytes (command and arguments) that the device interprets and executes the given command. The image below illustrates the interaction between the MCU and the SI473X device. 
 
 <BR>
@@ -405,11 +405,11 @@ This library has been written for the Arduino platform and has been successfully
 
 ### Arduino 5V and Si4735
 
-* __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO or anothe board, YOU HAVE TO USE A KIND OF 5V-3.3V BIDIRECTIONAL CONVERTER. Also pay attention to the appropriated pinout of your board to select the correct interrupt (IRQ- if you are using), RST, SDIO and SCLK pins. The table below shows some Arduino board pinout.__ 
+* __THE SI4735 IS A 3.3V PART. IF YOU ARE NOT USING A 3.3V VERSION OF ARDUINO or another board, YOU HAVE TO USE A KIND OF 5V-3.3V BIDIRECTIONAL CONVERTER. Also pay attention to the appropriated pinout of your board to select the correct interrupt (IRQ- if you are using), RST, SDIO and SCLK pins. The table below shows some Arduino board pinout.__ 
 
 <BR>
 
-|Board | InterrupT (IRQ) Pins| I²C / TWI pins | successfully tested | Voltage converter |
+|Board | Interrupt (IRQ) Pins| I²C / TWI pins | Successfully tested | Voltage converter |
 |------|---------------------| ---------------| ------------------- | ----------------- | 
 | 328-based <br> (Nano, Uno or Mini 5V) |	D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | Yes | 
 | 328-based <br> (Pro Mini 3.3 / 8Mhz) | D2 and D3 | A4 (SDA/SDIO), A5 (SCL/SCLK) |  Yes | No | 
@@ -428,7 +428,7 @@ This library has been written for the Arduino platform and has been successfully
 
 ### Schematic
 
-The main purpose of the schematic below (prototype) is to test the Si4735 Arduino Library. It does not intend to be a real radio for exigent listeners. However, it is possible to start with it and then, if you wish, you can include some devices to the circuit to improve, for example, its sensibility beyond other desired features.
+The schematic below is a basic reference implementation which can be used to test the functionality of the Si4735 Arduino library. If you wish to build a more polished radio suitable for real-world use, you should consider making some improvements to the supporting circuitry.
 [Click here to see a complete set of schematics and tips](https://pu2clr.github.io/SI4735/extras/schematic)
 
 The image below shows a version of Silicon Labs SSOP Typical Application Schematic connect to the host MCU (Arduino Pro Mini 3.3V). __Pay attention to the Si4735-D60 SEN pin (16). When the SEN pin is connected to the ground, the I²C bus address is 0x11. When the SEN pin is connected to +3.3V, the I²C bus address is 0x63. By default, the "Si4735 Arduino Library" uses the 0x11 I²C bus address (SEN pin connected to GND). If you want to use the address 0x63 (SEN connected on +3.3V), see the functions (methods) getDeviceI2CAddress, setDeviceI2CAddress and setDeviceOtherI2CAddress__.   
@@ -557,7 +557,7 @@ __Notes from Silicon Labs Broadcast AM/FM/SW/LW Radio Receiver documentation (pa
 | I²S  | Serial bus interface used for connecting digital audio devices 
 | Sketch |Name that Arduino environment uses for a program|
 | Interrupt |In this context, it is an Arduino Resource. Allows important tasks to be performed regardless of the flow of your program|
-| C++ | A object-oriented programming (OOP) language. It is a superset of the C language with an additional concept of "classes." |
+| C++ | A object-oriented programming (OOP) language. It is a super-set of the C language with an additional concept of "classes." |
 | programming guide | In this context it refers to [Si47XX PROGRAMMING GUIDE (REV 1.0)](https://web.engr.oregonstate.edu/~traylor/ece473/data_sheets/AN332.pdf)|
 | LNA | Low Noise Amplifier |
 | POC | Proof of Concept|
@@ -640,20 +640,20 @@ This library has more than 120 functions. The table below shows the mains functi
 | setTuneFrequencyAntennaCapacitor  | Only FM. Freeze Metrics During Alternate Frequency Jump. |
 | setI2CFastModeCustom              | Sets the I²C bus to a given value. |
 | setI2CStandardMode                | Sets I²C bus to 100kHz. |
-| setAudioMuteMcuPin                | This function sets the mcu digital pin you want to use to control the external audio mute circuit. | 
+| setAudioMuteMcuPin                | This function sets the MCU digital pin you want to use to control the external audio mute circuit. | 
 
 [Go to contents](https://pu2clr.github.io/SI4735/#contents)
 
 
 ### Defined Data Types and Structures
 
-The Si47XX family works with many internal data that can be represented by data structure or defined data type in C/C++. These C/C++ resources have been used widely here. This approach made the library easier to build and maintain. Each data structure created here has its reference (name of the document and page on which it was based). In other words, to make the SI47XX device easier to deal with, some defined data types were created to handle  byte and bits to process commands, properties and responses. __The goal of this approach is separating data from code__. 
+Working with the Si47XX family requires interacting with internal data. In order to simplify the maintenance and usage of the library, some structures and data types had to be defined. Each created data structure is listed below along with a reference to its documentation and the source material page. These data types greatly simplify the necessary handling of bits and bytes which the Si47XX family relies upon for commands, properties, and their appropriate responses. __The reason we do this is to separate code from data.__
 
 All data types defined in Si4735 Arduino Library are explained [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
 
 ### Public methods 
 
-This library was developed using the C++ language and the Object-oriented Programming approach. Methods are functions that belong to the class, in this case SI4735 class. Click [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group01.html) to go to API docummentation.
+This library was developed using the C++ language and the Object-Oriented Programming approach. Methods are functions that belong to the class, in this case SI4735 class. Click [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group01.html) to go to API documentation.
 
 All methods defined in Si4735 class are explained [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/). The list below refers to the method groups implemented by the Si4735 class.   
 
@@ -883,23 +883,23 @@ The schematic below shows the Digital Audio setup using an SI4735-D60 with an ES
 You can check the schematic above via [SI47XX_06_ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER example](https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_06_ESP32/DIGITAL_AUDIO_SERIAL_PLOTTER)
 
 
-The table below shows the SI4735,  DAC MAX98357A and ESP32 wireup
+The table below shows how to wire the SI4735, DAC MAX98357A, and ESP32
 
-| Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
+| Si4735    | Function  | DAC MAX98357A  | ESP32 |
 |-----------| ----------|-----------------|---------------------------------------|
-| pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
-| pin 2     | DFS       |  RC             |  WordSelect / GPIO25                  |
-| pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
+| pin 1     | DOUT      | DIN            | SerialData / GPIO32 |
+| pin 2     | DFS       | RC             | WordSelect / GPIO25 |
+| pin 3     | DCLK      | BCLK           | ContinuousSerialClock) / GPIO33) |
 
 
 
-The table below shows the SI4735,  DAC CJMCU and ESP32 wireup
+The table below shows how to wire up the SI4735, DAC CJMCU, and ESP32
 
-| Si4735    | Function  |  DAC MAX98357A  | ESP32                                 |
-|-----------| ----------|-----------------|---------------------------------------|
-| pin 1     | DOUT      |  DIN            |  SerialData / GPIO32                  |
-| pin 2     | DFS       |  WSEL           |  WordSelect / GPIO25                  |
-| pin 3     | DCLK      |  BCLK           |  ContinuousSerialClock) / GPIO33)     |
+| Si4735    | Function  |  DAC MAX98357A  | ESP32 |
+|-----------|-----------|-----------------|----------------------|
+| pin 1     | DOUT      | DIN            | SerialData / GPIO32 |
+| pin 2     | DFS       | WSEL           | WordSelect / GPIO25 |
+| pin 3     | DCLK      | BCLK           | ContinuousSerialClock) / GPIO33) |
 
 
 
@@ -909,7 +909,7 @@ See the [API Documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/)
 
 ### Customizing PU2CLR Arduino Library
 
-Maybe you need some Si47XX device functions that the __PU2CLR SI4735 Arduino Library__ has not yet implemented. Also, you may want to change some existent function behaviors. This topic describes some approaches to add new SI473X features to your application.
+Maybe you need some Si47XX device functions that the __PU2CLR SI4735 Arduino Library__ has not yet implemented. Also, you may want to change some existing function behaviors. This topic describes some approaches to consider if you wish to add new SI473X features to your application.
 
 
 __Please, check the [API documentation](https://pu2clr.github.io/SI4735/extras/apidoc/html/) before implementing something you think is new. It is possible that what you want has already been implemented__. 
@@ -941,7 +941,7 @@ rx.getCommandResponse(1,response);
 
 #### Extending the SI4735 class
 
-The best way to customize the PU2CLR SI4735 Arduino Library for your needs is extending the current version of the library by using C++ OOP approach.  For example: 
+The best way to customize the PU2CLR SI4735 Arduino Library for your needs is extending the current version of the library by using C++ OOP approach. For example: 
 
 ```cpp
 #include <SI4735.h>
@@ -1111,9 +1111,9 @@ void setup() {
 
 ### When the receiver starts or when I switches it from FM to AM and vice-versa, I have loud click in the speaker  
 
-Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some Si47XX device commands. This problem occurs during the receivers transition from the power down to power up. Every time the user changes the mode (FM to AM or AM to FM, Si47XX devices mnust be powered down and powered back up which causes the click sound. 
+Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some Si47XX device commands. This problem occurs during the receivers transition from the power down to power up. Every time the user changes the mode (FM to AM or AM to FM, Si47XX devices must be powered down and powered back up which causes the click sound. 
 
-The SI473X devices have HIGH DC (DC bias) component in the analog audio output pins (SI4735-D60 pins 23 and 24). When the device goes to power down mode, the voltage on the audio pins drops to 0V. The device does it internally and there is no way to avoid that. When the device goes to power up, those audio pins suddenly go to the HIGH DC again. This transition causes the loud pop in the speaker. So far, the author of this library has not found an internal SI473X device solution to solve the loud popping of the speaker. The internal SI473X mute or volume commands will not stop the clicking sound. However, it is possible to solve this problem by adding an extra __mute__ circuit and control it by the MCU (Atmega, ESP32, STM32, ATtiny85 etc). 
+The SI473X devices have HIGH DC (DC bias) component in the analog audio output pins (SI4735-D60 pins 23 and 24). When the device goes to power down mode, the voltage on the audio pins drops to 0V. The device does it internally and there is no way to avoid that. When the device goes to power up, those audio pins suddenly go to the HIGH DC again. This transition causes the loud pop in the speaker. So far, the author of this library has not found an internal SI473X device solution to solve the loud popping of the speaker. The internal SI473X mute or volume commands will not stop the clicking sound. However, it is possible to solve this problem by adding an extra __mute__ circuit and control it by the MCU (Atmega, ESP32, STM32, ATTiny85 etc). 
 
 The schematic below shows this approach.
 
@@ -1123,7 +1123,7 @@ The schematic below shows this approach.
 
 Considering that you are using a MCU based on Atmega328. When the D14 (A0) is HIGH the Si47XX output audio will be drained to the ground. At that condition, no audio will be transferred to the amplifier input and, consequently, to the speaker. So, no loud click in the speaker. 
 
-When the D14 is LOW, most of signal audio output from the Si47XX will be transfered to the input of the amplifier. 
+When the D14 is LOW, most of signal audio output from the Si47XX will be transferred to the input of the amplifier. 
 
 The code below shows all you have to do in your sketch to implement this resource.
 
@@ -1252,7 +1252,7 @@ void loadSSB()
 ## Boards where this library has been successfully tested
 
 
-This library can be useful to develop cross-platform software. So far, it has been successfully tested on the architectures shown below.    
+This library can be useful to develop cross-platform software. So far, it has been successfully tested on the architectures shown below.
 
 ![Silicon Labs Schematic](./extras/images/multiplatform_SI47XX_photo_05.png)
 
