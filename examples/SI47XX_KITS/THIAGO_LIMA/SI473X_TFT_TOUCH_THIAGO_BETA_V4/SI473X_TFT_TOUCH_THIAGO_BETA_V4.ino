@@ -77,8 +77,8 @@
 #include "Serif_plain_15.h"
 
 // =================================================
-//#define IhaveVertTFT
-#define IhaveHoriTFT
+ #define IhaveVertTFT
+// #define IhaveHoriTFT
 // =================================================
 
 #include <patch_init.h> // SSB patch for whole SSBRX initialization string
