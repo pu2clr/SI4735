@@ -3,7 +3,7 @@
 // improvements. The changes made in this sketch are mainly enhancements 
 // to the FM RDS functions. I would like to thank Mr. for the excellent 
 // work done.
-// Ricardo / PU2CLR 09.2024 
+// Ricardo/PU2CLR 09.2024 
 // The original comment about this sketch can be seeing below.
 // ----------------------------------------------------------------------
 // ATS_EX (Extended) Firmware for ATS-20 and ATS-20+ receivers.
