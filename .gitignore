@@ -1,4 +1,5 @@
 # ignore system files
+*.lst
 *.DS_Store
 *_Store
 *debug_custom.json
