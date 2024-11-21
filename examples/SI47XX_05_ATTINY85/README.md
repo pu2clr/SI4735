@@ -1,7 +1,7 @@
 # Examples of using the Si4735 Arduino Library on ATtiny85
 
 This folder shows how you can use de Si4735 Arduino Library on the very small ATtiny85.
-See the examples below. 
+See the examples below.
 
 
 ## SI47XX 01 - SI47XX_01_ATTINY85_LCD_16x2_I2C - AM/FM receiver with ATtiny85  
@@ -33,7 +33,7 @@ The pull-up resistor values may vary depending on the devices connected to the I
 
 
 
-#### ATtiny85 AND EXTERNAL EEPROM SETUP 
+#### ATtiny85 AND EXTERNAL EEPROM SETUP
 
 ![Schematic ATtiny85 and Si4735](../../extras/images/schematic_attiny85_ssb_external_eeprom.png)
 
@@ -45,7 +45,7 @@ The photo below show the Si4730 on adapter board with the basic components sugge
 
 ![Photo ATtiny85 and Si4730 on Adapter](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4730_on_adapterA.png)
 
-<BR> 
+<BR>
 
 The photo below shows the Si4730 on adapter board connect attached on a mini breadboard.
 
@@ -53,7 +53,7 @@ The photo below shows the Si4730 on adapter board connect attached on a mini bre
 
 <BR>
 
-The Si4730 and ATtiny85 FM radio prototype. 
+The Si4730 and ATtiny85 FM radio prototype.
 
 ![Photo ATtiny85 and Si4730](https://github.com/pu2clr/SI4735/blob/master/extras/images/SI4730_attiny85A.png)
 

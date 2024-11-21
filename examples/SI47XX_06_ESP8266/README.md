@@ -35,7 +35,7 @@ This sketch uses just the Serial Monitor as the human interface to test and vali
 * You do not need connect any push buttons or encoders to change volume and frequency
 * The Arduino IDE is all you need to control the radio
 
-### ESP8266 / ESP12F wire up
+### Circuit for ESP8266 / ESP12F
 
 
 #### SI4732-A10 and SI4735-G60 wire up
