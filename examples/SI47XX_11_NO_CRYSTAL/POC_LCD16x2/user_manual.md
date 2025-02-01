@@ -1,4 +1,4 @@
-#User Manual
+# User Manual
 
 This sketch was built to check the external active crystal oscillator instead of a passive crystal.
 
@@ -14,46 +14,40 @@ If you are using a SI4735-D60 or SI4732-A10 based circuit, you can also use this
 original Pavleski's project. If you are using the original SI4730-D60 based circuit, the SSB will not work. However, the STEP,
 MODE, AGC, Attenuation, bandwidth, Soft Mute, Audio Volume and Shortwave will still work.
 
-###Commands
+### Commands
 
-1. BAND SELECTION
+#### BAND SELECTION
 
-    1.1 Select the band by pressing the encoder push button once and then rotate the encoder clockwise or counterclockwise.  
-    1.2 When the desired band is shown on display, you  can press the button once again or wait for about 2 seconds.  
-    1.3 The control will then go back to the VFO.
+    1. Select the band by pressing the encoder push button once and then rotate the encoder clockwise or counterclockwise.  
+    2. When the desired band is shown on display, you  can press the button once again or wait for about 2 seconds.  
+    3. The control will then go back to the VFO.
 
-2. STEP, MODE, AGC/Attenuation, bandwidth, Soft Mute and VOLUME
+#### STEP, MODE, AGC/Attenuation, bandwidth, Soft Mute and VOLUME
 
-     2.1. Press the encoder push button twice (within 1/2 second).  
-     2.2. After that, the display will show you the Menu text. Rotate the encoder clockwise or counterclockwise
-          to select the option (STEP, MODE, AGC/Attenuation, bandwidth, VOLUME, etc).  
-     2.3. After that, select the option you want to setup by pressing the encoder push button once again.  
-     2.4. After that, rotate the encoder clockwise or counterclockwise to select the parameter.  
-     2.5. Finally, you can press the button once again or wait for about 2 seconds.
-          The control will then go back to the VFO.
+    1. Double press teh encoder push button (Press twice within 1/2 second).  
+    2. The display will show you the Menu text. Rotate the encoder clockwise or counterclockwise to select the option (STEP, MODE, AGC/Attenuation, bandwidth, VOLUME, etc).  
+    3. Select the option you want to setup by pressing the encoder push button once again.  
+    4. Rotate the encoder clockwise or counterclockwise to select the desired parameter.  
+    5. Finally, you can press the button once again or wait for about 2 seconds. The control will then go back to the VFO.
 
-3. VFO/BFO Switch
+#### VFO/BFO Switch
 
-    3.1. Press the encoder push button twice (within 1/2 second).  
-    3.2. Rotate the encoder clockwise or counterclockwise and go to the BFO option. This option is shown only on SSB mode.  
-    3.3. Press the encoder push button once again.  
-    3.4. Rotate the encoder clockwise or counterclockwise to increment or decrement the BFO (select the offset).  
-    3.5. If you press the button again or stop rotating the encoder for about 2 seconds, the control will go back to the VFO.
+    1. Double press teh encoder push button (Press twice within 1/2 second).  
+    2. Rotate the encoder clockwise or counterclockwise and go to the BFO option. This option is shown only on SSB mode.  
+    3. Press the encoder push button again.  
+    4. Rotate the encoder clockwise or counterclockwise to increment or decrement the BFO (select the offset).  
+    5. If you press the button again or stop rotating the encoder for about 2 seconds, the control will go back to the VFO.
 
+#### SEEK
 
-4. SEEK
+    1. Select the menu by pressing twice the encoder push button. The seek direction is based on the last encoder movement. If clockwise, the system seeks up. If counterclockwise, the system seeks down.
 
-    4.1. Select the menu by pressing twice the encoder push button. The seek direction is based on the last encoder
-        movement. If clockwise, the seek will go up. If counterclockwise, the seek will go down.
+    __ATTENTION:__ Try press and release the push button quickly. If you hold the button too long, the board may randomly alternate the command status (enable and disable).
 
-    __ATTENTION:__ Try press and release the push button quickly. If you hold the button too long, the board may
-    randomly alternate the command status (enable and disable).
-
-    After about 2 seconds, the current command or action is disabled automatically and the interface goes back
-    to VFO control.
+    After about 2 seconds, the current command or action is cancelled automatically and the interface goes back to VFO control.
 
 
-###TIPS:
+### TIPS:
 
 You can adjust the time to disable a current command or action by changing the constant ELAPSED_COMMAND
 (#define ELAPSED_COMMAND 2000). The value 2000 means 2 seconds. Increase or decrease the value to find the speed you prefer.

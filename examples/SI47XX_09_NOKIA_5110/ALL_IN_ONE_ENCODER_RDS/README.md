@@ -40,10 +40,10 @@ There are two boards very common on eBay and AlliExpress based on SI4730.
     * Rotate the encoder clockwise or counterclockwise and go to the BFO option. This option is shown only on SSB mode.
     * Press the encoder push button once again.
     * Rotate the encoder clockwise or counterclockwise to increment or decrement the BFO (select the offset).
-    * If you press the button again or stop rotating the ancoder for about 2 seconds, the control will go back to the VFO.
+    * If you press the button again or stop rotating the encoder for about 2 seconds, the control will go back to the VFO.
 
-    __ATTENTION__: Try press and release the push button quickly. If you hold the button too long, the board may randomly alternate the command status (enable and disable).
+    __ATTENTION__: Press and release the push button quickly. If you hold the button down, the microcontroller will think the button is being rapidly pressed, this will make it rapidly alternate whichever setting the button was operating. Just a quick press and release is the best way to operate the button.
 
 4. EEPROM RESET
 
-    The main information of the receiver is stored into the Arduino EEPROM. This way, when you turn the receiver on, the last receiver status is recalled. To RESET the receiver to DEFAULT status, turn it on with the encoder pust button pressed. Check the message "EEPROM RESET".
+    The main information of the receiver is stored into the Arduino EEPROM. This way, when you turn the receiver on, the last receiver status is recalled. To RESET the receiver to DEFAULT status, turn it on with the encoder push button pressed. Check the message "EEPROM RESET".

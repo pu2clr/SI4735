@@ -105,7 +105,7 @@ si47x_status SI4735::getInterruptStatus()
  * @details To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.
  *
  * | GPIO Output Enable  | value 0 | value 1 |
- * | ---- ---------------| ------- | ------- |
+ * | --------------------| ------- | ------- |
  * | GPO1OEN             | Output Disabled (Hi-Z) (default) | Output Enabled |
  * | GPO2OEN             | Output Disabled (Hi-Z) (default) | Output Enabled |
  * | GPO3OEN             | Output Disabled (Hi-Z) (default) | Output Enabled |
@@ -144,7 +144,7 @@ void SI4735::setGpioCtl(uint8_t GPO1OEN, uint8_t GPO2OEN, uint8_t GPO3OEN)
  * @details To avoid excessive current consumption due to oscillation, GPO pins should not be left in a high impedance state.
  *
  * | GPIO Output Enable  | value 0 | value 1 |
- * | ---- ---------------| ------- | ------- |
+ * | --------------------| ------- | ------- |
  * | GPO1LEVEL            |  Output low (default) | Output high |
  * | GPO2LEVEL            |  Output low (default) | Output high |
  * | GPO3LEVEL            |  Output low (default) | Output high |
@@ -392,7 +392,7 @@ void SI4735::setPowerUp(uint8_t CTSIEN, uint8_t GPO2OEN, uint8_t PATCH, uint8_t 
  * | CTSIEN    | Interrupt anabled or disabled |
  * | GPO2OEN   | GPO2 Output Enable or disabled |
  * | PATCH     | Boot normally or patch |
- * | XOSCEN    | 0 (XOSCEN_RCLK) = external active crystal oscillator. 1 (XOSCEN_CRYSTAL) = passive crystal oscillator;  |
+ * | XOSCEN    | 0 (XOSCEN_RCLK) = external active crystal oscillator. 1 (XOSCEN_CRYSTAL) = passive crystal oscillator  |
  * | FUNC      | defaultFunction = 0 = FM Receive; 1 = AM (LW/MW/SW) Receiver |
  * | OPMODE    | SI473X_ANALOG_AUDIO (B00000101) or SI473X_DIGITAL_AUDIO (B00001011) |
  *
@@ -632,7 +632,7 @@ void SI4735::setup(uint8_t resetPin, uint8_t defaultFunction)
  * @details On FM mode, the Antenna Tuning Capacitor is valid only when using TXO/LPI pin as the antenna input.
  * This selects the value of the antenna tuning capacitor manually, or automatically if set to zero.
  * The valid range is 0 to 191. Automatic capacitor tuning is recommended.
- * For example, if the varactor is set to a value of 5 manually, when read back the value will be 1.
+ * For example, if the capacitor is set to a value of 5 manually, when read back the value will be 1.
  * @details on AM mode, If the value is set to anything other than 0, the tuning capacitance is manually set as 95 fF x ANTCAP + 7 pF.
  * ANTCAP manual range is 1–6143. Automatic capacitor tuning is recommended. In SW mode, ANTCAPH[15:8] (high byte) needs to be set to 0 and ANTCAPL[7:0] (low byte) needs to be set to 1.
  *
@@ -946,7 +946,7 @@ uint16_t SI4735::getFrequency()
 /**
  * @ingroup group08 Frequency
  *
- * @brief Gets the current status  of the Si4735 (AM or FM)
+ * @brief Gets the current status of the Si4735 (AM or FM)
  *
  * @see Si47XX PROGRAMMING GUIDE; AN332 (REV 1.0); pages 73 (FM) and 139 (AM)
  *
@@ -1250,7 +1250,7 @@ void SI4735::seekPreviousStation()
  * @brief Seeks a station up or down.
  * @details Seek up or down a station and call a function defined by the developer to show the frequency.
  * @details The first parameter of this function is a name of your function that you have to implement to show the current frequency.
- * @details If you do not want to show the seeking progress,  you can set NULL instead the name of the function.
+ * @details If you do not want to show the seeking progress, you can set NULL instead the name of the function.
  * @details The code below shows an example using ta function the shows the current frequency on he Serial Monitor. You might want to implement a function that shows the frequency on your display device.
  * @details Also, you have to declare the frequency parameter that will be used by the function to show the frequency value.
  * @details __This function does not work on SSB mode__.
@@ -1303,7 +1303,7 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
  * @details Seek up or down a station and call a function defined by the developer to show the frequency and stop seeking process by the user.
  * @details The first parameter of this function is a name of your function that you have to implement to show the current frequency.
  * @details The second parameter is the name function that will check stop seeking action. Thus function should return true or false and should read a button, encoder or some status to make decision to stop or keep seeking.
- * @details If you do not want to show the seeking progress,  you can set NULL instead the name of the function.
+ * @details If you do not want to show the seeking progress, you can set NULL instead the name of the function.
  * @details If you do not want stop seeking checking, you can set NULL instead the name of a function.
  * @details The code below shows an example using ta function the shows the current frequency on he Serial Monitor. You might want to implement a function that shows the frequency on your display device.
  * @details Also, you have to declare the frequency parameter that will be used by the function to show the frequency value.
@@ -1774,7 +1774,7 @@ void SI4735::disableFmDebug()
  *
  * @details Options: DCLK edge, data format, force mono, and sample precision.
  *
- * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note:
+ * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; has the following note:
  *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
  *
  * @see Si47XX PROGRAMINGGUIDE; AN332 (REV 1.0); page 195.
@@ -1807,7 +1807,7 @@ void SI4735::digitalOutputFormat(uint8_t OSIZE, uint8_t OMONO, uint8_t OMODE, ui
  * @details before the DCLK/DFS is removed. FM_TUNE_FREQ command must be sent after the POWER_UP command to start
  * @details the internal clocking before setting this property.
  *
- * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; there is the following note:
+ * ATTENTION: The document AN383; "Si47XX ANTENNA, SCHEMATIC, LAYOUT, AND DESIGN GUIDELINES"; rev 0.8; page 6; has the following note:
  *            Crystal and digital audio mode cannot be used at the same time. Populate R1 and remove C10, C11, and X1 when using digital audio.
  *
  * @see Si47XX PROGRAMINGGUIDE; AN332 (REV 1.0); page 196.
@@ -2731,7 +2731,7 @@ char *SI4735::getRdsDateTime()
  * to the device every time the device is powered up.
  *
  * I would like to thank Mr Vadim Afonkin for making the SSBRX patches available for
- * SI4735-D60/SI4732-A10 on his Dropbox repository. On this repository you have two files,
+ * SI4735-D60/SI4732-A10 on his Dropbox repository. In this repository you have two files,
  * amrx_6_0_1_ssbrx_patch_full_0x9D29.csg and amrx_6_0_1_ssbrx_patch_init_0xA902.csg.
  * The patch content of the original files is in hexadecimal format, stored in an
  * ASCII text file.
@@ -2741,10 +2741,11 @@ char *SI4735::getRdsDateTime()
  * 0xFF = 255 (11111111);
  *
  * @details ATTENTION: The author of this project cannot guarantee that procedures shown
- * here will work in your development environment. Proceed at your own risk.
+ * here will work in your development environment.
  * This library works with the I²C communication protocol to send an SSB extension PATCH to
  * SI4735-D60 and SI4732-A10 devices. Once again, the author disclaims any and all liability for any
- * damage or effects this procedure may have on your devices. Procced at your own risk.
+ * damage or effects this procedure may have on your devices. The patch and procedures are provided with no 
+ * warranty. Proceed at your own risk.
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5
  */
 
@@ -3565,11 +3566,11 @@ void SI4735::removeUnwantedChar(char *str, int size) {
  * 0xFF = 255 (11111111);
  *
  * @details ATTENTION: The author of this project cannot guarantee that procedures shown
- *  here will work in your development environment. Proceed at your own risk.
- *  This library works with the I²C communication protocol to send an SSB extension
- *  PATCH to SI4735-D60 and SI4732-A10 devices. Once again, the author disclaims any
- *  and all liability for any damage or effects this procedure may have on your devices.
- *  Proceed at your own risk.
+ * here will work in your development environment.
+ * This library works with the I²C communication protocol to send an SSB extension PATCH to
+ * SI4735-D60 and SI4732-A10 devices. Once again, the author disclaims any and all liability for any
+ * damage or effects this procedure may have on your devices. The patch and procedures are provided with no 
+ * warranty. Proceed at your own risk.
  * @see AN332 REV 0.8 UNIVERSAL PROGRAMMING GUIDE; pages 3 and 5
  */
 
