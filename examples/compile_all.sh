@@ -19,6 +19,9 @@ arduino-cli compile -b arduino:avr:nano ./SI47XX_01_SERIAL_MONITOR/SI4735_06_SSB
 arduino-cli compile -b arduino:avr:nano ./SI47XX_99_AUTO_BANDPASS_FILTER/SI473X_01_POC_SERIAL_MONITOR --output-dir ~/Downloads/hex/atmega/SI473X_01_POC_SERIAL_MONITOR
 arduino-cli compile -b arduino:avr:nano ./TOOLS/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN --output-dir ~/Downloads/hex/atmega/SI47XX_02_STORE_EEPROM_BEFORE_SHUTDOWN
 
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader ./SI47XX_02_for_Mirko_Pavleski_radio/MIRKO_V3_LCD20x4 --output-dir ~/Downloads/hex/atmega/MIRKO_V3_LCD20x4_2
+
+
 
 echo "Arduino LGT8FX based board"
 arduino-cli compile -b lgt8fx:avr:328 ./SI47XX_01_SERIAL_MONITOR/SI4735_01_POC --output-dir ~/Downloads/hex/lgt8fx/SI4735_01_POC
