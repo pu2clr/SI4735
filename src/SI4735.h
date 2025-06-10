@@ -2826,7 +2826,7 @@ public:
      * @details Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some SI47XX commands.
      * @details This problem occurs during the transition from the power down to power up.
      * @details For example, when the user changes bands (FM to AM or AM to FM), the Si47XX devices must be powered down and powered up again.
-     * @details If you have a mute circuit attached to a pin on teh MCU, then you can control the mute circuit from the MCU with this function.
+     * @details If you have a mute circuit attached to a pin on the MCU, then you can control the mute circuit from the MCU with this function.
      *
      * @see setHardwareAudioMute
      * @param pin if 0 or greater, sets the MCU digital pin that controls the external circuit.

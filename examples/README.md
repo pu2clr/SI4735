@@ -105,7 +105,7 @@ See the section below for details.
 
 ## Arduino CLI - A faster alternative to the Arduino IDE
 
-Arduino CLI (arduino-cli) is a solution that allows you to compile, build, upload, manage boards and libraries via shell command line. This way, you do not need to use the traditional Arduino IDE. Depending on the development environment you use, arduino-cli may be a good choice given it is conservative on system resources. You will notice that the arduino-cli compiles and uploades code faster. However, it is a command line program, and may present a steeper learning curve over teh Arduio IDE. The links below can help you to learn more about arduino-cli.
+Arduino CLI (arduino-cli) is a solution that allows you to compile, build, upload, manage boards and libraries via shell command line. This way, you do not need to use the traditional Arduino IDE. Depending on the development environment you use, arduino-cli may be a good choice given it is conservative on system resources. You will notice that the arduino-cli compiles and uploads code faster. However, it is a command line program, and may present a steeper learning curve over the Arduino IDE. The links below can help you to learn more about arduino-cli.
 
 * [Click here for more detail about arduino-cli](https://arduino.github.io/arduino-cli/0.21/).
 * [Getting started](https://arduino.github.io/arduino-cli/0.21/getting-started/)

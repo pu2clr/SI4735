@@ -3618,7 +3618,7 @@ void SI4735::loadPatchNBFM(const uint8_t *patch_content, const uint16_t patch_co
 /**
  * @ingroup group20 Patch and NBFM support
  *
- * @brief Set the radio to FM function.
+ * @brief Set the radio to NBFM function.
  *
  * @todo Adjust the power up parameters
  *
