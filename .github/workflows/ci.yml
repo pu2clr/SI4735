@@ -1,0 +1,17 @@
+name: Arduino CI
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: arduino/setup-arduino-cli@v1
+        with:
+          version: latest
+      - run: |
+          arduino-cli core update-index
+          arduino-cli core install arduino:avr
+      - run: arduino-cli compile --fqbn arduino:avr:uno examples/SI47XX_01_SERIAL_MONITOR

@@ -62,7 +62,7 @@ The schematic below shows the Arduino board based on ATmega 328 and the Nokia 51
 ## User instructions 
 
 
-1. BAND, MODE, AGC/Attenuation, banddwith and STEP
+1. BAND, MODE, AGC/Attenuation, bandwidth and STEP
 
 Press the the correspondent push button and after, rotate the encoder to select the option. For example: 
 To switch the band, press the band button and then rotate the encoder clockwise or counterclockwise. 
