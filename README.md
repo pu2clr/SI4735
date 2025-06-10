@@ -816,7 +816,7 @@ SI4735-D60 on his [Dropbox repository](https://www.dropbox.com/sh/xzofrl8rfaaqh5
 
 __ATTENTION__: The author of this project cannot guarantee that procedures shown here will work in your development environment. Proceed at your own risk.
     This library works with the I²C communication protocol to send an SSB extension PATCH to SI4735-D60 and SI4732-A10 devices. Once again, the author disclaims any
-    and all liability for any damage or effects this procedure may have on your devices. Procced at your own risk.
+    and all liability for any damage or effects this procedure may have on your devices. Proceed at your own risk.
 
 All methods/functions to deal with SSB on Si4735-D60 can be seen [here](https://pu2clr.github.io/SI4735/extras/apidoc/html/group__group17.html).
 

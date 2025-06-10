@@ -34,7 +34,7 @@
  This library works with the I²C communication protocol to send an SSB extension
  PATCH to SI4735-D60 and SI4732-A10 devices. Once again, the author disclaims any
  and all liability for any damage or effects this procedure may have on your devices.
- Procced at your own risk.
+ Proceed at your own risk.
 
  This sketch has been successfully tested on tested on Arduino Pro Mini 3.3V; 
 
