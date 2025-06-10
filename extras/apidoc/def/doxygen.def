@@ -6927,7 +6927,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/si4735/SI4735/src/SI4735.h';
       sec-mem-desc-line = '2672';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Set the radio to FM function.
+Set the radio to NBFM function.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 \iline 3621 
@@ -7941,7 +7941,7 @@ _EnD_oF_dEf_TeXt_;
 \ilinebr\ilinebr Some users may be uncomfortable with the loud popping of the speaker during some transitions caused by some SI47XX commands.
 \ilinebr\ilinebr This problem occurs during the transition from the power down to power up.
 \ilinebr\ilinebr For example, when the user changes bands (FM to AM or AM to FM), the Si47XX devices must be powered down and powered up again.
-\ilinebr\ilinebr If you have a mute circuit attached to a pin on teh MCU, then you can control the mute circuit from the MCU with this function.
+\ilinebr\ilinebr If you have a mute circuit attached to a pin on the MCU, then you can control the mute circuit from the MCU with this function.
 
 @see setHardwareAudioMute
 @param pin if 0 or greater, sets the MCU digital pin that controls the external circuit.
@@ -8789,13 +8789,13 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'variable';
-      sec-mem-id   = 'class_s_i4735_1a7ce25193b7f254c75967568967ba4d85';
+      sec-mem-id   = 'class_s_i4735_1a16101449bdc0f5103b13011c073ba8bb';
       sec-mem-virt = normal;
       sec-mem-prot = protected;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
 uint16_t
 _EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'maxDelayAfterPouwerUp';
+      sec-mem-name = 'maxDelayAfterPowerUp';
       sec-mem-initializer = <<_EnD_oF_dEf_TeXt_
 = MAX_DELAY_AFTER_POWERUP
 _EnD_oF_dEf_TeXt_;

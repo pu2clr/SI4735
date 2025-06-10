@@ -259,7 +259,7 @@ var class_s_i4735 =
     [ "rdsEndGroupB", "class_s_i4735.html#a07ac2f7392dceae88cf87cf34d9960d1", null ],
     [ "deviceAddress", "class_s_i4735.html#a243ecc7d01fc0d0e9cabb4ed00b9e47d", null ],
     [ "maxDelaySetFrequency", "class_s_i4735.html#a5f101b95b6fc5127b9e9d92a21f44ab6", null ],
-    [ "maxDelayAfterPouwerUp", "class_s_i4735.html#a7ce25193b7f254c75967568967ba4d85", null ],
+    [ "maxDelayAfterPowerUp", "class_s_i4735.html#a16101449bdc0f5103b13011c073ba8bb", null ],
     [ "maxSeekTime", "class_s_i4735.html#ad656f75a444c174797f6e7a8bf6e6ee2", null ],
     [ "lastTextFlagAB", "class_s_i4735.html#abd965c0e49493bc2c7c37547d36dcc96", null ],
     [ "resetPin", "class_s_i4735.html#a6470177f747ef7eb8e7d02c76f72b19e", null ],
