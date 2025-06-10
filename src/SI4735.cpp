@@ -418,7 +418,7 @@ void SI4735::radioPowerUp(void)
     // Delay at least 500 ms between powerup command and first tune command to wait for
     // the oscillator to stabilize if XOSCEN is set and crystal is used as the RCLK.
     waitToSend();
-    delay(maxDelayAfterPouwerUp);
+    delay(maxDelayAfterPowerUp);
 
     // Turns the external mute circuit off
     if (audioMuteMcuPin >= 0)
@@ -3149,7 +3149,7 @@ void SI4735::patchPowerUp()
     Wire.write(0b00110001);          // This is a condition for loading the patch: Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled. You can change this calling setSSB.
     Wire.write(SI473X_ANALOG_AUDIO); // This is a condition for loading the patch: Set to Analog Output. You can change this calling setSSB.
     Wire.endTransmission();
-    delay(maxDelayAfterPouwerUp);
+    delay(maxDelayAfterPowerUp);
 }
 
 /**
@@ -3594,7 +3594,7 @@ void SI4735::patchPowerUpNBFM()
     Wire.write(0b00110000);          // This is a condition for loading the patch: Set to AM, Enable External Crystal Oscillator; Set patch enable; GPO2 output disabled; CTS interrupt disabled.
     Wire.write(SI473X_ANALOG_AUDIO); // This is a condition for loading the patch: Set to Analog Output. You can change this calling setNBFM.
     Wire.endTransmission();
-    delay(maxDelayAfterPouwerUp);
+    delay(maxDelayAfterPowerUp);
 }
 
 /**

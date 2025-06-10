@@ -1081,7 +1081,7 @@ protected:
 
     // Delays
     uint16_t maxDelaySetFrequency = MAX_DELAY_AFTER_SET_FREQUENCY; //!< Stores the maximum delay after set frequency command (in ms).
-    uint16_t maxDelayAfterPouwerUp = MAX_DELAY_AFTER_POWERUP;      //!< Stores the maximum delay you have to setup after a power up command (in ms).
+    uint16_t maxDelayAfterPowerUp = MAX_DELAY_AFTER_POWERUP;      //!< Stores the maximum delay you have to setup after a power up command (in ms).
     unsigned long maxSeekTime = MAX_SEEK_TIME;                     //!< Stores the maximum time (ms) for a seeking process. Defines the maximum seeking time.
 
     uint8_t lastTextFlagAB;
@@ -2696,7 +2696,7 @@ public:
      */
     inline void setMaxDelayPowerUp(uint16_t ms)
     {
-        this->maxDelayAfterPouwerUp = ms;
+        this->maxDelayAfterPowerUp = ms;
     }
 
     /**
