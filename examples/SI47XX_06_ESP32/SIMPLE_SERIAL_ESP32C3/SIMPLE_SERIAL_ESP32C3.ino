@@ -11,6 +11,8 @@
 
   Based on the SI4735_01_POC example of this library.
   By PU2CLR, adapted for ESP32C3, 2025.
+
+  This code was genereted Codex (Via ChatGPT) at 2025-06-10.  
 */
 
 #include <SI4735.h>
