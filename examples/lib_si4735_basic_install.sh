@@ -43,6 +43,7 @@ echo "This may take several minutes or hours. Please wait!"
 echo "Installing the libraries"
 #uncomment the lines if you and to include more libraries 
 arduino-cli lib install "PU2CLR SI4735"
+arduino-cli lib install "ArduinoBLE"
 arduino-cli lib install "Adafruit BusIO"
 arduino-cli lib install "Adafruit SH110X"
 arduino-cli lib install "Adafruit SSD1306"
@@ -74,6 +75,7 @@ echo "----------------------------------------------------"
 # uncomment the lines below if you want some additional boards 
 echo "Installing the boards"
 arduino-cli core install arduino:avr
+arduino-cli core install arduino:mbed_nano  # For Arduino Nano 33 BLE
 arduino-cli core install lgt8fx:avr
 arduino-cli core install MiniCore:avr
 arduino-cli core install arduino:sam
