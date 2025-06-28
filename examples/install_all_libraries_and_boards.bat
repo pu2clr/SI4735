@@ -33,6 +33,8 @@ ECHO ON
 echo "This may take several minutes or hours. Please wait!"
 echo "All board installed will consume about 6GB of storage space."
 
+arduino-cli config set network.connection_timeout 600s
+
 echo "Installing the libraries"
 arduino-cli core update-index
 arduino-cli lib install "PU2CLR SI4735"

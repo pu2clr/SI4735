@@ -23,6 +23,8 @@ export PATH=~/bin:$PATH
 
 ## Please.. run the script lib_si4735_basic_install.sh before running it.
 
+arduino-cli config set network.connection_timeout 600s
+
 arduino-cli core update-index
 # Install the PU2CLR SI4735 Arduino Library and all other libraries used by the examples
 echo "Installing all libraries needed by the PU2CLR Arduino Library examples"

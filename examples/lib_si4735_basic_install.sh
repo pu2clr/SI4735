@@ -15,6 +15,9 @@ curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.
 # It should be installed in the ~/bin folder
 export PATH=~/bin:$PATH
 # Start the arduino-cli configuration
+
+arduino-cli config set network.connection_timeout 600s
+
 arduino-cli config init 
 # Add all boards used by the examples (ATmega, Attiny, ESP32, STM32 etc) to the board list
 arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json \
