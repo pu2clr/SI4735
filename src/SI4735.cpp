@@ -1283,9 +1283,12 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), uint8_t up_down)
     // seek command does not work for SSB
     if (lastMode == SSB_CURRENT_MODE)
         return;
+
+        seekStation(up_down, 0); //搜索函数移除循环外,否则反复执行搜索,搜索失效
+    
     do
     {
-        seekStation(up_down, 0);
+        //seekStation(up_down, 0);
         delay(maxDelaySetFrequency);
         getStatus(0, 0);
         delay(maxDelaySetFrequency);
@@ -1338,9 +1341,12 @@ void SI4735::seekStationProgress(void (*showFunc)(uint16_t f), bool (*stopSeking
     // seek command does not work for SSB
     if (lastMode == SSB_CURRENT_MODE)
         return;
+
+        seekStation(up_down, 0); //搜索函数移除循环外,否则反复执行搜索,搜索失效
+    
     do
     {
-        seekStation(up_down, 0);
+        //seekStation(up_down, 0);
         delay(maxDelaySetFrequency);
         getStatus(0, 0);
         delay(maxDelaySetFrequency);
