@@ -28,7 +28,7 @@ Contact: __pu2clr@gmail.com__.
 
 ## Donate 
 
-If you find this project useful, consider making a donation so that the author of this library can purchase components and modules for improvements and testing of this library. [Click here to donate](https://www.paypal.com/donate/?business=LLV4PHKTXC4JW&no_recurring=0&item_name=Consider+making+a+donation.+So%2C+I+can+purchase+components+and+modules+for+improvements+and+testing+of+this+library.&currency_code=USD) or use the QR code below.
+If you find this library useful and would like to support its continued development, you may optionally make a donation. Donations help cover the cost of components, modules, and laboratory testing used in the maintenance and improvement of this open-source project. Donations are entirely voluntary and do not grant any special product, service, warranty, support, or development priority. Please note that this project is maintained on a voluntary basis, and the author makes no commitment regarding schedules or deadlines for future releases, updates, or feature implementations. Click here to donate or use the QR code below. [Click here to donate](https://www.paypal.com/donate/?business=LLV4PHKTXC4JW&no_recurring=0&item_name=Consider+making+a+donation.+So%2C+I+can+purchase+components+and+modules+for+improvements+and+testing+of+this+library.&currency_code=USD) or use the QR code below.
 
 
 ![Donate](./extras/images/QR_Code.png) 
